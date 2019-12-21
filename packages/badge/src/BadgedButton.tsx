@@ -1,7 +1,7 @@
 import React, { CSSProperties, FC, forwardRef, ReactNode, Ref } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
-import { FontIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/icon";
 import { WithForwardedRef } from "@react-md/utils";
 
 import Badge, { BadgeProps, BadgeTheme } from "./Badge";
@@ -58,11 +58,7 @@ type WithRef = WithForwardedRef<HTMLButtonElement>;
 type DefaultProps = Required<
   Pick<
     BadgedButtonProps,
-    | "aria-label"
-    | "buttonType"
-    | "children"
-    | "buttonChildren"
-    | "disableNullOnZero"
+    "aria-label" | "buttonType" | "children" | "disableNullOnZero"
   >
 >;
 type WithDefaultProps = BadgedButtonProps & DefaultProps & WithRef;
@@ -78,7 +74,7 @@ const BadgedButton: FC<BadgedButtonProps & WithRef> = providedProps => {
     badgeClassName,
     badgeRef,
     badgeId: propBadgeId,
-    buttonChildren,
+    buttonChildren: propButtonChildren,
     badgeTheme,
     forwardedRef,
     children,
@@ -86,8 +82,9 @@ const BadgedButton: FC<BadgedButtonProps & WithRef> = providedProps => {
     "aria-describedby": propDescribedBy,
     ...props
   } = providedProps as WithDefaultProps;
-
   const { id } = props;
+  const buttonChildren = useIcon("notification", propButtonChildren);
+
   let badgeId = propBadgeId || "";
   if (!badgeId && id) {
     badgeId = `${id}-badge`;
@@ -118,7 +115,6 @@ const BadgedButton: FC<BadgedButtonProps & WithRef> = providedProps => {
 const defaultProps: DefaultProps = {
   "aria-label": "Notifications",
   buttonType: "icon",
-  buttonChildren: <FontIcon>notifications</FontIcon>,
   children: null,
   disableNullOnZero: false,
 };

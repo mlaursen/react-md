@@ -1,14 +1,14 @@
 import React, { FC, Fragment } from "react";
 import {
-  NativeSelect,
-  useCheckboxState,
+  Checkbox,
   Fieldset,
+  NativeSelect,
   TextField,
+  useCheckboxState,
   useChoice,
 } from "@react-md/form";
 
 import states from "constants/states";
-import Checkbox from "components/Checkbox";
 
 import TextFieldThemeConfig from "./TextFieldThemeConfig";
 

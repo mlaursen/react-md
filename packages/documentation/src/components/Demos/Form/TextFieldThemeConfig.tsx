@@ -1,16 +1,15 @@
 import React, { FC, ReactNode } from "react";
 import {
+  Checkbox,
   Fieldset,
   Form,
+  Radio,
   TextFieldProps,
   TextFieldTheme,
   useCheckboxState,
   useChoice,
 } from "@react-md/form";
 import { FavoriteSVGIcon, LocationOnSVGIcon } from "@react-md/material-icons";
-
-import Radio from "components/Radio";
-import Checkbox from "components/Checkbox";
 
 import "./TextFieldThemeConfig.scss";
 

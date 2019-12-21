@@ -1,6 +1,6 @@
 import React, { CSSProperties, FC, ReactNode, Ref, useMemo } from "react";
 import cn from "classnames";
-import { FontIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/icon";
 import { SkipToMainContent } from "@react-md/link";
 import { bem, useInteractionModeContext } from "@react-md/utils";
 
@@ -105,9 +105,7 @@ type DefaultProps = Required<
     | "appBarAfterNav"
     | "fixedAppBar"
     | "denseAppBar"
-    | "navIcon"
     | "navIconLabel"
-    | "hideNavIcon"
     | "hideNavLabel"
     | "navTreeLabel"
     | "sheetLabel"
@@ -142,7 +140,7 @@ const Layout: FC<LayoutProps> = providedProps => {
     appBarAfterNav,
     fixedAppBar,
     denseAppBar,
-    navIcon,
+    navIcon: propNavIcon,
     navIconLabel,
     navIconLabelledBy,
     appBarTitle,
@@ -191,6 +189,7 @@ const Layout: FC<LayoutProps> = providedProps => {
     mainTabIndex = -1;
   }
 
+  const navIcon = useIcon("menu", propNavIcon);
   const value = useMemo(
     () => ({
       showNav,
@@ -261,10 +260,8 @@ const defaultProps: DefaultProps = {
   appBarAfterNav: false,
   fixedAppBar: true,
   denseAppBar: false,
-  navIcon: <FontIcon>menu</FontIcon>,
   navIconLabel: "Navigation toggle",
   navTreeLabel: "Navigation tree",
-  hideNavIcon: <FontIcon>keyboard_arrow_left</FontIcon>,
   hideNavLabel: "Hide navigation",
   sheetLabel: "Navigation",
   phoneLayout: DEFAULT_PHONE_LAYOUT,

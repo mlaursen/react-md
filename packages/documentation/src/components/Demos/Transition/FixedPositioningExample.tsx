@@ -1,28 +1,27 @@
-import React, { FC, Fragment, useRef, useState, useCallback } from "react";
+import React, { FC, Fragment, useCallback, useRef, useState } from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { Button } from "@react-md/button";
 import {
+  Checkbox,
+  Fieldset,
   Form,
+  ListboxOption,
   Select,
   useCheckboxState,
-  ListboxOption,
-  Fieldset,
 } from "@react-md/form";
+import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
 import { useFixedPositioning } from "@react-md/transition";
 import { Text } from "@react-md/typography";
 import {
   HorizontalPosition,
-  useToggle,
-  VerticalPosition,
   PositionAnchor,
   PositionWidth,
+  useToggle,
+  VerticalPosition,
 } from "@react-md/utils";
 
-import Checkbox from "components/Checkbox";
-
 import "./FixedPositioningExample.scss";
-import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 
 const horizontals: HorizontalPosition[] = [
   "left",

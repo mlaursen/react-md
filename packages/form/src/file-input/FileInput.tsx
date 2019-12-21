@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
-import { FontIcon, TextIconSpacing } from "@react-md/icon";
+import { useIcon, TextIconSpacing } from "@react-md/icon";
 import { useInteractionStates } from "@react-md/states";
 import { SrOnly } from "@react-md/typography";
 import { bem, WithForwardedRef } from "@react-md/utils";
@@ -59,7 +59,6 @@ type WithRef = WithForwardedRef<HTMLInputElement>;
 type DefaultProps = Required<
   Pick<
     FileInputProps,
-    | "icon"
     | "iconAfter"
     | "theme"
     | "themeType"
@@ -85,7 +84,7 @@ const FileInput: FC<FileInputProps & WithRef> = providedProps => {
     theme,
     themeType,
     buttonType,
-    icon,
+    icon: propIcon,
     iconAfter,
     children,
     forwardedRef,
@@ -104,6 +103,7 @@ const FileInput: FC<FileInputProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
   const { id, disabled } = props;
+  const icon = useIcon("download", propIcon);
 
   const { ripples, className, handlers } = useInteractionStates({
     handlers: {
@@ -170,7 +170,6 @@ const FileInput: FC<FileInputProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
-  icon: <FontIcon>file_download</FontIcon>,
   iconAfter: false,
   children: <SrOnly>Upload</SrOnly>,
   theme: "primary",

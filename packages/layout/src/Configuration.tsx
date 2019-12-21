@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import { NestedDialogContextProvider } from "@react-md/dialog";
+import { IconProvider, ConfigurableIcons } from "@react-md/icon";
 import {
   StatesConfigProps,
   RIPPLE_TIMEOUT,
@@ -49,6 +50,12 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
    * have children that consume the React context.
    */
   children: ReactNode;
+
+  /**
+   * An object of all the configurable icons that you want to override throughout
+   * react-md.
+   */
+  icons?: ConfigurableIcons;
 }
 
 export type ConfigurationDefaultProps = Required<
@@ -91,6 +98,7 @@ const Configuration: FC<ConfigurationProps> = providedProps => {
     disableTooltipHoverMode,
     tooltipDefaultDelay,
     tooltipDelayTimeout,
+    icons,
   } = providedProps as WithDefaultProps;
 
   return (
@@ -115,7 +123,7 @@ const Configuration: FC<ConfigurationProps> = providedProps => {
               defaultDelay={tooltipDefaultDelay}
               delayTimeout={tooltipDelayTimeout}
             >
-              {children}
+              <IconProvider {...icons}>{children}</IconProvider>
             </TooltipHoverModeConfig>
           </StatesConfig>
         </InteractionModeListener>
@@ -188,6 +196,18 @@ if (process.env.NODE_ENV !== "production") {
       tooltipDelayTimeout: PropTypes.number,
       tooltipDefaultDelay: PropTypes.number,
       disableTooltipHoverMode: PropTypes.bool,
+      icons: PropTypes.shape({
+        back: PropTypes.node,
+        checkbox: PropTypes.node,
+        expander: PropTypes.node,
+        dropdown: PropTypes.node,
+        download: PropTypes.node,
+        forward: PropTypes.node,
+        menu: PropTypes.node,
+        radio: PropTypes.node,
+        password: PropTypes.node,
+        notification: PropTypes.node,
+      }),
     };
   }
 }

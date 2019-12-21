@@ -1,6 +1,6 @@
 import React, { FC, forwardRef, useCallback } from "react";
 import cn from "classnames";
-import { FontIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/icon";
 import { ListItemChildren, ListElement } from "@react-md/list";
 import { useInteractionStates } from "@react-md/states";
 import { bem, WithForwardedRef } from "@react-md/utils";
@@ -15,7 +15,6 @@ type DefaultProps = Required<
     TreeItemProps,
     | "contentComponent"
     | "expanderLeft"
-    | "expanderIcon"
     | "disabled"
     | "height"
     | "threeLines"
@@ -46,7 +45,7 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
     expanded,
     selected,
     focused,
-    expanderIcon,
+    expanderIcon: propExpanderIcon,
     expanderLeft,
     textClassName,
     secondaryTextClassName,
@@ -68,6 +67,7 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
     onFocus,
     ...props
   } = providedProps as WithDefaultProps;
+  const expanderIcon = useIcon("expander", propExpanderIcon);
 
   const isLink =
     typeof propIsLink === "boolean"
@@ -175,7 +175,6 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
 const defaultProps: DefaultProps = {
   contentComponent: "span",
   expanderLeft: false,
-  expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
   disabled: false,
   height: "auto",
   threeLines: false,

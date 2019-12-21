@@ -36,7 +36,7 @@ more customization information, but an example usage is shown below.
 ## Usage
 
 Even though the `FontIcon` and `SVGIcon` components are the "main" exports for
-this package, they are more utilility components and probably won't be used much
+this package, they are more utility components and probably won't be used much
 once you set up your own icon system. The _real_ exports are going to be the
 `TextIconSpacing` and `IconRotator` components.
 

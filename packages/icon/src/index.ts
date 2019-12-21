@@ -9,3 +9,6 @@ export * from "./TextIconSpacing";
 
 export { default as IconRotator } from "./IconRotator";
 export * from "./IconRotator";
+
+export { default as IconProvider } from "./IconProvider";
+export * from "./IconProvider";

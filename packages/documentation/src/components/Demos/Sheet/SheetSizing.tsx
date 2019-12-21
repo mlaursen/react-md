@@ -2,7 +2,13 @@ import React, { FC, useState } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { DialogContent } from "@react-md/dialog";
-import { Fieldset, Form, Select, useSelectState } from "@react-md/form";
+import {
+  Checkbox,
+  Fieldset,
+  Form,
+  Select,
+  useSelectState,
+} from "@react-md/form";
 import { List, ListItem } from "@react-md/list";
 import { ArrowDropDownSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 import {
@@ -13,7 +19,6 @@ import {
 } from "@react-md/sheet";
 import { GridList, useAppSize, useToggle } from "@react-md/utils";
 
-import Checkbox from "components/Checkbox";
 import ConditionalPhone from "components/Phone/ConditionalPhone";
 
 const positions: SheetPosition[] = ["top", "right", "bottom", "left"];

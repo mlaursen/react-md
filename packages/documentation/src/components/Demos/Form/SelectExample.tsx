@@ -1,9 +1,9 @@
-import React, { FC, useState, useCallback } from "react";
+import React, { FC, useCallback, useState } from "react";
 import {
-  Select,
-  ListboxOption,
   Checkbox,
   Fieldset,
+  ListboxOption,
+  Select,
   useCheckboxState,
 } from "@react-md/form";
 

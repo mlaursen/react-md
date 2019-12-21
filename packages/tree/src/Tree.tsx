@@ -1,6 +1,6 @@
 import React, { FC, forwardRef, ReactNode, MutableRefObject } from "react";
 import cn from "classnames";
-import { FontIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/icon";
 import { List, ListElement } from "@react-md/list";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
@@ -12,7 +12,7 @@ import { NestedTreeItem } from "./useNestedTreeList";
 import useTreeMovement from "./useTreeMovement";
 
 type WithRef = WithForwardedRef<ListElement>;
-type DefaultProps = ProvidedTreeProps;
+type DefaultProps = Omit<ProvidedTreeProps, "expanderIcon">;
 type WithDefaultProps = TreeProps & DefaultProps & WithRef;
 
 const block = bem("rmd-tree");
@@ -37,7 +37,7 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
     onItemExpansion,
     onMultiItemExpansion,
     expanderLeft: _expanderLeft,
-    expanderIcon: _expanderIcon,
+    expanderIcon: propExpanderIcon,
     labelKey: _labelKey,
     valueKey,
     getItemLabel: _getItemLabel,
@@ -52,6 +52,7 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
   const { id } = props;
+  const expanderIcon = useIcon("dropdown", propExpanderIcon);
 
   const {
     items,
@@ -127,7 +128,7 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
             : undefined,
         },
         { ...item, visibleIndex },
-        providedProps as WithDefaultProps
+        { ...providedProps, expanderIcon } as ProvidedTreeProps
       );
     });
   };
@@ -154,7 +155,6 @@ const defaultProps: DefaultProps = {
   rootId: null,
   multiSelect: false,
   expanderLeft: false,
-  expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
   itemRenderer: defaultTreeItemRenderer,
   labelKey: "name",
   valueKey: "name",

@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { Button } from "@react-md/button";
-import { FontIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/icon";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
 import TextField, { TextFieldProps } from "./TextField";
@@ -44,10 +44,7 @@ export interface PasswordProps
 
 type WithRef = WithForwardedRef<HTMLInputElement>;
 type DefaultProps = Required<
-  Pick<
-    PasswordProps,
-    "visibilityIcon" | "visibilityLabel" | "disableVisibility"
-  >
+  Pick<PasswordProps, "visibilityLabel" | "disableVisibility">
 >;
 type WithDefaultProps = PasswordProps & DefaultProps & WithRef;
 
@@ -63,7 +60,7 @@ const Password: FC<PasswordProps & WithRef> = providedProps => {
     className,
     inputClassName,
     forwardedRef,
-    visibilityIcon,
+    visibilityIcon: propVisibilityIcon,
     disableVisibility,
     visibilityStyle,
     visibilityClassName,
@@ -75,6 +72,8 @@ const Password: FC<PasswordProps & WithRef> = providedProps => {
   const toggle = useCallback(() => {
     setType(prevType => (prevType === "password" ? "text" : "password"));
   }, []);
+
+  const visibilityIcon = useIcon("password", propVisibilityIcon);
 
   return (
     <TextField
@@ -106,7 +105,6 @@ const Password: FC<PasswordProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
-  visibilityIcon: <FontIcon>remove_red_eye</FontIcon>,
   visibilityLabel: "Temporarily show password",
   disableVisibility: false,
 };

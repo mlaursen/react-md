@@ -8,6 +8,9 @@ import simpleExamples from "./SimpleExamples.md";
 import IconSpacing from "./IconSpacing";
 import iconSpacing from "./IconSpacing.md";
 
+import OverridingDefaultIcons from "./OverridingDefaultIcons";
+import overridingDefaultIcons from "./OverridingDefaultIcons.md";
+
 const demos = [
   {
     name: "Simple Examples",
@@ -18,6 +21,11 @@ const demos = [
     name: "Icon Spacing",
     description: iconSpacing,
     children: <IconSpacing />,
+  },
+  {
+    name: "Overriding Default Icons",
+    description: overridingDefaultIcons,
+    children: <OverridingDefaultIcons />,
   },
 ];
 

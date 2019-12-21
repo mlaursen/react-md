@@ -1,7 +1,6 @@
-import React, { FC, ReactNode, CSSProperties, forwardRef } from "react";
+import React, { CSSProperties, FC, forwardRef, ReactNode } from "react";
+import { BadgedButton, BadgedButtonProps } from "@react-md/badge";
 import { Tooltipped } from "@react-md/tooltip";
-import { BadgedButton } from "@react-md/badge";
-import { BadgedButtonProps } from "@react-md/badge/types/BadgedButton";
 import { WithForwardedRef } from "@react-md/utils";
 
 export interface TooltippedBadgedButtonProps extends BadgedButtonProps {

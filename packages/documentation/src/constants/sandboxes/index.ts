@@ -133,6 +133,8 @@ const sandboxes: Sandboxes = {
   },
   Icon: {
     IconSpacing: () => resolve(import("./Icon-IconSpacing.json")),
+    OverridingDefaultIcons: () =>
+      resolve(import("./Icon-OverridingDefaultIcons.json")),
     SimpleExamples: () => resolve(import("./Icon-SimpleExamples.json")),
   },
   Link: {

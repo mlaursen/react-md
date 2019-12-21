@@ -1,11 +1,9 @@
 import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
-import { Fieldset, useChoice } from "@react-md/form";
+import { Fieldset, Radio, useChoice } from "@react-md/form";
 import { List, ListItem } from "@react-md/list";
 import { Sheet, SheetPosition } from "@react-md/sheet";
 import { useToggle } from "@react-md/utils";
-
-import Radio from "components/Radio";
 
 const positions: SheetPosition[] = ["top", "right", "bottom", "left"];
 

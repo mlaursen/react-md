@@ -1,17 +1,15 @@
-import React, { FC, useEffect, useState, useCallback } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { Button } from "@react-md/button";
-import { Form } from "@react-md/form";
+import { Checkbox, Form, Select } from "@react-md/form";
 import { Text } from "@react-md/typography";
 import {
+  ContrastRatioCompliance,
   Grid,
   GridCell,
   HexString,
   UpdateRMDVariables,
-  ContrastRatioCompliance,
 } from "@react-md/utils";
 
-import Checkbox from "components/Checkbox";
-import Select from "components/Select";
 import {
   ColorAccent,
   primaries,
@@ -21,7 +19,6 @@ import {
   ThemeMode,
   useThemeActions,
 } from "components/Theme";
-
 import BackgroundWarnings from "./BackgroundWarnings";
 import ConfigurationCell from "./ConfigurationCell";
 import useThemeVariables from "./useThemeVariables";
@@ -142,7 +139,7 @@ const ThemeConfiguration: FC<ThemeConfigurationProps> = ({
           </ConfigurationCell>
           <ConfigurationCell fullWidth>
             <Checkbox
-              id="toggle-theme"
+              id="toggle-theme-checkbox"
               label="Enable dark theme"
               name="theme"
               checked={theme === "dark"}

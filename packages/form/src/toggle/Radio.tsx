@@ -1,5 +1,5 @@
 import React, { FC, forwardRef } from "react";
-import { FontIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/icon";
 import { WithForwardedRef } from "@react-md/utils";
 
 import InputToggle, { InputToggleProps } from "./InputToggle";
@@ -10,7 +10,6 @@ export interface RadioProps extends InputToggleProps {
    */
   value: string[] | string | number;
 }
-type DefaultProps = Required<Pick<InputToggleProps, "icon">>;
 
 /**
  * The `Radio` component is just a wrapper for the `InputToggle` that
@@ -18,14 +17,13 @@ type DefaultProps = Required<Pick<InputToggleProps, "icon">>;
  */
 const Radio: FC<RadioProps & WithForwardedRef<HTMLInputElement>> = ({
   forwardedRef,
+  icon: propIcon,
   ...props
-}) => <InputToggle {...props} ref={forwardedRef} type="radio" />;
+}) => {
+  const icon = useIcon("radio", propIcon);
 
-const defaultProps: DefaultProps = {
-  icon: <FontIcon>radio_button_checked</FontIcon>,
+  return <InputToggle {...props} icon={icon} ref={forwardedRef} type="radio" />;
 };
-
-Radio.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
   Radio.displayName = "Radio";

@@ -1,9 +1,13 @@
 import React, { FC, Fragment } from "react";
 import cn from "classnames";
-import { Fieldset, TextField, useCheckboxState } from "@react-md/form";
+import {
+  Checkbox,
+  Fieldset,
+  TextField,
+  useCheckboxState,
+} from "@react-md/form";
 import { bem, Grid, GridList, GridListCell } from "@react-md/utils";
 
-import Checkbox from "components/Checkbox";
 import useNumberField from "hooks/useNumberField";
 
 import "./Grid.scss";

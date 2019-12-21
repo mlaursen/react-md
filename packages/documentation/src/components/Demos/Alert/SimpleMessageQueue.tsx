@@ -1,9 +1,7 @@
 import React, { FC, Fragment, ReactElement } from "react";
+import { MessageQueue, ToastMessage, useAddMessage } from "@react-md/alert";
 import { Button } from "@react-md/button";
-import { useAddMessage, MessageQueue, ToastMessage } from "@react-md/alert";
-import { useChoice, Form } from "@react-md/form";
-
-import Radio from "components/Radio";
+import { Form, Radio, useChoice } from "@react-md/form";
 
 const SINGLE_LINE = "SINGLE_LINE";
 const SINGLE_LINE_ACTION = "SINGLE_LINE_ACTION";

@@ -1,9 +1,6 @@
 import React, { FC } from "react";
-import { Fieldset, Form } from "@react-md/form";
+import { Checkbox, Fieldset, Form, Radio } from "@react-md/form";
 import { Grid } from "@react-md/utils";
-
-import Checkbox from "components/Checkbox";
-import Radio from "components/Radio";
 
 import { TabConfiguration } from "./useConfiguration";
 

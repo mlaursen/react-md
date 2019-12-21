@@ -1,15 +1,13 @@
-import React, { ReactNode, FC } from "react";
+import React, { FC, ReactNode } from "react";
 import cn from "classnames";
-import { FontIcon, IconRotator, IconRotatorBaseProps } from "@react-md/icon";
+import { IconRotator, IconRotatorBaseProps, useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
 export interface TreeItemExpanderIconProps extends IconRotatorBaseProps {
   children?: ReactNode;
 }
 
-type DefaultProps = Required<
-  Pick<TreeItemExpanderIconProps, "rotated" | "children">
->;
+type DefaultProps = Required<Pick<TreeItemExpanderIconProps, "rotated">>;
 type WithDefaultProps = TreeItemExpanderIconProps & DefaultProps;
 
 const block = bem("rmd-tree-item");
@@ -19,16 +17,18 @@ const block = bem("rmd-tree-item");
  * a `TreeView`.
  */
 const TreeItemExpanderIcon: FC<TreeItemExpanderIconProps> = providedProps => {
-  const { className, ...props } = providedProps as WithDefaultProps;
+  const { className, children, ...props } = providedProps as WithDefaultProps;
+  const icon = useIcon("expander", children);
 
   return (
-    <IconRotator {...props} className={cn(block("rotator-icon"), className)} />
+    <IconRotator {...props} className={cn(block("rotator-icon"), className)}>
+      {icon}
+    </IconRotator>
   );
 };
 
 const defaultProps: DefaultProps = {
   rotated: false,
-  children: <FontIcon>keyboard_arrow_down</FontIcon>,
 };
 
 TreeItemExpanderIcon.defaultProps = defaultProps;

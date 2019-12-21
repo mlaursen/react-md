@@ -24,7 +24,6 @@
         "@react-md/app-bar": "next",
         "@react-md/form": "next",
         "@react-md/layout": "next",
-        "@react-md/material-icons": "next",
         "@react-md/media": "next",
         "@react-md/progress": "next",
         "@react-md/states": "next",
@@ -51,11 +50,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport { useCheckboxState } from \"@react-md/form\";\nimport { TabsManager, Tabs, TabPanels } from \"@react-md/tabs\";\n\nimport Checkbox from \"./Checkbox\";\n\nimport \"./PersistentTabs.scss\";\nimport Content1 from \"./Content1\";\nimport Content2 from \"./Content2\";\n\nconst tabs = [\"Tab 1\", \"Tab 2\"];\n\nconst Demo: FC = () => {\n  const [persistent, handleChange] = useCheckboxState(false);\n  return (\n    <TabsManager tabs={tabs} tabsId=\"persistent-tabs\">\n      <AppBar theme=\"default\" derived prominent>\n        <AppBar>\n          <Checkbox\n            id=\"persistent-tab-enable\"\n            checked={persistent}\n            onChange={handleChange}\n            label=\"Enable Persistant Tabs\"\n          />\n        </AppBar>\n        <Tabs />\n      </AppBar>\n      <TabPanels persistent={persistent} className=\"persistent-tabs\">\n        <Content1 />\n        <Content2 />\n      </TabPanels>\n    </TabsManager>\n  );\n};\n\nexport default Demo;\n",
-    "isBinary": false
-  },
-  "src/Checkbox.tsx": {
-    "content": "import React, { FC, forwardRef } from \"react\";\nimport { Checkbox as CheckboxMD, CheckboxProps } from \"@react-md/form\";\nimport { CheckBoxSVGIcon } from \"@react-md/material-icons\";\nimport { WithForwardedRef } from \"@react-md/utils\";\n\nconst Checkbox: FC<CheckboxProps & WithForwardedRef<HTMLInputElement>> = ({\n  forwardedRef,\n  ...props\n}) => <CheckboxMD {...props} ref={forwardedRef} />;\n\nCheckbox.defaultProps = {\n  icon: <CheckBoxSVGIcon />,\n};\n\nexport default forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => (\n  <Checkbox {...props} forwardedRef={ref} />\n));\n",
+    "content": "import React, { FC } from \"react\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport { Checkbox, useCheckboxState } from \"@react-md/form\";\nimport { TabsManager, Tabs, TabPanels } from \"@react-md/tabs\";\n\nimport \"./PersistentTabs.scss\";\nimport Content1 from \"./Content1\";\nimport Content2 from \"./Content2\";\n\nconst tabs = [\"Tab 1\", \"Tab 2\"];\n\nconst Demo: FC = () => {\n  const [persistent, handleChange] = useCheckboxState(false);\n  return (\n    <TabsManager tabs={tabs} tabsId=\"persistent-tabs\">\n      <AppBar theme=\"default\" derived prominent>\n        <AppBar>\n          <Checkbox\n            id=\"persistent-tab-enable\"\n            checked={persistent}\n            onChange={handleChange}\n            label=\"Enable Persistant Tabs\"\n          />\n        </AppBar>\n        <Tabs />\n      </AppBar>\n      <TabPanels persistent={persistent} className=\"persistent-tabs\">\n        <Content1 />\n        <Content2 />\n      </TabPanels>\n    </TabsManager>\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/Content1.tsx": {

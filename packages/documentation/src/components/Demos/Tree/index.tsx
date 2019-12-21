@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import { IconProvider } from "@react-md/icon";
 
 import DemoPage from "../DemoPage";
 import README from "./README.md";
@@ -30,11 +31,16 @@ const demos = [
   },
 ];
 
+// demos will be wrapped with the IconProvider just in-case people inspect the DOM
+// to view the generated HTML. I want the demos to reflect the default behavior
+// instead of the documentation overrides for SVG icons
 export default (): ReactElement => (
-  <DemoPage
-    demos={demos}
-    description={README}
-    packageName="tree"
-    fonts={["Font Awesome"]}
-  />
+  <IconProvider>
+    <DemoPage
+      demos={demos}
+      description={README}
+      packageName="tree"
+      fonts={["Font Awesome", "Material Icons"]}
+    />
+  </IconProvider>
 );

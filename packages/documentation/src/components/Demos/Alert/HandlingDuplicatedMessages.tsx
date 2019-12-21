@@ -5,12 +5,12 @@ import {
   ToastMessage,
   useAddMessage,
 } from "@react-md/alert";
-import { Form, useChoice, Fieldset, NativeSelect } from "@react-md/form";
-import Radio from "components/Radio";
-import { Divider } from "@react-md/divider";
 import { Button } from "@react-md/button";
-import Code from "components/Code/Code";
+import { Divider } from "@react-md/divider";
+import { Fieldset, Form, NativeSelect, Radio, useChoice } from "@react-md/form";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
+
+import Code from "components/Code/Code";
 
 interface Props {
   duplicates: DuplicateBehavior;

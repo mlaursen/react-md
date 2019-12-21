@@ -22,7 +22,6 @@
       "main": "src/index.tsx",
       "dependencies": {
         "@react-md/layout": "next",
-        "@react-md/material-icons": "next",
         "@react-md/states": "next",
         "@react-md/theme": "next",
         "@react-md/tree": "next",
@@ -47,7 +46,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport {\n  Tree,\n  useTreeItemSelection,\n  useTreeItemExpansion,\n} from \"@react-md/tree\";\nimport { KeyboardArrowDownSVGIcon } from \"@react-md/material-icons\";\n\nimport folders from \"./folders\";\n\nconst Demo: FC = () => {\n  const selection = useTreeItemSelection([], true);\n  const expansion = useTreeItemExpansion([]);\n\n  return (\n    <Tree\n      id=\"multi-select-tree\"\n      data={folders}\n      aria-label=\"Tree\"\n      {...selection}\n      {...expansion}\n      expanderIcon={<KeyboardArrowDownSVGIcon />}\n    />\n  );\n};\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport {\n  Tree,\n  useTreeItemSelection,\n  useTreeItemExpansion,\n} from \"@react-md/tree\";\n\nimport folders from \"./folders\";\n\nconst Demo: FC = () => {\n  const selection = useTreeItemSelection([], true);\n  const expansion = useTreeItemExpansion([]);\n\n  return (\n    <Tree\n      id=\"multi-select-tree\"\n      data={folders}\n      aria-label=\"Tree\"\n      {...selection}\n      {...expansion}\n    />\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/folders.ts": {

@@ -23,7 +23,6 @@
       "dependencies": {
         "@react-md/form": "next",
         "@react-md/layout": "next",
-        "@react-md/material-icons": "next",
         "@react-md/states": "next",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
@@ -50,11 +49,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { Fragment, FC, useState } from \"react\";\nimport { useCheckboxState } from \"@react-md/form\";\nimport { Text } from \"@react-md/typography\";\nimport { ResizeListener } from \"@react-md/utils\";\n\nimport CodeBlock from \"./CodeBlock\";\nimport Checkbox from \"./Checkbox\";\n\nconst Demo: FC = () => {\n  const [size, setSize] = useState(() => {\n    if (typeof window !== \"undefined\") {\n      return window.innerWidth;\n    }\n\n    return 0;\n  });\n\n  const [enabled, handleEnabledChange] = useCheckboxState(true);\n  const [immediate, handleImmediateChange] = useCheckboxState(true);\n\n  return (\n    <Fragment>\n      <Checkbox\n        id=\"resize-enabled\"\n        name=\"resizeOptions\"\n        checked={enabled}\n        onChange={handleEnabledChange}\n        label=\"Enable Listener\"\n      />\n      <Checkbox\n        id=\"toggle-resize-listener\"\n        name=\"resizeOptions\"\n        checked={immediate}\n        onChange={handleImmediateChange}\n        label=\"Invoke on mount\"\n      />\n      {enabled && (\n        <ResizeListener\n          immediate={immediate}\n          onResize={() => setSize(window.innerWidth)}\n        />\n      )}\n      <Text>The current app size is:</Text>\n      <CodeBlock>{size}px</CodeBlock>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
-    "isBinary": false
-  },
-  "src/Checkbox.tsx": {
-    "content": "import React, { FC, forwardRef } from \"react\";\nimport { Checkbox as CheckboxMD, CheckboxProps } from \"@react-md/form\";\nimport { CheckBoxSVGIcon } from \"@react-md/material-icons\";\nimport { WithForwardedRef } from \"@react-md/utils\";\n\nconst Checkbox: FC<CheckboxProps & WithForwardedRef<HTMLInputElement>> = ({\n  forwardedRef,\n  ...props\n}) => <CheckboxMD {...props} ref={forwardedRef} />;\n\nCheckbox.defaultProps = {\n  icon: <CheckBoxSVGIcon />,\n};\n\nexport default forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => (\n  <Checkbox {...props} forwardedRef={ref} />\n));\n",
+    "content": "import React, { FC, Fragment, useState } from \"react\";\nimport { Checkbox, useCheckboxState } from \"@react-md/form\";\nimport { Text } from \"@react-md/typography\";\nimport { ResizeListener } from \"@react-md/utils\";\n\nimport CodeBlock from \"./CodeBlock\";\n\nconst Demo: FC = () => {\n  const [size, setSize] = useState(() => {\n    if (typeof window !== \"undefined\") {\n      return window.innerWidth;\n    }\n\n    return 0;\n  });\n\n  const [enabled, handleEnabledChange] = useCheckboxState(true);\n  const [immediate, handleImmediateChange] = useCheckboxState(true);\n\n  return (\n    <Fragment>\n      <Checkbox\n        id=\"resize-enabled\"\n        name=\"resizeOptions\"\n        checked={enabled}\n        onChange={handleEnabledChange}\n        label=\"Enable Listener\"\n      />\n      <Checkbox\n        id=\"toggle-resize-listener\"\n        name=\"resizeOptions\"\n        checked={immediate}\n        onChange={handleImmediateChange}\n        label=\"Invoke on mount\"\n      />\n      {enabled && (\n        <ResizeListener\n          immediate={immediate}\n          onResize={() => setSize(window.innerWidth)}\n        />\n      )}\n      <Text>The current app size is:</Text>\n      <CodeBlock>{size}px</CodeBlock>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/Code/Code.tsx": {

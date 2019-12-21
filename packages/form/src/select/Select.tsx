@@ -10,7 +10,7 @@ import React, {
   useRef,
 } from "react";
 import cn from "classnames";
-import { FontIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/icon";
 import { useFixedPositioning } from "@react-md/transition";
 import {
   applyRef,
@@ -47,8 +47,8 @@ export interface SelectProps
     TextFieldContainerOptions,
     ListboxOptions {
   /**
-   * The id for the select component. This is required for a11y and will be used to generate
-   * ids for the listbox and each option within the listbox.
+   * The id for the select component. This is required for a11y and will be used
+   * to generate ids for the listbox and each option within the listbox.
    */
   id: string;
 
@@ -73,14 +73,14 @@ export interface SelectProps
   labelClassName?: string;
 
   /**
-   * An optional style to apply to the current display value within the `Select`'s button
-   * component.
+   * An optional style to apply to the current display value within the
+   * `Select`'s button component.
    */
   displayLabelStyle?: CSSProperties;
 
   /**
-   * An optional className to apply to the current display value within the `Select`'s button
-   * component.
+   * An optional className to apply to the current display value within the
+   * `Select`'s button component.
    */
   displayLabelClassName?: string;
 
@@ -95,56 +95,74 @@ export interface SelectProps
   listboxClassName?: string;
 
   /**
-   * Boolean if the select should act as a read only select field which just allows
-   * for all the options to be visible when toggled open.
+   * Boolean if the select should act as a read only select field which just
+   * allows for all the options to be visible when toggled open.
    */
   readOnly?: boolean;
 
   /**
-   * An optional placeholder text to show while the select is unvalued and is either currently focused
-   * or the `label` prop was not provided.
+   * An optional placeholder text to show while the select is unvalued and is
+   * either currently focused or the `label` prop was not provided.
    */
   placeholder?: ReactNode;
 
   /**
-   * A function that gets called whenever the Select's value changes so that the selected option can
-   * be converted into a renderable element to show in the Select's button. The default behavior is
-   * to use the `getOptionLabel` default behavior. If the option is an object and the `disableLeftAddon`
-   * prop has not been disabled, it will then attempt to also extract a `leftIcon` or `leftAvatar` from
-   * the option and use the `TextIconSpacing` component with the label + icon/avatar.
+   * A function that gets called whenever the Select's value changes so that the
+   * selected option can be converted into a renderable element to show in the
+   * Select's button. The default behavior is to use the `getOptionLabel`
+   * default behavior. If the option is an object and the `disableLeftAddon`
+   * prop has not been disabled, it will then attempt to also extract a
+   * `leftIcon` or `leftAvatar` from the option and use the `TextIconSpacing`
+   * component with the label + icon/avatar.
    */
   getDisplayLabel?: typeof DEFAULT_GET_DISPLAY_LABEL;
 
   /**
-   * The positioning configuration for how the listbox should be anchored to the select button.
+   * The positioning configuration for how the listbox should be anchored to the
+   * select button.
    */
   anchor?: PositionAnchor;
 
   /**
-   * The sizing behavior for the listbox. It will default to have the same width as the select button,
-   * but it is also possible to either have the `min-width` be the width of the select button or just
-   * automatically determine the width.
+   * The sizing behavior for the listbox. It will default to have the same width
+   * as the select button, but it is also possible to either have the
+   * `min-width` be the width of the select button or just automatically
+   * determine the width.
    *
-   * The sizing behavior will always ensure that the left and right bounds of the listbox appear within
-   * the viewport.
+   * The sizing behavior will always ensure that the left and right bounds of
+   * the listbox appear within the viewport.
    */
   listboxWidth?: PositionWidth;
 
   /**
-   * Boolean if the `Select`'s button display value should not attempt to extract a `leftIcon`/`leftAvatar`
-   * from the current selected option to display.
+   * Boolean if the `Select`'s button display value should not attempt to
+   * extract a `leftIcon`/`leftAvatar` from the current selected option to
+   * display.
    */
   disableLeftAddon?: boolean;
 
   /**
-   * Boolean if the select's listbox should not hide if the user resizes the browser while it is visible.
+   * Boolean if the select's listbox should not hide if the user resizes the
+   * browser while it is visible.
    */
   disableHideOnResize?: boolean;
 
   /**
-   * Boolean if the select's listbox should not hide if the user scrolls the page while it is visible.
+   * Boolean if the select's listbox should not hide if the user scrolls the
+   * page while it is visible.
    */
   disableHideOnScroll?: boolean;
+
+  /**
+   * An optional icon to display to the right of the select. This should
+   * normally be a dropdown icon to replace the native select's dropdown icon.
+   * If this is set to `null`, the native select's dropdown icon will be
+   * displayed instead.
+   *
+   * This defaults to the `IconProvider`'s dropdown icon from the
+   * `@react-md/icon` package.
+   */
+  rightChildren?: ReactNode;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
@@ -160,7 +178,6 @@ type DefaultProps = Required<
     | "theme"
     | "isLeftAddon"
     | "isRightAddon"
-    | "rightChildren"
     | "anchor"
     | "listboxWidth"
     | "labelKey"
@@ -223,9 +240,11 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     placeholder,
     value,
     onChange,
+    rightChildren: propRightChildren,
     ...props
   } = providedProps as WithDefaultProps;
   const { id, disabled, error, dense } = props;
+  const rightChildren = useIcon("dropdown", propRightChildren);
 
   const valued = typeof value === "number" || !!value;
   const displayValue = useMemo(() => {
@@ -354,6 +373,7 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     <Fragment>
       <TextFieldContainer
         {...props}
+        rightChildren={rightChildren}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onKeyDown={disabled ? undefined : handleKeyDown}
@@ -438,7 +458,6 @@ const defaultProps: DefaultProps = {
   isLeftAddon: true,
   isRightAddon: true,
   underlineDirection: "left",
-  rightChildren: <FontIcon>arrow_drop_down</FontIcon>,
   anchor: {
     x: "center",
     y: "below",

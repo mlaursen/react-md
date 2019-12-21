@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { FC } from "react";
 import cn from "classnames";
+import { useIcon } from "@react-md/icon";
 import { Sheet } from "@react-md/sheet";
 import { Tree } from "@react-md/tree";
 import { bem, RequireAtLeastOne } from "@react-md/utils";
@@ -38,7 +39,7 @@ const LayoutNavigation: FC<StrictProps> = ({
   navClassName,
   navTreeLabel,
   navTreeLabelledBy,
-  hideNavIcon,
+  hideNavIcon: propHideNavIcon,
   hideNavLabel,
   hideNavLabelledBy,
   sheetLabel,
@@ -55,6 +56,7 @@ const LayoutNavigation: FC<StrictProps> = ({
 }) => {
   const { selectedIds } = props;
   useTemporaryNavigation(selectedIds, disableTemporaryAutoclose);
+  const hideNavIcon = useIcon("back", propHideNavIcon);
   const {
     hideNav,
     layout,

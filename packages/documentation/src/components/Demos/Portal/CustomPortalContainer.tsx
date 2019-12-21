@@ -1,10 +1,9 @@
 import React, { FC } from "react";
-import { useChoice } from "@react-md/form";
+import { Radio, useChoice } from "@react-md/form";
 import { Portal } from "@react-md/portal";
 import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
-import Radio from "components/Radio";
 
 import "./CustomPortalContainer.scss";
 

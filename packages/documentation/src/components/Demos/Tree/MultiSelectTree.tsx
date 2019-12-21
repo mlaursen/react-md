@@ -4,7 +4,6 @@ import {
   useTreeItemSelection,
   useTreeItemExpansion,
 } from "@react-md/tree";
-import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 
 import folders from "./folders";
 
@@ -19,7 +18,6 @@ const MultiSelectTree: FC = () => {
       aria-label="Tree"
       {...selection}
       {...expansion}
-      expanderIcon={<KeyboardArrowDownSVGIcon />}
     />
   );
 };

@@ -1,5 +1,5 @@
 import React, { FC, forwardRef } from "react";
-import { FontIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/icon";
 import { WithForwardedRef } from "@react-md/utils";
 
 import InputToggle, { InputToggleProps } from "./InputToggle";
@@ -26,12 +26,18 @@ export interface CheckboxProps extends InputToggleProps {
  */
 const Checkbox: FC<CheckboxProps & WithForwardedRef<HTMLInputElement>> = ({
   forwardedRef,
+  icon: propIcon,
   ...props
-}) => <InputToggle {...props} ref={forwardedRef} type="checkbox" />;
+}) => {
+  const icon = useIcon("checkbox", propIcon);
+
+  return (
+    <InputToggle {...props} icon={icon} ref={forwardedRef} type="checkbox" />
+  );
+};
 
 Checkbox.defaultProps = {
   indeterminate: false,
-  icon: <FontIcon>check_box</FontIcon>,
 };
 
 if (process.env.NODE_ENV !== "production") {

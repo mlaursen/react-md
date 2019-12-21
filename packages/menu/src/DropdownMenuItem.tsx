@@ -1,5 +1,5 @@
 import React, { FC, Fragment, ReactNode } from "react";
-import { FontIcon, IconRotator } from "@react-md/icon";
+import { IconRotator, useIcon } from "@react-md/icon";
 import { PositionAnchor, WithForwardedRef } from "@react-md/utils";
 
 import defaultMenuItemRenderer from "./defaultMenuItemRenderer";
@@ -38,7 +38,6 @@ type DefaultProps = Required<
     DropdownMenuItemProps,
     | "menuRenderer"
     | "itemRenderer"
-    | "dropdownIcon"
     | "disableDropdownIcon"
     | "disableEscapeCascade"
     | "portal"
@@ -76,7 +75,7 @@ const DropdownMenuItem: FC<DropdownMenuItemProps & WithRef> = providedProps => {
     portalIntoId,
     positionOptions,
     rightIcon: propRightIcon,
-    dropdownIcon,
+    dropdownIcon: propDropdownIcon,
     disableEscapeCascade,
     disableDropdownIcon,
     disableCloseOnScroll,
@@ -84,6 +83,8 @@ const DropdownMenuItem: FC<DropdownMenuItemProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
   const { id } = props;
+  const dropdownIcon = useIcon("forward", propDropdownIcon);
+
   const { visible, hide, onClick, onKeyDown, defaultFocus } = useItemVisibility(
     {
       onClick: propOnClick,
@@ -160,7 +161,6 @@ const defaultProps: DefaultProps = {
   portal: true,
   menuRenderer: defaultMenuRenderer,
   itemRenderer: defaultMenuItemRenderer,
-  dropdownIcon: <FontIcon>keyboard_arrow_right</FontIcon>,
   disableDropdownIcon: false,
   disableEscapeCascade: false,
 };

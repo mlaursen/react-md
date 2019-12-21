@@ -1,5 +1,5 @@
 import React, { FC, forwardRef, Fragment } from "react";
-import { FontIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/icon";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import { WithForwardedRef } from "@react-md/utils";
 
@@ -74,11 +74,7 @@ type WithRef = WithForwardedRef<HTMLButtonElement>;
 type DefaultProps = Required<
   Pick<
     DropdownMenuProps,
-    | "menuRenderer"
-    | "itemRenderer"
-    | "dropdownIcon"
-    | "disableDropdownIcon"
-    | "defaultVisible"
+    "menuRenderer" | "itemRenderer" | "disableDropdownIcon" | "defaultVisible"
   >
 >;
 type WithDefaultProps = DropdownMenuProps &
@@ -106,9 +102,12 @@ const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
     defaultVisible,
     disableCloseOnScroll,
     disableCloseOnResize,
+    dropdownIcon: propDropdownIcon,
     ...props
   } = providedProps as WithDefaultProps;
   const { id } = props;
+  const dropdownIcon = useIcon("dropdown", propDropdownIcon);
+
   const {
     visible,
     defaultFocus,
@@ -136,6 +135,7 @@ const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
         onClick={onClick}
         onKeyDown={onKeyDown}
         ref={forwardedRef}
+        dropdownIcon={dropdownIcon}
       >
         {children}
       </MenuButton>
@@ -168,7 +168,6 @@ const defaultProps: DefaultProps = {
   defaultVisible: false,
   menuRenderer: defaultMenuRenderer,
   itemRenderer: defaultMenuItemRenderer,
-  dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
   disableDropdownIcon: false,
 };
 

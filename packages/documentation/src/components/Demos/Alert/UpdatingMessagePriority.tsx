@@ -8,17 +8,16 @@ import React, {
 } from "react";
 import {
   Message,
+  MessagePriority,
   MessageQueue,
   useAddMessage,
   useQueue,
-  MessagePriority,
 } from "@react-md/alert";
 import { Button } from "@react-md/button";
-import { Form, useChoice, Fieldset } from "@react-md/form";
+import { Fieldset, Form, Radio, useChoice } from "@react-md/form";
 import { Text } from "@react-md/typography";
 
 import "./UpdatingMessagePriority.scss";
-import Radio from "components/Radio";
 
 interface ExampleMessage
   extends Required<Pick<Message, "messageId" | "messagePriority">> {

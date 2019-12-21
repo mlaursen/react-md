@@ -1,10 +1,9 @@
-import React, { Fragment, FC, useState } from "react";
-import { useCheckboxState } from "@react-md/form";
+import React, { FC, Fragment, useState } from "react";
+import { Checkbox, useCheckboxState } from "@react-md/form";
 import { Text } from "@react-md/typography";
 import { ResizeListener } from "@react-md/utils";
 
 import CodeBlock from "components/Code/CodeBlock";
-import Checkbox from "components/Checkbox";
 
 const ResizeListenerExample: FC = () => {
   const [size, setSize] = useState(() => {

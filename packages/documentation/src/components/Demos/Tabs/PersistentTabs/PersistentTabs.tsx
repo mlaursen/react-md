@@ -1,9 +1,7 @@
 import React, { FC } from "react";
 import { AppBar } from "@react-md/app-bar";
-import { useCheckboxState } from "@react-md/form";
+import { Checkbox, useCheckboxState } from "@react-md/form";
 import { TabsManager, Tabs, TabPanels } from "@react-md/tabs";
-
-import Checkbox from "components/Checkbox";
 
 import "./PersistentTabs.scss";
 import Content1 from "./Content1";

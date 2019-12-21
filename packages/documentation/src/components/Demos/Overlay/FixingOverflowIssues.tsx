@@ -1,12 +1,10 @@
 import React, { FC, Fragment } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
-import { useCheckboxState } from "@react-md/form";
+import { Checkbox, useCheckboxState } from "@react-md/form";
 import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
-
-import Checkbox from "components/Checkbox";
 
 import "./FixingOverflowIssues.scss";
 

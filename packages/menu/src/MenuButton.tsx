@@ -5,7 +5,7 @@ import {
   useActionClassName,
 } from "@react-md/app-bar";
 import { Button, ButtonProps } from "@react-md/button";
-import { FontIcon } from "@react-md/icon";
+import { useIcon } from "@react-md/icon";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
 import ToggleChildren from "./ToggleChildren";
@@ -56,7 +56,6 @@ type DefaultProps = Required<
   Pick<
     MenuButtonProps,
     | "aria-haspopup"
-    | "dropdownIcon"
     | "disableDropdownIcon"
     | "first"
     | "last"
@@ -76,7 +75,7 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
   visible,
   children,
   forwardedRef,
-  dropdownIcon,
+  dropdownIcon: propDropdownIcon,
   disableDropdownIcon,
   first,
   last,
@@ -85,6 +84,7 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
   ...props
 }) => {
   const { buttonType } = props;
+  const dropdownIcon = useIcon("dropdown", propDropdownIcon);
   const actionClassName = useActionClassName({ first, last, inheritColor });
   return (
     <Button
@@ -112,7 +112,6 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
 
 const defaultProps: DefaultProps = {
   "aria-haspopup": "menu",
-  dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
   disableDropdownIcon: false,
   first: false,
   last: false,
