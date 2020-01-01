@@ -4,7 +4,7 @@ import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Boolean if the card should be raiseable when hovered.
+   * Boolean if the card should gain additional box-shadow elevation once hovered.
    */
   raiseable?: boolean;
 
@@ -13,10 +13,18 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
    * `display: block; width: 100%;`.
    */
   fullWidth?: boolean;
+
+  /**
+   * Boolean if the card should use a border instead of box-shadow. Enabling this
+   * prop will always disable the `raiseable` prop.
+   */
+  bordered?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<CardProps, "raiseable" | "fullWidth">>;
+type DefaultProps = Required<
+  Pick<CardProps, "raiseable" | "bordered" | "fullWidth">
+>;
 type WithDefaultProps = CardProps & DefaultProps & WithRef;
 
 const block = bem("rmd-card");
@@ -33,13 +41,22 @@ const Card: FC<CardProps & WithRef> = providedProps => {
     children,
     raiseable,
     fullWidth,
+    bordered,
     ...props
   } = providedProps as WithDefaultProps;
 
   return (
     <div
       {...props}
-      className={cn(block({ raiseable, "full-width": fullWidth }), className)}
+      className={cn(
+        block({
+          bordered,
+          shadowed: !bordered,
+          raiseable: !bordered && raiseable,
+          "full-width": fullWidth,
+        }),
+        className
+      )}
       ref={forwardedRef}
     >
       {children}
@@ -48,6 +65,7 @@ const Card: FC<CardProps & WithRef> = providedProps => {
 };
 
 const defaultProps: DefaultProps = {
+  bordered: false,
   raiseable: false,
   fullWidth: false,
 };
@@ -64,6 +82,7 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     Card.propTypes = {
+      bordered: PropTypes.bool,
       raiseable: PropTypes.bool,
       fullWidth: PropTypes.bool,
       children: PropTypes.node,

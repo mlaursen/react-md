@@ -67,6 +67,26 @@ const SimpleExample: FC = () => (
         </Text>
       </CardContent>
     </Card>
+    <Card bordered>
+      <CardHeader beforeChildren={<Avatar>A</Avatar>}>
+        <CardTitle>Bordered Card</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Text>
+          Maecenas eleifend, ligula rhoncus blandit molestie, magna nulla
+          aliquet neque, non efficitur felis mi sed lorem. Suspendisse sed
+          pharetra nulla, mattis cursus odio. Proin molestie augue quis pharetra
+          euismod. Donec vulputate mattis velit, a pellentesque metus consequat
+          in. Duis aliquam vitae magna at aliquam. Pellentesque habitant morbi
+          tristique senectus et netus et malesuada fames ac turpis egestas. In
+          hac habitasse platea dictumst. Integer facilisis vel mauris non
+          lobortis. Cras cursus semper gravida. Morbi a scelerisque ante. Aenean
+          sed justo nec justo rutrum pretium. In hac habitasse platea dictumst.
+          Proin nibh massa, scelerisque sed mauris vel, dictum faucibus tortor.
+          Cras elit eros, scelerisque a accumsan eget, vulputate sed nisi.
+        </Text>
+      </CardContent>
+    </Card>
   </Container>
 );
 

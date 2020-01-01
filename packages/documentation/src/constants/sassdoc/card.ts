@@ -130,19 +130,19 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card",
       description:
         "Creates all the styles for the `Card` component only. You'll need to use this within a\nselector.\n",
-      source: "packages/card/src/_mixins.scss#L40-L64",
+      source: "packages/card/src/_mixins.scss#L40-L72",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card { … }",
       sourceCode:
-        '@mixin rmd-card {\n  @include rmd-theme-update-var(\n    background,\n    rmd-card-theme-var(background-color)\n  );\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    rmd-card-theme-var(color)\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    rmd-card-theme-var(secondary-color)\n  );\n  @include rmd-utils-mouse-only {\n    &--raiseable {\n      @include rmd-elevation-transition(\n        $rmd-card-base-elevation,\n        $rmd-card-raised-elevation,\n        "&:hover"\n      );\n    }\n  }\n  @include rmd-elevation($rmd-card-elevation);\n  @include rmd-theme(background-color, surface);\n  @include rmd-theme(color, text-primary-on-background);\n\n  border-radius: $rmd-card-border-radius;\n  display: inline-block;\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n}\n',
+        '@mixin rmd-card {\n  @include rmd-theme-update-var(\n    background,\n    rmd-card-theme-var(background-color)\n  );\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    rmd-card-theme-var(color)\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    rmd-card-theme-var(secondary-color)\n  );\n  @include rmd-utils-mouse-only {\n    &--raiseable {\n      // Note: Only worthwhile with the `--shadowed` class\n      @include rmd-elevation-transition(\n        $rmd-card-base-elevation,\n        $rmd-card-raised-elevation,\n        "&:hover"\n      );\n    }\n  }\n  @include rmd-theme(background-color, surface);\n  @include rmd-theme(color, text-primary-on-background);\n\n  border-radius: $rmd-card-border-radius;\n  display: inline-block;\n\n  &--shadowed {\n    @include rmd-elevation($rmd-card-elevation);\n  }\n\n  &--bordered {\n    border: $rmd-card-border-width solid $rmd-card-border-color;\n  }\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n}\n',
       type: "mixin",
     },
     "rmd-card-header": {
       name: "rmd-card-header",
       description:
         "Creates all the styles for the `CardHeader` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L67-L85",
+      source: "packages/card/src/_mixins.scss#L75-L93",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card-header { … }",
@@ -154,7 +154,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-title",
       description:
         "Creates all the styles for the `CardTitle` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L88-L97",
+      source: "packages/card/src/_mixins.scss#L96-L105",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card-title { … }",
@@ -166,7 +166,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-subtitle",
       description:
         "Creates all the styles for the `CardSubtitle` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L100-L109",
+      source: "packages/card/src/_mixins.scss#L108-L117",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card-subtitle { … }",
@@ -178,7 +178,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-content",
       description:
         "Creates all the styles for the `CardContent` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L112-L132",
+      source: "packages/card/src/_mixins.scss#L120-L140",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card-content { … }",
@@ -190,7 +190,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-actions",
       description:
         "Creates all the styles for the `CardActions` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L135-L148",
+      source: "packages/card/src/_mixins.scss#L143-L156",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card-actions { … }",
@@ -201,7 +201,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-card": {
       name: "react-md-card",
       description: "Creates all the styles for the @react-md/card package.\n",
-      source: "packages/card/src/_mixins.scss#L151-L185",
+      source: "packages/card/src/_mixins.scss#L159-L193",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "card",
       code: "@mixin react-md-card { … }",
@@ -214,7 +214,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-card-background-color": {
       name: "rmd-card-background-color",
       description: "The base background color to apply to cards.\n",
-      source: "packages/card/src/_variables.scss#L9",
+      source: "packages/card/src/_variables.scss#L11",
       packageName: "card",
       type: "Color",
       value: "rmd-theme-var(surface)",
@@ -224,7 +224,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-card-color": {
       name: "rmd-card-color",
       description: "The base primary text color to apply to cards.\n",
-      source: "packages/card/src/_variables.scss#L13",
+      source: "packages/card/src/_variables.scss#L15",
       packageName: "card",
       type: "Color",
       value: "rmd-theme-var(on-surface)",
@@ -235,7 +235,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-secondary-color",
       description:
         "The base secondary text color to apply to cards. The `CardSubtitle` and\n`CardContent` components will use this color by default unless the\n`disableSecondaryColor` prop is enabled.\n",
-      source: "packages/card/src/_variables.scss#L19-L23",
+      source: "packages/card/src/_variables.scss#L21-L25",
       packageName: "card",
       type: "Color",
       value:
@@ -246,7 +246,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-card-elevation": {
       name: "rmd-card-elevation",
       description: "The elevation to use for cards that are not raiseable.\n",
-      source: "packages/card/src/_variables.scss#L27",
+      source: "packages/card/src/_variables.scss#L29",
       usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       type: "Number",
@@ -256,7 +256,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-card-base-elevation": {
       name: "rmd-card-base-elevation",
       description: "The starting elevation for a raiseable card.\n",
-      source: "packages/card/src/_variables.scss#L31",
+      source: "packages/card/src/_variables.scss#L33",
       usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       type: "Number",
@@ -266,7 +266,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-card-raised-elevation": {
       name: "rmd-card-raised-elevation",
       description: "The ending elevation for a raiseable card.\n",
-      source: "packages/card/src/_variables.scss#L35",
+      source: "packages/card/src/_variables.scss#L37",
       usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       type: "Number",
@@ -276,7 +276,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-card-border-radius": {
       name: "rmd-card-border-radius",
       description: "The border radius to apply to cards.\n",
-      source: "packages/card/src/_variables.scss#L39",
+      source: "packages/card/src/_variables.scss#L41",
       usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       type: "Number",
@@ -287,7 +287,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-header-padding",
       description:
         "The amount of padding to apply to the `CardHeader` component.\n",
-      source: "packages/card/src/_variables.scss#L43",
+      source: "packages/card/src/_variables.scss#L45",
       usedBy: [{ name: "rmd-card-header", type: "mixin", packageName: "card" }],
       packageName: "card",
       type: "Number",
@@ -298,7 +298,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-header-padding-top",
       description:
         "Any extra amount of padding to apply to the top of the `cardHeader` component.\nThis is really just added since it looks a bit nicer to have extra padding top.\n",
-      source: "packages/card/src/_variables.scss#L48",
+      source: "packages/card/src/_variables.scss#L50",
       usedBy: [{ name: "rmd-card-header", type: "mixin", packageName: "card" }],
       packageName: "card",
       type: "Number",
@@ -309,7 +309,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-header-spacing",
       description:
         "The amount of spacing to use between the main content in the header and the\n`beforeChildren` and `afterChildren` props. This really gets used with the\n`TextIconSpacing` component from the @react-md/icon package\n",
-      source: "packages/card/src/_variables.scss#L54",
+      source: "packages/card/src/_variables.scss#L56",
       usedBy: [{ name: "rmd-card-header", type: "mixin", packageName: "card" }],
       packageName: "card",
       type: "Number",
@@ -320,7 +320,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-content-padding",
       description:
         "The amount of padding to apply to the `CardContent` component.\n",
-      source: "packages/card/src/_variables.scss#L58",
+      source: "packages/card/src/_variables.scss#L60",
       usedBy: [
         { name: "rmd-card-content", type: "mixin", packageName: "card" },
       ],
@@ -333,7 +333,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-content-padding-extra",
       description:
         "When the `CardContent` component is the last child in the `Card`, it normally looks\na bit nicer to apply a bit more padding to it. So this is the extra `padding-bottom`\nthat will be applied in that case.\n",
-      source: "packages/card/src/_variables.scss#L64",
+      source: "packages/card/src/_variables.scss#L66",
       usedBy: [
         { name: "rmd-card-content", type: "mixin", packageName: "card" },
       ],
@@ -346,7 +346,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-actions-padding",
       description:
         "The amount of padding to apply to the `CardActions` component.\n",
-      source: "packages/card/src/_variables.scss#L68",
+      source: "packages/card/src/_variables.scss#L70",
       usedBy: [
         { name: "rmd-card-actions", type: "mixin", packageName: "card" },
       ],
@@ -355,11 +355,33 @@ const sassdoc: PackageSassDoc = {
       value: "0.5rem",
       overridable: true,
     },
+    "rmd-card-border-color": {
+      name: "rmd-card-border-color",
+      description: "The border color for a bordered card.\n",
+      source: "packages/card/src/_variables.scss#L74",
+      usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
+      packageName: "card",
+      type: "Color|String",
+      value: "rmd-divider-theme-var(background-color)",
+      compiled: "var(--rmd-divider-background-color, rgba(0, 0, 0, 0.12))",
+      overridable: true,
+    },
+    "rmd-card-border-width": {
+      name: "rmd-card-border-width",
+      description: "The width for a bordered card.\n",
+      source: "packages/card/src/_variables.scss#L78",
+      usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
+      packageName: "card",
+      type: "Number",
+      value: "$rmd-divider-size",
+      compiled: "1px",
+      overridable: true,
+    },
     "rmd-card-theme-values": {
       name: "rmd-card-theme-values",
       description:
         'A Map of all the "themeable" parts of the card package. Every key in this map will\nbe used to create a css variable to dynamically update the values of the icon as\nneeded.\n',
-      source: "packages/card/src/_variables.scss#L74-L78",
+      source: "packages/card/src/_variables.scss#L84-L88",
       usedBy: [
         { name: "rmd-card-theme", type: "function", packageName: "card" },
         { name: "rmd-card-theme-var", type: "function", packageName: "card" },

@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from "react";
+import React, { FC, HTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
@@ -106,4 +106,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default CardContent;
+export default forwardRef<HTMLDivElement, CardContentProps>((props, ref) => (
+  <CardContent {...props} forwardedRef={ref} />
+));

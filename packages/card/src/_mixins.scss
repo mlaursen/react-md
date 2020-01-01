@@ -43,6 +43,7 @@
   @include rmd-theme-update-var(text-secondary-on-background, rmd-card-theme-var(secondary-color));
   @include rmd-utils-mouse-only {
     &--raiseable {
+      // Note: Only worthwhile with the `--shadowed` class
       @include rmd-elevation-transition(
         $rmd-card-base-elevation,
         $rmd-card-raised-elevation,
@@ -50,12 +51,19 @@
       );
     }
   }
-  @include rmd-elevation($rmd-card-elevation);
   @include rmd-theme(background-color, surface);
   @include rmd-theme(color, text-primary-on-background);
 
   border-radius: $rmd-card-border-radius;
   display: inline-block;
+
+  &--shadowed {
+    @include rmd-elevation($rmd-card-elevation);
+  }
+
+  &--bordered {
+    border: $rmd-card-border-width solid $rmd-card-border-color;
+  }
 
   &--full-width {
     display: block;

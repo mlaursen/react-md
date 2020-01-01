@@ -37,6 +37,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@react-md/divider": "^2.0.0-alpha.11",
     "@react-md/elevation": "^2.0.0-alpha.11",
     "@react-md/icon": "^2.0.0-alpha.11",
     "@react-md/states": "^2.0.0-alpha.11",

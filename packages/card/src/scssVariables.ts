@@ -13,6 +13,9 @@ export default {
   "rmd-card-content-padding": "1rem",
   "rmd-card-content-padding-extra": "1.5rem",
   "rmd-card-actions-padding": "0.5rem",
+  "rmd-card-border-color":
+    "var(--rmd-divider-background-color, rgba(0, 0, 0, 0.12))",
+  "rmd-card-border-width": "1px",
   "rmd-card-theme-values": {
     "background-color": "var(--rmd-theme-surface, #fff)",
     color: "var(--rmd-theme-on-surface, #000)",

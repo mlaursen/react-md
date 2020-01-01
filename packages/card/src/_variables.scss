@@ -2,6 +2,8 @@
 /// @group card
 ////
 
+@import '~@react-md/divider/dist/functions';
+@import '~@react-md/divider/dist/variables';
 @import '~@react-md/theme/dist/functions';
 
 /// The base background color to apply to cards.
@@ -66,6 +68,14 @@ $rmd-card-content-padding-extra: 1.5rem !default;
 /// The amount of padding to apply to the `CardActions` component.
 /// @type Number
 $rmd-card-actions-padding: 0.5rem !default;
+
+/// The border color for a bordered card.
+/// @type Color|String
+$rmd-card-border-color: rmd-divider-theme-var(background-color) !default;
+
+/// The width for a bordered card.
+/// @type Number
+$rmd-card-border-width: $rmd-divider-size !default;
 
 /// A Map of all the "themeable" parts of the card package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the icon as
