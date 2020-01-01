@@ -194,12 +194,12 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-button",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/button/src/_mixins.scss#L191-L197",
+      source: "packages/button/src/_mixins.scss#L191-L209",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "button",
       code: "@mixin react-md-button { … }",
       sourceCode:
-        "@mixin react-md-button {\n  @include rmd-theme-create-root-theme($rmd-button-theme-values, button);\n\n  .rmd-button {\n    @include rmd-button;\n  }\n}\n",
+        "@mixin react-md-button {\n  @include rmd-theme-create-root-theme($rmd-button-theme-values, button);\n\n  .rmd-button {\n    @include rmd-button;\n  }\n\n  .rmd-button-unstyled {\n    @include rmd-button-unstyled;\n    @include rmd-states-focus-shadow($create-pseudo: true);\n\n    display: inline-flex;\n    position: relative;\n\n    &:not(:disabled):hover {\n      cursor: pointer;\n    }\n  }\n}\n",
       type: "mixin",
     },
   },

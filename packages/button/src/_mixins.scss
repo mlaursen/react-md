@@ -194,4 +194,16 @@
   .rmd-button {
     @include rmd-button;
   }
+
+  .rmd-button-unstyled {
+    @include rmd-button-unstyled;
+    @include rmd-states-focus-shadow($create-pseudo: true);
+
+    display: inline-flex;
+    position: relative;
+
+    &:not(:disabled):hover {
+      cursor: pointer;
+    }
+  }
 }

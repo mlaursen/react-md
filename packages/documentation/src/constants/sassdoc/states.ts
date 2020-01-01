@@ -205,8 +205,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-focus-shadow",
       description:
         "This mixin will add the focus shadow color to your current element only during\nkeyboard focus events. Your element must also have included the `rmd-states-surface-base`\nmixin for this to work.\n\nNote: If you used the `rmd-states-surface` mixin, this functionality will be included\nby default. In addition this only works for non-inline elements due to how positioning\nworks for them. You'll either need to update it to be `display: inline-block` or fallbac\nto the `outline-style`s.\n\n",
-      source: "packages/states/src/_mixins.scss#L85-L97",
+      source: "packages/states/src/_mixins.scss#L95-L113",
       usedBy: [
+        { name: "react-md-button", type: "mixin", packageName: "button" },
         { name: "rmd-states-surface", type: "mixin", packageName: "states" },
       ],
       packageName: "states",
@@ -219,11 +220,19 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "Example Usage SCSS",
         },
+        {
+          code:
+            ".my-custom-component {\n  @include rmd-states-focus-shadow($create-pseudo: true);\n\n  position: relative;\n}\n",
+          compiled:
+            '.my-custom-component {\n  position: relative;\n}\n.my-custom-component::before {\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: 0;\n}\n.rmd-utils--keyboard .my-custom-component:focus::before {\n  box-shadow: var(--rmd-states-focus-shadow, inset 0 0 0 0.125rem #2196f3);\n}\n',
+          type: "scss",
+          description: "Automatically Creating the pseudo Element",
+        },
       ],
       code:
-        "@mixin rmd-states-focus-shadow($focus-selector: '&:focus', $after: false) { … }",
+        "@mixin rmd-states-focus-shadow($focus-selector: '&:focus', $create-pseudo: false, $after: false) { … }",
       sourceCode:
-        '@mixin rmd-states-focus-shadow($focus-selector: "&:focus", $after: false) {\n  $pseudo-selector: if($after, "&::after", "&::before");\n\n  @if $rmd-states-use-focus-shadow {\n    @include rmd-utils-keyboard-only {\n      #{$focus-selector} {\n        #{$pseudo-selector} {\n          @include rmd-states-theme(box-shadow, focus-shadow);\n        }\n      }\n    }\n  }\n}\n',
+        '@mixin rmd-states-focus-shadow(\n  $focus-selector: "&:focus",\n  $create-pseudo: false,\n  $after: false\n) {\n  $pseudo-selector: if($after, "&::after", "&::before");\n\n  @if $create-pseudo {\n    #{$pseudo-selector} {\n      @include rmd-utils-pseudo-element;\n    }\n  }\n\n  @if $rmd-states-use-focus-shadow {\n    @include rmd-utils-keyboard-only {\n      #{$focus-selector} {\n        #{$pseudo-selector} {\n          @include rmd-states-theme(box-shadow, focus-shadow);\n        }\n      }\n    }\n  }\n}\n',
       type: "mixin",
       parameters: [
         {
@@ -232,6 +241,13 @@ const sassdoc: PackageSassDoc = {
           default: "'&:focus'",
           description:
             "A selector to use for the focus effect. This should\nnormally stay as the default value, but can be used if the focus state is only triggered by\nclass name changes since the element isn't truely focusable.",
+        },
+        {
+          type: "Boolean",
+          name: "create-pseudo",
+          default: "false",
+          description:
+            "Boolean if the pseudo element should also be created\nwith only the `rmd-utils-psuedo-element` mixin. This is useful if you don't want the full states\nstyles that come with the `rmd-states-surface-base` mixin.",
         },
         {
           type: "Boolean",
@@ -246,7 +262,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-surface",
       description:
         'This is the main interaction states creator. It will apply all the styles\nto an element so that it will:\n- gain the pointer cursor when it is not disabled (also works for aria-disabled)\n- create a `::before` element for transitioning between the different interaction\n  states\n- apply the hover opacity when not disabled **and for non-touch devices** (see more below)\n- apply the focused opacity after a **keyboard** focus event (see more below)\n- apply the pressed opacity if not using the ripple effect (see more below)\n\n### Hover Opacity\nThis requires the usage of a `COMPONENT_TO_MAKE` to work correctly. If `COMPONENT_TO_MAKE` is\nnot used in your application, the hover effect will be applied on mobile devices after touch\nevents. This is because a touch event still goes through the mouse events and applies the\nhover state after being touched.\n\n### Focused Opacity\nThis requires the usage of the `KeyboardTracker` component to work correctly. If the\n`KeyboardTracker` is not used in your application and not near the root of the React render\ntree, you most likely will not have any focus states. This is actually one of the "biggest"\nfeatures of react-md until the `:focus-visible` css selector has gained traction and browser\nsupport.\n\n### Pressed Opacity\nIf you are using the ripple effect for pressed states, this will be ignored as a ripple element\nwill be created instead to show the pressed state. When the ripple effect is disabled, pressing\nan element will just trigger a background opacity change like the over interaction states.\n\n',
-      source: "packages/states/src/_mixins.scss#L131-L179",
+      source: "packages/states/src/_mixins.scss#L147-L195",
       usedBy: [
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
@@ -278,7 +294,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-surface-selected",
       description:
         "This is a mixin that should be used along with the `rmd-states-surface` mixin if you'd also\nlike to be able to add a selected state to an element. This really just adds another opacity\nbackground change when the element is considered selected. This is not apart of the main\nsurface mixin since selection states are a bit less used and it might be better to do different\nstyles than just a background change to show selection.\n",
-      source: "packages/states/src/_mixins.scss#L186-L203",
+      source: "packages/states/src/_mixins.scss#L202-L219",
       usedBy: [{ name: "rmd-tree-item", type: "mixin", packageName: "tree" }],
       packageName: "states",
       code: "@mixin rmd-states-surface-selected { … }",
@@ -290,7 +306,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-states",
       description:
         "Creates all the root styles for the states package as well as the themeable\ncss variables and their default values.\n",
-      source: "packages/states/src/_mixins.scss#L242-L255",
+      source: "packages/states/src/_mixins.scss#L258-L271",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "states",
       code: "@mixin react-md-states { … }",

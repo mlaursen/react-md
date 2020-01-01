@@ -3,3 +3,6 @@ export * from "./buttonThemeClassNames";
 
 export { default as Button } from "./Button";
 export * from "./Button";
+
+export { default as UnstyledButton } from "./UnstyledButton";
+export * from "./UnstyledButton";

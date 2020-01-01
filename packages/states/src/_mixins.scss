@@ -77,13 +77,29 @@
 ///      }
 ///   }
 ///
+/// @example scss - Automatically Creating the pseudo Element
+///   .my-custom-component {
+///      @include rmd-states-focus-shadow($create-pseudo: true);
+///
+///      position: relative;
+///   }
+///
 /// @param {String} focus-selector ['&:focus'] - A selector to use for the focus effect. This should
 /// normally stay as the default value, but can be used if the focus state is only triggered by
 /// class name changes since the element isn't truely focusable.
+/// @param {Boolean} create-pseudo [false] - Boolean if the pseudo element should also be created
+/// with only the `rmd-utils-psuedo-element` mixin. This is useful if you don't want the full states
+/// styles that come with the `rmd-states-surface-base` mixin.
 /// @param {Boolean} after [false] - Boolean if the `::after` pseudo element should
 /// be used instead of the `::before`.
-@mixin rmd-states-focus-shadow($focus-selector: '&:focus', $after: false) {
+@mixin rmd-states-focus-shadow($focus-selector: '&:focus', $create-pseudo: false, $after: false) {
   $pseudo-selector: if($after, '&::after', '&::before');
+
+  @if $create-pseudo {
+    #{$pseudo-selector} {
+      @include rmd-utils-pseudo-element;
+    }
+  }
 
   @if $rmd-states-use-focus-shadow {
     @include rmd-utils-keyboard-only {
