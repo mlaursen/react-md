@@ -79,6 +79,7 @@ interface AutoCompleteOptions
   valueKey: string;
   getResultId: typeof DEFAULT_GET_RESULT_ID;
   getResultValue: typeof DEFAULT_GET_RESULT_VALUE;
+  getEmptyValueData: (data: AutoCompleteData[]) => AutoCompleteData[];
   filter: AutoCompleteFilterFunction;
   filterOptions: FilterFunctionOptions;
   onAutoComplete?: AutoCompleteHandler;
@@ -116,6 +117,7 @@ export default function useAutoComplete({
   valueKey,
   getResultId,
   getResultValue,
+  getEmptyValueData,
   onBlur,
   onFocus,
   onClick,
@@ -173,7 +175,7 @@ export default function useAutoComplete({
   const filter = useMemo(() => getFilterFunction(filterFn), [filterFn]);
   const filteredData = useMemo(() => {
     if (!value) {
-      return data;
+      return getEmptyValueData(data);
     }
 
     return filter(value, data, {
@@ -181,7 +183,15 @@ export default function useAutoComplete({
       valueKey,
       getItemValue: getResultValue,
     });
-  }, [value, filterOptions, valueKey, getResultValue, data, filter]);
+  }, [
+    value,
+    filter,
+    data,
+    filterOptions,
+    valueKey,
+    getResultValue,
+    getEmptyValueData,
+  ]);
 
   const [visible, show, hide] = useToggle(false);
 

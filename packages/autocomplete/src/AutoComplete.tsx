@@ -31,9 +31,9 @@ export interface AutoCompleteProps
     RenderConditionalPortalProps,
     PositionOptions {
   /**
-   * The id to use for the AutoComplete and is required for a11y to fulfill the `combobox` role. This
-   * id will be passed directly to the `<input>` element and prefixed for all the other id-required
-   * elements.
+   * The id to use for the AutoComplete and is required for a11y to fulfill the
+   * `combobox` role. This id will be passed directly to the `<input>` element
+   * and prefixed for all the other id-required elements.
    */
   id: string;
 
@@ -43,8 +43,9 @@ export interface AutoCompleteProps
   autoComplete?: AutoCompletion;
 
   /**
-   * Boolean if the text field's value should be cleared when the value is autocompleted. This is useful
-   * when also adding custom `onAutoComplete` behavior.
+   * Boolean if the text field's value should be cleared when the value is
+   * autocompleted. This is useful when also adding custom `onAutoComplete`
+   * behavior.
    */
   clearOnAutoComplete?: boolean;
 
@@ -59,46 +60,60 @@ export interface AutoCompleteProps
   filter?: AutoCompleteFilterFunction;
 
   /**
-   * An optional object of options to provide to the filter function. This will be defaulted to work
-   * with the fuzzy filter and case-insensitive filter functions to trim whitespace before doing the
-   * comarisons.
+   * An optional object of options to provide to the filter function. This will
+   * be defaulted to work with the fuzzy filter and case-insensitive filter
+   * functions to trim whitespace before doing the comparisons.
    */
   filterOptions?: {};
 
   /**
-   * An optional className to also apply to the listbox element showing all the matches.
+   * An optional className to also apply to the listbox element showing all the
+   * matches.
    */
   listboxClassName?: string;
 
   /**
-   * The key to use to extract a label from a result when the provided data list is a list of objects.
+   * The key to use to extract a label from a result when the provided data list
+   * is a list of objects.
    */
   labelKey?: string;
 
   /**
-   * The key to use to extract a searchable value string from a result when the provided data list is a
-   * list of objects.
+   * The key to use to extract a searchable value string from a result when the
+   * provided data list is a list of objects.
    */
   valueKey?: string;
 
   /**
-   * A function to call that will generate an id for each result in the autocomplete's listbox. These ids
-   * are required for a11y as it'll be used with the `aria-activedescendant` movement within the autocomplete.
+   * A function to call that will generate an id for each result in the
+   * autocomplete's listbox. These ids are required for a11y as it'll be used
+   * with the `aria-activedescendant` movement within the autocomplete.
    */
   getResultId?: typeof DEFAULT_GET_RESULT_ID;
 
   /**
-   * A function to call that will get a renderable label or children to display for a result in the autocomplete's
-   * list of results. The default behavior will be to return the result itself if it is a string, otherwise try
-   * to return the `children` or `labelKey` attribute if it is an object.
+   * A function to call that will get a renderable label or children to display
+   * for a result in the autocomplete's list of results. The default behavior
+   * will be to return the result itself if it is a string, otherwise try to
+   * return the `children` or `labelKey` attribute if it is an object.
    */
   getResultLabel?: typeof DEFAULT_GET_RESULT_LABEL;
 
   /**
-   * A function to call that will extract a searchable value string from each result. This **must** return a string
-   * and will prevent the autocomplete from filtering data with the built in filter functions.
+   * A function to call that will extract a searchable value string from each
+   * result. This **must** return a string and will prevent the autocomplete
+   * from filtering data with the built in filter functions.
    */
   getResultValue?: typeof DEFAULT_GET_RESULT_VALUE;
+
+  /**
+   * An optional function that will be called whenever the value of the
+   * autocomplete is the empty string. This is useful if you don't want the
+   * data list to be shown initially or a custom list of data.
+   *
+   * This defaults to just returning the `data`.
+   */
+  getEmptyValueData?: (data: AutoCompleteData[]) => AutoCompleteData[];
 
   /**
    * @see AutoCompleteHandler
@@ -106,9 +121,10 @@ export interface AutoCompleteProps
   onAutoComplete?: AutoCompleteHandler;
 
   /**
-   * Boolean if the result list labels should be updated so that each matching letter is bolded. This
-   * only works when the data list is a list of strings, or the `label` is a string and when the
-   * letters appear in order. This will always be false if the `filter` prop is set to `"fuzzy"`.
+   * Boolean if the result list labels should be updated so that each matching
+   * letter is bolded. This only works when the data list is a list of strings,
+   * or the `label` is a string and when the letters appear in order. This will
+   * always be `false` if the `filter` prop is set to `"fuzzy"`.
    */
   highlight?: boolean;
 }
@@ -128,6 +144,7 @@ type DefaultProps = Required<
     | "getResultId"
     | "getResultLabel"
     | "getResultValue"
+    | "getEmptyValueData"
     | "anchor"
     | "xMargin"
     | "yMargin"
@@ -148,8 +165,8 @@ const block = bem("rmd-autocomplate");
 const listbox = bem("rmd-listbox");
 
 /**
- * An AutoComplete is an accessible combobox widget that allows for real-time suggestions
- * as the user types.
+ * An AutoComplete is an accessible combobox widget that allows for real-time
+ * suggestions as the user types.
  */
 const AutoComplete: FC<AutoCompleteProps & WithRef> = providedProps => {
   const {
@@ -177,6 +194,7 @@ const AutoComplete: FC<AutoCompleteProps & WithRef> = providedProps => {
     getResultId,
     getResultLabel,
     getResultValue,
+    getEmptyValueData,
     highlight,
     anchor,
     listboxWidth,
@@ -223,6 +241,7 @@ const AutoComplete: FC<AutoCompleteProps & WithRef> = providedProps => {
     valueKey,
     getResultId,
     getResultValue,
+    getEmptyValueData,
     onBlur,
     onFocus,
     onClick,
@@ -328,6 +347,7 @@ const defaultProps: DefaultProps = {
   getResultId: DEFAULT_GET_RESULT_ID,
   getResultLabel: DEFAULT_GET_RESULT_LABEL,
   getResultValue: DEFAULT_GET_RESULT_VALUE,
+  getEmptyValueData: data => data,
   highlight: false,
   anchor: {
     x: "center",
@@ -372,6 +392,7 @@ if (process.env.NODE_ENV !== "production") {
       getResultId: PropTypes.func,
       getResultLabel: PropTypes.func,
       getResultValue: PropTypes.func,
+      getEmptyValueData: PropTypes.func,
       highlight: PropTypes.bool,
       autoComplete: PropTypes.oneOf(["none", "inline", "list", "both"]),
       onAutoComplete: PropTypes.func,
