@@ -1,12 +1,11 @@
 import React, { FC, ReactNode } from "react";
-import CSSTransition, {
-  CSSTransitionClassNames,
-} from "react-transition-group/CSSTransition";
+import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
 
+import CSSTransition from "./CSSTransition";
 import { OverridableCSSTransitionProps, TransitionTimeout } from "./types";
 
 export const SCALE_CLASSNAMES: CSSTransitionClassNames = {

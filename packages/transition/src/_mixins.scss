@@ -245,6 +245,15 @@
   }
 }
 
+@mixin rmd-transition-reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    *[class^='rmd-'] {
+      // sass-lint:disable-block no-important
+      transition: none !important;
+    }
+  }
+}
+
 /// Creates the transition theme css variables as well as the styles
 /// for components in the transition package.
 @mixin react-md-transition {
@@ -253,4 +262,5 @@
   @include rmd-collapse;
   @include rmd-cross-fade;
   @include rmd-transition-classes;
+  @include rmd-transition-reduced-motion;
 }

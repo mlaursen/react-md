@@ -13,6 +13,8 @@ import {
 import cn from "classnames";
 import { useRefCache } from "@react-md/utils";
 
+import useReducedMotion from "./useReducedMotion";
+
 export interface CollapseOptions {
   /**
    * Boolean if currently collapsed. When this prop changes, the collapse transition will begin.
@@ -320,7 +322,7 @@ export function useCollapseTransition<E extends HTMLElement>(
     leaveDuration = 200,
     onExpanded,
     onCollapsed,
-    disabled = false,
+    disabled: propDisabled = false,
   } = options;
 
   const ref = useRef<E | null>(null);
@@ -333,6 +335,7 @@ export function useCollapseTransition<E extends HTMLElement>(
     paddingBottom: collapsed ? minPaddingBottom : undefined,
   });
   const { entering, leaving, maxHeight, paddingTop, paddingBottom } = state;
+  const disabled = useReducedMotion() || propDisabled;
 
   const rendered = isRendered({
     entering,

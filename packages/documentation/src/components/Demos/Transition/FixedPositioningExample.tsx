@@ -1,5 +1,4 @@
 import React, { FC, Fragment, useCallback, useRef, useState } from "react";
-import CSSTransition from "react-transition-group/CSSTransition";
 import { Button } from "@react-md/button";
 import {
   Checkbox,
@@ -11,7 +10,7 @@ import {
 } from "@react-md/form";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
-import { useFixedPositioning } from "@react-md/transition";
+import { CSSTransition, useFixedPositioning } from "@react-md/transition";
 import { Text } from "@react-md/typography";
 import {
   HorizontalPosition,

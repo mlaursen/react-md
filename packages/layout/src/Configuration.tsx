@@ -8,6 +8,7 @@ import {
   StatesConfig,
 } from "@react-md/states";
 import { TooltipHoverModeConfig } from "@react-md/tooltip";
+import { TransitionConfiguration } from "@react-md/transition";
 import {
   AppSizeListener,
   AppSizeListenerProps,
@@ -111,22 +112,24 @@ const Configuration: FC<ConfigurationProps> = providedProps => {
       desktopLargeMinWidth={desktopLargeMinWidth}
     >
       <NestedDialogContextProvider>
-        <InteractionModeListener>
-          <StatesConfig
-            disableRipple={disableRipple}
-            disableProgrammaticRipple={disableProgrammaticRipple}
-            rippleTimeout={rippleTimeout}
-            rippleClassNames={rippleClassNames}
-          >
-            <TooltipHoverModeConfig
-              enabled={!disableTooltipHoverMode}
-              defaultDelay={tooltipDefaultDelay}
-              delayTimeout={tooltipDelayTimeout}
+        <TransitionConfiguration>
+          <InteractionModeListener>
+            <StatesConfig
+              disableRipple={disableRipple}
+              disableProgrammaticRipple={disableProgrammaticRipple}
+              rippleTimeout={rippleTimeout}
+              rippleClassNames={rippleClassNames}
             >
-              <IconProvider {...icons}>{children}</IconProvider>
-            </TooltipHoverModeConfig>
-          </StatesConfig>
-        </InteractionModeListener>
+              <TooltipHoverModeConfig
+                enabled={!disableTooltipHoverMode}
+                defaultDelay={tooltipDefaultDelay}
+                delayTimeout={tooltipDelayTimeout}
+              >
+                <IconProvider {...icons}>{children}</IconProvider>
+              </TooltipHoverModeConfig>
+            </StatesConfig>
+          </InteractionModeListener>
+        </TransitionConfiguration>
       </NestedDialogContextProvider>
     </AppSizeListener>
   );

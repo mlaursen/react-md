@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import CSSTransition from "react-transition-group/CSSTransition";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { OverridableCSSTransitionProps } from "@react-md/transition";
+import {
+  CSSTransition,
+  OverridableCSSTransitionProps,
+} from "@react-md/transition";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
 export interface OverlayProps

@@ -6,10 +6,9 @@ import React, {
   ReactNode,
 } from "react";
 import cn from "classnames";
-import CSSTransition, {
-  CSSTransitionClassNames,
-} from "react-transition-group/CSSTransition";
+import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import {
+  CSSTransition,
   OverridableTransitionProps,
   TransitionTimeout,
 } from "@react-md/transition";

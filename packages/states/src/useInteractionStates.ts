@@ -10,6 +10,7 @@ import {
 } from "./StatesConfig";
 import useKeyboardClickPolyfill from "./useKeyboardClickPolyfill";
 import usePressedStates from "./usePressedStates";
+import { useReducedMotion } from "@react-md/transition";
 
 export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
   extends Partial<StatesConfigContextType>,
@@ -106,6 +107,10 @@ export default function useInteractionStates<
     rippleTimeout,
     rippleClassNames,
   } = options;
+
+  if (useReducedMotion()) {
+    disableRipple = true;
+  }
 
   // populate undefined props from their context values
   const context = useStatesConfigContext();

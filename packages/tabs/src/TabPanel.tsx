@@ -1,8 +1,10 @@
 import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import { OverridableCSSTransitionProps } from "@react-md/transition";
+import {
+  CSSTransition,
+  OverridableCSSTransitionProps,
+} from "@react-md/transition";
 import { bem, WithForwardedRef } from "@react-md/utils";
-import CSSTransition from "react-transition-group/CSSTransition";
 
 export interface TabPanelProps
   extends HTMLAttributes<HTMLDivElement>,
