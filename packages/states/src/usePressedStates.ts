@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { useRefCache } from "@react-md/utils";
 
 import { MergableRippleHandlers } from "./ripples/types";
+import { isBubbled } from "./ripples/utils";
 
 interface PressedStatesOptions<E extends HTMLElement = HTMLElement> {
   handlers?: MergableRippleHandlers<E>;
@@ -70,7 +71,7 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
       onMouseDown(event);
     }
 
-    if (!pressed && event.button === 0) {
+    if (!pressed && event.button === 0 && !isBubbled(event)) {
       setPressed(true);
     }
     // disabled since useRefCache for ref
@@ -109,7 +110,7 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
       onTouchStart(event);
     }
 
-    if (!pressed) {
+    if (!pressed && !isBubbled(event)) {
       setPressed(true);
     }
     // disabled since useRefCache for ref
