@@ -89,6 +89,12 @@ export interface CollapseOptions {
    * prop is changed from `false` to `true`.
    */
   onCollapsed?: () => void;
+
+  /**
+   * Boolean if the transition should be disabled and just immediately switch to the collapsed
+   * or full size.
+   */
+  disabled?: boolean;
 }
 
 type CollapseOptionsWithDefaults = CollapseOptions &
@@ -117,6 +123,11 @@ interface CollapseState {
   paddingTop?: number | string;
   paddingBottom?: number | string;
 }
+
+type SizingDefaults = Pick<
+  CollapseState,
+  "maxHeight" | "paddingTop" | "paddingBottom"
+>;
 
 interface CollapseStateWithSetter extends CollapseState {
   setState: Dispatch<SetStateAction<CollapseState>>;
@@ -309,6 +320,7 @@ export function useCollapseTransition<E extends HTMLElement>(
     leaveDuration = 200,
     onExpanded,
     onCollapsed,
+    disabled = false,
   } = options;
 
   const ref = useRef<E | null>(null);
@@ -333,22 +345,26 @@ export function useCollapseTransition<E extends HTMLElement>(
   });
 
   if (collapsedRef.current !== collapsed) {
-    let maxHeight: string | number | undefined = minHeight;
-    let paddingTop: string | number | undefined = minPaddingTop;
-    let paddingBottom: string | number | undefined = minPaddingBottom;
+    collapsedRef.current = collapsed;
+    const defaults: SizingDefaults = {
+      maxHeight: disabled ? undefined : minHeight,
+      paddingTop: disabled ? undefined : minPaddingTop,
+      paddingBottom: disabled ? undefined : minPaddingBottom,
+    };
+
+    let { maxHeight, paddingTop, paddingBottom } = defaults;
     if (collapsed) {
       ({ maxHeight, paddingTop, paddingBottom } = getElementSizing(
         ref.current
       ));
     }
 
-    collapsedRef.current = collapsed;
     setState({
       maxHeight,
       paddingTop,
       paddingBottom,
-      entering: !collapsed,
-      leaving: collapsed,
+      entering: disabled ? false : !collapsed,
+      leaving: disabled ? false : collapsed,
     });
   }
 
@@ -416,10 +432,10 @@ export function useCollapseTransition<E extends HTMLElement>(
     transitionProps: {
       style: mergedStyle,
       className: cn(
-        "rmd-collapse",
         {
-          "rmd-collapse--enter": entering,
-          "rmd-collapse--leave": leaving,
+          "rmd-collapse": !disabled,
+          "rmd-collapse--enter": !disabled && entering,
+          "rmd-collapse--leave": !disabled && leaving,
           "rmd-collapse--no-overflow": collapsed || entering || leaving,
         },
         className

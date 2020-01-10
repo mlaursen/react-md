@@ -49,6 +49,7 @@ type DefaultProps = Required<
     | "minPaddingTop"
     | "enterDuration"
     | "leaveDuration"
+    | "disabled"
   >
 >;
 type WithDefaultProps = CollapseProps & DefaultProps;
@@ -76,6 +77,7 @@ const defaultProps: DefaultProps = {
   minPaddingTop: 0,
   enterDuration: 250,
   leaveDuration: 200,
+  disabled: false,
 };
 
 Collapse.defaultProps = defaultProps;
@@ -106,6 +108,7 @@ if (process.env.NODE_ENV !== "production") {
         .isRequired,
       onExpanded: PropTypes.func,
       onCollapsed: PropTypes.func,
+      disabled: PropTypes.bool,
     };
   }
 }
