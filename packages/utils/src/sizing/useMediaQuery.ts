@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
  * this is `undefined`, it will default to `false` unless the `window` is defined
  * and the `checkImmediately` param was not set to `false`. Otherwise, it will
  * check the media query matches on mount and use that value.
+ * @param disabled Boolean if the media query checking should be disabled.
  * @param checkImmediately Boolean if the media query should be checked immediately
  * on mount. When omittied, it will default to checking when the window is defined.
  * @return true if the media query is a match.
@@ -19,6 +20,7 @@ import { useEffect, useState } from "react";
 export default function useMediaQuery(
   query: string,
   defaultValue?: boolean,
+  disabled: boolean = false,
   checkImmediately: boolean = typeof window !== "undefined"
 ): boolean {
   const [matches, setMatches] = useState(() => {
@@ -26,7 +28,7 @@ export default function useMediaQuery(
       return defaultValue;
     }
 
-    if (checkImmediately && typeof window !== "undefined") {
+    if (!disabled && checkImmediately && typeof window !== "undefined") {
       return window.matchMedia(query).matches;
     }
 
@@ -34,13 +36,14 @@ export default function useMediaQuery(
   });
 
   useEffect(() => {
-    if (typeof window === "undefined") {
+    if (typeof window === "undefined" || disabled) {
       return;
     }
 
     const mq = window.matchMedia(query);
     const updater = ({ matches }: MediaQueryListEvent): void =>
       setMatches(matches);
+
     mq.addListener(updater);
 
     if (mq.matches !== matches) {
@@ -48,7 +51,7 @@ export default function useMediaQuery(
     }
 
     return () => mq.removeListener(updater);
-  }, [matches, query]);
+  }, [disabled, matches, query]);
 
   return matches;
 }
