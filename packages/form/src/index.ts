@@ -12,3 +12,5 @@ export * from "./toggle";
 
 export { default as useChoice } from "./useChoice";
 export { default as useSelectState } from "./useSelectState";
+export { default as useIndeterminateChecked } from "./useIndeterminateChecked";
+export * from "./useIndeterminateChecked";
