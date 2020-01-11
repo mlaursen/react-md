@@ -1,43 +1,68 @@
-import React, { FC, ThHTMLAttributes, forwardRef } from "react";
+import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef, bem } from "@react-md/utils";
+import { TableRowConfig, useTableConfig } from "./config";
 
-import { useTableConfigContext } from "./TableConfigContext";
-
-export interface TableRowProps extends ThHTMLAttributes<HTMLTableRowElement> {
-  bordered?: boolean;
-  hoverable?: boolean;
-}
+export interface TableRowProps
+  extends HTMLAttributes<HTMLTableRowElement>,
+    TableRowConfig {}
 
 type WithRef = WithForwardedRef<HTMLTableRowElement>;
 
-const block = bem("rmd-table-row");
+const block = bem("rmd-tr");
 
-const TableRow: FC<TableRowProps & WithRef> = providedProps => {
-  const {
-    className,
-    bordered: propBordered,
-    hoverable: propHoverable,
-    forwardedRef,
-    children,
-    ...props
-  } = providedProps;
-
-  const { bordered, hoverable } = useTableConfigContext({
-    propBordered,
-    propHoverable,
+/**
+ * Creates a `<tr>` element with some general styles that are inherited from the
+ * base table configuration.
+ */
+const TableRow: FC<TableRowProps & WithRef> = ({
+  className,
+  forwardedRef,
+  disableHover: propDisableHover,
+  disableBorders: propDisableBorders,
+  children,
+  ...props
+}) => {
+  const { disableHover, disableBorders } = useTableConfig({
+    disableHover: propDisableHover,
+    disableBorders: propDisableBorders,
   });
 
   return (
     <tr
       {...props}
       ref={forwardedRef}
-      className={cn(block({ bordered, hoverable }), className)}
+      className={cn(
+        block({
+          bordered: !disableBorders,
+          hoverable: !disableHover,
+        }),
+        className
+      )}
     >
       {children}
     </tr>
   );
 };
+
+if (process.env.NODE_ENV !== "production") {
+  TableRow.displayName = "TableRow";
+
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    TableRow.propTypes = {
+      className: PropTypes.string,
+      children: PropTypes.node,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      disableHover: PropTypes.bool,
+      disableBorders: PropTypes.bool,
+    };
+  }
+}
 
 export default forwardRef<HTMLTableRowElement, TableRowProps>((props, ref) => (
   <TableRow {...props} forwardedRef={ref} />

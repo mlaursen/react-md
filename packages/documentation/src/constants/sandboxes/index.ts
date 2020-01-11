@@ -210,6 +210,8 @@ const sandboxes: Sandboxes = {
   },
   Table: {
     BaseStyles: () => resolve(import("./Table-BaseStyles.json")),
+    LowLevelComponents: () =>
+      resolve(import("./Table-LowLevelComponents.json")),
     ResponsiveTables: () => resolve(import("./Table-ResponsiveTables.json")),
     SimpleExamples: () => resolve(import("./Table-SimpleExamples.json")),
   },

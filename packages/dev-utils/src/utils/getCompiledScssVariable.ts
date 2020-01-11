@@ -169,7 +169,7 @@ export default function getCompiledScssVariable(
         break;
       default:
         // sanity check for typos since sassdoc doesn't have any validation for this
-        if (!isValidType(type)) {
+        if (!isValidType(type || "")) {
           console.error(
             `${name} variable has an invalid @type declaration: "${type}"`
           );

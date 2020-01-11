@@ -1,42 +1,91 @@
-import React, { FC, HTMLAttributes, forwardRef } from "react";
+import React, { FC, forwardRef, HTMLAttributes, useMemo } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { WithForwardedRef } from "@react-md/utils";
+
+import { Provider, TableConfig, useTableConfig } from "./config";
 
 export interface TableBodyProps
-  extends HTMLAttributes<HTMLTableSectionElement> {
-  fixed?: boolean;
-}
+  extends HTMLAttributes<HTMLTableSectionElement>,
+    Omit<TableConfig, "header"> {}
 
 type WithRef = WithForwardedRef<HTMLTableSectionElement>;
-type DefaultProps = Required<Pick<TableBodyProps, "fixed">>;
-type WithDefaultProps = TableBodyProps & DefaultProps & WithRef;
 
-const block = bem("rmd-table-body");
-
-const TableBody: FC<TableBodyProps & WithRef> = providedProps => {
+/**
+ * Creates a `<tbody>` element that also allows for overriding all the child
+ * `TableCell` components with additional styling behavior.
+ */
+const TableBody: FC<TableBodyProps & WithRef> = ({
+  className,
+  forwardedRef,
+  children,
+  hAlign: propHAlign,
+  vAlign: propVAlign,
+  lineWrap: propLineWrap,
+  disableHover: propDisableHover,
+  disableBorders: propDisableBorders,
+  ...props
+}) => {
+  // update the table configuration with the custom overrides for the `<thead>`
   const {
-    className,
-    fixed,
-    forwardedRef,
-    children,
-    ...props
-  } = providedProps as WithDefaultProps;
+    hAlign,
+    vAlign,
+    lineWrap,
+    disableHover,
+    disableBorders,
+  } = useTableConfig({
+    hAlign: propHAlign,
+    vAlign: propVAlign,
+    lineWrap: propLineWrap,
+    disableHover: propDisableHover,
+    disableBorders: propDisableBorders,
+  });
+
+  const configuration = useMemo(
+    () => ({
+      header: false,
+      hAlign,
+      vAlign,
+      lineWrap,
+      disableBorders,
+      disableHover,
+    }),
+    [hAlign, vAlign, lineWrap, disableBorders, disableHover]
+  );
+
   return (
-    <tbody
-      {...props}
-      ref={forwardedRef}
-      className={cn(block({ fixed }), className)}
-    >
-      {children}
-    </tbody>
+    <Provider value={configuration}>
+      <tbody
+        {...props}
+        ref={forwardedRef}
+        className={cn("rmd-tbody", className)}
+      >
+        {children}
+      </tbody>
+    </Provider>
   );
 };
 
-const defaultProps: DefaultProps = {
-  fixed: false,
-};
+if (process.env.NODE_ENV !== "production") {
+  TableBody.displayName = "TableBody";
 
-TableBody.defaultProps = defaultProps;
+  let PropTypes;
+  try {
+    PropTypes = require("prop-types");
+  } catch (e) {}
+
+  if (PropTypes) {
+    TableBody.propTypes = {
+      className: PropTypes.string,
+      children: PropTypes.node,
+      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      lineWrap: PropTypes.bool,
+      hAlign: PropTypes.oneOf(["left", "center", "right"]),
+      vAlign: PropTypes.oneOf(["top", "middle", "bottom"]),
+      disableHover: PropTypes.bool,
+      disableBorders: PropTypes.bool,
+    };
+  }
+}
 
 export default forwardRef<HTMLTableSectionElement, TableBodyProps>(
   (props, ref) => <TableBody {...props} forwardedRef={ref} />

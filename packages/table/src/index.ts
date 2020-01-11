@@ -1,6 +1,3 @@
-export { default as TableContainer } from "./TableContainer";
-export * from "./TableContainer";
-
 export { default as Table } from "./Table";
 export * from "./Table";
 
@@ -18,3 +15,6 @@ export * from "./TableCell";
 
 export { default as Caption } from "./Caption";
 export * from "./Caption";
+
+export { default as TableCheckbox } from "./TableCheckbox";
+export * from "./TableCheckbox";

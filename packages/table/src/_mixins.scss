@@ -3,9 +3,6 @@
 ////
 
 @import '~@react-md/divider/dist/mixins';
-@import '~@react-md/states/dist/mixins';
-@import '~@react-md/theme/dist/variables';
-@import '~@react-md/theme/dist/helpers';
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/typography/dist/mixins';
 @import '~@react-md/transition/dist/mixins';
@@ -35,18 +32,8 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-table-theme-values, table);
 }
 
-@mixin rmd-table-container {
-  @include rmd-utils-scroll;
-
-  // &--fixed-header {
-  //   @include rmd-table-theme(padding-top, cell-height);
-  // }
-
-  // &--fixed-footer {
-  //   @include rmd-table-theme(padding-bottom, cell-height);
-  // }
-}
-
+/// Creates the base styles for the `<table>` element.
+/// @access private
 @mixin rmd-table {
   border-collapse: collapse;
   max-width: 100%;
@@ -58,65 +45,88 @@
   &--full-width {
     width: 100%;
   }
-
-  // &--fixed {
-  //   @include rmd-table-theme(background-color, fixed-background-color);
-
-  //   z-index: 1;
-  // }
 }
 
-@mixin rmd-table-header {
+/// @access private
+@mixin rmd-thead {
+  @if $rmd-table-cell-height != $rmd-table-header-cell-height {
+    @include rmd-table-theme-update-var(cell-height, $rmd-table-header-cell-height);
+  }
+
+  @if $rmd-table-cell-dense-height != $rmd-table-header-cell-dense-height {
+    // TODO: Look into a better way to do this since it makes overrides more difficult.
+    .rmd-table--dense & {
+      @include rmd-table-theme-update-var(cell-height, $rmd-table-header-cell-dense-height);
+    }
+  }
 }
 
-@mixin rmd-table-caption {
-  @include rmd-typography(caption);
-}
-
-@mixin rmd-table-alignments {
-  @each $alignment in (left center right) {
+/// @access private
+@mixin rmd-table-cell-horizontal-alignments {
+  @each $alignment in $rmd-table-cell-horizontal-alignments {
     &--#{$alignment} {
       text-align: $alignment;
     }
   }
 }
 
+/// @access private
+@mixin rmd-table-cell-vertical-alignments {
+  @if $rmd-table-cell-vertical-alignments {
+    @each $alignment in $rmd-table-cell-vertical-alignments {
+      &--#{$alignment} {
+        vertical-align: $alignment;
+      }
+    }
+
+    &--vertical {
+      @include rmd-table-theme(padding-top, cell-v-padding);
+      @include rmd-table-theme(padding-bottom, cell-v-padding);
+    }
+  }
+}
+
+/// Creates all the styles for the `<th>` and `<td>` elements.
+/// @access private
 @mixin rmd-table-cell {
-  @include rmd-typography(subtitle-1);
-  @include rmd-table-theme(color, data-cell-color);
-  @include rmd-table-theme(font-size, data-cell-font-size);
+  @include rmd-typography(body-2);
+  @include rmd-table-theme(color, cell-color);
   @include rmd-table-theme(height, cell-height);
-  @include rmd-table-alignments;
-  @include rmd-table-theme(padding-left, cell-padding);
-  @include rmd-table-theme(padding-right, cell-padding);
+  @include rmd-table-theme(padding-left, cell-h-padding);
+  @include rmd-table-theme(padding-right, cell-h-padding);
+  @include rmd-table-cell-horizontal-alignments;
+  @include rmd-table-cell-vertical-alignments;
 
   &--grow {
     width: 100%;
   }
 
-  &--padding-extra {
-    @include rmd-table-theme(padding-right, cell-padding-extra);
-  }
-
   &--header {
-    @include rmd-table-theme(color, header-cell-color);
-    @include rmd-table-theme(font-size, header-cell-font-size);
-    @include rmd-typography-value(subtitle-2, font-weight, line-height);
-  }
-
-  &--border-right {
-    @include rmd-divider-border(right);
+    @if $rmd-table-cell-color != $rmd-table-header-cell-color {
+      @include rmd-table-theme-update-var(cell-color, $rmd-table-header-cell-color);
+    }
+    @include rmd-typography-value(subtitle-2, font-weight, letter-spacing, line-height);
   }
 
   &--no-wrap {
     @include rmd-typography-text-overflow-ellipsis;
   }
+
+  &--checkbox {
+    @include rmd-table-theme-update-var(cell-h-padding, $rmd-table-checkbox-padding);
+  }
 }
 
+/// Creates the styles for the `<tr>` element.
+///
+/// Note: The base class actually has no styles.
+/// @access private
 @mixin rmd-table-row {
   &--bordered {
     @include rmd-divider-border(bottom);
 
+    // this is actually pretty nice since it'll also NOT create a border
+    // on the header row (which we want)
     &:last-child {
       border-bottom-width: 0;
     }
@@ -125,6 +135,7 @@
   &--hoverable {
     @include rmd-utils-mouse-only {
       @include rmd-transition(standard);
+
       transition: background-color $rmd-transition-standard-time;
 
       &:hover {
@@ -138,26 +149,26 @@
   @include rmd-theme-create-root-theme($rmd-table-theme-values, table);
 
   .rmd-table-container {
-    @include rmd-table-container;
+    @include rmd-utils-scroll;
   }
 
   .rmd-table {
     @include rmd-table;
   }
 
-  .rmd-table-header {
-    @include rmd-table-header;
+  .rmd-thead {
+    @include rmd-thead;
   }
 
   .rmd-table-cell {
     @include rmd-table-cell;
   }
 
-  .rmd-table-row {
+  .rmd-tr {
     @include rmd-table-row;
   }
 
-  .rmd-table-caption {
-    @include rmd-table-caption;
+  .rmd-caption {
+    @include rmd-typography(caption);
   }
 }

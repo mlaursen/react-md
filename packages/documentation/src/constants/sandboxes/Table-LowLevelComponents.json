@@ -1,0 +1,56 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Table Example - Low Level Components</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/table/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Table Example - Low Level Components",
+      "description": "Example from https://react-md.dev/packages/table/demos#low-level-components",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/table": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment } from \"react\";\nimport {\n  Table,\n  TableHeader,\n  TableRow,\n  TableCell,\n  TableBody,\n  TableCheckbox,\n} from \"@react-md/table\";\nimport desserts from \"./desserts\";\n\nconst headers = [\n  \"Dessert (100g serving)\",\n  \"Calories\",\n  \"Fat (g)\",\n  \"Carbs (g)\",\n  \"Protein (g)\",\n  \"Sodium (mg)\",\n  \"Calcium (mg)\",\n  \"Icon (mg)\",\n];\n\nconst Demo: FC = () => (\n  <Fragment>\n    <Table>\n      <TableHeader>\n        <TableRow>\n          {headers.map((name, i) => (\n            <TableCell key={name} grow={i === 0}>\n              {name}\n            </TableCell>\n          ))}\n        </TableRow>\n      </TableHeader>\n      <TableBody hAlign=\"right\">\n        {desserts.map(\n          ({ name, calories, fat, carbs, protein, sodium, calcium, iron }) => (\n            <TableRow key={name}>\n              <TableCell hAlign=\"left\">{name}</TableCell>\n              <TableCell>{calories}</TableCell>\n              <TableCell>{fat}</TableCell>\n              <TableCell>{carbs}</TableCell>\n              <TableCell>{protein}</TableCell>\n              <TableCell>{sodium}</TableCell>\n              <TableCell>{calcium}</TableCell>\n              <TableCell>{iron}</TableCell>\n            </TableRow>\n          )\n        )}\n      </TableBody>\n    </Table>\n    <Table>\n      <TableHeader>\n        <TableRow>\n          <TableCheckbox id=\"root-id\" />\n          {headers.map((name, i) => (\n            <TableCell key={name} grow={i === 0}>\n              {name}\n            </TableCell>\n          ))}\n        </TableRow>\n      </TableHeader>\n      <TableBody hAlign=\"right\">\n        {desserts.map(\n          (\n            { name, calories, fat, carbs, protein, sodium, calcium, iron },\n            i\n          ) => (\n            <TableRow key={name}>\n              <TableCheckbox id={`root-id-${i + 1}`} />\n              <TableCell hAlign=\"left\">{name}</TableCell>\n              <TableCell>{calories}</TableCell>\n              <TableCell>{fat}</TableCell>\n              <TableCell>{carbs}</TableCell>\n              <TableCell>{protein}</TableCell>\n              <TableCell>{sodium}</TableCell>\n              <TableCell>{calcium}</TableCell>\n              <TableCell>{iron}</TableCell>\n            </TableRow>\n          )\n        )}\n      </TableBody>\n    </Table>\n  </Fragment>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/desserts.ts": {
+    "content": "export interface Dessert {\n  name: string;\n  calories: number;\n  fat: number;\n  carbs: number;\n  protein: number;\n  sodium: number;\n  calcium: number;\n  iron: number;\n  type: \"Ice cream\" | \"Pastry\" | \"Other\";\n}\n\nconst desserts: readonly Dessert[] = [\n  {\n    name: \"Frozen yogurt\",\n    type: \"Ice cream\",\n    calories: 159,\n    fat: 6.0,\n    carbs: 24,\n    protein: 4.0,\n    sodium: 87,\n    calcium: 14,\n    iron: 1,\n  },\n  {\n    name: \"Ice cream sandwhich\",\n    type: \"Ice cream\",\n    calories: 237,\n    fat: 9.0,\n    carbs: 37,\n    protein: 4.3,\n    sodium: 129,\n    calcium: 8,\n    iron: 1,\n  },\n  {\n    name: \"Eclair\",\n    type: \"Pastry\",\n    calories: 262,\n    fat: 16.0,\n    carbs: 37,\n    protein: 6.0,\n    sodium: 337,\n    calcium: 6,\n    iron: 7,\n  },\n  {\n    name: \"Cupcake\",\n    type: \"Pastry\",\n    calories: 305,\n    fat: 3.7,\n    carbs: 67,\n    protein: 4.3,\n    sodium: 413,\n    calcium: 3,\n    iron: 8,\n  },\n  {\n    name: \"Gingerbread\",\n    type: \"Pastry\",\n    calories: 356,\n    fat: 16.0,\n    carbs: 49,\n    protein: 3.9,\n    sodium: 327,\n    calcium: 7,\n    iron: 16,\n  },\n  {\n    name: \"Jelly bean\",\n    type: \"Other\",\n    calories: 375,\n    fat: 0.0,\n    carbs: 94,\n    protein: 0.0,\n    sodium: 50,\n    calcium: 0,\n    iron: 0,\n  },\n  {\n    name: \"Lollipop\",\n    type: \"Other\",\n    calories: 392,\n    fat: 0.2,\n    carbs: 98,\n    protein: 0.0,\n    sodium: 38,\n    calcium: 0,\n    iron: 2,\n  },\n  {\n    name: \"Honeycomb\",\n    type: \"Other\",\n    calories: 408,\n    fat: 3.2,\n    carbs: 87,\n    protein: 6.5,\n    sodium: 562,\n    calcium: 0,\n    iron: 45,\n  },\n  {\n    name: \"Donut\",\n    type: \"Pastry\",\n    calories: 52,\n    fat: 25.0,\n    carbs: 51,\n    protein: 4.9,\n    sodium: 326,\n    calcium: 2,\n    iron: 22,\n  },\n  {\n    name: \"KitKat\",\n    type: \"Other\",\n    calories: 16,\n    fat: 6.0,\n    carbs: 65,\n    protein: 7.0,\n    sodium: 54,\n    calcium: 12,\n    iron: 6,\n  },\n];\n\nexport default desserts;\n",
+    "isBinary": false
+  }
+}
