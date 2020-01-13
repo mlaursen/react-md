@@ -8,7 +8,7 @@ import React, {
 import cn from "classnames";
 import { CheckboxProps, Checkbox } from "@react-md/form";
 import { WithForwardedRef } from "@react-md/utils";
-import TableCell from "./TableCell";
+import TableCell, { TableCellProps } from "./TableCell";
 
 type WantedCheckboxProps =
   | "icon"
@@ -19,14 +19,17 @@ type WantedCheckboxProps =
   | "disableIconOverlay"
   | "checked"
   | "onChange"
-  | "defaultChecked";
+  | "defaultChecked"
+  | "indeterminate"
+  | "aria-controls";
 
 export interface TableCheckboxProps
   extends Omit<
       TdHTMLAttributes<HTMLTableDataCellElement>,
       "onChange" | "scope"
     >,
-    Pick<CheckboxProps, WantedCheckboxProps> {
+    Pick<CheckboxProps, WantedCheckboxProps>,
+    Pick<TableCellProps, "sticky"> {
   /**
    * The id for the checkbox. This is required for a11y.
    */
@@ -71,6 +74,12 @@ export interface TableCheckboxProps
 
 type WithRef = WithForwardedRef<HTMLTableDataCellElement>;
 
+/**
+ * This is a simple wrapper for the `Checkbox` component that allows you to render a nicely
+ * styled `Checkbox` within a `TableCell` element. This will mostly just remove the additional
+ * padding applied and default an `aria-label` since you normally don't want a checkbox with
+ * a label within a table since it's more for selection.
+ */
 const TableCheckbox: FC<TableCheckboxProps & WithRef> = ({
   cellId,
   className,
@@ -78,6 +87,7 @@ const TableCheckbox: FC<TableCheckboxProps & WithRef> = ({
   id,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
+  "aria-controls": ariaControls,
   checkboxRef,
   checkboxStyle,
   checkboxClassName,
@@ -90,6 +100,7 @@ const TableCheckbox: FC<TableCheckboxProps & WithRef> = ({
   checked,
   onChange,
   defaultChecked,
+  indeterminate,
   ...props
 }) => {
   return (
@@ -104,8 +115,10 @@ const TableCheckbox: FC<TableCheckboxProps & WithRef> = ({
         id={id}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
+        aria-controls={ariaControls}
         ref={checkboxRef}
         style={checkboxStyle}
+        indeterminate={indeterminate}
         className={checkboxClassName}
         icon={icon}
         iconStyle={iconStyle}
@@ -139,6 +152,7 @@ if (process.env.NODE_ENV !== "production") {
       className: PropTypes.string,
       "aria-label": PropTypes.string,
       "aria-labelledby": PropTypes.string,
+      "aria-controls": PropTypes.string,
       checkboxRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       checkboxStyle: PropTypes.object,
       checkboxClassName: PropTypes.string,
@@ -153,6 +167,7 @@ if (process.env.NODE_ENV !== "production") {
       onChange: PropTypes.func,
       cellId: PropTypes.string,
       forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      indeterminate: PropTypes.bool,
     };
   }
 }

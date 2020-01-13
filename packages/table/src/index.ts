@@ -1,3 +1,6 @@
+export { default as TableContainer } from "./TableContainer";
+export * from "./TableContainer";
+
 export { default as Table } from "./Table";
 export * from "./Table";
 
@@ -6,6 +9,9 @@ export * from "./TableHeader";
 
 export { default as TableBody } from "./TableBody";
 export * from "./TableBody";
+
+export { default as TableFooter } from "./TableFooter";
+export * from "./TableFooter";
 
 export { default as TableRow } from "./TableRow";
 export * from "./TableRow";

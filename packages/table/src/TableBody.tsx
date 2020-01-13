@@ -2,7 +2,7 @@ import React, { FC, forwardRef, HTMLAttributes, useMemo } from "react";
 import cn from "classnames";
 import { WithForwardedRef } from "@react-md/utils";
 
-import { Provider, TableConfig, useTableConfig } from "./config";
+import { TableConfigProvider, TableConfig, useTableConfig } from "./config";
 
 export interface TableBodyProps
   extends HTMLAttributes<HTMLTableSectionElement>,
@@ -53,7 +53,7 @@ const TableBody: FC<TableBodyProps & WithRef> = ({
   );
 
   return (
-    <Provider value={configuration}>
+    <TableConfigProvider value={configuration}>
       <tbody
         {...props}
         ref={forwardedRef}
@@ -61,7 +61,7 @@ const TableBody: FC<TableBodyProps & WithRef> = ({
       >
         {children}
       </tbody>
-    </Provider>
+    </TableConfigProvider>
   );
 };
 
@@ -78,7 +78,10 @@ if (process.env.NODE_ENV !== "production") {
       className: PropTypes.string,
       children: PropTypes.node,
       forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-      lineWrap: PropTypes.bool,
+      lineWrap: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(["padded"]),
+      ]),
       hAlign: PropTypes.oneOf(["left", "center", "right"]),
       vAlign: PropTypes.oneOf(["top", "middle", "bottom"]),
       disableHover: PropTypes.bool,

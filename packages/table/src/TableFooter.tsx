@@ -5,38 +5,36 @@ import { bem, WithForwardedRef } from "@react-md/utils";
 import { TableConfigProvider, useTableConfig, TableCellConfig } from "./config";
 import { StickyTableProvider } from "./sticky";
 
-export interface TableHeaderProps
+export interface TableFooterProps
   extends HTMLAttributes<HTMLTableSectionElement>,
     Pick<TableCellConfig, "lineWrap"> {
   /**
    * This is a rename of the `disableHover` of the `TableConfig` since table
-   * headers are not hoverable by default. This prop can be enabled to add the
-   * row hover color within table headers, but it is not really recommended.
+   * footers are not hoverable by default. This prop can be enabled to add the
+   * row hover color within table footers, but it is not really recommended.
    */
   hoverable?: boolean;
 
   /**
-   * Boolean if the header should be rendered as a sticky header that will
+   * Boolean if the footer should be rendered as a sticky footer that will
    * cover the table contents as the page or `TableContainer` is scrolled.
    */
   sticky?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLTableSectionElement>;
-type DefaultProps = Required<Pick<TableHeaderProps, "hoverable" | "sticky">>;
-type WithDefaultProps = TableHeaderProps & DefaultProps & WithRef;
+type DefaultProps = Required<Pick<TableFooterProps, "hoverable" | "sticky">>;
+type WithDefaultProps = TableFooterProps & DefaultProps & WithRef;
 
-const block = bem("rmd-thead");
+const block = bem("rmd-foot");
 
 /**
- * Creates a `<thead>` element with some basic styles. This component will also
- * update the table configuration so that all the `TableCell` children will
- * automatically become `<th>` elements instead of the normal `<td>` as well as
- * disabling the hover effect and line wrapping. The hover effect and
- * line-wrapping can be re-enabled if desired through the `hoverable` and
+ * Creates a `<tfoot>` element with some basic styles. This component will
+ * disable the hover effect and line wrapping by default, but the hover effect
+ * and line-wrapping can be re-enabled if desired through the `hoverable` and
  * `disableNoWrap` props.
  */
-const TableHeader: FC<TableHeaderProps & WithRef> = providedProps => {
+const TableFooter: FC<TableFooterProps & WithRef> = providedProps => {
   const {
     className,
     forwardedRef,
@@ -47,7 +45,7 @@ const TableHeader: FC<TableHeaderProps & WithRef> = providedProps => {
     ...props
   } = providedProps as WithDefaultProps;
 
-  // update the table configuration with the custom overrides for the `<thead>`
+  // update the table configuration with the custom overrides for the `<tfoot>`
   const {
     hAlign,
     vAlign,
@@ -61,7 +59,7 @@ const TableHeader: FC<TableHeaderProps & WithRef> = providedProps => {
 
   const configuration = useMemo(
     () => ({
-      header: true,
+      header: false,
       hAlign,
       vAlign,
       lineWrap,
@@ -73,9 +71,9 @@ const TableHeader: FC<TableHeaderProps & WithRef> = providedProps => {
 
   return (
     <TableConfigProvider value={configuration}>
-      <thead {...props} ref={forwardedRef} className={cn(block(), className)}>
+      <tfoot {...props} ref={forwardedRef} className={cn(block(), className)}>
         <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
-      </thead>
+      </tfoot>
     </TableConfigProvider>
   );
 };
@@ -85,10 +83,10 @@ const defaultProps: DefaultProps = {
   sticky: false,
 };
 
-TableHeader.defaultProps = defaultProps;
+TableFooter.defaultProps = defaultProps;
 
 if (process.env.NODE_ENV !== "production") {
-  TableHeader.displayName = "TableHeader";
+  TableFooter.displayName = "TableFooter";
 
   let PropTypes;
   try {
@@ -96,7 +94,7 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 
   if (PropTypes) {
-    TableHeader.propTypes = {
+    TableFooter.propTypes = {
       className: PropTypes.string,
       lineWrap: PropTypes.oneOfType([
         PropTypes.bool,
@@ -108,6 +106,6 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
-export default forwardRef<HTMLTableSectionElement, TableHeaderProps>(
-  (props, ref) => <TableHeader {...props} forwardedRef={ref} />
+export default forwardRef<HTMLTableSectionElement, TableFooterProps>(
+  (props, ref) => <TableFooter {...props} forwardedRef={ref} />
 );

@@ -47,8 +47,11 @@ export interface TableCellConfig {
    * Boolean if the `<td>` and `<th>` cells should support line wrapping. This
    * is disabled by default since you _normally_ don't want line wrapping in
    * tables unless it provides additional descriptions or other content.
+   *
+   * If this is set to the string `"padded"`, line wrapping will be enabled along
+   * with adding some additional vertical padding to each cell.
    */
-  lineWrap?: boolean;
+  lineWrap?: boolean | "padded";
 }
 
 /**
@@ -97,4 +100,7 @@ export function useTableConfig(options: TableConfig): TableConfigContext {
   };
 }
 
-export const { Provider } = context;
+/**
+ * @private
+ */
+export const { Provider: TableConfigProvider } = context;

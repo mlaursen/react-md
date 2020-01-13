@@ -10,23 +10,26 @@
 @import './functions';
 @import './variables';
 
-/// Creates the styles for one of the table's theme values. This is mostly
-/// going to be an internal helper mixin util.
+/// Creates the styles for one of the table's theme values. This is mostly going
+/// to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-table-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-table-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-table-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-table-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-table-theme-values` to
+/// extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-table-theme-values` map when
+/// `null`.
 @mixin rmd-table-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-table-theme-values, table);
 }
 
-/// Updates one of the table's theme variables with the new value for the section
-/// of your app.
+/// Updates one of the table's theme variables with the new value for the
+/// section of your app.
 ///
-/// @param {String} theme-style - The table theme style type to update. This should be one
-///   of the `$rmd-table-theme-values` keys.
+/// @param {String} theme-style - The table theme style type to update. This
+/// should be one of the `$rmd-table-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-table-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-table-theme-values, table);
@@ -94,18 +97,25 @@
   @include rmd-table-theme(height, cell-height);
   @include rmd-table-theme(padding-left, cell-h-padding);
   @include rmd-table-theme(padding-right, cell-h-padding);
-  @include rmd-table-cell-horizontal-alignments;
   @include rmd-table-cell-vertical-alignments;
-
-  &--grow {
-    width: 100%;
-  }
 
   &--header {
     @if $rmd-table-cell-color != $rmd-table-header-cell-color {
       @include rmd-table-theme-update-var(cell-color, $rmd-table-header-cell-color);
     }
     @include rmd-typography-value(subtitle-2, font-weight, letter-spacing, line-height);
+
+    text-align: left;
+  }
+
+  // want this to come after the header since the "default" should be
+  // `text-align: left` but browser have `<th>` defaulted to `text-align:
+  // center`. If this is included before the `--header` state, it won't be
+  // applied
+  @include rmd-table-cell-horizontal-alignments;
+
+  &--grow {
+    width: 100%;
   }
 
   &--no-wrap {
@@ -114,6 +124,69 @@
 
   &--checkbox {
     @include rmd-table-theme-update-var(cell-h-padding, $rmd-table-checkbox-padding);
+  }
+
+  &--sticky {
+    // need to set a background color so the other rows/cells can be scrolled
+    // underneath.
+    @include rmd-theme(background-color, background);
+    @include rmd-utils-mouse-only {
+      &::after {
+        @include rmd-transition(standard);
+
+        transition: background-color $rmd-transition-standard-time;
+      }
+    }
+
+    // see the `::after` selector for info about border and background color,
+    // but this _should_ inherit the border from the `<tr>` only when the
+    // `--bordered` class is also enabled
+    border: inherit;
+    position: sticky;
+    z-index: $rmd-table-cell-sticky-z-index;
+
+    &::after {
+      // ok. fun stuff. if position sticky is set on a table that has
+      // `border-collapse: collapse`, borders will not visible on these cells.
+      // to re-enable the borders (and hover color), we can create a full-sized
+      // `::after` pseudo element that will gain the border and background-color
+      // when hovered. this probably isn't the best solution, but it works for
+      // these use-cases.
+      @include rmd-utils-full-screen(absolute);
+
+      // the border should inherit the parent border... which is inherited from
+      // the `<tr>` only when the `--bordered` class has been enabled.. Woo!...
+      border: inherit;
+      content: '';
+      pointer-events: none;
+    }
+  }
+
+  &--sticky-header {
+    @include rmd-table-theme(top, sticky-header);
+  }
+
+  &--sticky-cell {
+    @include rmd-utils-rtl {
+      @include rmd-table-theme(right, sticky-cell);
+
+      left: auto;
+    }
+    @include rmd-table-theme(left, sticky-cell);
+  }
+
+  &--sticky-header-cell {
+    // need to increase by one more so it can cover the other header cells
+    z-index: $rmd-table-cell-sticky-z-index + 1;
+  }
+
+  &--sticky-footer {
+    @include rmd-table-theme(bottom, sticky-footer);
+  }
+
+  &--padded {
+    padding-bottom: $rmd-table-cell-vertical-padding;
+    padding-top: $rmd-table-cell-vertical-padding;
   }
 }
 
@@ -125,8 +198,8 @@
   &--bordered {
     @include rmd-divider-border(bottom);
 
-    // this is actually pretty nice since it'll also NOT create a border
-    // on the header row (which we want)
+    // this is actually pretty nice since it'll also NOT create a border on the
+    // header row (which we want)
     &:last-child {
       border-bottom-width: 0;
     }
@@ -140,11 +213,17 @@
 
       &:hover {
         @include rmd-table-theme(background-color, hover-color);
+
+        // see the `.rmd-table-cell--sticky` selector for more info :/
+        .rmd-table-cell--sticky-cell::after {
+          @include rmd-table-theme(background-color, hover-color);
+        }
       }
     }
   }
 }
 
+/// Creates all the styles for the table package.
 @mixin react-md-table {
   @include rmd-theme-create-root-theme($rmd-table-theme-values, table);
 
