@@ -198,11 +198,12 @@ type WithDefaultProps = SelectProps & DefaultProps & WithRef;
 const block = bem("rmd-select");
 
 /**
- * This component is an accessible version of the `<select>` element that allows for
- * some more custom styles by using the `@react-md/list` package to render the list
- * of options.
+ * This component is an accessible version of the `<select>` element that allows
+ * for some more custom styles by using the `@react-md/list` package to render
+ * the list of options.
  *
- * The `Select` component **must be controlled** with a `value` and `onChange` handler.
+ * The `Select` component **must be controlled** with a `value` and `onChange`
+ * handler.
  */
 const Select: FC<SelectProps & WithRef> = providedProps => {
   const {
@@ -224,6 +225,7 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     portal,
     portalInto,
     portalIntoId,
+    name,
     options,
     labelKey,
     valueKey,
@@ -423,6 +425,7 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
         aria-labelledby={id}
         style={{ ...fixedStyle, ...listboxStyle }}
         className={listboxClassName}
+        name={name}
         portal={portal}
         portalInto={portalInto}
         portalIntoId={portalIntoId}

@@ -11,8 +11,8 @@ export interface OptionProps extends SimpleListItemProps {
   focused: boolean;
 
   /**
-   * Boolean if the option's value is equal to the current listbox's value if
-   * it is acting as a select component.
+   * Boolean if the option's value is equal to the current listbox's value if it
+   * is acting as a select component.
    */
   selected: boolean;
 }
@@ -24,8 +24,8 @@ type WithDefaultProps = OptionProps & DefaultProps & WithRef;
 const block = bem("rmd-option");
 
 /**
- * The Option component is a simple wrapper for the `SimpleListItem` that adds some required
- * a11y for behaving as the `option` role.
+ * The Option component is a simple wrapper for the `SimpleListItem` that adds
+ * some required a11y for behaving as the `option` role.
  */
 const Option: FC<OptionProps & WithRef> = providedProps => {
   const {

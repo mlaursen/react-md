@@ -32,73 +32,107 @@ import {
   defaultIsOptionDisabled,
 } from "./utils";
 
+export type ListboxChangeEventData = Pick<
+  Required<ListboxProps>,
+  "id" | "valueKey" | "value" | "options"
+> &
+  Pick<ListboxProps, "name">;
+
+/**
+ * A function to call when the value of the listbox changes. This will be
+ * called whenever the user clicks a new option within the select field with
+ * either the mouse, touch, or the enter/space key.
+ *
+ * Note: This will be called **each time the user keyboard selects** a new
+ * option by either typing to find a match, using the home/end keys, or using
+ * the arrow keys. If this is undesired behavior, enable the
+ * `disableMovementChange` prop so that it'll only be called on "click" events.
+ *
+ * @param nextValue The next value that should be set for the listbox.
+ * @param option The option that was selected.
+ * @param listbox Part of the listbox props to help identify which listbox has
+ * been changed if reusing an event handler for multiple form parts.
+ */
+export type ListboxChangeEventHandler = (
+  nextValue: string,
+  option: ListboxOption,
+  listbox: ListboxChangeEventData
+) => void;
+
 export interface ListboxOptions extends RenderConditionalPortalProps {
+  /**
+   * An optional name to provide for the listbox. This will be rendered in the
+   * dom as `data-name={name}` since there isn't a real `<input>` element for
+   * this component.
+   */
+  name?: string;
+
   /**
    * The list of options to display within the listbox.
    */
   options: ListboxOption[];
 
   /**
-   * A key to use that extracts the display label for an option from the options list. This will
-   * only be used if the option is an object and is passed to the `getOptionLabel` prop.
+   * A key to use that extracts the display label for an option from the options
+   * list. This will only be used if the option is an object and is passed to
+   * the `getOptionLabel` prop.
    */
   labelKey?: string;
 
   /**
-   * A key to use that extracts the value for the option from the options list. This will only be
-   * used if the option is an object and will be passed to the `getOptionValue` prop.
+   * A key to use that extracts the value for the option from the options list.
+   * This will only be used if the option is an object and will be passed to the
+   * `getOptionValue` prop.
    */
   valueKey?: string;
 
   /**
-   * A function to call for each option that should return a unique id for the specific option
-   * in the list. These ids are required for handling aria-activedescendant movement within the
-   * listbox.
+   * A function to call for each option that should return a unique id for the
+   * specific option in the list. These ids are required for handling
+   * `aria-activedescendant` movement within the listbox.
    */
   getOptionId?: typeof DEFAULT_GET_OPTION_ID;
 
   /**
-   * A function that will get a display label for an option. The default behavior is to render any
-   * number or string options as the label, otherwise attempt to do
-   * `option[labelKey] || option.children`.
+   * A function that will get a display label for an option. The default
+   * behavior is to render any number or string options as the label, otherwise
+   * attempt to do `option[labelKey] || option.children`.
    */
   getOptionLabel?: typeof DEFAULT_GET_OPTION_LABEL;
 
   /**
-   * A function that will get the value for an option. The default behavior is to render any number or
-   * string options as the value, otherwise attempt to do `option[valueKey]`.
+   * A function that will get the value for an option. The default behavior is
+   * to render any number or string options as the value, otherwise attempt to
+   * do `option[valueKey]`.
    */
   getOptionValue?: typeof DEFAULT_GET_ITEM_VALUE;
 
   /**
-   * A function to call for each option to check if it is currently disabled. This is really just a
-   * convenience prop so that you don't need to modify the `options` yourself.
+   * A function to call for each option to check if it is currently disabled.
+   * This is really just a convenience prop so that you don't need to modify the
+   * `options` yourself.
    */
   isOptionDisabled?: (option: ListboxOption) => boolean;
 
   /**
-   * The listbox is a controlled component, so you will need to provide the current value
-   * and an `onChange` handler. The `value` must be a string and _should_ be one of the option's
-   * values when something has been selected. If you want to have an "empty" select box to require
-   * the user to manually select something to be considered valid, you can set this to the empty
+   * The listbox is a controlled component, so you will need to provide the
+   * current value and an `onChange` handler. The `value` must be a string and
+   * _should_ be one of the option's values when something has been selected. If
+   * you want to have an "empty" select box to require the user to manually
+   * select something to be considered valid, you can set this to the empty
    * string and it'll be considered "unvalued".
    */
   value: string;
 
   /**
-   * A function to call when the value of the listbox changes. This will be called whenever the user
-   * clicks a new option within the select field with either the mouse, touch, or the enter/space key.
-   *
-   * Note: This will be called **each time the user keyboard selects** a new option by either typing
-   * to find a match, using the home/end keys, or using the arrow keys. If this is undesired behavior,
-   * enable the `disableMovementChange` prop so that it'll only be called on "click" events.
+    @see ListboxChangeEventHandler
    */
-  onChange: (nextValue: string, option: ListboxOption) => void;
+  onChange: ListboxChangeEventHandler;
 
   /**
-   * Boolean if using the keyboard should not immediately trigger the `onChange` callback. When
-   * this is enabled, the `onChange` callback will only be called if the user clicks an item or
-   * presses the enter or space key.
+   * Boolean if using the keyboard should not immediately trigger the `onChange`
+   * callback. When this is enabled, the `onChange` callback will only be called
+   * if the user clicks an item or presses the enter or space key.
    */
   disableMovementChange?: boolean;
 }
@@ -112,33 +146,34 @@ export interface ListboxProps
     OverridableCSSTransitionProps {
   /**
    * The id for the listbox. This is required for a11y and is used to generate
-   * unique ids for each option within the listbox for aria-activedescendant
+   * unique ids for each option within the listbox for `aria-activedescendant`
    * movement.
    */
   id: string;
 
   /**
-   * Boolean if the listbox is in a temporary element (like a dropdown). This will update
-   * the behavior so that the default `tabIndex` is `-1` instead of `0` since it shouldn't
-   * be tab focusable within a dropdown.
+   * Boolean if the listbox is in a temporary element (like a dropdown). This
+   * will update the behavior so that the default `tabIndex` is `-1` instead of
+   * `0` since it shouldn't be tab focusable within a dropdown.
    */
   temporary?: boolean;
 
   /**
-   * Boolean if the listbox is visible. This should stay defaulted as `true` when the `temporary`
-   * prop is set to `false`.
+   * Boolean if the listbox is visible. This should stay defaulted as `true`
+   * when the `temporary` prop is set to `false`.
    */
   visible?: boolean;
 
   /**
-   * A function to call that should set the visible prop to `false`. This **must** be provided when
-   * the `temporary` prop is enabled.
+   * A function to call that should set the visible prop to `false`. This
+   * **must** be provided when the `temporary` prop is enabled.
    */
   onRequestClose?: () => void;
 
   /**
-   * Boolean if all the options should just be read only and prevent the `onChange` handler to
-   * be called when an option is keyboard focused or clicked.
+   * Boolean if all the options should just be read only and prevent the
+   * `onChange` handler to be called when an option is keyboard focused or
+   * clicked.
    */
   readOnly?: boolean;
 }
@@ -165,10 +200,11 @@ const block = bem("rmd-listbox");
 let warned: Set<string> | undefined;
 
 /**
- * This component is used to render the list part of a `<select>` element with built-in accessibility
- * and the ability to add custom styles. This should probably not be used much outside of `react-md`
- * itself and the `Select` component, but I'm planning on adding support for an inline listbox
- * at somepoint.
+ * This component is used to render the list part of a `<select>` element with
+ * built-in accessibility and the ability to add custom styles. This should
+ * probably not be used much outside of `react-md` itself and the `Select`
+ * component, but I'm planning on adding support for an inline listbox at
+ * some point.
  */
 const Listbox: FC<ListboxProps & WithRef> = providedProps => {
   const {
@@ -182,6 +218,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     getOptionId,
     getOptionLabel,
     getOptionValue,
+    name,
     options,
     value,
     onChange,
@@ -245,17 +282,25 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
 
       const optionValue = getOptionValue(option, valueKey);
       if (value !== optionValue) {
-        onChange(optionValue, options[index]);
+        onChange(optionValue, options[index], {
+          id,
+          name,
+          value,
+          valueKey,
+          options,
+        });
       }
     },
     [
-      readOnly,
-      options,
-      isOptionDisabled,
       getOptionValue,
-      valueKey,
-      value,
+      id,
+      isOptionDisabled,
+      name,
       onChange,
+      options,
+      readOnly,
+      value,
+      valueKey,
     ]
   );
 
@@ -384,6 +429,7 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
         {...props}
         aria-activedescendant={activeId}
         role="listbox"
+        data-name={name}
         tabIndex={tabIndex}
         className={cn(block({ temporary }), className)}
         ref={forwardedRef}

@@ -72,10 +72,20 @@ describe("Listbox", () => {
 
     fireEvent.focus(listbox);
     fireEvent.keyDown(listbox, { key: "ArrowDown" });
-    expect(onChange).toBeCalledWith(options[1], options[1]);
+    expect(onChange).toBeCalledWith(options[1], options[1], {
+      id: PROPS.id,
+      value: "Option 1",
+      options: PROPS.options,
+      valueKey: "value",
+    });
 
     fireEvent.keyDown(listbox, { key: "ArrowDown" });
-    expect(onChange).toBeCalledWith(options[2], options[2]);
+    expect(onChange).toBeCalledWith(options[2], options[2], {
+      id: "listbox-1",
+      value: "Option 1",
+      options,
+      valueKey: "value",
+    });
   });
 
   it("should be able to render an option that is a string, a number, or an object", () => {
@@ -135,12 +145,27 @@ describe("Listbox", () => {
     expect(onChange).not.toBeCalled();
 
     fireEvent.keyDown(listbox, { key: "Enter" });
-    expect(onChange).toBeCalledWith(options[2], options[2]);
+    expect(onChange).toBeCalledWith(options[2], options[2], {
+      id: "listbox-1",
+      value: "Option 1",
+      options: PROPS.options,
+      valueKey: "value",
+    });
 
     fireEvent.keyDown(listbox, { key: "ArrowUp" });
-    expect(onChange).not.toBeCalledWith(options[1], options[1]);
+    expect(onChange).not.toBeCalledWith(options[1], options[1], {
+      id: "listbox-1",
+      value: "Option 1",
+      options: PROPS.options,
+      valueKey: "value",
+    });
     fireEvent.keyDown(listbox, { key: " " });
-    expect(onChange).toBeCalledWith(options[1], options[1]);
+    expect(onChange).toBeCalledWith(options[1], options[1], {
+      id: "listbox-1",
+      value: "Option 1",
+      options: PROPS.options,
+      valueKey: "value",
+    });
   });
 
   it("should call the onChange handler when an option is clicked by a click event", () => {
@@ -155,7 +180,12 @@ describe("Listbox", () => {
     );
 
     fireEvent.click(getByTestId("option-3"));
-    expect(onChange).toBeCalledWith(options2[2].value, options2[2]);
+    expect(onChange).toBeCalledWith(options2[2].value, options2[2], {
+      id: "listbox-1",
+      value: "Option 1",
+      options: options2,
+      valueKey: "value",
+    });
   });
 
   it("should default to having an empty aria-activedescendant if no value is provided to show that nothing is active at the time", () => {
