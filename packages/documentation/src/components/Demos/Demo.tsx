@@ -1,5 +1,4 @@
 import React, { FC, Fragment } from "react";
-import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
 import { bem, useAppSize, useToggle } from "@react-md/utils";
@@ -109,7 +108,7 @@ const Demo: FC<DemoProps> = props => {
         </AppBar>
         <div
           id={`${id}-preview`}
-          className={cn(!disableCard && block("preview"))}
+          className={(!disableCard && block("preview")) || undefined}
         >
           <ConditionalFullPageDialog
             id={`${id}-preview`}
