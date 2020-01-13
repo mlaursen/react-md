@@ -24,3 +24,5 @@ export * from "./Caption";
 
 export { default as TableCheckbox } from "./TableCheckbox";
 export * from "./TableCheckbox";
+
+export { TableRowConfig, TableCellConfig, TableConfig } from "./config";
