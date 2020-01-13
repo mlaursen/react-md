@@ -109,17 +109,16 @@ $rmd-table-row-hover-color: rgba($rmd-black-base, 0.12) !default;
 /// `<tbody>`.
 ///
 /// @type Color|String
-$rmd-table-row-selected-color: rmd-theme-var(primary) !default;
+$rmd-table-row-selected-color: $rmd-blue-400 !default;
 
 /// The background color to use when a row has been selected within the
 /// `<tbody>` and the user is hovering the row while the `hoverable` styles have
 /// been enabled.
 ///
-/// Note: This defaults to `null` which means the normal row hover color will be
-/// used instead.
+/// If this value is set to `null`, the default row hover color will be used instead.
 ///
 /// @type Color|String
-$rmd-table-row-selected-hover-color: null !default;
+$rmd-table-row-selected-hover-color: darken($rmd-table-row-selected-color, 12%) !default;
 
 /// The default position for a sticky footer cell in all tables. If you want to
 /// update the footer position for a specific table, you can just use the

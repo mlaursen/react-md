@@ -6,7 +6,13 @@ import { TableRowConfig, useTableConfig } from "./config";
 
 export interface TableRowProps
   extends HTMLAttributes<HTMLTableRowElement>,
-    TableRowConfig {}
+    TableRowConfig {
+  /**
+   * Boolean if the current row has been selected and should apply
+   * the selected background-color.
+   */
+  selected?: boolean;
+}
 
 type WithRef = WithForwardedRef<HTMLTableRowElement>;
 
@@ -22,6 +28,7 @@ const TableRow: FC<TableRowProps & WithRef> = ({
   disableHover: propDisableHover,
   disableBorders: propDisableBorders,
   children,
+  selected = false,
   ...props
 }) => {
   const { disableHover, disableBorders } = useTableConfig({
@@ -37,6 +44,8 @@ const TableRow: FC<TableRowProps & WithRef> = ({
         block({
           bordered: !disableBorders,
           hoverable: !disableHover,
+          selected,
+          "selected-hoverable": selected && !disableHover,
         }),
         className
       )}
@@ -61,6 +70,7 @@ if (process.env.NODE_ENV !== "production") {
       forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       disableHover: PropTypes.bool,
       disableBorders: PropTypes.bool,
+      selected: PropTypes.bool,
     };
   }
 }

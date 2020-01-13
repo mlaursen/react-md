@@ -1,6 +1,6 @@
 {
   "public/index.html": {
-    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Table Example - Simple Examples</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Table Example - Selectable Rows</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
     "isBinary": false
   },
   "src/index.tsx": {
@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/table/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import 'variables';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/table/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
@@ -17,10 +17,11 @@
   },
   "package.json": {
     "content": {
-      "title": "Table Example - Simple Examples",
-      "description": "Example from https://react-md.dev/packages/table/demos#simple-examples",
+      "title": "Table Example - Selectable Rows",
+      "description": "Example from https://react-md.dev/packages/table/demos#selectable-rows",
       "main": "src/index.tsx",
       "dependencies": {
+        "@react-md/form": "next",
         "@react-md/layout": "next",
         "@react-md/states": "next",
         "@react-md/table": "next",
@@ -46,7 +47,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport {\n  Table,\n  TableHeader,\n  TableBody,\n  TableRow,\n  TableCell,\n  TableContainer,\n} from \"@react-md/table\";\nimport desserts from \"./desserts\";\n\nconst headers = [\n  \"Dessert (100g serving)\",\n  \"Calories\",\n  \"Fat (g)\",\n  \"Carbs (g)\",\n  \"Protein (g)\",\n  \"Sodium (mg)\",\n  \"Calcium (mg)\",\n  \"Icon (mg)\",\n];\n\nconst Demo: FC = () => {\n  return (\n    <TableContainer>\n      <Table>\n        <TableHeader>\n          <TableRow>\n            {headers.map((name, i) => (\n              <TableCell key={name} grow={i === 0}>\n                {name}\n              </TableCell>\n            ))}\n          </TableRow>\n        </TableHeader>\n        <TableBody>\n          {desserts.map(\n            ({\n              name,\n              calories,\n              fat,\n              carbs,\n              protein,\n              sodium,\n              calcium,\n              iron,\n            }) => (\n              <TableRow key={name}>\n                <TableCell>{name}</TableCell>\n                <TableCell align=\"right\">{calories}</TableCell>\n                <TableCell align=\"right\">{fat}</TableCell>\n                <TableCell align=\"right\">{carbs}</TableCell>\n                <TableCell align=\"right\">{protein}</TableCell>\n                <TableCell align=\"right\">{sodium}</TableCell>\n                <TableCell align=\"right\">{calcium}</TableCell>\n                <TableCell align=\"right\">{iron}</TableCell>\n              </TableRow>\n            )\n          )}\n        </TableBody>\n      </Table>\n    </TableContainer>\n  );\n};\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableContainer,\n  TableHeader,\n  TableRow,\n  TableCheckbox,\n} from \"@react-md/table\";\n\nimport desserts from \"./desserts\";\nimport { useIndeterminateChecked } from \"@react-md/form\";\n\nconst headers = [\n  \"Dessert (100g serving)\",\n  \"Calories\",\n  \"Fat (g)\",\n  \"Carbs (g)\",\n  \"Protein (g)\",\n  \"Sodium (mg)\",\n  \"Calcium (mg)\",\n  \"Icon (mg)\",\n];\n\nconst Demo: FC = () => {\n  const { rootProps, getProps } = useIndeterminateChecked(\n    desserts.map(({ name }) => name)\n  );\n\n  return (\n    <TableContainer>\n      <Table>\n        <TableHeader>\n          <TableRow>\n            <TableCheckbox id=\"selectable-rows-root-checkbox\" {...rootProps} />\n            {headers.map((name, i) => (\n              <TableCell key={name} grow={i === 0}>\n                {name}\n              </TableCell>\n            ))}\n          </TableRow>\n        </TableHeader>\n        <TableBody hAlign=\"right\">\n          {desserts.map((dessert, i) => {\n            const {\n              name,\n              calories,\n              fat,\n              carbs,\n              protein,\n              sodium,\n              calcium,\n              iron,\n            } = dessert;\n            const checkboxProps = getProps(name);\n            return (\n              <TableRow key={name} selected={checkboxProps.checked}>\n                <TableCheckbox\n                  id={`selectable-rows-checkbox-${i + 1}`}\n                  {...checkboxProps}\n                />\n                <TableCell hAlign=\"left\">{name}</TableCell>\n                <TableCell>{calories}</TableCell>\n                <TableCell>{fat}</TableCell>\n                <TableCell>{carbs}</TableCell>\n                <TableCell>{protein}</TableCell>\n                <TableCell>{sodium}</TableCell>\n                <TableCell>{calcium}</TableCell>\n                <TableCell>{iron}</TableCell>\n              </TableRow>\n            );\n          })}\n        </TableBody>\n      </Table>\n    </TableContainer>\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/desserts.ts": {

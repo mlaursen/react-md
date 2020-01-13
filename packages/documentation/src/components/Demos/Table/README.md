@@ -1,18 +1,6 @@
-This demo page will be a bit different than the others as it'll start with the
-low-level components to help show the types of styles and configuration that is
-available. Most of the demos will actually redirect you to a different page as
-well since tables are _normally_ the main focal-point when used in an
-application and require a bit more real estate.
-
-Once the base components have been show and explained, the more advanced
-`DataTable` component will be introduced that will help dynamically render your
-tables with some convenience built in. We're starting with the low-level
-components as it is not the goal of the `DataTable` to match 100% use-cases and
-you'll probably need to fall back to the low level components for the more
-complex workflows and apps.
-
 A table is made up by the following components:
 
+- `TableContainer` -> `<div>` (used for responsive tables)
 - `Table` -> `<table>`
 - `TableHeader` -> `<thead>`
 - `TableBody` -> `<tbody>`
@@ -20,6 +8,7 @@ A table is made up by the following components:
 - `TableRow` -> `<tr>`
 - `TableCell` -> `<th>` and `<td>`
 - `Caption` -> `<caption>` _(you probably won't use this much)_
+- `TableCheckbox` -> `<td><input type="checkbox" /></td>`
 
 To help reduce some of the repeated code, boilerplate, and apply minimal
 accessibility, the `TableCell` will be updated automatically depending on where
@@ -30,3 +19,10 @@ addition, it'll apply a `scope="col"` to help screen readers out.
 When the `TableCell` is rendered anywhere else, it'll default to the `<td>`
 element unless the `header` prop is enabled. If the `header` prop is enabled
 within the `TableBody`, it'll apply a `scope="row"` instead.
+
+In case you didn't know, styling tables is _super fun_! The tables within
+`react-md` have been created in a way that you can hopefully style them as you
+need with some sensible defaults. That being said, there will be some "weird
+edge cases" that you will come across if you are more used to a flexbox-based
+layout approach. The demos below should hopefully point you in the right
+direction for accomplishing your styling needs.

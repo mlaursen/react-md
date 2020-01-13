@@ -205,6 +205,10 @@
     }
   }
 
+  &--selected {
+    @include rmd-table-theme(background-color, selected-color);
+  }
+
   &--hoverable {
     @include rmd-utils-mouse-only {
       @include rmd-transition(standard);
@@ -217,6 +221,16 @@
         // see the `.rmd-table-cell--sticky` selector for more info :/
         .rmd-table-cell--sticky-cell::after {
           @include rmd-table-theme(background-color, hover-color);
+        }
+      }
+    }
+  }
+
+  @if $rmd-table-row-selected-hover-color != null {
+    &--selected-hoverable {
+      @include rmd-utils-mouse-only {
+        &:hover {
+          @include rmd-table-theme(background-color, selected-hover-color);
         }
       }
     }

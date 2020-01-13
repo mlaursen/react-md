@@ -1,0 +1,53 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Table Example - Default Styles Configurable</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/table/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Table Example - Default Styles Configurable",
+      "description": "Example from https://react-md.dev/packages/table/demos#default-styles-configurable",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/form": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/table": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, useState, Fragment } from \"react\";\nimport {\n  TableCellConfig,\n  TableProps,\n  Table,\n  TableHeader,\n  TableRow,\n  TableCell,\n  TableBody,\n  TableContainer,\n} from \"@react-md/table\";\nimport { Fieldset, Checkbox, TextField, Select } from \"@react-md/form\";\n\ninterface StyledTableProps extends TableProps {\n  rows: number;\n  cols: number;\n}\n\nconst StyledTable: FC<StyledTableProps> = ({ rows, cols, ...props }) => (\n  <Table {...props}>\n    <TableHeader>\n      <TableRow>\n        {Array.from(new Array(cols), (_, i) => (\n          <TableCell key={i}>{`Header ${i + 1}`}</TableCell>\n        ))}\n      </TableRow>\n    </TableHeader>\n    <TableBody>\n      {Array.from(new Array(rows), (_, i) => (\n        <TableRow key={i}>\n          {Array.from(new Array(cols), (_, j) => (\n            <TableCell key={j}>{`Cell ${i + 1}-${j + 1}`}</TableCell>\n          ))}\n        </TableRow>\n      ))}\n    </TableBody>\n  </Table>\n);\n\ntype HorizontalAlignment = Required<TableCellConfig>[\"hAlign\"];\ntype VerticalAlignment = Required<TableCellConfig>[\"vAlign\"];\n\nconst horizontals: HorizontalAlignment[] = [\"left\", \"center\", \"right\"];\nconst verticals: VerticalAlignment[] = [\"top\", \"middle\", \"bottom\"];\n\nconst Demo: FC = () => {\n  const [cols, setCols] = useState(3);\n  const [rows, setRows] = useState(8);\n  const [dense, setDense] = useState(false);\n  const [fullWidth, setFullWidth] = useState(false);\n  const [container, setContainer] = useState(false);\n  const [disableHover, setDisableHover] = useState(false);\n  const [disableBorders, setDisableBorders] = useState(false);\n  const [hAlign, setHAlign] = useState<HorizontalAlignment>(\"left\");\n  const [vAlign, setVAlign] = useState<VerticalAlignment>(\"middle\");\n\n  const table = (\n    <StyledTable\n      rows={rows}\n      cols={cols}\n      dense={dense}\n      fullWidth={fullWidth}\n      disableHover={disableHover}\n      disableBorders={disableBorders}\n      hAlign={hAlign}\n      vAlign={vAlign}\n    />\n  );\n\n  return (\n    <Fragment>\n      <TextField\n        id=\"table-num-cols\"\n        name=\"cols\"\n        type=\"number\"\n        label=\"Columns\"\n        value={`${cols}`}\n        onChange={event => {\n          const { value } = event.currentTarget;\n\n          setCols(Math.min(15, Math.max(2, parseInt(value, 10))));\n        }}\n      />\n      <TextField\n        id=\"table-num-rows\"\n        name=\"rows\"\n        type=\"number\"\n        label=\"Rows\"\n        value={`${rows}`}\n        onChange={event => {\n          const { value } = event.currentTarget;\n\n          setRows(Math.min(40, Math.max(2, parseInt(value, 10))));\n        }}\n      />\n      <Fieldset legend=\"Root Table Options\">\n        <Checkbox\n          id=\"table-dense\"\n          name=\"dense\"\n          label=\"Dense\"\n          checked={dense}\n          onChange={event => setDense(event.currentTarget.checked)}\n        />\n        <Checkbox\n          id=\"table-full-width\"\n          name=\"fullWidth\"\n          label=\"Full Width\"\n          checked={fullWidth}\n          onChange={event => setFullWidth(event.currentTarget.checked)}\n        />\n        <Checkbox\n          id=\"table-container\"\n          name=\"container\"\n          label=\"Use Container\"\n          checked={container}\n          onChange={event => setContainer(event.currentTarget.checked)}\n        />\n        <Checkbox\n          id=\"table-disable-hover\"\n          name=\"disableHover\"\n          label=\"Disable Row Hover\"\n          checked={disableHover}\n          onChange={event => setDisableHover(event.currentTarget.checked)}\n        />\n        <Checkbox\n          id=\"table-disable-borders\"\n          name=\"disableBorders\"\n          label=\"Disable Row Borders\"\n          checked={disableBorders}\n          onChange={event => setDisableBorders(event.currentTarget.checked)}\n        />\n        <Select\n          id=\"table-h-align\"\n          label=\"Horizontal Alignment\"\n          options={horizontals}\n          value={hAlign}\n          onChange={nextAlign => setHAlign(nextAlign as HorizontalAlignment)}\n        />\n        <Select\n          id=\"table-v-align\"\n          label=\"Vertical Alignment\"\n          options={verticals}\n          value={vAlign}\n          onChange={nextAlign => setVAlign(nextAlign as VerticalAlignment)}\n        />\n      </Fieldset>\n      {container ? <TableContainer>{table}</TableContainer> : table}\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  }
+}

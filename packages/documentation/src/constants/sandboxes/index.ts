@@ -209,11 +209,11 @@ const sandboxes: Sandboxes = {
     SetupExample: () => resolve(import("./States-SetupExample.json")),
   },
   Table: {
-    BaseStyles: () => resolve(import("./Table-BaseStyles.json")),
-    LowLevelComponents: () =>
-      resolve(import("./Table-LowLevelComponents.json")),
+    DefaultStyles: () => resolve(import("./Table-DefaultStyles.json")),
+    DefaultStylesConfigurable: () =>
+      resolve(import("./Table-DefaultStylesConfigurable.json")),
     ResponsiveTables: () => resolve(import("./Table-ResponsiveTables.json")),
-    SimpleExamples: () => resolve(import("./Table-SimpleExamples.json")),
+    SelectableRows: () => resolve(import("./Table-SelectableRows.json")),
   },
   Tabs: {
     BasicUsage: () => resolve(import("./Tabs-BasicUsage.json")),

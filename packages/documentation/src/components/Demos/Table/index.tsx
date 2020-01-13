@@ -2,43 +2,37 @@ import React, { ReactElement } from "react";
 
 import DemoPage from "../DemoPage";
 
-import LowLevelComponents from "./LowLevelComponents";
-import lowLevelComponents from "./LowLevelComponents.md";
+import README from "./README.md";
 
-// import BaseStyles from "./BaseStyles";
-// import baseStyles from "./BaseStyles.md";
+import DefaultStyles from "./DefaultStyles";
+import defaultStyles from "./DefaultStyles.md";
 
-// import ResponsiveTables from "./ResponsiveTables";
-// import responsiveTables from "./ResponsiveTables.md";
+import DefaultStylesConfigurable from "./DefaultStylesConfigurable";
+import defaultStylesConfigurable from "./DefaultStylesConfigurable.md";
 
-// import SimpleExamples from "./SimpleExamples";
-// import simpleExamples from "./SimpleExamples.md";
+import SelectableRows from "./SelectableRows";
+import selectableRows from "./SelectableRows.md";
 
 const demos = [
   {
-    name: "Low Level Components",
-    description: lowLevelComponents,
-    children: <LowLevelComponents />,
+    name: "Default Styles",
+    description: defaultStyles,
+    children: <DefaultStyles />,
+    disableCard: true,
   },
-  // {
-  //   name: "Base Styles",
-  //   description: baseStyles,
-  //   children: <BaseStyles />,
-  //   mobileFullPage: true,
-  // },
-  // {
-  //   name: "Responsive Tables",
-  //   description: responsiveTables,
-  //   children: <ResponsiveTables />,
-  //   // mobileFullPage: true,
-  // },
-  // {
-  //   name: "Simple Examples",
-  //   description: simpleExamples,
-  //   children: <SimpleExamples />,
-  // },
+  {
+    name: "Default Styles Configurable",
+    description: defaultStylesConfigurable,
+    children: <DefaultStylesConfigurable />,
+    disableCard: true,
+  },
+  {
+    name: "Selectable Rows",
+    description: selectableRows,
+    children: <SelectableRows />,
+  },
 ];
 
 export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="table" />
+  <DemoPage demos={demos} packageName="table" description={README} />
 );
