@@ -54,13 +54,13 @@ $rmd-chip-solid-color: if(
   $rmd-chip-solid-dark-color
 ) !default;
 
-/// The background color to use for "outlined" themed chips when using
-/// the light theme.
+/// The background color to use for "outlined" themed chips when using the light
+/// theme.
 /// @type Color
 $rmd-chip-outline-light-background-color: $rmd-theme-light-surface !default;
 
-/// The text color to use for "outlined" themed chips when using the
-/// light theme.
+/// The text color to use for "outlined" themed chips when using the light
+/// theme.
 /// @type Color
 $rmd-chip-outline-light-color: if(
   rmd-theme-tone($rmd-chip-outline-light-background-color) == light,
@@ -68,13 +68,12 @@ $rmd-chip-outline-light-color: if(
   $rmd-white-base
 ) !default;
 
-/// The background color to use for "outlined" themed chips when using
-/// the dark theme.
+/// The background color to use for "outlined" themed chips when using the dark
+/// theme.
 /// @type Color
 $rmd-chip-outline-dark-background-color: $rmd-theme-dark-surface !default;
 
-/// The text color to use for "outlined" themed chips when using the
-/// dark theme.
+/// The text color to use for "outlined" themed chips when using the dark theme.
 /// @type Color
 $rmd-chip-outline-dark-color: if(
   rmd-theme-tone($rmd-chip-outline-dark-background-color) == light,
@@ -102,18 +101,18 @@ $rmd-chip-outline-color: if(
 /// @type Color
 $rmd-chip-outline-border-color: $rmd-grey-300 !default;
 
-/// The amount of spacing to use when between the left edge and the
-/// leading icon/avatar in the chip.
+/// The amount of spacing to use when between the left edge and the leading
+/// icon/avatar in the chip.
 /// @type Number
 $rmd-chip-small-spacing: 0.25rem !default;
 
-/// The amount of spacing to use between the leading icon/avatar and
-/// the chip's text as well as the trailing icon and the chip's edge.
+/// The amount of spacing to use between the leading icon/avatar and the chip's
+/// text as well as the trailing icon and the chip's edge.
 /// @type Number
 $rmd-chip-medium-spacing: 0.5rem !default;
 
-/// The amount of spacing to use for the chip's edge when there are no
-/// leading or trailing icons/avatars.
+/// The amount of spacing to use for the chip's edge when there are no leading
+/// or trailing icons/avatars.
 /// @type Number
 $rmd-chip-large-spacing: 0.75rem !default;
 
@@ -121,14 +120,14 @@ $rmd-chip-large-spacing: 0.75rem !default;
 /// @type Number
 $rmd-chip-icon-size: 1.125rem !default;
 
-/// The base box-shadow to apply to chips when outlined. This will normally be used along with a color variable
-/// to define a box shadow.
+/// The base box-shadow to apply to chips when outlined. This will normally be
+/// used along with a color variable to define a box shadow.
 /// @type String
 $rmd-chip-box-shadow: inset 0 0 0 1px !default;
 
-/// A Map of all the "themeable" parts of the chip package. Every key in this map will
-/// be used to create a css variable to dynamically update the values of the icon as
-/// needed.
+/// A Map of all the "themeable" parts of the chip package. Every key in this
+/// map will be used to create a css variable to dynamically update the values
+/// of the icon as needed.
 /// @type Map
 $rmd-chip-theme-values: (
   height: $rmd-chip-height,

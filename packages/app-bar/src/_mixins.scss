@@ -13,27 +13,30 @@
 /// Creates the styles for one of the app-bar's theme values. This is mostly
 /// going to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-app-bar-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-app-bar-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-app-bar-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-app-bar-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-app-bar-theme-values`
+/// to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-app-bar-theme-values` map when
+/// `null`.
 @mixin rmd-app-bar-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-app-bar-theme-values, app-bar);
 }
 
-/// Updates one of the app-bar's theme variables with the new value for the section
-/// of your app.
+/// Updates one of the app-bar's theme variables with the new value for the
+/// section of your app.
 ///
-/// @param {String} theme-style - The app-bar theme style type to update. This should be one
-///   of the `$rmd-app-bar-theme-values` keys.
+/// @param {String} theme-style - The app-bar theme style type to update. This
+/// should be one of the `$rmd-app-bar-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-app-bar-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-app-bar-theme-values, app-bar);
 }
 
-/// Creates the styles for the `AppBar` component when it is fixed to the top or bottom
-/// of the page. This will create four classes:
+/// Creates the styles for the `AppBar` component when it is fixed to the top or
+/// bottom of the page. This will create four classes:
 /// - `&--fixed`
 /// - `&--fixed-elevation`
 /// - `&--top`
@@ -41,10 +44,11 @@
 /// - `&--bottom`
 /// - `&--left`
 ///
-/// To get the correct styles and positions for a fixed app bar, you will need to apply the `--fixed` class
-/// as well as the `--top` or `--bottom` to fix it to the top or bottom of the page. If the app bar should
-/// gain elevation, you should also apply the `--fixed-elevation` class. See the examples below for the
-/// different use cases.
+/// To get the correct styles and positions for a fixed app bar, you will need
+/// to apply the `--fixed` class as well as the `--top` or `--bottom` to fix it
+/// to the top or bottom of the page. If the app bar should gain elevation, you
+/// should also apply the `--fixed-elevation` class. See the examples below for
+/// the different use cases.
 ///
 /// @example scss - Simple Example
 ///   .app-bar {
@@ -87,9 +91,10 @@
 /// - `--secondary`
 /// - `--default`
 ///
-/// The primary and secondary suffixes will use the theme variables for generating the correct theme background color and
-/// text color on top of the theme color. The default suffix is used to create a third theme type with any colors that are
-/// provided.
+/// The primary and secondary suffixes will use the theme variables for
+/// generating the correct theme background color and text color on top of the
+/// theme color. The default suffix is used to create a third theme type with
+/// any colors that are provided.
 ///
 /// @example scss - Simple Example
 ///   $rmd-theme-primary: $rmd-blue-500;
@@ -134,8 +139,8 @@
   }
 }
 
-/// Creates the styles for the `AppBarNav` component. The base classes for buttons next to be applied
-/// as well.
+/// Creates the styles for the `AppBarNav` component. The base classes for
+/// buttons next to be applied as well.
 ///
 /// @example scss - Simple Example
 ///   .app-bar__nav {
@@ -195,9 +200,12 @@
   }
 }
 
+/// Creates the styles for an app bar action that is either the first action
+/// which applies margin-left to right align, or the default margin between each
+/// action.
 ///
-/// @param {Boolean} first - Boolean if the styles for being the first
-/// action should be created.
+/// @param {Boolean} first - Boolean if the styles for being the first action
+/// should be created.
 @mixin rmd-app-bar-action-position($first) {
   @if $first {
     @include rmd-utils-rtl-auto(margin-left, auto);
@@ -229,8 +237,8 @@
 }
 
 /// This mixin is used to apply an offset to an element so that it can be placed
-/// with a fixed App Bar. This is really used to help layout your app so that the
-/// initial content isn't covered by the app bar.
+/// with a fixed App Bar. This is really used to help layout your app so that
+/// the initial content isn't covered by the app bar.
 ///
 ///  @example scss - Example Usage
 ///    .offset-by-height {
@@ -241,10 +249,12 @@
 ///      @include rmd-app-bar-ofset($height-type: dense-height);
 ///    }
 ///
-/// @param {String} property [padding-top] - The property to apply the offset to. This should be
-/// one of: `padding-top`, `padding-bottom`, `margin-top`, `margin-bottom`, `top`, `bottom`.
-/// @param {String} height-type [height] - The app bar height type to use. This should be one of:
-/// `height`, `dense-height`, `prominent-height`, `prominent-dense-height`
+/// @param {String} property [padding-top] - The property to apply the offset
+/// to. This should be one of: `padding-top`, `padding-bottom`, `margin-top`,
+/// `margin-bottom`, `top`, `bottom`.
+/// @param {String} height-type [height] - The app bar height type to use. This
+/// should be one of: `height`, `dense-height`, `prominent-height`,
+/// `prominent-dense-height`
 @mixin rmd-app-bar-offset($property: padding-top, $height-type: height) {
   $valid-propertys: (padding-top padding-bottom margin-top margin-bottom top bottom);
   $property: rmd-utils-validate($valid-propertys, $property, 'app bar offset property');
@@ -252,12 +262,13 @@
   @include rmd-app-bar-theme($property, $height-type);
 }
 
-/// Creates all the app  bar offset classnames to use. This ties in with the provided constants
-/// in javascript:
-///  - APP_BAR_OFFSET_CLASSNAME
-///  - APP_BAR_OFFSET_DENSE_CLASSNAME
-///  - APP_BAR_OFFSET_PROMINENT_CLASSNAME
-///  - APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME
+/// Creates all the app  bar offset classnames to use. This ties in with the
+/// provided constants in javascript:
+///
+/// - APP_BAR_OFFSET_CLASSNAME
+/// - APP_BAR_OFFSET_DENSE_CLASSNAME
+/// - APP_BAR_OFFSET_PROMINENT_CLASSNAME
+/// - APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME
 @mixin rmd-app-bar-offsets {
   .rmd-app-bar-offset {
     @include rmd-app-bar-theme(padding-top, height);
@@ -276,8 +287,8 @@
   }
 }
 
-/// This mixin allows you to quickly apply the dense theme for app bars. This should normally
-/// be used within a media query.
+/// This mixin allows you to quickly apply the dense theme for app bars. This
+/// should normally be used within a media query.
 @mixin rmd-app-bar-dense-theme {
   @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
   @include rmd-app-bar-theme-update-var(
@@ -297,9 +308,10 @@
 
     align-items: center;
     display: flex;
-    // since app bars can appear a lot in full page dialogs, setting these flex values
-    // allows it be be a direct replacement of the `DialogHeader` component without all
-    // the offsets and additional styles needed for fixed app bars.
+    // since app bars can appear a lot in full page dialogs, setting these flex
+    // values allows it be be a direct replacement of the `DialogHeader`
+    // component without all the offsets and additional styles needed for fixed
+    // app bars.
     flex: 0 0 auto;
     width: 100%;
 

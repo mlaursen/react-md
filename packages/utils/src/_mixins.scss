@@ -8,8 +8,8 @@
 /// This is a simple mixin that will create styles from a Map of properties with
 /// values.
 ///
-/// @param {Map} style-map - The map of styles that should be applied. If this is
-/// `null`, no styles will be generated.
+/// @param {Map} style-map - The map of styles that should be applied. If this
+/// is `null`, no styles will be generated.
 @mixin rmd-utils-map-to-styles($style-map) {
   @if $style-map {
     @each $property, $value in $style-map {
@@ -18,9 +18,10 @@
   }
 }
 
-/// A simple mixin that allows you to update styles when the [dir="rtl"] is present
-/// for languages that read right to light. This is mostly used to update spacing with
-/// margins or padding and a more "verbose" method of declaring rtl styles.
+/// A simple mixin that allows you to update styles when the [dir="rtl"] is
+/// present for languages that read right to light. This is mostly used to
+/// update spacing with margins or padding and a more "verbose" method of
+/// declaring rtl styles.
 ///
 /// @example scss - Example Usage SCSS
 ///   .my-class {
@@ -40,16 +41,18 @@
   }
 }
 
-/// This mixin will try to automatically swap the positioning styles for rtl languages.
-/// If the swapped style should have something other than `auto` as the new style, that
-/// style should be included in the `$swapped-styles` map with the correct value.
+/// This mixin will try to automatically swap the positioning styles for rtl
+/// languages.  If the swapped style should have something other than `auto` as
+/// the new style, that style should be included in the `$swapped-styles` map
+/// with the correct value.
 ///
-/// @param {String} property - The property that should be reversed for rtl languages.
-/// @param {String|Number} value - The value that should be used for the original property
-/// value or the inversed property value when in rtl mode.
-/// @param {String|Number} swapped-value [null] - The value to use when in rtl languages
-/// for the original property. When this is set to `null`, `0` will be used for margins
-/// and padding while `auto` for everything else.
+/// @param {String} property - The property that should be reversed for rtl
+/// languages.
+/// @param {String|Number} value - The value that should be used for the
+/// original property value or the inversed property value when in rtl mode.
+/// @param {String|Number} swapped-value [null] - The value to use when in rtl
+/// languages for the original property. When this is set to `null`, `0` will be
+/// used for margins and padding while `auto` for everything else.
 @mixin rmd-utils-rtl-auto($property, $value, $swapped-value: null) {
   $inversed-property: rmd-utils-swap-position($property);
 
@@ -72,14 +75,15 @@
   #{$property}: #{$value};
 }
 
-/// This mixin will try to automatically swap the positioning styles for rtl languages.
-/// If the swapped style should have something other than `auto` as the new style, that
-/// style should be included in the `$swapped-styles` map with the correct value.
+/// This mixin will try to automatically swap the positioning styles for rtl
+/// languages.  If the swapped style should have something other than `auto` as
+/// the new style, that style should be included in the `$swapped-styles` map
+/// with the correct value.
 ///
-/// @param {Map} styles - The styles that should be swapped for rtl languages. Right now
-///   react-md only supports the `$rmd-utils-swappable-positions`.
-/// @param {Map} swapped-styles [()] - Any optional swapped style overrides that should
-///   be applied.
+/// @param {Map} styles - The styles that should be swapped for rtl languages.
+/// Right now react-md only supports the `$rmd-utils-swappable-positions`.
+/// @param {Map} swapped-styles [()] - Any optional swapped style overrides that
+/// should be applied.
 @mixin rmd-utils-rtl-auto-group($styles, $swapped-styles: ()) {
   @include rmd-utils-map-to-styles($styles);
   @include rmd-utils-rtl {
@@ -100,8 +104,8 @@
   }
 }
 
-/// A very simple mixin that will center an element within the page for you
-/// when you aren't using flexbox or grid for the part of the layout.
+/// A very simple mixin that will center an element within the page for you when
+/// you aren't using flexbox or grid for the part of the layout.
 @mixin rmd-utils-block-centered($vertical-margin: null) {
   display: block;
 
@@ -123,14 +127,17 @@
   transform: translateX(-50%) translateY(-50%);
 }
 
-/// An extremely simple util that is used to add scrolling to an element with a "patch" for adding scroll
-/// momentum to iOS.
+/// An extremely simple util that is used to add scrolling to an element with a
+/// "patch" for adding scroll momentum to iOS.
 ///
-/// @param {String} position [null] - This should either be "x", "y", or null. This will just change the style
-///     between overflow, overflow-x, and overflow-y.
-/// @param {String} type [auto] - The scroll type to apply. It is recommended to use the default of `auto` in
-///     most cases, but it can be set to something else.
-/// @param {Boolean} enable-momentum [$rmd-utils-ios-scroll-momentum] - Boolean if iOS scroll momentum should be "patched".
+/// @param {String} position [null] - This should either be "x", "y", or null.
+/// This will just change the style between overflow, overflow-x, and
+/// overflow-y.
+/// @param {String} type [auto] - The scroll type to apply. It is recommended to
+/// use the default of `auto` in most cases, but it can be set to something
+/// else.
+/// @param {Boolean} enable-momentum [$rmd-utils-ios-scroll-momentum] - Boolean
+/// if iOS scroll momentum should be "patched".
 @mixin rmd-utils-scroll(
   $position: null,
   $type: auto,
@@ -149,11 +156,12 @@
   }
 }
 
-/// A helper mixin that will hide the outline style when a user focuses any element / on the page. All this really does
-/// is create an `outline-style: none` when the element is focused.
+/// A helper mixin that will hide the outline style when a user focuses any
+/// element / on the page. All this really does is create an `outline-style:
+/// none` when the element is focused.
 ///
-/// @param {Boolean} fix-moz-focus [$rmd-utils-fox-moz-focus] - Boolean if the Firefox focus
-/// inner styles should also be removed.
+/// @param {Boolean} fix-moz-focus [$rmd-utils-fox-moz-focus] - Boolean if the
+/// Firefox focus inner styles should also be removed.
 @mixin rmd-utils-hide-focus-outline($fix-moz-focus: $rmd-utils-fix-moz-focus) {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
@@ -168,10 +176,10 @@
   }
 }
 
-/// An extremely simple mixin that will allow any element to be fixed to the entire viewport
-/// size.
-/// @param {String} position [fixed] - The positioning that should be applied. This should be
-/// one of the values for the `position` attribute.
+/// An extremely simple mixin that will allow any element to be fixed to the
+/// entire viewport size.
+/// @param {String} position [fixed] - The positioning that should be applied.
+/// This should be one of the values for the `position` attribute.
 @mixin rmd-utils-full-screen($position: fixed) {
   bottom: 0;
   left: 0;
@@ -180,10 +188,10 @@
   top: 0;
 }
 
-/// Creates the styles to apply to a pseudo element (`::before` or `::after`) so that
-/// it spans the entire size of the container element. This is really useful for
-/// focus effects or other interaction states. This relies on the parent to have
-/// `position: relative;` to work.
+/// Creates the styles to apply to a pseudo element (`::before` or `::after`) so
+/// that it spans the entire size of the container element. This is really
+/// useful for focus effects or other interaction states. This relies on the
+/// parent to have `position: relative;` to work.
 ///
 /// @param {Number} z-index [0] - The z-index to use.
 @mixin rmd-utils-pseudo-element($z-index: 0) {
@@ -214,13 +222,13 @@
 /// Creates styles so that an element is visible only for screen readers.
 ///
 /// @link https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
-/// @param {Boolean} focusable [false] - Boolean if the element should still be focusable
-/// and then be visible when focused.
-/// @param {String} focus-suffix ['&--focusable'] - The suffix to use for an element that
-/// can be focusable. This will be used alongside `&:active` and `&:focus`. If this value
-/// is set to `null`, no prefix will be provided and just the `&:active` and `&:focus`
-/// selectors will be used instead. These styles will only be generated if the `focusable`
-/// parameter is `true`.
+/// @param {Boolean} focusable [false] - Boolean if the element should still be
+/// focusable and then be visible when focused.
+/// @param {String} focus-suffix ['&--focusable'] - The suffix to use for an
+/// element that can be focusable. This will be used alongside `&:active` and
+/// `&:focus`. If this value is set to `null`, no prefix will be provided and
+/// just the `&:active` and `&:focus` selectors will be used instead. These
+/// styles will only be generated if the `focusable` parameter is `true`.
 @mixin rmd-utils-sr-only($focusable: false, $focus-suffix: '&--focusable') {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
@@ -244,13 +252,13 @@
   }
 }
 
-/// This mixin will hide the scrollbar for an element but still allow scrolling by
-/// using the scrollbar-width property along with the -webkit-scrollbar pseudo selector.
-/// If on a non-MacOS and the horizontal scrollbars were hidden, the user can still
-/// scroll by holding shift while scrolling.
+/// This mixin will hide the scrollbar for an element but still allow scrolling
+/// by using the scrollbar-width property along with the -webkit-scrollbar
+/// pseudo selector.  If on a non-MacOS and the horizontal scrollbars were
+/// hidden, the user can still scroll by holding shift while scrolling.
 ///
-/// Note: This only works due to the limited browser support of this library. If you need
-/// to support older browsers, don't use this.
+/// Note: This only works due to the limited browser support of this library. If
+/// you need to support older browsers, don't use this.
 /// @link https://caniuse.com/#feat=css-scrollbar
 @mixin rmd-utils-hide-scrollbar {
   scrollbar-width: none;
@@ -261,11 +269,11 @@
   }
 }
 
-/// Creates a media query so that only phones will be targeted with the
-/// styles. This media query **will stop** at the phone's max width
-/// instead of being a `min-width` query since it would be better to just
-/// apply the phone styles as a base and use the tablet or desktop min-width
-/// queries for additional overrides.
+/// Creates a media query so that only phones will be targeted with the styles.
+/// This media query **will stop** at the phone's max width instead of being a
+/// `min-width` query since it would be better to just apply the phone styles as
+/// a base and use the tablet or desktop min-width queries for additional
+/// overrides.
 @mixin rmd-utils-phone-media {
   @media screen and (max-width: #{$rmd-utils-phone-max-width}) {
     @content;
@@ -280,8 +288,8 @@
   }
 }
 
-/// Creates a media query so that screen sizes between the min and max width of a
-/// tablet will only gain these styles.
+/// Creates a media query so that screen sizes between the min and max width of
+/// a tablet will only gain these styles.
 @mixin rmd-utils-tablet-only-media {
   @media screen and (min-width: #{$rmd-utils-tablet-min-width}) and (max-width: #{$rmd-utils-tablet-max-width}) {
     @content;
@@ -330,19 +338,25 @@
 
 /// Generates a new grid based on the provided padding, margin, and columns.
 ///
-/// @param {Number} padding [rmd-grid-padding] - The amount of padding to apply to the base grid element.
-/// @param {Number} gutter [rmd-grid-cell-margin] - The amount of margin to apply between each cell
-/// within the grid. Unlike flex grids, this will only be applied between cells instead of to the `top`, `right`,
-/// `bottom`, and `left` of each cell so this should _normally_ be doubled compared to the flex grids.
-/// @param {Number} phone-columns [rmd-grid-phone-columns] - The number of columns that should appear per-row
-/// on phones.
-/// @param {Number} tablet-columns [rmd-grid-tablet-columns] - The number of columns that should appear per-row
-/// on tablets. If this is not greater than the `$phone-columns` parameter, it will not be used.
-/// @param {Number} desktop-columns [rmd-grid-desktop-columns] - The number of columns that should appear
-/// per-row on desktop screens. If this is not greater than the `$tablet-columns` parameter, it will not be used.
-/// @param {Number} large-desktop-columns [rmd-grid-large-desktop-columns] - The number of columns that should
-/// appear per-row on large desktop screens. If this is not greater than the `$tablet-columns` parameter, it will
-/// not be used.
+/// @param {Number} padding [rmd-grid-padding] - The amount of padding to apply
+/// to the base grid element.
+/// @param {Number} gutter [rmd-grid-cell-margin] - The amount of margin to
+/// apply between each cell within the grid. Unlike flex grids, this will only
+/// be applied between cells instead of to the `top`, `right`, `bottom`, and
+/// `left` of each cell so this should _normally_ be doubled compared to the
+/// flex grids.
+/// @param {Number} phone-columns [rmd-grid-phone-columns] - The number of
+/// columns that should appear per-row on phones.
+/// @param {Number} tablet-columns [rmd-grid-tablet-columns] - The number of
+/// columns that should appear per-row on tablets. If this is not greater than
+/// the `$phone-columns` parameter, it will not be used.
+/// @param {Number} desktop-columns [rmd-grid-desktop-columns] - The number of
+/// columns that should appear per-row on desktop screens. If this is not
+/// greater than the `$tablet-columns` parameter, it will not be used.
+/// @param {Number} large-desktop-columns [rmd-grid-large-desktop-columns] - The
+/// number of columns that should appear per-row on large desktop screens. If
+/// this is not greater than the `$tablet-columns` parameter, it will not be
+/// used.
 @mixin rmd-grid(
   $padding: $rmd-grid-padding,
   $gutter: $rmd-grid-cell-margin,
@@ -382,26 +396,31 @@
   }
 }
 
-/// This mixin is just a nice way to quickly make a cell span the entire width of the grid.
+/// This mixin is just a nice way to quickly make a cell span the entire width
+/// of the grid.
 ///
-/// Note: if you set the number of columns for phone or tablet to `1`, you'll need to also
-/// wrap this in the `@include rmd-utils-tablet-media` or `@include rmd-utils-desktop-media`
-/// mixins respectively.
+/// Note: if you set the number of columns for phone or tablet to `1`, you'll
+/// need to also wrap this in the `@include rmd-utils-tablet-media` or `@include
+/// rmd-utils-desktop-media` mixins respectively.
 @mixin rmd-grid-cell-full {
   grid-column: 1 / span var(#{$rmd-grid-columns-var}, $rmd-grid-phone-columns);
 }
 
-/// A mixin that allows you to override the size of a cell within the `Grid` component manually.
-/// This is useful if you want to specify sizing without using the `GridCell` component wrapper.
+/// A mixin that allows you to override the size of a cell within the `Grid`
+/// component manually.  This is useful if you want to specify sizing without
+/// using the `GridCell` component wrapper.
 ///
-/// @param {Number} size - The number of columns the element should span. This should normally
-/// be a number greater than 1 since using 1 is the default cell size.
-/// @param {Number} phone-columns [rmd-grid-phone-columns] - The number of columns that should appear per-row
-/// on phones.
-/// @param {Number} tablet-columns [rmd-grid-tablet-columns] - The number of columns that should appear per-row
-/// on tablets. If this is not greater than the `$phone-columns` parameter, it will not be used.
-/// @param {Number} desktop-columns [rmd-grid-desktop-columns] - The number of columns that should appear
-/// per-row on desktop screens. If this is not greater than the `$tablet-columns` parameter, it will not be used.
+/// @param {Number} size - The number of columns the element should span. This
+/// should normally be a number greater than 1 since using 1 is the default cell
+/// size.
+/// @param {Number} phone-columns [rmd-grid-phone-columns] - The number of
+/// columns that should appear per-row on phones.
+/// @param {Number} tablet-columns [rmd-grid-tablet-columns] - The number of
+/// columns that should appear per-row on tablets. If this is not greater than
+/// the `$phone-columns` parameter, it will not be used.
+/// @param {Number} desktop-columns [rmd-grid-desktop-columns] - The number of
+/// columns that should appear per-row on desktop screens. If this is not
+/// greater than the `$tablet-columns` parameter, it will not be used.
 @mixin rmd-grid-cell-size(
   $size,
   $phone-columns: $rmd-grid-phone-columns,
@@ -431,8 +450,8 @@
   grid-column-end: span $size;
 }
 
-/// Creates the styles for all the cell column spans and "fixes" for smaller media types if the
-/// media types doesn't support the same number of columns.
+/// Creates the styles for all the cell column spans and "fixes" for smaller
+/// media types if the media types doesn't support the same number of columns.
 /// @access private
 @mixin rmd-grid-cell {
   @for $i from 2 through $rmd-grid-large-desktop-columns {
@@ -442,15 +461,17 @@
   }
 }
 
-/// A simple mixin that will allow you to add the current grid list cell size to any property.
+/// A simple mixin that will allow you to add the current grid list cell size to
+/// any property.
 ///
 /// @param {String} property - The css property to apply the size to.
-/// @param {Number} max-size [rmd-grid-list-cell-max-size] - The max size that each cell can be. This
-/// is really just a fallback value if the `--rmd-cell-size` hasn't been defined yet by the `GridList`
-/// component.
-/// @param {Number} margin [rmd-grid-list-cell-margin] - The amount of margin that should be placed
-/// between each cell. This will be used with the current `--rmd-cell-size` to calculate the
-/// correct height and width. This value **will be multiplied by 2 in the calculation**.
+/// @param {Number} max-size [rmd-grid-list-cell-max-size] - The max size that
+/// each cell can be. This is really just a fallback value if the
+/// `--rmd-cell-size` hasn't been defined yet by the `GridList` component.
+/// @param {Number} margin [rmd-grid-list-cell-margin] - The amount of margin
+/// that should be placed between each cell. This will be used with the current
+/// `--rmd-cell-size` to calculate the correct height and width. This value
+/// **will be multiplied by 2 in the calculation**.
 @mixin rmd-grid-list-cell-size(
   $property,
   $max-size: $rmd-grid-list-cell-max-size,
@@ -464,15 +485,18 @@
   #{$property}: $size;
 }
 
-/// Adds the current grid list cell's size to any element if you don't want to use the `GridListCell` component
-/// for sizing. This will **always** apply the `margin` and `width`, but the `height` can be opted-out if desired.
+/// Adds the current grid list cell's size to any element if you don't want to
+/// use the `GridListCell` component for sizing. This will **always** apply the
+/// `margin` and `width`, but the `height` can be opted-out if desired.
 ///
-/// @param {Number} margin [rmd-grid-list-cell-margin] - The amount of margin to apply to each cell for top, right, bottom
-/// and left.
-/// @param {Number} max-size [rmd-grid-list-cell-max-size] - The max size that each cell can be. This is really just a
-/// fallback if the `GridList` component hasn't set the `--rmd-cell-size` variable yet.
-/// @param {Boolean} include-height [true] - Boolean if the cell's height should be restricted to the current cell size
-/// as well so it can be perfectly square.
+/// @param {Number} margin [rmd-grid-list-cell-margin] - The amount of margin to
+/// apply to each cell for top, right, bottom and left.
+/// @param {Number} max-size [rmd-grid-list-cell-max-size] - The max size that
+/// each cell can be. This is really just a fallback if the `GridList` component
+/// hasn't set the `--rmd-cell-size` variable yet.
+/// @param {Boolean} include-height [true] - Boolean if the cell's height should
+/// be restricted to the current cell size as well so it can be perfectly
+/// square.
 @mixin rmd-grid-list-cell(
   $margin: $rmd-grid-list-cell-margin,
   $max-size: $rmd-grid-list-cell-max-size,

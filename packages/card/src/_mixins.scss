@@ -13,14 +13,17 @@
 @import './functions';
 @import './variables';
 
-/// Creates the styles for one of the card's theme values. This is mostly
-/// going to be an internal helper mixin util.
+/// Creates the styles for one of the card's theme values. This is mostly going
+/// to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-card-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-card-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-card-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-card-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-card-theme-values` to
+/// extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-card-theme-values` map when
+/// `null`.
 @mixin rmd-card-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-card-theme-values, card);
 }
@@ -28,15 +31,15 @@
 /// Updates one of the card's theme variables with the new value for the section
 /// of your app.
 ///
-/// @param {String} theme-style - The card theme style type to update. This should be one
-///   of the `$rmd-card-theme-values` keys.
+/// @param {String} theme-style - The card theme style type to update. This
+/// should be one of the `$rmd-card-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-card-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-card-theme-values, card);
 }
 
-/// Creates all the styles for the `Card` component only. You'll need to use this within a
-/// selector.
+/// Creates all the styles for the `Card` component only. You'll need to use
+/// this within a selector.
 @mixin rmd-card {
   @include rmd-theme-update-var(background, rmd-card-theme-var(background-color));
   @include rmd-theme-update-var(text-primary-on-background, rmd-card-theme-var(color));
@@ -71,7 +74,8 @@
   }
 }
 
-/// Creates all the styles for the `CardHeader` component. You'll need to use this within a selector.
+/// Creates all the styles for the `CardHeader` component. You'll need to use
+/// this within a selector.
 @mixin rmd-card-header {
   @include rmd-icon-theme-update-var(text-spacing, $rmd-card-header-spacing);
 
@@ -92,7 +96,8 @@
   }
 }
 
-/// Creates all the styles for the `CardTitle` component. You'll need to use this within a selector.
+/// Creates all the styles for the `CardTitle` component. You'll need to use
+/// this within a selector.
 @mixin rmd-card-title {
   @include rmd-typography(headline-5);
 
@@ -104,7 +109,8 @@
   }
 }
 
-/// Creates all the styles for the `CardSubtitle` component. You'll need to use this within a selector.
+/// Creates all the styles for the `CardSubtitle` component. You'll need to use
+/// this within a selector.
 @mixin rmd-card-subtitle {
   @include rmd-typography(subtitle-2);
 
@@ -116,7 +122,8 @@
   }
 }
 
-/// Creates all the styles for the `CardContent` component. You'll need to use this within a selector.
+/// Creates all the styles for the `CardContent` component. You'll need to use
+/// this within a selector.
 @mixin rmd-card-content {
   &--secondary {
     @include rmd-theme(color, text-secondary-on-background);
@@ -139,7 +146,8 @@
   }
 }
 
-/// Creates all the styles for the `CardActions` component. You'll need to use this within a selector.
+/// Creates all the styles for the `CardActions` component. You'll need to use
+/// this within a selector.
 @mixin rmd-card-actions {
   align-items: center;
   display: flex;

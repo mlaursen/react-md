@@ -44,8 +44,9 @@ $rmd-card-border-radius: 0.25rem !default;
 /// @type Number
 $rmd-card-header-padding: 1rem !default;
 
-/// Any extra amount of padding to apply to the top of the `cardHeader` component.
-/// This is really just added since it looks a bit nicer to have extra padding top.
+/// Any extra amount of padding to apply to the top of the `cardHeader`
+/// component.  This is really just added since it looks a bit nicer to have
+/// extra padding top.
 /// @type Number
 $rmd-card-header-padding-top: 1.5rem !default;
 
@@ -59,9 +60,9 @@ $rmd-card-header-spacing: 1rem !default;
 /// @type Number
 $rmd-card-content-padding: 1rem !default;
 
-/// When the `CardContent` component is the last child in the `Card`, it normally looks
-/// a bit nicer to apply a bit more padding to it. So this is the extra `padding-bottom`
-/// that will be applied in that case.
+/// When the `CardContent` component is the last child in the `Card`, it
+/// normally looks a bit nicer to apply a bit more padding to it. So this is the
+/// extra `padding-bottom` that will be applied in that case.
 /// @type Number
 $rmd-card-content-padding-extra: 1.5rem !default;
 
@@ -77,9 +78,9 @@ $rmd-card-border-color: rmd-divider-theme-var(background-color) !default;
 /// @type Number
 $rmd-card-border-width: $rmd-divider-size !default;
 
-/// A Map of all the "themeable" parts of the card package. Every key in this map will
-/// be used to create a css variable to dynamically update the values of the icon as
-/// needed.
+/// A Map of all the "themeable" parts of the card package. Every key in this
+/// map will be used to create a css variable to dynamically update the values
+/// of the icon as needed.
 /// @type Map
 $rmd-card-theme-values: (
   background-color: $rmd-card-background-color,

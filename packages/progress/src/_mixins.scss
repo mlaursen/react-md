@@ -11,27 +11,30 @@
 /// Creates the styles for one of the progress's theme values. This is mostly
 /// going to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-progress-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-progress-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-progress-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-progress-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-progress-theme-values`
+/// to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-progress-theme-values` map when
+/// `null`.
 @mixin rmd-progress-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-progress-theme-values, progress);
 }
 
-/// Updates one of the progress's theme variables with the new value for the section
-/// of your app.
+/// Updates one of the progress's theme variables with the new value for the
+/// section of your app.
 ///
-/// @param {String} theme-style - The progress theme style type to update. This should be one
-///   of the `$rmd-progress-theme-values` keys.
+/// @param {String} theme-style - The progress theme style type to update. This
+/// should be one of the `$rmd-progress-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-progress-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-progress-theme-values, progress);
 }
 
-/// @access private
 /// @param styles - The current animation styles to use
+/// @access private
 @mixin rmd-progress-animation($styles) {
   @if $styles != null {
     @each $percentage, $style in $styles {
@@ -155,7 +158,7 @@
   }
 }
 
-/// Creates the styles for the linear progress bar. This should only
+/// Creates the styles for the linear progress bar.
 /// @access private
 @mixin rmd-linear-progress {
   .rmd-linear-progress {

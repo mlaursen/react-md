@@ -11,20 +11,23 @@
 /// Creates the styles for one of the tooltip's theme values. This is mostly
 /// going to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-tooltip-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-tooltip-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-tooltip-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-tooltip-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-tooltip-theme-values`
+/// to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-tooltip-theme-values` map when
+/// `null`.
 @mixin rmd-tooltip-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-tooltip-theme-values, tooltip);
 }
 
-/// Updates one of the tooltip's theme variables with the new value for the section
-/// of your app.
+/// Updates one of the tooltip's theme variables with the new value for the
+/// section of your app.
 ///
-/// @param {String} theme-style - The tooltip theme style type to update. This should be one
-///   of the `$rmd-tooltip-theme-values` keys.
+/// @param {String} theme-style - The tooltip theme style type to update. This
+/// should be one of the `$rmd-tooltip-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-tooltip-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-tooltip-theme-values, tooltip);

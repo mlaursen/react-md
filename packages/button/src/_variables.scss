@@ -6,9 +6,9 @@
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/theme/dist/variables';
 
-/// Boolean if text buttons with icons should have the icons inherit
-/// the current color. If this is disabled, only icon buttons will
-/// inherit the current text color.
+/// Boolean if text buttons with icons should have the icons inherit the current
+/// color. If this is disabled, only icon buttons will inherit the current text
+/// color.
 /// @type Boolean
 $rmd-button-text-icon-inherit-color: true !default;
 
@@ -21,8 +21,8 @@ $rmd-button-text-border-radius: 0.5rem !default;
 $rmd-button-text-horizontal-padding: 1rem !default;
 
 /// The amount of top and bottom padding to apply to text buttons. Since buttons
-/// are now displayed as inline-flex, it is generally recommended to keep this value
-/// at 0 and just increase the height of the button instead.
+/// are now displayed as inline-flex, it is generally recommended to keep this
+/// value at 0 and just increase the height of the button instead.
 ///
 /// @type Number
 $rmd-button-text-vertical-padding: 0 !default;
@@ -35,8 +35,9 @@ $rmd-button-text-height: 2.25rem !default;
 /// @type Number
 $rmd-button-text-min-width: 4rem !default;
 
-/// The text button's icon size. This is smaller than the normal icon size by default since buttons
-/// have additional padding. You can set this to `null` if you want consistent icon sizes.
+/// The text button's icon size. This is smaller than the normal icon size by
+/// default since buttons have additional padding. You can set this to `null` if
+/// you want consistent icon sizes.
 /// @type Number
 $rmd-button-text-icon-size: 1.125rem !default;
 
@@ -52,14 +53,14 @@ $rmd-button-icon-size: 3rem !default;
 /// @type Number
 $rmd-button-outline-width: 1px !default;
 
-/// The base box-shadow to apply to buttons when outlined. This will normally be used along with a color variable
-/// to define a box shadow.
+/// The base box-shadow to apply to buttons when outlined. This will normally be
+/// used along with a color variable to define a box shadow.
 /// @type String
 $rmd-button-box-shadow: inset 0 0 0 !default;
 
-/// This is the color that will be applied to the box-shadow/border for the button
-/// when the `outline` theme type is applied **unless** one of the theme values are
-/// defined.
+/// This is the color that will be applied to the box-shadow/border for the
+/// button when the `outline` theme type is applied **unless** one of the theme
+/// values are defined.
 /// @type Color
 $rmd-button-outline-color: #999 !default;
 
@@ -68,28 +69,29 @@ $rmd-button-outline-color: #999 !default;
 /// @type Color
 $rmd-button-background-color: transparent !default;
 
-/// This is the text color that will be applied when the theme type prop
-/// on buttons is set to "clear".
+/// This is the text color that will be applied when the theme type prop on
+/// buttons is set to "clear".
 /// @type Color
 $rmd-button-color: rmd-theme-var(text-primary-on-background) !default;
 
-/// The transition time for a contained button to raise to the pressed elevation.
+/// The transition time for a contained button to raise to the pressed
+/// elevation.
 /// @type Number
 $rmd-button-contained-elevation-transition-time: 0.15s !default;
 
-/// The elevation to use for a resting contained button. This should be a number between
-/// 0 and 24.
+/// The elevation to use for a resting contained button. This should be a number
+/// between 0 and 24.
 /// @type Number
 $rmd-button-contained-resting-elevation: 2 !default;
 
-/// The elevation to use for a contained button that is being pressed. This should be a number
-/// between 0 and 24.
+/// The elevation to use for a contained button that is being pressed. This
+/// should be a number between 0 and 24.
 /// @type Number
 $rmd-button-contained-pressed-elevation: 4 !default;
 
-/// A Map of all the "themeable" parts of the button package. Every key in this map will
-/// be used to create a css variable to dynamically update the values of the icon as
-/// needed.
+/// A Map of all the "themeable" parts of the button package. Every key in this
+/// map will be used to create a css variable to dynamically update the values
+/// of the icon as needed.
 /// @type Map
 $rmd-button-theme-values: (
   text-border-radius: $rmd-button-text-border-radius,

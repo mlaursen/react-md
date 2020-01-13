@@ -32,13 +32,14 @@ $rmd-badge-font-size: 0.625rem !default;
 /// @type Number
 $rmd-badge-offset-top: 0 !default;
 
-/// The `right` position for the badge. This will be swapped to be `left` for rtl languages.
+/// The `right` position for the badge. This will be swapped to be `left` for
+/// rtl languages.
 /// @type Number
 $rmd-badge-offset-right: 0 !default;
 
-/// A Map of all the "themeable" parts of the badge package. Every key in this map will
-/// be used to create a css variable to dynamically update the values of the icon as
-/// needed.
+/// A Map of all the "themeable" parts of the badge package. Every key in this
+/// map will be used to create a css variable to dynamically update the values
+/// of the icon as needed.
 /// @type Map
 $rmd-badge-theme-values: (
   background-color: $rmd-badge-default-background-color,

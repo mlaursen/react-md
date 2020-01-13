@@ -7,14 +7,17 @@
 @import './functions';
 @import './variables';
 
-/// Creates the styles for one of the icon's theme values. This is mostly
-/// going to be an internal helper mixin util.
+/// Creates the styles for one of the icon's theme values. This is mostly going
+/// to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-icon-theme-values` value to.
-/// @param {String} theme-style [property] - One of the keys of `rmd-icon-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-icon-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-icon-theme-values`
+/// value to.
+/// @param {String} theme-style [property] - One of the keys of
+/// `rmd-icon-theme-values` to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-icon-theme-values` map when
+/// `null`.
 @mixin rmd-icon-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-icon-theme-values, icon);
 }
@@ -33,15 +36,15 @@
 ///     @include rmd-icon-theme-update-var(size, rmd-icon-theme(dense-size));
 ///   }
 ///
-/// @param {String} theme-style - The icon theme style type to update. This should be one
-///   of the `$rmd-icon-theme-values` keys.
+/// @param {String} theme-style - The icon theme style type to update. This
+/// should be one of the `$rmd-icon-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-icon-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-icon-theme-values, icon);
 }
 
-/// Creates the base styles for icons. This should be combined with the `rmd-icon-font` or
-/// `rmd-icon-svg` mixins to get the full styles.
+/// Creates the base styles for icons. This should be combined with the
+/// `rmd-icon-font` or `rmd-icon-svg` mixins to get the full styles.
 @mixin rmd-icon-base {
   // you normally don't want icons to shrink in flex containers.
   // update the icon manually instead.
@@ -81,11 +84,13 @@
   @include rmd-icon-theme(width, size);
 }
 
-/// Creates the styles that should be applied to an icon that is placed before or after text
-/// by applying the spacing to the provided `$property` value. This will automatically be
-/// swapped when the language changes to right-to-left.
+/// Creates the styles that should be applied to an icon that is placed before
+/// or after text by applying the spacing to the provided `$property` value.
+/// This will automatically be swapped when the language changes to
+/// right-to-left.
 ///
-/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
+/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing
+/// to apply.
 @mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text, $property: margin-left) {
   @if $property == 'margin-left' or $property == 'margin-right' {
     @include rmd-utils-rtl-auto($property, $spacing, 0);
@@ -94,8 +99,8 @@
   }
 }
 
-/// A mixin to create the styles to space an icon before or after text with the provided selectors and
-/// spacing.
+/// A mixin to create the styles to space an icon before or after text with the
+/// provided selectors and spacing.
 ///
 /// @example scss - Updating Selectors
 ///   // create a component so that it uses the :first-child and :last-child css
@@ -104,14 +109,18 @@
 ///     @include rmd-icon-spaced-with-text('&:first-child', '&:last-child');
 ///   }
 ///
-/// @param {String} before-selector ['&--before'] - The selector to use for determining if an icon is placed
-///   before or after the text. If this is set to `null`, no before styles will be created.
-/// @param {String} after-selector ['&--after'] - The selector to use for determining if an icon is placed
-///   before or after the text. If this is set to `null`, no after styles will be created.
-/// @param {String} above-selector ['&--above'] - The selector to use for determining if an icon is placed
-///   above or below the text. If this is set to `null`, no before styles will be created.
-/// @param {String} below-selector ['&--after'] - The selector to use for determining if an icon is placed
-///   above or below the text. If this is set to `null`, no after styles will be created.
+/// @param {String} before-selector ['&--before'] - The selector to use for
+/// determining if an icon is placed before or after the text. If this is set to
+/// `null`, no before styles will be created.
+/// @param {String} after-selector ['&--after'] - The selector to use for
+/// determining if an icon is placed before or after the text. If this is set to
+/// `null`, no after styles will be created.
+/// @param {String} above-selector ['&--above'] - The selector to use for
+/// determining if an icon is placed above or below the text. If this is set to
+/// `null`, no before styles will be created.
+/// @param {String} below-selector ['&--after'] - The selector to use for
+/// determining if an icon is placed above or below the text. If this is set to
+/// `null`, no after styles will be created.
 /// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
 @mixin rmd-icon-spaced-with-text(
   $before-selector: '&--before',
@@ -145,8 +154,9 @@
   }
 }
 
-/// Creates the styles for the `IconRotator` component. These styles are extremely simple and basically
-/// apply different rotate transforms based on a class name.
+/// Creates the styles for the `IconRotator` component. These styles are
+/// extremely simple and basically apply different rotate transforms based on a
+/// class name.
 @mixin rmd-icon-rotator {
   .rmd-icon-rotator {
     @include rmd-icon-theme(transform, rotate-from);
@@ -168,8 +178,8 @@
 
     @if $rmd-icon-material-icons-font {
       &.material-icons {
-        // force material-icons to use the size of icons even if the material-icons font css
-        // is loaded after the base react-md styles
+        // force material-icons to use the size of icons even if the
+        // material-icons font css is loaded after the base react-md styles
         @include rmd-icon-theme(font-size, size);
       }
     }
@@ -202,8 +212,9 @@
         @include rmd-icon-svg;
 
         * {
-          // make sit so that paths and other things won't be event targets which makes things easier
-          // to determine if something is an icon or not
+          // make sit so that paths and other things won't be event targets
+          // which makes things easier to determine if something is an icon or
+          // not
           pointer-events: none;
         }
       }
@@ -213,9 +224,9 @@
   }
 }
 
-/// Creates the styles for when the `TextIconSpacing` component
-/// needs to wrap the content in a `<span>`. It's really used to
-/// force vertical centerl alignment.
+/// Creates the styles for when the `TextIconSpacing` component needs to wrap
+/// the content in a `<span>`. It's really used to force vertical centerl
+/// alignment.
 @mixin rmd-icon-spacing {
   .rmd-text-icon-spacing {
     align-items: center;
@@ -223,8 +234,9 @@
   }
 }
 
-/// Creates the styles for icons within react-md. This requires either the `rmd-icon-use-font-icons` or `rmd-icon-use-svg-icons` variables
-/// to be enabled to generate any styles.
+/// Creates the styles for icons within react-md. This requires either the
+/// `rmd-icon-use-font-icons` or `rmd-icon-use-svg-icons` variables to be
+/// enabled to generate any styles.
 @mixin react-md-icon {
   @if not $rmd-icon-use-font-icons and not $rmd-icon-use-svg-icons {
     @error 'Either svg or font icons must be used for this package but both were set to false. Please enable one of them to include icons.';

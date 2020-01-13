@@ -18,20 +18,23 @@
 /// Creates the styles for one of the button's theme values. This is mostly
 /// going to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-button-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-button-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-button-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-button-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-button-theme-values`
+/// to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-button-theme-values` map when
+/// `null`.
 @mixin rmd-button-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-button-theme-values, button);
 }
 
-/// Updates one of the button's theme variables with the new value for the section
-/// of your app.
+/// Updates one of the button's theme variables with the new value for the
+/// section of your app.
 ///
-/// @param {String} theme-style - The button theme style type to update. This should be one
-///   of the `$rmd-button-theme-values` keys.
+/// @param {String} theme-style - The button theme style type to update. This
+/// should be one of the `$rmd-button-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-button-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-button-theme-values, button);
@@ -39,8 +42,9 @@
 
 /// A simple mixin to create an unstyled button.
 ///
-/// NOTE: An unstyled button removed the `outline-style` so you *must* add a custom focus behavior with
-/// either ripples or something else for keyboard users.
+/// NOTE: An unstyled button removed the `outline-style` so you *must* add a
+/// custom focus behavior with either ripples or something else for keyboard
+/// users.
 ///
 /// @example scss - Example Usage SCSS
 ///   .my-button {
@@ -78,9 +82,10 @@
 @mixin rmd-button-text {
   @include rmd-typography(button);
 
-  // icons have smaller sizes due to the padding on buttons. This is also not applied
-  // below in the rmd-button__icon since a user of this library _could_ include the icon styles
-  // after the button styles which would prevent these styles from working
+  // icons have smaller sizes due to the padding on buttons. This is also not
+  // applied below in the rmd-button__icon since a user of this library _could_
+  // include the icon styles after the button styles which would prevent these
+  // styles from working
   @if $rmd-icon-use-font-icons or $rmd-icon-use-svg-icons {
     @include rmd-icon-theme-update-var(size, $rmd-button-text-icon-size);
   }
@@ -105,7 +110,8 @@
   padding: 0;
 }
 
-/// Creates all the styles for a button. This should be used within a class or selector.
+/// Creates all the styles for a button. This should be used within a class or
+/// selector.
 /// @access private
 @mixin rmd-button {
   @if $rmd-button-text-icon-inherit-color {
@@ -136,8 +142,8 @@
       false,
       $rmd-button-contained-elevation-transition-time
     );
-    // don't want the normal pressed colors to appear since we have an elevation change
-    // instead
+    // don't want the normal pressed colors to appear since we have an elevation
+    // change instead
     @include rmd-states-theme-update-var(background-color, transparent);
   }
 
@@ -187,7 +193,8 @@
   }
 }
 
-/// Creates all the styles for this package as well as defining all the theme CSS variables.
+/// Creates all the styles for this package as well as defining all the theme
+/// CSS variables.
 @mixin react-md-button {
   @include rmd-theme-create-root-theme($rmd-button-theme-values, button);
 

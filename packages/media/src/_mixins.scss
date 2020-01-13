@@ -27,8 +27,8 @@
   width: 100%;
 }
 
-/// Creates the styles for a responsive media item that will update its
-/// height and width based on the parent element.
+/// Creates the styles for a responsive media item that will update its height
+/// and width based on the parent element.
 @mixin rmd-media {
   height: auto;
   width: 100%;
@@ -75,14 +75,15 @@
   }
 }
 
-/// Creates the media overlay styles. All this really does is update the theme background and
-/// text colors based on the provided background color for the overlay element.
+/// Creates the media overlay styles. All this really does is update the theme
+/// background and text colors based on the provided background color for the
+/// overlay element.
 ///
-/// @param {Color} background-color [rmd-media-overlay-background-color] - The background color
-///   for the media overlay.
-/// @param {Color} color [null] - An optional color to use for the overlay. If this is `null`,
-///   it will determine the contrast tone of the background color and use either the light or
-///   dark theme variables instead.
+/// @param {Color} background-color [rmd-media-overlay-background-color] - The
+/// background color for the media overlay.
+/// @param {Color} color [null] - An optional color to use for the overlay. If
+/// this is `null`, it will determine the contrast tone of the background color
+/// and use either the light or dark theme variables instead.
 @mixin rmd-media-overlay($background-color: $rmd-media-overlay-background-color, $color: null) {
   @if $color == null {
     $light: rmd-theme-tone($background-color) == 'light';

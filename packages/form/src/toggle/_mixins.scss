@@ -25,8 +25,8 @@
   }
 }
 
-/// Creates all the styles for creating the icon container for the checkbox and radio input
-/// types.
+/// Creates all the styles for creating the icon container for the checkbox and
+/// radio input types.
 /// @access private
 @mixin rmd-toggle {
   @include rmd-button-theme(height, icon-size);
@@ -160,8 +160,9 @@
   }
 }
 
-/// Updates the checkbox and radio components to have a dense theme by updating the toggle-inset
-/// css variable to be the dense version. This should generally be used within media queries.
+/// Updates the checkbox and radio components to have a dense theme by updating
+/// the toggle-inset css variable to be the dense version. This should generally
+/// be used within media queries.
 @mixin rmd-toggle-dense-theme {
   @include rmd-form-theme-update-var(toggle-inset, rmd-form-theme-var(toggle-dense-inset));
   @include rmd-form-theme-update-var(

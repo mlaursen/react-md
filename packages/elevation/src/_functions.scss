@@ -5,9 +5,9 @@
 @import '~@react-md/theme/dist/functions';
 @import './variables';
 
-/// Returns a box shadow string for the current material design elevation. This is
-/// useful if you want to merge material design elevation with custom box shadow
-/// values as well.
+/// Returns a box shadow string for the current material design elevation. This
+/// is useful if you want to merge material design elevation with custom box
+/// shadow values as well.
 ///
 /// @example scss - Simple usage
 ///   .my-class {
@@ -20,9 +20,10 @@
 ///   }
 ///
 /// @param {Number} z-value - This should be a number between 0 and 24.
-/// @param {Color} color [rmd-elevation-color] - The color to use for the box-shadow.
-/// @param {Number} opacity-boost [0] - The amount to boost the default opacity levels for the
-///   three box-shadows applied.
+/// @param {Color} color [rmd-elevation-color] - The color to use for the
+/// box-shadow.
+/// @param {Number} opacity-boost [0] - The amount to boost the default opacity
+/// levels for the three box-shadows applied.
 /// @return {String} the box shadow string for the current elevation.
 @function rmd-elevation($z-value, $color: $rmd-elevation-color, $opacity-boost: 0) {
   @if type-of($z-value) != 'number' or not unitless($z-value) {

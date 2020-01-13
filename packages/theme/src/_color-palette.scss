@@ -770,8 +770,8 @@ $rmd-black-base: #000;
 /// @type Color
 $rmd-white-base: #fff;
 
-/// This is a map of all the material design base colors so that you can programmatically get
-/// variables with the neat sass-map functions.
+/// This is a map of all the material design base colors so that you can
+/// programmatically get variables with the neat sass-map functions.
 ///
 /// @example scss - Example Usage SCSS
 ///   .error-field {
@@ -1038,21 +1038,21 @@ $rmd-theme-color-map: (
   rmd-white-base: $rmd-white-base,
 );
 
-/// The "primary" color suffix numbers that are available for use. This is really just created
-/// for the `rmd-theme-get-swatch` mixin, but might be useful since it also gets added to the
-/// scssVariables export.
+/// The "primary" color suffix numbers that are available for use. This is
+/// really just created for the `rmd-theme-get-swatch` mixin, but might be
+/// useful since it also gets added to the scssVariables export.
 /// @type List
 $rmd-theme-primary-suffixes: 50 100 200 300 400 500 600 700 800 900;
 
-/// The "accent" color suffix numbers that are available for use. This is really just created
-/// for the `rmd-theme-get-swatch` mixin, but might be useful since it also gets added to the
-/// scssVariables export.
+/// The "accent" color suffix numbers that are available for use. This is really
+/// just created for the `rmd-theme-get-swatch` mixin, but might be useful since
+/// it also gets added to the scssVariables export.
 /// @type List
 $rmd-theme-accent-suffixes: 100 200 400 700;
 
-/// A list of all the available colors within material design. This is really just created for the
-/// `rmd-theme-get-swatch` mixin, but might be useful since it also gets added to the
-/// scssVariables export.
+/// A list of all the available colors within material design. This is really
+/// just created for the `rmd-theme-get-swatch` mixin, but might be useful since
+/// it also gets added to the scssVariables export.
 /// @type List
 $rmd-theme-colors: (
   'red' 'pink' 'purple' 'deep-purple' 'indigo' 'blue' 'light-blue' 'cyan' 'teal' 'green'

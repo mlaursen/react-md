@@ -51,7 +51,8 @@
   .rmd-layout-main {
     @include rmd-layout-app-bar-offset;
 
-    // going to replace the default focus outline with the custom box-shadow instead
+    // going to replace the default focus outline with the custom box-shadow
+    // instead
     @include rmd-utils-hide-focus-outline;
 
     @include rmd-utils-keyboard-only {
@@ -78,8 +79,8 @@
         margin-left: auto;
       }
 
-      // might need to change to just left and right instead of margin-left and margin-right
-      // for some browser support
+      // might need to change to just left and right instead of margin-left and
+      // margin-right for some browser support
       @include rmd-sheet-theme(margin-left, static-width);
     }
   }

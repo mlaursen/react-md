@@ -23,9 +23,10 @@ $rmd-theme-default-contrast-ratio: 3 !default;
 ///   return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
 /// }
 ///
-/// This lookup table is needed since there is no `pow` in SCSS/Sass. You _can_ make your own,
-/// but it is recommended to pass the computed values from a 'more complete' layer (like node)
-/// as a lookup table to speed up compilation time.
+/// This lookup table is needed since there is no `pow` in SCSS/Sass. You _can_
+/// make your own, but it is recommended to pass the computed values from a
+/// 'more complete' layer (like node) as a lookup table to speed up compilation
+/// time.
 /// @access private
 /// @type List
 $rmd-theme-linear-channel-values: (
@@ -118,9 +119,10 @@ $rmd-theme-linear-channel-values: (
 /// Determines if a provided color is considered light or dark.
 ///
 /// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [rmd-theme-default-contrast-ratio] - The minimum contrast that should be applied. The min
-///     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
-///     the link for contrasts for more information.
+/// @param {Number} min-contrast [rmd-theme-default-contrast-ratio] - The
+/// minimum contrast that should be applied. The min contrast for normal text
+/// should be 4.5 while large or 14px bold text should be 3.1. See the link for
+/// contrasts for more information.
 /// @returns {String} - The string 'light' if the color is considered light, otherwise 'dark'.
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
 @function rmd-theme-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) {
@@ -138,15 +140,17 @@ $rmd-theme-linear-channel-values: (
   }
 }
 
-/// Determines if the provided color should have a light or dark contrast using the
-/// luminance algorithm to maintain a required contrast ratio for accessibility.
+/// Determines if the provided color should have a light or dark contrast using
+/// the luminance algorithm to maintain a required contrast ratio for
+/// accessibility.
 ///
 /// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [rmd-theme-default-contrast-ratio] - The minimum contrast that should be applied. The min
-///     contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See
-///     the link for contrasts for more information.
-/// @returns {String} - The string 'dark' if the color is considered light, or 'light' if the
-///     color is considered dark.
+/// @param {Number} min-contrast [rmd-theme-default-contrast-ratio] - The
+/// minimum contrast that should be applied. The min contrast for normal text
+/// should be 4.5 while large or 14px bold text should be 3.1. See the link for
+/// contrasts for more information.
+/// @returns {String} - The string 'dark' if the color is considered light, or
+/// 'light' if the color is considered dark.
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
 @function rmd-theme-contrast-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) {
   @return if(rmd-theme-tone($color) == 'dark', 'light', 'dark');

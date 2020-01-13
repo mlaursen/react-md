@@ -30,8 +30,9 @@
   }
 }
 
-/// Creates the styles for forms within react-md. This requires either the `rmd-form-use-font-forms` or `rmd-form-use-svg-forms` variables
-/// to be enabled to generate any styles.
+/// Creates the styles for forms within react-md. This requires either the
+/// `rmd-form-use-font-forms` or `rmd-form-use-svg-forms` variables to be
+/// enabled to generate any styles.
 @mixin react-md-form {
   $omit: (
     addon-top label-left-offset label-top-offset label-active-background-color label-active-padding
@@ -43,7 +44,8 @@
   @include react-md-label;
   @include react-md-toggle;
   @include react-md-text-field;
-  // has to come after text field since it overrides some of the text-field-container styles
+  // has to come after text field since it overrides some of the
+  // text-field-container styles
   @include react-md-select;
 
   .rmd-fieldset {

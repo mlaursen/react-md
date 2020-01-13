@@ -14,20 +14,23 @@
 /// Creates the styles for one of the dialog's theme values. This is mostly
 /// going to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-dialog-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-dialog-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-dialog-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-dialog-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-dialog-theme-values`
+/// to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-dialog-theme-values` map when
+/// `null`.
 @mixin rmd-dialog-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-dialog-theme-values, dialog);
 }
 
-/// Updates one of the dialog's theme variables with the new value for the section
-/// of your app.
+/// Updates one of the dialog's theme variables with the new value for the
+/// section of your app.
 ///
-/// @param {String} theme-style - The dialog theme style type to update. This should be one
-///   of the `$rmd-dialog-theme-values` keys.
+/// @param {String} theme-style - The dialog theme style type to update. This
+/// should be one of the `$rmd-dialog-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-dialog-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-dialog-theme-values, dialog);
@@ -57,7 +60,8 @@
   }
 
   &--full-page {
-    // this is applied here since there is no longer a container element for full page dialogs.
+    // this is applied here since there is no longer a container element for
+    // full page dialogs.
     @include rmd-utils-full-screen;
     @include rmd-utils-scroll;
     @include rmd-dialog-theme(z-index);
@@ -135,9 +139,10 @@
   margin: 0;
 }
 
-/// Creates the styles for the `DialogContent` component. It is set up so that it will grow to fill
-/// the remaining space within the `Dialog` and the `DialogHeader` and `DialogFooter` components
-/// will be fixed to the top and bottom edges respectively. It will also include scrolling by default.
+/// Creates the styles for the `DialogContent` component. It is set up so that
+/// it will grow to fill the remaining space within the `Dialog` and the
+/// `DialogHeader` and `DialogFooter` components will be fixed to the top and
+/// bottom edges respectively. It will also include scrolling by default.
 /// @access private
 @mixin rmd-dialog-content {
   @include rmd-utils-scroll;
@@ -149,8 +154,8 @@
   }
 }
 
-/// Creates the styles for the `DialogFooter` component. It has styles built-in to position the actions
-/// in different locations.
+/// Creates the styles for the `DialogFooter` component. It has styles built-in
+/// to position the actions in different locations.
 /// @access private
 @mixin rmd-dialog-footer {
   @include rmd-dialog-theme(padding, footer-padding);
@@ -179,12 +184,14 @@
 }
 
 /// When the dialog is not set to be full page, the dialog gets wrapped in this
-/// container component so that it can be centered within the page using flexbox.
+/// container component so that it can be centered within the page using
+/// flexbox.
 ///
-/// In the past versions, I did some old-school centering logic with `left`, `top`, and
-/// `transform`, but unfortunately this adds text blur in some browsers and made the
-/// transitions harder to customize since you would always need to apply the transforms
-/// at each stage of the transition. Using a flexbox approach fixes this.
+/// In the past versions, I did some old-school centering logic with `left`,
+/// `top`, and `transform`, but unfortunately this adds text blur in some
+/// browsers and made the transitions harder to customize since you would always
+/// need to apply the transforms at each stage of the transition. Using a
+/// flexbox approach fixes this.
 /// @access private
 @mixin rmd-dialog-container {
   @include rmd-utils-full-screen;
@@ -197,8 +204,9 @@
   pointer-events: none;
 }
 
-/// Creates the styles for the dialog's overlay. This really requires the base styles and
-/// component from the overlay package and adds a few changes to help with nested dialogs.
+/// Creates the styles for the dialog's overlay. This really requires the base
+/// styles and component from the overlay package and adds a few changes to help
+/// with nested dialogs.
 /// @access private
 @mixin rmd-dialog-overlay {
   // update the z-index to be the same as the dialog so that the last defined

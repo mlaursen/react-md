@@ -10,20 +10,20 @@
 $rmd-divider-size: 1px !default;
 
 /// The max size for the divider. This can be used to center a horizontal
-/// divider within the page since the divider applies `margin-left: auto`
-/// and `margin-right: auto`.
+/// divider within the page since the divider applies `margin-left: auto` and
+/// `margin-right: auto`.
 ///
 /// This also applies to vertical dividers... sort of? If the divider's
-/// containing element has a static defined height, the vertical dividers
-/// will be sized correctly. Otherwise the vertical divider will set the
-/// height to `auto` which almost always resolves to `0` which will make
-/// your divider not appear.
+/// containing element has a static defined height, the vertical dividers will
+/// be sized correctly. Otherwise the vertical divider will set the height to
+/// `auto` which almost always resolves to `0` which will make your divider not
+/// appear.
 /// @type Number
 $rmd-divider-max-size: 100% !default;
 
-/// The amount of inset to apply to the divider. This should not be changed
-/// to create centered dividers. Its only purpose is to had spacing to the
-/// left (or right in rtl languages) of the divider. See the `$rmd-divider-max-size`
+/// The amount of inset to apply to the divider. This should not be changed to
+/// create centered dividers. Its only purpose is to had spacing to the left (or
+/// right in rtl languages) of the divider. See the `$rmd-divider-max-size`
 /// variable for more information about centering.
 ///
 /// @see rmd-divider-max-size
@@ -54,9 +54,9 @@ $rmd-divider-background-color: if(
   $rmd-divider-background-color-on-dark
 ) !default;
 
-/// A Map of all the "themeable" parts of the divider package. Every key in this map will
-/// be used to create a css variable to dynamically update the values of the icon as
-/// needed.
+/// A Map of all the "themeable" parts of the divider package. Every key in this
+/// map will be used to create a css variable to dynamically update the values
+/// of the icon as needed.
 /// @type Map
 $rmd-divider-theme-values: (
   background-color: $rmd-divider-background-color,

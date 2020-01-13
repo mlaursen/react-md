@@ -4,27 +4,27 @@
 
 @import '~@react-md/overlay/dist/variables';
 
-/// The elevation (box-shadow) to use for the dialog when it is not full page. This
-/// should be a number between 0 and 24 since it gets passed to the `rmd-elevation`
-/// mixin.
+/// The elevation (box-shadow) to use for the dialog when it is not full page.
+/// This should be a number between 0 and 24 since it gets passed to the
+/// `rmd-elevation` mixin.
 /// @type Number
 $rmd-dialog-elevation: 16 !default;
 
-/// The z-index for dialogs. This value is a bit larger than overlays just in case
-/// other components are using the overlay as well. The dialog's overlay will also
-/// gain this z-index value.
+/// The z-index for dialogs. This value is a bit larger than overlays just in
+/// case other components are using the overlay as well. The dialog's overlay
+/// will also gain this z-index value.
 /// @type Number
 $rmd-dialog-z-index: $rmd-overlay-z-index + 10 !default;
 
-/// The amount of vertical viewport spacing there should be between the edge of the
-/// screen and a non-full page dialog. This value should be big enough so that users
-/// can still touch the overlay when a dialog is visible.
+/// The amount of vertical viewport spacing there should be between the edge of
+/// the screen and a non-full page dialog. This value should be big enough so
+/// that users can still touch the overlay when a dialog is visible.
 /// @type Number
 $rmd-dialog-vertical-margin: 1.5rem !default;
 
-/// The amount of horizontal viewport spacing there should be between the edge of the
-/// screen and a non-full page dialog. This value should be big enough so that users
-/// can still touch the overlay when a dialog is visible.
+/// The amount of horizontal viewport spacing there should be between the edge
+/// of the screen and a non-full page dialog. This value should be big enough so
+/// that users can still touch the overlay when a dialog is visible.
 /// @type Number
 $rmd-dialog-horizontal-margin: 2.5rem !default;
 
@@ -32,9 +32,10 @@ $rmd-dialog-horizontal-margin: 2.5rem !default;
 /// @type Number
 $rmd-dialog-header-padding: 1.5rem !default;
 
-/// The amount of padding-bottom to apply to the `DialogHeader` component. This is a
-//. bit smaller than the `$rmd-dialog-header-padding` value since it is usually used
-/// alongside the `DialogContent` component which has its own padding attached.
+/// The amount of padding-bottom to apply to the `DialogHeader` component. This
+/// is a bit smaller than the `$rmd-dialog-header-padding` value since it is
+/// usually used alongside the `DialogContent` component which has its own
+/// padding attached.
 /// @type Number
 $rmd-dialog-header-padding-bottom: 1.25rem !default;
 
@@ -46,30 +47,30 @@ $rmd-dialog-content-padding: 1.5rem !default;
 /// @type Number
 $rmd-dialog-footer-padding: 0.5rem !default;
 
-/// The distance that the dialog should travel while animating in and out of view. By
-/// default, this animation will cause the dialog to "fly" upwards. If you change this
-/// value to be a negative number, it will "fly" downwards.
+/// The distance that the dialog should travel while animating in and out of
+/// view. By default, this animation will cause the dialog to "fly" upwards. If
+/// you change this value to be a negative number, it will "fly" downwards.
 /// @type Number
 $rmd-dialog-transition-distance: 1.875em !default;
 
-/// The enter animation duration. This should match the `timeout` prop for the `Dialog`
-/// component.
+/// The enter animation duration. This should match the `timeout` prop for the
+/// `Dialog` component.
 /// @type Number
 $rmd-dialog-enter-duration: 0.2s !default;
 
-/// The leave animation duration. This should match the `timeout` prop for the `Dialog`
-/// component.
+/// The leave animation duration. This should match the `timeout` prop for the
+/// `Dialog` component.
 /// @type Number
 $rmd-dialog-leave-duration: 0.15s !default;
 
-/// The min width for a centered dialog. This is really just applied so you don't have
-/// super tiny dialogs if there isn't enough content in the dialog.
+/// The min width for a centered dialog. This is really just applied so you
+/// don't have super tiny dialogs if there isn't enough content in the dialog.
 /// @type Number
 $rmd-dialog-min-width: 17.5rem !default;
 
-/// A Map of all the "themeable" parts of the dialog package. Every key in this map will
-/// be used to create a css variable to dynamically update the values of the icon as
-/// needed.
+/// A Map of all the "themeable" parts of the dialog package. Every key in this
+/// map will be used to create a css variable to dynamically update the values
+/// of the icon as needed.
 /// @type Map
 $rmd-dialog-theme-values: (
   horizontal-margin: $rmd-dialog-horizontal-margin,

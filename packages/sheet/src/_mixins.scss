@@ -9,23 +9,26 @@
 @import './variables';
 @import './functions';
 
-/// Creates the styles for one of the sheet's theme values. This is mostly
-/// going to be an internal helper mixin util.
+/// Creates the styles for one of the sheet's theme values. This is mostly going
+/// to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-sheet-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-sheet-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-sheet-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-sheet-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-sheet-theme-values` to
+/// extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-sheet-theme-values` map when
+/// `null`.
 @mixin rmd-sheet-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-sheet-theme-values, sheet);
 }
 
-/// Updates one of the sheet's theme variables with the new value for the section
-/// of your app.
+/// Updates one of the sheet's theme variables with the new value for the
+/// section of your app.
 ///
-/// @param {String} theme-style - The sheet theme style type to update. This should be one
-///   of the `$rmd-sheet-theme-values` keys.
+/// @param {String} theme-style - The sheet theme style type to update. This
+/// should be one of the `$rmd-sheet-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-sheet-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-sheet-theme-values, sheet);
@@ -63,7 +66,8 @@
   }
 }
 
-/// Creates all the styles for the sheet package as well as the root css variable theme.
+/// Creates all the styles for the sheet package as well as the root css
+/// variable theme.
 @mixin react-md-sheet {
   @include rmd-theme-create-root-theme($rmd-sheet-theme-values, sheet);
 

@@ -7,10 +7,11 @@
 @import './variables';
 
 /// @access private
-/// @param {String} theme-name - The name of the theme to extract from the theme-map.
+/// @param {String} theme-name - The name of the theme to extract from the
+/// theme-map.
 /// @param {Map} theme-map - The map containing the theme values.
-/// @param {String} theme-group - The group/package that the theme exists in. This should
-///   be one of the react-md packages.
+/// @param {String} theme-group - The group/package that the theme exists in.
+/// This should be one of the react-md packages.
 /// @return {Color|String|Number} The value from the theme map.
 @function rmd-theme-get-var-value($theme-name, $theme-map, $theme-group) {
   @if type-of($theme-name) == 'color' or $theme-name == 'currentColor' {
@@ -20,9 +21,10 @@
   @return rmd-utils-validate($theme-map, $theme-name, '#{$theme-group} property');
 }
 
-/// This function is used behind the scenes of react-md to help get css variables from different
-/// packages with some built in validation. This is generally used to create the helper function
-/// within each package to get the css var string.
+/// This function is used behind the scenes of react-md to help get css
+/// variables from different packages with some built in validation. This is
+/// generally used to create the helper function within each package to get the
+/// css var string.
 ///
 /// @example scss - Example Usage SCSS
 ///   $rmd-example-theme-values: (
@@ -39,13 +41,15 @@
 ///   }
 ///
 /// @access private
-/// @param {String} theme-name - The name of the theme to extract from the theme-map.
+/// @param {String} theme-name - The name of the theme to extract from the
+/// theme-map.
 /// @param {Map} theme-map - The map containing the theme values.
-/// @param {String} theme-group - The group/package that the theme exists in. This should
-///   be one of the react-md packages.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use for css variables
-///   if the theme variable has not been defined somehow. When this is set to `null`, it will
-///   automatically use the value from the `theme-map` instead.
+/// @param {String} theme-group - The group/package that the theme exists in.
+/// This should be one of the react-md packages.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use for
+/// css variables if the theme variable has not been defined somehow. When this
+/// is set to `null`, it will automatically use the value from the `theme-map`
+/// instead.
 /// @return {String} a css var string to apply to a css property.
 @function rmd-theme-get-var($theme-name, $theme-map, $theme-group, $fallback: null) {
   $validated-fallback: rmd-theme-get-var-value($theme-name, $theme-map, $theme-group);

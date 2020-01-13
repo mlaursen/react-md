@@ -193,8 +193,7 @@
   }
 }
 
-/// A simple mixin that applies placeholder styles to an input/textarea
-/// element.
+/// A simple mixin that applies placeholder styles to an input/textarea element.
 @mixin rmd-text-field-placeholder {
   &::-webkit-input-placeholder {
     @content;
@@ -217,8 +216,8 @@
   }
 }
 
-/// Creates the base styles for a text field so that it gains the
-/// correct typography and a few different colors based on its state.
+/// Creates the base styles for a text field so that it gains the correct
+/// typography and a few different colors based on its state.
 @mixin rmd-text-field-base {
   @include rmd-typography(body-1, font-size);
   @include rmd-utils-hide-focus-outline;
@@ -322,9 +321,9 @@
   }
 
   &--cursor:hover {
-    // need to add this cursor back since the textarea container adds padding to itself
-    // instead of the textarea so it loses this cursor. the container element will still
-    // focus the textarea when clicked
+    // need to add this cursor back since the textarea container adds padding to
+    // itself instead of the textarea so it loses this cursor. the container
+    // element will still focus the textarea when clicked
     cursor: text;
   }
 
@@ -415,7 +414,8 @@
 
   .rmd-password {
     &--offset {
-      // don't want any padding since the input will gain the button margin instead
+      // don't want any padding since the input will gain the button margin
+      // instead
       @include rmd-form-theme-update-var(text-padding-right, 0);
     }
 

@@ -10,7 +10,7 @@
 /// @type String
 $rmd-layout-main-focus-shadow: $rmd-states-focus-shadow !default;
 
-/// The z-index to use for the `<main>` element when it is keyboard focused. This
-/// z-index is just used so that it should appear over all elements.
+/// The z-index to use for the `<main>` element when it is keyboard focused.
+/// This z-index is just used so that it should appear over all elements.
 /// @type Number
 $rmd-layout-main-focus-z-index: 999 !default;

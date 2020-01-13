@@ -5,13 +5,15 @@
 @import '~@react-md/typography/dist/variables';
 @import 'mixins';
 
-/// Creates the font face for material icons. This takes either a font url prefix string or a map of urls for each required
-/// font file. If you are using create-react-app, you **must** use the Map version so the fonts can be
+/// Creates the font face for material icons. This takes either a font url
+/// prefix string or a map of urls for each required font file. If you are using
+/// create-react-app, you **must** use the Map version so the fonts can be
 /// correctly included by the build process.
 ///
 /// @example scss - create-react-app Example Usage
-///   // This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
-///   // `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
+///   // This is going to assume you have downloaded the material-icons zip with
+///   // all the icon font files and copied it into `src/fonts/material-icons`
+///   // and you are including the fonts in `src/index.scss`
 ///   @include rmd-icon-material-icons-font-face((
 ///     woff2: url(./fonts/material-icons/MaterialIcons-Regular.woff2),
 ///     woff: url(./fonts/material-icons/MaterialIcons-Regular.woff),
@@ -22,11 +24,14 @@
 ///   $local-font-url: '/fonts/material-icons';
 ///   @include rmd-icon-material-icons-font-face($local-font-url);
 ///
-/// @param {Map|String} font-url-or-map ['/fonts/material-icons'] - This is either a font url prefix for the folder
-///   that is "hosting" the material icons or a Map of direct urls for the eot, woff2, woff, and truetype material icon fonts.
-/// @param {Boolean} old-ie-support [false] - Boolean if there should be a fallback for IE6-8 by including a url to
-///   the eot font. If this is set to true and using the Map version of `$font-url-or-map`, you must also include a url
-///   to the eot font.
+/// @param {Map|String} font-url-or-map ['/fonts/material-icons'] - This is
+/// either a font url prefix for the folder that is "hosting" the material icons
+/// or a Map of direct urls for the eot, woff2, woff, and truetype material icon
+/// fonts.
+/// @param {Boolean} old-ie-support [false] - Boolean if there should be a
+/// fallback for IE6-8 by including a url to the eot font. If this is set to
+/// true and using the Map version of `$font-url-or-map`, you must also include
+/// a url to the eot font.
 @mixin rmd-icon-material-icons-font-face(
   $font-url-or-map: '/fonts/material-icons',
   $old-ie-support: false
@@ -81,12 +86,13 @@
   }
 }
 
-/// Creates the material-icons css class if hosting material icons locally instead of using the
-/// Google fonts service. By default, this will not include the font-size size you _should_ be using
-/// the `FontIcon` component from react-md which adds the correct font-size.
+/// Creates the material-icons css class if hosting material icons locally
+/// instead of using the Google fonts service. By default, this will not include
+/// the font-size size you _should_ be using the `FontIcon` component from
+/// react-md which adds the correct font-size.
 ///
-/// @param {Boolean} include-font-size [false] - Boolean if the material icons class name should include
-///   the default icon font size.
+/// @param {Boolean} include-font-size [false] - Boolean if the material icons
+/// class name should include the default icon font size.
 @mixin rmd-icon-material-icons-class($include-font-size: false) {
   .material-icons {
     // sass-lint:disable-block property-sort-order,no-vendor-prefixes
@@ -115,14 +121,16 @@
   }
 }
 
-/// Creates both the font face and css class for material icons when hosting the fonts locally instead of using
-/// the Google fonts service.  This takes either a font url prefix string or a map of urls for each required
-/// font file. If you are using create-react-app, you **must** use the Map version so the fonts can be
-/// correctly included by the build process.
+/// Creates both the font face and css class for material icons when hosting the
+/// fonts locally instead of using the Google fonts service.  This takes either
+/// a font url prefix string or a map of urls for each required font file. If
+/// you are using create-react-app, you **must** use the Map version so the
+/// fonts can be correctly included by the build process.
 ///
 /// @example scss - create-react-app Example Usage
-///   // This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
-///   // `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
+///   // This is going to assume you have downloaded the material-icons zip with
+///   // all the icon font files and copied it into `src/fonts/material-icons`
+///   // and you are including the fonts in `src/index.scss`
 ///   @include rmd-icon-material-icons-font-face((
 ///     woff2: url(./fonts/material-icons/MaterialIcons-Regular.woff2),
 ///     woff: url(./fonts/material-icons/MaterialIcons-Regular.woff),
@@ -133,13 +141,16 @@
 ///   $local-font-url: '/fonts/material-icons';
 ///   @include rmd-icon-material-icons-font-face($local-font-url);
 ///
-/// @param {Map|String} font-url-or-map ['/fonts/material-icons'] - This is either a font url prefix for the folder
-///   that is "hosting" the material icons or a Map of direct urls for the eot, woff2, woff, and truetype material icon fonts.
-/// @param {Boolean} include-font-size [false] - Boolean if the material icons class name should include
-///   the default icon font size.
-/// @param {Boolean} old-ie-support [false] - Boolean if there should be a fallback for IE6-8 by including a url to
-///   the eot font. If this is set to true and using the Map version of `$font-url-or-map`, you must also include a url
-///   to the eot font.
+/// @param {Map|String} font-url-or-map ['/fonts/material-icons'] - This is
+/// either a font url prefix for the folder that is "hosting" the material icons
+/// or a Map of direct urls for the eot, woff2, woff, and truetype material icon
+/// fonts.
+/// @param {Boolean} include-font-size [false] - Boolean if the material icons
+/// class name should include the default icon font size.
+/// @param {Boolean} old-ie-support [false] - Boolean if there should be a
+/// fallback for IE6-8 by including a url to the eot font. If this is set to
+/// true and using the Map version of `$font-url-or-map`, you must also include
+/// a url to the eot font.
 @mixin rmd-icon-host-material-icons(
   $font-url-or-map: '/fonts/material-icons',
   $include-font-size: false,

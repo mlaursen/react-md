@@ -9,14 +9,17 @@
 @import './variables';
 @import './functions';
 
-/// Creates the styles for one of the tree's theme values. This is mostly
-/// going to be an internal helper mixin util.
+/// Creates the styles for one of the tree's theme values. This is mostly going
+/// to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-tree-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-tree-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-tree-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-tree-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-tree-theme-values` to
+/// extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-tree-theme-values` map when
+/// `null`.
 @mixin rmd-tree-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-tree-theme-values, tree);
 }
@@ -24,20 +27,26 @@
 /// Updates one of the tree's theme variables with the new value for the section
 /// of your app.
 ///
-/// @param {String} theme-style - The tree theme style type to update. This should be one
-///   of the `$rmd-tree-theme-values` keys.
+/// @param {String} theme-style - The tree theme style type to update. This
+/// should be one of the `$rmd-tree-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-tree-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-tree-theme-values, tree);
 }
 
-/// Creates the styles for all the depths from the provided min and max values for a tree.
+/// Creates the styles for all the depths from the provided min and max values
+/// for a tree.
 ///
-/// @param {String} selector-prefix [''] - An optional prefix to apply before the `aria-level` selector.
-/// @param {Number} min [1] - The min level to use. This needs to be a number greater than 0.
-/// @param {Number} max [rmd-tree-max-depth] - The max number of levels to create styles for.
-/// @param {Number} incrementor [rmd-tree-item-padding-incrementor] - The amount of padding to be used for each level of depth.
-/// @param {Number} base [rmd-tree-item-padding-base] - The base amount of padding that should be added to a tree item.
+/// @param {String} selector-prefix [''] - An optional prefix to apply before
+/// the `aria-level` selector.
+/// @param {Number} min [1] - The min level to use. This needs to be a number
+/// greater than 0.
+/// @param {Number} max [rmd-tree-max-depth] - The max number of levels to
+/// create styles for.
+/// @param {Number} incrementor [rmd-tree-item-padding-incrementor] - The amount
+/// of padding to be used for each level of depth.
+/// @param {Number} base [rmd-tree-item-padding-base] - The base amount of
+/// padding that should be added to a tree item.
 @mixin rmd-tree-depths(
   $selector-prefix: '',
   $min: 1,
@@ -61,8 +70,9 @@
   }
 }
 
-/// Creates styles to add additional padding to tree items based on depth. This will only work
-/// if you correctly apply the `aria-level` attributes to the list items.
+/// Creates styles to add additional padding to tree items based on depth. This
+/// will only work if you correctly apply the `aria-level` attributes to the
+/// list items.
 ///
 /// The formula used for creating padding is:
 /// ```scss
@@ -70,9 +80,12 @@
 /// ```
 ///
 /// @param {Number} depth - The depth to create styles for.
-/// @param {String} selector-prefix [''] - An optional selector prefix to add before the `aria-level`.
-/// @param {Number} incrementor [rmd-tree-item-padding-incrementor] - The amount of padding to be used for each level of depth.
-/// @param {Number} base [rmd-tree-item-padding-base] - The base amount of padding that should be added to a tree item.
+/// @param {String} selector-prefix [''] - An optional selector prefix to add
+/// before the `aria-level`.
+/// @param {Number} incrementor [rmd-tree-item-padding-incrementor] - The amount
+/// of padding to be used for each level of depth.
+/// @param {Number} base [rmd-tree-item-padding-base] - The base amount of
+/// padding that should be added to a tree item.
 @mixin rmd-tree-item-at-depth(
   $depth,
   $selector-prefix: '',
@@ -97,8 +110,9 @@
   width: 100%;
 }
 
-/// Creates the styles for a tree item. This really requires the `@react-md/list` styles to be created
-/// beforehand since these styles just prevent the outline when focused to work with the `@react-md/states`
+/// Creates the styles for a tree item. This really requires the
+/// `@react-md/list` styles to be created beforehand since these styles just
+/// prevent the outline when focused to work with the `@react-md/states`
 /// package.
 ///
 /// @example scss - Example Usage SCSS

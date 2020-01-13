@@ -2,7 +2,8 @@
 /// @group elevation
 ////
 
-// This is copied directly from https://github.com/material-components/material-components-web/blob/1f5fd1f76117ae884113c6e5f8b7a094f5f50c45/packages/mdc-elevation/_variables.scss
+// This is copied directly from
+// https://github.com/material-components/material-components-web/blob/1f5fd1f76117ae884113c6e5f8b7a094f5f50c45/packages/mdc-elevation/_variables.scss
 // since I have no idea how shadows work.
 
 @import '~@react-md/theme/dist/color-palette';
@@ -26,8 +27,8 @@ $rmd-elevation-shadow-2-opacity: 0.14;
 /// @see rmd-elevation-shadow-3-map
 $rmd-elevation-shadow-3-opacity: 0.12;
 
-/// A Map of the first layer of box-shadows to apply for elevation.
-/// This is a map of numbers from 0 -> 24.
+/// A Map of the first layer of box-shadows to apply for elevation. This is a
+/// map of numbers from 0 -> 24.
 /// @type Map
 $rmd-elevation-shadow-1-map: (
   0: '0px 0px 0px 0px',
@@ -57,8 +58,8 @@ $rmd-elevation-shadow-1-map: (
   24: '0px 11px 15px -7px',
 );
 
-/// A Map of the second layer of box-shadows to apply for elevation.
-/// This is a map of numbers from 0 -> 24.
+/// A Map of the second layer of box-shadows to apply for elevation. This is a
+/// map of numbers from 0 -> 24.
 /// @type Map
 $rmd-elevation-shadow-2-map: (
   0: '0px 0px 0px 0px',
@@ -88,8 +89,8 @@ $rmd-elevation-shadow-2-map: (
   24: '0px 24px 38px 3px',
 );
 
-/// A Map of the third layer of box-shadows to apply for elevation.
-/// This is a map of numbers from 0 -> 24.
+/// A Map of the third layer of box-shadows to apply for elevation.  This is a
+/// map of numbers from 0 -> 24.
 /// @type Map
 $rmd-elevation-shadow-3-map: (
   0: '0px 0px 0px 0px',

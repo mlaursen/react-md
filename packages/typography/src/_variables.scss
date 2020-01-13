@@ -2,12 +2,13 @@
 /// @group typography
 ////
 
-/// Gets the global variable value for a provided typography style name. This assumes that the global variable
-/// exists already.
+/// Gets the global variable value for a provided typography style name. This
+/// assumes that the global variable exists already.
 ///
 /// @access private
 /// @param {String} style - The typography style name to return a variable for
-/// @return {Map} a map of the style properties from the global typography variable.
+/// @return {Map} a map of the style properties from the global typography
+/// variable.
 @function rmd-typography-get-global-variable($style) {
   @if $style == 'headline-1' {
     @return $rmd-typography-styles-headline-1;
@@ -40,7 +41,8 @@
   @return ();
 }
 
-/// A utility function to help merge typography styles together with global definition overrides.
+/// A utility function to help merge typography styles together with global
+/// definition overrides.
 ///
 /// @access private
 /// @param {Map} base-styles - The base styles to merge with
@@ -60,7 +62,8 @@
   @return $additional-styles;
 }
 
-/// A small utility function to get the letter spacing based on tracking and font-size
+/// A small utility function to get the letter spacing based on tracking and
+/// font-size
 ///
 /// @access private
 /// @param {Number} tracking - The tracking to use
@@ -78,11 +81,13 @@ $rmd-typography-font-family: Roboto, sans-serif !default;
 /// @type Number
 $rmd-typography-mobile-max-line-length: 17em !default;
 
-/// The max length a line of text can be on larger screens (mostly desktops or landscape tablets).
+/// The max length a line of text can be on larger screens (mostly desktops or
+/// landscape tablets).
 /// @type Number
 $rmd-typography-desktop-max-line-length: 40em !default;
 
-/// The device width that should be used to swap between the mobile and desktop text container widths.
+/// The device width that should be used to swap between the mobile and desktop
+/// text container widths.
 /// @type Number
 $rmd-typography-text-container-breakpoint: 37.5rem !default;
 
@@ -142,17 +147,18 @@ $rmd-typography-font-weights: (
   black: $rmd-typography-black,
 ) !default;
 
-/// A list of the "default" font weights that are normally included within an app.
-/// This is really only used for hosting fonts on your own server.
+/// A list of the "default" font weights that are normally included within an
+/// app.  This is really only used for hosting fonts on your own server.
 ///
-/// Each value in this should be one of the keys in `$rmd-typography-font-weights`.
+/// Each value in this should be one of the keys in
+/// `$rmd-typography-font-weights`.
 ///
 /// @type List
 $rmd-typography-default-font-weights: light regular medium bold !default;
 
-/// A map of colors that should be added for the `Text` component. If you aren't going
-/// to use the `color` prop on the `Text` component, set this value to an empty map
-/// to reduce your bundle size by a slight amount.
+/// A map of colors that should be added for the `Text` component. If you aren't
+/// going to use the `color` prop on the `Text` component, set this value to an
+/// empty map to reduce your bundle size by a slight amount.
 /// @type Map
 $rmd-typography-colors: (
   secondary: text-secondary-on-background,
@@ -163,20 +169,21 @@ $rmd-typography-colors: (
   theme-error: error,
 ) !default;
 
-/// A list of `text-align` styles to generate. If you don't want the helper classes for
-/// text alignment, set this to an empty list to reduce your bundle size by a slight
-/// amount.
+/// A list of `text-align` styles to generate. If you don't want the helper
+/// classes for text alignment, set this to an empty list to reduce your bundle
+/// size by a slight amount.
 /// @type List
 $rmd-typography-alignments: left center right !default;
 
-/// A list of `text-decoration` to apply. If you don't want the helper classes for text
-/// decoration, set this to an empty list to reduce your bundle size by a slight amount.
+/// A list of `text-decoration` to apply. If you don't want the helper classes
+/// for text decoration, set this to an empty list to reduce your bundle size by
+/// a slight amount.
 /// @type List
 $rmd-typography-decorations: underline overline line-through !default;
 
-/// A list of `text-transform` to apply. If you don't want the helper classes for text
-/// transformation, set this to an empty list to reduce your bundle size by a slight
-/// amount.
+/// A list of `text-transform` to apply. If you don't want the helper classes
+/// for text transformation, set this to an empty list to reduce your bundle
+/// size by a slight amount.
 /// @type List
 $rmd-typography-transforms: capitalize uppercase lowercase !default;
 
@@ -326,9 +333,9 @@ $rmd-typography-styles: rmd-typography-set-styles(
   )
 );
 
-/// A Map of all the "themeable" parts of the typography package. Every key in this map will
-/// be used to create a css variable to dynamically update the values of the icon as
-/// needed.
+/// A Map of all the "themeable" parts of the typography package. Every key in
+/// this map will be used to create a css variable to dynamically update the
+/// values of the icon as needed.
 /// @type Map
 $rmd-typography-theme-values: (
   line-width: $rmd-typography-desktop-max-line-length,

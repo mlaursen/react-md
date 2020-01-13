@@ -1,0 +1,81 @@
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/table/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/sheet/dist/mixins';
+
+.interacting-table-shadow {
+  @include rmd-app-bar-theme(top, height);
+  @include rmd-transition(standard);
+  @include rmd-elevation(8);
+  @include rmd-sheet-theme(left, static-width);
+
+  @include rmd-utils-rtl {
+    @include rmd-sheet-theme(right, static-width);
+
+    left: 0;
+  }
+
+  // display: block;
+  height: $rmd-table-header-cell-height;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  // position: sticky;
+  // top: calc(#{rmd-app-bar-theme-var(height)} + #{$rmd-table-header-cell-height + 0.125rem});
+  transition: opacity $rmd-transition-standard-time;
+  z-index: 1;
+
+  &--visible {
+    opacity: 1;
+  }
+}
+
+.interacting-table {
+  @include rmd-table-theme-update-var(sticky-header, rmd-app-bar-theme-var(height));
+  @include rmd-table-theme-update-var(sticky-cell, rmd-sheet-theme-var(static-width));
+
+  // th {
+  // box-shadow: 2px 4px 4px -2px rgba($rmd-black-base, 0.22);
+  // &::after {
+  //   box-shadow: 0 0 0 4px rgba($rmd-black-base, 0.12);
+  //   content: '';
+  //   display: block;
+  //   height: 1rem;
+
+  //   position: sticky;
+  //   top: inherit;
+  // }
+  // background: linear-gradient(white 30%, hsla(0, 0%, 100%, 0)),
+  //   linear-gradient(hsla(0, 0%, 100%, 0) 10px, white 70%) bottom,
+  //   radial-gradient(at top, rgba(0, 0, 0, 0.2), transparent 70%),
+  //   radial-gradient(at bottom, rgba(0, 0, 0, 0.2), transparent 70%) bottom;
+  // background-repeat: no-repeat;
+  // background-size: 100% 20px, 100% 20px, 100% 10px, 100% 10px;
+  // background-attachment: local, local, scroll, scroll;
+  // @include rmd-elevation(12, $sides: bottom);
+  // @include rmd-elevation(12);
+
+  // &::after {
+  //   @include rmd-elevation(12);
+
+  //   bottom: 0;
+  //   content: '';
+  //   position: absolute;
+  // }
+  // box-shadow: #{map-get($rmd-elevation-shadow-1-map, 12)} rgba($rmd-black-base, $rmd-elevation-shadow-1-opacity);
+  // $shadow-1: map-get($rmd-elevation-shadow-1-map, 12);
+  // $shadow-2: map-get($rmd-elevation-shadow-2-map, 12);
+  // $shadow-3: map-get($rmd-elevation-shadow-3-map, 12);
+
+  // // @debug 'type-of: #{type-of($shadow-1)}';
+  // @debug 'here: #{str-split($shadow-1, " ")}';
+  // $shadow-1-split: str-split($shadow-1, ' ');
+
+  // box-shadow: unquote(nth($shadow-1-split, 1)) unquote(nth($shadow-1-split, 2))
+  //   unquote(nth($shadow-1-split, 3)) -#{nth($shadow-1-split, 3)} rgba($rmd-black-base, 0.22);
+  // box-shadow: 0 5px 5px -5px rgba($rmd-black-base, 0.2),
+  //   0 8px 10px -10px rgba($rmd-black-base, 0.14), 0 3px 16px -16px rgba($rmd-black-base, 0.12);
+  // }
+}

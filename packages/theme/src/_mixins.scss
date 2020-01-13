@@ -22,16 +22,16 @@
 ///     @include rmd-theme(color, primary);
 ///   }
 ///
-/// @param {String} property - This is normally `color` or `background-color`, but any valid CSS property that accepts
-///   color values can be used.
-/// @param {String} theme-style - The type of theme style to use. This should be one of the `$rmd-theme-values` or a literal
-///   color value.
+/// @param {String} property - This is normally `color` or `background-color`,
+/// but any valid CSS property that accepts color values can be used.
+/// @param {String} theme-style - The type of theme style to use. This should be
+/// one of the `$rmd-theme-values` or a literal color value.
 @mixin rmd-theme($property, $theme-style) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-theme-values, theme);
 }
 
-/// This is an extremely simple mixin that will allow you to quickly set or update the value of a theme css variable
-/// with the new provided value.
+/// This is an extremely simple mixin that will allow you to quickly set or
+/// update the value of a theme css variable with the new provided value.
 ///
 /// @example scss - Example Usage SCSS
 ///   $rmd-theme-primary: $rmd-blue-500;
@@ -43,17 +43,18 @@
 ///     @include rmd-theme-update-var(secondary, $rmd-brown-700);
 ///   }
 ///
-/// @param {String} theme-style - The react-md theme style to update. This should be one of the keys of
-///     `$rmd-theme-values` map.
+/// @param {String} theme-style - The react-md theme style to update. This
+/// should be one of the keys of `$rmd-theme-values` map.
 /// @param {Color} value - The updated color value to apply.
 @mixin rmd-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-theme-values, theme);
 }
 
-/// This mixin can be used to apply the light theme by updating **every** color theme variable across
-/// all react-md packages.
+/// This mixin can be used to apply the light theme by updating **every** color
+/// theme variable across all react-md packages.
 ///
-/// Note: You'll still need to ensure that all the package's mixins were imported to get this to work.
+/// Note: You'll still need to ensure that all the package's mixins were
+/// imported to get this to work.
 @mixin rmd-theme-light {
   @include rmd-theme-update-var(background, $rmd-theme-light-background);
   @include rmd-theme-update-var(surface, $rmd-theme-light-surface);

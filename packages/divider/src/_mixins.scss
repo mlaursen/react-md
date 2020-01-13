@@ -10,30 +10,33 @@
 /// Creates the styles for one of the divider's theme values. This is mostly
 /// going to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-divider-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-divider-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-divider-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-divider-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-divider-theme-values`
+/// to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-divider-theme-values` map when
+/// `null`.
 @mixin rmd-divider-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-divider-theme-values, divider);
 }
 
-/// Updates one of the divider's theme variables with the new value for the section
-/// of your app.
+/// Updates one of the divider's theme variables with the new value for the
+/// section of your app.
 ///
-/// @param {String} theme-style - The divider theme style type to update. This should be one
-///   of the `$rmd-divider-theme-values` keys.
+/// @param {String} theme-style - The divider theme style type to update. This
+/// should be one of the `$rmd-divider-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-divider-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-divider-theme-values, divider);
 }
 
-/// This mixin allows you to add a custom border to any element if you don't want
-/// to add an extra element within your page for a divider.
+/// This mixin allows you to add a custom border to any element if you don't
+/// want to add an extra element within your page for a divider.
 ///
-/// @param {String} position - The border position to use. This should be one of `top`, `right`,
-///   `bottom`, or `left`
+/// @param {String} position - The border position to use. This should be one of
+/// `top`, `right`, `bottom`, or `left`
 @mixin rmd-divider-border($position) {
   @include rmd-divider-theme(border-color, background-color);
   @include rmd-divider-theme(border-width, size);
@@ -42,7 +45,8 @@
   border-#{$position}-style: solid;
 }
 
-/// Creates all the styles for the divider package as well as the root css variable theme.
+/// Creates all the styles for the divider package as well as the root css
+/// variable theme.
 @mixin react-md-divider {
   @include rmd-theme-create-root-theme($rmd-divider-theme-values, divider);
 

@@ -10,20 +10,23 @@
 /// Creates the styles for one of the avatar's theme values. This is mostly
 /// going to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-avatar-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-avatar-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-avatar-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-avatar-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-avatar-theme-values`
+/// to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-avatar-theme-values` map when
+/// `null`.
 @mixin rmd-avatar-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-avatar-theme-values, avatar);
 }
 
-/// Updates one of the avatar's theme variables with the new value for the section
-/// of your app.
+/// Updates one of the avatar's theme variables with the new value for the
+/// section of your app.
 ///
-/// @param {String} theme-style - The avatar theme style type to update. This should be one
-///   of the `$rmd-avatar-theme-values` keys.
+/// @param {String} theme-style - The avatar theme style type to update. This
+/// should be one of the `$rmd-avatar-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-avatar-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-avatar-theme-values, avatar);
@@ -47,12 +50,12 @@
   @include rmd-avatar-theme-update-var(color, $color);
 }
 
-/// A mixin for creating the avatar color suffix class names from a color map. It is
-/// not recommended to use this mixin for creating additional colors. Instead use the
-/// `rmd-avatar-color` mixin with custom class names instead.
+/// A mixin for creating the avatar color suffix class names from a color map.
+/// It is not recommended to use this mixin for creating additional colors.
+/// Instead use the `rmd-avatar-color` mixin with custom class names instead.
 ///
-/// @param {Map} color-map [rmd-avatar-colors] a map of color name suffixes and a list
-/// of the background-color and color to apply
+/// @param {Map} color-map [rmd-avatar-colors] a map of color name suffixes and
+/// a list of the background-color and color to apply
 @mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) {
   @each $color-name, $values in $color-map {
     @if length($values) != 2 {
@@ -65,7 +68,8 @@
   }
 }
 
-/// Creates all the styles for the avatar package as well as the root css variable theme.
+/// Creates all the styles for the avatar package as well as the root css
+/// variable theme.
 @mixin react-md-avatar {
   @include rmd-theme-create-root-theme($rmd-avatar-theme-values, avatar);
 

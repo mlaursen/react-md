@@ -5,8 +5,8 @@
 @import '~@react-md/typography/dist/functions';
 @import '~@react-md/theme/dist/variables';
 
-/// The default background color for an avatar. This will be used until
-/// the `color` prop is provided to the `Avatar` component.
+/// The default background color for an avatar. This will be used until the
+/// `color` prop is provided to the `Avatar` component.
 ///
 /// @see rmd-avatar-colors
 /// @type Color
@@ -23,8 +23,8 @@ $rmd-avatar-border-color: rgba(
 /// @type Number
 $rmd-avatar-border-radius: 50% !default;
 
-/// The default text color for the avatar. This will be used until the
-/// `color` prop is provided to the `Avatar` component.
+/// The default text color for the avatar. This will be used until the `color`
+/// prop is provided to the `Avatar` component.
 /// @type Color
 $rmd-avatar-color: $rmd-grey-100 !default;
 
@@ -41,9 +41,9 @@ $rmd-avatar-font-size: 1.5rem !default;
 /// @type Number
 $rmd-avatar-line-height: rmd-typography-value(subtitle-1, line-height) !default;
 
-/// A Map of all the available colors for the avatar. This map can be
-/// updated with new values if the defaults are not to your liking, but
-/// it is recommended to create your own themes instead.
+/// A Map of all the available colors for the avatar. This map can be updated
+/// with new values if the defaults are not to your liking, but it is
+/// recommended to create your own themes instead.
 ///
 /// @type Map
 $rmd-avatar-colors: (
@@ -68,9 +68,9 @@ $rmd-avatar-colors: (
   blue-grey: $rmd-blue-grey-700 $rmd-blue-grey-50,
 ) !default;
 
-/// A Map of all the "themeable" parts of the avatar package. Every key in this map will
-/// be used to create a css variable to dynamically update the values of the icon as
-/// needed.
+/// A Map of all the "themeable" parts of the avatar package. Every key in this
+/// map will be used to create a css variable to dynamically update the values
+/// of the icon as needed.
 /// @type Map
 $rmd-avatar-theme-values: (
   background-color: $rmd-avatar-background-color,

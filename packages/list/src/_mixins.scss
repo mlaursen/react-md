@@ -14,14 +14,17 @@
 @import './variables';
 @import './functions';
 
-/// Creates the styles for one of the list's theme values. This is mostly
-/// going to be an internal helper mixin util.
+/// Creates the styles for one of the list's theme values. This is mostly going
+/// to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-list-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-list-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-list-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-list-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-list-theme-values` to
+/// extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-list-theme-values` map when
+/// `null`.
 @mixin rmd-list-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-list-theme-values, list);
 }
@@ -29,15 +32,15 @@
 /// Updates one of the list's theme variables with the new value for the section
 /// of your app.
 ///
-/// @param {String} theme-style - The list theme style type to update. This should be one
-///   of the `$rmd-list-theme-values` keys.
+/// @param {String} theme-style - The list theme style type to update. This
+/// should be one of the `$rmd-list-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-list-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-list-theme-values, list);
 }
 
-/// A "general" use mixin that will remove the default browser styles for a list and apply the
-/// optionally provided margin and padding instead.
+/// A "general" use mixin that will remove the default browser styles for a list
+/// and apply the optionally provided margin and padding instead.
 ///
 /// @param {String|Number} padding [0] - The amount of padding to apply.
 /// @param {String|Number} margin [0] - The amount of margin to apply.
@@ -47,6 +50,7 @@
   padding: $padding;
 }
 
+/// Updates all the css variables for the list package to use a dense spec.
 @mixin rmd-list-dense-theme {
   @include rmd-list-theme-update-var(font-size, rmd-list-theme-var(dense-font-size));
   @include rmd-list-theme-update-var(vertical-padding, rmd-list-theme-var(dense-vertical-padding));

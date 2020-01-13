@@ -12,14 +12,17 @@
 @import './functions';
 @import './variables';
 
-/// Creates the styles for one of the tabs's theme values. This is mostly
-/// going to be an internal helper mixin util.
+/// Creates the styles for one of the tabs's theme values. This is mostly going
+/// to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-tabs-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-tabs-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-tabs-theme-values` map when `null`.
+/// @param {String} property - The property to set a `rmd-tabs-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-tabs-theme-values` to
+/// extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-tabs-theme-values` map when
+/// `null`.
 @mixin rmd-tabs-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-tabs-theme-values, tabs);
 }
@@ -27,8 +30,8 @@
 /// Updates one of the tabs's theme variables with the new value for the section
 /// of your app.
 ///
-/// @param {String} theme-style - The tabs theme style type to update. This should be one
-///   of the `$rmd-tabs-theme-values` keys.
+/// @param {String} theme-style - The tabs theme style type to update. This
+/// should be one of the `$rmd-tabs-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-tabs-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-tabs-theme-values, tabs);
@@ -36,9 +39,10 @@
 
 /// @access private
 @mixin rmd-tabs {
-  // I can use the -webkit-scrolbar and scrollbar-width stuff due to my limited browser support. Yay!
-  // The scrollbars will be hidden, but still scrollable. For non-MacOS users, you can still get the
-  // normal scroll behavior by holding shift+scroll or use keyboard movement.
+  // I can use the -webkit-scrolbar and scrollbar-width stuff due to my limited
+  // browser support. Yay!  The scrollbars will be hidden, but still scrollable.
+  // For non-MacOS users, you can still get the normal scroll behavior by
+  // holding shift+scroll or use keyboard movement.
   @include rmd-utils-hide-focus-outline;
   @include rmd-utils-scroll(x);
   @include rmd-utils-hide-scrollbar;
@@ -229,7 +233,8 @@
   }
 }
 
-/// Creates all the styles for this package as well as defining all the theme CSS variables.
+/// Creates all the styles for this package as well as defining all the theme
+/// CSS variables.
 @mixin react-md-tabs {
   @include rmd-theme-create-root-theme($rmd-tabs-theme-values, tabs);
 

@@ -29,13 +29,13 @@
 ///
 /// @access private
 /// @param {List|Map} list-or-map - The list or map to validate
-/// @param {Color|String|Number} key-or-value - Either the value to check
-///   for in a list or a Map's key.
-/// @param {String} error-message - The prop name that was being used
-///   for the validation. This is mostly for a more helpful error message
-///   when a developer/user provided the wrong input.
-/// @return {String|Null} - Either the map's value for the provided key or
-///   the provided value for a list when there is no error.
+/// @param {Color|String|Number} key-or-value - Either the value to check for in
+/// a list or a Map's key.
+/// @param {String} error-message - The prop name that was being used for the
+/// validation. This is mostly for a more helpful error message when a
+/// developer/user provided the wrong input.
+/// @return {String|Null} - Either the map's value for the provided key or the
+/// provided value for a list when there is no error.
 @function rmd-utils-validate($list-or-map, $key-or-value, $error-message) {
   $type: type-of($list-or-map);
   $is-map: $type == map;
@@ -57,9 +57,10 @@
   @return if($is-list, $key-or-value, map-get($list-or-map, $key-or-value));
 }
 
-/// A utility function that can swap the position of different css styles. This is useful for
-/// RTL switching.
-/// @param {String} style - The style to swap. This should be one of `$rmd-utils-swappable-positions`.
+/// A utility function that can swap the position of different css styles. This
+/// is useful for RTL switching.
+/// @param {String} style - The style to swap. This should be one of
+/// `$rmd-utils-swappable-positions`.
 /// @return {String} a swapped style attribute string.
 @function rmd-utils-swap-position($style) {
   $prefix: '';
@@ -85,8 +86,8 @@
   @return '#{$prefix}#{$next-position}';
 }
 
-/// This function can be used to negate the value of a css variable. It just really
-/// wraps the variable with `cacl(-1 * #{$variable})`.
+/// This function can be used to negate the value of a css variable. It just
+/// really wraps the variable with `cacl(-1 * #{$variable})`.
 ///
 /// @param {String} css-variable - The css variable string to negate.
 /// @return {String} a calc string that negates a css variable.
