@@ -29,12 +29,10 @@ export default function useKeyboardDetection(): boolean {
       return;
     }
 
-    window.addEventListener("wheel", disable, true);
     window.addEventListener("mousedown", disable, true);
     window.addEventListener("touchstart", disable, true);
 
     return () => {
-      window.removeEventListener("wheel", disable, true);
       window.removeEventListener("mousedown", disable, true);
       window.removeEventListener("touchstart", disable, true);
     };
