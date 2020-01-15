@@ -13,18 +13,14 @@ pre-built css themes and a UMD bundle. If you are interested in seeing what an
 estimated size for this library, check out the results below:
 
 ```sh
-$ yarn workspace react-md build --clean --umd --themes
+$ yarn dev-utils libsize
 
-The gzipped file sizes are:
-- dist/css/react-md.indigo-pink-200-dark.min.css 65 B
-- dist/css/react-md.indigo-pink-200-light.min.css 66 B
-- dist/css/react-md.light_blue-deep_orange-200-light.min.css 74 B
-- dist/css/react-md.light_blue-deep_orange-700-dark.min.css 75 B
-- dist/css/react-md.purple-pink-200-dark.min.css 65 B
-- dist/css/react-md.purple-pink-200-light.min.css 66 B
-- dist/css/react-md.teal-pink-200-dark.min.css 63 B
-- dist/css/react-md.teal-pink-200-light.min.css 64 B
-- dist/umd/react-md.production.min.js 55 B
+The gzipped UMD bundle size is:
+ - dist/umd/react-md.production.min.js 55 B
+
+The min and max gzipped CSS bundle sizes are:
+ - dist/css/react-md.red-lime-100-light.min.css 61 B
+ - dist/css/react-md.deep_orange-blue_grey-100-light.min.css 76 B
 ```
 
 ## What are the supported browsers?

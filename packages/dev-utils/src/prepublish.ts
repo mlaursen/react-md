@@ -1,4 +1,3 @@
-import { execSync } from "child_process";
 import filesize from "filesize";
 import gzipSize from "gzip-size";
 import log from "loglevel";
@@ -7,9 +6,9 @@ import { join } from "path";
 import build from "./build";
 import clean from "./clean";
 import { packagesRoot } from "./constants";
+import libsize from "./libsize";
 import createScssVariables from "./scssVariables";
 import copyStyles from "./utils/copyStyles";
-import createThemes from "./utils/createThemes";
 import glob from "./utils/glob";
 import list from "./utils/list";
 
@@ -78,14 +77,8 @@ export default async function prepublish(
     return;
   }
 
-  log.info("Creating the UMD bundles...");
-  execSync("yarn workspace react-md umd --silent", { stdio: "inherit" });
-  log.info();
-
-  log.info("Creating all the pre-compiled themes...");
-  await createThemes();
-  log.info();
-
-  await umd();
-  await css();
+  await libsize({
+    umd: true,
+    themes: true,
+  });
 }

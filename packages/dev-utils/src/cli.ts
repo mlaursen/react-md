@@ -7,6 +7,7 @@ import build from "./build";
 import clean from "./clean";
 import { DEBUG, SILENT } from "./constants";
 import docConstants from "./docConstants";
+import libsize from "./libsize";
 import prepublish from "./prepublish";
 import readmes from "./readmes";
 import sandbox from "./sandbox";
@@ -117,6 +118,20 @@ createCommand("sandbox [components...]")
       }
     ) => sandbox({ lookupsOnly, components, empty, clean, cleanOnly, staged })
   );
+
+createCommand("libsize")
+  .option(
+    "--no-umd",
+    "Update the command to no longer rebuild the umd bunle automatically."
+  )
+  .option(
+    "--no-themes",
+    "Updates the command to no longer rebuild all the default themes."
+  )
+  .description(
+    "Prints the gzipped size for the entire library based on the UMD bundle and the min/max prebuilt CSS themes."
+  )
+  .action(({ umd = false, themes = false }) => libsize({ umd, themes }));
 
 createCommand("themes")
   .description(
