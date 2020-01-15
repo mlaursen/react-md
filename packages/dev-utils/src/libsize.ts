@@ -77,15 +77,10 @@ async function cssSize(): Promise<void> {
   log.info();
 }
 
-interface LibSizeOptions {
-  umd?: boolean;
-  themes?: boolean;
-}
-
-export default async function libsize({
-  umd = true,
-  themes = true,
-}: LibSizeOptions): Promise<void> {
+export default async function libsize(
+  umd: boolean = true,
+  themes: boolean = true
+): Promise<void> {
   if (umd) {
     createUmd();
   }

@@ -131,7 +131,7 @@ createCommand("libsize")
   .description(
     "Prints the gzipped size for the entire library based on the UMD bundle and the min/max prebuilt CSS themes."
   )
-  .action(({ umd = false, themes = false }) => libsize({ umd, themes }));
+  .action(({ umd = true, themes = true }) => libsize(umd, themes));
 
 createCommand("themes")
   .description(
