@@ -84,8 +84,8 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
   const {
     className,
     forwardedRef,
-    scope,
     grow,
+    scope: propScope,
     hAlign: propHAlign,
     vAlign: propVAlign,
     header: propHeader,
@@ -98,9 +98,9 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
 
   // Note: unlike the other usages of `useTableConfig`, the `propHeader`
   // is not provided. This is so that `TableCheckbox` components can still
-  // be a sticky header without being rendered as a `<th>`
-  const { header, hAlign, vAlign, lineWrap } = useTableConfig({
-    header: propHeader,
+  // be a sticky header without being rendered as a `<th>`. This also makes
+  // it so the scope can be defaulted to `col` or `row` automatically.
+  const { header: inheritedHeader, hAlign, vAlign, lineWrap } = useTableConfig({
     hAlign: propHAlign,
     vAlign: propVAlign,
     lineWrap: propDisableLineWrap,
@@ -109,6 +109,11 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
   const isStickyCell = propSticky === "cell";
   const isStickyHeader = propSticky === "header";
   const isStickyHeaderCell = propSticky === "header-cell";
+  const header = propHeader ?? inheritedHeader;
+  let scope = propScope;
+  if (!scope && header) {
+    scope = !inheritedHeader && propHeader ? "row" : "col";
+  }
 
   const Component = header ? "th" : "td";
   return (
@@ -133,7 +138,7 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
         }),
         className
       )}
-      scope={header ? scope : undefined}
+      scope={scope}
     >
       {children}
     </Component>
