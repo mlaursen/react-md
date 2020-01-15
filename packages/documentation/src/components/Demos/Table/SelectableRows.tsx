@@ -54,8 +54,15 @@ const SelectableRows: FC = () => {
               iron,
             } = dessert;
             const checkboxProps = getProps(name);
+            const { checked, onChange } = checkboxProps;
+
             return (
-              <TableRow key={name} selected={checkboxProps.checked}>
+              <TableRow
+                key={name}
+                clickable
+                selected={checked}
+                onClick={onChange}
+              >
                 <TableCheckbox
                   id={`selectable-rows-checkbox-${i + 1}`}
                   {...checkboxProps}

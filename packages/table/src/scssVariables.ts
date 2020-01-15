@@ -16,8 +16,8 @@ export default {
     "var(--rmd-theme-text-primary-on-background, #212121)",
   "rmd-table-header-sticky-position": 0,
   "rmd-table-row-hover-color": "rgba(0, 0, 0, 0.12)",
-  "rmd-table-row-selected-color": "#42a5f5",
-  "rmd-table-row-selected-hover-color": "#0d89ed",
+  "rmd-table-row-selected-color":
+    "var(--rmd-states-selected-color, rgba(0, 0, 0, 0.16))",
   "rmd-table-footer-sticky-position": 0,
   "rmd-table-checkbox-padding": "0.5rem",
   "rmd-table-theme-values": {
@@ -27,8 +27,7 @@ export default {
     "cell-height": "3.25rem",
     "cell-dense-height": "2rem",
     "hover-color": "rgba(0, 0, 0, 0.12)",
-    "selected-color": "#42a5f5",
-    "selected-hover-color": "#0d89ed",
+    "selected-color": "var(--rmd-states-selected-color, rgba(0, 0, 0, 0.16))",
     "sticky-header": 0,
     "sticky-cell": 0,
     "sticky-footer": 0,

@@ -2,6 +2,7 @@
 /// @group table
 ////
 
+@import '~@react-md/states/dist/functions';
 @import '~@react-md/theme/dist/mixins';
 
 /// The amount of padding to apply to the left and right of each `<td>` and
@@ -109,16 +110,7 @@ $rmd-table-row-hover-color: rgba($rmd-black-base, 0.12) !default;
 /// `<tbody>`.
 ///
 /// @type Color|String
-$rmd-table-row-selected-color: $rmd-blue-400 !default;
-
-/// The background color to use when a row has been selected within the
-/// `<tbody>` and the user is hovering the row while the `hoverable` styles have
-/// been enabled.
-///
-/// If this value is set to `null`, the default row hover color will be used instead.
-///
-/// @type Color|String
-$rmd-table-row-selected-hover-color: darken($rmd-table-row-selected-color, 12%) !default;
+$rmd-table-row-selected-color: rmd-states-theme-var(selected-color) !default;
 
 /// The default position for a sticky footer cell in all tables. If you want to
 /// update the footer position for a specific table, you can just use the
@@ -147,7 +139,6 @@ $rmd-table-theme-values: (
   cell-dense-height: $rmd-table-cell-dense-height,
   hover-color: $rmd-table-row-hover-color,
   selected-color: $rmd-table-row-selected-color,
-  selected-hover-color: $rmd-table-row-selected-hover-color,
   sticky-header: $rmd-table-header-sticky-position,
   sticky-cell: $rmd-table-cell-sticky-position,
   sticky-footer: $rmd-table-footer-sticky-position,

@@ -12,6 +12,12 @@ export interface TableRowProps
    * the selected background-color.
    */
   selected?: boolean;
+
+  /**
+   * Boolean if the row should be clickable and update the cursor while
+   * hovered to be a pointer.
+   */
+  clickable?: boolean;
 }
 
 type WithRef = WithForwardedRef<HTMLTableRowElement>;
@@ -29,6 +35,7 @@ const TableRow: FC<TableRowProps & WithRef> = ({
   disableBorders: propDisableBorders,
   children,
   selected = false,
+  clickable = false,
   ...props
 }) => {
   const { disableHover, disableBorders } = useTableConfig({
@@ -44,6 +51,7 @@ const TableRow: FC<TableRowProps & WithRef> = ({
         block({
           bordered: !disableBorders,
           hoverable: !disableHover,
+          clickable,
           selected,
           "selected-hoverable": selected && !disableHover,
         }),
@@ -71,6 +79,7 @@ if (process.env.NODE_ENV !== "production") {
       disableHover: PropTypes.bool,
       disableBorders: PropTypes.bool,
       selected: PropTypes.bool,
+      clickable: PropTypes.bool,
     };
   }
 }

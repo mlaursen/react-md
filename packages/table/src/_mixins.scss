@@ -195,6 +195,14 @@
 /// Note: The base class actually has no styles.
 /// @access private
 @mixin rmd-table-row {
+  &--selected {
+    @include rmd-table-theme(background-color, selected-color);
+  }
+
+  &--clickable:hover {
+    cursor: pointer;
+  }
+
   &--bordered {
     @include rmd-divider-border(bottom);
 
@@ -203,10 +211,6 @@
     &:last-child {
       border-bottom-width: 0;
     }
-  }
-
-  &--selected {
-    @include rmd-table-theme(background-color, selected-color);
   }
 
   &--hoverable {
@@ -221,16 +225,6 @@
         // see the `.rmd-table-cell--sticky` selector for more info :/
         .rmd-table-cell--sticky-cell::after {
           @include rmd-table-theme(background-color, hover-color);
-        }
-      }
-    }
-  }
-
-  @if $rmd-table-row-selected-hover-color != null {
-    &--selected-hoverable {
-      @include rmd-utils-mouse-only {
-        &:hover {
-          @include rmd-table-theme(background-color, selected-hover-color);
         }
       }
     }
