@@ -7,8 +7,10 @@ import README from "./README.md";
 import DefaultStyles from "./DefaultStyles";
 import defaultStyles from "./DefaultStyles.md";
 
-import DefaultStylesConfigurable from "./DefaultStylesConfigurable";
-import defaultStylesConfigurable from "./DefaultStylesConfigurable.md";
+import {
+  DefaultStylesConfigurable,
+  defaultStylesConfigurable,
+} from "./DefaultStylesConfigurable";
 
 import SelectableRows from "./SelectableRows";
 import selectableRows from "./SelectableRows.md";

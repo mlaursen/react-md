@@ -2,7 +2,11 @@ import React, { FC, forwardRef, TableHTMLAttributes, useMemo } from "react";
 import cn from "classnames";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
-import { TableConfigProvider, TableConfig, TableConfigContext } from "./config";
+import {
+  TableConfigProvider,
+  TableConfiguration,
+  TableConfigContext,
+} from "./config";
 
 /**
  * All the available props for the `Table` component. This allows you to apply
@@ -10,22 +14,7 @@ import { TableConfigProvider, TableConfig, TableConfigContext } from "./config";
  */
 export interface TableProps
   extends TableHTMLAttributes<HTMLTableElement>,
-    TableConfig {
-  /**
-   * Boolean if the table should use the dense spec to reduce the height of each
-   * cell.
-   */
-  dense?: boolean;
-
-  /**
-   * Boolean if the `<table>` element should span the entire width of the
-   * container `<div>` element instead of having its width be determined by the
-   * table's contents.
-   *
-   * Note: There will always be horizontal overflow if the table is too wide.
-   */
-  fullWidth?: boolean;
-}
+    TableConfiguration {}
 
 type WithRef = WithForwardedRef<HTMLTableElement>;
 type DefaultProps = Omit<TableConfigContext, "header"> &

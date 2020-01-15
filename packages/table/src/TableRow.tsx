@@ -2,11 +2,11 @@ import React, { FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { WithForwardedRef, bem } from "@react-md/utils";
 
-import { TableRowConfig, useTableConfig } from "./config";
+import { TableRowConfiguration, useTableConfig } from "./config";
 
 export interface TableRowProps
   extends HTMLAttributes<HTMLTableRowElement>,
-    TableRowConfig {
+    TableRowConfiguration {
   /**
    * Boolean if the current row has been selected and should apply
    * the selected background-color.

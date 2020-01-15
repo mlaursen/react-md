@@ -1,6 +1,10 @@
 import { createContext, useContext } from "react";
 
-export interface TableRowConfig {
+// interfaces that are "public" should be the full word `Configuration`
+// while the private/internal should just be `Config`. "Great" naming
+// convention!
+
+export interface TableRowConfiguration {
   /**
    * Boolean if the rows should no longer applied a different background
    * color when hovered.
@@ -14,24 +18,16 @@ export interface TableRowConfig {
   disableBorders?: boolean;
 }
 
-export interface TableCellConfig {
-  /**
-   * Boolean if all the `TableCell` components should be rendered as a `<th>`
-   * instead of a `<td>`. This is really just a convenience prop for the
-   * `TableHeader` component so the user of `react-md` doesn't need to keep
-   * setting the `type="th"` fot the `TableCell` if using the low-level
-   * components.
-   *
-   * @private
-   */
-  header?: boolean;
+export type TableCellHorizontalAlignment = "left" | "center" | "right";
+export type TableCellVerticalAlignment = "top" | "middle" | "bottom";
 
+export interface TableCellConfiguration {
   /**
    * The horizontal alignment for the content within a cell.
    *
    * Note: Table default behavior is to align to the left.
    */
-  hAlign?: "left" | "center" | "right";
+  hAlign?: TableCellHorizontalAlignment;
 
   /**
    * The vertical alignment for the content within a cell.
@@ -41,7 +37,7 @@ export interface TableCellConfig {
    * padding can be configured with the `$rmd-table-cell-vertical-padding` or
    * `$rmd-table-cell-vertical-alignments` variables.
    */
-  vAlign?: "top" | "middle" | "bottom";
+  vAlign?: TableCellVerticalAlignment;
 
   /**
    * Boolean if the `<td>` and `<th>` cells should support line wrapping. This
@@ -55,14 +51,44 @@ export interface TableCellConfig {
 }
 
 /**
- * The configurable parts for the `<thead>`, `<tbody>`, and `<tfooter>`
- * elements.
- *
+ * This is the public table configuration that can be used.
+ */
+export interface TableConfiguration
+  extends TableRowConfiguration,
+    TableCellConfiguration {
+  /**
+   * Boolean if the table should use the dense spec to reduce the height of each
+   * cell.
+   */
+  dense?: boolean;
+
+  /**
+   * Boolean if the `<table>` element should span the entire width of the
+   * container `<div>` element instead of having its width be determined by the
+   * table's contents.
+   *
+   * Note: There will always be horizontal overflow if the table is too wide.
+   */
+  fullWidth?: boolean;
+}
+
+/**
  * @private
  */
-export type TableSectionConfig = Omit<TableConfig, "header">;
-export interface TableConfig extends TableRowConfig, TableCellConfig {}
+export interface TableCellConfig extends TableCellConfiguration {
+  /**
+   * Boolean if all the `TableCell` components should be rendered as a `<th>`
+   * instead of a `<td>`. This is really just a convenience prop for the
+   * `TableHeader` component so the user of `react-md` doesn't need to keep
+   * setting the `type="th"` fot the `TableCell` if using the low-level
+   * components.
+   *
+   * @private
+   */
+  header?: boolean;
+}
 
+export interface TableConfig extends TableRowConfiguration, TableCellConfig {}
 export type TableConfigContext = Required<TableConfig>;
 
 const context = createContext<TableConfigContext>({

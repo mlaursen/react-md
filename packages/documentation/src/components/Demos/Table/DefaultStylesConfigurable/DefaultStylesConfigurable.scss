@@ -1,0 +1,23 @@
+@import '~@react-md/utils/dist/mixins';
+
+.default-styles-configurable {
+  &__right-opts {
+    @include rmd-utils-large-desktop-media {
+      margin-top: 2rem;
+    }
+
+    align-self: flex-start;
+  }
+
+  &__container {
+    max-height: 30rem;
+  }
+
+  &__table {
+    margin-top: 2rem;
+  }
+
+  &__cell:nth-child(2) {
+    max-width: 10rem;
+  }
+}
