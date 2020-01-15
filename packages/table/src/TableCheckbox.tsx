@@ -87,6 +87,7 @@ const TableCheckbox: FC<TableCheckboxProps & WithRef> = ({
   id,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
+  "aria-checked": ariaChecked,
   "aria-controls": ariaControls,
   checkboxRef,
   checkboxStyle,
@@ -115,6 +116,7 @@ const TableCheckbox: FC<TableCheckboxProps & WithRef> = ({
         id={id}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
+        aria-checked={ariaChecked}
         aria-controls={ariaControls}
         ref={checkboxRef}
         style={checkboxStyle}
@@ -152,6 +154,7 @@ if (process.env.NODE_ENV !== "production") {
       className: PropTypes.string,
       "aria-label": PropTypes.string,
       "aria-labelledby": PropTypes.string,
+      "aria-checked": PropTypes.string,
       "aria-controls": PropTypes.string,
       checkboxRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       checkboxStyle: PropTypes.object,
