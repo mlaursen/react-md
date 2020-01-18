@@ -51,7 +51,10 @@ const Demo: FC<DemoProps> = props => {
   } = props as WithDefaultProps;
 
   const title = toTitle(packageName, "");
-  let fileName = `${GITHUB_DEMO_URL}/${title}/${name.replace(/ /g, "")}`;
+  let fileName = `${GITHUB_DEMO_URL}/${title}/${name.replace(
+    / |-|\(|\)/g,
+    ""
+  )}`;
 
   if (!fileName.endsWith(".tsx")) {
     fileName = `${fileName}.tsx`;
