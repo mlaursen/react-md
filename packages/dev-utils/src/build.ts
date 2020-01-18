@@ -7,12 +7,13 @@ import getPackages from "./utils/getPackages";
 import tsc, { CompileTarget, tscWatcher } from "./utils/tsc";
 
 function getTargets(packageName: string): CompileTarget[] {
+  const isReactMD = packageName === "react-md";
   const configs: CompileTarget[] = [];
-  if (getPackages("typescript").includes(packageName)) {
+  if (isReactMD || getPackages("typescript").includes(packageName)) {
     configs.push("ejs", "cjs");
   }
 
-  if (getPackages("scss").includes(packageName)) {
+  if (!isReactMD && getPackages("scss").includes(packageName)) {
     configs.push("var");
   }
 
