@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { FC, Fragment } from "react";
 import { MediaContainer } from "@react-md/media";
 

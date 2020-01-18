@@ -48,7 +48,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "/* eslint-disable react/no-array-index-key */\nimport React, { FC } from \"react\";\nimport { TooltipHoverModeConfig, Tooltipped } from \"@react-md/tooltip\";\nimport { Button } from \"@react-md/button\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <TooltipHoverModeConfig>\n    <Container>\n      {Array.from(new Array(8)).map((_, i) => (\n        <Tooltipped\n          id={`hover-mode-button-${i}`}\n          tooltip={`Tooltip ${i + 1}`}\n          key={i}\n        >\n          <Button>{`Button ${i + 1}`}</Button>\n        </Tooltipped>\n      ))}\n    </Container>\n  </TooltipHoverModeConfig>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { TooltipHoverModeConfig, Tooltipped } from \"@react-md/tooltip\";\nimport { Button } from \"@react-md/button\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <TooltipHoverModeConfig>\n    <Container>\n      {Array.from(new Array(8)).map((_, i) => (\n        <Tooltipped\n          id={`hover-mode-button-${i}`}\n          tooltip={`Tooltip ${i + 1}`}\n          key={i}\n        >\n          <Button>{`Button ${i + 1}`}</Button>\n        </Tooltipped>\n      ))}\n    </Container>\n  </TooltipHoverModeConfig>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/Container.scss": {

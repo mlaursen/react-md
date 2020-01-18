@@ -80,7 +80,6 @@ const UpdatingMessagePriority: FC = () => {
         {queue.map((message, i) => (
           // actually want to disable it since when the immediate flow is triggered, there will be two messageId
           // with "message-1" for a few milliseconds
-          // eslint-disable-next-line react/no-array-index-key
           <pre key={i}>{JSON.stringify(message, null, 2)}</pre>
         ))}
       </div>

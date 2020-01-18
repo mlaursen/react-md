@@ -46,7 +46,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "/* eslint-disable react/no-array-index-key */\nimport React, { FC, Fragment } from \"react\";\nimport { MediaContainer } from \"@react-md/media\";\n\nimport \"./SimpleResponsiveMedia.scss\";\n\nconst images = [\n  \"/200/300?image=30\",\n  \"/300/200?image=3\",\n  \"/300?image=1008\",\n  \"/100/110?image=233\",\n];\n\nconst SimpleResponsiveImages: FC = () => (\n  <Fragment>\n    {images.map((image, i) => (\n      <MediaContainer key={i} className=\"responsive-item\">\n        <img\n          src={`https://picsum.photos${image}`}\n          role=\"presentation\"\n          alt=\"From https://picsum.photos\"\n        />\n      </MediaContainer>\n    ))}\n  </Fragment>\n);\n\nexport default SimpleResponsiveImages;\n",
+    "content": "import React, { FC, Fragment } from \"react\";\nimport { MediaContainer } from \"@react-md/media\";\n\nimport \"./SimpleResponsiveMedia.scss\";\n\nconst images = [\n  \"/200/300?image=30\",\n  \"/300/200?image=3\",\n  \"/300?image=1008\",\n  \"/100/110?image=233\",\n];\n\nconst SimpleResponsiveImages: FC = () => (\n  <Fragment>\n    {images.map((image, i) => (\n      <MediaContainer key={i} className=\"responsive-item\">\n        <img\n          src={`https://picsum.photos${image}`}\n          role=\"presentation\"\n          alt=\"From https://picsum.photos\"\n        />\n      </MediaContainer>\n    ))}\n  </Fragment>\n);\n\nexport default SimpleResponsiveImages;\n",
     "isBinary": false
   },
   "src/SimpleResponsiveMedia.scss": {

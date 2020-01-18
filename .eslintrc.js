@@ -168,5 +168,12 @@ module.exports = {
         'import/no-unresolved': 0,
       },
     },
+    {
+      files: ['packages/documentation/src/components/Demos/**/*.tsx'],
+      rules: {
+        // normally don't care about these for demos
+        'react/no-array-index-key': 0,
+      },
+    },
   ],
 };

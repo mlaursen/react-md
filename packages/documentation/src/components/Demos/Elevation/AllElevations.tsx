@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { FC } from "react";
 import Code from "components/Code/Code";
 

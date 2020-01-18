@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { FC, Fragment } from "react";
 import { TabPanel, TabPanels, Tabs, TabsManager } from "@react-md/tabs";
 

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { FC, Fragment } from "react";
 import { Button } from "@react-md/button";
 import { Overlay } from "@react-md/overlay";
