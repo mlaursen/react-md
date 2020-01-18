@@ -51,7 +51,7 @@ export default function build(
     let command = [
       "@react-md/dev-utils",
       "documentation",
-      !scopedOnly && "react-md",
+      scopedOnly && "react-md",
     ].reduce((cmd, name) => {
       if (!name) {
         return cmd;
