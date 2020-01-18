@@ -25,6 +25,8 @@ export * from "./Caption";
 export { default as TableCheckbox } from "./TableCheckbox";
 export * from "./TableCheckbox";
 
+export { SortOrder } from "./TableCellSortButton";
+
 export {
   TableCellConfiguration,
   TableCellHorizontalAlignment,

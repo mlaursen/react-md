@@ -61,6 +61,12 @@ export interface ConfigurableIcons {
    * The general icon to use for radio buttons.
    */
   radio?: ReactNode;
+
+  /**
+   * The general icon for sorting content. This defaults to the sort ascending
+   * behavior.
+   */
+  sort?: ReactNode;
 }
 
 export type ConfiguredIcons = Required<ConfigurableIcons>;
@@ -76,6 +82,7 @@ const DEFAULT_ICONS: ConfiguredIcons = {
   notification: <FontIcon>notifications</FontIcon>,
   password: <FontIcon>remove_red_eye</FontIcon>,
   radio: <FontIcon>radio_button_checked</FontIcon>,
+  sort: <FontIcon>arrow_upward</FontIcon>,
 };
 
 const context = createContext<ConfiguredIcons>(DEFAULT_ICONS);
@@ -135,6 +142,7 @@ const IconProvider: FC<IconProviderProps> = props => {
     notification,
     password,
     radio,
+    sort,
   } = props as WithDefaultProps;
 
   const value = useMemo(
@@ -149,6 +157,7 @@ const IconProvider: FC<IconProviderProps> = props => {
       notification,
       password,
       radio,
+      sort,
     }),
     [
       back,
@@ -161,6 +170,7 @@ const IconProvider: FC<IconProviderProps> = props => {
       notification,
       password,
       radio,
+      sort,
     ]
   );
 
@@ -190,6 +200,7 @@ if (process.env.NODE_ENV !== "production") {
       notification: PropTypes.node,
       password: PropTypes.node,
       radio: PropTypes.node,
+      sort: PropTypes.node,
     };
   }
 }

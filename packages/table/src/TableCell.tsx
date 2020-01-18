@@ -3,12 +3,15 @@ import React, {
   forwardRef,
   TdHTMLAttributes,
   ThHTMLAttributes,
+  ReactNode,
 } from "react";
 import cn from "classnames";
+import { useIcon } from "@react-md/icon";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
 import { TableCellConfig, useTableConfig } from "./config";
 import { useSticky } from "./sticky";
+import TableCellSortButton, { SortOrder } from "./TableCellSortButton";
 
 export type TableCellElement =
   | HTMLTableDataCellElement
@@ -17,7 +20,7 @@ export type TableCellElement =
 export type TableCellAttributes = Omit<
   | TdHTMLAttributes<HTMLTableDataCellElement>
   | ThHTMLAttributes<HTMLTableHeaderCellElement>,
-  "colSpan"
+  "colSpan" | "scope"
 >;
 
 export interface TableCellOptions extends TableCellConfig {
@@ -62,10 +65,56 @@ export interface TableCellOptions extends TableCellConfig {
   sticky?: boolean | "header" | "cell" | "header-cell";
 }
 
-export type TableCellProps = TableCellAttributes & TableCellOptions;
+export interface TableCellProps extends TableCellAttributes, TableCellOptions {
+  /**
+   * If you want to apply a sort icon for a header cell, set this prop to either
+   * `"ascending"` or `"descending"`. When you change the sort order, this prop
+   * should change as well which will cause the sort icon to rotate. The default
+   * behavior is to have the icon facing upwards and not-rotated when
+   * `"ascending"`, otherwise it will rotate downwards when `"descending"`.
+   *
+   * If this prop is set to `"none"`, the cell will render the clickable button
+   * in the children, just without the sort icon. This is so that the sort
+   * behavior can still be toggled for keyboard users and will be tab-focusable.
+   */
+  "aria-sort"?: SortOrder;
+
+  /**
+   * An optional sort icon to use. This will be defaulted to the configured sort
+   * icon from the `@react-md/icon` package. If you do not want the default
+   * implementation for the sort icon behavior from `react-md`, you can set this
+   * prop to `null`.
+   */
+  sortIcon?: ReactNode;
+
+  /**
+   * Boolean if the sort icon should appear after the children in the cell
+   * instead of before.
+   */
+  sortIconAfter?: boolean;
+
+  /**
+   * Boolean if the sort icon should be rotated instead of the default
+   * direction. When this is `undefined`, it will only be `true` when the
+   * `"aria-sort"` prop is set to `"descending"`. If this is not `undefined`,
+   * its boolean value will always be used.
+   */
+  sortIconRotated?: boolean;
+
+  /**
+   * Boolean if cell should no longer have any padding since you want a child
+   * element to span the entire size of the cell instead. This is helpful when
+   * rendering clickable and focusable elements within a cell.
+   *
+   * This will be defaulted to `true` if the `"aria-sort"` prop has been
+   * provided and the `sortIcon` is not resoled as `null`. You can override this
+   * default behavior by manually setting this to `true` or `false`.
+   */
+  disablePadding?: boolean;
+}
 
 type WithRef = WithForwardedRef<TableCellElement>;
-type DefaultProps = Required<Pick<TableCellOptions, "grow">>;
+type DefaultProps = Required<Pick<TableCellProps, "grow" | "sortIconAfter">>;
 type WithDefaultProps = TableCellProps & DefaultProps & WithRef;
 
 const block = bem("rmd-table-cell");
@@ -82,6 +131,7 @@ const block = bem("rmd-table-cell");
  */
 const TableCell: FC<TableCellProps & WithRef> = providedProps => {
   const {
+    "aria-sort": sortOrder,
     className,
     forwardedRef,
     grow,
@@ -93,8 +143,15 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
     children,
     colSpan,
     sticky: propSticky,
+    sortIcon: propSortIcon,
+    sortIconAfter,
+    sortIconRotated,
+    disablePadding,
     ...props
   } = providedProps as WithDefaultProps;
+  const { id } = props;
+  const sortIcon = useIcon("sort", propSortIcon);
+  const isNoPadding = disablePadding ?? (sortIcon && sortOrder);
 
   // Note: unlike the other usages of `useTableConfig`, the `propHeader`
   // is not provided. This is so that `TableCheckbox` components can still
@@ -119,6 +176,7 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
   return (
     <Component
       {...props}
+      aria-sort={sortOrder === "none" ? undefined : sortOrder}
       colSpan={colSpan as number | undefined}
       ref={forwardedRef}
       className={cn(
@@ -134,19 +192,29 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
           [vAlign]: vAlign !== "middle",
           vertical: vAlign !== "middle",
           "no-wrap": !lineWrap,
-          padded: lineWrap === "padded",
+          padded: !isNoPadding && lineWrap === "padded",
+          "no-padding": isNoPadding,
         }),
         className
       )}
       scope={scope}
     >
-      {children}
+      <TableCellSortButton
+        id={id ? `${id}-sort` : undefined}
+        icon={sortIcon}
+        iconAfter={sortIconAfter}
+        sortOrder={sortOrder}
+        rotated={sortIconRotated}
+      >
+        {children}
+      </TableCellSortButton>
     </Component>
   );
 };
 
 const defaultProps: DefaultProps = {
   grow: false,
+  sortIconAfter: false,
 };
 
 TableCell.defaultProps = defaultProps;
@@ -161,6 +229,13 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     TableCell.propTypes = {
+      "aria-sort": PropTypes.oneOf([
+        "ascending",
+        "descending",
+        "none",
+        "other",
+      ]),
+      id: PropTypes.string,
       className: PropTypes.string,
       scope: PropTypes.oneOf(["row", "col", "rowgroup", "colgroup"]),
       grow: PropTypes.bool,
@@ -171,6 +246,9 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.bool,
         PropTypes.oneOf(["padded"]),
       ]),
+      sortIcon: PropTypes.node,
+      sortIconAfter: PropTypes.bool,
+      disablePadding: PropTypes.bool,
     };
   }
 }

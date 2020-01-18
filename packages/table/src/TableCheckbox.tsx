@@ -26,7 +26,7 @@ type WantedCheckboxProps =
 export interface TableCheckboxProps
   extends Omit<
       TdHTMLAttributes<HTMLTableDataCellElement>,
-      "onChange" | "scope"
+      "onChange" | "scope" | "aria-sort"
     >,
     Pick<CheckboxProps, WantedCheckboxProps>,
     Pick<TableCellProps, "sticky"> {

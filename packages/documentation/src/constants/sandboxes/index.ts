@@ -213,6 +213,7 @@ const sandboxes: Sandboxes = {
     DefaultStylesConfigurable: () =>
       resolve(import("./Table-DefaultStylesConfigurable.json")),
     SelectableRows: () => resolve(import("./Table-SelectableRows.json")),
+    SortableColumns: () => resolve(import("./Table-SortableColumns.json")),
   },
   Tabs: {
     BasicUsage: () => resolve(import("./Tabs-BasicUsage.json")),

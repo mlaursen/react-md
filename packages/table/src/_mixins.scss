@@ -122,6 +122,10 @@
     @include rmd-typography-text-overflow-ellipsis;
   }
 
+  &--no-padding {
+    padding: 0;
+  }
+
   &--checkbox {
     @include rmd-table-theme-update-var(cell-h-padding, $rmd-table-checkbox-padding);
   }
@@ -185,8 +189,25 @@
   }
 
   &--padded {
-    padding-bottom: $rmd-table-cell-vertical-padding;
-    padding-top: $rmd-table-cell-vertical-padding;
+    @include rmd-table-theme(padding-bottom, cell-v-padding);
+    @include rmd-table-theme(padding-top, cell-v-padding);
+  }
+
+  &--no-padding {
+    // this is used with the `__size` to make a parent element
+    // (usually clickable) be the full size and height of the cell
+    padding: 0;
+  }
+
+  &__child {
+    @include rmd-table-theme(padding-left, cell-h-padding);
+    @include rmd-table-theme(padding-right, cell-h-padding);
+
+    align-items: center;
+    color: inherit;
+    font: inherit;
+    height: 100%;
+    width: 100%;
   }
 }
 

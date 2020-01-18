@@ -15,6 +15,9 @@ import {
 import SelectableRows from "./SelectableRows";
 import selectableRows from "./SelectableRows.md";
 
+import SortableColumns from "./SortableColumns";
+import sortableColumns from "./SortableColumns.md";
+
 const demos = [
   {
     name: "Default Styles",
@@ -32,6 +35,13 @@ const demos = [
     name: "Selectable Rows",
     description: selectableRows,
     children: <SelectableRows />,
+    disableCard: true,
+  },
+  {
+    name: "Sortable Columns",
+    description: sortableColumns,
+    children: <SortableColumns />,
+    disableCard: true,
   },
 ];
 
