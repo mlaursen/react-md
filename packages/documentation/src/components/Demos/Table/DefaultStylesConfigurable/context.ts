@@ -4,6 +4,7 @@ import {
   useContext,
   useMemo,
   useState,
+  useEffect,
 } from "react";
 import { ListboxChangeEventHandler } from "@react-md/form";
 import {
@@ -12,6 +13,7 @@ import {
   TableCellHorizontalAlignment,
   TableCellVerticalAlignment,
 } from "@react-md/table";
+import { useAppSize } from "@react-md/utils";
 
 type LineWrap = Required<TableCellConfiguration>["lineWrap"];
 
@@ -59,7 +61,25 @@ const defaultState: Omit<
  * example simple at first glance and show what different props accomplish.
  */
 export function useStylesState(): DefaultStylesContext {
-  const [state, setState] = useState(defaultState);
+  const { isPhone } = useAppSize();
+  const [state, setState] = useState({
+    ...defaultState,
+    // need to force the container on mobile so that Google doesn't complain
+    // that my website isn't mobile friendly with horizontal scrolling
+    container: !isPhone,
+  });
+
+  useEffect(() => {
+    if (isPhone) {
+      setState(prevState => {
+        if (prevState.container) {
+          return prevState;
+        }
+
+        return { ...prevState, container: true };
+      });
+    }
+  }, [isPhone]);
 
   /* eslint-disable no-console */
   const onInputChange = useCallback(

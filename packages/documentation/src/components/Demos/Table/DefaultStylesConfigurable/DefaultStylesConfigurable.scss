@@ -2,11 +2,8 @@
 
 .default-styles-configurable {
   &__right-opts {
-    @include rmd-utils-large-desktop-media {
-      margin-top: 2rem;
-    }
-
     align-self: flex-start;
+    margin-top: 2rem;
   }
 
   &__container {
