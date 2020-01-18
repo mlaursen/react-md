@@ -9,6 +9,7 @@ export default function getSandbox(
 ): GetSandbox | null {
   packageName = packageName.replace(/ /g, "");
   demoName = demoName
+    .replace(/\s|-|\(\)/g, "")
     .split(" ")
     .map(upperFirst)
     .join("");

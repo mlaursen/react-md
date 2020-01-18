@@ -214,6 +214,12 @@ const sandboxes: Sandboxes = {
       resolve(import("./Table-DefaultStylesConfigurable.json")),
     SelectableRows: () => resolve(import("./Table-SelectableRows.json")),
     SortableColumns: () => resolve(import("./Table-SortableColumns.json")),
+    StickyColumnsPart1: () =>
+      resolve(import("./Table-StickyColumnsPart1.json")),
+    StickyColumnsPart2: () =>
+      resolve(import("./Table-StickyColumnsPart2.json")),
+    StickyColumnsPart3: () =>
+      resolve(import("./Table-StickyColumnsPart3.json")),
   },
   Tabs: {
     BasicUsage: () => resolve(import("./Tabs-BasicUsage.json")),

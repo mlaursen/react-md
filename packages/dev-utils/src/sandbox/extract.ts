@@ -195,7 +195,7 @@ export async function extractDemoFiles(
 
   // want to exclude files that have a comment after them (normally do // SANDBOX_IGNORE),
   // but just makes sure the line ends with ;
-  const demos = (contents.match(/from "(.\/[A-z]+)"(?=;\r?\n)/g) || []).map(
+  const demos = (contents.match(/from "(.\/[A-z0-9]+)"(?=;\r?\n)/g) || []).map(
     demoName => {
       demoName = demoName.replace(/from /, "").replace(/"/g, "");
       let fullPath = path.join(getRelativeFolder(demoIndexPath), demoName);

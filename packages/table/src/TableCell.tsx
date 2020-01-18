@@ -10,6 +10,7 @@ import { useIcon } from "@react-md/icon";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
 import { TableCellConfig, useTableConfig } from "./config";
+import { useTableFooter } from "./footer";
 import { useSticky } from "./sticky";
 import TableCellSortButton, { SortOrder } from "./TableCellSortButton";
 
@@ -42,10 +43,9 @@ export interface TableCellOptions extends TableCellConfig {
   scope?: "row" | "col" | "rowgroup" | "colgroup";
 
   /**
-   * The number of columns that the cell should span. For some reason the default
-   * `colSpan` does not support a string value in typescript and only numbers, but
-   * it **is** valid (or works...) to set it to `100%` if you want a cell to span
-   * the entire table's width ignoring the number of columns.
+   * The number of columns that the cell should span. If you would like a cell
+   * to span an entire row ignoring the other rows and cells, you can set this
+   * value to the number of columns within your table or `"100%"`.
    */
   colSpan?: number | "100%";
 
@@ -141,15 +141,17 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
     header: propHeader,
     lineWrap: propDisableLineWrap,
     children,
-    colSpan,
     sticky: propSticky,
     sortIcon: propSortIcon,
     sortIconAfter,
     sortIconRotated,
     disablePadding,
+    colSpan: propColSpan,
     ...props
   } = providedProps as WithDefaultProps;
   const { id } = props;
+  // have to double cast to get the `100%` value to work.
+  const colSpan = (propColSpan as unknown) as number;
   const sortIcon = useIcon("sort", propSortIcon);
   const isNoPadding = disablePadding ?? (sortIcon && sortOrder);
 
@@ -162,11 +164,15 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
     vAlign: propVAlign,
     lineWrap: propDisableLineWrap,
   });
+  const header = propHeader ?? inheritedHeader;
+  const footer = useTableFooter();
   const sticky = useSticky(propSticky);
   const isStickyCell = propSticky === "cell";
   const isStickyHeader = propSticky === "header";
-  const isStickyHeaderCell = propSticky === "header-cell";
-  const header = propHeader ?? inheritedHeader;
+  const isStickyFooter = sticky && footer;
+  const isStickyFooterCell = isStickyFooter && propColSpan === "100%";
+  const isStickyAbove = propSticky === "header-cell" || isStickyFooterCell;
+
   let scope = propScope;
   if (!scope && header) {
     scope = !inheritedHeader && propHeader ? "row" : "col";
@@ -177,7 +183,7 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
     <Component
       {...props}
       aria-sort={sortOrder === "none" ? undefined : sortOrder}
-      colSpan={colSpan as number | undefined}
+      colSpan={colSpan}
       ref={forwardedRef}
       className={cn(
         block({
@@ -185,9 +191,10 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
           header,
           sticky,
           "sticky-header":
-            (header && sticky) || isStickyHeader || isStickyHeaderCell,
-          "sticky-cell": isStickyCell || isStickyHeaderCell,
-          "sticky-header-cell": isStickyHeaderCell,
+            (header && sticky) || isStickyHeader || isStickyAbove,
+          "sticky-cell": isStickyCell || isStickyAbove || isStickyFooterCell,
+          "sticky-footer": isStickyFooter,
+          "sticky-above": isStickyAbove,
           [hAlign]: hAlign !== "left",
           [vAlign]: vAlign !== "middle",
           vertical: vAlign !== "middle",
@@ -236,6 +243,10 @@ if (process.env.NODE_ENV !== "production") {
         "other",
       ]),
       id: PropTypes.string,
+      colSpan: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.oneOf(["100%"]),
+      ]),
       className: PropTypes.string,
       scope: PropTypes.oneOf(["row", "col", "rowgroup", "colgroup"]),
       grow: PropTypes.bool,

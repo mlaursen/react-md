@@ -147,6 +147,7 @@
     // `--bordered` class is also enabled
     border: inherit;
     position: sticky;
+    will-change: transform;
     z-index: $rmd-table-cell-sticky-z-index;
 
     &::after {
@@ -179,8 +180,8 @@
     @include rmd-table-theme(left, sticky-cell);
   }
 
-  &--sticky-header-cell {
-    // need to increase by one more so it can cover the other header cells
+  &--sticky-above {
+    // need to increase by one more so it can cover other sticky cells
     z-index: $rmd-table-cell-sticky-z-index + 1;
   }
 

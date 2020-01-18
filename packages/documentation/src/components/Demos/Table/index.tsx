@@ -18,32 +18,52 @@ import selectableRows from "./SelectableRows.md";
 import SortableColumns from "./SortableColumns";
 import sortableColumns from "./SortableColumns.md";
 
+import StickyColumnsPart1 from "./StickyColumnsPart1";
+import stickyColumnsPart1 from "./StickyColumnsPart1.md";
+
+import StickyColumnsPart2 from "./StickyColumnsPart2";
+import stickyColumnsPart2 from "./StickyColumnsPart2.md";
+
+import StickyColumnsPart3 from "./StickyColumnsPart3";
+import stickyColumnsPart3 from "./StickyColumnsPart3.md";
+
 const demos = [
   {
     name: "Default Styles",
     description: defaultStyles,
     children: <DefaultStyles />,
-    disableCard: true,
   },
   {
     name: "Default Styles Configurable",
     description: defaultStylesConfigurable,
     children: <DefaultStylesConfigurable />,
-    disableCard: true,
   },
   {
     name: "Selectable Rows",
     description: selectableRows,
     children: <SelectableRows />,
-    disableCard: true,
   },
   {
     name: "Sortable Columns",
     description: sortableColumns,
     children: <SortableColumns />,
-    disableCard: true,
   },
-];
+  {
+    name: "Sticky Columns - Part 1",
+    description: stickyColumnsPart1,
+    children: <StickyColumnsPart1 />,
+  },
+  {
+    name: "Sticky Columns - Part 2",
+    description: stickyColumnsPart2,
+    children: <StickyColumnsPart2 />,
+  },
+  {
+    name: "Sticky Columns - Part 3",
+    description: stickyColumnsPart3,
+    children: <StickyColumnsPart3 />,
+  },
+].map(demo => ({ disableCard: true, ...demo }));
 
 export default (): ReactElement => (
   <DemoPage demos={demos} packageName="table" description={README} />

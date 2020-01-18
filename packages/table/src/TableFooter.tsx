@@ -3,6 +3,7 @@ import cn from "classnames";
 import { bem, WithForwardedRef } from "@react-md/utils";
 
 import { TableConfigProvider, useTableConfig, TableCellConfig } from "./config";
+import { TableFooterProvider } from "./footer";
 import { StickyTableProvider } from "./sticky";
 
 export interface TableFooterProps
@@ -71,9 +72,11 @@ const TableFooter: FC<TableFooterProps & WithRef> = providedProps => {
 
   return (
     <TableConfigProvider value={configuration}>
-      <tfoot {...props} ref={forwardedRef} className={cn(block(), className)}>
-        <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
-      </tfoot>
+      <TableFooterProvider value>
+        <tfoot {...props} ref={forwardedRef} className={cn(block(), className)}>
+          <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
+        </tfoot>
+      </TableFooterProvider>
     </TableConfigProvider>
   );
 };
