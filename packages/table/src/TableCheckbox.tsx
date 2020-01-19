@@ -11,6 +11,8 @@ import { WithForwardedRef } from "@react-md/utils";
 import TableCell, { TableCellProps } from "./TableCell";
 
 type WantedCheckboxProps =
+  | "name"
+  | "value"
   | "icon"
   | "iconStyle"
   | "iconClassName"
@@ -98,6 +100,8 @@ const TableCheckbox: FC<TableCheckboxProps & WithRef> = ({
   toggleStyle,
   toggleClassName,
   disableIconOverlay,
+  name,
+  value,
   checked,
   onChange,
   defaultChecked,
@@ -128,6 +132,8 @@ const TableCheckbox: FC<TableCheckboxProps & WithRef> = ({
         toggleStyle={toggleStyle}
         toggleClassName={toggleClassName}
         disableIconOverlay={disableIconOverlay}
+        name={name}
+        value={value}
         checked={checked}
         onChange={onChange}
         defaultChecked={defaultChecked}
@@ -165,6 +171,8 @@ if (process.env.NODE_ENV !== "production") {
       toggleStyle: PropTypes.object,
       toggleClassName: PropTypes.string,
       disableIconOverlay: PropTypes.bool,
+      name: PropTypes.string,
+      value: PropTypes.string,
       checked: PropTypes.bool,
       defaultChecked: PropTypes.bool,
       onChange: PropTypes.func,

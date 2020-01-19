@@ -1,16 +1,16 @@
 import React, { FC } from "react";
+import { useIndeterminateChecked } from "@react-md/form";
 import {
   Table,
   TableBody,
   TableCell,
+  TableCheckbox,
   TableContainer,
   TableHeader,
   TableRow,
-  TableCheckbox,
 } from "@react-md/table";
 
 import desserts from "constants/desserts";
-import { useIndeterminateChecked } from "@react-md/form";
 
 const headers = [
   "Dessert (100g serving)",

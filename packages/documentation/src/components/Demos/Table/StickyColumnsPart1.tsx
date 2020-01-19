@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import {
-  TableContainer,
   Table,
-  TableHeader,
-  TableCell,
   TableBody,
+  TableCell,
+  TableContainer,
+  TableHeader,
   TableRow,
 } from "@react-md/table";
 

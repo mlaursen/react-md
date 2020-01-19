@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import {
+  Caption,
   Table,
+  TableBody,
+  TableCell,
   TableHeader,
   TableRow,
-  TableCell,
-  TableBody,
-  Caption,
 } from "@react-md/table";
 
 import "./DefaultStyles.scss";

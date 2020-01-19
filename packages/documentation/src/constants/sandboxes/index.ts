@@ -220,6 +220,8 @@ const sandboxes: Sandboxes = {
       resolve(import("./Table-StickyColumnsPart2.json")),
     StickyColumnsPart3: () =>
       resolve(import("./Table-StickyColumnsPart3.json")),
+    StickyColumnsPart4: () =>
+      resolve(import("./Table-StickyColumnsPart4.json")),
   },
   Tabs: {
     BasicUsage: () => resolve(import("./Tabs-BasicUsage.json")),

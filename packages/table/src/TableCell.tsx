@@ -167,10 +167,11 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
   const header = propHeader ?? inheritedHeader;
   const footer = useTableFooter();
   const sticky = useSticky(propSticky);
-  const isStickyCell = propSticky === "cell";
+  const isStickyCell = propSticky === "cell" || (!header && sticky);
   const isStickyHeader = propSticky === "header";
   const isStickyFooter = sticky && footer;
-  const isStickyFooterCell = isStickyFooter && propColSpan === "100%";
+  const isStickyFooterCell =
+    isStickyFooter && (propColSpan === "100%" || propColSpan === 0);
   const isStickyAbove = propSticky === "header-cell" || isStickyFooterCell;
 
   let scope = propScope;
@@ -191,7 +192,9 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
           header,
           sticky,
           "sticky-header":
-            (header && sticky) || isStickyHeader || isStickyAbove,
+            (header && sticky && propSticky !== "cell") ||
+            isStickyHeader ||
+            isStickyAbove,
           "sticky-cell": isStickyCell || isStickyAbove || isStickyFooterCell,
           "sticky-footer": isStickyFooter,
           "sticky-above": isStickyAbove,

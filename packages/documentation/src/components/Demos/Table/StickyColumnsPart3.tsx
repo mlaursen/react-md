@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import {
-  TableContainer,
   Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableFooter,
   TableHeader,
   TableRow,
-  TableCell,
-  TableBody,
-  TableFooter,
 } from "@react-md/table";
 
 const columns = Array.from(new Array(10), (_, i) => `Column ${i + 1}`);
@@ -36,6 +36,7 @@ const StickyColumnsPart3: FC = () => (
             This is the sticky footer content. Any components can be rendered
             inside.
           </TableCell>
+          <TableCell colSpan={999} />
         </TableRow>
       </TableFooter>
     </Table>

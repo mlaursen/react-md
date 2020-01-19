@@ -2,16 +2,16 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
-  useEffect,
 } from "react";
 import { ListboxChangeEventHandler } from "@react-md/form";
 import {
-  TableConfiguration,
   TableCellConfiguration,
   TableCellHorizontalAlignment,
   TableCellVerticalAlignment,
+  TableConfiguration,
 } from "@react-md/table";
 import { useAppSize } from "@react-md/utils";
 

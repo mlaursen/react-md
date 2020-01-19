@@ -219,6 +219,10 @@
 @mixin rmd-table-row {
   &--selected {
     @include rmd-table-theme(background-color, selected-color);
+
+    .rmd-table-cell--sticky-cell::after {
+      @include rmd-table-theme(background-color, selected-color);
+    }
   }
 
   &--clickable:hover {

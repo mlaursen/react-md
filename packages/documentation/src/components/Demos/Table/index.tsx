@@ -27,6 +27,9 @@ import stickyColumnsPart2 from "./StickyColumnsPart2.md";
 import StickyColumnsPart3 from "./StickyColumnsPart3";
 import stickyColumnsPart3 from "./StickyColumnsPart3.md";
 
+import StickyColumnsPart4 from "./StickyColumnsPart4";
+import stickyColumnsPart4 from "./StickyColumnsPart4.md";
+
 const demos = [
   {
     name: "Default Styles",
@@ -62,6 +65,11 @@ const demos = [
     name: "Sticky Columns - Part 3",
     description: stickyColumnsPart3,
     children: <StickyColumnsPart3 />,
+  },
+  {
+    name: "Sticky Columns - Part 4",
+    description: stickyColumnsPart4,
+    children: <StickyColumnsPart4 />,
   },
 ].map(demo => ({ disableCard: true, ...demo }));
 
