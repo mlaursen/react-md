@@ -338,7 +338,7 @@ export default class SelectionControlGroup extends PureComponent {
       if (!existsIndex && checked) {
         value = `${currentValue ? `${currentValue},` : ''}${value}`;
       } else if (existsIndex > -1 && !checked) {
-        value = currentValue.replace(new RegExp(`${value},?`), '');
+        value = currentValue.replace(new RegExp(`${value},|,${value}|^${value}$`), '');
       } else {
         value = currentValue;
       }

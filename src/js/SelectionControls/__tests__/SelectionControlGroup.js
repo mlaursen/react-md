@@ -23,6 +23,10 @@ const PROPS_2 = Object.assign({}, PROPS, {
   controls: PROPS.controls.concat([{ value: 'something', label: 'Something' }]),
 });
 
+const PROPS_3 = Object.assign({}, PROPS_2, {
+  controls: PROPS_2.controls.concat([{ value: 'third', label: 'Third' }]),
+});
+
 describe('SelectionControlGroup', () => {
   it('merges className and style', () => {
     const props = Object.assign({}, PROPS, {
@@ -380,5 +384,31 @@ describe('SelectionControlGroup', () => {
     group.instance()._handleChange(event3);
     expect(onChange).toBeCalledWith('something', event3);
     expect(group.state('value')).toBe('something');
+  });
+
+  it('correctly builds the comma-delimited list when the type is checkbox', () => {
+    const onChange = jest.fn();
+    const group = mount(<SelectionControlGroup {...PROPS_3} onChange={onChange} />);
+
+    const check = value =>
+      group.instance()._handleChange({ target: { checked: true, value } });
+
+    const uncheck = value =>
+      group.instance()._handleChange({ target: { checked: false, value } });
+
+    check('eyyy');
+    check('something');
+    check('third');
+    expect(group.state('value')).toBe('eyyy,something,third');
+
+    uncheck('something');
+    expect(group.state('value')).toBe('eyyy,third');
+
+    uncheck('third');
+    expect(group.state('value')).toBe('eyyy');
+
+    check('third');
+    uncheck('eyyy');
+    expect(group.state('value')).toBe('third');
   });
 });
