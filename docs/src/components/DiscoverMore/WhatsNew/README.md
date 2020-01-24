@@ -1,3 +1,12 @@
+## January 2020
+
+### v1.14.1 Release
+
+#### Changelog
+
+- Fixed the `SelectionControlGroup` value to remove trailing comma when using checkboxes.
+  ([@David3141] - [pull-863])
+
 ## December 2019
 
 ### v1.14.0 Release
