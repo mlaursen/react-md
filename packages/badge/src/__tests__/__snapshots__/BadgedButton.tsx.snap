@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BadgedButton should render correctly 1`] = `
+<div>
+  <button
+    aria-label="Notifications"
+    class="rmd-button rmd-button--icon"
+    id="badged-button"
+    type="button"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      notifications
+    </i>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`BadgedButton should render correctly 2`] = `
+<div>
+  <button
+    aria-describedby="badged-button-badge"
+    aria-label="Notifications"
+    class="rmd-button rmd-button--icon"
+    id="badged-button"
+    type="button"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons"
+    >
+      notifications
+    </i>
+    <span
+      class="rmd-badge rmd-badge--default"
+      id="badged-button-badge"
+    >
+      99+
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;

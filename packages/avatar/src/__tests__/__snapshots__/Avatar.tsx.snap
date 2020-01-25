@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar should render correctly (with snapshots) 1`] = `
+<div>
+  <span
+    class="rmd-avatar"
+  >
+    A
+  </span>
+</div>
+`;
+
+exports[`Avatar should render correctly (with snapshots) 2`] = `
+<div>
+  <span
+    class="rmd-avatar rmd-avatar--red"
+  >
+    A
+  </span>
+</div>
+`;
+
+exports[`Avatar should render correctly (with snapshots) 3`] = `
+<div>
+  <span
+    class="rmd-avatar rmd-avatar--red"
+  >
+    <img
+      alt=""
+      class="rmd-avatar__image"
+      src="https://example.com"
+    />
+  </span>
+</div>
+`;

@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox should render correctly 1`] = `
+<div>
+  <div
+    class="rmd-toggle-container"
+  >
+    <span
+      class="rmd-toggle"
+    >
+      <input
+        class="rmd-toggle__input"
+        id="checkbox"
+        type="checkbox"
+      />
+      <span
+        class="rmd-toggle__icon rmd-toggle__icon--overlay"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Checkbox should render correctly 2`] = `
+<div>
+  <div
+    class="rmd-toggle-container"
+  >
+    <span
+      class="rmd-toggle"
+    >
+      <input
+        class="rmd-toggle__input"
+        id="checkbox"
+        type="checkbox"
+      />
+      <span
+        class="rmd-toggle__icon rmd-toggle__icon--overlay"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </span>
+    <label
+      class="rmd-label"
+      for="checkbox"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Checkbox should render correctly 3`] = `
+<div>
+  <div
+    class="rmd-toggle-container"
+  >
+    <label
+      class="rmd-label"
+      for="checkbox"
+    >
+      Label
+    </label>
+    <span
+      class="rmd-toggle"
+    >
+      <input
+        class="rmd-toggle__input"
+        id="checkbox"
+        type="checkbox"
+      />
+      <span
+        class="rmd-toggle__icon rmd-toggle__icon--overlay"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Checkbox should render correctly 4`] = `
+<div>
+  <div
+    class="rmd-toggle-container"
+  >
+    <span
+      class="rmd-toggle"
+    >
+      <input
+        class="rmd-toggle__input"
+        id="checkbox"
+        type="checkbox"
+      />
+      <span
+        class="rmd-toggle__icon rmd-toggle__icon--overlay rmd-toggle__icon--indeterminate"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </span>
+    <label
+      class="rmd-label"
+      for="checkbox"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Checkbox should render correctly 5`] = `
+<div>
+  <div
+    class="rmd-toggle-container"
+  >
+    <span
+      class="rmd-toggle rmd-toggle--disabled"
+    >
+      <input
+        class="rmd-toggle__input"
+        disabled=""
+        id="checkbox"
+        type="checkbox"
+      />
+      <span
+        class="rmd-toggle__icon rmd-toggle__icon--disabled rmd-toggle__icon--overlay"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </span>
+    <label
+      class="rmd-label rmd-label--disabled"
+      for="checkbox"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Checkbox should render correctly 6`] = `
+<div>
+  <div
+    class="rmd-toggle-container"
+  >
+    <span
+      class="rmd-toggle"
+    >
+      <input
+        class="rmd-toggle__input"
+        id="checkbox"
+        type="checkbox"
+      />
+      <span
+        class="rmd-toggle__icon rmd-toggle__icon--overlay"
+      >
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons"
+        >
+          check_box
+        </i>
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </span>
+    <label
+      class="rmd-label rmd-label--error"
+      for="checkbox"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;

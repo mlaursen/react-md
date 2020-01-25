@@ -42,4 +42,20 @@ describe("AppBarTitle", () => {
       "rmd-app-bar__title rmd-app-bar__title--no-wrap rmd-app-bar__title--keyline rmd-app-bar__title--inherit custom-class names"
     );
   });
+
+  it("should render correctly (with snapshots)", () => {
+    const { container, rerender } = render(<AppBarTitle>Title</AppBarTitle>);
+
+    expect(container).toMatchSnapshot();
+
+    rerender(<AppBarTitle keyline>Title</AppBarTitle>);
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <AppBarTitle keyline inheritColor>
+        Title
+      </AppBarTitle>
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

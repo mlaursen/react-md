@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Label should render correctly 1`] = `
+<div>
+  <label
+    class="rmd-label"
+    for="input"
+  >
+    Label
+  </label>
+</div>
+`;
+
+exports[`Label should render correctly 2`] = `
+<div>
+  <label
+    class="rmd-label"
+    for="input"
+  >
+    <span>
+      Custom Children
+    </span>
+  </label>
+</div>
+`;
+
+exports[`Label should render correctly 3`] = `
+<div>
+  <label
+    class="rmd-label rmd-label--error"
+    for="input"
+  >
+    Label
+  </label>
+</div>
+`;
+
+exports[`Label should render correctly 4`] = `
+<div>
+  <label
+    class="rmd-label rmd-label--disabled"
+    for="input"
+  >
+    Label
+  </label>
+</div>
+`;
+
+exports[`Label should render correctly 5`] = `
+<div>
+  <label
+    class="rmd-label rmd-label--active"
+    for="input"
+  >
+    Label
+  </label>
+</div>
+`;
+
+exports[`Label should render correctly 6`] = `
+<div>
+  <label
+    class="rmd-label rmd-label--error rmd-label--active"
+    for="input"
+  >
+    Label
+  </label>
+</div>
+`;

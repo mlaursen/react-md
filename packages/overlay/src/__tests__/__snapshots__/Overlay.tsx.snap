@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overlay should be able to portal 1`] = `
+<body>
+  <div />
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-overlay--active"
+    tabindex="-1"
+  />
+</body>
+`;
+
+exports[`Overlay should render correctly 1`] = `<div />`;
+
+exports[`Overlay should render correctly 2`] = `
+<div>
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-overlay--active"
+    tabindex="-1"
+  />
+</div>
+`;
+
+exports[`Overlay should render correctly 3`] = `
+<div>
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-overlay--active"
+    tabindex="-1"
+  />
+</div>
+`;
+
+exports[`Overlay should render correctly 4`] = `
+<div>
+  <span
+    class="rmd-overlay rmd-overlay--visible"
+    tabindex="-1"
+  />
+</div>
+`;

@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItemChildren should be able to render content to the left of the children where only one of the left* props will be used 1`] = `
+<div>
+  <span
+    class="rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before"
+    data-testid="left-icon"
+  >
+    Left Icon
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Primary Text
+  </span>
+</div>
+`;
+
+exports[`ListItemChildren should be able to render content to the left of the children where only one of the left* props will be used 2`] = `
+<div>
+  <span
+    class="rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before rmd-list-item__icon--avatar-before"
+    data-testid="left-avatar"
+  >
+    Left Avatar
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Primary Text
+  </span>
+</div>
+`;
+
+exports[`ListItemChildren should be able to render content to the left of the children where only one of the left* props will be used 3`] = `
+<div>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before rmd-list-item__icon--media"
+  >
+    <span
+      data-testid="left-media"
+    >
+      Left Media
+    </span>
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Primary Text
+  </span>
+</div>
+`;
+
+exports[`ListItemChildren should be able to render content to the left of the children where only one of the left* props will be used 4`] = `
+<div>
+  <span
+    class="rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before rmd-list-item__icon--media rmd-list-item__icon--media-large"
+    data-testid="left-media-large"
+  >
+    Left Media Large
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Primary Text
+  </span>
+</div>
+`;
+
+exports[`ListItemChildren should be able to render content to the left of the children where only one of the left* props will be used 5`] = `
+<div>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before rmd-list-item__icon--avatar-before rmd-list-item__icon--media rmd-list-item__icon--media-large"
+  >
+    <span
+      data-testid="left-icon"
+    >
+      Left Icon
+    </span>
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Primary Text
+  </span>
+</div>
+`;
+
+exports[`ListItemChildren should be able to render content to the left of the children where only one of the left* props will be used 6`] = `
+<div>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before rmd-list-item__icon--avatar-before rmd-list-item__icon--media rmd-list-item__icon--media-large"
+  >
+    <span
+      data-testid="left-avatar"
+    >
+      Left Avatar
+    </span>
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Primary Text
+  </span>
+</div>
+`;
+
+exports[`ListItemChildren should be able to render content to the left of the children where only one of the left* props will be used 7`] = `
+<div>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before rmd-list-item__icon--media rmd-list-item__icon--media-large"
+  >
+    <span
+      data-testid="left-media"
+    >
+      Left Media
+    </span>
+  </span>
+  <span
+    class="rmd-list-item__text"
+  >
+    Primary Text
+  </span>
+</div>
+`;
+
+exports[`ListItemChildren should render correctly 1`] = `
+<div>
+  Content
+</div>
+`;
+
+exports[`ListItemChildren should render correctly 2`] = `
+<div>
+  <span
+    class="rmd-list-item__text"
+  >
+    Content
+  </span>
+</div>
+`;
+
+exports[`ListItemChildren should render correctly 3`] = `
+<div>
+  <span
+    class="rmd-list-item__text"
+  >
+    Content
+  </span>
+</div>
+`;
+
+exports[`ListItemChildren should render correctly 4`] = `
+<div>
+  <span
+    class="rmd-list-item__text"
+  >
+    Primary
+    <span
+      class="rmd-list-item__text rmd-list-item__text--secondary"
+    >
+      Secondary
+    </span>
+  </span>
+</div>
+`;

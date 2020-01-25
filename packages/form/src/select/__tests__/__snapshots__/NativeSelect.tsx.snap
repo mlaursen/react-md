@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NativeSelect should render correctly 1`] = `
+<div>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-native-select-container"
+  >
+    <select
+      class="rmd-native-select rmd-native-select--icon"
+      id="select"
+    >
+      <option
+        value="Option 1"
+      >
+        Option
+      </option>
+      <option
+        value="Option 2"
+      >
+        Option
+      </option>
+      <option
+        value="Option 3"
+      >
+        Option
+      </option>
+    </select>
+    <span
+      class="rmd-native-select__icon"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        arrow_drop_down
+      </i>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`NativeSelect should render correctly 2`] = `
+<div>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-native-select-container"
+  >
+    <label
+      class="rmd-label rmd-floating-label rmd-native-select__label"
+      for="select"
+    >
+      Label
+    </label>
+    <select
+      class="rmd-native-select rmd-native-select--icon rmd-native-select--floating"
+      id="select"
+      placeholder="Choose..."
+    >
+      <option
+        value="Option 1"
+      >
+        Option
+      </option>
+      <option
+        value="Option 2"
+      >
+        Option
+      </option>
+      <option
+        value="Option 3"
+      >
+        Option
+      </option>
+    </select>
+    <span
+      class="rmd-native-select__icon"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        arrow_drop_down
+      </i>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`NativeSelect should render correctly 3`] = `
+<div>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-native-select-container"
+  >
+    <label
+      class="rmd-label rmd-floating-label rmd-native-select__label"
+      for="select"
+    >
+      Label
+    </label>
+    <select
+      class="rmd-native-select rmd-native-select--icon rmd-native-select--floating"
+      id="select"
+      placeholder="Choose..."
+    >
+      <option
+        value="Option 1"
+      >
+        Option
+      </option>
+      <option
+        value="Option 2"
+      >
+        Option
+      </option>
+      <option
+        value="Option 3"
+      >
+        Option
+      </option>
+    </select>
+    <span
+      class="rmd-native-select__icon"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        arrow_drop_down
+      </i>
+    </span>
+  </div>
+</div>
+`;

@@ -143,7 +143,7 @@ const TabPanels: FC<TabPanelsProps & WithRef> = providedProps => {
 
           const panel = Children.only(child);
           let labelledBy = panel.props["aria-labelledby"];
-          if (!labelledBy && !panel.props["aria-label"]) {
+          if (!labelledBy && !panel.props["aria-label"] && tabs[index]) {
             // generally guarenteed to be defined by this point since the TabsManager
             // will add ids if missing.
             labelledBy = tabs[index].id;

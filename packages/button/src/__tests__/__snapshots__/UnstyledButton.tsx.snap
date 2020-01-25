@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnstyledButton should render correctly 1`] = `
+<div>
+  <button
+    class="rmd-button-unstyled"
+    type="button"
+  />
+</div>
+`;
+
+exports[`UnstyledButton should render correctly 2`] = `
+<div>
+  <button
+    class="rmd-button-unstyled"
+    type="button"
+  >
+    <span>
+      Some children
+    </span>
+  </button>
+</div>
+`;
+
+exports[`UnstyledButton should render correctly 3`] = `
+<div>
+  <button
+    class="rmd-button-unstyled custom-class-name"
+    type="button"
+  >
+    <span>
+      Some children
+    </span>
+  </button>
+</div>
+`;

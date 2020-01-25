@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabPanels should automatically inject a11y attributes when wrapped in the TabsMananger and only render the active tab 1`] = `
+<div>
+  <div
+    class="rmd-tab-panels rmd-tab-panels--slide-right"
+  >
+    <div
+      aria-labelledby="tabs-tab-1"
+      class="rmd-tab-panel"
+      id="tabs-panel-1"
+      role="tabpanel"
+    >
+      Panel 1
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TabPanels should render all the tabs when the persistent prop is enabled 1`] = `
+<div>
+  <div
+    class="rmd-tab-panels rmd-tab-panels--slide-right"
+  >
+    <div
+      aria-labelledby="tabs-tab-1"
+      class="rmd-tab-panel"
+      id="tabs-panel-1"
+      role="tabpanel"
+    >
+      Panel 1
+    </div>
+    <div
+      aria-labelledby="tabs-tab-2"
+      class="rmd-tab-panel"
+      hidden=""
+      id="tabs-panel-2"
+      role="tabpanel"
+    >
+      Panel 2
+    </div>
+    <div
+      aria-labelledby="tabs-tab-3"
+      class="rmd-tab-panel"
+      hidden=""
+      id="tabs-panel-3"
+      role="tabpanel"
+    >
+      Panel 3
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TabPanels should render without crashing if not wrapped in the tabs manager (even though it _should_ be wrapped in one) 1`] = `
+<div>
+  <div
+    class="rmd-tab-panels rmd-tab-panels--slide-right"
+  >
+    <div
+      class="rmd-tab-panel"
+      id="tabs-panel-1"
+      role="tabpanel"
+    >
+      Panel 1
+    </div>
+  </div>
+</div>
+`;

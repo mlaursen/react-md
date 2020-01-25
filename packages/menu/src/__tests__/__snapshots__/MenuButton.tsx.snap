@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuButton should render correctly 1`] = `
+<div>
+  <button
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text rmd-menu-button"
+    id="button"
+    type="button"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-menu-icon"
+    >
+      arrow_drop_down
+    </i>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`MenuButton should render correctly 2`] = `
+<div>
+  <button
+    aria-expanded="true"
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text rmd-menu-button"
+    id="button"
+    type="button"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-menu-icon"
+    >
+      arrow_drop_down
+    </i>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`MenuButton should render correctly 3`] = `
+<div>
+  <button
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text rmd-menu-button"
+    id="button"
+    type="button"
+  >
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`MenuButton should render correctly 4`] = `
+<div>
+  <button
+    aria-expanded="true"
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text rmd-menu-button"
+    id="button"
+    type="button"
+  >
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;

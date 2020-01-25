@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chip should render correctly 1`] = `
+<div>
+  <button
+    class="rmd-chip rmd-chip--solid"
+    type="button"
+  >
+    Content
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Chip should render correctly 2`] = `
+<div>
+  <button
+    class="rmd-chip rmd-chip--solid rmd-chip--leading-icon"
+    type="button"
+  >
+    <i
+      class="rmd-icon--before material-icons"
+    >
+      keyboard_arrow_left
+    </i>
+    Content
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Chip should render correctly 3`] = `
+<div>
+  <button
+    class="rmd-chip rmd-chip--solid rmd-chip--trailing-icon"
+    type="button"
+  >
+    Content
+    <i
+      class="rmd-icon--after material-icons"
+    >
+      keyboard_arrow_right
+    </i>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;

@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinearProgress should render correctly 1`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    class="rmd-linear-progress rmd-linear-progress--indeterminate"
+    id="linear"
+    role="progressbar"
+  >
+    <span
+      class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--indeterminate"
+    />
+  </span>
+</div>
+`;
+
+exports[`LinearProgress should render correctly 2`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate"
+    id="linear"
+    role="progressbar"
+    style="height: 240px;"
+  >
+    <span
+      class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-vertical"
+    />
+  </span>
+</div>
+`;
+
+exports[`LinearProgress should render correctly 3`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate"
+    id="linear"
+    role="progressbar"
+    style=""
+  >
+    <span
+      class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-vertical"
+    />
+  </span>
+</div>
+`;
+
+exports[`LinearProgress should render correctly 4`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    class="rmd-linear-progress rmd-linear-progress--vertical rmd-linear-progress--indeterminate"
+    id="linear"
+    role="progressbar"
+    style="height: 300px;"
+  >
+    <span
+      class="rmd-linear-progress__bar rmd-linear-progress__bar--vertical rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-vertical"
+    />
+  </span>
+</div>
+`;
+
+exports[`LinearProgress should render correctly 5`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    class="rmd-linear-progress rmd-linear-progress--indeterminate"
+    id="linear"
+    role="progressbar"
+    style=""
+  >
+    <span
+      class="rmd-linear-progress__bar rmd-linear-progress__bar--horizontal rmd-linear-progress__bar--horizontal-reverse rmd-linear-progress__bar--indeterminate rmd-linear-progress__bar--indeterminate-reverse"
+    />
+  </span>
+</div>
+`;

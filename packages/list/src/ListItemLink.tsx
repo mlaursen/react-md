@@ -148,5 +148,6 @@ if (process.env.NODE_ENV !== "production") {
 
 export default forwardRef<
   HTMLAnchorElement | ElementType,
-  ListItemLinkProps | ListItemLinkWithComponentProps
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ListItemLinkProps & { [key: string]: any }
 >((props, ref) => <ListItemLink {...props} forwardedRef={ref} />);

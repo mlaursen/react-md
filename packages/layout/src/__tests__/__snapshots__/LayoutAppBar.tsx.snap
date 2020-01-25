@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LayoutAppBar should render correctly 1`] = `
+<div>
+  <header
+    class="rmd-app-bar rmd-app-bar--primary rmd-layout-header"
+    id="layout-header"
+  >
+    <button
+      class="rmd-button rmd-button--icon rmd-app-bar__nav rmd-app-bar__nav--inherit"
+      id="layout-nav"
+      type="button"
+    >
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </header>
+</div>
+`;

@@ -36,7 +36,7 @@ if (process.env.NODE_ENV !== "production") {
   if (PropTypes) {
     Radio.propTypes = {
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      name: PropTypes.string,
       icon: PropTypes.node,
       value: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.string),

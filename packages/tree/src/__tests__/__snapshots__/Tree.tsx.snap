@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tree should be able to render a tree with muliple root level nodes 1`] = `
+<div>
+  <ul
+    aria-activedescendant=""
+    class="rmd-list rmd-tree"
+    id="tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="2"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="tree-item-2"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="3"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="tree-item-3"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 2
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Tree should be able to render an empty tree 1`] = `
+<div>
+  <ul
+    aria-activedescendant=""
+    class="rmd-list rmd-tree"
+    id="tree"
+    role="tree"
+    tabindex="0"
+  />
+</div>
+`;
+
+exports[`Tree should be able to use a rootId that is not null 1`] = `
+<div>
+  <ul
+    aria-activedescendant=""
+    class="rmd-list rmd-tree"
+    id="tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="2"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="tree-item-2"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="3"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="tree-item-3"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 2
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;

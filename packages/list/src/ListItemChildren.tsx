@@ -4,7 +4,13 @@ import ListItemIcon, { ListItemIconPosition } from "./ListItemIcon";
 import ListItemText from "./ListItemText";
 
 export interface ListItemChildrenProps {
+  /**
+   * The main content to display. When the `textChildren` prop is enabled and
+   * there is child content, it will be treated as primary text and update the
+   * styles automatically.
+   */
   children?: ReactNode;
+
   /**
    * An optional className to apply to the `<span>` that surrounds the `primaryText` and optionally
    * `secondaryText` within the list item.
@@ -89,17 +95,33 @@ export interface ListItemChildrenProps {
    * An optional graphic to be placed left of the main content.
    */
   leftMedia?: ReactNode;
-  leftMediaLarge?: ReactNode;
-  rightMedia?: ReactNode;
-  rightMediaLarge?: ReactNode;
-
-  leftPosition?: ListItemIconPosition;
-  rightPosition?: ListItemIconPosition;
 
   /**
-   * Boolean if the color pollution should be fixed at this level. This is really used when
-   * composing the children with clickable list items and tree items.
+   * An optional large graphic to place to the left of the main content.
    */
+  leftMediaLarge?: ReactNode;
+
+  /**
+   * An optional graphic to place to the right of the main content.
+   */
+  rightMedia?: ReactNode;
+
+  /**
+   * An opional large graphic to place to the right of the main content.
+   */
+  rightMediaLarge?: ReactNode;
+
+  /**
+   * The vertical position the left icon, avatar, media, or large media
+   * should be placed.
+   */
+  leftPosition?: ListItemIconPosition;
+
+  /**
+   * The vertical position the right icon, avatar, media, or large media
+   * should be placed.
+   */
+  rightPosition?: ListItemIconPosition;
 }
 
 type DefaultProps = Required<

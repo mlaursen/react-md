@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileInput should render correctly 1`] = `
+<div>
+  <input
+    class="rmd-file-input"
+    id="input"
+    type="file"
+    value=""
+  />
+  <label
+    class="rmd-file-input-label rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+    for="input"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon--before"
+    >
+      file_download
+    </i>
+    <span
+      class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    >
+      Upload
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </label>
+</div>
+`;
+
+exports[`FileInput should render correctly 2`] = `
+<div>
+  <input
+    class="rmd-file-input"
+    id="input"
+    type="file"
+    value=""
+  />
+  <label
+    class="rmd-file-input-label rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+    for="input"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon--before"
+    >
+      file_download
+    </i>
+    Custom children
+    <span
+      class="rmd-ripple-container"
+    />
+  </label>
+</div>
+`;
+
+exports[`FileInput should render correctly 3`] = `
+<div>
+  <input
+    class="rmd-file-input"
+    id="input"
+    type="file"
+    value=""
+  />
+  <label
+    class="rmd-file-input-label rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+    for="input"
+  >
+    Custom children and no Icon
+    <span
+      class="rmd-ripple-container"
+    />
+  </label>
+</div>
+`;

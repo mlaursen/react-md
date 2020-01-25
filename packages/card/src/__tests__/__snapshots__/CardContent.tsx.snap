@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardContent should render correctly 1`] = `
+<div>
+  <div
+    class="rmd-card__content rmd-card__content--padded rmd-card__content--extra-padding rmd-card__content--remove-margin rmd-card__content--secondary"
+  >
+    <div>
+      Content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CardContent should render correctly 2`] = `
+<div>
+  <div
+    class="rmd-card__content rmd-card__content--remove-margin rmd-card__content--secondary"
+  >
+    <div>
+      Content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CardContent should render correctly 3`] = `
+<div>
+  <div
+    class="rmd-card__content rmd-card__content--padded rmd-card__content--remove-margin rmd-card__content--secondary"
+  >
+    <div>
+      Content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CardContent should render correctly 4`] = `
+<div>
+  <div
+    class="rmd-card__content rmd-card__content--padded rmd-card__content--extra-padding rmd-card__content--secondary"
+  >
+    <div>
+      Content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CardContent should render correctly 5`] = `
+<div>
+  <div
+    class="rmd-card__content rmd-card__content--padded rmd-card__content--extra-padding rmd-card__content--remove-margin"
+  >
+    <div>
+      Content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CardContent should render correctly 6`] = `
+<div>
+  <div
+    class="rmd-card__content custom-class-name"
+  >
+    <div>
+      Content
+    </div>
+  </div>
+</div>
+`;

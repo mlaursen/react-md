@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BadgeContainer should render correctly 1`] = `
+<div>
+  <span
+    class="rmd-badge-container"
+  />
+</div>
+`;
+
+exports[`BadgeContainer should render correctly 2`] = `
+<div>
+  <span
+    class="rmd-badge-container custom-badged-button"
+  >
+    <button
+      aria-describedby="custom-badged-button-badge"
+      class="rmd-button rmd-button--icon"
+      id="custom-badged-button"
+      type="button"
+    >
+      <i
+        class="material-icons"
+      >
+        notification
+      </i>
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <span
+      class="rmd-badge rmd-badge--default"
+      id="custom-badged-button-badge"
+    >
+      8
+    </span>
+  </span>
+</div>
+`;

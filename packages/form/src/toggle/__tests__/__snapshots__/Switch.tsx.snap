@@ -1,0 +1,415 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch should be able to render the children within the switch's ball hiden label 1`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-switch-container"
+  >
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      >
+        <span>
+          Content
+        </span>
+      </label>
+    </span>
+    <label
+      class="rmd-label rmd-icon--after"
+      for="switch"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with and without a label 1`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-switch-container"
+  >
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with and without a label 2`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-switch-container"
+  >
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+    <label
+      class="rmd-label rmd-icon--after"
+      for="switch"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with and without a label 3`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-switch-container"
+  >
+    <label
+      class="rmd-label rmd-icon--before"
+      for="switch"
+    >
+      Label
+    </label>
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with and without a label 4`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-toggle-container--inline rmd-switch-container"
+  >
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+    <label
+      class="rmd-label rmd-icon--after"
+      for="switch"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with and without a label 5`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-toggle-container--stacked rmd-switch-container"
+  >
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+    <label
+      class="rmd-label rmd-icon--after"
+      for="switch"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with and without a label 6`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-toggle-container--stacked rmd-toggle-container--inline rmd-switch-container"
+  >
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+    <label
+      class="rmd-label rmd-icon--after"
+      for="switch"
+    >
+      Label
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with and without a label 7`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-toggle-container--inline rmd-switch-container"
+  >
+    <label
+      class="rmd-label rmd-icon--before"
+      for="switch"
+    >
+      Label
+    </label>
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with and without a label 8`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-toggle-container--stacked rmd-switch-container"
+  >
+    <label
+      class="rmd-label rmd-icon--before"
+      for="switch"
+    >
+      Label
+    </label>
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with and without a label 9`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-toggle-container--stacked rmd-toggle-container--inline rmd-switch-container"
+  >
+    <label
+      class="rmd-label rmd-icon--before"
+      for="switch"
+    >
+      Label
+    </label>
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with the different state props 1`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-switch-container"
+  >
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        disabled=""
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+    <label
+      class="rmd-label rmd-label--disabled rmd-icon--after"
+      for="switch"
+    >
+      <span>
+        Label
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with the different state props 2`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-switch-container"
+  >
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+    <label
+      class="rmd-label rmd-label--disabled rmd-icon--after"
+      for="switch"
+    >
+      <span>
+        Label
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with the different state props 3`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-switch-container"
+  >
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        disabled=""
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+    <label
+      class="rmd-label rmd-icon--after"
+      for="switch"
+    >
+      <span>
+        Label
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Switch should render correctly with the different state props 4`] = `
+<div>
+  <div
+    class="rmd-toggle-container rmd-switch-container"
+  >
+    <span
+      class="rmd-switch"
+    >
+      <input
+        class="rmd-switch__input"
+        id="switch"
+        type="checkbox"
+      />
+      <label
+        aria-hidden="true"
+        class="rmd-switch__ball"
+        for="switch"
+      />
+    </span>
+    <label
+      class="rmd-label rmd-label--error rmd-icon--after"
+      for="switch"
+    >
+      <span>
+        Label
+      </span>
+    </label>
+  </div>
+</div>
+`;

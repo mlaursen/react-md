@@ -45,4 +45,13 @@ describe("Divider", () => {
     rerender(<Divider inset vertical className="my-divider" />);
     expect(getClassName()).toBe("rmd-divider rmd-divider--vertical my-divider");
   });
+
+  it("should render correctly (with snapshots)", () => {
+    const { container, rerender } = render(<Divider />);
+
+    expect(container).toMatchSnapshot();
+
+    rerender(<Divider id="divider-id" />);
+    expect(container).toMatchSnapshot();
+  });
 });

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabPanel should render correctly 1`] = `
+<div>
+  <div
+    aria-label="Panel"
+    class="rmd-tab-panel"
+    role="tabpanel"
+  >
+    <div>
+      Here is some amazing content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TabPanel should render correctly 2`] = `
+<div>
+  <div
+    aria-label="Panel"
+    class="rmd-tab-panel"
+    id="panel-id"
+    role="tabpanel"
+  >
+    <div>
+      Here is some amazing content
+    </div>
+  </div>
+</div>
+`;

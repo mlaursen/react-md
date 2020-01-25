@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListSubheader should render correctly 1`] = `
+<div>
+  <li
+    class="rmd-list-subheader"
+  >
+    <span>
+      CHildren
+    </span>
+  </li>
+</div>
+`;
+
+exports[`ListSubheader should render correctly 2`] = `
+<div>
+  <li
+    class="rmd-list-subheader rmd-list-subheader--inset"
+  >
+    <span>
+      CHildren
+    </span>
+  </li>
+</div>
+`;

@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CircularProgress should render correctly 1`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    class="rmd-circular-progress rmd-circular-progress--centered"
+    id="progress"
+    role="progressbar"
+  >
+    <svg
+      class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+      viewBox="0 0 66 66"
+    >
+      <circle
+        class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+        cx="33"
+        cy="33"
+        r="30"
+      />
+    </svg>
+  </span>
+</div>
+`;
+
+exports[`CircularProgress should render correctly 2`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    class="rmd-circular-progress rmd-circular-progress--centered"
+    id="progress"
+    role="progressbar"
+  >
+    <svg
+      class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+      viewBox="0 0 66 66"
+    >
+      <circle
+        class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+        cx="33"
+        cy="33"
+        r="30"
+      />
+    </svg>
+  </span>
+</div>
+`;
+
+exports[`CircularProgress should render correctly 3`] = `
+<div>
+  <span
+    aria-valuemax="100"
+    aria-valuemin="0"
+    class="rmd-circular-progress"
+    id="progress"
+    role="progressbar"
+  >
+    <svg
+      class="rmd-circular-progress__svg rmd-circular-progress__svg--indeterminate"
+      viewBox="0 0 66 66"
+    >
+      <circle
+        class="rmd-circular-progress__circle rmd-circular-progress__circle--indeterminate"
+        cx="33"
+        cy="33"
+        r="30"
+      />
+    </svg>
+  </span>
+</div>
+`;

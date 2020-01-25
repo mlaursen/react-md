@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppBar should render child app bars as divs to help with stacked layouts 1`] = `
+<div>
+  <header
+    class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--prominent"
+    id="app-bar"
+  >
+    <div
+      class="rmd-app-bar"
+      id="app-bar-row-1"
+    >
+      Here is some content on a row
+    </div>
+    <div
+      class="rmd-app-bar"
+      id="app-bar-row-2"
+    >
+      Second row
+    </div>
+  </header>
+</div>
+`;
+
+exports[`AppBar should render correctly (with snapshots) 1`] = `
+<div>
+  <header
+    class="rmd-app-bar rmd-app-bar--primary"
+    id="app-bar-id"
+  >
+    <span>
+      Here is some content
+    </span>
+  </header>
+</div>
+`;
+
+exports[`AppBar should render correctly (with snapshots) 2`] = `
+<div>
+  <header
+    class="rmd-app-bar rmd-app-bar--secondary rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--fixed-elevation"
+    id="app-bar-id"
+  >
+    <span>
+      Here is some content
+    </span>
+  </header>
+</div>
+`;
+
+exports[`AppBar should render correctly (with snapshots) 3`] = `
+<div>
+  <header
+    class="rmd-app-bar rmd-app-bar--secondary rmd-app-bar--fixed rmd-app-bar--top"
+    id="app-bar-id"
+  >
+    <span>
+      Here is some content
+    </span>
+  </header>
+</div>
+`;

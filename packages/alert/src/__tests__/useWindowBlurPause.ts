@@ -1,4 +1,3 @@
-import { cleanup } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
 import useWindowBlurPause from "../useWindowBlurPause";
@@ -8,7 +7,6 @@ const stopTimer = jest.fn();
 
 afterEach(() => {
   jest.resetAllMocks();
-  cleanup();
 });
 
 describe("useWindowBlurPause", () => {

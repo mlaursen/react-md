@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Divider should render correctly (with snapshots) 1`] = `
+<div>
+  <hr
+    class="rmd-divider"
+    role="separator"
+  />
+</div>
+`;
+
+exports[`Divider should render correctly (with snapshots) 2`] = `
+<div>
+  <hr
+    class="rmd-divider"
+    id="divider-id"
+    role="separator"
+  />
+</div>
+`;

@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tab should render correctly 1`] = `
+<div>
+  <button
+    aria-selected="false"
+    class="rmd-tab"
+    id="tab"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="rmd-tab__content"
+    >
+      Tab
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Tab should render correctly 2`] = `
+<div>
+  <button
+    aria-selected="false"
+    class="rmd-tab"
+    disabled=""
+    id="tab"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="rmd-tab__content"
+    >
+      Tab
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Tab should render correctly 3`] = `
+<div>
+  <button
+    aria-selected="false"
+    class="rmd-tab"
+    id="tab"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="rmd-tab__content"
+    >
+      Tab
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Tab should render correctly 4`] = `
+<div>
+  <button
+    aria-selected="false"
+    class="rmd-tab"
+    id="tab"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <i
+      class="rmd-icon--before"
+    >
+      icon
+    </i>
+    <span
+      class="rmd-tab__content"
+    >
+      Tab
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Tab should render correctly 5`] = `
+<div>
+  <button
+    aria-selected="false"
+    class="rmd-tab"
+    id="tab"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="rmd-tab__content"
+    >
+      Tab
+    </span>
+    <i
+      class="rmd-icon--after"
+    >
+      icon
+    </i>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Tab should render correctly 6`] = `
+<div>
+  <button
+    aria-selected="false"
+    class="rmd-tab rmd-tab--stacked"
+    id="tab"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <i
+      class="rmd-icon--above"
+    >
+      icon
+    </i>
+    <span
+      class="rmd-tab__content"
+    >
+      Tab
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Tab should render correctly 7`] = `
+<div>
+  <button
+    aria-selected="false"
+    class="rmd-tab rmd-tab--stacked"
+    id="tab"
+    role="tab"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="rmd-tab__content"
+    >
+      Tab
+    </span>
+    <i
+      class="rmd-icon--below"
+    >
+      icon
+    </i>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;

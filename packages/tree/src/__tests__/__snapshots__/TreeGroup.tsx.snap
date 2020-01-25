@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TreeGroup should render correctly 1`] = `<div />`;
+
+exports[`TreeGroup should render correctly 2`] = `
+<div>
+  <ul
+    class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+    role="group"
+    style="max-height: 0; padding-top: 0px; padding-bottom: 0px; transition-duration: 250ms;"
+  >
+    <li>
+      Item 1
+    </li>
+  </ul>
+</div>
+`;

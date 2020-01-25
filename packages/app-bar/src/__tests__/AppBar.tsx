@@ -147,4 +147,34 @@ describe("AppBar", () => {
     );
     expect(container.querySelector("h3")).not.toBeNull();
   });
+
+  it("should render correctly (with snapshots)", () => {
+    const props = {
+      id: "app-bar-id",
+      children: <span>Here is some content</span>,
+    };
+
+    const { container, rerender } = render(<AppBar {...props} />);
+
+    expect(container).toMatchSnapshot();
+
+    rerender(<AppBar {...props} fixed theme="secondary" />);
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <AppBar {...props} fixed fixedElevation={false} theme="secondary" />
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should render child app bars as divs to help with stacked layouts", () => {
+    const { container } = render(
+      <AppBar id="app-bar" prominent>
+        <AppBar id="app-bar-row-1">Here is some content on a row</AppBar>
+        <AppBar id="app-bar-row-2">Second row</AppBar>
+      </AppBar>
+    );
+
+    expect(container).toMatchSnapshot();
+  });
 });

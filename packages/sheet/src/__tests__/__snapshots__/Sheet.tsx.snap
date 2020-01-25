@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sheet should portal by default 1`] = `
+<body
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div />
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-sheet-overlay rmd-overlay--active"
+    id="sheet-overlay"
+    tabindex="-1"
+  />
+  <div
+    aria-label="Label"
+    aria-modal="true"
+    class="rmd-dialog rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width"
+    id="sheet"
+    role="dialog"
+    tabindex="-1"
+  >
+    <button
+      type="button"
+    >
+      Close
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Sheet should portal by default 2`] = `
+<body
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div>
+    <span
+      class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-sheet-overlay rmd-overlay--active"
+      id="sheet-overlay"
+      tabindex="-1"
+    />
+    <div
+      aria-label="Label"
+      aria-modal="true"
+      class="rmd-dialog rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width"
+      id="sheet"
+      role="dialog"
+      tabindex="-1"
+    >
+      <button
+        type="button"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Sheet should render correctly based on the position 1`] = `
+<body
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div />
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-sheet-overlay rmd-overlay--active"
+    id="sheet-overlay"
+    tabindex="-1"
+  />
+  <div
+    aria-label="Label"
+    aria-modal="true"
+    class="rmd-dialog rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width"
+    id="sheet"
+    role="dialog"
+    tabindex="-1"
+  >
+    <button
+      type="button"
+    >
+      Close
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Sheet should render correctly based on the position 2`] = `
+<body
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div />
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-sheet-overlay rmd-overlay--active"
+    id="sheet-overlay"
+    tabindex="-1"
+  />
+  <div
+    aria-label="Label"
+    aria-modal="true"
+    class="rmd-dialog rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--right rmd-sheet--media-width"
+    id="sheet"
+    role="dialog"
+    tabindex="-1"
+  >
+    <button
+      type="button"
+    >
+      Close
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Sheet should render correctly based on the position 3`] = `
+<body
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div />
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-sheet-overlay rmd-overlay--active"
+    id="sheet-overlay"
+    tabindex="-1"
+  />
+  <div
+    aria-label="Label"
+    aria-modal="true"
+    class="rmd-dialog rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--bottom rmd-sheet--recommended-height"
+    id="sheet"
+    role="dialog"
+    tabindex="-1"
+  >
+    <button
+      type="button"
+    >
+      Close
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Sheet should render correctly based on the position 4`] = `
+<body
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div />
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-sheet-overlay rmd-overlay--active"
+    id="sheet-overlay"
+    tabindex="-1"
+  />
+  <div
+    aria-label="Label"
+    aria-modal="true"
+    class="rmd-dialog rmd-sheet rmd-sheet--horizontal rmd-sheet--raised rmd-sheet--left rmd-sheet--media-width"
+    id="sheet"
+    role="dialog"
+    tabindex="-1"
+  >
+    <button
+      type="button"
+    >
+      Close
+    </button>
+  </div>
+</body>
+`;
+
+exports[`Sheet should render correctly based on the position 5`] = `
+<body
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div />
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-sheet-overlay rmd-overlay--active"
+    id="sheet-overlay"
+    tabindex="-1"
+  />
+  <div
+    aria-label="Label"
+    aria-modal="true"
+    class="rmd-dialog rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--top rmd-sheet--recommended-height"
+    id="sheet"
+    role="dialog"
+    tabindex="-1"
+  >
+    <button
+      type="button"
+    >
+      Close
+    </button>
+  </div>
+</body>
+`;

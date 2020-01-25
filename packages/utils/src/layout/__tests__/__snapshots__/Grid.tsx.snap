@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid should render correctly when the columns props are provided 1`] = `
+<div>
+  <div
+    class="rmd-grid"
+  />
+</div>
+`;
+
+exports[`Grid should render correctly when the columns props are provided 2`] = `
+<div>
+  <div
+    class="rmd-grid"
+  />
+</div>
+`;
+
+exports[`Grid should render correctly with the GridCell component 1`] = `
+<div>
+  <div
+    class="rmd-grid"
+  >
+    <div
+      class="rmd-grid__cell"
+    >
+      Cell 1
+    </div>
+    <div
+      class="rmd-grid__cell"
+    >
+      Cell 2
+    </div>
+    <div
+      class="rmd-grid__cell"
+    >
+      Cell 3
+    </div>
+  </div>
+</div>
+`;

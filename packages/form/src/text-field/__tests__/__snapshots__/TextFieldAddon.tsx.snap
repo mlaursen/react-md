@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextFieldAddon should render as null when there are no children 1`] = `<div />`;
+
+exports[`TextFieldAddon should render correctly 1`] = `
+<div>
+  <span
+    class="rmd-text-field-addon rmd-text-field-addon--presentational"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;
+
+exports[`TextFieldAddon should render correctly 2`] = `
+<div>
+  <span
+    class="rmd-text-field-addon"
+  >
+    <span>
+      Content
+    </span>
+  </span>
+</div>
+`;

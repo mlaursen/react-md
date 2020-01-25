@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should render correctly 1`] = `
+<div>
+  <div
+    class="rmd-card rmd-card--shadowed"
+  />
+</div>
+`;
+
+exports[`Card should render correctly 2`] = `
+<div>
+  <div
+    class="rmd-card rmd-card--bordered"
+  />
+</div>
+`;
+
+exports[`Card should render correctly 3`] = `
+<div>
+  <div
+    class="rmd-card rmd-card--bordered"
+  />
+</div>
+`;
+
+exports[`Card should render correctly 4`] = `
+<div>
+  <div
+    class="rmd-card rmd-card--bordered rmd-card--full-width"
+  />
+</div>
+`;
+
+exports[`Card should render correctly 5`] = `
+<div>
+  <div
+    class="rmd-card rmd-card--bordered rmd-card--full-width"
+  >
+    <div>
+      Content
+    </div>
+  </div>
+</div>
+`;

@@ -1,6 +1,6 @@
 import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 import {
   CREATE,
@@ -169,7 +169,6 @@ describe("useRippleTransition", () => {
     nowSpy.mockImplementation(() => 1);
   });
   afterEach(() => {
-    cleanup();
     if (nowSpy) {
       nowSpy.mockRestore();
     }

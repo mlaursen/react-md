@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List should render correctly 1`] = `
+<div>
+  <ul
+    class="rmd-list"
+    role="none"
+  />
+</div>
+`;
+
+exports[`List should render correctly 2`] = `
+<div>
+  <ol
+    class="rmd-list"
+    role="none"
+  />
+</div>
+`;
+
+exports[`List should render correctly 3`] = `
+<div>
+  <ul
+    class="rmd-list rmd-list--dense"
+    role="none"
+  />
+</div>
+`;
+
+exports[`List should render correctly 4`] = `
+<div>
+  <ul
+    class="rmd-list rmd-list--horizontal"
+    role="none"
+  />
+</div>
+`;

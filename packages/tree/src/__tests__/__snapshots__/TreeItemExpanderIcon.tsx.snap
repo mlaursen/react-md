@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TreeItemExpanderIcon should render correctly 1`] = `
+<div>
+  <i
+    class="rmd-icon-rotator rmd-icon-rotator--animate rmd-tree-item__rotator-icon"
+  >
+    icon
+  </i>
+</div>
+`;
+
+exports[`TreeItemExpanderIcon should render correctly 2`] = `
+<div>
+  <i
+    class="rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-tree-item__rotator-icon"
+  >
+    icon
+  </i>
+</div>
+`;

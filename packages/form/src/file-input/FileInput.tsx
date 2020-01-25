@@ -124,7 +124,7 @@ const FileInput: FC<FileInputProps & WithRef> = providedProps => {
       disabled,
       className: propClassName,
     }),
-    // pressent enter or space would trigger two click events otherwise.
+    // pressing enter or space would trigger two click events otherwise.
     disableEnterClick: true,
   });
 

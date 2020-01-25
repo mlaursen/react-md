@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fieldset should be unstyled by default 1`] = `
+<div>
+  <fieldset
+    class="rmd-fieldset rmd-fieldset--unstyled"
+  >
+    <legend
+      class="rmd-fieldset__legend"
+    >
+      Legend
+    </legend>
+  </fieldset>
+</div>
+`;
+
+exports[`Fieldset should be unstyled by default 2`] = `
+<div>
+  <fieldset
+    class="rmd-fieldset rmd-fieldset--unstyled"
+  >
+    <legend
+      class="rmd-fieldset__legend"
+    >
+      Legend
+    </legend>
+  </fieldset>
+</div>
+`;
+
+exports[`Fieldset should be unstyled by default 3`] = `
+<div>
+  <fieldset
+    class="rmd-fieldset"
+  >
+    <legend
+      class="rmd-fieldset__legend"
+    >
+      Legend
+    </legend>
+  </fieldset>
+</div>
+`;
+
+exports[`Fieldset should render correctly 1`] = `
+<div>
+  <fieldset
+    class="rmd-fieldset rmd-fieldset--unstyled"
+  >
+    <legend
+      class="rmd-fieldset__legend"
+    >
+      Legend
+    </legend>
+    <input
+      id="text-input"
+      type="text"
+    />
+  </fieldset>
+</div>
+`;
+
+exports[`Fieldset should render correctly 2`] = `
+<div>
+  <fieldset
+    class="rmd-fieldset rmd-fieldset--unstyled"
+  >
+    <legend
+      class="rmd-fieldset__legend"
+    >
+      <span>
+        Legend in a span
+      </span>
+    </legend>
+    <input
+      id="text-input"
+      type="text"
+    />
+  </fieldset>
+</div>
+`;
+
+exports[`Fieldset should render correctly 3`] = `
+<div>
+  <fieldset
+    class="rmd-fieldset rmd-fieldset--unstyled"
+  >
+    <legend
+      class="rmd-fieldset__legend rmd-fieldset__legend--sr-only"
+    >
+      Legend
+    </legend>
+    <input
+      id="text-input"
+      type="text"
+    />
+  </fieldset>
+</div>
+`;

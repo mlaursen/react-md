@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItemText should apply class names correctly 1`] = `
+<div>
+  <span
+    class="rmd-list-item__text class-name"
+  >
+    <div>
+      Children
+    </div>
+  </span>
+</div>
+`;
+
+exports[`ListItemText should apply class names correctly 2`] = `
+<div>
+  <span
+    class="rmd-list-item__text class-name"
+  >
+    <div>
+      Children
+    </div>
+    <span
+      class="rmd-list-item__text rmd-list-item__text--secondary secondary-class-name"
+    >
+      <div>
+        Secondary Text
+      </div>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`ListItemText should render correctly 1`] = `
+<div>
+  <span
+    class="rmd-list-item__text"
+  >
+    Content
+  </span>
+</div>
+`;
+
+exports[`ListItemText should render correctly 2`] = `
+<div>
+  <span
+    class="rmd-list-item__text"
+  >
+    Content
+    <span
+      class="rmd-list-item__text rmd-list-item__text--secondary"
+    >
+      Secondary
+    </span>
+  </span>
+</div>
+`;
+
+exports[`ListItemText should render correctly 3`] = `
+<div>
+  <span
+    class="rmd-list-item__text"
+  >
+    Content
+    <span
+      class="rmd-list-item__text rmd-list-item__text--secondary"
+    >
+      <span>
+        Secondary
+      </span>
+    </span>
+  </span>
+</div>
+`;

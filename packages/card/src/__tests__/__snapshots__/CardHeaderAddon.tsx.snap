@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardHeaderAddon should render as null if there are no children 1`] = `<div />`;
+
+exports[`CardHeaderAddon should render correctly 1`] = `
+<div>
+  <span
+    class="rmd-card__header-addon"
+  >
+    <i
+      class="material-icons"
+    >
+      keyboard_arrow_left
+    </i>
+  </span>
+</div>
+`;
+
+exports[`CardHeaderAddon should render correctly 2`] = `
+<div>
+  <span
+    class="rmd-card__header-addon custom-class-name"
+  >
+    <i
+      class="material-icons"
+    >
+      keyboard_arrow_left
+    </i>
+  </span>
+</div>
+`;

@@ -77,4 +77,16 @@ describe("Avatar", () => {
     expect((span as HTMLSpanElement).className).toBe("");
     expect((span as HTMLSpanElement).textContent).toBe("A");
   });
+
+  it("should render correctly (with snapshots)", () => {
+    const { container, rerender } = render(<Avatar>A</Avatar>);
+
+    expect(container).toMatchSnapshot();
+
+    rerender(<Avatar color="red">A</Avatar>);
+    expect(container).toMatchSnapshot();
+
+    rerender(<Avatar color="red" src="https://example.com" />);
+    expect(container).toMatchSnapshot();
+  });
 });

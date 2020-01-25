@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardTitle should render correctly 1`] = `
+<div>
+  <h5
+    class="rmd-card__title"
+  >
+    Content
+  </h5>
+</div>
+`;
+
+exports[`CardTitle should render correctly 2`] = `
+<div>
+  <h5
+    class="rmd-card__title rmd-card__title--small"
+  >
+    Content
+  </h5>
+</div>
+`;
+
+exports[`CardTitle should render correctly 3`] = `
+<div>
+  <h5
+    class="rmd-card__title custom-class-name"
+  >
+    Content
+  </h5>
+</div>
+`;
+
+exports[`CardTitle should render correctly 4`] = `
+<div>
+  <h5
+    class="rmd-card__title rmd-card__title--small custom-class-name"
+  >
+    Content
+  </h5>
+</div>
+`;

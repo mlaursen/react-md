@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { cleanup, render, RenderResult } from "@testing-library/react";
+import { render, RenderResult } from "@testing-library/react";
 
 import TableCell from "../TableCell";
 import TableRow from "../TableRow";
@@ -28,8 +28,6 @@ const renderBody = (children: ReactElement): RenderResult =>
       </Table>
     ),
   });
-
-afterEach(cleanup);
 
 describe("TableCell", () => {
   it("should render as a th in the TableHeader by default", () => {

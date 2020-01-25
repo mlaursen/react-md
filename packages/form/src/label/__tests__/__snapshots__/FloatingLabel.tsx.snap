@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FloatingLabel should only add the inactive flag when valued and not active , errored, and disabled 1`] = `
+<div>
+  <label
+    class="rmd-label rmd-floating-label rmd-floating-label--inactive"
+    for="input-id"
+  >
+    label
+  </label>
+</div>
+`;
+
+exports[`FloatingLabel should only add the inactive flag when valued and not active , errored, and disabled 2`] = `
+<div>
+  <label
+    class="rmd-label rmd-floating-label"
+    for="input-id"
+  >
+    label
+  </label>
+</div>
+`;
+
+exports[`FloatingLabel should only add the inactive flag when valued and not active , errored, and disabled 3`] = `
+<div>
+  <label
+    class="rmd-label rmd-label--error rmd-label--active rmd-floating-label"
+    for="input-id"
+  >
+    label
+  </label>
+</div>
+`;
+
+exports[`FloatingLabel should only add the inactive flag when valued and not active , errored, and disabled 4`] = `
+<div>
+  <label
+    class="rmd-label rmd-label--error rmd-floating-label"
+    for="input-id"
+  >
+    label
+  </label>
+</div>
+`;
+
+exports[`FloatingLabel should only add the inactive flag when valued and not active , errored, and disabled 5`] = `
+<div>
+  <label
+    class="rmd-label rmd-label--active rmd-floating-label"
+    for="input-id"
+  >
+    label
+  </label>
+</div>
+`;
+
+exports[`FloatingLabel should only add the inactive flag when valued and not active , errored, and disabled 6`] = `
+<div>
+  <label
+    class="rmd-label rmd-label--disabled rmd-floating-label"
+    for="input-id"
+  >
+    label
+  </label>
+</div>
+`;
+
+exports[`FloatingLabel should render correctly 1`] = `
+<div>
+  <label
+    class="rmd-label rmd-floating-label"
+    for="input-id"
+  >
+    <span>
+      Label value
+    </span>
+  </label>
+</div>
+`;
+
+exports[`FloatingLabel should render correctly 2`] = `
+<div>
+  <label
+    class="rmd-label rmd-floating-label rmd-floating-label--dense"
+    for="input-id"
+  >
+    <span>
+      Label value
+    </span>
+  </label>
+</div>
+`;
+
+exports[`FloatingLabel should render correctly 3`] = `
+<div>
+  <label
+    class="rmd-label rmd-floating-label rmd-floating-label--active"
+    for="input-id"
+  >
+    <span>
+      Label value
+    </span>
+  </label>
+</div>
+`;

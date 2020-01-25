@@ -128,6 +128,9 @@ if (process.env.NODE_ENV !== "production") {
 
   if (PropTypes) {
     Tab.propTypes = {
+      id: PropTypes.string.isRequired,
+      panelId: PropTypes.string,
+      active: PropTypes.bool.isRequired,
       className: PropTypes.string,
       contentStyle: PropTypes.object,
       contentClassName: PropTypes.string,
