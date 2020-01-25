@@ -28,15 +28,6 @@ const getListbox = () => {
   return listbox;
 };
 
-const getOption = (index: number) => {
-  const option = document.getElementById(`select-listbox-option-${index}`);
-  if (!option) {
-    throw new Error();
-  }
-
-  return option;
-};
-
 describe("Select", () => {
   it("should render correctly", () => {
     const { container, rerender } = render(<Select {...PROPS} />);
