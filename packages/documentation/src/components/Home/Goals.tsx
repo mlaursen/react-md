@@ -1,26 +1,13 @@
 import React, { FC } from "react";
-import { Text, TextContainer } from "@react-md/typography";
+import { TextContainer } from "@react-md/typography";
 
-import Link from "components/Link";
-import { Code } from "components/Code";
+import { Markdown } from "components/Markdown";
+
+import markdown from "./Goals.md";
 
 const Goals: FC = () => (
   <TextContainer className="home__goals">
-    <Text type="headline-6" component="p">
-      This project&apos;s goal is to create extremely customizable and fully
-      accessible React components matching the guidelines from{" "}
-      <Link href="https://www.w3.org">www.w3.org</Link> along with following
-      Google&apos;s{" "}
-      <Link href="https://material.io/design/">Material Design</Link>{" "}
-      principles.
-    </Text>
-    <Text type="headline-6" component="p">
-      Unlike other component libraries, this project will be utilizing SCSS
-      along with CSS Variables instead of a CSS-in-JS solution. The dynamic
-      themes and style customization can be done with the provided{" "}
-      <Code>rmd-theme</Code> mixins or pre-compile time by overriding the
-      default variables.
-    </Text>
+    <Markdown>{markdown}</Markdown>
   </TextContainer>
 );
 

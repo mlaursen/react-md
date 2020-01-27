@@ -68,6 +68,14 @@
 @mixin rmd-table-cell-horizontal-alignments {
   @each $alignment in $rmd-table-cell-horizontal-alignments {
     &--#{$alignment} {
+      @include rmd-utils-rtl {
+        @if $alignment == left {
+          text-align: right;
+        } @else if $alignment == right {
+          text-align: left;
+        }
+      }
+
       text-align: $alignment;
     }
   }
@@ -104,6 +112,9 @@
       @include rmd-table-theme-update-var(cell-color, $rmd-table-header-cell-color);
     }
     @include rmd-typography-value(subtitle-2, font-weight, letter-spacing, line-height);
+    @include rmd-utils-rtl {
+      text-align: right;
+    }
 
     text-align: left;
   }

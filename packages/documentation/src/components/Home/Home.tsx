@@ -6,7 +6,7 @@ import "./Home.scss";
 import Banner from "./Banner";
 import Goals from "./Goals";
 import JumpStart from "./JumpStart";
-import LibraryWarning from "./LibraryWarning";
+import LibraryInfo from "./LibraryInfo";
 
 const Home: FC = () => (
   <div className="home">
@@ -14,7 +14,7 @@ const Home: FC = () => (
     <Banner />
     <Goals />
     <JumpStart />
-    <LibraryWarning />
+    <LibraryInfo />
   </div>
 );
 
