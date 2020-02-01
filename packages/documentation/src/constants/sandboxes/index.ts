@@ -174,6 +174,7 @@ const sandboxes: Sandboxes = {
     MenuPositioning: () => resolve(import("./Menu-MenuPositioning.json")),
     NestedDropdownMenus: () =>
       resolve(import("./Menu-NestedDropdownMenus.json")),
+    SimpleContextMenu: () => resolve(import("./Menu-SimpleContextMenu.json")),
     SimpleExamples: () => resolve(import("./Menu-SimpleExamples.json")),
   },
   Overlay: {

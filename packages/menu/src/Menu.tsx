@@ -18,6 +18,17 @@ import MenuEvents from "./MenuEvents";
 import { OrientationProvider } from "./Orientation";
 import useMenu from "./useMenu";
 
+export type MenuPositionOptions = Pick<
+  FixedPositionOptions,
+  | "vwMargin"
+  | "vhMargin"
+  | "xMargin"
+  | "yMargin"
+  | "initialX"
+  | "initialY"
+  | "disableSwapping"
+>;
+
 export interface MenuProps
   extends HTMLAttributes<HTMLDivElement>,
     OverridableCSSTransitionProps,
@@ -91,10 +102,7 @@ export interface MenuProps
    * Optional options to pass down to the `useFixedPositionin` hook styles to
    * change how the menu is fixed to the `MenuButton`.
    */
-  positionOptions?: Pick<
-    FixedPositionOptions,
-    "vwMargin" | "vhMargin" | "xMargin" | "yMargin" | "disableSwapping"
-  >;
+  positionOptions?: MenuPositionOptions;
 
   /**
    * Boolean if the menu should be rendered horizontally instead of vertically.
@@ -121,6 +129,15 @@ export interface MenuProps
    * Instead, it'll automatically update its position within the viewport.
    */
   disableCloseOnResize?: boolean;
+
+  /**
+   * Boolean if the close on outside click logic should consider the control
+   * element within the menu and not call the `onRequestClose` function when it
+   * is been clicked. This should be enabled when creating a context menu but
+   * normally should remain `false` otherwise since the control element has it's
+   * own toggle logic that conflicts with this close click.
+   */
+  disableControlClickOkay?: boolean;
 }
 
 type StrictProps = LabelRequiredForA11y<MenuProps>;
@@ -166,11 +183,12 @@ function Menu(
     anchor: propAnchor,
     onClick: propOnClick,
     onKeyDown: propOnKeyDown,
-    disableCloseOnScroll = false,
-    disableCloseOnResize = false,
     defaultFocus = "first",
     horizontal = false,
     positionOptions,
+    disableCloseOnScroll = false,
+    disableCloseOnResize = false,
+    disableControlClickOkay = false,
     ...props
   }: StrictProps,
   forwardedRef?: Ref<HTMLDivElement>
@@ -187,9 +205,10 @@ function Menu(
     horizontal,
     onClick: propOnClick,
     onKeyDown: propOnKeyDown,
+    defaultFocus,
     onRequestClose,
     disableCloseOnScroll,
-    defaultFocus,
+    disableControlClickOkay,
   });
 
   const {

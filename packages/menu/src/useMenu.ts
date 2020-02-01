@@ -47,6 +47,11 @@ export interface MenuOptions {
   onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
 
   /**
+   * The default focusable element within the menu.
+   */
+  defaultFocus: "first" | "last" | string;
+
+  /**
    * The function that should close the menu.
    */
   onRequestClose: () => void;
@@ -56,7 +61,15 @@ export interface MenuOptions {
    * element scrolled.
    */
   disableCloseOnScroll?: boolean;
-  defaultFocus: "first" | "last" | string;
+
+  /**
+   * Boolean if the close on outside click logic should consider the control
+   * element within the menu and not call the `onRequestClose` function when it
+   * is been clicked. This should be enabled when creating a context menu but
+   * normally should remain `false` otherwise since the control element has it's
+   * own toggle logic that conflicts with this close click.
+   */
+  disableControlClickOkay?: boolean;
 }
 
 interface ReturnValue
@@ -84,9 +97,10 @@ export default function useMenu({
   horizontal = false,
   onClick: propOnClick,
   onKeyDown: propOnKeyDown,
+  defaultFocus,
   onRequestClose,
   disableCloseOnScroll = false,
-  defaultFocus,
+  disableControlClickOkay = false,
 }: MenuOptions): ReturnValue {
   const { menu, ref } = useMenuRef(forwardedRef);
   const onScroll = useCloseOnScroll({
@@ -114,7 +128,10 @@ export default function useMenu({
         menu.current.querySelector('[aria-expanded="true"]') &&
         target.closest('[role="menu"]');
 
-      if (!contains(control, target) && !expanded) {
+      if (
+        (disableControlClickOkay || !contains(control, target)) &&
+        !expanded
+      ) {
         onRequestClose();
       }
     },

@@ -30,3 +30,5 @@ export {
   ValidMenuItem,
   MenuItemRenderer,
 } from "./defaultMenuItemRenderer";
+
+export { default as useContextMenu } from "./useContextMenu";

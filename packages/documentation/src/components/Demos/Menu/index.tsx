@@ -18,6 +18,8 @@ import fixingOverflowIssues from "./FixingOverflowIssues.md";
 import AccessibilityExample from "./AccessibilityExample";
 import accessibilityExample from "./AccessibilityExample.md";
 
+import { SimpleContextMenu, simpleContextMenu } from "./SimpleContextMenu";
+
 import HorizontalMenu from "./HorizontalMenu";
 import horizontalMenu from "./HorizontalMenu.md";
 
@@ -52,6 +54,11 @@ const demos = [
     name: "Accessibility Example",
     description: accessibilityExample,
     children: <AccessibilityExample />,
+  },
+  {
+    name: "Simple Context Menu",
+    description: simpleContextMenu,
+    children: <SimpleContextMenu />,
   },
   {
     name: "Horizontal Menu",
