@@ -45,6 +45,7 @@ interface Options
   > {
   y: VerticalPosition;
   vh: number;
+  initialY?: number;
   elHeight: number;
   containerRect: DOMRect | ClientRect;
 }
@@ -270,6 +271,7 @@ export default function createVerticalPosition({
   vhMargin,
   yMargin,
   elHeight,
+  initialY,
   containerRect,
   disableSwapping,
   preventOverlap,
@@ -289,6 +291,7 @@ export default function createVerticalPosition({
     vhMargin,
     yMargin,
     elHeight,
+    initialY,
     containerRect,
     screenBottom: vh - vhMargin,
     preventOverlap,

@@ -1,10 +1,9 @@
-import { CSSProperties, useCallback, useRef, useState } from "react";
+import { CSSProperties, useCallback, useRef, useState, useEffect } from "react";
 import { TransitionProps } from "react-transition-group/Transition";
 import {
   FixedPositionOptions,
   getFixedPosition,
   PositionAnchor,
-  useRefCache,
   useResizeListener,
   useScrollListener,
   getViewportSize,
@@ -127,11 +126,21 @@ export default function useFixedPositioning({
   getOptions,
   onResize,
   onScroll,
-  ...remainingOptions
+  anchor: currentAnchor = {},
+  initialX,
+  initialY,
+  xMargin = 0,
+  vwMargin = 16,
+  yMargin = 0,
+  vhMargin = 16,
+  width = "auto",
+  onPositionChange,
+  transformOrigin = false,
+  preventOverlap = false,
+  disableSwapping = false,
+  disableVHBounds = false,
 }: FixedPositioningOptions): ReturnValue {
   const [style, setStyle] = useState<CSSProperties | undefined>();
-  const handlers = useRefCache({ onEnter, onEntering, onEntered, onExited });
-  const options = useRefCache({ fixedTo, getOptions, ...remainingOptions });
 
   const element = useRef<HTMLElement | null>(null);
 
@@ -141,29 +150,30 @@ export default function useFixedPositioning({
       return;
     }
 
-    const {
-      fixedTo,
-      getOptions,
-      onPositionChange,
-      anchor: currentAnchor = {},
-      ...remaining
-    } = options.current;
     const anchor = {
       x: currentAnchor.x || "center",
       y: currentAnchor.y || "below",
     };
     const overrides = typeof getOptions === "function" ? getOptions(node) : {};
-    const opts = {
-      ...remaining,
-      ...overrides,
+    const opts: FixedPositionOptions = {
+      initialX,
+      initialY,
+      xMargin,
+      vwMargin,
+      yMargin,
+      vhMargin,
+      width,
+      transformOrigin,
+      preventOverlap,
+      disableSwapping,
+      disableVHBounds,
       anchor,
-    };
-
-    const { style, actualX, actualY } = getFixedPosition({
       container: getFixedTo(fixedTo),
       element: node,
-      ...opts,
-    });
+      ...overrides,
+    };
+
+    const { style, actualX, actualY } = getFixedPosition(opts);
 
     const actual = { x: actualX, y: actualY };
     if (onPositionChange && (anchor.x !== actual.x || anchor.y !== actual.y)) {
@@ -171,7 +181,24 @@ export default function useFixedPositioning({
     }
 
     setStyle(style);
-  }, [options]);
+  }, [
+    currentAnchor.x,
+    currentAnchor.y,
+    disableSwapping,
+    disableVHBounds,
+    fixedTo,
+    getOptions,
+    initialX,
+    initialY,
+    onPositionChange,
+    preventOverlap,
+    transformOrigin,
+    vhMargin,
+    vwMargin,
+    width,
+    xMargin,
+    yMargin,
+  ]);
 
   const updateNodeAndStyle = useCallback(
     (node: HTMLElement) => {
@@ -183,50 +210,46 @@ export default function useFixedPositioning({
 
   const handleEnter = useCallback(
     (node: HTMLElement, appear: boolean) => {
-      const { onEnter } = handlers.current;
       if (onEnter) {
         onEnter(node, appear);
       }
 
       updateNodeAndStyle(node);
     },
-    [handlers, updateNodeAndStyle]
+    [onEnter, updateNodeAndStyle]
   );
 
   const handleEntering = useCallback(
     (node: HTMLElement, appear: boolean) => {
-      const { onEntering } = handlers.current;
       if (onEntering) {
         onEntering(node, appear);
       }
 
       updateNodeAndStyle(node);
     },
-    [handlers, updateNodeAndStyle]
+    [onEntering, updateNodeAndStyle]
   );
 
   const handleEntered = useCallback(
     (node: HTMLElement, appear: boolean) => {
-      const { onEntered } = handlers.current;
       if (onEntered) {
         onEntered(node, appear);
       }
 
       updateNodeAndStyle(node);
     },
-    [handlers, updateNodeAndStyle]
+    [onEntered, updateNodeAndStyle]
   );
 
   const handleExited = useCallback(
     (node: HTMLElement) => {
-      const { onExited } = handlers.current;
       if (onExited) {
         onExited(node);
       }
 
       element.current = null;
     },
-    [handlers]
+    [onExited]
   );
 
   useResizeListener({
@@ -248,7 +271,6 @@ export default function useFixedPositioning({
         const rect = container && container.getBoundingClientRect();
         let visible = false;
         if (rect) {
-          const { vhMargin = 16, vwMargin = 16 } = remainingOptions;
           const vh = getViewportSize("height");
           const vw = getViewportSize("width");
           const { top, left } = rect;
@@ -270,6 +292,15 @@ export default function useFixedPositioning({
       updateStyle();
     },
   });
+
+  useEffect(() => {
+    updateStyle();
+
+    // Need to only update when the initialX and initialY values are changed.
+    // If this is triggered each time the updateStyle is changed, it causes an
+    // infinite loop.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialX, initialY]);
 
   return {
     style,

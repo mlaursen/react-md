@@ -1,36 +1,10 @@
 import { renderHook } from "@testing-library/react-hooks";
 
 import useCloseOnOutsideClick, {
-  contains,
   getElement,
   Options,
 } from "../useCloseOnOutsideClick";
-
-describe("contains", () => {
-  it("should return false if either the element or target are null", () => {
-    const div = document.createElement("div");
-    expect(contains(null, null)).toBe(false);
-    expect(contains(div, null)).toBe(false);
-    expect(contains(null, div)).toBe(false);
-  });
-
-  it("should return true if the element contains the target", () => {
-    const parent = document.createElement("div");
-    parent.setAttribute("id", "parent");
-
-    const child = document.createElement("span");
-    child.setAttribute("id", "child");
-    parent.appendChild(child);
-
-    const outside = document.createElement("div");
-    outside.setAttribute("id", "outside");
-
-    expect(contains(parent, child)).toBe(true);
-    expect(contains(parent, parent)).toBe(true);
-    expect(contains(child, parent)).toBe(false);
-    expect(contains(parent, outside)).toBe(false);
-  });
-});
+import containsElement from "../containsElement";
 
 describe("getElement", () => {
   it("should return null when the provided element is null", () => {
@@ -103,14 +77,14 @@ describe("useCloseOnOutsideClick", () => {
 
     const click = new MouseEvent("click", { bubbles: true });
     target.dispatchEvent(click);
-    expect(onOutsideClick).toBeCalledWith(null, target, contains);
+    expect(onOutsideClick).toBeCalledWith(null, target, containsElement);
 
     onOutsideClick.mockClear();
     expect(onOutsideClick).not.toBeCalledWith(null, target);
     rerender({ ...initialProps, element: { current: null } });
 
     target.dispatchEvent(click);
-    expect(onOutsideClick).toBeCalledWith(null, target, contains);
+    expect(onOutsideClick).toBeCalledWith(null, target, containsElement);
   });
 
   it("should call the onOutsideClick handler if the provided element does not contain the click target", () => {
@@ -139,7 +113,7 @@ describe("useCloseOnOutsideClick", () => {
 
     expect(onOutsideClick).not.toBeCalled();
     target.dispatchEvent(click);
-    expect(onOutsideClick).toBeCalledWith(element, target, contains);
+    expect(onOutsideClick).toBeCalledWith(element, target, containsElement);
 
     onOutsideClick.mockClear();
     rerender({ ...initialProps, element: { current: element } });
@@ -150,7 +124,7 @@ describe("useCloseOnOutsideClick", () => {
 
     expect(onOutsideClick).not.toBeCalled();
     target.dispatchEvent(click);
-    expect(onOutsideClick).toBeCalledWith(element, target, contains);
+    expect(onOutsideClick).toBeCalledWith(element, target, containsElement);
   });
 
   it("should not trigger the onOutsideClick behavior if the event is not bubbled", () => {

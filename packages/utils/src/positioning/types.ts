@@ -70,7 +70,25 @@ export type SimplePosition = "above" | "below" | "left" | "right";
  */
 export type PositionWidth = "auto" | "equal" | "min";
 
-export interface FixedPositionOptions {
+export interface InitialCoords {
+  /**
+   * The initial x value to use when calculating the position instead of
+   * finding the container element to determine the the correct position. All
+   * the other positioning logic will still be in effect to ensure the element
+   * will be visible within the viewport.
+   */
+  initialX?: number;
+
+  /**
+   * The initial y value to use when calculating the position instead of
+   * finding the container element to determine the the correct position. All
+   * the other positioning logic will still be in effect to ensure the element
+   * will be visible within the viewport.
+   */
+  initialY?: number;
+}
+
+export interface FixedPositionOptions extends InitialCoords {
   /**
    * The container element that the `element` should be fixed to.
    */

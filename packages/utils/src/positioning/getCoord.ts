@@ -1,12 +1,14 @@
 export interface XCoordConfig {
   xMargin: number;
   elWidth: number;
+  initialX?: number;
   containerRect: DOMRect | ClientRect;
 }
 
 export interface YCoordConfig {
   yMargin: number;
   elHeight: number;
+  initialY?: number;
   containerRect: DOMRect | ClientRect;
 }
 
@@ -23,9 +25,10 @@ type Top = number;
 export function getLeftCoord({
   xMargin,
   elWidth,
+  initialX,
   containerRect,
 }: XCoordConfig): Left {
-  return containerRect.left - elWidth - xMargin;
+  return (initialX ?? containerRect.left) - elWidth - xMargin;
 }
 
 /**
@@ -36,9 +39,10 @@ export function getLeftCoord({
  */
 export function getInnerLeftCoord({
   xMargin,
+  initialX,
   containerRect,
 }: XCoordConfig): Left {
-  return containerRect.left + xMargin;
+  return (initialX ?? containerRect.left) + xMargin;
 }
 
 /**
@@ -52,11 +56,12 @@ export function getInnerLeftCoord({
  */
 export function getCenterXCoord({
   elWidth,
+  initialX,
   containerRect,
 }: XCoordConfig): Left {
   const containerCenter = containerRect.width / 2;
   const elementCenter = elWidth / 2;
-  return containerRect.left + containerCenter - elementCenter;
+  return (initialX ?? containerRect.left + containerCenter) - elementCenter;
 }
 
 /**
@@ -68,9 +73,12 @@ export function getCenterXCoord({
 export function getInnerRightCoord({
   xMargin,
   elWidth,
+  initialX,
   containerRect,
 }: XCoordConfig): Left {
-  return containerRect.left + containerRect.width - elWidth - xMargin;
+  return (
+    (initialX ?? containerRect.left + containerRect.width) - elWidth - xMargin
+  );
 }
 
 /**
@@ -80,8 +88,12 @@ export function getInnerRightCoord({
  * the xMargin is applied).
  * @private
  */
-export function getRightCoord({ xMargin, containerRect }: XCoordConfig): Left {
-  return containerRect.left + containerRect.width + xMargin;
+export function getRightCoord({
+  xMargin,
+  initialX,
+  containerRect,
+}: XCoordConfig): Left {
+  return (initialX ?? containerRect.left + containerRect.width) + xMargin;
 }
 
 /**
@@ -92,10 +104,11 @@ export function getRightCoord({ xMargin, containerRect }: XCoordConfig): Left {
  */
 export function getAboveCoord({
   yMargin,
+  initialY,
   elHeight,
   containerRect,
 }: YCoordConfig): Top {
-  return containerRect.top - elHeight - yMargin;
+  return (initialY ?? containerRect.top) - elHeight - yMargin;
 }
 
 /**
@@ -104,8 +117,12 @@ export function getAboveCoord({
  * elements will overlap (before the yMargin is applied).
  * @private
  */
-export function getTopCoord({ yMargin, containerRect }: YCoordConfig): Top {
-  return containerRect.top + yMargin;
+export function getTopCoord({
+  yMargin,
+  initialY,
+  containerRect,
+}: YCoordConfig): Top {
+  return (initialY ?? containerRect.top) + yMargin;
 }
 
 /**
@@ -119,11 +136,12 @@ export function getTopCoord({ yMargin, containerRect }: YCoordConfig): Top {
  */
 export function getCenterYCoord({
   elHeight,
+  initialY,
   containerRect,
 }: YCoordConfig): Top {
   const containerCenter = containerRect.height / 2;
   const elementCenter = elHeight / 2;
-  return containerRect.top + containerCenter - elementCenter;
+  return (initialY ?? containerRect.top + containerCenter) - elementCenter;
 }
 
 /**
@@ -135,10 +153,13 @@ export function getCenterYCoord({
  */
 export function getBottomCoord({
   yMargin,
+  initialY,
   elHeight,
   containerRect,
 }: YCoordConfig): Top {
-  return containerRect.top + containerRect.height - elHeight - yMargin;
+  return (
+    (initialY ?? containerRect.top + containerRect.height) - elHeight - yMargin
+  );
 }
 
 /**
@@ -147,6 +168,10 @@ export function getBottomCoord({
  * and fixed elements should overlap (before the yMargin is applied).
  * @private
  */
-export function getBelowCoord({ yMargin, containerRect }: YCoordConfig): Top {
-  return containerRect.top + containerRect.height + yMargin;
+export function getBelowCoord({
+  yMargin,
+  initialY,
+  containerRect,
+}: YCoordConfig): Top {
+  return (initialY ?? containerRect.top + containerRect.height) + yMargin;
 }

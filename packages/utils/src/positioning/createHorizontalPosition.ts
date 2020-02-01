@@ -41,6 +41,7 @@ interface Options
   x: HorizontalPosition;
   vw: number;
   elWidth: number;
+  initialX?: number;
   containerRect: DOMRect | ClientRect;
 }
 
@@ -190,7 +191,13 @@ export function createAnchoredRight(config: FixConfig): XPosition {
 interface EqualWidthOptions
   extends Pick<
     Options,
-    "x" | "vw" | "elWidth" | "xMargin" | "vwMargin" | "containerRect"
+    | "x"
+    | "vw"
+    | "elWidth"
+    | "xMargin"
+    | "vwMargin"
+    | "containerRect"
+    | "initialX"
   > {
   isMinWidth: boolean;
 }
@@ -204,10 +211,11 @@ export function createEqualWidth({
   elWidth,
   xMargin,
   vwMargin,
+  initialX,
   containerRect,
   isMinWidth,
 }: EqualWidthOptions): XPosition {
-  const left = containerRect.left + xMargin;
+  const left = initialX ?? containerRect.left + xMargin;
 
   let width: number | undefined = containerRect.width - xMargin * 2;
   let minWidth: number | undefined;
@@ -243,6 +251,7 @@ export default function createHorizontalPosition({
   xMargin,
   width,
   elWidth,
+  initialX,
   containerRect,
   disableSwapping,
 }: Options): XPosition {
@@ -253,6 +262,7 @@ export default function createHorizontalPosition({
       vwMargin,
       xMargin,
       elWidth,
+      initialX,
       containerRect,
       isMinWidth: width === "min",
     });
@@ -273,6 +283,7 @@ export default function createHorizontalPosition({
     vwMargin,
     xMargin,
     elWidth,
+    initialX,
     screenRight: vw - vwMargin,
     containerRect,
     disableSwapping,

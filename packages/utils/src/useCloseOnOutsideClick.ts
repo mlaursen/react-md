@@ -1,16 +1,5 @@
 import { useEffect, useRef, MutableRefObject } from "react";
-
-/**
- * Checks if an element contains a target element by ensuring both HTMLElement
- * are not null.
- * @private
- */
-export function contains(
-  element: HTMLElement | null,
-  target: HTMLElement | null
-): boolean {
-  return !!(element && target && element.contains(target));
-}
+import containsElement from "./containsElement";
 
 /**
  * Gets the HTMLElement or null from a provided RefObject or HTMLElement/null
@@ -30,7 +19,7 @@ export function getElement<E extends HTMLElement>(
   return element as E | null;
 }
 
-type Contains = typeof contains;
+type Contains = typeof containsElement;
 
 /**
  * The on outside click handler that can be used to check for additional logic
@@ -82,8 +71,8 @@ export default function useCloseOnOutsideClick<E extends HTMLElement>({
       const target = event.target as HTMLElement | null;
       const el = getElement<E>(element);
 
-      if (!contains(el, target)) {
-        handler.current(el, target, contains);
+      if (!containsElement(el, target)) {
+        handler.current(el, target, containsElement);
       }
     }
 

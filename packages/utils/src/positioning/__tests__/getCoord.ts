@@ -89,6 +89,74 @@ describe("getLeftCoord", () => {
       })
     ).toBe(-8);
   });
+
+  it("should use the initialX value instead of the container's left if provided", () => {
+    expect(
+      getLeftCoord({
+        xMargin: 0,
+        elWidth: 100,
+        initialX: 150,
+        containerRect: containerRect1,
+      })
+    ).toBe(50);
+    expect(
+      getLeftCoord({
+        xMargin: 8,
+        elWidth: 100,
+        initialX: 150,
+        containerRect: containerRect1,
+      })
+    ).toBe(42);
+    expect(
+      getLeftCoord({
+        xMargin: 0,
+        elWidth: 50,
+        initialX: 150,
+        containerRect: containerRect1,
+      })
+    ).toBe(100);
+    expect(
+      getLeftCoord({
+        xMargin: 8,
+        elWidth: 50,
+        initialX: 150,
+        containerRect: containerRect1,
+      })
+    ).toBe(92);
+
+    expect(
+      getLeftCoord({
+        xMargin: 0,
+        elWidth: 100,
+        initialX: 150,
+        containerRect: containerRect2,
+      })
+    ).toBe(50);
+    expect(
+      getLeftCoord({
+        xMargin: 8,
+        elWidth: 100,
+        initialX: 150,
+        containerRect: containerRect2,
+      })
+    ).toBe(42);
+    expect(
+      getLeftCoord({
+        xMargin: 0,
+        elWidth: 50,
+        initialX: 150,
+        containerRect: containerRect2,
+      })
+    ).toBe(100);
+    expect(
+      getLeftCoord({
+        xMargin: 8,
+        elWidth: 50,
+        initialX: 150,
+        containerRect: containerRect2,
+      })
+    ).toBe(92);
+  });
 });
 
 describe("getInnerLeftCoord", () => {
@@ -137,6 +205,58 @@ describe("getInnerLeftCoord", () => {
       })
     ).toBe(58);
   });
+
+  it("should use the initialX value instead of the container's left if provided", () => {
+    expect(
+      getInnerLeftCoord({
+        xMargin: 0,
+        elWidth: 100,
+        initialX: 150,
+        containerRect: containerRect1,
+      })
+    ).toBe(150);
+    expect(
+      getInnerLeftCoord({
+        xMargin: 0,
+        elWidth: 40,
+        initialX: 150,
+        containerRect: containerRect1,
+      })
+    ).toBe(150);
+    expect(
+      getInnerLeftCoord({
+        xMargin: 8,
+        elWidth: 40,
+        initialX: 150,
+        containerRect: containerRect1,
+      })
+    ).toBe(158);
+
+    expect(
+      getInnerLeftCoord({
+        xMargin: 0,
+        elWidth: 100,
+        initialX: 150,
+        containerRect: containerRect2,
+      })
+    ).toBe(150);
+    expect(
+      getInnerLeftCoord({
+        xMargin: 0,
+        elWidth: 40,
+        initialX: 150,
+        containerRect: containerRect2,
+      })
+    ).toBe(150);
+    expect(
+      getInnerLeftCoord({
+        xMargin: 8,
+        elWidth: 40,
+        initialX: 150,
+        containerRect: containerRect2,
+      })
+    ).toBe(158);
+  });
 });
 
 describe("getCenterXCoord", () => {
@@ -169,6 +289,35 @@ describe("getCenterXCoord", () => {
       getCenterXCoord({
         xMargin: 20,
         elWidth: 200,
+        containerRect: containerRect1,
+      })
+    ).toBe(50);
+  });
+
+  it("should use the initialX instead of any of the container sizing when provided", () => {
+    expect(
+      getCenterXCoord({
+        xMargin: 20,
+        elWidth: 100,
+        initialX: 20,
+        containerRect: containerRect1,
+      })
+    ).toBe(-30);
+
+    expect(
+      getCenterXCoord({
+        xMargin: 0,
+        elWidth: 100,
+        initialX: 23,
+        containerRect: containerRect1,
+      })
+    ).toBe(-27);
+
+    expect(
+      getCenterXCoord({
+        xMargin: 0,
+        elWidth: 100,
+        initialX: 100,
         containerRect: containerRect1,
       })
     ).toBe(50);
@@ -235,6 +384,25 @@ describe("getInnerRightCoord", () => {
       })
     ).toBe(217);
   });
+
+  it("should use the initialX instead of any of the container sizing when provided", () => {
+    expect(
+      getInnerRightCoord({
+        xMargin: 0,
+        elWidth: 100,
+        initialX: 325,
+        containerRect: containerRect1,
+      })
+    ).toBe(225);
+    expect(
+      getInnerRightCoord({
+        xMargin: 8,
+        elWidth: 100,
+        initialX: 325,
+        containerRect: containerRect1,
+      })
+    ).toBe(217);
+  });
 });
 
 describe("getRightCoord", () => {
@@ -296,6 +464,25 @@ describe("getRightCoord", () => {
         containerRect: containerRect2,
       })
     ).toBe(258);
+  });
+
+  it("should use the initialX instead of any of the container sizing when provided", () => {
+    expect(
+      getRightCoord({
+        xMargin: 0,
+        elWidth: 100,
+        initialX: 325,
+        containerRect: containerRect1,
+      })
+    ).toBe(325);
+    expect(
+      getRightCoord({
+        xMargin: 8,
+        elWidth: 100,
+        initialX: 325,
+        containerRect: containerRect1,
+      })
+    ).toBe(333);
   });
 });
 
@@ -359,6 +546,74 @@ describe("getAboveCoord", () => {
       })
     ).toBe(17);
   });
+
+  it("should use the initialY value instead of the container's top if provided", () => {
+    expect(
+      getAboveCoord({
+        yMargin: 0,
+        elHeight: 100,
+        initialY: 125,
+        containerRect: containerRect1,
+      })
+    ).toBe(25);
+    expect(
+      getAboveCoord({
+        yMargin: 8,
+        elHeight: 100,
+        initialY: 125,
+        containerRect: containerRect1,
+      })
+    ).toBe(17);
+    expect(
+      getAboveCoord({
+        yMargin: 0,
+        elHeight: 50,
+        initialY: 125,
+        containerRect: containerRect1,
+      })
+    ).toBe(75);
+    expect(
+      getAboveCoord({
+        yMargin: 8,
+        elHeight: 50,
+        initialY: 125,
+        containerRect: containerRect1,
+      })
+    ).toBe(67);
+
+    expect(
+      getAboveCoord({
+        yMargin: 0,
+        elHeight: 100,
+        initialY: 125,
+        containerRect: containerRect2,
+      })
+    ).toBe(25);
+    expect(
+      getAboveCoord({
+        yMargin: 8,
+        elHeight: 100,
+        initialY: 125,
+        containerRect: containerRect2,
+      })
+    ).toBe(17);
+    expect(
+      getAboveCoord({
+        yMargin: 0,
+        elHeight: 50,
+        initialY: 125,
+        containerRect: containerRect2,
+      })
+    ).toBe(75);
+    expect(
+      getAboveCoord({
+        yMargin: 8,
+        elHeight: 50,
+        initialY: 125,
+        containerRect: containerRect2,
+      })
+    ).toBe(67);
+  });
 });
 
 describe("getTopCoord", () => {
@@ -420,6 +675,26 @@ describe("getTopCoord", () => {
         containerRect: containerRect2,
       })
     ).toBe(83);
+  });
+
+  it("should use the initialY value instead of the container's top if provided", () => {
+    expect(
+      getTopCoord({
+        yMargin: 0,
+        elHeight: 20,
+        initialY: 100,
+        containerRect: containerRect1,
+      })
+    ).toBe(100);
+
+    expect(
+      getTopCoord({
+        yMargin: 0,
+        elHeight: 20,
+        initialY: 100,
+        containerRect: containerRect2,
+      })
+    ).toBe(100);
   });
 });
 
@@ -483,6 +758,42 @@ describe("getCenterYCoord", () => {
       })
     ).toBe(100);
   });
+
+  it("should use the initialY instead of any of the container element sizing when provided and ignoring margin", () => {
+    expect(
+      getCenterYCoord({
+        yMargin: 0,
+        elHeight: 80,
+        initialY: 100,
+        containerRect: containerRect1,
+      })
+    ).toBe(60);
+    expect(
+      getCenterYCoord({
+        yMargin: 8,
+        elHeight: 80,
+        initialY: 100,
+        containerRect: containerRect1,
+      })
+    ).toBe(60);
+
+    expect(
+      getCenterYCoord({
+        yMargin: 0,
+        elHeight: 80,
+        initialY: 100,
+        containerRect: containerRect2,
+      })
+    ).toBe(60);
+    expect(
+      getCenterYCoord({
+        yMargin: 8,
+        elHeight: 80,
+        initialY: 100,
+        containerRect: containerRect2,
+      })
+    ).toBe(60);
+  });
 });
 
 describe("getBottomCoord", () => {
@@ -545,6 +856,42 @@ describe("getBottomCoord", () => {
       })
     ).toBe(117);
   });
+
+  it("should use the initialY instead of any of the container's sizing when provided", () => {
+    expect(
+      getBottomCoord({
+        yMargin: 0,
+        elHeight: 80,
+        initialY: 100,
+        containerRect: containerRect1,
+      })
+    ).toBe(20);
+    expect(
+      getBottomCoord({
+        yMargin: 8,
+        elHeight: 80,
+        initialY: 100,
+        containerRect: containerRect1,
+      })
+    ).toBe(12);
+
+    expect(
+      getBottomCoord({
+        yMargin: 0,
+        elHeight: 80,
+        initialY: 100,
+        containerRect: containerRect2,
+      })
+    ).toBe(20);
+    expect(
+      getBottomCoord({
+        yMargin: 8,
+        elHeight: 80,
+        initialY: 100,
+        containerRect: containerRect2,
+      })
+    ).toBe(12);
+  });
 });
 
 describe("getBelowCoord", () => {
@@ -606,5 +953,24 @@ describe("getBelowCoord", () => {
         containerRect: containerRect2,
       })
     ).toBe(183);
+  });
+
+  it("should use the initialY instead of any of the container's sizing when provided", () => {
+    expect(
+      getBelowCoord({
+        yMargin: 0,
+        elHeight: 50,
+        initialY: 80,
+        containerRect: containerRect1,
+      })
+    ).toBe(80);
+    expect(
+      getBelowCoord({
+        yMargin: 8,
+        elHeight: 50,
+        initialY: 80,
+        containerRect: containerRect1,
+      })
+    ).toBe(88);
   });
 });
