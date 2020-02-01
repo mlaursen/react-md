@@ -4,8 +4,8 @@
  * @param min the min progress value
  * @param max the max progress value
  * @param value the current value for the progress bar
- * @return the progress as a percentage or undefined if there was no
- * value provided
+ * @return the progress as a percentage or undefined if there was no value
+ * provided
  */
 export default function getProgress(
   min: number,

@@ -1,53 +1,55 @@
 /* eslint-disable react/button-has-type */
-import React, { ButtonHTMLAttributes, FC, forwardRef, ReactNode } from "react";
+import React, {
+  ButtonHTMLAttributes,
+  forwardRef,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react";
 import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { WithForwardedRef } from "@react-md/utils";
 
 import buttonThemeClassNames, {
   ButtonThemeProps,
 } from "./buttonThemeClassNames";
 
 /**
- * This interface includes all the props that the `Button` component accepts so the main
- * usecase might be creating a functionality wrapper for the `Button` component, but passes
- * all props down as normal.
+ * This interface includes all the props that the `Button` component accepts so
+ * the main use case might be creating a functionality wrapper for the `Button`
+ * component, but passes all props down as normal.
  */
 export interface ButtonProps
   extends ButtonThemeProps,
     ButtonHTMLAttributes<HTMLButtonElement>,
     Omit<InteractionStatesOptions<HTMLButtonElement>, "disableSpacebarClick"> {
   /**
-   * The button's type attribute. This is set to "button" by default so that forms are not
-   * accidentally submitted when this prop is omitted since buttons without a type attribute work
-   * as submit by default.
+   * The button's type attribute. This is set to "button" by default so that
+   * forms are not accidentally submitted when this prop is omitted since
+   * buttons without a type attribute work as submit by default.
    */
   type?: "button" | "reset" | "submit";
 
   /**
-   * Any children to render within the button. This will normally just be text or an icon.
+   * Any children to render within the button. This will normally just be text
+   * or an icon.
    *
-   * Please note that it is considered invalid html to have a `<div>` as a descendant of a
-   * `<button>`. You can fix this by enabling the `asDiv` prop.
+   * Please note that it is considered invalid html to have a `<div>` as a
+   * descendant of a `<button>`.
    */
   children?: ReactNode;
 }
 
-type WithRef = WithForwardedRef<HTMLButtonElement>;
-type DefaultProps = Required<
-  Pick<ButtonProps, "disabled" | "theme" | "themeType" | "buttonType" | "type">
->;
-type ButtonWithDefaultProps = ButtonProps & DefaultProps & WithRef;
-
-const Button: FC<ButtonProps & WithRef> = providedProps => {
-  const {
-    theme: _theme,
-    themeType,
-    buttonType: _buttonType,
+function Button(
+  {
+    type = "button",
+    disabled = false,
+    theme = "clear",
+    themeType = "flat",
+    buttonType = "text",
+    className: propClassName,
     children,
-    forwardedRef,
     disableRipple,
     disableProgrammaticRipple,
     rippleTimeout,
@@ -56,9 +58,9 @@ const Button: FC<ButtonProps & WithRef> = providedProps => {
     rippleContainerClassName,
     enablePressedAndRipple: propEnablePressedAndRipple,
     ...props
-  } = providedProps as ButtonWithDefaultProps;
-  const { disabled } = props;
-
+  }: ButtonProps,
+  ref?: Ref<HTMLButtonElement>
+): ReactElement {
   const enablePressedAndRipple =
     typeof propEnablePressedAndRipple === "boolean"
       ? propEnablePressedAndRipple
@@ -66,7 +68,13 @@ const Button: FC<ButtonProps & WithRef> = providedProps => {
 
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
-    className: buttonThemeClassNames(providedProps),
+    className: buttonThemeClassNames({
+      theme,
+      themeType,
+      buttonType,
+      disabled,
+      className: propClassName,
+    }),
     disabled,
     disableRipple,
     disableProgrammaticRipple,
@@ -78,33 +86,27 @@ const Button: FC<ButtonProps & WithRef> = providedProps => {
   });
 
   return (
-    <button {...props} {...handlers} ref={forwardedRef} className={className}>
+    <button
+      {...props}
+      {...handlers}
+      ref={ref}
+      type={type}
+      className={className}
+      disabled={disabled}
+    >
       {children}
       {ripples}
     </button>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  type: "button",
-  disabled: false,
-  theme: "clear",
-  themeType: "flat",
-  buttonType: "text",
-};
-
-Button.defaultProps = defaultProps;
+const ForwardedButton = forwardRef<HTMLButtonElement, ButtonProps>(Button);
 
 if (process.env.NODE_ENV !== "production") {
-  Button.displayName = "Button";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Button.propTypes = {
+    ForwardedButton.propTypes = {
       type: PropTypes.oneOf(["button", "reset", "submit"]),
       className: PropTypes.string,
       theme: PropTypes.oneOf([
@@ -119,9 +121,7 @@ if (process.env.NODE_ENV !== "production") {
       disabled: PropTypes.bool,
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => (
-  <Button {...props} forwardedRef={ref} />
-));
+export default ForwardedButton;

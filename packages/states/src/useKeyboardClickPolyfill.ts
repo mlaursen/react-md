@@ -3,9 +3,9 @@ import { useRefCache } from "@react-md/utils";
 
 interface Options<E extends HTMLElement> {
   /**
-   * Boolean if the keyboard click handler should be disabled. This will make
-   * it so the return value is just the provided `onKeyDown` handler or
-   * undefined if it was omitted
+   * Boolean if the keyboard click handler should be disabled. This will make it
+   * so the return value is just the provided `onKeyDown` handler or undefined
+   * if it was omitted
    */
   disabled?: boolean;
 
@@ -16,22 +16,21 @@ interface Options<E extends HTMLElement> {
   disableEnterClick?: boolean;
 
   /**
-   * Boolean if the user should not be able to click the element with the
-   * space key. This should normally only be set to `true` for link elements.
+   * Boolean if the user should not be able to click the element with the space
+   * key. This should normally only be set to `true` for link elements.
    */
   disableSpacebarClick?: boolean;
 
   /**
-   * An optional onKeyDown event handler that should be merged with the
-   * keyboard click polyfill
+   * An optional onKeyDown event handler that should be merged with the keyboard
+   * click polyfill
    */
   onKeyDown?: React.KeyboardEventHandler<E>;
 }
 
 /**
- * This small utility function will create an onKeyDown handler that
- * allows the user to "click" an element with the keyboard via Enter
- * or Space.
+ * This small utility function will create an onKeyDown handler that allows the
+ * user to "click" an element with the keyboard via Enter or Space.
  */
 export default function useKeyboardClickPolyfill<
   E extends HTMLElement = HTMLElement

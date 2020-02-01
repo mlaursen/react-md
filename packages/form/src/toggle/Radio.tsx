@@ -1,6 +1,5 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef, ReactElement, Ref } from "react";
 import { useIcon } from "@react-md/icon";
-import { WithForwardedRef } from "@react-md/utils";
 
 import InputToggle, { InputToggleProps } from "./InputToggle";
 
@@ -15,26 +14,22 @@ export interface RadioProps extends InputToggleProps {
  * The `Radio` component is just a wrapper for the `InputToggle` that
  * defaults to reasonable defaults for a radio input.
  */
-const Radio: FC<RadioProps & WithForwardedRef<HTMLInputElement>> = ({
-  forwardedRef,
-  icon: propIcon,
-  ...props
-}) => {
+function Radio(
+  { icon: propIcon, ...props }: RadioProps,
+  ref?: Ref<HTMLInputElement>
+): ReactElement {
   const icon = useIcon("radio", propIcon);
 
-  return <InputToggle {...props} icon={icon} ref={forwardedRef} type="radio" />;
-};
+  return <InputToggle {...props} icon={icon} ref={ref} type="radio" />;
+}
+
+const ForwardedRadio = forwardRef<HTMLInputElement, RadioProps>(Radio);
 
 if (process.env.NODE_ENV !== "production") {
-  Radio.displayName = "Radio";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Radio.propTypes = {
+    ForwardedRadio.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string,
       icon: PropTypes.node,
@@ -43,11 +38,8 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.string,
         PropTypes.number,
       ]).isRequired,
-      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLInputElement, RadioProps>((props, ref) => (
-  <Radio {...props} forwardedRef={ref} />
-));
+export default ForwardedRadio;

@@ -9,15 +9,15 @@ import {
 export interface CaseInsensitiveOptions<T = unknown> extends SearchOptions<T> {
   /**
    * Boolean if the filter should also exclude all items that do not start with
-   * the query string. The default behavior is to return all matches that contain
-   * the query string anywhere.
+   * the query string. The default behavior is to return all matches that
+   * contain the query string anywhere.
    */
   startsWith?: boolean;
 }
 
 /**
- * Filters a list by ensuring that all items contain the query string
- * in order anywhere in it's own value.
+ * Filters a list by ensuring that all items contain the query string in order
+ * anywhere in it's own value.
  *
  * @param query The current query string
  * @param searchable The list of searchable items that should be filtered

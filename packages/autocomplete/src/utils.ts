@@ -19,13 +19,14 @@ export function getResultId(id: string, index: number): string {
 }
 
 /**
- * Gets a renderable label for each result in the autocomplete's listbox.
- * This will be applied as the `children` for the `Option` element.
+ * Gets a renderable label for each result in the autocomplete's listbox. This
+ * will be applied as the `children` for the `Option` element.
  *
  * @param datum The current result datum to get a label for
  * @param labelKey The key to extract a label from if the datum is an object
- * @param query The current search query. This is useful if you want to implement
- * text "highlighting" (bold) of all the letters that match in the item.
+ * @param query The current search query. This is useful if you want to
+ * implement text "highlighting" (bold) of all the letters that match in the
+ * item.
  * @return a renderable node to display
  */
 export function getResultLabel(
@@ -45,8 +46,8 @@ export function getResultLabel(
  * Gets a value string from each result that can be searched.
  *
  * @param datum The current result datum that should have a string extracted
- * @param valueKey The key to use to extract a string value from if the datum
- * is an object
+ * @param valueKey The key to use to extract a string value from if the datum is
+ * an object
  * @return a searchable string.
  */
 export function getResultValue(
@@ -70,14 +71,15 @@ export function getResultValue(
 }
 
 /**
- * This is used to disable filtering and just return the data list immediately. Useful
- * when the filtering is done somewhere else like a server/API
+ * This is used to disable filtering and just return the data list immediately.
+ * Useful when the filtering is done somewhere else like a server/API
  * @private
  */
 export const noFilter: FilterFunction = (_, data) => data;
 
 /**
- * Gets the filter function to use within the Autocomplete based on the provided filter prop
+ * Gets the filter function to use within the Autocomplete based on the provided
+ * filter prop
  *
  * @private
  */
@@ -107,9 +109,10 @@ export function getFilterFunction<O extends {} = {}>(
 }
 
 /**
- * This is an extremely simple type guard that is useful when using the `onAutoComplete` handler since
- * I'm terrible at typescript types. This will ensure that if the result is an object, it will match
- * the provided data type of your data list.
+ * This is an extremely simple type guard that is useful when using the
+ * `onAutoComplete` handler since I'm terrible at typescript types. This will
+ * ensure that if the result is an object, it will match the provided data type
+ * of your data list.
  *
  * Example:
  *

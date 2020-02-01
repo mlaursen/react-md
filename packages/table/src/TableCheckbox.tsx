@@ -1,13 +1,13 @@
 import React, {
-  FC,
-  TdHTMLAttributes,
-  forwardRef,
-  Ref,
   CSSProperties,
+  forwardRef,
+  ReactElement,
+  Ref,
+  TdHTMLAttributes,
 } from "react";
 import cn from "classnames";
-import { CheckboxProps, Checkbox } from "@react-md/form";
-import { WithForwardedRef } from "@react-md/utils";
+import { Checkbox, CheckboxProps } from "@react-md/form";
+
 import TableCell, { TableCellProps } from "./TableCell";
 
 type WantedCheckboxProps =
@@ -44,81 +44,87 @@ export interface TableCheckboxProps
   cellId?: string;
 
   /**
-   * An screen reader label to use for the checkbox. Either this or the `aria-labelledby`
-   * prop are required for a11y.
+   * An screen reader label to use for the checkbox. Either this or the
+   * `aria-labelledby` prop are required for a11y.
    *
    * Note: This is defaulted automatically to "Toggle Row Selection".
    */
   "aria-label"?: string;
 
   /**
-   * An optional id or space-delimited list of ids that describe the checkbox. Either this or
-   * the `aria-label` props are required for a11y.
+   * An optional id or space-delimited list of ids that describe the checkbox.
+   * Either this or the `aria-label` props are required for a11y.
    */
   "aria-labelledby"?: string;
 
   /**
-   * An optional `ref` to apply to the checkbox element. The base `ref` is passed to the `<td>`
-   * element.
+   * An optional `ref` to apply to the checkbox element. The base `ref` is
+   * passed to the `<td>` element.
    */
   checkboxRef?: Ref<HTMLInputElement>;
 
   /**
-   * An optional style to apply to the checkbox. The base `style` is passed to the `<td>`.
+   * An optional style to apply to the checkbox. The base `style` is passed to
+   * the `<td>`.
    */
   checkboxStyle?: CSSProperties;
 
   /**
-   * An optional className to apply to the checkbox. The base `className` is passed to the `<td>`.
+   * An optional className to apply to the checkbox. The base `className` is
+   * passed to the `<td>`.
    */
   checkboxClassName?: string;
 }
 
-type WithRef = WithForwardedRef<HTMLTableDataCellElement>;
-
+const DEFAULT_ARIA_LABEL = "Toggle Row Selection";
 /**
- * This is a simple wrapper for the `Checkbox` component that allows you to render a nicely
- * styled `Checkbox` within a `TableCell` element. This will mostly just remove the additional
- * padding applied and default an `aria-label` since you normally don't want a checkbox with
- * a label within a table since it's more for selection.
+ * This is a simple wrapper for the `Checkbox` component that allows you to
+ * render a nicely styled `Checkbox` within a `TableCell` element. This will
+ * mostly just remove the additional padding applied and default an `aria-label`
+ * since you normally don't want a checkbox with a label within a table since
+ * it's more for selection.
  */
-const TableCheckbox: FC<TableCheckboxProps & WithRef> = ({
-  cellId,
-  className,
-  forwardedRef,
-  id,
-  "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledBy,
-  "aria-checked": ariaChecked,
-  "aria-controls": ariaControls,
-  checkboxRef,
-  checkboxStyle,
-  checkboxClassName,
-  icon,
-  iconStyle,
-  iconClassName,
-  toggleStyle,
-  toggleClassName,
-  disableIconOverlay,
-  name,
-  value,
-  checked,
-  onChange,
-  defaultChecked,
-  indeterminate,
-  ...props
-}) => {
+function TableCheckbox(
+  {
+    cellId,
+    className,
+    id,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
+    "aria-checked": ariaChecked,
+    "aria-controls": ariaControls,
+    checkboxRef,
+    checkboxStyle,
+    checkboxClassName,
+    icon,
+    iconStyle,
+    iconClassName,
+    toggleStyle,
+    toggleClassName,
+    disableIconOverlay,
+    name,
+    value,
+    checked,
+    onChange,
+    defaultChecked,
+    indeterminate,
+    ...props
+  }: TableCheckboxProps,
+  ref?: Ref<HTMLTableDataCellElement>
+): ReactElement {
   return (
     <TableCell
       {...props}
+      ref={ref}
       id={cellId}
       header={false}
-      ref={forwardedRef}
       className={cn("rmd-table-cell--checkbox", className)}
     >
       <Checkbox
         id={id}
-        aria-label={ariaLabel}
+        aria-label={
+          ariaLabel ?? ariaLabelledBy ? undefined : DEFAULT_ARIA_LABEL
+        }
         aria-labelledby={ariaLabelledBy}
         aria-checked={ariaChecked}
         aria-controls={ariaControls}
@@ -140,22 +146,18 @@ const TableCheckbox: FC<TableCheckboxProps & WithRef> = ({
       />
     </TableCell>
   );
-};
+}
 
-TableCheckbox.defaultProps = {
-  "aria-label": "Toggle Row Selection",
-};
+const ForwardedTableCheckbox = forwardRef<
+  HTMLTableDataCellElement,
+  TableCheckboxProps
+>(TableCheckbox);
 
 if (process.env.NODE_ENV !== "production") {
-  TableCheckbox.displayName = "TableCheckbox";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TableCheckbox.propTypes = {
+    ForwardedTableCheckbox.propTypes = {
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
       "aria-label": PropTypes.string,
@@ -177,12 +179,9 @@ if (process.env.NODE_ENV !== "production") {
       defaultChecked: PropTypes.bool,
       onChange: PropTypes.func,
       cellId: PropTypes.string,
-      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       indeterminate: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLTableDataCellElement, TableCheckboxProps>(
-  (props, ref) => <TableCheckbox {...props} forwardedRef={ref} />
-);
+export default ForwardedTableCheckbox;

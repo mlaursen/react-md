@@ -1,7 +1,6 @@
-import React, { FC, forwardRef, Fragment } from "react";
+import React, { forwardRef, Fragment, ReactElement, Ref } from "react";
 import { useIcon } from "@react-md/icon";
 import { RenderConditionalPortalProps } from "@react-md/portal";
-import { WithForwardedRef } from "@react-md/utils";
 
 import defaultMenuItemRenderer, {
   MenuItemRenderer,
@@ -31,9 +30,9 @@ export interface BaseDropdownMenuProps
 
   /**
    * The id for an element to label the menu. Either this or the `menuLabel`
-   * props are required for a11y. This will be defaulted to the `id` of the
-   * menu button for convenience since it _should_ normally label the menu but
-   * should be changed if it does not.
+   * props are required for a11y. This will be defaulted to the `id` of the menu
+   * button for convenience since it _should_ normally label the menu but should
+   * be changed if it does not.
    */
   menuLabelledBy?: string;
 
@@ -45,18 +44,20 @@ export interface BaseDropdownMenuProps
   menuRenderer?: MenuRenderer;
 
   /**
-   * A list of menu items to render. Each item will be passed to the `menuItemRenderer`
-   * function.
+   * A list of menu items to render. Each item will be passed to the
+   * `menuItemRenderer` function.
    */
   items: ValidMenuItem[];
 
   /**
-   * A function to call for each `item` in the `items` list to render a ReactElement.
+   * A function to call for each `item` in the `items` list to render a
+   * ReactElement.
    */
   itemRenderer?: MenuItemRenderer;
 
   /**
-   * Boolean if the menu should be visible immediately once this component mounts.
+   * Boolean if the menu should be visible immediately once this component
+   * mounts.
    */
   defaultVisible?: boolean;
 
@@ -70,41 +71,32 @@ export interface DropdownMenuProps
   extends Omit<MenuButtonProps, "id" | "visible" | "aria-haspopup">,
     BaseDropdownMenuProps {}
 
-type WithRef = WithForwardedRef<HTMLButtonElement>;
-type DefaultProps = Required<
-  Pick<
-    DropdownMenuProps,
-    "menuRenderer" | "itemRenderer" | "disableDropdownIcon" | "defaultVisible"
-  >
->;
-type WithDefaultProps = DropdownMenuProps &
-  DefaultProps &
-  WithRef & { menuLabelledBy: string };
-
-const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
-  const {
+function DropdownMenu(
+  {
     onClick: propOnClick,
     onKeyDown: propOnKeyDown,
     children,
-    forwardedRef,
     anchor,
     menuLabel,
     menuLabelledBy,
-    menuRenderer,
+    menuRenderer = defaultMenuRenderer,
     items,
-    itemRenderer,
+    itemRenderer = defaultMenuItemRenderer,
     horizontal,
     onVisibilityChange,
     portal,
     portalInto,
     portalIntoId,
     positionOptions,
-    defaultVisible,
+    defaultVisible = false,
     disableCloseOnScroll,
     disableCloseOnResize,
     dropdownIcon: propDropdownIcon,
+    disableDropdownIcon = false,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: DropdownMenuProps,
+  ref?: Ref<HTMLButtonElement>
+): ReactElement {
   const { id } = props;
   const dropdownIcon = useIcon("dropdown", propDropdownIcon);
 
@@ -130,19 +122,22 @@ const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
     <Fragment>
       <MenuButton
         {...props}
+        ref={ref}
         aria-haspopup="menu"
         visible={visible}
         onClick={onClick}
         onKeyDown={onKeyDown}
-        ref={forwardedRef}
         dropdownIcon={dropdownIcon}
+        disableDropdownIcon={disableDropdownIcon}
       >
         {children}
       </MenuButton>
       {menuRenderer(
         {
           "aria-label": menuLabel,
-          "aria-labelledby": labelledBy,
+          // ok to typecast since one of these two should be a string by this
+          // line
+          "aria-labelledby": labelledBy as string,
           id: `${id}-menu`,
           controlId: id,
           anchor,
@@ -162,27 +157,17 @@ const DropdownMenu: FC<DropdownMenuProps & WithRef> = providedProps => {
       )}
     </Fragment>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  defaultVisible: false,
-  menuRenderer: defaultMenuRenderer,
-  itemRenderer: defaultMenuItemRenderer,
-  disableDropdownIcon: false,
-};
-
-DropdownMenu.defaultProps = defaultProps;
+const ForwardedDropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
+  DropdownMenu
+);
 
 if (process.env.NODE_ENV !== "production") {
-  DropdownMenu.displayName = "DropdownMenu";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    DropdownMenu.propTypes = {
+    ForwardedDropdownMenu.propTypes = {
       id: PropTypes.string.isRequired,
       defaultVisible: PropTypes.bool,
       menuLabel: PropTypes.string,
@@ -201,9 +186,7 @@ if (process.env.NODE_ENV !== "production") {
       disableDropdownIcon: PropTypes.bool,
       onVisibilityChange: PropTypes.func,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLButtonElement, DropdownMenuProps>(
-  (props, ref) => <DropdownMenu {...props} forwardedRef={ref} />
-);
+export default ForwardedDropdownMenu;

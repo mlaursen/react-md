@@ -1,19 +1,19 @@
 import React, {
-  FC,
   forwardRef,
   HTMLAttributes,
   Ref,
+  ReactElement,
   useCallback,
   useState,
 } from "react";
-import { applyRef, WithForwardedRef } from "@react-md/utils";
+import { applyRef } from "@react-md/utils";
 
 import Divider from "./Divider";
 
 export interface VerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * The max height for the vertical divider. This number **must** be greater than 0 to work
-   * correctly.
+   * The max height for the vertical divider. This number **must** be greater
+   * than 0 to work correctly.
    *
    * When the value is between 0 and 1, it will be used as a multiplier with the
    * parent element's height. When the value is greater than 1, it will be used
@@ -21,10 +21,6 @@ export interface VerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
    */
   maxHeight?: number;
 }
-
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<VerticalDividerProps, "maxHeight">>;
-type WithDefaultProps = VerticalDividerProps & DefaultProps & WithRef;
 
 interface VerticalDividerHeight {
   ref: (instance: HTMLDivElement | null) => void;
@@ -71,44 +67,36 @@ export function useVerticalDividerHeight(
 }
 
 /**
- * This component is used to create a vertical divider based on a parent element's
- * height. This is really only needed when the parent element **has no defined height**.
- * If there is a defined height, this component is not worth much as the height can
- * be computed in css as normal. This really just fixes the issue that the height would
- * be set to `auto` (which computes to 0 most of the time) when it is not set on a parent
- * element.
+ * This component is used to create a vertical divider based on a parent
+ * element's height. This is really only needed when the parent element **has no
+ * defined height**.  If there is a defined height, this component is not worth
+ * much as the height can be computed in css as normal. This really just fixes
+ * the issue that the height would be set to `auto` (which computes to 0 most of
+ * the time) when it is not set on a parent element.
  */
-const VerticalDivider: FC<VerticalDividerProps & WithRef> = providedProps => {
-  const {
-    style,
-    maxHeight,
-    forwardedRef,
-    ...props
-  } = providedProps as WithDefaultProps;
-
+function VerticalDivider(
+  { style, maxHeight = 1, ...props }: VerticalDividerProps,
+  forwardedRef?: Ref<HTMLDivElement>
+): ReactElement {
   const { ref, height } = useVerticalDividerHeight(maxHeight, forwardedRef);
   return <Divider {...props} style={{ ...style, height }} ref={ref} vertical />;
-};
+}
 
-const defaultProps: DefaultProps = {
-  maxHeight: 1,
-};
-
-VerticalDivider.defaultProps = defaultProps;
+const ForwardedVerticalDivider = forwardRef<
+  HTMLDivElement,
+  VerticalDividerProps
+>(VerticalDivider);
 
 if (process.env.NODE_ENV !== "production") {
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    VerticalDivider.propTypes = {
+    ForwardedVerticalDivider.propTypes = {
       maxHeight: PropTypes.number,
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       _validateMaxHeight: (
-        { maxHeight }: WithDefaultProps,
+        { maxHeight = 1 },
         _: string,
         componentName: string
       ) => {
@@ -122,9 +110,7 @@ if (process.env.NODE_ENV !== "production") {
         return null;
       },
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, VerticalDividerProps>(
-  (props, ref) => <VerticalDivider {...props} forwardedRef={ref} />
-);
+export default ForwardedVerticalDivider;

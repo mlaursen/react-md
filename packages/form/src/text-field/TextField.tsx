@@ -1,14 +1,14 @@
 import React, {
   CSSProperties,
-  FC,
   forwardRef,
+  HTMLAttributes,
   InputHTMLAttributes,
+  ReactElement,
   ReactNode,
   Ref,
-  HTMLAttributes,
 } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import FloatingLabel from "../label/FloatingLabel";
 import useFocusState from "../useFocusState";
@@ -19,8 +19,8 @@ import useValuedState from "./useValuedState";
 
 /**
  * These are all the "supported" input types for react-md so that they at least
- * render reasonably well by default. There is no built-in validation or anything
- * adding onto existing browser functionality for these types.
+ * render reasonably well by default. There is no built-in validation or
+ * anything adding onto existing browser functionality for these types.
  */
 export type SupportedInputTypes =
   | "text"
@@ -46,25 +46,25 @@ export interface TextFieldProps
   id: string;
 
   /**
-   * The value to use for the text field. This will make the component controlled
-   * and require the `onChange` prop to be provided as well otherwise this will
-   * act as a read only text field.
+   * The value to use for the text field. This will make the component
+   * controlled and require the `onChange` prop to be provided as well otherwise
+   * this will act as a read only text field.
    */
   value?: string;
 
   /**
-   * The default value for the text field which will make it uncontrolled.
-   * If you manually change the `defaultValue` prop, the input's value **will
-   * not change** unless you provide a different `key` as well. Use the `value`
-   * prop instead for a controlled input.
+   * The default value for the text field which will make it uncontrolled. If
+   * you manually change the `defaultValue` prop, the input's value **will not
+   * change** unless you provide a different `key` as well. Use the `value` prop
+   * instead for a controlled input.
    */
   defaultValue?: string;
 
   /**
-   * An optional floating label to use for the text field. This should really only be
-   * used when the `theme` prop is not set to `"none"`. This will be wrapped in
-   * the `<Label>` component itself and automatically apply the `htmlFor` prop for this
-   * text field.
+   * An optional floating label to use for the text field. This should really
+   * only be used when the `theme` prop is not set to `"none"`. This will be
+   * wrapped in the `<Label>` component itself and automatically apply the
+   * `htmlFor` prop for this text field.
    */
   label?: ReactNode;
 
@@ -86,59 +86,42 @@ export interface TextFieldProps
   type?: SupportedInputTypes;
 
   /**
-   * An optional style to apply to the input itself. The `style` prop will be applied to the
-   * container `<div>` instead.
+   * An optional style to apply to the input itself. The `style` prop will be
+   * applied to the container `<div>` instead.
    */
   inputStyle?: CSSProperties;
 
   /**
-   * An optional className to apply to the input itself. The `className` prop will be applied to the
-   * container `<div>` instead.
+   * An optional className to apply to the input itself. The `className` prop
+   * will be applied to the container `<div>` instead.
    */
   inputClassName?: string;
 
   /**
-   * An optional ref to apply to the text field's container div element. The default ref is
-   * forwarded on to the `input` element.
+   * An optional ref to apply to the text field's container div element. The
+   * default ref is forwarded on to the `input` element.
    */
   containerRef?: Ref<HTMLDivElement>;
 
   /**
-   * Any additional html attributes that should be applied to the main container div. This is probably only
-   * going to be used internally so that additional accessibility can be added to text fields for more complex
-   * widgets.
+   * Any additional html attributes that should be applied to the main container
+   * div. This is probably only going to be used internally so that additional
+   * accessibility can be added to text fields for more complex widgets.
    */
   containerProps?: Omit<HTMLAttributes<HTMLDivElement>, "style" | "className">;
 }
-
-type WithRef = WithForwardedRef<HTMLInputElement>;
-type DefaultProps = Required<
-  Pick<
-    TextFieldProps,
-    | "type"
-    | "theme"
-    | "error"
-    | "dense"
-    | "inline"
-    | "disabled"
-    | "underlineDirection"
-    | "isLeftAddon"
-    | "isRightAddon"
-  >
->;
-type WithDefaultProps = TextFieldProps & DefaultProps & WithRef;
 
 const block = bem("rmd-text-field");
 
 const SPECIAL_TYPES = ["date", "time", "datetime-local", "month", "week"];
 
 /**
- * The text field is a wrapper of the `<input type="text" />` component
- * with some nice default themes. It can also be used to render other
- * text input types with _some_ support.
+ * The text field is a wrapper of the `<input type="text" />` component with
+ * some nice default themes. It can also be used to render other text input
+ * types with _some_ support.
  */
-const TextField: FC<TextFieldProps & WithRef> = providedProps => {
-  const {
+function TextField(
+  {
     style,
     className,
     inputStyle,
@@ -146,24 +129,27 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
     label,
     labelStyle,
     labelClassName,
-    theme,
-    error,
-    dense,
-    inline,
+    type = "text",
+    theme = "outline",
+    dense = false,
+    inline = false,
+    error = false,
+    disabled = false,
     onBlur: propOnBlur,
     onFocus: propOnFocus,
     onChange: propOnChange,
     containerRef,
-    forwardedRef,
-    isLeftAddon,
-    isRightAddon,
+    isLeftAddon = true,
+    isRightAddon = true,
     leftChildren,
     rightChildren,
-    underlineDirection,
+    underlineDirection = "left",
     containerProps,
     ...props
-  } = providedProps as WithDefaultProps;
-  const { id, value, defaultValue, disabled, type } = props;
+  }: TextFieldProps,
+  ref?: Ref<HTMLInputElement>
+): ReactElement {
+  const { id, value, defaultValue } = props;
 
   const [focused, onFocus, onBlur] = useFocusState({
     onBlur: propOnBlur,
@@ -210,7 +196,8 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
       </FloatingLabel>
       <input
         {...props}
-        ref={forwardedRef}
+        ref={ref}
+        type={type}
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}
@@ -224,32 +211,17 @@ const TextField: FC<TextFieldProps & WithRef> = providedProps => {
       />
     </TextFieldContainer>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  type: "text",
-  theme: "outline",
-  dense: false,
-  inline: false,
-  error: false,
-  disabled: false,
-  isLeftAddon: true,
-  isRightAddon: true,
-  underlineDirection: "left",
-};
-
-TextField.defaultProps = defaultProps;
+const ForwardedTextField = forwardRef<HTMLInputElement, TextFieldProps>(
+  TextField
+);
 
 if (process.env.NODE_ENV !== "production") {
-  TextField.displayName = "TextField";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TextField.propTypes = {
+    ForwardedTextField.propTypes = {
       id: PropTypes.string.isRequired,
       type: PropTypes.oneOf([
         "text",
@@ -285,9 +257,7 @@ if (process.env.NODE_ENV !== "production") {
       isLeftAddon: PropTypes.bool,
       isRightAddon: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => (
-  <TextField {...props} forwardedRef={ref} />
-));
+export default ForwardedTextField;

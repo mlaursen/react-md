@@ -1,16 +1,17 @@
 import React, {
   CSSProperties,
-  FC,
   forwardRef,
   InputHTMLAttributes,
+  ReactElement,
   ReactNode,
+  Ref,
 } from "react";
 import cn from "classnames";
 import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import Label from "../label/Label";
 import useFocusState from "../useFocusState";
@@ -33,8 +34,8 @@ export interface InputToggleProps
       | "rippleClassNames"
     > {
   /**
-   * The id for the radio or checkbox. This is required for a11y and will
-   * be used as the `for` attribute if the `label` prop is provided.
+   * The id for the radio or checkbox. This is required for a11y and will be
+   * used as the `for` attribute if the `label` prop is provided.
    */
   id: string;
 
@@ -54,44 +55,47 @@ export interface InputToggleProps
   iconClassName?: string;
 
   /**
-   * An optional style to apply to the toggle `<span>` element. The `style` prop will
-   * be applied to the container `<div>` element instead.
+   * An optional style to apply to the toggle `<span>` element. The `style` prop
+   * will be applied to the container `<div>` element instead.
    */
   toggleStyle?: CSSProperties;
 
   /**
-   * An optional className to apply to the toggle `<span>` element. The `className` prop will
-   * be applied to the container `<div>` element instead.
+   * An optional className to apply to the toggle `<span>` element. The
+   * `className` prop will be applied to the container `<div>` element instead.
    */
   toggleClassName?: string;
 
   /**
-   * Boolean if the icon's overlay should be disabled. The way the Checkbox and Radio input
-   * elements work is by applying different opacity to the `::before` and `::after` pseudo
-   * selectors and animating it. If you want to use a custom icon that is not a material-icon
-   * checkbox outline or radio button, you should probably enable this prop.
+   * Boolean if the icon's overlay should be disabled. The way the Checkbox and
+   * Radio input elements work is by applying different opacity to the
+   * `::before` and `::after` pseudo selectors and animating it. If you want to
+   * use a custom icon that is not a material-icon checkbox outline or radio
+   * button, you should probably enable this prop.
    */
   disableIconOverlay?: boolean;
 
   /**
-   * Boolean if the input toggle is currently errored. This will update the label and the
-   * input to gain error colors.
+   * Boolean if the input toggle is currently errored. This will update the
+   * label and the input to gain error colors.
    */
   error?: boolean;
 
   /**
-   * Boolean if the container element should be rendered as `inline-flex` instead of `flex`.
+   * Boolean if the container element should be rendered as `inline-flex`
+   * instead of `flex`.
    */
   inline?: boolean;
 
   /**
-   * Boolean if the label should be stacked above/below the input toggle instead of inline.
+   * Boolean if the label should be stacked above/below the input toggle instead
+   * of inline.
    */
   stacked?: boolean;
 
   /**
-   * An optional label to display with the input. If this prop is omitted, you **should** apply
-   * an `aria-label` or `aria-labelledby` for a11y.
+   * An optional label to display with the input. If this prop is omitted, you
+   * **should** apply an `aria-label` or `aria-labelledby` for a11y.
    */
   label?: ReactNode;
 
@@ -101,20 +105,22 @@ export interface InputToggleProps
   labelStyle?: CSSProperties;
 
   /**
-   * An optional className to apply to the `<label>` when the `label` prop is used.
+   * An optional className to apply to the `<label>` when the `label` prop is
+   * used.
    */
   labelClassName?: string;
 
   /**
-   * An optional boolean if the label should gain the disabled style. When this is `undefined`,
-   * the `disabled` prop will be used instead. This is really just useful when you want to disable
-   * the switch from being toggled while some async action is being called, but not changing styles
-   * during the wait.
+   * An optional boolean if the label should gain the disabled style. When this
+   * is `undefined`, the `disabled` prop will be used instead. This is really
+   * just useful when you want to disable the switch from being toggled while
+   * some async action is being called, but not changing styles during the wait.
    */
   labelDisabled?: boolean;
 
   /**
-   * Boolean if the input toggle should appear after the label instead of before.
+   * Boolean if the input toggle should appear after the label instead of
+   * before.
    */
   iconAfter?: boolean;
 
@@ -126,25 +132,15 @@ export interface InputToggleProps
 
 type Props = InputToggleProps &
   ({ type: "radio" } | { type: "checkbox"; indeterminate?: boolean });
-type WithRef = WithForwardedRef<HTMLInputElement>;
-type DefaultProps = Required<
-  Pick<
-    Props,
-    | "error"
-    | "disabled"
-    | "inline"
-    | "stacked"
-    | "iconAfter"
-    | "disableIconOverlay"
-  >
->;
-type WithDefaultProps = Props &
-  DefaultProps & { indeterminate?: boolean } & WithRef;
+type CheckboxOrRadioProps = InputToggleProps & {
+  type: "checkbox" | "radio";
+  indeterminate?: boolean;
+};
 
 const block = bem("rmd-toggle");
 
-const InputToggle: FC<Props & WithRef> = providedProps => {
-  const {
+function InputToggle(
+  {
     style,
     className,
     iconStyle,
@@ -152,18 +148,18 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
     toggleStyle,
     toggleClassName: propToggleClassName,
     icon,
-    forwardedRef,
     onFocus: propOnFocus,
     onBlur: propOnBlur,
-    error,
-    inline,
-    stacked,
+    error = false,
+    inline = false,
+    stacked = false,
+    disabled = false,
     label,
     labelStyle,
     labelClassName,
     labelDisabled,
-    iconAfter,
-    disableIconOverlay,
+    iconAfter = false,
+    disableIconOverlay = false,
     disableRipple,
     disableProgrammaticRipple,
     rippleTimeout,
@@ -171,8 +167,10 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
     children,
     indeterminate,
     ...props
-  } = providedProps as WithDefaultProps;
-  const { id, type, disabled } = props;
+  }: CheckboxOrRadioProps,
+  ref?: Ref<HTMLInputElement>
+): ReactElement {
+  const { id, type } = props;
 
   const {
     ripples,
@@ -225,9 +223,10 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
         <input
           {...props}
           {...handlers}
+          ref={ref}
+          disabled={disabled}
           onFocus={onFocus}
           onBlur={onBlur}
-          ref={forwardedRef}
           className={block("input")}
         />
         <span
@@ -250,29 +249,15 @@ const InputToggle: FC<Props & WithRef> = providedProps => {
       {!iconAfter && labelEl}
     </ToggleContainer>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  error: false,
-  inline: false,
-  stacked: false,
-  disabled: false,
-  iconAfter: false,
-  disableIconOverlay: false,
-};
-
-InputToggle.defaultProps = defaultProps;
+const ForwardedInputToggle = forwardRef<HTMLInputElement, Props>(InputToggle);
 
 if (process.env.NODE_ENV !== "production") {
-  InputToggle.displayName = "InputToggle";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    InputToggle.propTypes = {
+    ForwardedInputToggle.propTypes = {
       id: PropTypes.string.isRequired,
       type: PropTypes.oneOf(["radio", "checkbox"]).isRequired,
       icon: PropTypes.node,
@@ -288,9 +273,7 @@ if (process.env.NODE_ENV !== "production") {
       iconAfter: PropTypes.bool,
       disableIconOverlay: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLInputElement, Props>((props, ref) => (
-  <InputToggle {...props} forwardedRef={ref} />
-));
+export default ForwardedInputToggle;

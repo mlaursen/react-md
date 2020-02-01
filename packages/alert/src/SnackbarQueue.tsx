@@ -1,14 +1,13 @@
-import React, { ReactElement, ReactNode, isValidElement } from "react";
+import React, { isValidElement, ReactElement, ReactNode, Ref } from "react";
 import { Button, ButtonProps } from "@react-md/button";
-import { WithForwardedRef } from "@react-md/utils";
 
-import Snackbar, { SnackbarProps } from "./Snackbar";
-import Toast from "./Toast";
 import {
   ToastMessage,
   useMessageQueueActions,
   useMessageVisibility,
 } from "./MessageQueueContext";
+import Snackbar, { SnackbarProps } from "./Snackbar";
+import Toast from "./Toast";
 
 export type ActionEventHandler<M extends ToastMessage> = (
   message: M,
@@ -38,17 +37,16 @@ function getId(
 }
 
 /**
- * Because the toast renderer is a callback function instead of a React component, it's actually
- * required to create a separate component instance so that the context API can be
+ * Because the toast renderer is a callback function instead of a React
+ * component, it's actually required to create a separate component instance so
+ * that the context API can be
  *
  * @private
  */
-export default function SnackbarQueue<M extends ToastMessage = ToastMessage>({
-  queue,
-  onActionClick,
-  forwardedRef,
-  ...props
-}: SnackbarQueueProps<M> & WithForwardedRef<HTMLDivElement>): ReactElement {
+export default function SnackbarQueue<M extends ToastMessage = ToastMessage>(
+  { queue, onActionClick, ...props }: SnackbarQueueProps<M>,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   const [toast] = queue;
   const visible = useMessageVisibility();
   const { popMessage, hideMessage, startTimer } = useMessageQueueActions();
@@ -118,7 +116,7 @@ export default function SnackbarQueue<M extends ToastMessage = ToastMessage>({
   }
 
   return (
-    <Snackbar {...props} ref={forwardedRef}>
+    <Snackbar {...props} ref={ref}>
       {content}
     </Snackbar>
   );

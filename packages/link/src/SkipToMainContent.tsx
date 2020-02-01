@@ -1,12 +1,13 @@
 import React, {
-  FC,
   forwardRef,
   HTMLAttributes,
+  ReactElement,
   ReactNode,
+  Ref,
   useCallback,
 } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import Link from "./Link";
 
@@ -18,8 +19,8 @@ export interface SkipToMainContentProps
   id?: string;
 
   /**
-   * The id to use for the `<main>` content that should be focused once
-   * this link is clicked.
+   * The id to use for the `<main>` content that should be focused once this
+   * link is clicked.
    */
   mainId: string;
 
@@ -29,44 +30,39 @@ export interface SkipToMainContentProps
   children?: ReactNode;
 
   /**
-   * Boolean if the skip to main content link should be unstyled so that you
-   * can provide your own styles. This is just helpful if you are using this
-   * component in a multiple places and don't want to keep overriding the default
-   * styles each time.
+   * Boolean if the skip to main content link should be unstyled so that you can
+   * provide your own styles. This is just helpful if you are using this
+   * component in a multiple places and don't want to keep overriding the
+   * default styles each time.
    *
-   * Note: there will still be the "base" link styles, font size, and z-index. The
-   * `$rmd-link-skip-styles` and `$rmd-link-skip-active-styles` will not be applied.
+   * Note: there will still be the "base" link styles, font size, and z-index.
+   * The `$rmd-link-skip-styles` and `$rmd-link-skip-active-styles` will not be
+   * applied.
    */
   unstyled?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLAnchorElement>;
-type DefaultProps = Required<
-  Pick<SkipToMainContentProps, "id" | "children" | "unstyled">
->;
-type WithDefaultProps = SkipToMainContentProps & DefaultProps & WithRef;
-
 const block = bem("rmd-link-skip");
 
 /**
- * This component allows you to create a screen-reader only/keyboard focusable only link
- * that allows a user to skip to the main content of the page. This is extremely useful
- * when you have a lot of navigation items that must be tabbed through before the main
- * content can be focused and this component should normally be the first focusable element
- * on your page.
+ * This component allows you to create a screen-reader only/keyboard focusable
+ * only link that allows a user to skip to the main content of the page. This is
+ * extremely useful when you have a lot of navigation items that must be tabbed
+ * through before the main content can be focused and this component should
+ * normally be the first focusable element on your page.
  */
-const SkipToMainContent: FC<SkipToMainContentProps &
-  WithRef> = providedProps => {
-  const {
+function SkipToMainContent(
+  {
+    id = "skip-to-main-content",
+    children = "Skip to main content",
+    unstyled = false,
     mainId,
-    unstyled,
     className,
-    children,
     onClick,
-    forwardedRef,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: SkipToMainContentProps,
+  ref?: Ref<HTMLAnchorElement>
+): ReactElement {
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       if (onClick) {
@@ -101,44 +97,34 @@ const SkipToMainContent: FC<SkipToMainContentProps &
   return (
     <Link
       {...props}
+      id={id}
+      ref={ref}
       href={`#${mainId}`}
       onClick={handleClick}
-      ref={forwardedRef}
       className={cn(block({ styled: !unstyled }), className)}
     >
       {children}
     </Link>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  id: "skip-to-main-content",
-  children: "Skip to main content",
-  unstyled: false,
-};
-
-SkipToMainContent.defaultProps = defaultProps;
+const ForwardedSkipToMainContent = forwardRef<
+  HTMLAnchorElement,
+  SkipToMainContentProps
+>(SkipToMainContent);
 
 if (process.env.NODE_ENV !== "production") {
-  SkipToMainContent.displayName = "SkipToMainContent";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    SkipToMainContent.propTypes = {
+    ForwardedSkipToMainContent.propTypes = {
       id: PropTypes.string,
       mainId: PropTypes.string.isRequired,
       className: PropTypes.string,
       children: PropTypes.node,
       unstyled: PropTypes.bool,
-      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLAnchorElement, SkipToMainContentProps>(
-  (props, ref) => <SkipToMainContent {...props} forwardedRef={ref} />
-);
+export default ForwardedSkipToMainContent;

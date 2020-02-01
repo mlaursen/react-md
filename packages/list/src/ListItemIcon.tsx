@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types, react/destructuring-assignment */
-import React, { FC } from "react";
-import cn from "classnames";
+/* eslint-disable react/prop-types */
+import React, { ReactElement } from "react";
 import { TextIconSpacing, TextIconSpacingProps } from "@react-md/icon";
 import { bem } from "@react-md/utils";
+import cn from "classnames";
 
 export type ListItemIconPosition = "top" | "middle" | "bottom";
 
@@ -16,7 +16,7 @@ export interface ListItemIconProps extends TextIconSpacingProps {
 
 const base = bem("rmd-list-item");
 
-const ListItemIcon: FC<ListItemIconProps> = ({
+function ListItemIcon({
   className,
   avatar,
   before,
@@ -24,25 +24,28 @@ const ListItemIcon: FC<ListItemIconProps> = ({
   media,
   mediaLarge,
   position,
+  forceIconWrap,
   ...props
-}) => (
-  <TextIconSpacing
-    {...props}
-    forceIconWrap={props.forceIconWrap || media}
-    className={cn(
-      base("icon", {
-        [position]: position !== "middle",
-        before,
-        "avatar-before": before && avatar,
-        media: media || mediaLarge,
-        "media-large": mediaLarge,
-      }),
-      className
-    )}
-    iconAfter={!before}
-  >
-    {children}
-  </TextIconSpacing>
-);
+}: ListItemIconProps): ReactElement {
+  return (
+    <TextIconSpacing
+      {...props}
+      forceIconWrap={forceIconWrap || media}
+      className={cn(
+        base("icon", {
+          [position]: position !== "middle",
+          before,
+          "avatar-before": before && avatar,
+          media: media || mediaLarge,
+          "media-large": mediaLarge,
+        }),
+        className
+      )}
+      iconAfter={!before}
+    >
+      {children}
+    </TextIconSpacing>
+  );
+}
 
 export default ListItemIcon;

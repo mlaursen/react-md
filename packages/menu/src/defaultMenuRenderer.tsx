@@ -56,8 +56,8 @@ export type MenuRenderer = (
 ) => ReactNode;
 
 /**
- * The default menu renderer that will just render the `Menu` component along with
- * a `List` by passing all props down to the main `Menu` component.
+ * The default menu renderer that will just render the `Menu` component along
+ * with a `List` by passing all props down to the main `Menu` component.
  */
 export default function defaultMenuRenderer({
   horizontal,

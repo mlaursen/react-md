@@ -19,9 +19,9 @@ interface ReturnValue
 
 /**
  * This hook is used to provide the menu visibility based on interacting with
- * the `MenuButton` component. It'll merge and return the required `onClick`
- * and `onKeyDown` event handlers that should be passed down to the `MenuButton`
- * as well as the current visibility state and a `hide` function to pass to the
+ * the `MenuButton` component. It'll merge and return the required `onClick` and
+ * `onKeyDown` event handlers that should be passed down to the `MenuButton` as
+ * well as the current visibility state and a `hide` function to pass to the
  * `Menu`.
  *
  * @private

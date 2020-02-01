@@ -97,6 +97,9 @@ module.exports = {
       { ignoreParameters: true },
     ],
     '@typescript-eslint/no-empty-function': 0,
+
+    // used for dynamic prop-types and easy to catch otherwise
+    '@typescript-eslint/no-var-requires': 0,
   },
   overrides: [
     {

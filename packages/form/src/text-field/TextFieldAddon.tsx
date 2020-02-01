@@ -1,32 +1,25 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface TextFieldAddonProps extends HTMLAttributes<HTMLSpanElement> {
   /**
-   * Boolean if the addon should be presentational only and prevent pointer events.
+   * Boolean if the addon should be presentational only and prevent pointer
+   * events.
    */
   presentational?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLSpanElement>;
-type DefaultProps = Required<Pick<TextFieldAddonProps, "presentational">>;
-type WithDefaultProps = TextFieldAddonProps & DefaultProps & WithRef;
-
 const block = bem("rmd-text-field-addon");
 
 /**
- * This component is used to add an an icon before or after
- * the text field with correct styling.
+ * This component is used to add an an icon before or after the text field with
+ * correct styling.
  */
-const TextFieldAddon: FC<TextFieldAddonProps & WithRef> = providedProps => {
-  const {
-    children,
-    className,
-    forwardedRef,
-    presentational,
-    ...props
-  } = providedProps as WithDefaultProps;
+function TextFieldAddon(
+  { children, className, presentational = true, ...props }: TextFieldAddonProps,
+  ref?: Ref<HTMLSpanElement>
+): ReactElement | null {
   if (!children) {
     return null;
   }
@@ -34,36 +27,29 @@ const TextFieldAddon: FC<TextFieldAddonProps & WithRef> = providedProps => {
   return (
     <span
       {...props}
-      ref={forwardedRef}
+      ref={ref}
       className={cn(block({ presentational }), className)}
     >
       {children}
     </span>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  presentational: true,
-};
-
-TextFieldAddon.defaultProps = defaultProps;
+const ForwardedTextFieldAddon = forwardRef<
+  HTMLSpanElement,
+  TextFieldAddonProps
+>(TextFieldAddon);
 
 if (process.env.NODE_ENV !== "production") {
-  TextFieldAddon.displayName = "TextFieldAddon";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
-  if (PropTypes) {
-    TextFieldAddon.propTypes = {
+    const PropTypes = require("prop-types");
+
+    ForwardedTextFieldAddon.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
       presentational: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLSpanElement, TextFieldAddonProps>(
-  (props, ref) => <TextFieldAddon {...props} forwardedRef={ref} />
-);
+export default ForwardedTextFieldAddon;

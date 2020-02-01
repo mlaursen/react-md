@@ -15,19 +15,17 @@ export interface ResizeListenerOptions {
   options?: boolean | AddEventListenerOptions;
 
   /**
-   * Boolean if the resize event handler should be called immediately
-   * once the component is mounted. The default behavior will be to only
-   * call the `onResize` event immediately client side and can never be
-   * invoked server side since it resize on the `window` to dispatch a
-   * `UIEvent`.
-   * */
+   * Boolean if the resize event handler should be called immediately once the
+   * component is mounted. The default behavior will be to only call the
+   * `onResize` event immediately client side and can never be invoked server
+   * side since it resize on the `window` to dispatch a `UIEvent`.
+   */
   immediate?: boolean;
 
   /**
-   * Boolean if the resize observer should be enabled. You can swap this
-   * boolean to `true` or `false` to add/remove the event listeners. The
-   * event listeners will *always* be removed when the parent component is
-   * unmounted though.
+   * Boolean if the resize observer should be enabled. You can swap this boolean
+   * to `true` or `false` to add/remove the event listeners. The event listeners
+   * will *always* be removed when the parent component is unmounted though.
    */
   enabled?: boolean;
 }

@@ -1,8 +1,8 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
-import Text, { TextProps, TextElement } from "./Text";
+import Text, { TextElement, TextProps } from "./Text";
 
 export interface SrOnlyProps extends TextProps {
   /**
@@ -13,10 +13,6 @@ export interface SrOnlyProps extends TextProps {
   focusable?: boolean;
 }
 
-type DefaultProps = Required<Pick<SrOnlyProps, "component" | "focusable">>;
-type WithRef = WithForwardedRef<TextElement>;
-type WithDefaultProps = SrOnlyProps & DefaultProps & WithRef;
-
 const block = bem("rmd-sr-only");
 
 /**
@@ -24,15 +20,17 @@ const block = bem("rmd-sr-only");
  * If you enable the `focusable` prop, the text will become visible to all users
  * while focused.
  */
-const SrOnly: FC<SrOnlyProps & WithRef> = providedProps => {
-  const {
+function SrOnly(
+  {
     className,
-    forwardedRef,
     children,
-    focusable,
+    focusable = false,
     tabIndex: propTabIndex,
+    component = "span",
     ...props
-  } = providedProps as WithDefaultProps;
+  }: SrOnlyProps,
+  ref?: Ref<TextElement>
+): ReactElement {
   let tabIndex = propTabIndex;
   if (focusable && typeof tabIndex === "undefined") {
     tabIndex = 0;
@@ -41,32 +39,23 @@ const SrOnly: FC<SrOnlyProps & WithRef> = providedProps => {
   return (
     <Text
       {...props}
+      ref={ref}
       tabIndex={tabIndex}
-      ref={forwardedRef}
+      component={component}
       className={cn(block({ focusable }), className)}
     >
       {children}
     </Text>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  component: "span",
-  focusable: false,
-};
-
-SrOnly.defaultProps = defaultProps;
+const ForwardedSrOnly = forwardRef<TextElement, SrOnlyProps>(SrOnly);
 
 if (process.env.NODE_ENV !== "production") {
-  SrOnly.displayName = "SrOnly";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    SrOnly.propTypes = {
+    ForwardedSrOnly.propTypes = {
       focusable: PropTypes.bool,
       component: PropTypes.oneOfType([
         PropTypes.string,
@@ -74,9 +63,7 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<TextElement, SrOnlyProps>((props, ref) => (
-  <SrOnly {...props} forwardedRef={ref} />
-));
+export default ForwardedSrOnly;

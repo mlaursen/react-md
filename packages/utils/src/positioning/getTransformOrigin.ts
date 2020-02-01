@@ -1,11 +1,12 @@
 import { PositionAnchor } from "./types";
 
 /**
- * This is a simple util that'll generate a css `transform-origin` string so that
- * the fixed element can animate from the correct point based on the
+ * This is a simple util that'll generate a css `transform-origin` string so
+ * that the fixed element can animate from the correct point based on the
  * provided anchor.
  *
- * @param anchor The anchor that should be used to create the transform origin for.
+ * @param anchor The anchor that should be used to create the transform origin
+ * for.
  * @return the transform origin string
  * @private
  */

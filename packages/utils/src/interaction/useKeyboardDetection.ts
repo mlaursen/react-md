@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import useToggle from "../useToggle";
 
 /**
- * A small hook for checking if the app is currently being interacted with
- * by a keyboard.
+ * A small hook for checking if the app is currently being interacted with by a
+ * keyboard.
  *
  * @return true if the app is in keyboard mode
  * @private

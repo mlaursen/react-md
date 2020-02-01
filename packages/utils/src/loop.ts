@@ -1,8 +1,8 @@
 /**
- * A small util that is used to increment or decrement a number until
- * it reaches the max value or -1. When that happens, it will loop around
- * to 0 or the max value respectively. This does not work for different
- * increment numbers or any values below 0 for now.
+ * A small util that is used to increment or decrement a number until it reaches
+ * the max value or -1. When that happens, it will loop around to 0 or the max
+ * value respectively. This does not work for different increment numbers or any
+ * values below 0 for now.
  *
  * @param x The number to increment or decrement
  * @param max The max number that can be set

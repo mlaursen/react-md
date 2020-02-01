@@ -1,6 +1,6 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
 
@@ -13,38 +13,35 @@ export interface AppBarTitleProps
   keyline?: boolean;
 
   /**
-   * Boolean if the title should not automatically try to wrap the content and span two
-   * lines if it is too big. This will automatically add trailing ellipsis for the
-   * text overflow as well.
+   * Boolean if the title should not automatically try to wrap the content and
+   * span two lines if it is too big. This will automatically add trailing
+   * ellipsis for the text overflow as well.
    */
   noWrap?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLHeadingElement>;
-type DefaultProps = Required<Pick<AppBarTitleProps, "keyline" | "noWrap">>;
-type WithDefaultProps = AppBarTitleProps & DefaultProps & WithRef;
-
 const block = bem("rmd-app-bar");
 
 /**
- * This component is used to create a title for your application. If your app
- * is not using the `AppBarNav` component, you can enable the `keyline` prop
- * to ensure that your title aligns with the keyline of your navigation element.
+ * This component is used to create a title for your application. If your app is
+ * not using the `AppBarNav` component, you can enable the `keyline` prop to
+ * ensure that your title aligns with the keyline of your navigation element.
  */
-const AppBarTitle: FC<AppBarTitleProps & WithRef> = providedProps => {
-  const {
-    keyline,
+function AppBarTitle(
+  {
+    noWrap = true,
+    keyline = false,
     className,
-    forwardedRef,
     children,
     inheritColor,
-    noWrap,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: AppBarTitleProps,
+  ref?: Ref<HTMLHeadingElement>
+): ReactElement {
   return (
     <h6
       {...props}
+      ref={ref}
       className={cn(
         block("title", {
           "no-wrap": noWrap,
@@ -53,38 +50,27 @@ const AppBarTitle: FC<AppBarTitleProps & WithRef> = providedProps => {
         }),
         className
       )}
-      ref={forwardedRef}
     >
       {children}
     </h6>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  noWrap: true,
-  keyline: false,
-};
-
-AppBarTitle.defaultProps = defaultProps;
+const ForwardedAppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
+  AppBarTitle
+);
 
 if (process.env.NODE_ENV !== "production") {
-  AppBarTitle.displayName = "AppBarTitle";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    AppBarTitle.propTypes = {
+    ForwardedAppBarTitle.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
       keyline: PropTypes.bool,
       noWrap: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLHeadingElement, AppBarTitleProps>(
-  (props, ref) => <AppBarTitle {...props} forwardedRef={ref} />
-);
+export default ForwardedAppBarTitle;

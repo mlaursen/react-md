@@ -1,20 +1,26 @@
 /* eslint-disable react/button-has-type */
-import React, { FC, forwardRef, HTMLAttributes, ReactNode } from "react";
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface ChipProps
   extends HTMLAttributes<HTMLButtonElement>,
     Omit<InteractionStatesOptions<HTMLButtonElement>, "disableSpacebarClick"> {
   /**
-   * The button's type attribute. This is set to "button" by default so that forms are not
-   * accidentally submitted when this prop is omitted since buttons without a type attribute work
-   * as submit by default.
+   * The button's type attribute. This is set to "button" by default so that
+   * forms are not accidentally submitted when this prop is omitted since
+   * buttons without a type attribute work as submit by default.
    */
   type?: "button" | "reset" | "submit";
 
@@ -24,20 +30,13 @@ export interface ChipProps
   rightIcon?: ReactNode;
 }
 
-type WithRef = WithForwardedRef<HTMLButtonElement>;
-type DefaultProps = Required<
-  Pick<ChipProps, "theme" | "type" | "enablePressedAndRipple">
->;
-type WithDefaultProps = ChipProps & DefaultProps & WithRef;
-
 const block = bem("rmd-chip");
 
-const Chip: FC<ChipProps & WithRef> = providedProps => {
-  const {
+function Chip(
+  {
     className: propClassName,
     children,
-    forwardedRef,
-    theme,
+    theme = "solid",
     leftIcon,
     rightIcon,
     disableRipple,
@@ -46,9 +45,12 @@ const Chip: FC<ChipProps & WithRef> = providedProps => {
     rippleClassNames,
     rippleClassName,
     rippleContainerClassName,
-    enablePressedAndRipple,
+    enablePressedAndRipple = true,
+    type = "button",
     ...props
-  } = providedProps as WithDefaultProps;
+  }: ChipProps,
+  ref?: Ref<HTMLButtonElement>
+): ReactElement {
   const { disabled } = props;
 
   const { ripples, className, handlers } = useInteractionStates({
@@ -68,7 +70,8 @@ const Chip: FC<ChipProps & WithRef> = providedProps => {
     <button
       {...props}
       {...handlers}
-      ref={forwardedRef}
+      type={type}
+      ref={ref}
       className={cn(
         block({
           [theme]: true,
@@ -86,34 +89,20 @@ const Chip: FC<ChipProps & WithRef> = providedProps => {
       {ripples}
     </button>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  theme: "solid",
-  type: "button",
-  enablePressedAndRipple: true,
-};
-
-Chip.defaultProps = defaultProps;
+const ForwardedChip = forwardRef<HTMLButtonElement, ChipProps>(Chip);
 
 if (process.env.NODE_ENV !== "production") {
-  Chip.displayName = "Chip";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
-
-  if (PropTypes) {
-    Chip.propTypes = {
+    const PropTypes = require("prop-types");
+    ForwardedChip.propTypes = {
       disabled: PropTypes.bool,
       theme: PropTypes.oneOf(["outline", "solid"]),
       type: PropTypes.string,
       enablePressedAndRipple: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLButtonElement, ChipProps>((props, ref) => (
-  <Chip {...props} forwardedRef={ref} />
-));
+export default ForwardedChip;

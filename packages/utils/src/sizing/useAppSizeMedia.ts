@@ -11,8 +11,8 @@ import {
 import useWidthMediaQuery from "./useWidthMediaQuery";
 
 /**
- * The current size for your application. This should work both server side
- * and client side, but you will have much better results client side.
+ * The current size for your application. This should work both server side and
+ * client side, but you will have much better results client side.
  */
 export interface AppSize {
   /**
@@ -44,9 +44,9 @@ export interface AppSize {
    * verify that the window width is greater than the window height.
    *
    * NOTE: This might not be super accurate on Android devices since the soft
-   * keyboard will change the dimensions of the viewport when it appears. It
-   * is recommended to use the `useOrientation` hook as well if you'd like to
-   * get the current orientation type.
+   * keyboard will change the dimensions of the viewport when it appears. It is
+   * recommended to use the `useOrientation` hook as well if you'd like to get
+   * the current orientation type.
    */
   isLandscape: boolean;
 }
@@ -72,9 +72,9 @@ export interface AppSizeOptions {
   tabletMinWidth?: QuerySize;
 
   /**
-   * The max width for a tablet device. This should normally be `1px` less than the
-   * `desktopMinWidth`, but it can be any value if needed. The tablet has a range of
-   * min to max so that you can have a bit more control.
+   * The max width for a tablet device. This should normally be `1px` less than
+   * the `desktopMinWidth`, but it can be any value if needed. The tablet has a
+   * range of min to max so that you can have a bit more control.
    */
   tabletMaxWidth?: QuerySize;
 
@@ -99,10 +99,10 @@ export interface AppSizeOptions {
 /**
  * This hook is used to determine the current application size based on the
  * provided query sizes. When you want to render your app server side, you will
- * need to provide a custom `defaultSize` that implements your logic to determine
- * the type of device requesting a page. Once the app has been rendered in the DOM,
- * this hook will attach event listeners to automatically update the app size when
- * the page is resized.
+ * need to provide a custom `defaultSize` that implements your logic to
+ * determine the type of device requesting a page. Once the app has been
+ * rendered in the DOM, this hook will attach event listeners to automatically
+ * update the app size when the page is resized.
  *
  * @private
  */

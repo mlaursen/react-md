@@ -20,20 +20,20 @@ interface HandlersBaseOptions {
   showTooltip: () => void;
   hideTooltip: () => void;
   /**
-   * This is _normally_ triggered at when a timeout starts to help determine what the
-   * animation position for the tooltip should be. If this isn't set before the animation
-   * starts, the tooltip will animate weirdly.
+   * This is _normally_ triggered at when a timeout starts to help determine
+   * what the animation position for the tooltip should be. If this isn't set
+   * before the animation starts, the tooltip will animate weirdly.
    */
   setEstimatedPosition: (container: HTMLElement) => void;
 
   /**
-   * The type of interaction that initiated the tooltip. When this value is `null`,
-   * the tooltip hasn't been initiated yet and _should_ not be visible within the
-   * page as well.
+   * The type of interaction that initiated the tooltip. When this value is
+   * `null`, the tooltip hasn't been initiated yet and _should_ not be visible
+   * within the page as well.
    *
-   * When this is set to "window", it means that the tooltip was visible when the entire
-   * window was blurred. Check out the keyboard `onFocus` comment for more info about
-   * this flow.
+   * When this is set to "window", it means that the tooltip was visible when
+   * the entire window was blurred. Check out the keyboard `onFocus` comment for
+   * more info about this flow.
    */
   initiated: MutableRefObject<TooltipInitiated>;
 
@@ -43,9 +43,9 @@ interface HandlersBaseOptions {
   setInitiated: (mode: TooltipInitiated) => void;
 
   /**
-   * The amount of delay to wait before showing the tooltip for the mouse and keyboard
-   * flows. In the touch flow, this is the amount of time before the tooltip will hide
-   * after the user releases their finger from the phone.
+   * The amount of delay to wait before showing the tooltip for the mouse and
+   * keyboard flows. In the touch flow, this is the amount of time before the
+   * tooltip will hide after the user releases their finger from the phone.
    */
   delay: number;
 }
@@ -88,8 +88,8 @@ type MouseResult = [
 ];
 
 /**
- * This handles creating and returning the required mouse event listeners
- * to show and hide tooltips as needed. If there were any mouse event listeners
+ * This handles creating and returning the required mouse event listeners to
+ * show and hide tooltips as needed. If there were any mouse event listeners
  * passed in, they will be merged with the tooltip logic automatically and
  * memoized.
  */
@@ -182,8 +182,8 @@ type KeyboardResult = [
 ];
 
 /**
- * This handles creating and returning the required keyboard event listeners
- * to show and hide tooltips as needed. If there were any keyboard event listeners
+ * This handles creating and returning the required keyboard event listeners to
+ * show and hide tooltips as needed. If there were any keyboard event listeners
  * passed in, they will be merged with the tooltip logic automatically and
  * memoized.
  */
@@ -215,9 +215,9 @@ export function useKeyboardState({
         onFocus(event);
       }
 
-      // if the entire browser window was blurred, we don't want to show the tooltip
-      // on the next focus event since it is confusing to see a tooltip appear again
-      // after re-focusing a window.
+      // if the entire browser window was blurred, we don't want to show the
+      // tooltip on the next focus event since it is confusing to see a tooltip
+      // appear again after re-focusing a window.
       if (isWindowBlurred.current) {
         isWindowBlurred.current = false;
         return;
@@ -269,8 +269,9 @@ export function useKeyboardState({
       return;
     }
 
-    // whenever the browser loses focus, need to ensure that when the browser is re-focused
-    // the last focused element (that had a tooltip) does not make the tooltip appear
+    // whenever the browser loses focus, need to ensure that when the browser is
+    // re-focused the last focused element (that had a tooltip) does not make
+    // the tooltip appear
     const handleWindowBlur = (): void => {
       if (document.hidden) {
         isWindowBlurred.current = true;
@@ -304,19 +305,20 @@ type TouchResult = [
 ];
 
 /**
- * This handles creating and returning the required touch event listeners
- * to show and hide tooltips as needed. If there were any touch event listeners
+ * This handles creating and returning the required touch event listeners to
+ * show and hide tooltips as needed. If there were any touch event listeners
  * passed in, they will be merged with the tooltip logic automatically and
  * memoized.
  *
- * Tooltips on touch devices are a bit different than mouse and keyboard. Since tooltips
- * appear after a long press on mobile and long presses on mobile cause a context menu
- * to appear, no timeouts for showing the tooltip are started after a touchstart event.
- * The tooltip will only appear after a contextmenu event which has the default behavior
- * prevented so the tooltip appears instead. After the tooltip appears, it will stay
- * visible as long as the user keeps their finter on their phone. Once they remove their
- * finger, the tooltip will be visible for another `x`ms to make it easier to read without
- * their finter in the way and finally hide.
+ * Tooltips on touch devices are a bit different than mouse and keyboard. Since
+ * tooltips appear after a long press on mobile and long presses on mobile cause
+ * a context menu to appear, no timeouts for showing the tooltip are started
+ * after a touchstart event.  The tooltip will only appear after a contextmenu
+ * event which has the default behavior prevented so the tooltip appears
+ * instead. After the tooltip appears, it will stay visible as long as the user
+ * keeps their finger on their phone. Once they remove their finger, the tooltip
+ * will be visible for another `x`ms to make it easier to read without their
+ * finger in the way and finally hide.
  */
 export function useTouchState({
   mode,

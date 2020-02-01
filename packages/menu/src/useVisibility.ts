@@ -24,9 +24,9 @@ interface ReturnValue {
 }
 
 /**
- * This is the main visibility hook to be used for the `DropdownMenu` and `DropdownMenuItem`
- * components. It'll provide the current visibility as well as the default focus type once
- * the menu becomes visible.
+ * This is the main visibility hook to be used for the `DropdownMenu` and
+ * `DropdownMenuItem` components. It'll provide the current visibility as well
+ * as the default focus type once the menu becomes visible.
  *
  * @private
  */
@@ -48,9 +48,9 @@ export default function useVisibility({
 
   /**
    * A callback to use that allows you to provide a string for if the focus
-   * target should be the "first" or "last" focusable element in the menu.
-   * This should be "first" for all cases except when the control opens
-   * the menu with an arrow up key event.
+   * target should be the "first" or "last" focusable element in the menu.  This
+   * should be "first" for all cases except when the control opens the menu with
+   * an arrow up key event.
    */
   const showWithFocus = useCallback((defaultFocus: FocusType) => {
     setState({ visible: true, defaultFocus });

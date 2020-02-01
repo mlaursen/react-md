@@ -1,6 +1,6 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface CardActionsProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -10,58 +10,45 @@ export interface CardActionsProps extends HTMLAttributes<HTMLDivElement> {
   align?: "start" | "end" | "center";
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<CardActionsProps, "align">>;
-type WithDefaultProps = CardActionsProps & DefaultProps & WithRef;
-
 const block = bem("rmd-card");
 
 /**
  * This component is generally used to hold the main actions for the `Card`.
  * It's a good place to add additional buttons or expansion toggles.
  */
-const CardActions: FC<CardActionsProps & WithRef> = providedProps => {
-  const {
-    className,
-    align,
-    children,
-    forwardedRef,
-    ...props
-  } = providedProps as WithDefaultProps;
-
+function CardActions(
+  { className, align = "end", children, ...props }: CardActionsProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   return (
     <div
       {...props}
-      className={cn(block("actions", { align: align !== "end" }), className)}
-      ref={forwardedRef}
+      ref={ref}
+      className={cn(
+        block("actions", {
+          [align]: align !== "end",
+        }),
+        className
+      )}
     >
       {children}
     </div>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  align: "end",
-};
-
-CardActions.defaultProps = defaultProps;
+const ForwardedCardActions = forwardRef<HTMLDivElement, CardActionsProps>(
+  CardActions
+);
 
 if (process.env.NODE_ENV !== "production") {
-  CardActions.displayName = "CardActions";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    CardActions.propTypes = {
+    ForwardedCardActions.propTypes = {
       align: PropTypes.oneOf(["start", "end", "center"]),
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, CardActionsProps>((props, ref) => (
-  <CardActions {...props} forwardedRef={ref} />
-));
+export default ForwardedCardActions;

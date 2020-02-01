@@ -1,6 +1,12 @@
-import React, { FC, forwardRef, HTMLAttributes, ReactNode } from "react";
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface FontIconProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -14,59 +20,54 @@ export interface FontIconProps extends HTMLAttributes<HTMLElement> {
   dense?: boolean;
 
   /**
-   * Any children to render to create the font icon. This is required for material-icons.
+   * Any children to render to create the font icon. This is required for
+   * material-icons.
    */
   children?: ReactNode;
 
   /**
-   * Either a boolean that will enforce the 24x24 size of the font icon or a number of the size
-   * to enforce. This is useful when using other font icon libraries that do not have a consistent
-   * size.
+   * Either a boolean that will enforce the 24x24 size of the font icon or a
+   * number of the size to enforce. This is useful when using other font icon
+   * libraries that do not have a consistent size.
    */
   forceSize?: boolean;
 
   /**
-   * Boolean if the `forceSize` prop should also force the `font-size` instead of only `width` and
-   * `height`.
+   * Boolean if the `forceSize` prop should also force the `font-size` instead
+   * of only `width` and `height`.
    */
   forceFontSize?: boolean;
 }
 
-type DefaultProps = Required<
-  Pick<
-    FontIconProps,
-    "aria-hidden" | "dense" | "iconClassName" | "forceSize" | "forceFontSize"
-  >
->;
-type WithDefaultProps = FontIconProps & DefaultProps & WithForwardedRef;
-
 const block = bem("rmd-icon");
 
 /**
- * The `FontIcon` component is used for rendering a font-icon library's
- * icon. The default is to use the `material-icons` library, but others
- * can be used as well.
+ * The `FontIcon` component is used for rendering a font-icon library's icon.
+ * The default is to use the `material-icons` library, but others can be used as
+ * well.
  *
- * If you are using another font icon library that does not always create icons with
- * a perfect 1:1 scale (such as font awesome), it is recommended to use the `forceSize`
- * and `forceFontSize` props to fix the sizing issues.
+ * If you are using another font icon library that does not always create icons
+ * with a perfect 1:1 scale (such as font awesome), it is recommended to use the
+ * `forceSize` and `forceFontSize` props to fix the sizing issues.
  */
-const FontIcon: FC<FontIconProps & WithForwardedRef> = providedProps => {
-  const {
+function FontIcon(
+  {
     className,
-    iconClassName,
-    dense,
-    forceSize,
-    forceFontSize,
     children,
-    forwardedRef,
+    "aria-hidden": ariaHidden = true,
+    dense = false,
+    iconClassName = "material-icons",
+    forceSize = false,
+    forceFontSize = false,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: FontIconProps,
+  ref?: Ref<HTMLElement>
+): ReactElement {
   return (
     <i
       {...props}
-      ref={forwardedRef}
+      aria-hidden={ariaHidden}
+      ref={ref}
       className={cn(
         block({
           font: true,
@@ -81,28 +82,15 @@ const FontIcon: FC<FontIconProps & WithForwardedRef> = providedProps => {
       {children}
     </i>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  "aria-hidden": true,
-  dense: false,
-  iconClassName: "material-icons",
-  forceSize: false,
-  forceFontSize: false,
-};
-
-FontIcon.defaultProps = defaultProps;
+const ForwardedFontIcon = forwardRef<HTMLElement, FontIconProps>(FontIcon);
 
 if (process.env.NODE_ENV !== "production") {
-  FontIcon.displayName = "FontIcon";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    FontIcon.propTypes = {
+    ForwardedFontIcon.propTypes = {
       "aria-hidden": PropTypes.oneOfType([
         PropTypes.oneOf(["true", "false"]),
         PropTypes.bool,
@@ -114,9 +102,7 @@ if (process.env.NODE_ENV !== "production") {
       forceFontSize: PropTypes.bool,
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLElement, FontIconProps>((props, ref) => (
-  <FontIcon {...props} forwardedRef={ref} />
-));
+export default ForwardedFontIcon;

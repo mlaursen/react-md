@@ -1,8 +1,9 @@
 import { UnknownTreeItem } from "./types";
 
 /**
- * A "reasonable" default implementation for the getItemValue prop on a tree that will warn about
- * items that are not keyboard searchable in non-production environments.
+ * A "reasonable" default implementation for the getItemValue prop on a tree
+ * that will warn about items that are not keyboard searchable in non-production
+ * environments.
  *
  * @private
  */

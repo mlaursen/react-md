@@ -1,13 +1,14 @@
 import React, {
-  FC,
   forwardRef,
+  ReactElement,
+  ReactNode,
+  Ref,
   TdHTMLAttributes,
   ThHTMLAttributes,
-  ReactNode,
 } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import { TableCellConfig, useTableConfig } from "./config";
 import { useTableFooter } from "./footer";
@@ -51,15 +52,15 @@ export interface TableCellOptions extends TableCellConfig {
 
   /**
    * If this is a trueish value, the cell will become a sticky cell that will be
-   * fixed while the user scrolls the table. When this is a `boolean` (or inherited
-   * from a `TableHeader`) or set to `"header"`, the cell will act as a sticky header
-   * that will be visible for vertical scrolling.
+   * fixed while the user scrolls the table. When this is a `boolean` (or
+   * inherited from a `TableHeader`) or set to `"header"`, the cell will act as
+   * a sticky header that will be visible for vertical scrolling.
    *
    * When this is set to `"cell"`, the cell will be fixed to the left or right
    * for horizontal scrolling.
    *
-   * Finally, if this is set to `"header-cell"`, it will be a combination of both
-   * vertical and horizontal scrolling. This means that other sticky header
+   * Finally, if this is set to `"header-cell"`, it will be a combination of
+   * both vertical and horizontal scrolling. This means that other sticky header
    * cells will scroll beneath this cell.
    */
   sticky?: boolean | "header" | "cell" | "header-cell";
@@ -113,10 +114,6 @@ export interface TableCellProps extends TableCellAttributes, TableCellOptions {
   disablePadding?: boolean;
 }
 
-type WithRef = WithForwardedRef<TableCellElement>;
-type DefaultProps = Required<Pick<TableCellProps, "grow" | "sortIconAfter">>;
-type WithDefaultProps = TableCellProps & DefaultProps & WithRef;
-
 const block = bem("rmd-table-cell");
 
 /**
@@ -129,12 +126,12 @@ const block = bem("rmd-table-cell");
  * it is invalid to have a `<th>` without any readable content for screen
  * readers.
  */
-const TableCell: FC<TableCellProps & WithRef> = providedProps => {
-  const {
+function TableCell(
+  {
     "aria-sort": sortOrder,
+    id,
     className,
-    forwardedRef,
-    grow,
+    grow = false,
     scope: propScope,
     hAlign: propHAlign,
     vAlign: propVAlign,
@@ -143,13 +140,14 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
     children,
     sticky: propSticky,
     sortIcon: propSortIcon,
-    sortIconAfter,
+    sortIconAfter = false,
     sortIconRotated,
     disablePadding,
     colSpan: propColSpan,
     ...props
-  } = providedProps as WithDefaultProps;
-  const { id } = props;
+  }: TableCellProps,
+  ref?: Ref<TableCellElement>
+): ReactElement {
   // have to double cast to get the `100%` value to work.
   const colSpan = (propColSpan as unknown) as number;
   const sortIcon = useIcon("sort", propSortIcon);
@@ -183,9 +181,10 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
   return (
     <Component
       {...props}
+      ref={ref}
+      id={id}
       aria-sort={sortOrder === "none" ? undefined : sortOrder}
       colSpan={colSpan}
-      ref={forwardedRef}
       className={cn(
         block({
           grow,
@@ -220,25 +219,17 @@ const TableCell: FC<TableCellProps & WithRef> = providedProps => {
       </TableCellSortButton>
     </Component>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  grow: false,
-  sortIconAfter: false,
-};
-
-TableCell.defaultProps = defaultProps;
+const ForwardedTableCell = forwardRef<TableCellElement, TableCellProps>(
+  TableCell
+);
 
 if (process.env.NODE_ENV !== "production") {
-  TableCell.displayName = "TableCell";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TableCell.propTypes = {
+    ForwardedTableCell.propTypes = {
       "aria-sort": PropTypes.oneOf([
         "ascending",
         "descending",
@@ -264,9 +255,7 @@ if (process.env.NODE_ENV !== "production") {
       sortIconAfter: PropTypes.bool,
       disablePadding: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<TableCellElement, TableCellProps>((props, ref) => (
-  <TableCell {...props} forwardedRef={ref} />
-));
+export default ForwardedTableCell;

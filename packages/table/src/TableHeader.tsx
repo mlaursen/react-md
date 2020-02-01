@@ -1,8 +1,14 @@
-import React, { FC, forwardRef, HTMLAttributes, useMemo } from "react";
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  Ref,
+  useMemo,
+} from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
-import { TableConfigProvider, useTableConfig, TableCellConfig } from "./config";
+import { TableCellConfig, TableConfigProvider, useTableConfig } from "./config";
 import { StickyTableProvider } from "./sticky";
 
 export interface TableHeaderProps
@@ -16,15 +22,11 @@ export interface TableHeaderProps
   hoverable?: boolean;
 
   /**
-   * Boolean if the header should be rendered as a sticky header that will
-   * cover the table contents as the page or `TableContainer` is scrolled.
+   * Boolean if the header should be rendered as a sticky header that will cover
+   * the table contents as the page or `TableContainer` is scrolled.
    */
   sticky?: boolean;
 }
-
-type WithRef = WithForwardedRef<HTMLTableSectionElement>;
-type DefaultProps = Required<Pick<TableHeaderProps, "hoverable" | "sticky">>;
-type WithDefaultProps = TableHeaderProps & DefaultProps & WithRef;
 
 const block = bem("rmd-thead");
 
@@ -36,17 +38,17 @@ const block = bem("rmd-thead");
  * line-wrapping can be re-enabled if desired through the `hoverable` and
  * `disableNoWrap` props.
  */
-const TableHeader: FC<TableHeaderProps & WithRef> = providedProps => {
-  const {
+function TableHeader(
+  {
     className,
-    forwardedRef,
-    hoverable,
+    hoverable = false,
     lineWrap: propLineWrap,
     children,
-    sticky,
+    sticky = false,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: TableHeaderProps,
+  ref?: Ref<HTMLTableSectionElement>
+): ReactElement {
   // update the table configuration with the custom overrides for the `<thead>`
   const {
     hAlign,
@@ -73,30 +75,23 @@ const TableHeader: FC<TableHeaderProps & WithRef> = providedProps => {
 
   return (
     <TableConfigProvider value={configuration}>
-      <thead {...props} ref={forwardedRef} className={cn(block(), className)}>
+      <thead {...props} ref={ref} className={cn(block(), className)}>
         <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
       </thead>
     </TableConfigProvider>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  hoverable: false,
-  sticky: false,
-};
-
-TableHeader.defaultProps = defaultProps;
+const ForwardedTableHeader = forwardRef<
+  HTMLTableSectionElement,
+  TableHeaderProps
+>(TableHeader);
 
 if (process.env.NODE_ENV !== "production") {
-  TableHeader.displayName = "TableHeader";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TableHeader.propTypes = {
+    ForwardedTableHeader.propTypes = {
       className: PropTypes.string,
       lineWrap: PropTypes.oneOfType([
         PropTypes.bool,
@@ -105,9 +100,7 @@ if (process.env.NODE_ENV !== "production") {
       hoverable: PropTypes.bool,
       sticky: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLTableSectionElement, TableHeaderProps>(
-  (props, ref) => <TableHeader {...props} forwardedRef={ref} />
-);
+export default ForwardedTableHeader;

@@ -1,53 +1,49 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Boolean if the card should gain additional box-shadow elevation once hovered.
+   * Boolean if the card should gain additional box-shadow elevation once
+   * hovered.
    */
   raiseable?: boolean;
 
   /**
-   * Boolean if the card should no longer be `display: inline-block`, but instead
-   * `display: block; width: 100%;`.
+   * Boolean if the card should no longer be `display: inline-block`, but
+   * instead `display: block; width: 100%;`.
    */
   fullWidth?: boolean;
 
   /**
-   * Boolean if the card should use a border instead of box-shadow. Enabling this
-   * prop will always disable the `raiseable` prop.
+   * Boolean if the card should use a border instead of box-shadow. Enabling
+   * this prop will always disable the `raiseable` prop.
    */
   bordered?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<CardProps, "raiseable" | "bordered" | "fullWidth">
->;
-type WithDefaultProps = CardProps & DefaultProps & WithRef;
-
 const block = bem("rmd-card");
 
 /**
- * This is the root card component that should be used along side all the
- * other card parts. It adds some general styles and elevation to help show
+ * This is the root card component that should be used along side all the other
+ * card parts. It adds some general styles and elevation to help show
  * prominence.
  */
-const Card: FC<CardProps & WithRef> = providedProps => {
-  const {
+function Card(
+  {
     className,
-    forwardedRef,
     children,
-    raiseable,
-    fullWidth,
-    bordered,
+    raiseable = false,
+    fullWidth = false,
+    bordered = false,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: CardProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   return (
     <div
       {...props}
+      ref={ref}
       className={cn(
         block({
           bordered,
@@ -57,39 +53,25 @@ const Card: FC<CardProps & WithRef> = providedProps => {
         }),
         className
       )}
-      ref={forwardedRef}
     >
       {children}
     </div>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  bordered: false,
-  raiseable: false,
-  fullWidth: false,
-};
-
-Card.defaultProps = defaultProps;
+const ForwardedCard = forwardRef<HTMLDivElement, CardProps>(Card);
 
 if (process.env.NODE_ENV !== "production") {
-  Card.displayName = "Card";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Card.propTypes = {
+    ForwardedCard.propTypes = {
       bordered: PropTypes.bool,
       raiseable: PropTypes.bool,
       fullWidth: PropTypes.bool,
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, CardProps>((props, ref) => (
-  <Card {...props} forwardedRef={ref} />
-));
+export default ForwardedCard;

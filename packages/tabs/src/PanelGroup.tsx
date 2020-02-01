@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-import React, { FC, Fragment } from "react";
+import React, { Fragment, ReactElement, ReactNode } from "react";
 import TransitionGroup from "react-transition-group/TransitionGroup";
 
 export interface PanelGroupProps {
+  children?: ReactNode;
   persistent: boolean;
   disableTransition: boolean;
 }
@@ -10,11 +11,11 @@ export interface PanelGroupProps {
 /**
  * @private
  */
-const PanelGroup: FC<PanelGroupProps> = ({
+export default function PanelGroup({
   persistent,
   disableTransition,
   children,
-}) => {
+}: PanelGroupProps): ReactElement {
   if (persistent) {
     return <Fragment>{children}</Fragment>;
   }
@@ -29,6 +30,4 @@ const PanelGroup: FC<PanelGroupProps> = ({
       {children}
     </TransitionGroup>
   );
-};
-
-export default PanelGroup;
+}

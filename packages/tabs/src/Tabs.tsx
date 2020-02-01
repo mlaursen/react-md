@@ -10,8 +10,8 @@ export type TabsProps = Omit<
 >;
 
 /**
- * The `Tabs` component is used to render all the configured `tabs` from the parent `TabsManager`
- * component inside of the `TabsList`.
+ * The `Tabs` component is used to render all the configured `tabs` from the
+ * parent `TabsManager` component inside of the `TabsList`.
  */
 export default forwardRef<HTMLDivElement, TabsProps>(function Tabs(props, ref) {
   const { tabsId, tabs, activeIndex, onActiveIndexChange } = useTabs();

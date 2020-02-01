@@ -3,9 +3,10 @@ import { isSupported } from "./passiveEvents";
 export type TouchTypes = "start" | "end" | "cancel" | "move";
 
 /**
- * A helper function for manually setting touch events on elements when they cannot be directly
- * added with a React event listener. This will attempt to create a passive event if the browser
- * supports passive events so there is better scroll performance.
+ * A helper function for manually setting touch events on elements when they
+ * cannot be directly added with a React event listener. This will attempt to
+ * create a passive event if the browser supports passive events so there is
+ * better scroll performance.
  */
 export function setTouchEvent(
   /**
@@ -75,8 +76,8 @@ export function addTouchEvent(
 /**
  * A simple wrapper for the `setTouchEvent` to just always remove events.
  *
- * @param el - The element to add the touch event to.
- * @param eventType - One of the touch types to modify.
+ * @param el The element to add the touch event to.
+ * @param eventType One of the touch types to modify.
  */
 export function removeTouchEvent(
   el: Window | HTMLElement,

@@ -15,15 +15,16 @@ interface ReturnValue<E extends HTMLElement> {
 }
 
 /**
- * This is a different version of the useRippleStates that will allow you to know
- * when a component is being pressed by the user. This is really just a fallback for
- * when the ripples are disabled.
+ * This is a different version of the useRippleStates that will allow you to
+ * know when a component is being pressed by the user. This is really just a
+ * fallback for when the ripples are disabled.
  *
- * This will return an object containing the current pressed state of the element as well
- * as all the merged eventHandlers required to trigger the different states.
+ * This will return an object containing the current pressed state of the
+ * element as well as all the merged eventHandlers required to trigger the
+ * different states.
  *
- * NOTE: Unlike the ripple effect, this pressed states will not be triggered from
- * a programmatic click event.
+ * NOTE: Unlike the ripple effect, this pressed states will not be triggered
+ * from a programmatic click event.
  */
 export default function usePressedStates<E extends HTMLElement = HTMLElement>({
   handlers = {},

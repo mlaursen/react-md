@@ -1,4 +1,10 @@
-import React, { FC, ReactNode, useEffect, useMemo, useRef } from "react";
+import React, {
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
@@ -7,7 +13,6 @@ import {
   DEFAULT_TABLET_MAX_WIDTH,
   DEFAULT_TABLET_MIN_WIDTH,
 } from "./constants";
-
 import { AppSizeContext } from "./useAppSize";
 import useAppSizeMedia, {
   AppSize,
@@ -26,36 +31,20 @@ export interface AppSizeListenerProps extends AppSizeOptions {
   onChange?: (nextSize: AppSize, lastSize: AppSize) => void;
 }
 
-type DefaultProps = Required<
-  Pick<
-    AppSizeListenerProps,
-    | "phoneMaxWidth"
-    | "tabletMinWidth"
-    | "tabletMaxWidth"
-    | "desktopMinWidth"
-    | "desktopLargeMinWidth"
-    | "defaultSize"
-  >
->;
-
-type WithDefaultProps = AppSizeListenerProps & DefaultProps;
-
 /**
  * This component should be mounted near the top of your app as it will keep track
  * of the current app size based on the provided breakpoint widths.
  */
-const AppSizeListener: FC<AppSizeListenerProps> = providedProps => {
-  const {
-    children,
-    onChange,
-    defaultSize,
-    phoneMaxWidth,
-    tabletMinWidth,
-    tabletMaxWidth,
-    desktopMinWidth,
-    desktopLargeMinWidth,
-  } = providedProps as WithDefaultProps;
-
+function AppSizeListener({
+  children,
+  onChange,
+  phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
+  tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH,
+  tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH,
+  desktopMinWidth = DEFAULT_DESKTOP_MIN_WIDTH,
+  desktopLargeMinWidth = DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+  defaultSize = DEFAULT_APP_SIZE,
+}: AppSizeListenerProps): ReactElement {
   const appSize = useAppSizeMedia({
     phoneMaxWidth,
     tabletMaxWidth,
@@ -67,8 +56,8 @@ const AppSizeListener: FC<AppSizeListenerProps> = providedProps => {
   const lastValue = useRef(appSize);
 
   useEffect(() => {
-    // trigger the onChange prop on mount only if there is a difference between the defaultSize
-    // and the mounted size.
+    // trigger the onChange prop on mount only if there is a difference between
+    // the defaultSize and the mounted size.
     if (
       onChange &&
       (defaultSize.isPhone !== appSize.isPhone ||
@@ -103,26 +92,12 @@ const AppSizeListener: FC<AppSizeListenerProps> = providedProps => {
   return (
     <AppSizeContext.Provider value={value}>{children}</AppSizeContext.Provider>
   );
-};
-
-const defaultProps: DefaultProps = {
-  phoneMaxWidth: DEFAULT_PHONE_MAX_WIDTH,
-  tabletMinWidth: DEFAULT_TABLET_MIN_WIDTH,
-  tabletMaxWidth: DEFAULT_TABLET_MAX_WIDTH,
-  desktopMinWidth: DEFAULT_DESKTOP_MIN_WIDTH,
-  desktopLargeMinWidth: DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-  defaultSize: DEFAULT_APP_SIZE,
-};
-
-AppSizeListener.defaultProps = defaultProps;
+}
 
 if (process.env.NODE_ENV !== "production") {
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
     const querySize = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
 
     AppSizeListener.propTypes = {
@@ -141,7 +116,7 @@ if (process.env.NODE_ENV !== "production") {
         isLandscape: PropTypes.bool.isRequired,
       }),
     };
-  }
+  } catch (e) {}
 }
 
 export default AppSizeListener;

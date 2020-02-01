@@ -8,8 +8,8 @@ interface CloseOnScrollOptions {
 }
 
 /**
- * This hook will automatically close the menu when an element
- * on the page is scrolled that is not within the menu.
+ * This hook will automatically close the menu when an element on the page is
+ * scrolled that is not within the menu.
  */
 export default function useCloseOnScroll({
   menu,

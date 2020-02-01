@@ -1,9 +1,8 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef, ReactElement, Ref } from "react";
 import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { WithForwardedRef } from "@react-md/utils";
 
 import getListItemHeight, { SimpleListItemProps } from "./getListItemHeight";
 import ListItemChildren from "./ListItemChildren";
@@ -15,56 +14,41 @@ export interface ListItemProps
   tabIndex?: number;
 }
 
-type WithRef = WithForwardedRef<HTMLLIElement>;
-type DefaultProps = Required<
-  Pick<
-    ListItemProps,
-    | "textChildren"
-    | "height"
-    | "role"
-    | "tabIndex"
-    | "leftPosition"
-    | "rightPosition"
-    | "disableSpacebarClick"
-    | "disablePressedFallback"
-  >
->;
-type ListItemWithDefaultProps = ListItemProps & DefaultProps & WithRef;
-
-const ListItem: FC<ListItemProps & WithRef> = providedProps => {
-  const {
+function ListItem(
+  {
     className: propClassName,
     textClassName,
     secondaryTextClassName,
-    textChildren,
+    textChildren = true,
     primaryText,
     secondaryText,
     children,
-    forwardedRef,
     leftIcon,
     leftAvatar,
     leftMedia,
     leftMediaLarge,
-    leftPosition,
+    leftPosition = "middle",
     rightIcon,
     rightAvatar,
     rightMedia,
     rightMediaLarge,
-    rightPosition,
+    rightPosition = "middle",
     forceIconWrap,
-    height: _height,
-    disableSpacebarClick,
-    disableRipple,
-    disableProgrammaticRipple,
-    disablePressedFallback,
+    height: propHeight = "auto",
+    disableSpacebarClick = false,
+    disableRipple = false,
+    disableProgrammaticRipple = false,
+    disablePressedFallback = false,
     rippleTimeout,
     rippleClassNames,
     rippleClassName,
     rippleContainerClassName,
-    tabIndex,
-    role,
+    role = "button",
+    tabIndex = 0,
     ...props
-  } = providedProps as ListItemWithDefaultProps;
+  }: ListItemProps,
+  ref?: Ref<HTMLLIElement>
+): ReactElement {
   const { disabled } = props;
 
   const { ripples, className, handlers } = useInteractionStates({
@@ -81,16 +65,29 @@ const ListItem: FC<ListItemProps & WithRef> = providedProps => {
     disablePressedFallback,
   });
 
+  const height = getListItemHeight({
+    height: propHeight,
+    leftIcon,
+    rightIcon,
+    leftAvatar,
+    rightAvatar,
+    leftMedia,
+    rightMedia,
+    leftMediaLarge,
+    rightMediaLarge,
+    secondaryText,
+  });
+
   return (
     <SimpleListItem
       {...props}
       {...handlers}
+      ref={ref}
       tabIndex={tabIndex}
       role={role}
       className={className}
       clickable
-      height={getListItemHeight(providedProps)}
-      ref={forwardedRef}
+      height={height}
     >
       <ListItemChildren
         textClassName={textClassName}
@@ -115,30 +112,15 @@ const ListItem: FC<ListItemProps & WithRef> = providedProps => {
       {ripples}
     </SimpleListItem>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  height: "auto",
-  role: "button",
-  tabIndex: 0,
-  disableSpacebarClick: false,
-  disablePressedFallback: false,
-  textChildren: true,
-  leftPosition: "middle",
-  rightPosition: "middle",
-};
+const ForwardedListItem = forwardRef<HTMLLIElement, ListItemProps>(ListItem);
 
-ListItem.defaultProps = defaultProps;
 if (process.env.NODE_ENV !== "production") {
-  ListItem.displayName = "ListItem";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    ListItem.propTypes = {
+    ForwardedListItem.propTypes = {
       role: PropTypes.string,
       tabIndex: PropTypes.number,
       height: PropTypes.oneOf([
@@ -155,9 +137,7 @@ if (process.env.NODE_ENV !== "production") {
       disablePressedFallback: PropTypes.bool,
       textChildren: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLLIElement, ListItemProps>((props, ref) => (
-  <ListItem {...props} forwardedRef={ref} />
-));
+export default ForwardedListItem;

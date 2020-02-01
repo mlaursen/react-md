@@ -1,8 +1,14 @@
-import React, { FC, forwardRef, HTMLAttributes, useMemo } from "react";
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  Ref,
+  useMemo,
+} from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
-import { TableConfigProvider, useTableConfig, TableCellConfig } from "./config";
+import { TableCellConfig, TableConfigProvider, useTableConfig } from "./config";
 import { TableFooterProvider } from "./footer";
 import { StickyTableProvider } from "./sticky";
 
@@ -17,15 +23,11 @@ export interface TableFooterProps
   hoverable?: boolean;
 
   /**
-   * Boolean if the footer should be rendered as a sticky footer that will
-   * cover the table contents as the page or `TableContainer` is scrolled.
+   * Boolean if the footer should be rendered as a sticky footer that will cover
+   * the table contents as the page or `TableContainer` is scrolled.
    */
   sticky?: boolean;
 }
-
-type WithRef = WithForwardedRef<HTMLTableSectionElement>;
-type DefaultProps = Required<Pick<TableFooterProps, "hoverable" | "sticky">>;
-type WithDefaultProps = TableFooterProps & DefaultProps & WithRef;
 
 const block = bem("rmd-foot");
 
@@ -35,17 +37,17 @@ const block = bem("rmd-foot");
  * and line-wrapping can be re-enabled if desired through the `hoverable` and
  * `disableNoWrap` props.
  */
-const TableFooter: FC<TableFooterProps & WithRef> = providedProps => {
-  const {
+function TableFooter(
+  {
     className,
-    forwardedRef,
-    hoverable,
+    hoverable = false,
     lineWrap: propLineWrap,
     children,
-    sticky,
+    sticky = false,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: TableFooterProps,
+  ref?: Ref<HTMLTableSectionElement>
+): ReactElement {
   // update the table configuration with the custom overrides for the `<tfoot>`
   const {
     hAlign,
@@ -73,31 +75,24 @@ const TableFooter: FC<TableFooterProps & WithRef> = providedProps => {
   return (
     <TableConfigProvider value={configuration}>
       <TableFooterProvider value>
-        <tfoot {...props} ref={forwardedRef} className={cn(block(), className)}>
+        <tfoot {...props} ref={ref} className={cn(block(), className)}>
           <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
         </tfoot>
       </TableFooterProvider>
     </TableConfigProvider>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  hoverable: false,
-  sticky: false,
-};
-
-TableFooter.defaultProps = defaultProps;
+const ForwardedTableFooter = forwardRef<
+  HTMLTableSectionElement,
+  TableFooterProps
+>(TableFooter);
 
 if (process.env.NODE_ENV !== "production") {
-  TableFooter.displayName = "TableFooter";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TableFooter.propTypes = {
+    ForwardedTableFooter.propTypes = {
       className: PropTypes.string,
       lineWrap: PropTypes.oneOfType([
         PropTypes.bool,
@@ -106,9 +101,7 @@ if (process.env.NODE_ENV !== "production") {
       hoverable: PropTypes.bool,
       sticky: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLTableSectionElement, TableFooterProps>(
-  (props, ref) => <TableFooter {...props} forwardedRef={ref} />
-);
+export default ForwardedTableFooter;

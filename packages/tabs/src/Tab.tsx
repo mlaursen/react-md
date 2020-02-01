@@ -1,11 +1,11 @@
-import React, { FC, HTMLAttributes, forwardRef } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
+import { TextIconSpacing } from "@react-md/icon";
 import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { bem, WithForwardedRef } from "@react-md/utils";
-import { TextIconSpacing } from "@react-md/icon";
+import { bem } from "@react-md/utils";
 
 import { TabConfig } from "./types";
 
@@ -20,44 +20,39 @@ export interface TabProps
   id: string;
 
   /**
-   * Boolean if the tab is currently active. Only one tab should be active at a time.
+   * Boolean if the tab is currently active. Only one tab should be active at a
+   * time.
    */
   active: boolean;
 
   /**
-   * The id for the `TabPanel` that the `Tab` controls. This is really just used to create
-   * an `aria-controls` attribute on the `Tab` itself, but googling this results in some
-   * "interesting" results showing `aria-controls` doesn't really do much so this prop
-   * can be omitted.
+   * The id for the `TabPanel` that the `Tab` controls. This is really just used
+   * to create an `aria-controls` attribute on the `Tab` itself, but googling
+   * this results in some "interesting" results showing `aria-controls` doesn't
+   * really do much so this prop can be omitted.
    *
-   * In addition, if you are using dynamically rendered tab panels, this value should only
-   * be provided when the tab becomes active as the `id` will not exist in the DOM until
-   * then and will be invalid.
+   * In addition, if you are using dynamically rendered tab panels, this value
+   * should only be provided when the tab becomes active as the `id` will not
+   * exist in the DOM until then and will be invalid.
    */
   panelId?: string;
 }
 
-type WithRef = WithForwardedRef<HTMLButtonElement>;
-type DefaultProps = Required<
-  Pick<TabProps, "disabled" | "stacked" | "iconAfter">
->;
-type WithDefaultProps = TabProps & DefaultProps & WithRef;
-
 const block = bem("rmd-tab");
 
 /**
- * The `Tab` is a low-level component that just renders an accessible tab widget along with some
- * general styles and an optional icon.
+ * The `Tab` is a low-level component that just renders an accessible tab widget
+ * along with some general styles and an optional icon.
  */
-const Tab: FC<TabProps & WithRef> = providedProps => {
-  const {
+function Tab(
+  {
     className: propClassName,
     contentStyle,
     contentClassName,
-    forwardedRef,
+    disabled = false,
     icon,
-    stacked,
-    iconAfter,
+    stacked = false,
+    iconAfter = false,
     children,
     active,
     panelId,
@@ -69,9 +64,9 @@ const Tab: FC<TabProps & WithRef> = providedProps => {
     rippleContainerClassName,
     enablePressedAndRipple,
     ...props
-  } = providedProps as WithDefaultProps;
-  const { disabled } = props;
-
+  }: TabProps,
+  ref?: Ref<HTMLButtonElement>
+): ReactElement {
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
     className: propClassName,
@@ -89,12 +84,13 @@ const Tab: FC<TabProps & WithRef> = providedProps => {
     <button
       {...props}
       {...handlers}
+      ref={ref}
       aria-selected={active}
       aria-controls={panelId}
       type="button"
       role="tab"
+      disabled={disabled}
       className={cn(block({ active, stacked: icon && stacked }), className)}
-      ref={forwardedRef}
       tabIndex={active ? undefined : -1}
     >
       <TextIconSpacing icon={icon} stacked={stacked} iconAfter={iconAfter}>
@@ -108,26 +104,15 @@ const Tab: FC<TabProps & WithRef> = providedProps => {
       {ripples}
     </button>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  stacked: false,
-  iconAfter: false,
-  disabled: false,
-};
-
-Tab.defaultProps = defaultProps;
+const ForwardedTab = forwardRef<HTMLButtonElement, TabProps>(Tab);
 
 if (process.env.NODE_ENV !== "production") {
-  Tab.displayName = "Tab";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Tab.propTypes = {
+    ForwardedTab.propTypes = {
       id: PropTypes.string.isRequired,
       panelId: PropTypes.string,
       active: PropTypes.bool.isRequired,
@@ -140,11 +125,8 @@ if (process.env.NODE_ENV !== "production") {
       iconAfter: PropTypes.bool,
       disabled: PropTypes.bool,
       onKeyDown: PropTypes.func,
-      forwardedRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLButtonElement, TabProps>((props, ref) => (
-  <Tab {...props} forwardedRef={ref} />
-));
+export default ForwardedTab;

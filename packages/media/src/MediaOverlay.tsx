@@ -1,11 +1,10 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { WithForwardedRef } from "@react-md/utils";
 
 /**
- * The overlay positions relative to the `MediaContainer` component.
- * Most of the sizes are self-explanitory, but the `middle` position
- * will be centered vertically while `center` will be centered `horizontally`.
+ * The overlay positions relative to the `MediaContainer` component.  Most of
+ * the sizes are self-explanitory, but the `middle` position will be centered
+ * vertically while `center` will be centered `horizontally`.
  */
 export type MediaOverlayPosition =
   | "top"
@@ -23,28 +22,19 @@ export interface MediaOverlayProps extends HTMLAttributes<HTMLDivElement> {
   position?: MediaOverlayPosition;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<MediaOverlayProps, "position">>;
-type WithDefaultProps = MediaOverlayProps & DefaultProps & WithRef;
-
 /**
  * The `MediaOverlay` component is used to create an overlay over specific media
  * items within the `MediaContainer` component. You will need to apply most of
  * your own styles as this is really just used for positioning.
  */
-const MediaOverlay: FC<MediaOverlayProps & WithRef> = providedProps => {
-  const {
-    className,
-    children,
-    position,
-    forwardedRef,
-    ...props
-  } = providedProps as WithDefaultProps;
-
+function MediaOverlay(
+  { className, children, position = "bottom", ...props }: MediaOverlayProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   return (
     <div
       {...props}
-      ref={forwardedRef}
+      ref={ref}
       className={cn(
         `rmd-media-overlay rmd-media-overlay--${position}`,
         className
@@ -53,24 +43,16 @@ const MediaOverlay: FC<MediaOverlayProps & WithRef> = providedProps => {
       {children}
     </div>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  position: "bottom",
-};
-
-MediaOverlay.defaultProps = defaultProps;
+const ForwardedMediaOverlay = forwardRef<HTMLDivElement, MediaOverlayProps>(
+  MediaOverlay
+);
 
 if (process.env.NODE_ENV !== "production") {
-  MediaOverlay.displayName = "MediaOverlay";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
-
-  if (PropTypes) {
-    MediaOverlay.propTypes = {
+    const PropTypes = require("prop-types");
+    ForwardedMediaOverlay.propTypes = {
       className: PropTypes.string,
       position: PropTypes.oneOf([
         "top",
@@ -82,9 +64,7 @@ if (process.env.NODE_ENV !== "production") {
         "absolute-center",
       ]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, MediaOverlayProps>((props, ref) => (
-  <MediaOverlay {...props} forwardedRef={ref} />
-));
+export default ForwardedMediaOverlay;

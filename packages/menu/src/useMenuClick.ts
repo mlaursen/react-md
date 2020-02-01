@@ -7,8 +7,8 @@ interface MenuClickOptions {
 }
 
 /**
- * This hook is used to create a click handler on the menu that will
- * close the menu when any `MenuItem` is clicked.
+ * This hook is used to create a click handler on the menu that will close the
+ * menu when any `MenuItem` is clicked.
  */
 export default function useMenuClick({
   onClick,

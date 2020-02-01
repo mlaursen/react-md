@@ -1,16 +1,17 @@
 import React, {
-  FC,
   forwardRef,
   Fragment,
   InputHTMLAttributes,
+  ReactElement,
   ReactNode,
+  Ref,
 } from "react";
 import cn from "classnames";
 import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
-import { useIcon, TextIconSpacing } from "@react-md/icon";
+import { TextIconSpacing, useIcon } from "@react-md/icon";
 import { useInteractionStates } from "@react-md/states";
 import { SrOnly } from "@react-md/typography";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 type InputAttributes = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -19,14 +20,14 @@ type InputAttributes = Omit<
 
 export interface FileInputProps extends ButtonThemeProps, InputAttributes {
   /**
-   * An id for the input. This is required for a11y since it also is applied as the
-   * `htmlFor` prop for the label.
+   * An id for the input. This is required for a11y since it also is applied as
+   * the `htmlFor` prop for the label.
    */
   id: string;
 
   /**
-   * The change event handler to attach to this input. This is required since there's
-   * really no use in this component otherwise.
+   * The change event handler to attach to this input. This is required since
+   * there's really no use in this component otherwise.
    */
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 
@@ -41,35 +42,20 @@ export interface FileInputProps extends ButtonThemeProps, InputAttributes {
   iconAfter?: boolean;
 
   /**
-   * Boolean if the children should not have some spacing between the icon and itself.
-   * The default behavior is to use the `<TextIconSpacing>` component for text styled
-   * input buttons, but this can be disabled if you want to use a screenreader only
-   * accessible label.
+   * Boolean if the children should not have some spacing between the icon and
+   * itself.  The default behavior is to use the `<TextIconSpacing>` component
+   * for text styled input buttons, but this can be disabled if you want to use
+   * a screenreader only accessible label.
    */
   disableIconSpacing?: boolean;
 
   /**
-   * Boolean if the file input should no longer allow the same file to be selected
-   * multiple times and trigger the `onChange` each time it is selected.
+   * Boolean if the file input should no longer allow the same file to be
+   * selected multiple times and trigger the `onChange` each time it is
+   * selected.
    */
   disableRepeatableFiles?: boolean;
 }
-
-type WithRef = WithForwardedRef<HTMLInputElement>;
-type DefaultProps = Required<
-  Pick<
-    FileInputProps,
-    | "iconAfter"
-    | "theme"
-    | "themeType"
-    | "buttonType"
-    | "multiple"
-    | "children"
-    | "disableIconSpacing"
-    | "disableRepeatableFiles"
-  >
->;
-type WithDefaultProps = FileInputProps & DefaultProps & WithRef;
 
 const block = bem("rmd-file-input");
 
@@ -77,19 +63,19 @@ const block = bem("rmd-file-input");
  * This component is a wrapper for the `<input type="file" />` that can be themed
  * like a button.
  */
-const FileInput: FC<FileInputProps & WithRef> = providedProps => {
-  const {
+function FileInput(
+  {
     style,
     className: propClassName,
-    theme,
-    themeType,
-    buttonType,
     icon: propIcon,
-    iconAfter,
-    children,
-    forwardedRef,
-    disableIconSpacing,
-    disableRepeatableFiles,
+    iconAfter = false,
+    children = <SrOnly>Upload</SrOnly>,
+    theme = "primary",
+    themeType = "contained",
+    buttonType = "icon",
+    multiple = false,
+    disableIconSpacing = false,
+    disableRepeatableFiles = false,
     onKeyDown,
     onKeyUp,
     onMouseDown,
@@ -101,7 +87,9 @@ const FileInput: FC<FileInputProps & WithRef> = providedProps => {
     onTouchEnd,
     onChange,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: FileInputProps,
+  ref?: Ref<HTMLInputElement>
+): ReactElement {
   const { id, disabled } = props;
   const icon = useIcon("download", propIcon);
 
@@ -151,11 +139,12 @@ const FileInput: FC<FileInputProps & WithRef> = providedProps => {
         id={id}
         {...props}
         {...handlers}
-        ref={forwardedRef}
+        ref={ref}
         onChange={onChange}
         value={disableRepeatableFiles ? undefined : ""}
         type="file"
         className={block()}
+        multiple={multiple}
       />
       <label
         htmlFor={id}
@@ -167,31 +156,17 @@ const FileInput: FC<FileInputProps & WithRef> = providedProps => {
       </label>
     </Fragment>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  iconAfter: false,
-  children: <SrOnly>Upload</SrOnly>,
-  theme: "primary",
-  themeType: "contained",
-  buttonType: "icon",
-  multiple: false,
-  disableIconSpacing: false,
-  disableRepeatableFiles: false,
-};
-
-FileInput.defaultProps = defaultProps;
+const ForwardedFileInput = forwardRef<HTMLInputElement, FileInputProps>(
+  FileInput
+);
 
 if (process.env.NODE_ENV !== "production") {
-  FileInput.displayName = "FileInput";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    FileInput.propTypes = {
+    ForwardedFileInput.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string,
       onChange: PropTypes.func.isRequired,
@@ -212,9 +187,7 @@ if (process.env.NODE_ENV !== "production") {
       disabled: PropTypes.bool,
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLInputElement, FileInputProps>((props, ref) => (
-  <FileInput {...props} forwardedRef={ref} />
-));
+export default ForwardedFileInput;

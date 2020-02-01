@@ -2,16 +2,16 @@
 import React, {
   Children,
   cloneElement,
-  FC,
   forwardRef,
   HTMLAttributes,
   isValidElement,
+  ReactElement,
   Ref,
   useEffect,
   useRef,
 } from "react";
 import cn from "classnames";
-import { applyRef, bem, WithForwardedRef } from "@react-md/utils";
+import { applyRef, bem } from "@react-md/utils";
 
 import { TabsConfig } from "./types";
 import useTabIndicatorStyle from "./useTabIndicatorStyle";
@@ -21,52 +21,47 @@ export interface TabsListProps
   extends HTMLAttributes<HTMLDivElement>,
     TabsConfig {
   /**
-   * The current active tab index to determine which tabs to animate in and
-   * out of view.
+   * The current active tab index to determine which tabs to animate in and out
+   * of view.
    */
   activeIndex: number;
 
   /**
-   * A function to call when the `activeIndex` should change due to keyboard movement
-   * or clicking on a tab.
+   * A function to call when the `activeIndex` should change due to keyboard
+   * movement or clicking on a tab.
    */
   onActiveIndexChange: (activeIndex: number) => void;
 }
-
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<TabsListProps, "align" | "orientation" | "automatic" | "padded">
->;
-type WithDefaultProps = TabsListProps & DefaultProps & WithRef;
 
 const block = bem("rmd-tabs");
 
 /**
  * The `TabsList` component is the container for all the individual `Tab`s that
- * should be rendered. This handles adding an active indicator underneath
- * the active tab and animating it to the new location when a new tab becomes
- * active. It also handles the ability update which tab is selected when it
- * has been clicked or updated with keyboard movement.
+ * should be rendered. This handles adding an active indicator underneath the
+ * active tab and animating it to the new location when a new tab becomes
+ * active. It also handles the ability update which tab is selected when it has
+ * been clicked or updated with keyboard movement.
  *
  * This should probably not be used outside of this package unless a custom
  * implementation is desired.
  */
-const TabsList: FC<TabsListProps & WithRef> = providedProps => {
-  const {
+function TabsList(
+  {
     style,
     className,
-    forwardedRef,
     onClick,
     onKeyDown,
     children,
-    align,
-    automatic,
-    padded,
-    orientation,
     activeIndex,
+    align = "left",
+    automatic = false,
+    padded = false,
+    orientation = "horizontal",
     onActiveIndexChange,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: TabsListProps,
+  forwardedRef?: Ref<HTMLDivElement>
+): ReactElement {
   const horizontal = orientation === "horizontal";
   const { tabs, itemRefs, handleClick, handleKeyDown } = useTabsMovement({
     onClick,
@@ -146,39 +141,24 @@ const TabsList: FC<TabsListProps & WithRef> = providedProps => {
       })}
     </div>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  align: "left",
-  automatic: false,
-  padded: false,
-  orientation: "horizontal",
-};
-
-TabsList.defaultProps = defaultProps;
+const ForwardedTabsList = forwardRef<HTMLDivElement, TabsListProps>(TabsList);
 
 if (process.env.NODE_ENV !== "production") {
-  TabsList.displayName = "TabsList";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TabsList.propTypes = {
+    ForwardedTabsList.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
       onKeyDown: PropTypes.func,
-      forwardedRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
       align: PropTypes.oneOf(["left", "center", "right"]),
       automatic: PropTypes.bool,
       padded: PropTypes.bool,
       orientation: PropTypes.oneOf(["horizontal", "vertical"]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, TabsListProps>((props, ref) => (
-  <TabsList {...props} forwardedRef={ref} />
-));
+export default ForwardedTabsList;

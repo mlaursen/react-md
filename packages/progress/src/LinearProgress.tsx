@@ -1,6 +1,13 @@
-import React, { CSSProperties, FC, HTMLAttributes, useMemo } from "react";
+import React, {
+  CSSProperties,
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  Ref,
+  useMemo,
+} from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import getProgress from "./getProgress";
 import { ProgressProps } from "./types";
@@ -9,9 +16,9 @@ export interface LinearProgressProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "id">,
     ProgressProps {
   /**
-   * An optional style to apply to the progress bar. This will
-   * be merged with the current width or height tracking the
-   * progress when a `value` is also provided.
+   * An optional style to apply to the progress bar. This will be merged with
+   * the current width or height tracking the progress when a `value` is also
+   * provided.
    */
   barStyle?: CSSProperties;
 
@@ -21,57 +28,47 @@ export interface LinearProgressProps
   barClassName?: string;
 
   /**
-   * Boolean if the progress should be reversed. This will change the
-   * progress direction from `->` to `<-`. If the current language is
-   * a rtl language, the direction will still be `->`.
+   * Boolean if the progress should be reversed. This will change the progress
+   * direction from `->` to `<-`. If the current language is a rtl language, the
+   * direction will still be `->`.
    */
   reverse?: boolean;
 
   /**
-   * Boolean if the progress should be vertical instead of horizontal.
-   * When this prop is set, you should also set the `verticalHeight` prop
-   * to a height value you want for your progress bar.
+   * Boolean if the progress should be vertical instead of horizontal.  When
+   * this prop is set, you should also set the `verticalHeight` prop to a height
+   * value you want for your progress bar.
    */
   vertical?: boolean;
 
   /**
-   * Since there isn't really a good way to have "auto height", you'll need
-   * to manually set the progress bar's height with this prop to some pixel
-   * value. If you'd prefer to set the height in Sass/css, set this value
-   * to `null` instead since this value would be passed down as a `height`
-   * inline style.
+   * Since there isn't really a good way to have "auto height", you'll need to
+   * manually set the progress bar's height with this prop to some pixel value.
+   * If you'd prefer to set the height in Sass/css, set this value to `null`
+   * instead since this value would be passed down as a `height` inline style.
    */
   verticalHeight?: number | null;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<
-    LinearProgressProps,
-    "min" | "max" | "vertical" | "verticalHeight" | "reverse" | "animate"
-  >
->;
-type WithDefaultProps = LinearProgressProps & DefaultProps & WithRef;
-
 const block = bem("rmd-linear-progress");
 
-const LinearProgress: FC<LinearProgressProps & WithRef> = providedProps => {
-  const {
+function LinearProgress(
+  {
     style: propStyle,
     className,
     barStyle: propBarStyle,
     barClassName,
-    min,
-    max,
+    min = 0,
+    max = 100,
     value,
-    reverse,
-    animate,
-    vertical,
-    verticalHeight,
-    forwardedRef,
+    reverse = false,
+    animate = true,
+    vertical = false,
+    verticalHeight = 240,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: LinearProgressProps,
+  ref?: Ref<HTMLSpanElement>
+): ReactElement {
   const style = useMemo(() => {
     if (!vertical || verticalHeight === null) {
       return propStyle;
@@ -101,12 +98,12 @@ const LinearProgress: FC<LinearProgressProps & WithRef> = providedProps => {
   return (
     <span
       {...props}
+      ref={ref}
       style={style}
       role="progressbar"
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
-      ref={forwardedRef}
       className={cn(
         block({
           vertical,
@@ -139,29 +136,18 @@ const LinearProgress: FC<LinearProgressProps & WithRef> = providedProps => {
       />
     </span>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  min: 0,
-  max: 100,
-  animate: true,
-  reverse: false,
-  vertical: false,
-  verticalHeight: 240,
-};
-
-LinearProgress.defaultProps = defaultProps;
+const ForwardedLinearProgress = forwardRef<
+  HTMLSpanElement,
+  LinearProgressProps
+>(LinearProgress);
 
 if (process.env.NODE_ENV !== "production") {
-  LinearProgress.displayName = "LinearProgress";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    LinearProgress.propTypes = {
+    ForwardedLinearProgress.propTypes = {
       id: PropTypes.string.isRequired,
       min: PropTypes.number,
       max: PropTypes.number,
@@ -173,7 +159,7 @@ if (process.env.NODE_ENV !== "production") {
       vertical: PropTypes.bool,
       verticalHeight: PropTypes.number,
     };
-  }
+  } catch (e) {}
 }
 
-export default LinearProgress;
+export default ForwardedLinearProgress;

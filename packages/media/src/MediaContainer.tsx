@@ -1,6 +1,6 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface MediaContainerProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -32,37 +32,33 @@ export interface MediaContainerWithAspectRatioProps
   width: number;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<MediaContainerProps, "auto" | "fullWidth">>;
-
 const block = bem("rmd-media-container");
 
 /**
  * The `MediaContainer` component is used to make responsive images and videos
- * within your app. This component also allows for focing a specific aspect ratio
- * for these elements with both the `height` and `width` props are provided.
+ * within your app. This component also allows for focing a specific aspect
+ * ratio for these elements with both the `height` and `width` props are
+ * provided.
  */
-const MediaContainer: FC<(
-  | MediaContainerProps
-  | MediaContainerWithAspectRatioProps
-) &
-  WithRef> = ({
-  className,
-  height,
-  width,
-  children,
-  forwardedRef,
-  auto,
-  fullWidth,
-  ...props
-}) => {
+function MediaContainer(
+  {
+    className,
+    height,
+    width,
+    children,
+    auto = true,
+    fullWidth = false,
+    ...props
+  }: MediaContainerProps | MediaContainerWithAspectRatioProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   const aspectRatio =
     height && width ? `rmd-media-container--${width}-${height}` : "";
 
   return (
     <div
       {...props}
-      ref={forwardedRef}
+      ref={ref}
       className={cn(
         block({
           auto,
@@ -76,36 +72,25 @@ const MediaContainer: FC<(
       {children}
     </div>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  auto: true,
-  fullWidth: false,
-};
-
-MediaContainer.defaultProps = defaultProps;
+const ForwardedMediaContainer = forwardRef<HTMLDivElement, MediaContainerProps>(
+  MediaContainer
+);
 
 if (process.env.NODE_ENV !== "production") {
-  MediaContainer.displayName = "MediaContainer";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    MediaContainer.propTypes = {
+    ForwardedMediaContainer.propTypes = {
       auto: PropTypes.bool,
       height: PropTypes.number,
       width: PropTypes.number,
       fullWidth: PropTypes.bool,
       className: PropTypes.string,
-      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, MediaContainerProps>((props, ref) => (
-  <MediaContainer {...props} forwardedRef={ref} />
-));
+export default ForwardedMediaContainer;

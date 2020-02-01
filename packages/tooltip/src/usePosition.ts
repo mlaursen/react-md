@@ -15,9 +15,9 @@ interface PositionResult {
 }
 
 /**
- * A small hook that will set the tooltip position automatically based on the container
- * element's location within the viewport. However, if the `position` option/prop was
- * provided, that value will always be used instead.
+ * A small hook that will set the tooltip position automatically based on the
+ * container element's location within the viewport. However, if the `position`
+ * option/prop was provided, that value will always be used instead.
  */
 export default function usePosition({
   position: determinedPosition,
@@ -28,10 +28,11 @@ export default function usePosition({
   const prevPosition = useRefCache(position);
 
   /**
-   * This will only be used when the `determinedPosition` is undefined. When the container element
-   * starts the tooltip "visibility" mode, this will be called so that we can best guess what
-   * the position of the tooltip should be based on the current position of the container element
-   * within the viewport. If this isn't done and the tooltip swaps position due to the positioning
+   * This will only be used when the `determinedPosition` is undefined. When the
+   * container element starts the tooltip "visibility" mode, this will be called
+   * so that we can best guess what the position of the tooltip should be based
+   * on the current position of the container element within the viewport. If
+   * this isn't done and the tooltip swaps position due to the positioning
    * logic, the animation will be reversed.
    */
   const setEstimatedPosition = useCallback(

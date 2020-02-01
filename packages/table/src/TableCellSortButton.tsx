@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { FC, Fragment, CSSProperties, ReactNode } from "react";
+import React, { CSSProperties, Fragment, ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { UnstyledButton } from "@react-md/button";
 import {
+  IconRotator,
   TextIconSpacing,
   TextIconSpacingProps,
-  IconRotator,
 } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
@@ -23,7 +23,7 @@ interface TableCellSortButtonProps extends TextIconSpacingProps {
 /**
  * @private
  */
-const TableCellSortButton: FC<TableCellSortButtonProps> = ({
+export default function TableCellSortButton({
   id,
   icon: propIcon,
   style,
@@ -32,7 +32,7 @@ const TableCellSortButton: FC<TableCellSortButtonProps> = ({
   children,
   rotated: propRotated,
   ...props
-}) => {
+}: TableCellSortButtonProps): ReactElement {
   if (!sortOrder || propIcon === null) {
     return <Fragment>{children}</Fragment>;
   }
@@ -55,6 +55,4 @@ const TableCellSortButton: FC<TableCellSortButtonProps> = ({
       </TextIconSpacing>
     </UnstyledButton>
   );
-};
-
-export default TableCellSortButton;
+}

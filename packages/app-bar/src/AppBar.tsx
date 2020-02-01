@@ -1,6 +1,12 @@
-import React, { ElementType, FC, forwardRef, HTMLAttributes } from "react";
+import React, {
+  ElementType,
+  forwardRef,
+  HTMLAttributes,
+  Ref,
+  ReactElement,
+} from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import {
   InheritContext,
@@ -14,12 +20,12 @@ export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
 
 export interface AppBarProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * The component for the `AppBar` to render as. This should normally either just be the default
-   * `"header"` or a `"div"` component.
+   * The component for the `AppBar` to render as. This should normally either
+   * just be the default `"header"` or a `"div"` component.
    *
-   * It is generally recommended to not provide other React components for this prop even though
-   * it is possible since it leads to bad practice and props might not get passed as one would
-   * expect.
+   * It is generally recommended to not provide other React components for this
+   * prop even though it is possible since it leads to bad practice and props
+   * might not get passed as one would expect.
    */
   component?: ElementType;
 
@@ -29,25 +35,27 @@ export interface AppBarProps extends HTMLAttributes<HTMLDivElement> {
   fixed?: boolean;
 
   /**
-   * The position within the page to "fix" the `AppBar` when the `fixed` prop is enabled.
+   * The position within the page to "fix" the `AppBar` when the `fixed` prop is
+   * enabled.
    */
   fixedPosition?: AppBarPosition;
 
   /**
-   * Boolean if the fixed `AppBar` should gain elevation. This is recommended to stay enabled unless
-   * you manually apply a border to help separate the `AppBar` from other content.
+   * Boolean if the fixed `AppBar` should gain elevation. This is recommended to
+   * stay enabled unless you manually apply a border to help separate the
+   * `AppBar` from other content.
    */
   fixedElevation?: boolean;
 
   /**
-   * Boolean if the `AppBar` should use the `dense` spec. This prop can be used along with the
-   * `prominent` prop to create a prominent and dense `AppBar`.
+   * Boolean if the `AppBar` should use the `dense` spec. This prop can be used
+   * along with the `prominent` prop to create a prominent and dense `AppBar`.
    */
   dense?: boolean;
 
   /**
-   * Boolean if the `AppBar` should use the `prominent` spec. This prop can be used along with
-   * the `dense` prop to create a prominent and dense `AppBar`.
+   * Boolean if the `AppBar` should use the `prominent` spec. This prop can be
+   * used along with the `dense` prop to create a prominent and dense `AppBar`.
    */
   prominent?: boolean;
 
@@ -57,75 +65,61 @@ export interface AppBarProps extends HTMLAttributes<HTMLDivElement> {
   theme?: AppBarTheme;
 
   /**
-   * Boolean if the `AppBarNav`, `AppBarTitle`, and `AppBarActions` should inherit the color that
-   * for the provided `theme`. If this value is `undefined`, the color will only be inherited when
-   * the theme is set to `primary` or `secondary`. However if this value is a boolean, it will be
-   * used instead. So if you set this to `false` and set the `theme` to `"primary"`, the defined
-   * primary text color will not be inherited.
+   * Boolean if the `AppBarNav`, `AppBarTitle`, and `AppBarActions` should
+   * inherit the color that for the provided `theme`. If this value is
+   * `undefined`, the color will only be inherited when the theme is set to
+   * `primary` or `secondary`. However if this value is a boolean, it will be
+   * used instead. So if you set this to `false` and set the `theme` to
+   * `"primary"`, the defined primary text color will not be inherited.
    */
   inheritColor?: boolean;
 
   /**
-   * Boolean if the height should be derived from the content's size instead of having static fixed
-   * heights. This will update the `height` to be `auto` and instead set the `min-height` to the current
-   * "static" height. This is great when you want to add tabs or other elements into the `AppBar`.
+   * Boolean if the height should be derived from the content's size instead of
+   * having static fixed heights. This will update the `height` to be `auto` and
+   * instead set the `min-height` to the current "static" height. This is great
+   * when you want to add tabs or other elements into the `AppBar`.
    *
-   * Note: Enabling this prop will **prevent the `rmd-app-bar-offset` functionality** since the height
-   * is no longer static.
+   * Note: Enabling this prop will **prevent the `rmd-app-bar-offset`
+   * functionality** since the height is no longer static.
    */
   derived?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<
-    AppBarProps,
-    | "component"
-    | "fixed"
-    | "fixedPosition"
-    | "fixedElevation"
-    | "dense"
-    | "prominent"
-    | "theme"
-    | "derived"
-  >
->;
-type WithDefaultProps = AppBarProps & DefaultProps & WithRef;
-
 const block = bem("rmd-app-bar");
 
 /**
- * This component is used to create a top-level app bar in your application that can be used to contain
- * a navigation menu toggle button, the app's logo and/or title, as well as any top-level actions that
- * will be reused throughout your app. When using this component with the `fixed` prop, it is recommended
- * to also use one of the "offset class names" so that your content will not be convered by the app bar.
- * You can also use any of the exposed mixins to add these offsets as well.
- *
- * TODO: Add links to offset class names and mixins once I figure out how to generate my documentation
- * site from Typedoc.
+ * This component is used to create a top-level app bar in your application that
+ * can be used to contain a navigation menu toggle button, the app's logo and/or
+ * title, as well as any top-level actions that will be reused throughout your
+ * app. When using this component with the `fixed` prop, it is recommended to
+ * also use one of the "offset class names" so that your content will not be
+ * converted by the app bar. You can also use any of the exposed mixins to add
+ * these offsets as well.
  */
-const AppBar: FC<AppBarProps & WithRef> = providedProps => {
-  const {
-    theme: _theme,
-    component: _component,
+function AppBar(
+  {
     className,
-    forwardedRef,
     children,
-    dense,
-    prominent,
-    derived,
-    fixed,
-    fixedPosition,
-    fixedElevation,
+    theme: propTheme = "primary",
+    component: propComponent = "header",
+    dense = false,
+    prominent = false,
+    derived = false,
+    fixed = false,
+    fixedPosition = "top",
+    fixedElevation = true,
     inheritColor,
-    ...props
-  } = providedProps as WithDefaultProps;
-  let { theme, component: Component } = providedProps as WithDefaultProps;
-
+    ...remaining
+  }: AppBarProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   const parentContext = useParentContext();
   const inheritContext = useInheritContext(undefined);
 
   let inherit: boolean;
+  let theme = propTheme;
+  let Component = propComponent;
   if (typeof inheritColor === "boolean") {
     inherit = inheritColor;
   } else if (parentContext) {
@@ -140,7 +134,7 @@ const AppBar: FC<AppBarProps & WithRef> = providedProps => {
     <ParentContext.Provider value>
       <InheritContext.Provider value={inherit}>
         <Component
-          {...props}
+          {...remaining}
           className={cn(
             block({
               [theme]: theme !== "clear",
@@ -154,38 +148,22 @@ const AppBar: FC<AppBarProps & WithRef> = providedProps => {
             }),
             className
           )}
-          ref={forwardedRef}
+          ref={ref}
         >
           {children}
         </Component>
       </InheritContext.Provider>
     </ParentContext.Provider>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  component: "header",
-  fixed: false,
-  fixedPosition: "top",
-  fixedElevation: true,
-  dense: false,
-  prominent: false,
-  derived: false,
-  theme: "primary",
-};
-
-AppBar.defaultProps = defaultProps;
+const ForwardedAppBar = forwardRef<HTMLDivElement, AppBarProps>(AppBar);
 
 if (process.env.NODE_ENV !== "production") {
-  AppBar.displayName = "AppBar";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    AppBar.propTypes = {
+    ForwardedAppBar.propTypes = {
       className: PropTypes.string,
       component: PropTypes.oneOfType([
         PropTypes.string,
@@ -202,9 +180,7 @@ if (process.env.NODE_ENV !== "production") {
       inheritColor: PropTypes.bool,
       theme: PropTypes.oneOf(["primary", "secondary", "default", "clear"]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, AppBarProps>((props, ref) => (
-  <AppBar {...props} forwardedRef={ref} />
-));
+export default ForwardedAppBar;

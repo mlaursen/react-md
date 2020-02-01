@@ -52,24 +52,24 @@ interface ActiveDescendantOptions<
   getId?(id: string, index: number): string;
 
   /**
-   * The default index that should be "focused" when the component mounts. This is
-   * set to `-1` by default so that it only gains a new "focused" index when the
-   * container element is focused.
+   * The default index that should be "focused" when the component mounts. This
+   * is set to `-1` by default so that it only gains a new "focused" index when
+   * the container element is focused.
    */
   defaultFocusedIndex?: (() => number) | number;
 
   /**
-   * An optional function to call when the enter key has been pressed while the container
-   * element has keyboard focus. This is normally used for triggering click events for
-   * that specific item.
+   * An optional function to call when the enter key has been pressed while the
+   * container element has keyboard focus. This is normally used for triggering
+   * click events for that specific item.
    */
   onEnter?: KeyHandler<IE>;
 
   /**
-   * An optional function to call when the space key has been pressed while the container
-   * element has keyboard focus. This is normally used for triggering click events for
-   * that specific item and will always call `event.preventDefault()` to prevent the page
-   * scrolling behavior.
+   * An optional function to call when the space key has been pressed while the
+   * container element has keyboard focus. This is normally used for triggering
+   * click events for that specific item and will always call
+   * `event.preventDefault()` to prevent the page scrolling behavior.
    */
   onSpace?: KeyHandler<IE>;
 }

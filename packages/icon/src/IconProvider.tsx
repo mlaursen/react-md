@@ -20,8 +20,8 @@ export interface ConfigurableIcons {
   checkbox?: ReactNode;
 
   /**
-   * The general icon to use for dropdown menus or content that expands vertically
-   * in a new material instead of inline like the `expander` icon.
+   * The general icon to use for dropdown menus or content that expands
+   * vertically in a new material instead of inline like the `expander` icon.
    */
   dropdown?: ReactNode;
 
@@ -36,8 +36,8 @@ export interface ConfigurableIcons {
   expander?: ReactNode;
 
   /**
-   * The general icon for navigating forwards or closing an item to the right. This is
-   * also used internally for nested dropdown menus.
+   * The general icon for navigating forwards or closing an item to the right.
+   * This is also used internally for nested dropdown menus.
    */
   forward?: ReactNode;
 
@@ -47,13 +47,14 @@ export interface ConfigurableIcons {
   menu?: ReactNode;
 
   /**
-   * The general icon for displaying notifications. This is used internally in the `BadgedButton`
-   * in the `@react-md/badge` package.
+   * The general icon for displaying notifications. This is used internally in
+   * the `BadgedButton` in the `@react-md/badge` package.
    */
   notification?: ReactNode;
 
   /**
-   * The general icon for temporarily displaying a password's field value as plain text.
+   * The general icon for temporarily displaying a password's field value as
+   * plain text.
    */
   password?: ReactNode;
 
@@ -114,37 +115,34 @@ export function useIcon(
 
 export interface IconProviderProps extends ConfigurableIcons {
   /**
-   * The children that should inherit the icon provider context. This is required
-   * since this component is pretty much worthless to use if you don't inherit
-   * the overridden icons.
+   * The children that should inherit the icon provider context. This is
+   * required since this component is pretty much worthless to use if you don't
+   * inherit the overridden icons.
    */
   children: ReactNode;
 }
 
-type WithDefaultProps = IconProviderProps & ConfiguredIcons;
-
 /**
  * The `IconProvider` component is used to override all the default icons within
- * `react-md` with a newly defined set of icons. This is super nice since you won't
- * need to create new component wrappers for all the components within `react-md`
- * if you want to switch to SVG icons instead of the default font icons.
+ * `react-md` with a newly defined set of icons. This is super nice since you
+ * won't need to create new component wrappers for all the components within
+ * `react-md` if you want to switch to SVG icons instead of the default font
+ * icons.
  */
-const IconProvider: FC<IconProviderProps> = props => {
-  const {
-    children,
-    back,
-    checkbox,
-    download,
-    dropdown,
-    expander,
-    forward,
-    menu,
-    notification,
-    password,
-    radio,
-    sort,
-  } = props as WithDefaultProps;
-
+const IconProvider: FC<IconProviderProps> = ({
+  children,
+  back = DEFAULT_ICONS.back,
+  checkbox = DEFAULT_ICONS.checkbox,
+  download = DEFAULT_ICONS.download,
+  dropdown = DEFAULT_ICONS.dropdown,
+  expander = DEFAULT_ICONS.expander,
+  forward = DEFAULT_ICONS.forward,
+  menu = DEFAULT_ICONS.menu,
+  notification = DEFAULT_ICONS.notification,
+  password = DEFAULT_ICONS.password,
+  radio = DEFAULT_ICONS.radio,
+  sort = DEFAULT_ICONS.sort,
+}) => {
   const value = useMemo(
     () => ({
       back,
@@ -177,17 +175,10 @@ const IconProvider: FC<IconProviderProps> = props => {
   return <Provider value={value}>{children}</Provider>;
 };
 
-IconProvider.defaultProps = DEFAULT_ICONS;
-
 if (process.env.NODE_ENV !== "production") {
-  IconProvider.displayName = "IconProvider";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
     IconProvider.propTypes = {
       children: PropTypes.node,
       back: PropTypes.node,
@@ -202,7 +193,7 @@ if (process.env.NODE_ENV !== "production") {
       radio: PropTypes.node,
       sort: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
 export default IconProvider;

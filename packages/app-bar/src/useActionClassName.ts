@@ -12,14 +12,15 @@ export interface AppBarActionClassNameProps extends AppBarColorInherit {
   className?: string;
 
   /**
-   * Boolean if this is the first action within the app bar. This is really just used to
-   * automatically right-align all the actions by applying `margin-left: auto` to this action.
+   * Boolean if this is the first action within the app bar. This is really just
+   * used to automatically right-align all the actions by applying `margin-left:
+   * auto` to this action.
    */
   first?: boolean;
 
   /**
-   * Boolean if this is the last action within the app bar's row. This will just apply the
-   * `$rmd-app-bar-lr-margin` as `margin-right`.
+   * Boolean if this is the last action within the app bar's row. This will just
+   * apply the `$rmd-app-bar-lr-margin` as `margin-right`.
    *
    * NOTE: This should not be used when using an overflow menu.
    */
@@ -27,9 +28,9 @@ export interface AppBarActionClassNameProps extends AppBarColorInherit {
 }
 
 /**
- * This is a hook that will apply the nav classnames to an element. This should really not
- * be used externally and is really just for creating dropdown menus within app bars that
- * have the action styles.
+ * This is a hook that will apply the nav classnames to an element. This should
+ * really not be used externally and is really just for creating dropdown menus
+ * within app bars that have the action styles.
  *
  * @private
  */

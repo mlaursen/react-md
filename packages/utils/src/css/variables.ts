@@ -7,9 +7,9 @@ export interface CSSVariable {
 }
 
 /**
- * A simple helper function to prefix css variable names with `--` if they
- * were missing it. I might add some dev runtime checks for extra validation
- * at some point.
+ * A simple helper function to prefix css variable names with `--` if they were
+ * missing it. I might add some dev runtime checks for extra validation at some
+ * point.
  *
  * @param name - The css variable name to fix
  * @return a "valid" css variable name.
@@ -35,9 +35,9 @@ export function fixVariables(
 }
 
 /**
- * An extremely simple util to create a style object containing the css variables
- * and their values. It will also merge with an existing style object if one was
- * provided.
+ * An extremely simple util to create a style object containing the css
+ * variables and their values. It will also merge with an existing style object
+ * if one was provided.
  *
  * @param variables The list of css variables to create a style object for
  * @param style An optional style object to merge the css variables into.

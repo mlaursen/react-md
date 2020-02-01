@@ -1,16 +1,15 @@
-import React, { ElementType, FC, forwardRef } from "react";
+import React, { ElementType, forwardRef, ReactElement, Ref } from "react";
 import cn from "classnames";
 import {
   ListItemLink,
   ListItemLinkProps,
   ListItemLinkWithComponentProps,
 } from "@react-md/list";
-import { WithForwardedRef } from "@react-md/utils";
 
 export interface MenuItemLinkProps extends ListItemLinkProps {
   /**
-   * The current role for the menu item. This will eventually be updated for some
-   * of the other `menuitem*` widgets.
+   * The current role for the menu item. This will eventually be updated for
+   * some of the other `menuitem*` widgets.
    */
   role?: "menuitem";
 
@@ -23,39 +22,34 @@ export interface MenuItemLinkProps extends ListItemLinkProps {
 export type MenuItemLinkWithComponentProps = MenuItemLinkProps &
   ListItemLinkWithComponentProps;
 
-type WithRef = WithForwardedRef<HTMLAnchorElement | ElementType>;
-type DefaultProps = Required<Pick<MenuItemLinkProps, "role" | "tabIndex">>;
-type WithDefaultProps = MenuItemLinkProps & DefaultProps & WithRef;
-
-const MenuItemLink: FC<MenuItemLinkProps & WithRef> = providedProps => {
-  const {
+function MenuItemLink(
+  {
     className,
     children,
-    forwardedRef,
+    role = "menuitem",
+    tabIndex = -1,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: MenuItemLinkProps,
+  ref?: Ref<HTMLAnchorElement | ElementType>
+): ReactElement {
   return (
     <li role="none">
       <ListItemLink
         {...props}
-        ref={forwardedRef}
+        ref={ref}
+        role={role}
+        tabIndex={tabIndex}
         className={cn("rmd-menu-item", className)}
       >
         {children}
       </ListItemLink>
     </li>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  role: "menuitem",
-  tabIndex: -1,
-};
-
-MenuItemLink.defaultProps = defaultProps;
-
-export default forwardRef<
+const ForwardedMenuItemLink = forwardRef<
   HTMLAnchorElement | ElementType,
   MenuItemLinkProps | MenuItemLinkWithComponentProps
->((props, ref) => <MenuItemLink {...props} forwardedRef={ref} />);
+>(MenuItemLink);
+
+export default ForwardedMenuItemLink;

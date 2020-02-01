@@ -1,9 +1,10 @@
 import React, {
   CSSProperties,
-  FC,
   forwardRef,
   HTMLAttributes,
+  ReactElement,
   ReactNode,
+  Ref,
 } from "react";
 import cn from "classnames";
 import CSSTransition, {
@@ -13,12 +14,13 @@ import {
   OverridableTransitionProps,
   TransitionTimeout,
 } from "@react-md/transition";
-import { bem, SimplePosition, WithForwardedRef } from "@react-md/utils";
+import { bem, SimplePosition } from "@react-md/utils";
 
 import { TOOLTIP_CLASS_NAMES, TOOLTIP_TRANSITION_TIMEOUT } from "./constants";
 
 /**
- * The base props for the `Tooltip` component. This can be extended when creating custom tooltip implementations.
+ * The base props for the `Tooltip` component. This can be extended when
+ * creating custom tooltip implementations.
  */
 export interface TooltipProps
   extends Pick<
@@ -34,8 +36,8 @@ export interface TooltipProps
     >,
     HTMLAttributes<HTMLSpanElement> {
   /**
-   * An id for the tooltip. This is required for accessibility and finding an element to attach
-   * event listeners to show and hide the tooltip.
+   * An id for the tooltip. This is required for accessibility and finding an
+   * element to attach event listeners to show and hide the tooltip.
    */
   id: string;
 
@@ -50,81 +52,78 @@ export interface TooltipProps
   className?: string;
 
   /**
-   * The contents of the tooltip to display. This can be any renderable element, but this is normally
-   * just text.
+   * The contents of the tooltip to display. This can be any renderable element,
+   * but this is normally just text.
    *
-   * If this is placed within a `<button>` element, make sure that there are no `<div>` since it is invalid html
-   * to have a `<div>` as a child of a `<button>`.
+   * If this is placed within a `<button>` element, make sure that there are no
+   * `<div>` since it is invalid html to have a `<div>` as a child of a
+   * `<button>`.
    */
   children?: ReactNode;
 
   /**
-   * Boolean if the tooltip is using the dense spec. This will reduce the padding, margin and
-   * font size for the tooltip and is usually used for desktop displays.
+   * Boolean if the tooltip is using the dense spec. This will reduce the
+   * padding, margin and font size for the tooltip and is usually used for
+   * desktop displays.
    */
   dense?: boolean;
 
   /**
-   * Boolean if the tooltip should allow line wrapping. This is disabled by default since the tooltip
-   * will display weirdly when its container element is small in size. It is advised to only enable
-   * line wrapping when there are long tooltips or the tooltips are bigger than the container element.
+   * Boolean if the tooltip should allow line wrapping. This is disabled by
+   * default since the tooltip will display weirdly when its container element
+   * is small in size. It is advised to only enable line wrapping when there are
+   * long tooltips or the tooltips are bigger than the container element.
    *
-   * Once line wrapping is enabled, you will most likely need to set some additional padding and widths.
+   * Once line wrapping is enabled, you will most likely need to set some
+   * additional padding and widths.
    */
   lineWrap?: boolean;
 
   /**
-   * This ties directly into the CSSTransition `classNames` prop and is used to generate and apply the correct
-   * class names during the tooltip's transition.
+   * This ties directly into the CSSTransition `classNames` prop and is used to
+   * generate and apply the correct class names during the tooltip's transition.
    */
   classNames?: CSSTransitionClassNames;
 
   /**
-   * The enter duration in milliseconds for the tooltip to fully animate into view. This should match whatever value is
-   * set for `$rmd-tooltip-enter-duration`. A manual timeout is used instead of `onTransitionEnd` to handle cancel
-   * animations easier.
+   * The enter duration in milliseconds for the tooltip to fully animate into
+   * view. This should match whatever value is set for
+   * `$rmd-tooltip-enter-duration`. A manual timeout is used instead of
+   * `onTransitionEnd` to handle cancel animations easier.
    */
   timeout?: TransitionTimeout;
 
   /**
-   * This is the position that the tooltip should appear related to its container element as well as
-   * updating the animation direction.
+   * This is the position that the tooltip should appear related to its
+   * container element as well as updating the animation direction.
    */
   position?: SimplePosition;
 
   /**
-   * Boolean if the tooltip is visible. This value changing will trigger the different animations.
+   * Boolean if the tooltip is visible. This value changing will trigger the
+   * different animations.
    */
   visible: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLSpanElement>;
-type DefaultProps = Required<
-  Pick<
-    TooltipProps,
-    "dense" | "position" | "lineWrap" | "classNames" | "timeout"
-  >
->;
-type WithDefaultProps = TooltipProps & DefaultProps & WithRef;
-
 const block = bem("rmd-tooltip");
 
 /**
- * This is the base tooltip component that can only be used to render a tooltip with an animation
- * when the visibility changes. If this component is used, you will need to manually add all the
- * event listeners and triggers to change the `visible` prop.
+ * This is the base tooltip component that can only be used to render a tooltip
+ * with an animation when the visibility changes. If this component is used, you
+ * will need to manually add all the event listeners and triggers to change the
+ * `visible` prop.
  */
-const Tooltip: FC<TooltipProps & WithRef> = providedProps => {
-  const {
+function Tooltip(
+  {
     className,
-    classNames,
+    classNames = TOOLTIP_CLASS_NAMES,
     visible,
-    timeout,
-    dense,
-    lineWrap,
-    position,
+    timeout = TOOLTIP_TRANSITION_TIMEOUT,
+    dense = false,
+    lineWrap = true,
+    position = "below",
     children,
-    forwardedRef,
     onEnter,
     onEntering,
     onEntered,
@@ -134,8 +133,9 @@ const Tooltip: FC<TooltipProps & WithRef> = providedProps => {
     mountOnEnter,
     unmountOnExit,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: TooltipProps,
+  ref?: Ref<HTMLSpanElement>
+): ReactElement {
   return (
     <CSSTransition
       classNames={classNames}
@@ -152,7 +152,7 @@ const Tooltip: FC<TooltipProps & WithRef> = providedProps => {
     >
       <span
         {...props}
-        ref={forwardedRef}
+        ref={ref}
         role="tooltip"
         className={cn(
           block({
@@ -168,28 +168,15 @@ const Tooltip: FC<TooltipProps & WithRef> = providedProps => {
       </span>
     </CSSTransition>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  dense: false,
-  position: "below",
-  lineWrap: true,
-  classNames: TOOLTIP_CLASS_NAMES,
-  timeout: TOOLTIP_TRANSITION_TIMEOUT,
-};
-
-Tooltip.defaultProps = defaultProps;
+const ForwardedTooltip = forwardRef<HTMLSpanElement, TooltipProps>(Tooltip);
 
 if (process.env.NODE_ENV !== "production") {
-  Tooltip.displayName = "Tooltip";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Tooltip.propTypes = {
+    ForwardedTooltip.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
@@ -225,9 +212,7 @@ if (process.env.NODE_ENV !== "production") {
       position: PropTypes.oneOf(["above", "below", "left", "right"]),
       visible: PropTypes.bool.isRequired,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLSpanElement, TooltipProps>((props, ref) => (
-  <Tooltip {...props} forwardedRef={ref} />
-));
+export default ForwardedTooltip;

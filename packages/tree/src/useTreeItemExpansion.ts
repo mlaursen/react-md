@@ -6,10 +6,11 @@ import { ExpandedIds, TreeItemExpansion, TreeItemId } from "./types";
  * A hook that implements the base functionality for expanding different tree
  * items.
  *
- * @param defaultExpandedIds Either a list of tree item ids to be expanded by default
- * or a function that will return the list of tree item ids to be expanded by default
- * @return An object containing props that can be passed to the `Tree` component to handle
- * the expansion state within the tree.
+ * @param defaultExpandedIds Either a list of tree item ids to be expanded by
+ * default or a function that will return the list of tree item ids to be
+ * expanded by default
+ * @return An object containing props that can be passed to the `Tree` component
+ * to handle the expansion state within the tree.
  */
 export default function useTreeItemExpansion(
   defaultExpandedIds: ExpandedIds | (() => ExpandedIds)

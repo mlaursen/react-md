@@ -1,6 +1,6 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface ToggleContainerProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -16,59 +16,46 @@ export interface ToggleContainerProps extends HTMLAttributes<HTMLDivElement> {
   stacked?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<ToggleContainerProps, "inline" | "stacked">>;
-type WithDefaultProps = ToggleContainerProps & DefaultProps & WithRef;
-
 const block = bem("rmd-toggle-container");
 
 /**
  * @private
  */
-const ToggleContainer: FC<ToggleContainerProps & WithRef> = providedProps => {
-  const {
+function ToggleContainer(
+  {
     className,
-    inline,
-    stacked,
-    forwardedRef,
+    inline = false,
+    stacked = false,
     children,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: ToggleContainerProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   return (
     <div
       {...props}
-      ref={forwardedRef}
+      ref={ref}
       className={cn(block({ stacked, inline }), className)}
     >
       {children}
     </div>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  inline: false,
-  stacked: false,
-};
-
-ToggleContainer.defaultProps = defaultProps;
+const ForwardedToggleContainer = forwardRef<
+  HTMLDivElement,
+  ToggleContainerProps
+>(ToggleContainer);
 
 if (process.env.NODE_ENV !== "production") {
-  ToggleContainer.displayName = "ToggleContainer";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    ToggleContainer.propTypes = {
+    ForwardedToggleContainer.propTypes = {
       inline: PropTypes.bool,
       stacked: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, ToggleContainerProps>(
-  (props, ref) => <ToggleContainer {...props} forwardedRef={ref} />
-);
+export default ForwardedToggleContainer;

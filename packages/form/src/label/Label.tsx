@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
   /**
-   * An id for the `<input>` or `<textarea>` that this label is for. This is required
-   * since all label's **should** point to a valid `<input>`/`<textarea>`.
+   * An id for the `<input>` or `<textarea>` that this label is for. This is
+   * required since all label's **should** point to a valid
+   * `<input>`/`<textarea>`.
    */
   htmlFor: string;
 
@@ -21,41 +22,36 @@ export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
   disabled?: boolean;
 
   /**
-   * Boolean if the label should gain the active state. This should normally be enabled
-   * whenever the `<input>`/`<textarea>` gain focus. This is really more for text input
-   * than anything else, and probably shouldn't be used for checkbox, radio or switch
-   * components.
+   * Boolean if the label should gain the active state. This should normally be
+   * enabled whenever the `<input>`/`<textarea>` gain focus. This is really more
+   * for text input than anything else, and probably shouldn't be used for
+   * checkbox, radio or switch components.
    */
   active?: boolean;
 
   /**
-   * The component to render the label as. This should be the default value of `"label"` 99%
-   * of the time, but can also be rendered as a `"span"` for the `Select` implementation
-   * where it needs to be rendered in a button.
+   * The component to render the label as. This should be the default value of
+   * `"label"` 99% of the time, but can also be rendered as a `"span"` for the
+   * `Select` implementation where it needs to be rendered in a button.
    */
   component?: "label" | "span";
 }
 
-type WithRef = WithForwardedRef<HTMLLabelElement>;
-type DefaultProps = Required<
-  Pick<LabelProps, "error" | "active" | "disabled" | "component">
->;
-type WithDefaultProps = LabelProps & DefaultProps & WithRef;
-
 const block = bem("rmd-label");
 
-const Label: FC<LabelProps & WithRef> = providedProps => {
-  const {
+function Label(
+  {
     htmlFor,
     className,
-    forwardedRef,
+    error = false,
+    active = false,
+    disabled = false,
+    component: Component = "label",
     children,
-    error,
-    active,
-    disabled,
-    component: Component,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: LabelProps,
+  ref?: Ref<HTMLLabelElement>
+): ReactElement | null {
   if (!children) {
     return null;
   }
@@ -63,8 +59,7 @@ const Label: FC<LabelProps & WithRef> = providedProps => {
   return (
     <Component
       {...props}
-      htmlFor={Component === "label" ? htmlFor : undefined}
-      ref={forwardedRef}
+      ref={ref}
       className={cn(
         block({
           error,
@@ -73,40 +68,27 @@ const Label: FC<LabelProps & WithRef> = providedProps => {
         }),
         className
       )}
+      htmlFor={Component === "label" ? htmlFor : undefined}
     >
       {children}
     </Component>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  error: false,
-  active: false,
-  disabled: false,
-  component: "label",
-};
-
-Label.defaultProps = defaultProps;
+const ForwardedLabel = forwardRef<HTMLLabelElement, LabelProps>(Label);
 
 if (process.env.NODE_ENV !== "production") {
-  Label.displayName = "Label";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Label.propTypes = {
+    ForwardedLabel.propTypes = {
       htmlFor: PropTypes.string.isRequired,
       error: PropTypes.bool,
       active: PropTypes.bool,
       disabled: PropTypes.bool,
       component: PropTypes.oneOf(["label", "span"]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLLabelElement, LabelProps>((props, ref) => (
-  <Label {...props} forwardedRef={ref} />
-));
+export default ForwardedLabel;

@@ -1,6 +1,12 @@
-import React, { createContext, useContext, FC, ReactNode } from "react";
-import useModeDetection, { UserInteractionMode } from "./useModeDetection";
+import React, {
+  createContext,
+  ReactElement,
+  ReactNode,
+  useContext,
+} from "react";
+
 import useModeClassName from "./useModeClassName";
+import useModeDetection, { UserInteractionMode } from "./useModeDetection";
 
 const InteractionMode = createContext<UserInteractionMode>("mouse");
 const ParentContext = createContext(false);
@@ -12,13 +18,17 @@ export function useInteractionModeContext(): UserInteractionMode {
   return useContext(InteractionMode);
 }
 
-/**
- * A component that should be mounted once in your app near the top of the tree to
- * determine the current interaction mode for your app.
- */
-export const InteractionModeListener: FC<{
+export interface InteractionModeListenerProps {
   children: ReactNode;
-}> = ({ children }) => {
+}
+
+/**
+ * A component that should be mounted once in your app near the top of the tree
+ * to determine the current interaction mode for your app.
+ */
+export function InteractionModeListener({
+  children,
+}: InteractionModeListenerProps): ReactElement {
   if (useContext(ParentContext)) {
     throw new Error("Nested `InteractionModeListener` components");
   }
@@ -31,17 +41,14 @@ export const InteractionModeListener: FC<{
       <ParentContext.Provider value>{children}</ParentContext.Provider>
     </InteractionMode.Provider>
   );
-};
+}
 
 if (process.env.NODE_ENV !== "production") {
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
     InteractionModeListener.propTypes = {
       children: PropTypes.node.isRequired,
     };
-  }
+  } catch (e) {}
 }

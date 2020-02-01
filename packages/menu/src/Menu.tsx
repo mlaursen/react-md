@@ -1,18 +1,17 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import {
   OverridableCSSTransitionProps,
-  useFixedPositioning,
   ScaleTransition,
+  useFixedPositioning,
 } from "@react-md/transition";
 import {
   bem,
   FixedPositionOptions,
   LabelRequiredForA11y,
   PositionAnchor,
-  WithForwardedRef,
 } from "@react-md/utils";
 
 import MenuEvents from "./MenuEvents";
@@ -29,8 +28,9 @@ export interface MenuProps
   id: string;
 
   /**
-   * The id of the control element that toggles the menu. This is required so that the menu can
-   * be positioned to this element and is normally a `<button>`.
+   * The id of the control element that toggles the menu. This is required so
+   * that the menu can be positioned to this element and is normally a
+   * `<button>`.
    */
   controlId: string;
 
@@ -51,13 +51,14 @@ export interface MenuProps
   role?: "menu";
 
   /**
-   * The label for the menu. Either this or the `"aria-labelledby"` prop is required for a11y.
+   * The label for the menu. Either this or the `"aria-labelledby"` prop is
+   * required for a11y.
    */
   "aria-label"?: string;
 
   /**
-   * The id of an element that acts as a label for the menu. Either this or the `"aria-label"` prop
-   * is required for a11y.
+   * The id of an element that acts as a label for the menu. Either this or the
+   * `"aria-label"` prop is required for a11y.
    */
   "aria-labelledby"?: string;
 
@@ -67,9 +68,10 @@ export interface MenuProps
   tabIndex?: number;
 
   /**
-   * The positioning anchor for the menu relative to the button/control that owns the menu.
-   * This is used for the positioning logic as well as modifying the animationg slightly to
-   * originate from a coordinate. When this is omitted, it will default to:
+   * The positioning anchor for the menu relative to the button/control that
+   * owns the menu.  This is used for the positioning logic as well as modifying
+   * the animationg slightly to originate from a coordinate. When this is
+   * omitted, it will default to:
    *
    * ```ts
    * const verticalAnchor = {
@@ -86,8 +88,8 @@ export interface MenuProps
   anchor?: PositionAnchor;
 
   /**
-   * Optional options to pass down to the `useFixedPositionin` hook styles to change how the
-   * menu is fixed to the `MenuButton`.
+   * Optional options to pass down to the `useFixedPositionin` hook styles to
+   * change how the menu is fixed to the `MenuButton`.
    */
   positionOptions?: Pick<
     FixedPositionOptions,
@@ -100,42 +102,28 @@ export interface MenuProps
   horizontal?: boolean;
 
   /**
-   * The element that should be focused first when opened. This can either be the first or last
-   * focusable item in the menu, or a query selector string to find an element.
+   * The element that should be focused first when opened. This can either be
+   * the first or last focusable item in the menu, or a query selector string to
+   * find an element.
    */
   defaultFocus?: "first" | "last" | string;
 
   /**
-   * Boolean if the menu should not be closed when the page is scrolled. Instead,
-   * it'll automatically update its position within the viewport. You normally don't
-   * want to enable this prop as the menu won't close if the menu control element
-   * is no longer in the viewport.
+   * Boolean if the menu should not be closed when the page is scrolled.
+   * Instead, it'll automatically update its position within the viewport. You
+   * normally don't want to enable this prop as the menu won't close if the menu
+   * control element is no longer in the viewport.
    */
   disableCloseOnScroll?: boolean;
 
   /**
-   * Boolean if the menu should no longer close when the page is resized. Instead,
-   * it'll automatically update its position within the viewport.
+   * Boolean if the menu should no longer close when the page is resized.
+   * Instead, it'll automatically update its position within the viewport.
    */
   disableCloseOnResize?: boolean;
 }
 
 type StrictProps = LabelRequiredForA11y<MenuProps>;
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<
-    MenuProps,
-    | "role"
-    | "horizontal"
-    | "tabIndex"
-    | "mountOnEnter"
-    | "unmountOnExit"
-    | "defaultFocus"
-    | "disableCloseOnScroll"
-    | "disableCloseOnResize"
-  >
->;
-type WithDefaultProps = MenuProps & DefaultProps & WithRef;
 
 const block = bem("rmd-menu");
 const VERTICAL_ANCHOR: PositionAnchor = {
@@ -149,23 +137,24 @@ const HORIZONTAL_ANCHOR: PositionAnchor = {
 };
 
 /**
- * The `Menu` component is a fully controlled component that will animate
- * in and out based on the `visible` prop as well as handle keyboard focus,
- * closing when needed, etc.
+ * The `Menu` component is a fully controlled component that will animate in and
+ * out based on the `visible` prop as well as handle keyboard focus, closing
+ * when needed, etc.
  */
-const Menu: FC<StrictProps & WithRef> = providedProps => {
-  const {
+function Menu(
+  {
+    role = "menu",
+    tabIndex = -1,
     controlId,
     className,
     visible,
     onRequestClose,
-    forwardedRef,
     children,
     portal,
     portalInto,
     portalIntoId,
-    mountOnEnter,
-    unmountOnExit,
+    mountOnEnter = true,
+    unmountOnExit = true,
     onEnter: propOnEnter,
     onEntering: propOnEntering,
     onEntered: propOnEntered,
@@ -177,14 +166,15 @@ const Menu: FC<StrictProps & WithRef> = providedProps => {
     anchor: propAnchor,
     onClick: propOnClick,
     onKeyDown: propOnKeyDown,
-    disableCloseOnScroll,
-    disableCloseOnResize,
-    defaultFocus,
-    horizontal,
+    disableCloseOnScroll = false,
+    disableCloseOnResize = false,
+    defaultFocus = "first",
+    horizontal = false,
     positionOptions,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: StrictProps,
+  forwardedRef?: Ref<HTMLDivElement>
+): ReactElement {
   let anchor = propAnchor;
   if (!anchor) {
     anchor = horizontal ? HORIZONTAL_ANCHOR : VERTICAL_ANCHOR;
@@ -244,6 +234,8 @@ const Menu: FC<StrictProps & WithRef> = providedProps => {
         <div
           {...props}
           aria-orientation={orientation}
+          role={role}
+          tabIndex={tabIndex}
           style={style}
           ref={ref}
           className={cn(block({ horizontal }), className)}
@@ -256,31 +248,15 @@ const Menu: FC<StrictProps & WithRef> = providedProps => {
       </OrientationProvider>
     </ScaleTransition>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  role: "menu",
-  tabIndex: -1,
-  mountOnEnter: true,
-  unmountOnExit: true,
-  defaultFocus: "first",
-  horizontal: false,
-  disableCloseOnScroll: false,
-  disableCloseOnResize: false,
-};
-
-Menu.defaultProps = defaultProps;
+const ForwardedMenu = forwardRef<HTMLDivElement, StrictProps>(Menu);
 
 if (process.env.NODE_ENV !== "production") {
-  Menu.displayName = "Menu";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Menu.propTypes = {
+    ForwardedMenu.propTypes = {
       id: PropTypes.string.isRequired,
       role: PropTypes.string,
       controlId: PropTypes.string.isRequired,
@@ -344,9 +320,7 @@ if (process.env.NODE_ENV !== "production") {
         );
       },
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, StrictProps>((props, ref) => (
-  <Menu {...props} forwardedRef={ref} />
-));
+export default ForwardedMenu;

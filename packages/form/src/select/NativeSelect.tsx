@@ -1,14 +1,14 @@
 import React, {
   CSSProperties,
-  FC,
   forwardRef,
+  ReactElement,
   ReactNode,
   Ref,
   SelectHTMLAttributes,
 } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import FloatingLabel from "../label/FloatingLabel";
 import TextFieldContainer, {
@@ -91,14 +91,6 @@ export interface NativeSelectProps
    */
   defaultValue?: string | string[];
 }
-type WithRef = WithForwardedRef<HTMLSelectElement>;
-type DefaultProps = Required<
-  Pick<
-    NativeSelectProps,
-    "theme" | "error" | "dense" | "inline" | "disabled" | "underlineDirection"
-  >
->;
-type WithDefaultProps = NativeSelectProps & DefaultProps & WithRef;
 
 const block = bem("rmd-native-select");
 const container = bem("rmd-native-select-container");
@@ -108,8 +100,8 @@ const container = bem("rmd-native-select-container");
  * field theme styles. This component is great to use for native behavior and
  * full accessibility.
  */
-const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
-  const {
+function NativeSelect(
+  {
     style,
     className,
     labelStyle,
@@ -117,25 +109,27 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
     selectStyle,
     selectClassName,
     icon: propIcon,
+    theme = "outline",
+    dense = false,
+    inline = false,
+    error = false,
+    disabled = false,
     label,
-    theme,
-    error,
-    dense,
-    inline,
     onBlur: propOnBlur,
     onFocus: propOnFocus,
     onChange: propOnChange,
     containerRef,
-    forwardedRef,
     isLeftAddon,
     isRightAddon,
     leftChildren,
     rightChildren,
-    underlineDirection,
+    underlineDirection = "left",
     children,
     ...props
-  } = providedProps as WithDefaultProps;
-  const { id, value, defaultValue, disabled, multiple } = props;
+  }: NativeSelectProps,
+  ref?: Ref<HTMLSelectElement>
+): ReactElement {
+  const { id, value, defaultValue, multiple } = props;
   const underline = theme === "underline" || theme === "filled";
 
   const icon = useIcon("dropdown", propIcon);
@@ -189,10 +183,7 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
       </FloatingLabel>
       <select
         {...props}
-        ref={forwardedRef}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onChange={onChange}
+        ref={ref}
         style={selectStyle}
         className={cn(
           block({
@@ -204,35 +195,27 @@ const NativeSelect: FC<NativeSelectProps & WithRef> = providedProps => {
           }),
           selectClassName
         )}
+        disabled={disabled}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onChange={onChange}
       >
         {children}
       </select>
       {!multiple && icon && <span className={block("icon")}>{icon}</span>}
     </TextFieldContainer>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  theme: "outline",
-  dense: false,
-  inline: false,
-  error: false,
-  disabled: false,
-  underlineDirection: "left",
-};
-
-NativeSelect.defaultProps = defaultProps;
+const ForwardedNativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
+  NativeSelect
+);
 
 if (process.env.NODE_ENV !== "production") {
-  NativeSelect.displayName = "NativeSelect";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    NativeSelect.propTypes = {
+    ForwardedNativeSelect.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
@@ -253,9 +236,7 @@ if (process.env.NODE_ENV !== "production") {
       multiple: PropTypes.bool,
       size: PropTypes.number,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLSelectElement, NativeSelectProps>(
-  (props, ref) => <NativeSelect {...props} forwardedRef={ref} />
-);
+export default ForwardedNativeSelect;

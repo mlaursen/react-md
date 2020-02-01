@@ -1,12 +1,16 @@
 /**
  * Above:
  * - the container top is in-line with the bottom of the element.
+ *
  * Below:
  * - the container bottom is in-line with the top of the element
+ *
  * Center:
  * - the container center is in-line with the top of the element
+ *
  * Top:
  * - the container top is in-line with the top of the element
+ *
  * Bottom:
  * - the container bottom is in-line with the bottom of the element
  */
@@ -15,13 +19,17 @@ export type VerticalPosition = "above" | "below" | "center" | "top" | "bottom";
 /**
  * Left:
  * - the container left is in-line with the right of the element
+ *
  * Right:
  * - the container right is in-line with the left of the element
+ *
  * Center:
- * - the container's horizontal center point will be aligned with the
- *   element's horizontal center point
+ * - the container's horizontal center point will be aligned with the element's
+ *   horizontal center point
+ *
  * Inner Left:
  * - the container's left is in-line with the left of the element
+ *
  * Inner Right:
  * - the container's right is in-line with the right of the element
  */
@@ -49,16 +57,16 @@ export interface PositionAnchor {
 export type SimplePosition = "above" | "below" | "left" | "right";
 
 /**
- * An optional configuration for calculating and setting the width of the element
- * relative to the width of the container. When this value is set to `"auto"` (default),
- * the width will be based on content width but still ensuring it can fit within
- * the viewport. Setting this to `"equal"` will just apply the container's width
- * to the fixed element. Finally, setting this to `"min"` will set the container's
- * width as the `minWidth` for the fixed element so that it is at least the same
- * width as the container.
+ * An optional configuration for calculating and setting the width of the
+ * element relative to the width of the container. When this value is set to
+ * `"auto"` (default), the width will be based on content width but still
+ * ensuring it can fit within the viewport. Setting this to `"equal"` will just
+ * apply the container's width to the fixed element. Finally, setting this to
+ * `"min"` will set the container's width as the `minWidth` for the fixed
+ * element so that it is at least the same width as the container.
  *
- * If this is set to `"equal"` or `"min"` and the horizontal anchor is not set to
- * `"center"`, an error will be thrown.
+ * If this is set to `"equal"` or `"min"` and the horizontal anchor is not set
+ * to `"center"`, an error will be thrown.
  */
 export type PositionWidth = "auto" | "equal" | "min";
 

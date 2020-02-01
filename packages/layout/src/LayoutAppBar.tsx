@@ -13,7 +13,8 @@ import useNavigationVisibility from "./useNavigationVisibility";
  */
 export interface LayoutAppBarProps extends AppBarProps, LayoutAppBarNavProps {
   /**
-   * The id for the base `Layout` component. This is used to prefix all the element ids.
+   * The id for the base `Layout` component. This is used to prefix all the
+   * element ids.
    */
   layoutId: string;
 
@@ -28,7 +29,8 @@ export interface LayoutAppBarProps extends AppBarProps, LayoutAppBarNavProps {
   appBarRef?: Ref<HTMLDivElement>;
 
   /**
-   * An optional class name ot merge to with the required layout app bar's className.
+   * An optional class name ot merge to with the required layout app bar's
+   * className.
    */
   className?: string;
 }

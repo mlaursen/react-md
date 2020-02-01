@@ -1,11 +1,12 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface DialogFooterProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * An optional alignment for the content within the footer. Since the majority of dialog
-   * footers are used to contain action buttons, the default alignment is near the end.
+   * An optional alignment for the content within the footer. Since the majority
+   * of dialog footers are used to contain action buttons, the default alignment
+   * is near the end.
    */
   align?:
     | "none"
@@ -16,24 +17,16 @@ export interface DialogFooterProps extends HTMLAttributes<HTMLDivElement> {
     | "stacked-end";
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<DialogFooterProps, "align">>;
-type WithDefaultProps = DialogFooterProps & DefaultProps & WithRef;
-
 const block = bem("rmd-dialog");
 
-const DialogFooter: FC<DialogFooterProps & WithRef> = providedProps => {
-  const {
-    children,
-    className,
-    forwardedRef,
-    align,
-    ...props
-  } = providedProps as WithDefaultProps;
-
+function DialogFooter(
+  { children, className, align = "end", ...props }: DialogFooterProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   return (
     <footer
       {...props}
+      ref={ref}
       className={cn(
         block("footer", {
           flex: align !== "none",
@@ -41,29 +34,21 @@ const DialogFooter: FC<DialogFooterProps & WithRef> = providedProps => {
         }),
         className
       )}
-      ref={forwardedRef}
     >
       {children}
     </footer>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  align: "end",
-};
-
-DialogFooter.defaultProps = defaultProps;
+const ForwardedDialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
+  DialogFooter
+);
 
 if (process.env.NODE_ENV !== "production") {
-  DialogFooter.displayName = "DialogFooter";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    DialogFooter.propTypes = {
+    ForwardedDialogFooter.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
       align: PropTypes.oneOf([
@@ -75,9 +60,7 @@ if (process.env.NODE_ENV !== "production") {
         "stacked-end",
       ]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, DialogFooterProps>((props, ref) => (
-  <DialogFooter {...props} forwardedRef={ref} />
-));
+export default ForwardedDialogFooter;

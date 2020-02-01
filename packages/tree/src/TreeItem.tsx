@@ -1,43 +1,28 @@
-import React, { FC, forwardRef, useCallback } from "react";
+import React, { forwardRef, ReactElement, Ref, useCallback } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
-import { ListItemChildren, ListElement } from "@react-md/list";
+import { ListElement, ListItemChildren } from "@react-md/list";
 import { useInteractionStates } from "@react-md/states";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import TreeGroup from "./TreeGroup";
 import TreeItemExpanderIcon from "./TreeItemExpanderIcon";
 import { TreeItemProps, TreeItemWithContentComponentProps } from "./types";
 
-type WithRef = WithForwardedRef<HTMLLIElement>;
-type DefaultProps = Required<
-  Pick<
-    TreeItemProps,
-    | "contentComponent"
-    | "expanderLeft"
-    | "disabled"
-    | "height"
-    | "threeLines"
-    | "textChildren"
-  >
->;
-type WithDefaultProps = TreeItemProps & DefaultProps & WithRef;
-
 const block = bem("rmd-tree-item");
 
 /**
- * This component renders an item within a tree with optional child items. This should almost always
- * be used from the `itemRenderer` prop from the `Tree` component as it provides a lot of the required
- * a11y props for you.
+ * This component renders an item within a tree with optional child items. This
+ * should almost always be used from the `itemRenderer` prop from the `Tree`
+ * component as it provides a lot of the required a11y props for you.
  */
-const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
-  const {
+function TreeItem(
+  {
     id,
     className: propClassName,
     liStyle,
     liClassName,
     liRef,
-    forwardedRef,
     depth,
     listSize,
     itemIndex,
@@ -46,10 +31,10 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
     selected,
     focused,
     expanderIcon: propExpanderIcon,
-    expanderLeft,
+    expanderLeft = false,
     textClassName,
     secondaryTextClassName,
-    textChildren,
+    textChildren = true,
     primaryText,
     secondaryText,
     leftIcon: propLeftIcon,
@@ -57,16 +42,18 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
     rightIcon: propRightIcon,
     rightAvatar,
     forceIconWrap,
-    height,
-    threeLines,
+    height = "auto",
+    threeLines = false,
     children,
-    contentComponent: Content,
+    contentComponent: Content = "span",
     isLink: propIsLink,
-    disabled,
+    disabled = false,
     readOnly,
     onFocus,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: TreeItemProps,
+  ref?: Ref<HTMLLIElement>
+): ReactElement {
   const expanderIcon = useIcon("expander", propExpanderIcon);
 
   const isLink =
@@ -138,7 +125,7 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
       <Content
         {...props}
         {...(isLink ? a11y : undefined)}
-        ref={forwardedRef}
+        ref={ref}
         className={cn(
           block("content", {
             link: isLink,
@@ -170,29 +157,18 @@ const TreeItem: FC<TreeItemProps & WithRef> = providedProps => {
       {group}
     </li>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  contentComponent: "span",
-  expanderLeft: false,
-  disabled: false,
-  height: "auto",
-  threeLines: false,
-  textChildren: true,
-};
-
-TreeItem.defaultProps = defaultProps;
+const ForwardedTreeItem = forwardRef<
+  HTMLLIElement,
+  TreeItemProps | TreeItemWithContentComponentProps
+>(TreeItem);
 
 if (process.env.NODE_ENV !== "production") {
-  TreeItem.displayName = "TreeItem";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TreeItem.propTypes = {
+    ForwardedTreeItem.propTypes = {
       id: PropTypes.string.isRequired,
       depth: PropTypes.number.isRequired,
       itemIndex: PropTypes.number.isRequired,
@@ -222,10 +198,7 @@ if (process.env.NODE_ENV !== "production") {
       threeLines: PropTypes.bool,
       textChildren: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<
-  HTMLLIElement,
-  TreeItemProps | TreeItemWithContentComponentProps
->((props, ref) => <TreeItem {...props} forwardedRef={ref} />);
+export default ForwardedTreeItem;

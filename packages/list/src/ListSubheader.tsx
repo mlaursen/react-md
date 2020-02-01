@@ -1,59 +1,40 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface ListSubheaderProps extends HTMLAttributes<HTMLLIElement> {
   /**
-   * Boolean if the subheader should be inset to match the ListItem text keyline
+   * Boolean if the subheader should be inset to match the ListItem text
+   * keyline.
    */
   inset?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLLIElement>;
-type DefaultProps = Required<Pick<ListSubheaderProps, "inset">>;
-type WithDefaultProps = ListSubheaderProps & DefaultProps & WithRef;
-
 const block = bem("rmd-list-subheader");
 
-const ListSubheader: FC<ListSubheaderProps & WithRef> = providedProps => {
-  const {
-    className,
-    forwardedRef,
-    inset,
-    ...props
-  } = providedProps as WithDefaultProps;
-
+function ListSubheader(
+  { className, inset = false, ...props }: ListSubheaderProps,
+  ref?: Ref<HTMLLIElement>
+): ReactElement {
   return (
-    <li
-      {...props}
-      className={cn(block({ inset }), className)}
-      ref={forwardedRef}
-    />
+    <li {...props} ref={ref} className={cn(block({ inset }), className)} />
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  inset: false,
-};
-
-ListSubheader.defaultProps = defaultProps;
+const ForwardedListSubheader = forwardRef<HTMLLIElement, ListSubheaderProps>(
+  ListSubheader
+);
 
 if (process.env.NODE_ENV !== "production") {
-  ListSubheader.displayName = "ListSubheader";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    ListSubheader.propTypes = {
+    ForwardedListSubheader.propTypes = {
       className: PropTypes.string,
       inset: PropTypes.bool,
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
-export default forwardRef<HTMLLIElement, ListSubheaderProps>((props, ref) => (
-  <ListSubheader {...props} forwardedRef={ref} />
-));
+
+export default ForwardedListSubheader;

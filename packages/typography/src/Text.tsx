@@ -1,19 +1,19 @@
-import React, {
+import {
+  createElement,
   ElementType,
-  FC,
+  forwardRef,
   HTMLAttributes,
   ReactElement,
   ReactNode,
-  createElement,
-  forwardRef,
+  Ref,
 } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 /**
- * A union of all the material design provided typography styles. When used with the Text
- * component, this will generate the correct typography className to apply and determine
- * what component to be rendered as if none was provided.
+ * A union of all the material design provided typography styles. When used with
+ * the Text component, this will generate the correct typography className to
+ * apply and determine what component to be rendered as if none was provided.
  */
 export type TextTypes =
   | "headline-1"
@@ -52,8 +52,9 @@ export type TextColor =
   | "theme-error";
 
 /**
- * A union of the default supported elements that the `Text` component can be rendered as. This
- * is mostly used for adding the correct HTMLAttributes and enabling the forward ref.
+ * A union of the default supported elements that the `Text` component can be
+ * rendered as. This is mostly used for adding the correct HTMLAttributes and
+ * enabling the forward ref.
  */
 export type TextElement =
   | HTMLHeadingElement
@@ -74,8 +75,10 @@ export interface TextProps extends HTMLAttributes<TextElement> {
   className?: string;
 
   /**
-   * The component to render as when the children are not a render function. If this prop
-   * is omitted, the component will be determined by the `type` prop where:
+   * The component to render as when the children are not a render function. If
+   * this prop is omitted, the component will be determined by the `type` prop
+   * where:
+   *
    * - `"headline-1" -> <h1>`
    * - `"headline-2" -> <h2>`
    * - `"headline-3" -> <h3>`
@@ -94,14 +97,16 @@ export interface TextProps extends HTMLAttributes<TextElement> {
   component?: ElementType | null;
 
   /**
-   * One of the material design typography text styles. This is used to generate a className
-   * that can be applied to any element and have the correct typography.
+   * One of the material design typography text styles. This is used to generate
+   * a className that can be applied to any element and have the correct
+   * typography.
    */
   type?: TextTypes;
 
   /**
-   * Either a child render function or a react node. If this is not the child render function, a
-   * different wrapper component can be provided using the `component` prop.
+   * Either a child render function or a react node. If this is not the child
+   * render function, a different wrapper component can be provided using the
+   * `component` prop.
    */
   children?: ReactNode | TextRenderFunction;
 
@@ -111,9 +116,9 @@ export interface TextProps extends HTMLAttributes<TextElement> {
   align?: TextAlign;
 
   /**
-   * An optional text color to apply. Unline normal theme colors, these will reflect
-   * the `text-secondary-on-background` and `text-hint-on-background` instead of the
-   * primary or secondary theme colors.
+   * An optional text color to apply. Unline normal theme colors, these will
+   * reflect the `text-secondary-on-background` and `text-hint-on-background`
+   * instead of the primary or secondary theme colors.
    */
   color?: TextColor;
 
@@ -133,9 +138,11 @@ export interface TextProps extends HTMLAttributes<TextElement> {
   weight?: TextWeight;
 
   /**
-   * Since the typography within react-md tries to not modify base elements, the default
-   * margin applied to heading tags (h1-h6) and paragraph (p) might have large margin that
-   * you don't want applied when using this component. You can disable:
+   * Since the typography within react-md tries to not modify base elements, the
+   * default margin applied to heading tags (h1-h6) and paragraph (p) might have
+   * large margin that you don't want applied when using this component. You can
+   * disable:
+   *
    * - only the top margin by setting this prop to `"bottom"`
    * - only the bottom margin by setting this prop to `"top"`
    * - top and bottom margin by setting this prop to `"none"`
@@ -179,31 +186,17 @@ function getComponent(
   }
 }
 
-type WithRef = WithForwardedRef<TextElement>;
-type DefaultProps = Required<
-  Pick<
-    TextProps,
-    | "type"
-    | "component"
-    | "margin"
-    | "align"
-    | "color"
-    | "decoration"
-    | "transform"
-    | "weight"
-  >
->;
-type WithDefaultProps = TextProps & DefaultProps & WithRef;
-
 const block = bem("rmd-typography");
 
 /**
- * The `Text` component is used to render text with the material design typography styles applied.
- * By default, everything will be rendered in a `<p>` tag with the normal paragraph styles.
+ * The `Text` component is used to render text with the material design
+ * typography styles applied.  By default, everything will be rendered in a
+ * `<p>` tag with the normal paragraph styles.
  *
- * When the `type` prop is changed to another typography style, this component will determine the
- * "best" element to render the text in *unless* the `component` prop is provided. The default
- * mapping is:
+ * When the `type` prop is changed to another typography style, this component
+ * will determine the "best" element to render the text in *unless* the
+ * `component` prop is provided. The default mapping is:
+ *
  * - `"headline-1" -> <h1>`
  * - `"headline-2" -> <h2>`
  * - `"headline-3" -> <h3>`
@@ -217,25 +210,26 @@ const block = bem("rmd-typography");
  * - `"caption"    -> <caption>`
  * - `"overline"   -> <span>`
  * - `"button"     -> <button>`
- * NOTE: if the `component` prop is not `null`, this logic will be ignored and the provided
- * `component` will be used instead.
+ *
+ * NOTE: if the `component` prop is not `null`, this logic will be ignored and
+ * the provided `component` will be used instead.
  */
-const Text: FC<TextProps & WithRef> = providedProps => {
-  const {
+function Text(
+  {
     className: propClassName,
     children,
-    type,
-    component,
-    forwardedRef,
-    align,
-    color,
-    decoration,
-    transform,
-    weight,
-    margin,
+    type = "body-1",
+    component = null,
+    align = "",
+    color = "",
+    decoration = "",
+    transform = "",
+    weight = "",
+    margin = "initial",
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: TextProps,
+  ref?: Ref<TextElement>
+): ReactElement {
   const className = cn(
     block({
       [type]: true,
@@ -258,34 +252,18 @@ const Text: FC<TextProps & WithRef> = providedProps => {
 
   return createElement(
     getComponent(component, type),
-    { ...props, className, ref: forwardedRef },
+    { ...props, className, ref },
     children
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  align: "",
-  color: "",
-  decoration: "",
-  transform: "",
-  weight: "",
-  type: "body-1",
-  component: null,
-  margin: "initial",
-};
-
-Text.defaultProps = defaultProps;
+const ForwardedText = forwardRef<TextElement, TextProps>(Text);
 
 if (process.env.NODE_ENV !== "production") {
-  Text.displayName = "Text";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Text.propTypes = {
+    ForwardedText.propTypes = {
       className: PropTypes.string,
       type: PropTypes.oneOf([
         "headline-1",
@@ -337,9 +315,7 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       margin: PropTypes.oneOf(["initial", "none", "top", "bottom"]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<TextElement, TextProps>((props, ref) => (
-  <Text {...props} forwardedRef={ref} />
-));
+export default ForwardedText;

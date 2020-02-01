@@ -42,10 +42,10 @@ export interface BaseKeyboardMovementOptions<
   stopPropagation?: boolean;
 
   /**
-   * A required change event handler that will be called whenever a user types a letter and it
-   * causes a new item to be "found". This should normally be something that either updates the
-   * `aria-activedescendant` id to the new found item's id or manually focus the item's DOM
-   * node.
+   * A required change event handler that will be called whenever a user types a
+   * letter and it causes a new item to be "found". This should normally be
+   * something that either updates the `aria-activedescendant` id to the new
+   * found item's id or manually focus the item's DOM node.
    */
   onChange?: (data: SearchData<D, CE>, itemRefs: ItemRef<IE>[]) => void;
 }
@@ -70,16 +70,17 @@ export interface KeyboardMovementOptions<
   focusedIndex: number;
 
   /**
-   * A required change event handler that will be called whenever a user types a letter and it
-   * causes a new item to be "found". This should normally be something that either updates the
-   * `aria-activedescendant` id to the new found item's id or manually focus the item's DOM
-   * node.
+   * A required change event handler that will be called whenever a user types a
+   * letter and it causes a new item to be "found". This should normally be
+   * something that either updates the `aria-activedescendant` id to the new
+   * found item's id or manually focus the item's DOM node.
    */
   onChange: (data: SearchData<D, CE>, itemRefs: ItemRef<IE>[]) => void;
 }
 
 /**
  * Returns an ordered list with two items:
+ *
  * - itemRefs
  * - onKeyDown event handler
  *

@@ -11,8 +11,11 @@ const BASE_FOCUSABLE_QUERY = FOCUSABLE_ELEMENTS.reduce(
  * A query selector to find elements that are programmatically focusable.
  *
  * Example:
+ *
+ * ```ts
  * const focusableElements = document.querySelectorAll(PROGRAMATICALLY_FOCUSABLE);
  * // do something with elements
+ * ```
  */
 export const PROGRAMATICALLY_FOCUSABLE = `${BASE_FOCUSABLE_QUERY},[tabindex]`;
 
@@ -20,7 +23,10 @@ export const PROGRAMATICALLY_FOCUSABLE = `${BASE_FOCUSABLE_QUERY},[tabindex]`;
  * A query selector to find elements that are focusable only with tab and shift+tab.
  *
  * Example:
+ *
+ * ```ts
  * const focusableElements = document.querySelectorAll(TAB_FOCUSABLE);
  * // do something with elements
+ * ```
  */
 export const TAB_FOCUSABLE = `${PROGRAMATICALLY_FOCUSABLE}:not([tabindex="-1"])`;

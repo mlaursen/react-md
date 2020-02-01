@@ -1,23 +1,14 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
-import ListItemChildren from "./ListItemChildren";
 import getListItemHeight, { SimpleListItemProps } from "./getListItemHeight";
-
-type WithRef = WithForwardedRef<HTMLLIElement>;
-type DefaultProps = Required<
-  Pick<
-    SimpleListItemProps,
-    "height" | "clickable" | "threeLines" | "leftPosition" | "rightPosition"
-  >
->;
-type WithDefaultProps = SimpleListItemProps & DefaultProps & WithRef;
+import ListItemChildren from "./ListItemChildren";
 
 const block = bem("rmd-list-item");
 
-const SimpleListItem: FC<SimpleListItemProps & WithRef> = providedProps => {
-  const {
+function SimpleListItem(
+  {
     className,
     textClassName,
     secondaryTextClassName,
@@ -28,24 +19,36 @@ const SimpleListItem: FC<SimpleListItemProps & WithRef> = providedProps => {
     leftAvatar,
     leftMedia,
     leftMediaLarge,
-    leftPosition,
+    leftPosition = "middle",
     rightIcon,
     rightAvatar,
     rightMedia,
     rightMediaLarge,
-    rightPosition,
+    rightPosition = "middle",
     forceIconWrap,
     children,
-    forwardedRef,
-    height: _height,
-    threeLines,
+    height: propHeight = "auto",
+    threeLines = false,
     "aria-disabled": ariaDisabled,
     disabled,
-    clickable,
+    clickable = false,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: SimpleListItemProps,
+  ref?: Ref<HTMLLIElement>
+): ReactElement {
+  const height = getListItemHeight({
+    height: propHeight,
+    leftIcon,
+    rightIcon,
+    leftAvatar,
+    rightAvatar,
+    leftMedia,
+    rightMedia,
+    leftMediaLarge,
+    rightMediaLarge,
+    secondaryText,
+  });
 
-  const height = getListItemHeight(providedProps);
   return (
     <li
       {...props}
@@ -54,7 +57,7 @@ const SimpleListItem: FC<SimpleListItemProps & WithRef> = providedProps => {
           ? ariaDisabled
           : (disabled && "true") || undefined
       }
-      ref={forwardedRef}
+      ref={ref}
       className={cn(
         block({
           [height]: height !== "auto" && height !== "normal",
@@ -86,28 +89,17 @@ const SimpleListItem: FC<SimpleListItemProps & WithRef> = providedProps => {
       </ListItemChildren>
     </li>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  height: "auto",
-  clickable: false,
-  threeLines: false,
-  leftPosition: "middle",
-  rightPosition: "middle",
-};
-
-SimpleListItem.defaultProps = defaultProps;
+const ForwardedSimpleListItem = forwardRef<HTMLLIElement, SimpleListItemProps>(
+  SimpleListItem
+);
 
 if (process.env.NODE_ENV !== "production") {
-  SimpleListItem.displayName = "SimpleListItem";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    SimpleListItem.propTypes = {
+    ForwardedSimpleListItem.propTypes = {
       disabled: PropTypes.bool,
       clickable: PropTypes.bool,
       threeLines: PropTypes.bool,
@@ -121,9 +113,7 @@ if (process.env.NODE_ENV !== "production") {
       leftPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
       rightPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLLIElement, SimpleListItemProps>((props, ref) => (
-  <SimpleListItem forwardedRef={ref} {...props} />
-));
+export default ForwardedSimpleListItem;

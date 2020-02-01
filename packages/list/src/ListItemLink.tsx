@@ -1,10 +1,15 @@
-import React, { ElementType, FC, forwardRef, HTMLAttributes } from "react";
+import React, {
+  ElementType,
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  Ref,
+} from "react";
 import cn from "classnames";
 import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { WithForwardedRef } from "@react-md/utils";
 
 import getListItemHeight, { SimpleListItemProps } from "./getListItemHeight";
 import ListItemChildren, { ListItemChildrenProps } from "./ListItemChildren";
@@ -15,10 +20,11 @@ export interface ListItemLinkProps
     Pick<SimpleListItemProps, "threeLines" | "height">,
     InteractionStatesOptions<HTMLAnchorElement> {
   /**
-   * An optional component to render as. This should really only be used if you are using a
-   * router library like [react-router](https://github.com/ReactTraining/react-router) or
-   * [@reach/router](https://github.com/reach/router). This will call `createElement` with
-   * this value and provide all props and class name.
+   * An optional component to render as. This should really only be used if you
+   * are using a router library like
+   * [react-router](https://github.com/ReactTraining/react-router) or
+   * [@reach/router](https://github.com/reach/router). This will call
+   * `createElement` with this value and provide all props and class name.
    */
   component?: ElementType;
 }
@@ -27,18 +33,15 @@ export interface ListItemLinkWithComponentProps extends ListItemLinkProps {
   component: ElementType;
 
   /**
-   * I'm not really sure of a good way to implement this, but when the `component` prop is provided,
-   * all valid props from that component should also be allowed.
+   * I'm not really sure of a good way to implement this, but when the
+   * `component` prop is provided, all valid props from that component should
+   * also be allowed.
    */
   [key: string]: unknown;
 }
 
-type WithRef = WithForwardedRef<HTMLAnchorElement | ElementType>;
-type DefaultProps = Required<Pick<ListItemLinkProps, "height" | "component">>;
-type WithDefaultProps = ListItemLinkProps & DefaultProps & WithRef;
-
-const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
-  const {
+function ListItemLink(
+  {
     className: propClassName,
     textClassName,
     secondaryTextClassName,
@@ -46,15 +49,18 @@ const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
     primaryText,
     secondaryText,
     children,
-    forwardedRef,
     leftIcon,
     leftAvatar,
+    leftMedia,
+    leftMediaLarge,
     rightIcon,
     rightAvatar,
+    rightMedia,
+    rightMediaLarge,
     forceIconWrap,
-    height: _height,
-    threeLines,
-    component: Component,
+    height: propHeight = "auto",
+    threeLines = false,
+    component: Component = "a",
     disableSpacebarClick,
     disableRipple,
     disableProgrammaticRipple,
@@ -64,9 +70,21 @@ const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
     rippleClassName,
     rippleContainerClassName,
     ...props
-  } = providedProps as WithDefaultProps;
-
-  const height = getListItemHeight(providedProps);
+  }: ListItemLinkProps,
+  ref?: Ref<HTMLAnchorElement | ElementType>
+): ReactElement {
+  const height = getListItemHeight({
+    height: propHeight,
+    leftIcon,
+    rightIcon,
+    leftAvatar,
+    rightAvatar,
+    leftMedia,
+    rightMedia,
+    leftMediaLarge,
+    rightMediaLarge,
+    secondaryText,
+  });
   const { ripples, className, handlers } = useInteractionStates({
     className: propClassName,
     handlers: props,
@@ -79,11 +97,12 @@ const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
     disableSpacebarClick,
     disablePressedFallback,
   });
+
   return (
     <Component
       {...props}
       {...handlers}
-      ref={forwardedRef}
+      ref={ref}
       className={cn(
         "rmd-list-item rmd-list-item--clickable rmd-list-item--link",
         {
@@ -102,8 +121,12 @@ const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
         secondaryText={secondaryText}
         leftIcon={leftIcon}
         leftAvatar={leftAvatar}
+        leftMedia={leftMedia}
+        leftMediaLarge={leftMediaLarge}
         rightIcon={rightIcon}
         rightAvatar={rightAvatar}
+        rightMedia={rightMedia}
+        rightMediaLarge={rightMediaLarge}
         forceIconWrap={forceIconWrap}
       >
         {children}
@@ -111,25 +134,21 @@ const ListItemLink: FC<ListItemLinkProps & WithRef> = providedProps => {
       {ripples}
     </Component>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  height: "auto",
-  component: "a",
-};
-
-ListItemLink.defaultProps = defaultProps;
+const ForwardedListItemLink = forwardRef<
+  HTMLAnchorElement | ElementType,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ListItemLinkProps & Record<string, any>
+>(ListItemLink);
 
 if (process.env.NODE_ENV !== "production") {
   ListItemLink.displayName = "ListItemLink";
 
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    ListItemLink.propTypes = {
+    ForwardedListItemLink.propTypes = {
       component: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.func,
@@ -143,11 +162,7 @@ if (process.env.NODE_ENV !== "production") {
         "extra-large",
       ]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<
-  HTMLAnchorElement | ElementType,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ListItemLinkProps & { [key: string]: any }
->((props, ref) => <ListItemLink {...props} forwardedRef={ref} />);
+export default ForwardedListItemLink;

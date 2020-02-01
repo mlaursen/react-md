@@ -1,13 +1,14 @@
 import { MovementKey, FocusType, KeyConfig } from "./types";
 
 /**
- * An extremely simple function that is used to generate an id for an item within a list of other items.
- * This is generally used with list of items that should have custom focus with the
- * `aria-activedescendant` flow instead of native focus.
+ * An extremely simple function that is used to generate an id for an item
+ * within a list of other items.  This is generally used with list of items that
+ * should have custom focus with the `aria-activedescendant` flow instead of
+ * native focus.
  *
  * @param id The base id for the container element of all the items.
- * @param i The index of the item within the list. This number will be incremented by 1
- * as an id to start from 1 instead of 0.
+ * @param i The index of the item within the list. This number will be
+ * incremented by 1 as an id to start from 1 instead of 0.
  */
 export function getItemId(id: string, i: number): string {
   if (!id) {
@@ -23,11 +24,11 @@ export function getItemId(id: string, i: number): string {
 
 /**
  * A small util function to transform a list of key codes into a list of
- * `IKeyboardFocusKeyEvent` objects. This is useful for how I determine what behavior
- * to implement after a keydown event.
+ * `IKeyboardFocusKeyEvent` objects. This is useful for how I determine what
+ * behavior to implement after a keydown event.
  *
- * @param keys A list of key mappings to convert to a key object. These should be
- * things like: "Tab", "Alt+Home", "A", "Shift+Alt+ArrowUp"
+ * @param keys A list of key mappings to convert to a key object. These should
+ * be things like: "Tab", "Alt+Home", "A", "Shift+Alt+ArrowUp"
  * @param type The keyboard focus type this key should be mapped to
  * @private
  */
@@ -75,9 +76,9 @@ export function getKeyboardConfig(
 }
 
 /**
- * Creates a stringified representation of the configuration so that the config can be checked
- * in the `onChange` callback for keyboard movement. This is used as the `query` attribute
- * on the change data.
+ * Creates a stringified representation of the configuration so that the config
+ * can be checked in the `onChange` callback for keyboard movement. This is used
+ * as the `query` attribute on the change data.
  *
  * @param config The key config to stringify
  * @private

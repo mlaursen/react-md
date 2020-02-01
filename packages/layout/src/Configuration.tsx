@@ -1,11 +1,11 @@
 import React, { FC, ReactNode } from "react";
 import { NestedDialogContextProvider } from "@react-md/dialog";
-import { IconProvider, ConfigurableIcons } from "@react-md/icon";
+import { ConfigurableIcons, IconProvider } from "@react-md/icon";
 import {
-  StatesConfigProps,
-  RIPPLE_TIMEOUT,
   RIPPLE_CLASS_NAMES,
+  RIPPLE_TIMEOUT,
   StatesConfig,
+  StatesConfigProps,
 } from "@react-md/states";
 import { TooltipHoverModeConfig } from "@react-md/tooltip";
 import {
@@ -13,19 +13,19 @@ import {
   AppSizeListenerProps,
   AppSizeOptions,
   DEFAULT_APP_SIZE,
-  DEFAULT_TABLET_MIN_WIDTH,
+  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+  DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
   DEFAULT_TABLET_MAX_WIDTH,
-  DEFAULT_DESKTOP_MIN_WIDTH,
-  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+  DEFAULT_TABLET_MIN_WIDTH,
   InteractionModeListener,
 } from "@react-md/utils";
 
 export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
   /**
-   * An optional function to call when the app gets resized based on media queries.
-   * This is useful if you want to store the current app state in redux if you can't
-   * always access this state with the `useAppSize` hook.
+   * An optional function to call when the app gets resized based on media
+   * queries.  This is useful if you want to store the current app state in
+   * redux if you can't always access this state with the `useAppSize` hook.
    */
   onAppResize?: AppSizeListenerProps["onChange"];
 
@@ -45,118 +45,74 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
   tooltipDelayTimeout?: number;
 
   /**
-   * The children that should gain this configuration. This is required
-   * since there's really no reason to use this component if you don't
-   * have children that consume the React context.
+   * The children that should gain this configuration. This is required since
+   * there's really no reason to use this component if you don't have children
+   * that consume the React context.
    */
   children: ReactNode;
 
   /**
-   * An object of all the configurable icons that you want to override throughout
-   * react-md.
+   * An object of all the configurable icons that you want to override
+   * throughout react-md.
    */
   icons?: ConfigurableIcons;
 }
-
-export type ConfigurationDefaultProps = Required<
-  Pick<
-    ConfigurationProps,
-    | "phoneMaxWidth"
-    | "tabletMinWidth"
-    | "tabletMaxWidth"
-    | "desktopMinWidth"
-    | "desktopLargeMinWidth"
-    | "defaultSize"
-    | "disableRipple"
-    | "disableProgrammaticRipple"
-    | "rippleTimeout"
-    | "rippleClassNames"
-    | "disableTooltipHoverMode"
-    | "tooltipDefaultDelay"
-    | "tooltipDelayTimeout"
-  >
->;
-type WithDefaultProps = ConfigurationProps & ConfigurationDefaultProps;
 
 /**
  * This component allows you to quickly configure different functionality within
  * `react-md` in one place with reasonable defaults.
  */
-const Configuration: FC<ConfigurationProps> = providedProps => {
-  const {
-    defaultSize,
-    onAppResize,
-    phoneMaxWidth,
-    tabletMinWidth,
-    tabletMaxWidth,
-    desktopLargeMinWidth,
-    disableRipple,
-    disableProgrammaticRipple,
-    rippleTimeout,
-    rippleClassNames,
-    children,
-    disableTooltipHoverMode,
-    tooltipDefaultDelay,
-    tooltipDelayTimeout,
-    icons,
-  } = providedProps as WithDefaultProps;
-
-  return (
-    <AppSizeListener
-      defaultSize={defaultSize}
-      onChange={onAppResize}
-      phoneMaxWidth={phoneMaxWidth}
-      tabletMinWidth={tabletMinWidth}
-      tabletMaxWidth={tabletMaxWidth}
-      desktopLargeMinWidth={desktopLargeMinWidth}
-    >
-      <NestedDialogContextProvider>
-        <InteractionModeListener>
-          <StatesConfig
-            disableRipple={disableRipple}
-            disableProgrammaticRipple={disableProgrammaticRipple}
-            rippleTimeout={rippleTimeout}
-            rippleClassNames={rippleClassNames}
+const Configuration: FC<ConfigurationProps> = ({
+  onAppResize,
+  children,
+  icons,
+  phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
+  tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH,
+  tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH,
+  desktopMinWidth = DEFAULT_DESKTOP_MIN_WIDTH,
+  desktopLargeMinWidth = DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+  defaultSize = DEFAULT_APP_SIZE,
+  rippleTimeout = RIPPLE_TIMEOUT,
+  rippleClassNames = RIPPLE_CLASS_NAMES,
+  disableRipple = false,
+  disableProgrammaticRipple = false,
+  disableTooltipHoverMode = false,
+  tooltipDefaultDelay = 1000,
+  tooltipDelayTimeout = 1000,
+}) => (
+  <AppSizeListener
+    defaultSize={defaultSize}
+    onChange={onAppResize}
+    phoneMaxWidth={phoneMaxWidth}
+    tabletMinWidth={tabletMinWidth}
+    tabletMaxWidth={tabletMaxWidth}
+    desktopMinWidth={desktopMinWidth}
+    desktopLargeMinWidth={desktopLargeMinWidth}
+  >
+    <NestedDialogContextProvider>
+      <InteractionModeListener>
+        <StatesConfig
+          disableRipple={disableRipple}
+          disableProgrammaticRipple={disableProgrammaticRipple}
+          rippleTimeout={rippleTimeout}
+          rippleClassNames={rippleClassNames}
+        >
+          <TooltipHoverModeConfig
+            enabled={!disableTooltipHoverMode}
+            defaultDelay={tooltipDefaultDelay}
+            delayTimeout={tooltipDelayTimeout}
           >
-            <TooltipHoverModeConfig
-              enabled={!disableTooltipHoverMode}
-              defaultDelay={tooltipDefaultDelay}
-              delayTimeout={tooltipDelayTimeout}
-            >
-              <IconProvider {...icons}>{children}</IconProvider>
-            </TooltipHoverModeConfig>
-          </StatesConfig>
-        </InteractionModeListener>
-      </NestedDialogContextProvider>
-    </AppSizeListener>
-  );
-};
-
-const defaultProps: ConfigurationDefaultProps = {
-  phoneMaxWidth: DEFAULT_PHONE_MAX_WIDTH,
-  tabletMinWidth: DEFAULT_TABLET_MIN_WIDTH,
-  tabletMaxWidth: DEFAULT_TABLET_MAX_WIDTH,
-  desktopMinWidth: DEFAULT_DESKTOP_MIN_WIDTH,
-  desktopLargeMinWidth: DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-  defaultSize: DEFAULT_APP_SIZE,
-  rippleTimeout: RIPPLE_TIMEOUT,
-  rippleClassNames: RIPPLE_CLASS_NAMES,
-  disableRipple: false,
-  disableProgrammaticRipple: false,
-  disableTooltipHoverMode: false,
-  tooltipDefaultDelay: 1000,
-  tooltipDelayTimeout: 1000,
-};
-
-Configuration.defaultProps = defaultProps;
+            <IconProvider {...icons}>{children}</IconProvider>
+          </TooltipHoverModeConfig>
+        </StatesConfig>
+      </InteractionModeListener>
+    </NestedDialogContextProvider>
+  </AppSizeListener>
+);
 
 if (process.env.NODE_ENV !== "production") {
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
-
-  if (PropTypes) {
+    const PropTypes = require("prop-types");
     const querySize = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
 
     Configuration.propTypes = {
@@ -207,9 +163,10 @@ if (process.env.NODE_ENV !== "production") {
         radio: PropTypes.node,
         password: PropTypes.node,
         notification: PropTypes.node,
+        sort: PropTypes.node,
       }),
     };
-  }
+  } catch (e) {}
 }
 
 export default Configuration;

@@ -1,15 +1,16 @@
 import React, {
   CSSProperties,
-  FC,
   forwardRef,
+  ReactElement,
   ReactNode,
+  Ref,
   useCallback,
   useState,
 } from "react";
 import cn from "classnames";
 import { Button } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import TextField, { TextFieldProps } from "./TextField";
 
@@ -42,31 +43,26 @@ export interface PasswordProps
   disableVisibility?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLInputElement>;
-type DefaultProps = Required<
-  Pick<PasswordProps, "visibilityLabel" | "disableVisibility">
->;
-type WithDefaultProps = PasswordProps & DefaultProps & WithRef;
-
 const block = bem("rmd-password");
 
 /**
- * This component is a simple wrapper of the `TextField` that can only be rendered
- * for password inputs. There is built-in functionality to be able to temporarily
- * show the password's value by swapping the `type` to `"text"`.
+ * This component is a simple wrapper of the `TextField` that can only be
+ * rendered for password inputs. There is built-in functionality to be able to
+ * temporarily show the password's value by swapping the `type` to `"text"`.
  */
-const Password: FC<PasswordProps & WithRef> = providedProps => {
-  const {
+function Password(
+  {
     className,
     inputClassName,
-    forwardedRef,
     visibilityIcon: propVisibilityIcon,
-    disableVisibility,
     visibilityStyle,
     visibilityClassName,
-    visibilityLabel,
+    visibilityLabel = "Temporarily show password",
+    disableVisibility = false,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: PasswordProps,
+  ref?: Ref<HTMLInputElement>
+): ReactElement {
   const { id } = props;
   const [type, setType] = useState<"password" | "text">("password");
   const toggle = useCallback(() => {
@@ -83,7 +79,7 @@ const Password: FC<PasswordProps & WithRef> = providedProps => {
         block("input", { offset: !disableVisibility }),
         inputClassName
       )}
-      ref={forwardedRef}
+      ref={ref}
       type={type}
       isRightAddon={false}
       rightChildren={
@@ -102,25 +98,15 @@ const Password: FC<PasswordProps & WithRef> = providedProps => {
       }
     />
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  visibilityLabel: "Temporarily show password",
-  disableVisibility: false,
-};
-
-Password.defaultProps = defaultProps;
+const ForwardedPassword = forwardRef<HTMLInputElement, PasswordProps>(Password);
 
 if (process.env.NODE_ENV !== "production") {
-  Password.displayName = "Password";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Password.propTypes = {
+    ForwardedPassword.propTypes = {
       id: PropTypes.string.isRequired,
       visibilityIcon: PropTypes.node,
       visibilityStyle: PropTypes.object,
@@ -128,9 +114,7 @@ if (process.env.NODE_ENV !== "production") {
       visibilityLabel: PropTypes.string,
       disableVisibility: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLInputElement, PasswordProps>((props, ref) => (
-  <Password {...props} forwardedRef={ref} />
-));
+export default ForwardedPassword;

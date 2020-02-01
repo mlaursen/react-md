@@ -1,10 +1,11 @@
 import React, {
   CSSProperties,
-  FC,
   forwardRef,
   Fragment,
   HTMLAttributes,
+  ReactElement,
   ReactNode,
+  Ref,
   useCallback,
   useMemo,
   useRef,
@@ -17,10 +18,9 @@ import {
   bem,
   DEFAULT_GET_ITEM_VALUE,
   PositionAnchor,
+  PositionWidth,
   useCloseOnOutsideClick,
   useToggle,
-  WithForwardedRef,
-  PositionWidth,
 } from "@react-md/utils";
 
 import FloatingLabel from "../label/FloatingLabel";
@@ -28,13 +28,12 @@ import TextFieldContainer, {
   TextFieldContainerOptions,
 } from "../text-field/TextFieldContainer";
 import useFocusState from "../useFocusState";
-
 import Listbox, { ListboxOptions } from "./Listbox";
 import {
+  defaultIsOptionDisabled,
   getDisplayLabel as DEFAULT_GET_DISPLAY_LABEL,
   getOptionId as DEFAULT_GET_OPTION_ID,
   getOptionLabel as DEFAULT_GET_OPTION_LABEL,
-  defaultIsOptionDisabled,
 } from "./utils";
 
 type FakeSelectAttributes = Omit<
@@ -165,37 +164,11 @@ export interface SelectProps
   rightChildren?: ReactNode;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<
-    SelectProps,
-    | "portal"
-    | "dense"
-    | "disabled"
-    | "inline"
-    | "error"
-    | "underlineDirection"
-    | "theme"
-    | "isLeftAddon"
-    | "isRightAddon"
-    | "anchor"
-    | "listboxWidth"
-    | "labelKey"
-    | "valueKey"
-    | "getOptionId"
-    | "getOptionLabel"
-    | "getOptionValue"
-    | "getDisplayLabel"
-    | "isOptionDisabled"
-    | "disableLeftAddon"
-    | "disableMovementChange"
-    | "disableHideOnResize"
-    | "disableHideOnScroll"
-  >
->;
-type WithDefaultProps = SelectProps & DefaultProps & WithRef;
-
 const block = bem("rmd-select");
+const DEFAULT_ANCHOR: PositionAnchor = {
+  x: "center",
+  y: "below",
+};
 
 /**
  * This component is an accessible version of the `<select>` element that allows
@@ -205,13 +178,12 @@ const block = bem("rmd-select");
  * The `Select` component **must be controlled** with a `value` and `onChange`
  * handler.
  */
-const Select: FC<SelectProps & WithRef> = providedProps => {
-  const {
+function Select(
+  {
     onBlur,
     onFocus,
     onKeyDown,
     onClick,
-    forwardedRef,
     className,
     label,
     labelStyle,
@@ -220,32 +192,42 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     displayLabelClassName,
     listboxStyle,
     listboxClassName,
-    anchor,
-    listboxWidth,
-    portal,
+    anchor = DEFAULT_ANCHOR,
+    theme = "outline",
+    dense = false,
+    inline = false,
+    error = false,
+    disabled = false,
+    isLeftAddon = true,
+    isRightAddon = true,
+    underlineDirection = "left",
+    listboxWidth = "equal",
+    portal = true,
     portalInto,
     portalIntoId,
     name,
     options,
-    labelKey,
-    valueKey,
-    getOptionId,
-    getOptionLabel,
-    getOptionValue,
-    getDisplayLabel,
-    isOptionDisabled,
-    disableLeftAddon,
-    disableMovementChange,
-    disableHideOnResize,
-    disableHideOnScroll,
+    labelKey = "label",
+    valueKey = "value",
+    getOptionId = DEFAULT_GET_OPTION_ID,
+    getOptionLabel = DEFAULT_GET_OPTION_LABEL,
+    getOptionValue = DEFAULT_GET_ITEM_VALUE,
+    getDisplayLabel = DEFAULT_GET_DISPLAY_LABEL,
+    isOptionDisabled = defaultIsOptionDisabled,
+    disableLeftAddon = false,
+    disableMovementChange = false,
+    disableHideOnResize = false,
+    disableHideOnScroll = false,
     readOnly,
     placeholder,
     value,
     onChange,
     rightChildren: propRightChildren,
     ...props
-  } = providedProps as WithDefaultProps;
-  const { id, disabled, error, dense } = props;
+  }: SelectProps,
+  forwardedRef?: Ref<HTMLDivElement>
+): ReactElement {
+  const { id } = props;
   const rightChildren = useIcon("dropdown", propRightChildren);
 
   const valued = typeof value === "number" || !!value;
@@ -375,18 +357,25 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
     <Fragment>
       <TextFieldContainer
         {...props}
-        rightChildren={rightChildren}
+        aria-haspopup="listbox"
+        aria-disabled={disabled || undefined}
+        ref={ref}
+        role="button"
+        tabIndex={disabled ? undefined : 0}
+        label={!!label}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onKeyDown={disabled ? undefined : handleKeyDown}
         onClick={disabled ? undefined : handleClick}
-        aria-haspopup="listbox"
-        aria-disabled={disabled || undefined}
-        role="button"
-        tabIndex={disabled ? undefined : 0}
-        ref={ref}
+        theme={theme}
+        error={error}
         active={focused || visible}
-        label={!!label}
+        inline={inline}
+        disabled={disabled}
+        underlineDirection={underlineDirection}
+        isLeftAddon={isLeftAddon}
+        isRightAddon={isRightAddon}
+        rightChildren={rightChildren}
         className={cn(block({ disabled }), className)}
       >
         <FloatingLabel
@@ -449,47 +438,14 @@ const Select: FC<SelectProps & WithRef> = providedProps => {
       />
     </Fragment>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  portal: true,
-  theme: "outline",
-  dense: false,
-  inline: false,
-  error: false,
-  disabled: false,
-  isLeftAddon: true,
-  isRightAddon: true,
-  underlineDirection: "left",
-  anchor: {
-    x: "center",
-    y: "below",
-  },
-  listboxWidth: "equal",
-  labelKey: "label",
-  valueKey: "value",
-  getOptionId: DEFAULT_GET_OPTION_ID,
-  getOptionLabel: DEFAULT_GET_OPTION_LABEL,
-  getOptionValue: DEFAULT_GET_ITEM_VALUE,
-  getDisplayLabel: DEFAULT_GET_DISPLAY_LABEL,
-  isOptionDisabled: defaultIsOptionDisabled,
-  disableLeftAddon: false,
-  disableMovementChange: false,
-  disableHideOnResize: false,
-  disableHideOnScroll: false,
-};
-
-Select.defaultProps = defaultProps;
+const ForwardedSelect = forwardRef<HTMLDivElement, SelectProps>(Select);
 
 if (process.env.NODE_ENV !== "production") {
-  Select.displayName = "Select";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
-  if (PropTypes) {
-    Select.propTypes = {
+    const PropTypes = require("prop-types");
+    ForwardedSelect.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
@@ -540,9 +496,7 @@ if (process.env.NODE_ENV !== "production") {
       }),
       listboxWidth: PropTypes.oneOf(["equal", "min", "auto"]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, SelectProps>((props, ref) => (
-  <Select {...props} forwardedRef={ref} />
-));
+export default ForwardedSelect;

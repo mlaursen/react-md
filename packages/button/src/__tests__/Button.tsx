@@ -46,10 +46,14 @@ describe("Button", () => {
         )
       )
     ).forEach(themeProps => {
-      const { getByTestId, unmount } = render(
+      const { getByTestId, rerender, unmount } = render(
         <Button data-testid="button" {...themeProps} />
       );
       expect(getByTestId("button")).toMatchSnapshot();
+
+      rerender(<Button data-testid="button" {...themeProps} disabled />);
+      expect(getByTestId("button")).toMatchSnapshot();
+
       unmount();
     });
   });

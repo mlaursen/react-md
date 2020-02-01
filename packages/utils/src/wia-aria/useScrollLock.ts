@@ -7,11 +7,12 @@ import { useEffect } from "react";
 export const DATA_RMD_NOSCROLL = "data-rmd-noscroll";
 
 /**
- * This will enable scroll locking for the provided element. Scroll locking works
- * by fixing the element within the page and hiding overflow for that element.
+ * This will enable scroll locking for the provided element. Scroll locking
+ * works by fixing the element within the page and hiding overflow for that
+ * element.
  *
- * @param element Either the `<body>` tag or an element within the page to disable
- * scroll for.
+ * @param element Either the `<body>` tag or an element within the page to
+ * disable scroll for.
  */
 export function enable(element: HTMLElement): void {
   element.style.overflow = "hidden";
@@ -19,15 +20,16 @@ export function enable(element: HTMLElement): void {
 }
 
 /**
- * Attempts to disable the scroll locking behavior for an element. If the element
- * does not have `data-rmd-noscroll`, it will not be modified. This is really just
- * a safety catch to ensure that pre-existing styles aren't removed on accident.
+ * Attempts to disable the scroll locking behavior for an element. If the
+ * element does not have `data-rmd-noscroll`, it will not be modified. This is
+ * really just a safety catch to ensure that pre-existing styles aren't removed
+ * on accident.
  *
  * If the `data-rmd-noscroll` attribute exists, overflow style and the
  * `data-rmd-noscroll` attribute will be removed.
  *
- * @param element Either the `<body>` tag or an element within the page to disable
- * scroll locking for.
+ * @param element Either the `<body>` tag or an element within the page to
+ * disable scroll locking for.
  */
 export function disable(element: HTMLElement): void {
   if (element.getAttribute(DATA_RMD_NOSCROLL) === null) {
@@ -39,13 +41,13 @@ export function disable(element: HTMLElement): void {
 }
 
 /**
- * A hook that is used to dynamically add scroll locking to an element. By default,
- * this will use the main `<body>` tag for scroll locking, but a query selector string
- * or an HTML element can also be used instead.
+ * A hook that is used to dynamically add scroll locking to an element. By
+ * default, this will use the main `<body>` tag for scroll locking, but a query
+ * selector string or an HTML element can also be used instead.
  *
  * @param enabled Boolean if the scroll locking behavior should be enabled
- * @param selectorOrElement Either a query selector string, HTMLElement, or a function
- * that returns an HTMLElement to apply scroll locking to.
+ * @param selectorOrElement Either a query selector string, HTMLElement, or a
+ * function that returns an HTMLElement to apply scroll locking to.
  */
 export default function useScrollLock(
   enabled: boolean,

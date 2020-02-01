@@ -1,64 +1,46 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
-export interface CardTitleProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
   /**
    * Boolean if the title should be smaller than normal. You should usually
-   * enable this prop when using the `CardSubtitle` with this component in
-   * the `CardHeader`.
+   * enable this prop when using the `CardSubtitle` with this component in the
+   * `CardHeader`.
    */
   small?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<CardTitleProps, "small">>;
-type WithDefaultProps = CardTitleProps & WithRef;
-
 const block = bem("rmd-card");
 
-const CardTitle: FC<CardTitleProps & WithRef> = providedProps => {
-  const {
-    className,
-    forwardedRef,
-    children,
-    small,
-    ...props
-  } = providedProps as WithDefaultProps;
-
+function CardTitle(
+  { className, children, small = false, ...props }: CardTitleProps,
+  ref?: Ref<HTMLHeadingElement>
+): ReactElement {
   return (
     <h5
       {...props}
+      ref={ref}
       className={cn(block("title", { small }), className)}
-      ref={forwardedRef}
     >
       {children}
     </h5>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  small: false,
-};
-
-CardTitle.defaultProps = defaultProps;
+const ForwardedCardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
+  CardTitle
+);
 
 if (process.env.NODE_ENV !== "production") {
-  CardTitle.displayName = "CardTitle";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    CardTitle.propTypes = {
+    ForwardedCardTitle.propTypes = {
       small: PropTypes.bool,
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, CardTitleProps>((props, ref) => (
-  <CardTitle {...props} forwardedRef={ref} />
-));
+export default ForwardedCardTitle;

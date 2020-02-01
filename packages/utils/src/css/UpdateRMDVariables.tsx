@@ -1,11 +1,12 @@
 import React, {
-  FC,
   MutableRefObject,
+  ReactElement,
   useEffect,
   useRef,
   useState,
 } from "react";
 import UpdateVariables, { UpdateVariablesProps } from "./UpdateVariables";
+
 import {
   CSSVariable,
   fixVariables,
@@ -16,10 +17,10 @@ import {
 const RMD_PREFIX = "--rmd-";
 const loaded: MutableRefObject<CSSVariable[]> = { current: [] };
 
-const UpdateRMDVariables: FC<UpdateVariablesProps> = ({
+function UpdateRMDVariables({
   variables,
   ...props
-}) => {
+}: UpdateVariablesProps): ReactElement {
   if (process.env.NODE_ENV !== "production") {
     // only want this check functionality to work in dev mode and should be removed
     // in prod to reduce network requests and bundle size
@@ -90,15 +91,12 @@ const UpdateRMDVariables: FC<UpdateVariablesProps> = ({
       variables={fixVariables(variables, RMD_PREFIX)}
     />
   );
-};
+}
 
 if (process.env.NODE_ENV !== "production") {
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
     UpdateRMDVariables.propTypes = {
       variables: PropTypes.arrayOf(
         PropTypes.shape({
@@ -107,7 +105,7 @@ if (process.env.NODE_ENV !== "production") {
         })
       ).isRequired,
     };
-  }
+  } catch (e) {}
 }
 
 export default UpdateRMDVariables;

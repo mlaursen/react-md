@@ -1,12 +1,13 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef, ReactElement, Ref } from "react";
 import cn from "classnames";
+import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import {
-  OptionalFixedPositionOptions,
   FixedTo,
   GetFixedPositionOptions,
+  OptionalFixedPositionOptions,
   useFixedPositioning,
 } from "@react-md/transition";
-import { WithForwardedRef, LabelRequiredForA11y } from "@react-md/utils";
+import { LabelRequiredForA11y, PositionAnchor } from "@react-md/utils";
 
 import Dialog, { DialogProps } from "./Dialog";
 
@@ -23,8 +24,8 @@ export interface FixedDialogProps
   fixedTo: FixedTo;
 
   /**
-   * Any additional options to apply to the fixed positioning logic. The `transformOrigin`
-   * option will be enabled by default.
+   * Any additional options to apply to the fixed positioning logic. The
+   * `transformOrigin` option will be enabled by default.
    */
   options?: OptionalFixedPositionOptions;
 
@@ -35,31 +36,41 @@ export interface FixedDialogProps
 }
 
 type StrictProps = LabelRequiredForA11y<FixedDialogProps>;
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<
-    StrictProps,
-    "anchor" | "classNames" | "overlayHidden" | "disableScrollLock"
-  >
->;
-type WithDefaultProps = StrictProps & DefaultProps & WithRef;
+
+const DEFAULT_ANCHOR: PositionAnchor = {
+  x: "inner-left",
+  y: "top",
+};
+
+const DEFAULT_CLASSNAMES: CSSTransitionClassNames = {
+  appear: "rmd-dialog--fixed-enter",
+  appearActive: "rmd-dialog--fixed-enter-active",
+  enter: "rmd-dialog--fixed-enter",
+  enterActive: "rmd-dialog--fixed-enter-active",
+  exit: "rmd-dialog--fixed-exit",
+  exitActive: "rmd-dialog--fixed-exit-active",
+};
 
 /**
- * The `FixedDialog` is a wrapper for the `Dialog` component that can be used
- * to be fix itself to another element. Another term for this component might
- * be a "Pop out Dialog".
+ * The `FixedDialog` is a wrapper for the `Dialog` component that can be used to
+ * be fix itself to another element. Another term for this component might be a
+ * "Pop out Dialog".
  */
-const FixedDialog: FC<StrictProps & WithRef> = providedProps => {
-  const {
+function FixedDialog(
+  {
     fixedTo,
-    anchor,
+    anchor = DEFAULT_ANCHOR,
     options,
     getOptions,
-    forwardedRef,
     children,
     className,
+    classNames = DEFAULT_CLASSNAMES,
+    overlayHidden = true,
+    disableScrollLock = true,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: StrictProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   const { onRequestClose } = props;
 
   const {
@@ -84,10 +95,13 @@ const FixedDialog: FC<StrictProps & WithRef> = providedProps => {
   return (
     <Dialog
       {...props}
-      className={cn("rmd-dialog--fixed", className)}
+      ref={ref}
       type="custom"
-      ref={forwardedRef}
       style={style}
+      className={cn("rmd-dialog--fixed", className)}
+      classNames={classNames}
+      overlayHidden={overlayHidden}
+      disableScrollLock={disableScrollLock}
       onEnter={onEnter}
       onEntering={onEntering}
       onEntered={onEntered}
@@ -96,37 +110,17 @@ const FixedDialog: FC<StrictProps & WithRef> = providedProps => {
       {children}
     </Dialog>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  anchor: {
-    x: "inner-right",
-    y: "top",
-  },
-  classNames: {
-    appear: "rmd-dialog--fixed-enter",
-    appearActive: "rmd-dialog--fixed-enter-active",
-    enter: "rmd-dialog--fixed-enter",
-    enterActive: "rmd-dialog--fixed-enter-active",
-    exit: "rmd-dialog--fixed-exit",
-    exitActive: "rmd-dialog--fixed-exit-active",
-  },
-  overlayHidden: true,
-  disableScrollLock: true,
-};
-
-FixedDialog.defaultProps = defaultProps;
+const ForwardedFixedDialog = forwardRef<HTMLDivElement, StrictProps>(
+  FixedDialog
+);
 
 if (process.env.NODE_ENV !== "production") {
-  FixedDialog.displayName = "FixedDialog";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    FixedDialog.propTypes = {
+    ForwardedFixedDialog.propTypes = {
       fixedTo: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.func,
@@ -175,9 +169,7 @@ if (process.env.NODE_ENV !== "production") {
         y: PropTypes.oneOf(["above", "below", "center", "top", "bottom"]),
       }),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, StrictProps>((props, ref) => (
-  <FixedDialog {...props} forwardedRef={ref} />
-));
+export default ForwardedFixedDialog;

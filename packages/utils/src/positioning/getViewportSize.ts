@@ -1,7 +1,7 @@
 /**
  * This is a simple wrapper to get the view width or view hieght.
  *
- * @param direction - Either the "height" or "width" string to get that dimension
+ * @param direction Either the "height" or "width" string to get that dimension
  * @return the view width or view height.
  */
 export default function getViewportSize(direction: "height" | "width"): number {

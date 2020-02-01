@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -12,12 +12,12 @@ export interface ListItemTextProps {
 
 const block = bem("rmd-list-item");
 
-const ListItemText: FC<ListItemTextProps> = ({
+function ListItemText({
   className,
   secondaryTextClassName,
   secondaryText,
   children,
-}) => {
+}: ListItemTextProps): ReactElement {
   let secondaryContent: ReactNode;
   if (secondaryText) {
     secondaryContent = (
@@ -31,12 +31,13 @@ const ListItemText: FC<ListItemTextProps> = ({
       </span>
     );
   }
+
   return (
     <span className={cn(block("text"), className)}>
       {children}
       {secondaryContent}
     </span>
   );
-};
+}
 
 export default ListItemText;

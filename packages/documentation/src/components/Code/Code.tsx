@@ -1,6 +1,5 @@
-import React, { FC, forwardRef, HTMLAttributes, ReactNode } from "react";
+import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
-import { WithForwardedRef } from "@react-md/utils";
 
 export interface CodeProps extends HTMLAttributes<HTMLElement> {
   className?: string;
@@ -8,26 +7,17 @@ export interface CodeProps extends HTMLAttributes<HTMLElement> {
   inline?: boolean;
 }
 
-const Code: FC<CodeProps & WithForwardedRef<HTMLElement>> = ({
-  children,
-  inline,
-  className,
-  forwardedRef,
-  ...props
-}) => (
-  <code
-    {...props}
-    ref={forwardedRef}
-    className={cn("code", { "code--inline": inline }, className)}
-  >
-    {children}
-  </code>
-);
-
-Code.defaultProps = {
-  inline: true,
-};
-
-export default forwardRef<HTMLElement, CodeProps>((props, ref) => (
-  <Code {...props} forwardedRef={ref} />
-));
+export default forwardRef<HTMLElement, CodeProps>(function Code(
+  { inline = true, className, children, ...props },
+  ref
+) {
+  return (
+    <code
+      {...props}
+      ref={ref}
+      className={cn("code", { "code--inline": inline }, className)}
+    >
+      {children}
+    </code>
+  );
+});

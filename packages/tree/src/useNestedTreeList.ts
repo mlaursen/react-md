@@ -29,15 +29,16 @@ export function buildTree<T extends BaseTreeItem>(
   const childItems: NestedTreeItem<T>[] = [];
 
   // doing a "reverse" order filter/move so that the items array shrinks while
-  // looping. This makes it so that the entire items array doesn't need to continually
-  // be looped through as more items are added to the tree, only the remaining items
-  // will have to be looped
+  // looping. This makes it so that the entire items array doesn't need to
+  // continually be looped through as more items are added to the tree, only the
+  // remaining items will have to be looped
   let i = items.length;
   while (i > 0) {
     i -= 1;
     if (items[i] && items[i].parentId === parentId) {
       const [item] = items.splice(i, 1);
-      // shallow cloning so childItems doesn't get applied to the original data set
+      // shallow cloning so childItems doesn't get applied to the original data
+      // set
       childItems.unshift({ ...item });
     }
   }
@@ -54,16 +55,16 @@ export function buildTree<T extends BaseTreeItem>(
 }
 
 /**
- * This is an internal hook that will create a renderable nested list view
- * of the tree data.
+ * This is an internal hook that will create a renderable nested list view of
+ * the tree data.
  *
  * @private
  * @param tree The full tree to convert to a nested list representation
  * @param sort An optional function that sorts the items at each level
- * @param rootId The starting `parentId` to use while building the tree.
- * This defaults to `null` since this is most likely the general use case,
- * but if there's a different unique identifier for the "root level" items,
- * that can be used instead.
+ * @param rootId The starting `parentId` to use while building the tree.  This
+ * defaults to `null` since this is most likely the general use case, but if
+ * there's a different unique identifier for the "root level" items, that can be
+ * used instead.
  */
 export default function useNestedTreeList<T extends BaseTreeItem>(
   tree: TreeData<T>,

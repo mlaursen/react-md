@@ -1,23 +1,24 @@
 import React, {
   CSSProperties,
-  FC,
   forwardRef,
   HTMLAttributes,
+  ReactElement,
+  Ref,
   useMemo,
 } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import getProgress from "./getProgress";
 import { ProgressProps } from "./types";
 
 export interface CircularProgressProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "id">,
+  extends Omit<HTMLAttributes<HTMLSpanElement>, "id">,
     ProgressProps {
   /**
-   * An optional style to apply to the svg within the circular progress. The values
-   * of this style object will be merged with the current determinate style (if it
-   * exists).
+   * An optional style to apply to the svg within the circular progress. The
+   * values of this style object will be merged with the current determinate
+   * style (if it exists).
    */
   svgStyle?: CSSProperties;
 
@@ -27,9 +28,9 @@ export interface CircularProgressProps
   svgClassName?: string;
 
   /**
-   * An optional style to apply to the circle within the circular progress. The values
-   * of this style object will be merged with the current determinate style (if it
-   * exists).
+   * An optional style to apply to the circle within the circular progress. The
+   * values of this style object will be merged with the current determinate
+   * style (if it exists).
    */
   circleStyle?: CSSProperties;
 
@@ -39,85 +40,71 @@ export interface CircularProgressProps
   circleClassName?: string;
 
   /**
-   * The radius for the circle. It is generally recommended to have the radius be
-   * 1/2 of the viewbox and minus a few more pixels so that there is some surrounding
-   * padding. You probably shouldn't really be changing this prop though.
+   * The radius for the circle. It is generally recommended to have the radius
+   * be 1/2 of the viewbox and minus a few more pixels so that there is some
+   * surrounding padding. You probably shouldn't really be changing this prop
+   * though.
    */
   radius?: number;
 
   /**
-   * The center point for the circle. This should be half of the `viewBox` prop 99%
-   * of the time and probably won't be changed.
+   * The center point for the circle. This should be half of the `viewBox` prop
+   * 99% of the time and probably won't be changed.
    */
   center?: number;
 
   /**
-   * The viewbox for the child svg. I wouldn't recommend changing this value as you
-   * will also need to update the `dashoffset` in both Sass and this prop to get the
-   * animation to look nice again.
+   * The viewbox for the child svg. I wouldn't recommend changing this value as
+   * you will also need to update the `dashoffset` in both Sass and this prop to
+   * get the animation to look nice again.
    */
   viewBox?: string;
 
   /**
-   * The `stroke-dashoffset` for the circle within the SVG. You probably won't be changing
-   * this value that much as it should match the `$rmd-progress-circle-dashoffset` Sass
-   * variable. This is really just used to help to create the determinite progress animation.
+   * The `stroke-dashoffset` for the circle within the SVG. You probably won't
+   * be changing this value that much as it should match the
+   * `$rmd-progress-circle-dashoffset` Sass variable. This is really just used
+   * to help to create the determinite progress animation.
    */
   dashoffset?: number;
 
   /**
-   * The max rotation value for the circular progress. If you set this value to a number
-   * less than or equal to 0, the circular progress will no longer rotate with the
-   * determinate progress type.
+   * The max rotation value for the circular progress. If you set this value to
+   * a number less than or equal to 0, the circular progress will no longer
+   * rotate with the determinate progress type.
    */
   maxRotation?: number;
 
   /**
-   * Boolean if the circular progress should be centered using left and right margins.
+   * Boolean if the circular progress should be centered using left and right
+   * margins.
    */
   centered?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<
-    CircularProgressProps,
-    | "min"
-    | "max"
-    | "radius"
-    | "center"
-    | "viewBox"
-    | "dashoffset"
-    | "animate"
-    | "centered"
-    | "maxRotation"
-  >
->;
-type WithDefaultProps = CircularProgressProps & DefaultProps & WithRef;
-
 const block = bem("rmd-circular-progress");
 
-const CircularProgress: FC<CircularProgressProps & WithRef> = providedProps => {
-  const {
+function CircularProgress(
+  {
     className,
     svgStyle: propSvgStyle,
     svgClassName,
     circleStyle: propCircleStyle,
     circleClassName,
     value,
-    forwardedRef,
-    min,
-    max,
-    radius,
-    center,
-    viewBox,
-    dashoffset,
-    animate,
-    centered,
-    maxRotation,
+    min = 0,
+    max = 100,
+    radius = 30,
+    center = 33,
+    viewBox = "0 0 66 66",
+    dashoffset = 187,
+    animate = true,
+    centered = true,
+    maxRotation = 360 * 1.75,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: CircularProgressProps,
+  ref?: Ref<HTMLSpanElement>
+): ReactElement {
   const progress = getProgress(min, max, value);
   const svgStyle = useMemo(() => {
     if (typeof progress !== "number") {
@@ -154,12 +141,12 @@ const CircularProgress: FC<CircularProgressProps & WithRef> = providedProps => {
   return (
     <span
       {...props}
+      ref={ref}
       role="progressbar"
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
       className={cn(block({ centered }), className)}
-      ref={forwardedRef}
     >
       <svg
         style={svgStyle}
@@ -190,32 +177,18 @@ const CircularProgress: FC<CircularProgressProps & WithRef> = providedProps => {
       </svg>
     </span>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  min: 0,
-  max: 100,
-  dashoffset: 187,
-  viewBox: "0 0 66 66",
-  radius: 30,
-  center: 33,
-  animate: true,
-  centered: true,
-  maxRotation: 360 * 1.75,
-};
-
-CircularProgress.defaultProps = defaultProps;
+const ForwardedCircularProgress = forwardRef<
+  HTMLSpanElement,
+  CircularProgressProps
+>(CircularProgress);
 
 if (process.env.NODE_ENV !== "production") {
-  CircularProgress.displayName = "CircularProgress";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    CircularProgress.propTypes = {
+    ForwardedCircularProgress.propTypes = {
       id: PropTypes.string.isRequired,
       min: PropTypes.number,
       max: PropTypes.number,
@@ -232,9 +205,7 @@ if (process.env.NODE_ENV !== "production") {
       dashoffset: PropTypes.number,
       viewBox: PropTypes.string,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, CircularProgressProps>(
-  (props, ref) => <CircularProgress {...props} forwardedRef={ref} />
-);
+export default ForwardedCircularProgress;

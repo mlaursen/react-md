@@ -1,12 +1,14 @@
-import React, { FC, forwardRef, TableHTMLAttributes, useMemo } from "react";
+import React, {
+  forwardRef,
+  ReactElement,
+  Ref,
+  TableHTMLAttributes,
+  useMemo,
+} from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
-import {
-  TableConfigProvider,
-  TableConfiguration,
-  TableConfigContext,
-} from "./config";
+import { TableConfigProvider, TableConfiguration } from "./config";
 
 /**
  * All the available props for the `Table` component. This allows you to apply
@@ -16,41 +18,36 @@ export interface TableProps
   extends TableHTMLAttributes<HTMLTableElement>,
     TableConfiguration {}
 
-type WithRef = WithForwardedRef<HTMLTableElement>;
-type DefaultProps = Omit<TableConfigContext, "header"> &
-  Required<Pick<TableProps, "dense" | "fullWidth">>;
-type WithDefaultProps = TableProps & DefaultProps & WithRef;
-
 const block = bem("rmd-table");
 
 /**
  * Creates a `<table>` element with some default styles and a quick way to
- * configure the other styles within a table. That being said, styling tables
- * is awful if you are used to flexbox and this component will not be helping
- * with layout styles of tables.
+ * configure the other styles within a table. That being said, styling tables is
+ * awful if you are used to flexbox and this component will not be helping with
+ * layout styles of tables.
  *
  * The table will not be responsive by default, but you can easily create a
- * responsive table with overflow by wrapping with the `TableContainer` component
- * or just adding `overflow: auto` to a parent element. Note that horizontal
- * scrolling is still not one of the best user interactions and it might be better
- * to render a table in a different manner for mobile devices to help display
- * all the required data.
+ * responsive table with overflow by wrapping with the `TableContainer`
+ * component or just adding `overflow: auto` to a parent element. Note that
+ * horizontal scrolling is still not one of the best user interactions and it
+ * might be better to render a table in a different manner for mobile devices to
+ * help display all the required data.
  */
-const Table: FC<TableProps & WithRef> = providedProps => {
-  const {
+function Table(
+  {
     className,
-    forwardedRef,
-    dense,
-    fullWidth,
-    hAlign,
-    vAlign,
-    lineWrap,
-    disableHover,
-    disableBorders,
     children,
+    dense = false,
+    hAlign = "left",
+    vAlign = "middle",
+    lineWrap = false,
+    fullWidth = false,
+    disableHover = false,
+    disableBorders = false,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: TableProps,
+  ref?: Ref<HTMLTableElement>
+): ReactElement {
   const configuration = useMemo(
     () => ({
       header: false,
@@ -67,7 +64,7 @@ const Table: FC<TableProps & WithRef> = providedProps => {
     <TableConfigProvider value={configuration}>
       <table
         {...props}
-        ref={forwardedRef}
+        ref={ref}
         className={cn(
           block({
             dense,
@@ -80,30 +77,15 @@ const Table: FC<TableProps & WithRef> = providedProps => {
       </table>
     </TableConfigProvider>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  dense: false,
-  hAlign: "left",
-  vAlign: "middle",
-  lineWrap: false,
-  fullWidth: false,
-  disableHover: false,
-  disableBorders: false,
-};
-
-Table.defaultProps = defaultProps;
+const ForwardedTable = forwardRef<HTMLTableElement, TableProps>(Table);
 
 if (process.env.NODE_ENV !== "production") {
-  Table.displayName = "Table";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Table.propTypes = {
+    ForwardedTable.propTypes = {
       className: PropTypes.string,
       dense: PropTypes.bool,
       fullWidth: PropTypes.bool,
@@ -116,9 +98,7 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.oneOf(["padded"]),
       ]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLTableElement, TableProps>((props, ref) => (
-  <Table {...props} forwardedRef={ref} />
-));
+export default ForwardedTable;

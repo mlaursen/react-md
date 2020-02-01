@@ -6,9 +6,9 @@ import {
 import defaults from "../defaults";
 
 /**
- * This is a simple `array.find` implementation that will work for any searchable
- * item type and return the first item that starts with the current query string
- * ignoring case.
+ * This is a simple `array.find` implementation that will work for any
+ * searchable item type and return the first item that starts with the current
+ * query string ignoring case.
  *
  * @param query The current query string to use to match with
  * @param searchable The list of searchable items

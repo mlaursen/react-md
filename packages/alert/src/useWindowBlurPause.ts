@@ -11,10 +11,11 @@ interface Options {
 }
 
 /**
- * This hook is used to pause the exit timeout if the user blurs the window while a toast
- * is visible and the autohide functionality is not disabled. If this functionality is
- * not added, messages and alerts might be missed by the user since they minimized the browser
- * or viewing something on a second screen.
+ * This hook is used to pause the exit timeout if the user blurs the window
+ * while a toast is visible and the autohide functionality is not disabled. If
+ * this functionality is not added, messages and alerts might be missed by the
+ * user since they minimized the browser or viewing something on a second
+ * screen.
  *
  * @private
  */

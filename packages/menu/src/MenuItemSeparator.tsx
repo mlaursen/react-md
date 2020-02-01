@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef, ReactElement, Ref } from "react";
 import {
   Divider,
   DividerElement,
@@ -6,7 +6,6 @@ import {
   VerticalDivider,
   VerticalDividerProps,
 } from "@react-md/divider";
-import { WithForwardedRef } from "@react-md/utils";
 
 import { useOrientation } from "./Orientation";
 
@@ -14,20 +13,20 @@ export interface MenuItemSeparatorProps
   extends DividerProps,
     Pick<VerticalDividerProps, "maxHeight"> {
   /**
-   * The current orientation of the separator. This is required for a11y,
-   * but will automatically be determined by the `Menu`'s orientation if
-   * omitted.
+   * The current orientation of the separator. This is required for a11y, but
+   * will automatically be determined by the `Menu`'s orientation if omitted.
    */
   "aria-orientation"?: "horizontal" | "vertical";
 }
 
-const MenuItemSeparator: FC<MenuItemSeparatorProps &
-  WithForwardedRef<DividerElement>> = ({
-  "aria-orientation": ariaOrientation,
-  maxHeight,
-  forwardedRef,
-  ...props
-}) => {
+function MenuItemSeparator(
+  {
+    "aria-orientation": ariaOrientation,
+    maxHeight,
+    ...props
+  }: MenuItemSeparatorProps,
+  ref?: Ref<DividerElement>
+): ReactElement {
   const menuOrientation = useOrientation();
   if (
     ariaOrientation === "vertical" ||
@@ -36,7 +35,7 @@ const MenuItemSeparator: FC<MenuItemSeparatorProps &
     return (
       <VerticalDivider
         {...props}
-        ref={forwardedRef}
+        ref={ref}
         aria-orientation="vertical"
         maxHeight={maxHeight}
         role="separator"
@@ -44,27 +43,24 @@ const MenuItemSeparator: FC<MenuItemSeparatorProps &
     );
   }
 
-  return <Divider {...props} ref={forwardedRef} role="separator" />;
-};
+  return <Divider {...props} ref={ref} role="separator" />;
+}
+
+const ForwardedMenuItemSeparator = forwardRef<
+  DividerElement,
+  MenuItemSeparatorProps
+>(MenuItemSeparator);
 
 if (process.env.NODE_ENV !== "production") {
-  MenuItemSeparator.displayName = "MenuItemSeparator";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    MenuItemSeparator.propTypes = {
+    ForwardedMenuItemSeparator.propTypes = {
       "aria-orientation": PropTypes.oneOf(["horizontal", "vertical"]),
       className: PropTypes.string,
       maxHeight: PropTypes.number,
-      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<DividerElement, MenuItemSeparatorProps>(
-  (props, ref) => <MenuItemSeparator {...props} forwardedRef={ref} />
-);
+export default ForwardedMenuItemSeparator;

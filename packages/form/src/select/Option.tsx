@@ -1,7 +1,7 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef, ReactElement, Ref } from "react";
 import cn from "classnames";
 import { SimpleListItem, SimpleListItemProps } from "@react-md/list";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface OptionProps extends SimpleListItemProps {
   /**
@@ -17,33 +17,30 @@ export interface OptionProps extends SimpleListItemProps {
   selected: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLLIElement>;
-type DefaultProps = Required<Pick<OptionProps, "selected" | "textChildren">>;
-type WithDefaultProps = OptionProps & DefaultProps & WithRef;
-
 const block = bem("rmd-option");
 
 /**
  * The Option component is a simple wrapper for the `SimpleListItem` that adds
  * some required a11y for behaving as the `option` role.
  */
-const Option: FC<OptionProps & WithRef> = providedProps => {
-  const {
+function Option(
+  {
     className,
-    selected,
+    selected = false,
     focused,
     children,
-    forwardedRef,
+    textChildren = true,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: OptionProps,
+  ref?: Ref<HTMLLIElement>
+): ReactElement {
   return (
     <SimpleListItem
       {...props}
-      clickable
+      ref={ref}
       role="option"
       aria-selected={selected || undefined}
-      ref={forwardedRef}
+      clickable
       className={cn(
         block({
           selected,
@@ -51,39 +48,27 @@ const Option: FC<OptionProps & WithRef> = providedProps => {
         }),
         className
       )}
+      textChildren={textChildren}
     >
       {children}
     </SimpleListItem>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  selected: false,
-  textChildren: true,
-};
-
-Option.defaultProps = defaultProps;
+const ForwardedOption = forwardRef<HTMLLIElement, OptionProps>(Option);
 
 if (process.env.NODE_ENV !== "production") {
-  Option.displayName = "Option";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Option.propTypes = {
+    ForwardedOption.propTypes = {
       className: PropTypes.string,
       focused: PropTypes.bool.isRequired,
       selected: PropTypes.bool,
-      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       children: PropTypes.node,
       textChildren: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLLIElement, OptionProps>((props, ref) => (
-  <Option {...props} forwardedRef={ref} />
-));
+export default ForwardedOption;

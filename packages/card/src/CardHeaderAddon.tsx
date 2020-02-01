@@ -6,8 +6,8 @@ import { bem } from "@react-md/utils";
 const block = bem("rmd-card");
 
 /**
- * This component is used to dynamically add addons to the `CardHeader` component.
- * When no children are provided, nothing will be rendered.
+ * This component is used to dynamically add addons to the `CardHeader`
+ * component. When no children are provided, nothing will be rendered.
  *
  * @private
  */

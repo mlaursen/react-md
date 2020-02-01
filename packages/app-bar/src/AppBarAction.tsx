@@ -1,6 +1,5 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef, Ref, ReactElement } from "react";
 import { Button, ButtonProps } from "@react-md/button";
-import { WithForwardedRef } from "@react-md/utils";
 
 import useActionClassName, {
   AppBarActionClassNameProps,
@@ -10,59 +9,48 @@ export interface AppBarActionProps
   extends ButtonProps,
     AppBarActionClassNameProps {}
 
-type WithRef = WithForwardedRef<HTMLButtonElement>;
-type DefaultProps = Required<
-  Pick<AppBarActionProps, "first" | "last" | "buttonType" | "theme">
->;
-type WithDefaultProps = AppBarActionProps & DefaultProps & WithRef;
-
 /**
- * This component is really just a simple wrapper for the `Button` component that adds a few
- * additional styles to prevent the button from shrinking when an `AppBar` has a lot of content.
- * It also will automatically add spacing either before or after this button when the `first`
- * or `last` props are provided.
+ * This component is really just a simple wrapper for the `Button` component
+ * that adds a few additional styles to prevent the button from shrinking when
+ * an `AppBar` has a lot of content.  It also will automatically add spacing
+ * either before or after this button when the `first` or `last` props are
+ * provided.
  */
-const AppBarAction: FC<AppBarActionProps & WithRef> = providedProps => {
-  const {
+function AppBarAction(
+  {
     className,
-    first,
-    last,
+    first = false,
+    last = false,
     children,
-    forwardedRef,
     inheritColor,
+    buttonType = "icon",
+    theme = "clear",
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: AppBarActionProps,
+  ref?: Ref<HTMLButtonElement>
+): ReactElement {
   return (
     <Button
       {...props}
-      ref={forwardedRef}
+      buttonType={buttonType}
+      theme={theme}
+      ref={ref}
       className={useActionClassName({ first, last, inheritColor, className })}
     >
       {children}
     </Button>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  first: false,
-  last: false,
-  buttonType: "icon",
-  theme: "clear",
-};
-
-AppBarAction.defaultProps = defaultProps;
+const ForwardedAppBarAction = forwardRef<HTMLButtonElement, AppBarActionProps>(
+  AppBarAction
+);
 
 if (process.env.NODE_ENV !== "production") {
-  AppBarAction.displayName = "AppBarAction";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    AppBarAction.propTypes = {
+    ForwardedAppBarAction.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
       first: PropTypes.bool,
@@ -75,10 +63,9 @@ if (process.env.NODE_ENV !== "production") {
         "error",
         "clear",
       ]),
+      inheritColor: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLButtonElement, AppBarActionProps>(
-  (props, ref) => <AppBarAction {...props} forwardedRef={ref} />
-);
+export default ForwardedAppBarAction;

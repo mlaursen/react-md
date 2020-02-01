@@ -2,8 +2,8 @@ import { MutableRefObject, useEffect } from "react";
 import ResizeObserverPolyfill from "resize-observer-polyfill";
 
 /**
- * A function that will return the resize observer target element. This
- * should return an HTMLElement or null.
+ * A function that will return the resize observer target element. This should
+ * return an HTMLElement or null.
  */
 type GetTarget<E extends HTMLElement = HTMLElement> = () => E | null;
 
@@ -13,6 +13,7 @@ type RefTarget<
 
 /**
  * The target element for the resize obsever. This can be one of:
+ *
  * - null
  * - HTMLElement
  * - a document.querySelector string
@@ -132,8 +133,9 @@ export interface ObservedResizeData extends ElementSize {
 }
 
 /**
- * A type that can be used to strongly type a callback function for a resize observe
- * onResize function. It's really just a wrapper for the main `ObserverableResizeEvent`
+ * A type that can be used to strongly type a callback function for a resize
+ * observe onResize function. It's really just a wrapper for the main
+ * `ObserverableResizeEvent`
  */
 export type ObservedResizeEventHandler = (event: ObservedResizeData) => void;
 

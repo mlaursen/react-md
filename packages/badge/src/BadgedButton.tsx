@@ -1,8 +1,13 @@
-import React, { CSSProperties, FC, forwardRef, ReactNode, Ref } from "react";
+import React, {
+  CSSProperties,
+  forwardRef,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
-import { WithForwardedRef } from "@react-md/utils";
 
 import Badge, { BadgeProps, BadgeTheme } from "./Badge";
 import isEmpty from "./isEmpty";
@@ -19,14 +24,14 @@ export interface BadgedButtonProps
 
   /**
    * An optional id for the badge. Either this prop or the `id` prop is required
-   * for a11y when the `badgeChildren` is provided` to create the `aria-describedby`
-   * value on the button.
+   * for a11y when the `badgeChildren` is provided` to create the
+   * `aria-describedby` value on the button.
    */
   badgeId?: string;
 
   /**
-   * An optional ref for the badge. The main `ref` will be forwarded to the `button`
-   * element.
+   * An optional ref for the badge. The main `ref` will be forwarded to the
+   * `button` element.
    */
   badgeRef?: Ref<HTMLSpanElement>;
 
@@ -36,8 +41,8 @@ export interface BadgedButtonProps
   badgeTheme?: BadgeTheme;
 
   /**
-   * An optional style to apply to the badge since the `style` prop is passed down
-   * to the `Button` component instead.
+   * An optional style to apply to the badge since the `style` prop is passed
+   * down to the `Button` component instead.
    */
   badgeStyle?: CSSProperties;
 
@@ -48,40 +53,35 @@ export interface BadgedButtonProps
   badgeClassName?: string;
 
   /**
-   * The content to display within the button since the `children` prop is passed
-   * down to the `Badge` component instead.
+   * The content to display within the button since the `children` prop is
+   * passed down to the `Badge` component instead.
    */
   buttonChildren?: ReactNode;
 }
 
-type WithRef = WithForwardedRef<HTMLButtonElement>;
-type DefaultProps = Required<
-  Pick<
-    BadgedButtonProps,
-    "aria-label" | "buttonType" | "children" | "disableNullOnZero"
-  >
->;
-type WithDefaultProps = BadgedButtonProps & DefaultProps & WithRef;
-
 /**
- * This is a small wrapper for the `Button` component that will automatically apply the
- * `aria-describedby` attribute when it has been "badged". It also adds some reasonable
- * defaults for the most common use-case for badges: notifications.
+ * This is a small wrapper for the `Button` component that will automatically
+ * apply the `aria-describedby` attribute when it has been "badged". It also
+ * adds some reasonable defaults for the most common use-case for badges:
+ * notifications.
  */
-const BadgedButton: FC<BadgedButtonProps & WithRef> = providedProps => {
-  const {
+function BadgedButton(
+  {
+    "aria-label": ariaLabel = "Notifications",
     badgeStyle,
     badgeClassName,
     badgeRef,
     badgeId: propBadgeId,
     buttonChildren: propButtonChildren,
+    buttonType = "icon",
     badgeTheme,
-    forwardedRef,
-    children,
-    disableNullOnZero,
+    children = null,
+    disableNullOnZero = false,
     "aria-describedby": propDescribedBy,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: BadgedButtonProps,
+  ref?: Ref<HTMLButtonElement>
+): ReactElement {
   const { id } = props;
   const buttonChildren = useIcon("notification", propButtonChildren);
 
@@ -96,7 +96,13 @@ const BadgedButton: FC<BadgedButtonProps & WithRef> = providedProps => {
   }
 
   return (
-    <Button {...props} ref={forwardedRef} aria-describedby={describedBy}>
+    <Button
+      {...props}
+      aria-label={ariaLabel}
+      aria-describedby={describedBy}
+      ref={ref}
+      buttonType={buttonType}
+    >
       {buttonChildren}
       <Badge
         id={badgeId}
@@ -110,27 +116,17 @@ const BadgedButton: FC<BadgedButtonProps & WithRef> = providedProps => {
       </Badge>
     </Button>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  "aria-label": "Notifications",
-  buttonType: "icon",
-  children: null,
-  disableNullOnZero: false,
-};
-
-BadgedButton.defaultProps = defaultProps;
+const ForwardedBadgedButton = forwardRef<HTMLButtonElement, BadgedButtonProps>(
+  BadgedButton
+);
 
 if (process.env.NODE_ENV !== "production") {
-  BadgedButton.displayName = "BadgedButton";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    BadgedButton.propTypes = {
+    ForwardedBadgedButton.propTypes = {
       id: PropTypes.string,
       "aria-label": PropTypes.string,
       buttonType: PropTypes.oneOf(["text", "icon"]),
@@ -143,9 +139,7 @@ if (process.env.NODE_ENV !== "production") {
       badgeTheme: PropTypes.oneOf(["primary", "secondary", "default", "clear"]),
       buttonChildren: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLButtonElement, BadgedButtonProps>(
-  (props, ref) => <BadgedButton {...props} forwardedRef={ref} />
-);
+export default ForwardedBadgedButton;

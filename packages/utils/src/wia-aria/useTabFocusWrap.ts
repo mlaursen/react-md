@@ -10,12 +10,12 @@ interface Options<E extends HTMLElement> {
 }
 
 /**
- * Creates an `onKeyDown` event handler to trap keyboard focus within a container
- * element.
+ * Creates an `onKeyDown` event handler to trap keyboard focus within a
+ * container element.
  *
  * @param options All the options for handling tab focus wrapping.
- * @return The kedown event handler to enforce focus wrapping or the onKeyDown prop
- * if this functionality is disabled.
+ * @return The kedown event handler to enforce focus wrapping or the onKeyDown
+ * prop if this functionality is disabled.
  */
 export default function useTabFocusWrap<E extends HTMLElement>({
   disabled = false,

@@ -15,14 +15,16 @@ import { useRefCache } from "@react-md/utils";
 
 export interface CollapseOptions {
   /**
-   * Boolean if currently collapsed. When this prop changes, the collapse transition will begin.
+   * Boolean if currently collapsed. When this prop changes, the collapse
+   * transition will begin.
    */
   collapsed: boolean;
 
   /**
-   * An optional style to apply. This will be merged with the required animation styles of
-   * `min-height`, `padding-top`, and `padding-bottom`. If the `style` prop defines any of these
-   * values, they will be used instead of this component's computed values.
+   * An optional style to apply. This will be merged with the required animation
+   * styles of `min-height`, `padding-top`, and `padding-bottom`. If the `style`
+   * prop defines any of these values, they will be used instead of this
+   * component's computed values.
    */
   style?: CSSProperties;
 
@@ -32,12 +34,13 @@ export interface CollapseOptions {
   className?: string;
 
   /**
-   * An optional min height to set for the collapsing element. If this is set to `0`,
-   * the `children` will be removed from the DOM once the collapsing animation has finished.
+   * An optional min height to set for the collapsing element. If this is set to
+   * `0`, the `children` will be removed from the DOM once the collapsing
+   * animation has finished.
    *
-   * Note: the height will include the padding props. So if you want the collapse to be
-   * `50px` by default and 20px padding, you would want to set the `minHeight` to `90px`.
-   * So you want to use this formula:
+   * Note: the height will include the padding props. So if you want the
+   * collapse to be `50px` by default and 20px padding, you would want to set
+   * the `minHeight` to `90px`.  So you want to use this formula:
    *
    * ```ts
    * const desiredHeight = minHeight + minPaddingBottom + minPaddingTop;
@@ -46,53 +49,56 @@ export interface CollapseOptions {
   minHeight?: number | string;
 
   /**
-   * The min padding bottom to apply to the collapse. This will be used with the `minHeight`
-   * and `minPaddingTop` props to set the collapsed size.
+   * The min padding bottom to apply to the collapse. This will be used with the
+   * `minHeight` and `minPaddingTop` props to set the collapsed size.
    */
   minPaddingBottom?: number | string;
 
   /**
-   * The min padding top to apply to the collapse. This will be used with the `minHeight`
-   * and `minPaddingBottom` props to set the collapsed size.
+   * The min padding top to apply to the collapse. This will be used with the
+   * `minHeight` and `minPaddingBottom` props to set the collapsed size.
    */
   minPaddingTop?: number | string;
 
   /**
-   * The duration for the entire enter animation in milliseconds. This should normally stay as
-   * the default value of `250ms`, but can be updated to be any value if you feel there should
-   * be a longer animation time based on content size.
+   * The duration for the entire enter animation in milliseconds. This should
+   * normally stay as the default value of `250ms`, but can be updated to be any
+   * value if you feel there should be a longer animation time based on content
+   * size.
    */
   enterDuration?: number;
 
   /**
-   * The duration for the entire leave animation in milliseconds. This should normally stay at
-   * the default value of `200ms`, but can be updated to be any value if you feel there should be
-   * a longer animation time based on content size.
+   * The duration for the entire leave animation in milliseconds. This should
+   * normally stay at the default value of `200ms`, but can be updated to be any
+   * value if you feel there should be a longer animation time based on content
+   * size.
    */
   leaveDuration?: number;
 
   /**
-   * Boolean if the children should be removed from the DOM when collapsed. When this prop is
-   * `undefined`, it will remove the collapsed children only when the `minHeight`,
-   * `minPaddingBottom`, and `minPaddingTop` values are set to `0`.
+   * Boolean if the children should be removed from the DOM when collapsed. When
+   * this prop is `undefined`, it will remove the collapsed children only when
+   * the `minHeight`, `minPaddingBottom`, and `minPaddingTop` values are set to
+   * `0`.
    */
   isEmptyCollapsed?: boolean;
 
   /**
-   * An optional function to call when the "expanding" animation has finished when the `collapsed`
-   * prop is changed from `true` to `false`.
+   * An optional function to call when the "expanding" animation has finished
+   * when the `collapsed` prop is changed from `true` to `false`.
    */
   onExpanded?: () => void;
 
   /**
-   * An optional function to call when the "collapsing" animation has finished when the `collapsed`
-   * prop is changed from `false` to `true`.
+   * An optional function to call when the "collapsing" animation has finished
+   * when the `collapsed` prop is changed from `false` to `true`.
    */
   onCollapsed?: () => void;
 
   /**
-   * Boolean if the transition should be disabled and just immediately switch to the collapsed
-   * or full size.
+   * Boolean if the transition should be disabled and just immediately switch to
+   * the collapsed or full size.
    */
   disabled?: boolean;
 }
@@ -134,8 +140,8 @@ interface CollapseStateWithSetter extends CollapseState {
 }
 
 /**
- * This is a small hook that should only be used internally for creating
- * the collapse state.
+ * This is a small hook that should only be used internally for creating the
+ * collapse state.
  *
  * @private
  */
@@ -210,10 +216,10 @@ interface CollapseSizing {
 }
 
 /**
- * A small util that will find the max-height, padding-top, and padding-bottom for
- * the provided element. This is really used to be able to transition the max-height
- * value since `max-height: auto` does not transition. The only way to get transition
- * is to change max-height values manually.
+ * A small util that will find the max-height, padding-top, and padding-bottom
+ * for the provided element. This is really used to be able to transition the
+ * max-height value since `max-height: auto` does not transition. The only way
+ * to get transition is to change max-height values manually.
  *
  * @private
  */
@@ -224,8 +230,8 @@ export function getElementSizing(element: HTMLElement | null): CollapseSizing {
   if (element) {
     maxHeight = element.scrollHeight;
 
-    // clone the element (not deep) just to figure out it's padding without the inline
-    // styles applied
+    // clone the element (not deep) just to figure out it's padding without the
+    // inline styles applied
     const cloned = element.cloneNode(false) as HTMLElement;
     cloned.style.padding = "";
     cloned.style.paddingLeft = element.style.paddingLeft;
@@ -257,8 +263,8 @@ interface TransitionStyleOptions {
 }
 
 /**
- * A small util that will merge and create all the styles required for the current
- * transition.
+ * A small util that will merge and create all the styles required for the
+ * current transition.
  *
  * @private
  */
@@ -296,14 +302,14 @@ interface CollapseTransitionResult<E extends HTMLElement> {
 }
 
 /**
- * Creates a collapse transition that will animate between expanded and collapsed
- * states.
+ * Creates a collapse transition that will animate between expanded and
+ * collapsed states.
  *
- * NOTE: The collapse transition will only work when the element's ref returns
- * a valid HTMLElemement/DOM Node since the transition requires checking the
- * sizing and styles of an element. If you created a custom component, you *must*
- * use a `forwardRef` to pass the ref down to the DOM element used for sizing
- * for the correct transition styles.
+ * NOTE: The collapse transition will only work when the element's ref returns a
+ * valid HTMLElemement/DOM Node since the transition requires checking the
+ * sizing and styles of an element. If you created a custom component, you
+ * *must* use a `forwardRef` to pass the ref down to the DOM element used for
+ * sizing for the correct transition styles.
  */
 export function useCollapseTransition<E extends HTMLElement>(
   options: CollapseOptions
@@ -447,15 +453,14 @@ export function useCollapseTransition<E extends HTMLElement>(
 }
 
 /**
- * This hook is used to inject the required collapse transition props into
- * a single HTMLElement.
+ * This hook is used to inject the required collapse transition props into a
+ * single HTMLElement.
  *
- * NOTE: The collapse transition will only work when the element's ref returns
- * a valid HTMLElemement/DOM Node since the transition requires checking the
- * sizing and styles of an element. If you created a custom component, you *must*
- * use a `forwardRef` to pass the ref down to the DOM element used for sizing
- * for the correct transition styles.
- *
+ * NOTE: The collapse transition will only work when the element's ref returns a
+ * valid HTMLElemement/DOM Node since the transition requires checking the
+ * sizing and styles of an element. If you created a custom component, you
+ * *must* use a `forwardRef` to pass the ref down to the DOM element used for
+ * sizing for the correct transition styles.
  */
 export function useCollapsibleElement(
   element: ReactElement,

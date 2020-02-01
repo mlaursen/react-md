@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, ReactNode } from "react";
+import React, { forwardRef, ReactElement, ReactNode, Ref } from "react";
 import cn from "classnames";
 import {
   AppBarActionClassNameProps,
@@ -6,7 +6,7 @@ import {
 } from "@react-md/app-bar";
 import { Button, ButtonProps } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import ToggleChildren from "./ToggleChildren";
 
@@ -20,48 +20,37 @@ export interface MenuButtonProps
   id: string;
 
   /**
-   * Boolean if the menu is currently visible. This is requied for `a11y` as it will
-   * automatically set the `"aria-expanded"` prop to the correct value when needed.
+   * Boolean if the menu is currently visible. This is requied for `a11y` as it
+   * will automatically set the `"aria-expanded"` prop to the correct value when
+   * needed.
    */
   visible: boolean;
 
   /**
-   * This should probably be left at the default of `"menu"`, but can also be a true string.
-   * This is required for menu a11y.
+   * This should probably be left at the default of `"menu"`, but can also be a
+   * true string.  This is required for menu a11y.
    */
   "aria-haspopup"?: "menu" | "true" | true;
 
   /**
-   * The icon to show after the children in the button when the `buttonType` is not
-   * set to `"icon"`.
+   * The icon to show after the children in the button when the `buttonType` is
+   * not set to `"icon"`.
    */
   dropdownIcon?: ReactNode;
 
   /**
-   * Boolean if the dropdown icon should be removed from the button. The icon will always
-   * be removed for icon buttons.
+   * Boolean if the dropdown icon should be removed from the button. The icon
+   * will always be removed for icon buttons.
    */
   disableDropdownIcon?: boolean;
 
   /**
-   * Boolean if the menu button should be rendered as an `AppBarAction` button instead of a default
-   * button. This will also be considered `true` if the `first`, `last`, or `inheritColor` props are
-   * `true`.
+   * Boolean if the menu button should be rendered as an `AppBarAction` button
+   * instead of a default button. This will also be considered `true` if the
+   * `first`, `last`, or `inheritColor` props are `true`.
    */
   asAppBarAction?: boolean;
 }
-
-type WithRef = WithForwardedRef<HTMLButtonElement>;
-type DefaultProps = Required<
-  Pick<
-    MenuButtonProps,
-    | "aria-haspopup"
-    | "disableDropdownIcon"
-    | "first"
-    | "last"
-    | "asAppBarAction"
-  >
->;
 
 const block = bem("rmd-menu-button");
 
@@ -70,27 +59,31 @@ const block = bem("rmd-menu-button");
  * - apply the required a11y prosp for a menu button
  * - dynamically add a dropdown icon after the button contents
  */
-const MenuButton: FC<MenuButtonProps & WithRef> = ({
-  className,
-  visible,
-  children,
-  forwardedRef,
-  dropdownIcon: propDropdownIcon,
-  disableDropdownIcon,
-  first,
-  last,
-  inheritColor,
-  asAppBarAction,
-  ...props
-}) => {
+function MenuButton(
+  {
+    "aria-haspopup": ariaHasPopup = "menu",
+    className,
+    visible,
+    children,
+    dropdownIcon: propDropdownIcon,
+    disableDropdownIcon = false,
+    first = false,
+    last = false,
+    inheritColor,
+    asAppBarAction = false,
+    ...props
+  }: MenuButtonProps,
+  ref?: Ref<HTMLButtonElement>
+): ReactElement {
   const { buttonType } = props;
   const dropdownIcon = useIcon("dropdown", propDropdownIcon);
   const actionClassName = useActionClassName({ first, last, inheritColor });
   return (
     <Button
       {...props}
+      ref={ref}
+      aria-haspopup={ariaHasPopup}
       aria-expanded={visible ? "true" : undefined}
-      ref={forwardedRef}
       className={cn(
         block(),
         {
@@ -108,28 +101,16 @@ const MenuButton: FC<MenuButtonProps & WithRef> = ({
       </ToggleChildren>
     </Button>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  "aria-haspopup": "menu",
-  disableDropdownIcon: false,
-  first: false,
-  last: false,
-  asAppBarAction: false,
-};
-
-MenuButton.defaultProps = defaultProps;
+const ForwardedMenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
+  MenuButton
+);
 
 if (process.env.NODE_ENV !== "production") {
-  MenuButton.displayName = "MenuButton";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
-
-  if (PropTypes) {
-    MenuButton.propTypes = {
+    const PropTypes = require("prop-types");
+    ForwardedMenuButton.propTypes = {
       "aria-haspopup": PropTypes.oneOf(["menu", "true", true]),
       id: PropTypes.string.isRequired,
       visible: PropTypes.bool.isRequired,
@@ -140,13 +121,10 @@ if (process.env.NODE_ENV !== "production") {
       buttonType: PropTypes.oneOf(["text", "icon"]),
       first: PropTypes.bool,
       last: PropTypes.bool,
-      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       inheritColor: PropTypes.bool,
       asAppBarAction: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLButtonElement, MenuButtonProps>((props, ref) => (
-  <MenuButton {...props} forwardedRef={ref} />
-));
+export default ForwardedMenuButton;

@@ -3,8 +3,8 @@ import { QuerySize } from "./constants";
 import useMediaQuery from "./useMediaQuery";
 
 /**
- * This is a small helper that will create a media query block based on the provided
- * width value.
+ * This is a small helper that will create a media query block based on the
+ * provided width value.
  */
 export const toWidthPart = (
   v: QuerySize | undefined,

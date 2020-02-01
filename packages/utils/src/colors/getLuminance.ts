@@ -5,8 +5,8 @@ const GREEN_MULTIPLIER = 0.7152;
 const BLUE_MULTIPLIER = 0.0722;
 
 /**
- * I really couldn't figure out how to name these "magic" numbers since the formula doesn't really
- * describe it much:
+ * I really couldn't figure out how to name these "magic" numbers since the
+ * formula doesn't really describe it much:
  *
  * @see https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
  * @private

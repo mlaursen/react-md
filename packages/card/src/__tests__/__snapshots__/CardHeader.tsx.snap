@@ -3,7 +3,7 @@
 exports[`CardHeader should dynamically render content before and after the children 1`] = `
 <div>
   <header
-    class="rmd-card__header rmd-card__header--align"
+    class="rmd-card__header rmd-card__header--center"
   >
     <span
       class="rmd-card__header-addon rmd-icon--before"
@@ -26,7 +26,7 @@ exports[`CardHeader should dynamically render content before and after the child
 exports[`CardHeader should dynamically render content before and after the children 2`] = `
 <div>
   <header
-    class="rmd-card__header rmd-card__header--align"
+    class="rmd-card__header rmd-card__header--center"
   >
     <span
       class="rmd-card__header-content"
@@ -49,7 +49,7 @@ exports[`CardHeader should dynamically render content before and after the child
 exports[`CardHeader should dynamically render content before and after the children 3`] = `
 <div>
   <header
-    class="rmd-card__header rmd-card__header--align"
+    class="rmd-card__header rmd-card__header--center"
   >
     <span
       class="rmd-card__header-addon rmd-icon--before"
@@ -79,7 +79,7 @@ exports[`CardHeader should dynamically render content before and after the child
 exports[`CardHeader should render correctly 1`] = `
 <div>
   <header
-    class="rmd-card__header rmd-card__header--align"
+    class="rmd-card__header rmd-card__header--center"
   >
     <span
       class="rmd-card__header-content"
@@ -95,7 +95,7 @@ exports[`CardHeader should render correctly 1`] = `
 exports[`CardHeader should render correctly 2`] = `
 <div>
   <header
-    class="rmd-card__header rmd-card__header--align"
+    class="rmd-card__header rmd-card__header--top"
   >
     <span
       class="rmd-card__header-content"
@@ -111,7 +111,7 @@ exports[`CardHeader should render correctly 2`] = `
 exports[`CardHeader should render correctly 3`] = `
 <div>
   <header
-    class="rmd-card__header rmd-card__header--align"
+    class="rmd-card__header rmd-card__header--center"
   >
     <span
       class="rmd-card__header-content"
@@ -127,7 +127,7 @@ exports[`CardHeader should render correctly 3`] = `
 exports[`CardHeader should render correctly 4`] = `
 <div>
   <header
-    class="rmd-card__header rmd-card__header--align"
+    class="rmd-card__header rmd-card__header--bottom"
   >
     <span
       class="rmd-card__header-content"
@@ -159,7 +159,7 @@ exports[`CardHeader should render correctly 5`] = `
 exports[`CardHeader should render correctly 6`] = `
 <div>
   <header
-    class="rmd-card__header rmd-card__header--align custom-class-name"
+    class="rmd-card__header rmd-card__header--center custom-class-name"
   >
     <span
       class="rmd-card__header-content content-class-name"

@@ -1,19 +1,18 @@
 import { createContext, useContext } from "react";
 
-// interfaces that are "public" should be the full word `Configuration`
-// while the private/internal should just be `Config`. "Great" naming
-// convention!
+// interfaces that are "public" should be the full word `Configuration` while
+// the private/internal should just be `Config`. "Great" naming convention!
 
 export interface TableRowConfiguration {
   /**
-   * Boolean if the rows should no longer applied a different background
-   * color when hovered.
+   * Boolean if the rows should no longer applied a different background color
+   * when hovered.
    */
   disableHover?: boolean;
 
   /**
-   * Boolean if the table should no longer have a border-bottom applied
-   * to each row within the `<tbody>`.
+   * Boolean if the table should no longer have a border-bottom applied to each
+   * row within the `<tbody>`.
    */
   disableBorders?: boolean;
 }
@@ -44,8 +43,8 @@ export interface TableCellConfiguration {
    * is disabled by default since you _normally_ don't want line wrapping in
    * tables unless it provides additional descriptions or other content.
    *
-   * If this is set to the string `"padded"`, line wrapping will be enabled along
-   * with adding some additional vertical padding to each cell.
+   * If this is set to the string `"padded"`, line wrapping will be enabled
+   * along with adding some additional vertical padding to each cell.
    */
   lineWrap?: boolean | "padded";
 }
@@ -101,9 +100,9 @@ const context = createContext<TableConfigContext>({
 });
 
 /**
- * An internal hook for getting the current table configuration in child components
- * for the table. This will use the inherited table configuration context if the
- * prop value is `undefined`.
+ * An internal hook for getting the current table configuration in child
+ * components for the table. This will use the inherited table configuration
+ * context if the prop value is `undefined`.
  *
  * @private
  */

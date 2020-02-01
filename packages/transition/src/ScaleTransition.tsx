@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import CSSTransition, {
   CSSTransitionClassNames,
 } from "react-transition-group/CSSTransition";
@@ -38,14 +38,15 @@ export interface ScaleTransitionProps
   extends OverridableCSSTransitionProps,
     RenderConditionalPortalProps {
   /**
-   * Boolean if the vertical scale animation should be used instead of the normal
-   * scale animation.
+   * Boolean if the vertical scale animation should be used instead of the
+   * normal scale animation.
    */
   vertical?: boolean;
 
   /**
-   * Boolean if the animation should be triggered. Enabling this will trigger the appear/enter
-   * animations while disabling it will trigger the exit animation.
+   * Boolean if the animation should be triggered. Enabling this will trigger
+   * the appear/enter animations while disabling it will trigger the exit
+   * animation.
    */
   visible: boolean;
 
@@ -55,35 +56,30 @@ export interface ScaleTransitionProps
   children?: ReactNode;
 }
 
-type DefaultProps = Required<
-  Pick<
-    ScaleTransitionProps,
-    "timeout" | "mountOnEnter" | "unmountOnExit" | "portal"
-  >
->;
-type WithDefaultProps = ScaleTransitionProps & DefaultProps;
-
 /**
- * This `ScaleTransition` component is used to trigger an animation that switches between an
- * opacity of `0` and `1` and using a `transform: scale(0)` to `transform: scale(1)`. It is
- * recommended to also manually apply a `transform-origin` style or use the `useFixedPositioning`
- * hook to generate for you so that the animation starts from a specific point.
+ * This `ScaleTransition` component is used to trigger an animation that
+ * switches between an opacity of `0` and `1` and using a `transform: scale(0)`
+ * to `transform: scale(1)`. It is recommended to also manually apply a
+ * `transform-origin` style or use the `useFixedPositioning` hook to generate
+ * for you so that the animation starts from a specific point.
  *
- * Since the default scale animation is X and Y, you can enable the `vertical` prop which will
- * update the transition to use `transform: scaleY(0)` to `transform: scaleY(1)` instead.
+ * Since the default scale animation is X and Y, you can enable the `vertical`
+ * prop which will update the transition to use `transform: scaleY(0)` to
+ * `transform: scaleY(1)` instead.
  */
-const ScaleTransition: FC<ScaleTransitionProps> = providedProps => {
-  const {
-    visible,
-    children,
-    classNames: propClassNames,
-    vertical,
-    portal,
-    portalInto,
-    portalIntoId,
-    ...props
-  } = providedProps as WithDefaultProps;
-
+function ScaleTransition({
+  visible,
+  children,
+  classNames: propClassNames,
+  vertical,
+  timeout = SCALE_TIMEOUT,
+  portal = false,
+  portalInto,
+  portalIntoId,
+  mountOnEnter = true,
+  unmountOnExit = true,
+  ...props
+}: ScaleTransitionProps): ReactElement {
   let classNames = propClassNames;
   if (!classNames) {
     classNames = vertical ? SCALE_Y_CLASSNAMES : SCALE_CLASSNAMES;
@@ -95,29 +91,24 @@ const ScaleTransition: FC<ScaleTransitionProps> = providedProps => {
       portalInto={portalInto}
       portalIntoId={portalIntoId}
     >
-      <CSSTransition {...props} in={visible} classNames={classNames}>
+      <CSSTransition
+        {...props}
+        in={visible}
+        timeout={timeout}
+        classNames={classNames}
+        mountOnEnter={mountOnEnter}
+        unmountOnExit={unmountOnExit}
+      >
         {children}
       </CSSTransition>
     </ConditionalPortal>
   );
-};
-
-const defaultProps: DefaultProps = {
-  portal: false,
-  mountOnEnter: true,
-  unmountOnExit: true,
-  timeout: SCALE_TIMEOUT,
-};
-
-ScaleTransition.defaultProps = defaultProps;
+}
 
 if (process.env.NODE_ENV !== "production") {
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
     ScaleTransition.propTypes = {
       portal: PropTypes.bool,
       portalInto: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -148,7 +139,7 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
 export default ScaleTransition;

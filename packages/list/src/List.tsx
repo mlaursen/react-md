@@ -1,13 +1,14 @@
-import React, { createElement, FC, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import { bem } from "@react-md/utils";
 
 export type ListElement = HTMLUListElement | HTMLOListElement;
 export interface ListProps extends HTMLAttributes<ListElement> {
   /**
-   * The role is set to `"none"` by default for lists screen readers annouce lists
-   * differently than other elements on the page. Since the major use-case for lists
-   * is to contain clickable items, setting this to `"none"` fixes this issue.
+   * The role is set to `"none"` by default for lists screen readers annouce
+   * lists differently than other elements on the page. Since the major use-case
+   * for lists is to contain clickable items, setting this to `"none"` fixes
+   * this issue.
    */
   role?: HTMLAttributes<ListElement>["role"];
 
@@ -17,8 +18,8 @@ export interface ListProps extends HTMLAttributes<ListElement> {
   dense?: boolean;
 
   /**
-   * Boolean if the list's order is important. This will update the list to be rendered as
-   * an `<ol>` instead of `<ul>`.
+   * Boolean if the list's order is important. This will update the list to be
+   * rendered as an `<ol>` instead of `<ul>`.
    */
   ordered?: boolean;
 
@@ -28,66 +29,50 @@ export interface ListProps extends HTMLAttributes<ListElement> {
   horizontal?: boolean;
 }
 
-type WithRef = WithForwardedRef<ListElement>;
-type DefaultProps = Required<
-  Pick<ListProps, "dense" | "ordered" | "horizontal" | "role">
->;
-type WithDefaultProps = ListProps & DefaultProps & WithRef;
-
 const block = bem("rmd-list");
 
 /**
  * Creates an unordered or ordered list.
  */
-const List: FC<ListProps & WithRef> = providedProps => {
-  const {
-    dense,
-    horizontal,
-    ordered,
-    forwardedRef,
+function List(
+  {
+    role = "none",
+    dense = false,
+    horizontal = false,
+    ordered = false,
     className,
     children,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: ListProps,
+  ref?: Ref<ListElement>
+): ReactElement {
+  const Component = (ordered ? "ol" : "ul") as "ul";
 
-  return createElement(
-    ordered ? "ol" : "ul",
-    {
-      ...props,
-      ref: forwardedRef,
-      className: cn(block({ dense, horizontal }), className),
-    },
-    children
+  return (
+    <Component
+      {...props}
+      ref={ref}
+      role={role}
+      className={cn(block({ dense, horizontal }), className)}
+    >
+      {children}
+    </Component>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  role: "none",
-  dense: false,
-  horizontal: false,
-  ordered: false,
-};
-
-List.defaultProps = defaultProps;
+const ForwardedList = forwardRef<ListElement, ListProps>(List);
 
 if (process.env.NODE_ENV !== "production") {
-  List.displayName = "List";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    List.propTypes = {
+    ForwardedList.propTypes = {
       role: PropTypes.string,
       dense: PropTypes.bool,
       horizontal: PropTypes.bool,
       ordered: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<ListElement, ListProps>((props, ref) => (
-  <List {...props} forwardedRef={ref} />
-));
+export default ForwardedList;

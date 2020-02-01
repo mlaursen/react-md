@@ -1,30 +1,34 @@
-import React, { FC, forwardRef, HTMLAttributes, useMemo } from "react";
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  Ref,
+  useMemo,
+} from "react";
 import cn from "classnames";
-import { WithForwardedRef } from "@react-md/utils";
-
-import { TableConfigProvider, TableConfig, useTableConfig } from "./config";
+import { TableConfig, TableConfigProvider, useTableConfig } from "./config";
 
 export interface TableBodyProps
   extends HTMLAttributes<HTMLTableSectionElement>,
     Omit<TableConfig, "header"> {}
 
-type WithRef = WithForwardedRef<HTMLTableSectionElement>;
-
 /**
  * Creates a `<tbody>` element that also allows for overriding all the child
  * `TableCell` components with additional styling behavior.
  */
-const TableBody: FC<TableBodyProps & WithRef> = ({
-  className,
-  forwardedRef,
-  children,
-  hAlign: propHAlign,
-  vAlign: propVAlign,
-  lineWrap: propLineWrap,
-  disableHover: propDisableHover,
-  disableBorders: propDisableBorders,
-  ...props
-}) => {
+function TableBody(
+  {
+    className,
+    children,
+    hAlign: propHAlign,
+    vAlign: propVAlign,
+    lineWrap: propLineWrap,
+    disableHover: propDisableHover,
+    disableBorders: propDisableBorders,
+    ...props
+  }: TableBodyProps,
+  ref?: Ref<HTMLTableSectionElement>
+): ReactElement {
   // update the table configuration with the custom overrides for the `<thead>`
   const {
     hAlign,
@@ -54,30 +58,24 @@ const TableBody: FC<TableBodyProps & WithRef> = ({
 
   return (
     <TableConfigProvider value={configuration}>
-      <tbody
-        {...props}
-        ref={forwardedRef}
-        className={cn("rmd-tbody", className)}
-      >
+      <tbody {...props} ref={ref} className={cn("rmd-tbody", className)}>
         {children}
       </tbody>
     </TableConfigProvider>
   );
-};
+}
+
+const ForwardedTableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
+  TableBody
+);
 
 if (process.env.NODE_ENV !== "production") {
-  TableBody.displayName = "TableBody";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TableBody.propTypes = {
+    ForwardedTableBody.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
-      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       lineWrap: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.oneOf(["padded"]),
@@ -87,9 +85,7 @@ if (process.env.NODE_ENV !== "production") {
       disableHover: PropTypes.bool,
       disableBorders: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLTableSectionElement, TableBodyProps>(
-  (props, ref) => <TableBody {...props} forwardedRef={ref} />
-);
+export default ForwardedTableBody;

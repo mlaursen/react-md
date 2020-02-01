@@ -1,5 +1,10 @@
-import React, { FC, FormHTMLAttributes, forwardRef, useCallback } from "react";
-import { WithForwardedRef } from "@react-md/utils";
+import React, {
+  FormHTMLAttributes,
+  forwardRef,
+  ReactElement,
+  Ref,
+  useCallback,
+} from "react";
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   /**
@@ -8,24 +13,15 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   disablePreventDefault?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLFormElement>;
-type DefaultProps = Required<Pick<FormProps, "disablePreventDefault">>;
-type WithDefaultProps = FormProps & DefaultProps & WithRef;
-
 /**
  * This is probably one of the least useful components available as it doesn't
  * do much styling or logic. All this form component will do is add basic flex
  * behavior and prevent the default form submit behavior.
  */
-const Form: FC<FormProps & WithRef> = providedProps => {
-  const {
-    children,
-    forwardedRef,
-    disablePreventDefault,
-    onSubmit,
-    ...props
-  } = providedProps as WithDefaultProps;
-
+function Form(
+  { children, disablePreventDefault = false, onSubmit, ...props }: FormProps,
+  ref?: Ref<HTMLFormElement>
+): ReactElement {
   const handleOnSubmit = useCallback<React.FormEventHandler<HTMLFormElement>>(
     event => {
       if (!disablePreventDefault) {
@@ -40,33 +36,22 @@ const Form: FC<FormProps & WithRef> = providedProps => {
   );
 
   return (
-    <form {...props} onSubmit={handleOnSubmit} ref={forwardedRef}>
+    <form {...props} onSubmit={handleOnSubmit} ref={ref}>
       {children}
     </form>
   );
-};
-
-const defaultProps: DefaultProps = {
-  disablePreventDefault: false,
-};
-
-Form.defaultProps = defaultProps;
-
-if (process.env.NODE_ENV !== "production") {
-  Form.displayName = "Form";
-
-  let PropTypes = null;
-  try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
-
-  if (PropTypes) {
-    Form.propTypes = {
-      disablePreventDefault: PropTypes.bool,
-    };
-  }
 }
 
-export default forwardRef<HTMLFormElement, FormProps>((props, ref) => (
-  <Form {...props} forwardedRef={ref} />
-));
+const ForwardedForm = forwardRef<HTMLFormElement, FormProps>(Form);
+
+if (process.env.NODE_ENV !== "production") {
+  try {
+    const PropTypes = require("prop-types");
+
+    ForwardedForm.propTypes = {
+      disablePreventDefault: PropTypes.bool,
+    };
+  } catch (e) {}
+}
+
+export default ForwardedForm;

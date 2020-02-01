@@ -1,11 +1,11 @@
-import React, { FC, ReactElement } from "react";
+import React, { ReactElement } from "react";
 
-import Portal from "./Portal";
 import { PortalInto } from "./getContainer";
+import Portal from "./Portal";
 
 /**
- * If any of these props are defined on a component, the component will
- * render in a portal instead of the current tree.
+ * If any of these props are defined on a component, the component will render
+ * in a portal instead of the current tree.
  */
 export interface RenderConditionalPortalProps {
   /**
@@ -32,15 +32,16 @@ export interface ConditionalPortalProps extends RenderConditionalPortalProps {
 }
 
 /**
- * This is a very simple component that is used in other places within react-md to conditionally
- * render the children within a portal or not based on general portal config props.
+ * This is a very simple component that is used in other places within react-md
+ * to conditionally render the children within a portal or not based on general
+ * portal config props.
  */
-const ConditionalPortal: FC<ConditionalPortalProps> = ({
+function ConditionalPortal({
   portal,
   portalInto,
   portalIntoId,
   children,
-}) => {
+}: ConditionalPortalProps): ReactElement | null {
   if (!portal && !portalInto && !portalIntoId) {
     return children;
   }
@@ -50,15 +51,12 @@ const ConditionalPortal: FC<ConditionalPortalProps> = ({
       {children}
     </Portal>
   );
-};
+}
 
 if (process.env.NODE_ENV !== "production") {
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
     ConditionalPortal.propTypes = {
       portal: PropTypes.bool,
       portalInto: PropTypes.oneOfType([
@@ -69,7 +67,7 @@ if (process.env.NODE_ENV !== "production") {
       portalIntoId: PropTypes.string,
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
 export default ConditionalPortal;

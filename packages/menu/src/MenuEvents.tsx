@@ -1,4 +1,4 @@
-import { FC, MutableRefObject } from "react";
+import { MutableRefObject } from "react";
 import { usePreviousFocus, useFocusOnMount } from "@react-md/utils";
 
 export interface MenuEventsProps {
@@ -7,14 +7,16 @@ export interface MenuEventsProps {
 }
 
 /**
- * This is just a simple component that is used with the `Menu` component to handle the
- * initial focus on mount and re-focusing a previous element on unmount.
+ * This is just a simple component that is used with the `Menu` component to
+ * handle the initial focus on mount and re-focusing a previous element on
+ * unmount.
  * @private
  */
-const MenuEvents: FC<MenuEventsProps> = ({ menuRef, defaultFocus }) => {
+export default function MenuEvents({
+  menuRef,
+  defaultFocus,
+}: MenuEventsProps): null {
   usePreviousFocus(false);
   useFocusOnMount(menuRef, defaultFocus, true);
   return null;
-};
-
-export default MenuEvents;
+}

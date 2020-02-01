@@ -15,7 +15,7 @@ exports[`CardActions should render correctly 1`] = `
 exports[`CardActions should render correctly 2`] = `
 <div>
   <div
-    class="rmd-card__actions rmd-card__actions--align"
+    class="rmd-card__actions rmd-card__actions--start"
   >
     <div>
       Content
@@ -27,7 +27,7 @@ exports[`CardActions should render correctly 2`] = `
 exports[`CardActions should render correctly 3`] = `
 <div>
   <div
-    class="rmd-card__actions rmd-card__actions--align custom-class-name"
+    class="rmd-card__actions rmd-card__actions--center custom-class-name"
   >
     <div>
       Content

@@ -10,9 +10,9 @@ function applyCoords(coord: number | undefined): string {
  * position calculations are easier to do.
  *
  * @param element The element to get a rect for.
- * @param coords An optional object of coordinates to apply to the positioning styles.
- * This should be used when the coords might resize the element since it needs to
- * try to fit within the viewport.
+ * @param coords An optional object of coordinates to apply to the positioning
+ * styles. This should be used when the coords might resize the element since it
+ * needs to try to fit within the viewport.
  * @return either a DOMRect or ClientRect for the element
  * @private
  */

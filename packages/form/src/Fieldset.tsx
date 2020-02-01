@@ -1,18 +1,19 @@
 import React, {
   CSSProperties,
-  FC,
   FieldsetHTMLAttributes,
   forwardRef,
+  ReactElement,
   ReactNode,
+  Ref,
 } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface FieldsetProps
   extends FieldsetHTMLAttributes<HTMLFieldSetElement> {
   /**
-   * The legend to display. This is required since a fieldset loses most of its' benefit
-   * for accessibility without a legend.
+   * The legend to display. This is required since a fieldset loses most of its'
+   * benefit for accessibility without a legend.
    */
   legend: ReactNode;
 
@@ -27,19 +28,17 @@ export interface FieldsetProps
   legendClassName?: string;
 
   /**
-   * Boolean if the legend should only be styled to be visible for screen readers.
+   * Boolean if the legend should only be styled to be visible for screen
+   * readers.
    */
   legendSROnly?: boolean;
 
   /**
-   * Boolean if the fieldset should remove the default browser styles of margin, padding, and border.
+   * Boolean if the fieldset should remove the default browser styles of margin,
+   * padding, and border.
    */
   unstyled?: boolean;
 }
-
-type WithRef = WithForwardedRef<HTMLFieldSetElement>;
-type DefaultProps = Required<Pick<FieldsetProps, "unstyled" | "legendSROnly">>;
-type WithDefaultProps = FieldsetProps & DefaultProps & WithRef;
 
 const block = bem("rmd-fieldset");
 
@@ -48,23 +47,23 @@ const block = bem("rmd-fieldset");
  * the default styles of a border, padding, and margin and having a screen-reader
  * visible only legend element for added accessibility.
  */
-const Fieldset: FC<FieldsetProps & WithRef> = providedProps => {
-  const {
+function Fieldset(
+  {
     className,
-    forwardedRef,
-    unstyled,
     legend,
     legendStyle,
     legendClassName,
-    legendSROnly,
+    legendSROnly = false,
+    unstyled = true,
     children,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: FieldsetProps,
+  ref?: Ref<HTMLFieldSetElement>
+): ReactElement {
   return (
     <fieldset
       {...props}
-      ref={forwardedRef}
+      ref={ref}
       className={cn(block({ unstyled }), className)}
     >
       <legend
@@ -79,25 +78,17 @@ const Fieldset: FC<FieldsetProps & WithRef> = providedProps => {
       {children}
     </fieldset>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  unstyled: true,
-  legendSROnly: false,
-};
-
-Fieldset.defaultProps = defaultProps;
+const ForwardedFieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
+  Fieldset
+);
 
 if (process.env.NODE_ENV !== "production") {
-  Fieldset.displayName = "Fieldset";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Fieldset.propTypes = {
+    ForwardedFieldset.propTypes = {
       className: PropTypes.string,
       unstyled: PropTypes.bool,
       legend: PropTypes.node.isRequired,
@@ -105,9 +96,7 @@ if (process.env.NODE_ENV !== "production") {
       legendClassName: PropTypes.string,
       legendSROnly: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLFieldSetElement, FieldsetProps>((props, ref) => (
-  <Fieldset {...props} forwardedRef={ref} />
-));
+export default ForwardedFieldset;

@@ -1,49 +1,54 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
+import CSSTransition, {
+  CSSTransitionClassNames,
+} from "react-transition-group/CSSTransition";
 import { OverridableCSSTransitionProps } from "@react-md/transition";
-import { bem, WithForwardedRef } from "@react-md/utils";
-import CSSTransition from "react-transition-group/CSSTransition";
+import { bem } from "@react-md/utils";
 
 export interface TabPanelProps
   extends HTMLAttributes<HTMLDivElement>,
     OverridableCSSTransitionProps {
   /**
-   * The id for the tab panel. This is required for a11y but will automatically be provided
-   * by the `TabPanels` component by cloning the `id` in.
+   * The id for the tab panel. This is required for a11y but will automatically
+   * be provided by the `TabPanels` component by cloning the `id` in.
    */
   id?: string;
 
   /**
-   * An optional label to describe this tab panel. Either this or the `aria-labelledby`
-   * are required for a11y but the default implementation will use the `aria-labelledby`
-   * automatically.
+   * An optional label to describe this tab panel. Either this or the
+   * `aria-labelledby` are required for a11y but the default implementation will
+   * use the `aria-labelledby` automatically.
    */
   "aria-label"?: string;
 
   /**
-   * An optional id pointing to an element that describes this tab panel. Either this or
-   * the `aria-labelledby` are required for a11y but the default implementation will use
-   * the `aria-labelledby` automatically.
+   * An optional id pointing to an element that describes this tab panel. Either
+   * this or the `aria-labelledby` are required for a11y but the default
+   * implementation will use the `aria-labelledby` automatically.
    */
   "aria-labelledby"?: string;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<TabPanelProps, "timeout" | "classNames">>;
-type WithDefaultProps = TabPanelProps & DefaultProps & WithRef;
-
 const block = bem("rmd-tab-panel");
+const prefix = "rmd-tab-panel";
+
+const DEFAULT_TABPANEL_CLASSNAMES: CSSTransitionClassNames = {
+  enter: `${prefix}--enter`,
+  enterActive: `${prefix}--enter-active ${prefix}--animate`,
+  exit: `${prefix}--exit`,
+  exitActive: `${prefix}--exit-active ${prefix}--animate`,
+};
 
 /**
- * This component renders an accessible tab panel with enter and exit animations.
- * This probably should only be used internally as it relies on the `TabPanels`
- * component along with the `TransitionGroup` from `react-transition-group` to
- * work as expected.
+ * This component renders an accessible tab panel with enter and exit
+ * animations.  This probably should only be used internally as it relies on the
+ * `TabPanels` component along with the `TransitionGroup` from
+ * `react-transition-group` to work as expected.
  */
-const TabPanel: FC<TabPanelProps & WithRef> = providedProps => {
-  const {
+function TabPanel(
+  {
     className,
-    forwardedRef,
     in: transitionIn,
     appear,
     enter,
@@ -54,13 +59,14 @@ const TabPanel: FC<TabPanelProps & WithRef> = providedProps => {
     onExit,
     onExiting,
     onExited,
-    timeout,
-    classNames,
+    timeout = 150,
+    classNames = DEFAULT_TABPANEL_CLASSNAMES,
     children,
     hidden,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: TabPanelProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   return (
     <CSSTransition
       in={transitionIn && !hidden}
@@ -78,7 +84,7 @@ const TabPanel: FC<TabPanelProps & WithRef> = providedProps => {
     >
       <div
         {...props}
-        ref={forwardedRef}
+        ref={ref}
         role="tabpanel"
         hidden={hidden}
         className={cn(block(), className)}
@@ -87,31 +93,15 @@ const TabPanel: FC<TabPanelProps & WithRef> = providedProps => {
       </div>
     </CSSTransition>
   );
-};
+}
 
-const prefix = "rmd-tab-panel";
-const defaultProps: DefaultProps = {
-  timeout: 150,
-  classNames: {
-    enter: `${prefix}--enter`,
-    enterActive: `${prefix}--enter-active ${prefix}--animate`,
-    exit: `${prefix}--exit`,
-    exitActive: `${prefix}--exit-active ${prefix}--animate`,
-  },
-};
-
-TabPanel.defaultProps = defaultProps;
+const ForwardedTabPanel = forwardRef<HTMLDivElement, TabPanelProps>(TabPanel);
 
 if (process.env.NODE_ENV !== "production") {
-  TabPanel.displayName = "TabPanel";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TabPanel.propTypes = {
+    ForwardedTabPanel.propTypes = {
       className: PropTypes.string,
       timeout: PropTypes.oneOfType([
         PropTypes.number,
@@ -134,11 +124,8 @@ if (process.env.NODE_ENV !== "production") {
         }),
       ]),
       children: PropTypes.node,
-      forwardedRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, TabPanelProps>((props, ref) => (
-  <TabPanel {...props} forwardedRef={ref} />
-));
+export default ForwardedTabPanel;

@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, Fragment } from "react";
+import React, { forwardRef, Fragment, ReactElement, Ref } from "react";
 import cn from "classnames";
 import {
   isListboxOptionProps,
@@ -10,16 +10,16 @@ import {
 import { List } from "@react-md/list";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import { ScaleTransition } from "@react-md/transition";
-import { bem, omit, WithForwardedRef } from "@react-md/utils";
+import { bem, omit, PositionAnchor } from "@react-md/utils";
 
 import HighlightLabel from "./HighlightLabel";
-import useAutoComplete, { PositionOptions } from "./useAutoComplete";
 import {
   AutoCompleteData,
   AutoCompleteFilterFunction,
   AutoCompleteHandler,
   AutoCompletion,
 } from "./types";
+import useAutoComplete, { PositionOptions } from "./useAutoComplete";
 import {
   getResultId as DEFAULT_GET_RESULT_ID,
   getResultLabel as DEFAULT_GET_RESULT_LABEL,
@@ -129,51 +129,29 @@ export interface AutoCompleteProps
   highlight?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLInputElement>;
-type DefaultProps = Required<
-  Pick<
-    AutoCompleteProps,
-    | "autoComplete"
-    | "clearOnAutoComplete"
-    | "portal"
-    | "highlight"
-    | "filter"
-    | "filterOptions"
-    | "labelKey"
-    | "valueKey"
-    | "getResultId"
-    | "getResultLabel"
-    | "getResultValue"
-    | "getEmptyValueData"
-    | "anchor"
-    | "xMargin"
-    | "yMargin"
-    | "vwMargin"
-    | "vhMargin"
-    | "transformOrigin"
-    | "listboxWidth"
-    | "preventOverlap"
-    | "disableSwapping"
-    | "disableVHBounds"
-    | "disableHideOnResize"
-    | "disableHideOnScroll"
-  >
->;
-type WithDefaultProps = AutoCompleteProps & DefaultProps & WithRef;
-
 const block = bem("rmd-autocomplate");
 const listbox = bem("rmd-listbox");
+
+const DEFAULT_FILTER_OPTIONS = {
+  trim: true,
+  ignoreWhitespace: true,
+};
+
+const DEFAULT_ANCHOR: PositionAnchor = {
+  x: "center",
+  y: "below",
+};
 
 /**
  * An AutoComplete is an accessible combobox widget that allows for real-time
  * suggestions as the user types.
  */
-const AutoComplete: FC<AutoCompleteProps & WithRef> = providedProps => {
-  const {
-    autoComplete,
+function AutoComplete(
+  {
+    autoComplete = "list",
     data,
-    filter,
-    filterOptions,
+    filter = "case-insensitive",
+    filterOptions = DEFAULT_FILTER_OPTIONS,
     className,
     onBlur,
     onFocus,
@@ -181,35 +159,36 @@ const AutoComplete: FC<AutoCompleteProps & WithRef> = providedProps => {
     onKeyDown,
     onChange,
     containerProps,
-    portal,
+    portal = false,
     portalInto,
     portalIntoId,
     listboxStyle,
     listboxClassName,
-    forwardedRef,
     onAutoComplete,
-    clearOnAutoComplete,
-    labelKey,
-    valueKey,
-    getResultId,
-    getResultLabel,
-    getResultValue,
-    getEmptyValueData,
-    highlight,
-    anchor,
+    clearOnAutoComplete = false,
+    labelKey = "label",
+    valueKey = "value",
+    getResultId = DEFAULT_GET_RESULT_ID,
+    getResultLabel = DEFAULT_GET_RESULT_LABEL,
+    getResultValue = DEFAULT_GET_RESULT_VALUE,
+    getEmptyValueData = data => data,
+    highlight = false,
+    anchor = DEFAULT_ANCHOR,
     listboxWidth,
-    xMargin,
-    yMargin,
-    vwMargin,
-    vhMargin,
-    transformOrigin,
-    preventOverlap,
-    disableSwapping,
-    disableVHBounds,
-    disableHideOnResize,
-    disableHideOnScroll,
+    xMargin = 0,
+    yMargin = 0,
+    vwMargin = 16,
+    vhMargin = 16,
+    transformOrigin = true,
+    preventOverlap = true,
+    disableSwapping = false,
+    disableVHBounds = false,
+    disableHideOnResize = false,
+    disableHideOnScroll = true,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: AutoCompleteProps,
+  forwardedRef?: Ref<HTMLInputElement>
+): ReactElement {
   const { id } = props;
   const comboboxId = `${id}-combobox`;
   const suggestionsId = `${id}-listbox`;
@@ -331,53 +310,17 @@ const AutoComplete: FC<AutoCompleteProps & WithRef> = providedProps => {
       </ScaleTransition>
     </Fragment>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  portal: false,
-  filter: "case-insensitive",
-  filterOptions: {
-    trim: true,
-    ignoreWhitespace: true,
-  },
-  autoComplete: "list",
-  clearOnAutoComplete: false,
-  labelKey: "label",
-  valueKey: "value",
-  getResultId: DEFAULT_GET_RESULT_ID,
-  getResultLabel: DEFAULT_GET_RESULT_LABEL,
-  getResultValue: DEFAULT_GET_RESULT_VALUE,
-  getEmptyValueData: data => data,
-  highlight: false,
-  anchor: {
-    x: "center",
-    y: "below",
-  },
-  xMargin: 0,
-  yMargin: 0,
-  vwMargin: 16,
-  vhMargin: 16,
-  transformOrigin: true,
-  listboxWidth: "equal",
-  preventOverlap: true,
-  disableSwapping: false,
-  disableVHBounds: false,
-  disableHideOnResize: false,
-  disableHideOnScroll: true,
-};
-
-AutoComplete.defaultProps = defaultProps;
+const ForwardedAutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
+  AutoComplete
+);
 
 if (process.env.NODE_ENV !== "production") {
-  AutoComplete.displayName = "AutoComplete";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    AutoComplete.propTypes = {
+    ForwardedAutoComplete.propTypes = {
       id: PropTypes.string.isRequired,
       data: PropTypes.arrayOf(
         PropTypes.oneOfType([PropTypes.string, PropTypes.object])
@@ -444,9 +387,7 @@ if (process.env.NODE_ENV !== "production") {
       isLeftAddon: PropTypes.bool,
       isRightAddon: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLInputElement, AutoCompleteProps>((props, ref) => (
-  <AutoComplete {...props} forwardedRef={ref} />
-));
+export default ForwardedAutoComplete;

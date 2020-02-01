@@ -33,8 +33,9 @@ export function getElement<E extends HTMLElement>(
 type Contains = typeof contains;
 
 /**
- * The on outside click handler that can be used to check for additional logic before
- * triggering some action. This will be provided:
+ * The on outside click handler that can be used to check for additional logic
+ * before triggering some action. This will be provided:
+ *
  * - the current element or null
  * - the current click target or null
  * - a nice "safe" contains function that handles nulls
@@ -55,8 +56,8 @@ export interface Options<E extends HTMLElement> {
 }
 
 /**
- * Triggers a callback function when another element in the page is clicked
- * that is outside of the provided element. This is generally used for closing
+ * Triggers a callback function when another element in the page is clicked that
+ * is outside of the provided element. This is generally used for closing
  * temporary elements when something else within the page has been clicked.
  *
  * The callback will be provided the current `element` as well as the click

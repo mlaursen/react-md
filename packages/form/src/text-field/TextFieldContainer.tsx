@@ -1,28 +1,34 @@
-import React, { FC, forwardRef, HTMLAttributes, ReactNode } from "react";
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import TextFieldAddon from "./TextFieldAddon";
 
 /**
  * The supported themes for a text field.
  *
- * - "none" - display as an unstyled text field without any border or
- *   background colors.
- * - "underline" - display with only an underline that gains the form
- *   active color and animates from the left or right to the other side
- *   when the field is focused.
- * - "filled" - an extension of the `"underline"` state that will also
- *   have a slightly dark background applied.
- * - "outline" - outlines the entire text field in a border and applies
- *   the active color as box shadow when the field is focused.
+ * - "none" - display as an unstyled text field without any border or background
+ *   colors.
+ * - "underline" - display with only an underline that gains the form active
+ *   color and animates from the left or right to the other side when the field
+ *   is focused.
+ * - "filled" - an extension of the `"underline"` state that will also have a
+ *   slightly dark background applied.
+ * - "outline" - outlines the entire text field in a border and applies the
+ *   active color as box shadow when the field is focused.
  */
 export type TextFieldTheme = "none" | "underline" | "filled" | "outline";
 
 export interface TextFieldContainerOptions {
   /**
-   * Boolean if the text field should use the dense spec to reduce
-   * the height a bit.
+   * Boolean if the text field should use the dense spec to reduce the height a
+   * bit.
    */
   dense?: boolean;
 
@@ -38,40 +44,42 @@ export interface TextFieldContainerOptions {
   inline?: boolean;
 
   /**
-   * Boolean if the text field should gain the error state and update the colors.
+   * Boolean if the text field should gain the error state and update the
+   * colors.
    */
   error?: boolean;
 
   /**
-   * The direction that the underline should appear from when the theme is `"underline"`
-   * or `"filled"`.
+   * The direction that the underline should appear from when the theme is
+   * `"underline"` or `"filled"`.
    */
   underlineDirection?: "left" | "right";
 
   /**
-   * An optional addon to apply to the left of the text field. This should normally
-   * be an icon. This element will not have pointer events so it can be "clicked through"
-   * to focus the text field instead.
+   * An optional addon to apply to the left of the text field. This should
+   * normally be an icon. This element will not have pointer events so it can be
+   * "clicked through" to focus the text field instead.
    */
   leftChildren?: ReactNode;
 
   /**
-   * Boolean if the left children should be wrapped in the `TextFieldAddon` component. This is
-   * enabled by default since this is _normally_ the behavior that is desired so that icons
-   * can be positioned correctly.
+   * Boolean if the left children should be wrapped in the `TextFieldAddon`
+   * component. This is enabled by default since this is _normally_ the behavior
+   * that is desired so that icons can be positioned correctly.
    */
   isLeftAddon?: boolean;
 
   /**
-   * An optional addon to apply to the right of the text field. This should be a clickable
-   * button such as a password field toggle or a reset button for the field.
+   * An optional addon to apply to the right of the text field. This should be a
+   * clickable button such as a password field toggle or a reset button for the
+   * field.
    */
   rightChildren?: ReactNode;
 
   /**
-   * Boolean if the right children should be wrapped in the `TextFieldAddon` component. This is
-   * enabled by default since this is _normally_ the behavior that is desired so that icons
-   * can be positioned correctly.
+   * Boolean if the right children should be wrapped in the `TextFieldAddon`
+   * component. This is enabled by default since this is _normally_ the behavior
+   * that is desired so that icons can be positioned correctly.
    */
   isRightAddon?: boolean;
 }
@@ -80,8 +88,8 @@ export interface TextFieldContainerProps
   extends TextFieldContainerOptions,
     HTMLAttributes<HTMLDivElement> {
   /**
-   * Boolean if the text field is currently active (focused) to applied the active
-   * color to the current theme.
+   * Boolean if the text field is currently active (focused) to applied the
+   * active color to the current theme.
    */
   active?: boolean;
 
@@ -96,50 +104,34 @@ export interface TextFieldContainerProps
   disabled?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<
-    TextFieldContainerProps,
-    | "inline"
-    | "theme"
-    | "error"
-    | "disabled"
-    | "underlineDirection"
-    | "isLeftAddon"
-    | "isRightAddon"
-  >
->;
-type WithDefaultProps = TextFieldContainerProps & DefaultProps & WithRef;
-
 const block = bem("rmd-text-field-container");
 
 /**
- * This is a container component that is used to structure the text field
- * with different parts and themes.
+ * This is a container component that is used to structure the text field with
+ * different parts and themes.
  *
  * @private
  */
-const TextFieldContainer: FC<TextFieldContainerProps &
-  WithRef> = providedProps => {
-  const {
-    inline,
+function TextFieldContainer(
+  {
     className,
     children,
-    forwardedRef,
-    theme,
-    error,
+    inline = false,
+    theme = "none",
+    error = false,
     active,
     label,
     dense,
-    isLeftAddon,
-    isRightAddon,
+    disabled = false,
+    isLeftAddon = true,
+    isRightAddon = true,
     leftChildren,
     rightChildren,
-    underlineDirection,
-    disabled,
+    underlineDirection = "left",
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: TextFieldContainerProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   const underline = theme === "underline";
   const outline = theme === "outline";
   const filled = theme === "filled";
@@ -148,7 +140,7 @@ const TextFieldContainer: FC<TextFieldContainerProps &
   return (
     <div
       {...props}
-      ref={forwardedRef}
+      ref={ref}
       className={cn(
         block({
           error,
@@ -188,30 +180,18 @@ const TextFieldContainer: FC<TextFieldContainerProps &
       )}
     </div>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  inline: false,
-  theme: "none",
-  error: false,
-  disabled: false,
-  isLeftAddon: true,
-  isRightAddon: true,
-  underlineDirection: "left",
-};
-
-TextFieldContainer.defaultProps = defaultProps;
+const ForwardedTextFieldContainer = forwardRef<
+  HTMLDivElement,
+  TextFieldContainerProps
+>(TextFieldContainer);
 
 if (process.env.NODE_ENV !== "production") {
-  TextFieldContainer.displayName = "TextFieldContainer";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TextFieldContainer.propTypes = {
+    ForwardedTextFieldContainer.propTypes = {
       disabled: PropTypes.bool,
       inline: PropTypes.bool,
       theme: PropTypes.oneOf(["none", "underline", "outline", "filled"]),
@@ -223,9 +203,7 @@ if (process.env.NODE_ENV !== "production") {
       leftChildren: PropTypes.node,
       rightChildren: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, TextFieldContainerProps>(
-  (props, ref) => <TextFieldContainer {...props} forwardedRef={ref} />
-);
+export default ForwardedTextFieldContainer;

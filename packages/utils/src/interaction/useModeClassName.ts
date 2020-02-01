@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { UserInteractionMode } from "./useModeDetection";
 
 /**
- * This hook will apply the current mode class name to the `document.body` so that the
- * specific mode style mixins work as expected.
+ * This hook will apply the current mode class name to the `document.body` so
+ * that the specific mode style mixins work as expected.
  *
  * @private
  */

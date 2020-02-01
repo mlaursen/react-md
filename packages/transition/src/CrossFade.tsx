@@ -1,22 +1,24 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import CSSTransition, {
+  CSSTransitionClassNames,
   CSSTransitionProps,
 } from "react-transition-group/CSSTransition";
 
+import { TransitionTimeout } from "./types";
+
 export type CrossFadeProps = Partial<CSSTransitionProps>;
 
-type DefaultProps = Required<
-  Pick<
-    CrossFadeProps,
-    | "in"
-    | "appear"
-    | "timeout"
-    | "classNames"
-    | "mountOnEnter"
-    | "unmountOnExit"
-  >
->;
-type WithDefaultProps = CrossFadeProps & DefaultProps;
+const DEFAULT_CROSS_FADE_TIMEOUT: TransitionTimeout = {
+  enter: 300,
+  exit: 0,
+};
+
+const DEFAULT_CROSS_FADE_CLASSNAMES: CSSTransitionClassNames = {
+  appear: "rmd-cross-fade",
+  appearActive: "rmd-cross-fade--active",
+  enter: "rmd-cross-fade",
+  enterActive: "rmd-cross-fade--active",
+};
 
 /**
  * This is a very simpel wrapper for the CSSTransition component from
@@ -26,25 +28,29 @@ type WithDefaultProps = CrossFadeProps & DefaultProps;
  * mounts, but you can set the `in` prop manually to dynamically trigger
  * the animation instead.
  */
-const CrossFade: FC<CrossFadeProps> = providedProps => {
-  const { children, ...props } = providedProps as WithDefaultProps;
-  return <CSSTransition {...props}>{children}</CSSTransition>;
-};
-
-const defaultProps: DefaultProps = {
-  in: true,
-  appear: true,
-  timeout: { enter: 300, exit: 0 },
-  classNames: {
-    appear: "rmd-cross-fade",
-    appearActive: "rmd-cross-fade--active",
-    enter: "rmd-cross-fade",
-    enterActive: "rmd-cross-fade--active",
-  },
-  mountOnEnter: true,
-  unmountOnExit: true,
-};
-
-CrossFade.defaultProps = defaultProps;
+function CrossFade({
+  in: propIn = true,
+  appear = true,
+  timeout = DEFAULT_CROSS_FADE_TIMEOUT,
+  classNames = DEFAULT_CROSS_FADE_CLASSNAMES,
+  mountOnEnter = true,
+  unmountOnExit = true,
+  children,
+  ...props
+}: CrossFadeProps): ReactElement {
+  return (
+    <CSSTransition
+      {...props}
+      in={propIn}
+      appear={appear}
+      timeout={timeout}
+      classNames={classNames}
+      mountOnEnter={mountOnEnter}
+      unmountOnExit={unmountOnExit}
+    >
+      {children}
+    </CSSTransition>
+  );
+}
 
 export default CrossFade;

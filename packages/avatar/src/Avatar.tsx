@@ -1,12 +1,12 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   /**
-   * This should be an image `src` attribute to create an avatar from. When
-   * this prop is defined, you should not add any children to the avatar as
-   * the positioning will break.
+   * This should be an image `src` attribute to create an avatar from. When this
+   * prop is defined, you should not add any children to the avatar as the
+   * positioning will break.
    */
   src?: string;
 
@@ -15,9 +15,9 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
    * applied.
    *
    * For accessibility and screen readers, you normally do not want to actually
-   * provide this prop. This should only be used if the `Avatar` is not accompanied
-   * by some other component or main content as it will be extra noise for screen
-   * readers.
+   * provide this prop. This should only be used if the `Avatar` is not
+   * accompanied by some other component or main content as it will be extra
+   * noise for screen readers.
    */
   alt?: string;
 
@@ -31,29 +31,18 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   color?: string;
 }
 
-type WithRef = WithForwardedRef<HTMLSpanElement>;
-type DefaultProps = Required<Pick<AvatarProps, "alt" | "color">>;
-type AvatarWithDefaultProps = AvatarProps & DefaultProps & WithRef;
-
 const block = bem("rmd-avatar");
 
 /**
  * An `Avatar` is generally used to represent objects or people within your app.
  * The avatar can consist of an image, an icon, or some text to display. When
- * the avatar is not an image, different themes can be applied to make the avatar
- * more unique.
+ * the avatar is not an image, different themes can be applied to make the
+ * avatar more unique.
  */
-const Avatar: FC<AvatarProps & WithRef> = providedProps => {
-  const {
-    className,
-    children,
-    src,
-    alt,
-    forwardedRef,
-    color,
-    ...props
-  } = providedProps as AvatarWithDefaultProps;
-
+function Avatar(
+  { className, children, src, alt = "", color = "", ...props }: AvatarProps,
+  ref?: Ref<HTMLSpanElement>
+): ReactElement {
   let img;
   if (src) {
     img = <img src={src} alt={alt} className={block("image")} />;
@@ -62,40 +51,28 @@ const Avatar: FC<AvatarProps & WithRef> = providedProps => {
   return (
     <span
       {...props}
-      ref={forwardedRef}
+      ref={ref}
       className={cn(block({ [color]: color }), className)}
     >
       {img}
       {children}
     </span>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  color: "",
-  alt: "",
-};
-
-Avatar.defaultProps = defaultProps;
+const ForwardedAvatar = forwardRef<HTMLSpanElement, AvatarProps>(Avatar);
 
 if (process.env.NODE_ENV !== "production") {
-  Avatar.displayName = "Avatar";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Avatar.propTypes = {
+    ForwardedAvatar.propTypes = {
       alt: PropTypes.string,
       src: PropTypes.string,
       color: PropTypes.string,
       children: PropTypes.node,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => (
-  <Avatar {...props} forwardedRef={ref} />
-));
+export default ForwardedAvatar;

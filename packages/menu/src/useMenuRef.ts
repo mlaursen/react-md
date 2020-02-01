@@ -7,9 +7,8 @@ interface ReturnValue {
 }
 
 /**
- * This simple hook will merge the provided ref from the menu with the
- * menu ref that is used within the `Menu` component to determine different
- * events.
+ * This simple hook will merge the provided ref from the menu with the menu ref
+ * that is used within the `Menu` component to determine different events.
  */
 export default function useMenuRef(
   ref: Ref<HTMLDivElement | null> | undefined

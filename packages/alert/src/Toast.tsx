@@ -1,56 +1,66 @@
-import React, { FC, forwardRef, HTMLAttributes, ReactNode } from "react";
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react";
 import cn from "classnames";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { OverridableCSSTransitionProps } from "@react-md/transition";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface ToastProps
   extends HTMLAttributes<HTMLDivElement>,
     Omit<OverridableCSSTransitionProps, "mountOnEnter" | "unmountOnExit"> {
   /**
-   * Boolean if the main message content should be stacked above the action button.
-   * This prop is invalid if an `action` is not provided.
+   * Boolean if the main message content should be stacked above the action
+   * button.  This prop is invalid if an `action` is not provided.
    */
   stacked?: boolean;
 
   /**
-   * Boolean if the children is a two line message. This applies some additional styles and unfortunately
-   * needs to be known before the toast is created.
+   * Boolean if the children is a two line message. This applies some additional
+   * styles and unfortunately needs to be known before the toast is created.
    */
   twoLines?: boolean;
 
   /**
-   * An optional action button to display with the toast. This wil be renered to the
-   * right of the main toast's children if provided.
+   * An optional action button to display with the toast. This will be rendered
+   * to the right of the main toast's children if provided.
    */
   action?: ReactNode | null;
 
   /**
-   * Boolean if the toast is currently visible. This should be enabled on mount and then set to false
-   * once the toast has finished its display timeout.
+   * Boolean if the toast is currently visible. This should be enabled on mount
+   * and then set to false once the toast has finished its display timeout.
    */
   visible: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<ToastProps, "stacked" | "timeout" | "classNames" | "action" | "twoLines">
->;
-type WithDefaultProps = ToastProps & DefaultProps & WithRef;
-
 const block = bem("rmd-toast");
+const DEFAULT_TOAST_CLASSNAMES = {
+  appear: "rmd-toast--enter",
+  appearActive: "rmd-toast--enter-active",
+  enter: "rmd-toast--enter",
+  enterActive: "rmd-toast--enter-active",
+  enterDone: "",
+  exit: "rmd-toast--exit",
+  exitActive: "rmd-toast--exit-active",
+  exitDone: "",
+};
 
 /**
- * This is a very low-level component that can be used to animate a new toast in to a `Snackbar` as
- * it is mainly just a wrapper of the `CSSTransition` component. If you are using this component, it
- * is generally recommended to provide the `onEntered` callback as a function to start the hide visibility
- * timer and the `onExited` callback to remove the current toast from your queue.
+ * This is a very low-level component that can be used to animate a new toast in
+ * to a `Snackbar` as it is mainly just a wrapper of the `CSSTransition`
+ * component. If you are using this component, it is generally recommended to
+ * provide the `onEntered` callback as a function to start the hide visibility
+ * timer and the `onExited` callback to remove the current toast from your
+ * queue.
  */
-const Toast: FC<ToastProps & WithRef> = providedProps => {
-  const {
+function Toast(
+  {
     className,
-    forwardedRef,
-    stacked,
     children,
     onEnter,
     onEntering,
@@ -58,14 +68,16 @@ const Toast: FC<ToastProps & WithRef> = providedProps => {
     onExit,
     onExiting,
     onExited,
-    timeout,
-    classNames,
-    action,
-    twoLines,
+    timeout = 150,
+    classNames = DEFAULT_TOAST_CLASSNAMES,
+    action = null,
+    stacked = false,
+    twoLines = false,
     visible,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: ToastProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   return (
     <CSSTransition
       in={visible}
@@ -83,7 +95,7 @@ const Toast: FC<ToastProps & WithRef> = providedProps => {
     >
       <div
         {...props}
-        ref={forwardedRef}
+        ref={ref}
         className={cn(
           block({
             stacked,
@@ -102,37 +114,15 @@ const Toast: FC<ToastProps & WithRef> = providedProps => {
       </div>
     </CSSTransition>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  action: null,
-  stacked: false,
-  twoLines: false,
-  timeout: 150,
-  classNames: {
-    appear: "rmd-toast--enter",
-    appearActive: "rmd-toast--enter-active",
-    enter: "rmd-toast--enter",
-    enterActive: "rmd-toast--enter-active",
-    enterDone: "",
-    exit: "rmd-toast--exit",
-    exitActive: "rmd-toast--exit-active",
-    exitDone: "",
-  },
-};
-
-Toast.defaultProps = defaultProps;
+const ForwardedToast = forwardRef<HTMLDivElement, ToastProps>(Toast);
 
 if (process.env.NODE_ENV !== "production") {
-  Toast.displayName = "Toast";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Toast.propTypes = {
+    ForwardedToast.propTypes = {
       visible: PropTypes.bool.isRequired,
       action: PropTypes.element,
       stacked: PropTypes.bool,
@@ -159,9 +149,7 @@ if (process.env.NODE_ENV !== "production") {
         }),
       ]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, ToastProps>((props, ref) => (
-  <Toast {...props} forwardedRef={ref} />
-));
+export default ForwardedToast;

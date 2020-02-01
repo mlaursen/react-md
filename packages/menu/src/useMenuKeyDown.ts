@@ -15,10 +15,10 @@ interface MenuKeyDownOptions {
 }
 
 /**
- * This hook allows for the keyboard movement within a menu. It'll
- * make sure that the arrow keys and typing letters can correctly focus
- * menu items. In addition, it'll automatically swap to the left and right
- * arrow keys if the menu is displayed horizontally.
+ * This hook allows for the keyboard movement within a menu. It'll make sure
+ * that the arrow keys and typing letters can correctly focus menu items. In
+ * addition, it'll automatically swap to the left and right arrow keys if the
+ * menu is displayed horizontally.
  */
 export default function useMenuKeyDown({
   menu,

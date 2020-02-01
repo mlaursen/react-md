@@ -42,8 +42,8 @@ type Options = Pick<
 
 interface ReturnValue {
   /**
-   * A nested list representation of the provided tree data. This is used for rendering all
-   * the treeitem nodes.
+   * A nested list representation of the provided tree data. This is used for
+   * rendering all the treeitem nodes.
    */
   items: NestedTreeItem<UnknownTreeItem>[];
 
@@ -53,36 +53,37 @@ interface ReturnValue {
   activeId: string;
 
   /**
-   * A function that updates the `activeId` based on the provided `itemId`. This should really
-   * only be used whenever an item is clicked with a mouse or touch since the `activeId` will
-   * be updated automatically for all the other flows.
+   * A function that updates the `activeId` based on the provided `itemId`. This
+   * should really only be used whenever an item is clicked with a mouse or
+   * touch since the `activeId` will be updated automatically for all the other
+   * flows.
    */
   setActiveId(itemId: TreeItemId): void;
 
   /**
-   * A record containing the DOM ids for each tree item along with a ref object to provide
-   * to the itemRenderer for that item. This is just for a quick lookup to help with all the
-   * tree traversal and keyboard movement.
+   * A record containing the DOM ids for each tree item along with a ref object
+   * to provide to the itemRenderer for that item. This is just for a quick
+   * lookup to help with all the tree traversal and keyboard movement.
    */
   itemIdRefs: MetadataRecord;
 
   /**
-   * A blur handler that should be passed to the tree list element that handles removing the
-   * `aria-activedescendant` when the tree is no longer within focus. This will also call the
-   * optional `onBlur` prop.
+   * A blur handler that should be passed to the tree list element that handles
+   * removing the `aria-activedescendant` when the tree is no longer within
+   * focus. This will also call the optional `onBlur` prop.
    */
   handleBlur: FocusEventHandler<ListElement>;
 
   /**
-   * A focus handler that should be passed to the tree element that handles conditionally setting
-   * the default `aria-activedescendant` id on first focus. This will also call the optional `onFocus`
-   * prop.
+   * A focus handler that should be passed to the tree element that handles
+   * conditionally setting the default `aria-activedescendant` id on first
+   * focus. This will also call the optional `onFocus` prop.
    */
   handleFocus: FocusEventHandler<ListElement>;
 
   /**
-   * The keydown handler that should be passed to the tree list element that handles all the keyboard
-   * functionality and movement.
+   * The keydown handler that should be passed to the tree list element that
+   * handles all the keyboard functionality and movement.
    *
    * This will also call the optional `onKeyDown` prop.
    */
@@ -90,8 +91,9 @@ interface ReturnValue {
 }
 
 /**
- * This hook handles all the complex and "fun" stuff for selecting keyboard accessibility within a tree
- * and enabling keyboard movement, selection, and expansion.
+ * This hook handles all the complex and "fun" stuff for selecting keyboard
+ * accessibility within a tree and enabling keyboard movement, selection, and
+ * expansion.
  *
  * @private
  */

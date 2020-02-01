@@ -1,11 +1,13 @@
 /**
- * This is a small util that is used to transform a search string with common patterns.
+ * This is a small util that is used to transform a search string with common
+ * patterns.
  *
  * @param value The string to transform
- * @param lowercase Boolean if the value should be lowercased for case-insensitive searches
+ * @param lowercase Boolean if the value should be lowercased for
+ * case-insensitive searches
  * @param trim Boolean if the leading and trailing whitespace should be trimmed
- * @param ignoreWhitespace Boolean if all whitespace should be ignored. This will take precedence
- * over the `trim` parameter if set to true.
+ * @param ignoreWhitespace Boolean if all whitespace should be ignored. This
+ * will take precedence over the `trim` parameter if set to true.
  * @return The transformed search string
  * @private
  */
@@ -29,11 +31,12 @@ export function getSearchString(
 }
 
 /**
- * The default implementation of the getItemValue search option that will attempt to "stringify"
- * any unknown item as a string.
+ * The default implementation of the getItemValue search option that will
+ * attempt to "stringify" any unknown item as a string.
  *
  * @param item The current item to transform
- * @param valueKey The key to use that should hold the value if the item is an object
+ * @param valueKey The key to use that should hold the value if the item is an
+ * object
  * @return the item as a string
  * @private
  */
@@ -55,12 +58,13 @@ export function getItemValue(item: unknown, valueKey = "value"): string {
 }
 
 /**
- * A function that will get a string value from each item. The default implementation
- * will:
+ * A function that will get a string value from each item. The default
+ * implementation will:
+ *
  * - return a number as a string
  * - return a string as itself
- * - return the result of item() if it is a function (this will also be used if the `valueKey`
- *   on an object is a function).
+ * - return the result of item() if it is a function (this will also be used if
+ *   the `valueKey` on an object is a function).
  * - return item[valueKey] if it's an object (this uses typeof item === "object")
  * - return the empty string for all other data types
  */
@@ -73,12 +77,13 @@ export interface BaseSearchOptions<T = unknown> {
   valueKey?: string;
 
   /**
-   * A function that will get a string value from each item. The default implementation
-   * will:
+   * A function that will get a string value from each item. The default
+   * implementation will:
+   *
    * - return a number as a string
    * - return a string as itself
-   * - return the result of item() if it is a function (this will also be used if the `valueKey`
-   *   on an object is a function).
+   * - return the result of item() if it is a function (this will also be used
+   *   if the `valueKey` on an object is a function).
    * - return item[valueKey] if it's an object (this uses typeof item === "object")
    * - return the empty string for all other data types
    */
@@ -87,14 +92,14 @@ export interface BaseSearchOptions<T = unknown> {
 
 export interface SearchOptions<T = unknown> extends BaseSearchOptions<T> {
   /**
-   * Boolean if the query string and each item should have the leading
-   * and trailing spaces removed.
+   * Boolean if the query string and each item should have the leading and
+   * trailing spaces removed.
    */
   trim?: boolean;
 
   /**
-   * Boolean if all the whitespace should be ignored in the query string
-   * and for each item.
+   * Boolean if all the whitespace should be ignored in the query string and for
+   * each item.
    */
   ignoreWhitespace?: boolean;
 }

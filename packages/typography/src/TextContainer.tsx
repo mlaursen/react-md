@@ -1,23 +1,23 @@
 import React, {
   ElementType,
-  FC,
+  forwardRef,
   HTMLAttributes,
   ReactElement,
   ReactNode,
-  forwardRef,
+  Ref,
 } from "react";
 import cn from "classnames";
-import { WithForwardedRef } from "@react-md/utils";
 
 /**
- * A union of the available text container sizes. One of these values must be chosen
- * to help set the max width for text.
+ * A union of the available text container sizes. One of these values must be
+ * chosen to help set the max width for text.
  */
 export type TextContainerSize = "auto" | "mobile" | "desktop";
 
 /**
- * A type describing the text container's children render function. It provides an object containing
- * the correct (and merged) className and exects a renderable element to be returned.
+ * A type describing the text container's children render function. It provides
+ * an object containing the correct (and merged) className and exects a
+ * renderable element to be returned.
  */
 export type TextContainerRenderFunction = (props: {
   className: string;
@@ -33,38 +33,37 @@ export interface TextContainerProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
 
   /**
-   * The size for the text container. This can usually just be left at the default of `"auto"` since
-   * it will automatically transition between `"mobile"` and `"desktop"` based on media queries.
-   * However, you can also manually specify `"mobile"` or `"desktop"` if needed.
+   * The size for the text container. This can usually just be left at the
+   * default of `"auto"` since it will automatically transition between
+   * `"mobile"` and `"desktop"` based on media queries.  However, you can also
+   * manually specify `"mobile"` or `"desktop"` if needed.
    */
   size?: TextContainerSize;
 
   /**
-   * The component to render as. By default this will just be a div, but anything can be provided.
+   * The component to render as. By default this will just be a div, but
+   * anything can be provided.
    */
   component?: ElementType;
 
   /**
-   * Either a child render function or a react node. If this is not the child render function, a
-   * different wrapper component can be provided using the `component` prop.
+   * Either a child render function or a react node. If this is not the child
+   * render function, a different wrapper component can be provided using the
+   * `component` prop.
    */
   children?: ReactNode | TextContainerRenderFunction;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement | ElementType>;
-type DefaultProps = Required<Pick<TextContainerProps, "size" | "component">>;
-type WithDefaultProps = TextContainerProps & DefaultProps & WithRef;
-
-const TextContainer: FC<TextContainerProps & WithRef> = providedProps => {
-  const {
+function TextContainer(
+  {
     className: propClassName,
-    component: Component,
-    size,
+    component: Component = "div",
+    size = "auto",
     children,
-    forwardedRef,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: TextContainerProps,
+  ref?: Ref<HTMLDivElement | ElementType>
+): ReactElement {
   const className = cn(
     `rmd-text-container rmd-text-container--${size}`,
     propClassName
@@ -74,29 +73,22 @@ const TextContainer: FC<TextContainerProps & WithRef> = providedProps => {
   }
 
   return (
-    <Component {...props} className={className} ref={forwardedRef}>
+    <Component {...props} className={className} ref={ref}>
       {children}
     </Component>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  size: "auto",
-  component: "div",
-};
-
-TextContainer.defaultProps = defaultProps;
+const ForwardedTextContainer = forwardRef<
+  HTMLDivElement | ElementType,
+  TextContainerProps
+>(TextContainer);
 
 if (process.env.NODE_ENV !== "production") {
-  TextContainer.displayName = "TextContainer";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TextContainer.propTypes = {
+    ForwardedTextContainer.propTypes = {
       className: PropTypes.string,
       size: PropTypes.oneOf(["auto", "mobile", "desktop"]),
       component: PropTypes.oneOfType([
@@ -106,9 +98,7 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement | ElementType, TextContainerProps>(
-  (props, ref) => <TextContainer {...props} forwardedRef={ref} />
-);
+export default ForwardedTextContainer;

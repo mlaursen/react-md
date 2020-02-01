@@ -6,10 +6,11 @@ import { defaultTreeItemRenderer, TreeItemRenderer } from "@react-md/tree";
 import { LayoutNavigationItem } from "./types";
 
 /**
- * This is the default navigation item renderer provided by the layout package that has
- * some reasonable defaults for creating a navigation tree. This is just an extension of
- * the base `defaultTreeItemRenderer` from the `@react-md/tree` package that adds in some
- * support for also rendering dividers and subheader elements.
+ * This is the default navigation item renderer provided by the layout package
+ * that has some reasonable defaults for creating a navigation tree. This is
+ * just an extension of the base `defaultTreeItemRenderer` from the
+ * `@react-md/tree` package that adds in some support for also rendering
+ * dividers and subheader elements.
  */
 const defaultNavigationItemRenderer: TreeItemRenderer<LayoutNavigationItem> = (
   itemProps,

@@ -5,8 +5,9 @@ import { TooltipInitiated } from "./useHandlers";
 
 export interface VisibilityChangeOptions {
   /**
-   * An optional function to call after the tooltip becomes visible. You will be provided
-   * the user interaction mode that caused the tooltip to become visible.
+   * An optional function to call after the tooltip becomes visible. You will be
+   * provided the user interaction mode that caused the tooltip to become
+   * visible.
    */
   onShow?: (mode: UserInteractionMode) => void;
 
@@ -20,8 +21,8 @@ export interface VisibilityChangeOptions {
 }
 
 /**
- * This hook will call the `onShow` and `onHide` functions as needed based on the current interaction
- * mode and the visibility of the tooltip.
+ * This hook will call the `onShow` and `onHide` functions as needed based on
+ * the current interaction mode and the visibility of the tooltip.
  *
  * @private
  */

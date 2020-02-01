@@ -1,4 +1,5 @@
-import { Children, cloneElement, CSSProperties, FC, ReactElement } from "react";
+import { Children, cloneElement, CSSProperties, ReactElement } from "react";
+
 import {
   createCSSVariablesStyle,
   CSSVariable,
@@ -14,46 +15,48 @@ export type VariableChildrenRenderer = (props: Styleable) => StyleableChild;
 
 export interface UpdateVariablesProps {
   /**
-   * An optional style object to merge the css variables into when using the children render
-   * function.
+   * An optional style object to merge the css variables into when using the
+   * children render function.
    */
   style?: CSSProperties;
 
   /**
-   * If this is a function, it will be provided the style object to apply to an element
-   * that contains all the css variables and their values for the update.
+   * If this is a function, it will be provided the style object to apply to an
+   * element that contains all the css variables and their values for the
+   * update.
    *
-   * If no children are applied or it is a react element, the css variables will be applied
-   * to the root html tag instead
+   * If no children are applied or it is a react element, the css variables will
+   * be applied to the root html tag instead
    */
   children?: StyleableChild | VariableChildrenRenderer;
 
   /**
-   * Boolean if the style with the updated css variables should be cloned as a prop into the
-   * child element.
+   * Boolean if the style with the updated css variables should be cloned as a
+   * prop into the child element.
    */
   clone?: boolean;
 
   /**
-   * A list of variables to set/update. If the variable names are not prefixed with `--`, it
-   * will be done automatically.
+   * A list of variables to set/update. If the variable names are not prefixed
+   * with `--`, it will be done automatically.
    *
-   * NOTE: There is no real "validation" for the css variable values, so use at your own risk
-   * and debugging.
+   * NOTE: There is no real "validation" for the css variable values, so use at
+   * your own risk and debugging.
    */
   variables: CSSVariable[];
 }
 
 /**
- * This component is used to update css variables either at the root html or provide a style
- * object to the children render function that can be applied to an element to update the values.
+ * This component is used to update css variables either at the root html or
+ * provide a style object to the children render function that can be applied to
+ * an element to update the values.
  */
-const UpdateVariables: FC<UpdateVariablesProps> = ({
+function UpdateVariables({
   style,
   children,
   clone,
   variables,
-}) => {
+}: UpdateVariablesProps): ReactElement {
   if (typeof children === "function") {
     return (children as VariableChildrenRenderer)({
       style: createCSSVariablesStyle(variables, style),
@@ -78,15 +81,12 @@ const UpdateVariables: FC<UpdateVariablesProps> = ({
   useDocumentCSSVariables(variables, clone || typeof children === "function");
 
   return (children as StyleableChild) || null;
-};
+}
 
 if (process.env.NODE_ENV !== "production") {
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
     UpdateVariables.propTypes = {
       clone: PropTypes.bool,
       style: PropTypes.object,
@@ -98,7 +98,7 @@ if (process.env.NODE_ENV !== "production") {
       ).isRequired,
       children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
     };
-  }
+  } catch (e) {}
 }
 
 export default UpdateVariables;

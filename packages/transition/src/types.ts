@@ -20,8 +20,8 @@ type TransitionKeys =
   | "onExiting"
   | "onExited";
 
-// timeout is required in the Transition props, but 99% of the time it'll be added
-// with defaultProps in overrides
+// timeout is required in the Transition props, but 99% of the time it'll be
+// added with defaultProps in overrides
 export interface OverridableTransitionProps
   extends Pick<TransitionProps, TransitionKeys> {
   timeout?: TransitionTimeout;

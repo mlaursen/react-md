@@ -1,57 +1,62 @@
-import React, { FC, forwardRef, ReactNode, MutableRefObject } from "react";
+import React, {
+  forwardRef,
+  MutableRefObject,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import { List, ListElement } from "@react-md/list";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import defaultGetItemLabel from "./defaultGetItemLabel";
 import defaultGetItemValue from "./defaultGetItemValue";
 import defaultTreeItemRenderer from "./defaultTreeItemRenderer";
-import { ProvidedTreeProps, TreeProps, UnknownTreeItem } from "./types";
+import { TreeProps, UnknownTreeItem } from "./types";
 import { NestedTreeItem } from "./useNestedTreeList";
 import useTreeMovement from "./useTreeMovement";
 
-type WithRef = WithForwardedRef<ListElement>;
-type DefaultProps = Omit<ProvidedTreeProps, "expanderIcon">;
-type WithDefaultProps = TreeProps & DefaultProps & WithRef;
-
 const block = bem("rmd-tree");
+const defaultGetItemProps = (): undefined => undefined;
 
 /**
  * Creates an accessible tree widget that allows you to show hierarchical data
- * in a list presentation view. This component requires the selection and expansion
- * state to be provided/controlled but you can use the `useTreeItemSelection` and
- * `useTreeItemExpansion` hooks for a great starting point for this functionality.
+ * in a list presentation view. This component requires the selection and
+ * expansion state to be provided/controlled but you can use the
+ * `useTreeItemSelection` and `useTreeItemExpansion` hooks for a great starting
+ * point for this functionality.
  */
-const Tree: FC<TreeProps & WithRef> = providedProps => {
-  const {
+function Tree(
+  {
+    id,
     className,
-    forwardedRef,
-    itemRenderer,
+    itemRenderer = defaultTreeItemRenderer,
     data,
-    multiSelect,
+    multiSelect = false,
     selectedIds,
     onItemSelect,
     onMultiItemSelect,
     expandedIds,
     onItemExpansion,
     onMultiItemExpansion,
-    expanderLeft: _expanderLeft,
+    expanderLeft = false,
     expanderIcon: propExpanderIcon,
-    labelKey: _labelKey,
-    valueKey,
-    getItemLabel: _getItemLabel,
-    getItemValue,
-    getItemProps: _getItemProps,
-    linkComponent: _linkComponent,
+    labelKey = "name",
+    valueKey = "name",
+    getItemLabel = defaultGetItemLabel,
+    getItemValue = defaultGetItemValue,
+    getItemProps = defaultGetItemProps,
+    linkComponent,
     sort,
-    rootId,
+    rootId = null,
     onBlur,
     onFocus,
     onKeyDown,
     ...props
-  } = providedProps as WithDefaultProps;
-  const { id } = props;
+  }: TreeProps,
+  ref?: Ref<ListElement>
+): ReactElement {
   const expanderIcon = useIcon("dropdown", propExpanderIcon);
 
   const {
@@ -128,7 +133,20 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
             : undefined,
         },
         { ...item, visibleIndex },
-        { ...providedProps, expanderIcon } as ProvidedTreeProps
+        {
+          id,
+          expanderLeft,
+          expanderIcon: expanderIcon as ReactElement,
+          multiSelect,
+          labelKey,
+          valueKey,
+          getItemLabel,
+          getItemValue,
+          getItemProps,
+          linkComponent,
+          rootId,
+          ...props,
+        }
       );
     });
   };
@@ -136,11 +154,12 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
   return (
     <List
       {...props}
+      ref={ref}
+      id={id}
       aria-activedescendant={activeId}
       aria-multiselectable={multiSelect || undefined}
       role="tree"
       tabIndex={0}
-      ref={forwardedRef}
       className={cn(block(), className)}
       onBlur={handleBlur}
       onFocus={handleFocus}
@@ -149,32 +168,20 @@ const Tree: FC<TreeProps & WithRef> = providedProps => {
       {renderChildItems(items, 0, [])}
     </List>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  rootId: null,
-  multiSelect: false,
-  expanderLeft: false,
-  itemRenderer: defaultTreeItemRenderer,
-  labelKey: "name",
-  valueKey: "name",
-  getItemLabel: defaultGetItemLabel,
-  getItemValue: defaultGetItemValue,
-  getItemProps: () => undefined,
-};
-
-Tree.defaultProps = defaultProps;
+// This actually works pretty nice since the only time you really need the
+// "strict" typing for the TreeItem is the `itemRenderer`. Since I also expose
+// the `TreeItemRenderer` type, you can strictly type it there if needed and
+// will not cause type errors.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ForwardedTree = forwardRef<ListElement, TreeProps<any>>(Tree);
 
 if (process.env.NODE_ENV !== "production") {
-  Tree.displayName = "Tree";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Tree.propTypes = {
+    ForwardedTree.propTypes = {
       id: PropTypes.string.isRequired,
       onFocus: PropTypes.func,
       onKeyDown: PropTypes.func,
@@ -205,14 +212,7 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.oneOf(["a"]),
       ]),
     };
-  }
+  } catch (e) {}
 }
 
-// This actually works pretty nice since the only time you really need the
-// "strict" typing for the TreeItem is the `itemRenderer`. Since I also expose
-// the `TreeItemRenderer` type, you can strictly type it there if needed and
-// will not cause type errors.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default forwardRef<ListElement, TreeProps<any>>((props, ref) => (
-  <Tree {...props} forwardedRef={ref} />
-));
+export default ForwardedTree;

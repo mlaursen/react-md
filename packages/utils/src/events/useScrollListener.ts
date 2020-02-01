@@ -17,23 +17,22 @@ export interface Options<E extends HTMLElement = HTMLElement> {
   options?: AddEventListenerOptions | boolean;
 
   /**
-   * Boolean if the scroll listener should be enabled. You can swap this
-   * boolean to `true` or `false` to add/remove the event listeners. The
-   * event listeners will *always* be removed when the parent component is
-   * unmounted though.
+   * Boolean if the scroll listener should be enabled. You can swap this boolean
+   * to `true` or `false` to add/remove the event listeners. The event listeners
+   * will *always* be removed when the parent component is unmounted though.
    */
   enabled?: boolean;
 
   /**
-   * The element that should gain the focus event. When this is omitted, it
-   * will default to the entire `window`.
+   * The element that should gain the focus event. When this is omitted, it will
+   * default to the entire `window`.
    */
   element?: E | null;
 }
 
 /**
- * This hook will create a performant scroll listener by enabling passive events if it's
- * supported by the browser and delegating the event as needed.
+ * This hook will create a performant scroll listener by enabling passive events
+ * if it's supported by the browser and delegating the event as needed.
  */
 export default function useScrollListener<E extends HTMLElement = HTMLElement>({
   enabled = true,

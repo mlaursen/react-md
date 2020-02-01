@@ -6,8 +6,8 @@ export type RefOrInstance =
   | MutableRefObject<HTMLElement | null>;
 
 /**
- * Simple private util to get the DOM "instance" from either a ref object or
- * an HTMLElement.
+ * Simple private util to get the DOM "instance" from either a ref object or an
+ * HTMLElement.
  *
  * @param refOrInstance The ref or instance to get an HTMLElement from
  * @return The HTMLElement or null.

@@ -1,7 +1,7 @@
 import React, {
   CSSProperties,
-  FC,
   forwardRef,
+  ReactElement,
   ReactNode,
   Ref,
   TextareaHTMLAttributes,
@@ -10,12 +10,7 @@ import React, {
   useState,
 } from "react";
 import cn from "classnames";
-import {
-  applyRef,
-  bem,
-  useResizeObserver,
-  WithForwardedRef,
-} from "@react-md/utils";
+import { applyRef, bem, useResizeObserver } from "@react-md/utils";
 
 import FloatingLabel from "../label/FloatingLabel";
 import useFocusState from "../useFocusState";
@@ -40,25 +35,25 @@ export interface TextAreaProps
   id: string;
 
   /**
-   * The value to use for the text field. This will make the component controlled
-   * and require the `onChange` prop to be provided as well otherwise this will
-   * act as a read only text field.
+   * The value to use for the text field. This will make the component
+   * controlled and require the `onChange` prop to be provided as well otherwise
+   * this will act as a read only text field.
    */
   value?: string;
 
   /**
-   * The default value for the text field which will make it uncontrolled.
-   * If you manually change the `defaultValue` prop, the input's value **will
-   * not change** unless you provide a different `key` as well. Use the `value`
-   * prop instead for a controlled input.
+   * The default value for the text field which will make it uncontrolled.  If
+   * you manually change the `defaultValue` prop, the input's value **will not
+   * change** unless you provide a different `key` as well. Use the `value` prop
+   * instead for a controlled input.
    */
   defaultValue?: string;
 
   /**
-   * An optional floating label to use for the text field. This should really only be
-   * used when the `theme` prop is not set to `"none"`. This will be wrapped in
-   * the `<Label>` component itself and automatically apply the `htmlFor` prop for this
-   * text field.
+   * An optional floating label to use for the text field. This should really
+   * only be used when the `theme` prop is not set to `"none"`. This will be
+   * wrapped in the `<Label>` component itself and automatically apply the
+   * `htmlFor` prop for this text field.
    */
   label?: ReactNode;
 
@@ -73,63 +68,49 @@ export interface TextAreaProps
   labelClassName?: string;
 
   /**
-   * An optional style to apply to the textarea element. The base `style` prop is applied
-   * to the surrounding `div` instead.
+   * An optional style to apply to the textarea element. The base `style` prop
+   * is applied to the surrounding `div` instead.
    */
   areaStyle?: CSSProperties;
 
   /**
-   * An optional className to apply to the textarea element. The base `style` prop is applied
-   * to the surrounding `div` instead.
+   * An optional className to apply to the textarea element. The base `style`
+   * prop is applied to the surrounding `div` instead.
    */
   areaClassName?: string;
 
   /**
-   * The number of rows to display by default. The textarea will automatically update and
-   * animate its height when the users types if the `resize` prop is set to `"auto"`.
+   * The number of rows to display by default. The textarea will automatically
+   * update and animate its height when the users types if the `resize` prop is
+   * set to `"auto"`.
    */
   rows?: number;
 
+  /**
+   * The maximum number of rows that are allowed. When this is set to `-1`, it
+   * will infinitely expand based on the text content.
+   */
   maxRows?: number;
 
   /**
-   * Updates the resize ability for the textarea. Native textareas are resizable both horizontally
-   * and vertically, but this component will prevent resizing by default and instead animate height
-   * changes as the user types.
+   * Updates the resize ability for the textarea. Native textareas are resizable
+   * both horizontally and vertically, but this component will prevent resizing
+   * by default and instead animate height changes as the user types.
    */
   resize?: TextAreaResize;
 
   /**
-   * Boolean if the height changes should be animated when the `resize` prop is set to `"auto"`.
+   * Boolean if the height changes should be animated when the `resize` prop is
+   * set to `"auto"`.
    */
   animate?: boolean;
 
   /**
-   * An optional ref to apply to the text field's container div element. The default ref is
-   * forwarded on to the `input` element.
+   * An optional ref to apply to the text field's container div element. The
+   * default ref is forwarded on to the `input` element.
    */
   containerRef?: Ref<HTMLDivElement>;
 }
-
-type WithRef = WithForwardedRef<HTMLTextAreaElement>;
-type DefaultProps = Required<
-  Pick<
-    TextAreaProps,
-    | "rows"
-    | "maxRows"
-    | "theme"
-    | "error"
-    | "dense"
-    | "inline"
-    | "disabled"
-    | "resize"
-    | "animate"
-    | "underlineDirection"
-    | "isLeftAddon"
-    | "isRightAddon"
-  >
->;
-type WithDefaultProps = TextAreaProps & DefaultProps & WithRef;
 
 const block = bem("rmd-textarea");
 const container = bem("rmd-textarea-container");
@@ -139,36 +120,38 @@ const PADDING_VARIABLES =
 // this is the default of 1.5rem line-height in the styles
 const DEFAULT_LINE_HEIGHT = "24";
 
-const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
-  const {
+function TextArea(
+  {
     style,
     className,
     areaStyle,
     areaClassName,
-    forwardedRef,
     containerRef,
-    resize,
     label,
     labelStyle,
     labelClassName,
-    theme,
-    error,
-    dense,
-    inline: propInline,
+    rows = 2,
+    maxRows = -1,
+    resize = "auto",
+    theme = "outline",
+    dense = false,
+    inline: propInline = false,
+    error = false,
+    disabled = false,
+    animate = true,
+    isLeftAddon = true,
+    isRightAddon = true,
+    underlineDirection = "left",
     onBlur: propOnBlur,
     onFocus: propOnFocus,
     onChange: propOnChange,
-    animate,
-    isLeftAddon,
-    isRightAddon,
     leftChildren,
     rightChildren,
-    underlineDirection,
-    maxRows,
     ...props
-  } = providedProps as WithDefaultProps;
-
-  const { id, value, defaultValue, disabled, rows } = props;
+  }: TextAreaProps,
+  forwardedRef?: Ref<HTMLTextAreaElement>
+): ReactElement {
+  const { id, value, defaultValue } = props;
 
   const [focused, onFocus, onBlur] = useFocusState({
     onBlur: propOnBlur,
@@ -274,6 +257,8 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
     <textarea
       {...props}
       ref={refHandler}
+      rows={rows}
+      disabled={disabled}
       onFocus={onFocus}
       onBlur={onBlur}
       onChange={onChange}
@@ -369,34 +354,16 @@ const TextArea: FC<TextAreaProps & WithRef> = providedProps => {
       {children}
     </TextFieldContainer>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  rows: 2,
-  maxRows: -1,
-  resize: "auto",
-  theme: "outline",
-  dense: false,
-  inline: false,
-  error: false,
-  disabled: false,
-  animate: true,
-  isLeftAddon: true,
-  isRightAddon: true,
-  underlineDirection: "left",
-};
-
-TextArea.defaultProps = defaultProps;
+const ForwardedTextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  TextArea
+);
 
 if (process.env.NODE_ENV !== "production") {
-  TextArea.displayName = "TextArea";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
     TextArea.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
@@ -430,9 +397,7 @@ if (process.env.NODE_ENV !== "production") {
         "both",
       ]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => (
-  <TextArea {...props} forwardedRef={ref} />
-));
+export default ForwardedTextArea;

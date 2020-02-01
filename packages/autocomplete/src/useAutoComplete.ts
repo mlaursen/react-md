@@ -7,6 +7,7 @@ import {
   useMemo,
   useRef,
   useState,
+  Ref,
 } from "react";
 import {
   OptionalFixedPositionOptions,
@@ -20,7 +21,6 @@ import {
   useActiveDescendantMovement,
   useCloseOnOutsideClick,
   useToggle,
-  WithForwardedRef,
 } from "@react-md/utils";
 
 import {
@@ -39,27 +39,31 @@ import {
 export interface PositionOptions
   extends Omit<OptionalFixedPositionOptions, "width"> {
   /**
-   * The sizing behavior for the listbox. It will default to have the same width as the select button,
-   * but it is also possible to either have the `min-width` be the width of the select button or just
-   * automatically determine the width.
+   * The sizing behavior for the listbox. It will default to have the same width
+   * as the select button, but it is also possible to either have the
+   * `min-width` be the width of the select button or just automatically
+   * determine the width.
    *
-   * The sizing behavior will always ensure that the left and right bounds of the listbox appear within
-   * the viewport.
+   * The sizing behavior will always ensure that the left and right bounds of
+   * the listbox appear within the viewport.
    */
   listboxWidth?: PositionWidth;
 
   /**
-   * An optional style to also apply to the listbox element showing all the matches.
+   * An optional style to also apply to the listbox element showing all the
+   * matches.
    */
   listboxStyle?: CSSProperties;
 
   /**
-   * Boolean if the select's listbox should not hide if the user resizes the browser while it is visible.
+   * Boolean if the select's listbox should not hide if the user resizes the
+   * browser while it is visible.
    */
   disableHideOnResize?: boolean;
 
   /**
-   * Boolean if the select's listbox should not hide if the user scrolls the page while it is visible.
+   * Boolean if the select's listbox should not hide if the user scrolls the
+   * page while it is visible.
    */
   disableHideOnScroll?: boolean;
 }
@@ -69,11 +73,9 @@ type EventHandlers = Pick<
   "onBlur" | "onFocus" | "onChange" | "onClick" | "onKeyDown"
 >;
 
-interface AutoCompleteOptions
-  extends EventHandlers,
-    WithForwardedRef<HTMLInputElement>,
-    PositionOptions {
+interface AutoCompleteOptions extends EventHandlers, PositionOptions {
   autoComplete: AutoCompletion;
+  forwardedRef?: Ref<HTMLInputElement>;
   data: AutoCompleteData[];
   suggestionsId: string;
   valueKey: string;
@@ -146,9 +148,9 @@ export default function useAutoComplete({
 
   const [value, setValue] = useState("");
 
-  // this is really just a hacky way to make sure that once a value has been autocompleted,
-  // the menu doesn't immediately re-appear due to the hook below for showing when the value/
-  // filtered data list change
+  // this is really just a hacky way to make sure that once a value has been
+  // autocompleted, the menu doesn't immediately re-appear due to the hook below
+  // for showing when the value/ filtered data list change
   const autocompleted = useRef(false);
 
   const handleChange = useCallback(
@@ -358,8 +360,8 @@ export default function useAutoComplete({
       hide();
     }
 
-    // this effect is just for toggling the visibility states as needed if the value or
-    // filter data list changes
+    // this effect is just for toggling the visibility states as needed if the
+    // value or filter data list changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredData, value]);
 
@@ -371,7 +373,8 @@ export default function useAutoComplete({
     updateStyle();
     setFocusedIndex(-1);
 
-    // only want to trigger on data changes and setFocusedIndex shouldn't change anyways
+    // only want to trigger on data changes and setFocusedIndex shouldn't change
+    // anyways
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredData]);
 
@@ -380,8 +383,8 @@ export default function useAutoComplete({
       setFocusedIndex(-1);
     }
 
-    // only want to trigger on visible changes -- and setFocusedIndex shouldn't really
-    // change anyways
+    // only want to trigger on visible changes -- and setFocusedIndex shouldn't
+    // really change anyways
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 

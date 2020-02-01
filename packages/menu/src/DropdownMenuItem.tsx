@@ -1,6 +1,12 @@
-import React, { FC, Fragment, ReactNode } from "react";
+import React, {
+  forwardRef,
+  Fragment,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react";
 import { IconRotator, useIcon } from "@react-md/icon";
-import { PositionAnchor, WithForwardedRef } from "@react-md/utils";
+import { PositionAnchor } from "@react-md/utils";
 
 import defaultMenuItemRenderer from "./defaultMenuItemRenderer";
 import defaultMenuRenderer from "./defaultMenuRenderer";
@@ -12,40 +18,26 @@ export interface DropdownMenuItemProps
   extends Omit<MenuItemProps, "id">,
     BaseDropdownMenuProps {
   /**
-   * The icon to show after the children in the button when the `buttonType` is not
-   * set to `"icon"`.
+   * The icon to show after the children in the button when the `buttonType` is
+   * not set to `"icon"`.
    */
   dropdownIcon?: ReactNode;
 
   /**
-   * Boolean if the dropdown icon should be removed from the button. The icon will always
-   * be removed for icon buttons.
+   * Boolean if the dropdown icon should be removed from the button. The icon
+   * will always be removed for icon buttons.
    */
   disableDropdownIcon?: boolean;
 
   /**
-   * The default behavior of the dropdown menu is to close when the escape key is pressed.
-   * Now that there are multiple nested menus, this will actually close **all** of them by
-   * default. If this is undesired behavior, you can enable this prop which will make sure
-   * only the top-level dropdown menu will be closed.
+   * The default behavior of the dropdown menu is to close when the escape key
+   * is pressed. Now that there are multiple nested menus, this will actually
+   * close **all** of them by default. If this is undesired behavior, you can
+   * enable this prop which will make sure only the top-level dropdown menu will
+   * be closed.
    */
   disableEscapeCascade?: boolean;
 }
-
-type WithRef = WithForwardedRef<HTMLLIElement>;
-type DefaultProps = Required<
-  Pick<
-    DropdownMenuItemProps,
-    | "menuRenderer"
-    | "itemRenderer"
-    | "disableDropdownIcon"
-    | "disableEscapeCascade"
-    | "portal"
-  >
->;
-type WithDefaultProps = DropdownMenuItemProps &
-  DefaultProps &
-  WithRef & { menuLabelledBy: string };
 
 const HORIZONTAL_ANCHOR: PositionAnchor = {
   x: "inner-right",
@@ -56,32 +48,33 @@ const VERTICAL_ANCHOR: PositionAnchor = {
   y: "top",
 };
 
-const DropdownMenuItem: FC<DropdownMenuItemProps & WithRef> = providedProps => {
-  const {
+function DropdownMenuItem(
+  {
     onClick: propOnClick,
     onKeyDown: propOnKeyDown,
     children,
-    forwardedRef,
     anchor: propAnchor,
     menuLabel,
     menuLabelledBy,
-    menuRenderer,
+    menuRenderer = defaultMenuRenderer,
     items,
-    itemRenderer,
+    itemRenderer = defaultMenuItemRenderer,
     horizontal,
     onVisibilityChange,
-    portal,
+    portal = true,
     portalInto,
     portalIntoId,
     positionOptions,
     rightIcon: propRightIcon,
     dropdownIcon: propDropdownIcon,
-    disableEscapeCascade,
-    disableDropdownIcon,
-    disableCloseOnScroll,
-    disableCloseOnResize,
+    disableEscapeCascade = false,
+    disableDropdownIcon = false,
+    disableCloseOnScroll = false,
+    disableCloseOnResize = false,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: DropdownMenuItemProps,
+  ref?: Ref<HTMLLIElement>
+): ReactElement {
   const { id } = props;
   const dropdownIcon = useIcon("forward", propDropdownIcon);
 
@@ -112,12 +105,12 @@ const DropdownMenuItem: FC<DropdownMenuItemProps & WithRef> = providedProps => {
     <Fragment>
       <MenuItem
         {...props}
+        ref={ref}
         aria-haspopup="menu"
         aria-expanded={visible ? "true" : undefined}
         role="button"
         onClick={onClick}
         onKeyDown={onKeyDown}
-        ref={forwardedRef}
         rightIcon={rightIcon}
       >
         {children}
@@ -125,7 +118,9 @@ const DropdownMenuItem: FC<DropdownMenuItemProps & WithRef> = providedProps => {
       {menuRenderer(
         {
           "aria-label": menuLabel,
-          "aria-labelledby": labelledBy,
+          // ok to typecast since one of these two should be a string by this
+          // line
+          "aria-labelledby": labelledBy as string,
           id: `${id}-menu`,
           controlId: id,
           anchor,
@@ -155,28 +150,18 @@ const DropdownMenuItem: FC<DropdownMenuItemProps & WithRef> = providedProps => {
       )}
     </Fragment>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  portal: true,
-  menuRenderer: defaultMenuRenderer,
-  itemRenderer: defaultMenuItemRenderer,
-  disableDropdownIcon: false,
-  disableEscapeCascade: false,
-};
-
-DropdownMenuItem.defaultProps = defaultProps;
+const ForwardedDropdownMenuItem = forwardRef<
+  HTMLLIElement,
+  DropdownMenuItemProps
+>(DropdownMenuItem);
 
 if (process.env.NODE_ENV !== "production") {
-  DropdownMenuItem.displayName = "DropdownMenuItem";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    DropdownMenuItem.propTypes = {
+    ForwardedDropdownMenuItem.propTypes = {
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
       portal: PropTypes.bool,
@@ -186,7 +171,7 @@ if (process.env.NODE_ENV !== "production") {
       disableDropdownIcon: PropTypes.bool,
       disableEscapeCascade: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default DropdownMenuItem;
+export default ForwardedDropdownMenuItem;

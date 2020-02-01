@@ -1,7 +1,8 @@
 import React, {
-  FC,
   forwardRef,
   HTMLAttributes,
+  ReactElement,
+  Ref,
   useCallback,
   useRef,
 } from "react";
@@ -19,17 +20,16 @@ import {
   omit,
   scrollIntoView,
   useActiveDescendantMovement,
-  WithForwardedRef,
 } from "@react-md/utils";
 
 import Option from "./Option";
 import {
+  defaultIsOptionDisabled,
   getOptionId as DEFAULT_GET_OPTION_ID,
   getOptionLabel as DEFAULT_GET_OPTION_LABEL,
   isListboxOptionProps,
   ListboxOption,
   ListboxOptionProps,
-  defaultIsOptionDisabled,
 } from "./utils";
 
 export type ListboxChangeEventData = Pick<
@@ -39,9 +39,9 @@ export type ListboxChangeEventData = Pick<
   Pick<ListboxProps, "name">;
 
 /**
- * A function to call when the value of the listbox changes. This will be
- * called whenever the user clicks a new option within the select field with
- * either the mouse, touch, or the enter/space key.
+ * A function to call when the value of the listbox changes. This will be called
+ * whenever the user clicks a new option within the select field with either the
+ * mouse, touch, or the enter/space key.
  *
  * Note: This will be called **each time the user keyboard selects** a new
  * option by either typing to find a match, using the home/end keys, or using
@@ -178,23 +178,6 @@ export interface ListboxProps
   readOnly?: boolean;
 }
 
-type WithRef = WithForwardedRef<ListElement>;
-type DefaultProps = Required<
-  Pick<
-    ListboxProps,
-    | "valueKey"
-    | "labelKey"
-    | "getOptionId"
-    | "getOptionValue"
-    | "getOptionLabel"
-    | "isOptionDisabled"
-    | "visible"
-    | "temporary"
-    | "disableMovementChange"
-  >
->;
-type WithDefaultProps = ListboxProps & DefaultProps & WithRef;
-
 const block = bem("rmd-listbox");
 
 let warned: Set<string> | undefined;
@@ -203,31 +186,31 @@ let warned: Set<string> | undefined;
  * This component is used to render the list part of a `<select>` element with
  * built-in accessibility and the ability to add custom styles. This should
  * probably not be used much outside of `react-md` itself and the `Select`
- * component, but I'm planning on adding support for an inline listbox at
- * some point.
+ * component, but I'm planning on adding support for an inline listbox at some
+ * point.
  */
-const Listbox: FC<ListboxProps & WithRef> = providedProps => {
-  const {
+function Listbox(
+  {
     className,
-    forwardedRef,
-    temporary,
+    visible = true,
+    temporary = false,
+    labelKey = "label",
+    valueKey = "value",
+    getOptionId = DEFAULT_GET_OPTION_ID,
+    getOptionLabel = DEFAULT_GET_OPTION_LABEL,
+    getOptionValue = DEFAULT_GET_ITEM_VALUE,
+    isOptionDisabled = defaultIsOptionDisabled,
+    disableMovementChange = false,
     onFocus,
     onKeyDown: propOnKeyDown,
-    labelKey,
-    valueKey,
-    getOptionId,
-    getOptionLabel,
-    getOptionValue,
     name,
     options,
     value,
     onChange,
-    disableMovementChange,
     tabIndex: propTabIndex,
     portal,
     portalInto,
     portalIntoId,
-    visible,
     onRequestClose,
     timeout,
     readOnly,
@@ -240,9 +223,10 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
     onExit,
     onExiting,
     onExited,
-    isOptionDisabled,
     ...props
-  } = providedProps as WithDefaultProps;
+  }: ListboxProps,
+  ref?: Ref<ListElement>
+): ReactElement {
   const { id } = props;
   let tabIndex = propTabIndex;
   if (temporary) {
@@ -252,8 +236,8 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
   }
 
   /**
-   * Gets the current index of the option that has the same value as the provided
-   * prop value.
+   * Gets the current index of the option that has the same value as the
+   * provided prop value.
    */
   const getIndex = useCallback(
     () =>
@@ -262,11 +246,11 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
   );
 
   /**
-   * Conditionally calls the onChange callback with the new value and option
-   * if the value has changed. This will be called when:
+   * Conditionally calls the onChange callback with the new value and option if
+   * the value has changed. This will be called when:
    * - the user presses the enter or space key while "focusing" an option
-   * - the user keyboard navigates to a new option while the `disableMovementChange`
-   *   prop is `false`
+   * - the user keyboard navigates to a new option while the
+   *   `disableMovementChange` prop is `false`
    * - the user clicks the option with a mouse or touch
    */
   const handleChange = useCallback(
@@ -428,11 +412,11 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
       <List
         {...props}
         aria-activedescendant={activeId}
+        ref={ref}
         role="listbox"
         data-name={name}
         tabIndex={tabIndex}
         className={cn(block({ temporary }), className)}
-        ref={forwardedRef}
         onFocus={handleFocus}
         onKeyDown={onKeyDown}
       >
@@ -473,32 +457,15 @@ const Listbox: FC<ListboxProps & WithRef> = providedProps => {
       </List>
     </ScaleTransition>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  visible: true,
-  temporary: false,
-  labelKey: "label",
-  valueKey: "value",
-  getOptionId: DEFAULT_GET_OPTION_ID,
-  getOptionLabel: DEFAULT_GET_OPTION_LABEL,
-  getOptionValue: DEFAULT_GET_ITEM_VALUE,
-  isOptionDisabled: defaultIsOptionDisabled,
-  disableMovementChange: false,
-};
-
-Listbox.defaultProps = defaultProps;
+const ForwardedListbox = forwardRef<ListElement, ListboxProps>(Listbox);
 
 if (process.env.NODE_ENV !== "production") {
-  Listbox.displayName = "Listbox";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Listbox.propTypes = {
+    ForwardedListbox.propTypes = {
       id: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
       className: PropTypes.string,
@@ -513,9 +480,7 @@ if (process.env.NODE_ENV !== "production") {
       onRequestClose: PropTypes.func,
       disableMovementChange: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<ListElement, ListboxProps>((props, ref) => (
-  <Listbox {...props} forwardedRef={ref} />
-));
+export default ForwardedListbox;

@@ -26,8 +26,8 @@ export interface LayoutProps
     LayoutAppBarProps,
     LayoutNavigationProps {
   /**
-   * The base id to use for everything within the layout component. The `id` will
-   * be applied to:
+   * The base id to use for everything within the layout component. The `id`
+   * will be applied to:
    *
    * - the main `AppBarTitle` as `${id}-title`
    * - the main `AppBarNav` as `${id}-nav`
@@ -36,17 +36,18 @@ export interface LayoutProps
   id?: string;
 
   /**
-   * The children to display within the layout. This is pretty much required since
-   * you'll have an empty app otherwise, but it's left as optional just for prototyping
-   * purposes.
+   * The children to display within the layout. This is pretty much required
+   * since you'll have an empty app otherwise, but it's left as optional just
+   * for prototyping purposes.
    */
   children?: ReactNode;
 
   /**
-   * If the default app bar configuration doesn't allow you enough control due to lacking
-   * props or styling, you can provide your own `AppBar` implementation by using this render
-   * prop. It will replace the default `AppBar` and provide the required styles and state
-   * for the `AppBar` and controlling the main navigation element.
+   * If the default app bar configuration doesn't allow you enough control due
+   * to lacking props or styling, you can provide your own `AppBar`
+   * implementation by using this render prop. It will replace the default
+   * `AppBar` and provide the required styles and state for the `AppBar` and
+   * controlling the main navigation element.
    */
   appBar?: ReactNode;
 
@@ -89,78 +90,62 @@ export interface LayoutProps
   mainClassName?: string;
 
   /**
-   * The component to render the main element as. This should normally stay as the default
-   * of `"main"`, but if you want to have multiple `Layout` on the page for some reason,
-   * you'll need to use `"div"` for the other `Layout`s since you can only have one `<main>`
-   * per page (unless you set the `hidden` attribute on all the others).
+   * The component to render the main element as. This should normally stay as
+   * the default of `"main"`, but if you want to have multiple `Layout` on the
+   * page for some reason, you'll need to use `"div"` for the other `Layout`s
+   * since you can only have one `<main>` per page (unless you set the `hidden`
+   * attribute on all the others).
    */
   mainComponent?: "main" | "div";
 }
 
-type DefaultProps = Required<
-  Pick<
-    LayoutProps,
-    | "id"
-    | "appBarTheme"
-    | "appBarAfterNav"
-    | "fixedAppBar"
-    | "denseAppBar"
-    | "navIconLabel"
-    | "hideNavLabel"
-    | "navTreeLabel"
-    | "sheetLabel"
-    | "phoneLayout"
-    | "tabletLayout"
-    | "landscapeTabletLayout"
-    | "desktopLayout"
-    | "itemRenderer"
-    | "labelKey"
-    | "valueKey"
-    | "mainComponent"
-    | "disableTemporaryAutoclose"
-  >
->;
-type WithDefaultProps = LayoutProps & DefaultProps;
-
 const main = bem("rmd-layout-main");
 
 /**
- * The layout to use for your app. There are 9 different types of layouts supported
- * out of the box that work for a decent amount of apps out of the box.
+ * The layout to use for your app. There are 9 different types of layouts
+ * supported out of the box that work for a decent amount of apps out of the
+ * box.
  *
- * Note: You will need to ensure that the base `Configuration` component is a parent
- * of this `Layout` component to work since it relies on the `AppSizeContext` for
- * automatically updating the layout based on media queries.
+ * Note: You will need to ensure that the base `Configuration` component is a
+ * parent of this `Layout` component to work since it relies on the
+ * `AppSizeContext` for automatically updating the layout based on media
+ * queries.
  */
-const Layout: FC<LayoutProps> = providedProps => {
-  const {
-    id,
-    appBar: propAppBar,
-    appBarTheme,
-    appBarAfterNav,
-    fixedAppBar,
-    denseAppBar,
-    navIcon: propNavIcon,
-    navIconLabel,
-    navIconLabelledBy,
-    appBarTitle,
-    appBarChildren,
-    appBarRef,
-    appBarStyle,
-    appBarClassName,
-    mainRef,
-    mainStyle,
-    mainClassName,
-    phoneLayout,
-    tabletLayout,
-    landscapeTabletLayout,
-    desktopLayout,
-    largeDesktopLayout,
-    children,
-    navItems,
-    mainComponent: Main,
-    ...props
-  } = providedProps as WithDefaultProps;
+const Layout: FC<LayoutProps> = ({
+  id = "layout",
+  appBar: propAppBar,
+  appBarTheme = "primary",
+  appBarAfterNav = false,
+  fixedAppBar = true,
+  denseAppBar = false,
+  navIcon: propNavIcon,
+  navIconLabel = "Navigation toggle",
+  navIconLabelledBy,
+  appBarTitle,
+  appBarChildren,
+  appBarRef,
+  appBarStyle,
+  appBarClassName,
+  mainRef,
+  mainStyle,
+  mainClassName,
+  navTreeLabel = "Navigation tree",
+  hideNavLabel = "Hide navigation",
+  sheetLabel = "Navigation",
+  phoneLayout = DEFAULT_PHONE_LAYOUT,
+  tabletLayout = DEFAULT_TABLET_LAYOUT,
+  landscapeTabletLayout = DEFAULT_LANDSCAPE_TABLET_LAYOUT,
+  desktopLayout = DEFAULT_DESKTOP_LAYOUT,
+  largeDesktopLayout,
+  children,
+  navItems,
+  itemRenderer = defaultNavigationItemRenderer,
+  mainComponent: Main = "main",
+  labelKey = "children",
+  valueKey = "children",
+  disableTemporaryAutoclose = false,
+  ...props
+}) => {
   const {
     showNav,
     hideNav,
@@ -232,6 +217,13 @@ const Layout: FC<LayoutProps> = providedProps => {
         fixedAppBar={fixedAppBar}
         layoutId={id}
         navItems={navItems}
+        navTreeLabel={navTreeLabel}
+        hideNavLabel={hideNavLabel}
+        sheetLabel={sheetLabel}
+        itemRenderer={itemRenderer}
+        labelKey={labelKey}
+        valueKey={valueKey}
+        disableTemporaryAutoclose={disableTemporaryAutoclose}
       />
       {appBarAfterNav && appBar}
       <Main
@@ -254,38 +246,9 @@ const Layout: FC<LayoutProps> = providedProps => {
   );
 };
 
-const defaultProps: DefaultProps = {
-  id: "layout",
-  appBarTheme: "primary",
-  appBarAfterNav: false,
-  fixedAppBar: true,
-  denseAppBar: false,
-  navIconLabel: "Navigation toggle",
-  navTreeLabel: "Navigation tree",
-  hideNavLabel: "Hide navigation",
-  sheetLabel: "Navigation",
-  phoneLayout: DEFAULT_PHONE_LAYOUT,
-  tabletLayout: DEFAULT_TABLET_LAYOUT,
-  landscapeTabletLayout: DEFAULT_LANDSCAPE_TABLET_LAYOUT,
-  desktopLayout: DEFAULT_DESKTOP_LAYOUT,
-  itemRenderer: defaultNavigationItemRenderer,
-  mainComponent: "main",
-  labelKey: "children",
-  valueKey: "children",
-  disableTemporaryAutoclose: false,
-};
-
-Layout.defaultProps = defaultProps;
-
 if (process.env.NODE_ENV !== "production") {
-  Layout.displayName = "Layout";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
-
-  if (PropTypes) {
+    const PropTypes = require("prop-types");
     const phoneLayouts = ["temporary", "temporary-mini"];
     const tabletLayouts = [...phoneLayouts, "toggleable", "toggleable-mini"];
     const wideLayouts = [
@@ -339,10 +302,11 @@ if (process.env.NODE_ENV !== "production") {
       labelKey: PropTypes.string,
       valueKey: PropTypes.string,
       itemRenderer: PropTypes.func,
+      navItems: PropTypes.object.isRequired,
 
       disableTemporaryAutoclose: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
 export default Layout;

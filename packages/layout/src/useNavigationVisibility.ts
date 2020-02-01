@@ -32,10 +32,11 @@ const { Provider } = context;
 export { Provider };
 
 /**
- * A hook that provides the layout navigation context for use in custom `Layout` components.
+ * A hook that provides the layout navigation context for use in custom `Layout`
+ * components.
  *
- * @return the context that provides the handlers, visibility, and resolved persistance
- * of the main navigation
+ * @return the context that provides the handlers, visibility, and resolved
+ * persistance of the main navigation
  */
 export default function useNavigationVisibility(): LayoutNavigationVisibility {
   return useContext(context);

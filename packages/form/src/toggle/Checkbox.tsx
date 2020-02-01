@@ -1,21 +1,20 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef, ReactElement, Ref } from "react";
 import { useIcon } from "@react-md/icon";
-import { WithForwardedRef } from "@react-md/utils";
 
 import InputToggle, { InputToggleProps } from "./InputToggle";
 
 export interface CheckboxProps extends InputToggleProps {
   /**
-   * If the indeterminate prop is enabled, the this prop must be a space-delimited
-   * string of **all** the checkboxes that it controls.
+   * If the indeterminate prop is enabled, the this prop must be a
+   * space-delimited string of **all** the checkboxes that it controls.
    */
   "aria-controls"?: string;
 
   /**
    * Boolean if the checkbox can have an indeterminate state. This is used when
    * there is a checkbox group where a single checkbox and select/deselect all
-   * related checkboxes. This should be enabled when not all the related checkboxes
-   * have been checked.
+   * related checkboxes. This should be enabled when not all the related
+   * checkboxes have been checked.
    */
   indeterminate?: boolean;
 }
@@ -24,39 +23,34 @@ export interface CheckboxProps extends InputToggleProps {
  * The `Checkbox` component is just a wrapper for the `InputToggle` that
  * defaults to reasonable defaults for a checkbox input.
  */
-const Checkbox: FC<CheckboxProps & WithForwardedRef<HTMLInputElement>> = ({
-  forwardedRef,
-  icon: propIcon,
-  ...props
-}) => {
+function Checkbox(
+  { icon: propIcon, indeterminate = false, ...props }: CheckboxProps,
+  ref?: Ref<HTMLInputElement>
+): ReactElement {
   const icon = useIcon("checkbox", propIcon);
 
   return (
-    <InputToggle {...props} icon={icon} ref={forwardedRef} type="checkbox" />
+    <InputToggle
+      {...props}
+      icon={icon}
+      ref={ref}
+      type="checkbox"
+      indeterminate={indeterminate}
+    />
   );
-};
-
-Checkbox.defaultProps = {
-  indeterminate: false,
-};
-
-if (process.env.NODE_ENV !== "production") {
-  Checkbox.displayName = "Checkbox";
-
-  let PropTypes;
-  try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
-
-  if (PropTypes) {
-    Checkbox.propTypes = {
-      indeterminate: PropTypes.bool,
-      icon: PropTypes.node,
-      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    };
-  }
 }
 
-export default forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => (
-  <Checkbox {...props} forwardedRef={ref} />
-));
+const ForwardedCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(Checkbox);
+
+if (process.env.NODE_ENV !== "production") {
+  try {
+    const PropTypes = require("prop-types");
+
+    ForwardedCheckbox.propTypes = {
+      indeterminate: PropTypes.bool,
+      icon: PropTypes.node,
+    };
+  } catch (e) {}
+}
+
+export default ForwardedCheckbox;

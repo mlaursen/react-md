@@ -43,9 +43,10 @@ const getActiveTab = (
 };
 
 /**
- * This hook will merge the provided style object along with the required css variables
- * for the active tab underline moving to the correct location. The indicator will
- * be updated to be the same width as the tab along with offset by all the tabs' sizes.
+ * This hook will merge the provided style object along with the required css
+ * variables for the active tab underline moving to the correct location. The
+ * indicator will be updated to be the same width as the tab along with offset
+ * by all the tabs' sizes.
  *
  * @private
  */
@@ -106,16 +107,16 @@ export default function useTabIndicatorStyle({
   useResizeObserver({
     target: tabsRef,
     onResize() {
-      // whenever the tabs container element is resized, it _probably_ means that the tabs
-      // will be resized or moved. this means the indicator will be in the wrong place so
-      // we need to fix it here.
+      // whenever the tabs container element is resized, it _probably_ means
+      // that the tabs will be resized or moved. this means the indicator will
+      // be in the wrong place so we need to fix it here.
       updateCSSVars(itemRefs, activeIndex);
     },
   });
 
-  // TODO: Look into removing this resize observer. This is only required if someone manually
-  // updates the width of the tab (dev utils) or if the width was not changed due to the tabs
-  // container element resizing (iffy)
+  // TODO: Look into removing this resize observer. This is only required if
+  // someone manually updates the width of the tab (dev utils) or if the width
+  // was not changed due to the tabs container element resizing (iffy)
   useResizeObserver({
     target: () => getActiveTab(itemRefs, activeIndex),
     onResize() {

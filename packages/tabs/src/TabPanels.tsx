@@ -1,17 +1,18 @@
 import React, {
   Children,
   cloneElement,
-  FC,
   forwardRef,
   HTMLAttributes,
   isValidElement,
-  useRef,
+  ReactElement,
+  Ref,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef, applyRef } from "@react-md/utils";
+import { applyRef, bem } from "@react-md/utils";
 
 import PanelGroup from "./PanelGroup";
 import { useTabs } from "./TabsManager";
@@ -40,12 +41,12 @@ export interface TabPanelsProps extends HTMLAttributes<HTMLDivElement> {
   persistent?: boolean;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<
-  Pick<TabPanelsProps, "disableScrollFix" | "disableTransition" | "persistent">
->;
-type WithDefaultProps = TabPanelsProps & DefaultProps & WithRef;
 const block = bem("rmd-tab-panels");
+// const defaultProps: DefaultProps = {
+//   disableScrollFix: false,
+//   disableTransition: false,
+//   persistent: false,
+// };
 
 /**
  * This component allows you to control the visibility of the `TabPanel` components
@@ -54,17 +55,17 @@ const block = bem("rmd-tab-panels");
  * why the children for this component can only be `TabPanel` and should not be
  * conditional.
  */
-const TabPanels: FC<TabPanelsProps & WithRef> = providedProps => {
-  const {
+function TabPanels(
+  {
     className,
     children,
-    forwardedRef,
-    disableScrollFix,
-    disableTransition,
-    persistent,
+    disableScrollFix = false,
+    disableTransition = false,
+    persistent = false,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: TabPanelsProps,
+  forwardedRef?: Ref<HTMLDivElement>
+): ReactElement {
   const { tabsId, tabs, activeIndex } = useTabs();
   const prevIndex = useRef(activeIndex);
   const [{ previous, incrementing }, setState] = useState({
@@ -177,36 +178,24 @@ const TabPanels: FC<TabPanelsProps & WithRef> = providedProps => {
       </PanelGroup>
     </div>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  disableScrollFix: false,
-  disableTransition: false,
-  persistent: false,
-};
-
-TabPanels.defaultProps = defaultProps;
+const ForwardedTabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(
+  TabPanels
+);
 
 if (process.env.NODE_ENV !== "production") {
-  TabPanels.displayName = "TabPanels";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    TabPanels.propTypes = {
+    ForwardedTabPanels.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
       disableScrollFix: PropTypes.bool,
       disableTransition: PropTypes.bool,
       persistent: PropTypes.bool,
-      forwardedRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, TabPanelsProps>((props, ref) => (
-  <TabPanels {...props} forwardedRef={ref} />
-));
+export default ForwardedTabPanels;

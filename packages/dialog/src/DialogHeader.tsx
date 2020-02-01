@@ -1,50 +1,41 @@
-import React, { FC, forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export type DialogHeaderProps = HTMLAttributes<HTMLDivElement>;
-
-type WithRef = WithForwardedRef<HTMLDivElement>;
 
 const block = bem("rmd-dialog");
 
 /**
- * This component doesn't do anything to complex. It really just applies custom styles
- * so that when the `DialogContent` component is used, the header will be "fixed" to the
- * top of the dialog while the content scrolls. It also applies some minimal padding.
+ * This component doesn't do anything to complex. It really just applies custom
+ * styles so that when the `DialogContent` component is used, the header will be
+ * "fixed" to the top of the dialog while the content scrolls. It also applies
+ * some minimal padding.
  */
-const DialogHeader: FC<DialogHeaderProps & WithRef> = ({
-  children,
-  className,
-  forwardedRef,
-  ...props
-}) => (
-  <header
-    {...props}
-    className={cn(block("header"), className)}
-    ref={forwardedRef}
-  >
-    {children}
-  </header>
+function DialogHeader(
+  { children, className, ...props }: DialogHeaderProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
+  return (
+    <header {...props} ref={ref} className={cn(block("header"), className)}>
+      {children}
+    </header>
+  );
+}
+
+const ForwardedDialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
+  DialogHeader
 );
 
 if (process.env.NODE_ENV !== "production") {
-  DialogHeader.displayName = "DialogHeader";
-
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    DialogHeader.propTypes = {
+    ForwardedDialogHeader.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
-      forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, DialogHeaderProps>((props, ref) => (
-  <DialogHeader {...props} forwardedRef={ref} />
-));
+export default ForwardedDialogHeader;

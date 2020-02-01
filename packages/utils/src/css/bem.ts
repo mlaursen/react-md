@@ -39,16 +39,15 @@ export default function bem(base: Block): BEMResult {
   }
 
   /**
-   * Creates the full class name from the base block name. This can be
-   * called without any arguments which will just return the base block
-   * name (kind of worthless), or you can provide a child element name
-   * and modifiers.
+   * Creates the full class name from the base block name. This can be called
+   * without any arguments which will just return the base block name (kind of
+   * worthless), or you can provide a child element name and modifiers.
    *
-   * @param elementOrModifier This is either the child element name
-   * or an object of modifiers to apply. This **must** be a string if
-   * the second argument is provided.
-   * @param modifier Any optional modifiers to apply to the block and
-   * optional element.
+   * @param elementOrModifier This is either the child element name or an object
+   * of modifiers to apply. This **must** be a string if the second argument is
+   * provided.
+   * @param modifier Any optional modifiers to apply to the block and optional
+   * element.
    * @return the full class name
    */
   return function block(

@@ -1,4 +1,4 @@
-import React, { ElementType, FC, useCallback, useState } from "react";
+import React, { ElementType, ReactElement, useCallback, useState } from "react";
 
 import useResizeObserver, {
   ObservedResizeEventHandler,
@@ -7,70 +7,66 @@ import useResizeObserver, {
 
 export interface ResizeObserverProps {
   /**
-   * An optional className to provide to this component when the `target` prop is provided. You
-   * should really not be adding styles to this component as it is hidden.
+   * An optional className to provide to this component when the `target` prop
+   * is provided. You should really not be adding styles to this component as it
+   * is hidden.
    */
   className?: string;
 
   /**
-   * This prop will only be used when the `target` prop is `undefined`. Since the `ResizeObserver`
-   * will need to find a DOM node to listen to changes to, it will be rendered in the dom and find
-   * the parent element for size changes. You really only want to change this up if trying to listen
-   * to table resize events and not using the `target` prop.
+   * This prop will only be used when the `target` prop is `undefined`. Since
+   * the `ResizeObserver` will need to find a DOM node to listen to changes to,
+   * it will be rendered in the dom and find the parent element for size
+   * changes. You really only want to change this up if trying to listen to
+   * table resize events and not using the `target` prop.
    */
   component?: ElementType;
 
   /**
-   * Boolean if the resize observer should stop tracking height changes. This will only
-   * update the callback/renderer to not update on height changes, so there will not
-   * be a huge performance boost.
+   * Boolean if the resize observer should stop tracking height changes. This
+   * will only update the callback/renderer to not update on height changes, so
+   * there will not be a huge performance boost.
    */
   disableHeight?: boolean;
 
   /**
-   * Boolean if the resize observer should stop tracking width changes. This will only
-   * update the callback/renderer to not update on height changes, so there will not
-   * be a huge performance boost.
+   * Boolean if the resize observer should stop tracking width changes. This
+   * will only update the callback/renderer to not update on height changes, so
+   * there will not be a huge performance boost.
    */
   disableWidth?: boolean;
 
   /**
-   * An optional resize target to be used instead of the parent element of this component.
-   * This can either be an `HTMLElement`, a `querySelector` string, a function that returns
-   * an `HTMLElement` or `null`.
+   * An optional resize target to be used instead of the parent element of this
+   * component.  This can either be an `HTMLElement`, a `querySelector` string,
+   * a function that returns an `HTMLElement` or `null`.
    *
-   * Setting this to `null` will result in a "lazy Observer". The observer will not start until it has
-   * been updated to be a string or an HTMLElement.
+   * Setting this to `null` will result in a "lazy Observer". The observer will
+   * not start until it has been updated to be a string or an HTMLElement.
    */
   target?: ResizeObserverTarget;
 
   /**
-   * The resize event handler for the resize observer. The callback will include the next height, width,
-   * scrollHeight, scrollWidth, and the element that is being observed.
+   * The resize event handler for the resize observer. The callback will include
+   * the next height, width, scrollHeight, scrollWidth, and the element that is
+   * being observed.
    */
   onResize: ObservedResizeEventHandler;
 }
 
-type DefaultProps = Required<
-  Pick<ResizeObserverProps, "disableWidth" | "disableHeight" | "component">
->;
-type WithDefaultProps = ResizeObserverProps & DefaultProps;
-
 /**
- * The resize observer is used to track the size changes for a single element in a page.
- * This is a bit different than a normal `ResizeListener` since it does not rely on entire
- * page size changes.
+ * The resize observer is used to track the size changes for a single element in
+ * a page.  This is a bit different than a normal `ResizeListener` since it does
+ * not rely on entire page size changes.
  */
-const ResizeObserver: FC<ResizeObserverProps> = providedProps => {
-  const {
-    disableHeight,
-    disableWidth,
-    className,
-    component: Component,
-    target,
-    onResize,
-  } = providedProps as WithDefaultProps;
-
+function ResizeObserver({
+  disableHeight = false,
+  disableWidth = false,
+  className,
+  component: Component = "span",
+  target,
+  onResize,
+}: ResizeObserverProps): ReactElement | null {
   const [element, setElement] = useState<HTMLElement | null>(null);
   useResizeObserver({
     disableHeight,
@@ -92,23 +88,12 @@ const ResizeObserver: FC<ResizeObserverProps> = providedProps => {
   }
 
   return <Component className={className} aria-hidden="true" ref={ref} />;
-};
-
-const defaultProps: DefaultProps = {
-  disableHeight: false,
-  disableWidth: false,
-  component: "span",
-};
-
-ResizeObserver.defaultProps = defaultProps;
+}
 
 if (process.env.NODE_ENV !== "production") {
-  let PropTypes = null;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
     ResizeObserver.propTypes = {
       disableHeight: PropTypes.bool,
       disableWidth: PropTypes.bool,
@@ -124,7 +109,7 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
     };
-  }
+  } catch (e) {}
 }
 
 export default ResizeObserver;

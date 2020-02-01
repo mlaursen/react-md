@@ -1,10 +1,10 @@
-import React, { FC, HTMLAttributes, forwardRef } from "react";
+import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { bem, WithForwardedRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface SnackbarProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -15,23 +15,19 @@ export interface SnackbarProps
   id: string;
 }
 
-type WithRef = WithForwardedRef<HTMLDivElement>;
-type DefaultProps = Required<Pick<SnackbarProps, "portal">>;
-type WithDefaultProps = SnackbarProps & WithRef & DefaultProps;
-
 const block = bem("rmd-snackbar");
 
-const Snackbar: FC<SnackbarProps & WithRef> = providedProps => {
-  const {
+function Snackbar(
+  {
     className,
-    forwardedRef,
     children,
-    portal,
+    portal = false,
     portalInto,
     portalIntoId,
     ...props
-  } = providedProps as WithDefaultProps;
-
+  }: SnackbarProps,
+  ref?: Ref<HTMLDivElement>
+): ReactElement {
   return (
     <ConditionalPortal
       portal={portal}
@@ -41,38 +37,27 @@ const Snackbar: FC<SnackbarProps & WithRef> = providedProps => {
       <div
         {...props}
         role="status"
-        ref={forwardedRef}
+        ref={ref}
         className={cn(block(), className)}
       >
         {children}
       </div>
     </ConditionalPortal>
   );
-};
+}
 
-const defaultProps: DefaultProps = {
-  portal: false,
-};
-
-Snackbar.defaultProps = defaultProps;
+const ForwardedSnackbar = forwardRef<HTMLDivElement, SnackbarProps>(Snackbar);
 
 if (process.env.NODE_ENV !== "production") {
-  Snackbar.displayName = "Snackbar";
-
-  let PropTypes;
   try {
-    PropTypes = require("prop-types");
-  } catch (e) {}
+    const PropTypes = require("prop-types");
 
-  if (PropTypes) {
-    Snackbar.propTypes = {
+    ForwardedSnackbar.propTypes = {
       id: PropTypes.string.isRequired,
       children: PropTypes.node,
       portal: PropTypes.bool,
     };
-  }
+  } catch (e) {}
 }
 
-export default forwardRef<HTMLDivElement, SnackbarProps>((props, ref) => (
-  <Snackbar {...props} forwardedRef={ref} />
-));
+export default ForwardedSnackbar;

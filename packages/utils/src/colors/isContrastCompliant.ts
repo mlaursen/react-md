@@ -13,8 +13,8 @@ import { HexString } from "./hexToRGB";
 export type ContrastRatioCompliance = "large" | "normal" | "AAA";
 
 /**
- * The contrast ratio that can be used for large text where large text is considered 18pt
- * or 14pt bold.
+ * The contrast ratio that can be used for large text where large text is
+ * considered 18pt or 14pt bold.
  */
 export const LARGE_TEXT_CONTRAST_RATIO = 3;
 
@@ -29,14 +29,14 @@ export const NORMAL_TEXT_CONTRAST_RATIO = 4.5;
 export const AAA_CONTRAST_RATIO = 7;
 
 /**
- * Checks if there is an acceptable contrast ratio between the background and foreground
- * colors based on the provided compliance level.
+ * Checks if there is an acceptable contrast ratio between the background and
+ * foreground colors based on the provided compliance level.
  *
  * @param background The background color to check against
  * @param foreground The foreground color to check against
  * @param compliance The compliance level to use or a custom number as a ratio.
- * @return true if there is enough contrast between the foreground and background colors
- * for the provided compliance level.
+ * @return true if there is enough contrast between the foreground and
+ * background colors for the provided compliance level.
  */
 export default function isContrastCompliant(
   background: HexString,

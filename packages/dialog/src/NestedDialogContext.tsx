@@ -20,6 +20,10 @@ const context = createContext<NestedDialogContext>({
   remove: () => {},
 });
 
+if (process.env.NODE_ENV !== "production") {
+  context.displayName = "NestedDialogContext";
+}
+
 const { Provider } = context;
 
 /**
@@ -27,7 +31,8 @@ const { Provider } = context;
  * - preventing all dialogs to be closed when the escape key is pressed
  * - hiding the overlays for dialogs that are not the top-most focus
  *
- * This should be added to the root of your app if you would like to enable this feature.
+ * This should be added to the root of your app if you would like to enable this
+ * feature.
  */
 export const NestedDialogContextProvider: FC = ({ children }) => {
   const [stack, setStack] = useState<string[]>([]);
@@ -61,8 +66,8 @@ export const NestedDialogContextProvider: FC = ({ children }) => {
 };
 
 /**
- * Gets the current nested dialog context. This shouldn't really be used externally
- * and is a private context hook.
+ * Gets the current nested dialog context. This shouldn't really be used
+ * externally and is a private context hook.
  *
  * @private
  */
