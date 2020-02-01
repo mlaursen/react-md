@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu should render correctly 1`] = `
+<div>
+  <button
+    id="menu-container"
+    type="button"
+  />
+  <button
+    id="other-element"
+    type="button"
+  />
+</div>
+`;
+
+exports[`Menu should render correctly 2`] = `
+<div>
+  <button
+    id="menu-container"
+    type="button"
+  />
+  <div
+    aria-label="Menu"
+    aria-orientation="vertical"
+    class="rmd-menu rmd-transition--scale-enter rmd-transition--scale-enter-active"
+    id="menu"
+    role="menu"
+    style="left: 0px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul>
+      <li
+        id="menu-item-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        Item 1
+      </li>
+      <li
+        id="menu-item-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        Item 2
+      </li>
+      <li
+        id="menu-item-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        Item 3
+      </li>
+    </ul>
+  </div>
+  <button
+    id="other-element"
+    type="button"
+  />
+</div>
+`;

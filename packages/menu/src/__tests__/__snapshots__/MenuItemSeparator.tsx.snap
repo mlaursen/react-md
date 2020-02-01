@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItemSeparator should inherit the parent Menu's orientation unless it was manually provided 1`] = `
+<hr
+  class="rmd-divider"
+  data-testid="separator"
+  role="separator"
+/>
+`;
+
+exports[`MenuItemSeparator should inherit the parent Menu's orientation unless it was manually provided 2`] = `
+<div
+  aria-orientation="vertical"
+  class="rmd-divider rmd-divider--vertical"
+  data-testid="separator"
+  role="separator"
+  style="height: 0px;"
+/>
+`;
+
+exports[`MenuItemSeparator should inherit the parent Menu's orientation unless it was manually provided 3`] = `
+<div
+  aria-orientation="vertical"
+  class="rmd-divider rmd-divider--vertical"
+  data-testid="separator"
+  role="separator"
+  style="height: 0px;"
+/>
+`;
+
+exports[`MenuItemSeparator should inherit the parent Menu's orientation unless it was manually provided 4`] = `
+<hr
+  class="rmd-divider"
+  data-testid="separator"
+  role="separator"
+/>
+`;
+
+exports[`MenuItemSeparator should render correctly 1`] = `
+<div>
+  <hr
+    class="rmd-divider"
+    role="separator"
+  />
+</div>
+`;
+
+exports[`MenuItemSeparator should render correctly 2`] = `
+<div>
+  <div
+    aria-orientation="vertical"
+    class="rmd-divider rmd-divider--vertical"
+    role="separator"
+    style="height: 0px;"
+  />
+</div>
+`;

@@ -23,14 +23,16 @@ export interface MenuItemSeparatorProps
 
 const MenuItemSeparator: FC<MenuItemSeparatorProps &
   WithForwardedRef<DividerElement>> = ({
-  "aria-orientation": propOrientation,
+  "aria-orientation": ariaOrientation,
   maxHeight,
   forwardedRef,
   ...props
 }) => {
   const menuOrientation = useOrientation();
-  const orientation = propOrientation || menuOrientation;
-  if (orientation === "horizontal") {
+  if (
+    ariaOrientation === "vertical" ||
+    (!ariaOrientation && menuOrientation === "horizontal")
+  ) {
     return (
       <VerticalDivider
         {...props}
@@ -42,14 +44,7 @@ const MenuItemSeparator: FC<MenuItemSeparatorProps &
     );
   }
 
-  return (
-    <Divider
-      {...props}
-      aria-orientation={orientation || menuOrientation}
-      ref={forwardedRef}
-      role="separator"
-    />
-  );
+  return <Divider {...props} ref={forwardedRef} role="separator" />;
 };
 
 if (process.env.NODE_ENV !== "production") {

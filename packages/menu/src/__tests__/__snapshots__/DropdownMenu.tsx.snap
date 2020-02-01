@@ -1,0 +1,407 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropdownMenu should render correctly with a list of strings, numbers, ListItemProps, ReactElement, or a mixture of all 1`] = `
+<div>
+  <button
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text rmd-menu-button"
+    id="dropdown"
+    type="button"
+  >
+    Dropdown
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-menu-icon"
+    >
+      arrow_drop_down
+    </i>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`DropdownMenu should render correctly with a list of strings, numbers, ListItemProps, ReactElement, or a mixture of all 2`] = `
+<div>
+  <button
+    aria-expanded="true"
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text rmd-menu-button"
+    id="dropdown"
+    type="button"
+  >
+    Dropdown
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-menu-icon"
+    >
+      arrow_drop_down
+    </i>
+    <span
+      class="rmd-ripple-container"
+    >
+      <span
+        class="rmd-ripple"
+        style="left: 0px; top: 0px; height: 0px; width: 0px;"
+      />
+    </span>
+  </button>
+  <div
+    aria-labelledby="dropdown"
+    aria-orientation="vertical"
+    class="rmd-menu rmd-transition--scale-enter rmd-transition--scale-enter-active"
+    id="dropdown-menu"
+    role="menu"
+    style="left: 0px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 2
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`DropdownMenu should render correctly with a list of strings, numbers, ListItemProps, ReactElement, or a mixture of all 3`] = `
+<div>
+  <button
+    aria-expanded="true"
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text rmd-menu-button"
+    id="dropdown"
+    type="button"
+  >
+    Dropdown
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-menu-icon"
+    >
+      arrow_drop_down
+    </i>
+    <span
+      class="rmd-ripple-container"
+    >
+      <span
+        class="rmd-ripple"
+        style="left: 0px; top: 0px; height: 0px; width: 0px;"
+      />
+    </span>
+  </button>
+  <div
+    aria-labelledby="dropdown"
+    aria-orientation="vertical"
+    class="rmd-menu rmd-transition--scale-enter rmd-transition--scale-enter-active"
+    id="dropdown-menu"
+    role="menu"
+    style="left: 0px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          0
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          2
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          4
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`DropdownMenu should render correctly with a list of strings, numbers, ListItemProps, ReactElement, or a mixture of all 4`] = `
+<div>
+  <button
+    aria-expanded="true"
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text rmd-menu-button"
+    id="dropdown"
+    type="button"
+  >
+    Dropdown
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-menu-icon"
+    >
+      arrow_drop_down
+    </i>
+    <span
+      class="rmd-ripple-container"
+    >
+      <span
+        class="rmd-ripple"
+        style="left: 0px; top: 0px; height: 0px; width: 0px;"
+      />
+    </span>
+  </button>
+  <div
+    aria-labelledby="dropdown"
+    aria-orientation="vertical"
+    class="rmd-menu rmd-transition--scale-enter rmd-transition--scale-enter-active"
+    id="dropdown-menu"
+    role="menu"
+    style="left: 0px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <i
+          class="rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before"
+        >
+          icon
+        </i>
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 2
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 3
+        </span>
+        <i
+          class="rmd-icon--after rmd-list-item__icon"
+        >
+          icon
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`DropdownMenu should render correctly with a list of strings, numbers, ListItemProps, ReactElement, or a mixture of all 5`] = `
+<div>
+  <button
+    aria-expanded="true"
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text rmd-menu-button"
+    id="dropdown"
+    type="button"
+  >
+    Dropdown
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-menu-icon"
+    >
+      arrow_drop_down
+    </i>
+    <span
+      class="rmd-ripple-container"
+    >
+      <span
+        class="rmd-ripple"
+        style="left: 0px; top: 0px; height: 0px; width: 0px;"
+      />
+    </span>
+  </button>
+  <div
+    aria-labelledby="dropdown"
+    aria-orientation="vertical"
+    class="rmd-menu rmd-transition--scale-enter rmd-transition--scale-enter-active"
+    id="dropdown-menu"
+    role="menu"
+    style="left: 0px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        id="item-1"
+        role="menuitem"
+      >
+        Item 1
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 2
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          4
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+`;
