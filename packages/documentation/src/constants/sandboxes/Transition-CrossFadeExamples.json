@@ -55,7 +55,7 @@
     "isBinary": false
   },
   "src/Code/Code.tsx": {
-    "content": "import React, { FC, forwardRef, HTMLAttributes, ReactNode } from \"react\";\nimport cn from \"classnames\";\nimport { WithForwardedRef } from \"@react-md/utils\";\n\nexport interface CodeProps extends HTMLAttributes<HTMLElement> {\n  className?: string;\n  children: ReactNode;\n  inline?: boolean;\n}\n\nconst Code: FC<CodeProps & WithForwardedRef<HTMLElement>> = ({\n  children,\n  inline,\n  className,\n  forwardedRef,\n  ...props\n}) => (\n  <code\n    {...props}\n    ref={forwardedRef}\n    className={cn(\"code\", { \"code--inline\": inline }, className)}\n  >\n    {children}\n  </code>\n);\n\nCode.defaultProps = {\n  inline: true,\n};\n\nexport default forwardRef<HTMLElement, CodeProps>((props, ref) => (\n  <Code {...props} forwardedRef={ref} />\n));\n",
+    "content": "import React, { forwardRef, HTMLAttributes, ReactNode } from \"react\";\nimport cn from \"classnames\";\n\nexport interface CodeProps extends HTMLAttributes<HTMLElement> {\n  className?: string;\n  children: ReactNode;\n  inline?: boolean;\n}\n\nexport default forwardRef<HTMLElement, CodeProps>(function Code(\n  { inline = true, className, children, ...props },\n  ref\n) {\n  return (\n    <code\n      {...props}\n      ref={ref}\n      className={cn(\"code\", { \"code--inline\": inline }, className)}\n    >\n      {children}\n    </code>\n  );\n});\n",
     "isBinary": false
   },
   "src/Code/code.scss": {
