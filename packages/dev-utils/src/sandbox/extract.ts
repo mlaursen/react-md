@@ -89,10 +89,8 @@ export function resolveModuleNames(
       }
 
       importName = getModuleName(importName);
-      imports.add(importName);
-      if (/Code\.tsx/.test(importName)) {
-        imports.add(importName.replace("Code.tsx", "code.scss"));
-        imports.add(importName.replace("Code.tsx", "index.ts"));
+      if (!/Code\.tsx/.test(importName)) {
+        imports.add(importName);
       }
       return;
     }

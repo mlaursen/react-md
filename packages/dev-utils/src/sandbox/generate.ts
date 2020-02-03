@@ -214,22 +214,16 @@ export default async function generate({
 
         const fileName = `src/${pathname}`;
 
-        let content: string;
-        if (filePath.endsWith("Code/index.ts")) {
-          content = CODE_INDEX_FILE;
-        } else {
-          content = await fs.readFile(
-            path.join(documentationRoot, filePath),
-            "utf8"
-          );
-        }
+        let content = await fs.readFile(
+          path.join(documentationRoot, filePath),
+          "utf8"
+        );
 
         if (!isSvg(filePath)) {
-          content = content.replace(aliasRegExp, "./");
-        }
-
-        if (filePath.endsWith("code.scss")) {
-          content = content.replace(/'variables'/, "'../variables'");
+          content = content
+            .replace(/^import Code.+;$/gm, "")
+            .replace(/<\/?Code/g, "<code")
+            .replace(aliasRegExp, "./");
         }
 
         if (demoPath === filePath) {
