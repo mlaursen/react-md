@@ -269,6 +269,8 @@ export default function usePanels({
         return;
       }
 
+      // don't want page scroll behavior
+      event.preventDefault();
       if (jumpToFirst) {
         attemptFocus(0, panels);
         return;

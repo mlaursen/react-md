@@ -3,18 +3,22 @@
 ////
 
 @import '~@react-md/theme/dist/helpers';
+@import '~@react-md/typography/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
 @import './variables';
 @import './functions';
 
-/// Creates the styles for one of the expansion-panel's theme values. This is mostly
-/// going to be an internal helper mixin util.
+/// Creates the styles for one of the expansion-panel's theme values. This is
+/// mostly going to be an internal helper mixin util.
 ///
-/// @param {String} property - The property to set a `rmd-expansion-panel-theme-values` value to.
-/// @param {String} theme-style - One of the keys of `rmd-expansion-panel-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if the css variable
-///   isn't set somehow. This will default to automatically retrieving the default value
-///   from the `rmd-expansion-panel-theme-values` map when `null`.
+/// @param {String} property - The property to set a
+/// `rmd-expansion-panel-theme-values` value to.
+/// @param {String} theme-style - One of the keys of
+/// `rmd-expansion-panel-theme-values` to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-expansion-panel-theme-values` map
+/// when `null`.
 @mixin rmd-expansion-panel-theme($property, $theme-style: $property, $fallback: null) {
   @include rmd-theme-apply-rmd-var(
     $property,
@@ -24,11 +28,11 @@
   );
 }
 
-/// Updates one of the expansion-panel's theme variables with the new value for the section
-/// of your app.
+/// Updates one of the expansion-panel's theme variables with the new value for
+/// the section of your app.
 ///
-/// @param {String} theme-style - The expansion-panel theme style type to update. This should be one
-///   of the `$rmd-expansion-panel-theme-values` keys.
+/// @param {String} theme-style - The expansion-panel theme style type to
+/// update. This should be one of the `$rmd-expansion-panel-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-expansion-panel-theme-update-var($theme-style, $value) {
   @include rmd-theme-update-rmd-var(
@@ -47,6 +51,7 @@
   }
 
   &__header {
+    @include rmd-typography(subtitle-1);
     @include rmd-expansion-panel-theme(padding, padding);
 
     align-items: center;
@@ -64,11 +69,16 @@
     }
     @include rmd-expansion-panel-theme(padding-left, icon-spacing);
 
+    // flexing (💪) makes it align nicer with text content
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
     margin-left: auto;
   }
 }
 
-/// Creates all the styles for the expansion-panel package as well as the root css variable theme.
+/// Creates all the styles for the expansion-panel package as well as the root
+/// css variable theme.
 @mixin react-md-expansion-panel {
   @include rmd-theme-create-root-theme($rmd-expansion-panel-theme-values, expansion-panel);
 

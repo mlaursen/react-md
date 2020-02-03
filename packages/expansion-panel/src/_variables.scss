@@ -21,9 +21,9 @@ $rmd-expansion-panel-header-padding: 1rem !default;
 /// @type Number
 $rmd-expansion-panel-expander-icon-spacing: $rmd-icon-spacing-with-text !default;
 
-/// A Map of all the "themeable" parts of the expansion-panel package. Every key in this map will
-/// be used to create a css variable to dynamically update the values of the icon as
-/// needed.
+/// A Map of all the "themeable" parts of the expansion-panel package. Every key
+/// in this map will be used to create a css variable to dynamically update the
+/// values of the icon as needed.
 ///
 /// Note: these variables feel useless to me. probably won't configure these
 /// @type Map
