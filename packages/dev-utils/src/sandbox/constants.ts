@@ -108,10 +108,6 @@ export const DEMO_TS_CONFIG = `{
 }
 `;
 
-export const CODE_INDEX_FILE = `import "./code.scss";
-export { default } from "./Code";
-`;
-
 export const VARIABLES_SCSS_FILE = `@import '~@react-md/theme/dist/color-palette';
 
 $rmd-theme-light: true;
