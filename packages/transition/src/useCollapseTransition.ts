@@ -297,6 +297,7 @@ interface CollapseTransitionResult<E extends HTMLElement> {
     style?: CSSProperties;
     className: string;
     ref: MutableRefObject<E | null>;
+    hidden?: boolean;
   };
   rendered: boolean;
 }
@@ -447,6 +448,7 @@ export function useCollapseTransition<E extends HTMLElement>(
         className
       ),
       ref,
+      hidden: collapsed && !entering && !leaving && rendered,
     },
     rendered,
   };
