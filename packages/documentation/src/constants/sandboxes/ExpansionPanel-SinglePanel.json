@@ -1,0 +1,52 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>ExpansionPanel Example - Single Panel</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/expansion-panel/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "ExpansionPanel Example - Single Panel",
+      "description": "Example from https://react-md.dev/packages/expansion-panel/demos#single-panel",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/expansion-panel": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, useState } from \"react\";\nimport { usePanels, ExpansionPanel } from \"@react-md/expansion-panel\";\nimport { Text } from \"@react-md/typography\";\nimport { Grid } from \"@react-md/utils\";\n\nconst Demo: FC = () => {\n  const [[panelProps]] = usePanels({ idPrefix: \"single-panel\", count: 1 });\n  const [expanded, setExpanded] = useState(false);\n  return (\n    <Grid columns={1}>\n      <ExpansionPanel\n        {...panelProps}\n        headerChildren={\n          <Text type=\"headline-5\" component=\"span\">\n            With usePanels\n          </Text>\n        }\n      >\n        <Text>\n          Suspendisse malesuada vitae ipsum quis faucibus. Interdum et malesuada\n          fames ac ante ipsum primis in faucibus. Nam accumsan turpis non\n          efficitur vehicula. Aenean egestas lobortis fermentum. Integer a purus\n          ullamcorper, ultrices libero convallis, laoreet ligula. Pellentesque\n          tellus sapien, porta at mollis a, vehicula eu sem. Fusce lacinia at\n          nulla eget dapibus. Fusce scelerisque luctus ex non fermentum. Integer\n          feugiat velit id sagittis commodo. Orci varius natoque penatibus et\n          magnis dis parturient montes, nascetur ridiculus mus. Class aptent\n          taciti sociosqu ad litora torquent per conubia nostra, per inceptos\n          himenaeos. Interdum et malesuada fames ac ante ipsum primis in\n          faucibus. Nam non facilisis ipsum. Vivamus commodo fermentum lectus\n          sit amet finibus. Donec porttitor, justo nec viverra interdum, mi\n          lacus pulvinar justo, elementum faucibus lectus nisi at turpis.\n          Phasellus a ultricies ipsum, vel sodales orci.\n        </Text>\n      </ExpansionPanel>\n      <ExpansionPanel\n        id=\"single-panel-own-props\"\n        expanded={expanded}\n        onExpandClick={() => setExpanded(!expanded)}\n        headerChildren={\n          <Text type=\"headline-5\" component=\"span\">\n            Custom Props\n          </Text>\n        }\n      >\n        <Text>\n          Suspendisse malesuada vitae ipsum quis faucibus. Interdum et malesuada\n          fames ac ante ipsum primis in faucibus. Nam accumsan turpis non\n          efficitur vehicula. Aenean egestas lobortis fermentum. Integer a purus\n          ullamcorper, ultrices libero convallis, laoreet ligula. Pellentesque\n          tellus sapien, porta at mollis a, vehicula eu sem. Fusce lacinia at\n          nulla eget dapibus. Fusce scelerisque luctus ex non fermentum. Integer\n          feugiat velit id sagittis commodo. Orci varius natoque penatibus et\n          magnis dis parturient montes, nascetur ridiculus mus. Class aptent\n          taciti sociosqu ad litora torquent per conubia nostra, per inceptos\n          himenaeos. Interdum et malesuada fames ac ante ipsum primis in\n          faucibus. Nam non facilisis ipsum. Vivamus commodo fermentum lectus\n          sit amet finibus. Donec porttitor, justo nec viverra interdum, mi\n          lacus pulvinar justo, elementum faucibus lectus nisi at turpis.\n          Phasellus a ultricies ipsum, vel sodales orci.\n        </Text>\n      </ExpansionPanel>\n    </Grid>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  }
+}

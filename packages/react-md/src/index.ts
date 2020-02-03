@@ -8,6 +8,7 @@ export * from "@react-md/card";
 export * from "@react-md/chip";
 export * from "@react-md/dialog";
 export * from "@react-md/divider";
+export * from "@react-md/expansion-panel";
 export * from "@react-md/form";
 export * from "@react-md/icon";
 export * from "@react-md/layout";

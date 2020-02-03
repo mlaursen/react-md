@@ -1,0 +1,53 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>ExpansionPanel Example - Configuring Use Panels Behavior</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/expansion-panel/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "ExpansionPanel Example - Configuring Use Panels Behavior",
+      "description": "Example from https://react-md.dev/packages/expansion-panel/demos#configuring-use-panels-behavior",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/expansion-panel": "next",
+        "@react-md/form": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport {\n  ExpansionList,\n  ExpansionPanel,\n  usePanels,\n} from \"@react-md/expansion-panel\";\nimport { Checkbox, Fieldset, useCheckboxState } from \"@react-md/form\";\nimport { Text } from \"@react-md/typography\";\nimport { Grid } from \"@react-md/utils\";\n\ninterface Props {\n  multiple: boolean;\n  expandedIndex: boolean;\n  preventAllClosed: boolean;\n}\n\nconst Example: FC<Props> = ({ multiple, expandedIndex, preventAllClosed }) => {\n  let defaultExpandedIndex: number | number[] | undefined;\n  if (expandedIndex) {\n    defaultExpandedIndex = multiple ? [1, 2] : 0;\n  }\n\n  const [panels, onKeyDown] = usePanels({\n    count: 3,\n    idPrefix: \"configuring-panels\",\n    multiple,\n    preventAllClosed,\n    // this will be considered `0` if the `preventAllClosed` option is enabled\n    // but still `undefined`\n    defaultExpandedIndex,\n  });\n\n  return (\n    <ExpansionList onKeyDown={onKeyDown}>\n      <ExpansionPanel\n        {...panels[0]}\n        headerChildren={\n          <Text type=\"headline-5\" component=\"span\">\n            Panel 1\n          </Text>\n        }\n      >\n        Nam lorem est, porta id tincidunt et, consectetur in nulla. Morbi cursus\n        at massa a feugiat. Mauris eu convallis elit, ac mollis metus. Quisque\n        pulvinar ante libero, ut laoreet dolor bibendum volutpat. In diam purus,\n        dictum a ex id, ornare feugiat ligula. Integer eget lorem quis augue\n        venenatis sodales at pretium lectus. Pellentesque eu odio augue. Fusce\n        ultricies lacus in massa finibus gravida. Maecenas turpis libero,\n        fringilla nec sodales sed, lacinia eget libero.\n      </ExpansionPanel>\n      <ExpansionPanel\n        {...panels[1]}\n        headerChildren={\n          <Text type=\"headline-5\" component=\"span\">\n            Panel 2\n          </Text>\n        }\n      >\n        Aenean rhoncus tristique fringilla. Phasellus ac libero porta, iaculis\n        quam quis, porta nibh. Maecenas laoreet dignissim magna quis ultricies.\n        Vivamus ut blandit nisl. Curabitur vel turpis vulputate, mollis ante in,\n        dignissim felis. Nullam vel est eu felis rutrum rhoncus. Fusce vitae\n        finibus lectus. Donec eleifend felis odio, vitae gravida purus ornare\n        sed.\n      </ExpansionPanel>\n      <ExpansionPanel\n        {...panels[2]}\n        headerChildren={\n          <Text type=\"headline-5\" component=\"span\">\n            Panel 3\n          </Text>\n        }\n      >\n        Donec lacinia ut sem vitae molestie. Nam placerat tristique facilisis.\n        Aliquam iaculis augue eget mollis fermentum. Morbi mattis ultricies\n        lacinia. Fusce vitae commodo nisl. Donec congue arcu ut porta feugiat.\n        Pellentesque cursus diam ut mauris ultrices, quis tristique eros\n        feugiat. Mauris justo justo, sollicitudin a augue non, varius blandit\n        lorem. Curabitur cursus mi quis maximus faucibus. Pellentesque habitant\n        morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n        Pellentesque mattis libero mauris, quis vehicula sapien porttitor at.\n        Morbi laoreet lacus sed sodales fermentum.\n      </ExpansionPanel>\n    </ExpansionList>\n  );\n};\n\nconst Demo: FC = () => {\n  const [multiple, onMultipleChange] = useCheckboxState(false);\n  const [expandedIndex, onExpandedIndexChange] = useCheckboxState(false);\n  const [preventAllClosed, onPreventAllClosedChange] = useCheckboxState(false);\n\n  return (\n    <Grid columns={1}>\n      <Fieldset legend=\"Options\">\n        <Checkbox\n          id=\"panel-options-multiple\"\n          name=\"multiple\"\n          label=\"Multiple?\"\n          checked={multiple}\n          onChange={onMultipleChange}\n        />\n        <Checkbox\n          id=\"panel-options-default-expanded\"\n          name=\"defaultExpandedIndex\"\n          label=\"Default expanded index?\"\n          checked={expandedIndex}\n          onChange={onExpandedIndexChange}\n        />\n        <Checkbox\n          id=\"panel-options-prevent-all-closed\"\n          name=\"multiple\"\n          label=\"Prevent all closed?\"\n          checked={preventAllClosed}\n          onChange={onPreventAllClosedChange}\n        />\n      </Fieldset>\n      <Example\n        // note the key here -- the usePanels does not support being updated\n        // after being mounted with these options. It will allow for changing\n        // the number of panels though\n        key={`${multiple}-${expandedIndex}-${preventAllClosed}`}\n        multiple={multiple}\n        expandedIndex={expandedIndex}\n        preventAllClosed={preventAllClosed}\n      />\n    </Grid>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  }
+}

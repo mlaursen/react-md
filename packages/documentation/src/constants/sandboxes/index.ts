@@ -17,6 +17,7 @@ export type PackageName =
   | "Dialog"
   | "Divider"
   | "Elevation"
+  | "ExpansionPanel"
   | "Form"
   | "Icon"
   | "Link"
@@ -111,6 +112,12 @@ const sandboxes: Sandboxes = {
     AllElevations: () => resolve(import("./Elevation-AllElevations.json")),
     AnimatingElevation: () =>
       resolve(import("./Elevation-AnimatingElevation.json")),
+  },
+  ExpansionPanel: {
+    ConfiguringUsePanelsBehavior: () =>
+      resolve(import("./ExpansionPanel-ConfiguringUsePanelsBehavior.json")),
+    SimpleExample: () => resolve(import("./ExpansionPanel-SimpleExample.json")),
+    SinglePanel: () => resolve(import("./ExpansionPanel-SinglePanel.json")),
   },
   Form: {
     AsyncSwitchExample: () => resolve(import("./Form-AsyncSwitchExample.json")),

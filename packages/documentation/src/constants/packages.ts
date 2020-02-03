@@ -12,6 +12,7 @@ export const PACKAGE_NAMES = [
   "dialog",
   "divider",
   "elevation",
+  "expansion-panel",
   "form",
   "icon",
   "layout",

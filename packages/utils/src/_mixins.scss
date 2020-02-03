@@ -681,6 +681,10 @@
     @include react-md-divider;
   }
 
+  @if mixin-exists(react-md-expansion-panel) {
+    @include react-md-expansion-panel;
+  }
+
   @if mixin-exists(react-md-form) {
     @include react-md-form;
   }
