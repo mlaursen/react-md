@@ -16,6 +16,8 @@ $fixed-classes: (
 );
 
 .phone {
+  height: 100%;
+
   &--emulated {
     @include rmd-elevation(4);
     @include rmd-utils-block-centered(1rem);

@@ -27,7 +27,6 @@ const Banner: FC = () => {
 
     return () => {
       observer.disconnect();
-      setElevation(true);
     };
   }, [setElevation]);
   return (

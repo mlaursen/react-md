@@ -23,13 +23,14 @@
 
     // sass-lint:disable next-line no-url-protocols
     background-image: url(#{'https://picsum.photos/#{$width}/#{$height}?image=811'});
-    height: calc(#{rmd-app-bar-theme-var(height)} + var(--offset));
+    height: auto;
     padding-bottom: var(--offset);
 
     // this is for the demo only since I don't want to move to
     // a different page for this demo to have a fixed app bar.
     // you wouldn't normally need to do this
     position: absolute;
+    z-index: 3;
   }
 
   &__title {

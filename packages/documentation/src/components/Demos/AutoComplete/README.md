@@ -1,3 +1,10 @@
+> Note: The `AutoComplete` is mostly a desktop only component out of the box due
+> to how soft keyboards work on touch devices. If you want to create an
+> `AutoComplete` on mobile, you should follow the pattern in the
+> [Highlight Matches](#highlight-matches) example where the `AutoComplete` gets
+> moved into a static header and the menu no longer hides on scroll or page
+> resizing.
+
 An `AutoComplete` is a component that allows for real-time suggestions from a
 pre-determined list as the user types by filtering data based on the current
 value. It can also be used to interact with an API that handles the sorting,

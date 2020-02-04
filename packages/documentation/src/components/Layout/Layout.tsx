@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect, useRef } from "react";
 import { ConfiguredIcons } from "@react-md/icon";
 import {
   Configuration,
@@ -56,9 +56,16 @@ const Layout: FC<LayoutProps> = ({
   pathname,
   defaultSize,
 }) => {
-  const [fixedAppBarElevation, setFixedAppBarElevation] = useState(
-    pathname === "/"
-  );
+  const [elevated, setElevated] = useState(pathname !== "/");
+  const rendered = useRef(false);
+  useEffect(() => {
+    if (!rendered.current) {
+      rendered.current = true;
+      return;
+    }
+
+    setElevated(pathname !== "/");
+  }, [pathname]);
 
   return (
     <Configuration defaultSize={defaultSize} icons={icons}>
@@ -67,14 +74,14 @@ const Layout: FC<LayoutProps> = ({
           {...useLayoutNavigation(navItems, pathname)}
           appBarTitle={title.replace("react-md@v2 - ", "")}
           appBarAfterNav
-          fixedAppBarElevation={fixedAppBarElevation}
+          fixedAppBarElevation={elevated}
           navHeaderTitle={<NavHeaderTitle />}
           navHeaderClassName="layout-nav-header"
           appBarChildren={<Actions />}
           linkComponent={LinkUnstyled}
         >
           <TableOfContents pathname={pathname} />
-          <Provider value={setFixedAppBarElevation}>{children}</Provider>
+          <Provider value={setElevated}>{children}</Provider>
         </RMDLayout>
       </TOCVisibilityProvider>
     </Configuration>

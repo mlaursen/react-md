@@ -38,7 +38,7 @@ export interface FixedDialogProps
 type StrictProps = LabelRequiredForA11y<FixedDialogProps>;
 
 const DEFAULT_ANCHOR: PositionAnchor = {
-  x: "inner-left",
+  x: "inner-right",
   y: "top",
 };
 

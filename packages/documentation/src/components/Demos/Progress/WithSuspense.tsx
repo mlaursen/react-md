@@ -6,10 +6,12 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
+import cn from "classnames";
+import { APP_BAR_OFFSET_PROMINENT_CLASSNAME } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { RefreshSVGIcon, CloudDownloadSVGIcon } from "@react-md/material-icons";
 import { getProgressA11y } from "@react-md/progress";
-import { bem } from "@react-md/utils";
+import { bem, useAppSize } from "@react-md/utils";
 
 import Phone from "components/Phone";
 import useFakeLazyImport from "hooks/useFakeLazyImport";
@@ -56,6 +58,7 @@ const WithSuspense: FC = () => {
       // no default
     }
   }, [reset]);
+  const { isPhone } = useAppSize();
 
   const loading = state === State.LOADING;
   const completed = state === State.COMPELTED;
@@ -66,6 +69,9 @@ const WithSuspense: FC = () => {
       id="with-suspense"
       appBar={<WithSuspenseAppBar />}
       className={block()}
+      contentClassName={cn({
+        [APP_BAR_OFFSET_PROMINENT_CLASSNAME]: isPhone,
+      })}
       prominent
       disableAppBar
       disableContent
