@@ -311,11 +311,11 @@
 
   $font-url-prefix: '';
   $font-url: null;
-  @if $font-url-or-prefix == null pr type-of($font-url-or-prefix) == 'string' {
+  @if $font-url-or-prefix == null or type-of($font-url-or-prefix) == 'string' {
     $font-url: if(
-      $font-url == null,
+      $font-url-or-prefix == null,
       '/fonts/' + to-lower-case(str-replace($font-name, ' ', '-')),
-      $font-url
+      $font-url-or-prefix
     );
     $font-url: if(char-at($font-url) != '/', $font-url + '/', $font-url);
     $font-url: url($font-url+$full-font-name+'.ttf');
@@ -341,29 +341,57 @@
 /// correctly included and bundled during your build. See the examples for more
 /// details.
 ///
-/// @example scss - create-react-app Example Usage
-///   // This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into
-///   // `src/fonts/material-icons` and you are including the fonts in `src/index.scss`
-///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, (
-///     light: url(./fonts/roboto/Roboto-Light.ttf),
-///     regular: url(./fonts/roboto/Roboto-Regular.ttf),
-///     medium: url(./fonts/roboto/Roboto-Medium.ttf),
-///     bold: url(./fonts/roboto/Roboto-Bold.ttf),
-///   ));
+/// @example scss - Using Absolute Paths
+///   // This example will assume that your fonts have been downloaded and
+///   // copied into a `public/fonts` directory within create-react-app.
+///   // The fonts will not be bundled with your normal build process and just
+///   // will be static assets.
 ///
-///   @include rmd-typography-host-google-font(SourceCodePro, $rmd-typography-default-font-weights, (
-///     light: url(./fonts/source-code-pro/SourceCodePro-Light.ttf),
-///     regular: url(./fonts/source-code-pro/SourceCodePro-Regular.ttf),
-///     medium: url(./fonts/source-code-pro/SourceCodePro-Medium.ttf),
-///     bold: url(./fonts/source-code-pro/SourceCodePro-Bold.ttf),
-///   ));
-///
-/// @example scss - Example Usage SCSS
 ///   // The next 3 lines are equivalent
 ///   @include rmd-typography-host-google-font;
 ///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, null);
 ///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, '/fonts/roboto');
+///
 ///   @include rmd-typography-host-google-font('Source Code Pro');
+///
+/// @example scss - Using Relative Paths
+///   // Since it might be useful to include the font in the normal build
+///   // process to hash and prefix the urls as needed, you can also use
+///   // relative paths instead of absolute paths.
+///   // This example will assume you are working within a `src/fonts.scss` file
+///   // and have copied your fonts into a `src/fonts` directory
+///
+///   // Note the `~./`. This will resolve this import to the `src` directory
+///   // within create-react-app
+///   @include rmd-typography-host-google-font(
+///     Roboto,
+///     $rmd-typography-default-font-weights,
+///     '~./fonts/roboto'
+///   );
+///
+///   @include rmd-typography-host-google-font(
+///     'Source Code Pro',
+///     regular,
+///     '~./fonts/source-code-pro'
+///   );
+///
+/// @example scss - Custom Font Map Declarations
+///   // This is going to assume you have downloaded the material-icons zip with
+///   // all the icon font files and copied it into `src/fonts/material-icons` and
+///   // you are including the fonts in `src/index.scss`
+///   @include rmd-typography-host-google-font(Roboto, $rmd-typography-default-font-weights, (
+///     light: url(/fonts/roboto/Roboto-Light.ttf),
+///     regular: url(/fonts/roboto/Roboto-Regular.ttf),
+///     medium: url(/fonts/roboto/Roboto-Medium.ttf),
+///     bold: url(/fonts/roboto/Roboto-Bold.ttf),
+///   ));
+///
+///   @include rmd-typography-host-google-font(SourceCodePro, $rmd-typography-default-font-weights, (
+///     light: url(/fonts/source-code-pro/SourceCodePro-Light.ttf),
+///     regular: url(/fonts/source-code-pro/SourceCodePro-Regular.ttf),
+///     medium: url(/fonts/source-code-pro/SourceCodePro-Medium.ttf),
+///     bold: url(/fonts/source-code-pro/SourceCodePro-Bold.ttf),
+///   ));
 ///
 /// @param {String} font-name [Roboto] - The font name to use.
 /// @param {List} weights [$rmd-typography-default-font-weights] - A list of

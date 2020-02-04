@@ -127,19 +127,32 @@
 /// you are using create-react-app, you **must** use the Map version so the
 /// fonts can be correctly included by the build process.
 ///
-/// @example scss - create-react-app Example Usage
-///   // This is going to assume you have downloaded the material-icons zip with
-///   // all the icon font files and copied it into `src/fonts/material-icons`
-///   // and you are including the fonts in `src/index.scss`
-///   @include rmd-icon-material-icons-font-face((
-///     woff2: url(./fonts/material-icons/MaterialIcons-Regular.woff2),
-///     woff: url(./fonts/material-icons/MaterialIcons-Regular.woff),
-///     truetype: url(./fonts/material-icons/MaterialIcons-Regular.ttf)
-///   ));
-///
 /// @example scss - Example Usage SCSS
 ///   $local-font-url: '/fonts/material-icons';
 ///   @include rmd-icon-material-icons-font-face($local-font-url);
+///
+/// @example scss - Using Absolute Paths
+///   // This example will assume that the material icons font has been
+///   // downloaded and copied into the `public/fonts/material-icons` folder
+///   // The fonts will not be bundled with your normal build process and just
+///   // will be static assets.
+///
+///   // The next 2 lines are equivalent
+///   @include rmd-icon-material-icons-font-face;
+///   @include rmd-icon-material-icons-font-face('/fonts/material-icons');
+///
+///   @include rmd-typography-host-google-font('Source Code Pro');
+///
+/// @example scss - Using Relative Paths
+///   // Since it might be useful to include the font in the normal build
+///   // process to hash and prefix the urls as needed, you can also use
+///   // relative paths instead of absolute paths.
+///   // This example will assume you are working within a `src/fonts.scss` file
+///   // and have copied material-icons into a `src/fonts/material-icons` directory
+///
+///   // Note the `~./`. This will resolve this import to the `src` directory
+///   // within create-react-app
+///   @include rmd-icon-material-icons-font-face('~./fonts/material-icons');
 ///
 /// @param {Map|String} font-url-or-map ['/fonts/material-icons'] - This is
 /// either a font url prefix for the folder that is "hosting" the material icons
