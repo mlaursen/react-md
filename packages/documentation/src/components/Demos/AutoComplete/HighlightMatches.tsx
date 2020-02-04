@@ -8,7 +8,7 @@ import {
 } from "@react-md/app-bar";
 import { SearchSVGIcon, KeyboardVoiceSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
-import { MobileOnly } from "@react-md/utils";
+import { MobileOnly, useIsUserInteractionMode } from "@react-md/utils";
 
 import dessertList, { Dessert } from "constants/desserts";
 import Phone, { PhoneAppBar, ClosePhone } from "components/Phone";
@@ -23,6 +23,8 @@ const HighlightMatches: FC = () => {
   const onAutoComplete = useCallback<AutoCompleteHandler>(({ dataIndex }) => {
     setDessert(dessertList[dataIndex]);
   }, []);
+
+  const isTouch = useIsUserInteractionMode("touch");
 
   return (
     <Phone
@@ -48,6 +50,8 @@ const HighlightMatches: FC = () => {
                 vhMargin={0}
                 vwMargin={0}
                 disableSwapping
+                disableHideOnScroll={isTouch}
+                disableHideOnResize={isTouch}
                 clearOnAutoComplete
               />
             </AppBarTitle>

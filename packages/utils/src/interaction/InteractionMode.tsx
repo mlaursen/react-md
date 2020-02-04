@@ -14,8 +14,19 @@ const ParentContext = createContext(false);
 /**
  * Gets the current interaction mode of the user.
  */
-export function useInteractionModeContext(): UserInteractionMode {
+export function useUserInteractionMode(): UserInteractionMode {
   return useContext(InteractionMode);
+}
+
+/**
+ * Checks if the provided user interaction mode matches the current interaction
+ * mode within the app.
+ *
+ * @param mode The mode to check against.
+ * @return true if the mode matches.
+ */
+export function useIsUserInteractionMode(mode: UserInteractionMode): boolean {
+  return useUserInteractionMode() === mode;
 }
 
 export interface InteractionModeListenerProps {

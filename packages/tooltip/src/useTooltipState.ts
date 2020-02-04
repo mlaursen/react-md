@@ -2,7 +2,7 @@ import { HTMLAttributes, useCallback, useEffect, useRef } from "react";
 import {
   SimplePosition,
   useToggle,
-  useInteractionModeContext,
+  useUserInteractionMode,
 } from "@react-md/utils";
 
 import { DEFAULT_DELAY, DEFAULT_THRESHOLD } from "./constants";
@@ -150,7 +150,7 @@ export default function useTooltipState({
   onShow,
   onHide,
 }: TooltipStateOptions): ReturnValue {
-  const mode = useInteractionModeContext();
+  const mode = useUserInteractionMode();
   const initiated = useRef<TooltipInitiated>(null);
   const setInitiated = useCallback((initiatedBy: TooltipInitiated) => {
     initiated.current = initiatedBy;

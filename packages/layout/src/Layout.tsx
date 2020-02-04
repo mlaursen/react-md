@@ -2,7 +2,7 @@ import React, { CSSProperties, FC, ReactNode, Ref, useMemo } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import { SkipToMainContent } from "@react-md/link";
-import { bem, useInteractionModeContext } from "@react-md/utils";
+import { bem, useIsUserInteractionMode } from "@react-md/utils";
 
 import defaultNavigationItemRenderer from "./defaultNavigationItemRenderer";
 import LayoutAppBar from "./LayoutAppBar";
@@ -171,7 +171,7 @@ const Layout: FC<LayoutProps> = ({
   // the `<main>` tag would be focused instead of the closest focusable
   // element to the click area.
   let mainTabIndex: number | undefined;
-  if (useInteractionModeContext() === "keyboard") {
+  if (useIsUserInteractionMode("keyboard")) {
     mainTabIndex = -1;
   }
 

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
-import { bem, useInteractionModeContext, useToggle } from "@react-md/utils";
+import { bem, useIsUserInteractionMode, useToggle } from "@react-md/utils";
 
 import useTheme from "components/Theme/useTheme";
 import useThemeActions from "components/Theme/useThemeActions";
@@ -23,7 +23,7 @@ const ToggleTheme: FC = () => {
     icon = <LightbulbSVGIcon />;
   }
 
-  const isMouseMode = useInteractionModeContext() === "mouse";
+  const isMouseMode = useIsUserInteractionMode("mouse");
 
   return (
     <Tooltipped id="toggle-theme" tooltip="Toggle Light/Dark Theme">

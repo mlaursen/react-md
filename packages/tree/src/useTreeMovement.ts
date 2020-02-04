@@ -10,7 +10,7 @@ import {
   MovementPresets,
   useActiveDescendantMovement,
   scrollIntoView,
-  useInteractionModeContext,
+  useIsUserInteractionMode,
 } from "@react-md/utils";
 
 import { TreeItemId, TreeProps, UnknownTreeItem } from "./types";
@@ -125,7 +125,7 @@ export default function useTreeMovement({
     getItemValue,
   });
 
-  const isKeyboard = useInteractionModeContext() === "keyboard";
+  const isKeyboard = useIsUserInteractionMode("keyboard");
 
   const {
     activeId,

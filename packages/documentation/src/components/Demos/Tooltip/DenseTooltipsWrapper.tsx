@@ -3,7 +3,7 @@ import scssVariables from "@react-md/tooltip/dist/scssVariables";
 import {
   CSSVariable,
   useDocumentCSSVariables,
-  useInteractionModeContext,
+  useUserInteractionMode,
 } from "@react-md/utils";
 
 const VARIABLES = [
@@ -38,7 +38,7 @@ const VARIABLES = [
 const DenseTooltipsWrapper: FC = ({ children }) => {
   const [variables, setVariables] = useState<CSSVariable[]>([]);
   const container = useRef<HTMLDivElement | null>(null);
-  const mode = useInteractionModeContext();
+  const mode = useUserInteractionMode();
 
   const enableVariables = (): void => {
     if (!variables.length) {
