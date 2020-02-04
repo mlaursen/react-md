@@ -55,7 +55,7 @@ function createEventHandler<K extends keyof WindowEventMap>(
 
   return function eventHandler(event: WindowEventMap[K]) {
     if (!throttle) {
-      runCallbacks(event);
+      runCallbacks(event)();
       return;
     }
 
