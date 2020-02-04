@@ -19,13 +19,6 @@ export interface ExpansionPanelHeaderProps
   id: string;
 
   /**
-   * The id for the content that the panel header controls. This is generally
-   * required for a11y. However, if the content is removed from the dom while
-   * collapsed, this should be omitted.
-   */
-  contentId?: string;
-
-  /**
    * The icon to use for the expander icon.
    */
   icon?: ReactNode;
@@ -69,7 +62,6 @@ function ExpansionPanelHeader(
   {
     icon: propIcon,
     expanded,
-    contentId,
     children,
     className,
     disableTransition = false,
@@ -83,7 +75,6 @@ function ExpansionPanelHeader(
     <UnstyledButton
       {...props}
       ref={ref}
-      aria-controls={contentId}
       aria-expanded={expanded || undefined}
       className={cn(block("header"), className)}
     >

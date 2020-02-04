@@ -166,7 +166,6 @@ function ExpansionPanel(
           ref={headerRef}
           style={headerStyle}
           className={headerClassName}
-          contentId={contentId}
           icon={expanderIcon}
           expanded={expanded}
           onClick={onExpandClick}

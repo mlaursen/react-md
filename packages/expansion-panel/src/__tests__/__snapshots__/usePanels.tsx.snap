@@ -11,7 +11,6 @@ exports[`usePanels should expand all panels when the defaultExpandedIndex is -1 
       id="panel-1-container"
     >
       <button
-        aria-controls="panel-1-content"
         aria-expanded="true"
         class="rmd-button-unstyled rmd-expansion-panel__header"
         id="panel-1"
@@ -53,7 +52,6 @@ exports[`usePanels should expand all panels when the defaultExpandedIndex is -1 
       id="panel-2-container"
     >
       <button
-        aria-controls="panel-2-content"
         aria-expanded="true"
         class="rmd-button-unstyled rmd-expansion-panel__header"
         id="panel-2"
@@ -95,7 +93,6 @@ exports[`usePanels should expand all panels when the defaultExpandedIndex is -1 
       id="panel-3-container"
     >
       <button
-        aria-controls="panel-3-content"
         aria-expanded="true"
         class="rmd-button-unstyled rmd-expansion-panel__header"
         id="panel-3"
@@ -146,7 +143,6 @@ exports[`usePanels should provide the correct props to be passed to an Expansion
       id="panel-1-container"
     >
       <button
-        aria-controls="panel-1-content"
         class="rmd-button-unstyled rmd-expansion-panel__header"
         id="panel-1"
         type="button"
@@ -170,7 +166,6 @@ exports[`usePanels should provide the correct props to be passed to an Expansion
       id="panel-2-container"
     >
       <button
-        aria-controls="panel-2-content"
         class="rmd-button-unstyled rmd-expansion-panel__header"
         id="panel-2"
         type="button"
@@ -194,7 +189,6 @@ exports[`usePanels should provide the correct props to be passed to an Expansion
       id="panel-3-container"
     >
       <button
-        aria-controls="panel-3-content"
         class="rmd-button-unstyled rmd-expansion-panel__header"
         id="panel-3"
         type="button"
