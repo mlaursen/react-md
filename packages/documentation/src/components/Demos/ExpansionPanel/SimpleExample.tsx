@@ -20,7 +20,7 @@ const SimpleExample: FC = () => {
     <ExpansionList onKeyDown={onKeyDown}>
       <ExpansionPanel
         {...panel1Props}
-        headerChildren="Personal Information"
+        header="Personal Information"
         disablePadding
       >
         <Grid columns={1} clone>
@@ -59,7 +59,7 @@ const SimpleExample: FC = () => {
       </ExpansionPanel>
       <ExpansionPanel
         {...panel2Props}
-        headerChildren="Billing Information"
+        header="Billing Information"
         disablePadding
       >
         <Grid columns={1}>
@@ -70,11 +70,7 @@ const SimpleExample: FC = () => {
           <TextField id="person-address-zip" name="zip" label="Zip Code" />
         </Grid>
       </ExpansionPanel>
-      <ExpansionPanel
-        {...panel3Props}
-        headerChildren="Billing Address"
-        disablePadding
-      >
+      <ExpansionPanel {...panel3Props} header="Billing Address" disablePadding>
         <Grid columns={1}>
           <TextField
             id="person-shipping-address-1"

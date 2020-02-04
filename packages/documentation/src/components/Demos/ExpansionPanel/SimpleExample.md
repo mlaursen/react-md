@@ -5,8 +5,8 @@ list to dynamically show content as needed. Each `ExpansionPanel` requires:
 - an `expanded` prop to determine if the content is currently expanded and
   visible
 - an `onExpandedClick` prop to toggle the `expanded` state
-- header content provided either with the `headerChildren` or a custom
-  implementation with `header` prop
+- header content provided either with the `header` or a custom implementation
+  with `customHeader` prop
 
 The `usePanels` hook provided by this package will help generate these props for
 you. The `usePanels` hook requires an `idPrefix` to generate unique ids for each

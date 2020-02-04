@@ -31,7 +31,7 @@ const Example: FC<Props> = ({ multiple, expandedIndex, preventAllClosed }) => {
 
   return (
     <ExpansionList onKeyDown={onKeyDown}>
-      <ExpansionPanel {...panels[0]} headerChildren="Panel 1">
+      <ExpansionPanel {...panels[0]} header="Panel 1">
         Nam lorem est, porta id tincidunt et, consectetur in nulla. Morbi cursus
         at massa a feugiat. Mauris eu convallis elit, ac mollis metus. Quisque
         pulvinar ante libero, ut laoreet dolor bibendum volutpat. In diam purus,
@@ -40,7 +40,7 @@ const Example: FC<Props> = ({ multiple, expandedIndex, preventAllClosed }) => {
         ultricies lacus in massa finibus gravida. Maecenas turpis libero,
         fringilla nec sodales sed, lacinia eget libero.
       </ExpansionPanel>
-      <ExpansionPanel {...panels[1]} headerChildren="Panel 2">
+      <ExpansionPanel {...panels[1]} header="Panel 2">
         Aenean rhoncus tristique fringilla. Phasellus ac libero porta, iaculis
         quam quis, porta nibh. Maecenas laoreet dignissim magna quis ultricies.
         Vivamus ut blandit nisl. Curabitur vel turpis vulputate, mollis ante in,
@@ -48,7 +48,7 @@ const Example: FC<Props> = ({ multiple, expandedIndex, preventAllClosed }) => {
         finibus lectus. Donec eleifend felis odio, vitae gravida purus ornare
         sed.
       </ExpansionPanel>
-      <ExpansionPanel {...panels[2]} headerChildren="Panel 3">
+      <ExpansionPanel {...panels[2]} header="Panel 3">
         Donec lacinia ut sem vitae molestie. Nam placerat tristique facilisis.
         Aliquam iaculis augue eget mollis fermentum. Morbi mattis ultricies
         lacinia. Fusce vitae commodo nisl. Donec congue arcu ut porta feugiat.

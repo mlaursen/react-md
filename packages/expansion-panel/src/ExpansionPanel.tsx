@@ -52,12 +52,12 @@ export interface ExpansionPanelProps
    * An optional header element to display instead of the default
    * implementation.
    */
-  header?: ReactNode;
+  customHeader?: ReactNode;
 
   /**
    * The children to display within the default header element.
    */
-  headerChildren?: ReactNode;
+  header?: ReactNode;
 
   /**
    * An optional ref to pass to the default header implementation. This will be
@@ -126,8 +126,8 @@ function ExpansionPanel(
     headerRef,
     disablePadding = false,
     disableSecondaryColor = false,
+    customHeader,
     header,
-    headerChildren,
     expanded,
     onExpandClick,
     expanderIcon,
@@ -148,7 +148,7 @@ function ExpansionPanel(
       fullWidth={fullWidth}
       className={cn(block({ expanded, "margin-top": marginTop }), className)}
     >
-      {header || (
+      {customHeader || (
         <ExpansionPanelHeader
           id={`${id}-expander`}
           style={headerStyle}
@@ -159,7 +159,7 @@ function ExpansionPanel(
           onClick={onExpandClick}
           disableTransition={disableTransition}
         >
-          {headerChildren}
+          {header}
         </ExpansionPanelHeader>
       )}
       <Collapse
@@ -197,8 +197,8 @@ if (process.env.NODE_ENV !== "production") {
       headerClassName: PropTypes.string,
       contentStyle: PropTypes.object,
       contentClassName: PropTypes.string,
+      customHeader: PropTypes.node,
       header: PropTypes.node,
-      headerChildren: PropTypes.node,
       headerRef: PropTypes.oneOfType([
         PropTypes.func,
         PropTypes.shape({

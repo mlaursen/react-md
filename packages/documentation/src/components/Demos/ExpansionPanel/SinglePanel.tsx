@@ -8,7 +8,7 @@ const SinglePanel: FC = () => {
   const [expanded, setExpanded] = useState(false);
   return (
     <Grid columns={1}>
-      <ExpansionPanel {...panelProps} headerChildren="With usePanels">
+      <ExpansionPanel {...panelProps} header="With usePanels">
         <Text>
           Suspendisse malesuada vitae ipsum quis faucibus. Interdum et malesuada
           fames ac ante ipsum primis in faucibus. Nam accumsan turpis non
@@ -30,7 +30,7 @@ const SinglePanel: FC = () => {
         id="single-panel-own-props"
         expanded={expanded}
         onExpandClick={() => setExpanded(!expanded)}
-        headerChildren="Custom Props"
+        header="Custom Props"
       >
         <Text>
           Suspendisse malesuada vitae ipsum quis faucibus. Interdum et malesuada
