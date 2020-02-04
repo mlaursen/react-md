@@ -38,6 +38,7 @@
   "license": "MIT",
   "dependencies": {
     "@react-md/button": "^2.0.0-alpha.13",
+    "@react-md/card": "^2.0.0-alpha.13",
     "@react-md/icon": "^2.0.0-alpha.13",
     "@react-md/theme": "^2.0.0-alpha.13",
     "@react-md/transition": "^2.0.0-alpha.13",
