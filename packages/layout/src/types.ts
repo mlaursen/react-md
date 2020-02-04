@@ -186,6 +186,12 @@ export interface LayoutAppBarProps
   fixedAppBar?: boolean;
 
   /**
+   * Boolean if the main app bar should gain elevation while fixed to the top
+   * of the page.
+   */
+  fixedAppBarElevation?: boolean;
+
+  /**
    * Boolean if the main app bar should be dense.
    *
    * Note: this prop isn't super helpful since the dense theme is normally
