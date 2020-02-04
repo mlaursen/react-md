@@ -81,9 +81,9 @@ interface AutoCompleteOptions extends EventHandlers, PositionOptions {
   valueKey: string;
   getResultId: typeof DEFAULT_GET_RESULT_ID;
   getResultValue: typeof DEFAULT_GET_RESULT_VALUE;
-  getEmptyValueData: (data: AutoCompleteData[]) => AutoCompleteData[];
   filter: AutoCompleteFilterFunction;
   filterOptions: FilterFunctionOptions;
+  filterOnNoValue: boolean;
   onAutoComplete?: AutoCompleteHandler;
   clearOnAutoComplete: boolean;
 }
@@ -116,10 +116,10 @@ export default function useAutoComplete({
   data,
   filter: filterFn,
   filterOptions,
+  filterOnNoValue,
   valueKey,
   getResultId,
   getResultValue,
-  getEmptyValueData,
   onBlur,
   onFocus,
   onClick,
@@ -176,8 +176,8 @@ export default function useAutoComplete({
 
   const filter = useMemo(() => getFilterFunction(filterFn), [filterFn]);
   const filteredData = useMemo(() => {
-    if (!value) {
-      return getEmptyValueData(data);
+    if (!value && !filterOnNoValue) {
+      return data;
     }
 
     return filter(value, data, {
@@ -187,12 +187,12 @@ export default function useAutoComplete({
     });
   }, [
     value,
+    filterOnNoValue,
     filter,
     data,
     filterOptions,
     valueKey,
     getResultValue,
-    getEmptyValueData,
   ]);
 
   const [visible, show, hide] = useToggle(false);

@@ -67,6 +67,14 @@ export interface AutoCompleteProps
   filterOptions?: {};
 
   /**
+   * Boolean if the filter function should still be called when there is no
+   * value in the text field. This normally defaults to `false` so that the
+   * `data` is just returned, but it can be useful with a custom filter function
+   * that returns different data while there is no value.
+   */
+  filterOnNoValue?: boolean;
+
+  /**
    * An optional className to also apply to the listbox element showing all the
    * matches.
    */
@@ -107,15 +115,6 @@ export interface AutoCompleteProps
   getResultValue?: typeof DEFAULT_GET_RESULT_VALUE;
 
   /**
-   * An optional function that will be called whenever the value of the
-   * autocomplete is the empty string. This is useful if you don't want the
-   * data list to be shown initially or a custom list of data.
-   *
-   * This defaults to just returning the `data`.
-   */
-  getEmptyValueData?: (data: AutoCompleteData[]) => AutoCompleteData[];
-
-  /**
    * @see AutoCompleteHandler
    */
   onAutoComplete?: AutoCompleteHandler;
@@ -152,6 +151,7 @@ function AutoComplete(
     data,
     filter = "case-insensitive",
     filterOptions = DEFAULT_FILTER_OPTIONS,
+    filterOnNoValue = false,
     className,
     onBlur,
     onFocus,
@@ -171,10 +171,9 @@ function AutoComplete(
     getResultId = DEFAULT_GET_RESULT_ID,
     getResultLabel = DEFAULT_GET_RESULT_LABEL,
     getResultValue = DEFAULT_GET_RESULT_VALUE,
-    getEmptyValueData = data => data,
     highlight = false,
     anchor = DEFAULT_ANCHOR,
-    listboxWidth,
+    listboxWidth = "equal",
     xMargin = 0,
     yMargin = 0,
     vwMargin = 16,
@@ -217,10 +216,10 @@ function AutoComplete(
     data,
     filter,
     filterOptions,
+    filterOnNoValue,
     valueKey,
     getResultId,
     getResultValue,
-    getEmptyValueData,
     onBlur,
     onFocus,
     onClick,
@@ -330,12 +329,12 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.func,
       ]),
       filterOptions: PropTypes.object,
+      filterOnNoValue: PropTypes.bool,
       labelKey: PropTypes.string,
       valueKey: PropTypes.string,
       getResultId: PropTypes.func,
       getResultLabel: PropTypes.func,
       getResultValue: PropTypes.func,
-      getEmptyValueData: PropTypes.func,
       highlight: PropTypes.bool,
       autoComplete: PropTypes.oneOf(["none", "inline", "list", "both"]),
       onAutoComplete: PropTypes.func,
