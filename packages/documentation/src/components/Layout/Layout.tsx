@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { ConfiguredIcons } from "@react-md/icon";
 import {
   Configuration,
@@ -28,6 +28,7 @@ import navItems from "constants/navItems";
 import Actions from "./Actions";
 import "./Layout.scss";
 import NavHeaderTitle from "./NavHeaderTitle";
+import { Provider } from "./fixedAppBarContext";
 
 export interface LayoutProps
   extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
@@ -54,23 +55,30 @@ const Layout: FC<LayoutProps> = ({
   title,
   pathname,
   defaultSize,
-}) => (
-  <Configuration defaultSize={defaultSize} icons={icons}>
-    <TOCVisibilityProvider pathname={pathname}>
-      <RMDLayout
-        {...useLayoutNavigation(navItems, pathname)}
-        appBarTitle={title.replace("react-md@v2 - ", "")}
-        appBarAfterNav
-        navHeaderTitle={<NavHeaderTitle />}
-        navHeaderClassName="layout-nav-header"
-        appBarChildren={<Actions />}
-        linkComponent={LinkUnstyled}
-      >
-        <TableOfContents pathname={pathname} />
-        {children}
-      </RMDLayout>
-    </TOCVisibilityProvider>
-  </Configuration>
-);
+}) => {
+  const [fixedAppBarElevation, setFixedAppBarElevation] = useState(
+    pathname === "/"
+  );
+
+  return (
+    <Configuration defaultSize={defaultSize} icons={icons}>
+      <TOCVisibilityProvider pathname={pathname}>
+        <RMDLayout
+          {...useLayoutNavigation(navItems, pathname)}
+          appBarTitle={title.replace("react-md@v2 - ", "")}
+          appBarAfterNav
+          fixedAppBarElevation={fixedAppBarElevation}
+          navHeaderTitle={<NavHeaderTitle />}
+          navHeaderClassName="layout-nav-header"
+          appBarChildren={<Actions />}
+          linkComponent={LinkUnstyled}
+        >
+          <TableOfContents pathname={pathname} />
+          <Provider value={setFixedAppBarElevation}>{children}</Provider>
+        </RMDLayout>
+      </TOCVisibilityProvider>
+    </Configuration>
+  );
+};
 
 export default Layout;
