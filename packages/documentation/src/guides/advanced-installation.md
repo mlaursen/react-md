@@ -203,15 +203,184 @@ command before the `react-scripts start`.
 
 ## Self-hosting the fonts
 
-TODO
+Sometimes it might not be ideal to use [Google Fonts] for providing the fonts
+due to limited connectivity or since there is no control over Google changing
+the font without notice. Luckily, the fonts from [Google fonts] can be
+downloaded through the website so they can be hosted locally. The #typography
+package also exports a mixin that helps referencing a locally hosted font:
+`rmd-typography-host-google-font`. This quick example will go through the steps
+for self-hosting the Roboto font.
+
+First, download the Roboto font zip and extract into a `roboto` directory:
+
+```sh
+$ mkdir roboto
+$ cd roboto
+$ unzip ../Roboto.zip
+$ cd ..
+$ tree roboto
+roboto
+├── LICENSE.txt
+├── Roboto-Black.ttf
+├── Roboto-BlackItalic.ttf
+├── Roboto-Bold.ttf
+├── Roboto-BoldItalic.ttf
+├── Roboto-Italic.ttf
+├── Roboto-Light.ttf
+├── Roboto-LightItalic.ttf
+├── Roboto-Medium.ttf
+├── Roboto-MediumItalic.ttf
+├── Roboto-Regular.ttf
+├── Roboto-Thin.ttf
+└── Roboto-ThinItalic.ttf
+
+0 directories, 13 files
+```
+
+Next, move the fonts into your app's `public` directory:
+
+```sh
+$ cd /path/to/my/app
+$ mkdir public/fonts
+$ mv ~/Downloads/roboto public/fonts/roboto
+```
+
+Next, include the font with the weights by using the
+`rmd-typography-host-google-font` mixin:
+
+```scss
+@import "~@react-md/typography/dist/mixins";
+
+@include rmd-typography-host-google-font;
+```
+
+Once this file has been saved, your fonts will automatically be loaded from the
+`/fonts/roboto` folder on your website since the default arguments will include
+the Roboto font, the default font weights, and resolve to the `/fonts/roboto`
+folder with an **absolute path**.
+
+##### Using Relative Paths for Fonts
+
+Since this is an absolute path, the fonts will not be bundled with the normal
+build process and will always resolve to `/fonts/roboto` even if your app is
+hosted in production in a child route. Luckily, you can update this mixin to use
+relative imports instead so the fonts will be bundled, hashed, and update
+location with your build configuration.
+
+Instead of copying the fonts into the `public` directory, all that is required
+is to copy it into your `src` directory. From there, update the mixin to
+reference the fonts locally:
+
+```sh
+$ cd /path/to/my/app
+$ mkdir src/fonts
+$ mv ~/Downloads/roboto src/fonts/roboto
+```
+
+```scss
+@import "~@react-md/typography/dist/mixins";
+
+@include rmd-typography-host-google-font(
+  Roboto,
+  $rmd-typography-default-font-weights,
+  "~./fonts/roboto"
+);
+```
+
+> Note the `~./` for the third argument. This will resolve to the `src`
+> directory within `react-scripts` (tested 3.3.1). If you do not like this
+> syntax, you'll need to create a path something like:
+> `../../../../src/fonts/roboto` to resolve to your `src` directory.
+
+You're done! The fonts should now be bundled as part of the `react-scripts`
+build process and generate urls such as:
+`/static/media/RobotoRegular.3e1af3ef.ttf` or
+`...prefix.../static/media/RobotoRegular.3e1af3ef.ttf`
 
 ### Self-hosting the Material Icons font
 
-TODO
+Self hosting the material icons font will be similar to the other Google Fonts
+hosting. However, instead of using the `rmd-typography-host-google-font` mixin,
+you'll use the `rmd-icon-host-material-icons` mixin from the #icon package
+instead.
+
+```scss
+@import "~@react-md/icon/dist/mixins";
+
+// if material icons are in `public/fonts/material-icons`
+@include rmd-icon-host-material-icons;
+
+// if material icons are in `public/material-icons`
+@include rmd-icon-host-material-icons("/material-icons");
+
+// if material icons are in `src/fonts/material-icons` and should be part of the
+// build process
+@include rmd-icon-host-material-icons("~./fonts/material-icons");
+```
 
 ## Switching to SVG Icons
 
-TODO
+All the icons within `react-md` use a Material Icons font icon implementation by
+default. Luckily all these default icons can be quickly configured and changed
+using the `IconProvider` from the #icon package (or as the `icons` prop from the
+#layout package's `Configuration` component). In addition, all the material
+icons are available as React components from the #material-icons package for
+convenience.
+
+```tsx
+import React from "react";
+import { render } = "react-dom";
+import { IconProvider, ConfigurableIcons } from "@react-md/icon";
+import {
+  KeyboardArrowDownSVGIcon,
+  KeyboardArrowLeftSVGIcon,
+  KeyboardArrowRightSVGIcon,
+} from "@react-md/material-icons";
+
+
+const overrides: ConfiguredIcons = {
+  // and/or any other configurable icons
+  back: <KeyboardArrowLeftSVGIcon />,
+  expander: <KeyboardArrowDownSVGIcon />,
+  forward: <KeyboardArrowRightSVGIcon />,
+};
+
+render(
+  <IconProvider {...overrides}>
+    <App />
+  </IconProvider>,
+  document.getElementById("root")
+);
+```
+
+Or using the `Configuration` component:
+
+```tsx
+import React from "react";
+import { render } = "react-dom";
+import { Configuration } from "@react-md/layout";
+import { ConfigurableIcons } from "@react-md/icon";
+import {
+  KeyboardArrowDownSVGIcon,
+  KeyboardArrowLeftSVGIcon,
+  KeyboardArrowRightSVGIcon,
+} from "@react-md/material-icons";
+
+
+const icons: ConfiguredIcons = {
+  // and/or any other configurable icons
+  back: <KeyboardArrowLeftSVGIcon />,
+  expander: <KeyboardArrowDownSVGIcon />,
+  forward: <KeyboardArrowRightSVGIcon />,
+};
+
+render(
+  <Configuration icons={icons}>
+    <App />
+  </Configuration>,
+  document.getElementById("root")
+);
+```
 
 [google fonts]: https://fonts.google.com
 [unpkg.com]: https://unpkg.com
