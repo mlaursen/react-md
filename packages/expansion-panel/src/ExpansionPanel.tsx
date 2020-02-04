@@ -70,6 +70,14 @@ export interface ExpansionPanelProps
   headerRef?: Ref<HTMLButtonElement>;
 
   /**
+   * Boolean if clicking on the header should no longer toggle the expansion
+   * state. This will automatically be provided from the `usePanels` hook for
+   * when a panel cannot be closed to do preventing all panels from being closed
+   * at a time.
+   */
+  disabled?: boolean;
+
+  /**
    * An optional expander icon to use within the default header implementation.
    * This defaults to the `"expander"` icon.
    */
@@ -134,26 +142,31 @@ function ExpansionPanel(
     marginTop = false,
     fullWidth = true,
     persistent = false,
+    disabled = false,
     disableTransition = false,
     ...props
   }: ExpansionPanelProps,
   ref?: Ref<HTMLDivElement>
 ): ReactElement {
   const { id } = props;
+  const contentId = `${id}-content`;
 
   return (
     <Card
       {...props}
+      id={`${id}-container`}
       ref={ref}
       fullWidth={fullWidth}
       className={cn(block({ expanded, "margin-top": marginTop }), className)}
     >
       {customHeader || (
         <ExpansionPanelHeader
-          id={`${id}-expander`}
+          aria-disabled={disabled || undefined}
+          id={id}
+          ref={headerRef}
           style={headerStyle}
           className={headerClassName}
-          ref={headerRef}
+          contentId={contentId}
           icon={expanderIcon}
           expanded={expanded}
           onClick={onExpandClick}
@@ -168,6 +181,9 @@ function ExpansionPanel(
         isEmptyCollapsed={!persistent}
       >
         <CardContent
+          id={contentId}
+          aria-labelledby={id}
+          role="region"
           style={contentStyle}
           className={contentClassName}
           disableSecondaryColor={disableSecondaryColor}

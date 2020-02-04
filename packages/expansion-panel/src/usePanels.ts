@@ -74,6 +74,13 @@ export interface ProvidedPanelProps {
   marginTop: boolean;
 
   /**
+   * Boolean if the panel's expansion state should be disabled. This will only
+   * be true when the `preventAllClosed` option has been enabled and the panel
+   * is the last remaining expanded panel.
+   */
+  disabled: boolean;
+
+  /**
    * Boolean if the panel is corrently expanded.
    */
   expanded: boolean;
@@ -175,9 +182,38 @@ export default function usePanels({
 }: UsePanelsOptions): ReturnValue {
   if (process.env.NODE_ENV !== "production") {
     if (count < 1) {
+      throw new RangeError("The `count` must be greater than `0`");
+    }
+
+    if (
+      typeof defaultExpandedIndex === "number" &&
+      defaultExpandedIndex >= count
+    ) {
       throw new RangeError(
-        `The \`count\` for the \`usePanels\` hook must be greater than \`0\`, but \`${count}\` was provided instead.`
+        "The `defaultExpandedIndex` must be less than or equal to the `count`"
       );
+    }
+
+    if (typeof defaultExpandedIndex === "number" && defaultExpandedIndex < -1) {
+      throw new RangeError(
+        "The `defaultExpandedIndex` must be greater than or equal to `-1`"
+      );
+    }
+
+    if (Array.isArray(defaultExpandedIndex)) {
+      const greater = defaultExpandedIndex.filter(i => i > count);
+      if (greater.length) {
+        throw new RangeError(
+          "The `defaultExpandedIndex` array must contain numbers less than the `count`"
+        );
+      }
+
+      const lessThan = defaultExpandedIndex.filter(i => i < 0);
+      if (lessThan.length) {
+        throw new RangeError(
+          "The `defaultExpandedIndex` array must contain numbers greater than or equal to `0`"
+        );
+      }
     }
   }
 
@@ -240,6 +276,7 @@ export default function usePanels({
 
     return {
       id,
+      disabled: expanded && preventAllClosed && expandedIds.length === 1,
       expanded,
       headerRef,
       marginTop,

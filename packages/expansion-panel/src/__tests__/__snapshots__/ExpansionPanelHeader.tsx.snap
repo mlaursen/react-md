@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpansionPanelHeader should render correctly 1`] = `
+<div>
+  <button
+    class="rmd-button-unstyled rmd-expansion-panel__header"
+    id="panel-header"
+    type="button"
+  >
+    Content
+    <span
+      class="rmd-expansion-panel__icon"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate"
+      >
+        keyboard_arrow_down
+      </i>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`ExpansionPanelHeader should render correctly 2`] = `
+<div>
+  <button
+    aria-expanded="true"
+    class="rmd-button-unstyled rmd-expansion-panel__header"
+    id="panel-header"
+    type="button"
+  >
+    Content
+    <span
+      class="rmd-expansion-panel__icon"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated"
+      >
+        keyboard_arrow_down
+      </i>
+    </span>
+  </button>
+</div>
+`;
