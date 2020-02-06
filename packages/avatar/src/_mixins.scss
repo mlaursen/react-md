@@ -87,6 +87,7 @@
     align-items: center;
     border: 1px solid;
     display: inline-flex;
+    flex-shrink: 0;
     justify-content: center;
     line-height: $rmd-avatar-line-height;
     overflow: hidden;
