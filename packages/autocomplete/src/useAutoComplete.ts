@@ -9,6 +9,7 @@ import {
   useState,
   Ref,
 } from "react";
+import { ListElement } from "@react-md/list";
 import {
   OptionalFixedPositionOptions,
   TransitionHooks,
@@ -18,6 +19,7 @@ import {
   applyRef,
   MovementPresets,
   PositionWidth,
+  scrollIntoView,
   useActiveDescendantMovement,
   useCloseOnOutsideClick,
   useToggle,
@@ -95,6 +97,7 @@ interface ReturnValue {
   activeId: string;
   itemRefs: MutableRefObject<HTMLLIElement | null>[];
   filteredData: readonly AutoCompleteData[];
+  listboxRef: MutableRefObject<ListElement | null>;
   handleBlur: React.FocusEventHandler<HTMLInputElement>;
   handleFocus: React.FocusEventHandler<HTMLInputElement>;
   handleClick: React.MouseEventHandler<HTMLInputElement>;
@@ -263,6 +266,7 @@ export default function useAutoComplete({
     ]
   );
 
+  const listboxRef = useRef<ListElement | null>(null);
   const {
     activeId,
     itemRefs,
@@ -278,6 +282,17 @@ export default function useAutoComplete({
     getId: getResultId,
     items: filteredData,
     baseId: suggestionsId,
+    onChange({ index }, itemRefs) {
+      // the default scroll into view behavior for aria-activedescendant
+      // movement won't work here since the "target" element will actually be
+      // the input element instead of the listbox. So need to implement the
+      // scroll into view behavior manually from the listbox instead.
+      const item = itemRefs[index] && itemRefs[index].current;
+      const { current: listbox } = listboxRef;
+      if (item && listbox && listbox.scrollHeight > listbox.offsetHeight) {
+        scrollIntoView(listbox, item);
+      }
+    },
     onKeyDown(event) {
       if (onKeyDown) {
         onKeyDown(event);
@@ -402,6 +417,7 @@ export default function useAutoComplete({
       onEntered,
       onExited,
     },
+    listboxRef,
     handleBlur,
     handleFocus,
     handleClick,

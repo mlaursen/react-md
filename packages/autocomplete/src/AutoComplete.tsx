@@ -222,6 +222,7 @@ function AutoComplete(
     activeId,
     itemRefs,
     filteredData,
+    listboxRef,
     fixedStyle,
     transitionHooks,
     handleBlur,
@@ -299,6 +300,7 @@ function AutoComplete(
         <List
           id={suggestionsId}
           role="listbox"
+          ref={listboxRef}
           style={fixedStyle}
           className={cn(listbox({ temporary: true }), listboxClassName)}
         >
@@ -312,8 +314,8 @@ function AutoComplete(
             return (
               <Option
                 key={resultId}
-                id={resultId}
                 {...optionProps}
+                id={resultId}
                 selected={false}
                 focused={resultId === activeId}
                 ref={itemRefs[i]}
