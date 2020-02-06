@@ -22,7 +22,7 @@ export interface SearchData<D = unknown, E extends HTMLElement = HTMLElement> {
   /**
    * The current list of items that were provided to be searched.
    */
-  items: D[];
+  items: readonly D[];
 
   /**
    * The index in the `items` array that the found item appears at. This is
@@ -56,7 +56,7 @@ export interface BaseKeyboardSearchOptions<
   /**
    * The list of items that should be searched whenever the user types a letter.
    */
-  items: D[];
+  items: readonly D[];
 
   /**
    * A required change event handler that will be called whenever a user types a

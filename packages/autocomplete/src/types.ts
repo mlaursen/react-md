@@ -47,9 +47,9 @@ export type FilterFunctionOptions<O extends {} = {}> = O &
  */
 export type FilterFunction<O extends {} = {}> = (
   query: string,
-  data: AutoCompleteData[],
+  data: readonly AutoCompleteData[],
   options: FilterFunctionOptions<O>
-) => AutoCompleteData[];
+) => readonly AutoCompleteData[];
 
 /**
  * Either a preconfigured/provided filter function of the autocomplete or a
@@ -68,27 +68,27 @@ export interface AutoCompleteResult {
    * the `result`. This is really just used for the default behavior of
    * autocompleting the text field's value to this value.
    */
-  value: string;
+  readonly value: string;
 
   /**
    * The index of the result in the **filtered data list**.
    */
-  index: number;
+  readonly index: number;
 
   /**
    * The current autocomplete result.
    */
-  result: AutoCompleteData;
+  readonly result: Readonly<AutoCompleteData>;
 
   /**
    * The index of the result in the **original data list**.
    */
-  dataIndex: number;
+  readonly dataIndex: number;
 
   /**
    * The list of data that has been filtered based on the current value.
    */
-  filteredData: AutoCompleteData[];
+  readonly filteredData: readonly AutoCompleteData[];
 }
 
 /**

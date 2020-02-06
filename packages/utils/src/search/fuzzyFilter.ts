@@ -21,9 +21,9 @@ import {
  */
 export default function fuzzyFilter<T = unknown>(
   query: string,
-  searchable: T[],
+  searchable: readonly T[],
   options: SearchOptions<T> = {}
-): T[] {
+): readonly T[] {
   const { getItemValue, valueKey, trim, ignoreWhitespace } = defaults(
     options,
     DEFAULT_SEARCH_OPTIONS

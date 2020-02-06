@@ -58,7 +58,7 @@ export interface AutoCompleteProps
   /**
    * The list of data that should be autocompleted based on the provided filter.
    */
-  data: AutoCompleteData[];
+  data: readonly AutoCompleteData[];
 
   /**
    * @see AutoCompleteFilterFunction

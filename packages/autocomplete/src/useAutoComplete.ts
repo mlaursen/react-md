@@ -76,7 +76,7 @@ type EventHandlers = Pick<
 interface AutoCompleteOptions extends EventHandlers, PositionOptions {
   autoComplete: AutoCompletion;
   forwardedRef?: Ref<HTMLInputElement>;
-  data: AutoCompleteData[];
+  data: readonly AutoCompleteData[];
   suggestionsId: string;
   valueKey: string;
   getResultId: typeof DEFAULT_GET_RESULT_ID;
@@ -94,7 +94,7 @@ interface ReturnValue {
   visible: boolean;
   activeId: string;
   itemRefs: MutableRefObject<HTMLLIElement | null>[];
-  filteredData: AutoCompleteData[];
+  filteredData: readonly AutoCompleteData[];
   handleBlur: React.FocusEventHandler<HTMLInputElement>;
   handleFocus: React.FocusEventHandler<HTMLInputElement>;
   handleClick: React.MouseEventHandler<HTMLInputElement>;

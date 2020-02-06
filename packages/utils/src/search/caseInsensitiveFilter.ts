@@ -27,9 +27,9 @@ export interface CaseInsensitiveOptions<T = unknown> extends SearchOptions<T> {
  */
 export default function caseInsensitiveFilter<T = unknown>(
   query: string,
-  searchable: T[],
+  searchable: readonly T[],
   options: CaseInsensitiveOptions<T> = {}
-): T[] {
+): readonly T[] {
   const {
     getItemValue,
     valueKey,

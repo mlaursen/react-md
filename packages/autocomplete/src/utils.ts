@@ -30,7 +30,7 @@ export function getResultId(id: string, index: number): string {
  * @return a renderable node to display
  */
 export function getResultLabel(
-  datum: AutoCompleteData,
+  datum: Readonly<AutoCompleteData>,
   labelKey: string,
   _query: string
 ): ReactNode {
@@ -51,7 +51,7 @@ export function getResultLabel(
  * @return a searchable string.
  */
 export function getResultValue(
-  datum: AutoCompleteData,
+  datum: Readonly<AutoCompleteData>,
   valueKey: string
 ): string {
   if (typeof datum === "string") {
@@ -133,6 +133,8 @@ export function getFilterFunction<O extends {} = {}>(
  *
  * @param datum The result data to type guard against.
  */
-export function isResultOf<T extends {}>(datum: AutoCompleteData): datum is T {
+export function isResultOf<T extends {}>(
+  datum: Readonly<AutoCompleteData>
+): datum is T {
   return !!datum && typeof datum === "object";
 }

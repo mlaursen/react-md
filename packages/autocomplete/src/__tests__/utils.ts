@@ -1,7 +1,7 @@
 import { createElement } from "react";
 import { fuzzyFilter, caseInsensitiveFilter } from "@react-md/utils";
 
-import { AutoCompleteData } from "../types";
+import { FilterFunction } from "../types";
 import {
   getResultId,
   getResultLabel,
@@ -133,7 +133,7 @@ describe("getFilterFunction", () => {
     );
     expect(getFilterFunction(noFilter)).toBe(noFilter);
 
-    const custom = (value: string, data: AutoCompleteData[]) =>
+    const custom: FilterFunction = (value, data) =>
       data.filter(d => !!d && getResultValue(d, "thing").startsWith(value));
     expect(getFilterFunction(custom)).toBe(custom);
   });
