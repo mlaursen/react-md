@@ -1,4 +1,10 @@
-import React, { forwardRef, Fragment, ReactElement, Ref } from "react";
+import React, {
+  forwardRef,
+  Fragment,
+  ReactElement,
+  Ref,
+  CSSProperties,
+} from "react";
 import cn from "classnames";
 import {
   isListboxOptionProps,
@@ -12,7 +18,7 @@ import { RenderConditionalPortalProps } from "@react-md/portal";
 import { ScaleTransition } from "@react-md/transition";
 import { bem, omit, PositionAnchor } from "@react-md/utils";
 
-import HighlightLabel from "./HighlightLabel";
+import HighlightedResult from "./HighlightedResult";
 import {
   AutoCompleteData,
   AutoCompleteFilterFunction,
@@ -81,6 +87,26 @@ export interface AutoCompleteProps
   listboxClassName?: string;
 
   /**
+   * Boolean if the result list labels should be updated so that each matching
+   * letter is bolded. This only works when the data list is a list of strings,
+   * or the `label` is a string and when the letters appear in order. This will
+   * always be `false` if the `filter` prop is set to `"fuzzy"`.
+   */
+  highlight?: boolean;
+
+  /**
+   * An optional style to apply to the `<span>` surrounding the matched text
+   * when the `highlight` prop is enabled.
+   */
+  highlightStyle?: CSSProperties;
+
+  /**
+   * An optional className to apply to the `<span>` surrounding the matched text
+   * when the `highlight` prop is enabled.
+   */
+  highlightClassName?: string;
+
+  /**
    * The key to use to extract a label from a result when the provided data list
    * is a list of objects.
    */
@@ -118,14 +144,6 @@ export interface AutoCompleteProps
    * @see AutoCompleteHandler
    */
   onAutoComplete?: AutoCompleteHandler;
-
-  /**
-   * Boolean if the result list labels should be updated so that each matching
-   * letter is bolded. This only works when the data list is a list of strings,
-   * or the `label` is a string and when the letters appear in order. This will
-   * always be `false` if the `filter` prop is set to `"fuzzy"`.
-   */
-  highlight?: boolean;
 }
 
 const block = bem("rmd-autocomplate");
@@ -172,6 +190,8 @@ function AutoComplete(
     getResultLabel = DEFAULT_GET_RESULT_LABEL,
     getResultValue = DEFAULT_GET_RESULT_VALUE,
     highlight = false,
+    highlightStyle,
+    highlightClassName,
     anchor = DEFAULT_ANCHOR,
     listboxWidth = "equal",
     xMargin = 0,
@@ -299,9 +319,15 @@ function AutoComplete(
                 ref={itemRefs[i]}
                 onClick={() => handleAutoComplete(i)}
               >
-                <HighlightLabel enabled={isHighlight} value={value}>
+                <HighlightedResult
+                  id={`${resultId}-match`}
+                  style={highlightStyle}
+                  className={highlightClassName}
+                  value={value}
+                  enabled={isHighlight}
+                >
                   {getResultLabel(datum, labelKey, value)}
-                </HighlightLabel>
+                </HighlightedResult>
               </Option>
             );
           })}

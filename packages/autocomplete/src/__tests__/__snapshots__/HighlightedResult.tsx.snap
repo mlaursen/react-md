@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HighlightedResult should allow for custom style and className 1`] = `
+<div>
+  <span
+    class="rmd-typography--bold test-class-name"
+    id="result"
+    style="margin-left: 10px; text-decoration: underline;"
+  >
+    Con
+  </span>
+  tent
+</div>
+`;
+
+exports[`HighlightedResult should correctly highlight matches that start with the value ignoring case and prevent a leading and trailing empty string 1`] = `
+<div>
+  <span
+    class="rmd-typography--bold"
+    id="result"
+  >
+    T
+  </span>
+  his is some Content!
+</div>
+`;
+
+exports[`HighlightedResult should correctly highlight matches that start with the value ignoring case and prevent a leading and trailing empty string 2`] = `
+<div>
+  This is some Conten
+  <span
+    class="rmd-typography--bold"
+    id="result"
+  >
+    t!
+  </span>
+</div>
+`;
+
+exports[`HighlightedResult should correctly highlight matches that start with the value ignoring case and prevent a leading and trailing empty string 3`] = `
+<div>
+  This 
+  <span
+    class="rmd-typography--bold"
+    id="result"
+  >
+    is some
+  </span>
+   Content!
+</div>
+`;
+
+exports[`HighlightedResult should return the children when not enabled, there's no value, or the children are not a string 1`] = `
+<div>
+  <span>
+    Content
+  </span>
+</div>
+`;
+
+exports[`HighlightedResult should return the children when not enabled, there's no value, or the children are not a string 2`] = `
+<div>
+  <span>
+    Content
+  </span>
+</div>
+`;
+
+exports[`HighlightedResult should return the children when not enabled, there's no value, or the children are not a string 3`] = `
+<div>
+  Content
+</div>
+`;
+
+exports[`HighlightedResult should return the children when not enabled, there's no value, or the children are not a string 4`] = `
+<div>
+  Content
+</div>
+`;
+
+exports[`HighlightedResult should return the children when not enabled, there's no value, or the children are not a string 5`] = `
+<div>
+  Content
+</div>
+`;
+
+exports[`HighlightedResult should return the children when not enabled, there's no value, or the children are not a string 6`] = `
+<div>
+  <span
+    class="rmd-typography--bold"
+    id="result"
+  >
+    Con
+  </span>
+  tent
+</div>
+`;
