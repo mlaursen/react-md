@@ -40,17 +40,24 @@
 /// Creates all the styles for the chip button
 @mixin rmd-chip {
   @include rmd-utils-hide-focus-outline;
-  @include rmd-states-surface;
+  @include rmd-states-surface($no-focus-state: $rmd-chip-disable-focus-background-color);
+  @include rmd-states-surface-selected;
   @include rmd-typography(body-2);
-  @include rmd-icon-theme-update-var(size, $rmd-chip-icon-size);
   @include rmd-chip-theme(height);
   @include rmd-chip-theme(border-radius);
   @include rmd-chip-theme(padding-left, large-spacing);
   @include rmd-chip-theme(padding-right, large-spacing);
 
+  @include rmd-icon-theme-update-var(size, $rmd-chip-icon-size);
+  @if mixin-exists(rmd-avatar-theme-update-var) {
+    @include rmd-avatar-theme-update-var(size, $rmd-chip-avatar-size);
+  }
+
   align-items: center;
   border-width: 0;
   display: inline-flex;
+  flex-shrink: 0;
+  max-width: 100%;
   position: relative;
 
   &--solid {
@@ -67,12 +74,43 @@
     box-shadow: $rmd-chip-box-shadow rmd-chip-theme-var(outline-border-color);
   }
 
+  &--activated {
+    @include rmd-chip-theme(background-color, activated-background-color);
+    @include rmd-chip-theme(color, activated-color);
+  }
+
+  &--disabled {
+    @include rmd-theme(color, text-disabled-on-background);
+    @include rmd-icon-theme-update-var(color, currentColor);
+  }
+
+  &--solid-disabled {
+    @include rmd-chip-theme(background-color, solid-disabled);
+  }
+
   &--leading-icon {
     @include rmd-chip-theme(padding-left, small-spacing);
   }
 
   &--trailing-icon {
     @include rmd-chip-theme(padding-right, medium-spacing);
+  }
+
+  &__content {
+    @include rmd-typography-text-overflow-ellipsis;
+
+    flex: 1 1 auto;
+  }
+
+  &__selected-icon {
+    @include rmd-transition(standard);
+
+    max-width: 0;
+    transition: max-width $rmd-transition-standard-time;
+
+    &--visible {
+      @include rmd-icon-theme(max-width, size);
+    }
   }
 }
 

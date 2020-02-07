@@ -17,6 +17,7 @@ import {
   RadioButtonCheckedSVGIcon,
   RemoveRedEyeSVGIcon,
   ArrowUpwardSVGIcon,
+  CheckSVGIcon,
 } from "@react-md/material-icons";
 import { AppSizeListenerProps } from "@react-md/utils";
 
@@ -47,6 +48,7 @@ const icons: ConfiguredIcons = {
   notification: <NotificationsSVGIcon />,
   radio: <RadioButtonCheckedSVGIcon />,
   password: <RemoveRedEyeSVGIcon />,
+  selected: <CheckSVGIcon />,
   sort: <ArrowUpwardSVGIcon />,
 };
 

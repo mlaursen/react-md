@@ -1,89 +1,197 @@
-/* eslint-disable react/button-has-type */
 import React, {
   forwardRef,
-  HTMLAttributes,
   ReactElement,
   ReactNode,
   Ref,
+  ButtonHTMLAttributes,
+  CSSProperties,
+  cloneElement,
+  isValidElement,
 } from "react";
 import cn from "classnames";
-import { TextIconSpacing } from "@react-md/icon";
-import {
-  InteractionStatesOptions,
-  useInteractionStates,
-} from "@react-md/states";
+import { TextIconSpacing, useIcon } from "@react-md/icon";
+import { useInteractionStates } from "@react-md/states";
 import { bem } from "@react-md/utils";
 
-export interface ChipProps
-  extends HTMLAttributes<HTMLButtonElement>,
-    Omit<InteractionStatesOptions<HTMLButtonElement>, "disableSpacebarClick"> {
-  /**
-   * The button's type attribute. This is set to "button" by default so that
-   * forms are not accidentally submitted when this prop is omitted since
-   * buttons without a type attribute work as submit by default.
-   */
-  type?: "button" | "reset" | "submit";
+type ButtonAttributes = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type">;
 
+export interface ChipProps extends ButtonAttributes {
+  /**
+   * The theme for the button.
+   */
   theme?: "outline" | "solid";
 
+  /**
+   * An optional icon to place to the left of the children. There will
+   * automatically be some margin placed between this icon and the children if
+   * defined.
+   */
   leftIcon?: ReactNode;
+
+  /**
+   * An optional icon to place to the right of the children. There will
+   * automatically be some margin placed between this icon and the children if
+   * defined.
+   */
   rightIcon?: ReactNode;
+
+  /**
+   * Boolean if the chip should gain elevation while the user is pressing the
+   * chip with mouse, touch, or keyboard click.
+   */
+  raisable?: boolean;
+
+  /**
+   * An optional style to provide to the `<span>` that surrounds the `children`
+   * of the chip.
+   *
+   * This prop will do nothing if the `disableContentWrap` prop is enabled.
+   */
+  contentStyle?: CSSProperties;
+
+  /**
+   * An optional className to provide to the `<span>` that surrounds the
+   * `children` of the chip.
+   *
+   * This prop will do nothing if the `disableContentWrap` prop is enabled.
+   */
+  contentClassName?: string;
+
+  /**
+   * Boolean if the children should no longer be wrapped in a `<span>` that adds
+   * some default styles to ellipsis and truncate the children based on the
+   * chip's width.
+   */
+  disableContentWrap?: boolean;
+
+  /**
+   * Either a boolean that the chip is selected/unselected or in an activated
+   * state. When this prop is set to `"activated"`, the chip will be updated to
+   * use a different swatch of the theme primary color and act as if it is
+   * selected.
+   *
+   * Setting this prop to a boolean updates the chip to render a selected icon
+   * to the left of the content as well as adding a darker background when set
+   * to `true`. The icon will only appear once the state is `true` and will
+   * transition in and out when swapped between `true` and `false`.
+   *
+   * > See the `disableIconTransition` and `selectedIcon` props for more details
+   * > about the icon behavior
+   *
+   * The `"activated"` and selected states will update the chip to have
+   * `aria-pressed="true"` since the chip will be acting as a toggle button for
+   * these states. If this is undesired behavior, providing your own
+   * `aria-pressed` prop will override this behavior
+   */
+  state?: boolean | "activated";
+
+  /**
+   * The icon to use as the `leftIcon` when the `state` prop has been set to
+   * `"selected"`. When this is omitted, it will inherit the `selected` icon
+   * from the main `Configuration` / `IconProvider`.
+   *
+   * If this is set to `null`, no icon will be rendered when the `state` is set
+   * to `"selected"` or `"unselected"`.
+   *
+   * If the `leftIcon` prop is not `undefined`, the `leftIcon` prop will always
+   * be used instead of this prop.
+   */
+  selectedIcon?: ReactNode;
+
+  /**
+   * Boolean if the selected icon should not animate when the `state` is set to
+   * `"selected"`. This transition is just a simple "appear" transition with the
+   * `max-width` of the icon.
+   */
+  disableIconTransition?: boolean;
 }
 
 const block = bem("rmd-chip");
 
 function Chip(
   {
+    "aria-pressed": ariaPressed,
     className: propClassName,
     children,
     theme = "solid",
-    leftIcon,
+    leftIcon: propLeftIcon,
     rightIcon,
-    disableRipple,
-    disableProgrammaticRipple,
-    rippleTimeout,
-    rippleClassNames,
-    rippleClassName,
-    rippleContainerClassName,
-    enablePressedAndRipple = true,
-    type = "button",
+    raisable = false,
+    disabled = false,
+    state,
+    contentStyle,
+    contentClassName,
+    disableContentWrap = false,
+    selectedIcon: propSelectedIcon,
+    disableIconTransition = false,
     ...props
   }: ChipProps,
   ref?: Ref<HTMLButtonElement>
 ): ReactElement {
-  const { disabled } = props;
-
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
     className: propClassName,
     disabled,
-    disableRipple,
-    disableProgrammaticRipple,
-    rippleTimeout,
-    rippleClassNames,
-    rippleClassName,
-    rippleContainerClassName,
-    enablePressedAndRipple,
+    enablePressedAndRipple: raisable,
   });
+
+  let content = children;
+  if (!disableContentWrap) {
+    content = (
+      <span
+        style={contentStyle}
+        className={cn(block("content"), contentClassName)}
+      >
+        {children}
+      </span>
+    );
+  }
+
+  let leftIcon = propLeftIcon;
+  const selectable = typeof state === "boolean";
+  const selectedIcon = useIcon("selected", propSelectedIcon);
+  let isHiddenIcon = false;
+  if (selectable && typeof leftIcon === "undefined" && selectedIcon) {
+    leftIcon = selectedIcon;
+
+    if (!disableIconTransition && isValidElement(selectedIcon)) {
+      isHiddenIcon = !state;
+      leftIcon = cloneElement(selectedIcon, {
+        className: block("selected-icon", { visible: state }),
+      });
+    } else if (disableIconTransition && !state) {
+      // don't want to render it when not selected if there's no transition
+      leftIcon = null;
+    }
+  }
 
   return (
     <button
       {...props}
       {...handlers}
-      type={type}
       ref={ref}
+      aria-pressed={ariaPressed ?? (!!state || undefined)}
+      type="button"
       className={cn(
         block({
           [theme]: true,
-          "leading-icon": leftIcon,
+          disabled,
+          selected: !disabled && selectable && state,
+          activated: !disabled && state === "activated",
+          "solid-disabled": disabled && theme === "solid",
+          "leading-icon": leftIcon && !isHiddenIcon,
           "trailing-icon": rightIcon,
         }),
         className
       )}
+      disabled={disabled}
     >
-      <TextIconSpacing icon={leftIcon}>
+      <TextIconSpacing
+        icon={leftIcon}
+        beforeClassName={isHiddenIcon ? "" : undefined}
+      >
         <TextIconSpacing icon={rightIcon} iconAfter>
-          {children}
+          {content}
         </TextIconSpacing>
       </TextIconSpacing>
       {ripples}
@@ -97,10 +205,18 @@ if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
     ForwardedChip.propTypes = {
-      disabled: PropTypes.bool,
       theme: PropTypes.oneOf(["outline", "solid"]),
-      type: PropTypes.string,
-      enablePressedAndRipple: PropTypes.bool,
+      disabled: PropTypes.bool,
+      leftIcon: PropTypes.node,
+      rightIcon: PropTypes.node,
+      raisable: PropTypes.bool,
+      contentStyle: PropTypes.object,
+      contentClassName: PropTypes.string,
+      disableContentWrap: PropTypes.bool,
+      state: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(["activated"]),
+      ]),
     };
   } catch (e) {}
 }

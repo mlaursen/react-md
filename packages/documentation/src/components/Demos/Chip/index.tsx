@@ -5,8 +5,11 @@ import DemoPage from "../DemoPage";
 import SimpleChips from "./SimpleChips";
 import simpleChips from "./SimpleChips.md";
 
-import ExpandableChips from "./ExpandableChips";
-import expandableChips from "./ExpandableChips.md";
+import FilterChips from "./FilterChips";
+import filterChips from "./FilterChips.md";
+
+import InputChips from "./InputChips";
+import inputChips from "./InputChips.md";
 
 const demos = [
   {
@@ -15,9 +18,14 @@ const demos = [
     children: <SimpleChips />,
   },
   {
-    name: "Expandable Chips",
-    description: expandableChips,
-    children: <ExpandableChips />,
+    name: "Filter Chips",
+    description: filterChips,
+    children: <FilterChips />,
+  },
+  {
+    name: "Input Chips",
+    description: inputChips,
+    children: <InputChips />,
   },
 ];
 

@@ -64,6 +64,13 @@ export interface ConfigurableIcons {
   radio?: ReactNode;
 
   /**
+   * The general icon to use for showing that something has been selected that
+   * is not a radio or checkbox. This is used internally for the `Chip` in the
+   * `@react-md/chip` package.
+   */
+  selected?: ReactNode;
+
+  /**
    * The general icon for sorting content. This defaults to the sort ascending
    * behavior.
    */
@@ -83,6 +90,7 @@ const DEFAULT_ICONS: ConfiguredIcons = {
   notification: <FontIcon>notifications</FontIcon>,
   password: <FontIcon>remove_red_eye</FontIcon>,
   radio: <FontIcon>radio_button_checked</FontIcon>,
+  selected: <FontIcon>check</FontIcon>,
   sort: <FontIcon>arrow_upward</FontIcon>,
 };
 
@@ -141,6 +149,7 @@ const IconProvider: FC<IconProviderProps> = ({
   notification = DEFAULT_ICONS.notification,
   password = DEFAULT_ICONS.password,
   radio = DEFAULT_ICONS.radio,
+  selected = DEFAULT_ICONS.selected,
   sort = DEFAULT_ICONS.sort,
 }) => {
   const value = useMemo(
@@ -155,6 +164,7 @@ const IconProvider: FC<IconProviderProps> = ({
       notification,
       password,
       radio,
+      selected,
       sort,
     }),
     [
@@ -168,6 +178,7 @@ const IconProvider: FC<IconProviderProps> = ({
       notification,
       password,
       radio,
+      selected,
       sort,
     ]
   );
@@ -191,6 +202,7 @@ if (process.env.NODE_ENV !== "production") {
       notification: PropTypes.node,
       password: PropTypes.node,
       radio: PropTypes.node,
+      selected: PropTypes.node,
       sort: PropTypes.node,
     };
   } catch (e) {}

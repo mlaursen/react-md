@@ -1,0 +1,17 @@
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__chip {
+    margin: 0.25rem;
+  }
+
+  &__header {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+}

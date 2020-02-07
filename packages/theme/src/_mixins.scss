@@ -91,6 +91,10 @@
     );
     @include rmd-chip-theme-update-var(solid-color, $rmd-chip-solid-light-color);
     @include rmd-chip-theme-update-var(
+      solid-disabled,
+      $rmd-chip-solid-light-disabled-background-color
+    );
+    @include rmd-chip-theme-update-var(
       outline-background-color,
       $rmd-chip-outline-light-background-color
     );
@@ -180,6 +184,10 @@
       $rmd-chip-solid-dark-background-color
     );
     @include rmd-chip-theme-update-var(solid-color, $rmd-chip-solid-dark-color);
+    @include rmd-chip-theme-update-var(
+      solid-disabled,
+      $rmd-chip-solid-dark-disabled-background-color
+    );
     @include rmd-chip-theme-update-var(
       outline-background-color,
       $rmd-chip-outline-dark-background-color
