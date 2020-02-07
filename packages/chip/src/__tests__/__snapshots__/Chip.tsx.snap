@@ -6,7 +6,11 @@ exports[`Chip should render correctly 1`] = `
     class="rmd-chip rmd-chip--solid"
     type="button"
   >
-    Content
+    <span
+      class="rmd-chip__content"
+    >
+      Content
+    </span>
     <span
       class="rmd-ripple-container"
     />
@@ -25,7 +29,11 @@ exports[`Chip should render correctly 2`] = `
     >
       keyboard_arrow_left
     </i>
-    Content
+    <span
+      class="rmd-chip__content"
+    >
+      Content
+    </span>
     <span
       class="rmd-ripple-container"
     />
@@ -39,7 +47,11 @@ exports[`Chip should render correctly 3`] = `
     class="rmd-chip rmd-chip--solid rmd-chip--trailing-icon"
     type="button"
   >
-    Content
+    <span
+      class="rmd-chip__content"
+    >
+      Content
+    </span>
     <i
       class="rmd-icon--after material-icons"
     >

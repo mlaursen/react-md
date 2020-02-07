@@ -1,0 +1,58 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Chip Example - Filter Chips</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/chip/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Chip Example - Filter Chips",
+      "description": "Example from https://react-md.dev/packages/chip/demos#filter-chips",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/chip": "next",
+        "@react-md/icon": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/transition": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, useState, Fragment } from \"react\";\nimport { Text } from \"@react-md/typography\";\nimport { Chip } from \"@react-md/chip\";\nimport { bem } from \"@react-md/utils\";\n\nimport \"./FilterChips.scss\";\n\nconst amenities = [\n  \"Elevator\",\n  \"Washer / Dryer\",\n  \"Fireplace\",\n  \"Wheelchair Access\",\n  \"Dogs ok\",\n  \"Cats ok\",\n];\n\nconst styles = bem(\"filter-chips\");\n\nconst Demo: FC = () => {\n  const [selectedAmenities, setSelected] = useState<string[]>([]);\n  return (\n    <Fragment>\n      <Text type=\"headline-4\" className={styles(\"header\")}>\n        Choose amenities\n      </Text>\n      <div className={styles()}>\n        {amenities.map(amenity => {\n          const selected = selectedAmenities.includes(amenity);\n\n          return (\n            <Chip\n              key={amenity}\n              state={selected}\n              className={styles(\"chip\")}\n              onClick={() =>\n                setSelected(prevSelected => {\n                  if (prevSelected.includes(amenity)) {\n                    return prevSelected.filter(am => am !== amenity);\n                  }\n\n                  return [...prevSelected, amenity];\n                })\n              }\n            >\n              {amenity}\n            </Chip>\n          );\n        })}\n      </div>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/FilterChips.scss": {
+    "content": "@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n\n.filter-chips {\n  display: flex;\n  flex-wrap: wrap;\n\n  &__chip {\n    margin: 0.25rem;\n  }\n\n  &__header {\n    margin: 0;\n    margin-bottom: 1rem;\n  }\n}\n",
+    "isBinary": false
+  }
+}

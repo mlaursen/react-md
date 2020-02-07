@@ -89,7 +89,8 @@ const sandboxes: Sandboxes = {
     WithMedia: () => resolve(import("./Card-WithMedia.json")),
   },
   Chip: {
-    ExpandableChips: () => resolve(import("./Chip-ExpandableChips.json")),
+    FilterChips: () => resolve(import("./Chip-FilterChips.json")),
+    InputChips: () => resolve(import("./Chip-InputChips.json")),
     SimpleChips: () => resolve(import("./Chip-SimpleChips.json")),
   },
   Dialog: {

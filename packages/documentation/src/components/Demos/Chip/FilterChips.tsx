@@ -4,7 +4,6 @@ import { Chip } from "@react-md/chip";
 import { bem } from "@react-md/utils";
 
 import "./FilterChips.scss";
-import { CheckSVGIcon } from "@react-md/material-icons";
 
 const amenities = [
   "Elevator",
