@@ -32,6 +32,15 @@ $rmd-states-use-pressed-states-fallback: true !default;
 /// @type Boolean
 $rmd-states-use-focus-shadow: true !default;
 
+/// Boolean if the default focus state should change the background color to
+/// the focus color. This will apply to all components and styles within
+/// `react-md` and can be used as a feature toggle. If this is set to `false`,
+/// either the `$rmd-states-use-focus-shadow` should be enabled or another
+/// custom focus state should be implemented.
+///
+/// @type Boolean
+$rmd-states-use-focus-background: true !default;
+
 /// The base background color to use for the different interaction states for a
 /// light themed application. This is the color that gets different opacities
 /// applied to it.

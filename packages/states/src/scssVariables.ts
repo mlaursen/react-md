@@ -3,6 +3,7 @@ export default {
   "rmd-states-use-ripple": true,
   "rmd-states-use-pressed-states-fallback": true,
   "rmd-states-use-focus-shadow": true,
+  "rmd-states-use-focus-background": true,
   "rmd-states-light-theme-background-color": "#000",
   "rmd-states-dark-theme-background-color": "#000",
   "rmd-states-light-theme-hover-color": "rgba(0, 0, 0, 0.08)",

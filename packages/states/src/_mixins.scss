@@ -156,7 +156,9 @@
 /// isn't truely focusable.
 /// @param {Boolean} clickable [true] - Boolean if the surface element should
 /// gain the pointer cursor when hovered.
-@mixin rmd-states-surface($focus-selector: '&:focus', $clickable: true) {
+/// @param {Boolean} no-focus-state [false] - Boolean if the keyboard focus
+/// background color change should be disabled.
+@mixin rmd-states-surface($focus-selector: '&:focus', $clickable: true, $no-focus-state: false) {
   @include rmd-utils-hide-focus-outline;
   @include rmd-states-focus-shadow($focus-selector);
 
@@ -179,12 +181,14 @@
     @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
   }
 
-  @include rmd-utils-keyboard-only {
-    #{$focus-selector} {
-      @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
+  @if $rmd-states-use-focus-background and not $no-focus-state {
+    @include rmd-utils-keyboard-only {
+      #{$focus-selector} {
+        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
 
-      &:hover {
-        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
+        &:hover {
+          @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
+        }
       }
     }
   }
