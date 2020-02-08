@@ -17,6 +17,6 @@ export default function MenuEvents({
   defaultFocus,
 }: MenuEventsProps): null {
   usePreviousFocus(false);
-  useFocusOnMount(menuRef, defaultFocus, true);
+  useFocusOnMount(menuRef, defaultFocus, false, true);
   return null;
 }

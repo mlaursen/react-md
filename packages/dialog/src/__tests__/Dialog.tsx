@@ -36,6 +36,7 @@ describe("Dialog", () => {
       "aria-label": "a",
       visible: true,
       onRequestClose: jest.fn(),
+      children: <button type="button" />,
     };
 
     const { baseElement } = render(<Dialog {...props} />);

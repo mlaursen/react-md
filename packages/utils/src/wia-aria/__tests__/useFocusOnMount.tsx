@@ -9,10 +9,11 @@ const cancelAnimationFrame = jest.spyOn(window, "cancelAnimationFrame");
 const Test = ({
   disabled = false,
   defaultFocus = "first",
+  preventScroll = false,
   programatic = false,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  useFocusOnMount(ref, defaultFocus, programatic, disabled);
+  useFocusOnMount(ref, defaultFocus, preventScroll, programatic, disabled);
   return (
     <div ref={ref}>
       <button type="button" data-testid="button-1">

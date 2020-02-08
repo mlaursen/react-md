@@ -18,6 +18,10 @@ import getInstance, { RefOrInstance } from "./getInstance";
  * it has been mounted. This can either be "first" or "last" to focus the first
  * or last focusable elements or a query selector string to find an element to
  * focus.
+ * @param preventScroll Boolean if the focus events should try to prevent the
+ * default scroll-into-view behavior. This is generally recommended to be kept
+ * as `false`, but can be useful to enable if the component mounts offscreen
+ * during a transition.
  * @param programatic Boolean if programatically focusable elements should be
  * included instead of only tab focusable.
  * @param disabled Boolean if the focus behavior should be disabled.
@@ -25,6 +29,7 @@ import getInstance, { RefOrInstance } from "./getInstance";
 export default function useFocusOnMount(
   refOrInstance: RefOrInstance,
   defaultFocus: Focus,
+  preventScroll: boolean = false,
   programatic: boolean = false,
   disabled: boolean = false
 ): void {
@@ -39,8 +44,8 @@ export default function useFocusOnMount(
         return;
       }
 
-      instance.focus();
-      focusElementWithin(instance, defaultFocus, programatic);
+      instance.focus({ preventScroll });
+      focusElementWithin(instance, defaultFocus, programatic, preventScroll);
     });
 
     return () => {

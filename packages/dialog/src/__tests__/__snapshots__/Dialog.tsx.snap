@@ -112,7 +112,11 @@ exports[`Dialog should render the overlay before the dialog container since they
       id="dialog"
       role="dialog"
       tabindex="-1"
-    />
+    >
+      <button
+        type="button"
+      />
+    </div>
   </span>
 </body>
 `;

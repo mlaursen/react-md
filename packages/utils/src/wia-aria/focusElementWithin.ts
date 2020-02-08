@@ -11,6 +11,9 @@ export type Focus = "first" | "last" | string;
  * @param focus Either the "first" or "last" string to focus the first or last
  * focusable element within the container or a query selector string to find a
  * focusable element within the container.
+ * @param preventScroll Boolean if the focus event should not scroll the element
+ * into view. This should normally remain `false`, but can be useful if the
+ * element gets focused while offscreen during a transition.
  * @param progamatic Boolean if programatically focusable elements should be
  * included as well.
  */
@@ -18,6 +21,7 @@ export default function focusElementWithin(
   container: HTMLElement | Document,
   focus: Focus,
   programatic: boolean = false,
+  preventScroll: boolean = false,
   elements?: HTMLElement[]
 ): void {
   if (!elements || !elements.length) {
@@ -40,5 +44,5 @@ export default function focusElementWithin(
     throw new Error("Unable to find a focusable element");
   }
 
-  el.focus();
+  el.focus({ preventScroll });
 }

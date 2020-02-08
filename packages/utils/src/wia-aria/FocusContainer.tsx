@@ -37,6 +37,14 @@ export interface FocusContainerOptionsProps {
   disableFocusOnMount?: boolean;
 
   /**
+   * Boolean if the element that gets focused on mount should try to not scroll
+   * the focused element into view which is the default behavior. This should
+   * normally remain `false`, but it is useful to set to `true` if the
+   * `FocusContainer` is within a transition that appears offscreen.
+   */
+  disableFocusOnMountScroll?: boolean;
+
+  /**
    * The default behavior for the focus container is to attempt to focus the
    * element that was focused before the focus container was mounted since it is
    * generally used for temporary material. If there are cases where this
@@ -94,6 +102,7 @@ function FocusContainer(
     defaultFocus = "first",
     disableFocusCache = false,
     disableFocusOnMount = false,
+    disableFocusOnMountScroll = false,
     disableFocusOnUnmount = false,
     disableTabFocusWrap = false,
     unmountFocusFallback = "",
@@ -111,7 +120,13 @@ function FocusContainer(
   );
 
   usePreviousFocus(disableFocusOnUnmount, unmountFocusFallback);
-  useFocusOnMount(ref, defaultFocus, false, disableFocusOnMount);
+  useFocusOnMount(
+    ref,
+    defaultFocus,
+    disableFocusOnMountScroll,
+    false,
+    disableFocusOnMount
+  );
   const handleKeyDown = useTabFocusWrap({
     disabled: disableTabFocusWrap,
     disableFocusCache,

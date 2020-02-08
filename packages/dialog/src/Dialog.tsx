@@ -301,6 +301,7 @@ function Dialog(
       disableFocusOnMount={
         isNoneRole || disableFocusContainer || disableFocusOnMount
       }
+      disableFocusOnMountScroll
       disableFocusOnUnmount={
         isNoneRole || disableFocusContainer || disableFocusOnUnmount
       }
