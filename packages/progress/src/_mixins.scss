@@ -221,9 +221,13 @@
     @include rmd-progress-theme(height, circular-size);
     @include rmd-progress-theme(width, circular-size);
 
+    // add border radius and overflow-hidden so that different stroke-widths
+    // are still circular. For some reason it isn't always the case.
     align-items: center;
+    border-radius: 50%;
     display: inline-flex;
     justify-content: center;
+    overflow: hidden;
 
     &--centered {
       display: flex;

@@ -1,6 +1,6 @@
 import React, { CSSProperties, forwardRef, ReactElement, Ref } from "react";
 import cn from "classnames";
-import { CircularProgress } from "@react-md/progress";
+import { CircularProgress, getProgressA11y } from "@react-md/progress";
 
 import Switch, { SwitchProps } from "./Switch";
 
@@ -47,21 +47,21 @@ function AsyncSwitch(
   }: AsyncSwitchProps,
   ref?: Ref<HTMLInputElement>
 ): ReactElement {
+  const progressId = `${id}-loading`;
   return (
     <Switch
       {...props}
+      {...getProgressA11y(progressId, loading)}
       id={id}
       ref={ref}
       disabled={disabled}
-      aria-busy={loading || undefined}
-      aria-describedby={loading ? `${id}-loading` : undefined}
       className={cn("rmd-switch--async", className)}
       labelDisabled={disabled || false}
       onChange={loading ? noop : onChange}
     >
       {loading && (
         <CircularProgress
-          id={`${id}-loading`}
+          id={progressId}
           style={progressStyle}
           className={cn("rmd-switch__progress", progressClassName)}
           centered={false}
