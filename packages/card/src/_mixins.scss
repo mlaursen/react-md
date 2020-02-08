@@ -170,6 +170,10 @@
   .rmd-card {
     @include rmd-card;
 
+    &--no-wrap {
+      @include rmd-typography-text-overflow-ellipsis;
+    }
+
     &__header {
       @include rmd-card-header;
     }
@@ -180,6 +184,7 @@
 
     &__header-content {
       flex-grow: 1;
+      min-width: 0;
     }
 
     &__title {

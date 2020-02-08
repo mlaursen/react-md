@@ -9,19 +9,37 @@ export interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
    * `CardHeader`.
    */
   small?: boolean;
+
+  /**
+   * Boolean if the title should not be able to line-wrap and will ellipsis long
+   * text.
+   */
+  noWrap?: boolean;
 }
 
 const block = bem("rmd-card");
 
 function CardTitle(
-  { className, children, small = false, ...props }: CardTitleProps,
+  {
+    className,
+    children,
+    small = false,
+    noWrap = false,
+    ...props
+  }: CardTitleProps,
   ref?: Ref<HTMLHeadingElement>
 ): ReactElement {
   return (
     <h5
       {...props}
       ref={ref}
-      className={cn(block("title", { small }), className)}
+      className={cn(
+        block("title", { small }),
+        {
+          "rmd-card--no-wrap": noWrap,
+        },
+        className
+      )}
     >
       {children}
     </h5>
@@ -38,6 +56,7 @@ if (process.env.NODE_ENV !== "production") {
 
     ForwardedCardTitle.propTypes = {
       small: PropTypes.bool,
+      noWrap: PropTypes.bool,
       children: PropTypes.node,
     };
   } catch (e) {}

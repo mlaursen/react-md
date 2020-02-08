@@ -6,6 +6,12 @@ const block = bem("rmd-card");
 
 export interface CardSubtitleProps extends HTMLAttributes<HTMLHeadingElement> {
   /**
+   * Boolean if the title should not be able to line-wrap and will ellipsis long
+   * text.
+   */
+  noWrap?: boolean;
+
+  /**
    * Boolean if the subtitle should no longer use the secondary text color
    * within cards.
    */
@@ -20,6 +26,7 @@ function CardSubtitle(
   {
     className,
     children,
+    noWrap = false,
     disableSecondaryColor = false,
     ...props
   }: CardSubtitleProps,
@@ -30,7 +37,12 @@ function CardSubtitle(
       {...props}
       ref={ref}
       className={cn(
-        block("subtitle", { secondary: !disableSecondaryColor }),
+        block("subtitle", {
+          secondary: !disableSecondaryColor,
+        }),
+        {
+          "rmd-card--no-wrap": noWrap,
+        },
         className
       )}
     >
