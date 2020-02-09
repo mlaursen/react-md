@@ -1,6 +1,6 @@
 {
   "name": "@react-md/menu",
-  "version": "2.0.0-alpha.13",
+  "version": "2.0.0-alpha.14",
   "description": "Create menus that auto-position themselves within the viewport and adhere to the accessibility guidelines",
   "scripts": {
     "build": "dev-utils build",
@@ -38,16 +38,16 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/app-bar": "^2.0.0-alpha.13",
-    "@react-md/button": "^2.0.0-alpha.13",
-    "@react-md/divider": "^2.0.0-alpha.13",
-    "@react-md/elevation": "^2.0.0-alpha.13",
-    "@react-md/icon": "^2.0.0-alpha.13",
-    "@react-md/list": "^2.0.0-alpha.13",
-    "@react-md/states": "^2.0.0-alpha.13",
-    "@react-md/theme": "^2.0.0-alpha.13",
-    "@react-md/typography": "^2.0.0-alpha.13",
-    "@react-md/utils": "^2.0.0-alpha.13",
+    "@react-md/app-bar": "^2.0.0-alpha.14",
+    "@react-md/button": "^2.0.0-alpha.14",
+    "@react-md/divider": "^2.0.0-alpha.14",
+    "@react-md/elevation": "^2.0.0-alpha.14",
+    "@react-md/icon": "^2.0.0-alpha.14",
+    "@react-md/list": "^2.0.0-alpha.14",
+    "@react-md/states": "^2.0.0-alpha.14",
+    "@react-md/theme": "^2.0.0-alpha.14",
+    "@react-md/typography": "^2.0.0-alpha.14",
+    "@react-md/utils": "^2.0.0-alpha.14",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {
