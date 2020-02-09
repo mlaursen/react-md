@@ -146,7 +146,7 @@ export default function useKeyboardMovement<
   decrementKeys,
   jumpToFirstKeys,
   jumpToLastKeys,
-  stopPropagation = false,
+  stopPropagation = true,
   onChange,
   items,
   resetTime,

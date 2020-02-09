@@ -301,28 +301,34 @@ export default function useAutoComplete({
       switch (event.key) {
         case "ArrowDown":
           if (isListAutocomplete && event.altKey && !visible) {
+            event.stopPropagation();
             show();
             setFocusedIndex(-1);
           }
           break;
         case "ArrowUp":
           if (isListAutocomplete && event.altKey && visible) {
+            event.stopPropagation();
             hide();
           }
           break;
         case "Tab":
+          event.stopPropagation();
           hide();
           break;
         case "Enter":
           if (visible && focusedIndex >= 0) {
+            event.stopPropagation();
             handleAutoComplete(focusedIndex);
             hide();
           }
           break;
         case "Escape":
           if (visible) {
+            event.stopPropagation();
             hide();
-          } else {
+          } else if (value) {
+            event.stopPropagation();
             setValue("");
           }
           break;
