@@ -16,7 +16,7 @@ function handle(cjs: boolean): (pathname: string) => void {
     const [, packageName] = pathname.split("/");
     const name =
       packageName === "react-md" ? packageName : `@react-md/${packageName}`;
-    if (/\.tsx?/.test(pathname) && !started.has(name)) {
+    if (/(?<!scssVariables)\.tsx?$/.test(pathname) && !started.has(name)) {
       const args = ["workspace", name, "build", "-w"];
       log.info(`yarn ${args.join(" ")}`);
       const process = spawn("yarn", args, { stdio: "inherit" });
