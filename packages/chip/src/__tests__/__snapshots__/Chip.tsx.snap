@@ -1,5 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Chip should disable wrapping the children in a content span if the disableContentWrap prop is enabled 1`] = `
+<div>
+  <button
+    class="rmd-chip rmd-chip--solid"
+    type="button"
+  >
+    <span
+      class="rmd-chip__content content-class-name"
+      style="color: red;"
+    >
+      <span>
+        Content
+      </span>
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Chip should disable wrapping the children in a content span if the disableContentWrap prop is enabled 2`] = `
+<div>
+  <button
+    class="rmd-chip rmd-chip--solid"
+    type="button"
+  >
+    <span
+      style=""
+    >
+      Content
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Chip should not render the selected icon until the selected prop is true if the disableIconTransition prop is enabled 1`] = `
+<div>
+  <button
+    class="rmd-chip rmd-chip--solid"
+    type="button"
+  >
+    <span
+      class="rmd-chip__content"
+    >
+      Content
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Chip should not render the selected icon until the selected prop is true if the disableIconTransition prop is enabled 2`] = `
+<div>
+  <button
+    aria-pressed="true"
+    class="rmd-chip rmd-chip--solid rmd-chip--selected rmd-chip--leading-icon"
+    type="button"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon--before"
+    >
+      check
+    </i>
+    <span
+      class="rmd-chip__content"
+    >
+      Content
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
 exports[`Chip should render correctly 1`] = `
 <div>
   <button
@@ -57,6 +139,73 @@ exports[`Chip should render correctly 3`] = `
     >
       keyboard_arrow_right
     </i>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Chip should render the selected icon when the selected prop is a boolean and the leftIcon prop is undefined 1`] = `
+<div>
+  <button
+    class="rmd-chip rmd-chip--solid"
+    type="button"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-chip__selected-icon"
+    >
+      check
+    </i>
+    <span
+      class="rmd-chip__content"
+    >
+      Content
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Chip should render the selected icon when the selected prop is a boolean and the leftIcon prop is undefined 2`] = `
+<div>
+  <button
+    aria-pressed="true"
+    class="rmd-chip rmd-chip--solid rmd-chip--selected rmd-chip--leading-icon"
+    type="button"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-chip__selected-icon rmd-chip__selected-icon--visible"
+    >
+      check
+    </i>
+    <span
+      class="rmd-chip__content"
+    >
+      Content
+    </span>
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</div>
+`;
+
+exports[`Chip should render the selected icon when the selected prop is a boolean and the leftIcon prop is undefined 3`] = `
+<div>
+  <button
+    class="rmd-chip rmd-chip--solid"
+    type="button"
+  >
+    <span
+      class="rmd-chip__content"
+    >
+      Content
+    </span>
     <span
       class="rmd-ripple-container"
     />

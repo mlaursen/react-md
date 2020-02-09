@@ -46,6 +46,18 @@ $rmd-chip-icon-size: 1.125rem !default;
 /// @type Number
 $rmd-chip-avatar-size: 1.5rem !default;
 
+/// The size to use for a circular progress that is being rendered as the
+/// `leftIcon` or `rightIcon`. This should be a number smaller than the height
+/// of the chip minus vertical padding.
+///
+/// @type Number
+$rmd-chip-progress-size: $rmd-chip-icon-size !default;
+
+/// The width to use for the circular progress that is being rendered as the
+/// `leftIcon` or `rightIcon`.
+/// @type Number
+$rmd-chip-progress-width: 12 !default;
+
 /// The background color to use for the "activated" state of the chip. This is
 /// basically a secondary type of selected state.
 /// @type Color
@@ -178,7 +190,7 @@ $rmd-chip-box-shadow: inset 0 0 0 1px !default;
 $rmd-chip-theme-values: (
   height: $rmd-chip-height,
   border-radius: $rmd-chip-border-radius,
-  activated-background-color: $rmd-chip-activated-color,
+  activated-background-color: $rmd-chip-activated-background-color,
   activated-color: $rmd-chip-activated-color,
   solid-background-color: $rmd-chip-solid-background-color,
   solid-color: $rmd-chip-solid-color,

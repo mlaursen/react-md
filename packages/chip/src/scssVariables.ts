@@ -8,6 +8,8 @@ export default {
   "rmd-chip-large-spacing": "0.75rem",
   "rmd-chip-icon-size": "1.125rem",
   "rmd-chip-avatar-size": "1.5rem",
+  "rmd-chip-progress-size": "1.125rem",
+  "rmd-chip-progress-width": 12,
   "rmd-chip-activated-background-color": "#ba68c8",
   "rmd-chip-activated-color": "#fff",
   "rmd-chip-solid-light-background-color": "#e0e0e0",
@@ -30,7 +32,7 @@ export default {
   "rmd-chip-theme-values": {
     height: "2rem",
     "border-radius": "1rem",
-    "activated-background-color": "#fff",
+    "activated-background-color": "#ba68c8",
     "activated-color": "#fff",
     "solid-background-color": "#e0e0e0",
     "solid-color": "#000",

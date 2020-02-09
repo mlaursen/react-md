@@ -65,32 +65,31 @@ export interface ChipProps extends ButtonAttributes {
   disableContentWrap?: boolean;
 
   /**
-   * Either a boolean that the chip is selected/unselected or in an activated
-   * state. When this prop is set to `"activated"`, the chip will be updated to
-   * use a different swatch of the theme primary color and act as if it is
-   * selected.
-   *
-   * Setting this prop to a boolean updates the chip to render a selected icon
-   * to the left of the content as well as adding a darker background when set
-   * to `true`. The icon will only appear once the state is `true` and will
-   * transition in and out when swapped between `true` and `false`.
+   * Boolean if the chip is selected or deselected which is `undefined` by
+   * default. Setting this prop to a boolean updates the chip to render a
+   * selected icon to the left of the content as well as adding a darker
+   * background when set to `true`. The icon will only appear once the state is
+   * `true` and will transition in and out when swapped between `true` and
+   * `false`.
    *
    * > See the `disableIconTransition` and `selectedIcon` props for more details
    * > about the icon behavior
-   *
-   * The `"activated"` and selected states will update the chip to have
-   * `aria-pressed="true"` since the chip will be acting as a toggle button for
-   * these states. If this is undesired behavior, providing your own
-   * `aria-pressed` prop will override this behavior
    */
-  state?: boolean | "activated";
+  selected?: boolean;
 
   /**
-   * The icon to use as the `leftIcon` when the `state` prop has been set to
-   * `"selected"`. When this is omitted, it will inherit the `selected` icon
-   * from the main `Configuration` / `IconProvider`.
+   * Boolean if the selection state should use the activated styles instead
+   * which will apply a different swatch of the primary theme to the button
+   * instead of rendering a check icon.
+   */
+  activated?: boolean;
+
+  /**
+   * The icon to use as the `leftIcon` when the `selected` prop is a boolean.
+   * When this is omitted, it will inherit the `selected` icon from the main
+   * `Configuration` / `IconProvider`.
    *
-   * If this is set to `null`, no icon will be rendered when the `state` is set
+   * If this is set to `null`, no icon will be rendered when the `selected` is set
    * to `"selected"` or `"unselected"`.
    *
    * If the `leftIcon` prop is not `undefined`, the `leftIcon` prop will always
@@ -99,8 +98,8 @@ export interface ChipProps extends ButtonAttributes {
   selectedIcon?: ReactNode;
 
   /**
-   * Boolean if the selected icon should not animate when the `state` is set to
-   * `"selected"`. This transition is just a simple "appear" transition with the
+   * Boolean if the selected icon should not animate when the `selected` is a
+   * boolean. This transition is just a simple "appear" transition with the
    * `max-width` of the icon.
    */
   disableIconTransition?: boolean;
@@ -108,6 +107,13 @@ export interface ChipProps extends ButtonAttributes {
 
 const block = bem("rmd-chip");
 
+/**
+ * A chip is a simplified and condensed button component that be used to create
+ * compact radio groups, checkboxes, and trigger actions. The chip only has a
+ * `"solid"` and `"outline"` theme but can be raisable once clicked or
+ * selectable with an inline icon. A chip also suppors rendering icons, avatars,
+ * or circular progress bars to the left and right of the children.
+ */
 function Chip(
   {
     "aria-pressed": ariaPressed,
@@ -118,7 +124,8 @@ function Chip(
     rightIcon,
     raisable = false,
     disabled = false,
-    state,
+    selected,
+    activated = false,
     contentStyle,
     contentClassName,
     disableContentWrap = false,
@@ -148,39 +155,48 @@ function Chip(
   }
 
   let leftIcon = propLeftIcon;
-  const selectable = typeof state === "boolean";
+  const selectable = typeof selected === "boolean";
   const selectedIcon = useIcon("selected", propSelectedIcon);
   let isHiddenIcon = false;
-  if (selectable && typeof leftIcon === "undefined" && selectedIcon) {
+  if (
+    selectable &&
+    !activated &&
+    typeof leftIcon === "undefined" &&
+    selectedIcon
+  ) {
     leftIcon = selectedIcon;
 
     if (!disableIconTransition && isValidElement(selectedIcon)) {
-      isHiddenIcon = !state;
+      isHiddenIcon = !selected;
       leftIcon = cloneElement(selectedIcon, {
-        className: block("selected-icon", { visible: state }),
+        className: block("selected-icon", { visible: selected }),
       });
-    } else if (disableIconTransition && !state) {
+    } else if (disableIconTransition && !selected) {
       // don't want to render it when not selected if there's no transition
       leftIcon = null;
     }
   }
+
+  const leading = leftIcon && !isHiddenIcon;
+  const trailing = rightIcon;
 
   return (
     <button
       {...props}
       {...handlers}
       ref={ref}
-      aria-pressed={ariaPressed ?? (!!state || undefined)}
+      aria-pressed={ariaPressed ?? (!!selected || undefined)}
       type="button"
       className={cn(
         block({
           [theme]: true,
           disabled,
-          selected: !disabled && selectable && state,
-          activated: !disabled && state === "activated",
+          selected: !disabled && selected && !activated,
+          activated: !disabled && selected && activated,
           "solid-disabled": disabled && theme === "solid",
-          "leading-icon": leftIcon && !isHiddenIcon,
-          "trailing-icon": rightIcon,
+          "leading-icon": leading && !trailing,
+          "trailing-icon": trailing && !leading,
+          surrounded: leading && trailing,
         }),
         className
       )}
@@ -213,10 +229,8 @@ if (process.env.NODE_ENV !== "production") {
       contentStyle: PropTypes.object,
       contentClassName: PropTypes.string,
       disableContentWrap: PropTypes.bool,
-      state: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(["activated"]),
-      ]),
+      selected: PropTypes.bool,
+      activated: PropTypes.bool,
     };
   } catch (e) {}
 }

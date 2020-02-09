@@ -52,6 +52,10 @@
   @if mixin-exists(rmd-avatar-theme-update-var) {
     @include rmd-avatar-theme-update-var(size, $rmd-chip-avatar-size);
   }
+  @if mixin-exists(rmd-progress-theme-update-var) {
+    @include rmd-progress-theme-update-var(circular-size, $rmd-chip-progress-size);
+    @include rmd-progress-theme-update-var(circular-width, $rmd-chip-progress-width);
+  }
 
   align-items: center;
   border-width: 0;
@@ -77,6 +81,7 @@
   &--activated {
     @include rmd-chip-theme(background-color, activated-background-color);
     @include rmd-chip-theme(color, activated-color);
+    @include rmd-icon-theme-update-var(color, currentColor);
   }
 
   &--disabled {
@@ -89,10 +94,30 @@
   }
 
   &--leading-icon {
+    @include rmd-utils-rtl {
+      @include rmd-chip-theme(padding-left, large-spacing);
+      @include rmd-chip-theme(padding-right, small-spacing);
+    }
+
     @include rmd-chip-theme(padding-left, small-spacing);
   }
 
   &--trailing-icon {
+    @include rmd-utils-rtl {
+      @include rmd-chip-theme(padding-left, medium-spacing);
+      @include rmd-chip-theme(padding-right, large-spacing);
+    }
+
+    @include rmd-chip-theme(padding-right, medium-spacing);
+  }
+
+  &--surrounded {
+    @include rmd-utils-rtl {
+      @include rmd-chip-theme(padding-left, medium-spacing);
+      @include rmd-chip-theme(padding-right, small-spacing);
+    }
+
+    @include rmd-chip-theme(padding-left, small-spacing);
     @include rmd-chip-theme(padding-right, medium-spacing);
   }
 
