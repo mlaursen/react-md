@@ -18,12 +18,17 @@ export interface ConditionalFullPageDialogProps {
   disabled?: boolean;
   disableAppBar?: boolean;
   disableContent?: boolean;
+  disableFocusOnMount?: boolean;
 }
 
 type DefaultProps = Required<
   Pick<
     ConditionalFullPageDialogProps,
-    "title" | "disabled" | "disableAppBar" | "disableContent"
+    | "title"
+    | "disabled"
+    | "disableAppBar"
+    | "disableContent"
+    | "disableFocusOnMount"
   >
 >;
 type WithDefaultProps = ConditionalFullPageDialogProps & DefaultProps;
@@ -39,6 +44,7 @@ const ConditionalFullPageDialog: FC<ConditionalFullPageDialogProps> = providedPr
     disabled,
     disableAppBar,
     disableContent,
+    disableFocusOnMount,
   } = providedProps as WithDefaultProps;
   if (disabled) {
     return children;
@@ -64,6 +70,7 @@ const ConditionalFullPageDialog: FC<ConditionalFullPageDialogProps> = providedPr
         visible={visible}
         onRequestClose={disable}
         type="full-page"
+        disableFocusContainer={disableFocusOnMount}
       >
         {!disableAppBar && (
           <AppBar>
@@ -90,6 +97,7 @@ const defaultProps: DefaultProps = {
   disabled: false,
   disableAppBar: false,
   disableContent: false,
+  disableFocusOnMount: false,
 };
 
 ConditionalFullPageDialog.defaultProps = defaultProps;

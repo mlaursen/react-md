@@ -4,7 +4,7 @@ import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
 } from "@react-md/app-bar";
-import { bem, useAppSize, useToggle } from "@react-md/utils";
+import { bem, useAppSize, useToggle, PhoneOnly } from "@react-md/utils";
 
 import ConditionalFullPageDialog, {
   ConditionalFullPageDialogProps,
@@ -13,6 +13,8 @@ import ConditionalFullPageDialog, {
 import "./Phone.scss";
 import { PhoneContext } from "./context";
 import DefaultAppBar from "./DefaultAppBar";
+import StatusBar from "./StatusBar";
+import ClosePhone from "./ClosePhone";
 
 export interface PhoneConfiguration {
   /**
@@ -48,14 +50,19 @@ export interface PhoneConfiguration {
 
 export interface PhoneProps
   extends PhoneConfiguration,
-    Pick<ConditionalFullPageDialogProps, "disableAppBar" | "disableContent"> {
+    Pick<
+      ConditionalFullPageDialogProps,
+      "disableAppBar" | "disableContent" | "disableFocusOnMount"
+    > {
   /**
-   * An id for the phone. This is required for accessibility and quickly linking to things.
+   * An id for the phone. This is required for accessibility and quickly linking
+   * to things.
    */
   id: string;
 
   /**
-   * The content to display. This will conditionally render in a full page dialog.
+   * The content to display. This will conditionally render in a full page
+   * dialog.
    */
   children: ReactNode;
 
@@ -65,32 +72,36 @@ export interface PhoneProps
   className?: string;
 
   /**
-   * An optional function to call when the dialog is closed. This is useful if the demo should be reset
-   * when the full page dialog is closed.
+   * An optional function to call when the dialog is closed. This is useful if
+   * the demo should be reset when the full page dialog is closed.
    */
   onPhoneClose?: () => void;
+
+  /**
+   * Boolean if the `appBar` should only render a status bar.
+   */
+  statusBar?: boolean;
 }
-type DefaultProps = Required<
-  Pick<PhoneProps, "appBar" | "title" | "contentStacked">
->;
-type WithDefaultProps = PhoneProps & DefaultProps;
 
 const block = bem("phone");
 
-const Phone: FC<PhoneProps> = props => {
-  const {
-    id,
-    title,
-    children,
-    appBar,
-    className,
-    contentClassName,
-    contentStacked: stacked,
-    prominent,
-    disableAppBar,
-    disableContent,
-    onPhoneClose,
-  } = props as WithDefaultProps;
+const DEFAULT_APP_BAR = <DefaultAppBar />;
+
+const Phone: FC<PhoneProps> = ({
+  id,
+  title = "Example",
+  children,
+  appBar = DEFAULT_APP_BAR,
+  className,
+  contentClassName,
+  contentStacked: stacked = false,
+  prominent,
+  disableAppBar = false,
+  disableContent = false,
+  disableFocusOnMount = false,
+  onPhoneClose,
+  statusBar = false,
+}) => {
   const { isPhone } = useAppSize();
   const [visible, enable, disable] = useToggle(false);
   const closePhone = useCallback(() => {
@@ -121,40 +132,39 @@ const Phone: FC<PhoneProps> = props => {
         enable={enable}
         disable={closePhone}
         visible={visible}
-        disableAppBar={disableAppBar}
+        disableAppBar={disableAppBar || statusBar}
         disableContent={disableContent}
+        disableFocusOnMount={disableFocusOnMount}
       >
         <div
           id={`${id}-phone`}
           className={cn(block({ emulated: !isPhone }), className)}
         >
-          {appBar}
+          {(statusBar && <StatusBar id={id} isPhone={isPhone} />) || appBar}
           <div
             id={`${id}-content`}
             className={cn(
               block("content", { stacked }),
               {
-                [APP_BAR_OFFSET_DENSE_CLASSNAME]: appBar && !isPhone,
+                [APP_BAR_OFFSET_DENSE_CLASSNAME]:
+                  !statusBar && appBar && !isPhone,
                 [APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME]:
-                  appBar && !isPhone && prominent,
+                  !statusBar && appBar && !isPhone && prominent,
               },
               contentClassName
             )}
           >
             {children}
+            {statusBar && (
+              <PhoneOnly>
+                <ClosePhone floating />
+              </PhoneOnly>
+            )}
           </div>
         </div>
       </ConditionalFullPageDialog>
     </PhoneContext.Provider>
   );
 };
-
-const defaultProps: DefaultProps = {
-  appBar: <DefaultAppBar />,
-  title: "Example",
-  contentStacked: false,
-};
-
-Phone.defaultProps = defaultProps;
 
 export default Phone;
