@@ -78,9 +78,9 @@
     box-shadow: $rmd-chip-box-shadow rmd-chip-theme-var(outline-border-color);
   }
 
-  &--activated {
-    @include rmd-chip-theme(background-color, activated-background-color);
-    @include rmd-chip-theme(color, activated-color);
+  &--themed {
+    @include rmd-chip-theme(background-color, themed-background-color);
+    @include rmd-chip-theme(color, themed-color);
     @include rmd-icon-theme-update-var(color, currentColor);
   }
 

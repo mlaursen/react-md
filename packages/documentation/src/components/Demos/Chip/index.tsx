@@ -8,8 +8,11 @@ import simpleChips from "./SimpleChips.md";
 import FilterChips from "./FilterChips";
 import filterChips from "./FilterChips.md";
 
-import InputChips from "./InputChips";
-import inputChips from "./InputChips.md";
+import ChoiceChips from "./ChoiceChips";
+import choiceChips from "./ChoiceChips.md";
+
+import { ActionChips, actionChips } from "./ActionChips";
+import { InputChips, inputChips } from "./InputChips/";
 
 const demos = [
   {
@@ -21,6 +24,18 @@ const demos = [
     name: "Filter Chips",
     description: filterChips,
     children: <FilterChips />,
+  },
+  {
+    name: "Action Chips",
+    description: actionChips,
+    children: <ActionChips />,
+    disableCard: true,
+  },
+  {
+    name: "Choice Chips",
+    description: choiceChips,
+    children: <ChoiceChips />,
+    disableCard: true,
   },
   {
     name: "Input Chips",

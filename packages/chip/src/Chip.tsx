@@ -78,11 +78,10 @@ export interface ChipProps extends ButtonAttributes {
   selected?: boolean;
 
   /**
-   * Boolean if the selection state should use the activated styles instead
-   * which will apply a different swatch of the primary theme to the button
-   * instead of rendering a check icon.
+   * Boolean if the selection state should use a swatch of the primary color
+   * instead of rendering a check icon and the normal background color changes.
    */
-  activated?: boolean;
+  selectedThemed?: boolean;
 
   /**
    * The icon to use as the `leftIcon` when the `selected` prop is a boolean.
@@ -125,7 +124,7 @@ function Chip(
     raisable = false,
     disabled = false,
     selected,
-    activated = false,
+    selectedThemed = false,
     contentStyle,
     contentClassName,
     disableContentWrap = false,
@@ -160,7 +159,7 @@ function Chip(
   let isHiddenIcon = false;
   if (
     selectable &&
-    !activated &&
+    !selectedThemed &&
     typeof leftIcon === "undefined" &&
     selectedIcon
   ) {
@@ -191,8 +190,8 @@ function Chip(
         block({
           [theme]: true,
           disabled,
-          selected: !disabled && selected && !activated,
-          activated: !disabled && selected && activated,
+          selected: !disabled && selected && !selectedThemed,
+          themed: !disabled && selected && selectedThemed,
           "solid-disabled": disabled && theme === "solid",
           "leading-icon": leading && !trailing,
           "trailing-icon": trailing && !leading,
@@ -230,7 +229,7 @@ if (process.env.NODE_ENV !== "production") {
       contentClassName: PropTypes.string,
       disableContentWrap: PropTypes.bool,
       selected: PropTypes.bool,
-      activated: PropTypes.bool,
+      selectedThemed: PropTypes.bool,
     };
   } catch (e) {}
 }

@@ -58,15 +58,15 @@ $rmd-chip-progress-size: $rmd-chip-icon-size !default;
 /// @type Number
 $rmd-chip-progress-width: 12 !default;
 
-/// The background color to use for the "activated" state of the chip. This is
-/// basically a secondary type of selected state.
+/// The background color to use for the selected themed state of the chip. This
+/// is basically a secondary type of selected state.
 /// @type Color
-$rmd-chip-activated-background-color: rmd-theme-get-swatch($rmd-theme-primary, 300) !default;
+$rmd-chip-themed-background-color: rmd-theme-get-swatch($rmd-theme-primary, 300) !default;
 
-/// The color to use for the "activated" state of the chip.
+/// The color to use for the selected themed state of the chip.
 /// @type Color
-$rmd-chip-activated-color: if(
-  rmd-theme-tone($rmd-chip-activated-background-color) == light,
+$rmd-chip-themed-color: if(
+  rmd-theme-tone($rmd-chip-themed-background-color) == light,
   $rmd-black-base,
   $rmd-white-base
 ) !default;
@@ -190,8 +190,8 @@ $rmd-chip-box-shadow: inset 0 0 0 1px !default;
 $rmd-chip-theme-values: (
   height: $rmd-chip-height,
   border-radius: $rmd-chip-border-radius,
-  activated-background-color: $rmd-chip-activated-background-color,
-  activated-color: $rmd-chip-activated-color,
+  themed-background-color: $rmd-chip-themed-background-color,
+  themed-color: $rmd-chip-themed-color,
   solid-background-color: $rmd-chip-solid-background-color,
   solid-color: $rmd-chip-solid-color,
   solid-disabled: $rmd-chip-solid-disabled-background-color,

@@ -1,0 +1,95 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Chip Example - Action Chips</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/card/dist/mixins';\n@import '~@react-md/chip/dist/mixins';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/media/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n@import '~@react-md/sheet/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Chip Example - Action Chips",
+      "description": "Example from https://react-md.dev/packages/chip/demos#action-chips",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/card": "next",
+        "@react-md/chip": "next",
+        "@react-md/divider": "next",
+        "@react-md/elevation": "next",
+        "@react-md/icon": "next",
+        "@react-md/layout": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/media": "next",
+        "@react-md/progress": "next",
+        "@react-md/sheet": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "react-dom": "latest",
+        "react-transition-group": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, useState } from \"react\";\nimport {\n  Card,\n  CardContent,\n  CardHeader,\n  CardSubtitle,\n  CardTitle,\n} from \"@react-md/card\";\nimport { Divider } from \"@react-md/divider\";\nimport { MediaContainer } from \"@react-md/media\";\n\nimport ActionChipAlarm from \"./ActionChipAlarm\";\nimport ActionChipBlinds from \"./ActionChipBlinds\";\nimport ActionChipLights from \"./ActionChipLights\";\nimport Blinds from \"./Blinds\";\nimport styles from \"./styles\";\n\nconst width = 240;\nconst height = width * 0.75;\n\nconst Demo: FC = () => {\n  const [blinds, setBlinds] = useState(false);\n  return (\n    <Card id=\"action-chips-card\" className={styles()}>\n      <MediaContainer fullWidth>\n        <Blinds visible={blinds} />\n        <img alt=\"\" src={`https://picsum.photos/id/218/${width}/${height}`} />\n      </MediaContainer>\n      <CardHeader>\n        <CardTitle noWrap>Welcome Home Person Name!</CardTitle>\n        <CardSubtitle noWrap>Monday 12:30 PM, Mostly Sunny</CardSubtitle>\n      </CardHeader>\n      <Divider />\n      <CardContent className={styles(\"chips\")} disableExtraPadding>\n        <ActionChipLights />\n        <ActionChipAlarm />\n        <ActionChipBlinds\n          visible={blinds}\n          onClick={() => setBlinds(prevBlinds => !prevBlinds)}\n        />\n      </CardContent>\n    </Card>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/ActionChip.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { Chip, ChipProps } from \"@react-md/chip\";\n\nimport styles from \"./styles\";\n\ninterface ActionChipProps extends ChipProps {\n  yellow?: boolean;\n}\n\nconst ActionChip: FC<ActionChipProps> = ({\n  children,\n  className,\n  theme = \"outline\",\n  yellow = false,\n  ...props\n}) => (\n  <Chip\n    {...props}\n    theme={theme}\n    className={cn(styles(\"chip\", { yellow }), className)}\n  >\n    {children}\n  </Chip>\n);\n\nexport default ActionChip;\n",
+    "isBinary": false
+  },
+  "src/ActionChipAlarm.tsx": {
+    "content": "import React, { FC, Fragment, useState } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { AlarmSVGIcon, CloseSVGIcon } from \"@react-md/material-icons\";\nimport { Sheet } from \"@react-md/sheet\";\n\nimport ActionChip from \"./ActionChip\";\nimport styles from \"./styles\";\n\nconst ActionChipAlarm: FC = () => {\n  const [visible, setVisible] = useState(false);\n  const hide = (): void => setVisible(false);\n\n  return (\n    <Fragment>\n      <ActionChip\n        id=\"action-chip-alarm\"\n        leftIcon={<AlarmSVGIcon />}\n        onClick={() => setVisible(true)}\n      >\n        Set Alarm\n      </ActionChip>\n      <Sheet\n        id=\"action-chip-alarm-sheet\"\n        aria-label=\"Alarm\"\n        className={styles(\"sheet\")}\n        overlayClassName={styles(\"sheet\")}\n        position=\"bottom\"\n        visible={visible}\n        onRequestClose={hide}\n        portalIntoId=\"action-chips-card\"\n        disableScrollLock\n      >\n        <Button\n          id=\"action-chip-alarm-close\"\n          aria-label=\"Close\"\n          buttonType=\"icon\"\n          onClick={hide}\n        >\n          <CloseSVGIcon />\n        </Button>\n      </Sheet>\n    </Fragment>\n  );\n};\n\nexport default ActionChipAlarm;\n",
+    "isBinary": false
+  },
+  "src/ActionChipBlinds.tsx": {
+    "content": "import React, { FC, MouseEventHandler } from \"react\";\nimport { ClearAllSVGIcon } from \"@react-md/material-icons\";\nimport ActionChip from \"./ActionChip\";\n\nexport interface ActionChipBlindsProps {\n  onClick: MouseEventHandler<HTMLButtonElement>;\n  visible: boolean;\n}\n\nconst ActionChipBlinds: FC<ActionChipBlindsProps> = ({ onClick, visible }) => (\n  <ActionChip\n    selected={visible}\n    onClick={onClick}\n    leftIcon={<ClearAllSVGIcon />}\n  >\n    Close blinds\n  </ActionChip>\n);\n\nexport default ActionChipBlinds;\n",
+    "isBinary": false
+  },
+  "src/ActionChipLights.tsx": {
+    "content": "import React, { FC, useEffect, useState } from \"react\";\nimport {\n  BrightnessHighSVGIcon,\n  BrightnessLowSVGIcon,\n} from \"@react-md/material-icons\";\nimport { CircularProgress, getProgressA11y } from \"@react-md/progress\";\n\nimport { randomInt } from \"./random\";\n\nimport ActionChip from \"./ActionChip\";\n\nconst id = \"action-chip-lights\";\nconst progressId = `${id}-progress`;\n\nconst ActionChipLights: FC = () => {\n  const [enabled, setEnabled] = useState(false);\n  const [loading, setLoading] = useState(false);\n\n  useEffect(() => {\n    if (!loading) {\n      return;\n    }\n\n    const timeout = window.setTimeout(() => {\n      setLoading(false);\n      setEnabled(prevEnabled => !prevEnabled);\n    }, randomInt({ min: 3, max: 5 }) * 1000);\n\n    return () => {\n      window.clearTimeout(timeout);\n    };\n  }, [loading]);\n\n  let leftIcon = enabled ? <BrightnessHighSVGIcon /> : <BrightnessLowSVGIcon />;\n  if (loading) {\n    leftIcon = <CircularProgress id={progressId} centered={false} />;\n  }\n\n  return (\n    <ActionChip\n      id={id}\n      {...getProgressA11y(progressId, loading)}\n      leftIcon={leftIcon}\n      selected={enabled}\n      onClick={() => {\n        if (loading) {\n          return;\n        }\n\n        setLoading(!loading);\n      }}\n      yellow={enabled}\n    >\n      Turn on lights\n    </ActionChip>\n  );\n};\n\nexport default ActionChipLights;\n",
+    "isBinary": false
+  },
+  "src/ActionChips.scss": {
+    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n$blind-height: 1.5rem;\n$blind-margin: 2px;\n$blind-margin-extra: 8px;\n$blind-rotation: 12deg;\n$blind-rotation-extra: 24deg;\n\n.action-chips {\n  @include rmd-utils-block-centered;\n  @media screen and (min-width: 23.4375em) {\n    width: 19rem;\n  }\n\n  overflow: hidden;\n  position: relative;\n  width: 15rem;\n\n  &__chips {\n    @include rmd-utils-scroll(x);\n\n    display: flex;\n  }\n\n  &__chip {\n    margin: 0.25rem;\n\n    &--yellow {\n      @include rmd-icon-theme-update-var(color, $rmd-yellow-300);\n    }\n  }\n\n  &__sheet {\n    position: absolute;\n  }\n\n  &__blinds {\n    @include rmd-transition(deceleration);\n\n    display: flex;\n    flex-direction: column;\n    height: 100%;\n    overflow: hidden;\n    position: absolute;\n    transform-origin: top;\n    width: 100%;\n\n    &--animate {\n      @include rmd-transition(deceleration);\n\n      transition: transform 1.5s;\n    }\n\n    &--enter {\n      transform: scaleY(0);\n    }\n\n    &--enter-active {\n      transform: scaleY(1);\n    }\n\n    &--exit {\n      transform: scaleY(1);\n    }\n\n    &--exit-active {\n      transform: scaleY(0);\n    }\n  }\n\n  &__blind {\n    @include rmd-elevation(8);\n\n    background-color: rgba($rmd-white-base, 0.94);\n    flex-shrink: 0;\n    height: $blind-height;\n    margin-bottom: $blind-margin-extra;\n    transform: skewX($blind-rotation-extra);\n    width: 100%;\n\n    &--animate {\n      @include rmd-transition(standard);\n      $duration: 2s;\n\n      transition: margin-bottom $duration, transform $duration;\n    }\n\n    &--enter {\n      margin-bottom: $blind-margin-extra;\n      transition-delay: 0.5s;\n    }\n\n    &--enter-active {\n      margin-bottom: $blind-margin;\n      transform: skewX($blind-rotation);\n    }\n\n    &--done {\n      margin-bottom: $blind-margin;\n      transform: skewX($blind-rotation);\n    }\n\n    &--exit {\n      margin-bottom: $blind-margin;\n      transform: skewX($blind-rotation);\n    }\n\n    &--exit-active {\n      margin-bottom: $blind-margin-extra;\n      transform: skewX($blind-rotation-extra);\n    }\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/Blinds.tsx": {
+    "content": "import React, { FC, useState } from \"react\";\nimport { CSSTransition } from \"react-transition-group\";\n\nimport styles from \"./styles\";\n\ninterface BlindsProps {\n  visible: boolean;\n}\n\nconst prefix = (type: string): string => `action-chips__${type}`;\nconst blinds = prefix(\"blinds\");\nconst BLINDS = {\n  enter: `${blinds}--enter`,\n  enterActive: `${blinds}--enter-active ${blinds}--animate`,\n  exit: `${blinds}--exit`,\n  exitActive: `${blinds}--exit-active ${blinds}--animate`,\n};\n\nconst blind = prefix(\"blind\");\nconst BLIND = {\n  enter: `${blind}--enter`,\n  enterActive: `${blind}--enter-active ${blind}--animate`,\n  enterDone: `${blind}--done`,\n  exit: `${blind}--exit`,\n  exitActive: `${blind}--exit-active ${blind}--animate`,\n};\n\nconst Blinds: FC<BlindsProps> = ({ visible }) => {\n  const [exited, setExited] = useState(true);\n  if (visible && exited) {\n    setExited(false);\n  }\n\n  const hide = (): void => setExited(true);\n\n  const isVisible = visible || !exited;\n\n  return (\n    <CSSTransition\n      in={isVisible}\n      mountOnEnter\n      unmountOnExit\n      timeout={1500}\n      classNames={BLINDS}\n    >\n      {state => (\n        <div className={styles(\"blinds\")}>\n          {Array.from(new Array(11), (_, i) => (\n            <CSSTransition\n              key={i}\n              timeout={2500}\n              classNames={BLIND}\n              in={visible && state === \"entered\"}\n              onExited={i === 10 ? hide : undefined}\n            >\n              <span className={styles(\"blind\")} />\n            </CSSTransition>\n          ))}\n        </div>\n      )}\n    </CSSTransition>\n  );\n};\n\nexport default Blinds;\n",
+    "isBinary": false
+  },
+  "src/styles.ts": {
+    "content": "import { bem } from \"@react-md/utils\";\n\nimport \"./ActionChips.scss\";\n\nexport default bem(\"action-chips\");\n",
+    "isBinary": false
+  },
+  "src/random.ts": {
+    "content": "/* eslint-disable import/prefer-default-export */\ninterface RandomInt {\n  min?: number;\n  max?: number;\n}\n\n/**\n * Generates a random integer between a min and max value. Defaults\n * to 0-10.\n */\nexport function randomInt({ min = 0, max = 10 }: RandomInt = {}): number {\n  return Math.floor(Math.random() * max) + min;\n}\n",
+    "isBinary": false
+  }
+}

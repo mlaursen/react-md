@@ -20,7 +20,7 @@ const FilterChips: FC = () => {
   const [selectedAmenities, setSelected] = useState<string[]>([]);
   return (
     <Fragment>
-      <Text type="headline-4" className={styles("header")}>
+      <Text type="headline-5" className={styles("header")}>
         Choose amenities
       </Text>
       <div className={styles()}>
@@ -30,7 +30,7 @@ const FilterChips: FC = () => {
           return (
             <Chip
               key={amenity}
-              state={selected}
+              selected={selected}
               className={styles("chip")}
               onClick={() =>
                 setSelected(prevSelected => {
