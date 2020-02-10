@@ -4,6 +4,7 @@ exports[`Grid should render correctly when the columns props are provided 1`] = 
 <div>
   <div
     class="rmd-grid"
+    style="--rmd-grid-cols: 2;"
   />
 </div>
 `;
@@ -12,6 +13,7 @@ exports[`Grid should render correctly when the columns props are provided 2`] = 
 <div>
   <div
     class="rmd-grid"
+    style="--rmd-grid-cols: 4;"
   />
 </div>
 `;

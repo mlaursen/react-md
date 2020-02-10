@@ -70,11 +70,11 @@
     "@react-md/utils": "^2.0.0-alpha.14"
   },
   "devDependencies": {
-    "rollup": "^1.27.9",
+    "rollup": "^1.31.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-uglify": "^6.0.3"
+    "rollup-plugin-uglify": "^6.0.4"
   },
   "peerDependencies": {
     "react": ">= 16.8"
