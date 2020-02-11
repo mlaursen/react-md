@@ -6,7 +6,9 @@ easily be updated with custom values.
 
 This package is mostly for generating the base typography onto different classes
 throughout your app, but it also exposes `Text` and `TextContainer` components
-to help add typography throughout your app.
+to help add typography throughout your app. There is also an accessibility
+helper component named `SrOnly` that allows you to display text to screen
+readers only.
 
 ## Installation
 

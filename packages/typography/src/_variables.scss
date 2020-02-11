@@ -130,13 +130,16 @@ $rmd-typography-black: 900 !default;
 /// A Map of all the font weights.
 ///
 /// @type Map
-/// @prop {Number} thin [100] - The thin font weight value.
-/// @prop {Number} light [300] - The light font weight value.
-/// @prop {Number} regular [400] - The regular font weight value.
-/// @prop {Number} medium [500] - The medium font weight value.
-/// @prop {Number} bold [700] - The bold font weight value.
-/// @prop {Number} semi-bold [800] - The semi-bold font weight value.
-/// @prop {Number} black [900] - The black font weight value.
+/// @prop {Number} thin [$rmd-typography-thin] - The thin font weight value.
+/// @prop {Number} light [$rmd-typography-light] - The light font weight value.
+/// @prop {Number} regular [$rmd-typography-regular] - The regular font weight
+/// value.
+/// @prop {Number} medium [$rmd-typography-medium] - The medium font weight
+/// value.
+/// @prop {Number} bold [$rmd-typography-bold] - The bold font weight value.
+/// @prop {Number} semi-bold [$rmd-typography-semi-bold] - The semi-bold font
+/// weight value.
+/// @prop {Number} black [$rmd-typography-black] - The black font weight value.
 $rmd-typography-font-weights: (
   thin: $rmd-typography-thin,
   light: $rmd-typography-light,
