@@ -37,12 +37,6 @@ more customization information, but an example usage is shown below.
 
 ## Usage
 
-Starting with v2 of `react-md`, all interactable elements require a unique `id`
-to help ensure best practices, accessibility, and a way to track keyboard focus.
-This might seem a bit annoying at first, but it will really help out in the long
-run as it'll be very easy to find elements within the page and other debugging
-purposes.
-
 ### Buttons with Text
 
 ```tsx
@@ -52,25 +46,19 @@ import { Button } from "@react-md/button";
 
 const App = () => (
   <Fragment>
-    <Button id="button-1">Text Button</Button>
-    <Button id="button-2" theme="primary" themeType="flat">
+    <Button>Text Button</Button>
+    <Button theme="primary" themeType="flat">
       Text Button
     </Button>
-    <Button id="button-3" theme="secondary" themeType="raised">
+    <Button theme="secondary" themeType="raised">
       Text Button
     </Button>
-    <Button id="button-4" theme="warning" themeType="contained">
+    <Button theme="warning" themeType="contained">
       Text Button
     </Button>
-    <Button id="button-5" theme="error">
-      Text Button
-    </Button>
-    <Button id="button-6" theme="clear">
-      Text Button
-    </Button>
-    <Button id="button-7" disabled>
-      Text Button
-    </Button>
+    <Button theme="error">Text Button</Button>
+    <Button theme="clear">Text Button</Button>
+    <Button disabled>Text Button</Button>
   </Fragment>
 );
 
@@ -94,17 +82,17 @@ import { DeleteSVGIcon } from "@react-md/material-icons";
 
 const App = () => (
   <Fragment>
-    <Button id="button-1">
+    <Button>
       <TextIconSpacing icon={<FontIcon>info_outline</FontIcon>}>
         About
       </TextIconSpacing>
     </Button>
-    <Button id="button-2" theme="primary" themeType="raised">
+    <Button theme="primary" themeType="raised">
       <TextIconSpacing icon={<FontIcon>info_outline</FontIcon>} iconAfter>
         About
       </TextIconSpacing>
     </Button>
-    <Button id="button-3" theme="error" themeType="contained">
+    <Button theme="error" themeType="contained">
       <TextIconSpacing icon={<DeleteSVGIcon />}>
         Permanently Delete
       </TextIconSpacing>
@@ -141,11 +129,10 @@ import { DeleteSVGIcon } from "@react-md/material-icons";
 
 const App = () => (
   <Fragment>
-    <Button id="button-1" aria-label="More Info" buttonType="icon">
+    <Button aria-label="More Info" buttonType="icon">
       <FontIcon>info_outline</FontIcon>
     </Button>
     <Button
-      id="button-2"
       theme="primary"
       themeType="raised"
       buttonType="icon"
@@ -154,7 +141,6 @@ const App = () => (
       <FontIcon>info_outline</FontIcon>
     </Button>
     <Button
-      id="button-3"
       theme="error"
       themeType="contained"
       buttonType="icon"

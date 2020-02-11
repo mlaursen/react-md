@@ -40,20 +40,21 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-button-theme-values, button);
 }
 
-/// A simple mixin to create an unstyled button.
+/// A simple mixin to remove most of the styles for a button and reset them
+/// to be clear.
 ///
-/// NOTE: An unstyled button removed the `outline-style` so you *must* add a
+/// NOTE: An reset button removed the `outline-style` so you *must* add a
 /// custom focus behavior with either ripples or something else for keyboard
 /// users.
 ///
 /// @example scss - Example Usage SCSS
 ///   .my-button {
-///     @include rmd-button-unstyled;
+///     @include rmd-button-reset;
 ///     @include rmd-typography(button);
 ///
 ///     display: inline-flex;
 ///   }
-@mixin rmd-button-unstyled {
+@mixin rmd-button-reset {
   @include rmd-utils-hide-focus-outline;
 
   background-color: transparent;
@@ -193,6 +194,19 @@
   }
 }
 
+/// Creates all the styles for an unstyled button.
+@mixin rmd-button-unstyled {
+  @include rmd-button-reset;
+  @include rmd-states-focus-shadow($create-pseudo: true);
+
+  display: inline-flex;
+  position: relative;
+
+  &:not(:disabled):hover {
+    cursor: pointer;
+  }
+}
+
 /// Creates all the styles for this package as well as defining all the theme
 /// CSS variables.
 @mixin react-md-button {
@@ -204,13 +218,5 @@
 
   .rmd-button-unstyled {
     @include rmd-button-unstyled;
-    @include rmd-states-focus-shadow($create-pseudo: true);
-
-    display: inline-flex;
-    position: relative;
-
-    &:not(:disabled):hover {
-      cursor: pointer;
-    }
   }
 }
