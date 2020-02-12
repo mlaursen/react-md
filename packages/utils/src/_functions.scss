@@ -87,7 +87,7 @@
 }
 
 /// This function can be used to negate the value of a css variable. It just
-/// really wraps the variable with `cacl(-1 * #{$variable})`.
+/// really wraps the variable with `calc(-1 * #{$variable})`.
 ///
 /// @param {String} css-variable - The css variable string to negate.
 /// @return {String} a calc string that negates a css variable.

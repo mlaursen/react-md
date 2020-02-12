@@ -33,7 +33,7 @@ export function getItemId(id: string, i: number): string {
  * @private
  */
 export function transformKeys(
-  keys: MovementKey[],
+  keys: readonly MovementKey[],
   type: FocusType
 ): KeyConfig[] {
   return keys.map<KeyConfig>(key => ({
@@ -60,7 +60,7 @@ export function transformKeys(
  */
 export function getKeyboardConfig(
   event: KeyboardEvent | React.KeyboardEvent,
-  keys: KeyConfig[]
+  keys: readonly KeyConfig[]
 ): KeyConfig | null {
   const { key, altKey, ctrlKey, metaKey, shiftKey } = event;
   return (

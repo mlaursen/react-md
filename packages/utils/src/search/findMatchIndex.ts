@@ -15,7 +15,7 @@
  */
 export function findMatchInRange(
   value: string,
-  values: string[],
+  values: readonly string[],
   startIndex: number,
   endIndex: number
 ): number {
@@ -48,7 +48,7 @@ export function findMatchInRange(
  */
 export default function findMatchIndex(
   value: string,
-  values: string[],
+  values: readonly string[],
   startIndex: number,
   isSelfMatchable: boolean = true
 ): number {

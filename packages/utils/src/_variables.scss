@@ -12,7 +12,7 @@ $rmd-utils-ios-scroll-momentum: true !default;
 /// queries once the app has reached a "desktop" size.
 ///
 /// @type Boolean
-$rmd-utils-auto-dense: true !default;
+$rmd-utils-auto-dense: false !default;
 
 /// Boolean if the rtl fixes should be included by default. You can save a few
 /// bytes in your bundle size by disabling this if you don't need to worry about
@@ -130,7 +130,7 @@ $rmd-grid-list-padding: 0.5rem !default;
 /// The default amount of margin to apply to each cell within the `GridList`
 /// component.
 /// @type Number
-$rmd-grid-list-cell-margin: 0.5rem;
+$rmd-grid-list-cell-margin: 0.5rem !default;
 
 /// The default max size that each cell can be within the `GridList` component.
 /// @type Number

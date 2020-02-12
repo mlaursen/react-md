@@ -3,8 +3,8 @@ import { useState, Dispatch, SetStateAction } from "react";
 import scrollIntoView from "../../scrollIntoView";
 import useKeyboardMovement, {
   BaseKeyboardMovementOptions,
-  ItemRef,
   MovementHandler,
+  ItemRefList,
 } from "./useKeyboardMovement";
 import { getItemId } from "./utils";
 import { DEFAULT_GET_ITEM_VALUE, DEFAULT_VALUE_KEY } from "../../search/utils";
@@ -22,7 +22,7 @@ export interface ActiveDescendantMovementProviders<
   CE extends HTMLElement,
   IE extends HTMLElement
 > {
-  itemRefs: ItemRef<IE>[];
+  itemRefs: ItemRefList<IE>;
   onKeyDown: MovementHandler<CE>;
   activeId: ActiveDescendantId;
   focusedIndex: number;

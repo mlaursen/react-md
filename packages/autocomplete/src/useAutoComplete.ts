@@ -2,12 +2,12 @@ import {
   CSSProperties,
   HTMLAttributes,
   MutableRefObject,
+  Ref,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
-  Ref,
 } from "react";
 import { ListElement } from "@react-md/list";
 import {
@@ -17,6 +17,7 @@ import {
 } from "@react-md/transition";
 import {
   applyRef,
+  ItemRefList,
   MovementPresets,
   PositionWidth,
   scrollIntoView,
@@ -95,7 +96,7 @@ interface ReturnValue {
   value: string;
   visible: boolean;
   activeId: string;
-  itemRefs: MutableRefObject<HTMLLIElement | null>[];
+  itemRefs: ItemRefList<HTMLLIElement>;
   filteredData: readonly AutoCompleteData[];
   listboxRef: MutableRefObject<ListElement | null>;
   handleBlur: React.FocusEventHandler<HTMLInputElement>;

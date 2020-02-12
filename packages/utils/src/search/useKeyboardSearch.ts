@@ -17,12 +17,12 @@ export interface SearchData<D = unknown, E extends HTMLElement = HTMLElement> {
   /**
    * The item that was matched from the latest search.
    */
-  item: D;
+  readonly item: D;
 
   /**
    * The current list of items that were provided to be searched.
    */
-  items: readonly D[];
+  readonly items: readonly D[];
 
   /**
    * The index in the `items` array that the found item appears at. This is
@@ -30,18 +30,18 @@ export interface SearchData<D = unknown, E extends HTMLElement = HTMLElement> {
    * `aria-activedescendant` focus movement or manual focus behavior since the
    * `items` array should normally be the same indexes as the DOM nodes.
    */
-  index: number;
+  readonly index: number;
 
   /**
    * The search value that was used to find this item and trigger the change
    * event.
    */
-  query: string;
+  readonly query: string;
 
   /**
    * The current target for the search keydown event.
    */
-  target: E;
+  readonly target: E;
 }
 
 export type SearchChangeEvent<

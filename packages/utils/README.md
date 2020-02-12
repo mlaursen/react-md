@@ -1,9 +1,12 @@
 # @react-md/utils
 
-This package is mostly for internal react-md work, but it also exposes a few
-help SCSS mixins for handling right-to-left languages, fixing scroll momentum in
-iOS, determining the app size, performant resize/scroll listeners, general
-accessibility helpers/components, and custom focus styles.
+This package is for providing reusable accessibility hooks, components, and
+utilities, a base css reset and other utility mixins, as well as general layout
+and app size components and hooks. This package will be used by every other
+scoped package within `react-md`, and has an extremely useful mixin for only
+generating styles for packages that have been installed.
+
+Check out the usage section below for more details.
 
 Exported components:
 

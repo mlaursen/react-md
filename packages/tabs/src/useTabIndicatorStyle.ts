@@ -1,18 +1,18 @@
 import {
-  useState,
-  useEffect,
-  useMemo,
   MutableRefObject,
   Ref,
   useCallback,
+  useEffect,
+  useMemo,
   useRef,
+  useState,
 } from "react";
-import { useResizeObserver, applyRef, ItemRef } from "@react-md/utils";
+import { applyRef, ItemRefList, useResizeObserver } from "@react-md/utils";
 
 interface Options {
   style: React.CSSProperties | undefined;
   ref?: Ref<HTMLDivElement | null>;
-  itemRefs: ItemRef[];
+  itemRefs: ItemRefList;
   totalTabs: number;
   activeIndex: number;
   align: "left" | "center" | "right";
@@ -36,7 +36,7 @@ type ReturnValue = [
 ];
 
 const getActiveTab = (
-  itemRefs: MutableRefObject<HTMLElement | null>[],
+  itemRefs: ItemRefList,
   activeIndex: number
 ): HTMLElement | null => {
   return (itemRefs[activeIndex] && itemRefs[activeIndex].current) || null;
@@ -67,7 +67,7 @@ export default function useTabIndicatorStyle({
   });
   const prevCSSVars = useRef(cssVars);
   const updateCSSVars = useCallback(
-    (itemRefs: ItemRef[], activeIndex: number) => {
+    (itemRefs: ItemRefList, activeIndex: number) => {
       const activeTab = getActiveTab(itemRefs, activeIndex);
       if (!activeTab) {
         return;

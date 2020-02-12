@@ -24,9 +24,11 @@ export type MovementHandler<E extends HTMLElement> = React.KeyboardEventHandler<
  *
  * @typeparam E the element type of each item within the focusable list.
  */
-export type ItemRef<
-  E extends HTMLElement = HTMLElement
-> = MutableRefObject<E | null>;
+export type ItemRef<E extends HTMLElement> = MutableRefObject<E | null>;
+
+export type ItemRefList<E extends HTMLElement = HTMLElement> = readonly ItemRef<
+  E
+>[];
 
 export interface BaseKeyboardMovementOptions<
   D = unknown,
@@ -47,7 +49,7 @@ export interface BaseKeyboardMovementOptions<
    * something that either updates the `aria-activedescendant` id to the new
    * found item's id or manually focus the item's DOM node.
    */
-  onChange?: (data: SearchData<D, CE>, itemRefs: ItemRef<IE>[]) => void;
+  onChange?: (data: SearchData<D, CE>, itemRefs: ItemRefList<IE>) => void;
 }
 
 /**
@@ -75,7 +77,7 @@ export interface KeyboardMovementOptions<
    * something that either updates the `aria-activedescendant` id to the new
    * found item's id or manually focus the item's DOM node.
    */
-  onChange: (data: SearchData<D, CE>, itemRefs: ItemRef<IE>[]) => void;
+  onChange: (data: SearchData<D, CE>, itemRefs: ItemRefList<IE>) => void;
 }
 
 /**
@@ -98,7 +100,7 @@ export type KeyboardMovementProviders<
    * within the list. This list will automatically be generated based on the
    * number of items provided to the `useKeyboardMovement` hook
    */
-  ItemRef<IE>[],
+  ItemRefList<IE>,
 
   /**
    * The keydown event handler to apply to a "container" element that has custom
@@ -167,7 +169,7 @@ export default function useKeyboardMovement<
     [incrementKeys, decrementKeys, jumpToFirstKeys, jumpToLastKeys]
   );
 
-  const itemRefs = useMemo<ItemRef<IE>[]>(
+  const itemRefs = useMemo<ItemRefList<IE>>(
     () => Array.from(items, () => ({ current: null })),
     [items]
   );

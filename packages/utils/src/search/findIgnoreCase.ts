@@ -17,7 +17,7 @@ import defaults from "../defaults";
  */
 export default function findIgnoreCase<T = unknown>(
   query: string,
-  searchable: T[],
+  searchable: readonly T[],
   options: SearchOptions<T> = {}
 ): T | null {
   const { getItemValue, valueKey, trim, ignoreWhitespace } = defaults(

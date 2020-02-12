@@ -1,16 +1,19 @@
 import {
-  useState,
   Children,
   isValidElement,
-  useEffect,
+  KeyboardEventHandler,
+  MouseEventHandler,
   ReactNode,
   useCallback,
-  MutableRefObject,
-  MouseEventHandler,
-  KeyboardEventHandler,
+  useEffect,
   useMemo,
+  useState,
 } from "react";
-import { useKeyboardMovement, MovementPresets } from "@react-md/utils";
+import {
+  ItemRefList,
+  MovementPresets,
+  useKeyboardMovement,
+} from "@react-md/utils";
 
 interface Options {
   children: ReactNode;
@@ -24,7 +27,7 @@ interface Options {
 
 interface ReturnValue {
   tabs: ReactNode[];
-  itemRefs: MutableRefObject<HTMLElement | null>[];
+  itemRefs: ItemRefList;
   handleClick: MouseEventHandler<HTMLDivElement>;
   handleKeyDown: KeyboardEventHandler<HTMLDivElement>;
 }
