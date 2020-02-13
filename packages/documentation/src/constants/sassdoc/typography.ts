@@ -6,8 +6,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-theme": {
       name: "rmd-typography-theme",
       description:
-        "This function is used to quickly get one of the typography's theme values. This is really\njust for the `rmd-typography-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/typography/src/_functions.scss#L15-L17",
+        "This function is used to quickly get one of the typography's theme values.\nThis is really just for the `rmd-typography-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/typography/src/_functions.scss#L17-L19",
       packageName: "typography",
       code: "@function rmd-typography-theme($theme-style) { … }",
       sourceCode:
@@ -29,8 +29,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-theme-var": {
       name: "rmd-typography-theme-var",
       description:
-        "This function is used to get one of the typography's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-typography-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/typography/src/_functions.scss#L30-L32",
+        "This function is used to get one of the typography's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-typography-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/typography/src/_functions.scss#L34-L36",
       usedBy: [
         {
           name: "rmd-text-container-auto",
@@ -56,7 +56,7 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
         },
       ],
       returns: {
@@ -64,41 +64,11 @@ const sassdoc: PackageSassDoc = {
         description: "one of the typography's theme values as a css variable.",
       },
     },
-    "rmd-typography-google-font-suffix": {
-      name: "rmd-typography-google-font-suffix",
-      description:
-        "Gets the Google font suffix for the provided font weight.\n\n",
-      source: "packages/typography/src/_functions.scss#L39-L45",
-      usedBy: [
-        {
-          name: "rmd-typography-google-font-face",
-          type: "mixin",
-          packageName: "typography",
-        },
-      ],
-      packageName: "typography",
-      code: "@function rmd-typography-google-font-suffix($weight) { … }",
-      sourceCode:
-        '@function rmd-typography-google-font-suffix($weight) {\n  @return rmd-utils-validate(\n    $rmd-typography-google-font-weight-suffixes,\n    $weight,\n    "Google font weight suffix"\n  );\n}\n',
-      type: "function",
-      parameters: [
-        {
-          type: "String",
-          name: "weight",
-          description:
-            "The font weight to get a font suffix string for. This should be one of the\n  `$rmd-typography-google-font-weight-suffixes` keys.",
-        },
-      ],
-      returns: {
-        type: "String",
-        description: "the suffix for the provided font weight.",
-      },
-    },
     "rmd-typography-value": {
       name: "rmd-typography-value",
       description:
-        "Gets the current typography style from the `$rmd-typography-styles` variable.\n\n",
-      source: "packages/typography/src/_functions.scss#L59-L63",
+        "Gets the current typography style from the `$rmd-typography-styles` variable.",
+      source: "packages/typography/src/_functions.scss#L67-L71",
       usedBy: [
         {
           name: "rmd-typography-value",
@@ -139,8 +109,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-theme": {
       name: "rmd-typography-theme",
       description:
-        "Creates the styles for one of the typography's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
-      source: "packages/typography/src/_mixins.scss#L19-L26",
+        "Creates the styles for one of the typography's theme values. This is mostly going to be an internal helper mixin util.",
+      source: "packages/typography/src/_mixins.scss#L22-L29",
       usedBy: [
         {
           name: "rmd-text-container-base",
@@ -172,15 +142,15 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-typography-theme-values` map when `null`.",
+            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-typography-theme-values` map when `null`.",
         },
       ],
     },
     "rmd-typography-theme-update-var": {
       name: "rmd-typography-theme-update-var",
       description:
-        "Updates one of the typography's theme variables with the new value for the section\nof your app.\n\n",
-      source: "packages/typography/src/_mixins.scss#L34-L36",
+        "Updates one of the typography's theme variables with the new value for the section of your app.",
+      source: "packages/typography/src/_mixins.scss#L37-L39",
       usedBy: [
         {
           name: "rmd-text-container-auto",
@@ -199,7 +169,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "theme-style",
           description:
-            "The typography theme style type to update. This should be one\n  of the `$rmd-typography-theme-values` keys.",
+            "The typography theme style type to update.\nThis should be one of the `$rmd-typography-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
@@ -211,11 +181,10 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-value": {
       name: "rmd-typography-value",
       description:
-        "Applies each property value from the `$rmd-typography-styles` map that matches the style name.\n\n",
-      source: "packages/typography/src/_mixins.scss#L57-L65",
+        "Applies each property value from the `$rmd-typography-styles` map that matches the style name.",
+      source: "packages/typography/src/_mixins.scss#L63-L71",
       usedBy: [
         { name: "rmd-card-title", type: "mixin", packageName: "card" },
-        { name: "react-md-link", type: "mixin", packageName: "link" },
         { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
       ],
       packageName: "typography",
@@ -245,17 +214,16 @@ const sassdoc: PackageSassDoc = {
           name: "properties",
           default: "font-size",
           description:
-            "A list of properties to get and create. When no properties are provided, it will default\n   to using `font-size`.",
+            "A list of properties to get and create. When no properties are provided, it will default to using `font-size`.",
         },
       ],
     },
     "rmd-typography-base": {
       name: "rmd-typography-base",
-      description: "Applies the base typography styles to an element.\n\n",
-      source: "packages/typography/src/_mixins.scss#L75-L79",
+      description: "Applies the base typography styles to an element.",
+      source: "packages/typography/src/_mixins.scss#L81-L85",
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
-        { name: "react-md-link", type: "mixin", packageName: "link" },
         { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
         {
           name: "react-md-typography",
@@ -284,7 +252,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-typography",
       description:
         "Applies one of the provided material design styles to an element.\n",
-      source: "packages/typography/src/_mixins.scss#L84-L92",
+      source: "packages/typography/src/_mixins.scss#L91-L99",
       usedBy: [
         { name: "react-md-alert", type: "mixin", packageName: "alert" },
         { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
@@ -297,6 +265,7 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-text-field-base", type: "mixin", packageName: "form" },
         { name: "rmd-list", type: "mixin", packageName: "list" },
         { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
+        { name: "react-md-table", type: "mixin", packageName: "table" },
         {
           name: "react-md-typography",
           type: "mixin",
@@ -321,8 +290,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-container-base": {
       name: "rmd-text-container-base",
       description:
-        "Creates the base styles required for the text container. These styles are used\nto be able to center the text in a container once the `max-width` value has\nalso been applied.\n",
-      source: "packages/typography/src/_mixins.scss#L97-L104",
+        "Creates the base styles required for the text container. These styles are used to be able to center the text in a container once the `max-width` value has also been applied.\n",
+      source: "packages/typography/src/_mixins.scss#L104-L111",
       packageName: "typography",
       code: "@mixin rmd-text-container-base { … }",
       sourceCode:
@@ -332,8 +301,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-container-auto": {
       name: "rmd-text-container-auto",
       description:
-        "This will generate the styles to apply to an element that will set the max width for legibility. By default,\nthis will create styles that change based on the provided `$mobile-breakpoint` and apply different max\nwidths on a media query. This feature can be disabled by setting the `$mobile-breakpoint` or the `$desktop-max-width`\nparameters to `null`.\n\nUnlike everything else in react-md, the text container relies on having the `box-sizing` set to `content-box` so that\nthe text contents can be centered correctly with a max width and padding. When this is set to `border-box`, you will\nlose the padding real estate in your text container which is something that might not be desired. Keeping this as\n`content-box` will allow padding to be applied without shrinking the max line length.\n\n",
-      source: "packages/typography/src/_mixins.scss#L148-L159",
+        "This will generate the styles to apply to an element that will set the max width for legibility. By default, this will create styles that change based on the provided `$mobile-breakpoint` and apply different max widths on a media query. This feature can be disabled by setting the `$mobile-breakpoint` or the `$desktop-max-width` parameters to `null`.\n\nUnlike everything else in react-md, the text container relies on having the `box-sizing` set to `content-box` so that the text contents can be centered correctly with a max width and padding. When this is set to `border-box`,\nyou will lose the padding real estate in your text container which is something that might not be desired. Keeping this as `content-box` will allow padding to be applied without shrinking the max line length.",
+      source: "packages/typography/src/_mixins.scss#L162-L173",
       packageName: "typography",
       examples: [
         {
@@ -362,31 +331,33 @@ const sassdoc: PackageSassDoc = {
           name: "mobile-max-width",
           default: "rmd-typography-mobile-max-line-length",
           description:
-            "The max width for a line of text on\n  mobile devices. This number is recommended to be between 17em and 18em.",
+            "The max width for a line of text on mobile devices. This number is recommended to be between 17em and 18em.",
         },
         {
           type: "Number",
           name: "desktop-max-width",
           default: "rmd-typography-desktop-max-line-length",
           description:
-            "The max width for a line of text on\n  desktop screens. This number is recommended to be between 38em and 42em.",
+            "The max width for a line of text on desktop screens. This number is recommended to be between 38em and 42em.",
         },
         {
           type: "Number",
           name: "mobile-breakpoint",
           default: "rmd-typography-text-container-breakpoint",
           description:
-            "The breakpoint for switching between\n  a mobile device and a desktop screen. This is used to automatically change the max line-width for better legibility.",
+            "The breakpoint for switching between a mobile device and a desktop screen.\nThis is used to automatically change the max line-width for better legibility.",
         },
       ],
     },
     "rmd-typography-text-overflow-ellipsis": {
       name: "rmd-typography-text-overflow-ellipsis",
       description:
-        "A simple mixin that can be used to update an element to ellipsis text when\nit is too long.\n\n",
-      source: "packages/typography/src/_mixins.scss#L195-L199",
+        "A simple mixin that can be used to update an element to ellipsis text when it is too long.",
+      source: "packages/typography/src/_mixins.scss#L209-L213",
       usedBy: [
         { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
+        { name: "react-md-card", type: "mixin", packageName: "card" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
       ],
       packageName: "typography",
@@ -409,7 +380,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-typography",
       description:
         "Creates all the typography styles from the react-md typography variables.\n",
-      source: "packages/typography/src/_mixins.scss#L202-L266",
+      source: "packages/typography/src/_mixins.scss#L216-L280",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "typography",
       code: "@mixin react-md-typography { … }",
@@ -420,8 +391,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-google-font-face": {
       name: "rmd-typography-google-font-face",
       description:
-        "Creates the font face declaration for a Google font with a provided font weight. This will\nneed to be called multiple times if you are including multiple font weights.\n\nThis should only be used if you are hosting the Google font locally instead of through the\nGoogle fonts service.\n\n",
-      source: "packages/typography/src/_mixins.scss#L303-L332",
+        "Creates the font face declaration for a Google font with a provided font weight. This will need to be called multiple times if you are including multiple font weights.\n\nThis should only be used if you are hosting the Google font locally instead of through the Google fonts service.",
+      source: "packages/typography/src/_mixins.scss#L304-L333",
       usedBy: [
         {
           name: "rmd-typography-host-google-font",
@@ -444,17 +415,11 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "Example Usage SCSS",
         },
-        {
-          code:
-            '@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: 400;\n  src: local("Roboto"), local("Roboto-Regular"),\n    url("/fonts/roboto/Roboto-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Source Code Pro";\n  font-style: normal;\n  font-weight: 400;\n  src: local("Source Code Pro"), local("SourceCodePro-Regular"),\n    url("/fonts/source-code-pro/SourceCodePro-Regular.ttf") format("truetype");\n}\n',
-          type: "css",
-          description: "Example Usage Generated SCSS",
-        },
       ],
       code:
         "@mixin rmd-typography-google-font-face($font-name: Roboto, $font-weight: map-get($rmd-typography-font-weights, regular), $font-url-or-prefix: null) { … }",
       sourceCode:
-        '@mixin rmd-typography-google-font-face(\n  $font-name: Roboto,\n  $font-weight: map-get($rmd-typography-font-weights, regular),\n  $font-url-or-prefix: null\n) {\n  $full-font-name: str-replace($font-name, " ", "") +\n    rmd-typography-google-font-suffix($font-weight);\n\n  $font-url-prefix: "";\n  $font-url: null;\n  @if $font-url-or-prefix == null pr type-of($font-url-or-prefix) == "string" {\n    $font-url: if(\n      $font-url == null,\n      "/fonts/" + to-lower-case(str-replace($font-name, " ", "-")),\n      $font-url\n    );\n    $font-url: if(char-at($font-url) != "/", $font-url + "/", $font-url);\n    $font-url: url($font-url+$full-font-name+".ttf");\n  } @else {\n    $font-url: $font-url-or-prefix;\n  }\n\n  @font-face {\n    font-family: quote($font-name);\n    font-style: normal;\n    font-weight: $font-weight;\n    src: local(#{quote($font-name)}), local(#{quote($full-font-name)}),\n      #{$font-url} format("truetype");\n  }\n}\n',
+        '@mixin rmd-typography-google-font-face(\n  $font-name: Roboto,\n  $font-weight: map-get($rmd-typography-font-weights, regular),\n  $font-url-or-prefix: null\n) {\n  $full-font-name: str-replace($font-name, " ", "") +\n    rmd-typography-google-font-suffix($font-weight);\n\n  $font-url-prefix: "";\n  $font-url: null;\n  @if $font-url-or-prefix == null or type-of($font-url-or-prefix) == "string" {\n    $font-url: if(\n      $font-url-or-prefix == null,\n      "/fonts/" + to-lower-case(str-replace($font-name, " ", "-")),\n      $font-url-or-prefix\n    );\n    $font-url: if(char-at($font-url) != "/", $font-url + "/", $font-url);\n    $font-url: url($font-url+$full-font-name+".ttf");\n  } @else {\n    $font-url: $font-url-or-prefix;\n  }\n\n  @font-face {\n    font-family: quote($font-name);\n    font-style: normal;\n    font-weight: $font-weight;\n    src: local(#{quote($font-name)}), local(#{quote($full-font-name)}),\n      #{$font-url} format("truetype");\n  }\n}\n',
       type: "mixin",
       parameters: [
         {
@@ -474,15 +439,15 @@ const sassdoc: PackageSassDoc = {
           name: "font-url-or-prefix",
           default: "null",
           description:
-            "This is either a font url prefix for the folder containing the font on your\n  server or a url string to the font icon file on your server. If you are using create-react-app, you **must** use the\n  url string approach for it to be correctly included in the build process. If this value is null, it will default to have\n  '/fonts/' prefix and then a caterpillar-cased string. See the examples above for more details.",
+            "This is either a font url prefix for the folder containing the font on your server or a url string to the font icon file on your server. If you are using create-react-app, you\n**must** use the url string approach for it to be correctly included in the build process. If this value is null, it will default to have '/fonts/'\nprefix and then a caterpillar-cased string. See the examples above for more details.",
         },
       ],
     },
     "rmd-typography-host-google-font": {
       name: "rmd-typography-host-google-font",
       description:
-        "Generates all the font faces (with font weights) for a Google font. This should only be used if you are hosting the Google font\non your own servers instead of through the Google fonts service.\n\nIf you are using create-react-app, you must provide the `$font-url-prefix-or-url-map` as a Map of urls to have the font files\ncorrectly included and bundled during your build. See the examples for more details.\n\n",
-      source: "packages/typography/src/_mixins.scss#L373-L389",
+        "Generates all the font faces (with font weights) for a Google font. This should only be used if you are hosting the Google font on your own servers instead of through the Google fonts service.\n\nIf you are using create-react-app, you must provide the `$font-url-prefix-or-url-map` as a Map of urls to have the font files correctly included and bundled during your build. See the examples for more details.",
+      source: "packages/typography/src/_mixins.scss#L409-L425",
       links: [
         {
           name: "Adding Images, Fonts, and Files",
@@ -501,19 +466,27 @@ const sassdoc: PackageSassDoc = {
       examples: [
         {
           code:
-            "// This is going to assume you have downloaded the material-icons zip with all the icon font files and copied it into\n// `src/fonts/material-icons` and you are including the fonts in `src/index.scss`\n@include rmd-typography-host-google-font(\n  Roboto,\n  $rmd-typography-default-font-weights,\n  (\n    light: url(./fonts/roboto/Roboto-Light.ttf),\n    regular: url(./fonts/roboto/Roboto-Regular.ttf),\n    medium: url(./fonts/roboto/Roboto-Medium.ttf),\n    bold: url(./fonts/roboto/Roboto-Bold.ttf),\n  )\n);\n\n@include rmd-typography-host-google-font(\n  SourceCodePro,\n  $rmd-typography-default-font-weights,\n  (\n    light: url(./fonts/source-code-pro/SourceCodePro-Light.ttf),\n    regular: url(./fonts/source-code-pro/SourceCodePro-Regular.ttf),\n    medium: url(./fonts/source-code-pro/SourceCodePro-Medium.ttf),\n    bold: url(./fonts/source-code-pro/SourceCodePro-Bold.ttf),\n  )\n);\n",
-          compiled:
-            '@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: light;\n  src: local(Roboto), local(Roboto-Light),\n    url("/fonts/roboto/Roboto-Light.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Roboto), local(Roboto-Regular),\n    url("/fonts/roboto/Roboto-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: medium;\n  src: local(Roboto), local(Roboto-Medium),\n    url("/fonts/roboto/Roboto-Medium.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: bold;\n  src: local(Roboto), local(Roboto-Bold),\n    url("/fonts/roboto/Roboto-Bold.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: light;\n  src: local(SourceCodePro), local(SourceCodePro-Light),\n    url("/fonts/sourcecodepro/SourceCodePro-Light.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: regular;\n  src: local(SourceCodePro), local(SourceCodePro-Regular),\n    url("/fonts/sourcecodepro/SourceCodePro-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: medium;\n  src: local(SourceCodePro), local(SourceCodePro-Medium),\n    url("/fonts/sourcecodepro/SourceCodePro-Medium.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: bold;\n  src: local(SourceCodePro), local(SourceCodePro-Bold),\n    url("/fonts/sourcecodepro/SourceCodePro-Bold.ttf") format("truetype");\n}\n',
-          type: "scss",
-          description: "create-react-app Example Usage",
-        },
-        {
-          code:
-            '// The next 3 lines are equivalent\n@include rmd-typography-host-google-font;\n@include rmd-typography-host-google-font(\n  Roboto,\n  $rmd-typography-default-font-weights,\n  null\n);\n@include rmd-typography-host-google-font(\n  Roboto,\n  $rmd-typography-default-font-weights,\n  "/fonts/roboto"\n);\n@include rmd-typography-host-google-font("Source Code Pro");\n',
+            '// This example will assume that your fonts have been downloaded and\n// copied into a `public/fonts` directory within create-react-app.\n// The fonts will not be bundled with your normal build process and just\n// will be static assets.\n\n// The next 3 lines are equivalent\n@include rmd-typography-host-google-font;\n@include rmd-typography-host-google-font(\n  Roboto,\n  $rmd-typography-default-font-weights,\n  null\n);\n@include rmd-typography-host-google-font(\n  Roboto,\n  $rmd-typography-default-font-weights,\n  "/fonts/roboto"\n);\n\n@include rmd-typography-host-google-font("Source Code Pro");\n',
           compiled:
             '@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: light;\n  src: local(Roboto), local(Roboto-Light),\n    url("/fonts/roboto/Roboto-Light.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Roboto), local(Roboto-Regular),\n    url("/fonts/roboto/Roboto-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: medium;\n  src: local(Roboto), local(Roboto-Medium),\n    url("/fonts/roboto/Roboto-Medium.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: bold;\n  src: local(Roboto), local(Roboto-Bold),\n    url("/fonts/roboto/Roboto-Bold.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: light;\n  src: local(Roboto), local(Roboto-Light),\n    url("/fonts/roboto/Roboto-Light.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Roboto), local(Roboto-Regular),\n    url("/fonts/roboto/Roboto-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: medium;\n  src: local(Roboto), local(Roboto-Medium),\n    url("/fonts/roboto/Roboto-Medium.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: bold;\n  src: local(Roboto), local(Roboto-Bold),\n    url("/fonts/roboto/Roboto-Bold.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: light;\n  src: local(Roboto), local(Roboto-Light),\n    url("/fonts/roboto/Roboto-Light.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Roboto), local(Roboto-Regular),\n    url("/fonts/roboto/Roboto-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: medium;\n  src: local(Roboto), local(Roboto-Medium),\n    url("/fonts/roboto/Roboto-Medium.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: bold;\n  src: local(Roboto), local(Roboto-Bold),\n    url("/fonts/roboto/Roboto-Bold.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Source Code Pro";\n  font-style: normal;\n  font-weight: light;\n  src: local(Source Code Pro), local(SourceCodePro-Light),\n    url("/fonts/source-code-pro/SourceCodePro-Light.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Source Code Pro";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Source Code Pro), local(SourceCodePro-Regular),\n    url("/fonts/source-code-pro/SourceCodePro-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Source Code Pro";\n  font-style: normal;\n  font-weight: medium;\n  src: local(Source Code Pro), local(SourceCodePro-Medium),\n    url("/fonts/source-code-pro/SourceCodePro-Medium.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Source Code Pro";\n  font-style: normal;\n  font-weight: bold;\n  src: local(Source Code Pro), local(SourceCodePro-Bold),\n    url("/fonts/source-code-pro/SourceCodePro-Bold.ttf") format("truetype");\n}\n',
           type: "scss",
-          description: "Example Usage SCSS",
+          description: "Using Absolute Paths",
+        },
+        {
+          code:
+            '// Since it might be useful to include the font in the normal build\n// process to hash and prefix the urls as needed, you can also use\n// relative paths instead of absolute paths.\n// This example will assume you are working within a `src/fonts.scss` file\n// and have copied your fonts into a `src/fonts` directory\n\n// Note the `~./`. This will resolve this import to the `src` directory\n// within create-react-app\n@include rmd-typography-host-google-font(\n  Roboto,\n  $rmd-typography-default-font-weights,\n  "~./fonts/roboto"\n);\n\n@include rmd-typography-host-google-font(\n  "Source Code Pro",\n  regular,\n  "~./fonts/source-code-pro"\n);\n',
+          compiled:
+            '@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: light;\n  src: local(Roboto), local(Roboto-Light),\n    url("~./fonts/roboto/Roboto-Light.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Roboto), local(Roboto-Regular),\n    url("~./fonts/roboto/Roboto-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: medium;\n  src: local(Roboto), local(Roboto-Medium),\n    url("~./fonts/roboto/Roboto-Medium.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: bold;\n  src: local(Roboto), local(Roboto-Bold),\n    url("~./fonts/roboto/Roboto-Bold.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Source Code Pro";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Source Code Pro), local(SourceCodePro-Regular),\n    url("~./fonts/source-code-pro/SourceCodePro-Regular.ttf") format("truetype");\n}\n',
+          type: "scss",
+          description: "Using Relative Paths",
+        },
+        {
+          code:
+            "// This is going to assume you have downloaded the material-icons zip with\n// all the icon font files and copied it into `src/fonts/material-icons` and\n// you are including the fonts in `src/index.scss`\n@include rmd-typography-host-google-font(\n  Roboto,\n  $rmd-typography-default-font-weights,\n  (\n    light: url(/fonts/roboto/Roboto-Light.ttf),\n    regular: url(/fonts/roboto/Roboto-Regular.ttf),\n    medium: url(/fonts/roboto/Roboto-Medium.ttf),\n    bold: url(/fonts/roboto/Roboto-Bold.ttf),\n  )\n);\n\n@include rmd-typography-host-google-font(\n  SourceCodePro,\n  $rmd-typography-default-font-weights,\n  (\n    light: url(/fonts/source-code-pro/SourceCodePro-Light.ttf),\n    regular: url(/fonts/source-code-pro/SourceCodePro-Regular.ttf),\n    medium: url(/fonts/source-code-pro/SourceCodePro-Medium.ttf),\n    bold: url(/fonts/source-code-pro/SourceCodePro-Bold.ttf),\n  )\n);\n",
+          compiled:
+            '@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: light;\n  src: local(Roboto), local(Roboto-Light),\n    url(url(/fonts/roboto/Roboto-Light.ttf)/Roboto-Light.ttf) format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Roboto), local(Roboto-Regular),\n    url(url(/fonts/roboto/Roboto-Regular.ttf)/Roboto-Regular.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: medium;\n  src: local(Roboto), local(Roboto-Medium),\n    url(url(/fonts/roboto/Roboto-Medium.ttf)/Roboto-Medium.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: bold;\n  src: local(Roboto), local(Roboto-Bold),\n    url(url(/fonts/roboto/Roboto-Bold.ttf)/Roboto-Bold.ttf) format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: light;\n  src: local(SourceCodePro), local(SourceCodePro-Light),\n    url(url(/fonts/source-code-pro/SourceCodePro-Light.ttf)/SourceCodePro-Light.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: regular;\n  src: local(SourceCodePro), local(SourceCodePro-Regular),\n    url(url(/fonts/source-code-pro/SourceCodePro-Regular.ttf)/SourceCodePro-Regular.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: medium;\n  src: local(SourceCodePro), local(SourceCodePro-Medium),\n    url(url(/fonts/source-code-pro/SourceCodePro-Medium.ttf)/SourceCodePro-Medium.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: bold;\n  src: local(SourceCodePro), local(SourceCodePro-Bold),\n    url(url(/fonts/source-code-pro/SourceCodePro-Bold.ttf)/SourceCodePro-Bold.ttf)\n      format("truetype");\n}\n',
+          type: "scss",
+          description: "Custom Font Map Declarations",
         },
       ],
       code:
@@ -533,14 +506,14 @@ const sassdoc: PackageSassDoc = {
           name: "weights",
           default: "$rmd-typography-default-font-weights",
           description:
-            "A list of font weights to use. These should be\n  one of the `$rmd-typography-font-weights` keys.",
+            "A list of font weights to use. These should be one of the `$rmd-typography-font-weights` keys.",
         },
         {
           type: "Map|String",
           name: "font-url-prefix-or-url-map",
           default: "null",
           description:
-            "This is either a font url prefix for the folder containing the font on your\n  server or a url string to the font icon file on your server. If you are using create-react-app, you **must** use the\n  url string approach for it to be correctly included in the build process. If this value is null, it will default to have\n  '/fonts/' prefix and then a caterpillar-cased string. See the `rmd-typography-google-font-face` mixin for more details.",
+            "This is either a font url prefix for the folder containing the font on your server or a url string to the font icon file on your server. If you are using create-react-app, you **must** use the url string approach for it to be correctly included in the build process. If this value is null, it will default to have '/fonts/' prefix and then a caterpillar-cased string. See the `rmd-typography-google-font-face` mixin for more details.",
         },
       ],
     },
@@ -550,7 +523,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-typography-font-family",
       description:
         "The font family to use throughout the entire application.\n",
-      source: "packages/typography/src/_variables.scss#L75",
+      source: "packages/typography/src/_variables.scss#L78",
       packageName: "typography",
       type: "String",
       value: "Roboto, sans-serif",
@@ -559,7 +532,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-mobile-max-line-length": {
       name: "rmd-typography-mobile-max-line-length",
       description: "The max length a line of text can be on mobile devices.\n",
-      source: "packages/typography/src/_variables.scss#L79",
+      source: "packages/typography/src/_variables.scss#L82",
       packageName: "typography",
       type: "Number",
       value: "17em",
@@ -569,7 +542,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-typography-desktop-max-line-length",
       description:
         "The max length a line of text can be on larger screens (mostly desktops or landscape tablets).\n",
-      source: "packages/typography/src/_variables.scss#L83",
+      source: "packages/typography/src/_variables.scss#L87",
       packageName: "typography",
       type: "Number",
       value: "40em",
@@ -579,7 +552,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-typography-text-container-breakpoint",
       description:
         "The device width that should be used to swap between the mobile and desktop text container widths.\n",
-      source: "packages/typography/src/_variables.scss#L87",
+      source: "packages/typography/src/_variables.scss#L92",
       packageName: "typography",
       type: "Number",
       value: "37.5rem",
@@ -588,7 +561,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-base": {
       name: "rmd-typography-base",
       description: "The base styles for typography.\n",
-      source: "packages/typography/src/_variables.scss#L91-L95",
+      source: "packages/typography/src/_variables.scss#L96-L100",
       usedBy: [
         {
           name: "rmd-typography-base",
@@ -607,7 +580,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-thin": {
       name: "rmd-typography-thin",
       description: "The thin font weight to use.\n",
-      source: "packages/typography/src/_variables.scss#L99",
+      source: "packages/typography/src/_variables.scss#L104",
       packageName: "typography",
       type: "Number",
       value: "100",
@@ -616,7 +589,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-light": {
       name: "rmd-typography-light",
       description: "The light font weight to use.\n",
-      source: "packages/typography/src/_variables.scss#L103",
+      source: "packages/typography/src/_variables.scss#L108",
       packageName: "typography",
       type: "Number",
       value: "300",
@@ -625,7 +598,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-regular": {
       name: "rmd-typography-regular",
       description: "The regular font weight to use.\n",
-      source: "packages/typography/src/_variables.scss#L107",
+      source: "packages/typography/src/_variables.scss#L112",
       packageName: "typography",
       type: "Number",
       value: "400",
@@ -634,7 +607,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-medium": {
       name: "rmd-typography-medium",
       description: "The medium font weight to use.\n",
-      source: "packages/typography/src/_variables.scss#L111",
+      source: "packages/typography/src/_variables.scss#L116",
       packageName: "typography",
       type: "Number",
       value: "500",
@@ -643,7 +616,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-bold": {
       name: "rmd-typography-bold",
       description: "The bold font weight to use.\n",
-      source: "packages/typography/src/_variables.scss#L115",
+      source: "packages/typography/src/_variables.scss#L120",
       packageName: "typography",
       type: "Number",
       value: "700",
@@ -652,7 +625,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-semi-bold": {
       name: "rmd-typography-semi-bold",
       description: "The semi-bold font weight to use.\n",
-      source: "packages/typography/src/_variables.scss#L119",
+      source: "packages/typography/src/_variables.scss#L124",
       packageName: "typography",
       type: "Number",
       value: "800",
@@ -661,7 +634,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-black": {
       name: "rmd-typography-black",
       description: "The darkest font weight to use.\n",
-      source: "packages/typography/src/_variables.scss#L123",
+      source: "packages/typography/src/_variables.scss#L128",
       packageName: "typography",
       type: "Number",
       value: "900",
@@ -669,8 +642,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-typography-font-weights": {
       name: "rmd-typography-font-weights",
-      description: "A Map of all the font weights.\n\n",
-      source: "packages/typography/src/_variables.scss#L135-L143",
+      description: "A Map of all the font weights.",
+      source: "packages/typography/src/_variables.scss#L143-L151",
       usedBy: [
         {
           name: "rmd-icon-material-icons-font-face",
@@ -694,8 +667,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-default-font-weights": {
       name: "rmd-typography-default-font-weights",
       description:
-        'A list of the "default" font weights that are normally included within an app.\nThis is really only used for hosting fonts on your own server.\n\nEach value in this should be one of the keys in `$rmd-typography-font-weights`.\n\n',
-      source: "packages/typography/src/_variables.scss#L151",
+        'A list of the "default" font weights that are normally included within an app.  This is really only used for hosting fonts on your own server.\n\nEach value in this should be one of the keys in `$rmd-typography-font-weights`.',
+      source: "packages/typography/src/_variables.scss#L160",
       usedBy: [
         {
           name: "react-md-typography",
@@ -711,8 +684,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-colors": {
       name: "rmd-typography-colors",
       description:
-        "A map of colors that should be added for the `Text` component. If you aren't going\nto use the `color` prop on the `Text` component, set this value to an empty map\nto reduce your bundle size by a slight amount.\n",
-      source: "packages/typography/src/_variables.scss#L157-L164",
+        "A map of colors that should be added for the `Text` component. If you aren't going to use the `color` prop on the `Text` component, set this value to an empty map to reduce your bundle size by a slight amount.\n",
+      source: "packages/typography/src/_variables.scss#L166-L173",
       usedBy: [
         {
           name: "react-md-typography",
@@ -729,8 +702,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-alignments": {
       name: "rmd-typography-alignments",
       description:
-        "A list of `text-align` styles to generate. If you don't want the helper classes for\ntext alignment, set this to an empty list to reduce your bundle size by a slight\namount.\n",
-      source: "packages/typography/src/_variables.scss#L170",
+        "A list of `text-align` styles to generate. If you don't want the helper classes for text alignment, set this to an empty list to reduce your bundle size by a slight amount.\n",
+      source: "packages/typography/src/_variables.scss#L179",
       usedBy: [
         {
           name: "react-md-typography",
@@ -746,8 +719,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-decorations": {
       name: "rmd-typography-decorations",
       description:
-        "A list of `text-decoration` to apply. If you don't want the helper classes for text\ndecoration, set this to an empty list to reduce your bundle size by a slight amount.\n",
-      source: "packages/typography/src/_variables.scss#L175",
+        "A list of `text-decoration` to apply. If you don't want the helper classes for text decoration, set this to an empty list to reduce your bundle size by a slight amount.\n",
+      source: "packages/typography/src/_variables.scss#L185",
       usedBy: [
         {
           name: "react-md-typography",
@@ -763,8 +736,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-transforms": {
       name: "rmd-typography-transforms",
       description:
-        "A list of `text-transform` to apply. If you don't want the helper classes for text\ntransformation, set this to an empty list to reduce your bundle size by a slight\namount.\n",
-      source: "packages/typography/src/_variables.scss#L181",
+        "A list of `text-transform` to apply. If you don't want the helper classes for text transformation, set this to an empty list to reduce your bundle size by a slight amount.\n",
+      source: "packages/typography/src/_variables.scss#L191",
       usedBy: [
         {
           name: "react-md-typography",
@@ -780,15 +753,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-google-font-weight-suffixes": {
       name: "rmd-typography-google-font-weight-suffixes",
       description:
-        "A Map of font weights to a font file suffix for a Google font.\n\n",
-      source: "packages/typography/src/_variables.scss#L193-L201",
-      usedBy: [
-        {
-          name: "rmd-typography-google-font-suffix",
-          type: "function",
-          packageName: "typography",
-        },
-      ],
+        "A Map of font weights to a font file suffix for a Google font.",
+      source: "packages/typography/src/_variables.scss#L203-L211",
       packageName: "typography",
       type: "Map",
       value:
@@ -797,8 +763,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-typography-styles": {
       name: "rmd-typography-styles",
-      description: "A Map of all the typography styles in react-md\n\n",
-      source: "packages/typography/src/_variables.scss#L219-L327",
+      description: "A Map of all the typography styles in react-md",
+      source: "packages/typography/src/_variables.scss#L229-L337",
       usedBy: [
         {
           name: "rmd-typography-value",
@@ -823,8 +789,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-theme-values": {
       name: "rmd-typography-theme-values",
       description:
-        'A Map of all the "themeable" parts of the typography package. Every key in this map will\nbe used to create a css variable to dynamically update the values of the icon as\nneeded.\n',
-      source: "packages/typography/src/_variables.scss#L333-L337",
+        'A Map of all the "themeable" parts of the typography package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
+      source: "packages/typography/src/_variables.scss#L343-L347",
       usedBy: [
         {
           name: "rmd-typography-theme",

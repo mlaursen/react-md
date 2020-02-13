@@ -6,8 +6,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-divider-theme": {
       name: "rmd-divider-theme",
       description:
-        "This function is used to quickly get one of the divider's theme values. This is really\njust for the `rmd-divider-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/divider/src/_functions.scss#L14-L16",
+        "This function is used to quickly get one of the divider's theme values. This is really just for the `rmd-divider-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/divider/src/_functions.scss#L15-L17",
       packageName: "divider",
       code: "@function rmd-divider-theme($theme-style) { … }",
       sourceCode:
@@ -29,8 +29,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-divider-theme-var": {
       name: "rmd-divider-theme-var",
       description:
-        "This function is used to get one of the divider's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-divider-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/divider/src/_functions.scss#L29-L31",
+        "This function is used to get one of the divider's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-divider-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/divider/src/_functions.scss#L32-L34",
       usedBy: [
         { name: "react-md-divider", type: "mixin", packageName: "divider" },
         { name: "react-md-divider", type: "mixin", packageName: "divider" },
@@ -53,7 +53,7 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
         },
       ],
       returns: {
@@ -66,8 +66,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-divider-theme": {
       name: "rmd-divider-theme",
       description:
-        "Creates the styles for one of the divider's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
-      source: "packages/divider/src/_mixins.scss#L18-L20",
+        "Creates the styles for one of the divider's theme values. This is mostly going to be an internal helper mixin util.",
+      source: "packages/divider/src/_mixins.scss#L21-L23",
       usedBy: [
         { name: "rmd-divider-border", type: "mixin", packageName: "divider" },
         { name: "rmd-divider-border", type: "mixin", packageName: "divider" },
@@ -107,15 +107,15 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-divider-theme-values` map when `null`.",
+            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-divider-theme-values` map when `null`.",
         },
       ],
     },
     "rmd-divider-theme-update-var": {
       name: "rmd-divider-theme-update-var",
       description:
-        "Updates one of the divider's theme variables with the new value for the section\nof your app.\n\n",
-      source: "packages/divider/src/_mixins.scss#L28-L30",
+        "Updates one of the divider's theme variables with the new value for the section of your app.",
+      source: "packages/divider/src/_mixins.scss#L31-L33",
       usedBy: [
         { name: "rmd-list", type: "mixin", packageName: "list" },
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
@@ -131,7 +131,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "theme-style",
           description:
-            "The divider theme style type to update. This should be one\n  of the `$rmd-divider-theme-values` keys.",
+            "The divider theme style type to update. This should be one of the `$rmd-divider-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
@@ -143,8 +143,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-divider-border": {
       name: "rmd-divider-border",
       description:
-        "This mixin allows you to add a custom border to any element if you don't want\nto add an extra element within your page for a divider.\n\n",
-      source: "packages/divider/src/_mixins.scss#L37-L43",
+        "This mixin allows you to add a custom border to any element if you don't want to add an extra element within your page for a divider.",
+      source: "packages/divider/src/_mixins.scss#L40-L46",
       packageName: "divider",
       code: "@mixin rmd-divider-border($position) { … }",
       sourceCode:
@@ -155,7 +155,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "position",
           description:
-            "The border position to use. This should be one of `top`, `right`,\n  `bottom`, or `left`",
+            "The border position to use. This should be one of `top`, `right`, `bottom`, or `left`",
         },
       ],
     },
@@ -163,7 +163,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-divider",
       description:
         "Creates all the styles for the divider package as well as the root css variable theme.\n",
-      source: "packages/divider/src/_mixins.scss#L46-L81",
+      source: "packages/divider/src/_mixins.scss#L50-L85",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "divider",
       code: "@mixin react-md-divider { … }",
@@ -186,7 +186,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-divider-max-size": {
       name: "rmd-divider-max-size",
       description:
-        "The max size for the divider. This can be used to center a horizontal\ndivider within the page since the divider applies `margin-left: auto`\nand `margin-right: auto`.\n\nThis also applies to vertical dividers... sort of? If the divider's\ncontaining element has a static defined height, the vertical dividers\nwill be sized correctly. Otherwise the vertical divider will set the\nheight to `auto` which almost always resolves to `0` which will make\nyour divider not appear.\n",
+        "The max size for the divider. This can be used to center a horizontal divider within the page since the divider applies `margin-left: auto` and `margin-right: auto`.\n\nThis also applies to vertical dividers... sort of? If the divider's containing element has a static defined height, the vertical dividers will be sized correctly. Otherwise the vertical divider will set the height to `auto` which almost always resolves to `0` which will make your divider not appear.\n",
       source: "packages/divider/src/_variables.scss#L22",
       packageName: "divider",
       type: "Number",
@@ -196,7 +196,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-divider-inset": {
       name: "rmd-divider-inset",
       description:
-        "The amount of inset to apply to the divider. This should not be changed\nto create centered dividers. Its only purpose is to had spacing to the\nleft (or right in rtl languages) of the divider. See the `$rmd-divider-max-size`\nvariable for more information about centering.\n\n",
+        "The amount of inset to apply to the divider. This should not be changed to create centered dividers. Its only purpose is to had spacing to the left (or right in rtl languages) of the divider. See the `$rmd-divider-max-size` variable for more information about centering.",
       source: "packages/divider/src/_variables.scss#L31",
       see: [
         {
@@ -266,7 +266,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-divider-theme-values": {
       name: "rmd-divider-theme-values",
       description:
-        'A Map of all the "themeable" parts of the divider package. Every key in this map will\nbe used to create a css variable to dynamically update the values of the icon as\nneeded.\n',
+        'A Map of all the "themeable" parts of the divider package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
       source: "packages/divider/src/_variables.scss#L61-L70",
       usedBy: [
         { name: "rmd-divider-theme", type: "function", packageName: "divider" },

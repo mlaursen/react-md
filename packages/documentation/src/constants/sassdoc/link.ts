@@ -6,8 +6,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-link-theme": {
       name: "rmd-link-theme",
       description:
-        "This function is used to quickly get one of the link's theme values. This is really\njust for the `rmd-link-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/link/src/_functions.scss#L14-L16",
+        "This function is used to quickly get one of the link's theme values. This is really just for the `rmd-link-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/link/src/_functions.scss#L15-L17",
       packageName: "link",
       code: "@function rmd-link-theme($theme-style) { … }",
       sourceCode:
@@ -29,8 +29,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-link-theme-var": {
       name: "rmd-link-theme-var",
       description:
-        "This function is used to get one of the link's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-link-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/link/src/_functions.scss#L29-L31",
+        "This function is used to get one of the link's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-link-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/link/src/_functions.scss#L32-L34",
       packageName: "link",
       code: "@function rmd-link-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -48,7 +48,7 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
         },
       ],
       returns: {
@@ -61,13 +61,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-link-theme": {
       name: "rmd-link-theme",
       description:
-        "Creates the styles for one of the link's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
-      source: "packages/link/src/_mixins.scss#L20-L22",
-      usedBy: [
-        { name: "react-md-link", type: "mixin", packageName: "link" },
-        { name: "react-md-link", type: "mixin", packageName: "link" },
-        { name: "react-md-link", type: "mixin", packageName: "link" },
-      ],
+        "Creates the styles for one of the link's theme values. This is mostly going to be an internal helper mixin util.",
+      source: "packages/link/src/_mixins.scss#L23-L25",
       packageName: "link",
       code:
         "@mixin rmd-link-theme($property, $theme-style: property, $fallback: null) { … }",
@@ -93,15 +88,15 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-link-theme-values` map when `null`.",
+            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-link-theme-values` map when `null`.",
         },
       ],
     },
     "rmd-link-theme-update-var": {
       name: "rmd-link-theme-update-var",
       description:
-        "Updates one of the link's theme variables with the new value for the section\nof your app.\n\n",
-      source: "packages/link/src/_mixins.scss#L30-L32",
+        "Updates one of the link's theme variables with the new value for the section of your app.",
+      source: "packages/link/src/_mixins.scss#L33-L35",
       packageName: "link",
       code: "@mixin rmd-link-theme-update-var($theme-style, $value) { … }",
       sourceCode:
@@ -112,7 +107,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "theme-style",
           description:
-            "The link theme style type to update. This should be one\n  of the `$rmd-link-theme-values` keys.",
+            "The link theme style type to update. This should be one of the `$rmd-link-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
@@ -124,12 +119,12 @@ const sassdoc: PackageSassDoc = {
     "react-md-link": {
       name: "react-md-link",
       description: "Creates the styles for links within react-md.\n",
-      source: "packages/link/src/_mixins.scss#L35-L88",
+      source: "packages/link/src/_mixins.scss#L90-L100",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "link",
       code: "@mixin react-md-link { … }",
       sourceCode:
-        "@mixin react-md-link {\n  @include rmd-theme-create-root-theme($rmd-link-theme-values, link);\n\n  .rmd-link {\n    @include rmd-link-theme(color);\n    @include rmd-typography-base;\n\n    @if $rmd-states-use-focus-shadow {\n      // Can't use the normal states focus shadow behavior since links are rendered inline.\n      // The pseudo selectors with different shadows only work nicely with block elements.\n      @include rmd-utils-keyboard-only {\n        &:focus {\n          outline: $rmd-states-focus-shadow-width solid\n            $rmd-states-focus-shadow-color;\n        }\n      }\n    } @else {\n      @include rmd-utils-hide-focus-outline;\n    }\n\n    transition: color $rmd-link-transition-time;\n\n    &--flex-centered {\n      align-items: center;\n      display: inline-flex;\n    }\n\n    &:visited {\n      @include rmd-link-theme(color, visited-color);\n    }\n\n    &:hover {\n      @include rmd-link-theme(color, hover-color);\n    }\n  }\n\n  .rmd-link-skip {\n    @include rmd-typography-value(\n      headline-6,\n      font-size,\n      font-weight,\n      letter-spacing\n    );\n    @include rmd-utils-sr-only(true, null);\n    @include rmd-utils-hide-focus-outline;\n\n    z-index: $rmd-link-skip-z-index;\n\n    &--styled {\n      @include rmd-utils-map-to-styles($rmd-link-skip-styles);\n\n      @include rmd-utils-keyboard-only {\n        &:focus,\n        &:active {\n          @include rmd-utils-map-to-styles($rmd-link-skip-active-styles);\n        }\n      }\n    }\n  }\n}\n",
+        "@mixin react-md-link {\n  @include rmd-theme-create-root-theme($rmd-link-theme-values, link);\n\n  .rmd-link {\n    @include rmd-link;\n  }\n\n  .rmd-link-skip {\n    @include rmd-link-skip;\n  }\n}\n",
       type: "mixin",
     },
   },
@@ -138,7 +133,6 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-transition-time",
       description: "The transition time for links to change color.\n",
       source: "packages/link/src/_variables.scss#L10",
-      usedBy: [{ name: "react-md-link", type: "mixin", packageName: "link" }],
       packageName: "link",
       type: "Number",
       value: "0.15s",
@@ -177,9 +171,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-link-skip-z-index": {
       name: "rmd-link-skip-z-index",
       description:
-        "The z-index to apply for the skip to main content link.\nThis should always be the biggest z-index in your app so it can be\nvisible.\n",
-      source: "packages/link/src/_variables.scss#L28",
-      usedBy: [{ name: "react-md-link", type: "mixin", packageName: "link" }],
+        "The z-index to apply for the skip to main content link. This should always be the biggest z-index in your app so it can be visible.\n",
+      source: "packages/link/src/_variables.scss#L27",
       packageName: "link",
       type: "Number",
       value: "10000",
@@ -189,8 +182,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-skip-styles",
       description:
         "The default styles to apply to the skip to main content link.\n",
-      source: "packages/link/src/_variables.scss#L32-L38",
-      usedBy: [{ name: "react-md-link", type: "mixin", packageName: "link" }],
+      source: "packages/link/src/_variables.scss#L31-L37",
       packageName: "link",
       type: "Map",
       value:
@@ -202,9 +194,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-link-skip-active-styles": {
       name: "rmd-link-skip-active-styles",
       description:
-        "The default styles to apply to the skip to main content link when it has become\nkeyboard focused.\n",
-      source: "packages/link/src/_variables.scss#L43-L45",
-      usedBy: [{ name: "react-md-link", type: "mixin", packageName: "link" }],
+        "The default styles to apply to the skip to main content link when it has become keyboard focused.\n",
+      source: "packages/link/src/_variables.scss#L42-L44",
       packageName: "link",
       type: "Map",
       value: "(\n  outline: 0.25rem dashed $rmd-black-base,\n)",
@@ -214,8 +205,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-link-theme-values": {
       name: "rmd-link-theme-values",
       description:
-        'A Map of all the "themeable" parts of the link package. Every key in this map will\nbe used to create a css variable to dynamically update the values of the link as\nneeded.\n',
-      source: "packages/link/src/_variables.scss#L51-L55",
+        'A Map of all the "themeable" parts of the link package. Every key in this map will be used to create a css variable to dynamically update the values of the link as needed.\n',
+      source: "packages/link/src/_variables.scss#L50-L54",
       usedBy: [
         { name: "rmd-link-theme", type: "function", packageName: "link" },
         { name: "rmd-link-theme-var", type: "function", packageName: "link" },

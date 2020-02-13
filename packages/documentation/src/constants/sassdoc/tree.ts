@@ -6,8 +6,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-theme": {
       name: "rmd-tree-theme",
       description:
-        "This function is used to quickly get one of the tree's theme values. This is really\njust for the `rmd-tree-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/tree/src/_functions.scss#L14-L16",
+        "This function is used to quickly get one of the tree's theme values. This is really just for the `rmd-tree-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/tree/src/_functions.scss#L15-L17",
       packageName: "tree",
       code: "@function rmd-tree-theme($theme-style) { … }",
       sourceCode:
@@ -29,8 +29,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-theme-var": {
       name: "rmd-tree-theme-var",
       description:
-        "This function is used to get one of the tree's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-tree-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/tree/src/_functions.scss#L29-L31",
+        "This function is used to get one of the tree's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-tree-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/tree/src/_functions.scss#L32-L34",
       packageName: "tree",
       code: "@function rmd-tree-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -48,7 +48,7 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
         },
       ],
       returns: {
@@ -61,8 +61,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-theme": {
       name: "rmd-tree-theme",
       description:
-        "Creates the styles for one of the tree's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
-      source: "packages/tree/src/_mixins.scss#L20-L22",
+        "Creates the styles for one of the tree's theme values. This is mostly going to be an internal helper mixin util.",
+      source: "packages/tree/src/_mixins.scss#L23-L25",
       packageName: "tree",
       code:
         "@mixin rmd-tree-theme($property, $theme-style, $fallback: null) { … }",
@@ -87,15 +87,15 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-tree-theme-values` map when `null`.",
+            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-tree-theme-values` map when `null`.",
         },
       ],
     },
     "rmd-tree-theme-update-var": {
       name: "rmd-tree-theme-update-var",
       description:
-        "Updates one of the tree's theme variables with the new value for the section\nof your app.\n\n",
-      source: "packages/tree/src/_mixins.scss#L30-L32",
+        "Updates one of the tree's theme variables with the new value for the section of your app.",
+      source: "packages/tree/src/_mixins.scss#L33-L35",
       packageName: "tree",
       code: "@mixin rmd-tree-theme-update-var($theme-style, $value) { … }",
       sourceCode:
@@ -106,7 +106,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "theme-style",
           description:
-            "The tree theme style type to update. This should be one\n  of the `$rmd-tree-theme-values` keys.",
+            "The tree theme style type to update. This should be one of the `$rmd-tree-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
@@ -118,8 +118,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-depths": {
       name: "rmd-tree-depths",
       description:
-        "Creates the styles for all the depths from the provided min and max values for a tree.\n\n",
-      source: "packages/tree/src/_mixins.scss#L41-L62",
+        "Creates the styles for all the depths from the provided min and max values for a tree.",
+      source: "packages/tree/src/_mixins.scss#L50-L71",
       usedBy: [{ name: "rmd-tree", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       code:
@@ -168,8 +168,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-item-at-depth": {
       name: "rmd-tree-item-at-depth",
       description:
-        "Creates styles to add additional padding to tree items based on depth. This will only work\nif you correctly apply the `aria-level` attributes to the list items.\n\nThe formula used for creating padding is:\n```scss\n$padding: (($depth - 1) * $incrementor) + $base;\n```\n\n",
-      source: "packages/tree/src/_mixins.scss#L76-L88",
+        "Creates styles to add additional padding to tree items based on depth. This will only work if you correctly apply the `aria-level` attributes to the list items.\n\nThe formula used for creating padding is:\n```scss\n$padding: (($depth - 1) * $incrementor) + $base;\n```",
+      source: "packages/tree/src/_mixins.scss#L89-L101",
       usedBy: [{ name: "rmd-tree-depths", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       code:
@@ -209,7 +209,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree": {
       name: "rmd-tree",
       description: "Creates all the styles for a tree.\n",
-      source: "packages/tree/src/_mixins.scss#L91-L98",
+      source: "packages/tree/src/_mixins.scss#L104-L111",
       usedBy: [{ name: "react-md-tree", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       code: "@mixin rmd-tree { … }",
@@ -220,8 +220,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-item": {
       name: "rmd-tree-item",
       description:
-        "Creates the styles for a tree item. This really requires the `@react-md/list` styles to be created\nbeforehand since these styles just prevent the outline when focused to work with the `@react-md/states`\npackage.\n\n",
-      source: "packages/tree/src/_mixins.scss#L108-L124",
+        "Creates the styles for a tree item. This really requires the `@react-md/list` styles to be created beforehand since these styles just prevent the outline when focused to work with the `@react-md/states` package.",
+      source: "packages/tree/src/_mixins.scss#L122-L138",
       usedBy: [{ name: "react-md-tree", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       examples: [
@@ -240,8 +240,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-tree-group": {
       name: "rmd-tree-group",
-      description: "Creates the styles for the tree group.\n\n",
-      source: "packages/tree/src/_mixins.scss#L132-L141",
+      description: "Creates the styles for the tree group.",
+      source: "packages/tree/src/_mixins.scss#L146-L155",
       usedBy: [{ name: "react-md-tree", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       examples: [
@@ -261,7 +261,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-tree": {
       name: "react-md-tree",
       description: "Creates all the styles for a tree\n",
-      source: "packages/tree/src/_mixins.scss#L144-L162",
+      source: "packages/tree/src/_mixins.scss#L158-L176",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "tree",
       code: "@mixin react-md-tree { … }",
@@ -274,8 +274,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-max-depth": {
       name: "rmd-tree-max-depth",
       description:
-        "The default max-depth to create for the tree depths. This is used in the `rmd-tree-depths` mixin to generate offsets\nin css based on how deep a tree item is. If this value is less than or equal to 1, no depth styles will be created.\n\n",
-      source: "packages/tree/src/_variables.scss#L11",
+        "The default max-depth to create for the tree depths. This is used in the `rmd-tree-depths` mixin to generate offsets in css based on how deep a tree item is. If this value is less than or equal to 1, no depth styles will be created.",
+      source: "packages/tree/src/_variables.scss#L13",
       packageName: "tree",
       type: "Number",
       value: "3",
@@ -284,8 +284,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-item-padding-incrementor": {
       name: "rmd-tree-item-padding-incrementor",
       description:
-        "The amount of padding that should be multiplied by the current depth and added to the `rmd-tree-item-padding-base`.\n\n",
-      source: "packages/tree/src/_variables.scss#L18",
+        "The amount of padding that should be multiplied by the current depth and added to the `rmd-tree-item-padding-base`.",
+      source: "packages/tree/src/_variables.scss#L21",
       see: [
         { name: "rmd-tree-depths", type: "mixin", packageName: "tree" },
         { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
@@ -299,8 +299,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-item-padding-base": {
       name: "rmd-tree-item-padding-base",
       description:
-        "The base amout of padding to apply to a tree item that has a depth greater than 1. This is set to a value\nthat assumes you have icons to the left of the items at the base level. If you do not, it would be better to\nset this value to something smaller or `$rmd-list-item-horizontal-padding * 2.5`.\n\n",
-      source: "packages/tree/src/_variables.scss#L27",
+        "The base amout of padding to apply to a tree item that has a depth greater than 1. This is set to a value that assumes you have icons to the left of the items at the base level. If you do not, it would be better to set this value to something smaller or `$rmd-list-item-horizontal-padding * 2.5`.",
+      source: "packages/tree/src/_variables.scss#L31",
       see: [
         { name: "rmd-tree-depths", type: "mixin", packageName: "tree" },
         { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
@@ -314,8 +314,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-item-focused-styles": {
       name: "rmd-tree-item-focused-styles",
       description:
-        "The styles to apply when a tree item gains focus. These styles will be applied even\nafter a touch or mouse click.\n",
-      source: "packages/tree/src/_variables.scss#L32",
+        "The styles to apply when a tree item gains focus. These styles will be applied even after a touch or mouse click.\n",
+      source: "packages/tree/src/_variables.scss#L36",
       usedBy: [{ name: "rmd-tree-item", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       type: "Map",
@@ -325,8 +325,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-item-keyboard-focused-styles": {
       name: "rmd-tree-item-keyboard-focused-styles",
       description:
-        "The styles to apply to a tree item that is **focused while in keyboard mode** only.\nIf you want to apply focus styles for all modes, use the `$rmd-tree-item-focused-styles`\ninstead and set this value to `null` or an empty Map `()`.\n\n",
-      source: "packages/tree/src/_variables.scss#L40-L42",
+        "The styles to apply to a tree item that is **focused while in keyboard mode** only.  If you want to apply focus styles for all modes, use the `$rmd-tree-item-focused-styles` instead and set this value to `null` or an empty Map `()`.",
+      source: "packages/tree/src/_variables.scss#L45-L47",
       see: [
         {
           name: "rmd-tree-item-focused-styles",
@@ -344,8 +344,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-theme-values": {
       name: "rmd-tree-theme-values",
       description:
-        'A Map of all the "themeable" parts of the tree package. Every key in this map will\nbe used to create a css variable to dynamically update the values of the icon as\nneeded.\n',
-      source: "packages/tree/src/_variables.scss#L48-L51",
+        'A Map of all the "themeable" parts of the tree package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
+      source: "packages/tree/src/_variables.scss#L53-L56",
       usedBy: [
         { name: "rmd-tree-theme", type: "function", packageName: "tree" },
         { name: "rmd-tree-theme-var", type: "function", packageName: "tree" },

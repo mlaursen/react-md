@@ -111,6 +111,16 @@ ${code}
   }
 }
 
+/**
+ * Updates the decription text to remove the trailing newlines as well as
+ * replace all inline newlines with spaces
+ */
+function formatDescription(description: string | undefined = ""): string {
+  return description
+    .replace(/\r?\n\r?\n$/, "")
+    .replace(/([A-z0-9])\r?\n([A-z0-9])/g, "$1 $2");
+}
+
 export interface FullItemReferenceLink extends ItemReferenceLink {
   private: boolean;
 }
@@ -189,7 +199,7 @@ function formatItem(
         code: format(exampleCode, getFormatParser(type)),
         compiled,
         type,
-        description,
+        description: formatDescription(description),
       };
     });
   }
@@ -204,7 +214,7 @@ function formatItem(
 
   return {
     name,
-    description,
+    description: formatDescription(description),
     source: getGithubUrl(
       path.replace("@react-md/", "").replace(nonWebpackDist, src),
       line.start,
@@ -324,7 +334,10 @@ function formatFunctionItem(
     ...formatItem(func, references),
     ...createParamaterizedItem(func),
     type: "function",
-    parameters: func.parameter,
+    parameters: func.parameter.map(({ description, ...param }) => ({
+      ...param,
+      description: formatDescription(description),
+    })),
     returns: func.return,
   };
 }
@@ -337,7 +350,10 @@ function formatMixinItem(
     ...formatItem(mixin, references),
     ...createParamaterizedItem(mixin),
     type: "mixin",
-    parameters: mixin.parameter,
+    parameters: mixin.parameter?.map(({ description, ...param }) => ({
+      ...param,
+      description: formatDescription(description),
+    })),
   };
 }
 

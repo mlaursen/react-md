@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-aspect-ratio-container": {
       name: "rmd-media-aspect-ratio-container",
       description:
-        "Creates the styles for a media container that should enforce a specific\naspect ratio.\n",
+        "Creates the styles for a media container that should enforce a specific aspect ratio.\n",
       source: "packages/media/src/_mixins.scss#L11-L16",
       usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       packageName: "media",
@@ -19,7 +19,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-forced-aspect-ratio": {
       name: "rmd-media-forced-aspect-ratio",
       description:
-        "Creates the styles for a responsive media item that should have a specific\naspect ratio.\n",
+        "Creates the styles for a responsive media item that should have a specific aspect ratio.\n",
       source: "packages/media/src/_mixins.scss#L20-L28",
       usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       packageName: "media",
@@ -31,7 +31,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-media": {
       name: "rmd-media",
       description:
-        "Creates the styles for a responsive media item that will update its\nheight and width based on the parent element.\n",
+        "Creates the styles for a responsive media item that will update its height and width based on the parent element.\n",
       source: "packages/media/src/_mixins.scss#L32-L35",
       usedBy: [
         { name: "react-md-media", type: "mixin", packageName: "media" },
@@ -66,8 +66,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-overlay": {
       name: "rmd-media-overlay",
       description:
-        "Creates the media overlay styles. All this really does is update the theme background and\ntext colors based on the provided background color for the overlay element.\n\n",
-      source: "packages/media/src/_mixins.scss#L86-L111",
+        "Creates the media overlay styles. All this really does is update the theme background and text colors based on the provided background color for the overlay element.",
+      source: "packages/media/src/_mixins.scss#L87-L112",
       usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       packageName: "media",
       code:
@@ -80,21 +80,21 @@ const sassdoc: PackageSassDoc = {
           type: "Color",
           name: "background-color",
           default: "rmd-media-overlay-background-color",
-          description: "The background color\n  for the media overlay.",
+          description: "The background color for the media overlay.",
         },
         {
           type: "Color",
           name: "color",
           default: "null",
           description:
-            "An optional color to use for the overlay. If this is `null`,\n  it will determine the contrast tone of the background color and use either the light or\n  dark theme variables instead.",
+            "An optional color to use for the overlay. If this is `null`, it will determine the contrast tone of the background color and use either the light or dark theme variables instead.",
         },
       ],
     },
     "react-md-media": {
       name: "react-md-media",
       description: "Creates all the styles for the media package.\n",
-      source: "packages/media/src/_mixins.scss#L114-L155",
+      source: "packages/media/src/_mixins.scss#L115-L156",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "media",
       code: "@mixin react-md-media { … }",
@@ -117,7 +117,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-selectors": {
       name: "rmd-media-selectors",
       description:
-        "A list of selectors or html elements that should be considered responsive\nmedia by default. This will make it so that when using the `MediaContainer`\ncomponent, the following elements will be responsive automatically.\n",
+        "A list of selectors or html elements that should be considered responsive media by default. This will make it so that when using the `MediaContainer` component, the following elements will be responsive automatically.\n",
       source: "packages/media/src/_variables.scss#L15",
       usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       packageName: "media",
@@ -128,7 +128,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-default-aspect-ratio": {
       name: "rmd-media-default-aspect-ratio",
       description:
-        "The default aspect ratio for the media component when an aspect ratio is\nenforced.\n",
+        "The default aspect ratio for the media component when an aspect ratio is enforced.\n",
       source: "packages/media/src/_variables.scss#L20",
       packageName: "media",
       type: "Number",
@@ -138,7 +138,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-default-aspect-ratios": {
       name: "rmd-media-default-aspect-ratios",
       description:
-        "A Map including the default aspect ratios to create for responsive media\nwith a forced aspect ratio. Each key must be a string for a class name suffix\nand each value should be a list in the form of (width height).\n",
+        "A Map including the default aspect ratios to create for responsive media with a forced aspect ratio. Each key must be a string for a class name suffix and each value should be a list in the form of (width height).\n",
       source: "packages/media/src/_variables.scss#L26-L30",
       usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       packageName: "media",
@@ -161,7 +161,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-overlay-horizontal-width": {
       name: "rmd-media-overlay-horizontal-width",
       description:
-        "This is the default width for the media overlay component when the position\nis set to `left`, `right`, or `center`. This is really just added since these\npositions might cause overflow issues since their width will change based on\nthe content size. Setting it to a width will prevent this.\n\nSo if you'd like to add the default behavior back, you can set this to `100%`\nor `null`.\n",
+        "This is the default width for the media overlay component when the position is set to `left`, `right`, or `center`. This is really just added since these positions might cause overflow issues since their width will change based on the content size. Setting it to a width will prevent this.\n\nSo if you'd like to add the default behavior back, you can set this to `100%` or `null`.\n",
       source: "packages/media/src/_variables.scss#L44",
       usedBy: [
         {
@@ -178,8 +178,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-overlay-positions": {
       name: "rmd-media-overlay-positions",
       description:
-        "The positions for the media overlay. This can be set to an empty list or null\nif you'd like to save a few bytes by not generating the styles for some positions.\n",
-      source: "packages/media/src/_variables.scss#L49",
+        "The positions for the media overlay. This can be set to an empty list or null if you'd like to save a few bytes by not generating the styles for some positions.\n",
+      source: "packages/media/src/_variables.scss#L50",
       usedBy: [
         {
           name: "rmd-media-overlay-position",

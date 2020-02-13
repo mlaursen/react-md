@@ -6,8 +6,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-theme": {
       name: "rmd-progress-theme",
       description:
-        "This function is used to quickly get one of the progress's theme values. This is really\njust for the `rmd-progress-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/progress/src/_functions.scss#L14-L16",
+        "This function is used to quickly get one of the progress's theme values.\nThis is really just for the `rmd-progress-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/progress/src/_functions.scss#L16-L18",
       packageName: "progress",
       code: "@function rmd-progress-theme($theme-style) { … }",
       sourceCode:
@@ -29,8 +29,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-theme-var": {
       name: "rmd-progress-theme-var",
       description:
-        "This function is used to get one of the progress's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-progress-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/progress/src/_functions.scss#L29-L31",
+        "This function is used to get one of the progress's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-progress-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/progress/src/_functions.scss#L33-L35",
       packageName: "progress",
       code:
         "@function rmd-progress-theme-var($theme-style, $fallback: null) { … }",
@@ -49,7 +49,7 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
         },
       ],
       returns: {
@@ -62,8 +62,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-theme": {
       name: "rmd-progress-theme",
       description:
-        "Creates the styles for one of the progress's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
-      source: "packages/progress/src/_mixins.scss#L19-L21",
+        "Creates the styles for one of the progress's theme values. This is mostly going to be an internal helper mixin util.",
+      source: "packages/progress/src/_mixins.scss#L22-L24",
       packageName: "progress",
       code:
         "@mixin rmd-progress-theme($property, $theme-style, $fallback: null) { … }",
@@ -88,15 +88,19 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-progress-theme-values` map when `null`.",
+            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-progress-theme-values` map when `null`.",
         },
       ],
     },
     "rmd-progress-theme-update-var": {
       name: "rmd-progress-theme-update-var",
       description:
-        "Updates one of the progress's theme variables with the new value for the section\nof your app.\n\n",
-      source: "packages/progress/src/_mixins.scss#L29-L31",
+        "Updates one of the progress's theme variables with the new value for the section of your app.",
+      source: "packages/progress/src/_mixins.scss#L32-L34",
+      usedBy: [
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+      ],
       packageName: "progress",
       code: "@mixin rmd-progress-theme-update-var($theme-style, $value) { … }",
       sourceCode:
@@ -107,7 +111,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "theme-style",
           description:
-            "The progress theme style type to update. This should be one\n  of the `$rmd-progress-theme-values` keys.",
+            "The progress theme style type to update. This should be one of the `$rmd-progress-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
@@ -119,7 +123,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-progress": {
       name: "react-md-progress",
       description: "Creates all the styles for the progress package.\n",
-      source: "packages/progress/src/_mixins.scss#L277-L287",
+      source: "packages/progress/src/_mixins.scss#L284-L294",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "progress",
       code: "@mixin react-md-progress { … }",
@@ -132,8 +136,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-include-linear": {
       name: "rmd-progress-include-linear",
       description:
-        "Boolean if the linear progress bar styles should be created by\ndefault.\n",
-      source: "packages/progress/src/_variables.scss#L11",
+        "Boolean if the linear progress bar styles should be created by default.\n",
+      source: "packages/progress/src/_variables.scss#L10",
       usedBy: [
         { name: "react-md-progress", type: "mixin", packageName: "progress" },
       ],
@@ -145,8 +149,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-include-circular": {
       name: "rmd-progress-include-circular",
       description:
-        "Boolean if the circular progress bar styles should be created by\ndefault.\n",
-      source: "packages/progress/src/_variables.scss#L16",
+        "Boolean if the circular progress bar styles should be created by default.\n",
+      source: "packages/progress/src/_variables.scss#L14",
       usedBy: [
         { name: "react-md-progress", type: "mixin", packageName: "progress" },
       ],
@@ -158,8 +162,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-color": {
       name: "rmd-progress-color",
       description:
-        "This is the main color that should be used for the linear progress\nand the circular progress components.\n",
-      source: "packages/progress/src/_variables.scss#L21",
+        "This is the main color that should be used for the linear progress and the circular progress components.\n",
+      source: "packages/progress/src/_variables.scss#L19",
       packageName: "progress",
       type: "Color",
       value: "$rmd-theme-primary",
@@ -169,8 +173,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-background-color": {
       name: "rmd-progress-background-color",
       description:
-        "This is the background color that is used fot the linear progress only.\nYou normally want this color to be a bit ligher than the main progress\ncolor since it'll be underneath the main progress.\n",
-      source: "packages/progress/src/_variables.scss#L27-L32",
+        "This is the background color that is used fot the linear progress only.  You normally want this color to be a bit ligher than the main progress color since it'll be underneath the main progress.\n",
+      source: "packages/progress/src/_variables.scss#L25-L30",
       packageName: "progress",
       type: "Color",
       value:
@@ -182,7 +186,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-linear-progress-size",
       description:
         "This is the linear progress bar's height or the width when switched to vertical.\n",
-      source: "packages/progress/src/_variables.scss#L36",
+      source: "packages/progress/src/_variables.scss#L35",
       packageName: "progress",
       type: "Number",
       value: "4px",
@@ -191,8 +195,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-transition-duration": {
       name: "rmd-linear-progress-transition-duration",
       description:
-        "The transition duration for the entire linear progress animation. This one is\nmuch longer compared to other transitions since progress indicators are normally\nfor longer running background tasks.\n",
-      source: "packages/progress/src/_variables.scss#L42",
+        "The transition duration for the entire linear progress animation. This one is much longer compared to other transitions since progress indicators are normally for longer running background tasks.\n",
+      source: "packages/progress/src/_variables.scss#L41",
       packageName: "progress",
       type: "Number",
       value: "2.4s",
@@ -201,8 +205,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-short-animation-delay": {
       name: "rmd-linear-progress-short-animation-delay",
       description:
-        "The delay before the second linear progress animation should start. This animation\nis for the very quick and smaller bar animation that will appear after the first\ntransition is near the end.\n",
-      source: "packages/progress/src/_variables.scss#L48",
+        "The delay before the second linear progress animation should start. This animation is for the very quick and smaller bar animation that will appear after the first transition is near the end.\n",
+      source: "packages/progress/src/_variables.scss#L47",
       packageName: "progress",
       type: "Number",
       value: "0.75s",
@@ -211,8 +215,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-styles": {
       name: "rmd-linear-progress-styles",
       description:
-        "The linear progress bar styles to apply for the transition. Each key in this map\nwill be set immediately at the root of the `keyframes` and then each child map\nwill be considered a map of property: value.\n",
-      source: "packages/progress/src/_variables.scss#L54-L67",
+        "The linear progress bar styles to apply for the transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
+      source: "packages/progress/src/_variables.scss#L53-L66",
       packageName: "progress",
       type: "Map",
       value:
@@ -222,8 +226,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-short-styles": {
       name: "rmd-linear-progress-short-styles",
       description:
-        "The linear progress bar styles to apply for the shorter transition. Each key in this map\nwill be set immediately at the root of the `keyframes` and then each child map\nwill be considered a map of property: value.\n",
-      source: "packages/progress/src/_variables.scss#L73-L86",
+        "The linear progress bar styles to apply for the shorter transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
+      source: "packages/progress/src/_variables.scss#L72-L85",
       packageName: "progress",
       type: "Map",
       value:
@@ -233,8 +237,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-reverse-styles": {
       name: "rmd-linear-progress-reverse-styles",
       description:
-        "The linear progress bar styles to apply for the transition. Each key in this map\nwill be set immediately at the root of the `keyframes` and then each child map\nwill be considered a map of property: value.\n",
-      source: "packages/progress/src/_variables.scss#L92-L105",
+        "The linear progress bar styles to apply for the transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
+      source: "packages/progress/src/_variables.scss#L91-L104",
       packageName: "progress",
       type: "Map",
       value:
@@ -244,8 +248,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-reverse-short-styles": {
       name: "rmd-linear-progress-reverse-short-styles",
       description:
-        "The linear progress bar styles to apply for the shorter transition. Each key in this map\nwill be set immediately at the root of the `keyframes` and then each child map\nwill be considered a map of property: value.\n",
-      source: "packages/progress/src/_variables.scss#L111-L124",
+        "The linear progress bar styles to apply for the shorter transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
+      source: "packages/progress/src/_variables.scss#L110-L123",
       packageName: "progress",
       type: "Map",
       value:
@@ -255,8 +259,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-vertical-styles": {
       name: "rmd-linear-progress-vertical-styles",
       description:
-        "The linear progress bar styles to apply for the vertical transition. Each key in this map\nwill be set immediately at the root of the `keyframes` and then each child map\nwill be considered a map of property: value.\n",
-      source: "packages/progress/src/_variables.scss#L130-L143",
+        "The linear progress bar styles to apply for the vertical transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
+      source: "packages/progress/src/_variables.scss#L129-L142",
       packageName: "progress",
       type: "Map",
       value:
@@ -266,8 +270,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-vertical-short-styles": {
       name: "rmd-linear-progress-vertical-short-styles",
       description:
-        "The linear progress bar styles to apply for the shorter vertical transition. Each key in this map\nwill be set immediately at the root of the `keyframes` and then each child map\nwill be considered a map of property: value.\n",
-      source: "packages/progress/src/_variables.scss#L149-L162",
+        "The linear progress bar styles to apply for the shorter vertical transition.\nEach key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
+      source: "packages/progress/src/_variables.scss#L148-L161",
       packageName: "progress",
       type: "Map",
       value:
@@ -277,8 +281,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-vertical-reverse-styles": {
       name: "rmd-linear-progress-vertical-reverse-styles",
       description:
-        "The linear progress bar styles to apply for the vertical transition. Each key in this map\nwill be set immediately at the root of the `keyframes` and then each child map\nwill be considered a map of property: value.\n",
-      source: "packages/progress/src/_variables.scss#L168-L181",
+        "The linear progress bar styles to apply for the vertical transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
+      source: "packages/progress/src/_variables.scss#L167-L180",
       packageName: "progress",
       type: "Map",
       value:
@@ -288,8 +292,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-vertical-reverse-short-styles": {
       name: "rmd-linear-progress-vertical-reverse-short-styles",
       description:
-        "The linear progress bar styles to apply for the shorter vertical transition. Each key in this map\nwill be set immediately at the root of the `keyframes` and then each child map\nwill be considered a map of property: value.\n",
-      source: "packages/progress/src/_variables.scss#L187-L200",
+        "The linear progress bar styles to apply for the shorter vertical transition.\nEach key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
+      source: "packages/progress/src/_variables.scss#L186-L199",
       packageName: "progress",
       type: "Map",
       value:
@@ -299,7 +303,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-circular-progress-size": {
       name: "rmd-circular-progress-size",
       description: "The size for the circular progress svg.\n",
-      source: "packages/progress/src/_variables.scss#L204",
+      source: "packages/progress/src/_variables.scss#L203",
       packageName: "progress",
       type: "Number",
       value: "3rem",
@@ -308,8 +312,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-circle-stroke-width": {
       name: "rmd-progress-circle-stroke-width",
       description:
-        "The stroke width for the circular svg. I wouldn't change this value unless you\nalso update the `viewbox` for the `CircularProgress` component.\n",
-      source: "packages/progress/src/_variables.scss#L209",
+        "The stroke width for the circular svg. I wouldn't change this value unless you also update the `viewbox` for the `CircularProgress` component.\n",
+      source: "packages/progress/src/_variables.scss#L208",
       packageName: "progress",
       type: "Number",
       value: "6",
@@ -318,7 +322,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-circle-dasharray": {
       name: "rmd-progress-circle-dasharray",
       description:
-        "The dasharray fro the circular svg. I don't really know how this works so good\nluck changing it to something else. If this value is changed, you'll aslo need\nto update the `dasharray` prop for the `CircularProgress` component.\n",
+        "The dasharray fro the circular svg. I don't really know how this works so good luck changing it to something else. If this value is changed, you'll aslo need to update the `dasharray` prop for the `CircularProgress` component.\n",
       source: "packages/progress/src/_variables.scss#L215",
       packageName: "progress",
       type: "Number",
@@ -328,7 +332,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-circle-transition-duration": {
       name: "rmd-progress-circle-transition-duration",
       description:
-        "The entire transition duration for the circular progress. This is really the full\ntime for the change in the `stroke-dashoffset` as the default rotation will rotate\n`720deg` over this time.\n",
+        "The entire transition duration for the circular progress. This is really the full time for the change in the `stroke-dashoffset` as the default rotation will rotate `720deg` over this time.\n",
       source: "packages/progress/src/_variables.scss#L221",
       packageName: "progress",
       type: "Number",
@@ -338,7 +342,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-circle-start-offset": {
       name: "rmd-progress-circle-start-offset",
       description:
-        "The starting dashoffset for the ciruclar progress animation. This will be used for\nthe `0%` and `100%` values in the animation keyframes by default.\n",
+        "The starting dashoffset for the ciruclar progress animation. This will be used for the `0%` and `100%` values in the animation keyframes by default.\n",
       source: "packages/progress/src/_variables.scss#L226",
       packageName: "progress",
       type: "Number",
@@ -349,7 +353,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-circle-end-offset": {
       name: "rmd-progress-circle-end-offset",
       description:
-        "The ending dashoffset for the ciruclar progress animation. This will be used for\nthe `50%` value in the animation keyframes by default.\n",
+        "The ending dashoffset for the ciruclar progress animation. This will be used for the `50%` value in the animation keyframes by default.\n",
       source: "packages/progress/src/_variables.scss#L231",
       packageName: "progress",
       type: "Number",
@@ -360,7 +364,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-circle-rotate-styles": {
       name: "rmd-progress-circle-rotate-styles",
       description:
-        "The circular progress styles to apply for the rotation transition. Each key in this\nmap will be set immediately at the root of the `keyframes` and then each child map\nwill be considered a map of property: value.\n",
+        "The circular progress styles to apply for the rotation transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
       source: "packages/progress/src/_variables.scss#L237-L250",
       packageName: "progress",
       type: "Map",
@@ -371,7 +375,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-circle-dash-styles": {
       name: "rmd-progress-circle-dash-styles",
       description:
-        "The circular progress styles to apply for the dashoffset transition. Each key in this\nmap will be set immediately at the root of the `keyframes` and then each child map\nwill be considered a map of property: value.\n",
+        "The circular progress styles to apply for the dashoffset transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
       source: "packages/progress/src/_variables.scss#L256-L266",
       packageName: "progress",
       type: "Map",
@@ -384,7 +388,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-theme-values": {
       name: "rmd-progress-theme-values",
       description:
-        'A Map of all the "themeable" parts of the progress package. Every key in this map will\nbe used to create a css variable to dynamically update the values of the icon as\nneeded.\n',
+        'A Map of all the "themeable" parts of the progress package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
       source: "packages/progress/src/_variables.scss#L272-L278",
       usedBy: [
         {

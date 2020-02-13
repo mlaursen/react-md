@@ -6,8 +6,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-badge-theme": {
       name: "rmd-badge-theme",
       description:
-        "This function is used to quickly get one of the badge's theme values. This is really\njust for the `rmd-badge-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/badge/src/_functions.scss#L14-L16",
+        "This function is used to quickly get one of the badge's theme values. This is really just for the `rmd-badge-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/badge/src/_functions.scss#L15-L17",
       packageName: "badge",
       code: "@function rmd-badge-theme($theme-style) { … }",
       sourceCode:
@@ -29,8 +29,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-badge-theme-var": {
       name: "rmd-badge-theme-var",
       description:
-        "This function is used to get one of the badge's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-badge-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/badge/src/_functions.scss#L29-L31",
+        "This function is used to get one of the badge's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-badge-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/badge/src/_functions.scss#L32-L34",
       packageName: "badge",
       code:
         "@function rmd-badge-theme-var($theme-style, $fallback: null) { … }",
@@ -49,7 +49,7 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
         },
       ],
       returns: {
@@ -62,8 +62,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-badge-theme": {
       name: "rmd-badge-theme",
       description:
-        "Creates the styles for one of the badge's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
-      source: "packages/badge/src/_mixins.scss#L20-L22",
+        "Creates the styles for one of the badge's theme values. This is mostly going to be an internal helper mixin util.",
+      source: "packages/badge/src/_mixins.scss#L23-L25",
       usedBy: [
         { name: "rmd-badge", type: "mixin", packageName: "badge" },
         { name: "rmd-badge", type: "mixin", packageName: "badge" },
@@ -98,15 +98,15 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-badge-theme-values` map when `null`.",
+            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-badge-theme-values` map when `null`.",
         },
       ],
     },
     "rmd-badge-theme-update-var": {
       name: "rmd-badge-theme-update-var",
       description:
-        "Updates one of the badge's theme variables with the new value for the section\nof your app.\n\n",
-      source: "packages/badge/src/_mixins.scss#L30-L32",
+        "Updates one of the badge's theme variables with the new value for the section of your app.",
+      source: "packages/badge/src/_mixins.scss#L33-L35",
       packageName: "badge",
       code: "@mixin rmd-badge-theme-update-var($theme-style, $value) { … }",
       sourceCode:
@@ -117,7 +117,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "theme-style",
           description:
-            "The badge theme style type to update. This should be one\n  of the `$rmd-badge-theme-values` keys.",
+            "The badge theme style type to update. This should be one of the `$rmd-badge-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
@@ -129,7 +129,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-badge": {
       name: "rmd-badge",
       description: "Creates all the styles for the badge component.\n",
-      source: "packages/badge/src/_mixins.scss#L42-L76",
+      source: "packages/badge/src/_mixins.scss#L45-L79",
       usedBy: [{ name: "react-md-badge", type: "mixin", packageName: "badge" }],
       packageName: "badge",
       code: "@mixin rmd-badge { … }",
@@ -141,7 +141,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-badge",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/badge/src/_mixins.scss#L79-L89",
+      source: "packages/badge/src/_mixins.scss#L83-L93",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "badge",
       code: "@mixin react-md-badge { … }",
@@ -212,7 +212,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-badge-offset-right",
       description:
         "The `right` position for the badge. This will be swapped to be `left` for rtl languages.\n",
-      source: "packages/badge/src/_variables.scss#L37",
+      source: "packages/badge/src/_variables.scss#L38",
       packageName: "badge",
       type: "Number",
       value: "0",
@@ -221,8 +221,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-badge-theme-values": {
       name: "rmd-badge-theme-values",
       description:
-        'A Map of all the "themeable" parts of the badge package. Every key in this map will\nbe used to create a css variable to dynamically update the values of the icon as\nneeded.\n',
-      source: "packages/badge/src/_variables.scss#L43-L51",
+        'A Map of all the "themeable" parts of the badge package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
+      source: "packages/badge/src/_variables.scss#L44-L52",
       usedBy: [
         { name: "rmd-badge-theme", type: "function", packageName: "badge" },
         { name: "rmd-badge-theme-var", type: "function", packageName: "badge" },

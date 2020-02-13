@@ -6,8 +6,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-overlay-theme": {
       name: "rmd-overlay-theme",
       description:
-        "This function is used to quickly get one of the overlay's theme values. This is really\njust for the `rmd-overlay-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/overlay/src/_functions.scss#L14-L16",
+        "This function is used to quickly get one of the overlay's theme values. This is really just for the `rmd-overlay-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/overlay/src/_functions.scss#L15-L17",
       packageName: "overlay",
       code: "@function rmd-overlay-theme($style) { … }",
       sourceCode:
@@ -29,8 +29,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-overlay-theme-var": {
       name: "rmd-overlay-theme-var",
       description:
-        "This function is used to get one of the overlay's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-overlay-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/overlay/src/_functions.scss#L29-L31",
+        "This function is used to get one of the overlay's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-overlay-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/overlay/src/_functions.scss#L32-L34",
       packageName: "overlay",
       code:
         "@function rmd-overlay-theme-var($theme-style, $fallback: null) { … }",
@@ -49,7 +49,7 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
         },
       ],
       returns: {
@@ -62,8 +62,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-overlay-theme": {
       name: "rmd-overlay-theme",
       description:
-        "Creates the styles for one of the overlay's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
-      source: "packages/overlay/src/_mixins.scss#L19-L21",
+        "Creates the styles for one of the overlay's theme values. This is mostly going to be an internal helper mixin util.",
+      source: "packages/overlay/src/_mixins.scss#L22-L24",
       usedBy: [
         { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
         { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
@@ -93,15 +93,15 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-overlay-theme-values` map when `null`.",
+            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-overlay-theme-values` map when `null`.",
         },
       ],
     },
     "rmd-overlay-theme-update-var": {
       name: "rmd-overlay-theme-update-var",
       description:
-        "Updates one of the overlay's theme variables with the new value for the section\nof your app.\n\n",
-      source: "packages/overlay/src/_mixins.scss#L29-L31",
+        "Updates one of the overlay's theme variables with the new value for the section of your app.",
+      source: "packages/overlay/src/_mixins.scss#L32-L34",
       packageName: "overlay",
       code: "@mixin rmd-overlay-theme-update-var($theme-style, $value) { … }",
       sourceCode:
@@ -112,7 +112,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "theme-style",
           description:
-            "The overlay theme style type to update. This should be one\n  of the `$rmd-overlay-theme-values` keys.",
+            "The overlay theme style type to update. This should be one of the `$rmd-overlay-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
@@ -124,7 +124,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-overlay": {
       name: "rmd-overlay",
       description: "Creates the styles for the overlay component.\n",
-      source: "packages/overlay/src/_mixins.scss#L34-L56",
+      source: "packages/overlay/src/_mixins.scss#L37-L59",
       usedBy: [
         { name: "react-md-overlay", type: "mixin", packageName: "overlay" },
       ],
@@ -137,8 +137,8 @@ const sassdoc: PackageSassDoc = {
     "react-md-overlay": {
       name: "react-md-overlay",
       description:
-        "Creates the styles for overlays within react-md and also creates\nall the theme css variables for overlays.\n",
-      source: "packages/overlay/src/_mixins.scss#L60-L66",
+        "Creates the styles for overlays within react-md and also creates all the theme css variables for overlays.\n",
+      source: "packages/overlay/src/_mixins.scss#L63-L69",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "overlay",
       code: "@mixin react-md-overlay { … }",
@@ -171,7 +171,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-overlay-color": {
       name: "rmd-overlay-color",
       description:
-        "The background color for the overlay. It is recommended to make sure that an opacity\nis applied instead of a static color.\n",
+        "The background color for the overlay. It is recommended to make sure that an opacity is applied instead of a static color.\n",
       source: "packages/overlay/src/_variables.scss#L19",
       packageName: "overlay",
       type: "Color",
@@ -182,7 +182,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-overlay-theme-values": {
       name: "rmd-overlay-theme-values",
       description:
-        'A Map of all the "themeable" parts of the overlay package. Every key in this map will\nbe used to create a css variable to dynamically update the values of the overlay as\nneeded.\n',
+        'A Map of all the "themeable" parts of the overlay package. Every key in this map will be used to create a css variable to dynamically update the values of the overlay as needed.\n',
       source: "packages/overlay/src/_variables.scss#L25-L29",
       usedBy: [
         { name: "rmd-overlay-theme", type: "function", packageName: "overlay" },

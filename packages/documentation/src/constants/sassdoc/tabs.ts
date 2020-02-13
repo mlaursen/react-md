@@ -6,8 +6,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tabs-theme": {
       name: "rmd-tabs-theme",
       description:
-        "This function is used to quickly get one of the tabs's theme values. This is really\njust for the `rmd-tabs-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/tabs/src/_functions.scss#L14-L16",
+        "This function is used to quickly get one of the tabs's theme values. This is really just for the `rmd-tabs-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/tabs/src/_functions.scss#L15-L17",
       packageName: "tabs",
       code: "@function rmd-tabs-theme($theme-style) { … }",
       sourceCode:
@@ -29,8 +29,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tabs-theme-var": {
       name: "rmd-tabs-theme-var",
       description:
-        "This function is used to get one of the tabs's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-tabs-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/tabs/src/_functions.scss#L29-L31",
+        "This function is used to get one of the tabs's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-tabs-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/tabs/src/_functions.scss#L32-L34",
       packageName: "tabs",
       code: "@function rmd-tabs-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -48,7 +48,7 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
         },
       ],
       returns: {
@@ -61,8 +61,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tabs-theme": {
       name: "rmd-tabs-theme",
       description:
-        "Creates the styles for one of the tabs's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
-      source: "packages/tabs/src/_mixins.scss#L23-L25",
+        "Creates the styles for one of the tabs's theme values. This is mostly going to be an internal helper mixin util.",
+      source: "packages/tabs/src/_mixins.scss#L26-L28",
       packageName: "tabs",
       code:
         "@mixin rmd-tabs-theme($property, $theme-style, $fallback: null) { … }",
@@ -87,15 +87,15 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-tabs-theme-values` map when `null`.",
+            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-tabs-theme-values` map when `null`.",
         },
       ],
     },
     "rmd-tabs-theme-update-var": {
       name: "rmd-tabs-theme-update-var",
       description:
-        "Updates one of the tabs's theme variables with the new value for the section\nof your app.\n\n",
-      source: "packages/tabs/src/_mixins.scss#L33-L35",
+        "Updates one of the tabs's theme variables with the new value for the section of your app.",
+      source: "packages/tabs/src/_mixins.scss#L36-L38",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
@@ -112,7 +112,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "theme-style",
           description:
-            "The tabs theme style type to update. This should be one\n  of the `$rmd-tabs-theme-values` keys.",
+            "The tabs theme style type to update. This should be one of the `$rmd-tabs-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
@@ -125,7 +125,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-tabs",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/tabs/src/_mixins.scss#L233-L251",
+      source: "packages/tabs/src/_mixins.scss#L238-L256",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "tabs",
       code: "@mixin react-md-tabs { … }",
@@ -177,7 +177,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tab-min-width": {
       name: "rmd-tab-min-width",
       description:
-        "The minimum width for a tab. The way tabs work is that they will grow as needed\nto fill the entire space of the `Tabs` container width. This also means that\nthey will shrink if the `Tabs` container is small.\n",
+        "The minimum width for a tab. The way tabs work is that they will grow as needed to fill the entire space of the `Tabs` container width. This also means that they will shrink if the `Tabs` container is small.\n",
       source: "packages/tabs/src/_variables.scss#L28",
       packageName: "tabs",
       type: "Number",
@@ -187,7 +187,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tab-max-width": {
       name: "rmd-tab-max-width",
       description:
-        "The maxium width for a tab. The way tabs work is that they will grow as needed\nto fill the entire space of the `Tabs` container width. This also means that\nthey will shrink if the `Tabs` container is small.\n",
+        "The maxium width for a tab. The way tabs work is that they will grow as needed to fill the entire space of the `Tabs` container width. This also means that they will shrink if the `Tabs` container is small.\n",
       source: "packages/tabs/src/_variables.scss#L34",
       packageName: "tabs",
       type: "Number",
@@ -246,7 +246,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tabs-positions": {
       name: "rmd-tabs-positions",
       description:
-        "A list of alignments that should be supported by the Tabs component. These values\nshould be valid values for the `justify-content` property.\n",
+        "A list of alignments that should be supported by the Tabs component. These values should be valid values for the `justify-content` property.\n",
       source: "packages/tabs/src/_variables.scss#L59",
       packageName: "tabs",
       type: "List",
@@ -256,7 +256,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tabs-scrollable-padding": {
       name: "rmd-tabs-scrollable-padding",
       description:
-        "The amount of padding to use when the `scollable` prop is enabled on the `Tabs` component that\nwill be added to the left of the first tab (or right for RTL languages). This padding is useful\nto help users know that the content is scrollable.\n",
+        "The amount of padding to use when the `scollable` prop is enabled on the `Tabs` component that will be added to the left of the first tab (or right for RTL languages). This padding is useful to help users know that the content is scrollable.\n",
       source: "packages/tabs/src/_variables.scss#L65",
       packageName: "tabs",
       type: "Number",

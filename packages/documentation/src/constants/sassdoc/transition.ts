@@ -6,8 +6,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-transition-theme": {
       name: "rmd-transition-theme",
       description:
-        "This function is used to quickly get one of the transition's theme values. This is really\njust for the `rmd-transition-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/transition/src/_functions.scss#L14-L16",
+        "This function is used to quickly get one of the transition's theme values.\nThis is really just for the `rmd-transition-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/transition/src/_functions.scss#L16-L18",
       packageName: "transition",
       code: "@function rmd-transition-theme($style) { … }",
       sourceCode:
@@ -29,8 +29,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-transition-theme-var": {
       name: "rmd-transition-theme-var",
       description:
-        "This function is used to get one of the transition's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-transition-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/transition/src/_functions.scss#L29-L31",
+        "This function is used to get one of the transition's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-transition-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/transition/src/_functions.scss#L33-L35",
       packageName: "transition",
       code:
         "@function rmd-transition-theme-var($theme-style, $fallback: null) { … }",
@@ -49,7 +49,7 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
         },
       ],
       returns: {
@@ -62,8 +62,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-transition-theme": {
       name: "rmd-transition-theme",
       description:
-        "Creates the styles for one of the transition's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
-      source: "packages/transition/src/_mixins.scss#L17-L24",
+        "Creates the styles for one of the transition's theme values. This is mostly going to be an internal helper mixin util.",
+      source: "packages/transition/src/_mixins.scss#L20-L27",
       usedBy: [
         { name: "rmd-transition", type: "mixin", packageName: "transition" },
       ],
@@ -91,15 +91,15 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-transition-theme-values` map when `null`.",
+            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-transition-theme-values` map when `null`.",
         },
       ],
     },
     "rmd-transition-set-theme-var": {
       name: "rmd-transition-set-theme-var",
       description:
-        "Updates one of the transition's theme variables with the new value for the section\nof your app.\n\n",
-      source: "packages/transition/src/_mixins.scss#L32-L34",
+        "Updates one of the transition's theme variables with the new value for the section of your app.",
+      source: "packages/transition/src/_mixins.scss#L35-L37",
       packageName: "transition",
       code: "@mixin rmd-transition-set-theme-var($theme-style, $-) { … }",
       sourceCode:
@@ -110,7 +110,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "theme-style",
           description:
-            "The transition theme style type to update. This should be one\n  of the `$rmd-transition-theme-values` keys.",
+            "The transition theme style type to update.\nThis should be one of the `$rmd-transition-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
@@ -122,8 +122,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-transition-shadow-transition": {
       name: "rmd-transition-shadow-transition",
       description:
-        "A mixin that allows you to animate box shadow performantly.\n\n",
-      source: "packages/transition/src/_mixins.scss#L98-L131",
+        "A mixin that allows you to animate box shadow performantly.",
+      source: "packages/transition/src/_mixins.scss#L105-L138",
       usedBy: [
         {
           name: "rmd-elevation-transition",
@@ -170,14 +170,14 @@ const sassdoc: PackageSassDoc = {
           type: "List|String",
           name: "active-selectors",
           description:
-            "Either a single string or a list of strings that is used\n  to determine when the `$end-shadow` should be used.",
+            "Either a single string or a list of strings that is used to determine when the `$end-shadow` should be used.",
         },
         {
           type: "Boolean",
           name: "before",
           default: "true",
           description:
-            "Boolean if the `::before` or `::after` pseudo selector should be\n  used as the `end-shadow` target.",
+            "Boolean if the `::before` or `::after` pseudo selector should be used as the `end-shadow` target.",
         },
         {
           type: "String|Number",
@@ -190,18 +190,19 @@ const sassdoc: PackageSassDoc = {
           name: "pseudo-z-index",
           default: "0",
           description:
-            "The z-index to apply. This is set to 0 by default so that\nit can be shown more easily if there are child elements with position absolute",
+            "The z-index to apply. This is set to 0 by default so that it can be shown more easily if there are child elements with position absolute",
         },
       ],
     },
     "rmd-transition": {
       name: "rmd-transition",
       description:
-        "Adds a transition timing function for the provided transition type.\n\n",
-      source: "packages/transition/src/_mixins.scss#L139-L144",
+        "Adds a transition timing function for the provided transition type.",
+      source: "packages/transition/src/_mixins.scss#L146-L151",
       usedBy: [
         { name: "react-md-alert", type: "mixin", packageName: "alert" },
         { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-label", type: "mixin", packageName: "form" },
         { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
         { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
@@ -227,13 +228,13 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "type",
           description:
-            "The transition type that should be used. This should be one of the\n  keys for `$rmd-transitions`",
+            "The transition type that should be used. This should be one of the keys for `$rmd-transitions`",
         },
         {
           type: "Boolean",
           name: "animation",
           description:
-            "Boolean if this should be applied to the animation timing\n  function instead of the transition timing function.",
+            "Boolean if this should be applied to the animation timing function instead of the transition timing function.",
         },
       ],
     },
@@ -241,7 +242,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-collapse",
       description:
         "Creates the styles for the Collapse component within react-md\n",
-      source: "packages/transition/src/_mixins.scss#L147-L164",
+      source: "packages/transition/src/_mixins.scss#L154-L171",
       usedBy: [
         {
           name: "react-md-transition",
@@ -258,8 +259,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-cross-fade": {
       name: "rmd-cross-fade",
       description:
-        "Creates the cross fade animation styles. This animation is usually used\nwhen loading in new parts of a page or page transitions as there is no\nexit animation by default.\n",
-      source: "packages/transition/src/_mixins.scss#L169-L183",
+        "Creates the cross fade animation styles. This animation is usually used when loading in new parts of a page or page transitions as there is no exit animation by default.\n",
+      source: "packages/transition/src/_mixins.scss#L176-L190",
       usedBy: [
         {
           name: "react-md-transition",
@@ -276,8 +277,8 @@ const sassdoc: PackageSassDoc = {
     "react-md-transition": {
       name: "react-md-transition",
       description:
-        "Creates the transition theme css variables as well as the styles\nfor components in the transition package.\n",
-      source: "packages/transition/src/_mixins.scss#L250-L256",
+        "Creates the transition theme css variables as well as the styles for components in the transition package.\n",
+      source: "packages/transition/src/_mixins.scss#L257-L263",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "transition",
       code: "@mixin react-md-transition { … }",
@@ -290,7 +291,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-transition-sharp": {
       name: "rmd-transition-sharp",
       description:
-        'The transition timing to use for "sharp" transitions. Not really sure what a "sharp" transition\nis at the time of writing this though.\n',
+        'The transition timing to use for "sharp" transitions. Not really sure what a\n"sharp" transition is at the time of writing this though.\n',
       source: "packages/transition/src/_variables.scss#L8",
       packageName: "transition",
       type: "String",
@@ -300,7 +301,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-transition-standard": {
       name: "rmd-transition-standard",
       description:
-        "The transition timing function to use for standard/normal transitions. This is normally applied\nto moving elements within the page.\n",
+        "The transition timing function to use for standard/normal transitions. This is normally applied to moving elements within the page.\n",
       source: "packages/transition/src/_variables.scss#L13",
       packageName: "transition",
       type: "String",
@@ -310,7 +311,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-transition-acceleration": {
       name: "rmd-transition-acceleration",
       description:
-        "The transition timing function to use for transitions that should start the animation slowly\nand build up momentum at the end of the transition. This is normally used for exit/leave\ntransitions.\n",
+        "The transition timing function to use for transitions that should start the animation slowly and build up momentum at the end of the transition. This is normally used for exit/leave transitions.\n",
       source: "packages/transition/src/_variables.scss#L19",
       packageName: "transition",
       type: "String",
@@ -320,7 +321,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-transition-deceleration": {
       name: "rmd-transition-deceleration",
       description:
-        "The transition timing function to use for transitions that should start the animation quickly\nand slow down momentum at the end of the transition. This is normally used for enter/appear\ntransitions.\n",
+        "The transition timing function to use for transitions that should start the animation quickly and slow down momentum at the end of the transition. This is normally used for enter/appear transitions.\n",
       source: "packages/transition/src/_variables.scss#L25",
       packageName: "transition",
       type: "String",
@@ -351,6 +352,7 @@ const sassdoc: PackageSassDoc = {
         "The default transition time for a linear animation/transition.\n",
       source: "packages/transition/src/_variables.scss#L37",
       usedBy: [
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-label", type: "mixin", packageName: "form" },
         {
           name: "rmd-states-surface-base",
@@ -366,7 +368,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-collapse-enter-transition-func": {
       name: "rmd-collapse-enter-transition-func",
       description:
-        "The transition easing function to apply when the collapse's content is animating\nin. This should be one of the `$rmd-transitions` keys.\n\n",
+        "The transition easing function to apply when the collapse's content is animating in. This should be one of the `$rmd-transitions` keys.",
       source: "packages/transition/src/_variables.scss#L43",
       usedBy: [
         { name: "rmd-collapse", type: "mixin", packageName: "transition" },
@@ -379,7 +381,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-collapse-leave-transition-func": {
       name: "rmd-collapse-leave-transition-func",
       description:
-        "The transition easing function to apply when the collapse's content is animating\nout. This should be one of the `$rmd-transitions` keys.\n\n",
+        "The transition easing function to apply when the collapse's content is animating out. This should be one of the `$rmd-transitions` keys.",
       source: "packages/transition/src/_variables.scss#L49",
       usedBy: [
         { name: "rmd-collapse", type: "mixin", packageName: "transition" },
@@ -392,7 +394,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-cross-fade-translate-distance": {
       name: "rmd-cross-fade-translate-distance",
       description:
-        "The distance that the cross fade animation should move. This will\nbe applied to `translateY`.\n",
+        "The distance that the cross fade animation should move. This will be applied to `translateY`.\n",
       source: "packages/transition/src/_variables.scss#L54",
       usedBy: [
         { name: "rmd-cross-fade", type: "mixin", packageName: "transition" },
@@ -459,7 +461,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-transition-theme-values": {
       name: "rmd-transition-theme-values",
       description:
-        'A Map of all the "themeable" parts of the transition package. Every key in this map will\nbe used to create a css variable to dynamically update the values of the icon as\nneeded.\n',
+        'A Map of all the "themeable" parts of the transition package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
       source: "packages/transition/src/_variables.scss#L80-L85",
       usedBy: [
         {

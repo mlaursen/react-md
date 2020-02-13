@@ -6,8 +6,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-theme": {
       name: "rmd-tooltip-theme",
       description:
-        "This function is used to quickly get one of the tooltip's theme values. This is really\njust for the `rmd-tooltip-theme` mixin to provide some validation that a correct style\nkey is used, but might be useful in other cases.\n\n",
-      source: "packages/tooltip/src/_functions.scss#L15-L17",
+        "This function is used to quickly get one of the tooltip's theme values. This is really just for the `rmd-tooltip-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/tooltip/src/_functions.scss#L16-L18",
       packageName: "tooltip",
       code: "@function rmd-tooltip-theme($theme-style) { … }",
       sourceCode:
@@ -29,8 +29,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-theme-var": {
       name: "rmd-tooltip-theme-var",
       description:
-        "This function is used to get one of the tooltip's theme variables as a CSS Variable\nto be applied as a style attribute. By default, the CSS Variable will have a fallback\nof the current `$rmd-tooltip-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value\nif the CSS Variable has not been declared somehow.\n\n",
-      source: "packages/tooltip/src/_functions.scss#L30-L32",
+        "This function is used to get one of the tooltip's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-tooltip-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/tooltip/src/_functions.scss#L33-L35",
       usedBy: [
         {
           name: "rmd-tooltip-dense-theme",
@@ -85,7 +85,7 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "An optional fallback color to apply. This is set to `null` by\ndefault and not used since the link's theme variables should always exist.",
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
         },
       ],
       returns: {
@@ -98,8 +98,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-theme": {
       name: "rmd-tooltip-theme",
       description:
-        "Creates the styles for one of the tooltip's theme values. This is mostly\ngoing to be an internal helper mixin util.\n\n",
-      source: "packages/tooltip/src/_mixins.scss#L19-L21",
+        "Creates the styles for one of the tooltip's theme values. This is mostly going to be an internal helper mixin util.",
+      source: "packages/tooltip/src/_mixins.scss#L22-L24",
       usedBy: [
         { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
         { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
@@ -145,15 +145,15 @@ const sassdoc: PackageSassDoc = {
           name: "fallback",
           default: "null",
           description:
-            "A fallback value to use if the css variable\n  isn't set somehow. This will default to automatically retrieving the default value\n  from the `rmd-tooltip-theme-values` map when `null`.",
+            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-tooltip-theme-values` map when `null`.",
         },
       ],
     },
     "rmd-tooltip-theme-update-var": {
       name: "rmd-tooltip-theme-update-var",
       description:
-        "Updates one of the tooltip's theme variables with the new value for the section\nof your app.\n\n",
-      source: "packages/tooltip/src/_mixins.scss#L29-L31",
+        "Updates one of the tooltip's theme variables with the new value for the section of your app.",
+      source: "packages/tooltip/src/_mixins.scss#L32-L34",
       usedBy: [
         {
           name: "rmd-tooltip-dense-theme",
@@ -196,7 +196,7 @@ const sassdoc: PackageSassDoc = {
           type: "String",
           name: "theme-style",
           description:
-            "The tooltip theme style type to update. This should be one\n  of the `$rmd-tooltip-theme-values` keys.",
+            "The tooltip theme style type to update. This should be one of the `$rmd-tooltip-theme-values` keys.",
         },
         {
           type: "Color|String|Number",
@@ -208,7 +208,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-base": {
       name: "rmd-tooltip-base",
       description: "Creates the base styles for a tooltip.\n",
-      source: "packages/tooltip/src/_mixins.scss#L34-L56",
+      source: "packages/tooltip/src/_mixins.scss#L37-L59",
       usedBy: [{ name: "rmd-tooltip", type: "mixin", packageName: "tooltip" }],
       packageName: "tooltip",
       code: "@mixin rmd-tooltip-base { … }",
@@ -219,7 +219,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-line-wrap": {
       name: "rmd-tooltip-line-wrap",
       description: "Creates the base styles to allow line-wrapping tooltips.\n",
-      source: "packages/tooltip/src/_mixins.scss#L59-L64",
+      source: "packages/tooltip/src/_mixins.scss#L62-L67",
       usedBy: [{ name: "rmd-tooltip", type: "mixin", packageName: "tooltip" }],
       packageName: "tooltip",
       code: "@mixin rmd-tooltip-line-wrap { … }",
@@ -230,7 +230,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-dense-theme": {
       name: "rmd-tooltip-dense-theme",
       description: "Creates the dense tooltip style overrides.\n",
-      source: "packages/tooltip/src/_mixins.scss#L67-L80",
+      source: "packages/tooltip/src/_mixins.scss#L70-L83",
       usedBy: [
         { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
@@ -244,8 +244,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip": {
       name: "rmd-tooltip",
       description:
-        "Creates all the styles for a tooltip element. This should be used within a\ncss class.\n",
-      source: "packages/tooltip/src/_mixins.scss#L84-L131",
+        "Creates all the styles for a tooltip element. This should be used within a css class.\n",
+      source: "packages/tooltip/src/_mixins.scss#L87-L134",
       usedBy: [
         { name: "react-md-tooltip", type: "mixin", packageName: "tooltip" },
       ],
@@ -259,7 +259,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-tooltip",
       description:
         "Creates all the styles and theme for the tooltip package.\n",
-      source: "packages/tooltip/src/_mixins.scss#L134-L140",
+      source: "packages/tooltip/src/_mixins.scss#L137-L143",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "tooltip",
       code: "@mixin react-md-tooltip { … }",
@@ -281,7 +281,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-color": {
       name: "rmd-tooltip-color",
       description:
-        "The text color to use for tooltips. By default, this will inherit the primary\ntext colors for a dark or light background color of the tooltip.\n",
+        "The text color to use for tooltips. By default, this will inherit the primary text colors for a dark or light background color of the tooltip.\n",
       source: "packages/tooltip/src/_variables.scss#L15-L19",
       packageName: "tooltip",
       type: "Color",
@@ -335,7 +335,7 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-tooltip-font-size": {
       name: "rmd-tooltip-font-size",
-      description: "The font size to use for tooltips\n\n",
+      description: "The font size to use for tooltips",
       source: "packages/tooltip/src/_variables.scss#L41",
       see: [
         {
@@ -361,8 +361,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-min-height": {
       name: "rmd-tooltip-min-height",
       description:
-        "The min height to use for tooltips. This allows the tooltips to grow in height automatically\nbased on line wrapping. You will need to add additional padding in these cases though.\n\n",
-      source: "packages/tooltip/src/_variables.scss#L52",
+        "The min height to use for tooltips. This allows the tooltips to grow in height automatically based on line wrapping. You will need to add additional padding in these cases though.",
+      source: "packages/tooltip/src/_variables.scss#L53",
       see: [
         {
           name: "rmd-tooltip-dense-min-height",
@@ -377,8 +377,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-tooltip-horizontal-padding": {
       name: "rmd-tooltip-horizontal-padding",
-      description: "The left and right padding to apply to tooltips.\n\n",
-      source: "packages/tooltip/src/_variables.scss#L58",
+      description: "The left and right padding to apply to tooltips.",
+      source: "packages/tooltip/src/_variables.scss#L59",
       see: [
         {
           name: "rmd-tooltip-dense-horizontal-padding",
@@ -394,8 +394,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-line-wrap-vertical-padding": {
       name: "rmd-tooltip-line-wrap-vertical-padding",
       description:
-        "The top and bottom padding to apply to tooltips when line wrapping is enabled.\n\n",
-      source: "packages/tooltip/src/_variables.scss#L64",
+        "The top and bottom padding to apply to tooltips when line wrapping is enabled.",
+      source: "packages/tooltip/src/_variables.scss#L66",
       see: [
         {
           name: "rmd-tooltip-dense-line-wrap-vertical-padding",
@@ -411,8 +411,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-spacing": {
       name: "rmd-tooltip-spacing",
       description:
-        "The amount of spacing to place between the tooltip and the tooltip's container element.\n\n",
-      source: "packages/tooltip/src/_variables.scss#L70",
+        "The amount of spacing to place between the tooltip and the tooltip's container element.",
+      source: "packages/tooltip/src/_variables.scss#L73",
       see: [
         {
           name: "rmd-tooltip-dense-spacing",
@@ -428,7 +428,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-dense-font-size": {
       name: "rmd-tooltip-dense-font-size",
       description: "The font size to use for dense tooltips.\n",
-      source: "packages/tooltip/src/_variables.scss#L74",
+      source: "packages/tooltip/src/_variables.scss#L77",
       packageName: "tooltip",
       type: "Number",
       value: "0.625rem",
@@ -437,7 +437,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-dense-line-height": {
       name: "rmd-tooltip-dense-line-height",
       description: "The line height to use for dense tooltips.\n",
-      source: "packages/tooltip/src/_variables.scss#L78",
+      source: "packages/tooltip/src/_variables.scss#L81",
       packageName: "tooltip",
       type: "Number",
       value: "0.825rem",
@@ -446,8 +446,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-dense-min-height": {
       name: "rmd-tooltip-dense-min-height",
       description:
-        "The min-height to use for dense tooltips. This allows the tooltips to grow in height automatically\nbased on line wrapping. You will need to add additional padding in these cases though.\n\n",
-      source: "packages/tooltip/src/_variables.scss#L85",
+        "The min-height to use for dense tooltips. This allows the tooltips to grow in height automatically based on line wrapping. You will need to add additional padding in these cases though.",
+      source: "packages/tooltip/src/_variables.scss#L89",
       see: [
         {
           name: "rmd-tooltip-min-height",
@@ -463,7 +463,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-dense-horizontal-padding": {
       name: "rmd-tooltip-dense-horizontal-padding",
       description: "The left and right padding to use for dense tooltips\n",
-      source: "packages/tooltip/src/_variables.scss#L89",
+      source: "packages/tooltip/src/_variables.scss#L93",
       packageName: "tooltip",
       type: "Number",
       value: "0.5rem",
@@ -472,8 +472,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-dense-line-wrap-vertical-padding": {
       name: "rmd-tooltip-dense-line-wrap-vertical-padding",
       description:
-        "The top and bottom padding to apply to dense tooltips when line wrapping is enabled.\n\n",
-      source: "packages/tooltip/src/_variables.scss#L95",
+        "The top and bottom padding to apply to dense tooltips when line wrapping is enabled.",
+      source: "packages/tooltip/src/_variables.scss#L100",
       see: [
         {
           name: "rmd-tooltip-line-wrap-vertical-padding",
@@ -490,7 +490,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-dense-spacing",
       description:
         "The amount of spacing to place between the dense tooltip and the tooltip's container element.\n",
-      source: "packages/tooltip/src/_variables.scss#L99",
+      source: "packages/tooltip/src/_variables.scss#L105",
       packageName: "tooltip",
       type: "Number",
       value: "0.875rem",
@@ -499,7 +499,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-border-radius": {
       name: "rmd-tooltip-border-radius",
       description: "The border radius to apply to tooltips\n",
-      source: "packages/tooltip/src/_variables.scss#L103",
+      source: "packages/tooltip/src/_variables.scss#L109",
       usedBy: [
         { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
       ],
@@ -512,7 +512,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-transition-distance",
       description:
         "The distance that the tooltip should animate from the tooltip's control element.\n",
-      source: "packages/tooltip/src/_variables.scss#L107",
+      source: "packages/tooltip/src/_variables.scss#L114",
       packageName: "tooltip",
       type: "Number",
       value: "0.5rem",
@@ -522,7 +522,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-position-values",
       description:
         "This is really just for internal use and a ncie way to loop over the four positions when creating styles.\n",
-      source: "packages/tooltip/src/_variables.scss#L111",
+      source: "packages/tooltip/src/_variables.scss#L119",
       packageName: "tooltip",
       type: "List",
       value: "above below left right",
@@ -531,8 +531,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-theme-values": {
       name: "rmd-tooltip-theme-values",
       description:
-        'A Map of all the "themeable" parts of the overlay package. Every key in this map will\nbe used to create a css variable to dynamically update the values of the icon as\nneeded.\n',
-      source: "packages/tooltip/src/_variables.scss#L117-L135",
+        'A Map of all the "themeable" parts of the overlay package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
+      source: "packages/tooltip/src/_variables.scss#L125-L143",
       usedBy: [
         { name: "rmd-tooltip-theme", type: "function", packageName: "tooltip" },
         {

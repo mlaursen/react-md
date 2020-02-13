@@ -8,7 +8,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-layout-main-focus-shadow": {
       name: "rmd-layout-main-focus-shadow",
       description:
-        "The box-shadow to use when the `<main>` element has been keyboard focused\nfrom the `SkipToMainContent` link.\n\n",
+        "The box-shadow to use when the `<main>` element has been keyboard focused from the `SkipToMainContent` link.",
       source: "packages/layout/src/_variables.scss#L11",
       packageName: "layout",
       type: "String",
@@ -19,7 +19,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-layout-main-focus-z-index": {
       name: "rmd-layout-main-focus-z-index",
       description:
-        "The z-index to use for the `<main>` element when it is keyboard focused. This\nz-index is just used so that it should appear over all elements.\n",
+        "The z-index to use for the `<main>` element when it is keyboard focused.\nThis z-index is just used so that it should appear over all elements.\n",
       source: "packages/layout/src/_variables.scss#L16",
       packageName: "layout",
       type: "Number",
