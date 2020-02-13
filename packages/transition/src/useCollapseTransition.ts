@@ -383,10 +383,10 @@ export function useCollapseTransition<E extends HTMLElement>(
     }
 
     if (entering) {
-      setState({
-        ...state,
+      setState(prevState => ({
+        ...prevState,
         ...getElementSizing(ref.current),
-      });
+      }));
 
       transition.current = window.setTimeout(() => {
         transition.current = undefined;
@@ -403,12 +403,12 @@ export function useCollapseTransition<E extends HTMLElement>(
         }));
       }, enterDuration);
     } else {
-      setState({
-        ...state,
+      setState(prevState => ({
+        ...prevState,
         maxHeight: minHeight,
         paddingTop: minPaddingTop,
         paddingBottom: minPaddingBottom,
-      });
+      }));
 
       transition.current = window.setTimeout(() => {
         transition.current = undefined;
@@ -416,7 +416,7 @@ export function useCollapseTransition<E extends HTMLElement>(
           callbacks.current.onCollapsed();
         }
 
-        setState({ ...state, leaving: false });
+        setState(prevState => ({ ...prevState, leaving: false }));
       }, leaveDuration);
     }
 
