@@ -79,11 +79,13 @@ function ExpansionPanelHeader(
       className={cn(block("header"), className)}
     >
       {children}
-      <span className={block("icon")}>
-        <IconRotator animate={!disableTransition} rotated={expanded}>
-          {icon}
-        </IconRotator>
-      </span>
+      {icon && (
+        <span className={block("icon")}>
+          <IconRotator animate={!disableTransition} rotated={expanded}>
+            {icon}
+          </IconRotator>
+        </span>
+      )}
     </UnstyledButton>
   );
 }
