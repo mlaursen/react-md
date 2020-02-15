@@ -9,6 +9,7 @@ export * from "./positioning";
 export * from "./wia-aria";
 
 export { default as omit } from "./omit";
+export { default as defaults } from "./defaults";
 export { default as scrollIntoView } from "./scrollIntoView";
 export { default as containsElement } from "./containsElement";
 
