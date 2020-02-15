@@ -48,6 +48,9 @@ module.exports = {
     // on components.
     'global-require': 0,
 
+    // I don't care about extensions
+    'import/extensions': 0,
+
     // normally caught by Typescript instead.
     'react/no-unused-prop-types': 0,
     'react/require-default-props': 0,
@@ -127,14 +130,23 @@ module.exports = {
         'jest/consistent-test-it': ['error', { fn: 'it' }],
         'jest/expect-expect': ['error', { assertFunctionNames: ['expect'] }],
         'jest/lowercase-name': ['error', { ignore: ['describe'] }],
+        'jest/no-commented-out-tests': 'error',
         'jest/no-duplicate-hooks': 'error',
-        'jest/no-empty-title': 'error',
+        'jest/no-export': 'error',
         'jest/no-focused-tests': 'error',
         'jest/no-identical-title': 'error',
+        'jest/no-jasmine-globals': 'error',
+        'jest/no-jest-import': 'error',
+        'jest/no-mocks-import': 'error',
+        'jest/no-standalone-expect': 'error',
+        'jest/no-test-callback': 'error',
         'jest/no-test-prefixes': 'error',
-        'jest/no-truthy-falsy': 'error',
-        'jest/prefer-spy-on': 'error',
+        'jest/no-try-expect': 'error',
         'jest/valid-describe': 'error',
+        'jest/valid-expect-in-promise': 'error',
+        'jest/valid-expect': 'error',
+        'jest/prefer-spy-on': 'error',
+        'jest/no-truthy-falsy': 'error',
       },
     },
     {

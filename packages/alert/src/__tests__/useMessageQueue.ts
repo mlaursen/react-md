@@ -1,5 +1,3 @@
-// import { renderHook } from "@testing-library/react-hooks";
-
 import {
   addMessage,
   AddMessageAction,
@@ -390,9 +388,3 @@ describe("reducer", () => {
     expect(reducer(state, resetQueue())).toBe(state);
   });
 });
-
-// describe("useMessageQueue", () => {
-//   it("should return the correct default queue", () => {
-//     const { result } = renderHook(() => useMessageQueue({}));
-//   });
-// });

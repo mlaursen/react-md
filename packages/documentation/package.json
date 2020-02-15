@@ -64,13 +64,13 @@
     "js-cookie": "^2.2.1",
     "marked": "^0.8.0",
     "mobile-detect": "^1.4.4",
-    "next": "^9.1.4",
+    "next": "^9.2.1",
     "prismjs": "^1.19.0",
     "qs": "^6.9.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
-    "react-swipeable": "^5.5.0",
+    "react-swipeable": "^5.5.1",
     "react-virtualized": "^9.21.2",
     "smoothscroll-polyfill": "^0.4.4"
   },
@@ -86,7 +86,7 @@
     "@types/marked": "^0.7.2",
     "@types/prismjs": "^1.16.0",
     "@types/qs": "^6.9.1",
-    "@types/react-virtualized": "^9.21.7",
+    "@types/react-virtualized": "^9.21.8",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "babel-plugin-inline-react-svg": "^1.1.1",
@@ -102,6 +102,6 @@
     "raw-loader": "^4.0.0",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5",
-    "webpack": "^4.41.5"
+    "webpack": "^4.41.6"
   }
 }
