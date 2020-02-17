@@ -190,6 +190,12 @@ $rmd-typography-decorations: underline overline line-through !default;
 /// @type List
 $rmd-typography-transforms: capitalize uppercase lowercase !default;
 
+/// A list of `font-style` to apply. If you don't want the helper classes for
+/// the font styles, set this to an empty list to reduce your bundle size by a
+/// slight amount.
+/// @tyoe List
+$rmd-typography-font-styles: normal italic oblique !default;
+
 /// A Map of font weights to a font file suffix for a Google font.
 ///
 /// @type Map

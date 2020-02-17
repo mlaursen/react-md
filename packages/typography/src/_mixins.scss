@@ -231,6 +231,12 @@
       }
     }
 
+    @each $font-style in $rmd-typography-font-styles {
+      &--#{$font-style} {
+        font-style: $font-style;
+      }
+    }
+
     @each $suffix, $theme-style in $rmd-typography-colors {
       &--#{$suffix} {
         @include rmd-theme(color, $theme-style);

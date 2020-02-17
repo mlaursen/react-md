@@ -30,11 +30,10 @@ export type TextTypes =
   | "overline"
   | "button";
 
-export type TextAlign = "" | "left" | "center" | "right";
-export type TextDecoration = "" | "underline" | "overline" | "line-through";
-export type TextTransform = "" | "capitalize" | "uppercase" | "lowercase";
+export type TextAlign = "left" | "center" | "right";
+export type TextDecoration = "underline" | "overline" | "line-through";
+export type TextTransform = "capitalize" | "uppercase" | "lowercase";
 export type TextWeight =
-  | ""
   | "thin"
   | "light"
   | "regular"
@@ -43,13 +42,13 @@ export type TextWeight =
   | "semi-bold"
   | "black";
 export type TextColor =
-  | ""
   | "secondary"
   | "hint"
   | "theme-primary"
   | "theme-secondary"
   | "theme-warning"
   | "theme-error";
+export type FontStyle = "italic" | "oblique" | "normal";
 
 /**
  * A union of the default supported elements that the `Text` component can be
@@ -138,6 +137,11 @@ export interface TextProps extends HTMLAttributes<TextElement> {
   weight?: TextWeight;
 
   /**
+   * An optional font-style to apply.
+   */
+  fontStyle?: FontStyle;
+
+  /**
    * Since the typography within react-md tries to not modify base elements, the
    * default margin applied to heading tags (h1-h6) and paragraph (p) might have
    * large margin that you don't want applied when using this component. You can
@@ -220,11 +224,12 @@ function Text(
     children,
     type = "body-1",
     component = null,
-    align = "",
-    color = "",
-    decoration = "",
-    transform = "",
-    weight = "",
+    align,
+    color,
+    decoration,
+    transform,
+    weight,
+    fontStyle,
     margin = "initial",
     ...props
   }: TextProps,
@@ -236,13 +241,14 @@ function Text(
       "no-margin": margin === "none",
       "no-margin-top": margin === "bottom",
       "no-margin-bottom": margin === "top",
-      [align]: align,
-      [decoration]: decoration && decoration !== "overline",
-      [color]: color,
+      [align || ""]: align,
+      [decoration || ""]: decoration && decoration !== "overline",
+      [color || ""]: color,
       // only because "overline" is technically one of the valid material design types :/
       "overline-decoration": decoration === "overline",
-      [transform]: transform,
-      [weight]: weight,
+      [transform || ""]: transform,
+      [weight || ""]: weight,
+      [fontStyle || ""]: fontStyle,
     }),
     propClassName
   );
@@ -287,14 +293,8 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
       align: PropTypes.oneOf(["", "left", "center", "right"]),
-      decoration: PropTypes.oneOf([
-        "",
-        "underline",
-        "overline",
-        "line-through",
-      ]),
+      decoration: PropTypes.oneOf(["underline", "overline", "line-through"]),
       weight: PropTypes.oneOf([
-        "",
         "thin",
         "light",
         "regular",
@@ -305,7 +305,6 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       transform: PropTypes.oneOf(["", "capitalize", "uppercase", "lowercase"]),
       color: PropTypes.oneOf([
-        "",
         "secondary",
         "hint",
         "theme-primary",
@@ -314,6 +313,7 @@ if (process.env.NODE_ENV !== "production") {
         "theme-error",
       ]),
       margin: PropTypes.oneOf(["initial", "none", "top", "bottom"]),
+      fontStyle: PropTypes.oneOf(["normal", "italic", "oblique"]),
     };
   } catch (e) {}
 }
