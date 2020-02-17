@@ -18,6 +18,8 @@ import BlockedFields from './BlockedFields';
 import BlockedFieldsRaw from '!!raw-loader!./BlockedFields.jsx';
 import FormExample from './FormExample';
 import FormExampleRaw from '!!raw-loader!./FormExample.jsx';
+import SeparateIcons from './SeparateIcons.jsx';
+import SeparateIconsRaw from '!!raw-loader!./SeparateIcons.jsx';
 
 const examples = [{
   title: 'Floating Label Text Fields',
@@ -56,6 +58,16 @@ toggle button.
   `,
   code: InlineIconsRaw,
   children: <InlineIcons />,
+}, {
+  title: 'Separate Icons for Password Visibility',
+  description: `
+The \`passwordIcon\` prop may alternatively be supplied two separate icons by setting the prop as an object.
+It should have two keys, \`invisible\` and \`visible\`, with an element for each key's value.
+
+When password is visible, the visible icon will load, and likewise the invisible icon will load when password is not visible.
+`,
+  code: SeparateIconsRaw,
+  children: <SeparateIcons />,
 }, {
   title: 'Disabled Text Fields',
   description: `
