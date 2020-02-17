@@ -789,15 +789,18 @@ export default class TextField extends PureComponent {
     const passwordIcon = getDeprecatedIcon(passwordIconClassName, passwordIconChildren, propPasswordIcon);
     if (passwordIcon !== null && type === 'password' && !disabled) {
       let passwordIconProp = passwordIcon;
+      let doubleIcon = false;
       if (passwordIcon.invisible && passwordIcon.visible) {
         passwordIconProp = passwordVisible
           ? passwordIcon.visible : passwordIcon.invisible;
+        doubleIcon = true;
       }
       rightIcon = (
         <PasswordButton
           key="password-btn"
           onClick={this._togglePasswordField}
           active={active}
+          doubleIcon={doubleIcon}
           passwordVisible={passwordVisible}
           icon={passwordIconProp}
           block={block}

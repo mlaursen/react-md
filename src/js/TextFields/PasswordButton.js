@@ -8,6 +8,7 @@ import themeColors from '../utils/themeColors';
 export default class PasswordButton extends PureComponent {
   static propTypes = {
     active: PropTypes.bool,
+    doubleIcon: PropTypes.bool,
     passwordVisible: PropTypes.bool,
     icon: PropTypes.element,
     block: PropTypes.bool,
@@ -40,6 +41,7 @@ export default class PasswordButton extends PureComponent {
     const { keyboardFocus } = this.state;
     const {
       active,
+      doubleIcon,
       passwordVisible,
       block,
       floating,
@@ -55,7 +57,8 @@ export default class PasswordButton extends PureComponent {
         type="button"
         className={cn('md-text-field-inline-indicator md-password-btn md-pointer--hover', {
           'md-password-btn--focus': keyboardFocus,
-          'md-password-btn--invisible': active && !passwordVisible,
+          'md-password-btn--invisible':
+            !doubleIcon && (active && !passwordVisible),
           'md-text-field-inline-indicator--floating': floating,
           'md-text-field-inline-indicator--block': block,
         }, themeColors({ disabled: !active, hint: active }))}
