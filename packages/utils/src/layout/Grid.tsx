@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import cn from "classnames";
 
-import { bem } from "../css";
+import bem from "../bem";
 import useAppSize from "../sizing/useAppSize";
 import GridCell from "./GridCell";
 

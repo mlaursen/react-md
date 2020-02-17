@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import cn from "classnames";
 
-import bem from "../css/bem";
+import bem from "../bem";
 
 export interface GridListCellProps extends HTMLAttributes<HTMLDivElement> {
   /**

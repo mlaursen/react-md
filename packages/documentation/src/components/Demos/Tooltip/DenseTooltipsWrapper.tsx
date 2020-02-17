@@ -1,12 +1,13 @@
 import React, { FC, useState, useEffect, useRef } from "react";
 import scssVariables from "@react-md/tooltip/dist/scssVariables";
-import {
-  CSSVariable,
-  useDocumentCSSVariables,
-  useUserInteractionMode,
-} from "@react-md/utils";
+import { useUserInteractionMode } from "@react-md/utils";
 
-const VARIABLES = [
+interface CSSVariable {
+  name: string;
+  value: string;
+}
+
+const VARIABLES: CSSVariable[] = [
   {
     name: "rmd-tooltip-font-size",
     value: scssVariables["rmd-tooltip-font-size"],
@@ -30,10 +31,11 @@ const VARIABLES = [
 ];
 
 /**
- * Whew. This is more difficult than it should have been... So since tooltips get portalled, I can't actually
- * just add a class name to the container element and have all tooltips with the styles updated there. To
- * work around that, I have this wrapper that will remove the "dense" spec that gets applied through scss
- * only while the DenseTooltips example is being interacted with.
+ * Whew. This is more difficult than it should have been... So since tooltips
+ * get portalled, I can't actually just add a class name to the container
+ * element and have all tooltips with the styles updated there. To work around
+ * that, I have this wrapper that will remove the "dense" spec that gets applied
+ * through scss only while the DenseTooltips example is being interacted with.
  */
 const DenseTooltipsWrapper: FC = ({ children }) => {
   const [variables, setVariables] = useState<CSSVariable[]>([]);
@@ -75,7 +77,18 @@ const DenseTooltipsWrapper: FC = ({ children }) => {
     };
   }, [variables, mode]);
 
-  useDocumentCSSVariables(variables);
+  useEffect(() => {
+    const { style } = document.documentElement;
+    variables.forEach(variable => {
+      style.setProperty(variable.name, variable.value);
+    });
+
+    return () => {
+      variables.forEach(variable => {
+        style.setProperty(variable.name, "");
+      });
+    };
+  }, [variables]);
   return (
     <div
       ref={container}

@@ -1,5 +1,4 @@
 export * from "./colors";
-export * from "./css";
 export * from "./events";
 export * from "./interaction";
 export * from "./layout";
@@ -8,6 +7,7 @@ export * from "./sizing";
 export * from "./positioning";
 export * from "./wia-aria";
 
+export { default as bem } from "./bem";
 export { default as omit } from "./omit";
 export { default as defaults } from "./defaults";
 export { default as scrollIntoView } from "./scrollIntoView";

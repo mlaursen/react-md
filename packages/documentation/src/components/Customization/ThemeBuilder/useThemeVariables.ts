@@ -1,10 +1,16 @@
 import { useMemo } from "react";
-import { CSSVariable, HexString, isContrastCompliant } from "@react-md/utils";
+import { HexString, isContrastCompliant } from "@react-md/utils";
 
 import {
   DEFAULT_PRIMARY_COLOR,
   DEFAULT_SECONDARY_COLOR,
 } from "components/Theme/useTheme";
+
+type CSSVariableValue = string | number | null;
+interface CSSVariable {
+  name: string;
+  value: CSSVariableValue;
+}
 
 export default function useThemeVariables(
   primaryColor: HexString,

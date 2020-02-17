@@ -7,7 +7,6 @@ import {
   Grid,
   GridCell,
   HexString,
-  UpdateRMDVariables,
 } from "@react-md/utils";
 
 import {
@@ -88,6 +87,19 @@ const ThemeConfiguration: FC<ThemeConfigurationProps> = ({
     setCompliance("large");
   }, [reset]);
 
+  useEffect(() => {
+    const { style } = document.documentElement;
+    variables.forEach(variable => {
+      style.setProperty(variable.name, `${variable.value}`);
+    });
+
+    return () => {
+      variables.forEach(variable => {
+        style.setProperty(variable.name, "");
+      });
+    };
+  }, [variables]);
+
   return (
     <GridCell clone>
       <Form>
@@ -163,7 +175,6 @@ const ThemeConfiguration: FC<ThemeConfigurationProps> = ({
         >
           Reset
         </Button>
-        <UpdateRMDVariables variables={variables} />
       </Form>
     </GridCell>
   );
