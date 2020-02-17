@@ -22,6 +22,9 @@ describe('PasswordButton', () => {
 
     button.setProps({ floating: false, block: true });
     expect(button.render()).toMatchSnapshot();
+
+    button.setProps({ doubleIcon: true });
+    expect(button.render()).toMatchSnapshot();
   });
 
   it('should update the keyboardFocus state when the TAB key is pressed', () => {
