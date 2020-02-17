@@ -23,7 +23,10 @@ export interface SharedTextFieldProps {
   leftIconStateful?: boolean;
   rightIcon?: React.ReactElement<any>;
   rightIconStateful?: boolean;
-  passwordIcon?: React.ReactElement<any>;
+  passwordIcon?: React.ReactElement<any> | {
+    invisible: React.ReactElement<any>;
+    visible: React.ReactElement<any>;
+  };
   passwordInitiallyVisible?: boolean;
   fullWidth?: boolean;
   rows?: number;

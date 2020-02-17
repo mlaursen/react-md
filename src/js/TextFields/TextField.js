@@ -274,8 +274,17 @@ export default class TextField extends PureComponent {
 
     /**
      * The icon to use for a password text field.
+     *
+     * Alternatively, two separate elements may be used to change between
+     * them based on the value of the `passwordVisible` state variable.
      */
-    passwordIcon: PropTypes.element,
+    passwordIcon: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.shape({
+        invisible: PropTypes.element,
+        visible: PropTypes.element,
+      }),
+    ]),
 
     /**
      * Boolean if the password is initially visible.
@@ -779,13 +788,18 @@ export default class TextField extends PureComponent {
     leftIcon = this._cloneIcon(icon || leftIcon, active, error, disabled, leftIconStateful, block, 'left');
     const passwordIcon = getDeprecatedIcon(passwordIconClassName, passwordIconChildren, propPasswordIcon);
     if (passwordIcon !== null && type === 'password' && !disabled) {
+      let passwordIconProp = passwordIcon;
+      if (passwordIcon.invisible && passwordIcon.visible) {
+        passwordIconProp = passwordVisible
+          ? passwordIcon.visible : passwordIcon.invisible;
+      }
       rightIcon = (
         <PasswordButton
           key="password-btn"
           onClick={this._togglePasswordField}
           active={active}
           passwordVisible={passwordVisible}
-          icon={passwordIcon}
+          icon={passwordIconProp}
           block={block}
           floating={!!label}
         />
