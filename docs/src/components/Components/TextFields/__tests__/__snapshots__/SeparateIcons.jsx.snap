@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SeparateIcons should render correctly 1`] = `
+<div
+  class="md-grid text-fields"
+>
+  <div
+    class="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--bottom"
+  >
+    <label
+      class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
+      for="password-field-two-icons-with-font-icon"
+    >
+      Password with FontIcon
+    </label>
+    <input
+      class="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"
+      id="password-field-two-icons-with-font-icon"
+      type="password"
+    />
+    <hr
+      class="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+    <button
+      class="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text-field-inline-indicator--floating md-text--disabled"
+      type="button"
+    >
+      <i
+        class="md-icon material-icons"
+      >
+        visibility_off
+      </i>
+    </button>
+  </div>
+  <div
+    class="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--bottom"
+  >
+    <label
+      class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
+      for="password-field-two-icons-with-svg-icon"
+    >
+      Password with SVG
+    </label>
+    <input
+      class="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"
+      id="password-field-two-icons-with-svg-icon"
+      type="password"
+    />
+    <hr
+      class="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+    <button
+      class="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text-field-inline-indicator--floating md-text--disabled"
+      type="button"
+    >
+      <svg
+        class="md-icon"
+        focusable="false"
+        role="img"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </button>
+  </div>
+  <div
+    class="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--bottom"
+  >
+    <label
+      class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
+      for="password-field-two-icons-with-alt-svg-icon"
+    >
+      Password with Alternate SVG
+    </label>
+    <input
+      class="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"
+      id="password-field-two-icons-with-alt-svg-icon"
+      type="password"
+    />
+    <hr
+      class="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+    <button
+      class="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text-field-inline-indicator--floating md-text--disabled"
+      type="button"
+    >
+      <svg
+        class="md-icon"
+        focusable="false"
+        role="img"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+    </button>
+  </div>
+</div>
+`;

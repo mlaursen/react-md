@@ -402,6 +402,20 @@ describe('TextField', () => {
     expect(field.find(PasswordButton).length).toBe(0);
   });
 
+  it('should render two different elements if password icon has invisible and visible keys', () => {
+    const field = mount(
+      <TextField
+        id="test-field"
+        passwordIcon={{
+          invisible: <FontIcon>visibility_off</FontIcon>,
+          visible: <FontIcon>visibility</FontIcon>,
+        }}
+        type="password"
+      />
+    );
+    expect(field.find(PasswordButton).length).toBe(1);
+  });
+
   describe('resizing', () => {
     beforeEach(() => {
       getTextWidth.mockClear();
