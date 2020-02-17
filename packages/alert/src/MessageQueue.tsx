@@ -72,7 +72,7 @@ function MessageQueue<M extends ToastMessage = ToastMessage>({
           <MessageQueueContext.Provider value={queue}>
             {children}
           </MessageQueueContext.Provider>
-          <SnackbarQueue<M> {...props} queue={queue} />
+          <SnackbarQueue {...props} queue={queue} />
         </MessageVisibilityContext.Provider>
       </MessageQueueActionsContext.Provider>
     </AddMessageContext.Provider>

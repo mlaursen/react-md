@@ -1,4 +1,10 @@
-import React, { isValidElement, ReactElement, ReactNode, Ref } from "react";
+import React, {
+  isValidElement,
+  ReactElement,
+  ReactNode,
+  Ref,
+  forwardRef,
+} from "react";
 import { Button, ButtonProps } from "@react-md/button";
 
 import {
@@ -43,7 +49,7 @@ function getId(
  *
  * @private
  */
-export default function SnackbarQueue<M extends ToastMessage = ToastMessage>(
+function SnackbarQueue<M extends ToastMessage = ToastMessage>(
   { queue, onActionClick, ...props }: SnackbarQueueProps<M>,
   ref?: Ref<HTMLDivElement>
 ): ReactElement {
@@ -121,3 +127,8 @@ export default function SnackbarQueue<M extends ToastMessage = ToastMessage>(
     </Snackbar>
   );
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default forwardRef<HTMLDivElement, SnackbarQueueProps<any>>(
+  SnackbarQueue
+);
