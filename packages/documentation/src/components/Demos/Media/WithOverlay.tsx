@@ -1,5 +1,6 @@
 import React, { FC, Fragment } from "react";
 import {
+  LazyImage,
   MediaContainer,
   MediaOverlay,
   MediaOverlayPosition,
@@ -26,9 +27,8 @@ const WithOverlay: FC = () => (
         width={16}
         className="responsive-item"
       >
-        <img
+        <LazyImage
           src={`https://picsum.photos/800/800?image=43${i}`}
-          alt=""
           aria-describedby={`overlay-container-overlay-${i}`}
         />
         <MediaOverlay id={`overlay-container-overlay-${i}`} position={position}>

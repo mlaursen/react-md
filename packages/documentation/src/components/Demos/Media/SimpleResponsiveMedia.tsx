@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { MediaContainer } from "@react-md/media";
+import { LazyImage, MediaContainer } from "@react-md/media";
 
 import "./SimpleResponsiveMedia.scss";
 
@@ -14,11 +14,7 @@ const SimpleResponsiveImages: FC = () => (
   <Fragment>
     {images.map((image, i) => (
       <MediaContainer key={i} className="responsive-item">
-        <img
-          src={`https://picsum.photos${image}`}
-          role="presentation"
-          alt="From https://picsum.photos"
-        />
+        <LazyImage src={`https://picsum.photos${image}`} />
       </MediaContainer>
     ))}
   </Fragment>

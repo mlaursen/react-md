@@ -15,9 +15,9 @@ const options = desserts.map(({ name, calories }, i) => ({
   value: `dessert-${i}`,
   children: (
     <Fragment>
-      <strong>{name.substring(0, 3)}</strong>
+      <span className="rmd-typography--bold">{name.substring(0, 3)}</span>
       {name.substring(3)}
-      <i>{` (${calories} kcal)`}</i>
+      <span className="rmd-typography--italic">{` (${calories} kcal)`}</span>
     </Fragment>
   ),
 }));

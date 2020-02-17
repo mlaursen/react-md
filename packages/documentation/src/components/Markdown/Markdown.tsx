@@ -3,10 +3,11 @@ import React, {
   FC,
   Fragment,
   HTMLAttributes,
-  useCallback,
   useEffect,
   useMemo,
   useState,
+  useRef,
+  MutableRefObject,
 } from "react";
 import cn from "classnames";
 import Router from "next/router";
@@ -53,46 +54,84 @@ function useHTML(children: MarkdownChildren): DangerHTML {
   return html;
 }
 
-function useLinkUpdates({
+function useCustomMarkdownBehavior({
   __html: html,
-}: DangerHTML): (instance: HTMLDivElement | null) => void {
-  return useCallback(
-    (instance: HTMLDivElement | null) => {
-      if (!instance) {
+}: DangerHTML): MutableRefObject<HTMLDivElement | null> {
+  const ref = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const instance = ref.current;
+    if (!instance) {
+      return;
+    }
+
+    const { origin } = window.location;
+    const links = Array.from(
+      instance.querySelectorAll<HTMLAnchorElement>("a[href]")
+    );
+
+    links.forEach(link => {
+      if (link.href.startsWith(origin)) {
+        link.onclick = event => {
+          event.preventDefault();
+          const href = link.href.replace(origin, "");
+
+          // convert the href into an as+href if it's a known guide
+          const [, guide] = href.match(/\/guides\/([a-z]+(-[a-z]+)*)$/) || [
+            "",
+            "",
+          ];
+
+          if (guide) {
+            Router.push(href.replace(guide, "[id]"), href);
+          } else {
+            Router.push(href);
+          }
+        };
+      }
+    });
+
+    if (typeof IntersectionObserver === "undefined") {
+      return;
+    }
+
+    const lazyElements = Array.from(
+      instance.querySelectorAll<HTMLIFrameElement>("iframe, img")
+    );
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const element = entry.target as HTMLIFrameElement | HTMLIFrameElement;
+        // guarenteed to have a data-src by this point
+        element.src = element.dataset.src as string;
+      });
+    });
+
+    lazyElements.forEach(element => {
+      const { src } = element.dataset;
+      if (!src) {
+        if (process.env.NODE_ENV !== "production") {
+          /* eslint-disable no-console */
+          console.warn(
+            "Found an image or iframe without a `data-src` which means the iframe can't be lazy loaded."
+          );
+          console.warn(element);
+        }
         return;
       }
 
-      const { origin } = window.location;
-      const links = Array.from(
-        instance.querySelectorAll<HTMLAnchorElement>("a[href]")
-      );
+      observer.observe(element);
+    });
 
-      links.forEach(link => {
-        if (link.href.startsWith(origin)) {
-          link.onclick = event => {
-            event.preventDefault();
-            const href = link.href.replace(origin, "");
+    return () => {
+      observer.disconnect();
+    };
+  }, [html]);
 
-            // convert the href into an as+href if it's a known guide
-            const [, guide] = href.match(/\/guides\/([a-z]+(-[a-z]+)*)$/) || [
-              "",
-              "",
-            ];
-
-            if (guide) {
-              Router.push(href.replace(guide, "[id]"), href);
-            } else {
-              Router.push(href);
-            }
-          };
-        }
-      });
-    },
-    // disable this rule because we want to force remaking the links
-    // if the html was updated
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [html]
-  );
+  return ref;
 }
 
 export type ResolveMarkdown = () => Promise<string | { default: string }>;
@@ -110,7 +149,8 @@ const Markdown: FC<MarkdownProps> = ({
   ...props
 }) => {
   const html = useHTML(children);
-  const ref = useLinkUpdates(html);
+  const ref = useCustomMarkdownBehavior(html);
+
   return (
     <Fragment>
       <GoogleFont font="Source Code Pro" />

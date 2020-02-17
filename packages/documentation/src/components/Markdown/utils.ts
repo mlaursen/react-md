@@ -167,7 +167,7 @@ renderer.image = (href, title, alt) => {
   return (
     `<a href="${href}">` +
     '<div class="rmd-media-container rmd-media-container--auto">' +
-    `<img src="${href}" alt="${alt}" title="${title || alt}" />` +
+    `<img data-src="${href}" alt="${alt}" title="${title || alt}" />` +
     "</div>" +
     "</a>"
   );

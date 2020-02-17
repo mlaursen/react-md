@@ -11,6 +11,7 @@ import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
 import { Label } from "@react-md/form";
 import { AddCircleSVGIcon } from "@react-md/material-icons";
+import { LazyImage } from "@react-md/media";
 import { PositionAnchor } from "@react-md/utils";
 
 import contacts, { Contact } from "./contacts";
@@ -33,7 +34,11 @@ const To: FC<ToProps> = ({ isTouch }) => {
         .filter(({ id }) => !chips.find(chip => chip.id === id))
         .map(({ name, avatar, email }) => ({
           label: name,
-          leftAvatar: <Avatar src={avatar} />,
+          leftAvatar: (
+            <Avatar>
+              <LazyImage src={avatar} />
+            </Avatar>
+          ),
           secondaryText: email,
         })),
     [chips]
@@ -67,7 +72,11 @@ const To: FC<ToProps> = ({ isTouch }) => {
         {chips.map(({ id, name, avatar }) => (
           <Chip
             key={id}
-            leftIcon={<Avatar src={avatar} />}
+            leftIcon={
+              <Avatar>
+                <LazyImage src={avatar} />
+              </Avatar>
+            }
             rightIcon={<AddCircleSVGIcon className={styles("remove")} />}
             className={styles("chip")}
             onClick={() =>

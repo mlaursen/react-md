@@ -49,7 +49,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport { FontIcon } from \"@react-md/icon\";\nimport { NoteSVGIcon } from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container>\n    <Avatar\n      src=\"https://picsum.photos/40/40?image=153\"\n      alt=\"An image from https://picsum.photos\"\n    />\n    <Avatar\n      src=\"https://picsum.photos/40/40?image=103\"\n      alt=\"An image from https://picsum.photos\"\n      color=\"blue\"\n    />\n    <Avatar>A</Avatar>\n    <Avatar color=\"orange\">PL</Avatar>\n    <Avatar color=\"red\">\n      <FontIcon>favorite</FontIcon>\n    </Avatar>\n    <Avatar color=\"teal\">\n      <NoteSVGIcon />\n    </Avatar>\n  </Container>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport { FontIcon } from \"@react-md/icon\";\nimport { NoteSVGIcon } from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container>\n    <Avatar src=\"https://picsum.photos/40/40?image=153\" />\n    <Avatar src=\"https://picsum.photos/40/40?image=103\" color=\"blue\" />\n    <Avatar>A</Avatar>\n    <Avatar color=\"orange\">PL</Avatar>\n    <Avatar color=\"red\">\n      <FontIcon>favorite</FontIcon>\n    </Avatar>\n    <Avatar color=\"teal\">\n      <NoteSVGIcon />\n    </Avatar>\n  </Container>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/Container.scss": {

@@ -8,10 +8,12 @@ import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
 import { Label } from "@react-md/form";
 import { AddCircleSVGIcon } from "@react-md/material-icons";
+import { LazyImage } from "@react-md/media";
 import { bem, PositionAnchor, useResizeObserver } from "@react-md/utils";
 
 import people from "constants/people";
 import createIdGenerator from "utils/createIdGenerator";
+
 import "./InputChips.scss";
 
 const styles = bem("input-chips");
@@ -41,7 +43,11 @@ const contacts = Array.from(people, (name, i) => ({
 const data = Object.values(contacts).map(({ id, name, email, avatar }) => ({
   id,
   label: name,
-  leftAvatar: <Avatar src={avatar} />,
+  leftAvatar: (
+    <Avatar>
+      <LazyImage src={avatar} />
+    </Avatar>
+  ),
   secondaryText: email,
 }));
 
@@ -83,7 +89,11 @@ const InputChips: FC = () => {
         {chips.map(({ id, name, avatar }) => (
           <Chip
             key={id}
-            leftIcon={<Avatar src={avatar} />}
+            leftIcon={
+              <Avatar>
+                <LazyImage src={avatar} />
+              </Avatar>
+            }
             rightIcon={<AddCircleSVGIcon className={styles("remove")} />}
             className={styles("chip")}
             onClick={() =>

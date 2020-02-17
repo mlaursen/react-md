@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { List, ListItem } from "@react-md/list";
 import { StarSVGIcon } from "@react-md/material-icons";
+import { LazyImage } from "@react-md/media";
 
 import Container from "./Container";
 
@@ -32,7 +33,10 @@ const ThreeLineExamples: FC = () => (
           id={`three-line-item-${i}`}
           key={i}
           leftMedia={
-            <img src={`https://picsum.photos/40?image=100${i}`} alt="" />
+            <LazyImage
+              src={`https://picsum.photos/40?image=100${i}`}
+              responsive
+            />
           }
           rightIcon={<StarSVGIcon />}
           rightPosition="top"

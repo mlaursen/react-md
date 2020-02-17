@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import React, { Fragment, FC, useState } from "react";
+import React, { FC, Fragment, useState } from "react";
 import { AppBar, AppBarNav } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
 import { ArrowBackSVGIcon } from "@react-md/material-icons";
-import { MediaContainer } from "@react-md/media";
+import { LazyImage, MediaContainer } from "@react-md/media";
 
 import AppBarTitle from "components/AppBarTitle";
-
 import "./FullPageExample.scss";
 
 // just grabbed some "large" images from https://picsum.photos/list
@@ -143,15 +142,15 @@ const FullPageExample: FC = () => {
   };
   return (
     <Fragment>
-      {previews.map(({ src, id }) => (
+      {previews.map(({ src, id }, i) => (
         <MediaContainer key={id}>
           <Button
             id={`image-preview-${id}`}
             onClick={show}
-            aria-label={`Show image ${id}`}
+            aria-label={`Show image ${i + 1}`}
             className="dialog-image-preview-item"
           >
-            <img src={src} role="presentation" alt="" />
+            <LazyImage src={src} />
           </Button>
         </MediaContainer>
       ))}
@@ -175,7 +174,6 @@ const FullPageExample: FC = () => {
             <img
               src={`https://picsum.photos/id/${imageId}/${width}/${height}`}
               alt=""
-              role="presentation"
             />
           </MediaContainer>
         </DialogContent>

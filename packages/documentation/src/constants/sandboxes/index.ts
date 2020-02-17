@@ -260,6 +260,8 @@ const sandboxes: Sandboxes = {
       resolve(import("./Transition-CollapseExamples.json")),
     CrossFadeExamples: () =>
       resolve(import("./Transition-CrossFadeExamples.json")),
+    CrossFadeHookExample: () =>
+      resolve(import("./Transition-CrossFadeHookExample.json")),
     FixedPositioningExample: () =>
       resolve(import("./Transition-FixedPositioningExample.json")),
   },

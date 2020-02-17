@@ -7,15 +7,8 @@ import Container from "./Container";
 
 const SimpleUsage: FC = () => (
   <Container>
-    <Avatar
-      src="https://picsum.photos/40/40?image=153"
-      alt="An image from https://picsum.photos"
-    />
-    <Avatar
-      src="https://picsum.photos/40/40?image=103"
-      alt="An image from https://picsum.photos"
-      color="blue"
-    />
+    <Avatar src="https://picsum.photos/40/40?image=153" />
+    <Avatar src="https://picsum.photos/40/40?image=103" color="blue" />
     <Avatar>A</Avatar>
     <Avatar color="orange">PL</Avatar>
     <Avatar color="red">

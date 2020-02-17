@@ -14,7 +14,7 @@ const states = immutableStates.map(({ name, abbreviation }, i) => ({
   value: abbreviation,
   children: (
     <span>
-      {name} (<i>{abbreviation}</i>)
+      {name} (<span className="rmd-typography--italic">{abbreviation}</span>)
     </span>
   ),
   rightIcon: <CloseSVGIcon />,

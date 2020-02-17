@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/media/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
@@ -24,6 +24,7 @@
         "@react-md/app-bar": "next",
         "@react-md/divider": "next",
         "@react-md/layout": "next",
+        "@react-md/media": "next",
         "@react-md/states": "next",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
@@ -47,7 +48,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport { VerticalDivider } from \"@react-md/divider\";\nimport { Text } from \"@react-md/typography\";\n\nimport \"./VerticalDividers.scss\";\n\nconst Demo: FC = () => (\n  <AppBar theme=\"default\">\n    <img\n      src=\"https://picsum.photos/80/48?image=815\"\n      alt=\"Logo\"\n      className=\"vertical-dividers-logo\"\n    />\n    <VerticalDivider />\n    <Text type=\"headline-5\">Company Name</Text>\n    <VerticalDivider maxHeight={0.6} />\n  </AppBar>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport { VerticalDivider } from \"@react-md/divider\";\nimport { LazyImage } from \"@react-md/media\";\nimport { Text } from \"@react-md/typography\";\n\nimport \"./VerticalDividers.scss\";\n\nconst Demo: FC = () => (\n  <AppBar theme=\"default\">\n    <LazyImage\n      src=\"https://picsum.photos/80/48?image=815\"\n      alt=\"Logo\"\n      className=\"vertical-dividers-logo\"\n    />\n    <VerticalDivider />\n    <Text type=\"headline-5\">Company Name</Text>\n    <VerticalDivider maxHeight={0.6} />\n  </AppBar>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/VerticalDividers.scss": {
