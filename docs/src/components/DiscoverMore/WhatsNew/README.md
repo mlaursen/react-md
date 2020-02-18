@@ -1,3 +1,10 @@
+## February 2020
+
+### v1.15.0 Release
+
+- Updated the `TextField`'s `passwordIcon` prop to support a custom `visible` and `invisible`
+  icon for additional customization. ([@jhlav] - [pull-864])
+
 ## January 2020
 
 ### v1.14.1 Release
