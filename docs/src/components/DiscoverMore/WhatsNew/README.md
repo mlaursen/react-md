@@ -1,5 +1,10 @@
 ## February 2020
 
+### v1.15.1 Release
+
+- Re-published the `v1.15.0` release as `v1.15.1` since I forgot to update the `Version`.
+  [commit-21e0dca]
+
 ### v1.15.0 Release
 
 - Updated the `TextField`'s `passwordIcon` prop to support a custom `visible` and `invisible`
