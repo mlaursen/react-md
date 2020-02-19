@@ -266,27 +266,26 @@ function Select(
         case "Enter": {
           const form = event.currentTarget.closest("form");
           if (form) {
-            // the default behavior of pressing the "Enter" key on a form control (input, textarea, select)
-            // is to submit a form, so that's what this is attempting to polyfill. Unfortunately, using the
-            // form.submit() ignores any `onSubmit` handlers like event.preventDefault() so to work around that,
-            // try to first find a submit button and click that instead. If there isn't a submit button, create
-            // one with an amazing hacky id and click it.
-            const submit = form.querySelector<HTMLButtonElement>(
+            // the default behavior of pressing the "Enter" key on a form
+            // control (input, textarea, select) is to submit a form, so that's
+            // what this is attempting to polyfill. Unfortunately, using the
+            // form.submit() ignores any `onSubmit` handlers like
+            // event.preventDefault() so to work around that, try to first find
+            // a submit button and click that instead. If there isn't a submit
+            // button as a child of the form, try to find a submit button that
+            // has the form attribute set to this current form's id.
+            let submit = form.querySelector<HTMLButtonElement>(
               '[type="submit"]'
             );
 
+            if (!submit && form.id) {
+              submit = document.querySelector(
+                `[type="submit"][form="${form.id}"]`
+              );
+            }
+
             if (submit) {
               submit.click();
-            } else {
-              const tempSubmit = document.createElement("button");
-              tempSubmit.setAttribute("type", "submit");
-              tempSubmit.setAttribute(
-                "id",
-                `${form.id}-${event.currentTarget.id}-submit-hack`
-              );
-              form.appendChild(tempSubmit);
-              tempSubmit.click();
-              form.removeChild(tempSubmit);
             }
           }
           break;
