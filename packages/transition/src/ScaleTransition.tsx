@@ -1,38 +1,16 @@
 import React, { ReactElement, ReactNode } from "react";
-import CSSTransition, {
-  CSSTransitionClassNames,
-} from "react-transition-group/CSSTransition";
+import CSSTransition from "react-transition-group/CSSTransition";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
 
-import { OverridableCSSTransitionProps, TransitionTimeout } from "./types";
-
-export const SCALE_CLASSNAMES: CSSTransitionClassNames = {
-  appear: "rmd-transition--scale-enter",
-  appearActive: "rmd-transition--scale-enter-active",
-  enter: "rmd-transition--scale-enter",
-  enterActive: "rmd-transition--scale-enter-active",
-  enterDone: "",
-  exit: "rmd-transition--scale-exit",
-  exitActive: "rmd-transition--scale-exit-active",
-};
-
-export const SCALE_Y_CLASSNAMES: CSSTransitionClassNames = {
-  appear: "rmd-transition--scale-y-enter",
-  appearActive: "rmd-transition--scale-y-enter-active",
-  enter: "rmd-transition--scale-y-enter",
-  enterActive: "rmd-transition--scale-y-enter-active",
-  enterDone: "",
-  exit: "rmd-transition--scale-y-exit",
-  exitActive: "rmd-transition--scale-y-exit-active",
-};
-
-export const SCALE_TIMEOUT: TransitionTimeout = {
-  enter: 200,
-  exit: 150,
-};
+import {
+  SCALE_CLASSNAMES,
+  SCALE_TIMEOUT,
+  SCALE_Y_CLASSNAMES,
+} from "./constants";
+import { OverridableCSSTransitionProps } from "./types";
 
 export interface ScaleTransitionProps
   extends OverridableCSSTransitionProps,
@@ -71,7 +49,7 @@ function ScaleTransition({
   visible,
   children,
   classNames: propClassNames,
-  vertical,
+  vertical = false,
   timeout = SCALE_TIMEOUT,
   portal = false,
   portalInto,

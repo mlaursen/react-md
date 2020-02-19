@@ -19,6 +19,7 @@ import {
   ArrowUpwardSVGIcon,
   CheckSVGIcon,
 } from "@react-md/material-icons";
+import { ENTER, useCrossFade } from "@react-md/transition";
 import { AppSizeListenerProps } from "@react-md/utils";
 
 import LinkUnstyled from "components/LinkUnstyled";
@@ -69,6 +70,14 @@ const Layout: FC<LayoutProps> = ({
     setElevated(pathname !== "/");
   }, [pathname]);
 
+  const prevPathname = useRef(pathname);
+  const [, transitionProps, dispatch] = useCrossFade();
+  const { ref: mainRef, className: mainClassName } = transitionProps;
+  if (prevPathname.current !== pathname) {
+    prevPathname.current = pathname;
+    dispatch(ENTER);
+  }
+
   return (
     <Configuration defaultSize={defaultSize} icons={icons}>
       <TOCVisibilityProvider pathname={pathname}>
@@ -81,6 +90,8 @@ const Layout: FC<LayoutProps> = ({
           navHeaderClassName="layout-nav-header"
           appBarChildren={<Actions />}
           linkComponent={LinkUnstyled}
+          mainRef={mainRef}
+          mainClassName={mainClassName}
         >
           <TableOfContents pathname={pathname} />
           <Provider value={setElevated}>{children}</Provider>

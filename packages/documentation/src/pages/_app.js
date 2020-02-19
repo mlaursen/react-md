@@ -5,7 +5,6 @@ import Head from 'next/head';
 import Router from 'next/router';
 import MobileDetect from 'mobile-detect';
 import Cookie from 'js-cookie';
-import { CrossFade } from '@react-md/transition';
 import {
   DEFAULT_APP_SIZE,
   DEFAULT_PHONE_MAX_WIDTH,
@@ -81,16 +80,8 @@ export default class App extends NextApp {
 
   initialPageScroll = true;
 
-  /**
-   * This is kind of a hack here as this is used to be able to add the cross fade animation
-   * only after the first render. This makes it so that server side rendering and initial
-   * page render won't cause the animation, but all other pathname changes will (using `key={pathname}`)
-   */
-  rendered = false;
-
   componentDidMount() {
     this.smoothScroll(window.location.href);
-    this.rendered = true;
 
     Router.events.on('hashChangeStart', this.beforeChange);
     Router.events.on('hashChangeComplete', this.smoothScroll);
@@ -167,9 +158,7 @@ export default class App extends NextApp {
             pathname={pathname}
             title={pageTitle}
           >
-            <CrossFade appear={this.rendered} key={pathname}>
-              <Component {...componentProps} />
-            </CrossFade>
+            <Component {...componentProps} />
           </Layout>
         </Theme>
       </Fragment>

@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScaleTransition should allow for portalling 1`] = `
+<body>
+  <div />
+  <div
+    class="rmd-transition--scale-enter rmd-transition--scale-enter-active"
+    data-testid="div"
+  >
+    Some amazing content!
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should allow for portalling 2`] = `
+<body>
+  <div />
+  <div
+    class=""
+    data-testid="div"
+  >
+    Some amazing content!
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should render correctly for horizontal transitions 1`] = `<div />`;
+
+exports[`ScaleTransition should render correctly for horizontal transitions 2`] = `
+<div>
+  <div
+    class="rmd-transition--scale-enter rmd-transition--scale-enter-active"
+  >
+    Some amazing content
+  </div>
+</div>
+`;
+
+exports[`ScaleTransition should render correctly for horizontal transitions 3`] = `
+<div>
+  <div
+    class=""
+  >
+    Some amazing content
+  </div>
+</div>
+`;
+
+exports[`ScaleTransition should render correctly for horizontal transitions 4`] = `
+<div>
+  <div
+    class="rmd-transition--scale-exit rmd-transition--scale-exit-active"
+  >
+    Some amazing content
+  </div>
+</div>
+`;
+
+exports[`ScaleTransition should render correctly for horizontal transitions 5`] = `<div />`;
+
+exports[`ScaleTransition should render correctly for vertical transitions 1`] = `<div />`;
+
+exports[`ScaleTransition should render correctly for vertical transitions 2`] = `
+<div>
+  <div
+    class="rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
+  >
+    Some amazing content
+  </div>
+</div>
+`;
+
+exports[`ScaleTransition should render correctly for vertical transitions 3`] = `
+<div>
+  <div
+    class=""
+  >
+    Some amazing content
+  </div>
+</div>
+`;
+
+exports[`ScaleTransition should render correctly for vertical transitions 4`] = `
+<div>
+  <div
+    class="rmd-transition--scale-y-exit rmd-transition--scale-y-exit-active"
+  >
+    Some amazing content
+  </div>
+</div>
+`;
+
+exports[`ScaleTransition should render correctly for vertical transitions 5`] = `<div />`;

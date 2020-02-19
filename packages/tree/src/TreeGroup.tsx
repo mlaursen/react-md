@@ -21,12 +21,15 @@ function TreeGroup(
     minHeight,
     minPaddingBottom,
     minPaddingTop,
-    enterDuration,
-    leaveDuration,
-    isEmptyCollapsed = true,
-    onExpanded,
-    onCollapsed,
+    timeout,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
     children,
+    temporary,
     ...props
   }: TreeGroupProps,
   ref?: Ref<ListElement>
@@ -39,11 +42,14 @@ function TreeGroup(
       minHeight={minHeight}
       minPaddingBottom={minPaddingBottom}
       minPaddingTop={minPaddingTop}
-      enterDuration={enterDuration}
-      leaveDuration={leaveDuration}
-      isEmptyCollapsed={isEmptyCollapsed}
-      onExpanded={onExpanded}
-      onCollapsed={onCollapsed}
+      timeout={timeout}
+      onEnter={onEnter}
+      onEntering={onEntering}
+      onEntered={onEntered}
+      onExit={onExit}
+      onExiting={onExiting}
+      onExited={onExited}
+      temporary={temporary}
     >
       <List {...props} ref={ref} role="group">
         {children}
@@ -68,12 +74,22 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.string,
         PropTypes.number,
       ]),
-      enterDuration: PropTypes.number,
-      leaveDuration: PropTypes.number,
-      isEmptyCollapsed: PropTypes.bool,
+      timeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          appear: PropTypes.number,
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      temporary: PropTypes.bool,
       children: PropTypes.node,
-      onExpanded: PropTypes.func,
-      onCollapsed: PropTypes.func,
+      onEnter: PropTypes.func,
+      onEntering: PropTypes.func,
+      onEntered: PropTypes.func,
+      onExit: PropTypes.func,
+      onExiting: PropTypes.func,
+      onExited: PropTypes.func,
     };
   } catch (e) {}
 }

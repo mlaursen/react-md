@@ -1,7 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Collapse rendering should correctly merge class names 1`] = `
+<div
+  class="rmd-collapse test"
+  data-testid="div"
+>
+  Content
+</div>
+`;
+
 exports[`Collapse rendering should not render as null if any of minHeight, minPaddingTop, or minPaddingBottom are greater than 0 1`] = `
 <div>
-  <div />
+  <div
+    class="rmd-collapse rmd-collapse--no-overflow"
+    style="max-height: 1px; padding-top: 1px; padding-bottom: 1px;"
+  />
 </div>
 `;

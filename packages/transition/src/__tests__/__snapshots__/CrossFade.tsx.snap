@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CrossFade should allow for wrapping in a div to apply the transition instead of cloning into the child 1`] = `
+<div>
+  <div
+    class="rmd-cross-fade rmd-cross-fade--active"
+  >
+    <div>
+      My Amazing Content!
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CrossFade should automatically wrap if the children is not a valid element even if the wrap prop is false 1`] = `
+<div>
+  <div
+    class="rmd-cross-fade rmd-cross-fade--active"
+  >
+    My Amazing Content
+  </div>
+</div>
+`;
+
+exports[`CrossFade should be a simple wrapper for the useCrossFade hook that just sets the appear value to \`true\` 1`] = `
+<div
+  class="rmd-cross-fade rmd-cross-fade--active"
+  data-testid="div"
+>
+  Amazing content!
+</div>
+`;
+
+exports[`CrossFade should be a simple wrapper for the useCrossFade hook that just sets the appear value to \`true\` 2`] = `
+<div
+  class=""
+  data-testid="div"
+>
+  Amazing content!
+</div>
+`;

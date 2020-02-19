@@ -176,8 +176,8 @@ function ExpansionPanel(
       )}
       <Collapse
         collapsed={!expanded}
-        disabled={disableTransition}
-        isEmptyCollapsed={!persistent}
+        timeout={disableTransition ? 0 : undefined}
+        temporary={!persistent}
       >
         <CardContent
           id={contentId}

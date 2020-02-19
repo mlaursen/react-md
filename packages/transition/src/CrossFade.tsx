@@ -1,56 +1,147 @@
-import React, { ReactElement } from "react";
-import CSSTransition, {
-  CSSTransitionClassNames,
-  CSSTransitionProps,
-} from "react-transition-group/CSSTransition";
+import React, {
+  Children,
+  cloneElement,
+  forwardRef,
+  HTMLAttributes,
+  isValidElement,
+  ReactElement,
+  Ref,
+} from "react";
+import cn from "classnames";
+import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
+import { applyRef } from "@react-md/utils";
 
 import { TransitionTimeout } from "./types";
+import useCrossFade, { CrossFadeOptions } from "./useCrossFade";
 
-export type CrossFadeProps = Partial<CSSTransitionProps>;
+export interface CrossFadeProps
+  extends CrossFadeOptions<HTMLDivElement>,
+    HTMLAttributes<HTMLDivElement> {
+  /**
+   * The default behavior for the `CrossFade` is to clone a `ref` and
+   * `className` into the `children` if it is a single element to keep unneeded
+   * `<div>`s from being rendered in the DOM just for transition purposes.
+   * However, this means that the `children` must be a single element that
+   * forwards the `ref` correctly to a DOM node which might be a hassle.
+   *
+   * Enabling this prop will just update the `CrossFade` to wrap the `children`
+   * in a `<div>` and apply that transition to that instead.
+   *
+   * Note: The `HTMLAttributes` for the `HTMLDivElement` other than the
+   * `className` are only valid for this component when this prop is set to
+   * `true`.
+   */
+  wrap?: boolean;
 
-const DEFAULT_CROSS_FADE_TIMEOUT: TransitionTimeout = {
-  enter: 300,
-  exit: 0,
-};
+  /**
+   * The timeout to use for the cross fade animation. This should not be
+   * changed unless the `classNames` prop is also changed.
+   */
+  timeout?: TransitionTimeout;
 
-const DEFAULT_CROSS_FADE_CLASSNAMES: CSSTransitionClassNames = {
-  appear: "rmd-cross-fade",
-  appearActive: "rmd-cross-fade--active",
-  enter: "rmd-cross-fade",
-  enterActive: "rmd-cross-fade--active",
-};
+  /**
+   * The transition class names to use for the cross fade animation.
+   */
+  classNames?: CSSTransitionClassNames;
+}
 
 /**
- * This is a very simpel wrapper for the CSSTransition component from
- * `react-transition-group` this is used to do a cross fade animation.
+ * The `Collapse` is really just a convenience wrapper for the `useCrossFade`
+ * hook that triggers the transition by cloning the `ref` and `className` into
+ * the `children` of this component.
  *
- * By default, this animation will occur immediately when the component
- * mounts, but you can set the `in` prop manually to dynamically trigger
- * the animation instead.
+ * This transition will only fire on mount and when the `appear` prop is set to
+ * `true`, so the way to trigger new animations is by changing the `key` for
+ * this component so it re-mounts. However it is generally not recommended to
+ * fire this transition on first page load especially when dealing with server
+ * side rendering. A simple way to work around this is have the `CrossFade` near
+ * the root of the app and just disable the `appear` prop until the first
+ * render.
+ *
+ * If you want more fine-grain control over the transition, it is recommended to
+ * use the `useCrossFade` hook instead.
  */
-function CrossFade({
-  in: propIn = true,
-  appear = true,
-  timeout = DEFAULT_CROSS_FADE_TIMEOUT,
-  classNames = DEFAULT_CROSS_FADE_CLASSNAMES,
-  mountOnEnter = true,
-  unmountOnExit = true,
-  children,
-  ...props
-}: CrossFadeProps): ReactElement {
+function CrossFade(
+  {
+    wrap = false,
+    appear = true,
+    temporary = false,
+    className: propClassName,
+    transitionIn = true,
+    children,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    ...props
+  }: CrossFadeProps,
+  forwardedRef?: Ref<HTMLDivElement>
+): ReactElement | null {
+  const [rendered, { ref, className }] = useCrossFade({
+    appear,
+    className: propClassName,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    temporary,
+    transitionIn,
+  });
+
+  if (!rendered) {
+    return null;
+  }
+
+  if (!wrap && isValidElement(children)) {
+    const child = Children.only(children);
+    return cloneElement(child, {
+      ref,
+      className: cn(child.props.className, className),
+    });
+  }
+
   return (
-    <CSSTransition
+    <div
       {...props}
-      in={propIn}
-      appear={appear}
-      timeout={timeout}
-      classNames={classNames}
-      mountOnEnter={mountOnEnter}
-      unmountOnExit={unmountOnExit}
+      className={className}
+      ref={instance => {
+        applyRef(instance, forwardedRef);
+        ref.current = instance;
+      }}
     >
       {children}
-    </CSSTransition>
+    </div>
   );
 }
 
-export default CrossFade;
+const ForwardedCrossFade = forwardRef<HTMLDivElement, CrossFadeProps>(
+  CrossFade
+);
+
+if (process.env.NODE_ENV !== "production") {
+  try {
+    const PropTypes = require("prop-types");
+
+    ForwardedCrossFade.propTypes = {
+      wrap: PropTypes.bool,
+      appear: PropTypes.bool,
+      temporary: PropTypes.bool,
+      style: PropTypes.object,
+      className: PropTypes.string,
+      transitionIn: PropTypes.bool,
+      onEnter: PropTypes.func,
+      onEntering: PropTypes.func,
+      onEntered: PropTypes.func,
+      onExit: PropTypes.func,
+      onExiting: PropTypes.func,
+      onExited: PropTypes.func,
+      children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
+    };
+  } catch (e) {}
+}
+
+export default ForwardedCrossFade;

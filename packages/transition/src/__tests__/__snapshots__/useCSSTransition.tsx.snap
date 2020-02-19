@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useCSSTransition should work as expected for non-temporary flows 1`] = `
+<div
+  data-testid="div"
+>
+  Amazing content!
+</div>
+`;
+
+exports[`useCSSTransition should work as expected for non-temporary flows 2`] = `
+<div
+  class="transition--enter transition--enter-active"
+  data-testid="div"
+>
+  Amazing content!
+</div>
+`;
+
+exports[`useCSSTransition should work as expected for non-temporary flows 3`] = `
+<div
+  data-testid="div"
+>
+  Amazing content!
+</div>
+`;
+
+exports[`useCSSTransition should work as expected for non-temporary flows 4`] = `
+<div
+  class="transition--exit transition--exit-active"
+  data-testid="div"
+>
+  Amazing content!
+</div>
+`;
+
+exports[`useCSSTransition should work as expected for non-temporary flows 5`] = `
+<div
+  data-testid="div"
+>
+  Amazing content!
+</div>
+`;
+
+exports[`useCSSTransition should work as expected for temporary flows 1`] = `
+<div
+  class="transition--enter transition--enter-active"
+  data-testid="div"
+>
+  Amazing content!
+</div>
+`;
+
+exports[`useCSSTransition should work as expected for temporary flows 2`] = `
+<div
+  data-testid="div"
+>
+  Amazing content!
+</div>
+`;
+
+exports[`useCSSTransition should work as expected for temporary flows 3`] = `
+<div
+  class="transition--exit transition--exit-active"
+  data-testid="div"
+>
+  Amazing content!
+</div>
+`;
