@@ -6,6 +6,8 @@ import React, {
   Ref,
   useCallback,
   useState,
+  MouseEventHandler,
+  MouseEvent,
 } from "react";
 import cn from "classnames";
 import { Button } from "@react-md/button";
@@ -41,6 +43,24 @@ export interface PasswordProps
    * Boolean if the visibility toggle feature should be disabled.
    */
   disableVisibility?: boolean;
+
+  /**
+   * An optional function to return the current icon to display within the
+   * visibility toggle button for additional control.
+   *
+   * Depending on the customization needs, it will probably be easier to just
+   * implement your own `Password` component using the native `TextField`.
+   */
+  getVisibilityIcon?: (currentType: "text" | "password") => ReactNode;
+
+  /**
+   * An optional function to call when the visibility button has been clicked.
+   * This is only a simple `MouseEventHandler` for the button element.
+   *
+   * Depending on the customization needs, it will probably be easier to just
+   * implement your own `Password` component using the native `TextField`.
+   */
+  onVisibilityClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const block = bem("rmd-password");
@@ -58,6 +78,8 @@ function Password(
     visibilityStyle,
     visibilityClassName,
     visibilityLabel = "Temporarily show password",
+    onVisibilityClick,
+    getVisibilityIcon,
     disableVisibility = false,
     ...props
   }: PasswordProps,
@@ -65,9 +87,16 @@ function Password(
 ): ReactElement {
   const { id } = props;
   const [type, setType] = useState<"password" | "text">("password");
-  const toggle = useCallback(() => {
-    setType(prevType => (prevType === "password" ? "text" : "password"));
-  }, []);
+  const toggle = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      if (onVisibilityClick) {
+        onVisibilityClick(event);
+      }
+
+      setType(prevType => (prevType === "password" ? "text" : "password"));
+    },
+    [onVisibilityClick]
+  );
 
   const visibilityIcon = useIcon("password", propVisibilityIcon);
 
@@ -92,7 +121,9 @@ function Password(
             style={visibilityStyle}
             className={cn(block("toggle"), visibilityClassName)}
           >
-            {visibilityIcon}
+            {typeof getVisibilityIcon === "function"
+              ? getVisibilityIcon(type)
+              : visibilityIcon}
           </Button>
         )
       }
