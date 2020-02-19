@@ -256,14 +256,20 @@ const sandboxes: Sandboxes = {
     SimpleExamples: () => resolve(import("./Tooltip-SimpleExamples.json")),
   },
   Transition: {
-    CollapseExamples: () =>
-      resolve(import("./Transition-CollapseExamples.json")),
+    ConfigurableCollapseExample: () =>
+      resolve(import("./Transition-ConfigurableCollapseExample.json")),
     CrossFadeExamples: () =>
       resolve(import("./Transition-CrossFadeExamples.json")),
     CrossFadeHookExample: () =>
       resolve(import("./Transition-CrossFadeHookExample.json")),
     FixedPositioningExample: () =>
       resolve(import("./Transition-FixedPositioningExample.json")),
+    ScaleTransitionExample: () =>
+      resolve(import("./Transition-ScaleTransitionExample.json")),
+    SimpleCollapseExample: () =>
+      resolve(import("./Transition-SimpleCollapseExample.json")),
+    UseCSSTransition: () =>
+      resolve(import("./Transition-UseCSSTransition.json")),
   },
   Tree: {
     CustomizingTreeItems: () =>

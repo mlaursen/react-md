@@ -1,0 +1,26 @@
+@import '~@react-md/transition/dist/mixins';
+
+// just to make it really visible...
+$duration: 5s;
+
+.use-css-transition {
+  &--enter {
+    opacity: 0;
+  }
+
+  &--enter-active {
+    opacity: 1;
+    transition: opacity $duration;
+  }
+
+  &--exit {
+    opacity: 1;
+  }
+
+  &--exit-active {
+    @include rmd-transition(standard);
+
+    opacity: 0;
+    transition: opacity $duration;
+  }
+}

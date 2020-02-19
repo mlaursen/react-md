@@ -1,0 +1,65 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Transition Example - Scale Transition Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/overlay/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Transition Example - Scale Transition Example",
+      "description": "Example from https://react-md.dev/packages/transition/demos#scale-transition-example",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/elevation": "next",
+        "@react-md/form": "next",
+        "@react-md/layout": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/overlay": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/transition": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, useCallback, useState } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Checkbox, Form, useCheckboxState } from \"@react-md/form\";\nimport { CloseSVGIcon } from \"@react-md/material-icons\";\nimport { Overlay } from \"@react-md/overlay\";\nimport { ScaleTransition } from \"@react-md/transition\";\nimport { bem, FocusContainer } from \"@react-md/utils\";\n\nimport Page1 from \"./Page1\";\nimport \"./ScaleTransitionExample.scss\";\n\nconst styles = bem(\"scale-transition-example\");\n\nconst Demo: FC = () => {\n  const [visible, setVisible] = useState(false);\n  const [temporary, onTemporaryChange] = useCheckboxState(false);\n  const [vertical, onVerticalChange] = useCheckboxState(false);\n  const hide = useCallback(() => setVisible(false), []);\n\n  return (\n    <div className={styles({ temporary })}>\n      <Form>\n        <Checkbox\n          id=\"scale-transition-temporary\"\n          label=\"Temporary\"\n          checked={temporary}\n          onChange={onTemporaryChange}\n        />\n        <Checkbox\n          id=\"scale-transition-vertical\"\n          label=\"Vertical\"\n          checked={vertical}\n          onChange={onVerticalChange}\n        />\n        <Button onClick={() => setVisible(!visible)}>Toggle</Button>\n      </Form>\n      <ScaleTransition visible={visible} vertical={vertical}>\n        <FocusContainer\n          className={styles(\"popup\", { temporary })}\n          disableFocusOnMount={!temporary}\n        >\n          {temporary && (\n            <Button\n              onClick={hide}\n              buttonType=\"icon\"\n              aria-label=\"Close\"\n              className={styles(\"close\")}\n            >\n              <CloseSVGIcon />\n            </Button>\n          )}\n          <Page1 />\n        </FocusContainer>\n      </ScaleTransition>\n      <Overlay visible={visible && temporary} onRequestClose={hide} />\n    </div>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/Page1.tsx": {
+    "content": "import React, { forwardRef, HTMLAttributes } from \"react\";\nimport { Text } from \"@react-md/typography\";\n\nexport default forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(\n  (props, ref) => (\n    <div {...props} ref={ref}>\n      <Text type=\"headline-4\">Page 1</Text>\n      <Text>\n        Nunc dapibus nec neque vitae aliquam. Phasellus eu luctus tortor. Morbi\n        et massa lectus. Nam nec posuere urna, nec tincidunt ligula. Vestibulum\n        in urna dapibus, rutrum nisi eu, convallis leo. Morbi maximus ultricies\n        metus at venenatis. Nulla tincidunt in enim ac semper. Maecenas at felis\n        eget dui malesuada placerat eu a dui. Vestibulum vel quam egestas turpis\n        commodo euismod ac quis purus.\n      </Text>\n    </div>\n  )\n);\n",
+    "isBinary": false
+  },
+  "src/ScaleTransitionExample.scss": {
+    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/overlay/dist/variables';\n@import '~@react-md/theme/dist/mixins';\n\n.scale-transition-example {\n  position: relative;\n\n  &__popup--temporary {\n    @include rmd-elevation(8);\n    @include rmd-theme(background-color, surface);\n    @include rmd-theme(color, on-surface);\n\n    left: 0;\n    padding: 1rem;\n    position: absolute;\n    top: 100%;\n    z-index: $rmd-overlay-z-index + 1;\n  }\n\n  &__close {\n    @include rmd-utils-rtl-auto(right, 0);\n\n    position: absolute;\n  }\n}\n",
+    "isBinary": false
+  }
+}

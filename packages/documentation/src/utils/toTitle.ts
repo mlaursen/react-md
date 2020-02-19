@@ -70,6 +70,8 @@ export function toGtagTitle(pathname: string, statusCode?: number): string {
 export function toId(name: string): string {
   return name
     .replace(/\/|\\|\[|]|-/g, "")
+    .replace(/SCSS/g, "scss ")
+    .replace(/CSS/g, "css ")
     .replace(/\s+/g, " ")
     .split(/\s|(?=[A-Z])/)
     .join("-")

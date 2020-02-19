@@ -1,0 +1,7 @@
+@import '~@react-md/utils/dist/mixins';
+
+.transition-container {
+  @include rmd-utils-scroll;
+
+  height: 20rem;
+}

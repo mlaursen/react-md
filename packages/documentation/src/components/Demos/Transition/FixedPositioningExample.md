@@ -5,4 +5,5 @@ the viewport. Some great existing examples of this component are the #menu and
 #tooltip packages since they use this hook behind the scenes position themselves
 automatically.
 
-> This is a newer version of the `Layout` component if you used `react-md@v1`
+> If you used `react-md@v1`, this is basically a new and improved version of the
+> `Layover` component.

@@ -1,0 +1,25 @@
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/overlay/dist/variables';
+@import '~@react-md/theme/dist/mixins';
+
+.scale-transition-example {
+  position: relative;
+
+  &__popup--temporary {
+    @include rmd-elevation(8);
+    @include rmd-theme(background-color, surface);
+    @include rmd-theme(color, on-surface);
+
+    left: 0;
+    padding: 1rem;
+    position: absolute;
+    top: 100%;
+    z-index: $rmd-overlay-z-index + 1;
+  }
+
+  &__close {
+    @include rmd-utils-rtl-auto(right, 0);
+
+    position: absolute;
+  }
+}

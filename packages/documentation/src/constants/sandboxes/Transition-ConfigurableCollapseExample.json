@@ -1,0 +1,74 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Transition Example - Configurable Collapse Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/card/dist/mixins';\n@import '~@react-md/dialog/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Transition Example - Configurable Collapse Example",
+      "description": "Example from https://react-md.dev/packages/transition/demos#configurable-collapse-example",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/button": "next",
+        "@react-md/card": "next",
+        "@react-md/dialog": "next",
+        "@react-md/form": "next",
+        "@react-md/layout": "next",
+        "@react-md/material-icons": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/transition": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, Fragment, useState } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Card, CardContent, CardHeader, CardTitle } from \"@react-md/card\";\nimport { Fieldset, Form, Select, TextField } from \"@react-md/form\";\nimport { Collapse } from \"@react-md/transition\";\nimport { Grid, useAppSize } from \"@react-md/utils\";\n\nimport useNumberInput from \"./useNumberInput\";\nimport ErrorMessage from \"./ErrorMessage\";\n\nimport \"./ConfigurableCollapseExample.scss\";\nimport { DialogFooter } from \"@react-md/dialog\";\n\nconst options = [\"undefined\", \"true\", \"false\"];\n\nconst Demo: FC = () => {\n  const [collapsed, setCollapsed] = useState(true);\n  const [\n    minHeight,\n    minHeightProps,\n    minHeightError,\n    resetMinHeight,\n  ] = useNumberInput({\n    min: 0,\n    max: 200,\n    defaultValue: 0,\n  });\n  const [\n    minPaddingTop,\n    minPaddingTopProps,\n    minPaddingTopError,\n    resetMinPaddingTop,\n  ] = useNumberInput({\n    min: 0,\n    max: 80,\n    defaultValue: 0,\n  });\n  const [\n    minPaddingBottom,\n    minPaddingBottomProps,\n    minPaddingBottomError,\n    resetMinPaddingBottom,\n  ] = useNumberInput({\n    min: 0,\n    max: 80,\n    defaultValue: 0,\n  });\n\n  const [temporaryBehavior, setTemporary] = useState(\"undefined\");\n\n  let temporary: boolean | undefined;\n  if (temporaryBehavior !== \"undefined\") {\n    temporary = temporaryBehavior === \"true\";\n  }\n\n  const { isDesktop, isLargeDesktop } = useAppSize();\n  const twoLines = isDesktop && !isLargeDesktop;\n\n  return (\n    <Fragment>\n      <Form\n        id=\"configurable-collapse-form\"\n        onReset={() => {\n          resetMinHeight();\n          resetMinPaddingTop();\n          resetMinPaddingBottom();\n          setTemporary(\"undefined\");\n          setCollapsed(true);\n        }}\n      >\n        <Fieldset legend=\"Collapse Options\">\n          <Grid columns={1} desktopColumns={2} largeDesktopColumns={4}>\n            <div>\n              <TextField\n                id=\"collapse-min-height\"\n                type=\"number\"\n                name=\"minHeight\"\n                label=\"Min Height\"\n                {...minHeightProps}\n              />\n              <ErrorMessage\n                id=\"collapse-min-height-message\"\n                twoLines={twoLines}\n              >\n                {minHeightError}\n              </ErrorMessage>\n            </div>\n            <div>\n              <TextField\n                id=\"collapse-min-padding-top\"\n                type=\"number\"\n                name=\"minPaddingTop\"\n                label=\"Min Padding Top\"\n                {...minPaddingTopProps}\n              />\n              <ErrorMessage\n                id=\"collapse-min-padding-top-message\"\n                twoLines={twoLines}\n              >\n                {minPaddingTopError}\n              </ErrorMessage>\n            </div>\n            <div>\n              <TextField\n                id=\"collapse-min-padding-bottom\"\n                type=\"number\"\n                name=\"minPaddingBottom\"\n                label=\"Min Padding Bottom\"\n                {...minPaddingBottomProps}\n              />\n              <ErrorMessage\n                id=\"collapse-min-padding-bottom-message\"\n                twoLines={twoLines}\n              >\n                {minPaddingBottomError}\n              </ErrorMessage>\n            </div>\n            <Select\n              id=\"collapse-temporary\"\n              label=\"Temporary behavior\"\n              options={options}\n              name=\"temporary\"\n              value={temporaryBehavior}\n              onChange={nextValue => setTemporary(nextValue)}\n            />\n          </Grid>\n        </Fieldset>\n        <DialogFooter>\n          <Button\n            theme=\"primary\"\n            themeType=\"contained\"\n            disabled={\n              minHeightProps.error ||\n              minPaddingTopProps.error ||\n              minPaddingBottomProps.error\n            }\n            onClick={() => setCollapsed(!collapsed)}\n            type=\"submit\"\n            className=\"configurable-collapse-submit\"\n          >\n            Toggle\n          </Button>\n          <Button type=\"reset\" theme=\"secondary\" themeType=\"contained\">\n            Reset\n          </Button>\n        </DialogFooter>\n      </Form>\n      <Collapse\n        key={`${minHeight}-${minPaddingTop}-${minPaddingBottom}-${temporary}`}\n        collapsed={collapsed}\n        temporary={temporary}\n        minHeight={minHeight}\n        minPaddingTop={minPaddingTop}\n        minPaddingBottom={minPaddingBottom}\n      >\n        <Card>\n          <CardHeader>\n            <CardTitle>Example</CardTitle>\n          </CardHeader>\n          <CardContent>\n            <p>\n              Donec lacinia velit ac est finibus malesuada. Mauris arcu dui,\n              euismod quis erat et, iaculis molestie orci. Nullam efficitur\n              felis non feugiat tincidunt. Etiam sed tellus eu nunc fermentum\n              vestibulum. Integer maximus iaculis fringilla. Donec tincidunt\n              mauris quis iaculis volutpat. Ut tempor dui a nisl eleifend, non\n              tempor ipsum condimentum. Morbi ultrices lectus a feugiat\n              fringilla. Morbi ornare vehicula lorem, eu consectetur augue\n              tristique sit amet. Vestibulum fringilla auctor eros, at\n              consectetur libero hendrerit id. Interdum et malesuada fames ac\n              ante ipsum primis in faucibus.\n            </p>\n          </CardContent>\n        </Card>\n      </Collapse>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/ConfigurableCollapseExample.scss": {
+    "content": "@import '~@react-md/utils/dist/mixins';\n\n.configurable-collapse-submit {\n  @include rmd-utils-rtl-auto(margin-right, 1rem);\n}\n",
+    "isBinary": false
+  },
+  "src/ErrorMessage.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n@import '~@react-md/utils/dist/mixins';\n\n.error-message {\n  color: $rmd-red-500;\n  display: flex;\n  font-size: 0.75rem;\n  height: 2rem;\n  padding: 0.5rem 1rem;\n\n  &--two-lines {\n    height: 3rem;\n  }\n}\n",
+    "isBinary": false
+  },
+  "src/ErrorMessage.tsx": {
+    "content": "import React, { HTMLAttributes, forwardRef, Ref, ReactElement } from \"react\";\nimport cn from \"classnames\";\nimport { bem } from \"@react-md/utils\";\n\nimport \"./ErrorMessage.scss\";\n\nexport interface ErrorMessageProps extends HTMLAttributes<HTMLSpanElement> {\n  id: string;\n  twoLines?: boolean;\n}\n\nconst block = bem(\"error-message\");\n\n/**\n * Simple error message component that needs a bit more work -- eventually will\n * be moved into the `@react-md/form` package.\n */\nfunction ErrorMessage(\n  { className, children, twoLines = false, ...props }: ErrorMessageProps,\n  ref?: Ref<HTMLSpanElement>\n): ReactElement {\n  return (\n    <span\n      {...props}\n      ref={ref}\n      aria-live=\"polite\"\n      className={cn(block({ \"two-lines\": twoLines }), className)}\n    >\n      {children}\n    </span>\n  );\n}\n\nconst ForwardedErrorMessage = forwardRef<HTMLSpanElement, ErrorMessageProps>(\n  ErrorMessage\n);\n\nexport default ForwardedErrorMessage;\n",
+    "isBinary": false
+  },
+  "src/useNumberInput.tsx": {
+    "content": "import React, {\n  useState,\n  useCallback,\n  ChangeEvent,\n  FocusEvent,\n  InputHTMLAttributes,\n  FocusEventHandler,\n  ChangeEventHandler,\n  ReactNode,\n} from \"react\";\nimport { InfoSVGIcon } from \"@react-md/material-icons\";\n\ntype InputAttributes = Pick<\n  InputHTMLAttributes<HTMLInputElement>,\n  \"min\" | \"max\" | \"onBlur\" | \"onChange\"\n>;\n\ninterface NumberInputOptions extends InputAttributes {\n  min?: number;\n  max?: number;\n  fixOnBlur?: \"zeros\" | \"none\" | true;\n  defaultValue?: number;\n  errorIcon?: ReactNode;\n}\n\nfunction withinRange(\n  value: number,\n  min: number | undefined,\n  max: number | undefined\n): number {\n  let nextValue = value;\n  if (typeof min === \"number\") {\n    nextValue = Math.max(min, nextValue);\n  }\n\n  if (typeof max === \"number\") {\n    nextValue = Math.min(max, nextValue);\n  }\n\n  return nextValue;\n}\n\ninterface InputProps {\n  min?: number;\n  max?: number;\n  value: string;\n  error: boolean;\n  type: \"number\";\n  onBlur: FocusEventHandler<HTMLInputElement>;\n  onChange: ChangeEventHandler<HTMLInputElement>;\n  rightChildren: ReactNode;\n}\ntype ErrorMessage = string;\ntype ResetValue = () => void;\ntype ReturnValue = [number | undefined, InputProps, ErrorMessage, ResetValue];\n\n/**\n * This is a pretty hacked together first implementation for a `useValidity`\n * hook I'm planning on making for simple form validation. Needs a lot of work\n * right now though.\n */\nexport default function useNumberInput({\n  min,\n  max,\n  defaultValue,\n  onBlur,\n  onChange,\n  fixOnBlur = true,\n  errorIcon = <InfoSVGIcon />,\n}: NumberInputOptions): ReturnValue {\n  const [value, setValue] = useState(`${defaultValue ?? \"\"}`);\n  const [number, setNumber] = useState(defaultValue);\n  const [errorMessage, setErrorMessage] = useState(\"\");\n\n  const handleChange = useCallback(\n    (event: ChangeEvent<HTMLInputElement>) => {\n      if (onChange) {\n        onChange(event);\n      }\n\n      const { value } = event.currentTarget;\n      event.currentTarget.checkValidity();\n      setValue(value);\n      setErrorMessage(event.currentTarget.validationMessage);\n    },\n    [onChange]\n  );\n\n  const reset = useCallback(() => {\n    setValue(`${defaultValue ?? \"\"}`);\n    setNumber(defaultValue);\n  }, [defaultValue]);\n\n  const handleBlur = useCallback(\n    (event: FocusEvent<HTMLInputElement>) => {\n      if (onBlur) {\n        onBlur(event);\n      }\n\n      const { value, valueAsNumber } = event.currentTarget;\n      if (fixOnBlur === \"none\" || fixOnBlur === \"zeros\") {\n        const isValid = event.currentTarget.checkValidity();\n        if (fixOnBlur === \"zeros\") {\n          const fixedValue = value.replace(/^0+([0-9]*)$/, \"$1\");\n          setValue(fixedValue);\n        }\n\n        if (!isValid) {\n          setErrorMessage(event.currentTarget.validationMessage);\n          return;\n        }\n      }\n\n      setErrorMessage(\"\");\n\n      const number = withinRange(valueAsNumber, min, max);\n      if (!value || Number.isNaN(number)) {\n        reset();\n        return;\n      }\n\n      setNumber(number);\n      setValue(`${number}`);\n    },\n    [fixOnBlur, max, min, onBlur, reset]\n  );\n\n  return [\n    number,\n    {\n      min,\n      max,\n      type: \"number\",\n      value,\n      error: !!errorMessage,\n      onBlur: handleBlur,\n      onChange: handleChange,\n      rightChildren: !!errorMessage && errorIcon,\n    },\n    errorMessage,\n    reset,\n  ];\n}\n",
+    "isBinary": false
+  }
+}

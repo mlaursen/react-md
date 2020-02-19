@@ -315,6 +315,120 @@ We're done! Clicking on one of the navigation items should now automatically
 update to select the current route as well as expand any parent folders as
 needed.
 
+#### Adding Route Transitions (Optional)
+
+Something that can help your app flow between routes is to also add a transition
+to the main content after a pathname changes. A recommended transition is the
+"cross fade" transition from #transition that is just a simple opacity change
+and a slight vertical movement, but any transition can be added if desired. To
+keep things simple, let's update the `src/Layout.tsx` component to apply the
+cross fade transition on route changes with the `useCrossFade` hook.
+
+```diff
+-import React, { ReactElement } from "react";
++import React, { ReactElement, useRef } from "react";
+ import { Layout, useLayoutNavigation } from "@react-md/layout";
++import { ENTER, useCrossFade } from "@react-md/transition";
+ import { useLocation, Link } from "react-router-dom";
+
+ import navItems from "./navItems";
+
+ import App from "./App";
+
+ export default (): ReactElement => {
+   const { pathname } = useLocation();
++  const [_rendered, transitionProps, dispatch] = useCrossFade();
++  const { ref: mainRef, className: mainClassName } = transitionProps;
++
++  const prevPathname = useRef(pathname);
++  if (pathname !== prevPathname.current) {
++    prevPathname.current = pathname;
++    dispatch(ENTER);
++  }
+
+   return (
+     <Layout
+       {...useLayoutNavigation(navItems, pathname)}
+       appBarTitle="My Title"
+       navHeaderTitle="My Title"
+       linkComponent={Link}
++      mainRef={mainRef}
++      mainClassName={mainClassName}
+     >
+       <App />
+     </Layout>
+   );
+ };
+```
+
+So how does this work? First, the `ref` and `className` from the cross fade
+transition are extracted from the `transitionProps` and then passed to the
+`<main>` element within the `Layout` component by using the `mainRef` and
+`mainClassName` props. Finally, the previous `pathname` is stored in a `ref` so
+that pathname changes can be determined during the render and dispatch the
+`ENTER` event to trigger the animation.
+
+You might be wondering...
+
+> "Why is the `dispatch` triggered during the render phase instead of in
+> `useEffect` or `useLayoutEffect`?"
+
+There isn't really a big reason other than I prefer handling transitions this
+way instead of having a custom `useEffect` that skips the first callback. If the
+first callback for this effect isn't cancelled, the "appear" transition will
+stil be triggered.
+
+If you prefer using `useEffect`, here's an example of this pattern instead.
+
+```diff
+-import React, { ReactElement, useRef } from "react";
++import React, { ReactElement, useEffect, useRef } from "react";
+ import { Layout, useLayoutNavigation } from "@react-md/layout";
+ import { ENTER, useCrossFade } from "@react-md/transition";
+ import { useLocation, Link } from "react-router-dom";
+
+ import navItems from "./navItems";
+
+ import App from "./App";
+
+ export default (): ReactElement => {
+   const { pathname } = useLocation();
+   const [_rendered, transitionProps, dispatch] = useCrossFade();
+   const { ref: mainRef, className: mainClassName } = transitionProps;
+
+-  const prevPathname = useRef(pathname);
+-  if (pathname !== prevPathname.current) {
+-    prevPathname.current = pathname;
+-    dispatch(ENTER);
+-  }
++  const renderedOnce = useRef(false);
++  useEffect(() => {
++    if (!renderedOnce.current) {
++      renderedOnce.current = true;
++      return;
++    }
++
++    dispatch(ENTER);
++  }, [dispatch, pathname])
+
+   return (
+     <Layout
+       {...useLayoutNavigation(navItems, pathname)}
+       appBarTitle="My Title"
+       navHeaderTitle="My Title"
+       linkComponent={Link}
+       mainRef={mainRef}
+       mainClassName={mainClassName}
+     >
+       <App />
+     </Layout>
+   );
+ };
+```
+
+However this _is_ opinionated, so feel free to handle transitions however you
+prefer.
+
 ### Completed Codesandbox
 
 <iframe

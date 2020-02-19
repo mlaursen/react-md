@@ -4,20 +4,21 @@ import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 
-import StaticPageTransition from "./StaticPageTransition";
-import AsyncPageTransitions from "./AsyncPageTransitions";
+import CrossFadeExamplesStatic from "./CrossFadeExamplesStatic";
+import CrossFadeExamplesAsync from "./CrossFadeExamplesAsync";
 
 const CrossFadeExamples: FC = () => (
   <Fragment>
     <Text type="headline-6" margin="bottom">
       Static Transitions
     </Text>
-    <StaticPageTransition />
+    <CrossFadeExamplesStatic />
     <Divider />
-    <Text type="headline-6" margin="bottom">
+    <Text type="headline-6">
       Async with <Code>Suspense</Code>
     </Text>
-    <AsyncPageTransitions />
+    <CrossFadeExamplesAsync />
+    <Divider />
   </Fragment>
 );
 

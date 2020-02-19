@@ -1,8 +1,0 @@
-@import '~@react-md/divider/dist/mixins';
-@import '~@react-md/utils/dist/mixins';
-
-.cross-fade-example {
-  @include rmd-utils-scroll;
-
-  height: 10rem;
-}
