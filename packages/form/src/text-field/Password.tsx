@@ -8,6 +8,7 @@ import React, {
   useState,
   MouseEventHandler,
   MouseEvent,
+  isValidElement,
 } from "react";
 import cn from "classnames";
 import { Button } from "@react-md/button";
@@ -16,13 +17,29 @@ import { bem } from "@react-md/utils";
 
 import TextField, { TextFieldProps } from "./TextField";
 
+export interface ConfigurableVisibilityIcon {
+  /**
+   * The icon to display while the password is currently visible as plain text.
+   */
+  visible: ReactNode;
+
+  /**
+   * The icon to display while the password is currently invisible as the
+   * password input.
+   */
+  invisible: ReactNode;
+}
+
+export type GetVisibilityIcon = (type: "text" | "password") => ReactNode;
+
 export interface PasswordProps
   extends Omit<TextFieldProps, "type" | "rightChildren"> {
   /**
    * The icon to use to toggle the visibility of the password by changing the
-   * input type to text temporarily.
+   * input type to text temporarily. This can either be a renderable React node
+   * or an object for the `visible` and `invisible` states.
    */
-  visibilityIcon?: ReactNode;
+  visibilityIcon?: ReactNode | ConfigurableVisibilityIcon;
 
   /**
    * An optional style to apply to the visibility toggle button.
@@ -51,7 +68,7 @@ export interface PasswordProps
    * Depending on the customization needs, it will probably be easier to just
    * implement your own `Password` component using the native `TextField`.
    */
-  getVisibilityIcon?: (currentType: "text" | "password") => ReactNode;
+  getVisibilityIcon?: GetVisibilityIcon;
 
   /**
    * An optional function to call when the visibility button has been clicked.
@@ -64,6 +81,12 @@ export interface PasswordProps
 }
 
 const block = bem("rmd-password");
+
+function isConfigurableIcon(
+  icon: ReactNode | ConfigurableVisibilityIcon
+): icon is ConfigurableVisibilityIcon {
+  return !!icon && !isValidElement(icon);
+}
 
 /**
  * This component is a simple wrapper of the `TextField` that can only be
@@ -98,7 +121,13 @@ function Password(
     [onVisibilityClick]
   );
 
-  const visibilityIcon = useIcon("password", propVisibilityIcon);
+  let visibilityIcon = useIcon("password", propVisibilityIcon);
+  if (isConfigurableIcon(propVisibilityIcon)) {
+    visibilityIcon =
+      type === "text"
+        ? propVisibilityIcon.visible
+        : propVisibilityIcon.invisible;
+  }
 
   return (
     <TextField
@@ -139,7 +168,13 @@ if (process.env.NODE_ENV !== "production") {
 
     ForwardedPassword.propTypes = {
       id: PropTypes.string.isRequired,
-      visibilityIcon: PropTypes.node,
+      visibilityIcon: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.shape({
+          visible: PropTypes.node,
+          invisible: PropTypes.node,
+        }),
+      ]),
       visibilityStyle: PropTypes.object,
       visibilityClassName: PropTypes.string,
       visibilityLabel: PropTypes.string,
