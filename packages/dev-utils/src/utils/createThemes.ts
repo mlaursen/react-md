@@ -22,7 +22,7 @@ const cssDist = join(packagesRoot, "react-md", dist, "css");
 let variables: any = {};
 let colors: string[] = [];
 let weights: number[] = [];
-let primaries: string[] = [];
+let secondaries: string[] = [];
 
 const tones = ["light", "dark"];
 
@@ -40,8 +40,8 @@ function getThemeVariables(theme: string): [string, string, string, string] {
 }
 
 function getThemes(): string[] {
-  return primaries.flatMap(primary =>
-    colors.flatMap(secondary => {
+  return colors.flatMap(primary =>
+    secondaries.flatMap(secondary => {
       if (primary === secondary) {
         return [];
       }
@@ -126,7 +126,7 @@ export default async function createThemes(): Promise<void> {
 
   colors = variables["rmd-theme-colors"] as string[];
   weights = variables["rmd-theme-accent-suffixes"] as number[];
-  primaries = colors.slice(0, colors.indexOf("brown"));
+  secondaries = colors.slice(0, colors.indexOf("brown"));
 
   const [firstLight, firstDark, ...themes] = getThemes();
 
