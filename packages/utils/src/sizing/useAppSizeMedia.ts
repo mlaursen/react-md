@@ -9,6 +9,7 @@ import {
   QuerySize,
 } from "./constants";
 import useWidthMediaQuery from "./useWidthMediaQuery";
+import useOrientation from "./useOrientation";
 
 /**
  * The current size for your application. This should work both server side and
@@ -130,7 +131,7 @@ export default function useAppSizeMedia({
   const isDesktop = matchesDesktop;
   const isTablet = !matchesDesktop && matchesTablet;
   const isPhone = !isTablet && !isDesktop && matchesPhone;
-  const isLandscape = window.innerWidth > window.innerHeight;
+  const isLandscape = useOrientation().includes("landscape");
   const isLargeDesktop = matchesLargeDesktop;
 
   const [appSize, setAppSize] = useState(defaultSize);
