@@ -399,6 +399,26 @@
 }
 
 /// @access private
+@mixin rmd-password {
+  &--offset {
+    // don't want any padding since the input will gain the button margin
+    // instead
+    @include rmd-form-theme-update-var(text-padding-right, 0);
+  }
+
+  &__input {
+    &--offset {
+      @include rmd-utils-rtl-auto(margin-right, rmd-button-theme-var(icon-size));
+    }
+  }
+
+  &__toggle {
+    @include rmd-utils-rtl-auto(right, 0);
+
+    position: absolute;
+  }
+}
+/// @access private
 @mixin react-md-text-field {
   .rmd-text-field-container {
     @include rmd-text-field-container;
@@ -413,23 +433,7 @@
   }
 
   .rmd-password {
-    &--offset {
-      // don't want any padding since the input will gain the button margin
-      // instead
-      @include rmd-form-theme-update-var(text-padding-right, 0);
-    }
-
-    &__input {
-      &--offset {
-        @include rmd-utils-rtl-auto(margin-right, rmd-button-theme-var(icon-size));
-      }
-    }
-
-    &__toggle {
-      @include rmd-utils-rtl-auto(right, 0);
-
-      position: absolute;
-    }
+    @include rmd-password;
   }
 
   .rmd-textarea-container {

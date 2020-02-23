@@ -136,6 +136,7 @@ function TextFieldContainer(
   const outline = theme === "outline";
   const filled = theme === "filled";
   const isUnderlined = underline || filled;
+  const isOutlineActive = outline && active;
 
   return (
     <div
@@ -148,12 +149,12 @@ function TextFieldContainer(
           filled,
           outline,
           disabled,
-          hoverable: !disabled,
+          hoverable: !disabled && !isOutlineActive,
           label: label && !dense,
           dense: !label && dense,
           "dense-label": dense && label,
           "dense-placeholder": dense && isUnderlined && !label,
-          "outline-active": outline && active,
+          "outline-active": isOutlineActive,
           "outline-error": outline && error,
           "outline-left": outline && leftChildren,
           "outline-right": outline && rightChildren,

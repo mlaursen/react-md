@@ -37,6 +37,7 @@ export default {
   "rmd-typography-alignments": ["left", "center", "right"],
   "rmd-typography-decorations": ["underline", "overline", "line-through"],
   "rmd-typography-transforms": ["capitalize", "uppercase", "lowercase"],
+  "rmd-typography-font-styles": ["normal", "italic", "oblique"],
   "rmd-typography-google-font-weight-suffixes": {
     thin: '"-Thin"',
     light: '"-Light"',
