@@ -128,7 +128,7 @@ $rmd-chip-solid-color: if(
 $rmd-chip-solid-disabled-background-color: if(
   $rmd-theme-light,
   $rmd-chip-solid-light-disabled-background-color,
-  $rmd-chip-solid-disabled-background-color
+  $rmd-chip-solid-dark-disabled-background-color
 ) !default;
 
 /// The background color to use for "outlined" themed chips when using the light
