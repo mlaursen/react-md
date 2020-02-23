@@ -62,6 +62,7 @@
     "@react-md/sheet": "^2.0.0-alpha.14",
     "@react-md/states": "^2.0.0-alpha.14",
     "@react-md/table": "^2.0.0-alpha.14",
+    "@react-md/tabs": "^2.0.0-alpha.14",
     "@react-md/theme": "^2.0.0-alpha.14",
     "@react-md/tooltip": "^2.0.0-alpha.14",
     "@react-md/transition": "^2.0.0-alpha.14",

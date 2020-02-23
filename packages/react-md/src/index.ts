@@ -23,6 +23,7 @@ export * from "@react-md/progress";
 export * from "@react-md/sheet";
 export * from "@react-md/states";
 export * from "@react-md/table";
+export * from "@react-md/tabs";
 export * from "@react-md/tooltip";
 export * from "@react-md/transition";
 export * from "@react-md/tree";
