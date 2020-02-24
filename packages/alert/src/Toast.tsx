@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { OverridableCSSTransitionProps } from "@react-md/transition";
 import { bem } from "@react-md/utils";
@@ -96,7 +96,7 @@ function Toast(
       <div
         {...props}
         ref={ref}
-        className={cn(
+        className={cnb(
           block({
             stacked,
             padded: !action || twoLines,

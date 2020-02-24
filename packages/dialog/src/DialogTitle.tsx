@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export type DialogTitleProps = HTMLAttributes<HTMLHeadingElement>;
@@ -15,7 +15,7 @@ function DialogTitle(
   ref?: Ref<HTMLHeadingElement>
 ): ReactElement {
   return (
-    <h2 {...props} ref={ref} className={cn(block("title"), className)}>
+    <h2 {...props} ref={ref} className={cnb(block("title"), className)}>
       {children}
     </h2>
   );

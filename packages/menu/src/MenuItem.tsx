@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { ListItem, ListItemProps } from "@react-md/list";
 
 export interface MenuItemProps extends ListItemProps {
@@ -37,7 +37,7 @@ function MenuItem(
       ref={ref}
       role={role}
       tabIndex={tabIndex}
-      className={cn("rmd-menu-item", className)}
+      className={cnb("rmd-menu-item", className)}
     >
       {children}
     </ListItem>

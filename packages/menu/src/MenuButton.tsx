@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactElement, ReactNode, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   AppBarActionClassNameProps,
   useActionClassName,
@@ -84,7 +84,7 @@ function MenuButton(
       ref={ref}
       aria-haspopup={ariaHasPopup}
       aria-expanded={visible ? "true" : undefined}
-      className={cn(
+      className={cnb(
         block(),
         {
           [actionClassName]: first || last || inheritColor || asAppBarAction,

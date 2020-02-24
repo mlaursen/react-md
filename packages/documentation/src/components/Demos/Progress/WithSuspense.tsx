@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { APP_BAR_OFFSET_PROMINENT_CLASSNAME } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { RefreshSVGIcon, CloudDownloadSVGIcon } from "@react-md/material-icons";
@@ -69,7 +69,7 @@ const WithSuspense: FC = () => {
       id="with-suspense"
       appBar={<WithSuspenseAppBar />}
       className={block()}
-      contentClassName={cn({
+      contentClassName={cnb({
         [APP_BAR_OFFSET_PROMINENT_CLASSNAME]: isPhone,
       })}
       prominent

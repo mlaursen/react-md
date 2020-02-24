@@ -11,7 +11,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { applyRef, bem } from "@react-md/utils";
 
 import PanelGroup from "./PanelGroup";
@@ -123,7 +123,7 @@ function TabPanels(
     <div
       {...props}
       ref={mergedRef}
-      className={cn(
+      className={cnb(
         block({
           "slide-left": incrementing && !persistent,
           "slide-left-persistent": incrementing && persistent,

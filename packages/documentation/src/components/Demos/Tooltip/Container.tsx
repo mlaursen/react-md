@@ -1,5 +1,5 @@
 import React, { FC, HTMLAttributes } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import "./Container.scss";
@@ -16,7 +16,7 @@ const Container: FC<ContainerProps> = ({
   stacked,
   ...props
 }) => (
-  <div {...props} className={cn(block({ stacked }), className)}>
+  <div {...props} className={cnb(block({ stacked }), className)}>
     {children}
   </div>
 );

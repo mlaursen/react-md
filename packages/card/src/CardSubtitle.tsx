@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 const block = bem("rmd-card");
@@ -36,7 +36,7 @@ function CardSubtitle(
     <h6
       {...props}
       ref={ref}
-      className={cn(
+      className={cnb(
         block("subtitle", {
           secondary: !disableSecondaryColor,
         }),

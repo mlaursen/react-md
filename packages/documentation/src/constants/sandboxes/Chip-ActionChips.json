@@ -36,7 +36,7 @@
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
-        "classnames": "latest",
+        "cnbuilder": "^2.3.0",
         "react": "latest",
         "react-dom": "latest",
         "react-transition-group": "latest"
@@ -61,7 +61,7 @@
     "isBinary": false
   },
   "src/ActionChip.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { Chip, ChipProps } from \"@react-md/chip\";\n\nimport styles from \"./styles\";\n\ninterface ActionChipProps extends ChipProps {\n  yellow?: boolean;\n}\n\nconst ActionChip: FC<ActionChipProps> = ({\n  children,\n  className,\n  theme = \"outline\",\n  yellow = false,\n  ...props\n}) => (\n  <Chip\n    {...props}\n    theme={theme}\n    className={cn(styles(\"chip\", { yellow }), className)}\n  >\n    {children}\n  </Chip>\n);\n\nexport default ActionChip;\n",
+    "content": "import React, { FC } from \"react\";\nimport { cnb } from \"cnbuilder\";;\nimport { Chip, ChipProps } from \"@react-md/chip\";\n\nimport styles from \"./styles\";\n\ninterface ActionChipProps extends ChipProps {\n  yellow?: boolean;\n}\n\nconst ActionChip: FC<ActionChipProps> = ({\n  children,\n  className,\n  theme = \"outline\",\n  yellow = false,\n  ...props\n}) => (\n  <Chip\n    {...props}\n    theme={theme}\n    className={cnb(styles(\"chip\", { yellow }), className)}\n  >\n    {children}\n  </Chip>\n);\n\nexport default ActionChip;\n",
     "isBinary": false
   },
   "src/ActionChipAlarm.tsx": {

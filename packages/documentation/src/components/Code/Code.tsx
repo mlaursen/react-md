@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 export interface CodeProps extends HTMLAttributes<HTMLElement> {
   className?: string;
@@ -15,7 +15,7 @@ export default forwardRef<HTMLElement, CodeProps>(function Code(
     <code
       {...props}
       ref={ref}
-      className={cn("code", { "code--inline": inline }, className)}
+      className={cnb("code", { "code--inline": inline }, className)}
     >
       {children}
     </code>

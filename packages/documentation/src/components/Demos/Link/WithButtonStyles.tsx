@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { ButtonThemeProps, buttonThemeClassNames } from "@react-md/button";
 import { Link, LinkProps } from "@react-md/link";
 
@@ -21,7 +21,7 @@ const LinkStyledButton: FC<ButtonThemeProps & LinkProps> = ({
       theme,
       themeType,
       buttonType,
-      className: cn("link-styled-button", className),
+      className: cnb("link-styled-button", className),
     })}
   >
     {children}

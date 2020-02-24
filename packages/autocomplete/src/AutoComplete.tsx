@@ -5,7 +5,7 @@ import React, {
   Ref,
   CSSProperties,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   isListboxOptionProps,
   ListboxOptionProps,
@@ -279,7 +279,7 @@ function AutoComplete(
         onKeyDown={handleKeyDown}
         onChange={handleChange}
         ref={ref}
-        className={cn(block(), className)}
+        className={cnb(block(), className)}
         containerProps={{
           ...containerProps,
           "aria-haspopup": "listbox",
@@ -302,7 +302,7 @@ function AutoComplete(
           role="listbox"
           ref={listboxRef}
           style={fixedStyle}
-          className={cn(listbox({ temporary: true }), listboxClassName)}
+          className={cnb(listbox({ temporary: true }), listboxClassName)}
         >
           {filteredData.map((datum, i) => {
             const resultId = getResultId(suggestionsId, i);

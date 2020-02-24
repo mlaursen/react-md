@@ -5,7 +5,7 @@ import React, {
   Ref,
   useMemo,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import { TableCellConfig, TableConfigProvider, useTableConfig } from "./config";
@@ -75,7 +75,7 @@ function TableFooter(
   return (
     <TableConfigProvider value={configuration}>
       <TableFooterProvider value>
-        <tfoot {...props} ref={ref} className={cn(block(), className)}>
+        <tfoot {...props} ref={ref} className={cnb(block(), className)}>
           <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
         </tfoot>
       </TableFooterProvider>

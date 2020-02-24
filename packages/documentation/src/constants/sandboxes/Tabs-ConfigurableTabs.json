@@ -34,7 +34,7 @@
         "@react-md/transition": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
-        "classnames": "latest",
+        "cnbuilder": "^2.3.0",
         "react": "latest",
         "react-dom": "latest"
       },
@@ -78,7 +78,7 @@
     "isBinary": false
   },
   "src/LightbulbSVGIcon.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { SVGIconProps } from \"@react-md/icon\";\nimport { Component as LightbulbIcon } from \"./lightbulb.svg\";\n\n// this one isn't included in material icons for some reason?\nconst LightbulbSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (\n  <LightbulbIcon\n    {...props}\n    className={cn(\"rmd-icon rmd-icon--svg\", className)}\n  />\n);\n\nLightbulbSVGIcon.defaultProps = {\n  role: \"img\",\n  focusable: \"false\",\n};\n\nexport default LightbulbSVGIcon;\n",
+    "content": "import React, { FC } from \"react\";\nimport { cnb } from \"cnbuilder\";;\nimport { SVGIconProps } from \"@react-md/icon\";\nimport { Component as LightbulbIcon } from \"./lightbulb.svg\";\n\n// this one isn't included in material icons for some reason?\nconst LightbulbSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (\n  <LightbulbIcon\n    {...props}\n    className={cnb(\"rmd-icon rmd-icon--svg\", className)}\n  />\n);\n\nLightbulbSVGIcon.defaultProps = {\n  role: \"img\",\n  focusable: \"false\",\n};\n\nexport default LightbulbSVGIcon;\n",
     "isBinary": false
   },
   "src/lightbulb.svg": {

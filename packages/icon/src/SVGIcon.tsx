@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface SVGIconProps extends HTMLAttributes<SVGSVGElement> {
@@ -98,7 +98,7 @@ function SVGIcon(
       {...props}
       aria-hidden={ariaHidden}
       ref={ref}
-      className={cn(block({ svg: true, dense }), className)}
+      className={cnb(block({ svg: true, dense }), className)}
       focusable={focusable}
       xmlns={xmlns}
       viewBox={viewBox}

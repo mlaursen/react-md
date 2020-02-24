@@ -6,7 +6,7 @@ import React, {
   Ref,
   useCallback,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import Link from "./Link";
@@ -101,7 +101,7 @@ function SkipToMainContent(
       ref={ref}
       href={`#${mainId}`}
       onClick={handleClick}
-      className={cn(block({ styled: !unstyled }), className)}
+      className={cnb(block({ styled: !unstyled }), className)}
     >
       {children}
     </Link>

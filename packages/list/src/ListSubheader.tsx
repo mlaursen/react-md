@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface ListSubheaderProps extends HTMLAttributes<HTMLLIElement> {
@@ -17,7 +17,7 @@ function ListSubheader(
   ref?: Ref<HTMLLIElement>
 ): ReactElement {
   return (
-    <li {...props} ref={ref} className={cn(block({ inset }), className)} />
+    <li {...props} ref={ref} className={cnb(block({ inset }), className)} />
   );
 }
 

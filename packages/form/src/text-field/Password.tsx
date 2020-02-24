@@ -10,7 +10,7 @@ import React, {
   MouseEvent,
   isValidElement,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { Button } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
@@ -132,8 +132,8 @@ function Password(
   return (
     <TextField
       {...props}
-      className={cn(block({ offset: !disableVisibility }), className)}
-      inputClassName={cn(
+      className={cnb(block({ offset: !disableVisibility }), className)}
+      inputClassName={cnb(
         block("input", { offset: !disableVisibility }),
         inputClassName
       )}
@@ -148,7 +148,7 @@ function Password(
             buttonType="icon"
             onClick={toggle}
             style={visibilityStyle}
-            className={cn(block("toggle"), visibilityClassName)}
+            className={cnb(block("toggle"), visibilityClassName)}
           >
             {typeof getVisibilityIcon === "function"
               ? getVisibilityIcon(type)

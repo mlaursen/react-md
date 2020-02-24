@@ -27,7 +27,7 @@
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
-        "classnames": "latest",
+        "cnbuilder": "^2.3.0",
         "react": "latest",
         "react-dom": "latest"
       },

@@ -1,4 +1,4 @@
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
@@ -40,7 +40,7 @@ export default function useActionClassName({
   inheritColor,
   className,
 }: AppBarActionClassNameProps = {}): string {
-  return cn(
+  return cnb(
     block("action", {
       first,
       last,

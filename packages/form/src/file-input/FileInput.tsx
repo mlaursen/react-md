@@ -6,7 +6,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
 import { TextIconSpacing, useIcon } from "@react-md/icon";
 import { useInteractionStates } from "@react-md/states";
@@ -149,7 +149,7 @@ function FileInput(
       <label
         htmlFor={id}
         style={style}
-        className={cn("rmd-file-input-label", className)}
+        className={cnb("rmd-file-input-label", className)}
       >
         {content}
         {ripples}

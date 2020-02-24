@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface ToggleContainerProps extends HTMLAttributes<HTMLDivElement> {
@@ -35,7 +35,7 @@ function ToggleContainer(
     <div
       {...props}
       ref={ref}
-      className={cn(block({ stacked, inline }), className)}
+      className={cnb(block({ stacked, inline }), className)}
     >
       {children}
     </div>

@@ -1,5 +1,5 @@
 import React, { FC, Fragment, ButtonHTMLAttributes } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   useInteractionStates,
   InteractionStatesOptions,
@@ -50,7 +50,7 @@ const CustomButton: FC<CustomButtonProps> = ({
     <button
       {...props}
       type="button"
-      className={cn("custom-states-component", className)}
+      className={cnb("custom-states-component", className)}
       {...handlers}
     >
       {children}

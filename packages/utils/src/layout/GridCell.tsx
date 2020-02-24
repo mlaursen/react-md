@@ -7,7 +7,7 @@ import React, {
   ReactElement,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import bem from "../bem";
 import useAppSize from "../sizing/useAppSize";
@@ -153,7 +153,7 @@ function GridCell(
     gridRowEnd: rowSpan ? `span ${rowSpan}` : rowEnd,
     ...style,
   };
-  const cellClassName = cn(
+  const cellClassName = cnb(
     block("cell", {
       [`${colSpan}`]: colSpan,
     }),
@@ -164,7 +164,7 @@ function GridCell(
     const child = Children.only(children);
     return cloneElement(child, {
       style: { ...child.props.style, ...cellStyle },
-      className: cn(cellClassName, child.props.className),
+      className: cnb(cellClassName, child.props.className),
     });
   }
 

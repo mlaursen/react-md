@@ -6,7 +6,7 @@ import React, {
   Ref,
   useMemo,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import getProgress from "./getProgress";
@@ -104,7 +104,7 @@ function LinearProgress(
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
-      className={cn(
+      className={cnb(
         block({
           vertical,
           determinate,
@@ -115,7 +115,7 @@ function LinearProgress(
     >
       <span
         style={barStyle}
-        className={cn(
+        className={cnb(
           block("bar", {
             vertical,
             "vertical-reverse": vertical && reverse,

@@ -30,7 +30,7 @@
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
-        "classnames": "latest",
+        "cnbuilder": "^2.3.0",
         "react": "latest",
         "react-dom": "latest"
       },
@@ -66,7 +66,7 @@
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\nimport { bem } from \"@react-md/utils\";\n\nimport \"./Container.scss\";\n\ninterface ContainerProps extends HTMLAttributes<HTMLDivElement> {\n  inline?: boolean;\n}\n\nconst block = bem(\"progress-container\");\n\nconst Container: FC<ContainerProps> = ({\n  className,\n  children,\n  inline,\n  ...props\n}) => {\n  return (\n    <div {...props} className={cn(block({ inline }), className)}>\n      {children}\n    </div>\n  );\n};\n\nexport default Container;\n",
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport { cnb } from \"cnbuilder\";;\nimport { bem } from \"@react-md/utils\";\n\nimport \"./Container.scss\";\n\ninterface ContainerProps extends HTMLAttributes<HTMLDivElement> {\n  inline?: boolean;\n}\n\nconst block = bem(\"progress-container\");\n\nconst Container: FC<ContainerProps> = ({\n  className,\n  children,\n  inline,\n  ...props\n}) => {\n  return (\n    <div {...props} className={cnb(block({ inline }), className)}>\n      {children}\n    </div>\n  );\n};\n\nexport default Container;\n",
     "isBinary": false
   },
   "src/useTemporaryToggle.ts": {

@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { SVGIconProps } from "@react-md/icon";
 import { Component as CodeSandboxIcon } from "./codesandbox.svg";
 
 const CodeSandboxSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (
   <CodeSandboxIcon
     {...props}
-    className={cn("rmd-icon rmd-icon--svg", className)}
+    className={cnb("rmd-icon rmd-icon--svg", className)}
   />
 );
 

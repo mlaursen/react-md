@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { Maybe } from "@react-md/utils";
 
 import { MergableRippleHandlers, RipplesOptions } from "./ripples/types";
@@ -156,7 +156,9 @@ export default function useInteractionStates<
 
   if (enablePressedAndRipple || (disableRipple && !disablePressedFallback)) {
     ({ handlers } = pressedResult);
-    className = cn(className, { "rmd-states--pressed": pressedResult.pressed });
+    className = cnb(className, {
+      "rmd-states--pressed": pressedResult.pressed,
+    });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion

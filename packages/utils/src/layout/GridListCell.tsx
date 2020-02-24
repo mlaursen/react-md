@@ -7,7 +7,7 @@ import React, {
   ReactElement,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import bem from "../bem";
 
@@ -38,11 +38,11 @@ function GridListCell(
   }: GridListCellProps,
   ref?: Ref<HTMLDivElement>
 ): ReactElement {
-  const cellClassName = cn(block("cell", { square }), className);
+  const cellClassName = cnb(block("cell", { square }), className);
   if (clone && isValidElement(children)) {
     const child = Children.only(children);
     return cloneElement(child, {
-      className: cn(cellClassName, child.props.className),
+      className: cnb(cellClassName, child.props.className),
     });
   }
 

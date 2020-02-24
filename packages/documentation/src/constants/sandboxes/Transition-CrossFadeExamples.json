@@ -31,7 +31,7 @@
         "@react-md/transition": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
-        "classnames": "latest",
+        "cnbuilder": "^2.3.0",
         "react": "latest",
         "react-dom": "latest"
       },
@@ -59,7 +59,7 @@
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { forwardRef, HTMLAttributes, ReactNode } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\ninterface Props extends HTMLAttributes<HTMLDivElement> {\n  children: ReactNode;\n}\n\nexport default forwardRef<HTMLDivElement, Props>(\n  ({ children, className, ...props }, ref) => (\n    <div {...props} className={cn(\"transition-container\", className)} ref={ref}>\n      {children}\n    </div>\n  )\n);\n",
+    "content": "import React, { forwardRef, HTMLAttributes, ReactNode } from \"react\";\nimport { cnb } from \"cnbuilder\";;\n\nimport \"./Container.scss\";\n\ninterface Props extends HTMLAttributes<HTMLDivElement> {\n  children: ReactNode;\n}\n\nexport default forwardRef<HTMLDivElement, Props>(\n  ({ children, className, ...props }, ref) => (\n    <div {...props} className={cnb(\"transition-container\", className)} ref={ref}>\n      {children}\n    </div>\n  )\n);\n",
     "isBinary": false
   },
   "src/CrossFadeExamplesAsync.tsx": {

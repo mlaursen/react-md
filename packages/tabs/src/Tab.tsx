@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { TextIconSpacing } from "@react-md/icon";
 import {
   InteractionStatesOptions,
@@ -90,13 +90,13 @@ function Tab(
       type="button"
       role="tab"
       disabled={disabled}
-      className={cn(block({ active, stacked: icon && stacked }), className)}
+      className={cnb(block({ active, stacked: icon && stacked }), className)}
       tabIndex={active ? undefined : -1}
     >
       <TextIconSpacing icon={icon} stacked={stacked} iconAfter={iconAfter}>
         <span
           style={contentStyle}
-          className={cn(block("content"), contentClassName)}
+          className={cnb(block("content"), contentClassName)}
         >
           {children}
         </span>

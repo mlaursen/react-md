@@ -6,7 +6,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface FieldsetProps
@@ -64,11 +64,11 @@ function Fieldset(
     <fieldset
       {...props}
       ref={ref}
-      className={cn(block({ unstyled }), className)}
+      className={cnb(block({ unstyled }), className)}
     >
       <legend
         style={legendStyle}
-        className={cn(
+        className={cnb(
           block("legend", { "sr-only": legendSROnly }),
           legendClassName
         )}

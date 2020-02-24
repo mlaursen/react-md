@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { defaults } from "lodash";
 
 import { toId } from "utils/toTitle";
@@ -46,7 +46,7 @@ const DemoPage: FC<DemoPageProps> = props => {
   } = props as WithDefaultProps;
 
   return (
-    <div id="demo-page-container" className={cn("demo-page", className)}>
+    <div id="demo-page-container" className={cnb("demo-page", className)}>
       {fonts.map(font => (
         <DemoPageFont font={font} key={font} />
       ))}

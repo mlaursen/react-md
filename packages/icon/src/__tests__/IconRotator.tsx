@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { render } from "@testing-library/react";
 
 import IconRotator from "../IconRotator";
@@ -7,7 +7,7 @@ import FontIcon from "../FontIcon";
 import SVGIcon from "../SVGIcon";
 
 const Icon: FC<{ className?: string }> = ({ className }) => (
-  <i data-testid="icon" className={cn("custom-icon", className)} />
+  <i data-testid="icon" className={cnb("custom-icon", className)} />
 );
 
 describe("IconRotator", () => {

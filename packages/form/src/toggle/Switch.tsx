@@ -6,7 +6,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
@@ -128,7 +128,7 @@ function Switch(
   return (
     <ToggleContainer
       style={style}
-      className={cn("rmd-switch-container", className)}
+      className={cnb("rmd-switch-container", className)}
       inline={inline}
       stacked={stacked}
     >
@@ -148,19 +148,19 @@ function Switch(
         }
         iconAfter={!iconAfter}
       >
-        <span style={trackStyle} className={cn(block(), trackClassName)}>
+        <span style={trackStyle} className={cnb(block(), trackClassName)}>
           <input
             {...props}
             ref={ref}
             type="checkbox"
-            className={cn(block("input"))}
+            className={cnb(block("input"))}
             disabled={disabled}
           />
           <label
             htmlFor={id}
             aria-hidden
             style={ballStyle}
-            className={cn(block("ball"), ballClassName)}
+            className={cnb(block("ball"), ballClassName)}
           >
             {children}
           </label>

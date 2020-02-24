@@ -7,7 +7,7 @@ import React, {
   ReactNode,
   useMemo,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
@@ -291,7 +291,7 @@ function Tooltipped({
 
   const config = {
     id,
-    "aria-describedby": cn(tooltipId, describedBy),
+    "aria-describedby": cnb(tooltipId, describedBy),
     ...handlers,
   };
 

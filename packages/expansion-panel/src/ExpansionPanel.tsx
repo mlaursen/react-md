@@ -6,7 +6,7 @@ import React, {
   MouseEventHandler,
   CSSProperties,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { Card, CardProps, CardContent, CardContentProps } from "@react-md/card";
 import { Collapse } from "@react-md/transition";
 import { bem } from "@react-md/utils";
@@ -157,7 +157,7 @@ function ExpansionPanel(
       id={`${id}-container`}
       ref={ref}
       fullWidth={fullWidth}
-      className={cn(block({ expanded, "margin-top": marginTop }), className)}
+      className={cnb(block({ expanded, "margin-top": marginTop }), className)}
     >
       {customHeader || (
         <ExpansionPanelHeader

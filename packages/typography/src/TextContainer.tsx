@@ -6,7 +6,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 /**
  * A union of the available text container sizes. One of these values must be
@@ -64,7 +64,7 @@ function TextContainer(
   }: TextContainerProps,
   ref?: Ref<HTMLDivElement | ElementType>
 ): ReactElement {
-  const className = cn(
+  const className = cnb(
     `rmd-text-container rmd-text-container--${size}`,
     propClassName
   );

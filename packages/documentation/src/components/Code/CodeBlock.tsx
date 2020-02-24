@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import React, { forwardRef, ReactNode, useMemo } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import { highlightCode } from "components/Markdown/utils";
@@ -45,7 +45,7 @@ export default forwardRef<HTMLPreElement, CodeBlockProps>(function CodeBlock(
   return (
     <pre
       ref={ref}
-      className={cn(
+      className={cnb(
         block({ block: true, counted: lineNumbers }),
         `language-${language}`,
         className

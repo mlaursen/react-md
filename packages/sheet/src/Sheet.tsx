@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactElement, Ref, useRef } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { Dialog, DialogProps } from "@react-md/dialog";
 import { TransitionTimeout } from "@react-md/transition";
@@ -135,7 +135,7 @@ function Sheet(
       type="custom"
       role={role}
       visible={visible}
-      className={cn(
+      className={cnb(
         block({
           horizontal,
           vertical: !horizontal,
@@ -150,7 +150,7 @@ function Sheet(
         className
       )}
       overlay={overlay}
-      overlayClassName={cn("rmd-sheet-overlay", overlayClassName)}
+      overlayClassName={cnb("rmd-sheet-overlay", overlayClassName)}
       component={component}
       tabIndex={tabIndex}
       appear={appear}

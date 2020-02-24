@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { List, ListElement, ListProps } from "@react-md/list";
 import { Collapse, CollapseProps } from "@react-md/transition";
 
@@ -37,7 +37,7 @@ function TreeGroup(
   return (
     <Collapse
       style={style}
-      className={cn("rmd-tree-group", className)}
+      className={cnb("rmd-tree-group", className)}
       collapsed={collapsed}
       minHeight={minHeight}
       minPaddingBottom={minPaddingBottom}

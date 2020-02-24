@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
@@ -71,7 +71,7 @@ function CardHeader(
     <header
       {...props}
       ref={ref}
-      className={cn(
+      className={cnb(
         block("header", {
           [align]: align !== "none",
         }),
@@ -85,7 +85,7 @@ function CardHeader(
           icon={<CardHeaderAddon>{afterChildren}</CardHeaderAddon>}
           iconAfter
         >
-          <span className={cn(block("header-content"), contentClassName)}>
+          <span className={cnb(block("header-content"), contentClassName)}>
             {children}
           </span>
         </TextIconSpacing>

@@ -1,4 +1,4 @@
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 /**
@@ -92,7 +92,7 @@ export default function buttonThemeClassNames(props: ButtonThemeProps): string {
   const contained = themeType === "contained";
   const clear = theme === "clear";
 
-  return cn(
+  return cnb(
     block({
       text,
       icon,

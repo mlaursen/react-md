@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { FC, ReactNode, Fragment, CSSProperties } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 /**
  * @private
@@ -41,7 +41,7 @@ const HighlightedResult: FC<HighlightedResultProps> = ({
       <span
         id={id}
         style={style}
-        className={cn("rmd-typography--bold", className)}
+        className={cnb("rmd-typography--bold", className)}
       >
         {children.substring(i, end)}
       </span>

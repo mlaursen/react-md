@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import Label, { LabelProps } from "./Label";
@@ -39,7 +39,7 @@ function FloatingLabel(
     <Label
       {...props}
       ref={ref}
-      className={cn(
+      className={cnb(
         block({
           dense,
           active: floating,

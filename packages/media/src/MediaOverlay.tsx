@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 /**
  * The overlay positions relative to the `MediaContainer` component.  Most of
@@ -35,7 +35,7 @@ function MediaOverlay(
     <div
       {...props}
       ref={ref}
-      className={cn(
+      className={cnb(
         `rmd-media-overlay rmd-media-overlay--${position}`,
         className
       )}

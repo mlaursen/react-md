@@ -6,7 +6,7 @@ import React, {
   TdHTMLAttributes,
   ThHTMLAttributes,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
@@ -185,7 +185,7 @@ function TableCell(
       id={id}
       aria-sort={sortOrder === "none" ? undefined : sortOrder}
       colSpan={colSpan}
-      className={cn(
+      className={cnb(
         block({
           grow,
           header,

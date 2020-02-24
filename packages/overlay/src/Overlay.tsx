@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import CSSTransition, {
   CSSTransitionClassNames,
 } from "react-transition-group/CSSTransition";
@@ -108,7 +108,7 @@ function Overlay(
           <span
             {...props}
             ref={ref}
-            className={cn(
+            className={cnb(
               block({
                 // have to manually set the active state here since react-transition-group doesn't
                 // clone in the transition `classNames` and if the overlay re-renders while the

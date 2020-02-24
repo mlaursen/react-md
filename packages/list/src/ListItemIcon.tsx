@@ -2,7 +2,7 @@
 import React, { ReactElement } from "react";
 import { TextIconSpacing, TextIconSpacingProps } from "@react-md/icon";
 import { bem } from "@react-md/utils";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 export type ListItemIconPosition = "top" | "middle" | "bottom";
 
@@ -31,7 +31,7 @@ function ListItemIcon({
     <TextIconSpacing
       {...props}
       forceIconWrap={forceIconWrap || media}
-      className={cn(
+      className={cnb(
         base("icon", {
           [position]: position !== "middle",
           before,

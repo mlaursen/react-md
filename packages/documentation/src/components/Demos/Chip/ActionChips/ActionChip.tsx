@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { Chip, ChipProps } from "@react-md/chip";
 
 import styles from "./styles";
@@ -18,7 +18,7 @@ const ActionChip: FC<ActionChipProps> = ({
   <Chip
     {...props}
     theme={theme}
-    className={cn(styles("chip", { yellow }), className)}
+    className={cnb(styles("chip", { yellow }), className)}
   >
     {children}
   </Chip>

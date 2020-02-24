@@ -6,7 +6,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   InteractionStatesOptions,
   useInteractionStates,
@@ -212,7 +212,7 @@ function InputToggle(
       {iconAfter && labelEl}
       <span
         style={toggleStyle}
-        className={cn(
+        className={cnb(
           block({
             focused,
             disabled,
@@ -231,7 +231,7 @@ function InputToggle(
         />
         <span
           style={iconStyle}
-          className={cn(
+          className={cnb(
             block("icon", {
               circle: !disableIconOverlay && type === "radio",
               disabled,

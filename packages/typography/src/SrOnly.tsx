@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import Text, { TextElement, TextProps } from "./Text";
@@ -42,7 +42,7 @@ function SrOnly(
       ref={ref}
       tabIndex={tabIndex}
       component={component}
-      className={cn(block({ focusable }), className)}
+      className={cnb(block({ focusable }), className)}
     >
       {children}
     </Text>

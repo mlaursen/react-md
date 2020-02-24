@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
@@ -60,7 +60,7 @@ function Label(
     <Component
       {...props}
       ref={ref}
-      className={cn(
+      className={cnb(
         block({
           error,
           active,

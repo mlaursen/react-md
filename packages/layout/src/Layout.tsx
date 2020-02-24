@@ -1,5 +1,5 @@
 import React, { CSSProperties, FC, ReactNode, Ref, useMemo } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { useIcon } from "@react-md/icon";
 import { SkipToMainContent } from "@react-md/link";
 import { bem, useIsUserInteractionMode } from "@react-md/utils";
@@ -233,7 +233,7 @@ const Layout: FC<LayoutProps> = ({
         ref={mainRef}
         tabIndex={mainTabIndex}
         style={mainStyle}
-        className={cn(
+        className={cnb(
           main({
             offset: fixedAppBar,
             "nav-offset":

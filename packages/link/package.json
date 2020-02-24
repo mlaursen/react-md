@@ -41,7 +41,7 @@
     "@react-md/theme": "^2.0.0-alpha.14",
     "@react-md/transition": "^2.0.0-alpha.14",
     "@react-md/typography": "^2.0.0-alpha.14",
-    "classnames": "^2.2.6"
+    "cnbuilder": "^2.3.0"
   },
   "devDependencies": {
     "@reach/router": "^1.3.1",

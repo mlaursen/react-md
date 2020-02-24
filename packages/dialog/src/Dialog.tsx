@@ -7,7 +7,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { Overlay } from "@react-md/overlay";
 import {
@@ -279,7 +279,7 @@ function Dialog(
       <Overlay
         id={`${id}-overlay`}
         style={overlayStyle}
-        className={cn("rmd-dialog-overlay", overlayClassName)}
+        className={cnb("rmd-dialog-overlay", overlayClassName)}
         hidden={overlayHidden || disableOverlay}
         visible={visible}
         clickable={!modal}
@@ -310,7 +310,7 @@ function Dialog(
         disableEscapeClose || isNoneRole,
         onKeyDown
       )}
-      className={cn(
+      className={cnb(
         block({
           centered: isCentered,
           "full-page": isFullPage,
@@ -329,7 +329,7 @@ function Dialog(
       <span
         id={`${id}-container`}
         style={containerStyle}
-        className={cn("rmd-dialog-container", containerClassName)}
+        className={cnb("rmd-dialog-container", containerClassName)}
       >
         {dialog}
       </span>

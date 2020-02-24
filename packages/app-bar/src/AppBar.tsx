@@ -5,7 +5,7 @@ import React, {
   Ref,
   ReactElement,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import {
@@ -135,7 +135,7 @@ function AppBar(
       <InheritContext.Provider value={inherit}>
         <Component
           {...remaining}
-          className={cn(
+          className={cnb(
             block({
               [theme]: theme !== "clear",
               dense: dense && !prominent,

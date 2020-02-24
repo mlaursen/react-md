@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, forwardRef, Ref, ReactElement } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import "./ErrorMessage.scss";
@@ -24,7 +24,7 @@ function ErrorMessage(
       {...props}
       ref={ref}
       aria-live="polite"
-      className={cn(block({ "two-lines": twoLines }), className)}
+      className={cnb(block({ "two-lines": twoLines }), className)}
     >
       {children}
     </span>

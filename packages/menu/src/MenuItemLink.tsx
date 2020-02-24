@@ -1,5 +1,5 @@
 import React, { ElementType, forwardRef, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   ListItemLink,
   ListItemLinkProps,
@@ -39,7 +39,7 @@ function MenuItemLink(
         ref={ref}
         role={role}
         tabIndex={tabIndex}
-        className={cn("rmd-menu-item", className)}
+        className={cnb("rmd-menu-item", className)}
       >
         {children}
       </ListItemLink>

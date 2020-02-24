@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 export type TableContainerProps = HTMLAttributes<HTMLDivElement>;
 
@@ -14,7 +14,7 @@ function TableContainer(
   ref?: Ref<HTMLDivElement>
 ): ReactElement {
   return (
-    <div {...props} ref={ref} className={cn("rmd-table-container", className)}>
+    <div {...props} ref={ref} className={cnb("rmd-table-container", className)}>
       {children}
     </div>
   );

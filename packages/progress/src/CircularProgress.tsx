@@ -6,7 +6,7 @@ import React, {
   Ref,
   useMemo,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import getProgress from "./getProgress";
@@ -146,11 +146,11 @@ function CircularProgress(
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
-      className={cn(block({ centered }), className)}
+      className={cnb(block({ centered }), className)}
     >
       <svg
         style={svgStyle}
-        className={cn(
+        className={cnb(
           block("svg", {
             animate: animate && determinate,
             determinate,
@@ -162,7 +162,7 @@ function CircularProgress(
       >
         <circle
           style={circleStyle}
-          className={cn(
+          className={cnb(
             block("circle", {
               animate: animate && determinate,
               determinate,

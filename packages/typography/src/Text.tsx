@@ -7,7 +7,7 @@ import {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 /**
@@ -235,7 +235,7 @@ function Text(
   }: TextProps,
   ref?: Ref<TextElement>
 ): ReactElement {
-  const className = cn(
+  const className = cnb(
     block({
       [type]: true,
       "no-margin": margin === "none",

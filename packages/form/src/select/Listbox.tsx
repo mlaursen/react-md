@@ -6,7 +6,7 @@ import React, {
   useCallback,
   useRef,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { List, ListElement } from "@react-md/list";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import {
@@ -416,7 +416,7 @@ function Listbox(
         role="listbox"
         data-name={name}
         tabIndex={tabIndex}
-        className={cn(block({ temporary }), className)}
+        className={cnb(block({ temporary }), className)}
         onFocus={handleFocus}
         onKeyDown={onKeyDown}
       >

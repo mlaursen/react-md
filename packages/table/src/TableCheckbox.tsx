@@ -5,7 +5,7 @@ import React, {
   Ref,
   TdHTMLAttributes,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { Checkbox, CheckboxProps } from "@react-md/form";
 
 import TableCell, { TableCellProps } from "./TableCell";
@@ -118,7 +118,7 @@ function TableCheckbox(
       ref={ref}
       id={cellId}
       header={false}
-      className={cn("rmd-table-cell--checkbox", className)}
+      className={cnb("rmd-table-cell--checkbox", className)}
     >
       <Checkbox
         id={id}

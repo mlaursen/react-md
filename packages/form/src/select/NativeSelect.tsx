@@ -6,7 +6,7 @@ import React, {
   Ref,
   SelectHTMLAttributes,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
@@ -147,7 +147,7 @@ function NativeSelect(
   return (
     <TextFieldContainer
       style={style}
-      className={cn(
+      className={cnb(
         container({
           multi: multiple,
           padded: multiple && label,
@@ -170,7 +170,7 @@ function NativeSelect(
     >
       <FloatingLabel
         style={labelStyle}
-        className={cn(block("label"), labelClassName)}
+        className={cnb(block("label"), labelClassName)}
         htmlFor={id}
         error={error}
         active={valued && focused}
@@ -185,7 +185,7 @@ function NativeSelect(
         {...props}
         ref={ref}
         style={selectStyle}
-        className={cn(
+        className={cnb(
           block({
             icon,
             multi: multiple,

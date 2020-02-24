@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import { GITHUB_URL } from "constants/github";
@@ -31,7 +31,7 @@ const GithubLink: FC<GithubLinkProps> = providedProps => {
     <LinkButton
       {...props}
       href={`${href}${suffix}`}
-      className={cn(block({ inherit }), className)}
+      className={cnb(block({ inherit }), className)}
     >
       <GithubSVGIcon />
     </LinkButton>

@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 export type CaptionProps = HTMLAttributes<HTMLTableCaptionElement>;
 
@@ -13,7 +13,7 @@ function Caption(
   ref?: Ref<HTMLTableCaptionElement>
 ): ReactElement {
   return (
-    <caption {...props} ref={ref} className={cn("rmd-caption", className)}>
+    <caption {...props} ref={ref} className={cnb("rmd-caption", className)}>
       {children}
     </caption>
   );

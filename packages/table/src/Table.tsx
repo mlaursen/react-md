@@ -5,7 +5,7 @@ import React, {
   TableHTMLAttributes,
   useMemo,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import { TableConfigProvider, TableConfiguration } from "./config";
@@ -65,7 +65,7 @@ function Table(
       <table
         {...props}
         ref={ref}
-        className={cn(
+        className={cnb(
           block({
             dense,
             "full-width": fullWidth,

@@ -10,7 +10,7 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { applyRef, bem } from "@react-md/utils";
 
 import { TabsConfig } from "./types";
@@ -111,7 +111,7 @@ function TabsList(
       aria-orientation={orientation}
       style={mergedStyle}
       role="tablist"
-      className={cn(
+      className={cnb(
         block({
           [align]: true,
           padded,

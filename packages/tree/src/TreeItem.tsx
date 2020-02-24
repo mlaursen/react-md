@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactElement, Ref, useCallback } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { useIcon } from "@react-md/icon";
 import { ListElement, ListItemChildren } from "@react-md/list";
 import { useInteractionStates } from "@react-md/states";
@@ -120,13 +120,13 @@ function TreeItem(
       {...(isLink ? noA11y : a11y)}
       ref={liRef}
       style={liStyle}
-      className={cn(block(), liClassName)}
+      className={cnb(block(), liClassName)}
     >
       <Content
         {...props}
         {...(isLink ? a11y : undefined)}
         ref={ref}
-        className={cn(
+        className={cnb(
           block("content", {
             link: isLink,
             clickable: !disabled && !readOnly,

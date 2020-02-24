@@ -1,5 +1,5 @@
 import { Children, cloneElement, ReactElement } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import {
   DEFAULT_COLLAPSE_MIN_HEIGHT,
@@ -82,7 +82,7 @@ export default function Collapse({
   return cloneElement(child, {
     ...transitionProps,
     style: transitionStyle ? { ...transitionStyle, ...childStyle } : childStyle,
-    className: cn(transitionProps.className, child.props.className),
+    className: cnb(transitionProps.className, child.props.className),
   });
 }
 

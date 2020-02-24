@@ -6,7 +6,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import CSSTransition, {
   CSSTransitionClassNames,
 } from "react-transition-group/CSSTransition";
@@ -154,7 +154,7 @@ function Tooltip(
         {...props}
         ref={ref}
         role="tooltip"
-        className={cn(
+        className={cnb(
           block({
             dense,
             "line-wrap": lineWrap,

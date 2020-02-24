@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import {
   OverridableCSSTransitionProps,
@@ -257,7 +257,7 @@ function Menu(
           tabIndex={tabIndex}
           style={style}
           ref={ref}
-          className={cn(block({ horizontal }), className)}
+          className={cnb(block({ horizontal }), className)}
           onClick={onClick}
           onKeyDown={onKeyDown}
         >

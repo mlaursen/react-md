@@ -9,7 +9,7 @@ import React, {
   useRef,
   MutableRefObject,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import Router from "next/router";
 
 import GoogleFont from "components/GoogleFont";
@@ -157,7 +157,7 @@ const Markdown: FC<MarkdownProps> = ({
       <div
         {...props}
         ref={ref}
-        className={cn(
+        className={cnb(
           "markdown-container",
           { "markdown-container--no-p-margin": disableSinglePMargin },
           className

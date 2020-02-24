@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { Text, TextProps, TextTypes } from "@react-md/typography";
 
 import HeadingLink from "./HeadingLink";
@@ -22,7 +22,7 @@ const Heading: FC<HeadingProps> = ({
     id={id}
     {...props}
     type={`headline-${level}` as TextTypes}
-    className={cn("heading", className)}
+    className={cnb("heading", className)}
   >
     <HeadingLink idRef={id} />
     {children}

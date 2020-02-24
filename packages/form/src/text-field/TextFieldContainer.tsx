@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import TextFieldAddon from "./TextFieldAddon";
@@ -141,7 +141,7 @@ function TextFieldContainer(
     <div
       {...props}
       ref={ref}
-      className={cn(
+      className={cnb(
         block({
           error,
           inline,

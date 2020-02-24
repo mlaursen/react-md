@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { useIcon } from "@react-md/icon";
 import { List, ListElement } from "@react-md/list";
 import { bem } from "@react-md/utils";
@@ -160,7 +160,7 @@ function Tree(
       aria-multiselectable={multiSelect || undefined}
       role="tree"
       tabIndex={0}
-      className={cn(block(), className)}
+      className={cnb(block(), className)}
       onBlur={handleBlur}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}

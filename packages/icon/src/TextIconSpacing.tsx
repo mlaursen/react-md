@@ -7,7 +7,7 @@ import React, {
   ReactElement,
   ReactNode,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 export interface TextIconSpacingProps {
   /**
@@ -96,7 +96,7 @@ const TextIconSpacing: FC<TextIconSpacingProps> = ({
     return <Fragment>{children}</Fragment>;
   }
 
-  const baseClassName = cn(
+  const baseClassName = cnb(
     {
       [beforeClassName]: !stacked && !iconAfter,
       [afterClassName]: !stacked && iconAfter,
@@ -111,11 +111,11 @@ const TextIconSpacing: FC<TextIconSpacingProps> = ({
   if (!forceIconWrap && isValidElement(propIcon)) {
     const icon = Children.only(propIcon);
     iconEl = cloneElement(icon, {
-      className: cn(baseClassName, icon.props.className),
+      className: cnb(baseClassName, icon.props.className),
     });
   } else if (propIcon) {
     iconEl = (
-      <span className={cn("rmd-text-icon-spacing", baseClassName)}>
+      <span className={cnb("rmd-text-icon-spacing", baseClassName)}>
         {propIcon}
       </span>
     );

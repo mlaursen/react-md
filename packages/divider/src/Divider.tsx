@@ -5,7 +5,7 @@ import React, {
   ReactElement,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export type DividerElement = HTMLHRElement | HTMLDivElement;
@@ -52,7 +52,7 @@ function Divider(
       {...props}
       ref={ref}
       role={role}
-      className={cn(block({ inset: !vertical && inset, vertical }), className)}
+      className={cnb(block({ inset: !vertical && inset, vertical }), className)}
     />
   );
 }

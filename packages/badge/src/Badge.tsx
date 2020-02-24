@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import isEmpty from "./isEmpty";
@@ -58,7 +58,7 @@ function Badge(
     <span
       {...props}
       ref={ref}
-      className={cn(block({ [theme]: theme !== "clear" }), className)}
+      className={cnb(block({ [theme]: theme !== "clear" }), className)}
     >
       {children}
     </span>

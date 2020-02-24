@@ -8,7 +8,7 @@ import React, {
   cloneElement,
   isValidElement,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { TextIconSpacing, useIcon } from "@react-md/icon";
 import { useInteractionStates } from "@react-md/states";
 import { bem } from "@react-md/utils";
@@ -146,7 +146,7 @@ function Chip(
     content = (
       <span
         style={contentStyle}
-        className={cn(block("content"), contentClassName)}
+        className={cnb(block("content"), contentClassName)}
       >
         {children}
       </span>
@@ -186,7 +186,7 @@ function Chip(
       ref={ref}
       aria-pressed={ariaPressed ?? (!!selected || undefined)}
       type="button"
-      className={cn(
+      className={cnb(
         block({
           [theme]: true,
           disabled,

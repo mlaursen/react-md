@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { TextContainer } from "@react-md/typography";
 
 import Markdown, { MarkdownProps } from "./Markdown";
@@ -13,7 +13,7 @@ const MarkdownPage: FC<MarkdownPageProps> = ({
   children,
   ...props
 }) => (
-  <TextContainer className={cn("markdown-page", containerClassName)}>
+  <TextContainer className={cnb("markdown-page", containerClassName)}>
     <Markdown {...props}>{children}</Markdown>
   </TextContainer>
 );

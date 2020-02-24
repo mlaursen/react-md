@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { FC, ReactNode, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { AppBar, AppBarNav, AppBarProps, AppBarTitle } from "@react-md/app-bar";
 import { bem } from "@react-md/utils";
 
@@ -67,7 +67,7 @@ const LayoutAppBar: FC<LayoutAppBarProps> = ({
       id={`${layoutId}-header`}
       {...props}
       ref={appBarRef}
-      className={cn(
+      className={cnb(
         block({
           "nav-offset": isFullHeight || isToggleableVisible,
         }),

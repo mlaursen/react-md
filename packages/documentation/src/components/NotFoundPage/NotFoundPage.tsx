@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { TextIconSpacing } from "@react-md/icon";
 import { HomeSVGIcon } from "@react-md/material-icons";
 import { MediaContainer } from "@react-md/media";
@@ -19,7 +19,7 @@ interface Props {
 
 const NotFoundPage: FC<Props> = ({ className }) => {
   return (
-    <MediaContainer className={cn(block(), className)} height={9} width={16}>
+    <MediaContainer className={cnb(block(), className)} height={9} width={16}>
       <NotFoundSVG />
       <Text type="headline-2" className={block("uhh")}>
         Uhhh...

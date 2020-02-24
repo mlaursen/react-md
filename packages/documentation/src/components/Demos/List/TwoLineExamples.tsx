@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { Avatar, AvatarProps } from "@react-md/avatar";
 import { FolderSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";
 import { List, ListItem, ListSubheader } from "@react-md/list";
@@ -37,7 +37,7 @@ const InfoIcon: FC<SVGIconProps & { id: string; date: Date }> = ({
   <span
     id={`${id}-info`}
     tabIndex={0}
-    className={cn("two-line-list-example__icon", className)}
+    className={cnb("two-line-list-example__icon", className)}
   >
     <InfoOutlineSVGIcon {...props} />
   </span>

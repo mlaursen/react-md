@@ -5,7 +5,7 @@ import React, {
   Ref,
   useMemo,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { TableConfig, TableConfigProvider, useTableConfig } from "./config";
 
 export interface TableBodyProps
@@ -58,7 +58,7 @@ function TableBody(
 
   return (
     <TableConfigProvider value={configuration}>
-      <tbody {...props} ref={ref} className={cn("rmd-tbody", className)}>
+      <tbody {...props} ref={ref} className={cnb("rmd-tbody", className)}>
         {children}
       </tbody>
     </TableConfigProvider>

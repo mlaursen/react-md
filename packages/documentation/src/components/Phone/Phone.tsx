@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useMemo, useCallback } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
@@ -138,12 +138,12 @@ const Phone: FC<PhoneProps> = ({
       >
         <div
           id={`${id}-phone`}
-          className={cn(block({ emulated: !isPhone }), className)}
+          className={cnb(block({ emulated: !isPhone }), className)}
         >
           {(statusBar && <StatusBar id={id} isPhone={isPhone} />) || appBar}
           <div
             id={`${id}-content`}
-            className={cn(
+            className={cnb(
               block("content", { stacked }),
               {
                 [APP_BAR_OFFSET_DENSE_CLASSNAME]:

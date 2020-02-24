@@ -6,7 +6,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { UnstyledButton } from "@react-md/button";
 import { IconRotator, useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
@@ -76,7 +76,7 @@ function ExpansionPanelHeader(
       {...props}
       ref={ref}
       aria-expanded={expanded || undefined}
-      className={cn(block("header"), className)}
+      className={cnb(block("header"), className)}
     >
       {children}
       {icon && (

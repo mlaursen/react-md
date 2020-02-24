@@ -5,7 +5,7 @@ import React, {
   ReactElement,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   InteractionStatesOptions,
   useInteractionStates,
@@ -103,7 +103,7 @@ function ListItemLink(
       {...props}
       {...handlers}
       ref={ref}
-      className={cn(
+      className={cnb(
         "rmd-list-item rmd-list-item--clickable rmd-list-item--link",
         {
           [`rmd-list-item--${height}`]:

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { TransitionTimeout } from "@react-md/transition";
 
@@ -26,7 +26,7 @@ const RippleContainer: FC<RippleContainerProps> = ({
   entered,
   exited,
 }) => (
-  <span className={cn("rmd-ripple-container", className)}>
+  <span className={cnb("rmd-ripple-container", className)}>
     {ripples.map(ripple => (
       <Ripple
         key={ripple.startTime}

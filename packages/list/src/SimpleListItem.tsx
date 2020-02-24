@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import getListItemHeight, { SimpleListItemProps } from "./getListItemHeight";
@@ -58,7 +58,7 @@ function SimpleListItem(
           : (disabled && "true") || undefined
       }
       ref={ref}
-      className={cn(
+      className={cnb(
         block({
           [height]: height !== "auto" && height !== "normal",
           "three-lines": threeLines,

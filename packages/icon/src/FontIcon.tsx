@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface FontIconProps extends HTMLAttributes<HTMLElement> {
@@ -68,7 +68,7 @@ function FontIcon(
       {...props}
       aria-hidden={ariaHidden}
       ref={ref}
-      className={cn(
+      className={cnb(
         block({
           font: true,
           dense,

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { FC, HTMLAttributes } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 const block = bem("rmd-card");
@@ -21,7 +21,7 @@ const CardHeaderAddon: FC<HTMLAttributes<HTMLSpanElement>> = ({
   }
 
   return (
-    <span {...props} className={cn(block("header-addon"), className)}>
+    <span {...props} className={cnb(block("header-addon"), className)}>
       {children}
     </span>
   );

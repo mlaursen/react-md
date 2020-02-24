@@ -1,5 +1,5 @@
 import React from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { render } from "@testing-library/react";
 
 import Text, { TextTypes } from "../Text";
@@ -99,7 +99,7 @@ describe("Text", () => {
     const { container } = render(
       <Text>
         {({ className }) => (
-          <span className={cn("span", className)}>Content</span>
+          <span className={cnb("span", className)}>Content</span>
         )}
       </Text>
     );

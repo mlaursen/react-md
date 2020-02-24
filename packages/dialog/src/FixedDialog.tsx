@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import {
   FixedTo,
@@ -98,7 +98,7 @@ function FixedDialog(
       ref={ref}
       type="custom"
       style={style}
-      className={cn("rmd-dialog--fixed", className)}
+      className={cnb("rmd-dialog--fixed", className)}
       classNames={classNames}
       overlayHidden={overlayHidden}
       disableScrollLock={disableScrollLock}

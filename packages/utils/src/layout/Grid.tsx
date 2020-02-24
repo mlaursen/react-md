@@ -5,7 +5,7 @@ import React, {
   ReactElement,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import bem from "../bem";
 import useAppSize from "../sizing/useAppSize";
@@ -170,7 +170,7 @@ function Grid(
       {...props}
       ref={ref}
       style={mergedStyle}
-      className={cn(block({ "no-padding": padding === 0 }), className)}
+      className={cnb(block({ "no-padding": padding === 0 }), className)}
     >
       {content}
     </div>

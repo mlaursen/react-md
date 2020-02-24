@@ -32,7 +32,7 @@
         "@react-md/transition": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
-        "classnames": "latest",
+        "cnbuilder": "^2.3.0",
         "react": "latest",
         "react-dom": "latest"
       },
@@ -64,7 +64,7 @@
     "isBinary": false
   },
   "src/ErrorMessage.tsx": {
-    "content": "import React, { HTMLAttributes, forwardRef, Ref, ReactElement } from \"react\";\nimport cn from \"classnames\";\nimport { bem } from \"@react-md/utils\";\n\nimport \"./ErrorMessage.scss\";\n\nexport interface ErrorMessageProps extends HTMLAttributes<HTMLSpanElement> {\n  id: string;\n  twoLines?: boolean;\n}\n\nconst block = bem(\"error-message\");\n\n/**\n * Simple error message component that needs a bit more work -- eventually will\n * be moved into the `@react-md/form` package.\n */\nfunction ErrorMessage(\n  { className, children, twoLines = false, ...props }: ErrorMessageProps,\n  ref?: Ref<HTMLSpanElement>\n): ReactElement {\n  return (\n    <span\n      {...props}\n      ref={ref}\n      aria-live=\"polite\"\n      className={cn(block({ \"two-lines\": twoLines }), className)}\n    >\n      {children}\n    </span>\n  );\n}\n\nconst ForwardedErrorMessage = forwardRef<HTMLSpanElement, ErrorMessageProps>(\n  ErrorMessage\n);\n\nexport default ForwardedErrorMessage;\n",
+    "content": "import React, { HTMLAttributes, forwardRef, Ref, ReactElement } from \"react\";\nimport { cnb } from \"cnbuilder\";;\nimport { bem } from \"@react-md/utils\";\n\nimport \"./ErrorMessage.scss\";\n\nexport interface ErrorMessageProps extends HTMLAttributes<HTMLSpanElement> {\n  id: string;\n  twoLines?: boolean;\n}\n\nconst block = bem(\"error-message\");\n\n/**\n * Simple error message component that needs a bit more work -- eventually will\n * be moved into the `@react-md/form` package.\n */\nfunction ErrorMessage(\n  { className, children, twoLines = false, ...props }: ErrorMessageProps,\n  ref?: Ref<HTMLSpanElement>\n): ReactElement {\n  return (\n    <span\n      {...props}\n      ref={ref}\n      aria-live=\"polite\"\n      className={cnb(block({ \"two-lines\": twoLines }), className)}\n    >\n      {children}\n    </span>\n  );\n}\n\nconst ForwardedErrorMessage = forwardRef<HTMLSpanElement, ErrorMessageProps>(\n  ErrorMessage\n);\n\nexport default ForwardedErrorMessage;\n",
     "isBinary": false
   },
   "src/useNumberInput.tsx": {

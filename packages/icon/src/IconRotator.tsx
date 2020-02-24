@@ -9,7 +9,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface IconRotatorBaseProps extends HTMLAttributes<HTMLSpanElement> {
@@ -69,11 +69,11 @@ function IconRotator(
   }: IconRotatorProps,
   ref?: Ref<HTMLSpanElement>
 ): ReactElement {
-  const className = cn(block({ animate, rotated }), propClassName);
+  const className = cnb(block({ animate, rotated }), propClassName);
   if (!forceIconWrap && isValidElement(children)) {
     const child: ReactElement<{ className?: string }> = Children.only(children);
     return cloneElement(child, {
-      className: cn(className, child.props.className),
+      className: cnb(className, child.props.className),
     });
   }
 

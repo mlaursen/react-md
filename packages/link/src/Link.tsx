@@ -5,7 +5,7 @@ import React, {
   ReactElement,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface LinkProps extends HTMLAttributes<HTMLAnchorElement> {
@@ -107,7 +107,10 @@ function Link(
 ): ReactElement {
   const { target } = props;
   const href = propHref === "" ? undefined : propHref;
-  const className = cn(block({ "flex-centered": flexCentered }), propClassName);
+  const className = cnb(
+    block({ "flex-centered": flexCentered }),
+    propClassName
+  );
 
   let rel = propRel;
   if (

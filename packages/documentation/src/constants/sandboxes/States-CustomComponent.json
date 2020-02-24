@@ -27,7 +27,7 @@
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
-        "classnames": "latest",
+        "cnbuilder": "^2.3.0",
         "react": "latest",
         "react-dom": "latest"
       },
@@ -47,7 +47,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC, Fragment, ButtonHTMLAttributes } from \"react\";\nimport cn from \"classnames\";\nimport {\n  useInteractionStates,\n  InteractionStatesOptions,\n} from \"@react-md/states\";\n\nimport \"./CustomComponent.scss\";\n\ninterface CustomButtonProps\n  extends ButtonHTMLAttributes<HTMLButtonElement>,\n    Omit<InteractionStatesOptions, \"handlers\"> {}\n\nconst CustomButton: FC<CustomButtonProps> = ({\n  disabled,\n  disableRipple,\n  disableSpacebarClick,\n  disableProgrammaticRipple,\n  className: propClassName,\n  children,\n  onKeyDown,\n  onKeyUp,\n  onMouseDown,\n  onMouseUp,\n  onMouseLeave,\n  onTouchStart,\n  onTouchMove,\n  onTouchEnd,\n  ...props\n}) => {\n  const { ripples, handlers, className } = useInteractionStates({\n    handlers: {\n      onKeyDown,\n      onKeyUp,\n      onMouseDown,\n      onMouseUp,\n      onMouseLeave,\n      onTouchStart,\n      onTouchMove,\n      onTouchEnd,\n    },\n    disabled,\n    disableRipple,\n    disableSpacebarClick,\n    disableProgrammaticRipple,\n    className: propClassName,\n  });\n\n  return (\n    <button\n      {...props}\n      type=\"button\"\n      className={cn(\"custom-states-component\", className)}\n      {...handlers}\n    >\n      {children}\n      {ripples}\n    </button>\n  );\n};\n\nconst Demo: FC = () => {\n  return (\n    <Fragment>\n      <CustomButton id=\"custom-button-1\">Hello</CustomButton>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "content": "import React, { FC, Fragment, ButtonHTMLAttributes } from \"react\";\nimport { cnb } from \"cnbuilder\";;\nimport {\n  useInteractionStates,\n  InteractionStatesOptions,\n} from \"@react-md/states\";\n\nimport \"./CustomComponent.scss\";\n\ninterface CustomButtonProps\n  extends ButtonHTMLAttributes<HTMLButtonElement>,\n    Omit<InteractionStatesOptions, \"handlers\"> {}\n\nconst CustomButton: FC<CustomButtonProps> = ({\n  disabled,\n  disableRipple,\n  disableSpacebarClick,\n  disableProgrammaticRipple,\n  className: propClassName,\n  children,\n  onKeyDown,\n  onKeyUp,\n  onMouseDown,\n  onMouseUp,\n  onMouseLeave,\n  onTouchStart,\n  onTouchMove,\n  onTouchEnd,\n  ...props\n}) => {\n  const { ripples, handlers, className } = useInteractionStates({\n    handlers: {\n      onKeyDown,\n      onKeyUp,\n      onMouseDown,\n      onMouseUp,\n      onMouseLeave,\n      onTouchStart,\n      onTouchMove,\n      onTouchEnd,\n    },\n    disabled,\n    disableRipple,\n    disableSpacebarClick,\n    disableProgrammaticRipple,\n    className: propClassName,\n  });\n\n  return (\n    <button\n      {...props}\n      type=\"button\"\n      className={cnb(\"custom-states-component\", className)}\n      {...handlers}\n    >\n      {children}\n      {ripples}\n    </button>\n  );\n};\n\nconst Demo: FC = () => {\n  return (\n    <Fragment>\n      <CustomButton id=\"custom-button-1\">Hello</CustomButton>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/CustomComponent.scss": {

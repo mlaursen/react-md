@@ -7,7 +7,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import FloatingLabel from "../label/FloatingLabel";
@@ -202,7 +202,7 @@ function TextField(
         onBlur={onBlur}
         onChange={onChange}
         style={inputStyle}
-        className={cn(
+        className={cnb(
           block({
             floating: label && theme !== "none",
           }),

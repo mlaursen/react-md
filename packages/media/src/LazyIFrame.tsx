@@ -9,7 +9,7 @@ import React, {
   useCallback,
   ReactElement,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { applyRef } from "@react-md/utils";
 
 export interface LazyIFrameProps
@@ -124,7 +124,7 @@ function LazyIFrame(
       {...props}
       ref={refCB}
       src={src}
-      className={cn(
+      className={cnb(
         {
           "rmd-media": responsive,
         },

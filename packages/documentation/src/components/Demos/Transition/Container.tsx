@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import "./Container.scss";
 
@@ -9,7 +9,11 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 export default forwardRef<HTMLDivElement, Props>(
   ({ children, className, ...props }, ref) => (
-    <div {...props} className={cn("transition-container", className)} ref={ref}>
+    <div
+      {...props}
+      className={cnb("transition-container", className)}
+      ref={ref}
+    >
       {children}
     </div>
   )

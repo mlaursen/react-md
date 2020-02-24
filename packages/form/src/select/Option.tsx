@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { SimpleListItem, SimpleListItemProps } from "@react-md/list";
 import { bem } from "@react-md/utils";
 
@@ -41,7 +41,7 @@ function Option(
       role="option"
       aria-selected={selected || undefined}
       clickable
-      className={cn(
+      className={cnb(
         block({
           selected,
           focused,

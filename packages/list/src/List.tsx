@@ -1,4 +1,4 @@
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import { bem } from "@react-md/utils";
 
@@ -53,7 +53,7 @@ function List(
       {...props}
       ref={ref}
       role={role}
-      className={cn(block({ dense, horizontal }), className)}
+      className={cnb(block({ dense, horizontal }), className)}
     >
       {children}
     </Component>

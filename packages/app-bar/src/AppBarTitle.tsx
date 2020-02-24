@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
@@ -42,7 +42,7 @@ function AppBarTitle(
     <h6
       {...props}
       ref={ref}
-      className={cn(
+      className={cnb(
         block("title", {
           "no-wrap": noWrap,
           keyline,

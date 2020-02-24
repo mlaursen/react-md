@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { IconRotator, IconRotatorBaseProps, useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
@@ -25,7 +25,7 @@ function TreeItemExpanderIcon({
     <IconRotator
       {...props}
       rotated={rotated}
-      className={cn(block("rotator-icon"), className)}
+      className={cnb(block("rotator-icon"), className)}
     >
       {icon}
     </IconRotator>

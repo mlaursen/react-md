@@ -1,6 +1,6 @@
 import Prism from "prismjs";
 import * as marked from "marked";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import { GITHUB_URL } from "constants/github";
 import { DEMOABLE_PACKAGES, PACKAGE_NAMES } from "constants/packages";
@@ -52,7 +52,7 @@ renderer.code = (rawCode, language) => {
     lineNumbers = `<span class="code__lines">${lineNumbers}</span>`;
   }
 
-  const className = cn(
+  const className = cnb(
     "code code--block",
     {
       "code--counted": lineNumbers,
@@ -75,7 +75,7 @@ renderer.heading = (text, level, _raw, slugger) => {
   const isValidHeading = isForcedHeading || (text.length <= 60 && !isNoMargin);
   // `'t` gets slugged as 39t
   const id = slugger.slug(text).replace(/39t/g, "t");
-  const className = cn(`rmd-typography rmd-typography--headline-${level}`, {
+  const className = cnb(`rmd-typography rmd-typography--headline-${level}`, {
     heading: isValidHeading,
     // eslint-disable-next-line @typescript-eslint/camelcase
     heading__toc: text.includes("Table of Contents"),

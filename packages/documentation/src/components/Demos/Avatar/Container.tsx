@@ -1,5 +1,5 @@
 import React, { FC, HTMLAttributes } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import "./Container.scss";
 
@@ -8,7 +8,7 @@ const Container: FC<HTMLAttributes<HTMLDivElement>> = ({
   className,
   ...props
 }) => (
-  <div className={cn("avatar-container", className)} {...props}>
+  <div className={cnb("avatar-container", className)} {...props}>
     {children}
   </div>
 );

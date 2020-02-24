@@ -29,7 +29,7 @@
         "@react-md/tree": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
-        "classnames": "latest",
+        "cnbuilder": "^2.3.0",
         "react": "latest",
         "react-dom": "latest"
       },
@@ -57,19 +57,19 @@
     "isBinary": false
   },
   "src/FileSVGIcon.tsx": {
-    "content": "// source: https://ionicons.com/\nimport React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { SVGIconProps } from \"@react-md/icon\";\n\nimport { Component as FileSVG } from \"./file.svg\";\n\nconst FileSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (\n  <FileSVG {...props} className={cn(\"rmd-icon rmd-icon--svg\", className)} />\n);\n\nexport default FileSVGIcon;\n",
+    "content": "// source: https://ionicons.com/\nimport React, { FC } from \"react\";\nimport { cnb } from \"cnbuilder\";;\nimport { SVGIconProps } from \"@react-md/icon\";\n\nimport { Component as FileSVG } from \"./file.svg\";\n\nconst FileSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (\n  <FileSVG {...props} className={cnb(\"rmd-icon rmd-icon--svg\", className)} />\n);\n\nexport default FileSVGIcon;\n",
     "isBinary": false
   },
   "src/HTML5SVGIcon.tsx": {
-    "content": "// source: https://konpa.github.io/devicon/\nimport React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { SVGIconProps } from \"@react-md/icon\";\n\nimport { Component as HTML5SVG } from \"./html5.svg\";\n\nconst HTML5SVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (\n  <HTML5SVG {...props} className={cn(\"rmd-icon rmd-icon--svg\", className)} />\n);\n\nexport default HTML5SVGIcon;\n",
+    "content": "// source: https://konpa.github.io/devicon/\nimport React, { FC } from \"react\";\nimport { cnb } from \"cnbuilder\";;\nimport { SVGIconProps } from \"@react-md/icon\";\n\nimport { Component as HTML5SVG } from \"./html5.svg\";\n\nconst HTML5SVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (\n  <HTML5SVG {...props} className={cnb(\"rmd-icon rmd-icon--svg\", className)} />\n);\n\nexport default HTML5SVGIcon;\n",
     "isBinary": false
   },
   "src/SassSVGIcon.tsx": {
-    "content": "// source: https://konpa.github.io/devicon/\nimport React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { SVGIconProps } from \"@react-md/icon\";\n\nimport { Component as SassSVG } from \"./sass.svg\";\n\nconst SassSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (\n  <SassSVG {...props} className={cn(\"rmd-icon rmd-icon--svg\", className)} />\n);\n\nexport default SassSVGIcon;\n",
+    "content": "// source: https://konpa.github.io/devicon/\nimport React, { FC } from \"react\";\nimport { cnb } from \"cnbuilder\";;\nimport { SVGIconProps } from \"@react-md/icon\";\n\nimport { Component as SassSVG } from \"./sass.svg\";\n\nconst SassSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (\n  <SassSVG {...props} className={cnb(\"rmd-icon rmd-icon--svg\", className)} />\n);\n\nexport default SassSVGIcon;\n",
     "isBinary": false
   },
   "src/TypescriptSVGIcon.tsx": {
-    "content": "// source: https://konpa.github.io/devicon/\nimport React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { SVGIconProps } from \"@react-md/icon\";\n\nimport { Component as TypescriptSVG } from \"./typescript.svg\";\n\nconst TypescriptSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (\n  <TypescriptSVG\n    {...props}\n    className={cn(\"rmd-icon rmd-icon--svg\", className)}\n  />\n);\n\nexport default TypescriptSVGIcon;\n",
+    "content": "// source: https://konpa.github.io/devicon/\nimport React, { FC } from \"react\";\nimport { cnb } from \"cnbuilder\";;\nimport { SVGIconProps } from \"@react-md/icon\";\n\nimport { Component as TypescriptSVG } from \"./typescript.svg\";\n\nconst TypescriptSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (\n  <TypescriptSVG\n    {...props}\n    className={cnb(\"rmd-icon rmd-icon--svg\", className)}\n  />\n);\n\nexport default TypescriptSVGIcon;\n",
     "isBinary": false
   },
   "src/file.svg": {

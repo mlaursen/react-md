@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
@@ -38,7 +38,7 @@ function Snackbar(
         {...props}
         role="status"
         ref={ref}
-        className={cn(block(), className)}
+        className={cnb(block(), className)}
       >
         {children}
       </div>

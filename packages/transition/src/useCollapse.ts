@@ -1,5 +1,5 @@
 import { CSSProperties, useState, useMemo } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import {
   DEFAULT_COLLAPSE_MIN_HEIGHT,
@@ -200,7 +200,7 @@ export default function useCollapse<E extends HTMLElement = HTMLDivElement>(
       ref,
       hidden,
       style,
-      className: cn(
+      className: cnb(
         {
           "rmd-collapse": collapsable,
           "rmd-collapse--enter": entering,

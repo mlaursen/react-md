@@ -1,5 +1,5 @@
 import React, { FC, HTMLAttributes } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import "./Container.scss";
@@ -17,7 +17,7 @@ const Container: FC<ContainerProps> = ({
   ...props
 }) => {
   return (
-    <div {...props} className={cn(block({ inline }), className)}>
+    <div {...props} className={cnb(block({ inline }), className)}>
       {children}
     </div>
   );

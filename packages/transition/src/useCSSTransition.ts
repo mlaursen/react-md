@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import {
   ENTER,
@@ -139,7 +139,7 @@ export default function useCSSTransition<
     {
       ref,
       className:
-        cn(
+        cnb(
           className,
           // Note: can't use the object syntax for classNames since it'll fail
           // if the same classes are used for different phases since they'd have

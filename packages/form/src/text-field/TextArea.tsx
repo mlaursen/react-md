@@ -9,7 +9,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { applyRef, bem, useResizeObserver } from "@react-md/utils";
 
 import FloatingLabel from "../label/FloatingLabel";
@@ -263,7 +263,7 @@ function TextArea(
       onBlur={onBlur}
       onChange={onChange}
       style={{ ...areaStyle, height }}
-      className={cn(
+      className={cnb(
         block({
           scrollable: scrollable || resize === "none",
           floating: label && theme !== "none",
@@ -290,7 +290,7 @@ function TextArea(
           rows={rows}
           tabIndex={-1}
           style={areaStyle}
-          className={cn(
+          className={cnb(
             block({
               rn: true,
               mask: true,
@@ -316,7 +316,7 @@ function TextArea(
         ...style,
         height: height ? `calc(${PADDING_VARIABLES} + ${height}px)` : undefined,
       }}
-      className={cn(
+      className={cnb(
         container({
           animate: animate && resize === "auto",
           cursor: !disabled,

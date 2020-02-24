@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import { TableRowConfiguration, useTableConfig } from "./config";
@@ -47,7 +47,7 @@ function TableRow(
     <tr
       {...props}
       ref={ref}
-      className={cn(
+      className={cnb(
         block({
           bordered: !disableBorders,
           hoverable: !disableHover,

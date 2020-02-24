@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface DialogFooterProps extends HTMLAttributes<HTMLDivElement> {
@@ -27,7 +27,7 @@ function DialogFooter(
     <footer
       {...props}
       ref={ref}
-      className={cn(
+      className={cnb(
         block("footer", {
           flex: align !== "none",
           [align]: align !== "none",

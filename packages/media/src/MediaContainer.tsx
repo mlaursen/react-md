@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface MediaContainerProps extends HTMLAttributes<HTMLDivElement> {
@@ -59,7 +59,7 @@ function MediaContainer(
     <div
       {...props}
       ref={ref}
-      className={cn(
+      className={cnb(
         block({
           auto,
           "aspect-ratio": aspectRatio,

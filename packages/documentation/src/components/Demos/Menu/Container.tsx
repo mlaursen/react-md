@@ -1,5 +1,5 @@
 import React, { FC, HTMLAttributes } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import "./Container.scss";
 
@@ -8,7 +8,7 @@ const Container: FC<HTMLAttributes<HTMLDivElement>> = ({
   children,
   ...props
 }) => (
-  <div {...props} className={cn("menu-container", className)}>
+  <div {...props} className={cnb("menu-container", className)}>
     {children}
   </div>
 );

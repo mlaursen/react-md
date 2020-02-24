@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { ReactElement, ReactNode } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface ListItemTextProps {
@@ -22,7 +22,7 @@ function ListItemText({
   if (secondaryText) {
     secondaryContent = (
       <span
-        className={cn(
+        className={cnb(
           block("text", { secondary: true }),
           secondaryTextClassName
         )}
@@ -33,7 +33,7 @@ function ListItemText({
   }
 
   return (
-    <span className={cn(block("text"), className)}>
+    <span className={cnb(block("text"), className)}>
       {children}
       {secondaryContent}
     </span>

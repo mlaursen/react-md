@@ -5,7 +5,7 @@ import React, {
   ReactElement,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 /**
  * The props for the unstyled button are just all the normal button html
@@ -30,7 +30,7 @@ function UnstyledButton(
       {...props}
       type="button"
       ref={ref}
-      className={cn("rmd-button-unstyled", className)}
+      className={cnb("rmd-button-unstyled", className)}
     >
       {children}
     </button>

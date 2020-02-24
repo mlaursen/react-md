@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { CSSProperties, FC, ReactNode } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { AppBar, AppBarAction, AppBarTitle } from "@react-md/app-bar";
 import { bem } from "@react-md/utils";
 
@@ -38,7 +38,7 @@ const LayoutNavigationHeader: FC<LayoutNavigationHeaderProps> = ({
     <AppBar
       id={`${layoutId}-nav-header`}
       style={style}
-      className={cn(block(), className)}
+      className={cnb(block(), className)}
       inheritColor
       theme="clear"
     >

@@ -39,7 +39,7 @@
     "@react-md/theme": "^2.0.0-alpha.14",
     "@react-md/transition": "^2.0.0-alpha.14",
     "@react-md/utils": "^2.0.0-alpha.14",
-    "classnames": "^2.2.6",
+    "cnbuilder": "^2.3.0",
     "react-transition-group": "^4.3.0"
   },
   "peerDependencies": {

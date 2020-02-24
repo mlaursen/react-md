@@ -9,7 +9,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 
 import applyRef from "../applyRef";
 import bem from "../bem";
@@ -227,7 +227,7 @@ function GridList(
       {...props}
       ref={refHandler}
       style={mergedStyle}
-      className={cn(block(), className)}
+      className={cnb(block(), className)}
     >
       {content}
     </div>

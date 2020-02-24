@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { Button, ButtonProps } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
 
@@ -92,7 +92,7 @@ function BadgedButton(
 
   let describedBy = propDescribedBy;
   if (!isEmpty(children, disableNullOnZero)) {
-    describedBy = cn(describedBy, badgeId);
+    describedBy = cnb(describedBy, badgeId);
   }
 
   return (

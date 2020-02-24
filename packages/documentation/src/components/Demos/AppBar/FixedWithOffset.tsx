@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   AppBar,
   AppBarNav,
@@ -53,7 +53,7 @@ const Example: FC<ExampleProps> = ({ dense, prominent }) => {
         </AppBarAction>
       </AppBar>
       <div
-        className={cn("fixed-with-offset__content", {
+        className={cnb("fixed-with-offset__content", {
           [APP_BAR_OFFSET_CLASSNAME]: !dense && !prominent,
           [APP_BAR_OFFSET_DENSE_CLASSNAME]: dense && !prominent,
           [APP_BAR_OFFSET_PROMINENT_CLASSNAME]: !dense && prominent,

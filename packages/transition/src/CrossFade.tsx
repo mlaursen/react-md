@@ -7,7 +7,7 @@ import React, {
   ReactElement,
   Ref,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { applyRef } from "@react-md/utils";
 
@@ -100,7 +100,7 @@ function CrossFade(
     const child = Children.only(children);
     return cloneElement(child, {
       ref,
-      className: cn(child.props.className, className),
+      className: cnb(child.props.className, className),
     });
   }
 

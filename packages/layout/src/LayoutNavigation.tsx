@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { useIcon } from "@react-md/icon";
 import { Sheet } from "@react-md/sheet";
 import { Tree } from "@react-md/tree";
@@ -98,7 +98,7 @@ const LayoutNavigation: FC<StrictProps> = ({
       aria-labelledby={sheetLabelledBy}
       role={isInline ? "none" : "dialog"}
       style={sheetStyle}
-      className={cn(
+      className={cnb(
         block({ offset: fixedAppBar && isPersistent && !isFullHeight }),
         sheetClassName
       )}

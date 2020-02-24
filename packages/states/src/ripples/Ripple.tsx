@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { FC, useCallback } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import CSSTransition, {
   CSSTransitionClassNames,
 } from "react-transition-group/CSSTransition";
@@ -66,7 +66,7 @@ const Ripple: FC<RippleProps> = props => {
       onEntered={onEntered}
       onExited={onExited}
     >
-      <span style={style} className={cn("rmd-ripple", className)} />
+      <span style={style} className={cnb("rmd-ripple", className)} />
     </CSSTransition>
   );
 };

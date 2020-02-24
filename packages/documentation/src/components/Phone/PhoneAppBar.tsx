@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { AppBar, AppBarProps } from "@react-md/app-bar";
 import { bem, useAppSize } from "@react-md/utils";
 
@@ -16,7 +16,7 @@ const PhoneAppBar: FC<AppBarProps> = ({ className, children, ...props }) => {
     <AppBar
       {...props}
       id={`${id}-app-bar`}
-      className={cn(block("app-bar"), className)}
+      className={cnb(block("app-bar"), className)}
       fixed
       fixedElevation={false}
       dense={!isPhone}

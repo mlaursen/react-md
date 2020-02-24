@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { CSSProperties, Fragment, ReactElement, ReactNode } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { UnstyledButton } from "@react-md/button";
 import {
   IconRotator,
@@ -48,7 +48,7 @@ export default function TableCellSortButton({
     <UnstyledButton
       id={id}
       style={style}
-      className={cn(block("child"), className)}
+      className={cnb(block("child"), className)}
     >
       <TextIconSpacing {...props} icon={icon}>
         {children}

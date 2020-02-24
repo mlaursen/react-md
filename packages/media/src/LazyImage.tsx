@@ -8,7 +8,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { applyRef } from "@react-md/utils";
 
 export interface LazyImageProps extends ImgHTMLAttributes<HTMLImageElement> {
@@ -162,7 +162,7 @@ function LazyImage(
       src={src}
       srcSet={srcSet}
       alt={alt}
-      className={cn(
+      className={cnb(
         {
           "rmd-media": responsive,
         },

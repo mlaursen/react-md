@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import CSSTransition, {
   CSSTransitionClassNames,
 } from "react-transition-group/CSSTransition";
@@ -87,7 +87,7 @@ function TabPanel(
         ref={ref}
         role="tabpanel"
         hidden={hidden}
-        className={cn(block(), className)}
+        className={cnb(block(), className)}
       >
         {children}
       </div>

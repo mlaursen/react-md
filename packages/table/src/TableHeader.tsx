@@ -5,7 +5,7 @@ import React, {
   Ref,
   useMemo,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 import { TableCellConfig, TableConfigProvider, useTableConfig } from "./config";
@@ -75,7 +75,7 @@ function TableHeader(
 
   return (
     <TableConfigProvider value={configuration}>
-      <thead {...props} ref={ref} className={cn(block(), className)}>
+      <thead {...props} ref={ref} className={cnb(block(), className)}>
         <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
       </thead>
     </TableConfigProvider>

@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import {
   Checkbox,
   Fieldset,
@@ -73,7 +73,7 @@ const SimpleGridList: FC = () => {
           onChange={handleRestrictedChange}
         />
       </Fieldset>
-      <div className={cn(block({ restricted }), "grid")}>
+      <div className={cnb(block({ restricted }), "grid")}>
         <GridList
           style={{
             padding: containerPadding > 0 ? containerPadding / 2 : 0,

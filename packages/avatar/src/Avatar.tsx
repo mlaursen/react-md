@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { bem } from "@react-md/utils";
 
 export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
@@ -52,7 +52,7 @@ function Avatar(
     <span
       {...props}
       ref={ref}
-      className={cn(block({ [color]: color }), className)}
+      className={cnb(block({ [color]: color }), className)}
     >
       {img}
       {children}

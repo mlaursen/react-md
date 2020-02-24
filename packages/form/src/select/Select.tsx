@@ -10,7 +10,7 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import cn from "classnames";
+import { cnb } from "cnbuilder";
 import { useIcon } from "@react-md/icon";
 import { useFixedPositioning } from "@react-md/transition";
 import {
@@ -375,11 +375,11 @@ function Select(
         isLeftAddon={isLeftAddon}
         isRightAddon={isRightAddon}
         rightChildren={rightChildren}
-        className={cn(block({ disabled }), className)}
+        className={cnb(block({ disabled }), className)}
       >
         <FloatingLabel
           style={labelStyle}
-          className={cn(block("label"), labelClassName)}
+          className={cnb(block("label"), labelClassName)}
           htmlFor={id}
           error={error}
           active={valued && (focused || visible)}
@@ -394,7 +394,7 @@ function Select(
         <span
           id={`${id}-value`}
           style={displayLabelStyle}
-          className={cn(
+          className={cnb(
             block("value", {
               disabled,
               readonly: readOnly,
