@@ -129,14 +129,18 @@ export default class CalendarHeader extends PureComponent {
             disabled={isPreviousDisabled}
             className="md-calendar-control"
             iconEl={previousIcon}
+            aria-label="Previous Month"
           />
-          <h4 className={cn('md-title', titleClassName)}>{title}</h4>
+          <h4 className={cn('md-title', titleClassName)} aria-live="polite">
+            {title}
+          </h4>
           <Button
             icon
             onClick={onNextClick}
             disabled={isNextDisabled}
             className="md-calendar-control"
             iconEl={nextIcon}
+            aria-label="Next Month"
           />
         </div>
         <div className="md-calendar-dows">
