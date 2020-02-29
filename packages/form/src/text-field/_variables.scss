@@ -3,13 +3,14 @@
 ////
 
 @import '~@react-md/icon/dist/variables';
+@import '~@react-md/states/dist/variables';
 @import '~@react-md/theme/dist/variables';
 @import '~@react-md/theme/dist/functions';
 
 /// The color to use for the text field's borders/underlines while the user is
 /// focusing the text field.
 /// @type Color
-$rmd-text-field-active-color: rmd-theme-var(primary) !default;
+$rmd-text-field-active-color: $rmd-states-focus-shadow-color !default;
 
 /// The text field's border color to use in light themed apps or backgrounds.
 /// @type Color
