@@ -3,24 +3,32 @@ import { render } from "@testing-library/react";
 
 import GridList from "../GridList";
 
+let getBoundingClientRect: jest.SpyInstance<DOMRect, []>;
 beforeAll(() => {
-  Object.defineProperties(HTMLElement.prototype, {
-    offsetWidth: {
-      get() {
-        return 1000;
-      },
-    },
-  });
+  getBoundingClientRect = jest.spyOn(
+    HTMLElement.prototype,
+    "getBoundingClientRect"
+  );
+
+  // this mock doesn't really matter other than the `width` value. just have to
+  // provide all the rest for Typescript
+  getBoundingClientRect.mockImplementation(() => ({
+    x: 100,
+    y: 100,
+    bottom: 2000,
+    top: 100,
+    left: 100,
+    right: 2000,
+    height: 100,
+    width: 1000,
+    toJSON: () => "",
+  }));
 });
 
 afterAll(() => {
-  Object.defineProperties(HTMLElement.prototype, {
-    offsetWidth: {
-      get() {
-        return 0;
-      },
-    },
-  });
+  if (getBoundingClientRect) {
+    getBoundingClientRect.mockRestore();
+  }
 });
 
 describe("GridList", () => {

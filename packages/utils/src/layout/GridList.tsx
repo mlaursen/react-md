@@ -175,16 +175,21 @@ function GridList(
       return;
     }
 
-    let width = ref.current.offsetWidth - containerPadding;
+    // need to use rect instead of offsetWidth since we need decimal precision
+    // for the width since offsetWidth is basically Math.ceil(width). the
+    // calculations for max columns will be off on high-pixel-density monitors
+    // or some zoom levels.
+    let { width } = ref.current.getBoundingClientRect();
+    width -= containerPadding;
+
+    // just need to see if there is a scrollbar visible and subtract that width.
+    // don't need decimal precision here since both values will be rounded
     if (ref.current.offsetHeight < ref.current.scrollHeight) {
       width -= getScrollbarWidth();
     }
 
     const columns = Math.ceil(width / maxCellSize);
-    setGridSize({
-      cellWidth: width / columns,
-      columns,
-    });
+    setGridSize({ cellWidth: width / columns, columns });
   }, [maxCellSize, containerPadding]);
 
   const refHandler = useCallback(
