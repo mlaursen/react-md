@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormMessage should render an inline counter when the length and maxLength props are provided 1`] = `
+<div
+  aria-live="polite"
+  class="rmd-form-message rmd-form-message--outline"
+  data-testid="message"
+  id="message"
+>
+  <span
+    class="rmd-form-message__counter"
+    id="message-counter"
+  >
+    0 / 10
+  </span>
+</div>
+`;
+
+exports[`FormMessage should render an inline counter when the length and maxLength props are provided 2`] = `
+<div
+  aria-live="polite"
+  class="rmd-form-message rmd-form-message--outline"
+  data-testid="message"
+  id="message"
+>
+  <span
+    class="rmd-form-message__counter"
+    id="message-counter"
+  >
+    10 / 10
+  </span>
+</div>
+`;
+
+exports[`FormMessage should render an inline counter when the length and maxLength props are provided 3`] = `
+<div
+  aria-live="polite"
+  class="rmd-form-message rmd-form-message--error rmd-form-message--outline"
+  data-testid="message"
+  id="message"
+>
+  <p
+    class="rmd-form-message__message"
+    id="message-message"
+  >
+    Too long
+  </p>
+  <span
+    class="rmd-form-message__counter"
+    id="message-counter"
+  >
+    10 / 10
+  </span>
+</div>
+`;
+
+exports[`FormMessage should render correctly 1`] = `
+<div>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline"
+    id="message"
+  />
+</div>
+`;
+
+exports[`FormMessage should render correctly 2`] = `
+<div>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--outline"
+    id="message"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="message-message"
+    >
+      This is a help message!
+    </p>
+  </div>
+</div>
+`;
+
+exports[`FormMessage should render correctly 3`] = `
+<div>
+  <div
+    aria-live="polite"
+    class="rmd-form-message rmd-form-message--error rmd-form-message--outline"
+    id="message"
+  >
+    <p
+      class="rmd-form-message__message"
+      id="message-message"
+    >
+      Something broke.
+    </p>
+  </div>
+</div>
+`;

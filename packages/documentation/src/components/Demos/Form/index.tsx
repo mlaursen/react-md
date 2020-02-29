@@ -42,6 +42,9 @@ import {
   customizingSelectOptions,
 } from "./CustomizingSelectOptions";
 
+import SimpleHelpAndErrorMessages from "./SimpleHelpAndErrorMessages";
+import simpleHelpAndErrorMessages from "./SimpleHelpAndErrorMessages.md";
+
 import ExampleForm from "./ExampleForm";
 import exampleForm from "./ExampleForm.md";
 
@@ -105,6 +108,11 @@ const demos = [
     name: "Async Switch Example",
     description: asyncSwitchExample,
     children: <AsyncSwitchExample />,
+  },
+  {
+    name: "Simple Help and Error Messages",
+    description: simpleHelpAndErrorMessages,
+    children: <SimpleHelpAndErrorMessages />,
   },
   {
     name: "Example Form",

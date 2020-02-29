@@ -12,3 +12,6 @@ export * from "./Password";
 
 export { default as TextArea } from "./TextArea";
 export * from "./TextArea";
+
+export { default as FormMessage } from "./FormMessage";
+export * from "./FormMessage";

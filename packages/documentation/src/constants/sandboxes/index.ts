@@ -136,6 +136,8 @@ const sandboxes: Sandboxes = {
     NativeSelectExample: () =>
       resolve(import("./Form-NativeSelectExample.json")),
     SelectExample: () => resolve(import("./Form-SelectExample.json")),
+    SimpleHelpAndErrorMessages: () =>
+      resolve(import("./Form-SimpleHelpAndErrorMessages.json")),
     SwitchExamples: () => resolve(import("./Form-SwitchExamples.json")),
     TextAreaExample: () => resolve(import("./Form-TextAreaExample.json")),
     TextFieldExample: () => resolve(import("./Form-TextFieldExample.json")),

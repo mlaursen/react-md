@@ -7,9 +7,13 @@
   grid-template-columns: calc(#{rmd-icon-theme-var(size)} + 1rem) 1fr;
   margin: 1rem;
 
+  &__legend {
+    margin-bottom: 1rem;
+  }
+
   &__address-icon {
     align-self: flex-start;
-    margin-top: 1rem;
+    margin-top: 3.5rem;
   }
 
   &__address-field {

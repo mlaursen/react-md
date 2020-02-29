@@ -66,7 +66,7 @@ const ExampleForm: FC = () => {
             theme={currentTheme}
           />
           <LocationOnSVGIcon className={block("address-icon")} />
-          <Fieldset legend="Full Address">
+          <Fieldset legend="Full Address" legendClassName={block("legend")}>
             <TextField
               id="contact-address"
               name="address"

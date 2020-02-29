@@ -418,6 +418,50 @@
     position: absolute;
   }
 }
+
+/// @access private
+@mixin rmd-form-message {
+  @include rmd-typography(body-2, (font-size));
+  @include rmd-theme(color, text-secondary-on-background);
+
+  display: flex;
+  font-size: $rmd-form-message-font-size;
+  margin-bottom: $rmd-form-message-margin-bottom;
+  margin-top: $rmd-form-message-margin-top;
+  min-height: $rmd-form-message-min-height;
+
+  &--underline {
+    padding-left: $rmd-text-field-underline-padding;
+    padding-right: $rmd-text-field-underline-padding;
+  }
+
+  &--filled {
+    padding-left: $rmd-text-field-filled-padding;
+    padding-right: $rmd-text-field-filled-padding;
+  }
+
+  &--outline {
+    padding-left: $rmd-text-field-outline-padding;
+    padding-right: $rmd-text-field-outline-padding;
+  }
+
+  &--error {
+    @include rmd-form-theme(color, error-color);
+  }
+
+  &__message {
+    margin: 0;
+  }
+
+  &__counter {
+    @include rmd-utils-rtl-auto(margin-left, auto);
+    @include rmd-utils-rtl-auto(padding-left, $rmd-form-message-counter-spacing);
+
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
 /// @access private
 @mixin react-md-text-field {
   .rmd-text-field-container {
@@ -442,5 +486,9 @@
 
   .rmd-textarea {
     @include rmd-textarea;
+  }
+
+  .rmd-form-message {
+    @include rmd-form-message;
   }
 }

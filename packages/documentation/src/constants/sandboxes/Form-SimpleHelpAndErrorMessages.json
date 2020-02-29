@@ -1,0 +1,52 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Form Example - Simple Help And Error Messages</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Form Example - Simple Help And Error Messages",
+      "description": "Example from https://react-md.dev/packages/form/demos#simple-help-and-error-messages",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/form": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, useState } from \"react\";\nimport { FormMessage, TextField } from \"@react-md/form\";\nimport { Grid } from \"@react-md/utils\";\n\nconst id = \"simple-help-and-error-messages\";\n\nconst Demo: FC = () => {\n  const [value1, setValue1] = useState(\"\");\n  const [value2, setValue2] = useState(\"\");\n  return (\n    <Grid columns={1} desktopColumns={2} largeDesktopColumns={3}>\n      <div>\n        <TextField\n          id={`${id}-field-1`}\n          aria-describedby={`${id}-field-1-message`}\n          label=\"Name\"\n          placeholder=\"John Doe\"\n        />\n        <FormMessage id={`${id}-field-1-message`}>Help Text</FormMessage>\n      </div>\n      <div>\n        <TextField\n          id={`${id}-field-2`}\n          aria-describedby={`${id}-field-2-message`}\n          label=\"Name\"\n          placeholder=\"John Doe\"\n          error\n        />\n        <FormMessage id={`${id}-field-2-message`} error>\n          Error Text\n        </FormMessage>\n      </div>\n      <div>\n        <TextField\n          id={`${id}-field-3`}\n          aria-describedby={`${id}-field-3-message`}\n          label=\"Name\"\n          placeholder=\"John Doe\"\n          value={value1}\n          error={value1.length > 20}\n          onChange={event => setValue1(event.currentTarget.value)}\n        />\n        <FormMessage\n          id={`${id}-field-3-message`}\n          error={value1.length > 20}\n          length={value1.length}\n          maxLength={20}\n        />\n      </div>\n      <div>\n        <TextField\n          id={`${id}-field-4`}\n          aria-describedby={`${id}-field-4-message`}\n          label=\"Name\"\n          placeholder=\"John Doe\"\n          value={value2}\n          onChange={event => setValue2(event.currentTarget.value)}\n          error={value2.length > 20}\n        />\n        <FormMessage\n          id={`${id}-field-4-message`}\n          error={value2.length > 20}\n          length={value2.length}\n          maxLength={20}\n        >\n          {value2.length > 20 ? \"Too long!\" : \"Max 20 characters\"}\n        </FormMessage>\n      </div>\n    </Grid>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  }
+}

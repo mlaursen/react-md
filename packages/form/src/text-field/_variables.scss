@@ -144,3 +144,34 @@ $rmd-textarea-vertical-padding: 0.5rem !default;
 /// and will continually be centered as the user types more and more text.
 /// @type Number
 $rmd-textarea-addon-top: 1rem !default;
+
+/// The minimum height for the `FormMessage` component. This is really just
+/// required to help prevent layout changes when the messages are added and
+/// removed from the DOM.
+///
+/// @type Number
+$rmd-form-message-min-height: 2rem !default;
+
+/// The amount of margin that should be applied to the top of the `FormMessage`
+/// component.
+/// @type Number
+$rmd-form-message-margin-top: 0.5rem !default;
+
+/// The amount of margin that should be applied to the top of the `FormMessage`
+/// component.
+/// @type Number
+$rmd-form-message-margin-bottom: 1rem !default;
+
+/// The amount of padding to apply to the left of the `FormMessage`'s counter
+/// component.
+///
+/// @type Number
+$rmd-form-message-counter-spacing: $rmd-icon-spacing-with-text !default;
+
+/// The font size to apply to the `FormMessage` component for the messages as
+/// well as the counter component.
+///
+/// Note: The remaining typography styles will come from `body-2`.
+///
+/// @type Number
+$rmd-form-message-font-size: 0.75rem !default;
