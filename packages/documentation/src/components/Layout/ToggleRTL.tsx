@@ -12,7 +12,12 @@ const ToggleRTL: FC = () => {
 
   return (
     <Tooltipped id="toggle-rtl" tooltip="Toggle right to left">
-      <AppBarAction last onClick={toggleRTL} aria-label="Toggle right to left">
+      <AppBarAction
+        last
+        onClick={toggleRTL}
+        aria-label="Right to left layout"
+        aria-pressed={isRTL}
+      >
         {isRTL ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />}
       </AppBarAction>
     </Tooltipped>

@@ -53,6 +53,11 @@ export interface PasswordProps
 
   /**
    * An optional `aria-label` to apply to the visibility toggle button.
+   *
+   * Note: The visibility button is being treated as a [toggle
+   * button](https://www.w3.org/TR/wai-aria-practices-1.1/#button) which means
+   * that the label **should not change** based on the visibility state and
+   * should not include the word "toggle" since it will be redundant.
    */
   visibilityLabel?: string;
 
@@ -100,7 +105,7 @@ function Password(
     visibilityIcon: propVisibilityIcon,
     visibilityStyle,
     visibilityClassName,
-    visibilityLabel = "Temporarily show password",
+    visibilityLabel = "Show password",
     onVisibilityClick,
     getVisibilityIcon,
     disableVisibility = false,
@@ -121,12 +126,12 @@ function Password(
     [onVisibilityClick]
   );
 
+  const visible = type === "text";
   let visibilityIcon = useIcon("password", propVisibilityIcon);
   if (isConfigurableIcon(propVisibilityIcon)) {
-    visibilityIcon =
-      type === "text"
-        ? propVisibilityIcon.visible
-        : propVisibilityIcon.invisible;
+    visibilityIcon = visible
+      ? propVisibilityIcon.visible
+      : propVisibilityIcon.invisible;
   }
 
   return (
@@ -145,6 +150,7 @@ function Password(
           <Button
             id={`${id}-password-toggle`}
             aria-label={visibilityLabel}
+            aria-pressed={visible}
             buttonType="icon"
             onClick={toggle}
             style={visibilityStyle}

@@ -28,7 +28,8 @@ const ToggleTheme: FC = () => {
   return (
     <Tooltipped id="toggle-theme" tooltip="Toggle Light/Dark Theme">
       <AppBarAction
-        aria-label="Toggle Theme"
+        aria-label="Dark Theme"
+        aria-pressed={!isLight}
         first
         onClick={toggleTheme}
         onMouseEnter={isMouseMode ? enable : undefined}
