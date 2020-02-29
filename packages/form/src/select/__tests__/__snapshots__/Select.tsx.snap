@@ -128,7 +128,7 @@ exports[`Select should update the label and select class names when focused as w
 <div>
   <div
     aria-haspopup="listbox"
-    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-active rmd-text-field-container--outline-right rmd-select"
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--label rmd-text-field-container--outline-active rmd-text-field-container--outline-right rmd-select"
     id="select"
     role="button"
     tabindex="0"

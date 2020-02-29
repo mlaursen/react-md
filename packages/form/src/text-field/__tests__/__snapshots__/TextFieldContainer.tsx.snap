@@ -727,7 +727,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 13`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--outline-active rmd-text-field-container--outline-error"
+    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--outline-active rmd-text-field-container--outline-error"
   />
 </div>
 `;
@@ -751,7 +751,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 16`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense rmd-text-field-container--outline-active rmd-text-field-container--outline-error"
+    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--dense rmd-text-field-container--outline-active rmd-text-field-container--outline-error"
   />
 </div>
 `;
@@ -767,7 +767,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 18`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense rmd-text-field-container--outline-active rmd-text-field-container--outline-error"
+    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--dense rmd-text-field-container--outline-active rmd-text-field-container--outline-error"
   />
 </div>
 `;
@@ -783,7 +783,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 20`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense-label rmd-text-field-container--outline-active rmd-text-field-container--outline-error"
+    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--outline rmd-text-field-container--dense-label rmd-text-field-container--outline-active rmd-text-field-container--outline-error"
   />
 </div>
 `;
@@ -791,7 +791,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 21`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense-label rmd-text-field-container--outline-active rmd-text-field-container--outline-error"
+    class="rmd-text-field-container rmd-text-field-container--error rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--dense-label rmd-text-field-container--outline-active rmd-text-field-container--outline-error"
   />
 </div>
 `;
@@ -799,7 +799,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 22`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--outline-active"
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--outline-active"
   />
 </div>
 `;
@@ -807,7 +807,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 23`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense rmd-text-field-container--outline-active"
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--dense rmd-text-field-container--outline-active"
   />
 </div>
 `;
@@ -815,7 +815,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 24`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--outline-active"
+    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--outline-active"
   />
 </div>
 `;
@@ -823,7 +823,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 25`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-active"
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--label rmd-text-field-container--outline-active"
   />
 </div>
 `;
@@ -831,7 +831,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 26`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense rmd-text-field-container--outline-active"
+    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--dense rmd-text-field-container--outline-active"
   />
 </div>
 `;
@@ -839,7 +839,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 27`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense-label rmd-text-field-container--outline-active"
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--dense-label rmd-text-field-container--outline-active"
   />
 </div>
 `;
@@ -847,7 +847,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 28`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--outline-active"
+    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--label rmd-text-field-container--outline-active"
   />
 </div>
 `;
@@ -855,7 +855,7 @@ exports[`TextFieldContainer theming outline should render correctly with each st
 exports[`TextFieldContainer theming outline should render correctly with each state 29`] = `
 <div>
   <div
-    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense-label rmd-text-field-container--outline-active"
+    class="rmd-text-field-container rmd-text-field-container--inline rmd-text-field-container--outline rmd-text-field-container--dense-label rmd-text-field-container--outline-active"
   />
 </div>
 `;

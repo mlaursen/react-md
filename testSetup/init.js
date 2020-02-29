@@ -17,3 +17,10 @@ if (typeof window.matchMedia !== 'function') {
     dispatchEvent: () => false,
   });
 }
+
+if (typeof window.screen.orientation === 'undefined') {
+  // required for the AppSizeListener / useOrientation hook
+  window.screen.orientation = {
+    type: 'landscape-primary',
+  };
+}
