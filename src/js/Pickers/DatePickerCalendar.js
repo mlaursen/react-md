@@ -11,6 +11,8 @@ export default class DatePickerCalendar extends PureComponent {
     previousIcon: PropTypes.element,
     onPreviousClick: PropTypes.func.isRequired,
     nextIcon: PropTypes.element,
+    previousMonthLabel: PropTypes.string,
+    nextMonthLabel: PropTypes.string,
     onNextClick: PropTypes.func.isRequired,
     onCalendarDateClick: PropTypes.func.isRequired,
     calendarDate: PropTypes.instanceOf(Date).isRequired,
@@ -90,6 +92,8 @@ export default class DatePickerCalendar extends PureComponent {
       previousIcon,
       onPreviousClick,
       nextIcon,
+      previousMonthLabel,
+      nextMonthLabel,
       onNextClick,
       calendarDate,
       calendarTempDate,
@@ -124,6 +128,8 @@ export default class DatePickerCalendar extends PureComponent {
           previousIcon={previousIcon}
           onNextClick={onNextClick}
           nextIcon={nextIcon}
+          previousMonthLabel={previousMonthLabel}
+          nextMonthLabel={nextMonthLabel}
           firstDayOfWeek={firstDayOfWeek}
           titleClassName={titleClassName}
           titleFormat={titleFormat}

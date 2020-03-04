@@ -13,6 +13,8 @@ export interface DatePickerProps extends BasePickerProps {
   defaultCalendarDate?: string | Date;
   nextIcon?: React.ReactElement<any>;
   previousIcon?: React.ReactElement<any>;
+  previousMonthLabel?: string;
+  nextMonthLabel?: string;
   firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   calendarClassName?: string;
   yearPickerClassName?: string;
