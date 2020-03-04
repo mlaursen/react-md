@@ -24,6 +24,8 @@ export default class CalendarHeader extends PureComponent {
     previousIcon: PropTypes.element,
     onPreviousClick: PropTypes.func.isRequired,
     nextIcon: PropTypes.node,
+    previousMonthLabel: PropTypes.string,
+    nextMonthLabel: PropTypes.string,
     onNextClick: PropTypes.func.isRequired,
     DateTimeFormat: PropTypes.func.isRequired,
     locales: PropTypes.oneOfType([
@@ -116,6 +118,8 @@ export default class CalendarHeader extends PureComponent {
       onNextClick,
       nextIcon,
       titleClassName,
+      previousMonthLabel,
+      nextMonthLabel,
     } = this.props;
 
     const isPreviousDisabled = isMonthBefore(minDate, date);
@@ -129,7 +133,7 @@ export default class CalendarHeader extends PureComponent {
             disabled={isPreviousDisabled}
             className="md-calendar-control"
             iconEl={previousIcon}
-            aria-label="Previous Month"
+            aria-label={previousMonthLabel}
           />
           <h4 className={cn('md-title', titleClassName)} aria-live="polite">
             {title}
@@ -140,7 +144,7 @@ export default class CalendarHeader extends PureComponent {
             disabled={isNextDisabled}
             className="md-calendar-control"
             iconEl={nextIcon}
-            aria-label="Next Month"
+            aria-label={nextMonthLabel}
           />
         </div>
         <div className="md-calendar-dows">

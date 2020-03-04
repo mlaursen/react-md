@@ -542,6 +542,16 @@ export default class DatePickerContainer extends PureComponent {
     disableScrollLocking: PropTypes.bool,
 
     /**
+     * The label to use for the previous month button on the date picker.
+     */
+    previousMonthLabel: PropTypes.string,
+
+    /**
+     * The label to use for the next month button on the date picker.
+     */
+    nextMonthLabel: PropTypes.string,
+
+    /**
      * Boolean if the dialog should be rendered as the last child of the `renderNode` or `body` instead
      * of the first.
      */
@@ -590,6 +600,8 @@ export default class DatePickerContainer extends PureComponent {
     closeOnEsc: true,
     closeYearOnSelect: false,
     disableScrollLocking: false,
+    previousMonthLabel: 'Previous Month',
+    nextMonthLabel: 'Next Month',
     'aria-label': 'Pick a date',
   };
 
