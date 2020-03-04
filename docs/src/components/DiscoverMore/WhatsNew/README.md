@@ -1,3 +1,11 @@
+## March 2020
+
+### v1.16.0 Release
+
+#### Changelog
+
+- Improved the accessibility of the date picker. ([@leahjlou] - [pull-867])
+
 ## February 2020
 
 ### v1.15.1 Release
