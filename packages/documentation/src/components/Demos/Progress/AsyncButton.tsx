@@ -1,10 +1,10 @@
-import React, { FC, Fragment, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { Button, ButtonProps } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloudDownloadSVGIcon } from "@react-md/material-icons";
 import {
-  getProgressA11y,
   CircularProgress,
+  getProgressA11y,
   LinearProgress,
 } from "@react-md/progress";
 import { bem } from "@react-md/utils";
@@ -64,7 +64,7 @@ const AsyncButton: FC<AsyncButtonProps> = providedProps => {
     case "circular-overlay":
     case "linear-overlay":
       children = (
-        <Fragment>
+        <>
           <TextIconSpacing icon={<CloudDownloadSVGIcon />}>
             {loading ? "Loading..." : "Download"}
           </TextIconSpacing>
@@ -77,7 +77,7 @@ const AsyncButton: FC<AsyncButtonProps> = providedProps => {
               )}
             </span>
           )}
-        </Fragment>
+        </>
       );
     // no default
   }

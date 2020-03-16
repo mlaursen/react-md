@@ -159,7 +159,6 @@ export default function useInteractionStates<
     className = cn(className, { "rmd-states--pressed": pressedResult.pressed });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
   handlers = handlers || options.handlers || ({} as MergableRippleHandlers<E>);
 
   handlers.onKeyDown = useKeyboardClickPolyfill({

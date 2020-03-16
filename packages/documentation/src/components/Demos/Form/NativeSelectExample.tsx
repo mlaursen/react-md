@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import {
   Checkbox,
   Fieldset,
@@ -31,13 +31,13 @@ const States: FC<{ states: readonly State[]; readOnly?: boolean }> = ({
   states,
   readOnly,
 }) => (
-  <Fragment>
+  <>
     {states.map(({ name, abbreviation }) => (
       <option key={abbreviation} value={abbreviation} disabled={readOnly}>
         {name}
       </option>
     ))}
-  </Fragment>
+  </>
 );
 
 const NativeSelectExample: FC = () => {
@@ -70,6 +70,7 @@ const NativeSelectExample: FC = () => {
           defaultValue={multiple ? [""] : ""}
           multiple={multiple}
         >
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
           {label && <option key="label" value="" disabled hidden />}
           {!optgroup && <States states={states} readOnly={readOnly} />}
           {optgroup &&

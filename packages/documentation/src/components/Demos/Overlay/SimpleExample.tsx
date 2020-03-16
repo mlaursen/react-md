@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import { Overlay } from "@react-md/overlay";
 import { useToggle } from "@react-md/utils";
@@ -6,7 +6,7 @@ import { useToggle } from "@react-md/utils";
 const SimpleExample: FC = () => {
   const [toggled, , disable, toggle] = useToggle(false);
   return (
-    <Fragment>
+    <>
       <Button
         id="simple-overlay-button"
         onClick={toggle}
@@ -16,7 +16,7 @@ const SimpleExample: FC = () => {
         Show Overlay
       </Button>
       <Overlay id="simple-overlay" visible={toggled} onRequestClose={disable} />
-    </Fragment>
+    </>
   );
 };
 

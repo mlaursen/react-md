@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 import { bem } from "@react-md/utils";
 
@@ -41,7 +41,7 @@ const block = bem("color-palette");
 
 const ColorPalette: FC = () => {
   return (
-    <Fragment>
+    <>
       <About />
       <div className={block()}>
         {Object.entries(colorMap).map(([baseColor, colors]) => (
@@ -61,7 +61,7 @@ const ColorPalette: FC = () => {
           />
         </ul>
       </div>
-    </Fragment>
+    </>
   );
 };
 

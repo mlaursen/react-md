@@ -1,8 +1,8 @@
-import React, { FC, Fragment, ButtonHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes, FC } from "react";
 import cn from "classnames";
 import {
-  useInteractionStates,
   InteractionStatesOptions,
+  useInteractionStates,
 } from "@react-md/states";
 
 import "./CustomComponent.scss";
@@ -61,9 +61,9 @@ const CustomButton: FC<CustomButtonProps> = ({
 
 const CustomComponent: FC = () => {
   return (
-    <Fragment>
+    <>
       <CustomButton id="custom-button-1">Hello</CustomButton>
-    </Fragment>
+    </>
   );
 };
 

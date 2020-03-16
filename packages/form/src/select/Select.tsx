@@ -1,7 +1,6 @@
 import React, {
   CSSProperties,
   forwardRef,
-  Fragment,
   HTMLAttributes,
   ReactElement,
   ReactNode,
@@ -353,7 +352,7 @@ function Select(
   }, [hide]);
 
   return (
-    <Fragment>
+    <>
       <TextFieldContainer
         {...props}
         aria-haspopup="listbox"
@@ -435,7 +434,7 @@ function Select(
         isOptionDisabled={isOptionDisabled}
         disableMovementChange={disableMovementChange}
       />
-    </Fragment>
+    </>
   );
 }
 

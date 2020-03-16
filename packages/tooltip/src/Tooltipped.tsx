@@ -2,7 +2,6 @@ import React, {
   Children,
   cloneElement,
   CSSProperties,
-  Fragment,
   ReactElement,
   ReactNode,
   useMemo,
@@ -323,10 +322,10 @@ function Tooltipped({
   );
 
   return (
-    <Fragment>
+    <>
       {cloneElement(child, merged)}
       {tooltip}
-    </Fragment>
+    </>
   );
 }
 

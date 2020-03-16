@@ -1,4 +1,4 @@
-import React, { Fragment, FC } from "react";
+import React, { FC } from "react";
 import { render } from "@testing-library/react";
 
 import FocusContainer, { FocusContainerProps } from "../FocusContainer";
@@ -7,7 +7,7 @@ const requestAnimationFrame = jest.spyOn(window, "requestAnimationFrame");
 
 type TestProps = FocusContainerProps & { visible: boolean };
 const Test: FC<TestProps> = ({ visible, ...props }) => (
-  <Fragment>
+  <>
     <button id="main-button" type="button" autoFocus>
       Button
     </button>
@@ -24,7 +24,7 @@ const Test: FC<TestProps> = ({ visible, ...props }) => (
         </button>
       </FocusContainer>
     )}
-  </Fragment>
+  </>
 );
 
 beforeEach(() => {

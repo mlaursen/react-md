@@ -1,7 +1,7 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
-import { Overlay } from "@react-md/overlay";
 import { List, ListItem } from "@react-md/list";
+import { Overlay } from "@react-md/overlay";
 import { useToggle } from "@react-md/utils";
 
 import "./CustomTheme.scss";
@@ -9,7 +9,7 @@ import "./CustomTheme.scss";
 const CustomTheme: FC = () => {
   const [toggled, , disable, toggle] = useToggle(false);
   return (
-    <Fragment>
+    <>
       <Button
         id="custom-theme-button"
         themeType="outline"
@@ -32,7 +32,7 @@ const CustomTheme: FC = () => {
           ))}
         </List>
       </Overlay>
-    </Fragment>
+    </>
   );
 };
 

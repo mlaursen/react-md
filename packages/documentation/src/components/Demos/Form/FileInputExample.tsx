@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useCallback, useState } from "react";
+import React, { FC, useCallback, useState } from "react";
 import { ButtonTheme, ButtonThemeType } from "@react-md/button";
 import { Divider } from "@react-md/divider";
 import {
@@ -42,7 +42,7 @@ const SimpleFileInputs: FC = () => {
   const [isIcon, handleIconChange] = useCheckboxState(false);
 
   return (
-    <Fragment>
+    <>
       <Text type="subtitle-1" margin="none">
         Last selected file:
       </Text>
@@ -94,7 +94,7 @@ const SimpleFileInputs: FC = () => {
           {isIcon ? <SrOnly>Upload</SrOnly> : "Upload"}
         </FileInput>
       </Form>
-    </Fragment>
+    </>
   );
 };
 

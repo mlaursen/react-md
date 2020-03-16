@@ -1,6 +1,5 @@
 import React, {
   FC,
-  Fragment,
   ReactElement,
   useCallback,
   useEffect,
@@ -72,7 +71,7 @@ const UpdatingMessagePriority: FC = () => {
   }, [running]);
 
   return (
-    <Fragment>
+    <>
       <div className="updating-message-priority">
         <Text type="headline-6" margin="bottom">
           Message queue:
@@ -105,7 +104,7 @@ const UpdatingMessagePriority: FC = () => {
           Create message
         </Button>
       </Form>
-    </Fragment>
+    </>
   );
 };
 

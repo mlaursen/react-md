@@ -1,10 +1,11 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Avatar } from "@react-md/avatar";
 import scssVariables from "@react-md/avatar/dist/scssVariables";
-import { Select, useCheckboxState, Checkbox } from "@react-md/form";
+import { Checkbox, Select, useCheckboxState } from "@react-md/form";
 import { CloseSVGIcon } from "@react-md/material-icons";
 
 import immutableStates from "constants/states";
+
 import useSelect from "./useSelect";
 
 const COLORS = Object.keys(scssVariables["rmd-avatar-colors"]);
@@ -24,7 +25,7 @@ const WithOptionLeftAddon: FC = () => {
   const [value, handleChange] = useSelect("");
   const [disableLeftAddon, handleLeftAddonChange] = useCheckboxState(false);
   return (
-    <Fragment>
+    <>
       <Checkbox
         id="enable-left-addon"
         label="Disable Left Addon"
@@ -41,7 +42,7 @@ const WithOptionLeftAddon: FC = () => {
         disableLeftAddon={disableLeftAddon}
         displayLabelClassName="customizing-select-options__value"
       />
-    </Fragment>
+    </>
   );
 };
 

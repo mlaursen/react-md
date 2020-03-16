@@ -1,8 +1,8 @@
-import React, { FC, useState, Fragment } from "react";
+import React, { FC, useState } from "react";
+import { Button } from "@react-md/button";
+import { useCSSTransition } from "@react-md/transition";
 
 import "./UseCSSTransition.scss";
-import { useCSSTransition } from "@react-md/transition";
-import { Button } from "@react-md/button";
 import Page1 from "./Page1";
 
 const UseCSSTransition: FC = () => {
@@ -29,10 +29,10 @@ const UseCSSTransition: FC = () => {
   });
 
   return (
-    <Fragment>
+    <>
       <Button onClick={() => setTransitionIn(!transitionIn)}>Toggle</Button>
       {rendered && <Page1 {...transitionProps} />}
-    </Fragment>
+    </>
   );
 };
 

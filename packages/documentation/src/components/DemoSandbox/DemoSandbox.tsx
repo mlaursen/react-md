@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useRouter } from "next/router";
 
@@ -63,7 +63,7 @@ const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
   }
 
   return (
-    <Fragment>
+    <>
       <SandboxList />
       <SandboxModal
         pkg={pkg}
@@ -74,7 +74,7 @@ const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
         onFileChange={onFileChange}
         onRequestClose={onRequestClose}
       />
-    </Fragment>
+    </>
   );
 };
 

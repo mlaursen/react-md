@@ -1,4 +1,4 @@
-import React, { Fragment, FC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { Text } from "@react-md/typography";
 
 import AsyncButton, { AsyncButtonProps } from "./AsyncButton";
@@ -35,7 +35,7 @@ const Example: FC<ExampleProps> = ({ children, ...props }) => {
 };
 
 const WithinButtons: FC = () => (
-  <Fragment>
+  <>
     <Example id="async-button-1" asyncType="icon-before">
       Circular Before
     </Example>
@@ -48,7 +48,7 @@ const WithinButtons: FC = () => (
     <Example id="async-button-4" asyncType="linear-overlay">
       Linear Overlay
     </Example>
-  </Fragment>
+  </>
 );
 
 export default WithinButtons;

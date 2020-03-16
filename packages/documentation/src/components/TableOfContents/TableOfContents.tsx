@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
 import { Text } from "@react-md/typography";
 import { bem, useAppSize } from "@react-md/utils";
@@ -33,7 +33,7 @@ const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
   }
 
   return (
-    <Fragment>
+    <>
       {(!isPhone || visible) && (
         <Toggle
           onClick={toggle}
@@ -69,7 +69,7 @@ const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
           />
         </DialogContent>
       </Dialog>
-    </Fragment>
+    </>
   );
 };
 

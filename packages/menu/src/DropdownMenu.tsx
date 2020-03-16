@@ -1,4 +1,4 @@
-import React, { forwardRef, Fragment, ReactElement, Ref } from "react";
+import React, { forwardRef, ReactElement, Ref } from "react";
 import { useIcon } from "@react-md/icon";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 
@@ -119,7 +119,7 @@ function DropdownMenu(
   }
 
   return (
-    <Fragment>
+    <>
       <MenuButton
         {...props}
         ref={ref}
@@ -155,7 +155,7 @@ function DropdownMenu(
         },
         items
       )}
-    </Fragment>
+    </>
   );
 }
 

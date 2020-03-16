@@ -1,6 +1,6 @@
-import React, { ReactElement, ReactNode, Fragment } from "react";
+import React, { ReactElement, ReactNode } from "react";
+import { TableCell, TableRow } from "@react-md/table";
 import { useAppSize } from "@react-md/utils";
-import { TableRow, TableCell } from "@react-md/table";
 
 import styles from "./styles";
 
@@ -29,7 +29,7 @@ const ResponsiveBlock = ({
   }
 
   return (
-    <Fragment>
+    <>
       <TableRow className={styles("header")}>
         <TableCell header sticky hAlign="center">
           {name}
@@ -47,7 +47,7 @@ const ResponsiveBlock = ({
         </TableCell>
       </TableRow>
       <TableRow>{cons}</TableRow>
-    </Fragment>
+    </>
   );
 };
 

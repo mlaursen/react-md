@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { Table, TableBody } from "@react-md/table";
 import { Text, TextContainer } from "@react-md/typography";
 
@@ -18,7 +18,7 @@ import StylingCons from "./StylingCons";
 import StylingPros from "./StylingPros";
 
 const LibraryInfo = (): ReactElement | null => (
-  <Fragment>
+  <>
     <TextContainer>
       <Text type="headline-6" component="p">
         Before you choosing this library, it is highly recommended to check out
@@ -55,7 +55,7 @@ const LibraryInfo = (): ReactElement | null => (
         />
       </TableBody>
     </Table>
-  </Fragment>
+  </>
 );
 
 export default LibraryInfo;

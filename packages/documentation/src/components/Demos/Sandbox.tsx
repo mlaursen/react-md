@@ -1,4 +1,4 @@
-import React, { Fragment, FC } from "react";
+import React, { FC } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Portal } from "@react-md/portal";
 import { useToggle } from "@react-md/utils";
@@ -20,7 +20,7 @@ const Sandbox: FC<SandboxProps> = ({ id, getSandbox }) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Portal>
         {loading && (
           <SandboxDefineForm getSandbox={getSandbox} onCreated={disable} />
@@ -35,7 +35,7 @@ const Sandbox: FC<SandboxProps> = ({ id, getSandbox }) => {
       >
         <CodeSandboxSVGIcon />
       </AppBarAction>
-    </Fragment>
+    </>
   );
 };
 

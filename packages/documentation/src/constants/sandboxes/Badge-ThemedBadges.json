@@ -46,7 +46,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC, Fragment } from \"react\";\nimport { BadgedButton, BadgeTheme } from \"@react-md/badge\";\n\nimport \"./SimpleExamples.scss\";\n\nconst themes: BadgeTheme[] = [\"primary\", \"secondary\", \"default\", \"clear\"];\n\nconst Demo: FC = () => (\n  <Fragment>\n    {themes.map(theme => (\n      <BadgedButton\n        key={theme}\n        id={`badged-button-${theme}`}\n        badgeTheme={theme}\n        className=\"badge-container\"\n      >\n        {theme.length}\n      </BadgedButton>\n    ))}\n  </Fragment>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { BadgedButton, BadgeTheme } from \"@react-md/badge\";\n\nimport \"./SimpleExamples.scss\";\n\nconst themes: BadgeTheme[] = [\"primary\", \"secondary\", \"default\", \"clear\"];\n\nconst Demo: FC = () => (\n  <>\n    {themes.map(theme => (\n      <BadgedButton\n        key={theme}\n        id={`badged-button-${theme}`}\n        badgeTheme={theme}\n        className=\"badge-container\"\n      >\n        {theme.length}\n      </BadgedButton>\n    ))}\n  </>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/SimpleExamples.scss": {

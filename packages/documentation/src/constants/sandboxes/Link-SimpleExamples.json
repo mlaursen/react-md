@@ -47,7 +47,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC, Fragment } from \"react\";\nimport { Link } from \"@react-md/link\";\nimport { Text } from \"@react-md/typography\";\n\n\n\nconst Demo: FC = () => (\n  <Fragment>\n    <ul>\n      <li>\n        <Link href=\"https://github.com\">Github</Link>\n      </li>\n      <li>\n        <Link href=\"https://w3.org\">www.w3.org</Link>\n      </li>\n    </ul>\n    <Text>\n      You can also render links within paragraphs or the{\" \"}\n      <code>{\"<Text />\"}<code>\n      component. So here is a link to{\" \"}\n      <Link href=\"https://github.com\">GitHub</Link> again to show how it looks.\n    </Text>\n  </Fragment>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { Link } from \"@react-md/link\";\nimport { Text } from \"@react-md/typography\";\n\n\n\nconst Demo: FC = () => (\n  <>\n    <ul>\n      <li>\n        <Link href=\"https://github.com\">Github</Link>\n      </li>\n      <li>\n        <Link href=\"https://w3.org\">www.w3.org</Link>\n      </li>\n    </ul>\n    <Text>\n      You can also render links within paragraphs or the{\" \"}\n      <code>{\"<Text />\"}<code>\n      component. So here is a link to{\" \"}\n      <Link href=\"https://github.com\">GitHub</Link> again to show how it looks.\n    </Text>\n  </>\n);\n\nexport default Demo;\n",
     "isBinary": false
   }
 }

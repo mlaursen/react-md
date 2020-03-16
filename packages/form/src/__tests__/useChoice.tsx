@@ -1,5 +1,5 @@
-import React, { FC, Fragment } from "react";
-import { render, fireEvent } from "@testing-library/react";
+import React, { FC } from "react";
+import { fireEvent, render } from "@testing-library/react";
 
 import useChoice from "../useChoice";
 
@@ -12,7 +12,7 @@ const Test: FC<Props> = ({ onChange, defaultValue }) => {
   const [value, handleChange] = useChoice(defaultValue, onChange);
 
   return (
-    <Fragment>
+    <>
       <input
         id="input-1"
         data-testid="input-1"
@@ -40,7 +40,7 @@ const Test: FC<Props> = ({ onChange, defaultValue }) => {
         checked={value === "C"}
         onChange={handleChange}
       />
-    </Fragment>
+    </>
   );
 };
 

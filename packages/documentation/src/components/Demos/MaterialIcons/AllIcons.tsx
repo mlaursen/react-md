@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import * as MaterialIcons from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
 
@@ -17,12 +17,12 @@ const AllIcons: FC = () => (
         <Icon />
         <Tooltipped id={`icon-${name}`} tooltip={name}>
           {({ tooltip, ...a11y }) => (
-            <Fragment>
+            <>
               <Code {...a11y} className="all-icons__name" tabIndex={0}>
                 {name.replace(/SVGIcon/, "")}
               </Code>
               {tooltip}
-            </Fragment>
+            </>
           )}
         </Tooltipped>
       </div>

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { FC, ReactNode, Fragment, CSSProperties } from "react";
+import React, { CSSProperties, FC, ReactNode } from "react";
 import cn from "classnames";
 
 /**
@@ -26,17 +26,17 @@ const HighlightedResult: FC<HighlightedResultProps> = ({
   children,
 }) => {
   if (!enabled || !value || typeof children !== "string") {
-    return <Fragment>{children}</Fragment>;
+    return <>{children}</>;
   }
 
   const i = children.toLowerCase().indexOf(value.toLowerCase());
   if (i === -1) {
-    return <Fragment>{children}</Fragment>;
+    return <>{children}</>;
   }
 
   const end = i + value.length;
   return (
-    <Fragment>
+    <>
       {i > 0 && children.substring(0, i)}
       <span
         id={id}
@@ -46,7 +46,7 @@ const HighlightedResult: FC<HighlightedResultProps> = ({
         {children.substring(i, end)}
       </span>
       {end < children.length && children.substring(end)}
-    </Fragment>
+    </>
   );
 };
 

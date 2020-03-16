@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Select } from "@react-md/form";
 
 import desserts from "constants/desserts";
@@ -14,11 +14,11 @@ const options = desserts.map(({ name, calories }, i) => ({
   label: name,
   value: `dessert-${i}`,
   children: (
-    <Fragment>
+    <>
       <span className="rmd-typography--bold">{name.substring(0, 3)}</span>
       {name.substring(3)}
       <span className="rmd-typography--italic">{` (${calories} kcal)`}</span>
-    </Fragment>
+    </>
   ),
 }));
 

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 
 const GA_CODE = process.env.GA_CODE || "UA-76079335-2";
 const GA_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_CODE}`;
@@ -18,10 +18,10 @@ const Analytics: FC = () => {
   }
 
   return (
-    <Fragment>
+    <>
       <script src={GA_SRC} async />
       <script dangerouslySetInnerHTML={html} />
-    </Fragment>
+    </>
   );
 };
 

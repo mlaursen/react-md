@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, useState } from "react";
 import { Checkbox } from "@react-md/form";
 import {
   DropdownMenu,
@@ -31,7 +31,7 @@ const NestedDropdownMenus: FC = () => {
   const [portal, setPortal] = useState(true);
 
   return (
-    <Fragment>
+    <>
       <Checkbox
         id="nested-menu-portal"
         name="portal"
@@ -53,7 +53,7 @@ const NestedDropdownMenus: FC = () => {
       >
         Simple
       </DropdownMenu>
-    </Fragment>
+    </>
   );
 };
 

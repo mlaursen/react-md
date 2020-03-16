@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Tabs, TabsManager } from "@react-md/tabs";
 import { CrossFade } from "@react-md/transition";
@@ -25,7 +25,7 @@ const CrossFadeExamplesStatic: FC = () => {
   }, []);
 
   return (
-    <Fragment>
+    <>
       <TabsManager
         activeIndex={page}
         onActiveIndexChange={index => setPage(index)}
@@ -41,7 +41,7 @@ const CrossFadeExamplesStatic: FC = () => {
           {content}
         </CrossFade>
       </Container>
-    </Fragment>
+    </>
   );
 };
 

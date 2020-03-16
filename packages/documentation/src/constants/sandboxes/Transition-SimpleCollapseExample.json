@@ -47,7 +47,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC, Fragment, useState } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Collapse } from \"@react-md/transition\";\nimport Page1 from \"./Page1\";\n\nconst Demo: FC = () => {\n  const [collapsed, setCollapsed] = useState(true);\n  return (\n    <Fragment>\n      <Button onClick={() => setCollapsed(!collapsed)}>Toggle</Button>\n      <Collapse collapsed={collapsed}>\n        <Page1 />\n      </Collapse>\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "content": "import React, { FC, useState } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Collapse } from \"@react-md/transition\";\n\nimport Page1 from \"./Page1\";\n\nconst Demo: FC = () => {\n  const [collapsed, setCollapsed] = useState(true);\n  return (\n    <>\n      <Button onClick={() => setCollapsed(!collapsed)}>Toggle</Button>\n      <Collapse collapsed={collapsed}>\n        <Page1 />\n      </Collapse>\n    </>\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/Page1.tsx": {

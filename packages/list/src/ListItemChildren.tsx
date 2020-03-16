@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 
 import ListItemIcon, { ListItemIconPosition } from "./ListItemIcon";
 import ListItemText from "./ListItemText";
@@ -196,10 +196,10 @@ function ListItemChildren({
   );
 
   return (
-    <Fragment>
+    <>
       {children}
       {(primaryText && stringifiedChildren) || null}
-    </Fragment>
+    </>
   );
 }
 

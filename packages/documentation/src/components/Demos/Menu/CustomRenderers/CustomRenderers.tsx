@@ -1,9 +1,9 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Avatar } from "@react-md/avatar";
 import scssVariables from "@react-md/avatar/dist/scssVariables";
 
-import VirtualizedMenu from "./VirtualizedMenu";
 import NonVirtualizedMenu from "./NonVirtualizedMenu";
+import VirtualizedMenu from "./VirtualizedMenu";
 
 const colors = Object.keys(scssVariables["rmd-avatar-colors"]);
 const items = Array.from(new Array(1000), (_, i) => ({
@@ -12,10 +12,10 @@ const items = Array.from(new Array(1000), (_, i) => ({
 }));
 
 const CustomRenderers: FC = () => (
-  <Fragment>
+  <>
     <NonVirtualizedMenu items={items} />
     <VirtualizedMenu items={items} />
-  </Fragment>
+  </>
 );
 
 export default CustomRenderers;

@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, useState } from "react";
 import { Checkbox, useCheckboxState } from "@react-md/form";
 import { Text } from "@react-md/typography";
 import { ResizeListener } from "@react-md/utils";
@@ -18,7 +18,7 @@ const ResizeListenerExample: FC = () => {
   const [immediate, handleImmediateChange] = useCheckboxState(true);
 
   return (
-    <Fragment>
+    <>
       <Checkbox
         id="resize-enabled"
         name="resizeOptions"
@@ -41,7 +41,7 @@ const ResizeListenerExample: FC = () => {
       )}
       <Text>The current app size is:</Text>
       <CodeBlock>{size}px</CodeBlock>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,14 +1,14 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Divider } from "@react-md/divider";
 import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 
-import CrossFadeExamplesStatic from "./CrossFadeExamplesStatic";
 import CrossFadeExamplesAsync from "./CrossFadeExamplesAsync";
+import CrossFadeExamplesStatic from "./CrossFadeExamplesStatic";
 
 const CrossFadeExamples: FC = () => (
-  <Fragment>
+  <>
     <Text type="headline-6" margin="bottom">
       Static Transitions
     </Text>
@@ -19,7 +19,7 @@ const CrossFadeExamples: FC = () => (
     </Text>
     <CrossFadeExamplesAsync />
     <Divider />
-  </Fragment>
+  </>
 );
 
 export default CrossFadeExamples;

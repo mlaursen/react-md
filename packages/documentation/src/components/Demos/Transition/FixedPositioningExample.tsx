@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useCallback, useRef, useState } from "react";
+import React, { FC, useCallback, useRef, useState } from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { Button } from "@react-md/button";
 import {
@@ -118,7 +118,7 @@ const FixedPositioningExample: FC = () => {
   });
 
   return (
-    <Fragment>
+    <>
       <Form className="fixed-position-form">
         <Fieldset legend="Fixed Positioning Options">
           <Checkbox
@@ -221,7 +221,7 @@ const FixedPositioningExample: FC = () => {
           <Text>This is some amazing text in a fixed element!</Text>
         </div>
       </CSSTransition>
-    </Fragment>
+    </>
   );
 };
 

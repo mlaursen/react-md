@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { render } from "@testing-library/react";
 
 import MenuItemSeparator from "../MenuItemSeparator";
@@ -20,7 +20,7 @@ describe("MenuItemSeparator", () => {
       horizontal?: boolean;
     }
     const Test = ({ orientation, horizontal }: Props) => (
-      <Fragment>
+      <>
         <button id="menu-control" type="button" />
         <Menu
           id="menu"
@@ -36,7 +36,7 @@ describe("MenuItemSeparator", () => {
             data-testid="separator"
           />
         </Menu>
-      </Fragment>
+      </>
     );
     const { getByTestId, rerender } = render(<Test />);
 

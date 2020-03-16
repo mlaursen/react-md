@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { render } from "@testing-library/react";
 
 import usePreviousFocus, { FocusFallback } from "../usePreviousFocus";
@@ -45,14 +45,14 @@ const TestComponent: FC<TestComponentProps> = ({
   ...props
 }) => {
   return (
-    <Fragment>
+    <>
       {buttonMounted && (
         <button type="button" id="button-1" autoFocus>
           Button 1
         </button>
       )}
       {mounted && <Test {...props} />}
-    </Fragment>
+    </>
   );
 };
 

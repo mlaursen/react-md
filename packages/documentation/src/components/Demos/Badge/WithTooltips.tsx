@@ -1,10 +1,10 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import TooltippedBadgedButton from "./TooltippedBadgedButton";
 
 import "./SimpleExamples.scss";
 
 const WithTooltips: FC = () => (
-  <Fragment>
+  <>
     <TooltippedBadgedButton
       id="tooltipped-badged-button-1"
       tooltip="No Alerts"
@@ -24,7 +24,7 @@ const WithTooltips: FC = () => (
     >
       99+
     </TooltippedBadgedButton>
-  </Fragment>
+  </>
 );
 
 export default WithTooltips;

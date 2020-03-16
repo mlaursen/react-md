@@ -1,7 +1,6 @@
 import React, {
   CSSProperties,
   forwardRef,
-  Fragment,
   HTMLAttributes,
   ReactElement,
   ReactNode,
@@ -342,7 +341,7 @@ function Dialog(
       portalInto={portalInto}
       portalIntoId={portalIntoId}
     >
-      <Fragment>
+      <>
         {overlayEl}
         <CSSTransition
           appear={!disableTransition && appear}
@@ -362,7 +361,7 @@ function Dialog(
         >
           {dialog}
         </CSSTransition>
-      </Fragment>
+      </>
     </ConditionalPortal>
   );
 }

@@ -1,6 +1,5 @@
 import React, {
   forwardRef,
-  Fragment,
   InputHTMLAttributes,
   ReactElement,
   ReactNode,
@@ -119,11 +118,11 @@ function FileInput(
   let content: ReactNode = icon;
   if (disableIconSpacing || (children && !icon)) {
     content = (
-      <Fragment>
+      <>
         {!iconAfter && icon}
         {children}
         {iconAfter && icon}
-      </Fragment>
+      </>
     );
   } else if (children) {
     content = (
@@ -134,7 +133,7 @@ function FileInput(
   }
 
   return (
-    <Fragment>
+    <>
       <input
         id={id}
         {...props}
@@ -154,7 +153,7 @@ function FileInput(
         {content}
         {ripples}
       </label>
-    </Fragment>
+    </>
   );
 }
 

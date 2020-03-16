@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { Fragment, ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { IconRotator, TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
@@ -19,7 +19,7 @@ function ToggleChildren({
   visible,
 }: ToggleChildrenProps): ReactElement {
   if (disableDropdownIcon || !dropdownIcon) {
-    return <Fragment>{children}</Fragment>;
+    return <>{children}</>;
   }
 
   return (

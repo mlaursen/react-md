@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import {
   LazyImage,
   MediaContainer,
@@ -18,7 +18,7 @@ const positions: MediaOverlayPosition[] = [
 ];
 
 const WithOverlay: FC = () => (
-  <Fragment>
+  <>
     {positions.map((position, i) => (
       <MediaContainer
         key={position}
@@ -46,7 +46,7 @@ const WithOverlay: FC = () => (
         </MediaOverlay>
       </MediaContainer>
     ))}
-  </Fragment>
+  </>
 );
 
 export default WithOverlay;

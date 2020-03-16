@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { render, wait } from "@testing-library/react";
 
 import Dialog from "../Dialog";
@@ -74,23 +74,23 @@ describe("Dialog", () => {
 
     it("should automatically focus the first focusable element in the dialog on mount and focus the previous element on unmount", async () => {
       const { rerender } = render(
-        <Fragment>
+        <>
           <button id="main-button" type="button" autoFocus>
             Button
           </button>
           <Dialog {...props} visible={false} />
-        </Fragment>
+        </>
       );
       const mainButton = document.getElementById("main-button");
       expect(document.activeElement).toBe(mainButton);
 
       rerender(
-        <Fragment>
+        <>
           <button id="main-button" type="button" autoFocus>
             Button
           </button>
           <Dialog {...props} visible />
-        </Fragment>
+        </>
       );
 
       await wait(() => {
@@ -102,12 +102,12 @@ describe("Dialog", () => {
       expect(document.activeElement).toBe(getButton1());
 
       rerender(
-        <Fragment>
+        <>
           <button id="main-button" type="button" autoFocus>
             Button
           </button>
           <Dialog {...props} visible={false} />
-        </Fragment>
+        </>
       );
 
       await wait(() => {

@@ -1,17 +1,16 @@
 import React, {
-  Fragment,
+  CSSProperties,
   FC,
+  MutableRefObject,
   useEffect,
   useRef,
   useState,
-  CSSProperties,
-  MutableRefObject,
 } from "react";
 import { Button } from "@react-md/button";
 import {
   bem,
-  ResizeObserver,
   ObservedResizeEventHandler,
+  ResizeObserver,
   useToggle,
 } from "@react-md/utils";
 
@@ -105,7 +104,7 @@ const SimpleExample: FC = () => {
   const { height, width, onResize } = useSize();
 
   return (
-    <Fragment>
+    <>
       <Button
         id="start-resizing"
         onClick={toggle}
@@ -134,7 +133,7 @@ const SimpleExample: FC = () => {
           </tbody>
         </table>
       </div>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { BadgeContainer, Badge } from "@react-md/badge";
 import { Button } from "@react-md/button";
 import { NotificationsSVGIcon } from "@react-md/material-icons";
@@ -8,7 +8,7 @@ import { COPYRIGHT } from "constants/unicode";
 import "./CustomizingBadges.scss";
 
 const CustomizingBadges: FC = () => (
-  <Fragment>
+  <>
     <BadgeContainer className="copyright-badge-container">
       {/* since the badge is presentational, don't add the `aria-describedby` value */}
       <Text>Some amazing product</Text>
@@ -27,7 +27,7 @@ const CustomizingBadges: FC = () => (
       </Button>
       <Badge id="custom-badged-button-badge">8</Badge>
     </BadgeContainer>
-  </Fragment>
+  </>
 );
 
 export default CustomizingBadges;

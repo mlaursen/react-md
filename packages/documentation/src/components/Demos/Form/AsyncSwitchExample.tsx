@@ -1,5 +1,5 @@
-import React, { FC, useState, Fragment } from "react";
-import { AsyncSwitch, useCheckboxState, Checkbox } from "@react-md/form";
+import React, { FC, useState } from "react";
+import { AsyncSwitch, Checkbox, useCheckboxState } from "@react-md/form";
 import { useTimeout } from "@react-md/utils";
 
 const AsyncSwitchExample: FC = () => {
@@ -14,7 +14,7 @@ const AsyncSwitchExample: FC = () => {
   }, 5000);
 
   return (
-    <Fragment>
+    <>
       <Checkbox
         id="async-switch-fail"
         label={'Fail the "API" call'}
@@ -33,7 +33,7 @@ const AsyncSwitchExample: FC = () => {
         }}
         checked={checked}
       />
-    </Fragment>
+    </>
   );
 };
 

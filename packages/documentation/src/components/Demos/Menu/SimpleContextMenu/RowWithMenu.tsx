@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
 import { List } from "@react-md/list";
 import {
@@ -32,7 +32,7 @@ const RowWithMenu = ({
   const { visible } = menuProps;
 
   return (
-    <Fragment>
+    <>
       <TableRow
         id={id}
         tabIndex={0}
@@ -58,7 +58,7 @@ const RowWithMenu = ({
           <MenuItem leftIcon={<DeleteSVGIcon />}>Remove</MenuItem>
         </List>
       </Menu>
-    </Fragment>
+    </>
   );
 };
 

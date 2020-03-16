@@ -1,8 +1,8 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { TextContainer, Text } from "@react-md/typography";
 
 const TextContainerExamples: FC = () => (
-  <Fragment>
+  <>
     <TextContainer>
       <Text type="headline-4">
         This example will update the size based on the viewport to switch
@@ -55,7 +55,7 @@ const TextContainerExamples: FC = () => (
         sed volutpat.
       </Text>
     </TextContainer>
-  </Fragment>
+  </>
 );
 
 export default TextContainerExamples;

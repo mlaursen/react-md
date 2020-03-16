@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
 import { bem, useAppSize, useToggle } from "@react-md/utils";
@@ -91,7 +91,7 @@ const Demo: FC<DemoProps> = props => {
 
   const [toggled, enable, disable] = useToggle(false);
   return (
-    <Fragment>
+    <>
       {index > 0 && <Divider key="divider" className={block("divider")} />}
       <section id={id} className={block()}>
         <Heading
@@ -122,16 +122,16 @@ const Demo: FC<DemoProps> = props => {
             disableAppBar={disableFullPageAppBar}
             disableContent={disableFullPageContent}
           >
-            <Fragment>
+            <>
               {content}
               {toggled && fullPageFAB && (
                 <ClosePhone id={id} floating onClick={disable} />
               )}
-            </Fragment>
+            </>
           </ConditionalFullPageDialog>
         </div>
       </section>
-    </Fragment>
+    </>
   );
 };
 

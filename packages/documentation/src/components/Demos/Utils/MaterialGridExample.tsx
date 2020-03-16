@@ -1,10 +1,10 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Grid, GridCell } from "@react-md/utils";
 
 import "./Grid.scss";
 
 const GridExample: FC = () => (
-  <Fragment>
+  <>
     <Grid className="grid grid--small">
       {Array.from(new Array(12), (_, i) => (
         <GridCell key={i} className="grid__item">{`Cell ${i + 1}`}</GridCell>
@@ -88,7 +88,7 @@ const GridExample: FC = () => (
         Cell 1
       </GridCell>
     </Grid>
-  </Fragment>
+  </>
 );
 
 export default GridExample;

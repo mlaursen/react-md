@@ -1,9 +1,9 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import {
   AppBar,
-  AppBarNav,
   AppBarAction,
+  AppBarNav,
   APP_BAR_OFFSET_CLASSNAME,
   APP_BAR_OFFSET_DENSE_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_CLASSNAME,
@@ -11,8 +11,8 @@ import {
 } from "@react-md/app-bar";
 import {
   MenuSVGIcon,
-  SearchSVGIcon,
   MoreVertSVGIcon,
+  SearchSVGIcon,
 } from "@react-md/material-icons";
 import { Text, TextContainer } from "@react-md/typography";
 
@@ -103,12 +103,12 @@ const Example: FC<ExampleProps> = ({ dense, prominent }) => {
 };
 
 const FixedWithOffset: FC = () => (
-  <Fragment>
+  <>
     <Example />
     <Example dense />
     <Example prominent />
     <Example dense prominent />
-  </Fragment>
+  </>
 );
 
 export default FixedWithOffset;

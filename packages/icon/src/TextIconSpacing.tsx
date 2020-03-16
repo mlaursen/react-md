@@ -2,7 +2,6 @@ import React, {
   Children,
   cloneElement,
   FC,
-  Fragment,
   isValidElement,
   ReactElement,
   ReactNode,
@@ -93,7 +92,7 @@ const TextIconSpacing: FC<TextIconSpacingProps> = ({
   belowClassName = "rmd-icon--below",
 }) => {
   if (!propIcon) {
-    return <Fragment>{children}</Fragment>;
+    return <>{children}</>;
   }
 
   const baseClassName = cn(
@@ -123,11 +122,11 @@ const TextIconSpacing: FC<TextIconSpacingProps> = ({
 
   if (iconEl) {
     content = (
-      <Fragment>
+      <>
         {!iconAfter && iconEl}
         {children}
         {iconAfter && iconEl}
-      </Fragment>
+      </>
     );
   }
 

@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import {
   render as testRenderer,
   RenderResult,
@@ -41,11 +41,11 @@ const getById = (id: string) => {
 const render = (children: ReactElement): RenderResult =>
   testRenderer(children, {
     wrapper: ({ children }) => (
-      <Fragment>
+      <>
         <button id="menu-container" type="button" />
         {children}
         <button id="other-element" type="button" />
-      </Fragment>
+      </>
     ),
   });
 

@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import {
   Checkbox,
@@ -41,7 +41,7 @@ const SimpleGridList: FC = () => {
   const [restricted, handleRestrictedChange] = useCheckboxState(true);
 
   return (
-    <Fragment>
+    <>
       <Fieldset legend="GridList options">
         <Grid minCellWidth="9rem">
           <TextField
@@ -89,7 +89,7 @@ const SimpleGridList: FC = () => {
           ))}
         </GridList>
       </div>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,15 +1,15 @@
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, useState } from "react";
 import { Button } from "@react-md/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
+import { DialogFooter } from "@react-md/dialog";
 import { Fieldset, Form, Select, TextField } from "@react-md/form";
 import { Collapse } from "@react-md/transition";
 import { Grid, useAppSize } from "@react-md/utils";
 
-import useNumberInput from "hooks/useNumberInput";
 import ErrorMessage from "components/ErrorMessage";
+import useNumberInput from "hooks/useNumberInput";
 
 import "./ConfigurableCollapseExample.scss";
-import { DialogFooter } from "@react-md/dialog";
 
 const options = ["undefined", "true", "false"];
 
@@ -57,7 +57,7 @@ const ConfigurableCollapseExample: FC = () => {
   const twoLines = isDesktop && !isLargeDesktop;
 
   return (
-    <Fragment>
+    <>
       <Form
         id="configurable-collapse-form"
         onReset={() => {
@@ -173,7 +173,7 @@ const ConfigurableCollapseExample: FC = () => {
           </CardContent>
         </Card>
       </Collapse>
-    </Fragment>
+    </>
   );
 };
 

@@ -75,7 +75,7 @@
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.8.7",
     "@react-md/dev-utils": "^2.0.0-alpha.14",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.2",
@@ -101,7 +101,7 @@
     "postcss-preset-env": "^6.7.0",
     "raw-loader": "^4.0.0",
     "ts-node": "^8.6.2",
-    "typescript": "^3.7.5",
+    "typescript": "^3.8.3",
     "webpack": "^4.41.6"
   }
 }

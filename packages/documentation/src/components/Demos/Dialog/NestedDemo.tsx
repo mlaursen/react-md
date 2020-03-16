@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,
@@ -30,7 +30,7 @@ const NestedDemo: FC<NestedDemoProps> = ({ depth }) => {
 
   const dialogId = `nested-demo-dialog-${depthPath}`;
   return (
-    <Fragment>
+    <>
       <Button id={`nested-demo-button-${depthPath}`} onClick={enable}>
         Show Next Dialog
       </Button>
@@ -55,7 +55,7 @@ const NestedDemo: FC<NestedDemoProps> = ({ depth }) => {
           </Button>
         </DialogFooter>
       </Dialog>
-    </Fragment>
+    </>
   );
 };
 

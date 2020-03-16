@@ -1,4 +1,4 @@
-import React, { FC, Fragment, ReactElement } from "react";
+import React, { FC, ReactElement } from "react";
 import {
   DuplicateBehavior,
   MessageQueue,
@@ -48,10 +48,10 @@ const HandlingDuplicatedMessages: FC<Props> = ({
     <Form onSubmit={() => addMessage(MESSAGES[key])}>
       <Fieldset
         legend={
-          <Fragment>
+          <>
             <Code>MessageQueue</Code>
             {" duplicate behavior"}
-          </Fragment>
+          </>
         }
       >
         <Radio

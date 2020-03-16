@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import {
   Fieldset,
   Form,
@@ -30,7 +30,7 @@ const ExampleForm: FC = () => {
   const isUnstyled = currentTheme === "none";
 
   return (
-    <Fragment>
+    <>
       <Fieldset legend="Theme options" unstyled={false}>
         {themes.map(theme => (
           <Radio
@@ -91,6 +91,7 @@ const ExampleForm: FC = () => {
               className={block("address-field", { inline: true, first: true })}
               theme={currentTheme}
             >
+              {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
               <option value="" disabled hidden />
               {states.map(({ name, abbreviation }) => (
                 <option key={abbreviation} value={abbreviation}>
@@ -120,7 +121,7 @@ const ExampleForm: FC = () => {
           />
         </Form>
       </Phone>
-    </Fragment>
+    </>
   );
 };
 

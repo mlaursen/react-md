@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { Fragment, ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import TransitionGroup from "react-transition-group/TransitionGroup";
 
 export interface PanelGroupProps {
@@ -17,7 +17,7 @@ export default function PanelGroup({
   children,
 }: PanelGroupProps): ReactElement {
   if (persistent) {
-    return <Fragment>{children}</Fragment>;
+    return <>{children}</>;
   }
 
   return (

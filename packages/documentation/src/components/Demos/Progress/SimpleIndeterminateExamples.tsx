@@ -1,9 +1,9 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import {
-  LinearProgress,
   CircularProgress,
   getProgressA11y,
+  LinearProgress,
 } from "@react-md/progress";
 
 import Phone from "components/Phone";
@@ -24,7 +24,7 @@ const SimpleIndeterminateExamples: FC = () => {
   } = useTemporaryToggle();
 
   return (
-    <Fragment>
+    <>
       <Phone id="simple-linear" title="Linear" onPhoneClose={disableLinear}>
         {linearVisible && <LinearProgress id="simple-linear-progress" />}
         <Button
@@ -57,7 +57,7 @@ const SimpleIndeterminateExamples: FC = () => {
           Toggle Progress
         </Button>
       </Phone>
-    </Fragment>
+    </>
   );
 };
 

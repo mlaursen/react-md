@@ -92,7 +92,6 @@ const sandboxes: Sandboxes = {
     ActionChips: () => resolve(import("./Chip-ActionChips.json")),
     ChoiceChips: () => resolve(import("./Chip-ChoiceChips.json")),
     FilterChips: () => resolve(import("./Chip-FilterChips.json")),
-    InputChips: () => resolve(import("./Chip-InputChips.json")),
     SimpleChips: () => resolve(import("./Chip-SimpleChips.json")),
   },
   Dialog: {

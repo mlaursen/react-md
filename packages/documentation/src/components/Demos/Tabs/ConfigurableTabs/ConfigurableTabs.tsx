@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { TabPanel, TabPanels, Tabs, TabsManager } from "@react-md/tabs";
 
 import "./ConfigurableTabs.scss";
@@ -24,7 +24,7 @@ const ConfigurableTabs: FC = () => {
   } = configuration;
 
   return (
-    <Fragment>
+    <>
       <ConfigurationForm {...configuration} />
       <div className={styles()}>
         <TabsManager
@@ -50,7 +50,7 @@ const ConfigurableTabs: FC = () => {
           </TabPanels>
         </TabsManager>
       </div>
-    </Fragment>
+    </>
   );
 };
 

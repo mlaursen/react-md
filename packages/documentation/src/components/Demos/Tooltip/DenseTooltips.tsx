@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Text } from "@react-md/typography";
 import { SimplePosition } from "@react-md/utils";
 
@@ -9,7 +9,7 @@ const positions: SimplePosition[] = ["above", "right", "below", "left"];
 
 const DenseTooltips: FC = () => {
   return (
-    <Fragment>
+    <>
       <Text type="headline-6" margin="none">
         Normal
       </Text>
@@ -41,7 +41,7 @@ const DenseTooltips: FC = () => {
           </TooltippedButton>
         ))}
       </Container>
-    </Fragment>
+    </>
   );
 };
 

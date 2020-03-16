@@ -1,6 +1,6 @@
-import React, { FC, useState, Fragment } from "react";
-import { Text } from "@react-md/typography";
+import React, { FC, useState } from "react";
 import { Chip } from "@react-md/chip";
+import { Text } from "@react-md/typography";
 import { bem } from "@react-md/utils";
 
 import "./FilterChips.scss";
@@ -19,7 +19,7 @@ const styles = bem("filter-chips");
 const FilterChips: FC = () => {
   const [selectedAmenities, setSelected] = useState<string[]>([]);
   return (
-    <Fragment>
+    <>
       <Text type="headline-5" className={styles("header")}>
         Choose amenities
       </Text>
@@ -47,7 +47,7 @@ const FilterChips: FC = () => {
           );
         })}
       </div>
-    </Fragment>
+    </>
   );
 };
 

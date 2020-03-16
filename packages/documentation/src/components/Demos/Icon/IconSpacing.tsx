@@ -1,16 +1,16 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import { Divider } from "@react-md/divider";
 import { TextIconSpacing } from "@react-md/icon";
+import { CloseSVGIcon, HomeSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
-import { HomeSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 
 import "./IconSpacing.scss";
 
 const CustomIcon: FC = () => <HomeSVGIcon />;
 
 const IconSpacing: FC = () => (
-  <Fragment>
+  <>
     <Text type="headline-5">Within buttons</Text>
     <Button id="icon-button-1" className="icon-spacing-button">
       <TextIconSpacing icon={<HomeSVGIcon />}>Button</TextIconSpacing>
@@ -76,7 +76,7 @@ const IconSpacing: FC = () => (
         </TextIconSpacing>
       </li>
     </ul>
-  </Fragment>
+  </>
 );
 
 export default IconSpacing;

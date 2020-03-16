@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { CSSProperties, Fragment, ReactElement, ReactNode } from "react";
+import React, { CSSProperties, ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { UnstyledButton } from "@react-md/button";
 import {
@@ -34,7 +34,7 @@ export default function TableCellSortButton({
   ...props
 }: TableCellSortButtonProps): ReactElement {
   if (!sortOrder || propIcon === null) {
-    return <Fragment>{children}</Fragment>;
+    return <>{children}</>;
   }
 
   let icon: ReactNode = null;

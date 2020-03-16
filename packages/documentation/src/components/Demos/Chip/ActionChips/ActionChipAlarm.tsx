@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, useState } from "react";
 import { Button } from "@react-md/button";
 import { AlarmSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
@@ -11,7 +11,7 @@ const ActionChipAlarm: FC = () => {
   const hide = (): void => setVisible(false);
 
   return (
-    <Fragment>
+    <>
       <ActionChip
         id="action-chip-alarm"
         leftIcon={<AlarmSVGIcon />}
@@ -39,7 +39,7 @@ const ActionChipAlarm: FC = () => {
           <CloseSVGIcon />
         </Button>
       </Sheet>
-    </Fragment>
+    </>
   );
 };
 

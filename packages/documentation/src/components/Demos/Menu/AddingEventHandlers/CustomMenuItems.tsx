@@ -1,6 +1,6 @@
-import React, { FC, useState, Fragment, useCallback } from "react";
-import { MenuItem, MenuItemProps, DropdownMenu } from "@react-md/menu";
-import { ShareSVGIcon, AddSVGIcon } from "@react-md/material-icons";
+import React, { FC, useCallback, useState } from "react";
+import { AddSVGIcon, ShareSVGIcon } from "@react-md/material-icons";
+import { DropdownMenu, MenuItem, MenuItemProps } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
@@ -23,7 +23,7 @@ const CustomMenuItems: FC = () => {
     setValue(event.currentTarget.textContent || "");
   }, []);
   return (
-    <Fragment>
+    <>
       <Text type="headline-6">
         Custom <Code>MenuItem</Code>
       </Text>
@@ -36,7 +36,7 @@ const CustomMenuItems: FC = () => {
       >
         Options
       </DropdownMenu>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
-import React, { FC, ReactNode, Fragment } from "react";
+import React, { FC, ReactNode } from "react";
+
 import Phone, { PhoneProps } from "./Phone";
 
 export interface ConditionalPhoneProps extends PhoneProps {
@@ -12,7 +13,7 @@ const ConditionalPhone: FC<ConditionalPhoneProps> = ({
   ...props
 }) => {
   if (!enabled) {
-    return <Fragment>{children}</Fragment>;
+    return <>{children}</>;
   }
 
   return <Phone {...props}>{children}</Phone>;

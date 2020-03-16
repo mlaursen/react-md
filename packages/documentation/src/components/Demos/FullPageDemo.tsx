@@ -1,4 +1,4 @@
-import React, { Fragment, FC, ReactElement, ReactNode } from "react";
+import React, { FC, ReactElement, ReactNode } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
@@ -33,7 +33,7 @@ const FullPageDemo: FC<FullPageDemoProps> = ({
   }
 
   return (
-    <Fragment>
+    <>
       <Text type="headline-6">
         This example requires a more screen real estate than what is available
         so you will need to open it in a full page dialog.
@@ -69,7 +69,7 @@ const FullPageDemo: FC<FullPageDemoProps> = ({
           <DialogContent disablePadding>{children}</DialogContent>
         )}
       </Dialog>
-    </Fragment>
+    </>
   );
 };
 

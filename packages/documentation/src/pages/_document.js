@@ -21,10 +21,6 @@ export default class MyDocument extends Document {
     };
   }
 
-  static defaultProps = {
-    theme: 'light',
-  };
-
   componentDidMount() {
     require('smoothscroll-polyfill').polyfill();
   }
@@ -53,3 +49,7 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+MyDocument.defaultProps = {
+  theme: 'light',
+};

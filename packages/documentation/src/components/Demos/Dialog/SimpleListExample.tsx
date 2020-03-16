@@ -1,4 +1,4 @@
-import React, { Fragment, FC } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogHeader, DialogTitle } from "@react-md/dialog";
 import { List, ListItem } from "@react-md/list";
@@ -9,7 +9,7 @@ import "./SimpleListExample.scss";
 const SimpleExample: FC = () => {
   const [toggled, enable, disable] = useToggle(false);
   return (
-    <Fragment>
+    <>
       <Button id="dialog-toggle-1" onClick={enable}>
         Show Dialog
       </Button>
@@ -29,7 +29,7 @@ const SimpleExample: FC = () => {
           <ListItem id="dialog-item-4">This is the fourth item</ListItem>
         </List>
       </Dialog>
-    </Fragment>
+    </>
   );
 };
 

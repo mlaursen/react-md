@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, useState } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogFooter } from "@react-md/dialog";
 import { Text } from "@react-md/typography";
@@ -26,7 +26,7 @@ const AlertDialogsAndModals: FC = () => {
   const { visible, modal } = state;
 
   return (
-    <Fragment>
+    <>
       <form
         id="draft-form"
         onSubmit={e => {
@@ -79,7 +79,7 @@ const AlertDialogsAndModals: FC = () => {
           </Button>
         </DialogFooter>
       </Dialog>
-    </Fragment>
+    </>
   );
 };
 

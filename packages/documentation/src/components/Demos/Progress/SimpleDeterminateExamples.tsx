@@ -1,4 +1,4 @@
-import React, { Fragment, FC } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloudDownloadSVGIcon } from "@react-md/material-icons";
@@ -28,7 +28,7 @@ const SimpleDeterminateExamples: FC = () => {
   } = useDownloadInterval();
 
   return (
-    <Fragment>
+    <>
       <Container>
         <Button
           id="determinate-linear-example-toggle"
@@ -68,7 +68,7 @@ const SimpleDeterminateExamples: FC = () => {
           className="determinate-example-circular"
         />
       </Container>
-    </Fragment>
+    </>
   );
 };
 

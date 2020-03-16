@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { useAppSize } from "@react-md/utils";
 
 import ToggleTheme from "./ToggleTheme";
@@ -13,11 +13,11 @@ const Actions: FC = () => {
   }
 
   return (
-    <Fragment>
+    <>
       <ToggleTheme />
       <GithubLink />
       <ToggleRTL />
-    </Fragment>
+    </>
   );
 };
 

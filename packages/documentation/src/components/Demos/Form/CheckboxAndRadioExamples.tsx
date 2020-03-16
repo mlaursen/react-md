@@ -1,12 +1,12 @@
-import React, { FC, Fragment } from "react";
-import { Checkbox, Radio, InputToggle } from "@react-md/form";
+import React, { FC } from "react";
+import { Checkbox, InputToggle, Radio } from "@react-md/form";
 import {
   CheckBoxSVGIcon,
   RadioButtonCheckedSVGIcon,
 } from "@react-md/material-icons";
 
 const CheckboxAndRadioExamples: FC = () => (
-  <Fragment>
+  <>
     <Checkbox
       id="checkbox-1"
       name="checkboxes"
@@ -31,7 +31,7 @@ const CheckboxAndRadioExamples: FC = () => (
       icon={<RadioButtonCheckedSVGIcon />}
       value="c"
     />
-  </Fragment>
+  </>
 );
 
 export default CheckboxAndRadioExamples;

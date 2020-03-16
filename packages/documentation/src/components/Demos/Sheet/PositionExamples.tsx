@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import { Fieldset, Radio, useChoice } from "@react-md/form";
 import { List, ListItem } from "@react-md/list";
@@ -12,7 +12,7 @@ const PositionExamples: FC = () => {
   const [visible, show, hide] = useToggle(false);
 
   return (
-    <Fragment>
+    <>
       <Fieldset legend="Sheet positions">
         {positions.map(pos => (
           <Radio
@@ -49,7 +49,7 @@ const PositionExamples: FC = () => {
           <ListItem id="example-sheet-item-5">Item 5</ListItem>
         </List>
       </Sheet>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Divider } from "@react-md/divider";
 import { TextContainer, Text } from "@react-md/typography";
 import {
@@ -11,7 +11,7 @@ import {
 import "./MediaQueryComponents.scss";
 
 const MediaQueryComponents: FC = () => (
-  <Fragment>
+  <>
     <TextContainer>
       <MobileOnly>
         <Text>This will only appear on phone and tablet screen sizes.</Text>
@@ -35,7 +35,7 @@ const MediaQueryComponents: FC = () => (
         undertanding of the media queries.
       </Text>
     </div>
-  </Fragment>
+  </>
 );
 
 export default MediaQueryComponents;

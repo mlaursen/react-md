@@ -1,11 +1,11 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { BadgedButton } from "@react-md/badge";
 import { NotificationsSVGIcon } from "@react-md/material-icons";
 
 import "./SimpleExamples.scss";
 
 const SimpleExamples: FC = () => (
-  <Fragment>
+  <>
     <BadgedButton id="badged-button-1" className="badge-container">
       3
     </BadgedButton>
@@ -27,6 +27,6 @@ const SimpleExamples: FC = () => (
     >
       0
     </BadgedButton>
-  </Fragment>
+  </>
 );
 export default SimpleExamples;

@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,
@@ -13,7 +13,7 @@ import { useToggle } from "@react-md/utils";
 const SimpleExample: FC = () => {
   const [visible, enable, disable] = useToggle(false);
   return (
-    <Fragment>
+    <>
       <Button id="simple-dialog-toggle" onClick={enable}>
         Show Dialog
       </Button>
@@ -35,7 +35,7 @@ const SimpleExample: FC = () => {
           </Button>
         </DialogFooter>
       </Dialog>
-    </Fragment>
+    </>
   );
 };
 

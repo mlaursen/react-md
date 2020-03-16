@@ -28,7 +28,7 @@ const horizontalPositions: HorizontalPosition[] = [
 const block = bem("example-menu-button");
 
 const MenuPositioning: FC = () => (
-  <Fragment>
+  <>
     {horizontalPositions.map((x, i) => (
       <Fragment key={x}>
         <Text type="headline-6" margin={i === 0 ? "none" : "top"}>
@@ -56,7 +56,7 @@ const MenuPositioning: FC = () => (
         </div>
       </Fragment>
     ))}
-  </Fragment>
+  </>
 );
 
 export default MenuPositioning;

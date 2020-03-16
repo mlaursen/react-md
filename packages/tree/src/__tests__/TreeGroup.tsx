@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { render } from "@testing-library/react";
 
 import TreeGroup from "../TreeGroup";
@@ -8,9 +8,9 @@ describe("TreeGroup", () => {
     const props = {
       collapsed: true,
       children: (
-        <Fragment>
+        <>
           <li>Item 1</li>
-        </Fragment>
+        </>
       ),
     };
 

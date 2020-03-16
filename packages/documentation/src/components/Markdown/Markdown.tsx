@@ -1,13 +1,12 @@
 /* eslint-disable react/no-danger */
 import React, {
   FC,
-  Fragment,
   HTMLAttributes,
+  MutableRefObject,
   useEffect,
   useMemo,
-  useState,
   useRef,
-  MutableRefObject,
+  useState,
 } from "react";
 import cn from "classnames";
 import Router from "next/router";
@@ -152,7 +151,7 @@ const Markdown: FC<MarkdownProps> = ({
   const ref = useCustomMarkdownBehavior(html);
 
   return (
-    <Fragment>
+    <>
       <GoogleFont font="Source Code Pro" />
       <div
         {...props}
@@ -164,7 +163,7 @@ const Markdown: FC<MarkdownProps> = ({
         )}
         dangerouslySetInnerHTML={html}
       />
-    </Fragment>
+    </>
   );
 };
 

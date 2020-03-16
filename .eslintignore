@@ -1,3 +1,6 @@
 packages/material-icons/src
 packages/documentation/src/constants/sandboxes
 packages/documentation/src/components/SassDocPage
+
+# this is needed to fix a config extension error for "@ljharb" in the qs library
+packages/*/node_modules

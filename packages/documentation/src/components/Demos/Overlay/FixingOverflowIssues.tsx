@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Checkbox, useCheckboxState } from "@react-md/form";
@@ -12,7 +12,7 @@ const FixingOverflowIssues: FC = () => {
   const [visible, , disable, toggle] = useToggle(false);
   const [portal, handlePortalChange] = useCheckboxState(false);
   return (
-    <Fragment>
+    <>
       <AppBar theme="default">
         <Checkbox
           id="enable-portal"
@@ -60,7 +60,7 @@ const FixingOverflowIssues: FC = () => {
           placerat gravida. Cras id est purus.
         </Text>
       </div>
-    </Fragment>
+    </>
   );
 };
 

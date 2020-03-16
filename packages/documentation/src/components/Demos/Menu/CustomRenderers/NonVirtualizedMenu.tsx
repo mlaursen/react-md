@@ -1,4 +1,4 @@
-import React, { Fragment, FC, ReactNode, useState, useMemo } from "react";
+import React, { FC, ReactNode, useMemo, useState } from "react";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 
@@ -21,7 +21,7 @@ const NonVirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
   );
 
   return (
-    <Fragment>
+    <>
       <Text>
         Last clicked value: <Code>{value}</Code>
       </Text>
@@ -33,7 +33,7 @@ const NonVirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
       >
         Non-Virtualized
       </DropdownMenu>
-    </Fragment>
+    </>
   );
 };
 

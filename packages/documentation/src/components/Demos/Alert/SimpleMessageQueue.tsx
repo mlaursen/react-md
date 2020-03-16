@@ -1,4 +1,4 @@
-import React, { FC, Fragment, ReactElement } from "react";
+import React, { FC, ReactElement } from "react";
 import { MessageQueue, ToastMessage, useAddMessage } from "@react-md/alert";
 import { Button } from "@react-md/button";
 import { Form, Radio, useChoice } from "@react-md/form";
@@ -28,20 +28,20 @@ const messages: MessageRecord = {
   [TWO_LINES]: {
     twoLines: true,
     children: (
-      <Fragment>
+      <>
         <p>This is an example message</p>
         <p>With a second line of text.</p>
-      </Fragment>
+      </>
     ),
   },
   [TWO_LINES_ACTION]: {
     action: "Action",
     twoLines: true,
     children: (
-      <Fragment>
+      <>
         <p>This is an example message</p>
         <p>With a second line of text.</p>
-      </Fragment>
+      </>
     ),
   },
   [TWO_LINES_STACKED]: {
@@ -49,10 +49,10 @@ const messages: MessageRecord = {
     stacked: true,
     twoLines: true,
     children: (
-      <Fragment>
+      <>
         <p>This is an example message</p>
         <p>With a second line of text.</p>
-      </Fragment>
+      </>
     ),
   },
 };

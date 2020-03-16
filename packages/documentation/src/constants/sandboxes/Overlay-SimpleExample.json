@@ -47,7 +47,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC, Fragment } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Overlay } from \"@react-md/overlay\";\nimport { useToggle } from \"@react-md/utils\";\n\nconst Demo: FC = () => {\n  const [toggled, , disable, toggle] = useToggle(false);\n  return (\n    <Fragment>\n      <Button\n        id=\"simple-overlay-button\"\n        onClick={toggle}\n        theme=\"primary\"\n        themeType=\"contained\"\n      >\n        Show Overlay\n      </Button>\n      <Overlay id=\"simple-overlay\" visible={toggled} onRequestClose={disable} />\n    </Fragment>\n  );\n};\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Overlay } from \"@react-md/overlay\";\nimport { useToggle } from \"@react-md/utils\";\n\nconst Demo: FC = () => {\n  const [toggled, , disable, toggle] = useToggle(false);\n  return (\n    <>\n      <Button\n        id=\"simple-overlay-button\"\n        onClick={toggle}\n        theme=\"primary\"\n        themeType=\"contained\"\n      >\n        Show Overlay\n      </Button>\n      <Overlay id=\"simple-overlay\" visible={toggled} onRequestClose={disable} />\n    </>\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
   }
 }

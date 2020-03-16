@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  Fragment,
-  ReactElement,
-  Ref,
-  CSSProperties,
-} from "react";
+import React, { CSSProperties, forwardRef, ReactElement, Ref } from "react";
 import cn from "classnames";
 import {
   isListboxOptionProps,
@@ -265,7 +259,7 @@ function AutoComplete(
   });
 
   return (
-    <Fragment>
+    <>
       <TextField
         {...props}
         aria-autocomplete={autoComplete}
@@ -335,7 +329,7 @@ function AutoComplete(
           })}
         </List>
       </ScaleTransition>
-    </Fragment>
+    </>
   );
 }
 

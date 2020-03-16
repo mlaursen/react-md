@@ -1,7 +1,7 @@
-import React, { FC, Fragment, useState, ReactNode } from "react";
+import React, { FC, ReactNode, useState } from "react";
 import { List, ListRowRenderer } from "react-virtualized";
-import { DropdownMenu, Menu, MenuItem, MenuRenderer } from "@react-md/menu";
 import scssVariables from "@react-md/list/dist/scssVariables";
+import { DropdownMenu, Menu, MenuItem, MenuRenderer } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 import { unitToNumber, useAppSize } from "@react-md/utils";
 
@@ -55,7 +55,7 @@ const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
   };
 
   return (
-    <Fragment>
+    <>
       <Text>
         Last clicked value: <Code>{value}</Code>
       </Text>
@@ -67,7 +67,7 @@ const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
       >
         Virtualized
       </DropdownMenu>
-    </Fragment>
+    </>
   );
 };
 

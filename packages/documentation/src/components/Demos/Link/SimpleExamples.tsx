@@ -1,11 +1,11 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Link } from "@react-md/link";
 import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 
 const SimpleExamples: FC = () => (
-  <Fragment>
+  <>
     <ul>
       <li>
         <Link href="https://github.com">Github</Link>
@@ -20,7 +20,7 @@ const SimpleExamples: FC = () => (
       component. So here is a link to{" "}
       <Link href="https://github.com">GitHub</Link> again to show how it looks.
     </Text>
-  </Fragment>
+  </>
 );
 
 export default SimpleExamples;

@@ -1,4 +1,4 @@
-import React, { FC, Fragment, Suspense, useState } from "react";
+import React, { FC, Suspense, useState } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { CircularProgress } from "@react-md/progress";
 import { Tabs, TabsManager } from "@react-md/tabs";
@@ -33,7 +33,7 @@ const CrossFadeExamplesAsync: FC = () => {
   const Content = useFakeLazyImport<CurrentPageProps>(CurrentPage, page, 5000);
 
   return (
-    <Fragment>
+    <>
       <TabsManager
         activeIndex={page === -1 ? 0 : page}
         onActiveIndexChange={index => setPage(index)}
@@ -56,7 +56,7 @@ const CrossFadeExamplesAsync: FC = () => {
           </Suspense>
         )}
       </Container>
-    </Fragment>
+    </>
   );
 };
 

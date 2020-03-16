@@ -67,9 +67,10 @@ module.exports = {
     'react/jsx-props-no-multi-spaces': 0,
     'react/jsx-indent': 0,
     'react/jsx-curly-brace-presence': 0,
+    'react/jsx-curly-newline': 0,
 
-    // deprecated
-    'jsx-a11y/label-has-for': 0,
+    // I don't agree with these rules...
+    'react/jsx-props-no-spreading': 0,
 
     // This is a "better" version of the noUnusedLocals and noUnusedParameters from
     // the tsconfig.json since it can catch unused vars in rest parameters that weren't
@@ -119,6 +120,7 @@ module.exports = {
         'jsx-a11y/no-autofocus': 0,
         'jsx-a11y/no-static-element-interactions': 0,
         'jsx-a11y/anchor-is-valid': 0,
+        'jsx-a11y/control-has-associated-label': 0,
         'react/prop-types': 0,
         'react/prefer-stateless-function': 0,
         'prefer-template': 0,

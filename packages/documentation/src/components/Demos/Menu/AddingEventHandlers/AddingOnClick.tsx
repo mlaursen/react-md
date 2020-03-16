@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, useState } from "react";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 
@@ -11,7 +11,7 @@ const AddingOnClick: FC = () => {
     setValue(event.currentTarget.textContent || "");
   };
   return (
-    <Fragment>
+    <>
       <Text type="headline-6" margin="none">
         Adding <Code>onClick</Code>
       </Text>
@@ -41,7 +41,7 @@ const AddingOnClick: FC = () => {
       >
         Options
       </DropdownMenu>
-    </Fragment>
+    </>
   );
 };
 

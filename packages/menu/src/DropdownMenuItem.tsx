@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  Fragment,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import React, { forwardRef, ReactElement, ReactNode, Ref } from "react";
 import { IconRotator, useIcon } from "@react-md/icon";
 import { PositionAnchor } from "@react-md/utils";
 
@@ -102,7 +96,7 @@ function DropdownMenuItem(
   }
 
   return (
-    <Fragment>
+    <>
       <MenuItem
         {...props}
         ref={ref}
@@ -148,7 +142,7 @@ function DropdownMenuItem(
         },
         items
       )}
-    </Fragment>
+    </>
   );
 }
 

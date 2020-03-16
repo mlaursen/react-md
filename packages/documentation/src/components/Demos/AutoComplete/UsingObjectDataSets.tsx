@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { AutoComplete } from "@react-md/autocomplete";
 import { Avatar } from "@react-md/avatar";
 import { LazyImage } from "@react-md/media";
@@ -13,18 +13,18 @@ const data = [
   {
     // if children is defined, `label` isn't required
     children: (
-      <Fragment>
+      <>
         No, <strong>this</strong> is a result
-      </Fragment>
+      </>
     ),
     // still need a search string
     value: "No, this is a result",
   },
   {
     label: (
-      <Fragment>
+      <>
         I am not sure. <i>This</i> also seems like a <strong>result</strong>
-      </Fragment>
+      </>
     ),
     value: "I am not sure. This also seems like a result",
   },
@@ -43,9 +43,9 @@ function getColor(type: string): string {
 
 const desserts = dessertsList.map(({ name, type, calories }, i) => ({
   label: (
-    <Fragment>
+    <>
       {`${name} `}(<i>{`${calories} kcal`}</i>)
-    </Fragment>
+    </>
   ),
   value: name,
   leftIcon: (

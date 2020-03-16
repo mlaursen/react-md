@@ -1,5 +1,5 @@
 import './app.scss';
-import React, { Fragment } from 'react';
+import React from 'react';
 import NextApp from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
@@ -146,7 +146,7 @@ export default class App extends NextApp {
     const pageTitle = toBreadcrumbPageTitle(pathname, statusCode);
 
     return (
-      <Fragment>
+      <>
         <GoogleFont font="Roboto:400,500,700" />
         <GoogleFont font="Source Code Pro" />
         <Head>
@@ -161,7 +161,7 @@ export default class App extends NextApp {
             <Component {...componentProps} />
           </Layout>
         </Theme>
-      </Fragment>
+      </>
     );
   }
 }

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, Fragment } from "react";
+import React, { FC, ReactNode } from "react";
 
 export interface CustomLabelProps {
   isDefault: boolean;
@@ -7,16 +7,16 @@ export interface CustomLabelProps {
 
 const CustomLabel: FC<CustomLabelProps> = ({ children, isDefault }) => {
   if (!isDefault) {
-    return <Fragment>{children}</Fragment>;
+    return <>{children}</>;
   }
 
   return (
-    <Fragment>
+    <>
       {children}{" "}
       <small>
         <i>(site default)</i>
       </small>
-    </Fragment>
+    </>
   );
 };
 

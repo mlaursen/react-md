@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import { Tooltipped } from "@react-md/tooltip";
 import { Text } from "@react-md/typography";
@@ -8,7 +8,7 @@ import CodeBlock from "components/Code/CodeBlock";
 const BrokenButton: FC = () => <Button>No go</Button>;
 
 const AdvancedAPIGotchas: FC = () => (
-  <Fragment>
+  <>
     <Text type="headline-6">Broken Tooltip</Text>
     <Tooltipped id="broken-tooltip" tooltip="I will never appear :(">
       <BrokenButton />
@@ -41,15 +41,15 @@ const AdvancedAPIGotchas: FC = () => (
         );
 
         return (
-          <Fragment>
+          <>
             <Button {...props}>Button{tooltip}</Button>
             <CodeBlock language="json">
               {JSON.stringify(typedProps, null, 2)}
             </CodeBlock>
-          </Fragment>
+          </>
         );
       }}
     </Tooltipped>
-  </Fragment>
+  </>
 );
 export default AdvancedAPIGotchas;
