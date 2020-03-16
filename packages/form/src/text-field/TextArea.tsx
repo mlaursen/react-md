@@ -364,7 +364,7 @@ if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    TextArea.propTypes = {
+    ForwardedTextArea.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
