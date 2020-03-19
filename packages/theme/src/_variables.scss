@@ -126,11 +126,11 @@ $rmd-theme-on-success: if(
 
 /// The light theme's background color.
 /// @type Color
-$rmd-theme-light-background: #fafafa !default;
+$rmd-theme-light-background: $rmd-grey-50 !default;
 
 /// The light theme's surface color.
 /// @type Color
-$rmd-theme-light-surface: #fff !default;
+$rmd-theme-light-surface: $rmd-white-base !default;
 
 /// The dark theme's background color.
 /// @type Color

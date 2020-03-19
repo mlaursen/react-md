@@ -2950,7 +2950,8 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "#fafafa",
+      value: "$rmd-grey-50",
+      compiled: "#fafafa",
       overridable: true,
     },
     "rmd-theme-light-surface": {
@@ -2962,7 +2963,8 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "#fff",
+      value: "$rmd-white-base",
+      compiled: "#fff",
       overridable: true,
     },
     "rmd-theme-dark-background": {
