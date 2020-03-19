@@ -1,10 +1,10 @@
 # v2.0.0
 
 Tooltips were completely re-written for the v2 release to help fix the missing
-accessibility issues from before. One of the most "exciting" things that was
-added during the re-write is that tooltips will now automatically determine the
-"best" location to render itself within the viewport instead of manually needing
-to change the `position` yourself! Woo hoo!
+accessibility issues from v1. One of the most "exciting" things that was added
+during the re-write is that tooltips will now automatically determine the "best"
+location to render itself within the viewport instead of manually needing to
+change the `position` yourself! Woo hoo!
 
 Starting from v2, you'll probably just want to use the `Tooltipped` component as
 it'll handle all the functionality of a tooltip for you and ensuring that

@@ -27,8 +27,8 @@ $ npm install --save @react-md/theme @react-md/typography
 ## Documentation
 
 You should check out the
-[full documentation](https://react-md.dev/packages/link) for live examples and
-more customization information, but an example usage is shown below.
+[full documentation](https://react-md.dev/packages/link/demos) for live examples
+and more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 

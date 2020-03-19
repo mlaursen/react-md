@@ -15,7 +15,7 @@ $ npm install --save @react-md/alert
 ## Documentation
 
 You should check out the
-[full documentation](https://react-md.dev/packages/autocomplete) for live
+[full documentation](https://react-md.dev/packages/autocomplete/demos) for live
 examples and more customization information, but an example usage is shown
 below.
 

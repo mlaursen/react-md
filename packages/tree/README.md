@@ -27,8 +27,8 @@ $ npm install --save @react-md/theme \
 ## Documentation
 
 You should check out the
-[full documentation](https://react-md.dev/packages/tree) for live examples and
-more customization information, but an example usage is shown below.
+[full documentation](https://react-md.dev/packages/tree/demos) for live examples
+and more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 

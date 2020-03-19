@@ -31,8 +31,9 @@ $ npm install --save @react-md/utils \
 ## Documentation
 
 You should check out the
-[full documentation](https://react-md.dev/packages/table) for live examples and
-more customization information, but an example usage is shown below.
+[full documentation](https://react-md.dev/packages/table/demos) for live
+examples and more customization information, but an example usage is shown
+below.
 
 <!-- DOCS_REMOVE_END -->
 

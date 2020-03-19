@@ -35,8 +35,9 @@ $ npm install --save @react-md/app-bar \
 ## Documentation
 
 You should check out the
-[full documentation](https://react-md.dev/packages/layout) for live examples and
-more customization information, but an example usage is shown below.
+[full documentation](https://react-md.dev/packages/layout/demos) for live
+examples and more customization information, but an example usage is shown
+below.
 
 <!-- DOCS_REMOVE_END -->
 

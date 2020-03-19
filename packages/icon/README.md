@@ -28,8 +28,8 @@ will include **all** material icons as font and SVGs.
 ## Documentation
 
 You should check out the
-[full documentation](https://react-md.dev/packages/icon) for live examples and
-more customization information, but an example usage is shown below.
+[full documentation](https://react-md.dev/packages/icon/demos) for live examples
+and more customization information, but an example usage is shown below.
 
 <!-- DOCS_REMOVE_END -->
 

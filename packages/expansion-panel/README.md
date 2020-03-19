@@ -25,8 +25,8 @@ $ npm install --save @react-md/theme \
 ## Documentation
 
 You should check out the
-[full documentation](https://react-md.dev/packages/expansion-panel) for live
-examples and more customization information, but an example usage is shown
+[full documentation](https://react-md.dev/packages/expansion-panel/demos) for
+live examples and more customization information, but an example usage is shown
 below.
 
 <!-- DOCS_REMOVE_END -->
