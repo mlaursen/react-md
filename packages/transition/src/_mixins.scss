@@ -2,38 +2,23 @@
 /// @group transition
 ////
 
-@import '~@react-md/theme/dist/helpers';
+@import '~@react-md/utils/dist/mixins';
 @import './variables';
-@import './functions';
 
-/// Creates the styles for one of the transition's theme values. This is mostly
-/// going to be an internal helper mixin util.
+/// Adds a transition timing function for the provided transition type.
 ///
-/// @param {String} property - The property to set a
-/// `rmd-transition-theme-values` value to.
-/// @param {String} theme-style - One of the keys of
-/// `rmd-transition-theme-values` to extract a value from.
-/// @param {Color|String|Number} fallback [null] - A fallback value to use if
-/// the css variable isn't set somehow. This will default to automatically
-/// retrieving the default value from the `rmd-transition-theme-values` map when
-/// `null`.
-@mixin rmd-transition-theme($property, $theme-style, $fallback: null) {
-  @include rmd-theme-apply-rmd-var(
-    $property,
-    $theme-style,
-    $rmd-transition-theme-values,
-    transition
-  );
-}
+/// @param {String} type - The transition type that should be used. This should
+/// be one of the keys for `$rmd-transitions`
+/// @param {Boolean} animation - Boolean if this should be applied to the
+/// animation timing function instead of the transition timing function.
+@mixin rmd-transition($type, $animation: false) {
+  $function: rmd-utils-validate($rmd-transitions, $type, 'transition');
 
-/// Updates one of the transition's theme variables with the new value for the
-/// section of your app.
-///
-/// @param {String} theme-style - The transition theme style type to update.
-/// This should be one of the `$rmd-transition-theme-values` keys.
-/// @param {Color|String|Number} - The new value to use.
-@mixin rmd-transition-set-theme-var($style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-transition-theme-values, transition);
+  @if $animation {
+    animation-timing-function: $function;
+  } @else {
+    transition-timing-function: $function;
+  }
 }
 
 /// This is really just used internally to apply a base box shadow and position
@@ -135,19 +120,6 @@
   #{$active-string} {
     opacity: 1;
   }
-}
-
-/// Adds a transition timing function for the provided transition type.
-///
-/// @param {String} type - The transition type that should be used. This should
-/// be one of the keys for `$rmd-transitions`
-/// @param {Boolean} animation - Boolean if this should be applied to the
-/// animation timing function instead of the transition timing function.
-@mixin rmd-transition($type, $animation: false) {
-  @include rmd-transition-theme(
-    if($animation, animation-timing-function, transition-timing-function),
-    $type
-  );
 }
 
 /// Creates the styles for the Collapse component within react-md
@@ -261,8 +233,6 @@
 /// Creates the transition theme css variables as well as the styles for
 /// components in the transition package.
 @mixin react-md-transition {
-  @include rmd-theme-create-root-theme($rmd-transition-theme-values, transition);
-
   @include rmd-collapse;
   @include rmd-cross-fade;
   @include rmd-transition-classes;

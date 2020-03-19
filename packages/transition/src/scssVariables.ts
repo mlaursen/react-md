@@ -15,7 +15,7 @@ export default {
   "rmd-transition-scale-leave-duration": "0.15s",
   "rmd-transition-scale-y-enter-duration": "0.2s",
   "rmd-transition-scale-y-leave-duration": "0.15s",
-  "rmd-transition-theme-values": {
+  "rmd-transitions": {
     sharp: "cubic-bezier(0.4, 0, 0.6, 1)",
     standard: "cubic-bezier(0.4, 0, 0.2, 1)",
     acceleration: "cubic-bezier(0.4, 0, 1, 1)",

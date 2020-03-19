@@ -73,11 +73,9 @@ $rmd-transition-scale-y-enter-duration: $rmd-transition-enter-time !default;
 /// @type Number
 $rmd-transition-scale-y-leave-duration: $rmd-transition-leave-time !default;
 
-/// A Map of all the "themeable" parts of the transition package. Every key in
-/// this map will be used to create a css variable to dynamically update the
-/// values of the icon as needed.
+/// A Map of all the different transitions supported.
 /// @type Map
-$rmd-transition-theme-values: (
+$rmd-transitions: (
   sharp: $rmd-transition-sharp,
   standard: $rmd-transition-standard,
   acceleration: $rmd-transition-acceleration,
