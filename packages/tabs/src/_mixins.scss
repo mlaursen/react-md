@@ -136,13 +136,13 @@
 
   // sass-lint:disable no-duplicate-properties
   &--slide-left {
-    // the animations here confused me a lot, so hopefully this will clear up how this works
-    // along with some flows...
+    // the animations here confused me a lot, so hopefully this will clear up
+    // how this works along with some flows...
     //
-    // The tab panels will animate the first and second child by changing the X position in
-    // `translate3d`. The first panel will always be the current panel that matches the
-    // `activeIndex` while the second panel will not exist or the previous panel that matched
-    // based on `activeIndex`.
+    // The tab panels will animate the first and second child by changing the X
+    // position in `translate3d`. The first panel will always be the current
+    // panel that matches the `activeIndex` while the second panel will not
+    // exist or the previous panel that matched based on `activeIndex`.
     //
     // So some flows:
     // - Start with a single active panel with activeIndex 0
@@ -156,31 +156,37 @@
     // - Finsh animation and remove previous panel
     //   - [Panel0]
     //
-    // So what's so confusing about this? Well, when adding a new slide, you'll need to slide
-    // the panels to the left. However... the next panel is actually the **first** panel within
-    // the panel list instead of the second. This means that we need to swap the positions with
-    // css for the current active panel and the previous active panel so we get:
+    // So what's so confusing about this? Well, when adding a new slide, you'll
+    // need to slide the panels to the left. However... the next panel is
+    // actually the **first** panel within the panel list instead of the second.
+    // This means that we need to swap the positions with css for the current
+    // active panel and the previous active panel so we get:
     //
     // - [Panel1, Panel0] - Actual
     // - [Panel0, Panel1] - Wanted
     //
-    // This can be accomplished by moving the current active panel (Panel1) out of view by using 100%
-    // of the tab panel's container width which now is in the same location as the previous active panel
-    // (Panel0). Both panels are now out of view, so we'll want to move the previous active panel back
-    // to within view by moving it 100% of the tab panel's container width but in the opposite direction.
+    // This can be accomplished by moving the current active panel (Panel1) out
+    // of view by using 100% of the tab panel's container width which now is in
+    // the same location as the previous active panel (Panel0). Both panels are
+    // now out of view, so we'll want to move the previous active panel back to
+    // within view by moving it 100% of the tab panel's container width but in
+    // the opposite direction.
     //
-    // Ok, we now have [Panel0, Panel1] displayed. Now we need to animate them both to the left. This
-    // can be done by just removing the custom 100% transform we added to the current active panel
-    // (Panel1) and moving the previous active panel (Panel0) another 100%.
+    // Ok, we now have [Panel0, Panel1] displayed. Now we need to animate them
+    // both to the left. This can be done by just removing the custom 100%
+    // transform we added to the current active panel (Panel1) and moving the
+    // previous active panel (Panel0) another 100%.
     //
     // Whew. Done!
     //
-    // Sliding right is super easy since the panels are in the desired order already in the dom. All
-    // that's required is moving them negative 100% of the tab panel's container width so the new
-    // current panel slides into view while the previous panel slides out of view.
+    // Sliding right is super easy since the panels are in the desired order
+    // already in the dom. All that's required is moving them negative 100% of
+    // the tab panel's container width so the new current panel slides into view
+    // while the previous panel slides out of view.
     //
-    // Sliding left when there's no conditional rendering is super easy as well as it's just the reverse
-    // of sliding right now since the panels are always in order.
+    // Sliding left when there's no conditional rendering is super easy as well
+    // as it's just the reverse of sliding right now since the panels are always
+    // in order.
 
     #{--p1-start}: 100%;
     #{--p2-start}: -100%;
