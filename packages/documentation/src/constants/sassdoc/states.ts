@@ -216,7 +216,7 @@ const sassdoc: PackageSassDoc = {
           code:
             ".my-custom-component {\n  @include rmd-states-focus-shadow;\n\n  position: relative;\n\n  &::before {\n    @include rmd-states-surface-base;\n\n    // omit this margin if your component adds its own padding\n    // so that there is some space between the focus effect and\n    // content.\n    margin: -0.25rem;\n  }\n}\n",
           compiled:
-            '.my-custom-component {\n  position: relative;\n}\n.rmd-utils--keyboard .my-custom-component:focus::before {\n  box-shadow: var(--rmd-states-focus-shadow, inset 0 0 0 0.125rem #2196f3);\n}\n.my-custom-component::before {\n  transition-timing-function: var(\n    --rmd-transition-standard,\n    cubic-bezier(0.4, 0, 0.2, 1)\n  );\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: 0;\n  background-color: var(--rmd-states-background-color, transparent);\n  transition: background-color 0.15s;\n  margin: -0.25rem;\n}\n',
+            '.my-custom-component {\n  position: relative;\n}\n.rmd-utils--keyboard .my-custom-component:focus::before {\n  box-shadow: var(--rmd-states-focus-shadow, inset 0 0 0 0.125rem #2196f3);\n}\n.my-custom-component::before {\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: 0;\n  background-color: var(--rmd-states-background-color, transparent);\n  transition: background-color 0.15s;\n  margin: -0.25rem;\n}\n',
           type: "scss",
           description: "Example Usage SCSS",
         },

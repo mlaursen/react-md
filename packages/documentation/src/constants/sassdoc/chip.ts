@@ -410,7 +410,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "chip",
       type: "Color",
       value:
-        "if(\n  $rmd-theme-light,\n  $rmd-chip-solid-light-disabled-background-color,\n  $rmd-chip-solid-disabled-background-color\n)",
+        "if(\n  $rmd-theme-light,\n  $rmd-chip-solid-light-disabled-background-color,\n  $rmd-chip-solid-dark-disabled-background-color\n)",
       compiled: "#f5f5f5",
       overridable: true,
     },

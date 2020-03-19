@@ -380,19 +380,19 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-typography",
       description:
         "Creates all the typography styles from the react-md typography variables.\n",
-      source: "packages/typography/src/_mixins.scss#L216-L280",
+      source: "packages/typography/src/_mixins.scss#L216-L286",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "typography",
       code: "@mixin react-md-typography { … }",
       sourceCode:
-        '@mixin react-md-typography {\n  @include rmd-theme-create-root-theme(\n    $rmd-typography-theme-values,\n    typography\n  );\n\n  .rmd-typography {\n    @include rmd-typography-base;\n\n    @each $suffix in map-keys($rmd-typography-styles) {\n      &--#{$suffix} {\n        @include rmd-typography($suffix);\n      }\n    }\n\n    @each $weight in $rmd-typography-default-font-weights {\n      &--#{$weight} {\n        font-weight: map-get($rmd-typography-font-weights, $weight);\n      }\n    }\n\n    @each $suffix, $theme-style in $rmd-typography-colors {\n      &--#{$suffix} {\n        @include rmd-theme(color, $theme-style);\n      }\n    }\n\n    @each $align in $rmd-typography-alignments {\n      &--#{$align} {\n        text-align: $align;\n      }\n    }\n\n    @each $decoration in $rmd-typography-decorations {\n      $suffix: $decoration +\n        if($decoration == overline, "overline-decoration", "");\n\n      &--#{$suffix} {\n        text-decoration: $decoration;\n      }\n    }\n\n    @each $transform in $rmd-typography-transforms {\n      &--#{$transform} {\n        text-transform: $transform;\n      }\n    }\n\n    &--no-margin {\n      margin: 0;\n    }\n\n    &--no-margin-top {\n      margin-top: 0;\n    }\n\n    &--no-margin-bottom {\n      margin-bottom: 0;\n    }\n  }\n\n  .rmd-text-container {\n    @include rmd-text-container;\n  }\n\n  .rmd-sr-only {\n    @include rmd-utils-sr-only(true);\n  }\n}\n',
+        '@mixin react-md-typography {\n  @include rmd-theme-create-root-theme(\n    $rmd-typography-theme-values,\n    typography\n  );\n\n  .rmd-typography {\n    @include rmd-typography-base;\n\n    @each $suffix in map-keys($rmd-typography-styles) {\n      &--#{$suffix} {\n        @include rmd-typography($suffix);\n      }\n    }\n\n    @each $weight in $rmd-typography-default-font-weights {\n      &--#{$weight} {\n        font-weight: map-get($rmd-typography-font-weights, $weight);\n      }\n    }\n\n    @each $font-style in $rmd-typography-font-styles {\n      &--#{$font-style} {\n        font-style: $font-style;\n      }\n    }\n\n    @each $suffix, $theme-style in $rmd-typography-colors {\n      &--#{$suffix} {\n        @include rmd-theme(color, $theme-style);\n      }\n    }\n\n    @each $align in $rmd-typography-alignments {\n      &--#{$align} {\n        text-align: $align;\n      }\n    }\n\n    @each $decoration in $rmd-typography-decorations {\n      $suffix: $decoration +\n        if($decoration == overline, "overline-decoration", "");\n\n      &--#{$suffix} {\n        text-decoration: $decoration;\n      }\n    }\n\n    @each $transform in $rmd-typography-transforms {\n      &--#{$transform} {\n        text-transform: $transform;\n      }\n    }\n\n    &--no-margin {\n      margin: 0;\n    }\n\n    &--no-margin-top {\n      margin-top: 0;\n    }\n\n    &--no-margin-bottom {\n      margin-bottom: 0;\n    }\n  }\n\n  .rmd-text-container {\n    @include rmd-text-container;\n  }\n\n  .rmd-sr-only {\n    @include rmd-utils-sr-only(true);\n  }\n}\n',
       type: "mixin",
     },
     "rmd-typography-google-font-face": {
       name: "rmd-typography-google-font-face",
       description:
         "Creates the font face declaration for a Google font with a provided font weight. This will need to be called multiple times if you are including multiple font weights.\n\nThis should only be used if you are hosting the Google font locally instead of through the Google fonts service.",
-      source: "packages/typography/src/_mixins.scss#L304-L333",
+      source: "packages/typography/src/_mixins.scss#L310-L339",
       usedBy: [
         {
           name: "rmd-typography-host-google-font",
@@ -447,7 +447,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-typography-host-google-font",
       description:
         "Generates all the font faces (with font weights) for a Google font. This should only be used if you are hosting the Google font on your own servers instead of through the Google fonts service.\n\nIf you are using create-react-app, you must provide the `$font-url-prefix-or-url-map` as a Map of urls to have the font files correctly included and bundled during your build. See the examples for more details.",
-      source: "packages/typography/src/_mixins.scss#L409-L425",
+      source: "packages/typography/src/_mixins.scss#L415-L431",
       links: [
         {
           name: "Adding Images, Fonts, and Files",
@@ -750,11 +750,28 @@ const sassdoc: PackageSassDoc = {
       value: "capitalize uppercase lowercase",
       overridable: true,
     },
+    "rmd-typography-font-styles": {
+      name: "rmd-typography-font-styles",
+      description:
+        "A list of `font-style` to apply. If you don't want the helper classes for the font styles, set this to an empty list to reduce your bundle size by a slight amount.\n",
+      source: "packages/typography/src/_variables.scss#L197",
+      usedBy: [
+        {
+          name: "react-md-typography",
+          type: "mixin",
+          packageName: "typography",
+        },
+      ],
+      packageName: "typography",
+      type: "List",
+      value: "normal italic oblique",
+      overridable: true,
+    },
     "rmd-typography-google-font-weight-suffixes": {
       name: "rmd-typography-google-font-weight-suffixes",
       description:
         "A Map of font weights to a font file suffix for a Google font.",
-      source: "packages/typography/src/_variables.scss#L203-L211",
+      source: "packages/typography/src/_variables.scss#L209-L217",
       packageName: "typography",
       type: "Map",
       value:
@@ -764,7 +781,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-typography-styles": {
       name: "rmd-typography-styles",
       description: "A Map of all the typography styles in react-md",
-      source: "packages/typography/src/_variables.scss#L229-L337",
+      source: "packages/typography/src/_variables.scss#L235-L343",
       usedBy: [
         {
           name: "rmd-typography-value",
@@ -790,7 +807,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-typography-theme-values",
       description:
         'A Map of all the "themeable" parts of the typography package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/typography/src/_variables.scss#L343-L347",
+      source: "packages/typography/src/_variables.scss#L349-L353",
       usedBy: [
         {
           name: "rmd-typography-theme",

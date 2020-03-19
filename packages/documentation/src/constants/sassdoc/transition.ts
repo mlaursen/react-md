@@ -2,120 +2,49 @@
 import { PackageSassDoc } from "utils/sassdoc";
 
 const sassdoc: PackageSassDoc = {
-  functions: {
-    "rmd-transition-theme": {
-      name: "rmd-transition-theme",
-      description:
-        "This function is used to quickly get one of the transition's theme values.\nThis is really just for the `rmd-transition-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
-      source: "packages/transition/src/_functions.scss#L16-L18",
-      packageName: "transition",
-      code: "@function rmd-transition-theme($style) { … }",
-      sourceCode:
-        "@function rmd-transition-theme($style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-transition-theme-values,\n    transition\n  );\n}\n",
-      type: "function",
-      parameters: [
-        {
-          type: "String",
-          name: "style",
-          description:
-            "One of the `$rmd-transition-theme-values` map keys to get a value for.",
-        },
-      ],
-      returns: {
-        type: "Color|String|Number",
-        description: "one of the transition's theme values.",
-      },
-    },
-    "rmd-transition-theme-var": {
-      name: "rmd-transition-theme-var",
-      description:
-        "This function is used to get one of the transition's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-transition-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/transition/src/_functions.scss#L33-L35",
-      packageName: "transition",
-      code:
-        "@function rmd-transition-theme-var($theme-style, $fallback: null) { … }",
-      sourceCode:
-        "@function rmd-transition-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-transition-theme-values,\n    transition,\n    $fallback\n  );\n}\n",
-      type: "function",
-      parameters: [
-        {
-          type: "String",
-          name: "theme-style",
-          description:
-            "One of the `$rmd-transition-theme-values` map keys to set a value for.",
-        },
-        {
-          type: "Color|String|Number",
-          name: "fallback",
-          default: "null",
-          description:
-            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
-        },
-      ],
-      returns: {
-        type: "String",
-        description: "one of the transition's theme values as a css variable.",
-      },
-    },
-  },
+  functions: {},
   mixins: {
-    "rmd-transition-theme": {
-      name: "rmd-transition-theme",
+    "rmd-transition": {
+      name: "rmd-transition",
       description:
-        "Creates the styles for one of the transition's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/transition/src/_mixins.scss#L20-L27",
+        "Adds a transition timing function for the provided transition type.",
+      source: "packages/transition/src/_mixins.scss#L14-L22",
       usedBy: [
-        { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-label", type: "mixin", packageName: "form" },
+        { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
+        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
+        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
+        {
+          name: "rmd-states-surface-base",
+          type: "mixin",
+          packageName: "states",
+        },
+        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-collapse", type: "mixin", packageName: "transition" },
+        { name: "rmd-collapse", type: "mixin", packageName: "transition" },
+        { name: "rmd-cross-fade", type: "mixin", packageName: "transition" },
       ],
       packageName: "transition",
-      code:
-        "@mixin rmd-transition-theme($property, $theme-style, $fallback: null) { … }",
+      code: "@mixin rmd-transition($type, $animation) { … }",
       sourceCode:
-        "@mixin rmd-transition-theme($property, $theme-style, $fallback: null) {\n  @include rmd-theme-apply-rmd-var(\n    $property,\n    $theme-style,\n    $rmd-transition-theme-values,\n    transition\n  );\n}\n",
+        '@mixin rmd-transition($type, $animation) {\n  $function: rmd-utils-validate($rmd-transitions, $type, "transition");\n\n  @if $animation {\n    animation-timing-function: $function;\n  } @else {\n    transition-timing-function: $function;\n  }\n}\n',
       type: "mixin",
       parameters: [
         {
           type: "String",
-          name: "property",
+          name: "type",
           description:
-            "The property to set a `rmd-transition-theme-values` value to.",
+            "The transition type that should be used. This should be one of the keys for `$rmd-transitions`",
         },
         {
-          type: "String",
-          name: "theme-style",
+          type: "Boolean",
+          name: "animation",
           description:
-            "One of the keys of `rmd-transition-theme-values` to extract a value from.",
-        },
-        {
-          type: "Color|String|Number",
-          name: "fallback",
-          default: "null",
-          description:
-            "A fallback value to use if the css variable isn't set somehow. This will default to automatically retrieving the default value from the `rmd-transition-theme-values` map when `null`.",
-        },
-      ],
-    },
-    "rmd-transition-set-theme-var": {
-      name: "rmd-transition-set-theme-var",
-      description:
-        "Updates one of the transition's theme variables with the new value for the section of your app.",
-      source: "packages/transition/src/_mixins.scss#L35-L37",
-      packageName: "transition",
-      code: "@mixin rmd-transition-set-theme-var($theme-style, $-) { … }",
-      sourceCode:
-        "@mixin rmd-transition-set-theme-var($theme-style, $-) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-transition-theme-values,\n    transition\n  );\n}\n",
-      type: "mixin",
-      parameters: [
-        {
-          type: "String",
-          name: "theme-style",
-          description:
-            "The transition theme style type to update.\nThis should be one of the `$rmd-transition-theme-values` keys.",
-        },
-        {
-          type: "Color|String|Number",
-          name: "-",
-          description: "The new value to use.",
+            "Boolean if this should be applied to the animation timing function instead of the transition timing function.",
         },
       ],
     },
@@ -123,7 +52,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-transition-shadow-transition",
       description:
         "A mixin that allows you to animate box shadow performantly.",
-      source: "packages/transition/src/_mixins.scss#L105-L138",
+      source: "packages/transition/src/_mixins.scss#L90-L123",
       usedBy: [
         {
           name: "rmd-elevation-transition",
@@ -137,7 +66,7 @@ const sassdoc: PackageSassDoc = {
           code:
             '@import "@react-md/theme/dist/scss/color-palette";\n\n.my-class {\n  $start-shadow: inset 0 0 1px $rmd-blue-500;\n  $end-shadow: inset 0 0 4px $rmd-blue-500;\n\n  @include rmd-transition-shadow-transition(\n    $start-shadow,\n    $end-shadow,\n    ("&:focus" "&:hover")\n  );\n}\n',
           compiled:
-            '.my-class {\n  box-shadow: inset 0 0 1px #2196f3;\n  position: relative;\n}\n.my-class::before {\n  transition-timing-function: var(\n    --rmd-transition-standard,\n    cubic-bezier(0.4, 0, 0.2, 1)\n  );\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: 0;\n  box-shadow: inset 0 0 4px #2196f3;\n  opacity: 0;\n  transition: opacity 0.15s;\n}\n.my-class:focus::before,\n.my-class:hover::before {\n  opacity: 1;\n}\n',
+            '.my-class {\n  box-shadow: inset 0 0 1px #2196f3;\n  position: relative;\n}\n.my-class::before {\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: 0;\n  box-shadow: inset 0 0 4px #2196f3;\n  opacity: 0;\n  transition: opacity 0.15s;\n}\n.my-class:focus::before,\n.my-class:hover::before {\n  opacity: 1;\n}\n',
           type: "scss",
           description: "Simple Usage",
         },
@@ -145,7 +74,7 @@ const sassdoc: PackageSassDoc = {
           code:
             '@import "@react-md/elevation/dist/scss/functions";\n@import "@react-md/theme/dist/scss/color-palette";\n\n.my-class {\n  $start-shadow: rmd-elevation(2);\n  $end-shadow: rmd-elevation(4), inset 0 0 4px $rmd-blue-500;\n\n  @include rmd-transition-shadow-transition(\n    $start-shadow,\n    $end-shadow,\n    "&:focus"\n  );\n}\n',
           compiled:
-            '.my-class {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);\n  position: relative;\n}\n.my-class::before {\n  transition-timing-function: var(\n    --rmd-transition-standard,\n    cubic-bezier(0.4, 0, 0.2, 1)\n  );\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: 0;\n  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),\n    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12),\n    inset 0 0 4px #2196f3;\n  opacity: 0;\n  transition: opacity 0.15s;\n}\n.my-class:focus::before {\n  opacity: 1;\n}\n',
+            '.my-class {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);\n  position: relative;\n}\n.my-class::before {\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: 0;\n  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),\n    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12),\n    inset 0 0 4px #2196f3;\n  opacity: 0;\n  transition: opacity 0.15s;\n}\n.my-class:focus::before {\n  opacity: 1;\n}\n',
           type: "scss",
           description: "Merging with elevation",
         },
@@ -194,55 +123,11 @@ const sassdoc: PackageSassDoc = {
         },
       ],
     },
-    "rmd-transition": {
-      name: "rmd-transition",
-      description:
-        "Adds a transition timing function for the provided transition type.",
-      source: "packages/transition/src/_mixins.scss#L146-L151",
-      usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-        { name: "rmd-chip", type: "mixin", packageName: "chip" },
-        { name: "rmd-label", type: "mixin", packageName: "form" },
-        { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
-        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
-        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
-        {
-          name: "rmd-states-surface-base",
-          type: "mixin",
-          packageName: "states",
-        },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-collapse", type: "mixin", packageName: "transition" },
-        { name: "rmd-collapse", type: "mixin", packageName: "transition" },
-        { name: "rmd-cross-fade", type: "mixin", packageName: "transition" },
-      ],
-      packageName: "transition",
-      code: "@mixin rmd-transition($type, $animation) { … }",
-      sourceCode:
-        "@mixin rmd-transition($type, $animation) {\n  @include rmd-transition-theme(\n    if($animation, animation-timing-function, transition-timing-function),\n    $type\n  );\n}\n",
-      type: "mixin",
-      parameters: [
-        {
-          type: "String",
-          name: "type",
-          description:
-            "The transition type that should be used. This should be one of the keys for `$rmd-transitions`",
-        },
-        {
-          type: "Boolean",
-          name: "animation",
-          description:
-            "Boolean if this should be applied to the animation timing function instead of the transition timing function.",
-        },
-      ],
-    },
     "rmd-collapse": {
       name: "rmd-collapse",
       description:
         "Creates the styles for the Collapse component within react-md\n",
-      source: "packages/transition/src/_mixins.scss#L154-L171",
+      source: "packages/transition/src/_mixins.scss#L126-L149",
       usedBy: [
         {
           name: "react-md-transition",
@@ -253,14 +138,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "transition",
       code: "@mixin rmd-collapse { … }",
       sourceCode:
-        "@mixin rmd-collapse {\n  .rmd-collapse {\n    transition-property: max-height, padding-bottom, padding-top;\n    will-change: max-height, padding-bottom, padding-top;\n\n    &--no-overflow {\n      overflow: hidden;\n    }\n\n    &--enter {\n      @include rmd-transition($rmd-collapse-enter-transition-func);\n    }\n\n    &--leave {\n      @include rmd-transition($rmd-collapse-leave-transition-func);\n    }\n  }\n}\n",
+        "@mixin rmd-collapse {\n  .rmd-collapse {\n    transition-property: max-height, padding-bottom, padding-top;\n    will-change: max-height, padding-bottom, padding-top;\n\n    &[hidden] {\n      // sass-lint:disable-block no-important\n      // need to add this back in just incase the element has a custom display\n      display: none !important;\n    }\n\n    &--no-overflow {\n      overflow: hidden;\n    }\n\n    &--enter {\n      @include rmd-transition($rmd-collapse-enter-transition-func);\n    }\n\n    &--leave {\n      @include rmd-transition($rmd-collapse-leave-transition-func);\n    }\n  }\n}\n",
       type: "mixin",
     },
     "rmd-cross-fade": {
       name: "rmd-cross-fade",
       description:
         "Creates the cross fade animation styles. This animation is usually used when loading in new parts of a page or page transitions as there is no exit animation by default.\n",
-      source: "packages/transition/src/_mixins.scss#L176-L190",
+      source: "packages/transition/src/_mixins.scss#L154-L168",
       usedBy: [
         {
           name: "react-md-transition",
@@ -278,12 +163,12 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-transition",
       description:
         "Creates the transition theme css variables as well as the styles for components in the transition package.\n",
-      source: "packages/transition/src/_mixins.scss#L257-L263",
+      source: "packages/transition/src/_mixins.scss#L235-L239",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "transition",
       code: "@mixin react-md-transition { … }",
       sourceCode:
-        "@mixin react-md-transition {\n  @include rmd-theme-create-root-theme(\n    $rmd-transition-theme-values,\n    transition\n  );\n\n  @include rmd-collapse;\n  @include rmd-cross-fade;\n  @include rmd-transition-classes;\n}\n",
+        "@mixin react-md-transition {\n  @include rmd-collapse;\n  @include rmd-cross-fade;\n  @include rmd-transition-classes;\n}\n",
       type: "mixin",
     },
   },
@@ -458,37 +343,12 @@ const sassdoc: PackageSassDoc = {
       compiled: "0.15s",
       overridable: true,
     },
-    "rmd-transition-theme-values": {
-      name: "rmd-transition-theme-values",
-      description:
-        'A Map of all the "themeable" parts of the transition package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/transition/src/_variables.scss#L80-L85",
+    "rmd-transitions": {
+      name: "rmd-transitions",
+      description: "A Map of all the different transitions supported.\n",
+      source: "packages/transition/src/_variables.scss#L78-L83",
       usedBy: [
-        {
-          name: "rmd-transition-theme",
-          type: "function",
-          packageName: "transition",
-        },
-        {
-          name: "rmd-transition-theme-var",
-          type: "function",
-          packageName: "transition",
-        },
-        {
-          name: "rmd-transition-theme",
-          type: "mixin",
-          packageName: "transition",
-        },
-        {
-          name: "rmd-transition-set-theme-var",
-          type: "mixin",
-          packageName: "transition",
-        },
-        {
-          name: "react-md-transition",
-          type: "mixin",
-          packageName: "transition",
-        },
+        { name: "rmd-transition", type: "mixin", packageName: "transition" },
       ],
       packageName: "transition",
       type: "Map",
