@@ -10,7 +10,7 @@ $ npm install --save @react-md/card
 ```
 
 It is also recommended to install the following packages as they work
-hand-in-hand with the card package:
+hand-in-hand with this package:
 
 ```sh
 $ npm install --save @react-md/theme \
