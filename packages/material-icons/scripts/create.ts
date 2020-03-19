@@ -52,8 +52,6 @@ async function parseSVGFileAndCreateComponents(
     // remove fill so the colors can be overridden in css
     .replace(/ ?fill="#[A-Fa-f0-9]{3,6}"/g, "");
 
-  // eslint-disable-next-line no-console
-  console.log(contents.match(/fill/));
   await Promise.all([
     fs.outputFile(svgIconFile, createIconFile(componentName, contents, "SVG")),
     fs.outputFile(
