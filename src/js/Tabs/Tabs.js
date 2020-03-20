@@ -209,6 +209,7 @@ export default class Tabs extends PureComponent {
     if (typeof props.activeTabIndex === 'undefined') {
       this.state.activeTabIndex = defaultTabIndex;
     }
+    this._tabList = [];
   }
 
   componentWillReceiveProps(nextProps) {
@@ -236,6 +237,14 @@ export default class Tabs extends PureComponent {
         }, this._scrollActiveIntoView);
       }
     }
+  }
+
+  getTabList() {
+    return this._tabList.slice(0);
+  }
+
+  getTabByIndex(tabIndex) {
+    return this._tabList[tabIndex];
   }
 
   _shouldAlign(props) {
@@ -409,6 +418,12 @@ export default class Tabs extends PureComponent {
     this._nextIndexes(false);
   };
 
+  _setTab = (tab, index) => {
+    if (tab) {
+      this._tabList[index] = tab;
+    }
+  };
+
   render() {
     const {
       indicatorOffset,
@@ -479,6 +494,7 @@ export default class Tabs extends PureComponent {
         id: tab.props.id || `${tabId}-${index}`,
         controlsId: tab.props.controlsId || `${tabId}-panel-${index}`,
         active: index === activeTabIndex,
+        ref: (tabRef) => this._setTab(tabRef, index),
         onClick: handleOnClick,
       });
     });
