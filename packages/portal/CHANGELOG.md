@@ -1,4 +1,4 @@
-# v2.0.0-alpha.0
+# v2.0.0
 
 This was a re-write of the `Portal` component that created a "more usable" API
 as well as removing temporary workarounds before the `createPortal` API was
