@@ -3,6 +3,7 @@
 ////
 
 @import '~@react-md/overlay/dist/variables';
+@import '~@react-md/transition/dist/variables';
 @import '~@react-md/theme/dist/functions';
 @import '~@react-md/theme/dist/variables';
 
@@ -35,11 +36,11 @@ $rmd-sheet-raised-elevation: 16 !default;
 
 /// The duration for the enter transition.
 /// @type Number
-$rmd-sheet-enter-duration: 0.2s !default;
+$rmd-sheet-enter-duration: $rmd-transition-enter-duration !default;
 
 /// The duration for the leave transition.
 /// @type Number
-$rmd-sheet-leave-duration: 0.15s !default;
+$rmd-sheet-leave-duration: $rmd-transition-leave-duration !default;
 
 /// The amount of horizontal margin to use between the viewport's edge and the
 /// sheet's edge. This is used so that mobile devices have an overlay "touch

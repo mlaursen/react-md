@@ -83,8 +83,8 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-alert", type: "mixin", packageName: "alert" },
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
         { name: "rmd-card", type: "mixin", packageName: "card" },
-        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
-        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
+        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
+        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
       ],
       packageName: "elevation",
       examples: [

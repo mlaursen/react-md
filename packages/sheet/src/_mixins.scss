@@ -66,88 +66,93 @@
   }
 }
 
+/// Creates the styles for a sheet component
+@mixin rmd-sheet {
+  @include rmd-elevation($rmd-sheet-elevation);
+  @include rmd-utils-scroll;
+  @include rmd-sheet-positions;
+  @include rmd-sheet-theme(max-height);
+  @include rmd-sheet-theme(height);
+  @include rmd-sheet-theme(width);
+
+  position: fixed;
+  z-index: $rmd-sheet-z-index;
+
+  &--raised {
+    @include rmd-elevation($rmd-sheet-raised-elevation);
+    z-index: $rmd-sheet-raised-z-index;
+  }
+
+  &--horizontal {
+    bottom: 0;
+    top: 0;
+  }
+
+  &--touch-width {
+    @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(touch-width));
+  }
+
+  &--static-width {
+    @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(static-width));
+  }
+
+  &--media-width {
+    @include rmd-utils-tablet-media {
+      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(static-width));
+    }
+    @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(touch-width));
+  }
+
+  &--vertical {
+    left: 0;
+    right: 0;
+  }
+
+  &--viewport-height {
+    @include rmd-sheet-theme-update-var(max-height, $rmd-sheet-max-height);
+  }
+
+  &--touchable-height {
+    @include rmd-sheet-theme-update-var(max-height, rmd-sheet-theme-var(touchable-max-height));
+  }
+
+  &--recommended-height {
+    max-height: $rmd-sheet-recommended-max-height;
+    min-height: $rmd-sheet-recommended-min-height;
+  }
+
+  &--offscreen {
+    @include rmd-sheet-theme(transform, transform-offscreen);
+  }
+
+  &--hidden {
+    box-shadow: none;
+  }
+
+  &--visible {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &--enter {
+    @include rmd-transition(deceleration);
+
+    transition: transform $rmd-sheet-enter-duration;
+  }
+
+  &--exit {
+    @include rmd-transition(acceleration);
+
+    transition: transform $rmd-sheet-enter-duration;
+  }
+}
+
 /// Creates all the styles for the sheet package as well as the root css
 /// variable theme.
 @mixin react-md-sheet {
   @include rmd-theme-create-root-theme($rmd-sheet-theme-values, sheet);
 
   .rmd-sheet {
-    @include rmd-elevation($rmd-sheet-elevation);
-    @include rmd-utils-scroll;
-    @include rmd-sheet-positions;
-    @include rmd-sheet-theme(max-height);
-    @include rmd-sheet-theme(height);
-    @include rmd-sheet-theme(width);
-
-    position: fixed;
-    z-index: $rmd-sheet-z-index;
-
-    &--raised {
-      @include rmd-elevation($rmd-sheet-raised-elevation);
-      z-index: $rmd-sheet-raised-z-index;
-    }
-
-    &--horizontal {
-      bottom: 0;
-      top: 0;
-    }
-
-    &--touch-width {
-      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(touch-width));
-    }
-
-    &--static-width {
-      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(static-width));
-    }
-
-    &--media-width {
-      @include rmd-utils-tablet-media {
-        @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(static-width));
-      }
-      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(touch-width));
-    }
-
-    &--vertical {
-      left: 0;
-      right: 0;
-    }
-
-    &--viewport-height {
-      @include rmd-sheet-theme-update-var(max-height, $rmd-sheet-max-height);
-    }
-
-    &--touchable-height {
-      @include rmd-sheet-theme-update-var(max-height, rmd-sheet-theme-var(touchable-max-height));
-    }
-
-    &--recommended-height {
-      max-height: $rmd-sheet-recommended-max-height;
-      min-height: $rmd-sheet-recommended-min-height;
-    }
-
-    &--offscreen {
-      @include rmd-sheet-theme(transform, transform-offscreen);
-    }
-
-    &--hidden {
-      box-shadow: none;
-    }
-
-    &--visible {
-      transform: translate3d(0, 0, 0);
-    }
-
-    &--enter {
-      @include rmd-transition(deceleration);
-
-      transition: transform $rmd-sheet-enter-duration;
-    }
-
-    &--exit {
-      @include rmd-transition(acceleration);
-
-      transition: transform $rmd-sheet-enter-duration;
-    }
+    @include rmd-sheet;
   }
 
   .rmd-sheet-overlay {

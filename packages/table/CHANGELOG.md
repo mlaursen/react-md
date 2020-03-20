@@ -92,7 +92,7 @@ v2, you'll have access to the following components:
   `$rmd-table-row-selected-color` that now defaults to
   `rmd-states-theme-var(selected-color)`
 
-### Removed SCSS Variables Placeholders, and Mixins
+### Removed SCSS Variables, Placeholders, and Mixins
 
 - removed `$md-data-table-include-plain` and
   `$md-data-table-plain-column-height` since there is no concept of a "data

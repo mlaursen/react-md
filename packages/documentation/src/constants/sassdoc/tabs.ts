@@ -125,7 +125,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-tabs",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/tabs/src/_mixins.scss#L238-L256",
+      source: "packages/tabs/src/_mixins.scss#L244-L262",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "tabs",
       code: "@mixin react-md-tabs { … }",
