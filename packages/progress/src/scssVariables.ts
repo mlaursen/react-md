@@ -4,7 +4,7 @@ export default {
   "rmd-progress-include-circular": true,
   "rmd-progress-color": "#9c27b0",
   "rmd-progress-background-color": "#ba68c8",
-  "rmd-linear-progress-size": "4px",
+  "rmd-linear-progress-size": "0.25rem",
   "rmd-linear-progress-transition-duration": "2.4s",
   "rmd-linear-progress-short-animation-delay": "0.75s",
   "rmd-linear-progress-styles": {
@@ -48,18 +48,18 @@ export default {
     "100%": { bottom: "-8%", top: "107%" },
   },
   "rmd-circular-progress-size": "3rem",
-  "rmd-progress-circle-stroke-width": 6,
-  "rmd-progress-circle-dasharray": 187,
-  "rmd-progress-circle-transition-duration": "2.4s",
-  "rmd-progress-circle-start-offset": 187,
-  "rmd-progress-circle-end-offset": 46.75,
-  "rmd-progress-circle-rotate-styles": {
+  "rmd-cirular-progress-stroke-width": 6,
+  "rmd-cirular-progress-dasharray": 187,
+  "rmd-cirular-progress-transition-duration": "2.4s",
+  "rmd-cirular-progress-start-offset": 187,
+  "rmd-cirular-progress-end-offset": 46.75,
+  "rmd-cirular-progress-rotate-styles": {
     "0%": { transform: "rotate(0deg)" },
     "50%": { transform: "rotate(135deg)" },
     "75%": { transform: "rotate(450deg)" },
     "100%": { transform: "rotate(720deg)" },
   },
-  "rmd-progress-circle-dash-styles": {
+  "rmd-cirular-progress-dash-styles": {
     "0%": { "stroke-dashoffset": 187 },
     "50%": { "stroke-dashoffset": 46.75 },
     "100%": { "stroke-dashoffset": 187 },
@@ -67,7 +67,7 @@ export default {
   "rmd-progress-theme-values": {
     color: "#9c27b0",
     "background-color": "#ba68c8",
-    "linear-size": "4px",
+    "linear-size": "0.25rem",
     "circular-size": "3rem",
     "circular-width": 6,
   },

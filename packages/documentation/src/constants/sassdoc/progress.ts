@@ -189,7 +189,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/progress/src/_variables.scss#L35",
       packageName: "progress",
       type: "Number",
-      value: "4px",
+      value: "0.25rem",
       overridable: true,
     },
     "rmd-linear-progress-transition-duration": {
@@ -309,8 +309,8 @@ const sassdoc: PackageSassDoc = {
       value: "3rem",
       overridable: true,
     },
-    "rmd-progress-circle-stroke-width": {
-      name: "rmd-progress-circle-stroke-width",
+    "rmd-cirular-progress-stroke-width": {
+      name: "rmd-cirular-progress-stroke-width",
       description:
         "The stroke width for the circular svg. I wouldn't change this value unless you also update the `viewbox` for the `CircularProgress` component.\n",
       source: "packages/progress/src/_variables.scss#L208",
@@ -319,8 +319,8 @@ const sassdoc: PackageSassDoc = {
       value: "6",
       overridable: true,
     },
-    "rmd-progress-circle-dasharray": {
-      name: "rmd-progress-circle-dasharray",
+    "rmd-cirular-progress-dasharray": {
+      name: "rmd-cirular-progress-dasharray",
       description:
         "The dasharray fro the circular svg. I don't really know how this works so good luck changing it to something else. If this value is changed, you'll aslo need to update the `dasharray` prop for the `CircularProgress` component.\n",
       source: "packages/progress/src/_variables.scss#L215",
@@ -329,8 +329,8 @@ const sassdoc: PackageSassDoc = {
       value: "187",
       overridable: true,
     },
-    "rmd-progress-circle-transition-duration": {
-      name: "rmd-progress-circle-transition-duration",
+    "rmd-cirular-progress-transition-duration": {
+      name: "rmd-cirular-progress-transition-duration",
       description:
         "The entire transition duration for the circular progress. This is really the full time for the change in the `stroke-dashoffset` as the default rotation will rotate `720deg` over this time.\n",
       source: "packages/progress/src/_variables.scss#L221",
@@ -339,30 +339,30 @@ const sassdoc: PackageSassDoc = {
       value: "2.4s",
       overridable: true,
     },
-    "rmd-progress-circle-start-offset": {
-      name: "rmd-progress-circle-start-offset",
+    "rmd-cirular-progress-start-offset": {
+      name: "rmd-cirular-progress-start-offset",
       description:
         "The starting dashoffset for the ciruclar progress animation. This will be used for the `0%` and `100%` values in the animation keyframes by default.\n",
       source: "packages/progress/src/_variables.scss#L226",
       packageName: "progress",
       type: "Number",
-      value: "$rmd-progress-circle-dasharray",
+      value: "$rmd-cirular-progress-dasharray",
       compiled: "187",
       overridable: true,
     },
-    "rmd-progress-circle-end-offset": {
-      name: "rmd-progress-circle-end-offset",
+    "rmd-cirular-progress-end-offset": {
+      name: "rmd-cirular-progress-end-offset",
       description:
         "The ending dashoffset for the ciruclar progress animation. This will be used for the `50%` value in the animation keyframes by default.\n",
       source: "packages/progress/src/_variables.scss#L231",
       packageName: "progress",
       type: "Number",
-      value: "$rmd-progress-circle-dasharray / 4",
+      value: "$rmd-cirular-progress-dasharray / 4",
       compiled: "46.75",
       overridable: true,
     },
-    "rmd-progress-circle-rotate-styles": {
-      name: "rmd-progress-circle-rotate-styles",
+    "rmd-cirular-progress-rotate-styles": {
+      name: "rmd-cirular-progress-rotate-styles",
       description:
         "The circular progress styles to apply for the rotation transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
       source: "packages/progress/src/_variables.scss#L237-L250",
@@ -372,15 +372,15 @@ const sassdoc: PackageSassDoc = {
         "(\n  0%: (\n    transform: rotate(0deg),\n  ),\n  50%: (\n    transform: rotate(135deg),\n  ),\n  75%: (\n    transform: rotate(450deg),\n  ),\n  100%: (\n    transform: rotate(720deg),\n  ),\n)",
       overridable: true,
     },
-    "rmd-progress-circle-dash-styles": {
-      name: "rmd-progress-circle-dash-styles",
+    "rmd-cirular-progress-dash-styles": {
+      name: "rmd-cirular-progress-dash-styles",
       description:
         "The circular progress styles to apply for the dashoffset transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
       source: "packages/progress/src/_variables.scss#L256-L266",
       packageName: "progress",
       type: "Map",
       value:
-        "(\n  0%: (\n    stroke-dashoffset: $rmd-progress-circle-start-offset,\n  ),\n  50%: (\n    stroke-dashoffset: $rmd-progress-circle-end-offset,\n  ),\n  100%: (\n    stroke-dashoffset: $rmd-progress-circle-start-offset,\n  ),\n)",
+        "(\n  0%: (\n    stroke-dashoffset: $rmd-cirular-progress-start-offset,\n  ),\n  50%: (\n    stroke-dashoffset: $rmd-cirular-progress-end-offset,\n  ),\n  100%: (\n    stroke-dashoffset: $rmd-cirular-progress-start-offset,\n  ),\n)",
       compiled:
         "(\n  0%: (\n    stroke-dashoffset: 187,\n  ),\n  50%: (\n    stroke-dashoffset: 46.75,\n  ),\n  100%: (\n    stroke-dashoffset: 187,\n  ),\n)",
       overridable: true,
@@ -412,9 +412,9 @@ const sassdoc: PackageSassDoc = {
       packageName: "progress",
       type: "Map",
       value:
-        "(\n  color: $rmd-progress-color,\n  background-color: $rmd-progress-background-color,\n  linear-size: $rmd-linear-progress-size,\n  circular-size: $rmd-circular-progress-size,\n  circular-width: $rmd-progress-circle-stroke-width,\n)",
+        "(\n  color: $rmd-progress-color,\n  background-color: $rmd-progress-background-color,\n  linear-size: $rmd-linear-progress-size,\n  circular-size: $rmd-circular-progress-size,\n  circular-width: $rmd-cirular-progress-stroke-width,\n)",
       compiled:
-        "(\n  color: #9c27b0,\n  background-color: #ba68c8,\n  linear-size: 4px,\n  circular-size: 3rem,\n  circular-width: 6,\n)",
+        "(\n  color: #9c27b0,\n  background-color: #ba68c8,\n  linear-size: 0.25rem,\n  circular-size: 3rem,\n  circular-width: 6,\n)",
       overridable: true,
     },
   },

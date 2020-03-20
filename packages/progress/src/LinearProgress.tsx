@@ -29,8 +29,9 @@ export interface LinearProgressProps
 
   /**
    * Boolean if the progress should be reversed. This will change the progress
-   * direction from `->` to `<-`. If the current language is a rtl language, the
-   * direction will still be `->`.
+   * direction from `left-to-right` to be `right-to-left`. If the current
+   * language is a rtl language and this prop is enabled, the direction will
+   * still be `left-to-right`.
    */
   reverse?: boolean;
 

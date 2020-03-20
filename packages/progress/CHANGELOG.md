@@ -1,1 +1,94 @@
-# v2.0.0-alpha.0
+# v2.0.0
+
+The progress package probably went through the least amount of changes for the
+v2 release. The main changes involved were switching to `<span>`s instead of
+`<div>`s so they can be rendered within buttons and a few API changes to
+hopefully be easier to work with.
+
+## New Features / Behavior
+
+- new theme variables and mixins to dynamically change the color and size of the
+  progress bars
+- introduced a new util `getProgressA11y` that can be used to link a progress
+  bar to another element that is loading
+- the `LinearProgress` bar can now also be rendered vertically instead of
+  horizontal only
+- the `CircularProgress`'s size is now configurable with CSS instead of a
+  `scale` prop
+
+## Breaking Changes
+
+- dropped support for the `progressStyle` function but might be added back later
+- dropped support for updating the `CircularProgress`'s size with component
+  props since it's easier to style in CSS now
+
+### New SCSS Variables, Functions, and Mixins
+
+- `$rmd-progress-color: $rmd-theme-primary !default` - A new variable to
+  configure the progress color
+- `$rmd-progress-background-color: rmd-theme-get-swatch($rmd-theme-primary, 300, false, rgba($rmd-theme-primary, 0.4)) !default` -
+  The background color to use for the incomplete progress part of the linear
+  progress bar
+- `$rmd-linear-progress-styles` - A Map that gets converted into the linear
+  progress animation
+- `$rmd-linear-progress-short-styles` - A Map that gets converted into the
+  linear progress shorter animation
+- `$rmd-linear-progress-reverse-styles` - A Map that gets converted into the
+  reversed linear progress animation
+- `$rmd-linear-progress-reverse-short-styles` - A Map that gets converted into
+  the reversed linear progress shorter animation
+- `$rmd-linear-progress-vertical-styles` - A Map that gets converted into the
+  vertical linear progress animation
+- `$rmd-linear-progress-vertical-short-styles` - A Map that gets converted into
+  the vertical linear progress shorter animation
+- `$rmd-linear-progress-vertical-reverse-styles` - A Map that gets converted
+  into the vertical reversed linear progress animation
+- `$rmd-linear-progress-vertical-reverse-short-styles` - A Map that gets
+  converted into the vertical reversed linear progress shorter animation
+- `$rmd-circular-progress-size: 3rem !default` - The default size for the
+  circular progress. **This is doubled the default size in v1.**
+- `$rmd-circular-progress-stroke-width: 6 !default` - The stroke width for the
+  circular progress SVG that used to be a prop
+- `$rmd-circular-progress-start-offset: $rmd-circular-progress-dasharray !default` -
+  The starting dashoffset for the circular progress animation
+- `$rmd-circular-progress-end-offset: $rmd-circular-progress-dasharray / 4 !default` -
+  The ending dashoffset for the circular progress animation
+- `$rmd-circular-progress-rotate-styles` - A Map that gets converted into the
+  circular progress rotation animation
+- `$rmd-cicular-progress-dash-styles` - A Map that gets converted into the
+  circular progress stroke-dashoffset animation while rotating
+- `@function rmd-progress-theme` - gets one of the theme values and validates
+  that the theme name is valid
+- `@function rmd-progress-theme-var` - gets one of the theme values as a css
+  variable with a fallback value and validates that the theme name is valid
+- `@mixin rmd-progress-theme` - applies one of the theme values to a css
+  property as a css variable
+- `@mixin rmd-progress-theme-update-var` - updates one of the theme values as a
+  css variable
+
+### Renamed SCSS Variables, Functions, and Mixins
+
+- renamed `$md-progress-include-linear` to `$rmd-progress-include-linear`
+- renamed `$md-progress-include-circular` to `$rmd-progress-include-circular`
+- renamed `$md-linear-progress-height` to `$rmd-linear-progress-size` and
+  changed the default value from `3px` to `0.25rem`
+- renamed `$md-progress-duration` to `$rmd-linear-progress-transition-duration`
+  and `$rmd-circular-progress-transition-duration` to allow the transitions to
+  be separate times if desired. Kept the same default value of `2.4s`
+- renamed `$md-linear-progress-delay` to
+  `$rmd-linear-progress-short-animation-delay` and changed the default value
+  from `1.15s` to `0.75s`
+- renamed `$md-circular-progress-stroke-dasharray` to
+  `$rmd-cirular-progress-dasharray` and changed the default value from `187px`
+  to `187`
+
+### Removed SCSS Variables and Mixins
+
+- removed `$md-linear-progress-swatch` and `$md-linear-progress-fallback-color`
+  since they are no longer used and already has sensible defaults with the new
+  `rmd-theme-get-swatch` function
+- removed `$md-progress-margin` since margin is no longer automatically applied
+  to the progress components
+- removed the `@mixin react-md-theme-progress-circular`,
+  `@mixin react-md-theme-progress-linear`, and `@mixin react-md-theme-progress`
+  since there is a new theming API

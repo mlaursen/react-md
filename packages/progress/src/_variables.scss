@@ -32,7 +32,7 @@ $rmd-progress-background-color: rmd-theme-get-swatch(
 /// This is the linear progress bar's height or the width when switched to
 /// vertical.
 /// @type Number
-$rmd-linear-progress-size: 4px !default;
+$rmd-linear-progress-size: 0.25rem !default;
 
 /// The transition duration for the entire linear progress animation. This one
 /// is much longer compared to other transitions since progress indicators are
@@ -205,36 +205,36 @@ $rmd-circular-progress-size: 3rem !default;
 /// The stroke width for the circular svg. I wouldn't change this value unless
 /// you also update the `viewbox` for the `CircularProgress` component.
 /// @type Number
-$rmd-progress-circle-stroke-width: 6 !default;
+$rmd-cirular-progress-stroke-width: 6 !default;
 
 /// The dasharray fro the circular svg. I don't really know how this works so
 /// good luck changing it to something else. If this value is changed, you'll
 /// aslo need to update the `dasharray` prop for the `CircularProgress`
 /// component.
 /// @type Number
-$rmd-progress-circle-dasharray: 187 !default;
+$rmd-cirular-progress-dasharray: 187 !default;
 
 /// The entire transition duration for the circular progress. This is really the
 /// full time for the change in the `stroke-dashoffset` as the default rotation
 /// will rotate `720deg` over this time.
 /// @type Number
-$rmd-progress-circle-transition-duration: 2.4s !default;
+$rmd-cirular-progress-transition-duration: 2.4s !default;
 
 /// The starting dashoffset for the ciruclar progress animation. This will be
 /// used for the `0%` and `100%` values in the animation keyframes by default.
 /// @type Number
-$rmd-progress-circle-start-offset: $rmd-progress-circle-dasharray !default;
+$rmd-cirular-progress-start-offset: $rmd-cirular-progress-dasharray !default;
 
 /// The ending dashoffset for the ciruclar progress animation. This will be used
 /// for the `50%` value in the animation keyframes by default.
 /// @type Number
-$rmd-progress-circle-end-offset: $rmd-progress-circle-dasharray / 4 !default;
+$rmd-cirular-progress-end-offset: $rmd-cirular-progress-dasharray / 4 !default;
 
 /// The circular progress styles to apply for the rotation transition. Each key
 /// in this map will be set immediately at the root of the `keyframes` and then
 /// each child map will be considered a map of property: value.
 /// @type Map
-$rmd-progress-circle-rotate-styles: (
+$rmd-cirular-progress-rotate-styles: (
   0%: (
     transform: rotate(0deg),
   ),
@@ -253,15 +253,15 @@ $rmd-progress-circle-rotate-styles: (
 /// key in this map will be set immediately at the root of the `keyframes` and
 /// then each child map will be considered a map of property: value.
 /// @type Map
-$rmd-progress-circle-dash-styles: (
+$rmd-cirular-progress-dash-styles: (
   0%: (
-    stroke-dashoffset: $rmd-progress-circle-start-offset,
+    stroke-dashoffset: $rmd-cirular-progress-start-offset,
   ),
   50%: (
-    stroke-dashoffset: $rmd-progress-circle-end-offset,
+    stroke-dashoffset: $rmd-cirular-progress-end-offset,
   ),
   100%: (
-    stroke-dashoffset: $rmd-progress-circle-start-offset,
+    stroke-dashoffset: $rmd-cirular-progress-start-offset,
   ),
 ) !default;
 
@@ -274,5 +274,5 @@ $rmd-progress-theme-values: (
   background-color: $rmd-progress-background-color,
   linear-size: $rmd-linear-progress-size,
   circular-size: $rmd-circular-progress-size,
-  circular-width: $rmd-progress-circle-stroke-width,
+  circular-width: $rmd-cirular-progress-stroke-width,
 ) !default;
