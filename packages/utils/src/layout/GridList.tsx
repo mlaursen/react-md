@@ -15,7 +15,7 @@ import applyRef from "../applyRef";
 import bem from "../bem";
 import useResizeObserver from "../sizing/useResizeObserver";
 import GridListCell from "./GridListCell";
-import getScrollbarWidth from "./scrollbarWidth";
+import getScrollbarSize from "./scrollbarSize";
 
 /**
  * This is the css variable that is used store the current size of each cell.
@@ -185,7 +185,7 @@ function GridList(
     // just need to see if there is a scrollbar visible and subtract that width.
     // don't need decimal precision here since both values will be rounded
     if (ref.current.offsetHeight < ref.current.scrollHeight) {
-      width -= getScrollbarWidth();
+      width -= getScrollbarSize("width");
     }
 
     const columns = Math.ceil(width / maxCellSize);

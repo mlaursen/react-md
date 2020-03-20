@@ -10,4 +10,4 @@ export * from "./GridList";
 export { default as GridListCell } from "./GridListCell";
 export * from "./GridListCell";
 
-export { default as scrollbarWidth } from "./scrollbarWidth";
+export { default as scrollbarSize } from "./scrollbarSize";
