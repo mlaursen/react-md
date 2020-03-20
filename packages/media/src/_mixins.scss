@@ -79,7 +79,7 @@
 /// background and text colors based on the provided background color for the
 /// overlay element.
 ///
-/// @param {Color} background-color [rmd-media-overlay-background-color] - The
+/// @param {Color} background-color [$rmd-media-overlay-background-color] - The
 /// background color for the media overlay.
 /// @param {Color} color [null] - An optional color to use for the overlay. If
 /// this is `null`, it will determine the contrast tone of the background color

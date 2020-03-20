@@ -195,7 +195,7 @@ const sassdoc: PackageSassDoc = {
         {
           type: "String",
           name: "pressed-class-name",
-          default: "rmd-states-pressed-class-name",
+          default: "$rmd-states-pressed-class-name",
           description:
             "The class name to use to indicate that the element is currently being pressed.",
         },
@@ -261,8 +261,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-surface": {
       name: "rmd-states-surface",
       description:
-        'This is the main interaction states creator. It will apply all the styles to an element so that it will:\n- gain the pointer cursor when it is not disabled (also works for\n  aria-disabled)\n- create a `::before` element for transitioning between the different\n  interaction states\n- apply the hover opacity when not disabled **and for non-touch devices**\n  (see more below)\n- apply the focused opacity after a **keyboard** focus event (see more\n  below)\n- apply the pressed opacity if not using the ripple effect (see more below)\n\n### Hover Opacity This requires the usage of a `COMPONENT_TO_MAKE` to work correctly. If `COMPONENT_TO_MAKE` is not used in your application, the hover effect will be applied on mobile devices after touch events. This is because a touch event still goes through the mouse events and applies the hover state after being touched.\n\n### Focused Opacity This requires the usage of the `KeyboardTracker` component to work correctly. If the `KeyboardTracker` is not used in your application and not near the root of the React render tree, you most likely will not have any focus states. This is actually one of the "biggest" features of react-md until the `:focus-visible` css selector has gained traction and browser support.\n\n### Pressed Opacity If you are using the ripple effect for pressed states, this will be ignored as a ripple element will be created instead to show the pressed state. When the ripple effect is disabled, pressing an element will just trigger a background opacity change like the over interaction states.',
-      source: "packages/states/src/_mixins.scss#L161-L211",
+        'This is the main interaction states creator. It will apply all the styles to an element so that it will:\n- gain the pointer cursor when it is not disabled (also works for\n  aria-disabled)\n- create a `::before` element for transitioning between the different\n  interaction states\n- apply the hover opacity when not disabled **and for non-touch devices**\n  (see more below)\n- apply the focused opacity after a **keyboard** focus event (see more\n  below)\n- apply the pressed opacity if not using the ripple effect (see more below)\n\n### Hover Opacity\n\nThis requires the usage of a `COMPONENT_TO_MAKE` to work correctly. If `COMPONENT_TO_MAKE` is not used in your application, the hover effect will be applied on mobile devices after touch events. This is because a touch event still goes through the mouse events and applies the hover state after being touched.\n\n### Focused Opacity\n\nThis requires the usage of the `KeyboardTracker` component to work correctly. If the `KeyboardTracker` is not used in your application and not near the root of the React render tree, you most likely will not have any focus states. This is actually one of the "biggest" features of react-md until the `:focus-visible` css selector has gained traction and browser support.\n\n### Pressed Opacity\n\nIf you are using the ripple effect for pressed states, this will be ignored as a ripple element will be created instead to show the pressed state. When the ripple effect is disabled, pressing an element will just trigger a background opacity change like the over interaction states.',
+      source: "packages/states/src/_mixins.scss#L164-L214",
       usedBy: [
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
@@ -301,7 +301,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-surface-selected",
       description:
         "This is a mixin that should be used along with the `rmd-states-surface` mixin if you'd also like to be able to add a selected state to an element.\nThis really just adds another opacity background change when the element is considered selected. This is not apart of the main surface mixin since selection states are a bit less used and it might be better to do different styles than just a background change to show selection.",
-      source: "packages/states/src/_mixins.scss#L223-L240",
+      source: "packages/states/src/_mixins.scss#L226-L243",
       usedBy: [
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-tree-item", type: "mixin", packageName: "tree" },
@@ -326,7 +326,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-states",
       description:
         "Creates all the root styles for the states package as well as the themeable css variables and their default values.\n",
-      source: "packages/states/src/_mixins.scss#L279-L292",
+      source: "packages/states/src/_mixins.scss#L282-L295",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "states",
       code: "@mixin react-md-states { … }",

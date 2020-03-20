@@ -82,7 +82,7 @@
 /// strings that is used to determine when the `$end-shadow` should be used.
 /// @param {Boolean} before [true] - Boolean if the `::before` or `::after`
 /// pseudo selector should be used as the `end-shadow` target.
-/// @param {String|Number} duration [rmd-transition-standard-time] - The
+/// @param {String|Number} duration [$rmd-transition-standard-time] - The
 /// animation duration
 /// @param {Number} pseudo-z-index [0] - The z-index to apply. This is set to 0
 /// by default so that it can be shown more easily if there are child elements

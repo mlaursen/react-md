@@ -502,42 +502,42 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "padding",
-          default: "rmd-grid-padding",
+          default: "$rmd-grid-padding",
           description:
             "The amount of padding to apply to the base grid element.",
         },
         {
           type: "Number",
           name: "gutter",
-          default: "rmd-grid-cell-margin",
+          default: "$rmd-grid-cell-margin",
           description:
             "The amount of margin to apply between each cell within the grid. Unlike flex grids, this will only be applied between cells instead of to the `top`, `right`, `bottom`, and `left` of each cell so this should _normally_ be doubled compared to the flex grids.",
         },
         {
           type: "Number",
           name: "phone-columns",
-          default: "rmd-grid-phone-columns",
+          default: "$rmd-grid-phone-columns",
           description:
             "The number of columns that should appear per-row on phones.",
         },
         {
           type: "Number",
           name: "tablet-columns",
-          default: "rmd-grid-tablet-columns",
+          default: "$rmd-grid-tablet-columns",
           description:
             "The number of columns that should appear per-row on tablets. If this is not greater than the `$phone-columns` parameter, it will not be used.",
         },
         {
           type: "Number",
           name: "desktop-columns",
-          default: "rmd-grid-desktop-columns",
+          default: "$rmd-grid-desktop-columns",
           description:
             "The number of columns that should appear per-row on desktop screens. If this is not greater than the `$tablet-columns` parameter, it will not be used.",
         },
         {
           type: "Number",
           name: "large-desktop-columns",
-          default: "rmd-grid-large-desktop-columns",
+          default: "$rmd-grid-large-desktop-columns",
           description:
             "The number of columns that should appear per-row on large desktop screens. If this is not greater than the `$tablet-columns` parameter, it will not be used.",
         },
@@ -575,21 +575,21 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "phone-columns",
-          default: "rmd-grid-phone-columns",
+          default: "$rmd-grid-phone-columns",
           description:
             "The number of columns that should appear per-row on phones.",
         },
         {
           type: "Number",
           name: "tablet-columns",
-          default: "rmd-grid-tablet-columns",
+          default: "$rmd-grid-tablet-columns",
           description:
             "The number of columns that should appear per-row on tablets. If this is not greater than the `$phone-columns` parameter, it will not be used.",
         },
         {
           type: "Number",
           name: "desktop-columns",
-          default: "rmd-grid-desktop-columns",
+          default: "$rmd-grid-desktop-columns",
           description:
             "The number of columns that should appear per-row on desktop screens. If this is not greater than the `$tablet-columns` parameter, it will not be used.",
         },
@@ -619,14 +619,14 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "max-size",
-          default: "rmd-grid-list-cell-max-size",
+          default: "$rmd-grid-list-cell-max-size",
           description:
             "The max size that each cell can be. This is really just a fallback value if the `--rmd-cell-size` hasn't been defined yet by the `GridList` component.",
         },
         {
           type: "Number",
           name: "margin",
-          default: "rmd-grid-list-cell-margin",
+          default: "$rmd-grid-list-cell-margin",
           description:
             "The amount of margin that should be placed between each cell. This will be used with the current `--rmd-cell-size` to calculate the correct height and width. This value\n**will be multiplied by 2 in the calculation**.",
         },
@@ -647,14 +647,14 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "margin",
-          default: "rmd-grid-list-cell-margin",
+          default: "$rmd-grid-list-cell-margin",
           description:
             "The amount of margin to apply to each cell for top, right, bottom and left.",
         },
         {
           type: "Number",
           name: "max-size",
-          default: "rmd-grid-list-cell-max-size",
+          default: "$rmd-grid-list-cell-max-size",
           description:
             "The max size that each cell can be. This is really just a fallback if the `GridList` component hasn't set the `--rmd-cell-size` variable yet.",
         },

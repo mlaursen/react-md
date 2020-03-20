@@ -89,7 +89,7 @@
 /// This will automatically be swapped when the language changes to
 /// right-to-left.
 ///
-/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing
+/// @param {Number} spacing [$rmd-icon-spacing-with-text] - The amount of spacing
 /// to apply.
 @mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text, $property: margin-left) {
   @if $property == 'margin-left' or $property == 'margin-right' {
@@ -121,7 +121,7 @@
 /// @param {String} below-selector ['&--after'] - The selector to use for
 /// determining if an icon is placed above or below the text. If this is set to
 /// `null`, no after styles will be created.
-/// @param {Number} spacing [rmd-icon-spacing-with-text] - The amount of spacing to apply.
+/// @param {Number} spacing [$rmd-icon-spacing-with-text] - The amount of spacing to apply.
 @mixin rmd-icon-spaced-with-text(
   $before-selector: '&--before',
   $after-selector: '&--after',

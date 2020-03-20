@@ -146,20 +146,20 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "max",
-          default: "rmd-tree-max-depth",
+          default: "$rmd-tree-max-depth",
           description: "The max number of levels to create styles for.",
         },
         {
           type: "Number",
           name: "incrementor",
-          default: "rmd-tree-item-padding-incrementor",
+          default: "$rmd-tree-item-padding-incrementor",
           description:
             "The amount of padding to be used for each level of depth.",
         },
         {
           type: "Number",
           name: "base",
-          default: "rmd-tree-item-padding-base",
+          default: "$rmd-tree-item-padding-base",
           description:
             "The base amount of padding that should be added to a tree item.",
         },
@@ -193,14 +193,14 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "incrementor",
-          default: "rmd-tree-item-padding-incrementor",
+          default: "$rmd-tree-item-padding-incrementor",
           description:
             "The amount of padding to be used for each level of depth.",
         },
         {
           type: "Number",
           name: "base",
-          default: "rmd-tree-item-padding-base",
+          default: "$rmd-tree-item-padding-base",
           description:
             "The base amount of padding that should be added to a tree item.",
         },

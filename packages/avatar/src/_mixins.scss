@@ -54,7 +54,7 @@
 /// It is not recommended to use this mixin for creating additional colors.
 /// Instead use the `rmd-avatar-color` mixin with custom class names instead.
 ///
-/// @param {Map} color-map [rmd-avatar-colors] a map of color name suffixes and
+/// @param {Map} color-map [$rmd-avatar-colors] a map of color name suffixes and
 /// a list of the background-color and color to apply
 @mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) {
   @each $color-name, $values in $color-map {

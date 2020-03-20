@@ -338,22 +338,22 @@
 
 /// Generates a new grid based on the provided padding, margin, and columns.
 ///
-/// @param {Number} padding [rmd-grid-padding] - The amount of padding to apply
+/// @param {Number} padding [$rmd-grid-padding] - The amount of padding to apply
 /// to the base grid element.
-/// @param {Number} gutter [rmd-grid-cell-margin] - The amount of margin to
+/// @param {Number} gutter [$rmd-grid-cell-margin] - The amount of margin to
 /// apply between each cell within the grid. Unlike flex grids, this will only
 /// be applied between cells instead of to the `top`, `right`, `bottom`, and
 /// `left` of each cell so this should _normally_ be doubled compared to the
 /// flex grids.
-/// @param {Number} phone-columns [rmd-grid-phone-columns] - The number of
+/// @param {Number} phone-columns [$rmd-grid-phone-columns] - The number of
 /// columns that should appear per-row on phones.
-/// @param {Number} tablet-columns [rmd-grid-tablet-columns] - The number of
+/// @param {Number} tablet-columns [$rmd-grid-tablet-columns] - The number of
 /// columns that should appear per-row on tablets. If this is not greater than
 /// the `$phone-columns` parameter, it will not be used.
-/// @param {Number} desktop-columns [rmd-grid-desktop-columns] - The number of
+/// @param {Number} desktop-columns [$rmd-grid-desktop-columns] - The number of
 /// columns that should appear per-row on desktop screens. If this is not
 /// greater than the `$tablet-columns` parameter, it will not be used.
-/// @param {Number} large-desktop-columns [rmd-grid-large-desktop-columns] - The
+/// @param {Number} large-desktop-columns [$rmd-grid-large-desktop-columns] - The
 /// number of columns that should appear per-row on large desktop screens. If
 /// this is not greater than the `$tablet-columns` parameter, it will not be
 /// used.
@@ -413,12 +413,12 @@
 /// @param {Number} size - The number of columns the element should span. This
 /// should normally be a number greater than 1 since using 1 is the default cell
 /// size.
-/// @param {Number} phone-columns [rmd-grid-phone-columns] - The number of
+/// @param {Number} phone-columns [$rmd-grid-phone-columns] - The number of
 /// columns that should appear per-row on phones.
-/// @param {Number} tablet-columns [rmd-grid-tablet-columns] - The number of
+/// @param {Number} tablet-columns [$rmd-grid-tablet-columns] - The number of
 /// columns that should appear per-row on tablets. If this is not greater than
 /// the `$phone-columns` parameter, it will not be used.
-/// @param {Number} desktop-columns [rmd-grid-desktop-columns] - The number of
+/// @param {Number} desktop-columns [$rmd-grid-desktop-columns] - The number of
 /// columns that should appear per-row on desktop screens. If this is not
 /// greater than the `$tablet-columns` parameter, it will not be used.
 @mixin rmd-grid-cell-size(
@@ -465,10 +465,10 @@
 /// any property.
 ///
 /// @param {String} property - The css property to apply the size to.
-/// @param {Number} max-size [rmd-grid-list-cell-max-size] - The max size that
+/// @param {Number} max-size [$rmd-grid-list-cell-max-size] - The max size that
 /// each cell can be. This is really just a fallback value if the
 /// `--rmd-cell-size` hasn't been defined yet by the `GridList` component.
-/// @param {Number} margin [rmd-grid-list-cell-margin] - The amount of margin
+/// @param {Number} margin [$rmd-grid-list-cell-margin] - The amount of margin
 /// that should be placed between each cell. This will be used with the current
 /// `--rmd-cell-size` to calculate the correct height and width. This value
 /// **will be multiplied by 2 in the calculation**.
@@ -489,9 +489,9 @@
 /// use the `GridListCell` component for sizing. This will **always** apply the
 /// `margin` and `width`, but the `height` can be opted-out if desired.
 ///
-/// @param {Number} margin [rmd-grid-list-cell-margin] - The amount of margin to
+/// @param {Number} margin [$rmd-grid-list-cell-margin] - The amount of margin to
 /// apply to each cell for top, right, bottom and left.
-/// @param {Number} max-size [rmd-grid-list-cell-max-size] - The max size that
+/// @param {Number} max-size [$rmd-grid-list-cell-max-size] - The max size that
 /// each cell can be. This is really just a fallback if the `GridList` component
 /// hasn't set the `--rmd-cell-size` variable yet.
 /// @param {Boolean} include-height [true] - Boolean if the cell's height should

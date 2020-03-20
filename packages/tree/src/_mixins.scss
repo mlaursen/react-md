@@ -41,11 +41,11 @@
 /// the `aria-level` selector.
 /// @param {Number} min [1] - The min level to use. This needs to be a number
 /// greater than 0.
-/// @param {Number} max [rmd-tree-max-depth] - The max number of levels to
+/// @param {Number} max [$rmd-tree-max-depth] - The max number of levels to
 /// create styles for.
-/// @param {Number} incrementor [rmd-tree-item-padding-incrementor] - The amount
+/// @param {Number} incrementor [$rmd-tree-item-padding-incrementor] - The amount
 /// of padding to be used for each level of depth.
-/// @param {Number} base [rmd-tree-item-padding-base] - The base amount of
+/// @param {Number} base [$rmd-tree-item-padding-base] - The base amount of
 /// padding that should be added to a tree item.
 @mixin rmd-tree-depths(
   $selector-prefix: '',
@@ -82,9 +82,9 @@
 /// @param {Number} depth - The depth to create styles for.
 /// @param {String} selector-prefix [''] - An optional selector prefix to add
 /// before the `aria-level`.
-/// @param {Number} incrementor [rmd-tree-item-padding-incrementor] - The amount
+/// @param {Number} incrementor [$rmd-tree-item-padding-incrementor] - The amount
 /// of padding to be used for each level of depth.
-/// @param {Number} base [rmd-tree-item-padding-base] - The base amount of
+/// @param {Number} base [$rmd-tree-item-padding-base] - The base amount of
 /// padding that should be added to a tree item.
 @mixin rmd-tree-item-at-depth(
   $depth,

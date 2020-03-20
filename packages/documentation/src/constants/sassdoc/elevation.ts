@@ -57,7 +57,7 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Color",
           name: "color",
-          default: "rmd-elevation-color",
+          default: "$rmd-elevation-color",
           description: "The color to use for the box-shadow.",
         },
         {
@@ -111,7 +111,7 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Color",
           name: "color",
-          default: "rmd-elevation-color",
+          default: "$rmd-elevation-color",
           description: "The color to use for the box-shadow.",
         },
         {
@@ -167,13 +167,13 @@ const sassdoc: PackageSassDoc = {
         {
           type: "String|Number",
           name: "duration",
-          default: "rmd-transition-standard-time",
+          default: "$rmd-transition-standard-time",
           description: "The animation duration to use.",
         },
         {
           type: "Color",
           name: "color",
-          default: "rmd-elevation-color",
+          default: "$rmd-elevation-color",
           description: "The color to use for the box-shadow.",
         },
         {

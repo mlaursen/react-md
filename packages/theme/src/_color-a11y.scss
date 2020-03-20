@@ -119,7 +119,7 @@ $rmd-theme-linear-channel-values: (
 /// Determines if a provided color is considered light or dark.
 ///
 /// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [rmd-theme-default-contrast-ratio] - The
+/// @param {Number} min-contrast [$rmd-theme-default-contrast-ratio] - The
 /// minimum contrast that should be applied. The min contrast for normal text
 /// should be 4.5 while large or 14px bold text should be 3.1. See the link for
 /// contrasts for more information.
@@ -145,7 +145,7 @@ $rmd-theme-linear-channel-values: (
 /// accessibility.
 ///
 /// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [rmd-theme-default-contrast-ratio] - The
+/// @param {Number} min-contrast [$rmd-theme-default-contrast-ratio] - The
 /// minimum contrast that should be applied. The min contrast for normal text
 /// should be 4.5 while large or 14px bold text should be 3.1. See the link for
 /// contrasts for more information.

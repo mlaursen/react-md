@@ -33,7 +33,7 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "min-contrast",
-          default: "rmd-theme-default-contrast-ratio",
+          default: "$rmd-theme-default-contrast-ratio",
           description:
             "The minimum contrast that should be applied. The min contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See the link for contrasts for more information.",
         },
@@ -73,7 +73,7 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "min-contrast",
-          default: "rmd-theme-default-contrast-ratio",
+          default: "$rmd-theme-default-contrast-ratio",
           description:
             "The minimum contrast that should be applied. The min contrast for normal text should be 4.5 while large or 14px bold text should be 3.1. See the link for contrasts for more information.",
         },

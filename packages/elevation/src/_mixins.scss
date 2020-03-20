@@ -20,7 +20,7 @@
 /// }
 ///
 /// @param {Number} z-value - This should be a number between 0 and 24.
-/// @param {Color} color [rmd-elevation-color] - The color to use for the
+/// @param {Color} color [$rmd-elevation-color] - The color to use for the
 /// box-shadow.
 /// @param {Number} opacity-boost [0] - The amount to boost the default opacity
 /// levels for the three box-shadows applied.
@@ -47,9 +47,9 @@
 /// @param {Boolean} before [true] - Boolean the shadow should be placed within
 /// the `::before` pseudo element.  When this is set to `false`, the `::after`
 /// pseudo element will be used instead.
-/// @param {String|Number} duration [rmd-transition-standard-time] - The
+/// @param {String|Number} duration [$rmd-transition-standard-time] - The
 /// animation duration to use.
-/// @param {Color} color [rmd-elevation-color] - The color to use for the
+/// @param {Color} color [$rmd-elevation-color] - The color to use for the
 /// box-shadow.
 /// @param {Number} opacity-boost [0] - The amount to boost the default opacity
 /// levels for the three box-shadows applied.

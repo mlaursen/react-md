@@ -79,7 +79,7 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Color",
           name: "background-color",
-          default: "rmd-media-overlay-background-color",
+          default: "$rmd-media-overlay-background-color",
           description: "The background color for the media overlay.",
         },
         {

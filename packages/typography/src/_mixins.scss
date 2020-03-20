@@ -149,13 +149,13 @@
 ///    </main>
 ///
 ///
-/// @param {Number} mobile-max-width [rmd-typography-mobile-max-line-length] -
+/// @param {Number} mobile-max-width [$rmd-typography-mobile-max-line-length] -
 /// The max width for a line of text on mobile devices. This number is
 /// recommended to be between 17em and 18em.
-/// @param {Number} desktop-max-width [rmd-typography-desktop-max-line-length] -
+/// @param {Number} desktop-max-width [$rmd-typography-desktop-max-line-length] -
 /// The max width for a line of text on desktop screens. This number is
 /// recommended to be between 38em and 42em.
-/// @param {Number} mobile-breakpoint [rmd-typography-text-container-breakpoint]
+/// @param {Number} mobile-breakpoint [$rmd-typography-text-container-breakpoint]
 /// - The breakpoint for switching between a mobile device and a desktop screen.
 /// This is used to automatically change the max line-width for better
 /// legibility.

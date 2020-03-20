@@ -329,21 +329,21 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "mobile-max-width",
-          default: "rmd-typography-mobile-max-line-length",
+          default: "$rmd-typography-mobile-max-line-length",
           description:
             "The max width for a line of text on mobile devices. This number is recommended to be between 17em and 18em.",
         },
         {
           type: "Number",
           name: "desktop-max-width",
-          default: "rmd-typography-desktop-max-line-length",
+          default: "$rmd-typography-desktop-max-line-length",
           description:
             "The max width for a line of text on desktop screens. This number is recommended to be between 38em and 42em.",
         },
         {
           type: "Number",
           name: "mobile-breakpoint",
-          default: "rmd-typography-text-container-breakpoint",
+          default: "$rmd-typography-text-container-breakpoint",
           description:
             "The breakpoint for switching between a mobile device and a desktop screen.\nThis is used to automatically change the max line-width for better legibility.",
         },

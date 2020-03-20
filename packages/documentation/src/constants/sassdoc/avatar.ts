@@ -186,7 +186,7 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Map",
           name: "color-map",
-          default: "rmd-avatar-colors",
+          default: "$rmd-avatar-colors",
           description:
             "a map of color name suffixes and a list of the background-color and color to apply",
         },

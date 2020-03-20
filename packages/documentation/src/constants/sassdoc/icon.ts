@@ -437,7 +437,7 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "spacing",
-          default: "rmd-icon-spacing-with-text",
+          default: "$rmd-icon-spacing-with-text",
           description: "The amount of spacing to apply.",
         },
       ],
@@ -496,7 +496,7 @@ const sassdoc: PackageSassDoc = {
         {
           type: "Number",
           name: "spacing",
-          default: "rmd-icon-spacing-with-text",
+          default: "$rmd-icon-spacing-with-text",
           description: "The amount of spacing to apply.",
         },
       ],

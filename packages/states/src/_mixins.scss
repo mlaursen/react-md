@@ -47,7 +47,7 @@
 
 /// A simple mixin that allows you to add custom pressed state styles to an
 /// element.
-/// @param {String} pressed-class-name [rmd-states-pressed-class-name] - The
+/// @param {String} pressed-class-name [$rmd-states-pressed-class-name] - The
 /// class name to use to indicate that the element is currently being pressed.
 @mixin rmd-states-pressed-styles($pressed-class-name: $rmd-states-pressed-class-name) {
   &#{$pressed-class-name} {
@@ -130,6 +130,7 @@
 /// - apply the pressed opacity if not using the ripple effect (see more below)
 ///
 /// ### Hover Opacity
+///
 /// This requires the usage of a `COMPONENT_TO_MAKE` to work correctly. If
 /// `COMPONENT_TO_MAKE` is not used in your application, the hover effect will
 /// be applied on mobile devices after touch events. This is because a touch
@@ -137,6 +138,7 @@
 /// being touched.
 ///
 /// ### Focused Opacity
+///
 /// This requires the usage of the `KeyboardTracker` component to work
 /// correctly. If the `KeyboardTracker` is not used in your application and not
 /// near the root of the React render tree, you most likely will not have any
@@ -145,6 +147,7 @@
 /// support.
 ///
 /// ### Pressed Opacity
+///
 /// If you are using the ripple effect for pressed states, this will be ignored
 /// as a ripple element will be created instead to show the pressed state. When
 /// the ripple effect is disabled, pressing an element will just trigger a
