@@ -134,13 +134,13 @@ const Button: FC<ButtonProps> = ({
 };
 
 const App = () => (
-  <Fragment>
+  <>
     <Button>Button 1</Button>
     <Button disableRipple>Button 2</Button>
     <Button disableRipple disablePressedFallback>
       Button 3
     </Button>
-  </Fragment>
+  </>
 );
 
 render(<App />, document.getElementById("root"));

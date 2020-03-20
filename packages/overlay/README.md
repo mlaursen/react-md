@@ -40,7 +40,7 @@ const App = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <Fragment>
+    <>
       <button
         id="example-button"
         type="button"
@@ -53,7 +53,7 @@ const App = () => {
         onClick={() => setVisible(false)}
         visible={visible}
       />
-    </Fragment>
+    </>
   );
 };
 

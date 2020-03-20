@@ -40,7 +40,7 @@ below.
 ## Usage
 
 ```tsx
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import { Button } from "@react-md/button";
 import { List, ListItem } from "@react-md/list";
 import { Sheet } from "@react-md/sheet";
@@ -50,7 +50,7 @@ const Example: FC = () => {
   const [visible, show, hide] = useToggle(false);
 
   return (
-    <Fragment>
+    <>
       <Button
         id="show-sheet-position"
         onClick={show}
@@ -74,7 +74,7 @@ const Example: FC = () => {
           <ListItem id="example-sheet-item-5">Item 5</ListItem>
         </List>
       </Sheet>
-    </Fragment>
+    </>
   );
 };
 

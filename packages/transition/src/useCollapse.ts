@@ -38,7 +38,7 @@ type ReturnValue<E extends HTMLElement> = [
  *   const [rendered, transitionProps] = useCollapse(collapsed);
  *
  *   return (
- *     <Fragment>
+ *     <>
  *       <Button onClick={() => setCollapsed(!collapsed)}>Toggle</Button>
  *       {rendered && (
  *         <div {...transitionProps}>
@@ -46,7 +46,7 @@ type ReturnValue<E extends HTMLElement> = [
  *          <div>Whatever content...</div>
  *         </div>
  *       )}
- *     </Fragment>
+ *     </>
  *   );
  * }
  * ```

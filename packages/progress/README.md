@@ -37,7 +37,7 @@ an `id` to the progress component as well as updating the main loading area to
 have `aria-buys="true"` and `aria-describedby="PROGRESS_ID"`:
 
 ```tsx
-import React, { Fragment } from "react";
+import React from "react";
 import { render } from "react-dom";
 import { CircularProgress, LinearProgress } from "@react-md/progress";
 import { useToggle } from "@react-md/utils";
@@ -64,7 +64,7 @@ const App = () => {
   }, []);
 
   return (
-    <Fragment>
+    <>
       <div
         id="circle-content"
         aria-busy={loadingCircle || undefined}
@@ -81,7 +81,7 @@ const App = () => {
         {loadingLinear && <CircularProgress id="linear-progress" />}
         {!loadingLinear && <Text type="headline-2">Hello from linear div</Text>}
       </div>
-    </Fragment>
+    </>
   );
 };
 

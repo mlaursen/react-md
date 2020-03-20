@@ -63,7 +63,7 @@ import { useToggle } from "@react-md/utils";
 
 const App = () => {
   return (
-    <Fragment>
+    <>
       <Button id="dialog-toggle" onClick={enable}>
         Show Dialog
       </Button>
@@ -83,7 +83,7 @@ const App = () => {
           </Button>
         </DialogFooter>
       </Dialog>
-    </Fragment>
+    </>
   );
 };
 

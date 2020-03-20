@@ -41,12 +41,12 @@ below.
 ### Buttons with Text
 
 ```tsx
-import React, { Fragment } from "react";
+import React from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 
 const App = () => (
-  <Fragment>
+  <>
     <Button>Text Button</Button>
     <Button theme="primary" themeType="flat">
       Text Button
@@ -60,7 +60,7 @@ const App = () => (
     <Button theme="error">Text Button</Button>
     <Button theme="clear">Text Button</Button>
     <Button disabled>Text Button</Button>
-  </Fragment>
+  </>
 );
 
 render(<App />, document.getElementById("root"));
@@ -75,14 +75,14 @@ the `@react-md/material-icons` package if you'd like pre-built components for
 every material icon that exists.
 
 ```tsx
-import React, { Fragment } from "react";
+import React from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 import { TextIconSpacing, FontIcon } from "@react-md/icon";
 import { DeleteSVGIcon } from "@react-md/material-icons";
 
 const App = () => (
-  <Fragment>
+  <>
     <Button>
       <TextIconSpacing icon={<FontIcon>info_outline</FontIcon>}>
         About
@@ -98,7 +98,7 @@ const App = () => (
         Permanently Delete
       </TextIconSpacing>
     </Button>
-  </Fragment>
+  </>
 );
 
 render(<App />, document.getElementById("root"));
@@ -122,14 +122,14 @@ screen readers and generally recommended, but there are no restrictions in place
 at this time to enforce this behavior.
 
 ```tsx
-import React, { Fragment } from "react";
+import React from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 import { TextIconSpacing, FontIcon } from "@react-md/icon";
 import { DeleteSVGIcon } from "@react-md/material-icons";
 
 const App = () => (
-  <Fragment>
+  <>
     <Button aria-label="More Info" buttonType="icon">
       <FontIcon>info_outline</FontIcon>
     </Button>
@@ -149,6 +149,6 @@ const App = () => (
     >
       <DeleteSVGIcon />
     </Button>
-  </Fragment>
+  </>
 );
 ```

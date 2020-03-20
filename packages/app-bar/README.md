@@ -54,7 +54,7 @@ const App = () => {
   const mobile = window.innerWidth < 600;
 
   return (
-    <Fragment>
+    <>
       <AppBar id="main-app-bar" fixed>
         {mobile && (
           <AppBarNav id="main-mobile-navigation" aria-label="Mobile navigation">
@@ -69,7 +69,7 @@ const App = () => {
       <main className={APP_BAR_OFFSET_CLASSNAME}>
         <h3>Hello, world!</h3>
       </main>
-    </Fragment>
+    </>
   );
 };
 

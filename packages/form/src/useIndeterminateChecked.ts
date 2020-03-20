@@ -53,7 +53,7 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  * const { getProps, rootProps } = useIndeterminateChecked(values);
  *
  * return (
- *   <Fragment>
+ *   <>
  *     <Checkbox id="root-checkbox" {...rootProps} label="Root Checkbox" />
  *     {values.map((value, i) => (
  *       <Checkbox
@@ -62,7 +62,7 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  *         {...getProps(value)}
  *       />
  *     ))}
- *   </Fragment>
+ *   </>
  * );
  * ```
  *
@@ -97,7 +97,7 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  * }, []);
  *
  * return (
- *   <Fragment>
+ *   <>
  *     <Checkbox id="root-checkbox" {...rootProps} label="Root Checkbox" />
  *     {data.map(({ id, name }, i) => (
  *       <Checkbox
@@ -106,7 +106,7 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  *         {...getProps(id)}
  *       />
  *     ))}
- *   </Fragment>
+ *   </>
  * );
  * ```
  *
