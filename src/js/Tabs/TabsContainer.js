@@ -156,7 +156,8 @@ export default class TabsContainer extends PureComponent {
      * a new tab has been clicked, the callback will include the active tab index, the tab's `id`,
      * the tab's `controlsId`, the tab's `children`, and the click event.
      *
-     * If the tab was changed by swiping, it will only contain the new active tab index.
+     * If the tab was changed by swiping, it will contain the new active tab index,
+     * the tab's `id`, the tab's `controlsId` and the tab's `children`.
      *
      * ```js
      * onTabChange(newActiveTabIndex, tabId, tabControlsId, tabChildren, event);
@@ -246,6 +247,17 @@ export default class TabsContainer extends PureComponent {
     }
   }
 
+  getTabList() {
+    const tabs = this._tabs;
+    return tabs ? tabs.getTabList() : [];
+  }
+
+  getTabByIndex(tabIndex) {
+    const tabs = this._tabs;
+    let tab;
+    return tabs ? tabs.getTabByIndex(tabIndex) : tab;
+  }
+
   _handleTabChange = (index, tabId, tabControlsId, tabChildren, event) => {
     if (this.props.onTabChange) {
       this.props.onTabChange(index, tabId, tabControlsId, tabChildren, event);
@@ -257,7 +269,14 @@ export default class TabsContainer extends PureComponent {
   };
 
   _handleSwipeChange = (activeTabIndex) => {
-    this._handleTabChange(activeTabIndex);
+    const tab = this.getTabByIndex(activeTabIndex);
+    let id;
+    let controlsId;
+    let children;
+    if (tab) {
+      ({ id, controlsId, children } = tab.props);
+    }
+    this._handleTabChange(activeTabIndex, id, controlsId, children);
   };
 
   _setContainer = (container) => {
@@ -271,6 +290,10 @@ export default class TabsContainer extends PureComponent {
         componentRef.current = this._container;
       }
     }
+  };
+
+  _setTabs = (tabs) => {
+    this._tabs = tabs;
   };
 
   _resizePanel = () => {
@@ -347,6 +370,7 @@ export default class TabsContainer extends PureComponent {
       colored: typeof childrenProps.colored !== 'undefined' ? childrenProps.colored : colored,
       onTabChange: this._handleTabChange,
       activeTabIndex,
+      ref: this._setTabs,
     });
 
     let prominentToolbar = false;
