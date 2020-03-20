@@ -48,18 +48,18 @@ export default {
     "100%": { bottom: "-8%", top: "107%" },
   },
   "rmd-circular-progress-size": "3rem",
-  "rmd-cirular-progress-stroke-width": 6,
-  "rmd-cirular-progress-dasharray": 187,
-  "rmd-cirular-progress-transition-duration": "2.4s",
-  "rmd-cirular-progress-start-offset": 187,
-  "rmd-cirular-progress-end-offset": 46.75,
-  "rmd-cirular-progress-rotate-styles": {
+  "rmd-circular-progress-stroke-width": 6,
+  "rmd-circular-progress-dasharray": 187,
+  "rmd-circular-progress-transition-duration": "2.4s",
+  "rmd-circular-progress-start-offset": 187,
+  "rmd-circular-progress-end-offset": 46.75,
+  "rmd-circular-progress-rotate-styles": {
     "0%": { transform: "rotate(0deg)" },
     "50%": { transform: "rotate(135deg)" },
     "75%": { transform: "rotate(450deg)" },
     "100%": { transform: "rotate(720deg)" },
   },
-  "rmd-cirular-progress-dash-styles": {
+  "rmd-circular-progress-dash-styles": {
     "0%": { "stroke-dashoffset": 187 },
     "50%": { "stroke-dashoffset": 46.75 },
     "100%": { "stroke-dashoffset": 187 },

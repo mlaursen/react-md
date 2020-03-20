@@ -246,7 +246,7 @@
       }
 
       &--indeterminate {
-        animation: rmd-progress-rotate $rmd-progress-circle-transition-duration linear infinite;
+        animation: rmd-progress-rotate $rmd-circular-progress-transition-duration linear infinite;
       }
     }
 
@@ -255,7 +255,7 @@
       @include rmd-progress-theme(stroke-width, circular-width);
 
       fill: none;
-      stroke-dasharray: $rmd-progress-circle-dasharray;
+      stroke-dasharray: $rmd-circular-progress-dasharray;
       stroke-linecap: round;
 
       &--animate {
@@ -265,17 +265,17 @@
       }
 
       &--indeterminate {
-        animation: rmd-progress-circle-size $rmd-progress-circle-transition-duration ease-in-out
+        animation: rmd-circular-progress-size $rmd-circular-progress-transition-duration ease-in-out
           infinite;
       }
     }
 
     @keyframes rmd-progress-rotate {
-      @include rmd-progress-animation($rmd-progress-circle-rotate-styles);
+      @include rmd-progress-animation($rmd-circular-progress-rotate-styles);
     }
 
-    @keyframes rmd-progress-circle-size {
-      @include rmd-progress-animation($rmd-progress-circle-dash-styles);
+    @keyframes rmd-circular-progress-size {
+      @include rmd-progress-animation($rmd-circular-progress-dash-styles);
     }
   }
 }
