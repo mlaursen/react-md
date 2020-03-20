@@ -151,7 +151,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-overlay-z-index": {
       name: "rmd-overlay-z-index",
       description: "The z-index for overlays.\n",
-      source: "packages/overlay/src/_variables.scss#L10",
+      source: "packages/overlay/src/_variables.scss#L11",
       packageName: "overlay",
       type: "Number",
       value: "16",
@@ -161,18 +161,19 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-overlay-transition-duration",
       description:
         "The transition duration for overlays entering and leaving.\n",
-      source: "packages/overlay/src/_variables.scss#L14",
+      source: "packages/overlay/src/_variables.scss#L15",
       usedBy: [{ name: "rmd-overlay", type: "mixin", packageName: "overlay" }],
       packageName: "overlay",
       type: "Number",
-      value: "0.15s",
+      value: "$rmd-transition-standard-time",
+      compiled: "0.15s",
       overridable: true,
     },
     "rmd-overlay-color": {
       name: "rmd-overlay-color",
       description:
         "The background color for the overlay. It is recommended to make sure that an opacity is applied instead of a static color.\n",
-      source: "packages/overlay/src/_variables.scss#L19",
+      source: "packages/overlay/src/_variables.scss#L20",
       packageName: "overlay",
       type: "Color",
       value: "rgba($rmd-black-base, 0.4)",
@@ -183,7 +184,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-overlay-theme-values",
       description:
         'A Map of all the "themeable" parts of the overlay package. Every key in this map will be used to create a css variable to dynamically update the values of the overlay as needed.\n',
-      source: "packages/overlay/src/_variables.scss#L25-L29",
+      source: "packages/overlay/src/_variables.scss#L26-L30",
       usedBy: [
         { name: "rmd-overlay-theme", type: "function", packageName: "overlay" },
         {

@@ -2,6 +2,7 @@
 /// @group overlay
 ////
 
+@import '~@react-md/transition/dist/variables';
 @import '~@react-md/theme/dist/color-palette';
 @import '~@react-md/theme/dist/helpers';
 
@@ -11,7 +12,7 @@ $rmd-overlay-z-index: 16 !default;
 
 /// The transition duration for overlays entering and leaving.
 /// @type Number
-$rmd-overlay-transition-duration: 0.15s !default;
+$rmd-overlay-transition-duration: $rmd-transition-standard-time !default;
 
 /// The background color for the overlay. It is recommended to make sure that an
 /// opacity is applied instead of a static color.
