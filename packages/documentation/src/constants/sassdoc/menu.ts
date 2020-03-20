@@ -177,21 +177,11 @@ const sassdoc: PackageSassDoc = {
       value: "7rem",
       overridable: true,
     },
-    "rmd-menu-horizontal-item-min-width": {
-      name: "rmd-menu-horizontal-item-min-width",
-      description:
-        "The min-width to apply to each menu item when the menu is set to horizontal.\n",
-      source: "packages/menu/src/_variables.scss#L31",
-      packageName: "menu",
-      type: "Number",
-      value: "5rem",
-      overridable: true,
-    },
     "rmd-menu-icon-spacing": {
       name: "rmd-menu-icon-spacing",
       description:
         'The amount of spacing to use between icons and text within menu items. This really overwrites the additional spacing provided in the base `list` package since menu items are normally more dense and don\'t need to align with specific "keylines" in your app.\n',
-      source: "packages/menu/src/_variables.scss#L38",
+      source: "packages/menu/src/_variables.scss#L34",
       packageName: "menu",
       type: "Number",
       value: "1rem",
@@ -201,7 +191,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-menu-theme-values",
       description:
         'A Map of all the "themeable" parts of the menu package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/menu/src/_variables.scss#L44-L50",
+      source: "packages/menu/src/_variables.scss#L40-L46",
       usedBy: [
         { name: "rmd-menu-theme", type: "function", packageName: "menu" },
         { name: "rmd-menu-theme-var", type: "function", packageName: "menu" },

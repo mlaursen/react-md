@@ -26,10 +26,6 @@ $rmd-menu-elevation: 8 !default;
 /// @type Number
 $rmd-menu-min-width: 7rem !default;
 
-/// The min-width to apply to each menu item when the menu is set to horizontal.
-/// @type Number
-$rmd-menu-horizontal-item-min-width: 5rem !default;
-
 /// The amount of spacing to use between icons and text within menu items. This
 /// really overwrites the additional spacing provided in the base `list` package
 /// since menu items are normally more dense and don't need to align with

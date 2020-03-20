@@ -5,7 +5,6 @@ export default {
   "rmd-menu-z-index": 11,
   "rmd-menu-elevation": 8,
   "rmd-menu-min-width": "7rem",
-  "rmd-menu-horizontal-item-min-width": "5rem",
   "rmd-menu-icon-spacing": "1rem",
   "rmd-menu-theme-values": {
     "background-color": "var(--rmd-theme-surface, #fff)",
