@@ -33,7 +33,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/form/src/_functions.scss#L32-L34",
       usedBy: [
         { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
-        { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
       ],
       packageName: "form",
       code: "@function rmd-form-theme-var($theme-style, $fallback: null) { … }",
@@ -67,11 +66,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for one of the form's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/form/src/_functions.scss#L47-L49",
-      usedBy: [
-        { name: "rmd-label", type: "mixin", packageName: "form" },
-        { name: "rmd-label", type: "mixin", packageName: "form" },
-        { name: "rmd-label", type: "mixin", packageName: "form" },
-      ],
+      usedBy: [{ name: "rmd-label", type: "mixin", packageName: "form" }],
       packageName: "form",
       code:
         "@mixin rmd-form-theme($property, $theme-style, $fallback: null) { … }",
@@ -107,12 +102,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/form/src/_functions.scss#L57-L59",
       usedBy: [
         { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
-        { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
       ],
       packageName: "form",

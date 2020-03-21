@@ -11,11 +11,9 @@ const sassdoc: PackageSassDoc = {
       source: "packages/transition/src/_mixins.scss#L14-L22",
       usedBy: [
         { name: "react-md-alert", type: "mixin", packageName: "alert" },
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-label", type: "mixin", packageName: "form" },
         { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
         {
           name: "rmd-states-surface-base",
@@ -23,8 +21,6 @@ const sassdoc: PackageSassDoc = {
           packageName: "states",
         },
         { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-collapse", type: "mixin", packageName: "transition" },
         { name: "rmd-collapse", type: "mixin", packageName: "transition" },
         { name: "rmd-cross-fade", type: "mixin", packageName: "transition" },
       ],

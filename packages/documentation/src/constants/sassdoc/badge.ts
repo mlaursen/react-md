@@ -64,16 +64,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for one of the badge's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/badge/src/_mixins.scss#L23-L25",
-      usedBy: [
-        { name: "rmd-badge", type: "mixin", packageName: "badge" },
-        { name: "rmd-badge", type: "mixin", packageName: "badge" },
-        { name: "rmd-badge", type: "mixin", packageName: "badge" },
-        { name: "rmd-badge", type: "mixin", packageName: "badge" },
-        { name: "rmd-badge", type: "mixin", packageName: "badge" },
-        { name: "rmd-badge", type: "mixin", packageName: "badge" },
-        { name: "rmd-badge", type: "mixin", packageName: "badge" },
-        { name: "rmd-badge", type: "mixin", packageName: "badge" },
-      ],
+      usedBy: [{ name: "rmd-badge", type: "mixin", packageName: "badge" }],
       packageName: "badge",
       code:
         "@mixin rmd-badge-theme($property, $theme-style, $fallback: null) { … }",

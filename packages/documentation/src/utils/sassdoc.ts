@@ -415,14 +415,7 @@ export type ItemContext =
   | MixinContext
   | FunctionContext;
 
-/**
- * The `@see` annotation
- *
- * ```scss
- * @see other-type @see other-type Description
- * ```
- */
-export interface ItemReference {
+export interface ItemQuickReference {
   context: ItemContext;
 
   /**
@@ -431,6 +424,23 @@ export interface ItemReference {
    * the description was omitted.
    */
   description?: string;
+}
+
+/**
+ * The `@see` annotation
+ *
+ * ```scss
+ * @see other-type
+ * @see other-type Description
+ * ```
+ */
+export interface ItemReference extends ItemQuickReference {
+  file: SassFile;
+  commentRange: LineNumberRange;
+  group?: ItemGroups;
+  access: ItemAccess;
+  require?: ItemRequire[];
+  usedBy?: ItemQuickReference[];
 }
 
 export interface SassFile {
@@ -782,6 +792,11 @@ export interface FormattedMixinItem extends FormattedItem, ParameterizedItem {
    */
   parameters?: ParameterizedItemParameter[];
 }
+
+export type FormattedSassDocItem =
+  | FormattedVariableItem
+  | FormattedFunctionItem
+  | FormattedMixinItem;
 
 export type FormattedVariableItemRecord = Record<string, FormattedVariableItem>;
 export type FormattedFunctionItemRecord = Record<string, FormattedFunctionItem>;

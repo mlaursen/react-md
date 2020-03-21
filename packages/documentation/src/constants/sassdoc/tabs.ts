@@ -98,8 +98,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/tabs/src/_mixins.scss#L36-L38",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
       ],
       packageName: "tabs",

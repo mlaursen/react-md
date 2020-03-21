@@ -15,11 +15,6 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "elevation",
         },
-        {
-          name: "rmd-elevation-transition",
-          type: "mixin",
-          packageName: "elevation",
-        },
       ],
       packageName: "elevation",
       examples: [
@@ -84,7 +79,6 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
         { name: "rmd-card", type: "mixin", packageName: "card" },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
       ],
       packageName: "elevation",
       examples: [
@@ -128,10 +122,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "This mixin is used to create performant box-shadow transitions between different elevations. What this does behind the scenes is update the element to have `position: relative` along with a pseudo `::before` or `::after` tag that has the new box shadow with an initial opacity set to 0. When the `$active-selectors` class or state is applied to the element, the pseudo element's opacity will be updated to 1 and it'll animate in. This is really just because it is more performant to animate opacity instead of box-shadow itself.",
       source: "packages/elevation/src/_mixins.scss#L56-L79",
-      usedBy: [
-        { name: "rmd-chip", type: "mixin", packageName: "chip" },
-        { name: "rmd-chip", type: "mixin", packageName: "chip" },
-      ],
+      usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "elevation",
       code:
         "@mixin rmd-elevation-transition($start, $end, $active-selectors, $before: true, $duration: $rmd-transition-standard-time, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",

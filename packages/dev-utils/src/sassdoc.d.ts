@@ -430,14 +430,7 @@ declare module "sassdoc" {
     | MixinContext
     | FunctionContext;
 
-  /**
-   * The `@see` annotation
-   *
-   * ```scss
-   * @see other-type @see other-type Description
-   * ```
-   */
-  export interface ItemReference {
+  export interface ItemQuickReference {
     context: ItemContext;
 
     /**
@@ -446,6 +439,23 @@ declare module "sassdoc" {
      * the description was omitted.
      */
     description?: string;
+  }
+
+  /**
+   * The `@see` annotation
+   *
+   * ```scss
+   * @see other-type
+   * @see other-type Description
+   * ```
+   */
+  export interface ItemReference extends ItemQuickReference {
+    file: SassFile;
+    commentRange: LineNumberRange;
+    group?: ItemGroups;
+    access: ItemAccess;
+    require?: ItemRequire[];
+    usedBy?: ItemQuickReference[];
   }
 
   export interface SassFile {

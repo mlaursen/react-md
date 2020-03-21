@@ -399,11 +399,6 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "typography",
         },
-        {
-          name: "rmd-typography-host-google-font",
-          type: "mixin",
-          packageName: "typography",
-        },
       ],
       packageName: "typography",
       examples: [

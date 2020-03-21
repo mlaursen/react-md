@@ -33,15 +33,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/states/src/_functions.scss#L32-L34",
       usedBy: [
         { name: "rmd-states-surface", type: "mixin", packageName: "states" },
-        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
-        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
-        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
-        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
-        {
-          name: "rmd-states-surface-selected",
-          type: "mixin",
-          packageName: "states",
-        },
         {
           name: "rmd-states-surface-selected",
           type: "mixin",
@@ -128,23 +119,12 @@ const sassdoc: PackageSassDoc = {
       source: "packages/states/src/_mixins.scss#L34-L36",
       usedBy: [
         { name: "rmd-states-surface", type: "mixin", packageName: "states" },
-        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
-        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
-        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
         {
           name: "rmd-states-surface-selected",
           type: "mixin",
           packageName: "states",
         },
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
       ],
       packageName: "states",
@@ -667,10 +647,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The class name to use when using the pressed interaction fallback\n",
       source: "packages/states/src/_variables.scss#L186",
-      usedBy: [
-        { name: "rmd-chip", type: "mixin", packageName: "chip" },
-        { name: "rmd-chip", type: "mixin", packageName: "chip" },
-      ],
+      usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "states",
       type: "String",
       value: "'.rmd-states--pressed'",

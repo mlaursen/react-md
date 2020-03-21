@@ -150,24 +150,25 @@ function getReferenceLinks(
     return undefined;
   }
 
-  const links = references
-    .map(reference => {
-      const { name, type } = reference.context;
-      const link = referenceLinks.find(
-        reference => reference.name === name && reference.type === type
-      );
+  const added = new Set<string>();
+  const links = references.reduce<ItemReferenceLink[]>((list, reference) => {
+    const { name, type } = reference.context;
+    const key = `${name}-${type}`;
+    const link = referenceLinks.find(
+      ref => ref.name === name && ref.type === type
+    );
 
-      if (!link) {
-        throw new Error(`Unable to find a reference for ${name} ${type}`);
-      }
+    if (!link) {
+      throw new Error(`Unable to find a reference for ${name} ${type}`);
+    }
 
-      if (link.private) {
-        return null;
-      }
+    if (!link.private && !added.has(key)) {
+      added.add(key);
+      list.push(omit(link, "private"));
+    }
 
-      return omit(link, "private");
-    })
-    .filter(Boolean);
+    return list;
+  }, []);
 
   return links.length ? links : undefined;
 }

@@ -97,10 +97,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "Updates one of the progress's theme variables with the new value for the section of your app.",
       source: "packages/progress/src/_mixins.scss#L32-L34",
-      usedBy: [
-        { name: "rmd-chip", type: "mixin", packageName: "chip" },
-        { name: "rmd-chip", type: "mixin", packageName: "chip" },
-      ],
+      usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "progress",
       code: "@mixin rmd-progress-theme-update-var($theme-style, $value) { … }",
       sourceCode:

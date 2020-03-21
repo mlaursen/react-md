@@ -31,13 +31,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to get one of the sheet's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-sheet-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/sheet/src/_functions.scss#L32-L34",
-      usedBy: [
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-      ],
+      usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       code:
         "@function rmd-sheet-theme-var($theme-style, $fallback: null) { … }",
@@ -71,12 +65,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for one of the sheet's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/sheet/src/_mixins.scss#L23-L25",
-      usedBy: [
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-      ],
+      usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       code:
         "@mixin rmd-sheet-theme($property, $theme-style, $fallback: null) { … }",
@@ -110,13 +99,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "Updates one of the sheet's theme variables with the new value for the section of your app.",
       source: "packages/sheet/src/_mixins.scss#L33-L35",
-      usedBy: [
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-      ],
+      usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       code: "@mixin rmd-sheet-theme-update-var($theme-style, $value) { … }",
       sourceCode:
@@ -222,10 +205,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-enter-duration",
       description: "The duration for the enter transition.\n",
       source: "packages/sheet/src/_variables.scss#L39",
-      usedBy: [
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-      ],
+      usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       type: "Number",
       value: "$rmd-transition-enter-duration",

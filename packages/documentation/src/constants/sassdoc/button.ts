@@ -33,7 +33,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/button/src/_functions.scss#L32-L34",
       usedBy: [
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
-        { name: "rmd-button-text", type: "mixin", packageName: "button" },
       ],
       packageName: "button",
       code:
@@ -70,12 +69,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/button/src/_mixins.scss#L29-L31",
       usedBy: [
         { name: "rmd-button-base", type: "mixin", packageName: "button" },
-        { name: "rmd-button-base", type: "mixin", packageName: "button" },
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
-        { name: "rmd-button-text", type: "mixin", packageName: "button" },
-        { name: "rmd-button-text", type: "mixin", packageName: "button" },
-        { name: "rmd-button-icon", type: "mixin", packageName: "button" },
-        { name: "rmd-button-icon", type: "mixin", packageName: "button" },
         { name: "rmd-button-icon", type: "mixin", packageName: "button" },
       ],
       packageName: "button",

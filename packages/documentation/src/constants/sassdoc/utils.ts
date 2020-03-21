@@ -39,10 +39,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function can be used to negate the value of a css variable. It just really wraps the variable with `calc(-1 * #{$variable})`.",
       source: "packages/utils/src/_functions.scss#L94-L96",
-      usedBy: [
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-      ],
+      usedBy: [{ name: "rmd-tooltip", type: "mixin", packageName: "tooltip" }],
       packageName: "utils",
       code: "@function rmd-utils-negate-var($css-variable) { … }",
       sourceCode:
@@ -117,15 +114,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/utils/src/_mixins.scss#L56-L76",
       usedBy: [
         { name: "react-md-alert", type: "mixin", packageName: "alert" },
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
         { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
-        { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
-        { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
-        {
-          name: "rmd-app-bar-action-position",
-          type: "mixin",
-          packageName: "app-bar",
-        },
         {
           name: "rmd-app-bar-action-position",
           type: "mixin",
@@ -602,7 +591,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/utils/src/_mixins.scss#L475-L486",
       usedBy: [
         { name: "rmd-grid-list-cell", type: "mixin", packageName: "utils" },
-        { name: "rmd-grid-list-cell", type: "mixin", packageName: "utils" },
       ],
       packageName: "utils",
       code:
@@ -887,9 +875,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/utils/src/_variables.scss#L68",
       usedBy: [
         { name: "rmd-grid", type: "mixin", packageName: "utils" },
-        { name: "rmd-grid", type: "mixin", packageName: "utils" },
-        { name: "rmd-grid", type: "mixin", packageName: "utils" },
-        { name: "rmd-grid", type: "mixin", packageName: "utils" },
         { name: "rmd-grid-cell-full", type: "mixin", packageName: "utils" },
       ],
       packageName: "utils",
@@ -902,10 +887,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The css variable that is used to apply a gutter between each cell in the `Grid` component.\n",
       source: "packages/utils/src/_variables.scss#L73",
-      usedBy: [
-        { name: "rmd-grid", type: "mixin", packageName: "utils" },
-        { name: "rmd-grid", type: "mixin", packageName: "utils" },
-      ],
+      usedBy: [{ name: "rmd-grid", type: "mixin", packageName: "utils" }],
       packageName: "utils",
       type: "String",
       value: "--rmd-grid-gutter",

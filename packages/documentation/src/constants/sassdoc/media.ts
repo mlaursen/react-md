@@ -33,10 +33,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for a responsive media item that will update its height and width based on the parent element.\n",
       source: "packages/media/src/_mixins.scss#L32-L35",
-      usedBy: [
-        { name: "react-md-media", type: "mixin", packageName: "media" },
-        { name: "react-md-media", type: "mixin", packageName: "media" },
-      ],
+      usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       packageName: "media",
       code: "@mixin rmd-media { … }",
       sourceCode: "@mixin rmd-media {\n  height: auto;\n  width: 100%;\n}\n",
@@ -186,7 +183,6 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "media",
         },
-        { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
       ],
       packageName: "media",

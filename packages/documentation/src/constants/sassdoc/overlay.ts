@@ -64,11 +64,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for one of the overlay's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/overlay/src/_mixins.scss#L22-L24",
-      usedBy: [
-        { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
-        { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
-        { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
-      ],
+      usedBy: [{ name: "rmd-overlay", type: "mixin", packageName: "overlay" }],
       packageName: "overlay",
       code:
         "@mixin rmd-overlay-theme($property, $theme-style, $fallback: null) { … }",

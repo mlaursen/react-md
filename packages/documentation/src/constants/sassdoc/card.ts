@@ -31,11 +31,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to get one of the card's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-card-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/card/src/_functions.scss#L31-L33",
-      usedBy: [
-        { name: "rmd-card", type: "mixin", packageName: "card" },
-        { name: "rmd-card", type: "mixin", packageName: "card" },
-        { name: "rmd-card", type: "mixin", packageName: "card" },
-      ],
+      usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@function rmd-card-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -103,8 +99,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/card/src/_mixins.scss#L37-L39",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
-        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
       ],
       packageName: "card",

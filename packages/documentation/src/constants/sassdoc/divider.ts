@@ -33,7 +33,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/divider/src/_functions.scss#L32-L34",
       usedBy: [
         { name: "react-md-divider", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
       ],
       packageName: "divider",
       code:
@@ -70,17 +69,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/divider/src/_mixins.scss#L21-L23",
       usedBy: [
         { name: "rmd-divider-border", type: "mixin", packageName: "divider" },
-        { name: "rmd-divider-border", type: "mixin", packageName: "divider" },
-        { name: "rmd-divider-border", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
         { name: "react-md-divider", type: "mixin", packageName: "divider" },
       ],
       packageName: "divider",

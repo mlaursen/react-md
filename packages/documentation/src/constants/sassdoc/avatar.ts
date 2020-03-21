@@ -67,12 +67,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/avatar/src/_mixins.scss#L21-L23",
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
-        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
-        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
-        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
-        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
-        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
-        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
       ],
       packageName: "avatar",
       code:
@@ -108,7 +102,6 @@ const sassdoc: PackageSassDoc = {
         "Updates one of the avatar's theme variables with the new value for the section of your app.",
       source: "packages/avatar/src/_mixins.scss#L31-L33",
       usedBy: [
-        { name: "rmd-avatar-color", type: "mixin", packageName: "avatar" },
         { name: "rmd-avatar-color", type: "mixin", packageName: "avatar" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
       ],

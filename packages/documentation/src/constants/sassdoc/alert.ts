@@ -64,10 +64,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for one of the alert's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/alert/src/_mixins.scss#L24-L26",
-      usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-      ],
+      usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       code:
         "@mixin rmd-alert-theme($property, $theme-style, $fallback: null) { … }",
@@ -220,10 +217,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The amount of padding to apply to the top and bottom of the toast.\n",
       source: "packages/alert/src/_variables.scss#L44",
-      usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-      ],
+      usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
       value: "0.75rem",
@@ -234,10 +228,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The amount of padding to apply to the left and right of the toast's message.\nWhen there is also an action in the toast, the right padding will be reduced to the `$rmd-toast-action-margin`.\n",
       source: "packages/alert/src/_variables.scss#L50",
-      usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-      ],
+      usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
       value: "1rem",
@@ -248,10 +239,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The amount of margin to apply to the toast's action if there is one. This will be applied to the left and right of the action.\n",
       source: "packages/alert/src/_variables.scss#L55",
-      usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-      ],
+      usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
       value: "0.5rem",
@@ -284,10 +272,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The transition duration for the enter animation for a toast. If this value gets updated, you'll also need to update the `timoout` prop on the `Toast` as well.\n",
       source: "packages/alert/src/_variables.scss#L71",
-      usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-      ],
+      usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
       value: "0.15s",
@@ -298,10 +283,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The transition duration for the exit animation for a toast. If this value gets updated, you'll also need to update the `timoout` prop on the `Toast` as well.\n",
       source: "packages/alert/src/_variables.scss#L77",
-      usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
-      ],
+      usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
       value: "0.15s",

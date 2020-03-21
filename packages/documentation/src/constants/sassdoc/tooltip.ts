@@ -37,34 +37,6 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "tooltip",
         },
-        {
-          name: "rmd-tooltip-dense-theme",
-          type: "mixin",
-          packageName: "tooltip",
-        },
-        {
-          name: "rmd-tooltip-dense-theme",
-          type: "mixin",
-          packageName: "tooltip",
-        },
-        {
-          name: "rmd-tooltip-dense-theme",
-          type: "mixin",
-          packageName: "tooltip",
-        },
-        {
-          name: "rmd-tooltip-dense-theme",
-          type: "mixin",
-          packageName: "tooltip",
-        },
-        {
-          name: "rmd-tooltip-dense-theme",
-          type: "mixin",
-          packageName: "tooltip",
-        },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
         { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
       ],
       packageName: "tooltip",
@@ -102,19 +74,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/tooltip/src/_mixins.scss#L22-L24",
       usedBy: [
         { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
-        {
-          name: "rmd-tooltip-line-wrap",
-          type: "mixin",
-          packageName: "tooltip",
-        },
         {
           name: "rmd-tooltip-line-wrap",
           type: "mixin",
@@ -155,31 +114,6 @@ const sassdoc: PackageSassDoc = {
         "Updates one of the tooltip's theme variables with the new value for the section of your app.",
       source: "packages/tooltip/src/_mixins.scss#L32-L34",
       usedBy: [
-        {
-          name: "rmd-tooltip-dense-theme",
-          type: "mixin",
-          packageName: "tooltip",
-        },
-        {
-          name: "rmd-tooltip-dense-theme",
-          type: "mixin",
-          packageName: "tooltip",
-        },
-        {
-          name: "rmd-tooltip-dense-theme",
-          type: "mixin",
-          packageName: "tooltip",
-        },
-        {
-          name: "rmd-tooltip-dense-theme",
-          type: "mixin",
-          packageName: "tooltip",
-        },
-        {
-          name: "rmd-tooltip-dense-theme",
-          type: "mixin",
-          packageName: "tooltip",
-        },
         {
           name: "rmd-tooltip-dense-theme",
           type: "mixin",
@@ -304,10 +238,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The enter transition time for the tooltip to enter or to exit.\n",
       source: "packages/tooltip/src/_variables.scss#L28",
-      usedBy: [
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-        { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
-      ],
+      usedBy: [{ name: "rmd-tooltip", type: "mixin", packageName: "tooltip" }],
       packageName: "tooltip",
       type: "Number",
       value: "$rmd-transition-standard-time",

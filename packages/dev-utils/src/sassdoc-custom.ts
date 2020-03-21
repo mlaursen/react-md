@@ -191,6 +191,11 @@ export interface FormattedMixinItem extends FormattedItem, ParameterizedItem {
   parameters?: ParameterizedItemParameter[];
 }
 
+export type FormattedSassDocItem =
+  | FormattedVariableItem
+  | FormattedFunctionItem
+  | FormattedMixinItem;
+
 export type FormattedVariableItemRecord = Record<string, FormattedVariableItem>;
 export type FormattedFunctionItemRecord = Record<string, FormattedFunctionItem>;
 export type FormattedMixinItemRecord = Record<string, FormattedMixinItem>;
