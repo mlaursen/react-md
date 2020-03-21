@@ -102,7 +102,7 @@ export function createAnchoredAbove(config: FixConfig): YPosition {
     actualY === "above" &&
     top + elHeight > containerRect.top
   ) {
-    bottom = containerRect.top - yMargin;
+    bottom = window.innerHeight - containerRect.top - yMargin;
   }
 
   return { actualY, top, bottom };
