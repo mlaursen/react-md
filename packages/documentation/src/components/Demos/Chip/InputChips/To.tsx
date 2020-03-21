@@ -12,15 +12,10 @@ import { Chip } from "@react-md/chip";
 import { Label } from "@react-md/form";
 import { AddCircleSVGIcon } from "@react-md/material-icons";
 import { LazyImage } from "@react-md/media";
-import { PositionAnchor } from "@react-md/utils";
+import { BELOW_INNER_LEFT_ANCHOR } from "@react-md/utils";
 
 import contacts, { Contact } from "./contacts";
 import styles from "./styles";
-
-const anchor: PositionAnchor = {
-  x: "inner-left",
-  y: "below",
-};
 
 interface ToProps {
   isTouch: boolean;
@@ -93,7 +88,7 @@ const To: FC<ToProps> = ({ isTouch }) => {
           valueKey="label"
           data={data}
           listboxWidth="auto"
-          anchor={anchor}
+          anchor={BELOW_INNER_LEFT_ANCHOR}
           className={styles("email")}
           inline
           highlight

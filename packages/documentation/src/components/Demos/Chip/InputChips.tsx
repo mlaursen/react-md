@@ -9,7 +9,11 @@ import { Chip } from "@react-md/chip";
 import { Label } from "@react-md/form";
 import { AddCircleSVGIcon } from "@react-md/material-icons";
 import { LazyImage } from "@react-md/media";
-import { bem, PositionAnchor, useResizeObserver } from "@react-md/utils";
+import {
+  bem,
+  BELOW_INNER_LEFT_ANCHOR,
+  useResizeObserver,
+} from "@react-md/utils";
 
 import people from "constants/people";
 import createIdGenerator from "utils/createIdGenerator";
@@ -18,10 +22,6 @@ import "./InputChips.scss";
 
 const styles = bem("input-chips");
 const guid = createIdGenerator("input-chips-contact");
-const anchor: PositionAnchor = {
-  x: "inner-left",
-  y: "below",
-};
 
 interface Contact {
   id: string;
@@ -110,7 +110,7 @@ const InputChips: FC = () => {
           valueKey="label"
           data={data.filter(({ id }) => !chips.find(chip => chip.id === id))}
           listboxWidth="auto"
-          anchor={anchor}
+          anchor={BELOW_INNER_LEFT_ANCHOR}
           className={styles("field")}
           inline
           highlight

@@ -14,6 +14,7 @@ import {
   containsElement,
   InitialCoords,
   PositionAnchor,
+  TOP_INNER_LEFT_ANCHOR,
 } from "@react-md/utils";
 import { MenuProps } from "./Menu";
 
@@ -48,11 +49,6 @@ type ReturnValue<CE extends HTMLElement> = [
 ];
 
 const DEFAULT_CONTEXT_MENU_ID = "context-menu";
-
-const DEFAULT_ANCHOR: PositionAnchor = {
-  x: "inner-left",
-  y: "top",
-};
 
 interface Options {
   /**
@@ -93,7 +89,7 @@ interface Options {
 export default function useContextMenu<CE extends HTMLElement>({
   id = DEFAULT_CONTEXT_MENU_ID,
   ref: propRef,
-  anchor = DEFAULT_ANCHOR,
+  anchor = TOP_INNER_LEFT_ANCHOR,
   classNames = SCALE_Y_CLASSNAMES,
   disableDeselect = false,
 }: Options = {}): ReturnValue<CE> {

@@ -7,7 +7,7 @@ import {
   OptionalFixedPositionOptions,
   useFixedPositioning,
 } from "@react-md/transition";
-import { LabelRequiredForA11y, PositionAnchor } from "@react-md/utils";
+import { LabelRequiredForA11y, TOP_INNER_RIGHT_ANCHOR } from "@react-md/utils";
 
 import Dialog, { DialogProps } from "./Dialog";
 
@@ -37,11 +37,6 @@ export interface FixedDialogProps
 
 type StrictProps = LabelRequiredForA11y<FixedDialogProps>;
 
-const DEFAULT_ANCHOR: PositionAnchor = {
-  x: "inner-right",
-  y: "top",
-};
-
 const DEFAULT_CLASSNAMES: CSSTransitionClassNames = {
   appear: "rmd-dialog--fixed-enter",
   appearActive: "rmd-dialog--fixed-enter-active",
@@ -59,7 +54,7 @@ const DEFAULT_CLASSNAMES: CSSTransitionClassNames = {
 function FixedDialog(
   {
     fixedTo,
-    anchor = DEFAULT_ANCHOR,
+    anchor = TOP_INNER_RIGHT_ANCHOR,
     options,
     getOptions,
     children,

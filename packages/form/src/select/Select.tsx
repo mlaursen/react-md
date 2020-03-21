@@ -15,6 +15,7 @@ import { useFixedPositioning } from "@react-md/transition";
 import {
   applyRef,
   bem,
+  BELOW_CENTER_ANCHOR,
   DEFAULT_GET_ITEM_VALUE,
   PositionAnchor,
   PositionWidth,
@@ -164,10 +165,6 @@ export interface SelectProps
 }
 
 const block = bem("rmd-select");
-const DEFAULT_ANCHOR: PositionAnchor = {
-  x: "center",
-  y: "below",
-};
 
 /**
  * This component is an accessible version of the `<select>` element that allows
@@ -191,7 +188,7 @@ function Select(
     displayLabelClassName,
     listboxStyle,
     listboxClassName,
-    anchor = DEFAULT_ANCHOR,
+    anchor = BELOW_CENTER_ANCHOR,
     theme = "outline",
     dense = false,
     inline = false,

@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactElement, ReactNode, Ref } from "react";
 import { IconRotator, useIcon } from "@react-md/icon";
-import { PositionAnchor } from "@react-md/utils";
+import { BELOW_INNER_RIGHT_ANCHOR, TOP_RIGHT_ANCHOR } from "@react-md/utils";
 
 import defaultMenuItemRenderer from "./defaultMenuItemRenderer";
 import defaultMenuRenderer from "./defaultMenuRenderer";
@@ -32,15 +32,6 @@ export interface DropdownMenuItemProps
    */
   disableEscapeCascade?: boolean;
 }
-
-const HORIZONTAL_ANCHOR: PositionAnchor = {
-  x: "inner-right",
-  y: "below",
-};
-const VERTICAL_ANCHOR: PositionAnchor = {
-  x: "right",
-  y: "top",
-};
 
 function DropdownMenuItem(
   {
@@ -92,7 +83,7 @@ function DropdownMenuItem(
 
   let anchor = propAnchor;
   if (!anchor) {
-    anchor = horizontal ? HORIZONTAL_ANCHOR : VERTICAL_ANCHOR;
+    anchor = horizontal ? BELOW_INNER_RIGHT_ANCHOR : TOP_RIGHT_ANCHOR;
   }
 
   return (

@@ -11,7 +11,9 @@ import {
   bem,
   FixedPositionOptions,
   LabelRequiredForA11y,
+  CENTER_CENTER_ANCHOR,
   PositionAnchor,
+  TOP_INNER_RIGHT_ANCHOR,
 } from "@react-md/utils";
 
 import MenuEvents from "./MenuEvents";
@@ -143,15 +145,6 @@ export interface MenuProps
 type StrictProps = LabelRequiredForA11y<MenuProps>;
 
 const block = bem("rmd-menu");
-const VERTICAL_ANCHOR: PositionAnchor = {
-  x: "inner-right",
-  y: "top",
-};
-
-const HORIZONTAL_ANCHOR: PositionAnchor = {
-  x: "center",
-  y: "center",
-};
 
 /**
  * The `Menu` component is a fully controlled component that will animate in and
@@ -195,7 +188,7 @@ function Menu(
 ): ReactElement {
   let anchor = propAnchor;
   if (!anchor) {
-    anchor = horizontal ? HORIZONTAL_ANCHOR : VERTICAL_ANCHOR;
+    anchor = horizontal ? CENTER_CENTER_ANCHOR : TOP_INNER_RIGHT_ANCHOR;
   }
 
   const { ref, menuRef, onScroll, onClick, onKeyDown } = useMenu({

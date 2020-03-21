@@ -10,7 +10,7 @@ import {
 import { List } from "@react-md/list";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import { ScaleTransition } from "@react-md/transition";
-import { bem, omit, PositionAnchor } from "@react-md/utils";
+import { bem, omit, BELOW_CENTER_ANCHOR } from "@react-md/utils";
 
 import HighlightedResult from "./HighlightedResult";
 import {
@@ -148,11 +148,6 @@ const DEFAULT_FILTER_OPTIONS = {
   ignoreWhitespace: true,
 };
 
-const DEFAULT_ANCHOR: PositionAnchor = {
-  x: "center",
-  y: "below",
-};
-
 /**
  * An AutoComplete is an accessible combobox widget that allows for real-time
  * suggestions as the user types.
@@ -186,7 +181,7 @@ function AutoComplete(
     highlight = false,
     highlightStyle,
     highlightClassName,
-    anchor = DEFAULT_ANCHOR,
+    anchor = BELOW_CENTER_ANCHOR,
     listboxWidth = "equal",
     xMargin = 0,
     yMargin = 0,
