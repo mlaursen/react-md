@@ -55,6 +55,10 @@ $solarized-green: #859900;
     white-space: pre-wrap;
   }
 
+  &--no-wrap {
+    white-space: nowrap;
+  }
+
   &--counted {
     padding-left: 3em;
     position: relative;

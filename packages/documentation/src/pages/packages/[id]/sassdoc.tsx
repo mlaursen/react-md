@@ -1,26 +1,31 @@
 import React from "react";
 import { NextFC } from "next";
 
-import { SCSS_PACKAGES } from "constants/packages";
 import NotFoundPage from "components/NotFoundPage";
-import SassDocInProgress from "components/InProgress/SassDoc";
+import PackageSassDoc from "components/PackageSassDoc";
 import { qsToString } from "utils/routes";
+import { PackageSassDoc as FoundSassDoc } from "utils/sassdoc";
 
 interface SassDocProps {
-  sassdoc: {} | null;
+  name: string;
+  sassdoc: FoundSassDoc | null;
 }
 
-const SassDoc: NextFC<SassDocProps> = ({ sassdoc }) =>
-  sassdoc === null ? <NotFoundPage /> : <SassDocInProgress />;
+const SassDoc: NextFC<SassDocProps> = ({ name, sassdoc }) => {
+  if (!sassdoc) {
+    return <NotFoundPage />;
+  }
+
+  return <PackageSassDoc {...sassdoc} packageName={name} />;
+};
 
 SassDoc.getInitialProps = async ({ query }): Promise<SassDocProps> => {
   const name = qsToString(query.id);
-  const sassdoc = SCSS_PACKAGES.includes(name) ? {} : null;
-  // const sassdoc = await import(`../../../sassdocs/${query.id}`)
-  //   .then(mod => mod.default)
-  //   .catch(() => null);
+  const sassdoc = await import(`../../../constants/sassdoc/${name}`)
+    .then(mod => mod.default)
+    .catch(() => null);
 
-  return { sassdoc };
+  return { name, sassdoc };
 };
 
 export default SassDoc;

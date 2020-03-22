@@ -51,7 +51,8 @@ export const TOCVisibilityProvider: FC<{ pathname: string }> = ({
     pathname !== "/" &&
     pathname !== "/_error" &&
     !pathname.startsWith("/sandbox") &&
-    !pathname.startsWith("/customization/theme-builder");
+    !pathname.startsWith("/colors-and-theming/theme-builder") &&
+    !pathname.includes("sassdoc");
   const actions = useMemo(() => ({ show, hide, toggle }), [hide, show, toggle]);
   const visibility = useMemo(
     () => ({
