@@ -239,10 +239,16 @@ export default class Tabs extends PureComponent {
     }
   }
 
+  /**
+   * @private
+   */
   getTabList() {
     return this._tabList.slice(0);
   }
 
+  /**
+   * @private
+   */
   getTabByIndex(tabIndex) {
     return this._tabList[tabIndex];
   }

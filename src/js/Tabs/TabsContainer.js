@@ -247,11 +247,17 @@ export default class TabsContainer extends PureComponent {
     }
   }
 
+  /**
+   * @private
+   */
   getTabList() {
     const tabs = this._tabs;
     return tabs ? tabs.getTabList() : [];
   }
 
+  /**
+   * @private
+   */
   getTabByIndex(tabIndex) {
     const tabs = this._tabs;
     let tab;

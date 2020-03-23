@@ -54,8 +54,8 @@ function getParams(parameters, file, method) {
 }
 
 function getFunctions(componentFunctions, file) {
-  return componentFunctions.reduce((functions, { name, params, returns, description, modifiers }) => {
-    if (!isPrivate(name)) {
+  return componentFunctions.reduce((functions, { name, params, returns, description, modifiers, docblock }) => {
+    if (!isPrivate(name, docblock)) {
       if (!description) {
         throw new Error(`There is no documentation for \`${file}\`'s method \`${name}\`. Please add one.`);
       } else if (returns && returns.type === null) {
