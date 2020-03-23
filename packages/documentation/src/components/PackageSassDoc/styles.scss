@@ -8,14 +8,15 @@
 $mobile-padding: 2rem;
 $desktop-padding: 4rem;
 
+// sass-lint:disable no-duplicate-properties
 :root {
-  --sass-bg: #{$rmd-grey-200};
-  --sass-border: #{$rmd-grey-400};
+  #{--sass-bg}: #{$rmd-grey-200};
+  #{--sass-border}: #{$rmd-grey-400};
 }
 
 .dark-theme {
-  --sass-bg: #{rgba($rmd-black-base, 0.42)};
-  --sass-border: #{rgba($rmd-black-base, 0.87)};
+  #{--sass-bg}: #{rgba($rmd-black-base, 0.42)};
+  #{--sass-border}: #{rgba($rmd-black-base, 0.87)};
 }
 
 .package-sassdoc {
@@ -62,8 +63,8 @@ $desktop-padding: 4rem;
     }
 
     margin-top: 2em;
-    text-align: left;
     padding-left: $rmd-table-cell-horizontal-padding;
+    text-align: left;
   }
 
   &__returns {
