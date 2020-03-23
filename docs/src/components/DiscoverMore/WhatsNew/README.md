@@ -1,5 +1,12 @@
 ## March 2020
 
+### v1.16.1 Release
+
+##### Changelog
+
+- Updated the `TabsContainer` and `Tabs` components to work better with swipe changes.
+  ([@gamtiq] - [pull-871])
+
 ### v1.16.0 Release
 
 #### Changelog
