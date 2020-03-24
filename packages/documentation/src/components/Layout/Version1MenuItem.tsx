@@ -16,7 +16,7 @@ export default forwardRef<HTMLAnchorElement, Props>(function Version1MenuItem(
       ref={ref}
       id="version-1-link"
       leftIcon={!small && <LinkSVGIcon />}
-      href="https://react-md.mlaursen.com"
+      href="https://react-md.dev/v1"
     >
       {`${!small ? "react-md" : ""}@v1`}
     </MenuItemLink>
