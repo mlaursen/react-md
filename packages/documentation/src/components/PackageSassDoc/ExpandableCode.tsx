@@ -14,23 +14,25 @@ const ExpandableCode: FC<ExpandableCodeProps> = ({ code, sourceCode }) => {
   const [currentCode, setCurrentCode] = useState(code);
 
   return (
-    <Collapse
-      collapsed={collapsed}
-      minHeight={56}
-      onExited={() => setCurrentCode(code)}
+    <UnstyledButton
+      aria-label="Source code"
+      aria-pressed={!collapsed}
+      onClick={() => {
+        setCollapsed(!collapsed);
+        setCurrentCode(sourceCode);
+      }}
+      className={styles("expandable-source")}
     >
-      <UnstyledButton
-        aria-label="Source code"
-        aria-pressed={!collapsed}
-        onClick={() => {
-          setCollapsed(!collapsed);
-          setCurrentCode(sourceCode);
-        }}
-        className={styles("expandable-source")}
+      <Collapse
+        collapsed={collapsed}
+        minHeight={56}
+        minPaddingTop={16}
+        minPaddingBottom={16}
+        onExited={() => setCurrentCode(code)}
       >
         <CodeBlock language="scss">{currentCode}</CodeBlock>
-      </UnstyledButton>
-    </Collapse>
+      </Collapse>
+    </UnstyledButton>
   );
 };
 

@@ -45,6 +45,12 @@ $solarized-green: #859900;
     margin: 0.5em 0;
     overflow: auto;
     padding: 1em;
+
+    // to help with the collapse transition on expandable code, update it so
+    // that only the vertical overflow is hidden.
+    &.rmd-collapse--no-overflow {
+      overflow-y: hidden;
+    }
   }
 
   &--inline {
