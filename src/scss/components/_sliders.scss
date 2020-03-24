@@ -527,7 +527,7 @@ $md-slider-warn-md: true !default;
 
   $msg: "The current primary-color: '#{$primary-color}' is not a valid '-200' suffix for a dark-themed slider.";
   $msg: "#{$msg} This warning can be disabled by setting the '$md-slider-warn-md' or '$md-colors-warn-md' to 'false'.";
-  @warn "#{$msg} See https://react-md.mlaursen.com/sassdoc/#sliders-variable-md-slider-warn-md for more information.";
+  @warn "#{$msg} See https://react-md.dev/v1/sassdoc/#sliders-variable-md-slider-warn-md for more information.";
 
   @return false;
 }

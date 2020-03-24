@@ -1,5 +1,5 @@
 # react-md documentation
-This is the main website for https://react-md.mlaursen.com that holds all the documentation
+This is the main website for https://react-md.dev/v1 that holds all the documentation
 and examples.
 
 Table of Contents
@@ -503,7 +503,7 @@ it is a simple mapping of the component group to related documentation. This com
 "database" so that functions, mixins, selectors, and variables can be found in the main search.
 
 ### sassdoc:site
-This will create the https://react-md.mlaursen.com/sassdoc page with the default settings for SassDoc. This is mostly used
+This will create the https://react-md.dev/v1/sassdoc page with the default settings for SassDoc. This is mostly used
 as a fallback for things that are not directly documentable within the main website.
 
 ### examples-db
@@ -571,7 +571,7 @@ This will run tests only for the documentation server.
 This will run the tests in jest watch mode.
 
 ## Production Stack
-When running the react-md.mlaursen.com website for production, my setup is as follows:
+When running the react-md.dev/v1 website for production, my setup is as follows:
 - Amazon Linux Micro EC2 Instance
 - [letsencrypt](https://letsencrypt.org/) [certbot](https://certbot.eff.org/) for auto SSL cert renewal
 - nginx for reverse proxying, SSL, and serving static assets

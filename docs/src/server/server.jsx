@@ -12,7 +12,7 @@ import hpp from 'hpp';
 import cookieParser from 'cookie-parser';
 import winston from 'winston';
 
-import { API_ENDPOINT } from 'constants/application';
+import { API_ENDPOINT, ROOT_PATH } from 'constants/application';
 import { CUSTOM_THEME_ROUTE } from 'constants/colors';
 import App from 'components/App';
 import api from './api';
@@ -29,16 +29,16 @@ app.use(hpp());
 app.use(morgan(__DEV__ ? 'dev' : 'combined'));
 app.use(compression());
 
-if (!global.__NGINX__) {
-  app.use(express.static(dist, {
+if (!__NGINX__) {
+  app.use(ROOT_PATH, express.static(dist, {
     maxAge: CACHE_DURATION,
   }));
 }
 
 app.use(API_ENDPOINT, cors({ origin: PUBLIC_URL }), api);
-app.get(`/${CUSTOM_THEME_ROUTE}/*.css`, themes);
+app.get(`${ROOT_PATH}${CUSTOM_THEME_ROUTE}/*.css`, themes);
 
-app.get('*', cookieParser(), async (req, res) => {
+app.get(`${ROOT_PATH}*`, cookieParser(), async (req, res) => {
   let store;
   const context = { bundles: [] };
   try {

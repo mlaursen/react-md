@@ -92,7 +92,7 @@ $ npm start
 
 Wait until the build has completed and you can see the example react app displaying in the browser.
 
-Finally, let's modify the `src/App.js` file to use the [NavigationDrawer](https://react-md.mlaursen.com/components/navigation-drawers)
+Finally, let's modify the `src/App.js` file to use the [NavigationDrawer](https://react-md.dev/v1/components/navigation-drawers)
 component from `react-md` to set the application layout:
 ```diff
  import React, { Component } from 'react';
@@ -147,7 +147,7 @@ component from `react-md` to set the application layout:
 ```
 
 And 🎉! You should now see a basic `NavigationDrawer` surrounding the default `create-react-app`
-`App.js` file. Now that all of this has been setup, look around the [documentation website](https://react-md.mlaursen.com)
+`App.js` file. Now that all of this has been setup, look around the [documentation website](https://react-md.dev/v1)
 to see how you can use all the components in `react-md` and examples.
 
 Below you will find some information on how to perform common tasks.<br>

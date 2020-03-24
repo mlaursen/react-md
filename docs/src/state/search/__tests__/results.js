@@ -12,7 +12,7 @@ describe('results', () => {
       const meta = { start: 0, total: 1 };
       const data = [{
         name: 'hello',
-        ref: 'https://react-md.mlaursen.com/api/search?q=hello&start=0',
+        ref: 'https://react-md.dev/v1/api/search?q=hello&start=0',
         type: 'Variable',
       }];
       const action = {

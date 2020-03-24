@@ -6,7 +6,7 @@ import { flattenDeep, kebabCase } from 'lodash';
 import { singular } from 'pluralize';
 import { Version } from 'react-md';
 
-import { GITHUB_URL } from 'constants/application';
+import { ROOT_PATH, GITHUB_URL } from 'constants/application';
 import { EXAMPLES_LINKS_DATABASE } from 'server/constants';
 
 const writeFile = Promise.promisify(fs.writeFile);
@@ -90,7 +90,7 @@ async function woop() {
       name: title,
       type: `${type} Example`,
       description: description || '',
-      ref: `/components/${section}#${kebabCase(title)}`,
+      ref: `${ROOT_PATH}components/${section}#${kebabCase(title)}`,
     };
   })));
 

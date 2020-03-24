@@ -6,12 +6,12 @@ exports[`ShowcaseCard should render correctly 1`] = `
 >
   <a
     class="md-media md-media--16-9"
-    href="https://react-md.mlaursen.com"
+    href="https://react-md.dev/v1"
     title="react-md Documentation website"
   >
     <img
       alt="react-md Documentation website"
-      src="https://react-md.mlaursen.com/assets/logo.svg"
+      src="https://react-md.dev/v1/assets/logo.svg"
     />
   </a>
   <div
@@ -25,7 +25,7 @@ exports[`ShowcaseCard should render correctly 1`] = `
       >
         <a
           class="link"
-          href="https://react-md.mlaursen.com"
+          href="https://react-md.dev/v1"
         >
           react-md Documentation website
         </a>
@@ -47,7 +47,7 @@ exports[`ShowcaseCard should render correctly 1`] = `
   >
     <a
       class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-primary md-ink--primary md-inline-block md-cell--right"
-      href="https://react-md.mlaursen.com"
+      href="https://react-md.dev/v1"
     >
       <div
         class="md-ink-container"
@@ -64,12 +64,12 @@ exports[`ShowcaseCard should render correctly 2`] = `
 >
   <a
     class="md-media md-media--16-9"
-    href="https://react-md.mlaursen.com"
+    href="https://react-md.dev/v1"
     title="react-md Documentation website"
   >
     <img
       alt="react-md Documentation website"
-      src="https://react-md.mlaursen.com/assets/logo.svg"
+      src="https://react-md.dev/v1/assets/logo.svg"
     />
   </a>
   <div
@@ -83,7 +83,7 @@ exports[`ShowcaseCard should render correctly 2`] = `
       >
         <a
           class="link"
-          href="https://react-md.mlaursen.com"
+          href="https://react-md.dev/v1"
         >
           react-md Documentation website
         </a>
@@ -116,7 +116,7 @@ exports[`ShowcaseCard should render correctly 2`] = `
   >
     <a
       class="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-primary md-ink--primary md-inline-block md-cell--right"
-      href="https://react-md.mlaursen.com"
+      href="https://react-md.dev/v1"
     >
       <div
         class="md-ink-container"

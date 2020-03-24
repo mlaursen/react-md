@@ -7,7 +7,7 @@ import reducer, {
 } from '../routing';
 
 const location = {
-  href: 'http://react-md.mlaursen.com',
+  href: 'http://react-md.dev/v1',
   search: '',
 };
 

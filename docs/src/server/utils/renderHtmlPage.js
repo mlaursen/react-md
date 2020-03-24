@@ -3,6 +3,8 @@ import path from 'path';
 import Helmet from 'react-helmet';
 import serialize from 'serialize-javascript';
 import { get } from 'lodash';
+
+import { ROOT_PATH } from 'constants/application';
 import { DEFAULT_DESCRIPTION } from 'state/helmet/meta';
 
 let manifest;
@@ -36,7 +38,7 @@ const META = [{
   content: 'react-md - Accessible React Material Design Components',
 }, {
   property: 'og:url',
-  content: 'https://react-md.mlaursen.com',
+  content: PUBLIC_URL,
 }, {
   property: 'og:type',
   content: 'website',
@@ -45,7 +47,7 @@ const META = [{
   content: DEFAULT_DESCRIPTION,
 }, {
   property: 'og:image',
-  content: '/react-md.png',
+  content: `${ROOT_PATH}react-md.png`,
 }, {
   property: 'og:image:alt',
   content: 'The landing page for react-md. It describes the purpose of the library and what it tries to accomplish.',
@@ -60,7 +62,7 @@ const META = [{
   content: 'react-md - Accessible React Material Design Components',
 }, {
   name: 'twitter:image',
-  content: '/react-md.png',
+  content: `${ROOT_PATH}react-md.png`,
 }].reduce((allMeta, meta) => `${allMeta}<meta${Object.keys(meta).reduce((s, key) => `${s} ${key}="${meta[key]}"`, '')}>`, '');
 
 function getStyleLinks(assets) {
@@ -132,10 +134,10 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
   page += head.link.toString();
   if (!__DEV__) {
     // manifest is only prod
-    page += '<link rel="manifest" href="/manifest.json">';
+    page += `<link rel="manifest" href="${ROOT_PATH}manifest.json">`;
   }
 
-  page += '<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">';
+  page += `<link rel="shortcut icon" type="image/x-icon" href="${ROOT_PATH}favicon.ico">`;
   page += getStyleLinks(assets);
   page += manifest;
 

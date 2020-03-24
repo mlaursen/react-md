@@ -1,12 +1,13 @@
 import { flattenDeep } from 'lodash/array';
 
 import routes from './navigationRoutes';
+import { ROOT_PATH } from 'constants/application';
 import googleLogo from 'imgs/googleLogo.svg';
 import reactLogo from 'imgs/reactLogo.svg';
 import { toTitle, toPageTitle } from 'utils/strings';
 
 function toNavItem(route, parents = []) {
-  const prefix = `${parents.length ? '/' : ''}${parents.join('/')}/`;
+  const prefix = `${ROOT_PATH}${parents.join('/')}${parents.length ? '/' : ''}`;
   if (typeof route === 'string') {
     return {
       key: route,

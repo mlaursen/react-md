@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, bem } from 'react-md';
 
+import { ROOT_PATH } from 'constants/application';
 import InlineSVG from 'components/InlineSVG';
 import logo from '!!raw-loader!./logo.svg';
 
@@ -15,7 +16,7 @@ const Banner = () => (
       raised
       secondary
       type={null}
-      to="/components"
+      to={`${ROOT_PATH}components`}
       component={Link}
     >
       View Demo

@@ -1,5 +1,11 @@
 ## March 2020
 
+### Migrating to new Domain
+
+To keep things simple and cheaper for me on hosting, I started the migration to the new
+domain at https://react-md.dev. This version of `react-md` will be hosted at
+https://react-md.dev/v1.
+
 ### v1.16.1 Release
 
 ##### Changelog

@@ -2,7 +2,7 @@
   "name": "react-md-documentation",
   "version": "1.16.1",
   "description": "The documentaiton website for react-md",
-  "homepage": "https://react-md.mlaursen.com",
+  "homepage": "https://react-md.dev/v1",
   "private": true,
   "main": "dist/server.js",
   "scripts": {

@@ -1,3 +1,5 @@
+import { ROOT_PATH } from 'constants/application';
+
 export const componentRoutes = [
   'autocompletes',
   'avatars',
@@ -67,7 +69,7 @@ const navigationRoutes = [{
     'media-queries',
     'minimizing-bundle', {
       label: 'SassDoc',
-      href: '/sassdoc',
+      href: `${ROOT_PATH}sassdoc`,
     },
   ],
 }, {

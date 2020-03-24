@@ -2,6 +2,7 @@ import { createStore } from 'redux';
 import MobileDetect from 'mobile-detect';
 import winston from 'winston';
 
+import { ROOT_PATH } from 'constants/application';
 import routes, { componentRoutes } from 'server/routes';
 import rootReducer from 'state';
 import { updateCustomTheme } from 'state/helmet';
@@ -30,7 +31,7 @@ function isSassDocRoute(pathname, tab) {
 
 function getEndpoint(pathname) {
   return pathname.indexOf('components') !== -1
-    ? pathname.replace('/components/', '')
+    ? pathname.replace(`${ROOT_PATH}components/`, '')
     : pathname.substring(pathname.lastIndexOf('/') + 1);
 }
 

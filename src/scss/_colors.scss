@@ -1486,7 +1486,7 @@ $md-dark-theme-colors: (
       }
 
       $msg: '#{$msg} or disable the "$md-colors-warn-md" variable to ignore this message (not recommended because of losing styling).';
-      @warn "#{$msg} See https://react-md.mlaursen.com/customization/colors?tab=1#variable-md-colors-warn-md for more information.";
+      @warn "#{$msg} See https://react-md.dev/v1/customization/colors?tab=1#variable-md-colors-warn-md for more information.";
       @return $color;
     } @elseif $fallback-color == null {
       @return $color;

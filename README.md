@@ -6,7 +6,7 @@ React Material Design - React components built with sass
 [![Join the chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
 
 react-md is a set of React components and sass files for implementing [Google's Material Design](https://material.google.com). The
-[Documentation Website](http://react-md.mlaursen.com) can be used for viewing live examples, code samples, and general prop documentation.
+[Documentation Website](http://react-md.dev/v1) can be used for viewing live examples, code samples, and general prop documentation.
 
 ## Installation
 
@@ -41,7 +41,7 @@ $md-secondary-color: $md-lime-a-400;
 @include react-md-everything;
 ```
 
-See the [themes page](http://react-md.mlaursen.com/customization/themes) on the documentation website. There
+See the [themes page](http://react-md.dev/v1/customization/themes) on the documentation website. There
 is also a theme builder available to try mix and matching different colors.
 
 ### Styling Links

@@ -10,7 +10,7 @@ exports[`MarkdownPage should render correctly 1`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<h1 id=\\"react-md-documentation\\" class=\\"quick-link quick-link__container\\"><a href=\\"#react-md-documentation\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to react-md documentation\\">link</i></a>react-md documentation</h1>
-<p>This is the main website for <a href=\\"https://react-md.mlaursen.com\\" class=\\"link\\">https://react-md.mlaursen.com</a> that holds all the documentation
+<p>This is the main website for <a href=\\"https://react-md.dev/v1\\" class=\\"link\\" rel=\\"noopener noreferrer\\">https://react-md.dev/v1</a> that holds all the documentation
 and examples.</p>
 <h1 id=\\"table-of-contents\\" class=\\"quick-link quick-link__container\\"><a href=\\"#table-of-contents\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Table of Contents\\">link</i></a>Table of Contents</h1>
 <ul>
@@ -476,7 +476,7 @@ site for specific component Prop Types or SassDoc.</p>
 it is a simple mapping of the component group to related documentation. This command will also create a SassDoc search
 &quot;database&quot; so that functions, mixins, selectors, and variables can be found in the main search.</p>
 <h3 id=\\"sassdoc-site\\" class=\\"quick-link quick-link__container\\"><a href=\\"#sassdoc-site\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to sassdoc:site\\">link</i></a>sassdoc:site</h3>
-<p>This will create the <a href=\\"https://react-md.mlaursen.com/sassdoc\\" class=\\"link\\">https://react-md.mlaursen.com/sassdoc</a> page with the default settings for SassDoc. This is mostly used
+<p>This will create the <a href=\\"https://react-md.dev/v1/sassdoc\\" class=\\"link\\">https://react-md.dev/v1/sassdoc</a> page with the default settings for SassDoc. This is mostly used
 as a fallback for things that are not directly documentable within the main website.</p>
 <h3 id=\\"examples-db\\" class=\\"quick-link quick-link__container\\"><a href=\\"#examples-db\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to examples-db\\">link</i></a>examples-db</h3>
 <p>This will create a &quot;database&quot; to be used to search for specific examples in the documentation site.</p>
@@ -530,7 +530,7 @@ already.</p>
 <h3 id=\\"test-watch\\" class=\\"quick-link quick-link__container\\"><a href=\\"#test-watch\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to test:watch\\">link</i></a>test:watch</h3>
 <p>This will run the tests in jest watch mode.</p>
 <h2 id=\\"production-stack\\" class=\\"quick-link quick-link__container\\"><a href=\\"#production-stack\\" class=\\"quick-link__link quick-link__link--markdown\\"><i class=\\"md-icon material-icons\\" title=\\"Quick link to Production Stack\\">link</i></a>Production Stack</h2>
-<p>When running the react-md.mlaursen.com website for production, my setup is as follows:</p>
+<p>When running the react-md.dev/v1 website for production, my setup is as follows:</p>
 <ul>
 <li>Amazon Linux Micro EC2 Instance</li>
 <li><a href=\\"https://letsencrypt.org/\\" class=\\"link\\">letsencrypt</a> <a href=\\"https://certbot.eff.org/\\" class=\\"link\\">certbot</a> for auto SSL cert renewal</li>

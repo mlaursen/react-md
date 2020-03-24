@@ -135,6 +135,10 @@ function makeConfig(server, production) {
     publicUrl = `http://${publicUrl}`;
   }
 
+  const withoutOrigin = publicUrl.replace(/https?:\/\//, '');
+  const pathIndex = withoutOrigin.indexOf('/');
+  const rootPath = pathIndex === -1 ? '/' : `${withoutOrigin.substring(pathIndex)}/`.replace(/\/+/g, '/');
+
   let publicPath = `${publicUrl}/`;
   if (!production) {
     publicPath = `${publicUrl}:${HOT_RELOAD_PORT}/`;
@@ -265,6 +269,7 @@ function makeConfig(server, production) {
   const routesName = !server && production ? 'async' : 'sync';
 
   winston.info(`Starting compliation with:
+- \`rootPath\` = \`${rootPath}\`
 - \`publicUrl\` = \`${publicUrl}\`
 - \`publicPath\` = \`${publicPath}\`
 
@@ -377,6 +382,7 @@ function makeConfig(server, production) {
         __CLIENT__: !server,
         __SSR__: production || SSR,
         'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development'),
+        'process.env.ROOT_PATH': JSON.stringify(rootPath),
       }),
       new SpriteLoaderPlugin(),
       ...additionalPlugins,

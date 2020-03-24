@@ -20,7 +20,7 @@ export default function getServerUrl(req) {
  * Gets the fully resolved url with the hostname.
  *
  * Ex:
- * 'https://react-md.mlaursen.com/components/text-fields'
+ * 'https://react-md.dev/v1/components/text-fields'
  *
  * @param {Request} req - The http request from express.
  * @return {String} the fully resolved hostname.

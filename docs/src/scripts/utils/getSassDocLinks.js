@@ -1,12 +1,13 @@
+import { ROOT_PATH } from 'constants/application';
 import { componentRoutes } from 'server/routes';
 import { toTitle } from 'utils/strings';
 
 const routes = [
   ...componentRoutes,
-  '/customization/colors',
-  '/customization/themes',
-  '/customization/typography',
-  '/customization/media-queries',
+  `${ROOT_PATH}customization/colors`,
+  `${ROOT_PATH}customization/themes`,
+  `${ROOT_PATH}customization/typography`,
+  `${ROOT_PATH}customization/media-queries`,
 ];
 
 let lastLink = '';
@@ -39,7 +40,7 @@ export function createSassDocLink({ context: { type, name, value, scope }, group
   const hash = `${type}-${name}`;
   let ref = group[0].split(', ')[0];
   if (ref.match(/accessibility|collapsers|base|transitions|defaults|overlays|helper/)) {
-    ref = `/sassdoc/#${group[0]}-${hash}`;
+    ref = `${ROOT_PATH}sassdoc/#${group[0]}-${hash}`;
   } else {
     ref = findLink(ref);
     ref = `${ref}?tab=${ref.match(/components|themes/) ? 2 : 1}#${hash}`;

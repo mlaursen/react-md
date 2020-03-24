@@ -1,4 +1,5 @@
 /* eslint-env jest */
+import { ROOT_PATH } from 'constants/application';
 import { CUSTOM_THEME_ROUTE } from 'constants/colors';
 import reducer, {
   INITIAL_STATE,
@@ -30,7 +31,7 @@ describe('link', () => {
 
     it('should insert a new link after the UPDATE_CUSTOM_THEME action', () => {
       const href = 'react-md.light_blue-deep_purple-dark.css';
-      const expected = [...INITIAL_STATE, { ...CUSTOM_THEME_LINK, href: `/${CUSTOM_THEME_ROUTE}/${href}` }];
+      const expected = [...INITIAL_STATE, { ...CUSTOM_THEME_LINK, href: `${ROOT_PATH}${CUSTOM_THEME_ROUTE}/${href}` }];
       expect(reducer(INITIAL_STATE, updateCustomTheme(href))).toEqual(expected);
     });
 
@@ -38,7 +39,7 @@ describe('link', () => {
       const state = [...INITIAL_STATE, { ...CUSTOM_THEME_LINK, href: 'something.css' }];
 
       const href = 'react-md.light_blue-deep_purple-dark.css';
-      const expected = [...INITIAL_STATE, { ...CUSTOM_THEME_LINK, href: `/${CUSTOM_THEME_ROUTE}/${href}` }];
+      const expected = [...INITIAL_STATE, { ...CUSTOM_THEME_LINK, href: `${ROOT_PATH}${CUSTOM_THEME_ROUTE}/${href}` }];
       expect(reducer(state, updateCustomTheme(href))).toEqual(expected);
     });
 

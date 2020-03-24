@@ -2,6 +2,8 @@ import { flattenDeep } from 'lodash/array';
 import { kebabCase } from 'lodash/string';
 import pluralize from 'pluralize';
 
+import { ROOT_PATH } from 'constants/application';
+
 export default function getPropTypeLinks(documentableComponents) {
   return flattenDeep(documentableComponents.map(({ components: cs, folder }) => cs.map(c => ({
     folder,
@@ -23,7 +25,7 @@ export default function getPropTypeLinks(documentableComponents) {
 
     return {
       name: pluralized,
-      ref: `/components/${link}?tab=1${ref}`,
+      ref: `${ROOT_PATH}components/${link}?tab=1${ref}`,
       type: 'Prop Types',
     };
   });

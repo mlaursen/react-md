@@ -5,8 +5,8 @@ import { renderRouterSnapshot } from 'utils/testing';
 import ShowcaseCard from '../ShowcaseCard';
 
 const PROPS = {
-  link: 'https://react-md.mlaursen.com',
-  logo: 'https://react-md.mlaursen.com/assets/logo.svg',
+  link: 'https://react-md.dev/v1',
+  logo: 'https://react-md.dev/v1/assets/logo.svg',
   name: 'react-md Documentation website',
   author: 'MIkkel Laursen',
   description: 'It is a website about documenting react-md. Who\'da thunk?',

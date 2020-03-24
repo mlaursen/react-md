@@ -115,9 +115,9 @@ Word.
       const localLink2 = link('http://localhost:8080/hello-world');
       const localLink3 = link(`http://localhost:8080?proxy=${encodeURIComponent('https://google.com')}`);
 
-      const mdLink1 = link('https://react-md.mlaursen.com');
-      const mdLink2 = link('https://react-md.mlaursen.com/localhost');
-      const mdLink3 = link(`https://react-md.mlaursen.com?proxy=${encodeURIComponent('https://google.com')}`);
+      const mdLink1 = link('https://react-md.dev/v1');
+      const mdLink2 = link('https://react-md.dev/v1/localhost');
+      const mdLink3 = link(`https://react-md.dev/v1?proxy=${encodeURIComponent('https://google.com')}`);
 
       expect(addExternalLinkRel(localLink1)).toBe(localLink1);
       expect(addExternalLinkRel(localLink2)).toBe(localLink2);

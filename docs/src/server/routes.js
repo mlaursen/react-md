@@ -1,10 +1,11 @@
 import { flattenDeep } from 'lodash/array';
+import { ROOT_PATH } from 'constants/application';
 import definedRoutes, {
   componentRoutes as definedComponentRoutes,
 } from 'constants/navigationRoutes';
 
 function extractRealRoute(route, parents = []) {
-  const prefix = `${parents.length ? '/' : ''}${parents.join('/')}/`;
+  const prefix = `${ROOT_PATH}${parents.join('/')}${parents.length ? '/' : ''}`;
   if (typeof route === 'string') {
     return `${prefix}${route}`;
   }
@@ -23,13 +24,13 @@ export const componentRoutes = flattenDeep(definedComponentRoutes.map(route => e
 
 
 const routes = baseRoutes.slice();
-routes.push('/');
+routes.push(ROOT_PATH);
 // add redirects
 routes.push(
-  '/getting-started',
-  '/customization',
-  '/discover-more',
-  '/components',
+  `${ROOT_PATH}getting-started`,
+  `${ROOT_PATH}customization`,
+  `${ROOT_PATH}discover-more`,
+  `${ROOT_PATH}components`,
 );
 
 export default routes;

@@ -10,6 +10,7 @@
     "__TEST__": false,
     "__CLIENT__": true,
     "__SSR__": false,
+    "__NGINX__": false,
     "PUBLIC_URL": "",
     "SERVICE_WORKER": "service-worker.js"
   },

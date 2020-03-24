@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import http from 'http';
 import winston from 'winston';
+
 import server from './server';
 
 function log(name, defaultValue, required = true) {
@@ -22,6 +23,12 @@ if (!port) {
   port = 8080;
 }
 
+let rootPath = process.env.ROOT_PATH;
+if (!rootPath) {
+  log('ROOT_PATH', '/');
+  rootPath = '/';
+}
+
 const httpServer = http.createServer(server);
 
 let currentServer = server;
@@ -35,7 +42,7 @@ httpServer.listen(port, (e) => {
   if (address === '::') {
     url = PUBLIC_URL;
     if (port !== 80 && !url.match(/:\d+/)) {
-      url = `${url}:${port}`;
+      url = `${url.replace(rootPath, '')}:${port}${rootPath}`;
     }
   }
 

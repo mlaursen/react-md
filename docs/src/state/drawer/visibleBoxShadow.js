@@ -1,7 +1,8 @@
+import { ROOT_PATH } from 'constants/application';
 import { LOCATION_CHANGE, NOT_FOUND } from 'state/routing';
 
 function isVisible({ pathname }) {
-  return !pathname || pathname !== '/';
+  return !pathname || pathname !== ROOT_PATH;
 }
 
 export default function visibleBoxShadow(state = true, action) {
