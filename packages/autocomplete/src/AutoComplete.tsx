@@ -50,6 +50,23 @@ export interface AutoCompleteProps
   clearOnAutoComplete?: boolean;
 
   /**
+   * Boolean if the list of suggestions should no longer appear immediately once
+   * the text field is focused and there is at least one item in the `data`
+   * list. If this is set to `false`, the menu will only be shown when:
+   *
+   * - a letter is added or removed from the text field
+   * - the user clicks it again
+   * - using the alt+arrow-down keyboard shortcut
+   *
+   * If this prop is omitted, the show on focus behavior will be disabled on
+   * touch devices since touch device's soft keyboards do a lot of funky things
+   * with the viewport and scroll behavior. This makes it so the native viewport
+   * and scroll behavior actions are normally finished before the suggestions
+   * appear.
+   */
+  disableShowOnFocus?: boolean;
+
+  /**
    * The list of data that should be autocompleted based on the provided filter.
    */
   data: readonly AutoCompleteData[];
@@ -191,6 +208,7 @@ function AutoComplete(
     preventOverlap = true,
     disableVHBounds = false,
     disableSwapping = true,
+    disableShowOnFocus,
     disableHideOnResize = true,
     disableHideOnScroll = true,
     ...props
@@ -251,6 +269,7 @@ function AutoComplete(
     disableVHBounds,
     disableHideOnResize,
     disableHideOnScroll,
+    disableShowOnFocus,
   });
 
   return (

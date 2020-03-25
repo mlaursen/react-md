@@ -24,6 +24,7 @@ import {
   useActiveDescendantMovement,
   useCloseOnOutsideClick,
   useToggle,
+  useIsUserInteractionMode,
 } from "@react-md/utils";
 
 import {
@@ -89,6 +90,7 @@ interface AutoCompleteOptions extends EventHandlers, PositionOptions {
   filterOnNoValue: boolean;
   onAutoComplete?: AutoCompleteHandler;
   clearOnAutoComplete: boolean;
+  disableShowOnFocus: boolean | undefined;
 }
 
 interface ReturnValue {
@@ -145,6 +147,7 @@ export default function useAutoComplete({
   disableVHBounds,
   disableHideOnResize,
   disableHideOnScroll,
+  disableShowOnFocus: propDisableShowOnFocus,
 }: AutoCompleteOptions): ReturnValue {
   const isListAutocomplete = autoComplete === "list" || autoComplete === "both";
   // const isInlineAutocomplete =
@@ -200,6 +203,8 @@ export default function useAutoComplete({
   ]);
 
   const [visible, show, hide] = useToggle(false);
+  const isTouch = useIsUserInteractionMode("touch");
+  const disableShowOnFocus = propDisableShowOnFocus ?? isTouch;
 
   const focused = useRef(false);
   const handleBlur = useCallback(
@@ -218,12 +223,16 @@ export default function useAutoComplete({
         onFocus(event);
       }
 
+      if (disableShowOnFocus) {
+        return;
+      }
+
       focused.current = true;
       if (isListAutocomplete && filteredData.length) {
         show();
       }
     },
-    [filteredData, isListAutocomplete, onFocus, show]
+    [filteredData, isListAutocomplete, onFocus, show, disableShowOnFocus]
   );
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLInputElement>) => {
@@ -231,11 +240,20 @@ export default function useAutoComplete({
         onClick(event);
       }
 
+      // since click events also trigger focus events right beforehand, want to
+      // skip the first click handler and require a second click to show it.
+      // this is why the focused.current isn't set onFocus for
+      // disableShowOnFocus
+      if (disableShowOnFocus && !focused.current) {
+        focused.current = true;
+        return;
+      }
+
       if (isListAutocomplete && filteredData.length) {
         show();
       }
     },
-    [filteredData.length, isListAutocomplete, onClick, show]
+    [disableShowOnFocus, filteredData.length, isListAutocomplete, onClick, show]
   );
 
   const handleAutoComplete = useCallback(
