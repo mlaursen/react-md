@@ -268,18 +268,19 @@ export default function useFixedPositioning({
     onScroll: event => {
       if (onScroll) {
         const container = getFixedTo(fixedTo);
-        const rect = container && container.getBoundingClientRect();
+        const containerRect = container && container.getBoundingClientRect();
+        const elementRect =
+          element.current && element.current.getBoundingClientRect();
         let visible = false;
-        if (rect) {
+        if (containerRect && elementRect) {
           const vh = getViewportSize("height");
           const vw = getViewportSize("width");
-          const { top, left } = rect;
+          const top = Math.min(elementRect.top, containerRect.top);
+          const right = Math.max(elementRect.right, containerRect.right);
+          const bottom = Math.max(elementRect.bottom, containerRect.bottom);
+          const left = Math.min(elementRect.left, containerRect.left);
 
-          visible =
-            top >= vhMargin &&
-            top <= vh - vhMargin &&
-            left >= vwMargin &&
-            left <= vw - vwMargin;
+          visible = bottom >= 0 && top <= vh && right >= 0 && left <= vw;
         }
 
         onScroll(event, {
