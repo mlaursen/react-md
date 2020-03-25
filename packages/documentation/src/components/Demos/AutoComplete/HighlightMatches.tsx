@@ -8,7 +8,11 @@ import {
 } from "@react-md/app-bar";
 import { SearchSVGIcon, KeyboardVoiceSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
-import { MobileOnly, useIsUserInteractionMode } from "@react-md/utils";
+import {
+  MobileOnly,
+  useIsUserInteractionMode,
+  useAppSize,
+} from "@react-md/utils";
 
 import dessertList, { Dessert } from "constants/desserts";
 import Phone, { PhoneAppBar, ClosePhone } from "components/Phone";
@@ -25,12 +29,14 @@ const HighlightMatches: FC = () => {
   }, []);
 
   const isTouch = useIsUserInteractionMode("touch");
+  const { isPhone } = useAppSize();
 
   return (
     <Phone
       id="highlight-example"
       onPhoneClose={() => setDessert(null)}
       disableAppBar
+      disableContent={isPhone}
       appBar={
         <PhoneAppBar>
           <AppBar>
