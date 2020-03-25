@@ -3,7 +3,7 @@ export * from "./FocusContainer";
 
 export * from "./movement";
 
-export { default as useScrollLock } from "./useScrollLock";
+export { default as useScrollLock, DATA_RMD_NOSCROLL } from "./useScrollLock";
 export { default as useFocusOnMount } from "./useFocusOnMount";
 export { default as usePreviousFocus } from "./usePreviousFocus";
 export { default as useCloseOnEscape } from "./useCloseOnEscape";
