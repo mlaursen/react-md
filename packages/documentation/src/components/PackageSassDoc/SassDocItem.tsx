@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 
 import Code from "components/Code/Code";
+import { Markdown } from "components/Markdown";
 import GithubLink from "components/GithubLink";
 import Heading from "components/Heading";
-import { Markdown } from "components/Markdown";
 import { GITHUB_FILE_URL } from "constants/github";
 import {
   FormattedSassDocItem,

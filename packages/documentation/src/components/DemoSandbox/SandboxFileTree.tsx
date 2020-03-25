@@ -14,6 +14,7 @@ export interface SandboxFileTreeProps {
   sandbox: IFiles | null;
   onFileChange: (fileName: string) => void;
   onRequestClose: () => void;
+  disableTransition: boolean;
 }
 
 const block = bem("sandbox-modal");
@@ -27,6 +28,7 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
   sandbox,
   onFileChange,
   onRequestClose,
+  disableTransition,
 }) => {
   const data = useFiles(sandbox || EMPTY);
   return (
@@ -37,12 +39,12 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
       onRequestClose={onRequestClose}
       position="left"
       overlay={!inline}
-      portal={!inline}
-      portalIntoId="sandbox-modal"
+      portal={false}
       className={block("files", { inline })}
-      mountOnEnter={false}
-      unmountOnExit={false}
+      mountOnEnter={!inline}
+      unmountOnExit={!inline}
       disableScrollLock
+      disableTransition={disableTransition}
     >
       <Tree
         id="code-previewer-files"

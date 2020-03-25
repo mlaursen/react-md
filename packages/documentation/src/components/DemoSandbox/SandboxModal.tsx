@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, useEffect, useState, useCallback } from "react";
 import Head from "next/head";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Dialog } from "@react-md/dialog";
-import { bem, useAppSize, useToggle } from "@react-md/utils";
+import { bem, useAppSize } from "@react-md/utils";
 
 import { toTitle } from "utils/toTitle";
 
@@ -34,34 +34,35 @@ const SandboxModal: FC<SandboxModalProps> = ({
 }) => {
   const pkgName = toTitle(pkg, " ", true);
   const title = `react-md - ${pkgName} - ${name} Sandbox`;
-  const rendered = useRef(false);
-  useEffect(() => {
-    rendered.current = true;
-  }, []);
 
   const { isPhone, isTablet, isDesktop, isLandscape } = useAppSize();
   const isLandscapeTablet = isLandscape && isTablet;
   const inline = isDesktop || isLandscapeTablet;
-  const [isTreeVisible, showTree, hideTree, , setTreeVisible] = useToggle(
-    isDesktop
-  );
+  const [isTreeVisible, setTreeVisible] = useState(isDesktop);
+  const showOrToggleTree = useCallback(() => {
+    if (isPhone) {
+      setTreeVisible(true);
+      return;
+    }
+
+    setTreeVisible(prevVisible => !prevVisible);
+  }, [isPhone]);
+  const hideTree = useCallback(() => setTreeVisible(false), []);
 
   useEffect(() => {
-    if (isTreeVisible !== isDesktop) {
-      setTreeVisible(isDesktop);
-    }
-    // only want to run on media changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDesktop, isTablet, isPhone]);
+    setTreeVisible(prevVisible => {
+      if (isDesktop) {
+        return true;
+      }
 
-  useEffect(() => {
-    if (isTreeVisible && !isDesktop) {
-      setTreeVisible(false);
-    }
-    // this effect closes the tree on mobile only after a new file is
-    // selected
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDesktop, fileName]);
+      if (prevVisible && isTablet && isLandscape) {
+        return true;
+      }
+
+      return false;
+    });
+  }, [fileName, isPhone, isTablet, isDesktop, isLandscape]);
+
   return (
     <Dialog
       id="sandbox-modal"
@@ -81,7 +82,7 @@ const SandboxModal: FC<SandboxModalProps> = ({
         name={`${pkgName} ${name}`}
         fileName={fileName}
         from={from}
-        onRequestFiles={showTree}
+        onRequestFiles={showOrToggleTree}
         onRequestClose={onRequestClose}
       />
       <SandboxFileTree
@@ -91,11 +92,12 @@ const SandboxModal: FC<SandboxModalProps> = ({
         visible={isTreeVisible}
         onFileChange={onFileChange}
         onRequestClose={hideTree}
+        disableTransition={inline && isDesktop}
       />
       <CodePreview
         fileName={fileName}
         sandbox={sandbox}
-        offset={inline}
+        offset={inline && isTreeVisible}
         onFileChange={onFileChange}
       />
     </Dialog>

@@ -74,8 +74,16 @@ const Layout: FC<LayoutProps> = ({
   const [, transitionProps, dispatch] = useCrossFade();
   const { ref: mainRef, className: mainClassName } = transitionProps;
   if (prevPathname.current !== pathname) {
+    // since the sandbox route is a full page modal, don't want to transition
+    // to make it appear smoother between the two
+    const isTransitionable =
+      !prevPathname.current.startsWith("/sandbox") &&
+      !pathname.startsWith("/sandbox");
+
     prevPathname.current = pathname;
-    dispatch(ENTER);
+    if (isTransitionable) {
+      dispatch(ENTER);
+    }
   }
 
   return (

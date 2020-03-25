@@ -26,10 +26,6 @@
   &__files {
     &--inline {
       @include rmd-app-bar-offset(top, prominent-dense-height);
-      @include rmd-elevation(8);
-
-      position: fixed;
-      z-index: 10;
     }
   }
 
