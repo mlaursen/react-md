@@ -1,6 +1,21 @@
 import { useState, useEffect } from "react";
 
 /**
+ * An extremely simple "pollyfill" for the `window.screen.orientation` just for
+ * the `type` value that is required for the `useOrientation` hook.
+ */
+export const getOrientationType = (): OrientationType => {
+  const screenOrientation = window.screen.orientation?.type;
+  if (typeof screenOrientation === "string") {
+    return screenOrientation;
+  }
+
+  const { availHeight, availWidth } = window.screen;
+
+  return availHeight > availWidth ? "portrait-primary" : "landscape-primary";
+};
+
+/**
  * This media query is used to determine the current orientation of the app
  * based on the `window.screen.orientation.type`. This will always be
  * `"landscape-primary"` server side unless a default value is provided.
@@ -20,15 +35,19 @@ export default function useOrientation(
     }
 
     if (typeof window !== "undefined") {
-      return window.screen.orientation.type;
+      return getOrientationType();
     }
 
     return "landscape-primary";
   });
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     const handler = (): void => {
-      setValue(window.screen.orientation.type);
+      setValue(getOrientationType());
     };
     window.addEventListener("orientationchange", handler);
 
