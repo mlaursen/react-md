@@ -189,9 +189,9 @@ function AutoComplete(
     vhMargin = 16,
     transformOrigin = true,
     preventOverlap = true,
-    disableSwapping = false,
     disableVHBounds = false,
-    disableHideOnResize = false,
+    disableSwapping = true,
+    disableHideOnResize = true,
     disableHideOnScroll = true,
     ...props
   }: AutoCompleteProps,
