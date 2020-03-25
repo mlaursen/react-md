@@ -8,11 +8,7 @@ import {
 } from "@react-md/app-bar";
 import { SearchSVGIcon, KeyboardVoiceSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
-import {
-  MobileOnly,
-  useIsUserInteractionMode,
-  useAppSize,
-} from "@react-md/utils";
+import { PhoneOnly, useAppSize } from "@react-md/utils";
 
 import dessertList, { Dessert } from "constants/desserts";
 import Phone, { PhoneAppBar, ClosePhone } from "components/Phone";
@@ -28,7 +24,6 @@ const HighlightMatches: FC = () => {
     setDessert(dessertList[dataIndex]);
   }, []);
 
-  const isTouch = useIsUserInteractionMode("touch");
   const { isPhone } = useAppSize();
 
   return (
@@ -55,9 +50,6 @@ const HighlightMatches: FC = () => {
                 listboxClassName="autocomplete-listbox-highlight"
                 vhMargin={0}
                 vwMargin={0}
-                disableSwapping
-                disableHideOnScroll={isTouch}
-                disableHideOnResize={isTouch}
                 clearOnAutoComplete
               />
             </AppBarTitle>
@@ -74,9 +66,9 @@ const HighlightMatches: FC = () => {
         </Text>
       )}
       <DessertTable dessert={dessert} />
-      <MobileOnly>
+      <PhoneOnly>
         <ClosePhone id="phone-close" floating />
-      </MobileOnly>
+      </PhoneOnly>
     </Phone>
   );
 };

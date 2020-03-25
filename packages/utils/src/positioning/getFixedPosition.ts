@@ -85,6 +85,12 @@ export default function getFixedPosition({
   const vw = getViewportSize("width");
 
   const { height, width: elWidth } = getElementRect(element);
+  if (disableVHBounds) {
+    const dialog = element.closest("[role='dialog']");
+    if (!dialog) {
+      initialY = (initialY ?? 0) + window.scrollY;
+    }
+  }
 
   const { left, right, width, minWidth, actualX } = createHorizontalPosition({
     x: anchor.x,

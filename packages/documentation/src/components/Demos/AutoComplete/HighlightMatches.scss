@@ -2,7 +2,7 @@
 @import '~@react-md/icon/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
 
-// all the importans are really just required to override the useFixedPositioning styles
+// all the importants are really just required to override the useFixedPositioning styles
 // that aren't configurable right now that have to be changed for the hacky phone "emulation"
 // sass-lint:disable no-important
 .autocomplete-listbox-highlight {

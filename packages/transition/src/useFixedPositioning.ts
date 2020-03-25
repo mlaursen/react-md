@@ -1,12 +1,12 @@
-import { CSSProperties, useCallback, useRef, useState, useEffect } from "react";
+import { CSSProperties, useCallback, useEffect, useState } from "react";
 import { TransitionProps } from "react-transition-group/Transition";
 import {
   FixedPositionOptions,
   getFixedPosition,
+  getViewportSize,
   PositionAnchor,
   useResizeListener,
   useScrollListener,
-  getViewportSize,
 } from "@react-md/utils";
 
 export type FixedToFunction = () => HTMLElement | null;
@@ -141,71 +141,74 @@ export default function useFixedPositioning({
   disableVHBounds = false,
 }: FixedPositioningOptions): ReturnValue {
   const [style, setStyle] = useState<CSSProperties | undefined>();
+  const [element, setElement] = useState<HTMLElement | null>(null);
 
-  const element = useRef<HTMLElement | null>(null);
+  const updateStyle = useCallback(
+    (nextElement?: HTMLElement | null) => {
+      const node = nextElement ?? element;
+      if (typeof nextElement !== "undefined") {
+        setElement(nextElement);
+      }
 
-  const updateStyle = useCallback(() => {
-    const node = element.current;
-    if (!node) {
-      return;
-    }
+      if (!node) {
+        return;
+      }
 
-    const anchor = {
-      x: currentAnchor.x || "center",
-      y: currentAnchor.y || "below",
-    };
-    const overrides = typeof getOptions === "function" ? getOptions(node) : {};
-    const opts: FixedPositionOptions = {
-      initialX,
-      initialY,
-      xMargin,
-      vwMargin,
-      yMargin,
-      vhMargin,
-      width,
-      transformOrigin,
-      preventOverlap,
+      const anchor = {
+        x: currentAnchor.x || "center",
+        y: currentAnchor.y || "below",
+      };
+      const overrides =
+        typeof getOptions === "function" ? getOptions(node) : {};
+      const opts: FixedPositionOptions = {
+        initialX,
+        initialY,
+        xMargin,
+        vwMargin,
+        yMargin,
+        vhMargin,
+        width,
+        transformOrigin,
+        preventOverlap,
+        disableSwapping,
+        disableVHBounds,
+        anchor,
+        container: getFixedTo(fixedTo),
+        element: node,
+        ...overrides,
+      };
+
+      const { style, actualX, actualY } = getFixedPosition(opts);
+
+      const actual = { x: actualX, y: actualY };
+      if (
+        onPositionChange &&
+        (anchor.x !== actual.x || anchor.y !== actual.y)
+      ) {
+        onPositionChange(anchor, actual);
+      }
+
+      setStyle(style);
+    },
+    [
+      currentAnchor.x,
+      currentAnchor.y,
       disableSwapping,
       disableVHBounds,
-      anchor,
-      container: getFixedTo(fixedTo),
-      element: node,
-      ...overrides,
-    };
-
-    const { style, actualX, actualY } = getFixedPosition(opts);
-
-    const actual = { x: actualX, y: actualY };
-    if (onPositionChange && (anchor.x !== actual.x || anchor.y !== actual.y)) {
-      onPositionChange(anchor, actual);
-    }
-
-    setStyle(style);
-  }, [
-    currentAnchor.x,
-    currentAnchor.y,
-    disableSwapping,
-    disableVHBounds,
-    fixedTo,
-    getOptions,
-    initialX,
-    initialY,
-    onPositionChange,
-    preventOverlap,
-    transformOrigin,
-    vhMargin,
-    vwMargin,
-    width,
-    xMargin,
-    yMargin,
-  ]);
-
-  const updateNodeAndStyle = useCallback(
-    (node: HTMLElement) => {
-      element.current = node;
-      updateStyle();
-    },
-    [updateStyle]
+      fixedTo,
+      getOptions,
+      initialX,
+      initialY,
+      onPositionChange,
+      preventOverlap,
+      transformOrigin,
+      vhMargin,
+      vwMargin,
+      width,
+      xMargin,
+      yMargin,
+      element,
+    ]
   );
 
   const handleEnter = useCallback(
@@ -214,9 +217,9 @@ export default function useFixedPositioning({
         onEnter(node, appear);
       }
 
-      updateNodeAndStyle(node);
+      updateStyle(node);
     },
-    [onEnter, updateNodeAndStyle]
+    [onEnter, updateStyle]
   );
 
   const handleEntering = useCallback(
@@ -225,9 +228,9 @@ export default function useFixedPositioning({
         onEntering(node, appear);
       }
 
-      updateNodeAndStyle(node);
+      updateStyle(node);
     },
-    [onEntering, updateNodeAndStyle]
+    [onEntering, updateStyle]
   );
 
   const handleEntered = useCallback(
@@ -236,9 +239,9 @@ export default function useFixedPositioning({
         onEntered(node, appear);
       }
 
-      updateNodeAndStyle(node);
+      updateStyle(node);
     },
-    [onEntered, updateNodeAndStyle]
+    [onEntered, updateStyle]
   );
 
   const handleExited = useCallback(
@@ -247,13 +250,13 @@ export default function useFixedPositioning({
         onExited(node);
       }
 
-      element.current = null;
+      setElement(null);
     },
     [onExited]
   );
 
   useResizeListener({
-    enabled: !!element.current,
+    enabled: !!element,
     onResize: event => {
       if (onResize) {
         onResize(event);
@@ -264,13 +267,12 @@ export default function useFixedPositioning({
   });
 
   useScrollListener({
-    enabled: !!element.current,
+    enabled: !!element,
     onScroll: event => {
       if (onScroll) {
         const container = getFixedTo(fixedTo);
         const containerRect = container && container.getBoundingClientRect();
-        const elementRect =
-          element.current && element.current.getBoundingClientRect();
+        const elementRect = element && element.getBoundingClientRect();
         let visible = false;
         if (containerRect && elementRect) {
           const vh = getViewportSize("height");
@@ -284,7 +286,7 @@ export default function useFixedPositioning({
         }
 
         onScroll(event, {
-          element: element.current,
+          element,
           fixedTo: container,
           visible,
         });
