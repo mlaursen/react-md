@@ -1,1 +1,1 @@
-export { default } from "components/Customization/CreatingDynamicThemes";
+export { default } from "components/ColorsAndTheming/CreatingDynamicThemes";

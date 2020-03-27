@@ -1,1 +1,1 @@
-export { default } from "components/Customization/OverridingDefaults";
+export { default } from "components/ColorsAndTheming/OverridingDefaults";

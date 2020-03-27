@@ -1,1 +1,1 @@
-export { default } from "components/Customization/ThemeBuilder";
+export { default } from "components/ColorsAndTheming/ThemeBuilder";

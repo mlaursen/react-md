@@ -1,1 +1,1 @@
-export { default } from "components/Customization/ColorPalette";
+export { default } from "components/ColorsAndTheming/ColorPalette";
