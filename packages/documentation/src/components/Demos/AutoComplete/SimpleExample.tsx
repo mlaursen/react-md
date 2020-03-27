@@ -30,6 +30,21 @@ const SimpleExample: FC = () => (
       data={fruits}
       filter="fuzzy"
     />
+    <AutoComplete
+      id="simple-autocomplete-3"
+      label="Inline Autocomplete"
+      placeholder="Apple"
+      data={fruits}
+      autoComplete="inline"
+    />
+    <AutoComplete
+      id="simple-autocomplete-4"
+      label="Both Autocomplete"
+      placeholder="Apple"
+      data={fruits}
+      autoComplete="both"
+      highlight
+    />
   </ExampleGrid>
 );
 

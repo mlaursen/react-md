@@ -1,111 +1,86 @@
 import {
+  ChangeEventHandler,
   CSSProperties,
+  FocusEventHandler,
   HTMLAttributes,
+  KeyboardEventHandler,
+  MouseEventHandler,
   MutableRefObject,
   Ref,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
 import { ListElement } from "@react-md/list";
-import {
-  OptionalFixedPositionOptions,
-  TransitionHooks,
-  useFixedPositioning,
-} from "@react-md/transition";
+import { TransitionHooks, useFixedPositioning } from "@react-md/transition";
 import {
   applyRef,
   ItemRefList,
   MovementPresets,
-  PositionWidth,
   scrollIntoView,
   useActiveDescendantMovement,
   useCloseOnOutsideClick,
-  useToggle,
   useIsUserInteractionMode,
+  useToggle,
 } from "@react-md/utils";
 
 import {
   AutoCompleteData,
-  AutoCompleteFilterFunction,
-  AutoCompleteHandler,
-  AutoCompletion,
-  FilterFunctionOptions,
+  AutoCompleteListboxPositionOptions,
+  AutoCompleteProps,
 } from "./types";
-import {
-  getFilterFunction,
-  getResultId as DEFAULT_GET_RESULT_ID,
-  getResultValue as DEFAULT_GET_RESULT_VALUE,
-} from "./utils";
-
-export interface PositionOptions
-  extends Omit<OptionalFixedPositionOptions, "width"> {
-  /**
-   * The sizing behavior for the listbox. It will default to have the same width
-   * as the select button, but it is also possible to either have the
-   * `min-width` be the width of the select button or just automatically
-   * determine the width.
-   *
-   * The sizing behavior will always ensure that the left and right bounds of
-   * the listbox appear within the viewport.
-   */
-  listboxWidth?: PositionWidth;
-
-  /**
-   * An optional style to also apply to the listbox element showing all the
-   * matches.
-   */
-  listboxStyle?: CSSProperties;
-
-  /**
-   * Boolean if the select's listbox should not hide if the user resizes the
-   * browser while it is visible.
-   */
-  disableHideOnResize?: boolean;
-
-  /**
-   * Boolean if the select's listbox should not hide if the user scrolls the
-   * page while it is visible.
-   */
-  disableHideOnScroll?: boolean;
-}
+import { getFilterFunction } from "./utils";
 
 type EventHandlers = Pick<
   HTMLAttributes<HTMLInputElement>,
   "onBlur" | "onFocus" | "onChange" | "onClick" | "onKeyDown"
 >;
 
-interface AutoCompleteOptions extends EventHandlers, PositionOptions {
-  autoComplete: AutoCompletion;
+type RequiredAutoCompleteProps = Required<
+  Pick<
+    AutoCompleteProps,
+    | "data"
+    | "filter"
+    | "filterOptions"
+    | "filterOnNoValue"
+    | "valueKey"
+    | "getResultId"
+    | "getResultValue"
+    | "clearOnAutoComplete"
+  >
+>;
+
+type OptionalAutoCompleteProps = Pick<
+  AutoCompleteProps,
+  "onAutoComplete" | "disableShowOnFocus"
+>;
+
+interface AutoCompleteOptions
+  extends EventHandlers,
+    OptionalAutoCompleteProps,
+    RequiredAutoCompleteProps,
+    AutoCompleteListboxPositionOptions {
+  isListAutocomplete: boolean;
+  isInlineAutocomplete: boolean;
   forwardedRef?: Ref<HTMLInputElement>;
-  data: readonly AutoCompleteData[];
   suggestionsId: string;
-  valueKey: string;
-  getResultId: typeof DEFAULT_GET_RESULT_ID;
-  getResultValue: typeof DEFAULT_GET_RESULT_VALUE;
-  filter: AutoCompleteFilterFunction;
-  filterOptions: FilterFunctionOptions;
-  filterOnNoValue: boolean;
-  onAutoComplete?: AutoCompleteHandler;
-  clearOnAutoComplete: boolean;
-  disableShowOnFocus: boolean | undefined;
 }
 
 interface ReturnValue {
   ref: (instance: HTMLInputElement | null) => void;
+  match: string;
   value: string;
   visible: boolean;
   activeId: string;
   itemRefs: ItemRefList<HTMLLIElement>;
   filteredData: readonly AutoCompleteData[];
   listboxRef: MutableRefObject<ListElement | null>;
-  handleBlur: React.FocusEventHandler<HTMLInputElement>;
-  handleFocus: React.FocusEventHandler<HTMLInputElement>;
-  handleClick: React.MouseEventHandler<HTMLInputElement>;
-  handleChange: React.ChangeEventHandler<HTMLInputElement>;
-  handleKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
+  handleBlur: FocusEventHandler<HTMLInputElement>;
+  handleFocus: FocusEventHandler<HTMLInputElement>;
+  handleClick: MouseEventHandler<HTMLInputElement>;
+  handleChange: ChangeEventHandler<HTMLInputElement>;
+  handleKeyDown: KeyboardEventHandler<HTMLInputElement>;
   handleAutoComplete: (index: number) => void;
   fixedStyle: CSSProperties | undefined;
   transitionHooks: Required<TransitionHooks>;
@@ -117,7 +92,6 @@ interface ReturnValue {
  * @private
  */
 export default function useAutoComplete({
-  autoComplete,
   suggestionsId,
   data,
   filter: filterFn,
@@ -148,12 +122,72 @@ export default function useAutoComplete({
   disableHideOnResize,
   disableHideOnScroll,
   disableShowOnFocus: propDisableShowOnFocus,
+  isListAutocomplete,
+  isInlineAutocomplete,
 }: AutoCompleteOptions): ReturnValue {
-  const isListAutocomplete = autoComplete === "list" || autoComplete === "both";
-  // const isInlineAutocomplete =
-  //   autoComplete === "inline" || autoComplete === "both";
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const ref = useCallback(
+    (instance: HTMLInputElement | null) => {
+      applyRef(instance, forwardedRef);
+      inputRef.current = instance;
+    },
+    [forwardedRef]
+  );
 
-  const [value, setValue] = useState("");
+  const filter = getFilterFunction(filterFn);
+  const [{ value, match, filteredData }, setState] = useState(() => {
+    const options = {
+      ...filterOptions,
+      startsWith: filterOptions?.startsWith ?? isInlineAutocomplete,
+    };
+
+    return {
+      value: "",
+      match: "",
+      filteredData: filterOnNoValue ? filter("", data, options) : data,
+    };
+  });
+
+  const setValue = useCallback(
+    (nextValue: string) => {
+      const isBackspace =
+        value.length > nextValue.length ||
+        (!!match && value.length === nextValue.length);
+
+      let filtered = data;
+      if (nextValue || filterOnNoValue) {
+        const options = {
+          ...filterOptions,
+          startsWith: filterOptions?.startsWith ?? isInlineAutocomplete,
+        };
+        filtered = filter(nextValue, data, options);
+      }
+
+      let nextMatch = nextValue;
+      if (isInlineAutocomplete && filtered.length && !isBackspace) {
+        nextMatch = getResultValue(filtered[0], valueKey);
+
+        const input = inputRef.current;
+        if (input && !isBackspace) {
+          input.value = nextMatch;
+          input.setSelectionRange(nextValue.length, nextMatch.length);
+        }
+      }
+
+      setState({ value: nextValue, match: nextMatch, filteredData: filtered });
+    },
+    [
+      data,
+      filter,
+      filterOnNoValue,
+      filterOptions,
+      isInlineAutocomplete,
+      getResultValue,
+      value,
+      match,
+      valueKey,
+    ]
+  );
 
   // this is really just a hacky way to make sure that once a value has been
   // autocompleted, the menu doesn't immediately re-appear due to the hook below
@@ -169,38 +203,8 @@ export default function useAutoComplete({
       autocompleted.current = false;
       setValue(event.currentTarget.value);
     },
-    [onChange]
+    [setValue, onChange]
   );
-
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const ref = useCallback(
-    (instance: HTMLInputElement | null) => {
-      applyRef(instance, forwardedRef);
-      inputRef.current = instance;
-    },
-    [forwardedRef]
-  );
-
-  const filter = useMemo(() => getFilterFunction(filterFn), [filterFn]);
-  const filteredData = useMemo(() => {
-    if (!value && !filterOnNoValue) {
-      return data;
-    }
-
-    return filter(value, data, {
-      ...filterOptions,
-      valueKey,
-      getItemValue: getResultValue,
-    });
-  }, [
-    value,
-    filterOnNoValue,
-    filter,
-    data,
-    filterOptions,
-    valueKey,
-    getResultValue,
-  ]);
 
   const [visible, show, hide] = useToggle(false);
   const isTouch = useIsUserInteractionMode("touch");
@@ -282,6 +286,7 @@ export default function useAutoComplete({
       getResultValue,
       onAutoComplete,
       valueKey,
+      setValue,
     ]
   );
 
@@ -301,7 +306,7 @@ export default function useAutoComplete({
     getId: getResultId,
     items: filteredData,
     baseId: suggestionsId,
-    onChange({ index }, itemRefs) {
+    onChange({ index, items, target }, itemRefs) {
       // the default scroll into view behavior for aria-activedescendant
       // movement won't work here since the "target" element will actually be
       // the input element instead of the listbox. So need to implement the
@@ -311,12 +316,26 @@ export default function useAutoComplete({
       if (item && listbox && listbox.scrollHeight > listbox.offsetHeight) {
         scrollIntoView(listbox, item);
       }
+
+      if (!isListAutocomplete) {
+        return;
+      }
+
+      const nextMatch = getResultValue(items[index], valueKey);
+      target.value = nextMatch;
+      target.setSelectionRange(0, nextMatch.length);
+      setState(prevState => ({
+        ...prevState,
+        value: nextMatch,
+        match: nextMatch,
+      }));
     },
     onKeyDown(event) {
       if (onKeyDown) {
         onKeyDown(event);
       }
 
+      const input = event.currentTarget;
       switch (event.key) {
         case "ArrowDown":
           if (isListAutocomplete && event.altKey && !visible) {
@@ -334,6 +353,16 @@ export default function useAutoComplete({
         case "Tab":
           event.stopPropagation();
           hide();
+          break;
+        case "ArrowRight":
+          if (
+            isInlineAutocomplete &&
+            input.selectionStart !== input.selectionEnd
+          ) {
+            const index = focusedIndex !== -1 ? focusedIndex : 0;
+            hide();
+            handleAutoComplete(index);
+          }
           break;
         case "Enter":
           if (visible && focusedIndex >= 0) {
@@ -431,6 +460,7 @@ export default function useAutoComplete({
   return {
     ref,
     value,
+    match,
     visible,
     activeId,
     itemRefs,
