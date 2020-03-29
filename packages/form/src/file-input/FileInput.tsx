@@ -135,7 +135,6 @@ function FileInput(
   return (
     <>
       <input
-        id={id}
         {...props}
         {...handlers}
         ref={ref}

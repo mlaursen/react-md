@@ -211,7 +211,7 @@ export interface FixedPosition {
    * `background-color` so you'll need to add that manually.
    */
   style?: Coords & {
-    position: string;
+    position: "fixed" | "absolute";
     transformOrigin?: string;
   };
 }
