@@ -213,6 +213,13 @@ export interface AutoCompleteProps
   highlight?: boolean;
 
   /**
+   * Boolean if the highlight functionality should no longer stop after the
+   * first match and instead highlight all matches of the search string within
+   * the label for an item.
+   */
+  highlightReapeating?: boolean;
+
+  /**
    * An optional style to apply to the `<span>` surrounding the matched text
    * when the `highlight` prop is enabled.
    */

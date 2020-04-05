@@ -9,8 +9,10 @@ export interface HighlightedResultProps {
   id?: string;
   style?: CSSProperties;
   className?: string;
+  index?: number;
   value: string;
-  enabled: boolean;
+  enabled?: boolean;
+  repeatable?: boolean;
   children: ReactNode;
 }
 
@@ -18,12 +20,14 @@ export interface HighlightedResultProps {
  * @private
  */
 const HighlightedResult: FC<HighlightedResultProps> = ({
-  id,
+  id: propId,
   style,
   className,
-  enabled,
+  enabled = true,
   value,
   children,
+  repeatable = false,
+  index = 0,
 }) => {
   if (!enabled || !value || typeof children !== "string") {
     return <>{children}</>;
@@ -35,6 +39,11 @@ const HighlightedResult: FC<HighlightedResultProps> = ({
   }
 
   const end = i + value.length;
+  let id = propId;
+  if (index > 0) {
+    id = `${id}-${index}`;
+  }
+
   return (
     <>
       {i > 0 && children.substring(0, i)}
@@ -45,7 +54,18 @@ const HighlightedResult: FC<HighlightedResultProps> = ({
       >
         {children.substring(i, end)}
       </span>
-      {end < children.length && children.substring(end)}
+      {end < children.length && (
+        <HighlightedResult
+          style={style}
+          className={className}
+          value={value}
+          enabled={enabled && repeatable}
+          repeatable={repeatable}
+          index={index + 1}
+        >
+          {children.substring(end)}
+        </HighlightedResult>
+      )}
     </>
   );
 };

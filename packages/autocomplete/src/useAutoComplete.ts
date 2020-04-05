@@ -317,7 +317,7 @@ export default function useAutoComplete({
         scrollIntoView(listbox, item);
       }
 
-      if (!isListAutocomplete) {
+      if (!isInlineAutocomplete) {
         return;
       }
 
@@ -338,7 +338,12 @@ export default function useAutoComplete({
       const input = event.currentTarget;
       switch (event.key) {
         case "ArrowDown":
-          if (isListAutocomplete && event.altKey && !visible) {
+          if (
+            isListAutocomplete &&
+            event.altKey &&
+            !visible &&
+            filteredData.length
+          ) {
             event.stopPropagation();
             show();
             setFocusedIndex(-1);
@@ -436,26 +441,16 @@ export default function useAutoComplete({
 
   useEffect(() => {
     if (!visible) {
+      setFocusedIndex(-1);
       return;
     }
 
     updateStyle();
-    setFocusedIndex(-1);
 
     // only want to trigger on data changes and setFocusedIndex shouldn't change
     // anyways
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filteredData]);
-
-  useEffect(() => {
-    if (!visible) {
-      setFocusedIndex(-1);
-    }
-
-    // only want to trigger on visible changes -- and setFocusedIndex shouldn't
-    // really change anyways
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible]);
+  }, [visible, filteredData]);
 
   return {
     ref,

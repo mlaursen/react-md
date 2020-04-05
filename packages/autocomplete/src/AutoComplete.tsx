@@ -58,6 +58,7 @@ function AutoComplete(
     getResultLabel = DEFAULT_GET_RESULT_LABEL,
     getResultValue = DEFAULT_GET_RESULT_VALUE,
     highlight = false,
+    highlightReapeating = false,
     highlightStyle,
     highlightClassName,
     anchor = BELOW_CENTER_ANCHOR,
@@ -83,9 +84,6 @@ function AutoComplete(
   const isListAutocomplete = autoComplete === "list" || autoComplete === "both";
   const isInlineAutocomplete =
     autoComplete === "inline" || autoComplete === "both";
-  const isHighlight =
-    highlight &&
-    (filter === "case-insensitive" || typeof filter === "function");
 
   const {
     ref,
@@ -201,7 +199,8 @@ function AutoComplete(
                   style={highlightStyle}
                   className={highlightClassName}
                   value={value}
-                  enabled={isHighlight}
+                  enabled={highlight}
+                  repeatable={highlightReapeating}
                 >
                   {getResultLabel(datum, labelKey, value)}
                 </HighlightedResult>
