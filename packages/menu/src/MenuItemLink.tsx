@@ -1,4 +1,4 @@
-import React, { ElementType, forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef, ReactElement, Ref } from "react";
 import cn from "classnames";
 import {
   ListItemLink,
@@ -30,7 +30,7 @@ function MenuItemLink(
     tabIndex = -1,
     ...props
   }: MenuItemLinkProps,
-  ref?: Ref<HTMLAnchorElement | ElementType>
+  ref?: Ref<HTMLAnchorElement>
 ): ReactElement {
   return (
     <li role="none">
@@ -48,7 +48,7 @@ function MenuItemLink(
 }
 
 const ForwardedMenuItemLink = forwardRef<
-  HTMLAnchorElement | ElementType,
+  HTMLAnchorElement,
   MenuItemLinkProps | MenuItemLinkWithComponentProps
 >(MenuItemLink);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, wait } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import Dialog from "../Dialog";
 import DialogContent from "../DialogContent";
@@ -93,7 +93,7 @@ describe("Dialog", () => {
         </>
       );
 
-      await wait(() => {
+      await waitFor(() => {
         if (document.activeElement === mainButton) {
           throw new Error();
         }
@@ -110,7 +110,7 @@ describe("Dialog", () => {
         </>
       );
 
-      await wait(() => {
+      await waitFor(() => {
         // the document.body will be focused immediately after unmount, and then an animation frame
         // will focus the main button
         if (getDialog() || document.activeElement === document.body) {
