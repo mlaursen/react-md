@@ -1,6 +1,11 @@
+import { ROOT_PATH } from 'constants/application';
+
 let serverUrl = '';
 if (process.env.NODE_ENV === 'production') {
-  serverUrl = PUBLIC_URL;
+  // remove the root path from the url since this is normally
+  // used with the API_ENDPOINT constant that sets the ROOT_PATH
+  // already.
+  serverUrl = PUBLIC_URL.replace(ROOT_PATH, '');
 }
 
 /**
