@@ -31,7 +31,10 @@ export default async (
     res.status(403).end();
     return;
   }
-  const results = indexer.search(search).slice(from, from + size);
+
+  const results = indexer
+    .search(search, { limit: from + size })
+    .map(({ item }) => item);
 
   res.status(200).json(results);
 };
