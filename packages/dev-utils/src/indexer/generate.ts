@@ -4,7 +4,7 @@ import parseMarkdown from "./parseMarkdown";
 import {
   TOCAnchor,
   DemoMetadata,
-  RouteType,
+  MetadataType,
   TOCRecord,
   RouteMetadata,
   IndexedResult,
@@ -22,7 +22,7 @@ export default async function generate(
     const title = getTitleForRoute(route);
     const markdown = getMarkdownForRoute(route);
 
-    let type: RouteType;
+    let type: MetadataType;
     let summary = "";
     let demos: readonly DemoMetadata[] = [];
     let anchors: readonly TOCAnchor[] = [];
@@ -67,31 +67,32 @@ export default async function generate(
       tocs[route] = anchors;
     }
 
-    let asPath = route;
+    let pageUrl = route;
     if (route.startsWith("/guides")) {
-      asPath = "/guides/[id]";
-    } else if (route.startsWith("/packages")) {
+      pageUrl = "/guides/[id]";
+    } else if (route.startsWith("/packages") && !route.endsWith("demos")) {
       const [suffix] = route.split("/").reverse();
-      asPath = `/packages/[id]/${suffix}`;
+      pageUrl = `/packages/[id]/${suffix}`;
     }
 
     metadata.push({
       title,
       summary,
       type,
-      asPath,
+      pageUrl,
       pathname: route,
     });
     if (demos.length) {
       const [, pkgName] = route.split("/").reverse();
       demos.forEach(({ title, summary }) => {
-        const hash = `#${toId(title)}-title`;
+        // demo pages aren't dynamic routes
+        const pathname = `${route}#${toId(title)}-title`;
         metadata.push({
           title: `${toTitle(pkgName, "")} Demo - ${title}`,
           summary,
           type: "demo",
-          asPath: `${asPath}${hash}`,
-          pathname: `${route}${hash}`,
+          pageUrl: pathname,
+          pathname,
         });
       });
     }

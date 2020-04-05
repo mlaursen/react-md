@@ -74,9 +74,9 @@ const Search: FC = () => {
     result => {
       const match = data[result.dataIndex];
       if (match) {
-        const { pathname, asPath } = match;
+        const { pageUrl, pathname } = match;
 
-        router.push(asPath, pathname);
+        router.push(pageUrl, pathname);
         setData([]);
       }
     },
@@ -104,7 +104,7 @@ const Search: FC = () => {
         threeLines: true,
         leftMedia: <SearchType type={type} />,
         leftMediaLarge: true,
-        className: "layout__search-listbox",
+        textClassName: "layout__search-option",
       }))}
       labelKey="title"
       valueKey="title"

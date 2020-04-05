@@ -84,7 +84,6 @@ describe("scrollbarSize", () => {
     expect(scrollbarSize()).toBe(0);
     expect(outerDiv.style.visibility).toBe("hidden");
     expect(outerDiv.style.overflow).toBe("scroll");
-    expect(outerDiv.style.msOverflowStyle).toBe("scrollbar");
 
     expect(outerDiv.firstChild).toBe(innerDiv);
     expect(bodyAppendChild).toBeCalledWith(outerDiv);
