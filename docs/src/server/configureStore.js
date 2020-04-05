@@ -30,9 +30,10 @@ function isSassDocRoute(pathname, tab) {
 }
 
 function getEndpoint(pathname) {
-  return pathname.indexOf('components') !== -1
-    ? pathname.replace(`${ROOT_PATH}components/`, '')
-    : pathname.substring(pathname.lastIndexOf('/') + 1);
+  const simplified = pathname.replace(ROOT_PATH, '/');
+  return simplified.indexOf('components') !== -1
+    ? simplified.replace('/components/', '')
+    : simplified.substring(simplified.lastIndexOf('/'));
 }
 
 export default async function configureStore(req) {
