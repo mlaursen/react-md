@@ -1,7 +1,6 @@
-import sandboxes, { PackageName, GetSandbox } from "constants/sandboxes";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
-
-import { upperFirst } from "./toTitle";
+import { upperFirst } from "lodash";
+import sandboxes, { PackageName, GetSandbox } from "constants/sandboxes";
 
 export default function getSandbox(
   packageName: string,

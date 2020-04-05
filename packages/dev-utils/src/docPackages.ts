@@ -8,7 +8,7 @@ import getPackages, {
 } from "./utils/getPackages";
 import writeFile from "./utils/writeFile";
 
-export default async function docConstants(): Promise<void> {
+export default async function docPackages(): Promise<void> {
   const constantsPath = join(
     documentationRoot,
     src,

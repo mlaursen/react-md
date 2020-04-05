@@ -35,7 +35,6 @@ const ActionMenu: FC = () => {
       menuLabel="Actions"
       buttonType="icon"
       items={items}
-      first
       last
       positionOptions={options}
     >

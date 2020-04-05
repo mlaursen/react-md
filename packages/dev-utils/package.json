@@ -24,6 +24,7 @@
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
     "gzip-size": "^5.1.1",
+    "he": "^1.2.0",
     "jest": "^25.1.0",
     "lodash": "^4.17.15",
     "loglevel": "^1.6.7",
@@ -42,6 +43,7 @@
     "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@types/he": "^1.1.1",
     "chokidar-cli": "^2.1.0"
   }
 }

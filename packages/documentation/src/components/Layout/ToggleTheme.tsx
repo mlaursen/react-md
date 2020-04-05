@@ -30,7 +30,6 @@ const ToggleTheme: FC = () => {
       <AppBarAction
         aria-label="Dark Theme"
         aria-pressed={!isLight}
-        first
         onClick={toggleTheme}
         onMouseEnter={isMouseMode ? enable : undefined}
         onMouseLeave={isMouseMode ? disable : undefined}

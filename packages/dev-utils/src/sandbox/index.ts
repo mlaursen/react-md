@@ -2,10 +2,9 @@ import { ensureDir, existsSync, remove, writeJson } from "fs-extra";
 import log from "loglevel";
 import path from "path";
 
-import { src } from "../constants";
 import glob from "../utils/glob";
 import list from "../utils/list";
-import toTitle from "../utils/toTitle";
+import { toTitle } from "../utils/titles";
 import { DEMOS_FOLDER, SANDBOXES_PATH } from "./constants";
 import { extractDemoFiles, extractImports } from "./extract";
 import { getAliasedImports } from "./formatters";
@@ -14,8 +13,8 @@ import generate, {
   findGeneratedSandboxes,
   getSandboxFileName,
 } from "./generate";
-import getCompilerOptions from "./getCompilerOptions";
 import getAliases from "./getAliases";
+import getCompilerOptions from "./getCompilerOptions";
 
 export interface ResolveConfig {
   components: string[];
@@ -31,7 +30,7 @@ async function createSandboxJsonFiles(
   empty: boolean
 ): Promise<void> {
   const matcher = components.length
-    ? `+(${components.map(name => toTitle(name)).join("|")})`
+    ? `+(${components.map(name => toTitle(name, "")).join("|")})`
     : "*";
 
   const globString = `${DEMOS_FOLDER}/${matcher}/index.tsx`;

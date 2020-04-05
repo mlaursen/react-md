@@ -74,7 +74,7 @@ renderer.heading = (text, level, _raw, slugger) => {
 
   const isValidHeading = isForcedHeading || (text.length <= 60 && !isNoMargin);
   // `'t` gets slugged as 39t
-  const id = slugger.slug(text).replace(/39t/g, "t");
+  const id = slugger.slug(text.replace("🎉", "")).replace(/39t/g, "t");
   const className = cn(`rmd-typography rmd-typography--headline-${level}`, {
     heading: isValidHeading,
     // eslint-disable-next-line @typescript-eslint/camelcase

@@ -7,6 +7,8 @@ import React, {
 } from "react";
 import { useAppSize, useToggle } from "@react-md/utils";
 
+import tocs from "constants/meta/tocs";
+
 interface TOCVisibility {
   visible: boolean;
   rendered: boolean;
@@ -47,12 +49,7 @@ export const TOCVisibilityProvider: FC<{ pathname: string }> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLargeDesktop]);
 
-  const rendered =
-    pathname !== "/" &&
-    pathname !== "/_error" &&
-    !pathname.startsWith("/sandbox") &&
-    !pathname.startsWith("/colors-and-theming/theme-builder") &&
-    !pathname.includes("sassdoc");
+  const rendered = !!tocs[pathname]?.length;
   const actions = useMemo(() => ({ show, hide, toggle }), [hide, show, toggle]);
   const visibility = useMemo(
     () => ({

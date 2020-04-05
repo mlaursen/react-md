@@ -3,9 +3,10 @@ import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
 import { Text } from "@react-md/typography";
 import { bem, useAppSize } from "@react-md/utils";
 
+import tocs from "constants/meta/tocs";
+
 import List from "./List";
 import Toggle from "./Toggle";
-import usePageHeadings from "./usePageHeadings";
 import { useTOCActions, useTOCVisibility } from "./VisibilityContext";
 
 import "./TableOfContents.scss";
@@ -27,8 +28,8 @@ const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
   const { visible, rendered } = useTOCVisibility();
   const { hide, toggle } = useTOCActions();
 
-  const headings = usePageHeadings(pathname, !rendered);
-  if (!rendered) {
+  const anchors = tocs[pathname];
+  if (!rendered || !anchors) {
     return null;
   }
 
@@ -63,7 +64,7 @@ const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
         </DialogHeader>
         <DialogContent className={block("content")}>
           <List
-            headings={headings}
+            anchors={anchors}
             isLargeDesktop={isLargeDesktop}
             onRequestClose={hide}
           />

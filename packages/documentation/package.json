@@ -59,6 +59,7 @@
     "codesandbox": "^2.1.12",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "fuse.js": "3.4.3",
     "helmet": "^3.21.3",
     "hpp": "^0.2.3",
     "js-cookie": "^2.2.1",

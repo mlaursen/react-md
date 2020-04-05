@@ -3,17 +3,17 @@ import React, { FC, useCallback } from "react";
 import { bem } from "@react-md/utils";
 
 import Link from "components/Link";
-import { Heading } from "./usePageHeadings";
+import { TOCAnchor } from "constants/meta/types";
 
 export interface ListProps {
-  headings: Heading[];
+  anchors: readonly TOCAnchor[];
   isLargeDesktop: boolean;
   onRequestClose: () => void;
 }
 
 const block = bem("table-of-contents");
 
-const List: FC<ListProps> = ({ headings, isLargeDesktop, onRequestClose }) => {
+const List: FC<ListProps> = ({ anchors, isLargeDesktop, onRequestClose }) => {
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLUListElement>) => {
       if (
@@ -52,9 +52,9 @@ const List: FC<ListProps> = ({ headings, isLargeDesktop, onRequestClose }) => {
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
-      {headings.map(({ id, title }, i) => (
+      {anchors.map(({ anchor, title }, i) => (
         <li key={i} className={block("item")}>
-          <Link href={`#${id}`} className={block("link")}>
+          <Link href={anchor} className={block("link")}>
             {title}
           </Link>
         </li>

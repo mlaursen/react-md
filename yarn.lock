@@ -2183,6 +2183,11 @@
   resolved "https://registry.yarnpkg.com/@types/gtag.js/-/gtag.js-0.0.3.tgz#bbc414030b2143fc7874260ab825aac82c42928e"
   integrity sha512-iRF/4Q3G1t0OTNMjK52tpGSQPgEsYzWQL1IdVXt9BywK6MUK3ypB7LaoEQa8sW9gPXENoU1xAyCxqJhMkB2rCA==
 
+"@types/he@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@types/he/-/he-1.1.1.tgz#19e14033c4ee8f1a702c74dcc6182664839ac2b7"
+  integrity sha512-jpzrsR1ns0n3kyWt92QfOUQhIuJGQ9+QGa7M62rO6toe98woQjnsnzjdMtsQXCdvjjmqjS2ZBCC7xKw0cdzU+Q==
+
 "@types/helmet@^0.0.45":
   version "0.0.45"
   resolved "https://registry.yarnpkg.com/@types/helmet/-/helmet-0.0.45.tgz#3eab6550a4e19acf86012596a7f1981529480fd5"
@@ -7174,6 +7179,11 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
+fuse.js@3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-3.4.3.tgz#74d99f64147a2f77730fceb091881643ae9a6fbe"
+  integrity sha512-XhUzonuhVsxzoBMPQsax7Vzz1n9tnj0S0Ev/c1qzx4SUyd/LFWuSonhdEKtXsAaZzq96QYleWBPDvRiZ7onw8Q==
+
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
@@ -7781,7 +7791,7 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-he@1.2.x:
+he@1.2.x, he@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==

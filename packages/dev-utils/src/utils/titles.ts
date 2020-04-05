@@ -1,7 +1,3 @@
-/**
- * This file was generated from @react-md/dev-utils and should not be updated
- * manually.
- */
 import { upperFirst } from "lodash";
 
 /**

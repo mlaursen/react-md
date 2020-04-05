@@ -6,7 +6,8 @@ import loglevel from "loglevel";
 import build from "./build";
 import clean from "./clean";
 import { DEBUG, SILENT } from "./constants";
-import docConstants from "./docConstants";
+import docPackages from "./docPackages";
+import indexer from "./indexer";
 import libsize from "./libsize";
 import prepublish from "./prepublish";
 import readmes from "./readmes";
@@ -153,11 +154,17 @@ createCommand("watch")
   )
   .action(({ cjs = false }) => watch(cjs));
 
-createCommand("doc-constants")
+createCommand("doc-packages")
   .description(
-    "Updates the `src/constants/generated.ts` file in the documentation package."
+    "Updates the `src/constants/packages.ts` file in the documentation package."
   )
-  .action(() => docConstants());
+  .action(() => docPackages());
+
+createCommand("doc-index")
+  .description(
+    "Indexes all the metadata for the documentation site so that it can be searched."
+  )
+  .action(() => indexer());
 
 createCommand("clean")
   .description(

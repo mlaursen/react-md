@@ -15,6 +15,13 @@ export const qsToString = (q: QueryParam): string => {
   return q;
 };
 
+export const qsToInt = (q: QueryParam, fallback: number = 0): number => {
+  const value = qsToString(q);
+  const asNumber = parseInt(value, 10);
+
+  return Number.isNaN(asNumber) ? fallback : asNumber;
+};
+
 export function getCompletePathname(
   pathname: string,
   query: ParsedUrlQuery

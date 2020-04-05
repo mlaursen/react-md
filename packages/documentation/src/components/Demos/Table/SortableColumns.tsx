@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import { upperFirst } from "lodash";
 import {
   TableContainer,
   Table,
@@ -8,7 +9,6 @@ import {
   TableBody,
 } from "@react-md/table";
 import desserts, { Dessert } from "constants/desserts";
-import { upperFirst } from "utils/toTitle";
 
 type DessertKey = keyof Dessert;
 type SortOrder = "ascending" | "descending";
