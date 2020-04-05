@@ -269,7 +269,7 @@ describe("useTransition", () => {
       repaint: boolean;
     }
 
-    const ScrollTopTest: FC<ScrollTopTestProps> = props => {
+    const ScrollTopTest: FC<ScrollTopTestProps> = (props) => {
       const { ref } = useTransition({ timeout: 200, ...props });
 
       ref.current = div;

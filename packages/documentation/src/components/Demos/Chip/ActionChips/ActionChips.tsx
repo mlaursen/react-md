@@ -36,7 +36,7 @@ const ActionChips: FC = () => {
         <ActionChipAlarm />
         <ActionChipBlinds
           visible={blinds}
-          onClick={() => setBlinds(prevBlinds => !prevBlinds)}
+          onClick={() => setBlinds((prevBlinds) => !prevBlinds)}
         />
       </CardContent>
     </Card>

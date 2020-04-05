@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PermDataSettingFontIcon: FC<FontIconProps> = props => (
+const PermDataSettingFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>perm_data_setting</FontIcon>
 );
 

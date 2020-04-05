@@ -160,7 +160,7 @@ function Grid(
 
   let content = children;
   if (clone || wrapOnly) {
-    content = Children.map(children, child => (
+    content = Children.map(children, (child) => (
       <GridCell clone={clone}>{child}</GridCell>
     ));
   }

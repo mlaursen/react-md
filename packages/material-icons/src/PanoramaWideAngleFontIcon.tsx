@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PanoramaWideAngleFontIcon: FC<FontIconProps> = props => (
+const PanoramaWideAngleFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>panorama_wide_angle</FontIcon>
 );
 

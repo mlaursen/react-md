@@ -26,7 +26,7 @@ const To: FC<ToProps> = ({ isTouch }) => {
   const data = useMemo(
     () =>
       contacts
-        .filter(({ id }) => !chips.find(chip => chip.id === id))
+        .filter(({ id }) => !chips.find((chip) => chip.id === id))
         .map(({ name, avatar, email }) => ({
           label: name,
           leftAvatar: (
@@ -40,13 +40,13 @@ const To: FC<ToProps> = ({ isTouch }) => {
   );
 
   const onAutoComplete = useCallback<AutoCompleteHandler>(
-    result => {
+    (result) => {
       const item = result.result as typeof data[0];
       const contact = contacts.find(({ name }) => item.label === name);
       if (!contact) {
         throw new Error();
       }
-      setChips(prevChips => [...prevChips, contact]);
+      setChips((prevChips) => [...prevChips, contact]);
     },
     [data]
   );
@@ -75,7 +75,9 @@ const To: FC<ToProps> = ({ isTouch }) => {
             rightIcon={<AddCircleSVGIcon className={styles("remove")} />}
             className={styles("chip")}
             onClick={() =>
-              setChips(prevChips => prevChips.filter(chip => chip.id !== id))
+              setChips((prevChips) =>
+                prevChips.filter((chip) => chip.id !== id)
+              )
             }
           >
             {name}

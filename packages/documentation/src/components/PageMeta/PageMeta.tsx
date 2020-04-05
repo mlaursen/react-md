@@ -16,7 +16,7 @@ interface PageMetaProps {
 type DefaultProps = Required<Pick<PageMetaProps, "description" | "image">>;
 type WithDefaultProps = PageMetaProps & DefaultProps;
 
-const PageMeta: FC<PageMetaProps> = props => {
+const PageMeta: FC<PageMetaProps> = (props) => {
   const { title, description, image } = props as WithDefaultProps;
   const router = useRouter();
 

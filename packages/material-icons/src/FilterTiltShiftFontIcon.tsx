@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FilterTiltShiftFontIcon: FC<FontIconProps> = props => (
+const FilterTiltShiftFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>filter_tilt_shift</FontIcon>
 );
 

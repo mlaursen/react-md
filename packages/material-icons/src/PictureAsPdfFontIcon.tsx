@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PictureAsPdfFontIcon: FC<FontIconProps> = props => (
+const PictureAsPdfFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>picture_as_pdf</FontIcon>
 );
 

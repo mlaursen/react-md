@@ -31,7 +31,7 @@ export function getOptions(
   invalid: PrimaryColor | SecondaryColor,
   isPrimary: boolean
 ): ColorOption[] {
-  return colors.map(color => ({
+  return colors.map((color) => ({
     name: color,
     label: (
       <CustomLabel
@@ -45,7 +45,7 @@ export function getOptions(
 }
 
 export function getAccents(secondary: SecondaryColor): AccentOption[] {
-  return accents.map(accent => ({
+  return accents.map((accent) => ({
     name: accent,
     label: (
       <CustomLabel

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const InvertColorsOffFontIcon: FC<FontIconProps> = props => (
+const InvertColorsOffFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>invert_colors_off</FontIcon>
 );
 

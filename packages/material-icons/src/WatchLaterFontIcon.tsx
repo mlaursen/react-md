@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const WatchLaterFontIcon: FC<FontIconProps> = props => (
+const WatchLaterFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>watch_later</FontIcon>
 );
 

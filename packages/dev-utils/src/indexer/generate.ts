@@ -18,7 +18,7 @@ export default async function generate(
   const tocs: TOCRecord = {};
   const metadata: RouteMetadata[] = [];
 
-  routes.forEach(route => {
+  routes.forEach((route) => {
     const title = getTitleForRoute(route);
     const markdown = getMarkdownForRoute(route);
 

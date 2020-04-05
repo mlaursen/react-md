@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RadioButtonUncheckedFontIcon: FC<FontIconProps> = props => (
+const RadioButtonUncheckedFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>radio_button_unchecked</FontIcon>
 );
 

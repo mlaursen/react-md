@@ -28,7 +28,7 @@ export default function useChoice<
 ): [T, ChangeEventHandler<E>, SetValue<T>] {
   const [value, setValue] = useState<T>(defaultValue);
   const handleChange = useCallback<ChangeEventHandler<E>>(
-    event => {
+    (event) => {
       if (onChange) {
         onChange(event);
       }

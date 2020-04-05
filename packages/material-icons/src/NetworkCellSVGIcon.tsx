@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const NetworkCellSVGIcon: FC<SVGIconProps> = props => (
+const NetworkCellSVGIcon: FC<SVGIconProps> = (props) => (
   <SVGIcon {...props}>
     <path fillOpacity=".3" d="M2 22h20V2z" />
     <path d="M17 7L2 22h15z" />

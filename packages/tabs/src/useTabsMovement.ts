@@ -52,7 +52,8 @@ export default function useTabsMovement({
   // now filter out any other invalid elements (text nodes for some reason) and
   // disabled tabs since they shouldn't be keyboard focusable
   const visibleTabs = useMemo(
-    () => tabs.filter(child => isValidElement(child) && !child.props.disabled),
+    () =>
+      tabs.filter((child) => isValidElement(child) && !child.props.disabled),
     [tabs]
   );
 
@@ -97,7 +98,7 @@ export default function useTabsMovement({
         return;
       }
 
-      const index = itemRefs.findIndex(ref => ref.current === target);
+      const index = itemRefs.findIndex((ref) => ref.current === target);
       if (activeIndex !== index) {
         onActiveIndexChange(index);
       }

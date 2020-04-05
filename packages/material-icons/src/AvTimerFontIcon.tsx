@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const AvTimerFontIcon: FC<FontIconProps> = props => (
+const AvTimerFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>av_timer</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const GpsFixedFontIcon: FC<FontIconProps> = props => (
+const GpsFixedFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>gps_fixed</FontIcon>
 );
 

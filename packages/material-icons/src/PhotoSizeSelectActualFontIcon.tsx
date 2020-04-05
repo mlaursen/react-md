@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PhotoSizeSelectActualFontIcon: FC<FontIconProps> = props => (
+const PhotoSizeSelectActualFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>photo_size_select_actual</FontIcon>
 );
 

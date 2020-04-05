@@ -71,7 +71,7 @@ const demos = [
     description: stickyColumnsPart4,
     children: <StickyColumnsPart4 />,
   },
-].map(demo => ({ disableCard: true, ...demo }));
+].map((demo) => ({ disableCard: true, ...demo }));
 
 export default (): ReactElement => (
   <DemoPage demos={demos} packageName="table" description={README} />

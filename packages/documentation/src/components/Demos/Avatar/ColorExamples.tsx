@@ -19,7 +19,7 @@ const transformedPeople = people.map((name, i) => ({
 const ColorExamples: FC = () => (
   <>
     <Container>
-      {COLORS.map(color => (
+      {COLORS.map((color) => (
         <Avatar color={color} key={color}>
           {color.substring(0, 1).toUpperCase()}
         </Avatar>

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const NoEncryptionFontIcon: FC<FontIconProps> = props => (
+const NoEncryptionFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>no_encryption</FontIcon>
 );
 

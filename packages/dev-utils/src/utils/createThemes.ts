@@ -40,16 +40,16 @@ function getThemeVariables(theme: string): [string, string, string, string] {
 }
 
 function getThemes(): string[] {
-  return colors.flatMap(primary =>
-    secondaries.flatMap(secondary => {
+  return colors.flatMap((primary) =>
+    secondaries.flatMap((secondary) => {
       if (primary === secondary) {
         return [];
       }
 
       primary = toCSSColor(primary);
       secondary = toCSSColor(secondary);
-      return weights.flatMap(weight =>
-        tones.map(theme => `${primary}-${secondary}-${weight}-${theme}`)
+      return weights.flatMap((weight) =>
+        tones.map((theme) => `${primary}-${secondary}-${weight}-${theme}`)
       );
     })
   );
@@ -149,7 +149,7 @@ export default async function createThemes(): Promise<void> {
 
   // have to do these synchronously since normally run out of memory if all 2345 themes
   // are being created in parallel
-  themes.forEach(theme => {
+  themes.forEach((theme) => {
     const [primary, secondary, weight, tone] = getThemeVariables(theme);
     const primaryColor = variables[`${primary}-500`];
     const secondaryColor = variables[`${secondary}-a-${weight}`];

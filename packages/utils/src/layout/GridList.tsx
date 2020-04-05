@@ -220,7 +220,7 @@ function GridList(
   if (typeof children === "function") {
     content = children(gridSize);
   } else if (clone || wrapOnly) {
-    content = Children.map(children, child => (
+    content = Children.map(children, (child) => (
       <GridListCell clone={clone}>{child}</GridListCell>
     ));
   } else {

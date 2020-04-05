@@ -3,7 +3,7 @@ import { GridList, GridListCell } from "@react-md/utils";
 
 const ExampleGrid: FC = ({ children }) => (
   <GridList maxCellSize={500}>
-    {Children.map(children, child => (
+    {Children.map(children, (child) => (
       <GridListCell clone>{child}</GridListCell>
     ))}
   </GridList>

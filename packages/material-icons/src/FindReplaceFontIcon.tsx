@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FindReplaceFontIcon: FC<FontIconProps> = props => (
+const FindReplaceFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>find_replace</FontIcon>
 );
 

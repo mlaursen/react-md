@@ -83,6 +83,6 @@ export default function build(
 
   const name = getCurrentPackageName();
   log.info(`Building ${getNameOf(name)}...`);
-  getTargets(name).forEach(target => tsc(target));
+  getTargets(name).forEach((target) => tsc(target));
   log.info();
 }

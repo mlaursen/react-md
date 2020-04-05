@@ -23,7 +23,7 @@ export default function useThemeConfiguration(
   const [theme, setTheme] = useState<ThemeMode>(defaultTheme);
 
   const toggleTheme = useCallback(() => {
-    setTheme(theme => (theme === "dark" ? "light" : "dark"));
+    setTheme((theme) => (theme === "dark" ? "light" : "dark"));
   }, []);
 
   const firstRender = useRef(true);

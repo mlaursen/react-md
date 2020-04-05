@@ -64,15 +64,15 @@
 
     @if $old-ie-support {
       @if $font-map == null {
-        src: url($font-url+'.eot');
+        src: url($font-url + '.eot');
       } @else {
         src: #{map-get($font-map, eot)};
       }
     }
 
     @if $font-map == null {
-      src: local($font-family), local($font-name), url($font-url+'.woff2') format('woff2'),
-        url($font-url+'.woff') format('woff') url($font-url+'.ttf') format('truetype');
+      src: local($font-family), local($font-name), url($font-url + '.woff2') format('woff2'),
+        url($font-url + '.woff') format('woff') url($font-url + '.ttf') format('truetype');
     } @else {
       $woff2: map-get($font-url-or-map, woff2);
       $woff: map-get($font-url-or-map, woff);

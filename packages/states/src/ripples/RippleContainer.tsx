@@ -27,7 +27,7 @@ const RippleContainer: FC<RippleContainerProps> = ({
   exited,
 }) => (
   <span className={cn("rmd-ripple-container", className)}>
-    {ripples.map(ripple => (
+    {ripples.map((ripple) => (
       <Ripple
         key={ripple.startTime}
         ripple={ripple}

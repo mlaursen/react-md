@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const LinearScaleFontIcon: FC<FontIconProps> = props => (
+const LinearScaleFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>linear_scale</FontIcon>
 );
 

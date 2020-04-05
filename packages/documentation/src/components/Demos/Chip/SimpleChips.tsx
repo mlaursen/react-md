@@ -5,7 +5,7 @@ import { AddCircleSVGIcon, ImageSVGIcon } from "@react-md/material-icons";
 import { LazyImage } from "@react-md/media";
 import { Grid } from "@react-md/utils";
 
-const XCircleIcon: FC = props => (
+const XCircleIcon: FC = (props) => (
   <AddCircleSVGIcon
     {...props}
     style={{

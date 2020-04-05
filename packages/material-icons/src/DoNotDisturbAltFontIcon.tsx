@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const DoNotDisturbAltFontIcon: FC<FontIconProps> = props => (
+const DoNotDisturbAltFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>do_not_disturb_alt</FontIcon>
 );
 

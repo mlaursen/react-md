@@ -29,7 +29,7 @@ describe("Badge", () => {
   it("should correctly merge className and themes", () => {
     const themes: BadgeTheme[] = ["primary", "secondary", "default"];
 
-    themes.forEach(theme => {
+    themes.forEach((theme) => {
       const { container, getByTestId, rerender, unmount } = render(
         <Badge id="badge" data-testid="badge" theme={theme}>
           3

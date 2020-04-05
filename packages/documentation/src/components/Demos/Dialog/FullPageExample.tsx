@@ -115,7 +115,7 @@ const IMAGES: Record<number, FullImageData> = {
 };
 
 const validIds = Object.keys(IMAGES);
-const previews = validIds.map(id => ({
+const previews = validIds.map((id) => ({
   src: `https://picsum.photos/id/${id}/100`,
   id,
 }));
@@ -131,7 +131,7 @@ const FullPageExample: FC = () => {
     setState({ visible: true, imageId: parseInt(index, 10) });
   };
   const hide = (): void => {
-    setState(prevState => ({ ...prevState, visible: false }));
+    setState((prevState) => ({ ...prevState, visible: false }));
   };
 
   const { visible, imageId } = state;

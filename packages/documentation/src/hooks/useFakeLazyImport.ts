@@ -4,7 +4,7 @@ function fakeImport<P>(
   Component: FC<P>,
   delay: number
 ): Promise<{ default: FC<P> }> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     window.setTimeout(() => {
       resolve({ default: Component });
     }, delay);

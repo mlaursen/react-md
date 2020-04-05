@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const VerticalAlignCenterFontIcon: FC<FontIconProps> = props => (
+const VerticalAlignCenterFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>vertical_align_center</FontIcon>
 );
 

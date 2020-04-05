@@ -153,7 +153,7 @@ export default function useIndeterminateChecked<T extends string>(
       ),
   };
 
-  const getProps: GetIndeterminateControlledCheckboxProps<T> = value => ({
+  const getProps: GetIndeterminateControlledCheckboxProps<T> = (value) => ({
     value,
     checked: checkedValues.includes(value),
     onChange: () => {

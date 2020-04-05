@@ -61,7 +61,7 @@ const InaccessibleMenu: FC<{ items: string[] }> = ({ items }) => {
           onClick={disable}
         >
           <List>
-            {items.map(item => (
+            {items.map((item) => (
               <MenuItem key={item}>{item}</MenuItem>
             ))}
           </List>

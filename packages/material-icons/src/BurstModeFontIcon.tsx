@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const BurstModeFontIcon: FC<FontIconProps> = props => (
+const BurstModeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>burst_mode</FontIcon>
 );
 

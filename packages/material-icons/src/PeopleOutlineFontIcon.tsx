@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PeopleOutlineFontIcon: FC<FontIconProps> = props => (
+const PeopleOutlineFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>people_outline</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const CloudOffFontIcon: FC<FontIconProps> = props => (
+const CloudOffFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>cloud_off</FontIcon>
 );
 

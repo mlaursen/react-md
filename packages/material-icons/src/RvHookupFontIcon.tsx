@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RvHookupFontIcon: FC<FontIconProps> = props => (
+const RvHookupFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>rv_hookup</FontIcon>
 );
 

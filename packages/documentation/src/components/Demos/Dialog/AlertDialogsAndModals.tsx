@@ -14,7 +14,7 @@ if you really want to submit this.
 const AlertDialogsAndModals: FC = () => {
   const [state, setState] = useState({ visible: false, modal: false });
   const hide = (): void => {
-    setState(prevState => ({ ...prevState, visible: false }));
+    setState((prevState) => ({ ...prevState, visible: false }));
   };
   const show = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setState({
@@ -29,7 +29,7 @@ const AlertDialogsAndModals: FC = () => {
     <>
       <form
         id="draft-form"
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
         }}
       >

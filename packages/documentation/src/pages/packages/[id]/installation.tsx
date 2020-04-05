@@ -17,7 +17,7 @@ Installation.getInitialProps = async ({
 }): Promise<InstallationProps> => {
   const name = qsToString(query.id);
   const readme = await import(`../../../readmes/${name}.md`)
-    .then(mod => mod.default)
+    .then((mod) => mod.default)
     .catch(() => null);
 
   return { readme };

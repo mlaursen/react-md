@@ -13,7 +13,7 @@ interface ReturnValue {
  */
 export default function useDownloadInterval(delay: number = 100): ReturnValue {
   const [value, setValue] = useState(0);
-  const [running, start] = useInterval(stop => {
+  const [running, start] = useInterval((stop) => {
     const nextValue = Math.min(100, value + 1);
     if (value === nextValue) {
       stop();

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const CallMissedFontIcon: FC<FontIconProps> = props => (
+const CallMissedFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>call_missed</FontIcon>
 );
 

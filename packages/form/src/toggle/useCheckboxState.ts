@@ -21,7 +21,7 @@ export default function useCheckboxState(
   const [checked, setChecked] = useState(defaultChecked);
 
   const handleChange = useCallback<ChangeEventHandler>(
-    event => {
+    (event) => {
       if (onChange) {
         onChange(event);
       }

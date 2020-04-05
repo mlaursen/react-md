@@ -121,7 +121,7 @@ const ConfigurableCollapseExample: FC = () => {
               options={options}
               name="temporary"
               value={temporaryBehavior}
-              onChange={nextValue => setTemporary(nextValue)}
+              onChange={(nextValue) => setTemporary(nextValue)}
             />
           </Grid>
         </Fieldset>

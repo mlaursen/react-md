@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ChevronLeftFontIcon: FC<FontIconProps> = props => (
+const ChevronLeftFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>chevron_left</FontIcon>
 );
 

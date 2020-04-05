@@ -6,7 +6,7 @@ import NativeSelect from "../NativeSelect";
 const options = Array.from(new Array(3), (_, i) => `Option ${i + 1}`);
 const PROPS = {
   id: "select",
-  children: options.map(option => (
+  children: options.map((option) => (
     <option key={option} value={option}>
       Option
     </option>

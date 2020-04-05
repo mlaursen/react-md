@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const VideoCallFontIcon: FC<FontIconProps> = props => (
+const VideoCallFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>video_call</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const HdrOnFontIcon: FC<FontIconProps> = props => (
+const HdrOnFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>hdr_on</FontIcon>
 );
 

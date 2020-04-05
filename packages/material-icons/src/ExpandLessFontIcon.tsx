@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ExpandLessFontIcon: FC<FontIconProps> = props => (
+const ExpandLessFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>expand_less</FontIcon>
 );
 

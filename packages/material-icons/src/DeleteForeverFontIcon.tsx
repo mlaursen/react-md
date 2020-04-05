@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const DeleteForeverFontIcon: FC<FontIconProps> = props => (
+const DeleteForeverFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>delete_forever</FontIcon>
 );
 

@@ -42,7 +42,7 @@ const widths: PositionWidth[] = ["auto", "equal", "min"];
 
 const anchors = horizontals.reduce<Record<string, PositionAnchor>>(
   (value, x) => {
-    verticals.forEach(y => {
+    verticals.forEach((y) => {
       value[`${x} ${y}`] = { x, y };
     });
 
@@ -59,7 +59,7 @@ const anchorOptions = Object.entries(anchors).map(([value, anchor]) => ({
 
 type Anchor = typeof anchorOptions[0];
 const CENTERED_ANCHOR = anchorOptions.find(
-  anchor => anchor.label === "center center"
+  (anchor) => anchor.label === "center center"
 ) as Anchor;
 
 const FixedPositioningExample: FC = () => {
@@ -161,7 +161,7 @@ const FixedPositioningExample: FC = () => {
           onChange={handleAnchorChange}
           rightChildren={<ArrowDropDownSVGIcon />}
           listboxWidth="min"
-          isOptionDisabled={option => {
+          isOptionDisabled={(option) => {
             const opt = option as Anchor;
             return width !== "auto" && !opt.value.startsWith("center");
           }}

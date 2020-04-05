@@ -24,7 +24,7 @@ import Links from "./Links";
 import Throws from "./Throws";
 import UsedBy from "./UsedBy";
 
-const SassDocItem: FC<FormattedSassDocItem> = props => {
+const SassDocItem: FC<FormattedSassDocItem> = (props) => {
   const {
     name,
     description,

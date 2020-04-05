@@ -37,7 +37,7 @@ const NestedDropdownMenus: FC = () => {
         name="portal"
         label="Enable Portal?"
         checked={portal}
-        onChange={event => setPortal(event.currentTarget.checked)}
+        onChange={(event) => setPortal(event.currentTarget.checked)}
       />
       <DropdownMenu
         id="simple-nested-menus-example"

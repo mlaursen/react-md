@@ -47,7 +47,7 @@ export function buildTree<T extends BaseTreeItem>(
     return undefined;
   }
 
-  childItems.forEach(childItem => {
+  childItems.forEach((childItem) => {
     childItem.childItems = buildTree(childItem.itemId, items, sort);
   });
 

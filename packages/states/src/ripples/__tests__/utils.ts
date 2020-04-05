@@ -145,7 +145,7 @@ describe("isRippleable", () => {
       "End",
     ];
 
-    keys.forEach(key => {
+    keys.forEach((key) => {
       expect(isRippleable({ ...keyDownEvent, key }, false)).toBe(false);
       expect(isRippleable({ ...keyDownEvent, key }, true)).toBe(false);
     });
@@ -173,7 +173,7 @@ describe("isRippleable", () => {
       "touchcancel",
     ];
 
-    types.forEach(type => {
+    types.forEach((type) => {
       expect(isRippleable({ ...targets, type }, false)).toBe(false);
       expect(isRippleable({ ...targets, type }, true)).toBe(false);
     });

@@ -18,7 +18,7 @@ type WithDefaultProps = GithubLinkProps & { href: string };
 
 const block = bem("github-link");
 
-const GithubLink: FC<GithubLinkProps> = providedProps => {
+const GithubLink: FC<GithubLinkProps> = (providedProps) => {
   const {
     className,
     href,

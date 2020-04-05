@@ -119,8 +119,8 @@ const DATA_TYPES = ["List", "Map", "Number", "Boolean", "String", "Color"];
 function isValidType(type: string): boolean {
   return type
     .split("|")
-    .map(s => s.trim())
-    .every(part => DATA_TYPES.includes(part));
+    .map((s) => s.trim())
+    .every((part) => DATA_TYPES.includes(part));
 }
 
 /**
@@ -162,7 +162,7 @@ export default function getCompiledScssVariable(
     let value = message.substring(prefix.length);
     switch (type) {
       case "List":
-        value = value.split(/\s|,/).map(v => parse(v));
+        value = value.split(/\s|,/).map((v) => parse(v));
         break;
       case "Map":
         value = parseMap(value);

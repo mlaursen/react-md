@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const UnfoldLessFontIcon: FC<FontIconProps> = props => (
+const UnfoldLessFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>unfold_less</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FormatTextdirectionRToLFontIcon: FC<FontIconProps> = props => (
+const FormatTextdirectionRToLFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>format_textdirection_r_to_l</FontIcon>
 );
 

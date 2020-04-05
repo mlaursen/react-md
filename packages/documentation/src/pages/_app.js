@@ -99,7 +99,7 @@ export default class App extends NextApp {
     this.y = window.scrollY;
   };
 
-  handleRouteChange = url => {
+  handleRouteChange = (url) => {
     this.smoothScroll(url);
     if (
       process.env.NODE_ENV === 'production' &&
@@ -109,7 +109,7 @@ export default class App extends NextApp {
     }
   };
 
-  smoothScroll = url => {
+  smoothScroll = (url) => {
     if (this.initialPageScroll) {
       this.initialPageScroll = false;
 

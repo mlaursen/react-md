@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FormatLineSpacingFontIcon: FC<FontIconProps> = props => (
+const FormatLineSpacingFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>format_line_spacing</FontIcon>
 );
 

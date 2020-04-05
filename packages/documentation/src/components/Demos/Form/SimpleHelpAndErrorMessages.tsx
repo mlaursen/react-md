@@ -38,7 +38,7 @@ const SimpleHelpAndErrorMessages: FC = () => {
           placeholder="John Doe"
           value={value1}
           error={value1.length > 20}
-          onChange={event => setValue1(event.currentTarget.value)}
+          onChange={(event) => setValue1(event.currentTarget.value)}
         />
         <FormMessage
           id={`${id}-field-3-message`}
@@ -54,7 +54,7 @@ const SimpleHelpAndErrorMessages: FC = () => {
           label="Name"
           placeholder="John Doe"
           value={value2}
-          onChange={event => setValue2(event.currentTarget.value)}
+          onChange={(event) => setValue2(event.currentTarget.value)}
           error={value2.length > 20}
         />
         <FormMessage

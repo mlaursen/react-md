@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const WrapTextFontIcon: FC<FontIconProps> = props => (
+const WrapTextFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>wrap_text</FontIcon>
 );
 

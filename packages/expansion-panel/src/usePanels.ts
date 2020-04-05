@@ -201,14 +201,14 @@ export default function usePanels({
     }
 
     if (Array.isArray(defaultExpandedIndex)) {
-      const greater = defaultExpandedIndex.filter(i => i > count);
+      const greater = defaultExpandedIndex.filter((i) => i > count);
       if (greater.length) {
         throw new RangeError(
           "The `defaultExpandedIndex` array must contain numbers less than the `count`"
         );
       }
 
-      const lessThan = defaultExpandedIndex.filter(i => i < 0);
+      const lessThan = defaultExpandedIndex.filter((i) => i < 0);
       if (lessThan.length) {
         throw new RangeError(
           "The `defaultExpandedIndex` array must contain numbers greater than or equal to `0`"
@@ -242,8 +242,8 @@ export default function usePanels({
       .map(({ id }) => id);
   });
 
-  const createExpandClick: CreateExpandById = panelId => () => {
-    setExpandedIds(prevIds => {
+  const createExpandClick: CreateExpandById = (panelId) => () => {
+    setExpandedIds((prevIds) => {
       const i = prevIds.indexOf(panelId);
       if (!multiple) {
         if (prevIds[0] === panelId && prevIds.length === 1) {

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const TrackChangesFontIcon: FC<FontIconProps> = props => (
+const TrackChangesFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>track_changes</FontIcon>
 );
 

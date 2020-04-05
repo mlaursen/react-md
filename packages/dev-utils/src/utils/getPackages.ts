@@ -15,7 +15,7 @@ export type PackageType = "scss" | "typescript" | boolean;
 export default function getPackages(type: PackageType = false): string[] {
   if (!packages) {
     packages = readdirSync(packagesRoot).filter(
-      file =>
+      (file) =>
         lstatSync(join(packagesRoot, file)).isDirectory() &&
         !/dev-utils|documentation|react-md/.test(file)
     );
@@ -24,14 +24,16 @@ export default function getPackages(type: PackageType = false): string[] {
   switch (type) {
     case "scss":
       if (!scssPackages) {
-        scssPackages = packages.filter(name => !NO_STYLES_PACKAGES.test(name));
+        scssPackages = packages.filter(
+          (name) => !NO_STYLES_PACKAGES.test(name)
+        );
       }
 
       return scssPackages;
     case "typescript":
       if (!typescriptPackages) {
         typescriptPackages = packages.filter(
-          name => !NO_SCRIPT_PACKAGES.test(name)
+          (name) => !NO_SCRIPT_PACKAGES.test(name)
         );
       }
 

@@ -31,7 +31,7 @@ const SandboxList: FC = () => (
             <CardTitle id={`${toId(pkgName)}`}>{pkgName}</CardTitle>
           </CardHeader>
           <Fragment key={pkgName}>
-            {Object.keys(lookups).map(demoName => {
+            {Object.keys(lookups).map((demoName) => {
               const name = toTitle(demoName, " ", true);
               const href = `/sandbox?${qs.stringify({ pkg: pkgName, name })}`;
               const demoHref = `/packages/${toTitle(

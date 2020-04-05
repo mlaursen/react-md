@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const BorderColorFontIcon: FC<FontIconProps> = props => (
+const BorderColorFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>border_color</FontIcon>
 );
 

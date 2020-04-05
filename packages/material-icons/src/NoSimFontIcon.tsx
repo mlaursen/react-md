@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const NoSimFontIcon: FC<FontIconProps> = props => (
+const NoSimFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>no_sim</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const SignalCellularOffFontIcon: FC<FontIconProps> = props => (
+const SignalCellularOffFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>signal_cellular_off</FontIcon>
 );
 

@@ -29,7 +29,7 @@ const Test: FC<TestProps> = ({ visible, ...props }) => (
 
 beforeEach(() => {
   requestAnimationFrame.mockClear();
-  requestAnimationFrame.mockImplementation(cb => {
+  requestAnimationFrame.mockImplementation((cb) => {
     cb(0);
     return 0;
   });

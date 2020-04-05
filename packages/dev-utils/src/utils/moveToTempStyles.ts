@@ -20,7 +20,7 @@ export default async function moveToTempStyles(
 
   log.debug("Copying the following files to the temp styles folder:");
   await Promise.all(
-    files.map(async file => {
+    files.map(async (file) => {
       const replacement = file.includes(`${sep}react-md${sep}`)
         ? `${tempStylesDir}${sep}`
         : join(tempStylesDir, `@react-md${sep}`);

@@ -45,7 +45,7 @@ describe("buttonThemeClassNames", () => {
     const themesWithoutClear = themes.slice(1);
 
     it("should not apply any of the color class names when the disabled prop is enabled", () => {
-      themes.forEach(themeColor => {
+      themes.forEach((themeColor) => {
         const flatClassName = buttonThemeClassNames({
           disabled: true,
           theme: themeColor,
@@ -75,7 +75,7 @@ describe("buttonThemeClassNames", () => {
     });
 
     it("should apply the correct theme class names for flat buttons", () => {
-      themesWithoutClear.forEach(themeColor => {
+      themesWithoutClear.forEach((themeColor) => {
         const className = buttonThemeClassNames({
           theme: themeColor,
           themeType: "flat",
@@ -85,7 +85,7 @@ describe("buttonThemeClassNames", () => {
     });
 
     it("should apply the correct theme class names for outline buttons", () => {
-      themesWithoutClear.forEach(themeColor => {
+      themesWithoutClear.forEach((themeColor) => {
         const className = buttonThemeClassNames({
           theme: themeColor,
           themeType: "outline",
@@ -96,7 +96,7 @@ describe("buttonThemeClassNames", () => {
     });
 
     it("should apply the correct theme class names for contained buttons", () => {
-      themesWithoutClear.forEach(themeColor => {
+      themesWithoutClear.forEach((themeColor) => {
         const className = buttonThemeClassNames({
           theme: themeColor,
           themeType: "contained",

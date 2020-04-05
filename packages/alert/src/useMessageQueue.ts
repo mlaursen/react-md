@@ -84,7 +84,7 @@ export function handleAddMessage<M extends Message = ToastMessage>(
   }
 
   const { messageId, messagePriority = "normal" } = message;
-  const i = state.findIndex(mes => mes.messageId === messageId);
+  const i = state.findIndex((mes) => mes.messageId === messageId);
   const isNext = messagePriority === "next";
   const isNormal = messagePriority === "normal";
   const isReplace = messagePriority === "replace";
@@ -188,7 +188,7 @@ export default function useMessageQueue<M extends Message = ToastMessage>({
   const queueRef = useRef(queue);
 
   const addMessageDispatch = useCallback<AddMessage<M>>(
-    message => {
+    (message) => {
       if (duplicates !== "allow" && !message.messageId) {
         throw new Error(
           `A messageId is required when the "${duplicates}" duplicate behavior is enabled but it was not provided in the current message.`

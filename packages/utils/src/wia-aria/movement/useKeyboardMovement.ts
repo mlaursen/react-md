@@ -187,7 +187,7 @@ export default function useKeyboardMovement<
   });
 
   const handleKeyDown = useCallback<MovementHandler<CE>>(
-    event => {
+    (event) => {
       if (searchable) {
         handleSearch(event);
       }

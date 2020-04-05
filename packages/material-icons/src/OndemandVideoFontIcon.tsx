@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const OndemandVideoFontIcon: FC<FontIconProps> = props => (
+const OndemandVideoFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>ondemand_video</FontIcon>
 );
 

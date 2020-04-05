@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RecordVoiceOverFontIcon: FC<FontIconProps> = props => (
+const RecordVoiceOverFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>record_voice_over</FontIcon>
 );
 

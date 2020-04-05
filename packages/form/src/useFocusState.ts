@@ -22,7 +22,7 @@ export default function useFocusState({
   const [focused, setFocused, setBlurred] = useToggle(false);
 
   const handleFocus = useCallback<FocusEventHandler>(
-    event => {
+    (event) => {
       if (onFocus) {
         onFocus(event);
       }
@@ -33,7 +33,7 @@ export default function useFocusState({
   );
 
   const handleBlur = useCallback<BlurEventHandler>(
-    event => {
+    (event) => {
       if (onBlur) {
         onBlur(event);
       }

@@ -9,7 +9,7 @@ export interface LinkButtonProps extends LinkUnstyledProps, ButtonThemeProps {
   tooltipClassName?: string;
 }
 
-const LinkButton: FC<LinkButtonProps> = providedProps => {
+const LinkButton: FC<LinkButtonProps> = (providedProps) => {
   const {
     className: _className,
     theme,

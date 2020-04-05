@@ -86,7 +86,7 @@ function removeUncompilableCode(code: string): string {
 
 function compileExampleCode(code: string): string {
   const imports = getPackages("scss")
-    .map(p => `@import '@react-md/${p}/${nonWebpackDist}/mixins';`)
+    .map((p) => `@import '@react-md/${p}/${nonWebpackDist}/mixins';`)
     .join("\n");
   const data = `${imports}
 @import '@react-md/icon/${nonWebpackDist}/material-icons';
@@ -155,7 +155,7 @@ function getReferenceLinks(
     const { name, type } = reference.context;
     const key = `${name}-${type}`;
     const link = referenceLinks.find(
-      ref => ref.name === name && ref.type === type
+      (ref) => ref.name === name && ref.type === type
     );
 
     if (!link) {
@@ -303,7 +303,7 @@ function createParamaterizedItem<T extends MixinItem | FunctionItem>({
   let params = "";
   if (parameter) {
     params = parameter
-      .map(param => {
+      .map((param) => {
         const { name } = param;
         const defaultValue = (param.default || "").replace(/^rmd/, "$rmd");
         const suffix = defaultValue && `: ${defaultValue}`;
@@ -376,10 +376,10 @@ export async function createSassdocUtil(): Promise<void> {
   );
 
   const sassdocLines = sassdocDef.split(/\r?\n/);
-  const sassdocStart = sassdocLines.findIndex(line =>
+  const sassdocStart = sassdocLines.findIndex((line) =>
     line.startsWith("declare module")
   );
-  const sassdocEnd = sassdocLines.findIndex(line =>
+  const sassdocEnd = sassdocLines.findIndex((line) =>
     line.startsWith("  export interface ParseOptions")
   );
   const sassdocTypes = sassdocLines
@@ -387,7 +387,7 @@ export async function createSassdocUtil(): Promise<void> {
     .join("\n");
 
   const customLines = customDef.split(/\r?\n/);
-  const customStart = customLines.findIndex(line =>
+  const customStart = customLines.findIndex((line) =>
     line.startsWith('export * from "sassdoc')
   );
   const customContent = customLines.slice(customStart + 1).join("\n");
@@ -406,9 +406,9 @@ export default async function sassdoc(): Promise<void> {
 
   const sassdocs = await getSassdoc();
   const publicSassdocs = sassdocs.filter(isPublic);
-  const references = sassdocs.map(item => createReferenceLink(item));
+  const references = sassdocs.map((item) => createReferenceLink(item));
   const lookup: PackageSassDocMap = {};
-  publicSassdocs.forEach(item => {
+  publicSassdocs.forEach((item) => {
     const packageName = getPackageName(item);
     if (!lookup[packageName]) {
       lookup[packageName] = {

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const StrikethroughSFontIcon: FC<FontIconProps> = props => (
+const StrikethroughSFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>strikethrough_s</FontIcon>
 );
 

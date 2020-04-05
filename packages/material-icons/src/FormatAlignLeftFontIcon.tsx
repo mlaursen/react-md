@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FormatAlignLeftFontIcon: FC<FontIconProps> = props => (
+const FormatAlignLeftFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>format_align_left</FontIcon>
 );
 

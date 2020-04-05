@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RemoveFromQueueFontIcon: FC<FontIconProps> = props => (
+const RemoveFromQueueFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>remove_from_queue</FontIcon>
 );
 

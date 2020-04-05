@@ -14,7 +14,7 @@ const PositionExamples: FC = () => {
   return (
     <>
       <Fieldset legend="Sheet positions">
-        {positions.map(pos => (
+        {positions.map((pos) => (
           <Radio
             key={pos}
             id={`sheet-position-${pos}`}

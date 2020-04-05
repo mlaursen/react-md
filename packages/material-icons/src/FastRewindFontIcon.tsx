@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FastRewindFontIcon: FC<FontIconProps> = props => (
+const FastRewindFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>fast_rewind</FontIcon>
 );
 

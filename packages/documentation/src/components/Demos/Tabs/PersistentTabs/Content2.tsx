@@ -28,7 +28,7 @@ interface PicsumPhotoItem {
   post_url: string;
 }
 
-const Content2: FC<TabPanelProps> = props => {
+const Content2: FC<TabPanelProps> = (props) => {
   const [{ loading, data }, setState] = useState<State>({
     loading: false,
     data: [],

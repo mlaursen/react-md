@@ -20,7 +20,7 @@ export default function useTreeItemSelection(
   const [selectedIds, setSelectedIds] = useState(defaultSelectedIds);
   const onItemSelect = useCallback(
     (itemId: TreeItemId) => {
-      setSelectedIds(selectedIds => {
+      setSelectedIds((selectedIds) => {
         if (!multiSelect) {
           if (selectedIds[0] === itemId && selectedIds.length === 1) {
             return selectedIds;

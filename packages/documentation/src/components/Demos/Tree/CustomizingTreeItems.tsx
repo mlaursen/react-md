@@ -66,7 +66,7 @@ const data = [
 
 const styles = bem("customizing-tree-items");
 
-const getItemProps: GetItemProps<Item> = item => {
+const getItemProps: GetItemProps<Item> = (item) => {
   const { selected, focused, expanded, type } = item;
   let leftIcon: ReactNode = null;
   switch (type) {

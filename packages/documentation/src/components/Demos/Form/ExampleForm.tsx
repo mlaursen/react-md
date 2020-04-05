@@ -32,7 +32,7 @@ const ExampleForm: FC = () => {
   return (
     <>
       <Fieldset legend="Theme options" unstyled={false}>
-        {themes.map(theme => (
+        {themes.map((theme) => (
           <Radio
             id={`form-theme-${theme}`}
             key={theme}

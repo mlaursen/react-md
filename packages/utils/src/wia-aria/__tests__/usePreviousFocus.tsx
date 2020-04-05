@@ -7,7 +7,7 @@ const requestAnimationFrame = jest.spyOn(window, "requestAnimationFrame");
 beforeEach(() => {
   requestAnimationFrame.mockClear();
   // need the frame to be run sync for testing this
-  requestAnimationFrame.mockImplementation(cb => {
+  requestAnimationFrame.mockImplementation((cb) => {
     cb(0);
     return 0;
   });
@@ -98,7 +98,7 @@ describe.skip("usePreviousFocus", () => {
 
     const docContains = jest.spyOn(document, "contains");
     const querySelector = jest.spyOn(document, "querySelector");
-    querySelector.mockImplementation(query =>
+    querySelector.mockImplementation((query) =>
       query === "#fallback" ? fallbackEl : null
     );
 
@@ -108,7 +108,7 @@ describe.skip("usePreviousFocus", () => {
     rerender(<TestComponent mounted disabled={false} fallback="#fallback" />);
 
     const button1 = queryByText("Button 1");
-    docContains.mockImplementation(el => el !== button1);
+    docContains.mockImplementation((el) => el !== button1);
 
     rerender(
       <TestComponent
@@ -139,7 +139,7 @@ describe.skip("usePreviousFocus", () => {
     rerender(<TestComponent mounted disabled={false} fallback={getFallback} />);
 
     const button1 = queryByText("Button 1");
-    docContains.mockImplementation(el => el !== button1);
+    docContains.mockImplementation((el) => el !== button1);
 
     rerender(
       <TestComponent
@@ -168,7 +168,7 @@ describe.skip("usePreviousFocus", () => {
     rerender(<TestComponent mounted disabled={false} fallback={fallbackEl} />);
 
     const button1 = queryByText("Button 1");
-    docContains.mockImplementation(el => el !== button1);
+    docContains.mockImplementation((el) => el !== button1);
 
     rerender(
       <TestComponent

@@ -21,7 +21,7 @@ import { isSvg } from "./matchers";
 function toUrlId(s: string): string {
   return s
     .split(/(?=[A-Z][a-z])/)
-    .map(s => s.toLowerCase())
+    .map((s) => s.toLowerCase())
     .join("-")
     .replace(/\..+$/, "");
 }
@@ -34,7 +34,7 @@ function toTitle(s: string): string {
 }
 
 function toDependencyJson(dependencies: string[]): Record<string, string> {
-  const filtered = dependencies.filter(n => !n.startsWith(path.sep));
+  const filtered = dependencies.filter((n) => !n.startsWith(path.sep));
   filtered.sort();
 
   return filtered.reduce(
@@ -100,16 +100,16 @@ interface GenerateSandboxConfig {
 
 function createDemoStyles(dependencies: string[]): string {
   const rmd = dependencies.filter(
-    name =>
+    (name) =>
       name.startsWith("@react-md") && !NON_STYLEABLE_RMD_PACKAGES.includes(name)
   );
 
   const imports = [
     ...rmd,
     ...ALWAYS_REQUIRED_DEPENDENCIES.filter(
-      name => !dependencies.includes(name)
+      (name) => !dependencies.includes(name)
     ),
-  ].map(name => `@import '~${name}/${dist}/mixins';`);
+  ].map((name) => `@import '~${name}/${dist}/mixins';`);
   imports.sort();
 
   return `@import 'variables';
@@ -200,7 +200,7 @@ export default async function generate({
 
   const files = (
     await Promise.all(
-      [demoPath, ...aliased].map(async filePath => {
+      [demoPath, ...aliased].map(async (filePath) => {
         let pathname = filePath;
         if (filePath === demoPath) {
           pathname = "Demo.tsx";

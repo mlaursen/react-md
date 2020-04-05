@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const CallMergeFontIcon: FC<FontIconProps> = props => (
+const CallMergeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>call_merge</FontIcon>
 );
 

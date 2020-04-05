@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FolderSpecialFontIcon: FC<FontIconProps> = props => (
+const FolderSpecialFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>folder_special</FontIcon>
 );
 

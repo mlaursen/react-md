@@ -27,7 +27,7 @@ describe("DialogFooter", () => {
     const footer = container.querySelector("footer") as HTMLElement;
     expect(footer.className).not.toContain("rmd-dialog__footer--flex");
 
-    aligns.slice(1).forEach(align => {
+    aligns.slice(1).forEach((align) => {
       rerender(<DialogFooter align={align} />);
       expect(footer.className).toContain("rmd-dialog__footer--flex");
     });
@@ -38,7 +38,7 @@ describe("DialogFooter", () => {
     const footer = container.querySelector("footer") as HTMLElement;
     expect(footer.className).not.toContain("rmd-dialog__footer--none");
 
-    aligns.slice(1).forEach(align => {
+    aligns.slice(1).forEach((align) => {
       rerender(<DialogFooter align={align} />);
       expect(footer.className).toContain(`rmd-dialog__footer--${align}`);
     });
@@ -54,7 +54,7 @@ describe("DialogFooter", () => {
   });
 
   it("should render correctly (with snapshots)", () => {
-    aligns.forEach(align => {
+    aligns.forEach((align) => {
       expect(
         create(
           <DialogFooter id="dialog-footer" align={align}>

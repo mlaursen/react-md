@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RemoveFontIcon: FC<FontIconProps> = props => (
+const RemoveFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>remove</FontIcon>
 );
 

@@ -14,7 +14,7 @@ const dispatchEvent = jest.fn();
 beforeAll(() => {
   // matchMedia doesn't exist in tests, but maybe one day it'll be supported
   // so polyfill only when it doesn't exist
-  window.matchMedia = query => ({
+  window.matchMedia = (query) => ({
     matches: query.includes(`${DEFAULT_DESKTOP_MIN_WIDTH}`),
     media: "",
     onchange,

@@ -47,7 +47,7 @@ export default function useNestedDialogFixes({
     let disableEscapeClose = propDisableEscapeClose;
     if (!disabled && visible && stack.length > 1) {
       const lastIndex = stack.length - 1;
-      const i = stack.findIndex(dialogId => id === dialogId);
+      const i = stack.findIndex((dialogId) => id === dialogId);
       disableOverlay = i < lastIndex;
       if (!propDisableEscapeClose) {
         disableEscapeClose = i < lastIndex;

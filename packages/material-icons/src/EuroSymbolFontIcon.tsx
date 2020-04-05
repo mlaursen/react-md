@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const EuroSymbolFontIcon: FC<FontIconProps> = props => (
+const EuroSymbolFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>euro_symbol</FontIcon>
 );
 

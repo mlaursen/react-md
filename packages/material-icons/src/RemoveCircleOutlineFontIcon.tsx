@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RemoveCircleOutlineFontIcon: FC<FontIconProps> = props => (
+const RemoveCircleOutlineFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>remove_circle_outline</FontIcon>
 );
 

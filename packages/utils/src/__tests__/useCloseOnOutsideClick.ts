@@ -43,7 +43,7 @@ describe("useCloseOnOutsideClick", () => {
     const addEventListener = jest.spyOn(window, "addEventListener");
     const removeEventListener = jest.spyOn(window, "removeEventListener");
     const { rerender } = renderHook(
-      options => useCloseOnOutsideClick(options),
+      (options) => useCloseOnOutsideClick(options),
       {
         initialProps: { enabled: true, element: null, onOutsideClick },
       }
@@ -69,7 +69,7 @@ describe("useCloseOnOutsideClick", () => {
       onOutsideClick,
     };
     const { rerender } = renderHook(
-      options => useCloseOnOutsideClick(options),
+      (options) => useCloseOnOutsideClick(options),
       {
         initialProps,
       }
@@ -103,7 +103,7 @@ describe("useCloseOnOutsideClick", () => {
     };
 
     const { rerender } = renderHook(
-      options => useCloseOnOutsideClick(options),
+      (options) => useCloseOnOutsideClick(options),
       { initialProps }
     );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FlipToBackFontIcon: FC<FontIconProps> = props => (
+const FlipToBackFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>flip_to_back</FontIcon>
 );
 

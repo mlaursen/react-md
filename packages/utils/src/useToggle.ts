@@ -40,7 +40,7 @@ export default function useToggle(
   }, []);
 
   const toggle = useCallback(() => {
-    setToggled(prevVisible => !prevVisible);
+    setToggled((prevVisible) => !prevVisible);
   }, []);
 
   return [toggled, enable, disable, toggle, setToggled];

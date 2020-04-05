@@ -34,7 +34,7 @@ async function umdSize(): Promise<void> {
   }
 
   log.info("The gzipped UMD bundle size is:");
-  log.info(list(umd.map(name => `${name} ${filesize(gzipSize.sync(name))}`)));
+  log.info(list(umd.map((name) => `${name} ${filesize(gzipSize.sync(name))}`)));
   log.info();
 }
 

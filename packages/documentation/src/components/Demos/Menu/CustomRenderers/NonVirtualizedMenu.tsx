@@ -13,7 +13,7 @@ const NonVirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
   const [value, setValue] = useState("None");
   const clickableItems = useMemo(
     () =>
-      items.map(item => ({
+      items.map((item) => ({
         ...item,
         onClick: () => setValue(item.children),
       })),

@@ -336,7 +336,7 @@
       $font-url-or-prefix
     );
     $font-url: if(char-at($font-url) != '/', $font-url + '/', $font-url);
-    $font-url: url($font-url+$full-font-name+'.ttf');
+    $font-url: url($font-url + $full-font-name + '.ttf');
   } @else {
     $font-url: $font-url-or-prefix;
   }

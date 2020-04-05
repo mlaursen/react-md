@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PlayCircleOutlineFontIcon: FC<FontIconProps> = props => (
+const PlayCircleOutlineFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>play_circle_outline</FontIcon>
 );
 

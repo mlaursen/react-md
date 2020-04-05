@@ -18,7 +18,7 @@ export default function useCloseOnEscape(
   onKeyDown?: KeyboardEventHandler
 ): KeyboardEventHandler | undefined {
   const cache = useRefCache({ onRequestClose, onKeyDown });
-  const handleKeyDown = useCallback<KeyboardEventHandler>(event => {
+  const handleKeyDown = useCallback<KeyboardEventHandler>((event) => {
     const { onKeyDown, onRequestClose } = cache.current;
     if (onKeyDown) {
       onKeyDown(event);

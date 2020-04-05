@@ -59,7 +59,7 @@ export default function useNumberField({
   }, [min, max]);
 
   const handleChange = useCallback<ChangeEventHandler>(
-    event => {
+    (event) => {
       if (onChange) {
         onChange(event);
       }

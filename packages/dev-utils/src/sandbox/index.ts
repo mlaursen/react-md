@@ -30,7 +30,7 @@ async function createSandboxJsonFiles(
   empty: boolean
 ): Promise<void> {
   const matcher = components.length
-    ? `+(${components.map(name => toTitle(name, "")).join("|")})`
+    ? `+(${components.map((name) => toTitle(name, "")).join("|")})`
     : "*";
 
   const globString = `${DEMOS_FOLDER}/${matcher}/index.tsx`;
@@ -59,7 +59,7 @@ async function createSandboxJsonFiles(
   const aliases = getAliases(compilerOptions);
   const demos = (
     await Promise.all(
-      demoIndexes.map(demoIndexPath => extractDemoFiles(demoIndexPath))
+      demoIndexes.map((demoIndexPath) => extractDemoFiles(demoIndexPath))
     )
   ).reduce((list, sublist) => [...list, ...sublist], []);
 
@@ -72,13 +72,13 @@ async function createSandboxJsonFiles(
   await ensureDir(SANDBOXES_PATH);
   if (empty) {
     const paths = demos.map(getSandboxFileName);
-    const missing = paths.filter(p => !existsSync(p));
+    const missing = paths.filter((p) => !existsSync(p));
     if (missing.length) {
       log.debug("Creating empty sandbox files:", true);
       log.debug(list(missing), true);
       log.debug("", true);
 
-      await Promise.all(paths.map(p => writeJson(p, {})));
+      await Promise.all(paths.map((p) => writeJson(p, {})));
     }
 
     return;
@@ -86,7 +86,7 @@ async function createSandboxJsonFiles(
 
   log.info("Starting to extract all the imports for each demo...");
   await Promise.all(
-    demos.map(demoPath => {
+    demos.map((demoPath) => {
       const [demoName, folder1, folder2] = demoPath
         .replace(`${path.sep}index.ts`, "")
         .replace(`.${path.sep}`, "")
@@ -105,7 +105,7 @@ async function createSandboxJsonFiles(
       allImports.sort();
 
       const aliased = getAliasedImports(allImports, aliases);
-      const dependencies = allImports.filter(name => !aliased.includes(name));
+      const dependencies = allImports.filter((name) => !aliased.includes(name));
 
       log.debug("Found the following dependencies:");
       log.debug(list(dependencies));
@@ -146,7 +146,7 @@ export default async function sandbox({
   if (staged) {
     const demos = Array.from(
       new Set(
-        components.map(filePath => {
+        components.map((filePath) => {
           let demo = filePath.replace(/.+\/Demos\//, "");
           demo = demo.substring(0, demo.indexOf(path.sep));
 
@@ -165,10 +165,10 @@ export default async function sandbox({
     let filtered = sandboxes;
     if (components.length) {
       const regexp = new RegExp(components.join("|"), "i");
-      filtered = sandboxes.filter(pathname => regexp.test(pathname));
+      filtered = sandboxes.filter((pathname) => regexp.test(pathname));
     }
 
-    await Promise.all(filtered.map(name => remove(name)));
+    await Promise.all(filtered.map((name) => remove(name)));
   }
 
   if (!lookupsOnly && !cleanOnly) {

@@ -12,7 +12,8 @@ const block = bem("color-palette");
 
 const ColorList: FC<ColorListProps> = ({ baseColor, colors }) => {
   const baseName = `rmd-${baseColor}-500`;
-  const baseValue = (colors.find(c => c.name === baseName) || colors[6]).value;
+  const baseValue = (colors.find((c) => c.name === baseName) || colors[6])
+    .value;
   return (
     <ol className={block("list")}>
       <Color

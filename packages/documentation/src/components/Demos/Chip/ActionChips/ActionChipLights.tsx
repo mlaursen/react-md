@@ -23,7 +23,7 @@ const ActionChipLights: FC = () => {
 
     const timeout = window.setTimeout(() => {
       setLoading(false);
-      setEnabled(prevEnabled => !prevEnabled);
+      setEnabled((prevEnabled) => !prevEnabled);
     }, randomInt({ min: 3, max: 5 }) * 1000);
 
     return () => {

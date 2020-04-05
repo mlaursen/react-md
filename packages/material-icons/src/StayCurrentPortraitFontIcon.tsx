@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const StayCurrentPortraitFontIcon: FC<FontIconProps> = props => (
+const StayCurrentPortraitFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>stay_current_portrait</FontIcon>
 );
 

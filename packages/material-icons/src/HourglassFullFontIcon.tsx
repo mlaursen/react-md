@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const HourglassFullFontIcon: FC<FontIconProps> = props => (
+const HourglassFullFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>hourglass_full</FontIcon>
 );
 

@@ -35,7 +35,7 @@ const TextFieldTypes: FC = () => {
   return (
     <Form className="text-field-types">
       <Fieldset legend="Text field theme">
-        {themes.map(theme => (
+        {themes.map((theme) => (
           <Radio
             id={`text-field-types-theme-${theme}`}
             key={theme}
@@ -47,7 +47,7 @@ const TextFieldTypes: FC = () => {
           />
         ))}
       </Fieldset>
-      {types.map(type => (
+      {types.map((type) => (
         <TextField
           id={`text-field-type-${type}`}
           key={type}

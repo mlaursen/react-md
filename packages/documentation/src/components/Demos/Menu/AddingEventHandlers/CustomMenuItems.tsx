@@ -5,13 +5,13 @@ import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 
-const Share: FC<MenuItemProps> = props => (
+const Share: FC<MenuItemProps> = (props) => (
   <MenuItem {...props} leftIcon={<ShareSVGIcon />}>
     Share
   </MenuItem>
 );
 
-const New: FC<MenuItemProps> = props => (
+const New: FC<MenuItemProps> = (props) => (
   <MenuItem {...props} leftIcon={<AddSVGIcon />}>
     New
   </MenuItem>

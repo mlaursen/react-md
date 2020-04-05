@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FormatAlignJustifyFontIcon: FC<FontIconProps> = props => (
+const FormatAlignJustifyFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>format_align_justify</FontIcon>
 );
 

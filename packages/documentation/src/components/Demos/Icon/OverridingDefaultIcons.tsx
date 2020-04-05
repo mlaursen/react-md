@@ -48,7 +48,7 @@ const OverridingDefaultIcons: FC = () => {
           placeholder="Item..."
           options={Array.from(new Array(10), (_, i) => `Item ${i + 1}`)}
           value={value1}
-          onChange={value => setValue1(value)}
+          onChange={(value) => setValue1(value)}
         />
         <Select
           id="select-2"
@@ -56,7 +56,7 @@ const OverridingDefaultIcons: FC = () => {
           placeholder="Item..."
           options={Array.from(new Array(10), (_, i) => `Item ${i + 1}`)}
           value={value2}
-          onChange={value => setValue2(value)}
+          onChange={(value) => setValue2(value)}
           rightChildren={<ArrowDropDownFontIcon />}
         />
         <Checkbox id="checkbox-1" name="checkbox" label="Checkbox inherits" />

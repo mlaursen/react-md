@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const MoveToInboxFontIcon: FC<FontIconProps> = props => (
+const MoveToInboxFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>move_to_inbox</FontIcon>
 );
 

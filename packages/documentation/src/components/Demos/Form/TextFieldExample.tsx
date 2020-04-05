@@ -6,7 +6,9 @@ import TextFieldThemeConfig from "./TextFieldThemeConfig";
 const TextFieldExample: FC = () => (
   <TextFieldThemeConfig
     idPrefix="text-field"
-    renderField={props => <TextField id="configurable-text-field" {...props} />}
+    renderField={(props) => (
+      <TextField id="configurable-text-field" {...props} />
+    )}
   />
 );
 

@@ -79,12 +79,12 @@ const DenseTooltipsWrapper: FC = ({ children }) => {
 
   useEffect(() => {
     const { style } = document.documentElement;
-    variables.forEach(variable => {
+    variables.forEach((variable) => {
       style.setProperty(variable.name, variable.value);
     });
 
     return () => {
-      variables.forEach(variable => {
+      variables.forEach((variable) => {
         style.setProperty(variable.name, "");
       });
     };

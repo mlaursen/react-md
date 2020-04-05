@@ -52,7 +52,7 @@
     "isBinary": false
   },
   "src/ExampleGrid.tsx": {
-    "content": "import React, { FC, Children } from \"react\";\nimport { GridList, GridListCell } from \"@react-md/utils\";\n\nconst ExampleGrid: FC = ({ children }) => (\n  <GridList maxCellSize={500}>\n    {Children.map(children, child => (\n      <GridListCell clone>{child}</GridListCell>\n    ))}\n  </GridList>\n);\n\nexport default ExampleGrid;\n",
+    "content": "import React, { FC, Children } from \"react\";\nimport { GridList, GridListCell } from \"@react-md/utils\";\n\nconst ExampleGrid: FC = ({ children }) => (\n  <GridList maxCellSize={500}>\n    {Children.map(children, (child) => (\n      <GridListCell clone>{child}</GridListCell>\n    ))}\n  </GridList>\n);\n\nexport default ExampleGrid;\n",
     "isBinary": false
   },
   "src/desserts.ts": {

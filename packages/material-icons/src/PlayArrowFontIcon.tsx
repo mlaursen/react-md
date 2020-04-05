@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PlayArrowFontIcon: FC<FontIconProps> = props => (
+const PlayArrowFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>play_arrow</FontIcon>
 );
 

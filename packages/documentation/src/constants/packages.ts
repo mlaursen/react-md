@@ -37,13 +37,13 @@ export const PACKAGE_NAMES = [
 ];
 
 export const TYPESCRIPT_PACKAGES = PACKAGE_NAMES.filter(
-  name => !/elevation|theme/.test(name)
+  (name) => !/elevation|theme/.test(name)
 );
 
 export const SCSS_PACKAGES = PACKAGE_NAMES.filter(
-  name => !/autocomplete|material-icons|portal/.test(name)
+  (name) => !/autocomplete|material-icons|portal/.test(name)
 );
 
 export const DEMOABLE_PACKAGES = PACKAGE_NAMES.filter(
-  name => !/layout/.test(name)
+  (name) => !/layout/.test(name)
 );

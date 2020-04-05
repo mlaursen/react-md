@@ -21,14 +21,14 @@ const TextAreaExample: FC = () => {
   const rowsInt = parseInt(rows, 10);
   const maxRowsInt = parseInt(maxRows, 10);
   if (maxRowsInt !== -1 && maxRowsInt < rowsInt) {
-    const i = MAX_ROWS.find(value => value >= rowsInt) || -1;
+    const i = MAX_ROWS.find((value) => value >= rowsInt) || -1;
     setMaxRows(`${i}`);
   }
 
   return (
     <TextFieldThemeConfig
       idPrefix="textarea"
-      renderField={props => (
+      renderField={(props) => (
         <TextArea
           id="configurable-textarea"
           {...props}
@@ -85,7 +85,7 @@ const TextAreaExample: FC = () => {
           onChange={handleMaxRowChange}
           className="text-field-theme-config__select"
         >
-          {MAX_ROWS.map(amount => (
+          {MAX_ROWS.map((amount) => (
             <option
               key={amount}
               value={amount}

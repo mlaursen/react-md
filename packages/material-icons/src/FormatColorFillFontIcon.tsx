@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FormatColorFillFontIcon: FC<FontIconProps> = props => (
+const FormatColorFillFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>format_color_fill</FontIcon>
 );
 

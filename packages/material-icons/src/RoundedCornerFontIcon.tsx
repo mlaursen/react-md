@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RoundedCornerFontIcon: FC<FontIconProps> = props => (
+const RoundedCornerFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>rounded_corner</FontIcon>
 );
 

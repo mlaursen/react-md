@@ -9,7 +9,7 @@ const AsyncSwitchExample: FC = () => {
   const [start] = useTimeout(() => {
     setLoading(false);
     if (fail) {
-      setChecked(prevChecked => !prevChecked);
+      setChecked((prevChecked) => !prevChecked);
     }
   }, 5000);
 
@@ -26,7 +26,7 @@ const AsyncSwitchExample: FC = () => {
         name="switch"
         label="Async Switch"
         loading={loading}
-        onChange={event => {
+        onChange={(event) => {
           start();
           setLoading(true);
           setChecked(event.currentTarget.checked);

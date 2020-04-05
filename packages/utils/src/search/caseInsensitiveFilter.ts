@@ -43,7 +43,7 @@ export default function caseInsensitiveFilter<T = unknown>(
     return searchable;
   }
 
-  return searchable.filter(item => {
+  return searchable.filter((item) => {
     const value = getSearchString(
       getItemValue(item, valueKey),
       true,

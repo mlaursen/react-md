@@ -71,7 +71,7 @@ const Search: FC = () => {
   }, []);
 
   const handleAutoComplete = useCallback<AutoCompleteHandler>(
-    result => {
+    (result) => {
       const match = data[result.dataIndex];
       if (match) {
         const { pageUrl, pathname } = match;

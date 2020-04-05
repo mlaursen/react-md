@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ExitToAppFontIcon: FC<FontIconProps> = props => (
+const ExitToAppFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>exit_to_app</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ViewStreamFontIcon: FC<FontIconProps> = props => (
+const ViewStreamFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>view_stream</FontIcon>
 );
 

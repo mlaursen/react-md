@@ -33,7 +33,7 @@ const StickyColumnsPart4: FC = () => {
                */
               sticky="header-cell"
             />
-            {headers.map(header => (
+            {headers.map((header) => (
               <TableCell key={header}>{header}</TableCell>
             ))}
           </TableRow>

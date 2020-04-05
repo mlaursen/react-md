@@ -279,7 +279,7 @@ export default function useAutoComplete({
           index,
           result,
           dataIndex: data.findIndex(
-            datum => getResultValue(datum, valueKey) === resultValue
+            (datum) => getResultValue(datum, valueKey) === resultValue
           ),
           filteredData,
         });
@@ -333,7 +333,7 @@ export default function useAutoComplete({
       const nextMatch = getResultValue(items[index], valueKey);
       target.value = nextMatch;
       target.setSelectionRange(0, nextMatch.length);
-      setState(prevState => ({
+      setState((prevState) => ({
         ...prevState,
         value: nextMatch,
         match: nextMatch,

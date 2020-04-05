@@ -53,7 +53,7 @@ type Action = ChangeAction | MoveAction | JumpAction;
 const update = (state: State, nextState: State): State => {
   if (
     (Object.keys(state) as (keyof State)[]).some(
-      key => state[key] !== nextState[key]
+      (key) => state[key] !== nextState[key]
     )
   ) {
     return nextState;

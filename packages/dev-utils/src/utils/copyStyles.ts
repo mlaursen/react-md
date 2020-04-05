@@ -41,14 +41,14 @@ function ensureDists(): void {
     log.debug(`Ensuring the ${dist} and ${nonWebpackDist} folders in:`);
     log.debug(list(packages));
     log.debug();
-    packages.forEach(pkg => {
+    packages.forEach((pkg) => {
       ensureDirSync(join(packagesRoot, pkg, dist));
       ensureDirSync(join(packagesRoot, pkg, nonWebpackDist));
     });
   }
 
   log.debug("Ensuring the form child folder dists.");
-  FORM_FOLDERS.forEach(folder => {
+  FORM_FOLDERS.forEach((folder) => {
     ensureDirSync(join(packagesRoot, "form", dist, folder));
     ensureDirSync(join(packagesRoot, "form", nonWebpackDist, folder));
   });
@@ -89,7 +89,7 @@ export default async function copyStyles(): Promise<void> {
   log.debug(
     "Copying the following scss files and creating non-webpack import versions:"
   );
-  files.forEach(srcPath => {
+  files.forEach((srcPath) => {
     const dest = srcPath.replace(`${src}/`, `${dist}/`);
     log.debug(` - ${srcPath} -> ${dest}`);
     copyFileSync(srcPath, dest);

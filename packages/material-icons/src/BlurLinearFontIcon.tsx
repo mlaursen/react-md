@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const BlurLinearFontIcon: FC<FontIconProps> = props => (
+const BlurLinearFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>blur_linear</FontIcon>
 );
 

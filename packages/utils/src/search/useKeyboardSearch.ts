@@ -122,12 +122,12 @@ export default function useKeyboardSearch<
 }: KeyboardSearchOptions<D, E>): ReturnValue<E> {
   const [value, setValue] = useTempValue("", resetTime);
   const values = useMemo(
-    () => items.map(item => getItemValue(item, valueKey)),
+    () => items.map((item) => getItemValue(item, valueKey)),
     [items, getItemValue, valueKey]
   );
 
   const handleKeyDown = useCallback<React.KeyboardEventHandler<E>>(
-    event => {
+    (event) => {
       if (onKeyDown) {
         onKeyDown(event);
       }

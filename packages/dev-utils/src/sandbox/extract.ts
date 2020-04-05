@@ -37,7 +37,7 @@ const {
 function getScssImports(filePath: string): string[] {
   const contents = fs.readFileSync(filePath, "utf8");
   const matches = contents.match(SCSS_IMPORT) || [];
-  return matches.map(match => getModuleName(match, true));
+  return matches.map((match) => getModuleName(match, true));
 }
 
 function getSourceFile(
@@ -63,7 +63,7 @@ export function resolveModuleNames(
   compilerOptions: CompilerOptions
 ): ResolvedModule[] {
   const resolvedModules: ResolvedModule[] = [];
-  moduleNames.forEach(name => {
+  moduleNames.forEach((name) => {
     // first attempt normal typescript resolution
     const { resolvedModule } = resolveModuleName(
       name,
@@ -136,7 +136,7 @@ function createCompilerHost(
     writeFile: () => {},
     getCurrentDirectory,
     getDirectories,
-    getCanonicalFileName: fileName =>
+    getCanonicalFileName: (fileName) =>
       useCaseSensitiveFileNames ? fileName : fileName.toLowerCase(),
     useCaseSensitiveFileNames: () => useCaseSensitiveFileNames,
     getNewLine: () => sys.newLine,
@@ -194,7 +194,7 @@ export async function extractDemoFiles(
   // want to exclude files that have a comment after them (normally do // SANDBOX_IGNORE),
   // but just makes sure the line ends with ;
   const demos = (contents.match(/from "(.\/[A-z0-9]+)"(?=;\r?\n)/g) || []).map(
-    demoName => {
+    (demoName) => {
       demoName = demoName.replace(/from /, "").replace(/"/g, "");
       let fullPath = path.join(getRelativeFolder(demoIndexPath), demoName);
       if (fs.existsSync(fullPath)) {
@@ -233,12 +233,12 @@ export function extractImports(
     imports = parseTypescript(filePath, aliases, compilerOptions);
   }
 
-  imports.forEach(fileName => {
+  imports.forEach((fileName) => {
     if (isStyle(fileName)) {
       const scssImports = getScssImports(fileName).filter(
-        n => !n.includes("@import")
+        (n) => !n.includes("@import")
       );
-      scssImports.forEach(name => {
+      scssImports.forEach((name) => {
         imports.add(name);
       });
     }

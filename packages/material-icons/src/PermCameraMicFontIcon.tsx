@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PermCameraMicFontIcon: FC<FontIconProps> = props => (
+const PermCameraMicFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>perm_camera_mic</FontIcon>
 );
 

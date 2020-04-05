@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FlashOnFontIcon: FC<FontIconProps> = props => (
+const FlashOnFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>flash_on</FontIcon>
 );
 

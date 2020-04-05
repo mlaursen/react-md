@@ -182,7 +182,7 @@ export default function useCollapse<E extends HTMLElement = HTMLDivElement>(
   const exiting = stage === EXIT || stage === EXITING;
 
   const collapsable = useMemo(
-    () => Object.values(getTimeout(timeout, false)).some(v => v !== 0),
+    () => Object.values(getTimeout(timeout, false)).some((v) => v !== 0),
     [timeout]
   );
 

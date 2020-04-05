@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PhotoSizeSelectLargeFontIcon: FC<FontIconProps> = props => (
+const PhotoSizeSelectLargeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>photo_size_select_large</FontIcon>
 );
 

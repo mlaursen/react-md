@@ -12,14 +12,14 @@ const dists = [es, lib, dist, types];
 export default async function clean(): Promise<void> {
   let directories: string[];
   if (!isRoot) {
-    directories = dists.map(dist => join(process.cwd(), dist));
+    directories = dists.map((dist) => join(process.cwd(), dist));
   } else {
-    directories = getPackages(true).flatMap(name =>
-      dists.map(dist => join(packagesRoot, name, dist))
+    directories = getPackages(true).flatMap((name) =>
+      dists.map((dist) => join(packagesRoot, name, dist))
     );
   }
 
-  directories = directories.filter(dir => existsSync(dir));
+  directories = directories.filter((dir) => existsSync(dir));
   if (!directories.length) {
     log.debug("Already clean!");
     return;
@@ -27,8 +27,8 @@ export default async function clean(): Promise<void> {
 
   log.debug("Removing the following directories:");
   log.debug(
-    list(directories.map(dir => dir.substring(dir.indexOf("packages"))))
+    list(directories.map((dir) => dir.substring(dir.indexOf("packages"))))
   );
   log.debug();
-  await Promise.all(directories.map(dir => rmdir(dir, { recursive: true })));
+  await Promise.all(directories.map((dir) => rmdir(dir, { recursive: true })));
 }

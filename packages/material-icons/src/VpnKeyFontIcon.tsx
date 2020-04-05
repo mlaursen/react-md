@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const VpnKeyFontIcon: FC<FontIconProps> = props => (
+const VpnKeyFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>vpn_key</FontIcon>
 );
 

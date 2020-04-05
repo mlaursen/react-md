@@ -28,7 +28,7 @@ const themeTypes: ButtonThemeType[] = ["flat", "outline", "contained"];
 const SimpleFileInputs: FC = () => {
   const [file, setFile] = useState("");
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
-    event => {
+    (event) => {
       const [file] = Array.from(event.currentTarget.files || [null]);
       if (file) {
         setFile(file.name);
@@ -49,7 +49,7 @@ const SimpleFileInputs: FC = () => {
       <CodeBlock aria-live="polite">{file || "None"}</CodeBlock>
       <Form className="file-input-example">
         <Fieldset legend="Theme">
-          {themes.map(t => (
+          {themes.map((t) => (
             <Radio
               id={`text-theme-${t}`}
               key={t}
@@ -62,7 +62,7 @@ const SimpleFileInputs: FC = () => {
           ))}
         </Fieldset>
         <Fieldset legend="Theme type">
-          {themeTypes.map(type => (
+          {themeTypes.map((type) => (
             <Radio
               id={`text-theme-${type}`}
               key={type}

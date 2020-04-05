@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const SpellcheckFontIcon: FC<FontIconProps> = props => (
+const SpellcheckFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>spellcheck</FontIcon>
 );
 

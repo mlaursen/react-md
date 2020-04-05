@@ -202,7 +202,7 @@ function TextArea(
   const [valued, onChange] = useValuedState<HTMLTextAreaElement>({
     value,
     defaultValue,
-    onChange: event => {
+    onChange: (event) => {
       if (propOnChange) {
         propOnChange(event);
       }

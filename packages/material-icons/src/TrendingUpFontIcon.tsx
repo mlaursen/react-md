@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const TrendingUpFontIcon: FC<FontIconProps> = props => (
+const TrendingUpFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>trending_up</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const MultilineChartFontIcon: FC<FontIconProps> = props => (
+const MultilineChartFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>multiline_chart</FontIcon>
 );
 

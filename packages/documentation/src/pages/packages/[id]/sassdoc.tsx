@@ -22,7 +22,7 @@ const SassDoc: NextFC<SassDocProps> = ({ name, sassdoc }) => {
 SassDoc.getInitialProps = async ({ query }): Promise<SassDocProps> => {
   const name = qsToString(query.id);
   const sassdoc = await import(`../../../constants/sassdoc/${name}`)
-    .then(mod => mod.default)
+    .then((mod) => mod.default)
     .catch(() => null);
 
   return { name, sassdoc };

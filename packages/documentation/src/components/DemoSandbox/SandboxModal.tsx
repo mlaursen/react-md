@@ -45,12 +45,12 @@ const SandboxModal: FC<SandboxModalProps> = ({
       return;
     }
 
-    setTreeVisible(prevVisible => !prevVisible);
+    setTreeVisible((prevVisible) => !prevVisible);
   }, [isPhone]);
   const hideTree = useCallback(() => setTreeVisible(false), []);
 
   useEffect(() => {
-    setTreeVisible(prevVisible => {
+    setTreeVisible((prevVisible) => {
       if (isDesktop) {
         return true;
       }

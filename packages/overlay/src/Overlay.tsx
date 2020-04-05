@@ -104,7 +104,7 @@ function Overlay(
         onExiting={onExiting}
         onExited={onExited}
       >
-        {state => (
+        {(state) => (
           <span
             {...props}
             ref={ref}

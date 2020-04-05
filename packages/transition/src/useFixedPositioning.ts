@@ -257,7 +257,7 @@ export default function useFixedPositioning({
 
   useResizeListener({
     enabled: !!element,
-    onResize: event => {
+    onResize: (event) => {
       if (onResize) {
         onResize(event);
       }
@@ -268,7 +268,7 @@ export default function useFixedPositioning({
 
   useScrollListener({
     enabled: !!element,
-    onScroll: event => {
+    onScroll: (event) => {
       if (onScroll) {
         const container = getFixedTo(fixedTo);
         const containerRect = container && container.getBoundingClientRect();

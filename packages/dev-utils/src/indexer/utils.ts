@@ -27,7 +27,7 @@ export async function copySharedToDocs(): Promise<void> {
 }
 
 const replaceIds = (pathname: string, values: string[]): string[] =>
-  values.map(value => pathname.replace("[id]", value.replace(/\..+$/, "")));
+  values.map((value) => pathname.replace("[id]", value.replace(/\..+$/, "")));
 
 export async function getRoutes(): Promise<string[]> {
   const pagesFolder = join(documentationRoot, src, "pages");
@@ -41,12 +41,12 @@ export async function getRoutes(): Promise<string[]> {
     cwd: guidesFolder,
   });
   const apiablePackages = getPackages("typescript");
-  const demoablePackages = apiablePackages.filter(name => name !== "layout");
+  const demoablePackages = apiablePackages.filter((name) => name !== "layout");
   const sassdocablePackages = getPackages("scss");
   const packages = getPackages();
 
   const routes = paths
-    .flatMap(filePath => {
+    .flatMap((filePath) => {
       const pathname = `/${filePath
         .replace(new RegExp(sep, "g"), "/")
         .replace(/\..+$/, "")

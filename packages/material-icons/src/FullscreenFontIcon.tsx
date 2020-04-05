@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FullscreenFontIcon: FC<FontIconProps> = props => (
+const FullscreenFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>fullscreen</FontIcon>
 );
 

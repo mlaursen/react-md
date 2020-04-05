@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PhonelinkEraseFontIcon: FC<FontIconProps> = props => (
+const PhonelinkEraseFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>phonelink_erase</FontIcon>
 );
 

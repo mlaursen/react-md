@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ClosedCaptionFontIcon: FC<FontIconProps> = props => (
+const ClosedCaptionFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>closed_caption</FontIcon>
 );
 

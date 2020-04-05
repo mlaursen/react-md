@@ -33,7 +33,7 @@ export function getAliasedImports(
   imports: string[],
   aliases: string[]
 ): string[] {
-  return imports.filter(name => isAliased(name, aliases));
+  return imports.filter((name) => isAliased(name, aliases));
 }
 
 /**
@@ -48,7 +48,7 @@ export function getAliasedRelativeFolder(
   filePath: string,
   aliases: string[]
 ): string {
-  const alias = aliases.find(a => filePath.includes(a));
+  const alias = aliases.find((a) => filePath.includes(a));
   let start = 0;
   if (alias) {
     start = filePath.indexOf(alias);

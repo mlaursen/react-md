@@ -71,7 +71,7 @@ export function useStylesState(): DefaultStylesContext {
 
   useEffect(() => {
     if (isPhone) {
-      setState(prevState => {
+      setState((prevState) => {
         if (prevState.container) {
           return prevState;
         }
@@ -85,7 +85,7 @@ export function useStylesState(): DefaultStylesContext {
   const onInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, checked } = event.currentTarget;
-      setState(prevState => {
+      setState((prevState) => {
         if (name in prevState) {
           return {
             ...prevState,
@@ -108,7 +108,7 @@ export function useStylesState(): DefaultStylesContext {
       const { name, value } = event.currentTarget;
       const min = parseInt(event.currentTarget.min, 10);
       const max = parseInt(event.currentTarget.max, 10);
-      setState(prevState => {
+      setState((prevState) => {
         if (name in prevState) {
           const number = parseInt(value, 10);
           // happens if the user types a letter instead of a number
@@ -135,7 +135,7 @@ export function useStylesState(): DefaultStylesContext {
   const onSelectChange = useCallback<ListboxChangeEventHandler>(
     (nextValue, _option, listbox) => {
       const { name = "" } = listbox;
-      setState(prevState => {
+      setState((prevState) => {
         if (name in prevState) {
           let value: string | boolean = nextValue;
           if (/linewrap/i.test(name)) {

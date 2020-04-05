@@ -241,7 +241,7 @@ function Listbox(
    */
   const getIndex = useCallback(
     () =>
-      options.findIndex(option => value === getOptionValue(option, valueKey)),
+      options.findIndex((option) => value === getOptionValue(option, valueKey)),
     [getOptionValue, options, value, valueKey]
   );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const VisibilityOffFontIcon: FC<FontIconProps> = props => (
+const VisibilityOffFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>visibility_off</FontIcon>
 );
 

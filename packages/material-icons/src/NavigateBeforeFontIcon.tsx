@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const NavigateBeforeFontIcon: FC<FontIconProps> = props => (
+const NavigateBeforeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>navigate_before</FontIcon>
 );
 

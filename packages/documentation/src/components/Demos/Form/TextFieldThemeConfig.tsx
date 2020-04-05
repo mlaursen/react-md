@@ -58,7 +58,7 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
   const [disabled, handleDisabledChange] = useCheckboxState(false);
   const [currentTheme, handleThemeChange] = useChoice<TextFieldTheme>(
     "outline",
-    event => {
+    (event) => {
       // the "unstyled" state does not support icons and a label out of the box
       // and requires additional styling instead
       if (event.currentTarget.value === "none") {

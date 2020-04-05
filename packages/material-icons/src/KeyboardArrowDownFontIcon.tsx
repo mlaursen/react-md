@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const KeyboardArrowDownFontIcon: FC<FontIconProps> = props => (
+const KeyboardArrowDownFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>keyboard_arrow_down</FontIcon>
 );
 

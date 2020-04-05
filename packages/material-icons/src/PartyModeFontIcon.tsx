@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PartyModeFontIcon: FC<FontIconProps> = props => (
+const PartyModeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>party_mode</FontIcon>
 );
 

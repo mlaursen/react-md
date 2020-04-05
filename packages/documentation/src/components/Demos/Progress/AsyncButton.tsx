@@ -30,7 +30,7 @@ const block = bem("async-button");
 // If we disable the entire button, keyboard focus is lost which is not desired.
 const noop = (): void => {};
 
-const AsyncButton: FC<AsyncButtonProps> = providedProps => {
+const AsyncButton: FC<AsyncButtonProps> = (providedProps) => {
   const {
     id,
     loading,

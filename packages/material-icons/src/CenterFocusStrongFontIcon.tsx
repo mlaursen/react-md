@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const CenterFocusStrongFontIcon: FC<FontIconProps> = props => (
+const CenterFocusStrongFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>center_focus_strong</FontIcon>
 );
 

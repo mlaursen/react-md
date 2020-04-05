@@ -16,7 +16,7 @@ const StickyColumnsPart3: FC = () => (
     <Table fullWidth>
       <TableHeader sticky>
         <TableRow>
-          {columns.map(column => (
+          {columns.map((column) => (
             <TableCell key={column}>{column}</TableCell>
           ))}
         </TableRow>

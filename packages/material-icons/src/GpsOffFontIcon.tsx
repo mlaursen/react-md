@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const GpsOffFontIcon: FC<FontIconProps> = props => (
+const GpsOffFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>gps_off</FontIcon>
 );
 

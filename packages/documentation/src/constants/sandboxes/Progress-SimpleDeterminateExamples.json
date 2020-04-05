@@ -57,7 +57,7 @@
     "isBinary": false
   },
   "src/useDownloadInterval.ts": {
-    "content": "import { useState } from \"react\";\nimport { useInterval } from \"@react-md/utils\";\n\ninterface ReturnValue {\n  value: number;\n  start: () => void;\n  running: boolean;\n}\n\n/*\n * A reusable hook to handle the progress examples for both the linear and circular\n * progress bars with an incremental interval.\n */\nexport default function useDownloadInterval(delay: number = 100): ReturnValue {\n  const [value, setValue] = useState(0);\n  const [running, start] = useInterval(stop => {\n    const nextValue = Math.min(100, value + 1);\n    if (value === nextValue) {\n      stop();\n    } else {\n      setValue(nextValue);\n    }\n  }, delay);\n\n  return {\n    value,\n    start,\n    running,\n  };\n}\n",
+    "content": "import { useState } from \"react\";\nimport { useInterval } from \"@react-md/utils\";\n\ninterface ReturnValue {\n  value: number;\n  start: () => void;\n  running: boolean;\n}\n\n/*\n * A reusable hook to handle the progress examples for both the linear and circular\n * progress bars with an incremental interval.\n */\nexport default function useDownloadInterval(delay: number = 100): ReturnValue {\n  const [value, setValue] = useState(0);\n  const [running, start] = useInterval((stop) => {\n    const nextValue = Math.min(100, value + 1);\n    if (value === nextValue) {\n      stop();\n    } else {\n      setValue(nextValue);\n    }\n  }, delay);\n\n  return {\n    value,\n    start,\n    running,\n  };\n}\n",
     "isBinary": false
   }
 }

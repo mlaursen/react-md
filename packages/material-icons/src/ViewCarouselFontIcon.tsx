@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ViewCarouselFontIcon: FC<FontIconProps> = props => (
+const ViewCarouselFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>view_carousel</FontIcon>
 );
 

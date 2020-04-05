@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const UnarchiveFontIcon: FC<FontIconProps> = props => (
+const UnarchiveFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>unarchive</FontIcon>
 );
 

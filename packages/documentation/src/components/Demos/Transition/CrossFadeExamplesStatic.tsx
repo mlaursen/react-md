@@ -28,7 +28,7 @@ const CrossFadeExamplesStatic: FC = () => {
     <>
       <TabsManager
         activeIndex={page}
-        onActiveIndexChange={index => setPage(index)}
+        onActiveIndexChange={(index) => setPage(index)}
         tabs={["Page 1", "Page 2", "Page 3"]}
         tabsId="static-transition"
       >

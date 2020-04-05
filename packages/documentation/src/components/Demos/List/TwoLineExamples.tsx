@@ -21,7 +21,7 @@ const formatShort = (d: Date): string =>
     year: "numeric",
   });
 
-const Folder: FC<AvatarProps> = props => (
+const Folder: FC<AvatarProps> = (props) => (
   <Avatar {...props}>
     <FolderSVGIcon />
   </Avatar>

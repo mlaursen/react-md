@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const LineWeightFontIcon: FC<FontIconProps> = props => (
+const LineWeightFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>line_weight</FontIcon>
 );
 

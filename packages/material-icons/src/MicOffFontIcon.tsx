@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const MicOffFontIcon: FC<FontIconProps> = props => (
+const MicOffFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>mic_off</FontIcon>
 );
 

@@ -25,7 +25,7 @@ describe("getTimeoutDuration", () => {
 
   it("should return 0 for all other stagees", () => {
     const stagees: TransitionStage[] = [ENTER, ENTERED, EXIT, EXITED];
-    stagees.forEach(stage => {
+    stagees.forEach((stage) => {
       expect(getTimeoutDuration(stage, 200, 150, 100, false)).toBe(0);
       expect(getTimeoutDuration(stage, 200, 150, 100, true)).toBe(0);
     });

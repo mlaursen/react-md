@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const BlurOnFontIcon: FC<FontIconProps> = props => (
+const BlurOnFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>blur_on</FontIcon>
 );
 

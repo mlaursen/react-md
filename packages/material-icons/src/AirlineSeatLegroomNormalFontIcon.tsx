@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const AirlineSeatLegroomNormalFontIcon: FC<FontIconProps> = props => (
+const AirlineSeatLegroomNormalFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>airline_seat_legroom_normal</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ChildFriendlyFontIcon: FC<FontIconProps> = props => (
+const ChildFriendlyFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>child_friendly</FontIcon>
 );
 

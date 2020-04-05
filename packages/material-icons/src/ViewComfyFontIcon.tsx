@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ViewComfyFontIcon: FC<FontIconProps> = props => (
+const ViewComfyFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>view_comfy</FontIcon>
 );
 

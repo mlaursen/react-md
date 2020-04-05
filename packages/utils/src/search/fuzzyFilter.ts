@@ -35,7 +35,7 @@ export default function fuzzyFilter<T = unknown>(
   }
 
   const queryRegExp = getFuzzyRegExp(query);
-  return searchable.filter(item => {
+  return searchable.filter((item) => {
     const value = getSearchString(
       getItemValue(item, valueKey),
       false,

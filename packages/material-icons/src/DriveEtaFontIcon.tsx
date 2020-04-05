@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const DriveEtaFontIcon: FC<FontIconProps> = props => (
+const DriveEtaFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>drive_eta</FontIcon>
 );
 

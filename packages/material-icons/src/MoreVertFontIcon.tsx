@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const MoreVertFontIcon: FC<FontIconProps> = props => (
+const MoreVertFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>more_vert</FontIcon>
 );
 

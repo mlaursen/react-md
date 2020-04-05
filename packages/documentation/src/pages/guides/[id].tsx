@@ -23,7 +23,7 @@ const Guides: NextFC<GuidesProps> = ({ readme: propReadme, guideId }) => {
       let cancelled = false;
       (async function load() {
         const readme = await import(`../../guides/${guideId}.md`)
-          .then(mod => mod.default)
+          .then((mod) => mod.default)
           .catch(() => null);
 
         if (!cancelled) {
@@ -47,7 +47,7 @@ const Guides: NextFC<GuidesProps> = ({ readme: propReadme, guideId }) => {
 Guides.getInitialProps = async ({ query }): Promise<GuidesProps> => {
   const guideId = qsToString(query.id);
   const readme = await import(`../../guides/${guideId}.md`)
-    .then(mod => mod.default)
+    .then((mod) => mod.default)
     .catch(() => null);
 
   return { guideId, readme };

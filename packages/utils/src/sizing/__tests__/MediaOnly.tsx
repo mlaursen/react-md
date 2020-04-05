@@ -17,7 +17,7 @@ beforeAll(() => {
   // so polyfill only when it doesn't exist
   window.matchMedia =
     window.matchMedia ||
-    (query => ({
+    ((query) => ({
       matches: query.includes(`${DEFAULT_DESKTOP_MIN_WIDTH}`),
       media: "",
       onchange,

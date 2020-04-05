@@ -229,7 +229,7 @@ function Select(
   const valued = typeof value === "number" || !!value;
   const displayValue = useMemo(() => {
     const currentOption =
-      options.find(option => getOptionValue(option, valueKey) === value) ||
+      options.find((option) => getOptionValue(option, valueKey) === value) ||
       null;
 
     return getDisplayLabel(currentOption, labelKey, !disableLeftAddon);

@@ -66,7 +66,7 @@ describe("TextFieldContainer", () => {
 
         expect(container).toMatchSnapshot();
 
-        states.forEach(props => {
+        states.forEach((props) => {
           rerender(<TextFieldContainer theme="underline" {...props} />);
           expect(container).toMatchSnapshot();
         });
@@ -81,7 +81,7 @@ describe("TextFieldContainer", () => {
 
         expect(container).toMatchSnapshot();
 
-        states.forEach(props => {
+        states.forEach((props) => {
           rerender(<TextFieldContainer theme="filled" {...props} />);
           expect(container).toMatchSnapshot();
         });
@@ -96,7 +96,7 @@ describe("TextFieldContainer", () => {
 
         expect(container).toMatchSnapshot();
 
-        states.forEach(props => {
+        states.forEach((props) => {
           rerender(<TextFieldContainer theme="outline" {...props} />);
           expect(container).toMatchSnapshot();
         });
@@ -111,7 +111,7 @@ describe("TextFieldContainer", () => {
 
         expect(container).toMatchSnapshot();
 
-        states.forEach(props => {
+        states.forEach((props) => {
           rerender(<TextFieldContainer theme="none" {...props} />);
           expect(container).toMatchSnapshot();
         });

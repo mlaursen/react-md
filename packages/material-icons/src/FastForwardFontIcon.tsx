@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FastForwardFontIcon: FC<FontIconProps> = props => (
+const FastForwardFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>fast_forward</FontIcon>
 );
 

@@ -36,7 +36,7 @@ const MenuPositioning: FC = () => (
         </Text>
         <div className="menu-positioning-container">
           <div className="menu-positioning-group">
-            {verticalPositions.map(y => (
+            {verticalPositions.map((y) => (
               <DropdownMenu
                 id={`position-${x}-${y}`}
                 key={y}

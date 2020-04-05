@@ -62,7 +62,7 @@ renderer.code = (rawCode, language) => {
   return `<pre class="${className}">${lineNumbers}<code class="code">${code}</code></pre>`;
 };
 
-renderer.codespan = code => `<code class="code code--inline">${code}</code>`;
+renderer.codespan = (code) => `<code class="code code--inline">${code}</code>`;
 
 renderer.heading = (text, level, _raw, slugger) => {
   // if it is over 60 characters, it is probably not really a title
@@ -89,7 +89,7 @@ renderer.heading = (text, level, _raw, slugger) => {
 </h${level}>`;
 };
 
-renderer.blockquote = quote =>
+renderer.blockquote = (quote) =>
   `<blockquote class="blockquote">${quote}</blockquote>`;
 
 renderer.link = (href, title, text) => {
@@ -107,14 +107,14 @@ type Transform = (markdown: string) => string;
 const joinedNames = PACKAGE_NAMES.join("|");
 const packagesList = `
 ${PACKAGE_NAMES.map(
-  name => `- [@react-md/${name}](/packages/${name}/installation)`
+  (name) => `- [@react-md/${name}](/packages/${name}/installation)`
 ).join("\n")}
 `;
 const whitespace = "(?=\r?\n| |[^/])";
 
 const transforms: Transform[] = [
   // #package-name -> [@react-md/package-name](/packages/package-name/demos|installation)
-  md =>
+  (md) =>
     md.replace(
       new RegExp(`#(${joinedNames})${whitespace}`, "g"),
       (_, pkg) =>
@@ -123,13 +123,13 @@ const transforms: Transform[] = [
         })`
     ),
   // #package-name -> [package-name page](/packages/package-name/page)
-  md =>
+  (md) =>
     md.replace(
       new RegExp(`#(${joinedNames})/(demos|api|sassdoc)`, "g"),
       "[$1 $2](/packages/$1/$2)"
     ),
   // #packages -> markdown list for all react-md packages
-  md =>
+  (md) =>
     md.replace(/#packages(\/demos)?/g, (_, demos) => {
       if (demos) {
         return packagesList.replace(
@@ -142,7 +142,7 @@ const transforms: Transform[] = [
     }),
   // create links to github issues/PRs with #ISSUE_NUMBER
   // the regex below tries to make sure that hex codes aren't switched to links
-  md =>
+  (md) =>
     md.replace(
       /(: )?(#)(\d+)(?=\r?\n| (?!!))/g,
       (match, invalid, _hash, ticket) => {
@@ -154,9 +154,9 @@ const transforms: Transform[] = [
       }
     ),
   // create github commit links for git sha's of length 7 (should be first 7 of sha)
-  md => md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`),
-  md => md.replace(/(:tada:)/g, "🎉"),
-  md =>
+  (md) => md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`),
+  (md) => md.replace(/(:tada:)/g, "🎉"),
+  (md) =>
     md.replace(
       /#customizing-your-theme/g,
       "[customizing your theme](/guides/customizing-your-theme)"

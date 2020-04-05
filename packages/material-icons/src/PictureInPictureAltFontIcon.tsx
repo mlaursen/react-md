@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PictureInPictureAltFontIcon: FC<FontIconProps> = props => (
+const PictureInPictureAltFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>picture_in_picture_alt</FontIcon>
 );
 

@@ -22,7 +22,7 @@ type WithDefaultProps = MediaOnlyProps & DefaultProps;
  * considered in mobile mode via the `AppSizeContext`. A mobile view will be
  * true for both phones and tablets.
  */
-export const MobileOnly: FC<MediaOnlyProps> = props => {
+export const MobileOnly: FC<MediaOnlyProps> = (props) => {
   const { children, fallback } = props as WithDefaultProps;
   const { isPhone, isTablet } = useAppSize();
   if (isPhone || isTablet) {
@@ -36,7 +36,7 @@ export const MobileOnly: FC<MediaOnlyProps> = props => {
  * A simple component that will render the children only when the app is
  * considered in phone mode via the `AppSizeContext`.
  */
-export const PhoneOnly: FC<MediaOnlyProps> = props => {
+export const PhoneOnly: FC<MediaOnlyProps> = (props) => {
   const { children, fallback } = props as WithDefaultProps;
   const { isPhone } = useAppSize();
   if (isPhone) {
@@ -50,7 +50,7 @@ export const PhoneOnly: FC<MediaOnlyProps> = props => {
  * A simple component that will render the children only when the app is
  * considered in tablet mode via the `AppSizeContext`.
  */
-export const TabletOnly: FC<MediaOnlyProps> = props => {
+export const TabletOnly: FC<MediaOnlyProps> = (props) => {
   const { children, fallback } = props as WithDefaultProps;
   const { isTablet } = useAppSize();
   if (isTablet) {
@@ -64,7 +64,7 @@ export const TabletOnly: FC<MediaOnlyProps> = props => {
  * A simple component that will render the children only when the app is
  * considered in desktop mode via the `AppSizeContext`.
  */
-export const DesktopOnly: FC<MediaOnlyProps> = props => {
+export const DesktopOnly: FC<MediaOnlyProps> = (props) => {
   const { children, fallback } = props as WithDefaultProps;
   const { isDesktop } = useAppSize();
   if (isDesktop) {

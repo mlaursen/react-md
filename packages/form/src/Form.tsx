@@ -23,7 +23,7 @@ function Form(
   ref?: Ref<HTMLFormElement>
 ): ReactElement {
   const handleOnSubmit = useCallback<React.FormEventHandler<HTMLFormElement>>(
-    event => {
+    (event) => {
       if (!disablePreventDefault) {
         event.preventDefault();
       }

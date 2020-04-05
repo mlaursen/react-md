@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const StraightenFontIcon: FC<FontIconProps> = props => (
+const StraightenFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>straighten</FontIcon>
 );
 

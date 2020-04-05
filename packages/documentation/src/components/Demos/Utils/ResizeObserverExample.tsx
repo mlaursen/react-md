@@ -38,7 +38,7 @@ function useSize(): Size {
     width: DEFAULT_WIDTH,
   });
 
-  const onResize: ObservedResizeEventHandler = event => {
+  const onResize: ObservedResizeEventHandler = (event) => {
     const { height, width } = event;
     setSize({ height, width });
   };

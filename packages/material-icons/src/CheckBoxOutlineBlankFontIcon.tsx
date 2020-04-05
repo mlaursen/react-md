@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const CheckBoxOutlineBlankFontIcon: FC<FontIconProps> = props => (
+const CheckBoxOutlineBlankFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>check_box_outline_blank</FontIcon>
 );
 

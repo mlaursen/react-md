@@ -36,7 +36,7 @@ export function transformKeys(
   keys: readonly MovementKey[],
   type: FocusType
 ): KeyConfig[] {
-  return keys.map<KeyConfig>(key => ({
+  return keys.map<KeyConfig>((key) => ({
     shiftKey: key.includes("Shift+"),
     metaKey: key.includes("Meta+"),
     ctrlKey: key.includes("Control+"),
@@ -65,7 +65,7 @@ export function getKeyboardConfig(
   const { key, altKey, ctrlKey, metaKey, shiftKey } = event;
   return (
     keys.find(
-      k =>
+      (k) =>
         k.key === key &&
         k.altKey === altKey &&
         k.ctrlKey === ctrlKey &&

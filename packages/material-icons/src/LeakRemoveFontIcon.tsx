@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const LeakRemoveFontIcon: FC<FontIconProps> = props => (
+const LeakRemoveFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>leak_remove</FontIcon>
 );
 

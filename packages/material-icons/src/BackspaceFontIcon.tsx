@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const BackspaceFontIcon: FC<FontIconProps> = props => (
+const BackspaceFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>backspace</FontIcon>
 );
 

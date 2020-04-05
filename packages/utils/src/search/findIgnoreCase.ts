@@ -30,7 +30,7 @@ export default function findIgnoreCase<T = unknown>(
     return null;
   }
 
-  const found = searchable.find(item => {
+  const found = searchable.find((item) => {
     const value = getSearchString(
       getItemValue(item, valueKey),
       true,

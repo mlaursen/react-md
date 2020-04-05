@@ -35,9 +35,9 @@ describe("Button", () => {
   // this is actually really bad practice and kind of worthess
   it("should render correctly based on the theme props", () => {
     flattenDeep(
-      buttonTypes.map(buttonType =>
-        themes.map(theme =>
-          themeTypes.map(themeType => ({
+      buttonTypes.map((buttonType) =>
+        themes.map((theme) =>
+          themeTypes.map((themeType) => ({
             buttonType,
             theme,
             themeType,
@@ -45,7 +45,7 @@ describe("Button", () => {
           }))
         )
       )
-    ).forEach(themeProps => {
+    ).forEach((themeProps) => {
       const { getByTestId, rerender, unmount } = render(
         <Button data-testid="button" {...themeProps} />
       );

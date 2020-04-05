@@ -7,6 +7,6 @@ export type Listable = string | boolean | null | undefined;
 export default function list(things: Listable[]): string {
   return things
     .filter(Boolean)
-    .map(thing => ` - ${thing}`)
+    .map((thing) => ` - ${thing}`)
     .join("\n");
 }

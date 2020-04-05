@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const SwapVerticalCircleFontIcon: FC<FontIconProps> = props => (
+const SwapVerticalCircleFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>swap_vertical_circle</FontIcon>
 );
 

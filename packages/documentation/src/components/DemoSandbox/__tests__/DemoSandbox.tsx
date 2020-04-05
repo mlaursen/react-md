@@ -10,7 +10,7 @@ jest.mock("../useSandbox");
 const useSandboxMock = mocked(useSandbox);
 
 beforeEach(() => {
-  useSandboxMock.mockImplementation(defaultSandbox => ({
+  useSandboxMock.mockImplementation((defaultSandbox) => ({
     sandbox: defaultSandbox,
     loading: false,
   }));

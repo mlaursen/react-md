@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const FiberSmartRecordSVGIcon: FC<SVGIconProps> = props => (
+const FiberSmartRecordSVGIcon: FC<SVGIconProps> = (props) => (
   <SVGIcon {...props}>
     <g>
       <circle cx="9" cy="12" r="8" />

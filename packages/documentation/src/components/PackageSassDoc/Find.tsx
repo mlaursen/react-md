@@ -24,7 +24,7 @@ const Find: FC<FindProps> = ({ items }) => {
   const [visible, setVisible] = useState(false);
   const searchables = useMemo(
     () =>
-      items.map(item => {
+      items.map((item) => {
         const { name, packageName } = item;
         const type = getType(item.type);
         let secondaryText: ReactNode = item.type;
@@ -89,7 +89,7 @@ const Find: FC<FindProps> = ({ items }) => {
           filter={filter}
           listboxClassName={styles("listbox")}
           clearOnAutoComplete
-          onAutoComplete={data => {
+          onAutoComplete={(data) => {
             const result = data.result as typeof searchables[0];
 
             // the router.asPath seems to break while hot reloading
@@ -99,7 +99,7 @@ const Find: FC<FindProps> = ({ items }) => {
           }}
           anchor={ABOVE_CENTER_ANCHOR}
           yMargin={12}
-          onKeyDown={event => {
+          onKeyDown={(event) => {
             if (event.key === "Tab") {
               event.preventDefault();
             }

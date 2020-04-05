@@ -19,7 +19,7 @@ const Section: FC<SectionProps> = ({ items, type, packageName }) => {
   return (
     <>
       <SectionTitle packageName={packageName} type={type} />
-      {items.map(item => (
+      {items.map((item) => (
         <SassDocItem key={item.name} {...item} />
       ))}
     </>

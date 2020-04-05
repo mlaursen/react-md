@@ -37,7 +37,7 @@ export default function parseMarkdown(markdown: string): MarkdownResult {
   };
 
   let summary = "";
-  renderer.paragraph = text => {
+  renderer.paragraph = (text) => {
     if (!summary && text !== "This guide will cover the following topics:") {
       summary = decode(text);
     }

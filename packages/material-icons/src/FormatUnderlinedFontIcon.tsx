@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FormatUnderlinedFontIcon: FC<FontIconProps> = props => (
+const FormatUnderlinedFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>format_underlined</FontIcon>
 );
 

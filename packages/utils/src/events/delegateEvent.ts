@@ -147,7 +147,7 @@ export default function delegateEvent(
   options?: boolean | AddEventListenerOptions
 ): DelegatedEventHandler {
   let index = delegatedEvents.findIndex(
-    event =>
+    (event) =>
       event.type === eventType &&
       event.target === eventTarget &&
       event.options === options &&

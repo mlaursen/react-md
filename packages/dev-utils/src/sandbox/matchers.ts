@@ -40,7 +40,7 @@ export function isRelative(filePath: string): boolean {
  * Checks if the filePath is an alised import
  */
 export function isAliased(filePath: string, aliases: string[]): boolean {
-  return aliases.some(alias => filePath.startsWith(alias));
+  return aliases.some((alias) => filePath.startsWith(alias));
 }
 
 /**

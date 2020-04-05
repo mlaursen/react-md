@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const SentimentNeutralFontIcon: FC<FontIconProps> = props => (
+const SentimentNeutralFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>sentiment_neutral</FontIcon>
 );
 

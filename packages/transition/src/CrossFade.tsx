@@ -108,7 +108,7 @@ function CrossFade(
     <div
       {...props}
       className={className}
-      ref={instance => {
+      ref={(instance) => {
         applyRef(instance, forwardedRef);
         ref.current = instance;
       }}

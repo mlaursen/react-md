@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const LightbulbOutlineFontIcon: FC<FontIconProps> = props => (
+const LightbulbOutlineFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>lightbulb_outline</FontIcon>
 );
 

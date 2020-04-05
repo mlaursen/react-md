@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const QueuePlayNextFontIcon: FC<FontIconProps> = props => (
+const QueuePlayNextFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>queue_play_next</FontIcon>
 );
 

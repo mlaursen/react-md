@@ -121,7 +121,7 @@ function Password(
         onVisibilityClick(event);
       }
 
-      setType(prevType => (prevType === "password" ? "text" : "password"));
+      setType((prevType) => (prevType === "password" ? "text" : "password"));
     },
     [onVisibilityClick]
   );

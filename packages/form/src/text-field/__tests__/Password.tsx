@@ -95,7 +95,7 @@ describe("Password", () => {
   });
 
   it("should allow the visibilityIcon to be rendered by the current input type and a getVisibilityIcon function", () => {
-    const getVisibilityIcon: GetVisibilityIcon = type =>
+    const getVisibilityIcon: GetVisibilityIcon = (type) =>
       type === "password" ? (
         <span id="password-icon" />
       ) : (

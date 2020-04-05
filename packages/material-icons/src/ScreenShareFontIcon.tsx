@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ScreenShareFontIcon: FC<FontIconProps> = props => (
+const ScreenShareFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>screen_share</FontIcon>
 );
 

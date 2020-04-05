@@ -60,7 +60,7 @@ const SimpleExample: FC = () => {
           ref={listRefCB}
           style={style}
           className="portal-menu"
-          onClick={event => {
+          onClick={(event) => {
             if (event.currentTarget !== event.target) {
               hide();
             }

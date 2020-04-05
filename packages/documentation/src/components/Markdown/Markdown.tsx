@@ -25,7 +25,7 @@ function useMarkdownResolver(markdown: MarkdownProps["children"]): string {
 
   const [resolved, setResolved] = useState("");
   useEffect(() => {
-    markdown().then(md => {
+    markdown().then((md) => {
       if (typeof md === "string") {
         setResolved(md);
       } else if (typeof md.default === "string") {
@@ -68,9 +68,9 @@ function useCustomMarkdownBehavior({
       instance.querySelectorAll<HTMLAnchorElement>("a[href]")
     );
 
-    links.forEach(link => {
+    links.forEach((link) => {
       if (link.href.startsWith(origin)) {
-        link.onclick = event => {
+        link.onclick = (event) => {
           event.preventDefault();
           const href = link.href.replace(origin, "");
 
@@ -97,8 +97,8 @@ function useCustomMarkdownBehavior({
       instance.querySelectorAll<HTMLIFrameElement>("iframe, img")
     );
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (!entry.isIntersecting) {
           return;
         }
@@ -109,7 +109,7 @@ function useCustomMarkdownBehavior({
       });
     });
 
-    lazyElements.forEach(element => {
+    lazyElements.forEach((element) => {
       const { src } = element.dataset;
       if (!src) {
         if (process.env.NODE_ENV !== "production") {

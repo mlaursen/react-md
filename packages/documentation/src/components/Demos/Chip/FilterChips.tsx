@@ -24,7 +24,7 @@ const FilterChips: FC = () => {
         Choose amenities
       </Text>
       <div className={styles()}>
-        {amenities.map(amenity => {
+        {amenities.map((amenity) => {
           const selected = selectedAmenities.includes(amenity);
 
           return (
@@ -33,9 +33,9 @@ const FilterChips: FC = () => {
               selected={selected}
               className={styles("chip")}
               onClick={() =>
-                setSelected(prevSelected => {
+                setSelected((prevSelected) => {
                   if (prevSelected.includes(amenity)) {
-                    return prevSelected.filter(am => am !== amenity);
+                    return prevSelected.filter((am) => am !== amenity);
                   }
 
                   return [...prevSelected, amenity];

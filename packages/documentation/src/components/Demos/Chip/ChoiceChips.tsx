@@ -32,7 +32,7 @@ const ChoiceChips: FC = () => {
           Select size
         </Text>
         <div className={styles("container")}>
-          {sizes.map(size => (
+          {sizes.map((size) => (
             <Chip
               key={size}
               className={styles("chip")}

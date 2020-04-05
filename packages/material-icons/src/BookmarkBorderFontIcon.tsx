@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const BookmarkBorderFontIcon: FC<FontIconProps> = props => (
+const BookmarkBorderFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>bookmark_border</FontIcon>
 );
 

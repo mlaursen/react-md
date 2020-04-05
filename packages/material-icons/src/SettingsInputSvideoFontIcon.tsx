@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const SettingsInputSvideoFontIcon: FC<FontIconProps> = props => (
+const SettingsInputSvideoFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>settings_input_svideo</FontIcon>
 );
 

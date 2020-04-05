@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FingerprintFontIcon: FC<FontIconProps> = props => (
+const FingerprintFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>fingerprint</FontIcon>
 );
 

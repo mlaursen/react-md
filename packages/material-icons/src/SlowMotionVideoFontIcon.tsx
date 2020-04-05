@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const SlowMotionVideoFontIcon: FC<FontIconProps> = props => (
+const SlowMotionVideoFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>slow_motion_video</FontIcon>
 );
 

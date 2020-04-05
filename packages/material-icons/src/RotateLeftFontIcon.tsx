@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RotateLeftFontIcon: FC<FontIconProps> = props => (
+const RotateLeftFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>rotate_left</FontIcon>
 );
 

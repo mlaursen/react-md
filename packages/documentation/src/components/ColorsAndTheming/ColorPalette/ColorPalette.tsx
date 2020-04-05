@@ -15,22 +15,22 @@ interface ColorMap {
 // only the color variables in this package will not be prefixed
 // with rmd-theme
 const colorKeys = Object.keys(scssVariables).filter(
-  name => !/^rmd-theme/.test(name)
+  (name) => !/^rmd-theme/.test(name)
 );
 
 const uniqueColors = Array.from(
   new Set(
     colorKeys
-      .map(k => k.replace("rmd-", "").replace(/(-a)?-\d+$/, ""))
-      .filter(k => !k.includes("-base"))
+      .map((k) => k.replace("rmd-", "").replace(/(-a)?-\d+$/, ""))
+      .filter((k) => !k.includes("-base"))
   )
 );
 
 const colorMap = uniqueColors.reduce<ColorMap>((map, color) => {
   const r = new RegExp(`rmd-${color}-(\\d|a)`);
   map[color] = colorKeys
-    .filter(k => r.test(k))
-    .map(k => ({
+    .filter((k) => r.test(k))
+    .map((k) => ({
       name: k,
       value: scssVariables[k as "rmd-red-500"],
     }));

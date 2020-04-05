@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PanoramaFishEyeFontIcon: FC<FontIconProps> = props => (
+const PanoramaFishEyeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>panorama_fish_eye</FontIcon>
 );
 

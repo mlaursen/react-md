@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const NetworkCellFontIcon: FC<FontIconProps> = props => (
+const NetworkCellFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>network_cell</FontIcon>
 );
 

@@ -2,7 +2,7 @@
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
 const resolve = (importer: Promise<any>) =>
-  importer.then(content => content.default as IFiles);
+  importer.then((content) => content.default as IFiles);
 
 export type GetSandbox = () => Promise<IFiles>;
 export type PackageName =

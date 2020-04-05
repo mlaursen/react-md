@@ -17,7 +17,7 @@ const Throws: FC<ThrowsProps> = ({ throws }) => {
         Throws
       </Text>
       <ul>
-        {throws.map(message => (
+        {throws.map((message) => (
           <li key={message}>{message}</li>
         ))}
       </ul>

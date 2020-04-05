@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ArrowBackFontIcon: FC<FontIconProps> = props => (
+const ArrowBackFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>arrow_back</FontIcon>
 );
 

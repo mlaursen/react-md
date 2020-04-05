@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const SyncDisabledFontIcon: FC<FontIconProps> = props => (
+const SyncDisabledFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>sync_disabled</FontIcon>
 );
 

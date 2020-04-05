@@ -36,7 +36,7 @@ const getDemoProps = (
   };
 };
 
-const DemoPage: FC<DemoPageProps> = props => {
+const DemoPage: FC<DemoPageProps> = (props) => {
   const {
     demos,
     description,
@@ -47,7 +47,7 @@ const DemoPage: FC<DemoPageProps> = props => {
 
   return (
     <div id="demo-page-container" className={cn("demo-page", className)}>
-      {fonts.map(font => (
+      {fonts.map((font) => (
         <DemoPageFont font={font} key={font} />
       ))}
       <DemoPageHeader packageName={packageName}>{description}</DemoPageHeader>

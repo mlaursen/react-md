@@ -7,7 +7,7 @@ const themes: BadgeTheme[] = ["primary", "secondary", "default", "clear"];
 
 const ThemedBadges: FC = () => (
   <>
-    {themes.map(theme => (
+    {themes.map((theme) => (
       <BadgedButton
         key={theme}
         id={`badged-button-${theme}`}

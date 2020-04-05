@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const GroupAddFontIcon: FC<FontIconProps> = props => (
+const GroupAddFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>group_add</FontIcon>
 );
 

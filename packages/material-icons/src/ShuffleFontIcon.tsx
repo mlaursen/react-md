@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ShuffleFontIcon: FC<FontIconProps> = props => (
+const ShuffleFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>shuffle</FontIcon>
 );
 

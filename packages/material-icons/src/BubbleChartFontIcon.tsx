@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const BubbleChartFontIcon: FC<FontIconProps> = props => (
+const BubbleChartFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>bubble_chart</FontIcon>
 );
 

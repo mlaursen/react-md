@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PermContactCalendarFontIcon: FC<FontIconProps> = props => (
+const PermContactCalendarFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>perm_contact_calendar</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ChromeReaderModeFontIcon: FC<FontIconProps> = props => (
+const ChromeReaderModeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>chrome_reader_mode</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const EjectSVGIcon: FC<SVGIconProps> = props => (
+const EjectSVGIcon: FC<SVGIconProps> = (props) => (
   <SVGIcon {...props}>
     <path d="M5 17h14v2H5zm7-12L5.33 15h13.34z" />
   </SVGIcon>

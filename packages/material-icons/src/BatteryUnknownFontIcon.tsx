@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const BatteryUnknownFontIcon: FC<FontIconProps> = props => (
+const BatteryUnknownFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>battery_unknown</FontIcon>
 );
 

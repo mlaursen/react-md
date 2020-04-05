@@ -26,7 +26,7 @@ export default function extractTextContent(
       stringOrElement.querySelectorAll(fontIconQuerySelector)
     );
 
-    if (fontIcons.some(i => !!i.textContent)) {
+    if (fontIcons.some((i) => !!i.textContent)) {
       const cloned = stringOrElement.cloneNode(true) as HTMLElement;
       let icon: HTMLElement | null;
       do {

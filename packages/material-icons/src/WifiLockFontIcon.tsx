@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const WifiLockFontIcon: FC<FontIconProps> = props => (
+const WifiLockFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>wifi_lock</FontIcon>
 );
 

@@ -43,7 +43,7 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
       method="POST"
       target="_blank"
       action={CODE_SANDBOX_DEFINE_API}
-      ref={form => {
+      ref={(form) => {
         if (!form) {
           return;
         }

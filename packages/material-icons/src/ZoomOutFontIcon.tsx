@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ZoomOutFontIcon: FC<FontIconProps> = props => (
+const ZoomOutFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>zoom_out</FontIcon>
 );
 

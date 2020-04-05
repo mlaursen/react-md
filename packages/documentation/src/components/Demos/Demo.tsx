@@ -34,7 +34,7 @@ type WithDefaultProps = DemoProps &
 
 const block = bem("demo");
 
-const Demo: FC<DemoProps> = props => {
+const Demo: FC<DemoProps> = (props) => {
   const {
     id,
     name,

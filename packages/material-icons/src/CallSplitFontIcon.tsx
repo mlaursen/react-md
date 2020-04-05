@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const CallSplitFontIcon: FC<FontIconProps> = props => (
+const CallSplitFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>call_split</FontIcon>
 );
 

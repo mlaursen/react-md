@@ -35,7 +35,7 @@ export default function useValuedState<T extends TextElement>({
   });
 
   const handleChange = useCallback<React.ChangeEventHandler<T>>(
-    event => {
+    (event) => {
       const onChange = handler.current;
       if (onChange) {
         onChange(event);

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ScreenLockPortraitFontIcon: FC<FontIconProps> = props => (
+const ScreenLockPortraitFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>screen_lock_portrait</FontIcon>
 );
 

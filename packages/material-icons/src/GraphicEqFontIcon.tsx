@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const GraphicEqFontIcon: FC<FontIconProps> = props => (
+const GraphicEqFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>graphic_eq</FontIcon>
 );
 

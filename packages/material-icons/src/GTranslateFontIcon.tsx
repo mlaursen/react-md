@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const GTranslateFontIcon: FC<FontIconProps> = props => (
+const GTranslateFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>g_translate</FontIcon>
 );
 

@@ -67,7 +67,7 @@ export default function usePreviousFocus(
         const labelledBy = menu.getAttribute("aria-labelledby") || "";
         const query = labelledBy
           .split(" ")
-          .map(id => `#${id}[tabindex]`)
+          .map((id) => `#${id}[tabindex]`)
           .join(",");
 
         menuButton = query ? document.querySelector<HTMLElement>(query) : null;

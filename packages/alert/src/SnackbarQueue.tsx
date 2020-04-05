@@ -73,7 +73,7 @@ function SnackbarQueue<M extends ToastMessage = ToastMessage>(
     let action: ReactNode = null;
     if (providedAction) {
       const actionProps = providedAction as ButtonProps;
-      const onClick: React.MouseEventHandler<HTMLButtonElement> = event => {
+      const onClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
         if (onActionClick) {
           onActionClick(toast, event);
         }

@@ -16,7 +16,7 @@ import Container from "./Container";
 const AccessibilityExample: FC = () => {
   const [visible, show, hide] = useToggle(false);
   const items = useMemo(
-    () => people.map(name => ({ children: name, onClick: show })),
+    () => people.map((name) => ({ children: name, onClick: show })),
     [show]
   );
 

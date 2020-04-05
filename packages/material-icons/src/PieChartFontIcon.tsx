@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PieChartFontIcon: FC<FontIconProps> = props => (
+const PieChartFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>pie_chart</FontIcon>
 );
 

@@ -92,8 +92,8 @@ function createRipple(
   }
 
   if (
-    state.find(r => r.holding) ||
-    (getType(event) !== "touch" && state.find(r => r.type === "touch"))
+    state.find((r) => r.holding) ||
+    (getType(event) !== "touch" && state.find((r) => r.type === "touch"))
   ) {
     // keyboard events are a bit different than the others since it is actually
     // spammable since the space or enter key can be held down which triggers click
@@ -108,7 +108,7 @@ function createRipple(
 }
 
 function enteredRipple(state: RipplesState, ripple: RippleState): RipplesState {
-  const i = state.findIndex(r => r === ripple);
+  const i = state.findIndex((r) => r === ripple);
   if (i === -1 || ripple.exiting) {
     return state;
   }
@@ -124,7 +124,7 @@ function enteredRipple(state: RipplesState, ripple: RippleState): RipplesState {
 }
 
 function releaseRipple(state: RipplesState): RipplesState {
-  const i = state.findIndex(r => r.holding && !r.exiting);
+  const i = state.findIndex((r) => r.holding && !r.exiting);
   if (i === -1) {
     return state;
   }
@@ -141,7 +141,7 @@ function releaseRipple(state: RipplesState): RipplesState {
 }
 
 function removeRipple(state: RipplesState, ripple: RippleState): RipplesState {
-  const i = state.findIndex(r => r.startTime === ripple.startTime);
+  const i = state.findIndex((r) => r.startTime === ripple.startTime);
   if (i === -1) {
     return state;
   }
@@ -153,7 +153,7 @@ function removeRipple(state: RipplesState, ripple: RippleState): RipplesState {
 
 function cancelRipples(state: RipplesState, ease: boolean): RipplesState {
   if (ease) {
-    return state.map(r => ({
+    return state.map((r) => ({
       ...r,
       exiting: true,
       mounted: true,

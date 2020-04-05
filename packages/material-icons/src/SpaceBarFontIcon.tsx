@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const SpaceBarFontIcon: FC<FontIconProps> = props => (
+const SpaceBarFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>space_bar</FontIcon>
 );
 

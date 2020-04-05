@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const EventBusyFontIcon: FC<FontIconProps> = props => (
+const EventBusyFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>event_busy</FontIcon>
 );
 

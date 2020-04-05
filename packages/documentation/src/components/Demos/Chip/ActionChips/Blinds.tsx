@@ -43,7 +43,7 @@ const Blinds: FC<BlindsProps> = ({ visible }) => {
       timeout={1500}
       classNames={BLINDS}
     >
-      {state => (
+      {(state) => (
         <div className={styles("blinds")}>
           {Array.from(new Array(11), (_, i) => (
             <CSSTransition

@@ -54,7 +54,7 @@ const data = Object.values(contacts).map(({ id, name, email, avatar }) => ({
 const InputChips: FC = () => {
   const [chips, setChips] = useState<Contact[]>([]);
 
-  const onAutoComplete = useCallback<AutoCompleteHandler>(result => {
+  const onAutoComplete = useCallback<AutoCompleteHandler>((result) => {
     if (!isResultOf<typeof data[0]>(result.result)) {
       throw new Error();
     }
@@ -64,7 +64,7 @@ const InputChips: FC = () => {
       throw new Error();
     }
 
-    setChips(prevChips => [...prevChips, contact]);
+    setChips((prevChips) => [...prevChips, contact]);
   }, []);
 
   const [stacked, setStacked] = useState(false);
@@ -97,7 +97,9 @@ const InputChips: FC = () => {
             rightIcon={<AddCircleSVGIcon className={styles("remove")} />}
             className={styles("chip")}
             onClick={() =>
-              setChips(prevChips => prevChips.filter(chip => chip.id !== id))
+              setChips((prevChips) =>
+                prevChips.filter((chip) => chip.id !== id)
+              )
             }
           >
             {name}
@@ -108,7 +110,7 @@ const InputChips: FC = () => {
           placeholder="something.@email.com"
           theme="none"
           valueKey="label"
-          data={data.filter(({ id }) => !chips.find(chip => chip.id === id))}
+          data={data.filter(({ id }) => !chips.find((chip) => chip.id === id))}
           listboxWidth="auto"
           anchor={BELOW_INNER_LEFT_ANCHOR}
           className={styles("field")}

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const DoNotDisturbFontIcon: FC<FontIconProps> = props => (
+const DoNotDisturbFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>do_not_disturb</FontIcon>
 );
 

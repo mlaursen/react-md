@@ -154,7 +154,7 @@ const routes: NavItem[] = [
     href: "/packages",
     children: "Packages",
     leftIcon: <BuildSVGIcon />,
-    routes: PACKAGE_NAMES.map(name => ({
+    routes: PACKAGE_NAMES.map((name) => ({
       href: `/${name}`,
       children: toTitle(name),
       routes: getPackageRoutes(name),
@@ -263,7 +263,7 @@ function createNavItem(
     parentId,
   };
 
-  routes.forEach(childRoute => {
+  routes.forEach((childRoute) => {
     createNavItem(tree, childRoute, itemId);
   });
 

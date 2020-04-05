@@ -19,7 +19,7 @@ export interface RippleProps {
   ripple: RippleState;
 }
 
-const Ripple: FC<RippleProps> = props => {
+const Ripple: FC<RippleProps> = (props) => {
   const {
     className,
     classNames: propClassNames,

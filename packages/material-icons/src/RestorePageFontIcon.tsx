@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RestorePageFontIcon: FC<FontIconProps> = props => (
+const RestorePageFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>restore_page</FontIcon>
 );
 

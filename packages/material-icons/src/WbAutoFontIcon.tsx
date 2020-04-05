@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const WbAutoFontIcon: FC<FontIconProps> = props => (
+const WbAutoFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>wb_auto</FontIcon>
 );
 

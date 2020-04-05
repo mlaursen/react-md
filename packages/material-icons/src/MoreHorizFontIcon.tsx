@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const MoreHorizFontIcon: FC<FontIconProps> = props => (
+const MoreHorizFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>more_horiz</FontIcon>
 );
 

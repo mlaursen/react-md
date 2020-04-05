@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const IndeterminateCheckBoxFontIcon: FC<FontIconProps> = props => (
+const IndeterminateCheckBoxFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>indeterminate_check_box</FontIcon>
 );
 

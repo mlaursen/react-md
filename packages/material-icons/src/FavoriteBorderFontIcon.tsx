@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FavoriteBorderFontIcon: FC<FontIconProps> = props => (
+const FavoriteBorderFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>favorite_border</FontIcon>
 );
 

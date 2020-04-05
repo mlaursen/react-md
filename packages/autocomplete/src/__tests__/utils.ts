@@ -134,7 +134,7 @@ describe("getFilterFunction", () => {
     expect(getFilterFunction(noFilter)).toBe(noFilter);
 
     const custom: FilterFunction = (value, data) =>
-      data.filter(d => !!d && getResultValue(d, "thing").startsWith(value));
+      data.filter((d) => !!d && getResultValue(d, "thing").startsWith(value));
     expect(getFilterFunction(custom)).toBe(custom);
   });
 });

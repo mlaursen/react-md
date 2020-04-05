@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ArrowDownwardFontIcon: FC<FontIconProps> = props => (
+const ArrowDownwardFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>arrow_downward</FontIcon>
 );
 

@@ -229,7 +229,7 @@ export default function useTreeMovement({
             onItemExpansion(itemId, false);
           } else if (parentId !== rootId) {
             const parentIndex = visibleItems.findIndex(
-              item => item.itemId === parentId
+              (item) => item.itemId === parentId
             );
             setFocusedIndex(parentIndex);
           }
@@ -312,7 +312,7 @@ export default function useTreeMovement({
       let index = -1;
       // try to "focus" the first selected itemId if there is a selection.
       if (selectedIds.length) {
-        index = visibleItems.findIndex(item =>
+        index = visibleItems.findIndex((item) =>
           selectedIds.includes(item.itemId)
         );
       }
@@ -341,7 +341,7 @@ export default function useTreeMovement({
 
   const setActiveId = useCallback(
     (itemId: TreeItemId) => {
-      const index = visibleItems.findIndex(item => item.itemId === itemId);
+      const index = visibleItems.findIndex((item) => item.itemId === itemId);
       if (index !== -1) {
         setFocusedIndex(index);
       }

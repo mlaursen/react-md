@@ -25,7 +25,7 @@ const ReferenceLinkList: FC<ReferenceLinkListProps> = ({ links }) => {
   const router = useRouter();
   return (
     <>
-      {links.map(link => {
+      {links.map((link) => {
         const { name, type, packageName } = link;
         const id = getId(name, type, packageName);
 

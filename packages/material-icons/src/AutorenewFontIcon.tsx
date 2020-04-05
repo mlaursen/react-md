@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const AutorenewFontIcon: FC<FontIconProps> = props => (
+const AutorenewFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>autorenew</FontIcon>
 );
 

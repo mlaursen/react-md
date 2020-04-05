@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RingVolumeFontIcon: FC<FontIconProps> = props => (
+const RingVolumeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>ring_volume</FontIcon>
 );
 

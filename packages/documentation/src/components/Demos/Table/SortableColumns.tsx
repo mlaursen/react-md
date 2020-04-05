@@ -49,7 +49,7 @@ const SortableColumns: FC = () => {
   }));
 
   const update = (sortKey: DessertKey): void => {
-    setState(prevState => {
+    setState((prevState) => {
       const prevSortKey = prevState.sortKey;
       const prevSortOrder = prevState.sortOrder;
 
@@ -77,7 +77,7 @@ const SortableColumns: FC = () => {
       <Table fullWidth>
         <TableHeader>
           <TableRow>
-            {columns.map(name => (
+            {columns.map((name) => (
               <TableCell
                 key={name}
                 aria-sort={name === sortKey ? sortOrder : "none"}
@@ -89,9 +89,9 @@ const SortableColumns: FC = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map(dessert => (
+          {data.map((dessert) => (
             <TableRow key={dessert.name}>
-              {columns.map(key => (
+              {columns.map((key) => (
                 <TableCell
                   key={key}
                   grow={key === "name"}

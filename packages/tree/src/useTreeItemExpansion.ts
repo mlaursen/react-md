@@ -18,7 +18,7 @@ export default function useTreeItemExpansion(
   const [expandedIds, setExpandedIds] = useState(defaultExpandedIds);
   const onItemExpansion = useCallback(
     (itemId: TreeItemId, expanded: boolean) => {
-      setExpandedIds(expandedIds => {
+      setExpandedIds((expandedIds) => {
         let nextExpandedIds = expandedIds;
         const i = expandedIds.indexOf(itemId);
         if (i === -1 && expanded) {

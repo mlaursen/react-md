@@ -88,7 +88,7 @@ const HandlingDuplicatedMessages: FC<Props> = ({
         value={key}
         onChange={handleKeyChange}
       >
-        {Object.keys(MESSAGES).map(key => (
+        {Object.keys(MESSAGES).map((key) => (
           <option key={key} value={key}>
             {MESSAGES[key as MessageKeys].children}
           </option>

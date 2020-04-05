@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const GridOnFontIcon: FC<FontIconProps> = props => (
+const GridOnFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>grid_on</FontIcon>
 );
 

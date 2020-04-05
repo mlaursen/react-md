@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const YoutubeSearchedForFontIcon: FC<FontIconProps> = props => (
+const YoutubeSearchedForFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>youtube_searched_for</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ArrowDropUpFontIcon: FC<FontIconProps> = props => (
+const ArrowDropUpFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>arrow_drop_up</FontIcon>
 );
 

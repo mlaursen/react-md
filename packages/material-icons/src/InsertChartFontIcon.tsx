@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const InsertChartFontIcon: FC<FontIconProps> = props => (
+const InsertChartFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>insert_chart</FontIcon>
 );
 

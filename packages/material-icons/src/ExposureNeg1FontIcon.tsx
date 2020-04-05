@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ExposureNeg1FontIcon: FC<FontIconProps> = props => (
+const ExposureNeg1FontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>exposure_neg_1</FontIcon>
 );
 

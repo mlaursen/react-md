@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ChatBubbleOutlineFontIcon: FC<FontIconProps> = props => (
+const ChatBubbleOutlineFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>chat_bubble_outline</FontIcon>
 );
 

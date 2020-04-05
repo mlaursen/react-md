@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const BatteryChargingFullFontIcon: FC<FontIconProps> = props => (
+const BatteryChargingFullFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>battery_charging_full</FontIcon>
 );
 

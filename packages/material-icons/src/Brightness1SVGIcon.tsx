@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const Brightness1SVGIcon: FC<SVGIconProps> = props => (
+const Brightness1SVGIcon: FC<SVGIconProps> = (props) => (
   <SVGIcon {...props}>
     <circle cx="12" cy="12" r="10" />
   </SVGIcon>

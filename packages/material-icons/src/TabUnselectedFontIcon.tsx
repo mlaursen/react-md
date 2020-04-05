@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const TabUnselectedFontIcon: FC<FontIconProps> = props => (
+const TabUnselectedFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>tab_unselected</FontIcon>
 );
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const CloudCircleFontIcon: FC<FontIconProps> = props => (
+const CloudCircleFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>cloud_circle</FontIcon>
 );
 

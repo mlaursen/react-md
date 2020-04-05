@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const DonutLargeFontIcon: FC<FontIconProps> = props => (
+const DonutLargeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>donut_large</FontIcon>
 );
 

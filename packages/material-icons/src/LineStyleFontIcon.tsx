@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const LineStyleFontIcon: FC<FontIconProps> = props => (
+const LineStyleFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>line_style</FontIcon>
 );
 

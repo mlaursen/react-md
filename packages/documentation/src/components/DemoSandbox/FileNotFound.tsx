@@ -35,7 +35,7 @@ const FileNotFound: FC<FileNotFoundProps> = ({
             </CardHeader>
             <CardContent>
               <List className={block("error-list")}>
-                {Object.keys(sandbox).map(name => (
+                {Object.keys(sandbox).map((name) => (
                   <ListItem key={name} onClick={() => onFileChange(name)}>
                     {name}
                   </ListItem>

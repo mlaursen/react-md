@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FormatSizeFontIcon: FC<FontIconProps> = props => (
+const FormatSizeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>format_size</FontIcon>
 );
 

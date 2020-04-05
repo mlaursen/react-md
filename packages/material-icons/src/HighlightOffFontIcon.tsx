@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const HighlightOffFontIcon: FC<FontIconProps> = props => (
+const HighlightOffFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>highlight_off</FontIcon>
 );
 

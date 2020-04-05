@@ -11,7 +11,7 @@ export function isBubbled<E extends HTMLElement>(
 ): boolean {
   return Array.from(
     event.currentTarget.querySelectorAll('[role="treeitem"]')
-  ).some(item => item.contains(event.target as HTMLElement));
+  ).some((item) => item.contains(event.target as HTMLElement));
 }
 
 /**

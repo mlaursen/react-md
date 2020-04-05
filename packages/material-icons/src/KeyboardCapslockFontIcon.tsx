@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const KeyboardCapslockFontIcon: FC<FontIconProps> = props => (
+const KeyboardCapslockFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>keyboard_capslock</FontIcon>
 );
 

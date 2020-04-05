@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ScreenLockLandscapeFontIcon: FC<FontIconProps> = props => (
+const ScreenLockLandscapeFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>screen_lock_landscape</FontIcon>
 );
 

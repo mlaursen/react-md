@@ -56,8 +56,8 @@ function handle(cjs: boolean): (pathname: string) => void {
 }
 
 export default function watch(cjs: boolean): void {
-  const packages = getPackages().filter(name => name !== "material-icons");
-  const sources = packages.map(name => `packages/${name}/${src}`);
+  const packages = getPackages().filter((name) => name !== "material-icons");
+  const sources = packages.map((name) => `packages/${name}/${src}`);
 
   const watcher = chokidar.watch(sources, { ignored: /__tests__/ });
   watcher.on("change", handle(cjs));

@@ -62,7 +62,7 @@ export default function useMenuKeyDown({
         items[index].focus();
       }
     },
-    items: items.map(item => extractTextContent(item)),
+    items: items.map((item) => extractTextContent(item)),
     onKeyDown(event) {
       if (onKeyDown) {
         onKeyDown(event);

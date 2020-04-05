@@ -37,7 +37,7 @@ const { Provider } = context;
 export const NestedDialogContextProvider: FC = ({ children }) => {
   const [stack, setStack] = useState<string[]>([]);
   const add = useCallback((dialogId: string) => {
-    setStack(prevStack => {
+    setStack((prevStack) => {
       if (
         process.env.NODE_ENV !== "production" &&
         prevStack.includes(dialogId)
@@ -58,7 +58,7 @@ export const NestedDialogContextProvider: FC = ({ children }) => {
     });
   }, []);
   const remove = useCallback((dialogId: string) => {
-    setStack(prevStack => prevStack.filter(id => id !== dialogId));
+    setStack((prevStack) => prevStack.filter((id) => id !== dialogId));
   }, []);
   const value = useMemo(() => ({ stack, add, remove }), [add, remove, stack]);
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const AspectRatioFontIcon: FC<FontIconProps> = props => (
+const AspectRatioFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>aspect_ratio</FontIcon>
 );
 

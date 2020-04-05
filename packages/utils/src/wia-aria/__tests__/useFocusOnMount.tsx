@@ -30,7 +30,7 @@ describe("useFocusOnMount", () => {
   beforeEach(() => {
     requestAnimationFrame.mockClear();
     cancelAnimationFrame.mockClear();
-    requestAnimationFrame.mockImplementation(cb => {
+    requestAnimationFrame.mockImplementation((cb) => {
       cb(0);
       return 0;
     });

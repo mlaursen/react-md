@@ -3,7 +3,7 @@ import React, { FC } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const TransferWithinAStationFontIcon: FC<FontIconProps> = props => (
+const TransferWithinAStationFontIcon: FC<FontIconProps> = (props) => (
   <FontIcon {...props}>transfer_within_a_station</FontIcon>
 );
 

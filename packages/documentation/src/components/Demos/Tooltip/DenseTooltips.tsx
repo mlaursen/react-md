@@ -14,7 +14,7 @@ const DenseTooltips: FC = () => {
         Normal
       </Text>
       <Container>
-        {positions.map(position => (
+        {positions.map((position) => (
           <TooltippedButton
             id={`normal-tooltip-${position}`}
             key={position}
@@ -29,7 +29,7 @@ const DenseTooltips: FC = () => {
         Dense
       </Text>
       <Container>
-        {positions.map(position => (
+        {positions.map((position) => (
           <TooltippedButton
             id={`dense-tooltip-${position}`}
             key={position}
