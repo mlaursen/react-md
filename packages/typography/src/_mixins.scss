@@ -212,6 +212,18 @@
   white-space: nowrap;
 }
 
+/// A simple mixin that allows you to use the `-webkit-box` behavior for
+/// overflowing text that spans multiple lines
+///
+/// @see https://caniuse.com/#search=line-clamp
+/// @param {Number|String} lines [2] - The number of lines that the text should be
+/// clamped to.
+@mixin rmd-typography-line-clamp($lines: 2) {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  display: -webkit-box;
+}
+
 /// Creates all the typography styles from the react-md typography variables.
 @mixin react-md-typography {
   @include rmd-theme-create-root-theme($rmd-typography-theme-values, typography);
