@@ -135,9 +135,14 @@ export default function useAutoComplete({
   );
 
   const filter = getFilterFunction(filterFn);
-  const [{ value, match, filteredData }, setState] = useState(() => {
+  const [
+    { value, match, filteredData: stateFilteredData },
+    setState,
+  ] = useState(() => {
     const options = {
       ...filterOptions,
+      valueKey,
+      getItemValue: getResultValue,
       startsWith: filterOptions?.startsWith ?? isInlineAutocomplete,
     };
 
@@ -147,6 +152,7 @@ export default function useAutoComplete({
       filteredData: filterOnNoValue ? filter("", data, options) : data,
     };
   });
+  const filteredData = filterFn === "none" ? data : stateFilteredData;
 
   const setValue = useCallback(
     (nextValue: string) => {
@@ -158,8 +164,11 @@ export default function useAutoComplete({
       if (nextValue || filterOnNoValue) {
         const options = {
           ...filterOptions,
+          valueKey,
+          getItemValue: getResultValue,
           startsWith: filterOptions?.startsWith ?? isInlineAutocomplete,
         };
+
         filtered = filter(nextValue, data, options);
       }
 
