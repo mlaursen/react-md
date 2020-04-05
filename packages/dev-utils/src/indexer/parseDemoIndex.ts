@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from "fs-extra";
+import { upperFirst } from "lodash";
 import log from "loglevel";
 import { join } from "path";
 
@@ -39,7 +40,12 @@ export default function parseDemoIndex(demoRoute: string): MarkdownResult {
       }
 
       const title = line.replace(/^.+"([A-z0-9- ]+)",/, "$1");
-      let fileName = title.replace(/\s|-/g, "");
+      let fileName = title
+        .split(" ")
+        .map(upperFirst)
+        .join("")
+        .replace(/\s|-/g, "");
+
       if (!existsSync(join(demoFolder, `${fileName}.md`))) {
         fileName = join(fileName, "README");
         if (!existsSync(join(demoFolder, `${fileName}.md`))) {
@@ -55,7 +61,7 @@ export default function parseDemoIndex(demoRoute: string): MarkdownResult {
         log.warn(`\`${title}\` demo does not have a valid summary!`);
       }
 
-      result.anchors.push({ anchor: toId(title), title });
+      result.anchors.push({ anchor: `#${toId(title)}`, title });
       result.demos.push({ title, summary });
 
       return result;
