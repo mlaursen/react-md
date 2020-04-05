@@ -2,10 +2,7 @@ import { ROOT_PATH } from 'constants/application';
 
 let serverUrl = '';
 if (process.env.NODE_ENV === 'production') {
-  // remove the root path from the url since this is normally
-  // used with the API_ENDPOINT constant that sets the ROOT_PATH
-  // already.
-  serverUrl = PUBLIC_URL.replace(ROOT_PATH, '');
+  serverUrl = PUBLIC_URL;
 }
 
 /**
@@ -31,5 +28,5 @@ export default function getServerUrl(req) {
  * @return {String} the fully resolved hostname.
  */
 export function getUrl(req) {
-  return `${getServerUrl(req)}${req.originalUrl}`;
+  return `${getServerUrl(req)}${req.originalUrl}`.replace('/v1/v1/', '/v1/').replace(/\/+/g, '/');
 }
