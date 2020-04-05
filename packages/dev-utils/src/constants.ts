@@ -30,3 +30,10 @@ export const scssVariables = "scssVariables.ts";
 // logging flags
 export const DEBUG = "--debug";
 export const SILENT = "--silent";
+
+export const BANNER = `/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
+`;

@@ -85,12 +85,13 @@ export default async function generate(
     if (demos.length) {
       const [, pkgName] = route.split("/").reverse();
       demos.forEach(({ title, summary }) => {
+        const hash = `#${toId(title)}-title`;
         metadata.push({
           title: `${toTitle(pkgName, "")} Demo - ${title}`,
           summary,
           type: "demo",
-          asPath,
-          pathname: `${route}#${toId(title)}-title`,
+          asPath: `${asPath}${hash}`,
+          pathname: `${route}${hash}`,
         });
       });
     }

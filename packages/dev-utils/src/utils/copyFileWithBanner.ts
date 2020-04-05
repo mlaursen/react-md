@@ -3,6 +3,7 @@ import { BuiltInParserName } from "prettier";
 
 import format from "./format";
 import writeFile from "./writeFile";
+import { BANNER } from "../constants";
 
 export default async function copyFileWithWarning(
   from: string,
@@ -10,11 +11,6 @@ export default async function copyFileWithWarning(
   parser?: BuiltInParserName
 ): Promise<void> {
   const contents = await readFile(from, "utf8");
-  const banner = `/**
- * This file was generated from @react-md/dev-utils and should not be updated
- * manually.
- */
-`;
 
-  return writeFile(to, format(`${banner}${contents}`, parser));
+  return writeFile(to, format(`${BANNER}${contents}`, parser));
 }

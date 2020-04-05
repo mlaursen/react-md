@@ -2,6 +2,7 @@
  * This file was generated from @react-md/dev-utils and should not be updated
  * manually.
  */
+
 export interface TOCAnchor {
   anchor: string;
   title: string;
