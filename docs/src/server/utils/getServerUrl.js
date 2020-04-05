@@ -1,6 +1,8 @@
+import { ROOT_PATH } from 'constants/application';
+
 let serverUrl = '';
 if (process.env.NODE_ENV === 'production') {
-  serverUrl = PUBLIC_URL;
+  serverUrl = PUBLIC_URL.replace('/v1', '');
 }
 
 /**
@@ -26,5 +28,5 @@ export default function getServerUrl(req) {
  * @return {String} the fully resolved hostname.
  */
 export function getUrl(req) {
-  return `${getServerUrl(req)}${req.originalUrl}`.replace('/v1/v1/', '/v1/').replace(/\/+/g, '/');
+  return `${getServerUrl(req)}${req.originalUrl.replace(ROOT_PATH, '/')}`;
 }
