@@ -1,15 +1,8 @@
-import {
-  ensureDir,
-  existsSync,
-  readJsonSync,
-  remove,
-  writeJson,
-} from "fs-extra";
+import { ensureDir, existsSync, remove, writeJson } from "fs-extra";
 import log from "loglevel";
 import path from "path";
-import { CompilerOptions } from "typescript";
 
-import { documentationRoot, projectRoot, src } from "../constants";
+import { src } from "../constants";
 import glob from "../utils/glob";
 import list from "../utils/list";
 import toTitle from "../utils/toTitle";
@@ -21,6 +14,8 @@ import generate, {
   findGeneratedSandboxes,
   getSandboxFileName,
 } from "./generate";
+import getCompilerOptions from "./getCompilerOptions";
+import getAliases from "./getAliases";
 
 export interface ResolveConfig {
   components: string[];
@@ -29,20 +24,6 @@ export interface ResolveConfig {
   clean: boolean;
   cleanOnly: boolean;
   staged: boolean;
-}
-
-function getCompilerOptions(): CompilerOptions {
-  const base = readJsonSync(path.join(projectRoot, "tsconfig.base.json"));
-  const docs = readJsonSync(path.join(documentationRoot, "tsconfig.json"));
-
-  // this isn't entirely correct, but not sure how to really do this.
-  const resolved = {
-    ...base.compilerOptions,
-    ...docs.compilerOptions,
-  } as CompilerOptions;
-  delete resolved.moduleResolution;
-
-  return resolved;
 }
 
 async function createSandboxJsonFiles(
@@ -76,14 +57,7 @@ async function createSandboxJsonFiles(
   log.debug(JSON.stringify(compilerOptions, null, 2));
   log.debug();
 
-  const aliases = Object.keys(compilerOptions.paths).map(name => {
-    if (!name.includes("@react-md")) {
-      name = name.replace("/*", "");
-    }
-
-    return `${src}/${name}`;
-  });
-  aliases.push(`${src}/_variables.scss`);
+  const aliases = getAliases(compilerOptions);
   const demos = (
     await Promise.all(
       demoIndexes.map(demoIndexPath => extractDemoFiles(demoIndexPath))
