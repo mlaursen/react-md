@@ -6,6 +6,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { BottomNavigation, FontIcon, SVGIcon } from 'react-md';
 
+import { ROOT_PATH } from 'constants/application';
 import PhoneEmulator from 'components/PhoneEmulator';
 import withMinHeight from 'components/hoc/withMinHeight';
 import video from 'icons/ondemand_video.svg';
@@ -20,7 +21,7 @@ import NewsStand from './Shifting/NewsStand';
 import CloseExample from './Shifting/CloseExample';
 
 const THEMES = ['movies-and-tv', 'music', 'book', 'news-stand'].map(theme => `bottom-navigations__dynamic--${theme}`);
-const TO_PREFIX = '/discover-more/routing-examples/bottom-navigations';
+const TO_PREFIX = `${ROOT_PATH}discover-more/routing-examples/bottom-navigations`;
 const links = [{
   label: 'Movies & TV',
   icon: <SVGIcon use={video.url} />,
@@ -146,7 +147,7 @@ class RoutingExample extends PureComponent {
           </PhoneEmulator>
         </div>
         <div className="md-cell md-cell--12">
-          <Link to="/components/bottom-navigations#react-router-example">Return to BottomNavigation examples</Link>
+          <Link to={`${ROOT_PATH}components/bottom-navigations#react-router-example`}>Return to BottomNavigation examples</Link>
         </div>
       </div>
     );

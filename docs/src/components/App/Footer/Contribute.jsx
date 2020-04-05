@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Cell } from 'react-md';
 import { Link } from 'react-router-dom';
-import { GITHUB_URL } from 'constants/application';
+import { GITHUB_URL, ROOT_PATH } from 'constants/application';
 
 const Contribute = () => (
   <Cell component="section" size={8}>
@@ -9,7 +9,7 @@ const Contribute = () => (
     <p className="md-body-2">
       Please read the
       &nbsp;
-      <Link to="/discover-more/contributing" className="link">
+      <Link to={`${ROOT_PATH}discover-more/contributing`} className="link">
         contributing guidelines
       </Link>
       &nbsp;

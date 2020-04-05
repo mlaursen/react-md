@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ExamplesPage from 'components/ExamplesPage';
+import { ROOT_PATH } from 'constants/application';
 
 import README from './README.md';
 
@@ -47,7 +48,7 @@ route to actually view the demo. Please click the link below to see this example
 is still available here by clicking the code expander button.
   `,
   code: RoutingExampleRaw,
-  children: <Link to="/discover-more/routing-examples/drawers">View Demo</Link>,
+  children: <Link to={`${ROOT_PATH}discover-more/routing-examples/drawers`}>View Demo</Link>,
 }];
 
 const Drawers = () => <ExamplesPage description={README} examples={examples} />;

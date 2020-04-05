@@ -5,13 +5,15 @@ import { withRouter } from 'react-router';
 import { Link, Route, Switch } from 'react-router-dom';
 import { Button, Drawer, Toolbar } from 'react-md';
 
+import { ROOT_PATH } from 'constants/application';
+
 import NavItemLink from './NavItemLink';
 import Inbox from './Inbox';
 import Starred from './Starred';
 import SendMail from './SendMail';
 import Drafts from './Drafts';
 
-const TO_PREFIX = '/discover-more/routing-examples/drawers';
+const TO_PREFIX = `${ROOT_PATH}discover-more/routing-examples/drawers`;
 
 const navItems = [{
   label: 'Inbox',
@@ -80,7 +82,7 @@ class RoutingExample extends PureComponent {
           type={Drawer.DrawerTypes.TEMPORARY}
           visible={visible}
           onVisibilityChange={this.handleVisibility}
-          header={<Toolbar title={<Link to="/components/drawers#react-router-example">Drawer examples</Link>} />}
+          header={<Toolbar title={<Link to={`${ROOT_PATH}components/drawers#react-router-example`}>Drawer examples</Link>} />}
           renderNode={this.dialog}
           navItems={navItems.map(props => <NavItemLink {...props} key={props.to} />)}
         />

@@ -1,6 +1,7 @@
 import React from 'react';
 import ExamplesPage from 'components/ExamplesPage';
 import { Link } from 'react-router-dom';
+import { ROOT_PATH } from 'constants/application';
 
 import Fixed from './Fixed';
 import FixedRaw from './Fixed/code';
@@ -54,7 +55,7 @@ route to actually view the demo. Please click the link below to see this example
 is still available here by clicking the code expander button.
   `,
   code: RoutingExampleRaw,
-  children: <Link to="/discover-more/routing-examples/bottom-navigations">View Demo</Link>,
+  children: <Link to={`${ROOT_PATH}discover-more/routing-examples/bottom-navigations`}>View Demo</Link>,
 }];
 
 const BottomNavigations = () => <ExamplesPage description={README} examples={examples} className="bottom-navigations" />;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import { NavigationDrawer } from 'react-md';
+import { ROOT_PATH } from 'constants/application';
 import { toTitle } from 'utils/strings';
 
 import './_styles.scss';
@@ -12,7 +13,7 @@ import Starred from 'components/Components/Drawers/RoutingExample/Starred';
 import SendMail from 'components/Components/Drawers/RoutingExample/SendMail';
 import Drafts from 'components/Components/Drawers/RoutingExample/Drafts';
 
-const TO_PREFIX = '/discover-more/routing-examples/navigation-drawers';
+const TO_PREFIX = `${ROOT_PATH}discover-more/routing-examples/navigation-drawers`;
 
 const navItems = [{
   label: 'Inbox',

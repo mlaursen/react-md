@@ -1,7 +1,7 @@
 import React from 'react';
 import { Version } from 'react-md';
 import { Link } from 'react-router-dom';
-import { GITHUB_URL } from 'constants/application';
+import { GITHUB_URL, ROOT_PATH } from 'constants/application';
 import ExamplesPage from 'components/ExamplesPage';
 
 import README from './README.md';
@@ -39,7 +39,7 @@ route to actually view the demo. Please click the link below to see this example
 is still available here by clicking the code expander button.
   `,
   code: RoutingExampleRaw,
-  children: <Link to="/discover-more/routing-examples/navigation-drawers">View Demo</Link>,
+  children: <Link to={`${ROOT_PATH}discover-more/routing-examples/navigation-drawers`}>View Demo</Link>,
 }];
 
 const NavigationDrawers = () => <ExamplesPage description={README} examples={examples} />;

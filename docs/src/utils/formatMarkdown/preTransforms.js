@@ -1,5 +1,5 @@
 import { Version } from 'react-md';
-import { GITHUB_URL } from 'constants/application';
+import { GITHUB_URL, ROOT_PATH } from 'constants/application';
 
 /**
  * This will updated the generated markdown so all links that contain:
@@ -97,11 +97,16 @@ export function addVersionToUMD(markdown) {
   return markdown.replace(/unpkg.com\/react-md\/dist/g, `unpkg.com/react-md@${Version}/dist`);
 }
 
+export function fixRootPath(markdown) {
+  return markdown.replace(/\(\/([A-z0-9-]+)\)/g, `(${ROOT_PATH}$1)`);
+}
+
 /**
  * These are all the transformations that can be done **BEFORE** it is parsed into
  * html. So anything that will update the markdown to better links, or other things.
  */
 export default [
+  fixRootPath,
   addGithubLinks,
   addGithubHashLinks,
   addGithubUserLinks,
