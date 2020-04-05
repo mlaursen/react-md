@@ -51,7 +51,7 @@ export default function createPaginatedRoute(getData, { queryable = true, maxRes
       return;
     }
 
-    let url = `${getUrl(req).replace(/\?.*/, '')}?`;
+    let url = `${getUrl(req).replace(/\?.*/, '')}?`.replace('/v1/v1', '/v1');
     if (queryable) {
       url = `${url}q=${q}&`;
     }
