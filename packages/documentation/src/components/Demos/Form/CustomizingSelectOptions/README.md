@@ -1,8 +1,8 @@
-he default behvior for the `Select` component is to just render any `number` or
-`string` options as the `children` within the `ListItem`. Since it is sometimes
-helpful to be able to add additional information, styling, or icons with the
-options, an option can also be an object of props to pass to the `ListItem`
-instead.
+The default behavior for the `Select` component is to just render any `number`
+or `string` options as the `children` within the `ListItem`. Since it is
+sometimes helpful to be able to add additional information, styling, or icons
+with the options, an option can also be an object of props to pass to the
+`ListItem` instead.
 
 When the `option` is an object, the default behavior will be to:
 
