@@ -1,5 +1,3 @@
-import { ROOT_PATH } from 'constants/application';
-
 let serverUrl = '';
 if (process.env.NODE_ENV === 'production') {
   serverUrl = PUBLIC_URL;
