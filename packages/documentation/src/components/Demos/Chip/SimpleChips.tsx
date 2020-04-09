@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
 import { AddCircleSVGIcon, ImageSVGIcon } from "@react-md/material-icons";
-import { LazyImage } from "@react-md/media";
 import { Grid } from "@react-md/utils";
 
 const XCircleIcon: FC = (props) => (
@@ -61,7 +60,7 @@ const SimpleChips: FC = () => (
     <Chip
       leftIcon={
         <Avatar>
-          <LazyImage src="https://i.pravatar.cc/40?img=3" />
+          <img src="https://i.pravatar.cc/40?img=3" alt="" />
         </Avatar>
       }
       rightIcon={<XCircleIcon />}
@@ -71,7 +70,7 @@ const SimpleChips: FC = () => (
     <Chip
       leftIcon={
         <Avatar>
-          <LazyImage src="https://i.pravatar.cc/40?img=3" />
+          <img src="https://i.pravatar.cc/40?img=3" alt="" />
         </Avatar>
       }
       rightIcon={<XCircleIcon />}
@@ -83,7 +82,7 @@ const SimpleChips: FC = () => (
       disabled
       leftIcon={
         <Avatar>
-          <LazyImage src="https://i.pravatar.cc/40?img=3" />
+          <img src="https://i.pravatar.cc/40?img=3" alt="" />
         </Avatar>
       }
       rightIcon={<XCircleIcon />}
@@ -94,7 +93,7 @@ const SimpleChips: FC = () => (
       disabled
       leftIcon={
         <Avatar>
-          <LazyImage src="https://i.pravatar.cc/40?img=3" />
+          <img src="https://i.pravatar.cc/40?img=3" alt="" />
         </Avatar>
       }
       rightIcon={<XCircleIcon />}

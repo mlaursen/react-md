@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { LazyImage, MediaContainer, MediaOverlay } from "@react-md/media";
+import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { CircularProgress } from "@react-md/progress";
 import { TabPanel, TabPanelProps } from "@react-md/tabs";
 import { Text } from "@react-md/typography";
@@ -69,7 +69,7 @@ const Content2: FC<TabPanelProps> = (props) => {
         {data.map(({ name, url }) => (
           <GridListCell key={url} square clone>
             <MediaContainer>
-              <LazyImage src={url} />
+              <img src={url} alt="" />
               <MediaOverlay>
                 <Text margin="none">{name}</Text>
               </MediaOverlay>

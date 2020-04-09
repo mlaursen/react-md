@@ -8,7 +8,6 @@ import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
 import { Label } from "@react-md/form";
 import { AddCircleSVGIcon } from "@react-md/material-icons";
-import { LazyImage } from "@react-md/media";
 import {
   bem,
   BELOW_INNER_LEFT_ANCHOR,
@@ -45,7 +44,7 @@ const data = Object.values(contacts).map(({ id, name, email, avatar }) => ({
   label: name,
   leftAvatar: (
     <Avatar>
-      <LazyImage src={avatar} />
+      <img src={avatar} alt="" />
     </Avatar>
   ),
   secondaryText: email,
@@ -91,7 +90,7 @@ const InputChips: FC = () => {
             key={id}
             leftIcon={
               <Avatar>
-                <LazyImage src={avatar} />
+                <img src={avatar} alt="" />
               </Avatar>
             }
             rightIcon={<AddCircleSVGIcon className={styles("remove")} />}

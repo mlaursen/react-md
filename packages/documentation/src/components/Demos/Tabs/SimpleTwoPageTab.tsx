@@ -11,7 +11,7 @@ import {
   MoreVertSVGIcon,
   TimerSVGIcon,
 } from "@react-md/material-icons";
-import { MediaContainer, LazyImage } from "@react-md/media";
+import { MediaContainer } from "@react-md/media";
 import {
   TabConfig,
   TabPanel,
@@ -51,7 +51,7 @@ const Panels: FC = () => (
       <GridList maxCellSize={200} clone>
         {Array.from(new Array(10), (_, i) => (
           <MediaContainer key={i}>
-            <LazyImage src={`https://picsum.photos/200?image=${i + 1}`} />
+            <img src={`https://picsum.photos/200?image=${i + 1}`} alt="" />
           </MediaContainer>
         ))}
       </GridList>
@@ -60,7 +60,7 @@ const Panels: FC = () => (
       <GridList maxCellSize={200} clone>
         {Array.from(new Array(22), (_, i) => (
           <MediaContainer key={i}>
-            <LazyImage src={`https://picsum.photos/200?image=${i + 51}`} />
+            <img src={`https://picsum.photos/200?image=${i + 51}`} alt="" />
           </MediaContainer>
         ))}
       </GridList>

@@ -8,7 +8,7 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/list/dist/mixins';\n@import '~@react-md/media/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import 'variables';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/list/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
@@ -25,7 +25,6 @@
         "@react-md/layout": "next",
         "@react-md/list": "next",
         "@react-md/material-icons": "next",
-        "@react-md/media": "next",
         "@react-md/states": "next",
         "@react-md/theme": "next",
         "@react-md/typography": "next",
@@ -50,7 +49,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { List, ListItem } from \"@react-md/list\";\nimport { StarSVGIcon } from \"@react-md/material-icons\";\nimport { LazyImage } from \"@react-md/media\";\n\nimport Container from \"./Container\";\n\nconst inbox = [\n  {\n    from: \"Ali Connors\",\n    subject: \"Bunch this weekend?\",\n    message:\n      \"I'll be in your neighborhood sometime this week. Would you like to try brunch this weekend?\",\n  },\n  {\n    from: \"Ali Connors\",\n    subject: \"Summer BBQ\",\n    message: \"Wish I could come, but I'm out of town this weekend.\",\n  },\n  {\n    from: \"Scott Stirling\",\n    subject: \"See your video? You're a legend!\",\n    message:\n      \"I still can't believe it happened... I'm not sure if my face will ever recover.\",\n  },\n];\n\nconst Demo: FC = () => (\n  <Container>\n    <List>\n      {inbox.map(({ subject, message }, i) => (\n        <ListItem\n          id={`three-line-item-${i}`}\n          key={i}\n          leftMedia={\n            <LazyImage\n              src={`https://picsum.photos/40?image=100${i}`}\n              responsive\n            />\n          }\n          rightIcon={<StarSVGIcon />}\n          rightPosition=\"top\"\n          secondaryText={message}\n          threeLines\n        >\n          {subject}\n        </ListItem>\n      ))}\n    </List>\n  </Container>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { List, ListItem } from \"@react-md/list\";\nimport { StarSVGIcon } from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\n\nconst inbox = [\n  {\n    from: \"Ali Connors\",\n    subject: \"Bunch this weekend?\",\n    message:\n      \"I'll be in your neighborhood sometime this week. Would you like to try brunch this weekend?\",\n  },\n  {\n    from: \"Ali Connors\",\n    subject: \"Summer BBQ\",\n    message: \"Wish I could come, but I'm out of town this weekend.\",\n  },\n  {\n    from: \"Scott Stirling\",\n    subject: \"See your video? You're a legend!\",\n    message:\n      \"I still can't believe it happened... I'm not sure if my face will ever recover.\",\n  },\n];\n\nconst Demo: FC = () => (\n  <Container>\n    <List>\n      {inbox.map(({ subject, message }, i) => (\n        <ListItem\n          id={`three-line-item-${i}`}\n          key={i}\n          leftMedia={\n            <img src={`https://picsum.photos/40?image=100${i}`} alt=\"\" />\n          }\n          rightIcon={<StarSVGIcon />}\n          rightPosition=\"top\"\n          secondaryText={message}\n          threeLines\n        >\n          {subject}\n        </ListItem>\n      ))}\n    </List>\n  </Container>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/Container.scss": {

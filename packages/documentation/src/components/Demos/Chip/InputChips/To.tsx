@@ -11,7 +11,6 @@ import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
 import { Label } from "@react-md/form";
 import { AddCircleSVGIcon } from "@react-md/material-icons";
-import { LazyImage } from "@react-md/media";
 import { BELOW_INNER_LEFT_ANCHOR } from "@react-md/utils";
 
 import contacts, { Contact } from "./contacts";
@@ -31,7 +30,7 @@ const To: FC<ToProps> = ({ isTouch }) => {
           label: name,
           leftAvatar: (
             <Avatar>
-              <LazyImage src={avatar} />
+              <img src={avatar} alt="" />
             </Avatar>
           ),
           secondaryText: email,
@@ -69,7 +68,7 @@ const To: FC<ToProps> = ({ isTouch }) => {
             key={id}
             leftIcon={
               <Avatar>
-                <LazyImage src={avatar} />
+                <img src={avatar} alt="" />
               </Avatar>
             }
             rightIcon={<AddCircleSVGIcon className={styles("remove")} />}

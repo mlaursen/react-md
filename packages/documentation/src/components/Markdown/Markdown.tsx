@@ -88,46 +88,6 @@ function useCustomMarkdownBehavior({
         };
       }
     });
-
-    if (typeof IntersectionObserver === "undefined") {
-      return;
-    }
-
-    const lazyElements = Array.from(
-      instance.querySelectorAll<HTMLIFrameElement>("iframe, img")
-    );
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        const element = entry.target as HTMLIFrameElement | HTMLIFrameElement;
-        // guarenteed to have a data-src by this point
-        element.src = element.dataset.src as string;
-      });
-    });
-
-    lazyElements.forEach((element) => {
-      const { src } = element.dataset;
-      if (!src) {
-        if (process.env.NODE_ENV !== "production") {
-          /* eslint-disable no-console */
-          console.warn(
-            "Found an image or iframe without a `data-src` which means the iframe can't be lazy loaded."
-          );
-          console.warn(element);
-        }
-        return;
-      }
-
-      observer.observe(element);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
   }, [html]);
 
   return ref;

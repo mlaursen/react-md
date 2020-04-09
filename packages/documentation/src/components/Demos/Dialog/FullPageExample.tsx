@@ -4,7 +4,7 @@ import { AppBar, AppBarNav } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
 import { ArrowBackSVGIcon } from "@react-md/material-icons";
-import { LazyImage, MediaContainer } from "@react-md/media";
+import { MediaContainer } from "@react-md/media";
 
 import AppBarTitle from "components/AppBarTitle";
 import "./FullPageExample.scss";
@@ -150,7 +150,7 @@ const FullPageExample: FC = () => {
             aria-label={`Show image ${i + 1}`}
             className="dialog-image-preview-item"
           >
-            <LazyImage src={src} />
+            <img src={src} alt="" />
           </Button>
         </MediaContainer>
       ))}

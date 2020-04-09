@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@react-md/card";
 import { Divider } from "@react-md/divider";
-import { LazyImage, MediaContainer } from "@react-md/media";
+import { MediaContainer } from "@react-md/media";
 
 import ActionChipAlarm from "./ActionChipAlarm";
 import ActionChipBlinds from "./ActionChipBlinds";
@@ -24,7 +24,7 @@ const ActionChips: FC = () => {
     <Card id="action-chips-card" className={styles()}>
       <MediaContainer fullWidth>
         <Blinds visible={blinds} />
-        <LazyImage src={`https://picsum.photos/id/218/${width}/${height}`} />
+        <img src={`https://picsum.photos/id/218/${width}/${height}`} alt="" />
       </MediaContainer>
       <CardHeader>
         <CardTitle noWrap>Welcome Home Person Name!</CardTitle>

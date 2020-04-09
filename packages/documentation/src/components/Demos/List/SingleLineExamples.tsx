@@ -9,7 +9,6 @@ import {
   ArrowBackSVGIcon,
   DeleteSVGIcon,
 } from "@react-md/material-icons";
-import { LazyImage } from "@react-md/media";
 
 import people from "constants/people";
 
@@ -44,7 +43,7 @@ const SingleLineExamples: FC = () => (
         id="icon-item-3"
         leftAvatar={
           <Avatar>
-            <LazyImage src="https://picsum.photos/40?image=54" />
+            <img src="https://picsum.photos/40?image=54" alt="" />
           </Avatar>
         }
       >
@@ -54,7 +53,7 @@ const SingleLineExamples: FC = () => (
         id="icon-item-4"
         rightAvatar={
           <Avatar>
-            <LazyImage src="https://picsum.photos/40?image=45" />
+            <img src="https://picsum.photos/40?image=45" alt="" />
           </Avatar>
         }
       >
@@ -65,7 +64,7 @@ const SingleLineExamples: FC = () => (
         id="icon-item-5"
         leftAvatar={
           <Avatar>
-            <LazyImage src="https://picsum.photos/40?image=844" />
+            <img src="https://picsum.photos/40?image=844" alt="" />
           </Avatar>
         }
         rightIcon={<DeleteSVGIcon />}
@@ -77,7 +76,7 @@ const SingleLineExamples: FC = () => (
         leftIcon={<AdjustSVGIcon />}
         rightAvatar={
           <Avatar>
-            <LazyImage src="https://picsum.photos/40?image=553" />
+            <img src="https://picsum.photos/40?image=553" alt="" />
           </Avatar>
         }
       >
@@ -87,28 +86,28 @@ const SingleLineExamples: FC = () => (
     <List>
       <ListItem
         id="media-item-0"
-        leftMedia={<LazyImage src="https://picsum.photos/56?image=700" />}
+        leftMedia={<img src="https://picsum.photos/56?image=700" alt="" />}
       >
         With a graphic
       </ListItem>
       <ListItem
         id="media-item-1"
         leftMediaLarge={
-          <LazyImage src="https://picsum.photos/100/56?image=800" />
+          <img src="https://picsum.photos/100/56?image=800" alt="" />
         }
       >
         With a large graphic
       </ListItem>
       <ListItem
         id="media-item-2"
-        rightMedia={<LazyImage src="https://picsum.photos/56?image=700" />}
+        rightMedia={<img src="https://picsum.photos/56?image=700" alt="" />}
       >
         With a graphic
       </ListItem>
       <ListItem
         id="media-item-3"
         rightMediaLarge={
-          <LazyImage src="https://picsum.photos/100/56?image=800" />
+          <img src="https://picsum.photos/100/56?image=800" alt="" />
         }
       >
         With a large graphic

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Card, CardContent, CardTitle } from "@react-md/card";
-import { LazyImage, MediaContainer, MediaOverlay } from "@react-md/media";
+import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { Text } from "@react-md/typography";
 
 import Container from "./Container";
@@ -9,7 +9,7 @@ const WithMedia: FC = () => (
   <Container>
     <Card>
       <MediaContainer fullWidth>
-        <LazyImage src="https://picsum.photos/600/337?image=402" />
+        <img src="https://picsum.photos/600/337?image=402" alt="" />
         <MediaOverlay>
           <CardTitle>Wow</CardTitle>
         </MediaOverlay>

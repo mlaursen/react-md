@@ -11,7 +11,7 @@ import {
   KeyboardArrowDownSVGIcon,
 } from "@react-md/material-icons";
 import { List, ListItem } from "@react-md/list";
-import { MediaContainer, LazyImage } from "@react-md/media";
+import { MediaContainer } from "@react-md/media";
 
 import Container from "./Container";
 
@@ -21,12 +21,12 @@ const ExpandableCards: FC = () => {
     <Container centered>
       <Card>
         <MediaContainer fullWidth>
-          <LazyImage src="https://picsum.photos/300/200?image=1011" />
+          <img src="https://picsum.photos/300/200?image=1011" alt="" />
         </MediaContainer>
         <CardHeader
           beforeChildren={
             <Avatar>
-              <LazyImage src="https://picsum.photos/40?image=1011" />
+              <img src="https://picsum.photos/40?image=1011" alt="" />
             </Avatar>
           }
           afterChildren={

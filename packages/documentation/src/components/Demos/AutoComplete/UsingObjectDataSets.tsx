@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { AutoComplete } from "@react-md/autocomplete";
 import { Avatar } from "@react-md/avatar";
-import { LazyImage } from "@react-md/media";
 
 import dessertsList from "constants/desserts";
 import statesList from "constants/states";
@@ -53,7 +52,7 @@ const desserts = dessertsList.map(({ name, type, calories }, i) => ({
       {type.substring(0, 3)}
     </Avatar>
   ),
-  rightMedia: <LazyImage src={`https://picsum.photos/56?image=${30 + i}`} />,
+  rightMedia: <img src={`https://picsum.photos/56?image=${30 + i}`} alt="" />,
 }));
 
 // just slicing since `statesList` is readonly
