@@ -332,15 +332,15 @@ const tocs: TOCRecord = {
   ],
   "/packages/alert/demos": [
     {
-      anchor: "simple-message-queue",
+      anchor: "#simple-message-queue",
       title: "Simple Message Queue",
     },
     {
-      anchor: "handling-duplicated-messages",
+      anchor: "#handling-duplicated-messages",
       title: "Handling Duplicated Messages",
     },
     {
-      anchor: "updating-message-priority",
+      anchor: "#updating-message-priority",
       title: "Updating Message Priority",
     },
   ],
@@ -360,23 +360,23 @@ const tocs: TOCRecord = {
   ],
   "/packages/app-bar/demos": [
     {
-      anchor: "simple-usage",
+      anchor: "#simple-usage",
       title: "Simple Usage",
     },
     {
-      anchor: "different-sizes",
+      anchor: "#different-sizes",
       title: "Different Sizes",
     },
     {
-      anchor: "auto-dense",
+      anchor: "#auto-dense",
       title: "Auto Dense",
     },
     {
-      anchor: "fixed-with-offset",
+      anchor: "#fixed-with-offset",
       title: "Fixed with Offset",
     },
     {
-      anchor: "animating-app-bar",
+      anchor: "#animating-app-bar",
       title: "Animating App Bar",
     },
   ],
@@ -392,15 +392,15 @@ const tocs: TOCRecord = {
   ],
   "/packages/autocomplete/demos": [
     {
-      anchor: "simple-example",
+      anchor: "#simple-example",
       title: "Simple Example",
     },
     {
-      anchor: "using-object-data-sets",
+      anchor: "#using-object-data-sets",
       title: "Using Object Data Sets",
     },
     {
-      anchor: "highlight-matches",
+      anchor: "#highlight-matches",
       title: "Highlight Matches",
     },
   ],
@@ -416,11 +416,11 @@ const tocs: TOCRecord = {
   ],
   "/packages/avatar/demos": [
     {
-      anchor: "simple-usage",
+      anchor: "#simple-usage",
       title: "Simple Usage",
     },
     {
-      anchor: "color-examples",
+      anchor: "#color-examples",
       title: "Color Examples",
     },
   ],
@@ -436,19 +436,19 @@ const tocs: TOCRecord = {
   ],
   "/packages/badge/demos": [
     {
-      anchor: "simple-examples",
+      anchor: "#simple-examples",
       title: "Simple Examples",
     },
     {
-      anchor: "themed-badges",
+      anchor: "#themed-badges",
       title: "Themed Badges",
     },
     {
-      anchor: "with-tooltips",
+      anchor: "#with-tooltips",
       title: "With Tooltips",
     },
     {
-      anchor: "customizing-badges",
+      anchor: "#customizing-badges",
       title: "Customizing Badges",
     },
   ],
@@ -464,27 +464,27 @@ const tocs: TOCRecord = {
   ],
   "/packages/button/demos": [
     {
-      anchor: "text-buttons",
+      anchor: "#text-buttons",
       title: "Text Buttons",
     },
     {
-      anchor: "outlined-buttons",
+      anchor: "#outlined-buttons",
       title: "Outlined Buttons",
     },
     {
-      anchor: "contained-buttons",
+      anchor: "#contained-buttons",
       title: "Contained Buttons",
     },
     {
-      anchor: "icon-buttons",
+      anchor: "#icon-buttons",
       title: "Icon Buttons",
     },
     {
-      anchor: "text-buttons-with-icons",
+      anchor: "#text-buttons-with-icons",
       title: "Text Buttons with Icons",
     },
     {
-      anchor: "custom-button-theme",
+      anchor: "#custom-button-theme",
       title: "Custom Button Theme",
     },
   ],
@@ -512,19 +512,19 @@ const tocs: TOCRecord = {
   ],
   "/packages/card/demos": [
     {
-      anchor: "simple-example",
+      anchor: "#simple-example",
       title: "Simple Example",
     },
     {
-      anchor: "with-media",
+      anchor: "#with-media",
       title: "With Media",
     },
     {
-      anchor: "with-actions",
+      anchor: "#with-actions",
       title: "With Actions",
     },
     {
-      anchor: "expandable-cards",
+      anchor: "#expandable-cards",
       title: "Expandable Cards",
     },
   ],
@@ -540,23 +540,23 @@ const tocs: TOCRecord = {
   ],
   "/packages/chip/demos": [
     {
-      anchor: "simple-chips",
+      anchor: "#simple-chips",
       title: "Simple Chips",
     },
     {
-      anchor: "filter-chips",
+      anchor: "#filter-chips",
       title: "Filter Chips",
     },
     {
-      anchor: "action-chips",
+      anchor: "#action-chips",
       title: "Action Chips",
     },
     {
-      anchor: "choice-chips",
+      anchor: "#choice-chips",
       title: "Choice Chips",
     },
     {
-      anchor: "input-chips",
+      anchor: "#input-chips",
       title: "Input Chips",
     },
   ],
@@ -572,27 +572,27 @@ const tocs: TOCRecord = {
   ],
   "/packages/dialog/demos": [
     {
-      anchor: "simple-example",
+      anchor: "#simple-example",
       title: "Simple Example",
     },
     {
-      anchor: "full-page-example",
+      anchor: "#full-page-example",
       title: "Full Page Example",
     },
     {
-      anchor: "simple-list-example",
+      anchor: "#simple-list-example",
       title: "Simple List Example",
     },
     {
-      anchor: "alert-dialogs-and-modals",
+      anchor: "#alert-dialogs-and-modals",
       title: "Alert Dialogs and Modals",
     },
     {
-      anchor: "fixed-dialog-example",
+      anchor: "#fixed-dialog-example",
       title: "Fixed Dialog Example",
     },
     {
-      anchor: "nested-dialogs",
+      anchor: "#nested-dialogs",
       title: "Nested Dialogs",
     },
   ],
@@ -608,15 +608,15 @@ const tocs: TOCRecord = {
   ],
   "/packages/divider/demos": [
     {
-      anchor: "horizontal-dividers",
+      anchor: "#horizontal-dividers",
       title: "Horizontal Dividers",
     },
     {
-      anchor: "within-lists",
+      anchor: "#within-lists",
       title: "Within Lists",
     },
     {
-      anchor: "vertical-dividers",
+      anchor: "#vertical-dividers",
       title: "Vertical Dividers",
     },
   ],
@@ -632,11 +632,11 @@ const tocs: TOCRecord = {
   ],
   "/packages/elevation/demos": [
     {
-      anchor: "all-elevations",
+      anchor: "#all-elevations",
       title: "All Elevations",
     },
     {
-      anchor: "animating-elevation",
+      anchor: "#animating-elevation",
       title: "Animating Elevation",
     },
   ],
@@ -652,15 +652,15 @@ const tocs: TOCRecord = {
   ],
   "/packages/expansion-panel/demos": [
     {
-      anchor: "simple-example",
+      anchor: "#simple-example",
       title: "Simple Example",
     },
     {
-      anchor: "configuring-use-panels-behavior",
+      anchor: "#configuring-use-panels-behavior",
       title: "Configuring Use Panels Behavior",
     },
     {
-      anchor: "single-panel",
+      anchor: "#single-panel",
       title: "Single Panel",
     },
   ],
@@ -676,59 +676,59 @@ const tocs: TOCRecord = {
   ],
   "/packages/form/demos": [
     {
-      anchor: "text-field-example",
+      anchor: "#text-field-example",
       title: "Text Field Example",
     },
     {
-      anchor: "text-field-types",
+      anchor: "#text-field-types",
       title: "Text Field Types",
     },
     {
-      anchor: "text-area-example",
+      anchor: "#text-area-example",
       title: "Text Area Example",
     },
     {
-      anchor: "file-input-example",
+      anchor: "#file-input-example",
       title: "File Input Example",
     },
     {
-      anchor: "native-select-example",
+      anchor: "#native-select-example",
       title: "Native Select Example",
     },
     {
-      anchor: "select-example",
+      anchor: "#select-example",
       title: "Select Example",
     },
     {
-      anchor: "customizing-select-options",
+      anchor: "#customizing-select-options",
       title: "Customizing Select Options",
     },
     {
-      anchor: "checkbox-and-radio-examples",
+      anchor: "#checkbox-and-radio-examples",
       title: "Checkbox and Radio Examples",
     },
     {
-      anchor: "indeterminate-checkboxes",
+      anchor: "#indeterminate-checkboxes",
       title: "Indeterminate Checkboxes",
     },
     {
-      anchor: "custom-checkboxes",
+      anchor: "#custom-checkboxes",
       title: "Custom Checkboxes",
     },
     {
-      anchor: "switch-examples",
+      anchor: "#switch-examples",
       title: "Switch Examples",
     },
     {
-      anchor: "async-switch-example",
+      anchor: "#async-switch-example",
       title: "Async Switch Example",
     },
     {
-      anchor: "simple-help-and-error-messages",
+      anchor: "#simple-help-and-error-messages",
       title: "Simple Help and Error Messages",
     },
     {
-      anchor: "example-form",
+      anchor: "#example-form",
       title: "Example Form",
     },
   ],
@@ -744,15 +744,15 @@ const tocs: TOCRecord = {
   ],
   "/packages/icon/demos": [
     {
-      anchor: "simple-examples",
+      anchor: "#simple-examples",
       title: "Simple Examples",
     },
     {
-      anchor: "icon-spacing",
+      anchor: "#icon-spacing",
       title: "Icon Spacing",
     },
     {
-      anchor: "overriding-default-icons",
+      anchor: "#overriding-default-icons",
       title: "Overriding Default Icons",
     },
   ],
@@ -782,23 +782,23 @@ const tocs: TOCRecord = {
   ],
   "/packages/link/demos": [
     {
-      anchor: "simple-examples",
+      anchor: "#simple-examples",
       title: "Simple Examples",
     },
     {
-      anchor: "third-party-routing-libraries",
+      anchor: "#third-party-routing-libraries",
       title: "Third Party Routing Libraries",
     },
     {
-      anchor: "malicious-target",
+      anchor: "#malicious-target",
       title: "Malicious Target",
     },
     {
-      anchor: "with-icons",
+      anchor: "#with-icons",
       title: "With Icons",
     },
     {
-      anchor: "with-button-styles",
+      anchor: "#with-button-styles",
       title: "With Button Styles",
     },
   ],
@@ -822,19 +822,19 @@ const tocs: TOCRecord = {
   ],
   "/packages/list/demos": [
     {
-      anchor: "single-line-examples",
+      anchor: "#single-line-examples",
       title: "Single Line Examples",
     },
     {
-      anchor: "two-line-examples",
+      anchor: "#two-line-examples",
       title: "Two Line Examples",
     },
     {
-      anchor: "three-line-examples",
+      anchor: "#three-line-examples",
       title: "Three Line Examples",
     },
     {
-      anchor: "non-interactable",
+      anchor: "#non-interactable",
       title: "Non Interactable",
     },
   ],
@@ -850,11 +850,11 @@ const tocs: TOCRecord = {
   ],
   "/packages/material-icons/demos": [
     {
-      anchor: "simple-examples",
+      anchor: "#simple-examples",
       title: "Simple Examples",
     },
     {
-      anchor: "all-icons",
+      anchor: "#all-icons",
       title: "All Icons",
     },
   ],
@@ -882,15 +882,15 @@ const tocs: TOCRecord = {
   ],
   "/packages/media/demos": [
     {
-      anchor: "simple-responsive-media",
+      anchor: "#simple-responsive-media",
       title: "Simple Responsive Media",
     },
     {
-      anchor: "forced-aspect-ratio",
+      anchor: "#forced-aspect-ratio",
       title: "Forced Aspect Ratio",
     },
     {
-      anchor: "with-overlay",
+      anchor: "#with-overlay",
       title: "With Overlay",
     },
   ],
@@ -906,39 +906,39 @@ const tocs: TOCRecord = {
   ],
   "/packages/menu/demos": [
     {
-      anchor: "simple-examples",
+      anchor: "#simple-examples",
       title: "Simple Examples",
     },
     {
-      anchor: "adding-event-handlers",
+      anchor: "#adding-event-handlers",
       title: "Adding Event Handlers",
     },
     {
-      anchor: "menu-positioning",
+      anchor: "#menu-positioning",
       title: "Menu Positioning",
     },
     {
-      anchor: "fixing-overflow-issues",
+      anchor: "#fixing-overflow-issues",
       title: "Fixing Overflow Issues",
     },
     {
-      anchor: "accessibility-example",
+      anchor: "#accessibility-example",
       title: "Accessibility Example",
     },
     {
-      anchor: "simple-context-menu",
+      anchor: "#simple-context-menu",
       title: "Simple Context Menu",
     },
     {
-      anchor: "horizontal-menu",
+      anchor: "#horizontal-menu",
       title: "Horizontal Menu",
     },
     {
-      anchor: "nested-dropdown-menus",
+      anchor: "#nested-dropdown-menus",
       title: "Nested Dropdown Menus",
     },
     {
-      anchor: "custom-renderers",
+      anchor: "#custom-renderers",
       title: "Custom Renderers",
     },
   ],
@@ -954,15 +954,15 @@ const tocs: TOCRecord = {
   ],
   "/packages/overlay/demos": [
     {
-      anchor: "simple-example",
+      anchor: "#simple-example",
       title: "Simple Example",
     },
     {
-      anchor: "fixing-overflow-issues",
+      anchor: "#fixing-overflow-issues",
       title: "Fixing Overflow Issues",
     },
     {
-      anchor: "custom-theme",
+      anchor: "#custom-theme",
       title: "Custom Theme",
     },
   ],
@@ -978,11 +978,11 @@ const tocs: TOCRecord = {
   ],
   "/packages/portal/demos": [
     {
-      anchor: "simple-example",
+      anchor: "#simple-example",
       title: "Simple Example",
     },
     {
-      anchor: "custom-portal-container",
+      anchor: "#custom-portal-container",
       title: "Custom Portal Container",
     },
   ],
@@ -998,19 +998,19 @@ const tocs: TOCRecord = {
   ],
   "/packages/progress/demos": [
     {
-      anchor: "simple-indeterminate-examples",
+      anchor: "#simple-indeterminate-examples",
       title: "Simple Indeterminate Examples",
     },
     {
-      anchor: "simple-determinate-examples",
+      anchor: "#simple-determinate-examples",
       title: "Simple Determinate Examples",
     },
     {
-      anchor: "with-suspense",
+      anchor: "#with-suspense",
       title: "With Suspense",
     },
     {
-      anchor: "within-buttons",
+      anchor: "#within-buttons",
       title: "Within Buttons",
     },
   ],
@@ -1026,15 +1026,15 @@ const tocs: TOCRecord = {
   ],
   "/packages/sheet/demos": [
     {
-      anchor: "position-examples",
+      anchor: "#position-examples",
       title: "Position Examples",
     },
     {
-      anchor: "mobile-action-sheet",
+      anchor: "#mobile-action-sheet",
       title: "Mobile Action Sheet",
     },
     {
-      anchor: "sheet-sizing",
+      anchor: "#sheet-sizing",
       title: "Sheet Sizing",
     },
   ],
@@ -1050,19 +1050,19 @@ const tocs: TOCRecord = {
   ],
   "/packages/states/demos": [
     {
-      anchor: "setup-example",
+      anchor: "#setup-example",
       title: "Setup Example",
     },
     {
-      anchor: "disabling-ripple-effect",
+      anchor: "#disabling-ripple-effect",
       title: "Disabling Ripple Effect",
     },
     {
-      anchor: "custom-interactions",
+      anchor: "#custom-interactions",
       title: "Custom Interactions",
     },
     {
-      anchor: "custom-component",
+      anchor: "#custom-component",
       title: "Custom Component",
     },
   ],
@@ -1086,35 +1086,35 @@ const tocs: TOCRecord = {
   ],
   "/packages/table/demos": [
     {
-      anchor: "default-styles",
+      anchor: "#default-styles",
       title: "Default Styles",
     },
     {
-      anchor: "default-styles-configurable",
+      anchor: "#default-styles-configurable",
       title: "Default Styles Configurable",
     },
     {
-      anchor: "selectable-rows",
+      anchor: "#selectable-rows",
       title: "Selectable Rows",
     },
     {
-      anchor: "sortable-columns",
+      anchor: "#sortable-columns",
       title: "Sortable Columns",
     },
     {
-      anchor: "sticky-columns-part-1",
+      anchor: "#sticky-columns-part-1",
       title: "Sticky Columns - Part 1",
     },
     {
-      anchor: "sticky-columns-part-2",
+      anchor: "#sticky-columns-part-2",
       title: "Sticky Columns - Part 2",
     },
     {
-      anchor: "sticky-columns-part-3",
+      anchor: "#sticky-columns-part-3",
       title: "Sticky Columns - Part 3",
     },
     {
-      anchor: "sticky-columns-part-4",
+      anchor: "#sticky-columns-part-4",
       title: "Sticky Columns - Part 4",
     },
   ],
@@ -1130,23 +1130,23 @@ const tocs: TOCRecord = {
   ],
   "/packages/tabs/demos": [
     {
-      anchor: "basic-usage",
+      anchor: "#basic-usage",
       title: "Basic Usage",
     },
     {
-      anchor: "simple-two-page-tab",
+      anchor: "#simple-two-page-tab",
       title: "Simple Two Page Tab",
     },
     {
-      anchor: "persistent-tabs",
+      anchor: "#persistent-tabs",
       title: "Persistent Tabs",
     },
     {
-      anchor: "configurable-tabs",
+      anchor: "#configurable-tabs",
       title: "Configurable Tabs",
     },
     {
-      anchor: "swipeable-tabs",
+      anchor: "#swipeable-tabs",
       title: "Swipeable Tabs",
     },
   ],
@@ -1162,7 +1162,7 @@ const tocs: TOCRecord = {
   ],
   "/packages/theme/demos": [
     {
-      anchor: "simple-example",
+      anchor: "#simple-example",
       title: "Simple Example",
     },
   ],
@@ -1194,31 +1194,31 @@ const tocs: TOCRecord = {
   ],
   "/packages/tooltip/demos": [
     {
-      anchor: "simple-examples",
+      anchor: "#simple-examples",
       title: "Simple Examples",
     },
     {
-      anchor: "auto-positioning-tooltips",
+      anchor: "#auto-positioning-tooltips",
       title: "Auto Positioning Tooltips",
     },
     {
-      anchor: "dense-tooltips",
+      anchor: "#dense-tooltips",
       title: "Dense Tooltips",
     },
     {
-      anchor: "large-tooltips",
+      anchor: "#large-tooltips",
       title: "Large Tooltips",
     },
     {
-      anchor: "hover-mode",
+      anchor: "#hover-mode",
       title: "Hover Mode",
     },
     {
-      anchor: "common-patterns",
+      anchor: "#common-patterns",
       title: "Common Patterns",
     },
     {
-      anchor: "advanced-a-p-i-and-gotchas",
+      anchor: "#advanced-a-p-i-and-gotchas",
       title: "Advanced API and Gotchas",
     },
   ],
@@ -1234,31 +1234,31 @@ const tocs: TOCRecord = {
   ],
   "/packages/transition/demos": [
     {
-      anchor: "cross-fade-examples",
+      anchor: "#cross-fade-examples",
       title: "Cross Fade Examples",
     },
     {
-      anchor: "cross-fade-hook-example",
+      anchor: "#cross-fade-hook-example",
       title: "Cross Fade Hook Example",
     },
     {
-      anchor: "simple-collapse-example",
+      anchor: "#simple-collapse-example",
       title: "Simple Collapse Example",
     },
     {
-      anchor: "configurable-collapse-example",
+      anchor: "#configurable-collapse-example",
       title: "Configurable Collapse Example",
     },
     {
-      anchor: "scale-transition-example",
+      anchor: "#scale-transition-example",
       title: "Scale Transition Example",
     },
     {
-      anchor: "use-css-transition",
+      anchor: "#use-css-transition",
       title: "Use CSS Transition",
     },
     {
-      anchor: "fixed-positioning-example",
+      anchor: "#fixed-positioning-example",
       title: "Fixed Positioning Example",
     },
   ],
@@ -1274,15 +1274,15 @@ const tocs: TOCRecord = {
   ],
   "/packages/tree/demos": [
     {
-      anchor: "single-select-tree",
+      anchor: "#single-select-tree",
       title: "Single Select Tree",
     },
     {
-      anchor: "multi-select-tree",
+      anchor: "#multi-select-tree",
       title: "Multi Select Tree",
     },
     {
-      anchor: "customizing-tree-items",
+      anchor: "#customizing-tree-items",
       title: "Customizing Tree Items",
     },
   ],
@@ -1298,11 +1298,11 @@ const tocs: TOCRecord = {
   ],
   "/packages/typography/demos": [
     {
-      anchor: "text-examples",
+      anchor: "#text-examples",
       title: "Text Examples",
     },
     {
-      anchor: "text-container-examples",
+      anchor: "#text-container-examples",
       title: "Text Container Examples",
     },
   ],
@@ -1318,27 +1318,27 @@ const tocs: TOCRecord = {
   ],
   "/packages/utils/demos": [
     {
-      anchor: "app-size-listener-example",
+      anchor: "#app-size-listener-example",
       title: "App Size Listener Example",
     },
     {
-      anchor: "media-query-components",
+      anchor: "#media-query-components",
       title: "Media Query Components",
     },
     {
-      anchor: "resize-listener-example",
+      anchor: "#resize-listener-example",
       title: "Resize Listener Example",
     },
     {
-      anchor: "resize-observer-example",
+      anchor: "#resize-observer-example",
       title: "Resize Observer Example",
     },
     {
-      anchor: "material-grid-example",
+      anchor: "#material-grid-example",
       title: "Material Grid Example",
     },
     {
-      anchor: "simple-grid-list",
+      anchor: "#simple-grid-list",
       title: "Simple Grid List",
     },
   ],
