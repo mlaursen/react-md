@@ -100,74 +100,11 @@ renderer.link = (href, title, text) => {
 
 renderer.paragraph = (text: string) => `<p class="markdown__p">${text}</p>`;
 
-// ///////////////////////////////////////////////////
-// MARKDOWN TRANSFORMATIONS
-
-type Transform = (markdown: string) => string;
-const joinedNames = PACKAGE_NAMES.join("|");
-const packagesList = `
-${PACKAGE_NAMES.map(
-  (name) => `- [@react-md/${name}](/packages/${name}/installation)`
-).join("\n")}
-`;
-const whitespace = "(?=\r?\n| |[^/])";
-
-const transforms: Transform[] = [
-  // #package-name -> [@react-md/package-name](/packages/package-name/demos|installation)
-  (md) =>
-    md.replace(
-      new RegExp(`#(${joinedNames})${whitespace}`, "g"),
-      (_, pkg) =>
-        `[@react-md/${pkg}](/packages/${pkg}/${
-          DEMOABLE_PACKAGES.includes(pkg) ? "demos" : "installation"
-        })`
-    ),
-  // #package-name -> [package-name page](/packages/package-name/page)
-  (md) =>
-    md.replace(
-      new RegExp(`#(${joinedNames})/(demos|api|sassdoc)`, "g"),
-      "[$1 $2](/packages/$1/$2)"
-    ),
-  // #packages -> markdown list for all react-md packages
-  (md) =>
-    md.replace(/#packages(\/demos)?/g, (_, demos) => {
-      if (demos) {
-        return packagesList.replace(
-          /^(?!layout)(.+)\/installation/g,
-          "$1/demos"
-        );
-      }
-
-      return packagesList;
-    }),
-  // create links to github issues/PRs with #ISSUE_NUMBER
-  // the regex below tries to make sure that hex codes aren't switched to links
-  (md) =>
-    md.replace(
-      /(: )?(#)(\d+)(?=\r?\n| (?!!))/g,
-      (match, invalid, _hash, ticket) => {
-        if (invalid) {
-          return match;
-        }
-
-        return `[#${ticket}](${GITHUB_URL}/issues/${ticket})`;
-      }
-    ),
-  // create github commit links for git sha's of length 7 (should be first 7 of sha)
-  (md) => md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`),
-  (md) => md.replace(/(:tada:)/g, "🎉"),
-  (md) =>
-    md.replace(
-      /#customizing-your-theme/g,
-      "[customizing your theme](/guides/customizing-your-theme)"
-    ),
-];
-
 renderer.image = (href, title, alt) => {
   return (
     `<a href="${href}">` +
     '<div class="rmd-media-container rmd-media-container--auto">' +
-    `<img data-src="${href}" alt="${alt}" title="${title || alt}" />` +
+    `<img src="${href}" alt="${alt}" title="${title || alt}" />` +
     "</div>" +
     "</a>"
   );
@@ -177,6 +114,123 @@ renderer.list = (body, ordered) => {
   const tag = ordered ? "ol" : "ul";
   return `<${tag} class="markdown__list">${body}</${tag}>`;
 };
+
+// ///////////////////////////////////////////////////
+// MARKDOWN TRANSFORMATIONS
+
+type Transformer = (markdown: string) => string;
+const joinedNames = PACKAGE_NAMES.join("|");
+const packagesList = `
+${PACKAGE_NAMES.map(
+  (name) => `- [@react-md/${name}](/packages/${name}/installation)`
+).join("\n")}
+`;
+const whitespace = "(?=\r?\n| |[^/])";
+
+/**
+ * Updates the markdown to quickly link to a specific package's demo or
+ * installation page. The installation page will only be used if the package is
+ * not demoable.
+ *
+ * Example:
+ * #package-name -> [@react-md/package-name](/packages/package-name/demos|installation)
+ */
+export const packageQuickLink: Transformer = (md) =>
+  md.replace(
+    new RegExp(`(\\s|\\()#(${joinedNames})${whitespace}`, "g"),
+    (_, char, pkg) =>
+      `${char}[@react-md/${pkg}](/packages/${pkg}/${
+        DEMOABLE_PACKAGES.includes(pkg) ? "demos" : "installation"
+      })`
+  );
+
+/**
+ * Updates the markdown to quickly link to a specific package's documentation
+ * page.
+ *
+ * Example:
+ * #package-name -> [package-name page](/packages/package-name/page)
+ */
+export const packagePageQuickLink: Transformer = (md) =>
+  md.replace(
+    new RegExp(`#(${joinedNames})/(demos|api|sassdoc)`, "g"),
+    "[$1 $2](/packages/$1/$2)"
+  );
+
+/**
+ * Updates the markdown to list all the available packages by creating links to
+ * all the demo or installation pages.
+ *
+ * Example:
+ * #packages -> markdown list for all react-md packages
+ */
+export const listAllPackages: Transformer = (md) =>
+  md.replace(/#packages(\/demos)?/g, (_, demos) => {
+    if (demos) {
+      return packagesList.replace(/^(?!layout)(.+)\/installation/g, "$1/demos");
+    }
+
+    return packagesList;
+  });
+
+/**
+ * Creates a quick link to customizing your theme. Not used too much.
+ */
+export const linkToCustomizingTheme: Transformer = (md) =>
+  md.replace(
+    /#customizing-your-theme/g,
+    "[customizing your theme](/guides/customizing-your-theme)"
+  );
+
+/**
+ * Updates the markdown to link to specific issues and pull requests within
+ * GitHub. This will also try to make sure that hex color codes aren't updated
+ * to GitHub links as well.
+ *
+ * Examples:
+ * #1 > [#1](https://github.com/mlaursen/react-md/issues/1)
+ * #713 -> [#713](https://github.com/mlaursen/react-md/issues/713)
+ */
+export const linkToGithubIssues: Transformer = (md) =>
+  md.replace(
+    /(: )?(#)(\d+)(?=\r?\n| (?!!))/g,
+    (match, invalid, _hash, ticket) => {
+      if (invalid) {
+        return match;
+      }
+
+      return `[#${ticket}](${GITHUB_URL}/issues/${ticket})`;
+    }
+  );
+
+/**
+ * Updates the markdown to link to specific github commits if there is a 7 digit
+ * sha in the markdown.
+ *
+ * Example:
+ * 034c7de -> [034c7de](https://github.com/mlaursen/react-md/commit/034c7de)
+ */
+export const linkToGithubCommit: Transformer = (md) =>
+  md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`);
+
+/**
+ * A _super_ important transformer that replaces emojis in the markdown if the
+ * markdown did not use the emoji character.
+ *
+ * Currently only supports:
+ * :tada: -> 🎉
+ */
+export const replaceEmojis: Transformer = (md) => md.replace(/(:tada:)/g, "🎉");
+
+const transforms: Transformer[] = [
+  packageQuickLink,
+  packagePageQuickLink,
+  listAllPackages,
+  linkToCustomizingTheme,
+  linkToGithubIssues,
+  linkToGithubCommit,
+  replaceEmojis,
+];
 
 const transform = (markdown: string): string =>
   transforms.reduce((updated, fn) => fn(updated), markdown);

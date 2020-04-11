@@ -433,7 +433,7 @@ prefer.
 
 <iframe
   class="iframe"
-  data-src="https://codesandbox.io/embed/react-md-creating-a-layout-c1g8c?fontsize=14"
+  src="https://codesandbox.io/embed/react-md-creating-a-layout-c1g8c?fontsize=14&runonclick=1"
   title="react-md - Creating a Layout"
   sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
 </iframe>
