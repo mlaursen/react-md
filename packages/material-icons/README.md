@@ -3,9 +3,8 @@
 This package is just a simple wrapper for using material icons within react-md
 as either font icons or SVG icons. All of the icons were pulled directly from
 [material-icons](https://github.com/google/material-design-icons) using the
-[custom create cli](https://github.com/mlaursen/react-md/tree/next/packages/material-icons/scripts/cli.ts).
-Please thank all the contributors and maintainers of material icons for the work
-they have put in.
+[custom create cli](./scripts/cli.ts). Please thank all the contributors and
+maintainers of material icons for the work they have put in.
 
 ## Installation
 
@@ -18,8 +17,8 @@ $ npm install --save @react-md/material-icons @react-md/icon
 ## Documentation
 
 You should check out the
-[full documentation](https://react-md.dev/packages/button/demos) for live
-examples and more customization information, but an example usage is shown
+[full documentation](https://react-md.dev/packages/material-icons/demos) for
+live examples and more customization information, but an example usage is shown
 below.
 
 <!-- DOCS_REMOVE_END -->
@@ -28,13 +27,11 @@ below.
 
 This package automatically creates a component file for each material-icon that
 exists as both an inline SVG and a font icon. The script to generate these
-components will take an SVG filename from the
-[SVGs folder](https://github.com/mlaursen/react-md/tree/next/packages/material-icons/svgs/)
-and convert it into PascalCase. If the SVG starts with a number, the number will
-come after the first `_` part instead of being the start of the name.
+components will take an SVG filename from the [SVGs folder](./svgs/) and convert
+it into PascalCase. If the SVG starts with a number, the number will come after
+the first `_` part instead of being the start of the name.
 
-To see a full list of icons, just view the
-[source folder](https://github.com/mlaursen/react-md/tree/next/packages/material-icons/src).
+To see a full list of icons, just view the [source folder](./src).
 
 ### Examples
 

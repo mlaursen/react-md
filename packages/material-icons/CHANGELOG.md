@@ -1,3 +1,4 @@
-# v2.0.0-alpha.0
+# v2.0.0
 
-This is an entirely new package at this time.
+This package is completely new for v2 and introduced the new 1864 icons (932
+font icons and 932 svg icons).
