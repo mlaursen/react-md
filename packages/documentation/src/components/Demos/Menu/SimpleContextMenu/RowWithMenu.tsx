@@ -47,15 +47,15 @@ const RowWithMenu = ({
       </TableRow>
       <Menu aria-label={`${name} Options`} controlId={id} portal {...menuProps}>
         <List>
-          <MenuItem leftIcon={<ShareSVGIcon />}>Share</MenuItem>
-          <MenuItem leftIcon={<LinkSVGIcon />}>Get shareable link</MenuItem>
-          <MenuItem leftIcon={<StarSVGIcon />}>Add to Starred</MenuItem>
-          <MenuItem leftIcon={<EditSVGIcon />}>Rename</MenuItem>
+          <MenuItem leftAddon={<ShareSVGIcon />}>Share</MenuItem>
+          <MenuItem leftAddon={<LinkSVGIcon />}>Get shareable link</MenuItem>
+          <MenuItem leftAddon={<StarSVGIcon />}>Add to Starred</MenuItem>
+          <MenuItem leftAddon={<EditSVGIcon />}>Rename</MenuItem>
           <Divider />
-          <MenuItem leftIcon={<InfoSVGIcon />}>View Details</MenuItem>
-          <MenuItem leftIcon={<FileDownloadSVGIcon />}>Download</MenuItem>
+          <MenuItem leftAddon={<InfoSVGIcon />}>View Details</MenuItem>
+          <MenuItem leftAddon={<FileDownloadSVGIcon />}>Download</MenuItem>
           <Divider />
-          <MenuItem leftIcon={<DeleteSVGIcon />}>Remove</MenuItem>
+          <MenuItem leftAddon={<DeleteSVGIcon />}>Remove</MenuItem>
         </List>
       </Menu>
     </>

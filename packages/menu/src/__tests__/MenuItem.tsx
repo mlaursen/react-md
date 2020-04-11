@@ -10,7 +10,7 @@ describe("MenuItem", () => {
     expect(container).toMatchSnapshot();
 
     rerender(
-      <MenuItem id="menu-item-1" leftIcon={<i>icon</i>}>
+      <MenuItem id="menu-item-1" leftAddon={<i>icon</i>}>
         Item 1
       </MenuItem>
     );

@@ -102,8 +102,8 @@ const Search: FC = () => {
           </HighlightedResult>
         ),
         threeLines: true,
-        leftMedia: <SearchType type={type} />,
-        leftMediaLarge: true,
+        leftAddon: <SearchType type={type} />,
+        leftAddonType: "large-media",
         textClassName: "layout__search-option",
       }))}
       labelKey="title"

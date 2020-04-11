@@ -12,7 +12,7 @@ describe("MenuItemLink", () => {
     expect(container).toMatchSnapshot();
 
     rerender(
-      <MenuItemLink id="menu-item-1" leftIcon={<i>icon</i>} href="#">
+      <MenuItemLink id="menu-item-1" leftAddon={<i>icon</i>} href="#">
         ItemLink 1
       </MenuItemLink>
     );

@@ -278,7 +278,7 @@ exports[`DropdownMenu should render correctly with a list of strings, numbers, L
         tabindex="-1"
       >
         <i
-          class="rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before"
+          class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
         >
           icon
         </i>
@@ -302,7 +302,7 @@ exports[`DropdownMenu should render correctly with a list of strings, numbers, L
           Item 3
         </span>
         <i
-          class="rmd-icon--after rmd-list-item__icon"
+          class="rmd-icon--after rmd-list-item__addon"
         >
           icon
         </i>

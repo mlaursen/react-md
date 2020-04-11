@@ -7,6 +7,15 @@ import ListItemChildren from "./ListItemChildren";
 
 const block = bem("rmd-list-item");
 
+/**
+ * The `SimpleListItem` component is used to create a non-clickable item within
+ * a `List`. This is really just useful since it allows for the `ListItem`
+ * styling behavior of left and right icons, avatars, and media.
+ *
+ * Note: Even though this component exists, it is recommended to use the
+ * `ListItemChildren` component instead if you want the "addon" styling/behavior
+ * since screen readers read `li` items within lists differently.
+ */
 function SimpleListItem(
   {
     className,
@@ -15,17 +24,13 @@ function SimpleListItem(
     textChildren,
     primaryText,
     secondaryText,
-    leftIcon,
-    leftAvatar,
-    leftMedia,
-    leftMediaLarge,
-    leftPosition = "middle",
-    rightIcon,
-    rightAvatar,
-    rightMedia,
-    rightMediaLarge,
-    rightPosition = "middle",
-    forceIconWrap,
+    leftAddon,
+    leftAddonType = "icon",
+    leftAddonPosition = "middle",
+    rightAddon,
+    rightAddonType = "icon",
+    rightAddonPosition = "middle",
+    forceAddonWrap,
     children,
     height: propHeight = "auto",
     threeLines = false,
@@ -38,14 +43,10 @@ function SimpleListItem(
 ): ReactElement {
   const height = getListItemHeight({
     height: propHeight,
-    leftIcon,
-    rightIcon,
-    leftAvatar,
-    rightAvatar,
-    leftMedia,
-    rightMedia,
-    leftMediaLarge,
-    rightMediaLarge,
+    leftAddon,
+    leftAddonType,
+    rightAddon,
+    rightAddonType,
     secondaryText,
   });
 
@@ -73,17 +74,13 @@ function SimpleListItem(
         textChildren={textChildren}
         primaryText={primaryText}
         secondaryText={secondaryText}
-        leftIcon={leftIcon}
-        leftAvatar={leftAvatar}
-        leftMedia={leftMedia}
-        leftMediaLarge={leftMediaLarge}
-        leftPosition={leftPosition}
-        rightIcon={rightIcon}
-        rightAvatar={rightAvatar}
-        rightMedia={rightMedia}
-        rightMediaLarge={rightMediaLarge}
-        rightPosition={rightPosition}
-        forceIconWrap={forceIconWrap}
+        leftAddon={leftAddon}
+        leftAddonType={leftAddonType}
+        leftAddonPosition={leftAddonPosition}
+        rightAddon={rightAddon}
+        rightAddonType={rightAddonType}
+        rightAddonPosition={rightAddonPosition}
+        forceAddonWrap={forceAddonWrap}
       >
         {children}
       </ListItemChildren>
@@ -110,8 +107,8 @@ if (process.env.NODE_ENV !== "production") {
         "large",
         "extra-large",
       ]),
-      leftPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
-      rightPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      leftAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      rightAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
     };
   } catch (e) {}
 }

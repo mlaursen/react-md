@@ -37,8 +37,8 @@ describe("DropdownMenu", () => {
       {
         children: "Item 1",
       },
-      { leftIcon: <i>icon</i>, children: "Item 2" },
-      { rightIcon: <i>icon</i>, children: "Item 3" },
+      { leftAddon: <i>icon</i>, children: "Item 2" },
+      { rightAddon: <i>icon</i>, children: "Item 3" },
     ];
     rerender(<DropdownMenu {...PROPS} items={items3} />);
     expect(container).toMatchSnapshot();

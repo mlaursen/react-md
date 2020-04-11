@@ -55,7 +55,8 @@ const App = () => (
       <ListItem
         id={`person-${i}`}
         key={i}
-        leftAvatar={<Avatar src={avatarUrl} alt={`${name}'s avatar'`} />}
+        leftAddon={<Avatar src={avatarUrl} alt={`${name}'s avatar'`} />}
+        leftAddonType="avatar"
       >
         {name}
       </ListItem>

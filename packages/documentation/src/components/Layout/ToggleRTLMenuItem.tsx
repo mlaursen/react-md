@@ -13,7 +13,7 @@ const ToggleRTLMenuItem: FC = () => {
     <MenuItem
       id="toggle-rtl"
       onClick={toggleRTL}
-      leftIcon={
+      leftAddon={
         isRTL ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />
       }
       secondaryText={`Current orientation: ${isRTL ? "RTL" : "LTR"}`}

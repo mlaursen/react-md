@@ -13,34 +13,34 @@ const WithSuspenseFiles: FC = () => (
   <CrossFade>
     <List>
       <ListItem
-        leftIcon={<SubjectSVGIcon />}
-        rightIcon={<InfoSVGIcon />}
+        leftAddon={<SubjectSVGIcon />}
+        rightAddon={<InfoSVGIcon />}
         primaryText="Vacation itinerary"
         secondaryText="2 hours ago"
       />
       <ListItem
-        leftIcon={<FolderSVGIcon />}
-        rightIcon={<InfoSVGIcon />}
+        leftAddon={<FolderSVGIcon />}
+        rightAddon={<InfoSVGIcon />}
         primaryText="Recipes"
         secondaryText="Yesterday"
       />
       <ListItem
-        leftIcon={<FilterSVGIcon />}
-        rightIcon={<InfoSVGIcon />}
+        leftAddon={<FilterSVGIcon />}
+        rightAddon={<InfoSVGIcon />}
         primaryText="Seoul 2018"
         secondaryText="October 30, 2018"
       />
       <Divider inset />
       <ListSubheader inset>All files</ListSubheader>
       <ListItem
-        leftIcon={<FolderSVGIcon />}
-        rightIcon={<InfoSVGIcon />}
+        leftAddon={<FolderSVGIcon />}
+        rightAddon={<InfoSVGIcon />}
         primaryText="Baby shower"
         secondaryText="6 items"
       />
       <ListItem
-        leftIcon={<SubjectSVGIcon />}
-        rightIcon={<InfoSVGIcon />}
+        leftAddon={<SubjectSVGIcon />}
+        rightAddon={<InfoSVGIcon />}
         primaryText="Draft - Resume 2018"
         secondaryText="May 8, 2018"
       />

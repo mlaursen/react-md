@@ -1,119 +1,140 @@
 import getListItemHeight from "../getListItemHeight";
 
 describe("getListItemHeight", () => {
-  it("should return the height if it is anything other than auto ignoring all the other props", () => {
-    expect(
-      getListItemHeight({
-        height: "normal",
-        leftIcon: "Left",
-      })
-    ).toBe("normal");
-    expect(
-      getListItemHeight({
-        height: "normal",
-        rightIcon: "Left",
-      })
-    ).toBe("normal");
-
-    expect(
-      getListItemHeight({
-        height: "normal",
-        leftAvatar: "Left",
-      })
-    ).toBe("normal");
-    expect(
-      getListItemHeight({
-        height: "normal",
-        rightAvatar: "Left",
-      })
-    ).toBe("normal");
-
-    expect(
-      getListItemHeight({
-        height: "normal",
-        leftMedia: "Left",
-      })
-    ).toBe("normal");
-    expect(
-      getListItemHeight({
-        height: "normal",
-        rightMedia: "Left",
-      })
-    ).toBe("normal");
-
-    expect(
-      getListItemHeight({
-        height: "normal",
-        secondaryText: "Secondary Text",
-      })
-    ).toBe("normal");
-  });
-
-  it("should return normal only no other props are provided (also defaults to auto)", () => {
+  it('should return "normal" if no addons are provided when the height is omitted or set to "auto"', () => {
     expect(getListItemHeight({})).toBe("normal");
     expect(getListItemHeight({ height: "auto" })).toBe("normal");
   });
 
-  it("should return medium when only a left or right icon are provided", () => {
-    expect(getListItemHeight({ leftIcon: "Left" })).toBe("medium");
-    expect(getListItemHeight({ rightIcon: "Right" })).toBe("medium");
+  it('should return "extra-large" if there is a media addon provided or secondary text', () => {
+    expect(
+      getListItemHeight({
+        leftAddon: "Addon",
+        leftAddonType: "media",
+      })
+    ).toBe("extra-large");
+    expect(
+      getListItemHeight({
+        leftAddon: "Addon",
+        leftAddonType: "large-media",
+      })
+    ).toBe("extra-large");
 
     expect(
       getListItemHeight({
-        leftIcon: "Left",
-        rightIcon: "Right",
+        rightAddon: "Addon",
+        rightAddonType: "media",
       })
-    ).toBe("medium");
+    ).toBe("extra-large");
+    expect(
+      getListItemHeight({
+        rightAddon: "Addon",
+        rightAddonType: "large-media",
+      })
+    ).toBe("extra-large");
+
+    expect(
+      getListItemHeight({
+        secondaryText: "Secondary Text",
+        leftAddon: "Addon",
+      })
+    ).toBe("extra-large");
+    expect(
+      getListItemHeight({
+        secondaryText: "Secondary Text",
+        rightAddon: "Addon",
+      })
+    ).toBe("extra-large");
+
+    expect(
+      getListItemHeight({
+        secondaryText: "Secondary Text",
+        leftAddon: "Addon",
+        leftAddonType: "icon",
+      })
+    ).toBe("extra-large");
+    expect(
+      getListItemHeight({
+        secondaryText: "Secondary Text",
+        rightAddon: "Addon",
+        rightAddonType: "icon",
+      })
+    ).toBe("extra-large");
+
+    expect(
+      getListItemHeight({
+        secondaryText: "Secondary Text",
+        leftAddon: "Addon",
+        leftAddonType: "avatar",
+      })
+    ).toBe("extra-large");
+    expect(
+      getListItemHeight({
+        secondaryText: "Secondary Text",
+        rightAddon: "Addon",
+        rightAddonType: "avatar",
+      })
+    ).toBe("extra-large");
   });
 
-  it("should return large if there is an avatar or secondary text", () => {
-    expect(getListItemHeight({ leftAvatar: "Left" })).toBe("large");
-    expect(getListItemHeight({ rightAvatar: "Right" })).toBe("large");
-    expect(getListItemHeight({ secondaryText: "Secondary" })).toBe("large");
-
+  it('should return "large" if there is an avatar', () => {
     expect(
       getListItemHeight({
-        leftAvatar: "Left",
-        rightAvatar: "Right",
+        leftAddon: "Addon",
+        leftAddonType: "avatar",
+      })
+    ).toBe("large");
+    expect(
+      getListItemHeight({
+        rightAddon: "Addon",
+        rightAddonType: "avatar",
       })
     ).toBe("large");
   });
 
-  it("should return extra-large if there is any sort of media or secondary text with an icon or avatar", () => {
+  it('should return "medium" if there is an icon', () => {
+    expect(getListItemHeight({ leftAddon: "Addon" })).toBe("medium");
+    expect(getListItemHeight({ rightAddon: "Addon" })).toBe("medium");
+
     expect(
       getListItemHeight({
-        leftIcon: "Left",
-        secondaryText: "Secondary",
+        leftAddon: "Addon",
+        leftAddonType: "icon",
       })
-    ).toBe("extra-large");
+    ).toBe("medium");
     expect(
       getListItemHeight({
-        rightIcon: "Right",
-        secondaryText: "Secondary",
+        rightAddon: "Addon",
+        rightAddonType: "icon",
+      })
+    ).toBe("medium");
+  });
+
+  it("should always choose the largest addon type that actually has an addon provided", () => {
+    expect(
+      getListItemHeight({
+        leftAddonType: "large-media",
+        rightAddon: "Addon",
+        rightAddonType: "avatar",
+      })
+    ).toBe("large");
+
+    expect(
+      getListItemHeight({
+        leftAddon: "Addon",
+        leftAddonType: "large-media",
+        rightAddon: "Addon",
+        rightAddonType: "avatar",
       })
     ).toBe("extra-large");
 
     expect(
       getListItemHeight({
-        leftAvatar: "Left",
-        secondaryText: "Secondary",
+        secondaryText: "Secondary Text",
+        leftAddonType: "large-media",
+        rightAddon: "Addon",
+        rightAddonType: "avatar",
       })
     ).toBe("extra-large");
-    expect(
-      getListItemHeight({
-        rightAvatar: "Right",
-        secondaryText: "Secondary",
-      })
-    ).toBe("extra-large");
-
-    expect(getListItemHeight({ leftMedia: "Left" })).toBe("extra-large");
-    expect(getListItemHeight({ leftMediaLarge: "Large Left" })).toBe(
-      "extra-large"
-    );
-
-    expect(getListItemHeight({ rightMedia: "Right" })).toBe("extra-large");
-    expect(getListItemHeight({ rightMediaLarge: "Large Left" })).toBe(
-      "extra-large"
-    );
   });
 });

@@ -28,7 +28,7 @@ exports[`MenuItem should render correctly 2`] = `
     tabindex="-1"
   >
     <i
-      class="rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before"
+      class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
     >
       icon
     </i>

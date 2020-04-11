@@ -39,7 +39,7 @@ describe("Option", () => {
       <Option
         id="option-1"
         data-testid="option"
-        leftIcon={<FontIcon>home</FontIcon>}
+        leftAddon={<FontIcon>home</FontIcon>}
         focused={false}
         selected={false}
       >

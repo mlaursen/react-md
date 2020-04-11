@@ -24,23 +24,23 @@ const WithinLists: FC = () => (
       <ListItem id="list1-item-5">Sixth Item</ListItem>
     </List>
     <List>
-      <ListItem id="list2-item-0" leftIcon={<FavoriteSVGIcon />}>
+      <ListItem id="list2-item-0" leftAddon={<FavoriteSVGIcon />}>
         First Item
       </ListItem>
-      <ListItem id="list2-item-1" leftIcon={<BookSVGIcon />}>
+      <ListItem id="list2-item-1" leftAddon={<BookSVGIcon />}>
         Second Item
       </ListItem>
-      <ListItem id="list2-item-2" leftIcon={<TvSVGIcon />}>
+      <ListItem id="list2-item-2" leftAddon={<TvSVGIcon />}>
         Third Item
       </ListItem>
-      <ListItem id="list2-item-3" leftIcon={<AddSVGIcon />}>
+      <ListItem id="list2-item-3" leftAddon={<AddSVGIcon />}>
         Fourth Item
       </ListItem>
       <Divider inset />
-      <ListItem id="list2-item-4" leftIcon={<TocSVGIcon />}>
+      <ListItem id="list2-item-4" leftAddon={<TocSVGIcon />}>
         Fifth Item
       </ListItem>
-      <ListItem id="list2-item-5" leftIcon={<AdbSVGIcon />}>
+      <ListItem id="list2-item-5" leftAddon={<AdbSVGIcon />}>
         Sixth Item
       </ListItem>
     </List>

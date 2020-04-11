@@ -23,7 +23,7 @@ import {
 interface Route {
   href: string;
   children: string;
-  leftIcon?: ReactNode;
+  leftAddon?: ReactNode;
   routes?: NavItem[];
 }
 
@@ -78,12 +78,12 @@ const routes: NavItem[] = [
   {
     href: "/",
     children: "Home",
-    leftIcon: <HomeSVGIcon />,
+    leftAddon: <HomeSVGIcon />,
   },
   {
     href: "/guides",
     children: "Guides",
-    leftIcon: <DescriptionSVGIcon />,
+    leftAddon: <DescriptionSVGIcon />,
     routes: [
       {
         href: "/installation",
@@ -130,7 +130,7 @@ const routes: NavItem[] = [
   {
     href: "/colors-and-theming",
     children: "Colors and Theming",
-    leftIcon: <ColorLensSVGIcon />,
+    leftAddon: <ColorLensSVGIcon />,
     routes: [
       {
         href: "/color-palette",
@@ -153,7 +153,7 @@ const routes: NavItem[] = [
   {
     href: "/packages",
     children: "Packages",
-    leftIcon: <BuildSVGIcon />,
+    leftAddon: <BuildSVGIcon />,
     routes: PACKAGE_NAMES.map((name) => ({
       href: `/${name}`,
       children: toTitle(name),
@@ -163,19 +163,19 @@ const routes: NavItem[] = [
   {
     href: "/about",
     children: "About",
-    leftIcon: <InfoOutlineSVGIcon />,
+    leftAddon: <InfoOutlineSVGIcon />,
   },
   { divider: true },
   { subheader: true, children: "References" },
   {
     href: "https://reactjs.org",
     children: "React",
-    leftIcon: <ReactSVGIcon />,
+    leftAddon: <ReactSVGIcon />,
   },
   {
     href: "https://material.io/design",
     children: "Material Design",
-    leftIcon: <MaterialDesignSVGIcon />,
+    leftAddon: <MaterialDesignSVGIcon />,
   },
 ];
 

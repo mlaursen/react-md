@@ -31,11 +31,12 @@ const ThreeLineExamples: FC = () => (
         <ListItem
           id={`three-line-item-${i}`}
           key={i}
-          leftMedia={
+          leftAddon={
             <img src={`https://picsum.photos/40?image=100${i}`} alt="" />
           }
-          rightIcon={<StarSVGIcon />}
-          rightPosition="top"
+          leftAddonType="media"
+          rightAddon={<StarSVGIcon />}
+          rightAddonPosition="top"
           secondaryText={message}
           threeLines
         >

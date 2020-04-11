@@ -47,7 +47,7 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { DropdownMenu, MenuItem } from \"@react-md/menu\";\nimport {\n  ContentCopySVGIcon,\n  ContentCutSVGIcon,\n  ContentPasteSVGIcon,\n} from \"@react-md/material-icons\";\n\nconst Demo: FC = () => (\n  <DropdownMenu\n    id=\"horizontal-menu-example\"\n    items={[\n      <MenuItem leftIcon={<ContentCopySVGIcon />}>Copy</MenuItem>,\n      <MenuItem leftIcon={<ContentCutSVGIcon />}>Cut</MenuItem>,\n      <MenuItem leftIcon={<ContentPasteSVGIcon />}>Paste</MenuItem>,\n    ]}\n    horizontal\n  >\n    Dropdown\n  </DropdownMenu>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { DropdownMenu, MenuItem } from \"@react-md/menu\";\nimport {\n  ContentCopySVGIcon,\n  ContentCutSVGIcon,\n  ContentPasteSVGIcon,\n} from \"@react-md/material-icons\";\n\nconst Demo: FC = () => (\n  <DropdownMenu\n    id=\"horizontal-menu-example\"\n    items={[\n      <MenuItem leftAddon={<ContentCopySVGIcon />}>Copy</MenuItem>,\n      <MenuItem leftAddon={<ContentCutSVGIcon />}>Cut</MenuItem>,\n      <MenuItem leftAddon={<ContentPasteSVGIcon />}>Paste</MenuItem>,\n    ]}\n    horizontal\n  >\n    Dropdown\n  </DropdownMenu>\n);\n\nexport default Demo;\n",
     "isBinary": false
   }
 }

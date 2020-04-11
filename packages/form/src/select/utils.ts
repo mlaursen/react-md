@@ -90,16 +90,16 @@ export function getOptionLabel(
  * an option is not currently selected so the placeholder text can be shown
  * instead. If there is an option selected, it will:
  * - get the option's label using the general `getOptionLabel` util
- * - check if includeLeft is enabled and the option is an object with `leftIcon`
- *   or `leftAvatar`
- *   - if there is a `leftIcon` or `leftAvatar`, use the `TextIconSpacing` of
+ * - check if includeLeft is enabled and the option is an object with
+ *   `leftAddon`
+ *   - if there is a `leftAddon`, use the `TextIconSpacing` of
  *     the label + the icon or avatar.
  *
  * @param option The option to get a display label for
  * @param labelKey The key to use to extract a label from the option when it is
  * an object
- * @param includeLeft Boolean if a `leftIcon` or `leftAvatar` should be added
- * with `TextIconSpacing` to the result.
+ * @param includeLeft Boolean if a `leftAddon` should be added with
+ * `TextIconSpacing` to the result.
  * @return A renderable node to display in a `Select` field.
  */
 export function getDisplayLabel(
@@ -116,11 +116,7 @@ export function getDisplayLabel(
     return label;
   }
 
-  const { leftIcon, leftAvatar } = option;
+  const { leftAddon } = option;
 
-  return createElement(
-    TextIconSpacing,
-    { icon: leftIcon || leftAvatar },
-    label
-  );
+  return createElement(TextIconSpacing, { icon: leftAddon }, label);
 }

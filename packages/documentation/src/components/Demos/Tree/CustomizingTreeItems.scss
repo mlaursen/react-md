@@ -12,7 +12,7 @@
   }
 
   &__item {
-    // want to decrease the leftIcon spacing for a more "dense" theme
+    // want to decrease the leftAddon spacing for a more "dense" theme
     @include rmd-icon-theme-update-var(text-spacing, 1rem);
 
     &--focused {

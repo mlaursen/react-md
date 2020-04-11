@@ -11,9 +11,16 @@ import SimpleListItem from "./SimpleListItem";
 export interface ListItemProps
   extends SimpleListItemProps,
     InteractionStatesOptions<HTMLLIElement> {
+  /**
+   * An optional `tabIndex` for the clickable and focusable item.
+   */
   tabIndex?: number;
 }
 
+/**
+ * The `ListItem` creates a clickable and focusable `<li>` within a `List` that
+ * can optionally render addons to the left and right of the `children` or text.
+ */
 function ListItem(
   {
     className: propClassName,
@@ -23,17 +30,13 @@ function ListItem(
     primaryText,
     secondaryText,
     children,
-    leftIcon,
-    leftAvatar,
-    leftMedia,
-    leftMediaLarge,
-    leftPosition = "middle",
-    rightIcon,
-    rightAvatar,
-    rightMedia,
-    rightMediaLarge,
-    rightPosition = "middle",
-    forceIconWrap,
+    leftAddon,
+    leftAddonType = "icon",
+    leftAddonPosition = "middle",
+    rightAddon,
+    rightAddonType = "icon",
+    rightAddonPosition = "middle",
+    forceAddonWrap,
     height: propHeight = "auto",
     disableSpacebarClick = false,
     disableRipple = false,
@@ -67,14 +70,10 @@ function ListItem(
 
   const height = getListItemHeight({
     height: propHeight,
-    leftIcon,
-    rightIcon,
-    leftAvatar,
-    rightAvatar,
-    leftMedia,
-    rightMedia,
-    leftMediaLarge,
-    rightMediaLarge,
+    leftAddon,
+    leftAddonType,
+    rightAddon,
+    rightAddonType,
     secondaryText,
   });
 
@@ -95,17 +94,13 @@ function ListItem(
         textChildren={textChildren}
         primaryText={primaryText}
         secondaryText={secondaryText}
-        leftIcon={leftIcon}
-        leftAvatar={leftAvatar}
-        leftMedia={leftMedia}
-        leftMediaLarge={leftMediaLarge}
-        leftPosition={leftPosition}
-        rightIcon={rightIcon}
-        rightAvatar={rightAvatar}
-        rightMedia={rightMedia}
-        rightMediaLarge={rightMediaLarge}
-        rightPosition={rightPosition}
-        forceIconWrap={forceIconWrap}
+        leftAddon={leftAddon}
+        leftAddonType={leftAddonType}
+        leftAddonPosition={leftAddonPosition}
+        rightAddon={rightAddon}
+        rightAddonType={rightAddonType}
+        rightAddonPosition={rightAddonPosition}
+        forceAddonWrap={forceAddonWrap}
       >
         {children}
       </ListItemChildren>
@@ -130,8 +125,8 @@ if (process.env.NODE_ENV !== "production") {
         "large",
         "extra-large",
       ]),
-      leftPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
-      rightPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      leftAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      rightAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
       disabled: PropTypes.bool,
       disableSpacebarClick: PropTypes.bool,
       disablePressedFallback: PropTypes.bool,

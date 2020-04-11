@@ -6,7 +6,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { AutoComplete, AutoCompleteHandler } from "@react-md/autocomplete";
+import {
+  AutoComplete,
+  AutoCompleteHandler,
+  AutoCompleteData,
+} from "@react-md/autocomplete";
 import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
 import { Label } from "@react-md/form";
@@ -22,17 +26,18 @@ interface ToProps {
 
 const To: FC<ToProps> = ({ isTouch }) => {
   const [chips, setChips] = useState<Contact[]>([]);
-  const data = useMemo(
+  const data = useMemo<(AutoCompleteData & { label: string })[]>(
     () =>
       contacts
         .filter(({ id }) => !chips.find((chip) => chip.id === id))
         .map(({ name, avatar, email }) => ({
           label: name,
-          leftAvatar: (
+          leftAddon: (
             <Avatar>
               <img src={avatar} alt="" />
             </Avatar>
           ),
+          leftAddonType: "avatar",
           secondaryText: email,
         })),
     [chips]

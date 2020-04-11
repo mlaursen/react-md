@@ -9,7 +9,7 @@ exports[`Option should be able to render with the SimpleListItem props 1`] = `
 >
   <i
     aria-hidden="true"
-    class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
   >
     home
   </i>

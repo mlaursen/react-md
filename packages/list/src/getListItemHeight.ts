@@ -35,44 +35,66 @@ export interface SimpleListItemProps
   threeLines?: boolean;
 
   /**
-   * The height to apply to the list item. When it is set to `"auto"`, it will
-   * use:
-   * - `"medium"` if a `leftIcon` or `rightIcon` is applied with no secondary
-   *   text
-   * - `"large"` if no `leftIcon` or `rightIcon` is applied but has secondary
-   *   text
-   * - `"extra-large"` if there is both a `leftIcon` or `rightIcon` with
-   *   secondary text
+   * The height to apply to the list item.
+   *
+   * Conversions:
+   *
+   * - height !== "auto" -> height
+   * - secondaryText or left/right addon is media/media-large  -> "extra-large"
+   * - left/right addon is avatar -> "large"
+   * - left/right addon is icon -> "medium"
+   * - no addons and no secondary text -> "normal"
    */
   height?: ListItemHeight;
 }
 
+/**
+ * Gets the expected height for the `ListItem` or `SimpleListItem` based on the
+ * addons and `secondaryText` props.
+ *
+ * Conversions:
+ *
+ * - height !== "auto" -> height
+ * - secondaryText or left/right addon is media/media-large  -> "extra-large"
+ * - left/right addon is avatar -> "large"
+ * - left/right addon is icon -> "medium"
+ * - no addons and no secondary text -> "normal"
+ *
+ * @private
+ */
 export default function getListItemHeight({
   height = "auto",
-  leftIcon,
-  rightIcon,
-  leftAvatar,
-  rightAvatar,
-  leftMedia,
-  rightMedia,
-  leftMediaLarge,
-  rightMediaLarge,
+  leftAddon,
+  leftAddonType = "icon",
+  rightAddon,
+  rightAddonType = "icon",
   secondaryText,
 }: SimpleListItemProps): ListItemHeight {
   if (height !== "auto") {
     return height;
   }
 
-  const isIcon = leftIcon || rightIcon;
-  const isAvatar = leftAvatar || rightAvatar;
+  const isIcon =
+    (leftAddon && leftAddonType === "icon") ||
+    (rightAddon && rightAddonType === "icon");
+  const isAvatar =
+    (leftAddon && leftAddonType === "avatar") ||
+    (rightAddon && rightAddonType === "avatar");
   const isGraphic =
-    leftMedia || rightMedia || leftMediaLarge || rightMediaLarge;
-  if (isGraphic || (secondaryText && (isIcon || isAvatar))) {
+    (leftAddon &&
+      (leftAddonType === "media" || leftAddonType === "large-media")) ||
+    (rightAddon &&
+      (rightAddonType === "media" || rightAddonType === "large-media"));
+
+  // secondary text will always be extra large due to the default `line-height`
+  if (isGraphic || secondaryText) {
     return "extra-large";
   }
-  if (isAvatar || (secondaryText && !isIcon)) {
+
+  if (isAvatar) {
     return "large";
   }
+
   if (isIcon) {
     return "medium";
   }

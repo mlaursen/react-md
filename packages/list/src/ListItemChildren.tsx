@@ -1,6 +1,9 @@
 import React, { ReactElement, ReactNode } from "react";
 
-import ListItemIcon, { ListItemIconPosition } from "./ListItemIcon";
+import ListItemAddon, {
+  ListItemAddonPosition,
+  ListItemAddonType,
+} from "./ListItemAddon";
 import ListItemText from "./ListItemText";
 
 export interface ListItemChildrenProps {
@@ -28,7 +31,7 @@ export interface ListItemChildrenProps {
    * will wrap them in an additional class so that they have ellipsis for text
    * overflow.
    *
-   * If you want to have more "freedom" within the ListItem, you can disable
+   * If you want to have more "freedom" within the `ListItem`, you can disable
    * this prop so that the height will grow depending on content.
    *
    * NOTE: If the `secondaryText` prop is provided, this will always be
@@ -39,7 +42,7 @@ export interface ListItemChildrenProps {
   /**
    * An optional element that should be rendered as the `primaryText` within the
    * list item. It is most likely easier to use the `children` prop instead, but
-   * this allows you to create more complex components with the ListItem since
+   * this allows you to create more complex components with the `ListItem` since
    * you can provided `children` and have the styles for the `primaryText` still
    * applied. By default, this will only allow one line of text and add ellipsis
    * for any text overflow.
@@ -54,102 +57,75 @@ export interface ListItemChildrenProps {
   secondaryText?: ReactNode;
 
   /**
-   * An optional icon to display to the left of the children or provided text
-   * elements. If this is a valid React element, the spacing class names will be
-   * cloned into the element. Otherwise it will be wrapped with a `<span>` to
-   * have the correct class name applied. You can also use the `forceIconWrap`
-   * prop to **always** wrap the icon in a `<span>` with the correct class name
-   * applied.
+   * An optional addon to display to the left of the `primaryText` or
+   * `children` and should be used with the `leftAddonType` prop to adjust
+   * spacing.
    */
-  leftIcon?: ReactNode;
+  leftAddon?: ReactNode;
 
   /**
-   * An optional icon to display to the right of the children or provided text
-   * elements. If this is a valid React element, the spacing class names will be
-   * cloned into the element. Otherwise it will be wrapped with a `<span>` to
-   * have the correct class name applied. You can also use the `forceIconWrap`
-   * prop to **always** wrap the icon in a `<span>` with the correct class name
-   * applied.
+   * The type of the addon that appears to the left of the `primaryText` or
+   * `children`.
    */
-  rightIcon?: ReactNode;
-
-  /**
-   * Boolean if the left and/or right icons should be "forcefully" wrapped in a
-   * `<span>` with the spacing class names applied instead of attempting to
-   * clone it into the provided icon element.
-   */
-  forceIconWrap?: boolean;
-
-  /**
-   * An optional avatar to display to the left of the children or provided text
-   * elements. If this is a valid React element, the spacing class names will be
-   * cloned into the element. Otherwise it will be wrapped with a `<span>` to
-   * have the correct class name applied. You can also use the `forceIconWrap`
-   * prop to **always** wrap the icon in a `<span>` with the correct class name
-   * applied.
-   */
-  leftAvatar?: ReactNode;
-
-  /**
-   * An optional avatar to display to the right of the children or provided text
-   * elements. If this is a valid React element, the spacing class names will be
-   * cloned into the element. Otherwise it will be wrapped with a `<span>` to
-   * have the correct class name applied. You can also use the `forceIconWrap`
-   * prop to **always** wrap the icon in a `<span>` with the correct class name
-   * applied.
-   */
-  rightAvatar?: ReactNode;
-
-  /**
-   * An optional graphic to be placed left of the main content.
-   */
-  leftMedia?: ReactNode;
-
-  /**
-   * An optional large graphic to place to the left of the main content.
-   */
-  leftMediaLarge?: ReactNode;
-
-  /**
-   * An optional graphic to place to the right of the main content.
-   */
-  rightMedia?: ReactNode;
-
-  /**
-   * An opional large graphic to place to the right of the main content.
-   */
-  rightMediaLarge?: ReactNode;
+  leftAddonType?: ListItemAddonType;
 
   /**
    * The vertical position the left icon, avatar, media, or large media
    * should be placed.
    */
-  leftPosition?: ListItemIconPosition;
+  leftAddonPosition?: ListItemAddonPosition;
+
+  /**
+   * An optional addon to display to the right of the `primaryText` or
+   * `children` and should be used with the `rightAddonType` prop to adjust
+   * spacing.
+   */
+  rightAddon?: ReactNode;
+
+  /**
+   * The type of the addon that appears to the right of the `primaryText` or
+   * `children`.
+   */
+  rightAddonType?: ListItemAddonType;
 
   /**
    * The vertical position the right icon, avatar, media, or large media
    * should be placed.
    */
-  rightPosition?: ListItemIconPosition;
+  rightAddonPosition?: ListItemAddonPosition;
+
+  /**
+   * Boolean if the left and/or right addons should be "forcefully" wrapped in a
+   * `<span>` with the spacing class names applied instead of attempting to
+   * clone it into the provided icon element.
+   */
+  forceAddonWrap?: boolean;
 }
 
+/**
+ * The `ListItemChildren` component is used to create a styled list item that
+ * can have optional addons to the left or right of the children in the form of
+ * icons, avatars, or media. The `children` can be replaced by the `primaryText`
+ * and `secondaryText` props to create stacked text spanning two or more lines
+ * with the default behavior of using `line-clamp` at three lines.
+ *
+ * Note: This will return a `React.Fragment` of the children and does not wrap
+ * in a DOM node for styling. The parent component should normally have
+ * `display: flex` for the styling to work.
+ */
 function ListItemChildren({
   textClassName,
   secondaryTextClassName,
   textChildren,
   primaryText,
   secondaryText,
-  leftIcon,
-  leftAvatar,
-  leftMedia,
-  leftMediaLarge,
-  leftPosition = "middle",
-  rightIcon,
-  rightAvatar,
-  rightMedia,
-  rightMediaLarge,
-  rightPosition = "middle",
-  forceIconWrap,
+  leftAddon,
+  leftAddonType = "icon",
+  leftAddonPosition = "middle",
+  rightAddon,
+  rightAddonType = "icon",
+  rightAddonPosition = "middle",
+  forceAddonWrap,
   children: propChildren,
 }: ListItemChildrenProps): ReactElement {
   const stringifiedChildren =
@@ -169,30 +145,25 @@ function ListItemChildren({
   }
 
   children = (
-    <ListItemIcon
-      avatar={!!leftAvatar}
-      media={!!leftMedia}
-      mediaLarge={!!leftMediaLarge}
-      icon={leftIcon || leftAvatar || leftMedia || leftMediaLarge}
-      forceIconWrap={forceIconWrap}
-      before
-      position={leftPosition}
+    <ListItemAddon
+      addon={leftAddon}
+      type={leftAddonType}
+      position={leftAddonPosition}
+      forceAddonWrap={forceAddonWrap}
     >
       {children}
-    </ListItemIcon>
+    </ListItemAddon>
   );
   children = (
-    <ListItemIcon
-      avatar={!!rightAvatar}
-      media={!!rightMedia}
-      mediaLarge={!!rightMediaLarge}
-      icon={rightIcon || rightAvatar || rightMedia || rightMediaLarge}
-      forceIconWrap={forceIconWrap}
-      before={false}
-      position={rightPosition}
+    <ListItemAddon
+      addon={rightAddon}
+      addonAfter
+      type={rightAddonType}
+      position={rightAddonPosition}
+      forceAddonWrap={forceAddonWrap}
     >
       {children}
-    </ListItemIcon>
+    </ListItemAddon>
   );
 
   return (

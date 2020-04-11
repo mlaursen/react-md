@@ -22,7 +22,7 @@ const ToggleThemeMenuItem: FC = () => {
     <MenuItem
       id="toggle-theme"
       onClick={toggleTheme}
-      leftIcon={icon}
+      leftAddon={icon}
       secondaryText={`Current theme: ${theme}`}
     >
       Toggle Light/Dark Theme

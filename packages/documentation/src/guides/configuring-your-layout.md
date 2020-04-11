@@ -101,7 +101,7 @@ import { HomeSVGIcon, TVSVGIcon } from "@react-md/material-icons";
 function createRoute(
   pathname: string,
   children: string,
-  leftIcon: ReactNode | undefined,
+  leftAddon: ReactNode | undefined,
   parentId: string | null = null
 ): LayoutNavigationItem {
   return {
@@ -109,7 +109,7 @@ function createRoute(
     parentId,
     to: pathname,
     children,
-    leftIcon,
+    leftAddon,
   };
 }
 

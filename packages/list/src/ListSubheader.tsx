@@ -12,6 +12,11 @@ export interface ListSubheaderProps extends HTMLAttributes<HTMLLIElement> {
 
 const block = bem("rmd-list-subheader");
 
+/**
+ * This is a simple component that will render a `<li>` with the subheader
+ * typography styles. It also supports an `inset` variant that adds some spacing
+ * to the left of the text to align with other `ListItem` that have left addons.
+ */
 function ListSubheader(
   { className, inset = false, ...props }: ListSubheaderProps,
   ref?: Ref<HTMLLIElement>

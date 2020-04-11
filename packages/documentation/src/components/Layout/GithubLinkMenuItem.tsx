@@ -8,7 +8,7 @@ const GithubLinkMenuItem: FC = () => (
   <MenuItemLink
     id="main-github-link"
     href={GITHUB_URL}
-    leftIcon={<GithubSVGIcon />}
+    leftAddon={<GithubSVGIcon />}
   >
     View Github
   </MenuItemLink>

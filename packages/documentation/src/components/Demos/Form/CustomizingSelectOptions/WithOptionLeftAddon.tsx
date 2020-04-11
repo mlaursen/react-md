@@ -1,7 +1,12 @@
 import React, { FC } from "react";
 import { Avatar } from "@react-md/avatar";
 import scssVariables from "@react-md/avatar/dist/scssVariables";
-import { Checkbox, Select, useCheckboxState } from "@react-md/form";
+import {
+  Checkbox,
+  Select,
+  useCheckboxState,
+  ListboxOption,
+} from "@react-md/form";
 import { CloseSVGIcon } from "@react-md/material-icons";
 
 import immutableStates from "constants/states";
@@ -9,17 +14,22 @@ import immutableStates from "constants/states";
 import useSelect from "./useSelect";
 
 const COLORS = Object.keys(scssVariables["rmd-avatar-colors"]);
-const states = immutableStates.map(({ name, abbreviation }, i) => ({
-  leftAvatar: <Avatar color={COLORS[i % COLORS.length]}>{abbreviation}</Avatar>,
-  label: name,
-  value: abbreviation,
-  children: (
-    <span>
-      {name} (<span className="rmd-typography--italic">{abbreviation}</span>)
-    </span>
-  ),
-  rightIcon: <CloseSVGIcon />,
-}));
+const states: ListboxOption[] = immutableStates.map(
+  ({ name, abbreviation }, i) => ({
+    leftAddon: (
+      <Avatar color={COLORS[i % COLORS.length]}>{abbreviation}</Avatar>
+    ),
+    leftAddonType: "avatar",
+    label: name,
+    value: abbreviation,
+    children: (
+      <span>
+        {name} (<span className="rmd-typography--italic">{abbreviation}</span>)
+      </span>
+    ),
+    rightIcon: <CloseSVGIcon />,
+  })
+);
 
 const WithOptionLeftAddon: FC = () => {
   const [value, handleChange] = useSelect("");

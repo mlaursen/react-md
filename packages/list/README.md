@@ -51,17 +51,18 @@ const App = () => (
     </ListItem>
     <Divider />
     <ListSubheader>Sub actions</ListSubheader>
-    <ListItem id="item-4" leftIcon={<FontIcon>close</FontIcon>}>
+    <ListItem id="item-4" leftAddon={<FontIcon>close</FontIcon>}>
       Close
     </ListItem>
     <ListItem
       id="item-5"
-      leftAvatar={
+      leftAddon={
         <Avatar
           src="https://picsum.photos/40?random"
           alt="A random image from https://picsum.photos"
         />
       }
+      leftAddonType="avatar"
     >
       With Avatar
     </ListItem>

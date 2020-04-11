@@ -10,9 +10,9 @@ const HorizontalMenu: FC = () => (
   <DropdownMenu
     id="horizontal-menu-example"
     items={[
-      <MenuItem leftIcon={<ContentCopySVGIcon />}>Copy</MenuItem>,
-      <MenuItem leftIcon={<ContentCutSVGIcon />}>Cut</MenuItem>,
-      <MenuItem leftIcon={<ContentPasteSVGIcon />}>Paste</MenuItem>,
+      <MenuItem leftAddon={<ContentCopySVGIcon />}>Copy</MenuItem>,
+      <MenuItem leftAddon={<ContentCutSVGIcon />}>Cut</MenuItem>,
+      <MenuItem leftAddon={<ContentPasteSVGIcon />}>Paste</MenuItem>,
     ]}
     horizontal
   >

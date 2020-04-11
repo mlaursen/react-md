@@ -115,9 +115,9 @@ export interface TreeItemExpansionIcon {
    * The icon to show within each item within the tree that helps show that
    * there are child items.
    *
-   * NOTE: This will override the `rightIcon`/`rightAvatar` props if defined on
-   * each item by default so they can't be used. If the `expanderLeft` prop is
-   * enabled, the `leftIcon`/`leftAvatar` will be overridden instead.
+   * NOTE: This will override the `rightAddon` prop if defined on each item by
+   * default so they can't be used. If the `expanderLeft` prop is enabled, the
+   * `leftAddon` will be overridden instead.
    */
   expanderIcon?: ReactNode;
 
@@ -403,10 +403,12 @@ export interface TreeProps<T extends BaseTreeItem = UnknownTreeItem>
    * `TreeItem` (such as drag and drop). The default behavior is to extract the
    * `ListItem` props:
    *
-   * - `leftIcon`
-   * - `rightIcon`
-   * - `leftAvatar`
-   * - `rightAvatar`
+   * - `leftAddon`
+   * - `leftAddonType`
+   * - `leftAddonPosition`
+   * - `rightAddon`
+   * - `rightAddonType`
+   * - `rightAddonPosition`
    * - `children`
    * - `to` / `href`
    * - `isLink`

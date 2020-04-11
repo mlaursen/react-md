@@ -1,0 +1,266 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItemAddon should default to rendering the addon as an icon and in the middle 1`] = `
+<div>
+  <span
+    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+    data-testid="addon"
+  >
+    Addon
+  </span>
+  Content
+</div>
+`;
+
+exports[`ListItemAddon should default to rendering the addon as an icon and in the middle 2`] = `
+<div>
+  <span
+    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+    data-testid="addon"
+  >
+    Addon
+  </span>
+  Content
+</div>
+`;
+
+exports[`ListItemAddon should not clone the classnames into the addon if the forceIconWrap prop is enabled 1`] = `
+<div>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+  >
+    <span
+      data-testid="addon"
+    >
+      Addon
+    </span>
+  </span>
+  Content
+</div>
+`;
+
+exports[`ListItemAddon should only render the children if the addon prop is null or false 1`] = `
+<div>
+  Children
+</div>
+`;
+
+exports[`ListItemAddon should only render the children if the addon prop is null or false 2`] = `
+<div>
+  Children
+</div>
+`;
+
+exports[`ListItemAddon should only render the children if the addon prop is null or false 3`] = `
+<div>
+  <span
+    class="content"
+  >
+    Content
+  </span>
+</div>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for avatars 1`] = `
+<span
+  class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-list-item__addon--avatar-before"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for avatars 2`] = `
+<span
+  class="rmd-icon--after rmd-list-item__addon"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for avatars 3`] = `
+<span
+  class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--top rmd-list-item__addon--before rmd-list-item__addon--avatar-before"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for avatars 4`] = `
+<span
+  class="rmd-icon--after rmd-list-item__addon rmd-list-item__addon--top"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for avatars 5`] = `
+<span
+  class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--bottom rmd-list-item__addon--before rmd-list-item__addon--avatar-before"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for avatars 6`] = `
+<span
+  class="rmd-icon--after rmd-list-item__addon rmd-list-item__addon--bottom"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for icons 1`] = `
+<span
+  class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for icons 2`] = `
+<span
+  class="rmd-icon--after rmd-list-item__addon"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for icons 3`] = `
+<span
+  class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--top rmd-list-item__addon--before"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for icons 4`] = `
+<span
+  class="rmd-icon--after rmd-list-item__addon rmd-list-item__addon--top"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for icons 5`] = `
+<span
+  class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--bottom rmd-list-item__addon--before"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for icons 6`] = `
+<span
+  class="rmd-icon--after rmd-list-item__addon rmd-list-item__addon--bottom"
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for large media 1`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for large media 2`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for large media 3`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for large media 4`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for large media 5`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for large media 6`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for media 1`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for media 2`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for media 3`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for media 4`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for media 5`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;
+
+exports[`ListItemAddon should render the different addon types and positions correctly for media 6`] = `
+<span
+  data-testid="addon"
+>
+  Addon
+</span>
+`;

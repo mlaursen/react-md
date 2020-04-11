@@ -8,7 +8,7 @@ describe("ListItem", () => {
     const { container, rerender } = render(<ListItem>Content</ListItem>);
     expect(container).toMatchSnapshot();
 
-    rerender(<ListItem leftIcon={<span>Left Icon</span>}>Content</ListItem>);
+    rerender(<ListItem leftAddon={<span>Left Icon</span>}>Content</ListItem>);
     expect(container).toMatchSnapshot();
   });
 });

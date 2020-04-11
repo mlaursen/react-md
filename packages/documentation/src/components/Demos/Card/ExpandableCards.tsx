@@ -48,10 +48,10 @@ const ExpandableCards: FC = () => {
         </CardHeader>
         <Collapse collapsed={!expanded}>
           <List>
-            <ListItem leftIcon={<PhoneSVGIcon />} secondaryText="Mobile">
+            <ListItem leftAddon={<PhoneSVGIcon />} secondaryText="Mobile">
               (000) 000-0000
             </ListItem>
-            <ListItem leftIcon={<EmailSVGIcon />} secondaryText="Work">
+            <ListItem leftAddon={<EmailSVGIcon />} secondaryText="Work">
               heyfromelizabeth@gmail.com
             </ListItem>
           </List>

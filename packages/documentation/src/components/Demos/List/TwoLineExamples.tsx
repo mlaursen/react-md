@@ -50,27 +50,32 @@ const TwoLineExamples: FC = () => (
       <ListItem
         id="two-line-item-0"
         secondaryText={formatShort(lastAccessedPhotos)}
-        leftAvatar={<Folder color="blue" />}
-        rightIcon={<InfoIcon id="two-line-item-0" date={lastAccessedPhotos} />}
-        rightPosition="top"
+        leftAddon={<Folder color="blue" />}
+        leftAddonType="avatar"
+        rightAddon={<InfoIcon id="two-line-item-0" date={lastAccessedPhotos} />}
+        rightAddonPosition="top"
       >
         Photos
       </ListItem>
       <ListItem
         id="two-line-item-1"
         secondaryText={formatShort(lastAccessedRecipes)}
-        leftAvatar={<Folder color="green" />}
-        rightIcon={<InfoIcon id="two-line-item-1" date={lastAccessedRecipes} />}
-        rightPosition="top"
+        leftAddon={<Folder color="green" />}
+        leftAddonType="avatar"
+        rightAddon={
+          <InfoIcon id="two-line-item-1" date={lastAccessedRecipes} />
+        }
+        rightAddonPosition="top"
       >
         Recipes
       </ListItem>
       <ListItem
         id="two-line-item-2"
         secondaryText={formatShort(lastAccessedWork)}
-        leftAvatar={<Folder color="red" />}
-        rightIcon={<InfoIcon id="two-line-item-2" date={lastAccessedWork} />}
-        rightPosition="top"
+        leftAddon={<Folder color="red" />}
+        leftAddonType="avatar"
+        rightAddon={<InfoIcon id="two-line-item-2" date={lastAccessedWork} />}
+        rightAddonPosition="top"
       >
         Work
       </ListItem>

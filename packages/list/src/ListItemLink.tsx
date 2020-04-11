@@ -40,6 +40,11 @@ export interface ListItemLinkWithComponentProps extends ListItemLinkProps {
   [key: string]: unknown;
 }
 
+/**
+ * This component is a really bad attempt at creating a `Link` within a `List`
+ * that has the main `ListItem` styles. It will probably be better to just use
+ * the `ListItemChildren` within your `Link` component instead.
+ */
 function ListItemLink(
   {
     className: propClassName,
@@ -49,15 +54,13 @@ function ListItemLink(
     primaryText,
     secondaryText,
     children,
-    leftIcon,
-    leftAvatar,
-    leftMedia,
-    leftMediaLarge,
-    rightIcon,
-    rightAvatar,
-    rightMedia,
-    rightMediaLarge,
-    forceIconWrap,
+    leftAddon,
+    leftAddonType = "icon",
+    leftAddonPosition = "middle",
+    rightAddon,
+    rightAddonType = "icon",
+    rightAddonPosition = "middle",
+    forceAddonWrap,
     height: propHeight = "auto",
     threeLines = false,
     component: Component = "a",
@@ -75,14 +78,10 @@ function ListItemLink(
 ): ReactElement {
   const height = getListItemHeight({
     height: propHeight,
-    leftIcon,
-    rightIcon,
-    leftAvatar,
-    rightAvatar,
-    leftMedia,
-    rightMedia,
-    leftMediaLarge,
-    rightMediaLarge,
+    leftAddon,
+    leftAddonType,
+    rightAddon,
+    rightAddonType,
     secondaryText,
   });
   const { ripples, className, handlers } = useInteractionStates({
@@ -119,15 +118,13 @@ function ListItemLink(
         textChildren={textChildren}
         primaryText={primaryText}
         secondaryText={secondaryText}
-        leftIcon={leftIcon}
-        leftAvatar={leftAvatar}
-        leftMedia={leftMedia}
-        leftMediaLarge={leftMediaLarge}
-        rightIcon={rightIcon}
-        rightAvatar={rightAvatar}
-        rightMedia={rightMedia}
-        rightMediaLarge={rightMediaLarge}
-        forceIconWrap={forceIconWrap}
+        leftAddon={leftAddon}
+        leftAddonType={leftAddonType}
+        leftAddonPosition={leftAddonPosition}
+        rightAddon={rightAddon}
+        rightAddonType={rightAddonType}
+        rightAddonPosition={rightAddonPosition}
+        forceAddonWrap={forceAddonWrap}
       >
         {children}
       </ListItemChildren>

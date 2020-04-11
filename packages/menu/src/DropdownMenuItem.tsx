@@ -50,7 +50,7 @@ function DropdownMenuItem(
     portalInto,
     portalIntoId,
     positionOptions,
-    rightIcon: propRightIcon,
+    rightAddon: propRightAddon,
     dropdownIcon: propDropdownIcon,
     disableEscapeCascade = false,
     disableDropdownIcon = false,
@@ -76,9 +76,9 @@ function DropdownMenuItem(
     labelledBy = id;
   }
 
-  let rightIcon = propRightIcon;
-  if (!disableDropdownIcon && dropdownIcon && !rightIcon) {
-    rightIcon = <IconRotator rotated={visible}>{dropdownIcon}</IconRotator>;
+  let rightAddon = propRightAddon;
+  if (!disableDropdownIcon && dropdownIcon && !rightAddon) {
+    rightAddon = <IconRotator rotated={visible}>{dropdownIcon}</IconRotator>;
   }
 
   let anchor = propAnchor;
@@ -96,7 +96,7 @@ function DropdownMenuItem(
         role="button"
         onClick={onClick}
         onKeyDown={onKeyDown}
-        rightIcon={rightIcon}
+        rightAddon={rightAddon}
       >
         {children}
       </MenuItem>

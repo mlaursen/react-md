@@ -10,7 +10,7 @@ describe("ListItemLink", () => {
 
     expect(container).toMatchSnapshot();
 
-    rerender(<ListItemLink {...props} leftIcon={<span>Left Icon</span>} />);
+    rerender(<ListItemLink {...props} leftAddon={<span>Left Icon</span>} />);
     expect(container).toMatchSnapshot();
   });
 });

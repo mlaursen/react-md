@@ -24,16 +24,16 @@ const SingleLineExamples: FC = () => (
       ))}
     </List>
     <List>
-      <ListItem id="icon-item-0" leftIcon={<AppsSVGIcon />}>
+      <ListItem id="icon-item-0" leftAddon={<AppsSVGIcon />}>
         Apps
       </ListItem>
-      <ListItem id="icon-item-1" rightIcon={<ArchiveSVGIcon />}>
+      <ListItem id="icon-item-1" rightAddon={<ArchiveSVGIcon />}>
         Archive
       </ListItem>
       <ListItem
         id="icon-item-2"
-        leftIcon={<ArrowBackSVGIcon />}
-        rightIcon={<ArchiveSVGIcon />}
+        leftAddon={<ArrowBackSVGIcon />}
+        rightAddon={<ArchiveSVGIcon />}
         textChildren
       >
         Go Back and Archive
@@ -41,44 +41,48 @@ const SingleLineExamples: FC = () => (
       <Divider />
       <ListItem
         id="icon-item-3"
-        leftAvatar={
+        leftAddon={
           <Avatar>
             <img src="https://picsum.photos/40?image=54" alt="" />
           </Avatar>
         }
+        leftAddonType="avatar"
       >
         {people[11]}
       </ListItem>
       <ListItem
         id="icon-item-4"
-        rightAvatar={
+        rightAddon={
           <Avatar>
             <img src="https://picsum.photos/40?image=45" alt="" />
           </Avatar>
         }
+        rightAddonType="avatar"
       >
         {people[12]}
       </ListItem>
       <Divider inset />
       <ListItem
         id="icon-item-5"
-        leftAvatar={
+        leftAddon={
           <Avatar>
             <img src="https://picsum.photos/40?image=844" alt="" />
           </Avatar>
         }
-        rightIcon={<DeleteSVGIcon />}
+        leftAddonType="avatar"
+        rightAddon={<DeleteSVGIcon />}
       >
         {people[13]}
       </ListItem>
       <ListItem
         id="icon-item-6"
-        leftIcon={<AdjustSVGIcon />}
-        rightAvatar={
+        leftAddon={<AdjustSVGIcon />}
+        rightAddon={
           <Avatar>
             <img src="https://picsum.photos/40?image=553" alt="" />
           </Avatar>
         }
+        rightAddonType="avatar"
       >
         {people[14]}
       </ListItem>
@@ -86,29 +90,29 @@ const SingleLineExamples: FC = () => (
     <List>
       <ListItem
         id="media-item-0"
-        leftMedia={<img src="https://picsum.photos/56?image=700" alt="" />}
+        leftAddon={<img src="https://picsum.photos/56?image=700" alt="" />}
+        leftAddonType="media"
       >
         With a graphic
       </ListItem>
       <ListItem
         id="media-item-1"
-        leftMediaLarge={
-          <img src="https://picsum.photos/100/56?image=800" alt="" />
-        }
+        leftAddon={<img src="https://picsum.photos/100/56?image=800" alt="" />}
+        leftAddonType="large-media"
       >
         With a large graphic
       </ListItem>
       <ListItem
         id="media-item-2"
-        rightMedia={<img src="https://picsum.photos/56?image=700" alt="" />}
+        rightAddon={<img src="https://picsum.photos/56?image=700" alt="" />}
+        rightAddonType="media"
       >
         With a graphic
       </ListItem>
       <ListItem
         id="media-item-3"
-        rightMediaLarge={
-          <img src="https://picsum.photos/100/56?image=800" alt="" />
-        }
+        rightAddon={<img src="https://picsum.photos/100/56?image=800" alt="" />}
+        rightAddonType="large-media"
       >
         With a large graphic
       </ListItem>

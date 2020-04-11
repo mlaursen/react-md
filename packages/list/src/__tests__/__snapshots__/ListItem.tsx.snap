@@ -27,7 +27,7 @@ exports[`ListItem should render correctly 2`] = `
     tabindex="0"
   >
     <span
-      class="rmd-icon--before rmd-list-item__icon rmd-list-item__icon--before"
+      class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
     >
       Left Icon
     </span>

@@ -1,6 +1,7 @@
 import React, { FC, ReactNode, useState } from "react";
 import { List, ListRowRenderer } from "react-virtualized";
 import scssVariables from "@react-md/list/dist/scssVariables";
+import { ListItemAddonType } from "@react-md/list";
 import { DropdownMenu, Menu, MenuItem, MenuRenderer } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 import { unitToNumber, useAppSize } from "@react-md/utils";
@@ -13,7 +14,8 @@ const desktopHeight = unitToNumber(
 );
 
 interface Item {
-  leftAvatar: ReactNode;
+  leftAddon: ReactNode;
+  leftAddonType: ListItemAddonType;
   children: string;
 }
 

@@ -61,10 +61,12 @@ export default function defaultTreeItemRenderer(
     linkComponent,
   } = treeProps;
   const {
-    leftIcon,
-    rightIcon,
-    leftAvatar,
-    rightAvatar,
+    leftAddon,
+    leftAddonType,
+    leftAddonPosition,
+    rightAddon,
+    rightAddonType,
+    rightAddonPosition,
     as,
     to,
     href,
@@ -115,10 +117,12 @@ export default function defaultTreeItemRenderer(
       contentComponent={contentComponent}
       readOnly={readOnly}
       disabled={disabled}
-      leftIcon={leftIcon}
-      leftAvatar={leftAvatar}
-      rightIcon={rightIcon}
-      rightAvatar={rightAvatar}
+      leftAddon={leftAddon}
+      leftAddonType={leftAddonType}
+      leftAddonPosition={leftAddonPosition}
+      rightAddon={rightAddon}
+      rightAddonType={rightAddonType}
+      rightAddonPosition={rightAddonPosition}
       expanderLeft={expanderLeft}
       expanderIcon={expanderIcon}
       {...overrides}

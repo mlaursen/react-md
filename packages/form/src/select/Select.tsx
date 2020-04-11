@@ -111,8 +111,8 @@ export interface SelectProps
    * Select's button. The default behavior is to use the `getOptionLabel`
    * default behavior. If the option is an object and the `disableLeftAddon`
    * prop has not been disabled, it will then attempt to also extract a
-   * `leftIcon` or `leftAvatar` from the option and use the `TextIconSpacing`
-   * component with the label + icon/avatar.
+   * `leftAddon` from the option and use the `TextIconSpacing` component with
+   * the label + icon/avatar.
    */
   getDisplayLabel?: typeof DEFAULT_GET_DISPLAY_LABEL;
 
@@ -135,8 +135,7 @@ export interface SelectProps
 
   /**
    * Boolean if the `Select`'s button display value should not attempt to
-   * extract a `leftIcon`/`leftAvatar` from the current selected option to
-   * display.
+   * extract a `leftAddon` from the current selected option to display.
    */
   disableLeftAddon?: boolean;
 

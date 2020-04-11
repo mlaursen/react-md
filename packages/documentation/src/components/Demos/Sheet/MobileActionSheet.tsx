@@ -17,10 +17,10 @@ import { LabelRequiredForA11y, useAppSize } from "@react-md/utils";
 import "./MobileActionSheet.scss";
 
 const items = [
-  { leftIcon: <ShareSVGIcon />, children: "Share" },
-  { leftIcon: <LinkSVGIcon />, children: "Get link" },
-  { leftIcon: <EditSVGIcon />, children: "Edit name" },
-  { leftIcon: <DeleteSVGIcon />, children: "Delete collection" },
+  { leftAddon: <ShareSVGIcon />, children: "Share" },
+  { leftAddon: <LinkSVGIcon />, children: "Get link" },
+  { leftAddon: <EditSVGIcon />, children: "Edit name" },
+  { leftAddon: <DeleteSVGIcon />, children: "Delete collection" },
 ];
 
 const MenuSheet: FC<LabelRequiredForA11y<SheetProps>> = ({

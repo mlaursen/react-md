@@ -16,7 +16,7 @@ const TableOfContentsMenuItem: FC = () => {
   return (
     <MenuItem
       id="table-of-contents"
-      leftIcon={<ViewHeadlineSVGIcon />}
+      leftAddon={<ViewHeadlineSVGIcon />}
       onClick={show}
       secondaryText={<i>Current page only</i>}
     >

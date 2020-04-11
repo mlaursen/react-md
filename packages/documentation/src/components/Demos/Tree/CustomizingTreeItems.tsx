@@ -68,28 +68,28 @@ const styles = bem("customizing-tree-items");
 
 const getItemProps: GetItemProps<Item> = (item) => {
   const { selected, focused, expanded, type } = item;
-  let leftIcon: ReactNode = null;
+  let leftAddon: ReactNode = null;
   switch (type) {
     case "folder":
-      leftIcon = expanded ? <FolderOpenSVGIcon /> : <FolderSVGIcon />;
+      leftAddon = expanded ? <FolderOpenSVGIcon /> : <FolderSVGIcon />;
       break;
     case "html":
-      leftIcon = <HTML5SVGIcon />;
+      leftAddon = <HTML5SVGIcon />;
       break;
     case "text":
-      leftIcon = <FileSVGIcon />;
+      leftAddon = <FileSVGIcon />;
       break;
     case "scss":
-      leftIcon = <SassSVGIcon />;
+      leftAddon = <SassSVGIcon />;
       break;
     case "typescript":
-      leftIcon = <TypescriptSVGIcon />;
+      leftAddon = <TypescriptSVGIcon />;
       break;
     // no default
   }
 
   return {
-    leftIcon,
+    leftAddon,
     expanderIcon: <ArrowDropDownSVGIcon />,
     className: styles("item", {
       focused,

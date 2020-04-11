@@ -1,11 +1,13 @@
 import React, { FC, ReactNode, useMemo, useState } from "react";
+import { ListItemAddonType } from "@react-md/list";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 
 interface Item {
-  leftAvatar: ReactNode;
+  leftAddon: ReactNode;
+  leftAddonType: ListItemAddonType;
   children: string;
 }
 

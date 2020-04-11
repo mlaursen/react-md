@@ -10,7 +10,7 @@ describe("SimpleListItem", () => {
 
     expect(container).toMatchSnapshot();
 
-    rerender(<SimpleListItem {...props} leftIcon={<span>Left</span>} />);
+    rerender(<SimpleListItem {...props} leftAddon={<span>Left</span>} />);
     expect(container).toMatchSnapshot();
   });
 });

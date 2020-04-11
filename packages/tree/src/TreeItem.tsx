@@ -37,11 +37,13 @@ function TreeItem(
     textChildren = true,
     primaryText,
     secondaryText,
-    leftIcon: propLeftIcon,
-    leftAvatar,
-    rightIcon: propRightIcon,
-    rightAvatar,
-    forceIconWrap,
+    leftAddon: propLeftAddon,
+    leftAddonType = "icon",
+    leftAddonPosition = "middle",
+    rightAddon: propRightAddon,
+    rightAddonType = "icon",
+    rightAddonPosition = "middle",
+    forceAddonWrap,
     height = "auto",
     threeLines = false,
     children,
@@ -69,8 +71,8 @@ function TreeItem(
   });
 
   let group;
-  let leftIcon = propLeftIcon;
-  let rightIcon = propRightIcon;
+  let leftAddon = propLeftAddon;
+  let rightAddon = propRightAddon;
   if (renderChildItems) {
     const icon = (
       <TreeItemExpanderIcon rotated={expanded}>
@@ -78,9 +80,9 @@ function TreeItem(
       </TreeItemExpanderIcon>
     );
     if (expanderLeft) {
-      leftIcon = icon;
+      leftAddon = icon;
     } else {
-      rightIcon = icon;
+      rightAddon = icon;
     }
 
     group = <TreeGroup collapsed={!expanded}>{renderChildItems()}</TreeGroup>;
@@ -144,11 +146,13 @@ function TreeItem(
           textChildren={textChildren}
           primaryText={primaryText}
           secondaryText={secondaryText}
-          leftIcon={leftIcon}
-          leftAvatar={leftAvatar}
-          rightIcon={rightIcon}
-          rightAvatar={rightAvatar}
-          forceIconWrap={forceIconWrap}
+          leftAddon={leftAddon}
+          leftAddonType={leftAddonType}
+          leftAddonPosition={leftAddonPosition}
+          rightAddon={rightAddon}
+          rightAddonType={rightAddonType}
+          rightAddonPosition={rightAddonPosition}
+          forceAddonWrap={forceAddonWrap}
         >
           {children}
         </ListItemChildren>

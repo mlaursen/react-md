@@ -1,11 +1,11 @@
-import cn from "classnames";
 import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import cn from "classnames";
 import { bem } from "@react-md/utils";
 
 export type ListElement = HTMLUListElement | HTMLOListElement;
 export interface ListProps extends HTMLAttributes<ListElement> {
   /**
-   * The role is set to `"none"` by default for lists screen readers annouce
+   * The role is set to `"none"` by default for lists screen readers announce
    * lists differently than other elements on the page. Since the major use-case
    * for lists is to contain clickable items, setting this to `"none"` fixes
    * this issue.
@@ -32,14 +32,16 @@ export interface ListProps extends HTMLAttributes<ListElement> {
 const block = bem("rmd-list");
 
 /**
- * Creates an unordered or ordered list.
+ * The `List` component creates an unstyled ordered or unordered list that
+ * should be used with the `ListItem`, `ListItemLink`, and `SimpleListItem`
+ * components.
  */
 function List(
   {
     role = "none",
     dense = false,
-    horizontal = false,
     ordered = false,
+    horizontal = false,
     className,
     children,
     ...props
@@ -69,8 +71,8 @@ if (process.env.NODE_ENV !== "production") {
     ForwardedList.propTypes = {
       role: PropTypes.string,
       dense: PropTypes.bool,
-      horizontal: PropTypes.bool,
       ordered: PropTypes.bool,
+      horizontal: PropTypes.bool,
     };
   } catch (e) {}
 }

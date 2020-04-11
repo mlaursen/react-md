@@ -252,7 +252,7 @@ export interface LayoutNavigationItem extends BaseTreeItem {
    * An optional icon to display to the left of the `children`. See the `ListItem` component
    * for more details.
    */
-  leftIcon?: ReactNode;
+  leftAddon?: ReactNode;
 
   /**
    * An optional `rel` attribute to apply when using rendering a link.
@@ -296,7 +296,7 @@ export interface LayoutNavigationItem extends BaseTreeItem {
  *     itemId: "/",
  *     parentId: null,
  *     children: "Home",
- *     leftIcon: <HomeSVGIcon />,
+ *     leftAddon: <HomeSVGIcon />,
  *     to: "/",
  *     contentComponent: Link,
  *   },
@@ -304,7 +304,7 @@ export interface LayoutNavigationItem extends BaseTreeItem {
  *     itemId: "/route-1",
  *     parentId: null,
  *     children: "Route 1",
- *     leftIcon: <TVSVGIcon />,
+ *     leftAddon: <TVSVGIcon />,
  *     to: "/route-1",
  *     contentComponent: Link,
  *   },
@@ -312,7 +312,7 @@ export interface LayoutNavigationItem extends BaseTreeItem {
  *     itemId: "/route-2",
  *     parentId: null,
  *     children: "Route 2",
- *     leftIcon: <AppsSVGIcon />,
+ *     leftAddon: <AppsSVGIcon />,
  *     to: "/route-2",
  *     contentComponent: Link,
  *   },
@@ -320,7 +320,7 @@ export interface LayoutNavigationItem extends BaseTreeItem {
  *     itemId: "/route-3",
  *     parentId: null,
  *     children: "Route 3",
- *     leftIcon: <BookSVGIcon />,
+ *     leftAddon: <BookSVGIcon />,
  *     to: "/route-3",
  *     contentComponent: Link,
  *   },

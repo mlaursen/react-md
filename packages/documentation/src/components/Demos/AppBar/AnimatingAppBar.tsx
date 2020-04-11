@@ -82,7 +82,8 @@ const AnimatingAppBar: FC = () => {
             <ListItem
               id={`person-${i}`}
               key={id}
-              leftAvatar={<Avatar color={color}>{avatar}</Avatar>}
+              leftAddon={<Avatar color={color}>{avatar}</Avatar>}
+              leftAddonType="avatar"
             >
               {name}
             </ListItem>

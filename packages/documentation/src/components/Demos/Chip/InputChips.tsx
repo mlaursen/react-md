@@ -3,6 +3,7 @@ import {
   AutoComplete,
   AutoCompleteHandler,
   isResultOf,
+  AutoCompleteData,
 } from "@react-md/autocomplete";
 import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
@@ -39,16 +40,19 @@ const contacts = Array.from(people, (name, i) => ({
   return lookup;
 }, {});
 
-const data = Object.values(contacts).map(({ id, name, email, avatar }) => ({
-  id,
-  label: name,
-  leftAvatar: (
-    <Avatar>
-      <img src={avatar} alt="" />
-    </Avatar>
-  ),
-  secondaryText: email,
-}));
+const data = Object.values(contacts).map<AutoCompleteData & { id: string }>(
+  ({ id, name, email, avatar }) => ({
+    id,
+    label: name,
+    leftAddon: (
+      <Avatar>
+        <img src={avatar} alt="" />
+      </Avatar>
+    ),
+    leftAddonType: "avatar",
+    secondaryText: email,
+  })
+);
 
 const InputChips: FC = () => {
   const [chips, setChips] = useState<Contact[]>([]);

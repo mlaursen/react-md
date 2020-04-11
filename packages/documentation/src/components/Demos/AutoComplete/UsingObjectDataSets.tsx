@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { AutoComplete } from "@react-md/autocomplete";
+import { AutoComplete, AutoCompleteData } from "@react-md/autocomplete";
 import { Avatar } from "@react-md/avatar";
 
 import dessertsList from "constants/desserts";
@@ -40,20 +40,23 @@ function getColor(type: string): string {
   }
 }
 
-const desserts = dessertsList.map(({ name, type, calories }, i) => ({
-  label: (
-    <>
-      {`${name} `}(<i>{`${calories} kcal`}</i>)
-    </>
-  ),
-  value: name,
-  leftIcon: (
-    <Avatar style={{ fontSize: ".85rem" }} color={getColor(type)}>
-      {type.substring(0, 3)}
-    </Avatar>
-  ),
-  rightMedia: <img src={`https://picsum.photos/56?image=${30 + i}`} alt="" />,
-}));
+const desserts = dessertsList.map<AutoCompleteData>(
+  ({ name, type, calories }, i) => ({
+    label: (
+      <>
+        {`${name} `}(<i>{`${calories} kcal`}</i>)
+      </>
+    ),
+    value: name,
+    leftAddon: (
+      <Avatar style={{ fontSize: ".85rem" }} color={getColor(type)}>
+        {type.substring(0, 3)}
+      </Avatar>
+    ),
+    rightAddon: <img src={`https://picsum.photos/56?image=${30 + i}`} alt="" />,
+    rightAddonType: "media",
+  })
+);
 
 // just slicing since `statesList` is readonly
 const states = statesList.slice();

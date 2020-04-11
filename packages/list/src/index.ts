@@ -15,5 +15,11 @@ export * from "./ListSubheader";
 export { default as ListItemChildren } from "./ListItemChildren";
 export * from "./ListItemChildren";
 
+export { default as ListItemText } from "./ListItemText";
+export * from "./ListItemText";
+
+export { default as ListItemAddon } from "./ListItemAddon";
+export * from "./ListItemAddon";
+
 export { default as getListItemHeight } from "./getListItemHeight";
 export * from "./getListItemHeight";
