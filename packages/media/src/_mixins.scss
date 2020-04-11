@@ -6,18 +6,73 @@
 @import '~@react-md/utils/dist/functions';
 @import './variables';
 
+/// Used to enforce a specific aspect ratio for a media item by using the
+/// `padding-bottom` trick/hack. This should normally be used with the
+/// `rmd-media-aspect-ratio-container` mixin.
+///
+/// Note: You can just use the `rmd-media-aspect-ratio` mixin if you only need
+/// to support a single aspect ratio.
+///
+/// @example scss - Simple Example
+///   .container {
+///     @include rmd-media-aspect-ratio-container;
+///
+///     &--16-9 {
+///       @include rmd-media-aspect-ratio(16, 9);
+///     }
+///   }
+///
+/// @param {Number} width - The width to enforce for the responsive media
+/// @param {Number} height - The height to enforce for the responsive media
+@mixin rmd-media-aspect-ratio($width, $height) {
+  padding-bottom: percentage($height / $width);
+}
+
 /// Creates the styles for a media container that should enforce a specific
-/// aspect ratio.
-@mixin rmd-media-aspect-ratio-container {
+/// aspect ratio. If the `$width` and `$height` parameters are provide, the
+/// container will be updated to also enforce that specific aspect ratio.
+///
+/// @example scss - Example Usage with `rmd-media-aspect-ratio`
+///   .container {
+///     @include rmd-media-aspect-ratio-container;
+///
+///     &--16-9 {
+///       @include rmd-media-aspect-ratio(16, 9);
+///     }
+///   }
+///
+/// @example scss - Example Usage for single aspect ratio
+///   .container {
+///     @include rmd-media-aspect-ratio-container(16, 9);
+///   }
+///
+/// @param {Number} width - The width to enforce for the responsive media
+/// @param {Number} height - The height to enforce for the responsive media
+@mixin rmd-media-aspect-ratio-container($width: null, $height: null) {
   display: block;
   height: 0;
   overflow: hidden;
   padding: 0;
+
+  @if $width and $height {
+    @include rmd-media-aspect-ratio($width, $height);
+  }
 }
 
 /// Creates the styles for a responsive media item that should have a specific
-/// aspect ratio.
-@mixin rmd-media-forced-aspect-ratio {
+/// aspect ratio. This should be applied to the child of the aspect ratio
+/// container.
+///
+/// @example scss - Example Usage
+///   .container {
+///     @include rmd-media-aspect-ratio-container;
+///     @include rmd-media-aspect-ratio(16, 9);
+///
+///     &__media {
+///       @include rmd-media-forced-aspect-ratio-item;
+///     }
+///   }
+@mixin rmd-media-forced-aspect-ratio-item {
   bottom: 0;
   height: 100%;
   left: 0;
@@ -29,12 +84,23 @@
 
 /// Creates the styles for a responsive media item that will update its height
 /// and width based on the parent element.
-@mixin rmd-media {
+///
+/// @example scss - Example Usage
+///   .container {
+///     height: 20rem;
+///     width: 30rem;
+///
+///     &__media {
+///       @include rmd-media-responsive-item;
+///     }
+///   }
+@mixin rmd-media-responsive-item {
   height: auto;
   width: 100%;
 }
 
 /// Creates the base positioning styles for the media overlay element.
+///
 /// @param {String} position - One of the `rmd-media-overlay-positions` values
 @mixin rmd-media-overlay-position($position) {
   $position: rmd-utils-validate(
@@ -111,43 +177,46 @@
   }
 }
 
-/// Creates all the styles for the media package.
-@mixin react-md-media {
-  .rmd-media-container {
-    display: inline-block;
-    position: relative;
+/// Creates the styles for a responsive media container. This probably won't be
+/// used by users of this library.
+@mixin rmd-media-container {
+  display: inline-block;
+  position: relative;
 
-    @each $selector in $rmd-media-selectors {
-      &--auto #{$selector} {
-        @include rmd-media;
-      }
-
-      &--aspect-ratio #{$selector} {
-        @include rmd-media-forced-aspect-ratio;
-      }
+  @each $selector in $rmd-media-selectors {
+    &--auto #{$selector} {
+      @include rmd-media-responsive-item;
     }
 
-    &--aspect-ratio {
-      @include rmd-media-aspect-ratio-container;
-    }
-
-    @each $key, $value in $rmd-media-default-aspect-ratios {
-      &--#{$key} {
-        $width: nth($value, 1);
-        $height: nth($value, 2);
-
-        padding-bottom: percentage($height / $width);
-      }
-    }
-
-    &--full-width {
-      display: block;
-      width: 100%;
+    &--aspect-ratio #{$selector} {
+      @include rmd-media-forced-aspect-ratio-item;
     }
   }
 
+  &--aspect-ratio {
+    @include rmd-media-aspect-ratio-container;
+  }
+
+  @each $key, $value in $rmd-media-default-aspect-ratios {
+    &--#{$key} {
+      @include rmd-media-aspect-ratio(nth($value, 1), nth($value, 2));
+    }
+  }
+
+  &--full-width {
+    display: block;
+    width: 100%;
+  }
+}
+
+/// Creates all the styles for the media package.
+@mixin react-md-media {
+  .rmd-media-container {
+    @include rmd-media-container;
+  }
+
   .rmd-media {
-    @include rmd-media;
+    @include rmd-media-responsive-item;
   }
 
   .rmd-media-overlay {

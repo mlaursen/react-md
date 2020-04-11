@@ -376,11 +376,33 @@ const sassdoc: PackageSassDoc = {
         "@mixin rmd-typography-text-overflow-ellipsis {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n",
       type: "mixin",
     },
+    "rmd-typography-line-clamp": {
+      name: "rmd-typography-line-clamp",
+      description:
+        "A simple mixin that allows you to use the `-webkit-box` behavior for overflowing text that spans multiple lines",
+      source: "packages/typography/src/_mixins.scss#L221-L225",
+      links: [{ name: "", href: "https://caniuse.com/#search=line-clamp" }],
+      usedBy: [{ name: "rmd-list-item", type: "mixin", packageName: "list" }],
+      packageName: "typography",
+      code: "@mixin rmd-typography-line-clamp($lines: 2) { … }",
+      sourceCode:
+        "@mixin rmd-typography-line-clamp($lines: 2) {\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: $lines;\n  display: -webkit-box;\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String|Number",
+          name: "lines",
+          default: "2",
+          description:
+            "The number of lines that the text should be clamped to.",
+        },
+      ],
+    },
     "react-md-typography": {
       name: "react-md-typography",
       description:
         "Creates all the typography styles from the react-md typography variables.\n",
-      source: "packages/typography/src/_mixins.scss#L216-L286",
+      source: "packages/typography/src/_mixins.scss#L228-L298",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "typography",
       code: "@mixin react-md-typography { … }",
@@ -392,7 +414,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-typography-google-font-face",
       description:
         "Creates the font face declaration for a Google font with a provided font weight. This will need to be called multiple times if you are including multiple font weights.\n\nThis should only be used if you are hosting the Google font locally instead of through the Google fonts service.",
-      source: "packages/typography/src/_mixins.scss#L310-L339",
+      source: "packages/typography/src/_mixins.scss#L322-L351",
       usedBy: [
         {
           name: "rmd-typography-host-google-font",
@@ -414,7 +436,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-typography-google-font-face($font-name: Roboto, $font-weight: map-get($rmd-typography-font-weights, regular), $font-url-or-prefix: null) { … }",
       sourceCode:
-        '@mixin rmd-typography-google-font-face(\n  $font-name: Roboto,\n  $font-weight: map-get($rmd-typography-font-weights, regular),\n  $font-url-or-prefix: null\n) {\n  $full-font-name: str-replace($font-name, " ", "") +\n    rmd-typography-google-font-suffix($font-weight);\n\n  $font-url-prefix: "";\n  $font-url: null;\n  @if $font-url-or-prefix == null or type-of($font-url-or-prefix) == "string" {\n    $font-url: if(\n      $font-url-or-prefix == null,\n      "/fonts/" + to-lower-case(str-replace($font-name, " ", "-")),\n      $font-url-or-prefix\n    );\n    $font-url: if(char-at($font-url) != "/", $font-url + "/", $font-url);\n    $font-url: url($font-url+$full-font-name+".ttf");\n  } @else {\n    $font-url: $font-url-or-prefix;\n  }\n\n  @font-face {\n    font-family: quote($font-name);\n    font-style: normal;\n    font-weight: $font-weight;\n    src: local(#{quote($font-name)}), local(#{quote($full-font-name)}),\n      #{$font-url} format("truetype");\n  }\n}\n',
+        '@mixin rmd-typography-google-font-face(\n  $font-name: Roboto,\n  $font-weight: map-get($rmd-typography-font-weights, regular),\n  $font-url-or-prefix: null\n) {\n  $full-font-name: str-replace($font-name, " ", "") +\n    rmd-typography-google-font-suffix($font-weight);\n\n  $font-url-prefix: "";\n  $font-url: null;\n  @if $font-url-or-prefix == null or type-of($font-url-or-prefix) == "string" {\n    $font-url: if(\n      $font-url-or-prefix == null,\n      "/fonts/" + to-lower-case(str-replace($font-name, " ", "-")),\n      $font-url-or-prefix\n    );\n    $font-url: if(char-at($font-url) != "/", $font-url + "/", $font-url);\n    $font-url: url($font-url + $full-font-name + ".ttf");\n  } @else {\n    $font-url: $font-url-or-prefix;\n  }\n\n  @font-face {\n    font-family: quote($font-name);\n    font-style: normal;\n    font-weight: $font-weight;\n    src: local(#{quote($font-name)}), local(#{quote($full-font-name)}),\n      #{$font-url} format("truetype");\n  }\n}\n',
       type: "mixin",
       parameters: [
         {
@@ -442,7 +464,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-typography-host-google-font",
       description:
         "Generates all the font faces (with font weights) for a Google font. This should only be used if you are hosting the Google font on your own servers instead of through the Google fonts service.\n\nIf you are using create-react-app, you must provide the `$font-url-prefix-or-url-map` as a Map of urls to have the font files correctly included and bundled during your build. See the examples for more details.",
-      source: "packages/typography/src/_mixins.scss#L415-L431",
+      source: "packages/typography/src/_mixins.scss#L427-L443",
       links: [
         {
           name: "Adding Images, Fonts, and Files",

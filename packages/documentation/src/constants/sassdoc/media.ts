@@ -4,46 +4,145 @@ import { PackageSassDoc } from "utils/sassdoc";
 const sassdoc: PackageSassDoc = {
   functions: {},
   mixins: {
+    "rmd-media-aspect-ratio": {
+      name: "rmd-media-aspect-ratio",
+      description:
+        "Used to enforce a specific aspect ratio for a media item by using the `padding-bottom` trick/hack. This should normally be used with the `rmd-media-aspect-ratio-container` mixin.\n\nNote: You can just use the `rmd-media-aspect-ratio` mixin if you only need to support a single aspect ratio.",
+      source: "packages/media/src/_mixins.scss#L27-L29",
+      usedBy: [
+        {
+          name: "rmd-media-aspect-ratio-container",
+          type: "mixin",
+          packageName: "media",
+        },
+        { name: "rmd-media-container", type: "mixin", packageName: "media" },
+      ],
+      packageName: "media",
+      examples: [
+        {
+          code:
+            ".container {\n  @include rmd-media-aspect-ratio-container;\n\n  &--16-9 {\n    @include rmd-media-aspect-ratio(16, 9);\n  }\n}\n",
+          compiled:
+            ".container {\n  display: block;\n  height: 0;\n  overflow: hidden;\n  padding: 0;\n}\n.container--16-9 {\n  padding-bottom: 56.25%;\n}\n",
+          type: "scss",
+          description: "Simple Example",
+        },
+      ],
+      code: "@mixin rmd-media-aspect-ratio($width, $height) { … }",
+      sourceCode:
+        "@mixin rmd-media-aspect-ratio($width, $height) {\n  padding-bottom: percentage($height / $width);\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "Number",
+          name: "width",
+          description: "The width to enforce for the responsive media",
+        },
+        {
+          type: "Number",
+          name: "height",
+          description: "The height to enforce for the responsive media",
+        },
+      ],
+    },
     "rmd-media-aspect-ratio-container": {
       name: "rmd-media-aspect-ratio-container",
       description:
-        "Creates the styles for a media container that should enforce a specific aspect ratio.\n",
-      source: "packages/media/src/_mixins.scss#L11-L16",
-      usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
+        "Creates the styles for a media container that should enforce a specific aspect ratio. If the `$width` and `$height` parameters are provide, the container will be updated to also enforce that specific aspect ratio.",
+      source: "packages/media/src/_mixins.scss#L51-L60",
+      usedBy: [
+        { name: "rmd-media-container", type: "mixin", packageName: "media" },
+      ],
       packageName: "media",
-      code: "@mixin rmd-media-aspect-ratio-container { … }",
+      examples: [
+        {
+          code:
+            ".container {\n  @include rmd-media-aspect-ratio-container;\n\n  &--16-9 {\n    @include rmd-media-aspect-ratio(16, 9);\n  }\n}\n",
+          compiled:
+            ".container {\n  display: block;\n  height: 0;\n  overflow: hidden;\n  padding: 0;\n}\n.container--16-9 {\n  padding-bottom: 56.25%;\n}\n",
+          type: "scss",
+          description: "Example Usage with `rmd-media-aspect-ratio`",
+        },
+        {
+          code:
+            ".container {\n  @include rmd-media-aspect-ratio-container(16, 9);\n}\n",
+          compiled:
+            ".container {\n  display: block;\n  height: 0;\n  overflow: hidden;\n  padding: 0;\n  padding-bottom: 56.25%;\n}\n",
+          type: "scss",
+          description: "Example Usage for single aspect ratio",
+        },
+      ],
+      code: "@mixin rmd-media-aspect-ratio-container($width, $height) { … }",
       sourceCode:
-        "@mixin rmd-media-aspect-ratio-container {\n  display: block;\n  height: 0;\n  overflow: hidden;\n  padding: 0;\n}\n",
+        "@mixin rmd-media-aspect-ratio-container($width, $height) {\n  display: block;\n  height: 0;\n  overflow: hidden;\n  padding: 0;\n\n  @if $width and $height {\n    @include rmd-media-aspect-ratio($width, $height);\n  }\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "Number",
+          name: "width",
+          description: "The width to enforce for the responsive media",
+        },
+        {
+          type: "Number",
+          name: "height",
+          description: "The height to enforce for the responsive media",
+        },
+      ],
+    },
+    "rmd-media-forced-aspect-ratio-item": {
+      name: "rmd-media-forced-aspect-ratio-item",
+      description:
+        "Creates the styles for a responsive media item that should have a specific aspect ratio. This should be applied to the child of the aspect ratio container.",
+      source: "packages/media/src/_mixins.scss#L75-L83",
+      usedBy: [
+        { name: "rmd-media-container", type: "mixin", packageName: "media" },
+      ],
+      packageName: "media",
+      examples: [
+        {
+          code:
+            ".container {\n  @include rmd-media-aspect-ratio-container;\n  @include rmd-media-aspect-ratio(16, 9);\n\n  &__media {\n    @include rmd-media-forced-aspect-ratio-item;\n  }\n}\n",
+          compiled:
+            ".container {\n  display: block;\n  height: 0;\n  overflow: hidden;\n  padding: 0;\n  padding-bottom: 56.25%;\n}\n.container__media {\n  bottom: 0;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 100%;\n}\n",
+          type: "scss",
+          description: "Example Usage",
+        },
+      ],
+      code: "@mixin rmd-media-forced-aspect-ratio-item { … }",
+      sourceCode:
+        "@mixin rmd-media-forced-aspect-ratio-item {\n  bottom: 0;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 100%;\n}\n",
       type: "mixin",
     },
-    "rmd-media-forced-aspect-ratio": {
-      name: "rmd-media-forced-aspect-ratio",
+    "rmd-media-responsive-item": {
+      name: "rmd-media-responsive-item",
       description:
-        "Creates the styles for a responsive media item that should have a specific aspect ratio.\n",
-      source: "packages/media/src/_mixins.scss#L20-L28",
-      usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
+        "Creates the styles for a responsive media item that will update its height and width based on the parent element.",
+      source: "packages/media/src/_mixins.scss#L97-L100",
+      usedBy: [
+        { name: "rmd-media-container", type: "mixin", packageName: "media" },
+        { name: "react-md-media", type: "mixin", packageName: "media" },
+      ],
       packageName: "media",
-      code: "@mixin rmd-media-forced-aspect-ratio { … }",
+      examples: [
+        {
+          code:
+            ".container {\n  height: 20rem;\n  width: 30rem;\n\n  &__media {\n    @include rmd-media-responsive-item;\n  }\n}\n",
+          compiled:
+            ".container {\n  height: 20rem;\n  width: 30rem;\n}\n.container__media {\n  height: auto;\n  width: 100%;\n}\n",
+          type: "scss",
+          description: "Example Usage",
+        },
+      ],
+      code: "@mixin rmd-media-responsive-item { … }",
       sourceCode:
-        "@mixin rmd-media-forced-aspect-ratio {\n  bottom: 0;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: 100%;\n}\n",
-      type: "mixin",
-    },
-    "rmd-media": {
-      name: "rmd-media",
-      description:
-        "Creates the styles for a responsive media item that will update its height and width based on the parent element.\n",
-      source: "packages/media/src/_mixins.scss#L32-L35",
-      usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
-      packageName: "media",
-      code: "@mixin rmd-media { … }",
-      sourceCode: "@mixin rmd-media {\n  height: auto;\n  width: 100%;\n}\n",
+        "@mixin rmd-media-responsive-item {\n  height: auto;\n  width: 100%;\n}\n",
       type: "mixin",
     },
     "rmd-media-overlay-position": {
       name: "rmd-media-overlay-position",
       description:
-        "Creates the base positioning styles for the media overlay element.\n",
-      source: "packages/media/src/_mixins.scss#L39-L76",
+        "Creates the base positioning styles for the media overlay element.",
+      source: "packages/media/src/_mixins.scss#L105-L142",
       usedBy: [
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
       ],
@@ -64,7 +163,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-media-overlay",
       description:
         "Creates the media overlay styles. All this really does is update the theme background and text colors based on the provided background color for the overlay element.",
-      source: "packages/media/src/_mixins.scss#L87-L112",
+      source: "packages/media/src/_mixins.scss#L153-L178",
       usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       packageName: "media",
       code:
@@ -88,15 +187,27 @@ const sassdoc: PackageSassDoc = {
         },
       ],
     },
+    "rmd-media-container": {
+      name: "rmd-media-container",
+      description:
+        "Creates the styles for a responsive media container. This probably won't be used by users of this library.\n",
+      source: "packages/media/src/_mixins.scss#L182-L210",
+      usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
+      packageName: "media",
+      code: "@mixin rmd-media-container { … }",
+      sourceCode:
+        "@mixin rmd-media-container {\n  display: inline-block;\n  position: relative;\n\n  @each $selector in $rmd-media-selectors {\n    &--auto #{$selector} {\n      @include rmd-media-responsive-item;\n    }\n\n    &--aspect-ratio #{$selector} {\n      @include rmd-media-forced-aspect-ratio-item;\n    }\n  }\n\n  &--aspect-ratio {\n    @include rmd-media-aspect-ratio-container;\n  }\n\n  @each $key, $value in $rmd-media-default-aspect-ratios {\n    &--#{$key} {\n      @include rmd-media-aspect-ratio(nth($value, 1), nth($value, 2));\n    }\n  }\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n}\n",
+      type: "mixin",
+    },
     "react-md-media": {
       name: "react-md-media",
       description: "Creates all the styles for the media package.\n",
-      source: "packages/media/src/_mixins.scss#L115-L156",
+      source: "packages/media/src/_mixins.scss#L213-L225",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "media",
       code: "@mixin react-md-media { … }",
       sourceCode:
-        "@mixin react-md-media {\n  .rmd-media-container {\n    display: inline-block;\n    position: relative;\n\n    @each $selector in $rmd-media-selectors {\n      &--auto #{$selector} {\n        @include rmd-media;\n      }\n\n      &--aspect-ratio #{$selector} {\n        @include rmd-media-forced-aspect-ratio;\n      }\n    }\n\n    &--aspect-ratio {\n      @include rmd-media-aspect-ratio-container;\n    }\n\n    @each $key, $value in $rmd-media-default-aspect-ratios {\n      &--#{$key} {\n        $width: nth($value, 1);\n        $height: nth($value, 2);\n\n        padding-bottom: percentage($height / $width);\n      }\n    }\n\n    &--full-width {\n      display: block;\n      width: 100%;\n    }\n  }\n\n  .rmd-media {\n    @include rmd-media;\n  }\n\n  .rmd-media-overlay {\n    @include rmd-media-overlay;\n  }\n}\n",
+        "@mixin react-md-media {\n  .rmd-media-container {\n    @include rmd-media-container;\n  }\n\n  .rmd-media {\n    @include rmd-media-responsive-item;\n  }\n\n  .rmd-media-overlay {\n    @include rmd-media-overlay;\n  }\n}\n",
       type: "mixin",
     },
   },
@@ -116,7 +227,9 @@ const sassdoc: PackageSassDoc = {
       description:
         "A list of selectors or html elements that should be considered responsive media by default. This will make it so that when using the `MediaContainer` component, the following elements will be responsive automatically.\n",
       source: "packages/media/src/_variables.scss#L15",
-      usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
+      usedBy: [
+        { name: "rmd-media-container", type: "mixin", packageName: "media" },
+      ],
       packageName: "media",
       type: "List",
       value: "(img '>svg' iframe video embed object)",
@@ -137,7 +250,9 @@ const sassdoc: PackageSassDoc = {
       description:
         "A Map including the default aspect ratios to create for responsive media with a forced aspect ratio. Each key must be a string for a class name suffix and each value should be a list in the form of (width height).\n",
       source: "packages/media/src/_variables.scss#L26-L30",
-      usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
+      usedBy: [
+        { name: "rmd-media-container", type: "mixin", packageName: "media" },
+      ],
       packageName: "media",
       type: "Map",
       value: "(\n  '16-9': 16 9,\n  '4-3': 4 3,\n  '1-1': 1 1,\n)",

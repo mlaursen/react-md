@@ -10,7 +10,7 @@ control over the size of the content.
 - `1:1`
 
 but this can be changed from by the
-[\$rmd-media-default-aspect-ratios](sassdoc#variable-rmd-media-default-aspect-ratios)
+[\$rmd-media-default-aspect-ratios](sassdoc#media-variable-rmd-media-default-aspect-ratios)
 SCSS variable. To enforce an aspect ratio, you need to update the
 `MediaContainer` component to just use the `height` and `width` props to create
 that aspect ratio.
