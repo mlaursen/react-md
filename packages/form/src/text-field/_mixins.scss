@@ -308,11 +308,11 @@
 @mixin rmd-textarea-container {
   @include rmd-form-theme-update-var(addon-top, $rmd-textarea-addon-top);
 
-  $calc: #{rmd-form-theme-var(text-padding-top)} + #{rmd-form-theme-var(textarea-padding)};
-
   height: auto;
   max-width: 100%;
-  padding-top: calc(#{$calc});
+  padding-top: calc(
+    #{rmd-form-theme-var(text-padding-top)} + #{rmd-form-theme-var(textarea-padding)}
+  );
 
   &--animate {
     @include rmd-transition(standard);

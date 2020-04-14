@@ -62,7 +62,9 @@
       @error 'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. "#{$values}"';
     }
 
-    .rmd-avatar--#{$color-name} {
+    $class-name: 'rmd-avatar--' + $color-name;
+
+    .#{$class-name} {
       @include rmd-avatar-color(nth($values, 1), nth($values, 2));
     }
   }

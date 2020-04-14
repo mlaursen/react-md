@@ -156,7 +156,7 @@
     @include rmd-form-theme(left, toggle-dense-inset);
     @include rmd-form-theme(right, toggle-dense-inset);
     @include rmd-form-theme(top, toggle-dense-inset);
-    @include rmd-form-theme(indeterminate-height, indeterminate-dense-height);
+    @include rmd-form-theme(height, indeterminate-dense-height);
   }
 }
 
@@ -184,7 +184,7 @@
   width: $rmd-switch-track-width;
 
   &--disabled {
-    @include rmd-form-theme-update-var(track-background-color, disabled-color);
+    @include rmd-form-theme-update-var(track-background-color, rmd-form-theme-var(disabled-color));
   }
 
   &--async {
