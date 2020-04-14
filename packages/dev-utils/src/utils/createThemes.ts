@@ -1,4 +1,3 @@
-import combineMediaQueries from "css-mqpacker";
 import cssnano from "cssnano";
 import { ensureDir, writeFileSync } from "fs-extra";
 import log from "loglevel";
@@ -100,7 +99,6 @@ $rmd-theme-light: ${tone === "light"};
       "properties-order": "alphabetical",
       "unspecified-properties-position": "bottom",
     }),
-    combineMediaQueries(),
     combineDuplicatedSelectors,
     cssnano({ preset: "default" }),
   ]).process(unmodifiedCSS, { from: outFile });
