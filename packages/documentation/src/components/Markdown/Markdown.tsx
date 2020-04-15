@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 import cn from "classnames";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 import GoogleFont from "components/GoogleFont";
 
@@ -57,6 +57,7 @@ function useCustomMarkdownBehavior({
   __html: html,
 }: DangerHTML): MutableRefObject<HTMLDivElement | null> {
   const ref = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
   useEffect(() => {
     const instance = ref.current;
     if (!instance) {
@@ -81,14 +82,14 @@ function useCustomMarkdownBehavior({
           ];
 
           if (guide) {
-            Router.push(href.replace(guide, "[id]"), href);
+            router.push(href.replace(guide, "[id]"), href);
           } else {
-            Router.push(href);
+            router.push(href);
           }
         };
       }
     });
-  }, [html]);
+  }, [html, router]);
 
   return ref;
 }

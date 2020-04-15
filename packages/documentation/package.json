@@ -72,8 +72,7 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-swipeable": "^5.5.1",
-    "react-virtualized": "^9.21.2",
-    "smoothscroll-polyfill": "^0.4.4"
+    "react-virtualized": "^9.21.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

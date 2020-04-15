@@ -43,7 +43,6 @@ const Link: FC<LinkProps> = ({
 
 Link.defaultProps = {
   passHref: true,
-  scroll: false,
 };
 
 export default Link;

@@ -37,8 +37,4 @@ const LinkUnstyled: FC<LinkUnstyledProps> = ({
   );
 };
 
-LinkUnstyled.defaultProps = {
-  scroll: false,
-};
-
 export default LinkUnstyled;

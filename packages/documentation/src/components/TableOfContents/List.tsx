@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, react/no-array-index-key */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
 import React, { FC, useCallback } from "react";
 import { bem } from "@react-md/utils";
 
@@ -27,33 +27,10 @@ const List: FC<ListProps> = ({ anchors, isLargeDesktop, onRequestClose }) => {
     [onRequestClose, isLargeDesktop]
   );
 
-  const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLElement>) => {
-      const target = event.target as HTMLAnchorElement;
-      const { hash } = window.location;
-      if (!target || event.key !== "Tab" || event.shiftKey || !hash) {
-        return;
-      }
-
-      const links = Array.from(event.currentTarget.querySelectorAll("a"));
-      const [lastLink] = links.reverse();
-      const toFocus = document.querySelector<HTMLElement>(`${hash}-link`);
-      if (target === lastLink && toFocus) {
-        event.preventDefault();
-        toFocus.focus();
-      }
-    },
-    []
-  );
-
   return (
-    <ul
-      className={block("list")}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-    >
-      {anchors.map(({ anchor, title }, i) => (
-        <li key={i} className={block("item")}>
+    <ul onClick={handleClick} className={block("list")}>
+      {anchors.map(({ anchor, title }) => (
+        <li key={anchor} className={block("item")}>
           <Link href={anchor} className={block("link")}>
             {title}
           </Link>
