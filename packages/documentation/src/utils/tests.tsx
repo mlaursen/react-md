@@ -31,6 +31,7 @@ const DEFAULT_ROUTER: NextRouter = {
   back: () => Promise.resolve(false),
   prefetch: () => Promise.resolve(),
   beforePopState: () => {},
+  basePath: "/",
   pathname: "/",
   query: {},
   route: "",
