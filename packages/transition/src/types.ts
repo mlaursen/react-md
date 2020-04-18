@@ -3,20 +3,20 @@ import {
   CSSTransitionClassNames,
   CSSTransitionProps,
 } from "react-transition-group/CSSTransition";
-import { TransitionProps } from "react-transition-group/Transition";
+import {
+  TransitionActions,
+  TransitionProps,
+} from "react-transition-group/Transition";
 
 // Convenience Types since I reuse the react-transition-group package a decent
 // amount in other `react-md` packages
 
-export type TransitionTimeout = TransitionProps["timeout"];
+export type TransitionTimeout = Required<TransitionProps>["timeout"];
 
 // Don't want the children stuff when overriding/reusing in react-md components
 // as well as the [prop: string]: any, so pick the reusable ones
 type TransitionKeys =
   | "in"
-  | "appear"
-  | "enter"
-  | "exit"
   | "mountOnEnter"
   | "unmountOnExit"
   | "onEnter"
@@ -30,7 +30,8 @@ type TransitionKeys =
 // timeout is required in the Transition props, but 99% of the time it'll be
 // added with defaultProps in overrides
 export interface OverridableTransitionProps
-  extends Pick<TransitionProps, TransitionKeys> {
+  extends TransitionActions,
+    Pick<TransitionProps, TransitionKeys> {
   timeout?: TransitionTimeout;
 }
 
