@@ -76,7 +76,12 @@ const Search: FC = () => {
       if (match) {
         const { pageUrl, pathname } = match;
 
-        router.push(pageUrl, pathname);
+        router.push(pageUrl, pathname).then(() => {
+          // for some reason, scroll reset does not work for router.push
+          if (!pathname.includes("#")) {
+            window.scrollTo(0, 0);
+          }
+        });
         setData([]);
       }
     },
