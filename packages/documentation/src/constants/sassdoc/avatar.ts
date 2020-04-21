@@ -163,14 +163,14 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-colors",
       description:
         "A mixin for creating the avatar color suffix class names from a color map.\nIt is not recommended to use this mixin for creating additional colors.\nInstead use the `rmd-avatar-color` mixin with custom class names instead.",
-      source: "packages/avatar/src/_mixins.scss#L59-L69",
+      source: "packages/avatar/src/_mixins.scss#L59-L71",
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
       ],
       packageName: "avatar",
       code: "@mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) { … }",
       sourceCode:
-        "@mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) {\n  @each $color-name, $values in $color-map {\n    @if length($values) != 2 {\n      @error 'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. \"#{$values}\"';\n    }\n\n    .rmd-avatar--#{$color-name} {\n      @include rmd-avatar-color(nth($values, 1), nth($values, 2));\n    }\n  }\n}\n",
+        '@mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) {\n  @each $color-name, $values in $color-map {\n    @if length($values) != 2 {\n      @error \'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. "#{$values}"\';\n    }\n\n    $class-name: "rmd-avatar--" + $color-name;\n\n    .#{$class-name} {\n      @include rmd-avatar-color(nth($values, 1), nth($values, 2));\n    }\n  }\n}\n',
       throws: [
         "Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. ",
       ],
@@ -189,7 +189,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-avatar",
       description:
         "Creates all the styles for the avatar package as well as the root css variable theme.\n",
-      source: "packages/avatar/src/_mixins.scss#L73-L102",
+      source: "packages/avatar/src/_mixins.scss#L75-L104",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "avatar",
       code: "@mixin react-md-avatar { … }",

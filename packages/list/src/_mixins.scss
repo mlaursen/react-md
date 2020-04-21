@@ -51,6 +51,11 @@
 }
 
 /// Updates all the css variables for the list package to use a dense spec.
+///
+/// @example scss - Example Usage
+///   :root {
+///     @include rmd-list-dense-theme;
+///   }
 @mixin rmd-list-dense-theme {
   @include rmd-list-theme-update-var(font-size, rmd-list-theme-var(dense-font-size));
   @include rmd-list-theme-update-var(vertical-padding, rmd-list-theme-var(dense-vertical-padding));
@@ -81,6 +86,8 @@
   }
 }
 
+/// The base styles required for a `ListItem`. This propbably won't be used
+/// externally.
 @mixin rmd-list-item-base {
   @include rmd-list-theme(min-height, item-height);
 
@@ -90,6 +97,12 @@
   position: relative;
 }
 
+/// Updates all the list item css variables to apply to dense theme.
+///
+/// @example scss - Example Usage
+///   :root {
+///     @include rmd-list-item-dense-theme;
+///   }
 @mixin rmd-list-item-dense-theme {
   @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(dense-item-height));
   @include rmd-list-theme-update-var(
@@ -114,7 +127,19 @@
   );
 }
 
-@mixin rmd-list-item-icon-spacing($subtract) {
+/// Updates the spacing for a list item addon by updated the `text-spacing` from
+/// the `@react-md/icon` package and doing some calculations with the current
+/// `text-keyline` within the list.
+///
+/// This propably shouldn't be used externally.
+///
+/// @example scss - Example Usage
+///   .custom-updater {
+///     @include rmd-list-item-addon-spacing(rmd-icon-theme-var(size));
+///   }
+///
+/// @param {Number|String} subtract - The amount that should be subracted
+@mixin rmd-list-item-addon-spacing($subtract) {
   $to-keyline: #{rmd-list-theme-var(text-keyline)} - #{rmd-list-theme-var(item-horizontal-padding)};
   @include rmd-icon-theme-update-var(text-spacing, calc(#{$to-keyline} - #{$subtract}));
 }
@@ -196,11 +221,11 @@
       // this should only be added on the first icon in the list item since it's the only
       // one that should match the "keyline" of the app. The right icon/avatars should
       // have the existing text icon spacing.
-      @include rmd-list-item-icon-spacing(rmd-icon-theme-var(size));
+      @include rmd-list-item-addon-spacing(rmd-icon-theme-var(size));
     }
 
     &--avatar-before {
-      @include rmd-list-item-icon-spacing(rmd-avatar-theme-var(size));
+      @include rmd-list-item-addon-spacing(rmd-avatar-theme-var(size));
     }
 
     &--media {

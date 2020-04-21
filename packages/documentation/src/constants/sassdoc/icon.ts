@@ -269,6 +269,11 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-card-header", type: "mixin", packageName: "card" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-icon-dense-theme", type: "mixin", packageName: "icon" },
+        {
+          name: "rmd-list-item-addon-spacing",
+          type: "mixin",
+          packageName: "list",
+        },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
         { name: "react-md-menu", type: "mixin", packageName: "menu" },
         { name: "react-md-tree", type: "mixin", packageName: "tree" },

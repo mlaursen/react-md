@@ -4,7 +4,7 @@ import { bem } from "@react-md/utils";
 
 export interface ListSubheaderProps extends HTMLAttributes<HTMLLIElement> {
   /**
-   * Boolean if the subheader should be inset to match the ListItem text
+   * Boolean if the subheader should be inset to match the `ListItem` text
    * keyline.
    */
   inset?: boolean;

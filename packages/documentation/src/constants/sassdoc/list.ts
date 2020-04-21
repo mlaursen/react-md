@@ -34,6 +34,17 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "rmd-list-dense-theme", type: "mixin", packageName: "list" },
         { name: "rmd-list", type: "mixin", packageName: "list" },
+        { name: "rmd-list-item-base", type: "mixin", packageName: "list" },
+        {
+          name: "rmd-list-item-dense-theme",
+          type: "mixin",
+          packageName: "list",
+        },
+        {
+          name: "rmd-list-item-addon-spacing",
+          type: "mixin",
+          packageName: "list",
+        },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
       ],
       packageName: "list",
@@ -70,6 +81,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/list/src/_mixins.scss#L28-L30",
       usedBy: [
         { name: "rmd-list", type: "mixin", packageName: "list" },
+        { name: "rmd-list-item-base", type: "mixin", packageName: "list" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
         { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
       ],
@@ -108,6 +120,11 @@ const sassdoc: PackageSassDoc = {
       source: "packages/list/src/_mixins.scss#L38-L40",
       usedBy: [
         { name: "rmd-list-dense-theme", type: "mixin", packageName: "list" },
+        {
+          name: "rmd-list-item-dense-theme",
+          type: "mixin",
+          packageName: "list",
+        },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
       ],
       packageName: "list",
@@ -158,13 +175,22 @@ const sassdoc: PackageSassDoc = {
     "rmd-list-dense-theme": {
       name: "rmd-list-dense-theme",
       description:
-        "Updates all the css variables for the list package to use a dense spec.\n",
-      source: "packages/list/src/_mixins.scss#L54-L61",
+        "Updates all the css variables for the list package to use a dense spec.",
+      source: "packages/list/src/_mixins.scss#L59-L66",
       usedBy: [
         { name: "rmd-list", type: "mixin", packageName: "list" },
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
       ],
       packageName: "list",
+      examples: [
+        {
+          code: ":root {\n  @include rmd-list-dense-theme;\n}\n",
+          compiled:
+            ":root {\n  --rmd-list-font-size: var(--rmd-list-dense-font-size, 0.8125rem);\n  --rmd-list-vertical-padding: var(--rmd-list-dense-vertical-padding, 0.25rem);\n  --rmd-list-horizontal-padding: var(--rmd-list-dense-horizontal-padding, 0);\n}\n",
+          type: "scss",
+          description: "Example Usage",
+        },
+      ],
       code: "@mixin rmd-list-dense-theme { … }",
       sourceCode:
         "@mixin rmd-list-dense-theme {\n  @include rmd-list-theme-update-var(\n    font-size,\n    rmd-list-theme-var(dense-font-size)\n  );\n  @include rmd-list-theme-update-var(\n    vertical-padding,\n    rmd-list-theme-var(dense-vertical-padding)\n  );\n  @include rmd-list-theme-update-var(\n    horizontal-padding,\n    rmd-list-theme-var(dense-horizontal-padding)\n  );\n}\n",
@@ -173,7 +199,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-list": {
       name: "rmd-list",
       description: "Creates the styles for a list in react-md.\n",
-      source: "packages/list/src/_mixins.scss#L64-L82",
+      source: "packages/list/src/_mixins.scss#L69-L87",
       usedBy: [{ name: "react-md-list", type: "mixin", packageName: "list" }],
       packageName: "list",
       code: "@mixin rmd-list { … }",
@@ -181,10 +207,78 @@ const sassdoc: PackageSassDoc = {
         "@mixin rmd-list {\n  @include rmd-typography(subtitle-1);\n  @include rmd-divider-theme-update-var(\n    inset,\n    rmd-list-theme-var(text-keyline)\n  );\n  @include rmd-list-unstyled(null);\n  @include rmd-list-theme(font-size);\n\n  line-height: $rmd-list-line-height;\n  padding: rmd-list-theme-var(vertical-padding)\n    rmd-list-theme-var(horizontal-padding);\n\n  &--horizontal {\n    display: flex;\n    flex-wrap: nowrap;\n    padding: rmd-list-theme-var(horizontal-padding)\n      rmd-list-theme-var(vertical-padding);\n  }\n\n  &--dense {\n    @include rmd-list-dense-theme;\n  }\n}\n",
       type: "mixin",
     },
+    "rmd-list-item-base": {
+      name: "rmd-list-item-base",
+      description:
+        "The base styles required for a `ListItem`. This propbably won't be used externally.\n",
+      source: "packages/list/src/_mixins.scss#L91-L98",
+      usedBy: [
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
+      ],
+      packageName: "list",
+      code: "@mixin rmd-list-item-base { … }",
+      sourceCode:
+        "@mixin rmd-list-item-base {\n  @include rmd-list-theme(min-height, item-height);\n\n  align-items: center;\n  display: flex;\n  padding: rmd-list-theme-var(item-vertical-padding)\n    rmd-list-theme-var(item-horizontal-padding);\n  position: relative;\n}\n",
+      type: "mixin",
+    },
+    "rmd-list-item-dense-theme": {
+      name: "rmd-list-item-dense-theme",
+      description:
+        "Updates all the list item css variables to apply to dense theme.",
+      source: "packages/list/src/_mixins.scss#L106-L128",
+      usedBy: [
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
+      ],
+      packageName: "list",
+      examples: [
+        {
+          code: ":root {\n  @include rmd-list-item-dense-theme;\n}\n",
+          compiled:
+            ":root {\n  --rmd-list-item-height: var(--rmd-list-dense-item-height, 2.5rem);\n  --rmd-list-item-medium-height: var(--rmd-list-dense-item-medium-height, 3rem);\n  --rmd-list-item-large-height: var(--rmd-list-dense-item-large-height, 3.5rem);\n  --rmd-list-item-extra-large-height: var(\n    --rmd-list-dense-item-extra-large-height,\n    4rem\n  );\n  --rmd-list-item-three-line-height: var(\n    --rmd-list-dense-item-three-line-height,\n    5rem\n  );\n  --rmd-list-item-secondary-three-line-height: var(\n    --rmd-list-dense-item-secondary-three-line-height,\n    2.25rem\n  );\n}\n",
+          type: "scss",
+          description: "Example Usage",
+        },
+      ],
+      code: "@mixin rmd-list-item-dense-theme { … }",
+      sourceCode:
+        "@mixin rmd-list-item-dense-theme {\n  @include rmd-list-theme-update-var(\n    item-height,\n    rmd-list-theme-var(dense-item-height)\n  );\n  @include rmd-list-theme-update-var(\n    item-medium-height,\n    rmd-list-theme-var(dense-item-medium-height)\n  );\n  @include rmd-list-theme-update-var(\n    item-large-height,\n    rmd-list-theme-var(dense-item-large-height)\n  );\n  @include rmd-list-theme-update-var(\n    item-extra-large-height,\n    rmd-list-theme-var(dense-item-extra-large-height)\n  );\n  @include rmd-list-theme-update-var(\n    item-three-line-height,\n    rmd-list-theme-var(dense-item-three-line-height)\n  );\n  @include rmd-list-theme-update-var(\n    item-secondary-three-line-height,\n    rmd-list-theme-var(dense-item-secondary-three-line-height)\n  );\n}\n",
+      type: "mixin",
+    },
+    "rmd-list-item-addon-spacing": {
+      name: "rmd-list-item-addon-spacing",
+      description:
+        "Updates the spacing for a list item addon by updated the `text-spacing` from the `@react-md/icon` package and doing some calculations with the current `text-keyline` within the list.\n\nThis propably shouldn't be used externally.",
+      source: "packages/list/src/_mixins.scss#L142-L145",
+      usedBy: [{ name: "rmd-list-item", type: "mixin", packageName: "list" }],
+      packageName: "list",
+      examples: [
+        {
+          code:
+            ".custom-updater {\n  @include rmd-list-item-addon-spacing(rmd-icon-theme-var(size));\n}\n",
+          compiled:
+            ".custom-updater {\n  --rmd-icon-text-spacing: calc(\n    var(--rmd-list-text-keyline, 4.5rem) -\n      var(--rmd-list-item-horizontal-padding, 1rem) -\n      var(--rmd-icon-size, 1.5rem)\n  );\n}\n",
+          type: "scss",
+          description: "Example Usage",
+        },
+      ],
+      code: "@mixin rmd-list-item-addon-spacing($subtract) { … }",
+      sourceCode:
+        "@mixin rmd-list-item-addon-spacing($subtract) {\n  $to-keyline: #{rmd-list-theme-var(text-keyline)} - #{rmd-list-theme-var(\n      item-horizontal-padding\n    )};\n  @include rmd-icon-theme-update-var(\n    text-spacing,\n    calc(#{$to-keyline} - #{$subtract})\n  );\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "Number|String",
+          name: "subtract",
+          description: "The amount that should be subracted",
+        },
+      ],
+    },
     "rmd-list-item": {
       name: "rmd-list-item",
       description: "Creates all the styles for a list item.\n",
-      source: "packages/list/src/_mixins.scss#L123-L215",
+      source: "packages/list/src/_mixins.scss#L148-L240",
       usedBy: [
         { name: "react-md-list", type: "mixin", packageName: "list" },
         { name: "rmd-tree-item", type: "mixin", packageName: "tree" },
@@ -192,13 +286,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "list",
       code: "@mixin rmd-list-item { … }",
       sourceCode:
-        '@mixin rmd-list-item {\n  @include rmd-list-item-base;\n\n  &--clickable {\n    @include rmd-utils-hide-focus-outline;\n    @include rmd-states-surface;\n  }\n\n  &[aria-disabled] {\n    @include rmd-theme(color, text-disabled-on-background);\n  }\n\n  &--link {\n    color: inherit;\n    text-decoration: none;\n  }\n\n  &--medium {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-medium-height)\n    );\n  }\n\n  &--large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-large-height)\n    );\n  }\n\n  &--extra-large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-extra-large-height)\n    );\n  }\n\n  &--three-lines {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-three-line-height)\n    );\n\n    .rmd-list-item__text--secondary {\n      @include rmd-typography-line-clamp;\n      @include rmd-list-theme(max-height, item-secondary-three-line-height);\n\n      line-height: $rmd-list-item-secondary-text-line-height;\n      white-space: normal;\n    }\n  }\n\n  &--dense {\n    @include rmd-list-item-dense-theme;\n  }\n\n  &__text {\n    @include rmd-typography-text-overflow-ellipsis;\n    @include rmd-utils-rtl {\n      margin-left: auto;\n    }\n\n    display: block;\n    flex-grow: 1;\n    // this is so it overlays the background colors from the interaction states\n    z-index: 1;\n\n    &--secondary {\n      @include rmd-theme(color, text-secondary-on-background);\n    }\n  }\n\n  &__icon {\n    flex-shrink: 0;\n\n    &--top {\n      align-self: flex-start;\n    }\n\n    &--bottom {\n      align-self: flex-end;\n    }\n\n    &--before {\n      // this should only be added on the first icon in the list item since it\'s the only\n      // one that should match the "keyline" of the app. The right icon/avatars should\n      // have the existing text icon spacing.\n      @include rmd-list-item-icon-spacing(rmd-icon-theme-var(size));\n    }\n\n    &--avatar-before {\n      @include rmd-list-item-icon-spacing(rmd-avatar-theme-var(size));\n    }\n\n    &--media {\n      @include rmd-icon-theme-update-var(\n        text-spacing,\n        rmd-list-theme-var(media-spacing)\n      );\n      @include rmd-list-theme(width, media-size);\n    }\n\n    &--media-large {\n      @include rmd-list-theme-update-var(\n        media-size,\n        rmd-list-theme-var(media-large-size)\n      );\n    }\n  }\n}\n',
+        '@mixin rmd-list-item {\n  @include rmd-list-item-base;\n\n  &--clickable {\n    @include rmd-utils-hide-focus-outline;\n    @include rmd-states-surface;\n  }\n\n  &[aria-disabled] {\n    @include rmd-theme(color, text-disabled-on-background);\n  }\n\n  &--link {\n    color: inherit;\n    text-decoration: none;\n  }\n\n  &--medium {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-medium-height)\n    );\n  }\n\n  &--large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-large-height)\n    );\n  }\n\n  &--extra-large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-extra-large-height)\n    );\n  }\n\n  &--three-lines {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-three-line-height)\n    );\n\n    .rmd-list-item__text--secondary {\n      @include rmd-typography-line-clamp;\n      @include rmd-list-theme(max-height, item-secondary-three-line-height);\n\n      line-height: $rmd-list-item-secondary-text-line-height;\n      white-space: normal;\n    }\n  }\n\n  &--dense {\n    @include rmd-list-item-dense-theme;\n  }\n\n  &__text {\n    @include rmd-typography-text-overflow-ellipsis;\n    @include rmd-utils-rtl {\n      margin-left: auto;\n    }\n\n    display: block;\n    flex-grow: 1;\n    // this is so it overlays the background colors from the interaction states\n    z-index: 1;\n\n    &--secondary {\n      @include rmd-theme(color, text-secondary-on-background);\n    }\n  }\n\n  &__addon {\n    flex-shrink: 0;\n\n    &--top {\n      align-self: flex-start;\n    }\n\n    &--bottom {\n      align-self: flex-end;\n    }\n\n    &--before {\n      // this should only be added on the first icon in the list item since it\'s the only\n      // one that should match the "keyline" of the app. The right icon/avatars should\n      // have the existing text icon spacing.\n      @include rmd-list-item-addon-spacing(rmd-icon-theme-var(size));\n    }\n\n    &--avatar-before {\n      @include rmd-list-item-addon-spacing(rmd-avatar-theme-var(size));\n    }\n\n    &--media {\n      @include rmd-icon-theme-update-var(\n        text-spacing,\n        rmd-list-theme-var(media-spacing)\n      );\n      @include rmd-list-theme(width, media-size);\n    }\n\n    &--media-large {\n      @include rmd-list-theme-update-var(\n        media-size,\n        rmd-list-theme-var(media-large-size)\n      );\n    }\n  }\n}\n',
       type: "mixin",
     },
     "rmd-list-subheader": {
       name: "rmd-list-subheader",
       description: "Creates the styles for a subheader within a list.\n",
-      source: "packages/list/src/_mixins.scss#L218-L230",
+      source: "packages/list/src/_mixins.scss#L243-L255",
       usedBy: [{ name: "react-md-list", type: "mixin", packageName: "list" }],
       packageName: "list",
       code: "@mixin rmd-list-subheader { … }",
@@ -209,7 +303,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-list": {
       name: "react-md-list",
       description: "Creats all the styles for the list package.\n",
-      source: "packages/list/src/_mixins.scss#L233-L247",
+      source: "packages/list/src/_mixins.scss#L258-L272",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "list",
       code: "@mixin react-md-list { … }",

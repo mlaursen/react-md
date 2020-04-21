@@ -5,12 +5,12 @@ import { bem } from "@react-md/utils";
 
 export interface ListItemTextProps {
   /**
-   * An optional className to apply to the `<span>` surrounding the `children`.
+   * An optional `className` to apply to the `<span>` surrounding the `children`.
    */
   className?: string;
 
   /**
-   * An optional `classname` to apply to the `<span>` surrounding the
+   * An optional `className` to apply to the `<span>` surrounding the
    * `secondaryText` if it was provided.
    */
   secondaryTextClassName?: string;
