@@ -269,7 +269,7 @@ const sassdoc: PackageSassDoc = {
       type: "mixin",
       parameters: [
         {
-          type: "Number|String",
+          type: "String|Number",
           name: "subtract",
           description: "The amount that should be subracted",
         },

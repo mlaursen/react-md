@@ -138,7 +138,7 @@
 ///     @include rmd-list-item-addon-spacing(rmd-icon-theme-var(size));
 ///   }
 ///
-/// @param {Number|String} subtract - The amount that should be subracted
+/// @param {String|Number} subtract - The amount that should be subracted
 @mixin rmd-list-item-addon-spacing($subtract) {
   $to-keyline: #{rmd-list-theme-var(text-keyline)} - #{rmd-list-theme-var(item-horizontal-padding)};
   @include rmd-icon-theme-update-var(text-spacing, calc(#{$to-keyline} - #{$subtract}));
