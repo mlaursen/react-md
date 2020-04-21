@@ -1,10 +1,10 @@
-import './app.scss';
-import React from 'react';
-import NextApp from 'next/app';
-import Head from 'next/head';
-import Router from 'next/router';
-import MobileDetect from 'mobile-detect';
-import Cookie from 'js-cookie';
+import "./app.scss";
+import React, { ReactElement } from "react";
+import NextApp, { AppInitialProps, AppContext } from "next/app";
+import Head from "next/head";
+import Router from "next/router";
+import MobileDetect from "mobile-detect";
+import Cookie from "js-cookie";
 import {
   DEFAULT_APP_SIZE,
   DEFAULT_PHONE_MAX_WIDTH,
@@ -12,25 +12,38 @@ import {
   DEFAULT_TABLET_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-} from '@react-md/utils';
+  AppSize,
+} from "@react-md/utils";
 
-import Layout from 'components/Layout';
-import GoogleFont from 'components/GoogleFont';
-import Theme from 'components/Theme';
-import { toBreadcrumbPageTitle } from 'utils/toTitle';
+import Layout from "components/Layout";
+import GoogleFont from "components/GoogleFont";
+import Theme, { ThemeMode } from "components/Theme";
+import { toBreadcrumbPageTitle } from "utils/toTitle";
+import { qsToString } from "utils/routes";
 
-export default class App extends NextApp {
-  static async getInitialProps({ Component, /* router, */ ctx }) {
-    let componentProps = {};
+interface AppProps extends AppInitialProps {
+  pageProps: {
+    statusCode?: number;
+  };
+  defaultSize: AppSize;
+  defaultTheme: ThemeMode;
+}
+
+export default class App extends NextApp<AppProps> {
+  static async getInitialProps({
+    Component,
+    ctx,
+  }: AppContext): Promise<AppProps> {
+    let pageProps = {};
     if (Component.getInitialProps) {
-      componentProps = await Component.getInitialProps(ctx);
+      pageProps = await Component.getInitialProps(ctx);
     }
 
     let defaultSize;
     let defaultTheme;
     if (ctx && ctx.req) {
       const { req } = ctx;
-      const md = new MobileDetect(req.headers['user-agent']);
+      const md = new MobileDetect(req.headers["user-agent"] || "");
       const isTablet = !!md.tablet();
       const isPhone = !isTablet && !!md.mobile();
       const isDesktop = !isPhone && !isTablet;
@@ -42,8 +55,8 @@ export default class App extends NextApp {
         isLargeDesktop,
         isLandscape: true,
       };
-      defaultTheme = req.cookies.theme || 'light';
-    } else if (typeof window !== 'undefined') {
+      defaultTheme = req.cookies.theme || "light";
+    } else if (typeof window !== "undefined") {
       const matchesPhone = window.matchMedia(
         `screen and (max-width: ${DEFAULT_PHONE_MAX_WIDTH})`
       ).matches;
@@ -67,45 +80,46 @@ export default class App extends NextApp {
         isLargeDesktop,
         isLandscape,
       };
-      defaultTheme = Cookie.get('theme');
+      defaultTheme = Cookie.get("theme");
     }
 
     return {
-      componentProps,
+      pageProps,
       defaultSize: defaultSize || DEFAULT_APP_SIZE,
-      defaultTheme: defaultTheme || 'light',
+      defaultTheme: defaultTheme === "dark" ? "dark" : "light",
     };
   }
 
-  componentDidMount() {
-    Router.events.on('routeChangeComplete', this.handleRouteChange);
+  public componentDidMount(): void {
+    Router.events.on("routeChangeComplete", this.handleRouteChange);
   }
 
-  componentWillUnmount() {
-    Router.events.off('routeChangeComplete', this.handleRouteChange);
+  public componentWillUnmount(): void {
+    Router.events.off("routeChangeComplete", this.handleRouteChange);
   }
 
-  handleRouteChange = (url) => {
+  private handleRouteChange = (url: string): void => {
     if (
-      process.env.NODE_ENV === 'production' &&
-      typeof window.ga === 'function'
+      process.env.NODE_ENV === "production" &&
+      typeof window.ga === "function"
     ) {
-      window.ga('send', 'pageview', url);
+      window.ga("send", "pageview", url);
     }
   };
 
-  getPathname = () => {
+  private getPathname = (): string => {
     const { pathname, query } = this.props.router;
 
     return Object.entries(query).reduce(
-      (resolved, [key, value]) => resolved.replace(`[${key}]`, value),
+      (resolved, [key, value]) =>
+        resolved.replace(`[${key}]`, qsToString(value)),
       pathname
     );
   };
 
-  render() {
-    const { Component, componentProps, defaultSize, defaultTheme } = this.props;
-    const { statusCode } = componentProps;
+  public render(): ReactElement {
+    const { Component, pageProps, defaultSize, defaultTheme } = this.props;
+    const { statusCode } = pageProps;
     const pathname = this.getPathname();
     const pageTitle = toBreadcrumbPageTitle(pathname, statusCode);
 
@@ -122,7 +136,7 @@ export default class App extends NextApp {
             pathname={pathname}
             title={pageTitle}
           >
-            <Component {...componentProps} />
+            <Component {...pageProps} />
           </Layout>
         </Theme>
       </>

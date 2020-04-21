@@ -20,3 +20,14 @@ declare module "*.png" {
   const content: string;
   export default content;
 }
+
+declare module "http" {
+  export interface IncomingMessage {
+    cookies: Record<string, string | undefined>;
+  }
+}
+
+interface Window {
+  // this is the only ga event I really need
+  ga?(event: "send", type: "pageview", url: string): void;
+}
