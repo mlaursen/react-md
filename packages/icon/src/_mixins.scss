@@ -25,7 +25,7 @@
 /// Updates one of the icon's theme variables with the new value for the section
 /// of your app.
 ///
-/// @example scss - Example SCSS USage
+/// @example scss - Example SCSS Usage
 ///   .bigger-icon-section {
 ///     @include rmd-icon-theme-update-var(size, 4rem);
 ///   }
@@ -91,6 +91,8 @@
 ///
 /// @param {Number} spacing [$rmd-icon-spacing-with-text] - The amount of spacing
 /// to apply.
+/// @param {String} property [margin-left] - The property that should be used
+/// for applying the spacing
 @mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text, $property: margin-left) {
   @if $property == 'margin-left' or $property == 'margin-right' {
     @include rmd-utils-rtl-auto($property, $spacing, 0);
@@ -225,7 +227,7 @@
 }
 
 /// Creates the styles for when the `TextIconSpacing` component needs to wrap
-/// the content in a `<span>`. It's really used to force vertical centerl
+/// the content in a `<span>`. It's really used to force vertical center
 /// alignment.
 @mixin rmd-icon-spacing {
   .rmd-text-icon-spacing {

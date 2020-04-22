@@ -285,7 +285,7 @@ const sassdoc: PackageSassDoc = {
             ".bigger-icon-section {\n  @include rmd-icon-theme-update-var(size, 4rem);\n}\n",
           compiled: ".bigger-icon-section {\n  --rmd-icon-size: 4rem;\n}\n",
           type: "scss",
-          description: "Example SCSS USage",
+          description: "Example SCSS Usage",
         },
         {
           code:
@@ -386,7 +386,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-text-spacing",
       description:
         "Creates the styles that should be applied to an icon that is placed before or after text by applying the spacing to the provided `$property` value.\nThis will automatically be swapped when the language changes to right-to-left.",
-      source: "packages/icon/src/_mixins.scss#L94-L100",
+      source: "packages/icon/src/_mixins.scss#L96-L102",
       usedBy: [
         {
           name: "rmd-icon-spaced-with-text",
@@ -396,9 +396,9 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "icon",
       code:
-        "@mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text) { … }",
+        "@mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text, $property: margin-left) { … }",
       sourceCode:
-        '@mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text) {\n  @if $property == "margin-left" or $property == "margin-right" {\n    @include rmd-utils-rtl-auto($property, $spacing, 0);\n  } @else {\n    #{$property}: $spacing;\n  }\n}\n',
+        '@mixin rmd-icon-text-spacing(\n  $spacing: $rmd-icon-spacing-with-text,\n  $property: margin-left\n) {\n  @if $property == "margin-left" or $property == "margin-right" {\n    @include rmd-utils-rtl-auto($property, $spacing, 0);\n  } @else {\n    #{$property}: $spacing;\n  }\n}\n',
       type: "mixin",
       parameters: [
         {
@@ -407,13 +407,20 @@ const sassdoc: PackageSassDoc = {
           default: "$rmd-icon-spacing-with-text",
           description: "The amount of spacing to apply.",
         },
+        {
+          type: "String",
+          name: "property",
+          default: "margin-left",
+          description:
+            "The property that should be used for applying the spacing",
+        },
       ],
     },
     "rmd-icon-spaced-with-text": {
       name: "rmd-icon-spaced-with-text",
       description:
         "A mixin to create the styles to space an icon before or after text with the provided selectors and spacing.",
-      source: "packages/icon/src/_mixins.scss#L125-L155",
+      source: "packages/icon/src/_mixins.scss#L127-L157",
       usedBy: [{ name: "rmd-icon", type: "mixin", packageName: "icon" }],
       packageName: "icon",
       examples: [
@@ -472,7 +479,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-rotator",
       description:
         "Creates the styles for the `IconRotator` component. These styles are extremely simple and basically apply different rotate transforms based on a class name.\n",
-      source: "packages/icon/src/_mixins.scss#L160-L172",
+      source: "packages/icon/src/_mixins.scss#L162-L174",
       usedBy: [{ name: "react-md-icon", type: "mixin", packageName: "icon" }],
       packageName: "icon",
       code: "@mixin rmd-icon-rotator { … }",
@@ -483,7 +490,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-icon": {
       name: "rmd-icon",
       description: "Creates all the styles for the icon components.\n",
-      source: "packages/icon/src/_mixins.scss#L175-L225",
+      source: "packages/icon/src/_mixins.scss#L177-L227",
       usedBy: [{ name: "react-md-icon", type: "mixin", packageName: "icon" }],
       packageName: "icon",
       code: "@mixin rmd-icon { … }",
@@ -494,8 +501,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-icon-spacing": {
       name: "rmd-icon-spacing",
       description:
-        "Creates the styles for when the `TextIconSpacing` component needs to wrap the content in a `<span>`. It's really used to force vertical centerl alignment.\n",
-      source: "packages/icon/src/_mixins.scss#L230-L235",
+        "Creates the styles for when the `TextIconSpacing` component needs to wrap the content in a `<span>`. It's really used to force vertical center alignment.\n",
+      source: "packages/icon/src/_mixins.scss#L232-L237",
       usedBy: [{ name: "react-md-icon", type: "mixin", packageName: "icon" }],
       packageName: "icon",
       code: "@mixin rmd-icon-spacing { … }",
@@ -507,7 +514,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-icon",
       description:
         "Creates the styles for icons within react-md. This requires either the `rmd-icon-use-font-icons` or `rmd-icon-use-svg-icons` variables to be enabled to generate any styles.\n",
-      source: "packages/icon/src/_mixins.scss#L240-L250",
+      source: "packages/icon/src/_mixins.scss#L242-L252",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "icon",
       code: "@mixin react-md-icon { … }",
