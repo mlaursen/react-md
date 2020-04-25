@@ -5,11 +5,6 @@
 @import '~@react-md/theme/dist/color-palette';
 @import '~@react-md/theme/dist/functions';
 
-/// The amount of horizontal padding to use for a floating label use with an outlined
-/// text field/textarea.
-/// @type Number
-$rmd-label-padding: 0.25rem !default;
-
 /// The border radius for the checkbox and radio components.
 /// @type Number
 $rmd-toggle-border-radius: 50% !default;
@@ -25,12 +20,12 @@ $rmd-toggle-inset: 0.3125rem !default;
 /// @see rmd-toggle-inset
 $rmd-toggle-dense-inset: 0.25rem !default;
 
-/// The height for the indeterminate checkbox state's line that covers
+/// The height for the indeterminate checkbox's state line that covers
 /// the icon.
 /// @type Number
 $rmd-checkbox-indeterminate-height: 0.15rem !default;
 
-/// The height for the indeterminate checkbox state's line that covers
+/// The height for the indeterminate checkbox's state line that covers
 /// the icon when the dense spec is enabled.
 /// @type Number
 $rmd-checkbox-indeterminate-dense-height: 0.125rem !default;

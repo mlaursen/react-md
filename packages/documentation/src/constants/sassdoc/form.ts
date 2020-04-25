@@ -311,6 +311,16 @@ const sassdoc: PackageSassDoc = {
       value: "0.9rem",
       overridable: true,
     },
+    "rmd-label-padding": {
+      name: "rmd-label-padding",
+      description:
+        "The amount of horizontal padding to use for a floating label with an outlined text field/textarea.\n",
+      source: "packages/form/src/label/_variables.scss#L30",
+      packageName: "form",
+      type: "Number",
+      value: "0.25rem",
+      overridable: true,
+    },
     "rmd-select-native-multiple-padding": {
       name: "rmd-select-native-multiple-padding",
       description:
@@ -751,20 +761,10 @@ const sassdoc: PackageSassDoc = {
       value: "0.75rem",
       overridable: true,
     },
-    "rmd-label-padding": {
-      name: "rmd-label-padding",
-      description:
-        "The amount of horizontal padding to use for a floating label use with an outlined text field/textarea.\n",
-      source: "packages/form/src/toggle/_variables.scss#L11",
-      packageName: "form",
-      type: "Number",
-      value: "0.25rem",
-      overridable: true,
-    },
     "rmd-toggle-border-radius": {
       name: "rmd-toggle-border-radius",
       description: "The border radius for the checkbox and radio components.\n",
-      source: "packages/form/src/toggle/_variables.scss#L15",
+      source: "packages/form/src/toggle/_variables.scss#L10",
       packageName: "form",
       type: "Number",
       value: "50%",
@@ -774,7 +774,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toggle-inset",
       description:
         "This is how much the background layer should be inset relative to the checkbox/radio's icon element. This is used to animate changes in the checked state by covering part of the icon.\n",
-      source: "packages/form/src/toggle/_variables.scss#L21",
+      source: "packages/form/src/toggle/_variables.scss#L16",
       packageName: "form",
       type: "Number",
       value: "0.3125rem",
@@ -784,7 +784,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toggle-dense-inset",
       description:
         "The amount of offset to apply when using the dense theme.\n",
-      source: "packages/form/src/toggle/_variables.scss#L26",
+      source: "packages/form/src/toggle/_variables.scss#L21",
       see: [
         { name: "rmd-toggle-inset", type: "variable", packageName: "form" },
       ],
@@ -796,8 +796,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-checkbox-indeterminate-height": {
       name: "rmd-checkbox-indeterminate-height",
       description:
-        "The height for the indeterminate checkbox state's line that covers the icon.\n",
-      source: "packages/form/src/toggle/_variables.scss#L31",
+        "The height for the indeterminate checkbox's state line that covers the icon.\n",
+      source: "packages/form/src/toggle/_variables.scss#L26",
       packageName: "form",
       type: "Number",
       value: "0.15rem",
@@ -806,8 +806,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-checkbox-indeterminate-dense-height": {
       name: "rmd-checkbox-indeterminate-dense-height",
       description:
-        "The height for the indeterminate checkbox state's line that covers the icon when the dense spec is enabled.\n",
-      source: "packages/form/src/toggle/_variables.scss#L36",
+        "The height for the indeterminate checkbox's state line that covers the icon when the dense spec is enabled.\n",
+      source: "packages/form/src/toggle/_variables.scss#L31",
       packageName: "form",
       type: "Number",
       value: "0.125rem",
@@ -817,7 +817,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-height",
       description:
         "The height for a switch's track. The track is the background that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L41",
+      source: "packages/form/src/toggle/_variables.scss#L36",
       packageName: "form",
       type: "Number",
       value: "1rem",
@@ -827,7 +827,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-width",
       description:
         "The width for a switch's track. The track is the background that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L46",
+      source: "packages/form/src/toggle/_variables.scss#L41",
       packageName: "form",
       type: "Number",
       value: "2.25rem",
@@ -837,7 +837,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-background-color",
       description:
         "The background color for a switch's track. This is the element that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L51",
+      source: "packages/form/src/toggle/_variables.scss#L46",
       packageName: "form",
       type: "Color",
       value: "rgba($rmd-black-base, 0.38)",
@@ -848,7 +848,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-border-radius",
       description:
         "The border radius to apply to the switch's track. This is the element that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L56",
+      source: "packages/form/src/toggle/_variables.scss#L51",
       packageName: "form",
       type: "Number",
       value: "0.5rem",
@@ -857,7 +857,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-size": {
       name: "rmd-switch-ball-size",
       description: "The size of the switch's ball.\n",
-      source: "packages/form/src/toggle/_variables.scss#L60",
+      source: "packages/form/src/toggle/_variables.scss#L55",
       packageName: "form",
       type: "Number",
       value: "1.25rem",
@@ -866,7 +866,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-border-radius": {
       name: "rmd-switch-ball-border-radius",
       description: "The border radius for the switch's ball.\n",
-      source: "packages/form/src/toggle/_variables.scss#L64",
+      source: "packages/form/src/toggle/_variables.scss#L59",
       packageName: "form",
       type: "Number",
       value: "50%",
@@ -876,7 +876,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-ball-offset",
       description:
         "The amount of offset that should be applied to the ball relative to its track. This is really used so the ball can overlap the track a bit to look a bit nicer.\n",
-      source: "packages/form/src/toggle/_variables.scss#L69",
+      source: "packages/form/src/toggle/_variables.scss#L64",
       packageName: "form",
       type: "Number",
       value: "0.25rem",
@@ -886,7 +886,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-container-vertical-padding",
       description:
         "The vertical padding for the switch container. This should generally be large enough so that the ball does not overlap any other elements.\n",
-      source: "packages/form/src/toggle/_variables.scss#L74",
+      source: "packages/form/src/toggle/_variables.scss#L69",
       packageName: "form",
       type: "Number",
       value: "0.5rem",
@@ -896,7 +896,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-container-horizontal-padding",
       description:
         "The horizontal padding for the switch container. This should generally be large enough so that the ball does not overlap the label or other elements.\n",
-      source: "packages/form/src/toggle/_variables.scss#L79",
+      source: "packages/form/src/toggle/_variables.scss#L74",
       packageName: "form",
       type: "Number",
       value: "$rmd-switch-ball-size / 2",
@@ -907,7 +907,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-ball-disabled-color",
       description:
         "The color to use for the switch's ball when it is toggled on and disabled.\n",
-      source: "packages/form/src/toggle/_variables.scss#L83-L88",
+      source: "packages/form/src/toggle/_variables.scss#L78-L83",
       packageName: "form",
       type: "Color",
       value:
@@ -919,7 +919,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-width",
       description:
         "The width of the circular progress bar. This will make the progress bar more prominent than the normal circular progress.\n",
-      source: "packages/form/src/toggle/_variables.scss#L93",
+      source: "packages/form/src/toggle/_variables.scss#L88",
       packageName: "form",
       type: "Number",
       value: "12",
@@ -929,7 +929,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-background-color",
       description:
         "The background color to use for the switch's ball while the the switch is loading.\n",
-      source: "packages/form/src/toggle/_variables.scss#L97",
+      source: "packages/form/src/toggle/_variables.scss#L92",
       packageName: "form",
       type: "Color",
       value: "$rmd-white-base",
@@ -940,7 +940,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-padding",
       description:
         "The amount of padding to apply to the async switch's progress bar. This will make it so there is some space between the switch's ball and the progress bar.\n",
-      source: "packages/form/src/toggle/_variables.scss#L102",
+      source: "packages/form/src/toggle/_variables.scss#L97",
       packageName: "form",
       type: "Number",
       value: "0.125rem",

@@ -23,3 +23,8 @@ $rmd-label-floating-top: 1rem !default;
 /// The top position for a dense floating label.
 /// @type Number
 $rmd-label-floating-dense-top: 0.9rem !default;
+
+/// The amount of horizontal padding to use for a floating label with an
+/// outlined text field/textarea.
+/// @type Number
+$rmd-label-padding: 0.25rem !default;
