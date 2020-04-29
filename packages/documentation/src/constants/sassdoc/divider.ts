@@ -31,9 +31,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to get one of the divider's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-divider-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/divider/src/_functions.scss#L32-L34",
-      usedBy: [
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
-      ],
+      usedBy: [{ name: "rmd-divider", type: "mixin", packageName: "divider" }],
       packageName: "divider",
       code:
         "@function rmd-divider-theme-var($theme-style, $fallback: null) { … }",
@@ -69,7 +67,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/divider/src/_mixins.scss#L21-L23",
       usedBy: [
         { name: "rmd-divider-border", type: "mixin", packageName: "divider" },
-        { name: "react-md-divider", type: "mixin", packageName: "divider" },
+        { name: "rmd-divider", type: "mixin", packageName: "divider" },
       ],
       packageName: "divider",
       code:
@@ -147,16 +145,30 @@ const sassdoc: PackageSassDoc = {
         },
       ],
     },
+    "rmd-divider": {
+      name: "rmd-divider",
+      description:
+        "Creates all the styles for a divider for a class name selector. This probably won't be used externally.\n",
+      source: "packages/divider/src/_mixins.scss#L50-L81",
+      usedBy: [
+        { name: "react-md-divider", type: "mixin", packageName: "divider" },
+      ],
+      packageName: "divider",
+      code: "@mixin rmd-divider { … }",
+      sourceCode:
+        "@mixin rmd-divider {\n  @include rmd-divider-theme(border-color, background-color);\n  @include rmd-divider-theme(border-width, size);\n  @include rmd-divider-theme(margin, spacing);\n  @include rmd-divider-theme(width, max-size);\n\n  display: block;\n  flex-shrink: 0;\n\n  &--vertical {\n    @include rmd-divider-theme(border-left-width, size);\n    @include rmd-divider-theme(border-left-color, background-color);\n    @include rmd-divider-theme(height, max-size);\n    @include rmd-divider-theme(margin, vertical-spacing);\n    @include rmd-divider-theme(width, size);\n\n    border-bottom-style: none;\n    border-left-style: inset;\n    display: inline-block;\n  }\n\n  &--inset {\n    @include rmd-divider-theme(margin-left, inset);\n    @include rmd-utils-rtl {\n      @include rmd-divider-theme(margin-right, inset);\n\n      margin-left: auto;\n    }\n\n    width: calc(\n      #{rmd-divider-theme-var(max-size)} - #{rmd-divider-theme-var(inset)}\n    );\n  }\n}\n",
+      type: "mixin",
+    },
     "react-md-divider": {
       name: "react-md-divider",
       description:
         "Creates all the styles for the divider package as well as the root css variable theme.\n",
-      source: "packages/divider/src/_mixins.scss#L50-L85",
+      source: "packages/divider/src/_mixins.scss#L85-L91",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "divider",
       code: "@mixin react-md-divider { … }",
       sourceCode:
-        "@mixin react-md-divider {\n  @include rmd-theme-create-root-theme($rmd-divider-theme-values, divider);\n\n  .rmd-divider {\n    @include rmd-divider-theme(border-color, background-color);\n    @include rmd-divider-theme(border-width, size);\n    @include rmd-divider-theme(margin, spacing);\n    @include rmd-divider-theme(width, max-size);\n\n    display: block;\n    flex-shrink: 0;\n\n    &--vertical {\n      @include rmd-divider-theme(border-left-width, size);\n      @include rmd-divider-theme(border-left-color, background-color);\n      @include rmd-divider-theme(height, max-size);\n      @include rmd-divider-theme(margin, vertical-spacing);\n      @include rmd-divider-theme(width, size);\n\n      border-bottom-style: none;\n      border-left-style: inset;\n      display: inline-block;\n    }\n\n    &--inset {\n      @include rmd-divider-theme(margin-left, inset);\n      @include rmd-utils-rtl {\n        @include rmd-divider-theme(margin-right, inset);\n\n        margin-left: auto;\n      }\n\n      width: calc(\n        #{rmd-divider-theme-var(max-size)} - #{rmd-divider-theme-var(inset)}\n      );\n    }\n  }\n}\n",
+        "@mixin react-md-divider {\n  @include rmd-theme-create-root-theme($rmd-divider-theme-values, divider);\n\n  .rmd-divider {\n    @include rmd-divider;\n  }\n}\n",
       type: "mixin",
     },
   },

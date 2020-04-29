@@ -45,41 +45,47 @@
   border-#{$position}-style: solid;
 }
 
+/// Creates all the styles for a divider for a class name selector. This
+/// probably won't be used externally.
+@mixin rmd-divider {
+  @include rmd-divider-theme(border-color, background-color);
+  @include rmd-divider-theme(border-width, size);
+  @include rmd-divider-theme(margin, spacing);
+  @include rmd-divider-theme(width, max-size);
+
+  display: block;
+  flex-shrink: 0;
+
+  &--vertical {
+    @include rmd-divider-theme(border-left-width, size);
+    @include rmd-divider-theme(border-left-color, background-color);
+    @include rmd-divider-theme(height, max-size);
+    @include rmd-divider-theme(margin, vertical-spacing);
+    @include rmd-divider-theme(width, size);
+
+    border-bottom-style: none;
+    border-left-style: inset;
+    display: inline-block;
+  }
+
+  &--inset {
+    @include rmd-divider-theme(margin-left, inset);
+    @include rmd-utils-rtl {
+      @include rmd-divider-theme(margin-right, inset);
+
+      margin-left: auto;
+    }
+
+    width: calc(#{rmd-divider-theme-var(max-size)} - #{rmd-divider-theme-var(inset)});
+  }
+}
+
 /// Creates all the styles for the divider package as well as the root css
 /// variable theme.
 @mixin react-md-divider {
   @include rmd-theme-create-root-theme($rmd-divider-theme-values, divider);
 
   .rmd-divider {
-    @include rmd-divider-theme(border-color, background-color);
-    @include rmd-divider-theme(border-width, size);
-    @include rmd-divider-theme(margin, spacing);
-    @include rmd-divider-theme(width, max-size);
-
-    display: block;
-    flex-shrink: 0;
-
-    &--vertical {
-      @include rmd-divider-theme(border-left-width, size);
-      @include rmd-divider-theme(border-left-color, background-color);
-      @include rmd-divider-theme(height, max-size);
-      @include rmd-divider-theme(margin, vertical-spacing);
-      @include rmd-divider-theme(width, size);
-
-      border-bottom-style: none;
-      border-left-style: inset;
-      display: inline-block;
-    }
-
-    &--inset {
-      @include rmd-divider-theme(margin-left, inset);
-      @include rmd-utils-rtl {
-        @include rmd-divider-theme(margin-right, inset);
-
-        margin-left: auto;
-      }
-
-      width: calc(#{rmd-divider-theme-var(max-size)} - #{rmd-divider-theme-var(inset)});
-    }
+    @include rmd-divider;
   }
 }
