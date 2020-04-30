@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "rootDir": "src",
+    "outDir": "lib",
+    "baseUrl": ".",
+    "paths": { "@react-md/*": ["../*"] }
+  },
+  "include": ["src"],
+  "exclude": ["**/__tests__/*", "**/scssVariables.ts"],
+  "references": [
+    { "path": "../app-bar/tsconfig.cjs.json" },
+    { "path": "../overlay/tsconfig.cjs.json" },
+    { "path": "../portal/tsconfig.cjs.json" },
+    { "path": "../transition/tsconfig.cjs.json" },
+    { "path": "../typography/tsconfig.cjs.json" },
+    { "path": "../utils/tsconfig.cjs.json" }
+  ]
+}

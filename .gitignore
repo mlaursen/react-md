@@ -3,6 +3,8 @@
 .sass-cache
 node_modules
 
+packages/*/*.tsbuildinfo
+
 # Compiled files
 /packages/*/es
 /packages/*/lib

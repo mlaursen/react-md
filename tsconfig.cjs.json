@@ -1,11 +1,37 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "skipLibCheck": true
-  },
-  "exclude": [
-    "**/__tests__/*"
+  "files": [],
+  "references": [
+    { "path": "./packages/alert/tsconfig.cjs.json" },
+    { "path": "./packages/app-bar/tsconfig.cjs.json" },
+    { "path": "./packages/autocomplete/tsconfig.cjs.json" },
+    { "path": "./packages/avatar/tsconfig.cjs.json" },
+    { "path": "./packages/badge/tsconfig.cjs.json" },
+    { "path": "./packages/button/tsconfig.cjs.json" },
+    { "path": "./packages/card/tsconfig.cjs.json" },
+    { "path": "./packages/chip/tsconfig.cjs.json" },
+    { "path": "./packages/dialog/tsconfig.cjs.json" },
+    { "path": "./packages/divider/tsconfig.cjs.json" },
+    { "path": "./packages/expansion-panel/tsconfig.cjs.json" },
+    { "path": "./packages/form/tsconfig.cjs.json" },
+    { "path": "./packages/icon/tsconfig.cjs.json" },
+    { "path": "./packages/layout/tsconfig.cjs.json" },
+    { "path": "./packages/link/tsconfig.cjs.json" },
+    { "path": "./packages/list/tsconfig.cjs.json" },
+    { "path": "./packages/material-icons/tsconfig.cjs.json" },
+    { "path": "./packages/media/tsconfig.cjs.json" },
+    { "path": "./packages/menu/tsconfig.cjs.json" },
+    { "path": "./packages/overlay/tsconfig.cjs.json" },
+    { "path": "./packages/portal/tsconfig.cjs.json" },
+    { "path": "./packages/progress/tsconfig.cjs.json" },
+    { "path": "./packages/react-md/tsconfig.cjs.json" },
+    { "path": "./packages/sheet/tsconfig.cjs.json" },
+    { "path": "./packages/states/tsconfig.cjs.json" },
+    { "path": "./packages/table/tsconfig.cjs.json" },
+    { "path": "./packages/tabs/tsconfig.cjs.json" },
+    { "path": "./packages/tooltip/tsconfig.cjs.json" },
+    { "path": "./packages/transition/tsconfig.cjs.json" },
+    { "path": "./packages/tree/tsconfig.cjs.json" },
+    { "path": "./packages/typography/tsconfig.cjs.json" },
+    { "path": "./packages/utils/tsconfig.cjs.json" }
   ]
 }

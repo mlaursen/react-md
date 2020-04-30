@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "es",
+    "declaration": true,
+    "declarationDir": "types"
+  },
+  "include": ["src"],
+  "exclude": ["**/__tests__/*", "**/scssVariables.ts"]
+}

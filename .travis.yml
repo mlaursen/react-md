@@ -13,11 +13,11 @@ before_install:
 install:
   - yarn global add lerna
   - yarn install
-  - lerna run build --scope @react-md/dev-utils
+  - yarn build-dev-utils
   - yarn install --force
 
 script:
-  - yarn build --silent
+  - yarn build
   - yarn typecheck
   - yarn lint
   - yarn test -i --coverage

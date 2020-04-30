@@ -3,6 +3,7 @@
     "target": "es5",
     "module": "esnext",
     "sourceMap": true,
+    "composite": true,
     "jsx": "react",
     "strict": true,
     "noImplicitAny": true,

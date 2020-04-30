@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "rootDir": "src",
+    "outDir": "lib",
+    "baseUrl": ".",
+    "paths": { "@react-md/*": ["../*"] }
+  },
+  "include": ["src"],
+  "exclude": ["**/__tests__/*", "**/scssVariables.ts"],
+  "references": [
+    { "path": "../icon/tsconfig.cjs.json" },
+    { "path": "../utils/tsconfig.cjs.json" }
+  ]
+}

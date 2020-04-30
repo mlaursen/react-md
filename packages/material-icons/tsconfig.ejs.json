@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "es",
+    "declaration": true,
+    "declarationDir": "types",
+    "baseUrl": ".",
+    "paths": { "@react-md/*": ["../*"] }
+  },
+  "include": ["src"],
+  "exclude": ["**/__tests__/*", "**/scssVariables.ts"],
+  "references": [{ "path": "../icon/tsconfig.ejs.json" }]
+}

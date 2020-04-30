@@ -1,0 +1,24 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "skipLibCheck": true,
+    "rootDir": "src",
+    "outDir": "lib",
+    "baseUrl": ".",
+    "paths": { "@react-md/*": ["../*"] }
+  },
+  "include": ["src"],
+  "exclude": ["**/__tests__/*", "**/scssVariables.ts"],
+  "references": [
+    { "path": "../button/tsconfig.cjs.json" },
+    { "path": "../icon/tsconfig.cjs.json" },
+    { "path": "../list/tsconfig.cjs.json" },
+    { "path": "../portal/tsconfig.cjs.json" },
+    { "path": "../progress/tsconfig.cjs.json" },
+    { "path": "../states/tsconfig.cjs.json" },
+    { "path": "../transition/tsconfig.cjs.json" },
+    { "path": "../typography/tsconfig.cjs.json" },
+    { "path": "../utils/tsconfig.cjs.json" }
+  ]
+}

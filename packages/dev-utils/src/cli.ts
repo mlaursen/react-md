@@ -16,6 +16,7 @@ import sassdoc from "./sassdoc";
 import createScssVariables from "./scssVariables";
 import copyStyles from "./utils/copyStyles";
 import createThemes from "./utils/createThemes";
+import configs from "./configs";
 import watch from "./watch";
 
 const argv = process.argv.slice(2);
@@ -65,7 +66,7 @@ createCommand("prepublish")
       "the scss files are copied to the dist. This is normally used for " +
       "first-time clones."
   )
-  .action(({ init = false, silent = false }) => prepublish(init, silent));
+  .action(({ init = false }) => prepublish(init));
 
 createCommand("styles")
   .description(
@@ -170,6 +171,8 @@ createCommand("clean")
   .description(
     "Cleans the current package or all the packages if run from the root level."
   )
-  .action(() => clean());
+  .action(() => clean(true));
+
+createCommand("configs").action(() => configs());
 
 commander.parse(process.argv);

@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "composite": false,
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

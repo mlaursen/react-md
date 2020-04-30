@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "es",
+    "declaration": true,
+    "declarationDir": "types",
+    "baseUrl": ".",
+    "paths": { "@react-md/*": ["../*"] }
+  },
+  "include": ["src"],
+  "exclude": ["**/__tests__/*", "**/scssVariables.ts"],
+  "references": [
+    { "path": "../app-bar/tsconfig.ejs.json" },
+    { "path": "../button/tsconfig.ejs.json" },
+    { "path": "../divider/tsconfig.ejs.json" },
+    { "path": "../icon/tsconfig.ejs.json" },
+    { "path": "../list/tsconfig.ejs.json" },
+    { "path": "../states/tsconfig.ejs.json" },
+    { "path": "../typography/tsconfig.ejs.json" },
+    { "path": "../utils/tsconfig.ejs.json" }
+  ]
+}
