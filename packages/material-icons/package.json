@@ -42,14 +42,15 @@
     "material design icons"
   ],
   "license": "MIT",
+  "dependencies": {
+    "@react-md/icon": "^2.0.0-alpha.14"
+  },
   "devDependencies": {
-    "@react-md/icon": "^2.0.0-alpha.14",
     "commander": "^5.0.0",
     "download": "^8.0.0",
     "unzipper": "^0.10.10"
   },
   "peerDependencies": {
-    "@react-md/icon": "^2.0.0-alpha.0",
     "react": ">= 16.8"
   },
   "publishConfig": {
