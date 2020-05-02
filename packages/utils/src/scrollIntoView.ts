@@ -1,3 +1,5 @@
+import findSizingContainer from "./positioning/findSizingContainer";
+
 /**
  * Attempts to scroll an element into view within another container element if
  * needed.  If either the container or element are `null`, nothing will happen.
@@ -11,6 +13,7 @@ export default function scrollIntoView(
   container: HTMLElement | null,
   element: HTMLElement | null
 ): void {
+  element = findSizingContainer(element);
   if (!container || !element) {
     return;
   }
@@ -19,6 +22,7 @@ export default function scrollIntoView(
   if (element.offsetParent !== container) {
     offsetTop -= container.offsetTop;
   }
+
   const elementBottom = offsetTop + element.offsetHeight;
   const containerBottom = container.offsetHeight + container.scrollTop;
   if (elementBottom > containerBottom) {
