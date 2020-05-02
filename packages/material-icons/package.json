@@ -46,9 +46,9 @@
     "@react-md/icon": "^2.0.0-alpha.14"
   },
   "devDependencies": {
-    "commander": "^5.0.0",
+    "commander": "^5.1.0",
     "download": "^8.0.0",
-    "unzipper": "^0.10.10"
+    "unzipper": "^0.10.11"
   },
   "peerDependencies": {
     "react": ">= 16.8"

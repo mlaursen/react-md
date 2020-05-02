@@ -28,14 +28,9 @@ const Search: FC = () => {
   const router = useRouter();
 
   const unmounted = useRef(false);
-  const filter = useCallback(
+  const filter = useRef(
     throttle(
       (query: string) => {
-        if (!query) {
-          setData([]);
-          return;
-        }
-
         (async function check() {
           const response = await fetch(`/api/search?q=${query}`);
           if (response.ok) {
@@ -49,18 +44,19 @@ const Search: FC = () => {
       },
       500,
       { leading: true, trailing: true }
-    ),
-    []
+    )
   );
 
-  const handleChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.currentTarget;
-      setValue(value);
-      filter(encodeURIComponent(value));
-    },
-    [filter]
-  );
+  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.currentTarget;
+    setValue(value);
+    if (!value) {
+      setData([]);
+      filter.current.cancel();
+    } else {
+      filter.current(encodeURIComponent(value));
+    }
+  }, []);
 
   useEffect(() => {
     unmounted.current = false;
