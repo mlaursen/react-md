@@ -8,7 +8,7 @@ import { bem, RequireAtLeastOne } from "@react-md/utils";
 
 import LayoutNavigationHeader from "./LayoutNavigationHeader";
 import { LayoutNavigationProps } from "./types";
-import { isInlineLayout } from "./useLayout";
+import { isInlineLayout, isTemporaryLayout } from "./useLayout";
 import useNavigationVisibility from "./useNavigationVisibility";
 import useTemporaryNavigation from "./useTemporaryNavigation";
 
@@ -64,15 +64,6 @@ const LayoutNavigation: FC<StrictProps> = ({
     isPersistent,
     isNavVisible,
   } = useNavigationVisibility();
-  const tree = (
-    <Tree
-      {...props}
-      id={`${layoutId}-nav-tree`}
-      data={navItems}
-      aria-label={navTreeLabel}
-      aria-labelledby={navTreeLabelledBy}
-    />
-  );
 
   let navHeader = propNavHeader;
   if (typeof navHeader === "undefined") {
@@ -90,29 +81,30 @@ const LayoutNavigation: FC<StrictProps> = ({
     );
   }
 
-  const isInline = isInlineLayout(layout);
   return (
     <Sheet
       id={`${layoutId}-nav-container`}
       aria-label={sheetLabel as string}
       aria-labelledby={sheetLabelledBy}
-      role={isInline ? "none" : "dialog"}
+      role={isPersistent ? "none" : "dialog"}
       style={sheetStyle}
       className={cn(
         block({ offset: fixedAppBar && isPersistent && !isFullHeight }),
         sheetClassName
       )}
+      overlay={isTemporaryLayout(layout)}
       visible={isNavVisible}
       onRequestClose={hideNav}
-      component={isInline ? "nav" : "div"}
+      component="nav"
     >
       {navHeader}
-      {isPersistent && tree}
-      {!isPersistent && (
-        <nav style={navStyle} className={navClassName}>
-          {tree}
-        </nav>
-      )}
+      <Tree
+        {...props}
+        id={`${layoutId}-nav-tree`}
+        data={navItems}
+        aria-label={navTreeLabel}
+        aria-labelledby={navTreeLabelledBy}
+      />
       {navFooter}
     </Sheet>
   );
