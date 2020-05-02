@@ -70,6 +70,12 @@ export interface MenuOptions {
    * own toggle logic that conflicts with this close click.
    */
   disableControlClickOkay?: boolean;
+
+  /**
+   * Boolean if the menu has been portalled so that the tab keypress behavior
+   * can be fixed since tab order is destroyed when portalling.
+   */
+  portalled?: boolean;
 }
 
 interface ReturnValue
@@ -97,6 +103,7 @@ export default function useMenu({
   horizontal = false,
   onClick: propOnClick,
   onKeyDown: propOnKeyDown,
+  portalled = false,
   defaultFocus,
   onRequestClose,
   disableCloseOnScroll = false,
@@ -142,6 +149,7 @@ export default function useMenu({
     menu: menu.current,
     onKeyDown: propOnKeyDown,
     onRequestClose,
+    portalled,
     horizontal,
     defaultFocus,
   });

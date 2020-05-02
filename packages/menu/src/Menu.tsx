@@ -198,6 +198,7 @@ function Menu(
     horizontal,
     onClick: propOnClick,
     onKeyDown: propOnKeyDown,
+    portalled: portal || typeof portalInto !== "undefined" || !!portalIntoId,
     defaultFocus,
     onRequestClose,
     disableCloseOnScroll,

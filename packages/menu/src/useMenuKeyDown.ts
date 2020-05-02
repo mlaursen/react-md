@@ -12,6 +12,7 @@ interface MenuKeyDownOptions {
   onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   onRequestClose: () => void;
   defaultFocus: string;
+  portalled: boolean;
 }
 
 /**
@@ -24,6 +25,7 @@ export default function useMenuKeyDown({
   menu,
   onKeyDown,
   onRequestClose,
+  portalled,
   horizontal,
   defaultFocus,
 }: MenuKeyDownOptions): React.KeyboardEventHandler<HTMLDivElement> {
@@ -68,7 +70,18 @@ export default function useMenuKeyDown({
         onKeyDown(event);
       }
 
-      if (event.key === "Escape" || event.key === "Tab") {
+      if (event.key === "Escape") {
+        event.stopPropagation();
+        onRequestClose();
+      } else if (event.key === "Tab") {
+        if (portalled) {
+          // have to prevent default tab behavior since tab order is ruined when
+          // something is portalled. this will make it interact the same as if
+          // it was an escape keypress. it's too much work to try to emulate a
+          // real tab here
+          event.preventDefault();
+        }
+
         onRequestClose();
       }
     },
