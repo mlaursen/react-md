@@ -345,18 +345,6 @@ export interface LayoutNavigationProps<
   extends Omit<TreeProps<T>, "id" | "data" | "aria-label" | "aria-labelledby">,
     LayoutToggleableAppBarNavProps {
   /**
-   * An optional style to apply to the `<nav>` element that surrounds the navigation tree on
-   * **mobile only**.
-   */
-  navStyle?: CSSProperties;
-
-  /**
-   * An optional className to apply to the `<nav>` element that surrounds the navigation tree on
-   * **mobile only**.
-   */
-  navClassName?: string;
-
-  /**
    * An optional `aria-label` to apply to the navigation tree. Either this or the `navLabelledBy`
    * prop are required for a11y.
    */

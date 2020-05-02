@@ -8,7 +8,7 @@ import { bem, RequireAtLeastOne } from "@react-md/utils";
 
 import LayoutNavigationHeader from "./LayoutNavigationHeader";
 import { LayoutNavigationProps } from "./types";
-import { isInlineLayout, isTemporaryLayout } from "./useLayout";
+import { isTemporaryLayout } from "./useLayout";
 import useNavigationVisibility from "./useNavigationVisibility";
 import useTemporaryNavigation from "./useTemporaryNavigation";
 
@@ -35,8 +35,6 @@ const LayoutNavigation: FC<StrictProps> = ({
   layoutId,
   fixedAppBar,
   navItems,
-  navStyle,
-  navClassName,
   navTreeLabel,
   navTreeLabelledBy,
   hideNavIcon: propHideNavIcon,

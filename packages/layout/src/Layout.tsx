@@ -284,8 +284,6 @@ if (process.env.NODE_ENV !== "production") {
       appBarClassName: PropTypes.string,
       appBarAfterNav: PropTypes.bool,
 
-      navStyle: PropTypes.object,
-      navClassName: PropTypes.string,
       navTreeLabel: PropTypes.string,
       navTreeLabelledBy: PropTypes.string,
       sheetLabel: PropTypes.string,
