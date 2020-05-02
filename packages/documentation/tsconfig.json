@@ -4,6 +4,7 @@
     "allowJs": true,
     "jsx": "preserve",
     "noEmit": true,
+    "composite": false,
     "skipLibCheck": true,
     "target": "esnext",
     "rootDir": "src",
