@@ -1,6 +1,6 @@
 {
   "name": "@react-md/list",
-  "version": "2.0.0-alpha.14",
+  "version": "2.0.0-alpha.15",
   "description": "This package is used to create lists with the material design specs.",
   "scripts": {
     "build": "dev-utils build",
@@ -38,13 +38,13 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/avatar": "^2.0.0-alpha.14",
-    "@react-md/divider": "^2.0.0-alpha.14",
-    "@react-md/icon": "^2.0.0-alpha.14",
-    "@react-md/states": "^2.0.0-alpha.14",
-    "@react-md/theme": "^2.0.0-alpha.14",
-    "@react-md/typography": "^2.0.0-alpha.14",
-    "@react-md/utils": "^2.0.0-alpha.14",
+    "@react-md/avatar": "^2.0.0-alpha.15",
+    "@react-md/divider": "^2.0.0-alpha.15",
+    "@react-md/icon": "^2.0.0-alpha.15",
+    "@react-md/states": "^2.0.0-alpha.15",
+    "@react-md/theme": "^2.0.0-alpha.15",
+    "@react-md/typography": "^2.0.0-alpha.15",
+    "@react-md/utils": "^2.0.0-alpha.15",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {
