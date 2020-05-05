@@ -18,7 +18,6 @@ install:
 
 script:
   - yarn build
-  - yarn typecheck
   - yarn lint
   - yarn test -i --coverage
   - npm install codecov -g
