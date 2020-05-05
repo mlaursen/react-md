@@ -51,7 +51,7 @@ $rmd-dialog-footer-padding: 0.5rem !default;
 /// view. By default, this animation will cause the dialog to "fly" upwards. If
 /// you change this value to be a negative number, it will "fly" downwards.
 /// @type Number
-$rmd-dialog-transition-distance: 1.875em !default;
+$rmd-dialog-transition-distance: 1.875rem !default;
 
 /// The enter animation duration. This should match the `timeout` prop for the
 /// `Dialog` component.

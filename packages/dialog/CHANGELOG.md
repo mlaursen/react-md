@@ -1,10 +1,27 @@
-# v2.0.0-alpha.0
+# v2.0.0
 
 The `Dialog` component was completely re-written in this release and each part
 of the dialog has been exported for additional customization. Since the goal of
 `react-md@v2` is to be an extension of HTML Elements with additional styling,
-all refs will be forwareded on to the component's element instead so you have
+all refs will be forwarded on to the component's element instead so you have
 access to the DOM nodes.
+
+## New Behavior and Features
+
+- the dialog transition now animates downwards instead of upwards
+- all dialog parts are exported as separate components and must be used to
+  create a dialog: `Dialog`, `DialogHeader`, `DialogTitle`, `DialogContent`, and
+  `DialogFooter`
+- added a new `FixedDialog` which can be used to attach a `Dialog` to another
+  element in the page
+- better support for maintaining keyboard focus when dialogs are closed if they
+  were triggered from temporary elements
+- buttons no longer have different sizes by default within dialogs
+- no longer updates list styles within dialogs by default since this caused many
+  bugs
+- added support for rendering `AppBar`s within a dialog instead of using the
+  `DialogHeader`
+- support for nested dialogs with a new `NestedDialogContextProvider`
 
 ## Breaking Changes
 
@@ -56,10 +73,58 @@ helper components to help structure your dialog for more customization.
 - `isOpen`, `transitionName`, `transitionEnter`, `transitionLeave`,
   `actionLeft`, `actionRight`, and `close` props were removed since they were
   deprecated to begin with
+- better scroll behavior for the dialog content using new flex positioning
 - the animation was changed to animate upwards instead of downwards and the full
   page dialog transition was updated to be the same as other dialog transitions
 
-## New Features
+### New SCSS Variables, Functions, and Mixins
+
+- `$rmd-dialog-elevation: 16 !default` - the elevation (box-shadow) to use for
+  dialogs
+- `$rmd-dialog-min-width: 17.5rem !default` - hhe min width for a centered
+  dialog
+- `$rmd-dialog-header-padding: 1.5rem !default` - the padding to apply to the
+  `DialogHeader` component
+- `$rmd-dialog-content-padding: 1.5rem !default` - the padding to apply to the
+  `DialogContent` component
+- `$rmd-dialog-footer-padding: 0.5rem !default` - the padding to apply to the
+  `DialogFooter` component
+- `@function rmd-dialog-theme` - gets one of the theme values and validates that
+  the theme name is valid
+- `@function rmd-dialog-theme-var` - gets one of the theme values as a css
+  variable with a fallback value and validates that the theme name is valid
+- `@mixin rmd-dialog-theme` - applies one of the theme values to a css property
+  as a css variable
+- `@mixin rmd-dialog-theme-update-var` - updates one of the theme values as a
+  css variable
+
+### Renamed SCSS Variables, Functions, and Mixins
+
+- renamed `$md-dialog-overlay-z-index` to `$rmd-dialog-z-index` for better
+  clarity and changed the default value from `20` to `$rmd-overlay-z-index + 10`
+- renamed `$md-dialog-transition-time` to `$rmd-dialog-enter-duration` and
+  `$rmd-dalog-leave-duration` and changed the default value from `.3s` to `0.2s`
+  and `0.15s` respectively
+- renamed `$md-dialog-translate-distance` to `$rmd-dialog-transition-distance`
+  and changed the default value from `-30px` to `1.875rem`
+- renamed `$md-dialog-vertical-keyline` to `$rmd-dialog-vertical-margin` for
+  clarity and changed the default value from `24px` to `1.5rem`
+- renamed `$md-dialog-horizontal-keyline` to `$rmd-dialog-horizontal-margin` for
+  clarity and changed the default value from `40px` to `2.5rem`
+- renamed `$md-dialog-title-padding-bottom` to
+  `$rmd-dialog-header-padding-bottom` and changed the default value from `20px`
+  to `1.25rem`
+
+### Removed SCSS Variables Placeholders, and Mixins
+
+- removed `$md-dialog-use-flex-positioning` since this is now required
+- removed `$md-dialog-full-page-z-index` since it is no longer used and caused
+  z-index problems when multiple dialogs were rendered at the same time
+- removed `$md-dialog-btn-height`, `$md-dialog-btn-min-width`, and
+  `$md-dialog-btn-padding` since buttons no longer change size within dialogs
+- removed `$md-dialog-padding` since it is now separated into three padding
+  variables
+- removed `@mixin react-md-dialog-width` since it was pretty worthless
 
 ### Separate Components
 

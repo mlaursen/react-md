@@ -8,7 +8,7 @@ export default {
   "rmd-dialog-header-padding-bottom": "1.25rem",
   "rmd-dialog-content-padding": "1.5rem",
   "rmd-dialog-footer-padding": "0.5rem",
-  "rmd-dialog-transition-distance": "1.875em",
+  "rmd-dialog-transition-distance": "1.875rem",
   "rmd-dialog-enter-duration": "0.2s",
   "rmd-dialog-leave-duration": "0.15s",
   "rmd-dialog-min-width": "17.5rem",

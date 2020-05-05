@@ -217,7 +217,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/dialog/src/_variables.scss#L54",
       packageName: "dialog",
       type: "Number",
-      value: "1.875em",
+      value: "1.875rem",
       overridable: true,
     },
     "rmd-dialog-enter-duration": {
