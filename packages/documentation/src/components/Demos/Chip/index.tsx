@@ -12,7 +12,7 @@ import ChoiceChips from "./ChoiceChips";
 import choiceChips from "./ChoiceChips.md";
 
 import { ActionChips, actionChips } from "./ActionChips";
-import { InputChips, inputChips } from "./InputChips/";
+import { InputChips, inputChips } from "./InputChips";
 
 const demos = [
   {
