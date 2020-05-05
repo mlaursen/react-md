@@ -9,10 +9,15 @@
 /// `color` prop is provided to the `Avatar` component.
 ///
 /// @see rmd-avatar-colors
+/// @require $rmd-grey-700
 /// @type Color
 $rmd-avatar-background-color: $rmd-grey-700 !default;
 
 /// The border color to apply to the avatar.
+///
+/// @require rmd-theme-tone
+/// @require $rmd-black-base
+/// @require $rmd-white-base
 /// @type Color
 $rmd-avatar-border-color: rgba(
   if(rmd-theme-tone($rmd-theme-background) == light, $rmd-black-base, $rmd-white-base),
@@ -25,6 +30,8 @@ $rmd-avatar-border-radius: 50% !default;
 
 /// The default text color for the avatar. This will be used until the `color`
 /// prop is provided to the `Avatar` component.
+///
+/// @require $rmd-grey-100
 /// @type Color
 $rmd-avatar-color: $rmd-grey-100 !default;
 
@@ -38,6 +45,8 @@ $rmd-avatar-font-size: 1.5rem !default;
 
 /// The line height to use for avatars. This is really only useful when the
 /// avatar is a letter.
+///
+/// @require rmd-typography-value
 /// @type Number
 $rmd-avatar-line-height: rmd-typography-value(subtitle-1, line-height) !default;
 
@@ -45,6 +54,38 @@ $rmd-avatar-line-height: rmd-typography-value(subtitle-1, line-height) !default;
 /// with new values if the defaults are not to your liking, but it is
 /// recommended to create your own themes instead.
 ///
+/// @require $rmd-amber-400
+/// @require $rmd-blue-grey-50
+/// @require $rmd-blue-grey-700
+/// @require $rmd-brown-50
+/// @require $rmd-brown-500
+/// @require $rmd-brown-800
+/// @require $rmd-cyan-400
+/// @require $rmd-deep-orange-a-400
+/// @require $rmd-deep-purple-100
+/// @require $rmd-deep-purple-900
+/// @require $rmd-green-50
+/// @require $rmd-green-800
+/// @require $rmd-green-900
+/// @require $rmd-grey-100
+/// @require $rmd-grey-700
+/// @require $rmd-grey-900
+/// @require $rmd-indigo-100
+/// @require $rmd-indigo-600
+/// @require $rmd-light-blue-300
+/// @require $rmd-light-green-300
+/// @require $rmd-lime-400
+/// @require $rmd-orange-600
+/// @require $rmd-pink-600
+/// @require $rmd-purple-100
+/// @require $rmd-purple-700
+/// @require $rmd-red-50
+/// @require $rmd-red-a-700
+/// @require $rmd-teal-800
+/// @require $rmd-teal-900
+/// @require $rmd-teal-a-400
+/// @require $rmd-white-base
+/// @require $rmd-yellow-a-200
 /// @type Map
 $rmd-avatar-colors: (
   red: $rmd-red-a-700 $rmd-red-50,

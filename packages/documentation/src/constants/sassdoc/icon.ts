@@ -529,8 +529,8 @@ const sassdoc: PackageSassDoc = {
   variables: {
     "rmd-icon-color": {
       name: "rmd-icon-color",
-      description: "The base icon color to apply.\n",
-      source: "packages/icon/src/_variables.scss#L9",
+      description: "The base icon color to apply.",
+      source: "packages/icon/src/_variables.scss#L11",
       packageName: "icon",
       type: "Color",
       value: "rmd-theme-var(text-icon-on-background)",
@@ -540,7 +540,14 @@ const sassdoc: PackageSassDoc = {
     "rmd-icon-size": {
       name: "rmd-icon-size",
       description: "The base icon size to use.\n",
-      source: "packages/icon/src/_variables.scss#L13",
+      source: "packages/icon/src/_variables.scss#L15",
+      usedBy: [
+        {
+          name: "rmd-app-bar-nav-margin",
+          type: "variable",
+          packageName: "app-bar",
+        },
+      ],
       packageName: "icon",
       type: "Number",
       value: "1.5rem",
@@ -550,7 +557,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-dense-size",
       description:
         "The dense icon size to use. If you do not want to include the dense icon spec, disable the `$rmd-icon-include-dense` variable.\n",
-      source: "packages/icon/src/_variables.scss#L19",
+      source: "packages/icon/src/_variables.scss#L21",
       see: [
         {
           name: "rmd-icon-include-dense",
@@ -567,7 +574,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-include-dense",
       description:
         "Boolean if the dense spec for icons should be included. This will just generate `.md-icon--font-dense` and `.md-icon--svg-dense` class names that can be applied.",
-      source: "packages/icon/src/_variables.scss#L26",
+      source: "packages/icon/src/_variables.scss#L28",
       usedBy: [{ name: "rmd-icon", type: "mixin", packageName: "icon" }],
       packageName: "icon",
       type: "Boolean",
@@ -578,7 +585,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-material-icons-font",
       description:
         "Boolean if you are using the material-icons font icon library. This will update the dense theme to fix material icons as well.\n",
-      source: "packages/icon/src/_variables.scss#L31",
+      source: "packages/icon/src/_variables.scss#L33",
       usedBy: [{ name: "rmd-icon", type: "mixin", packageName: "icon" }],
       packageName: "icon",
       type: "Boolean",
@@ -589,7 +596,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-use-font-icons",
       description:
         "Boolean if font icons should be used. Normally only one of font icons or svg icons should be used within your application, so you can disable the style generation for the unused type to save a few bytes.",
-      source: "packages/icon/src/_variables.scss#L39",
+      source: "packages/icon/src/_variables.scss#L41",
       see: [
         {
           name: "rmd-icon-use-svg-icons",
@@ -611,7 +618,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-use-svg-icons",
       description:
         "Boolean if svg icons should be used. Normally only one of font icons or svg icons should be used within your application, so you can disable the style generation for the unused type to save a few bytes.",
-      source: "packages/icon/src/_variables.scss#L47",
+      source: "packages/icon/src/_variables.scss#L49",
       see: [
         {
           name: "rmd-icon-use-svg-icons",
@@ -633,7 +640,29 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-spacing-with-text",
       description:
         "The amount of spacing to apply between an icon and text within the `TextIconSpacing` component.\n",
-      source: "packages/icon/src/_variables.scss#L52",
+      source: "packages/icon/src/_variables.scss#L54",
+      usedBy: [
+        {
+          name: "rmd-expansion-panel-expander-icon-spacing",
+          type: "variable",
+          packageName: "expansion-panel",
+        },
+        {
+          name: "rmd-text-field-underline-label-left-offset",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-text-field-addon-margin",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-form-message-counter-spacing",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       packageName: "icon",
       type: "Number",
       value: "0.5rem",
@@ -643,7 +672,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-rotator-transition-time",
       description:
         "The transition time for the icon rotator to fully rotate.\n",
-      source: "packages/icon/src/_variables.scss#L56",
+      source: "packages/icon/src/_variables.scss#L58",
       usedBy: [
         { name: "rmd-icon-rotator", type: "mixin", packageName: "icon" },
       ],
@@ -656,7 +685,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-rotator-from",
       description:
         "The default starting position for the `IconRotator` component. This needs to be a valid transformation value to work.\n",
-      source: "packages/icon/src/_variables.scss#L61",
+      source: "packages/icon/src/_variables.scss#L63",
       packageName: "icon",
       type: "Number",
       value: "rotate(0deg)",
@@ -666,7 +695,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-rotator-to",
       description:
         "The default ending position for the `IconRotator` component. This needs to be a valid transformation value to work.\n",
-      source: "packages/icon/src/_variables.scss#L66",
+      source: "packages/icon/src/_variables.scss#L68",
       packageName: "icon",
       type: "Number",
       value: "rotate(180deg)",
@@ -676,7 +705,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-theme-values",
       description:
         'A Map of all the "themeable" parts of the icon package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/icon/src/_variables.scss#L72-L79",
+      source: "packages/icon/src/_variables.scss#L74-L81",
       usedBy: [
         { name: "rmd-icon-theme", type: "function", packageName: "icon" },
         { name: "rmd-icon-theme-var", type: "function", packageName: "icon" },

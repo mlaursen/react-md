@@ -11,11 +11,15 @@
 $rmd-overlay-z-index: 16 !default;
 
 /// The transition duration for overlays entering and leaving.
+///
+/// @require $rmd-transition-standard-time
 /// @type Number
 $rmd-overlay-transition-duration: $rmd-transition-standard-time !default;
 
 /// The background color for the overlay. It is recommended to make sure that an
 /// opacity is applied instead of a static color.
+///
+/// @require $rmd-black-base
 /// @type Color
 $rmd-overlay-color: rgba($rmd-black-base, 0.4) !default;
 

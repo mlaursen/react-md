@@ -389,7 +389,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-line-height",
       description:
         "The line height to apply to all items within the list. The default typography applied to lists uses the `subtitle-1` typography specs, but it looks better to apply the main text line-height within lists.",
-      source: "packages/list/src/_variables.scss#L45",
+      source: "packages/list/src/_variables.scss#L46",
       usedBy: [{ name: "rmd-list", type: "mixin", packageName: "list" }],
       packageName: "list",
       type: "Number",
@@ -400,7 +400,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-list-font-size": {
       name: "rmd-list-font-size",
       description: "The font size to apply to all items in a list.",
-      source: "packages/list/src/_variables.scss#L50",
+      source: "packages/list/src/_variables.scss#L52",
       packageName: "list",
       type: "Number",
       value: "rmd-typography-value(subtitle-1, font-size)",
@@ -410,7 +410,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-list-dense-font-size": {
       name: "rmd-list-dense-font-size",
       description: 'The font size to use for a "dense" list layout.\n',
-      source: "packages/list/src/_variables.scss#L54",
+      source: "packages/list/src/_variables.scss#L56",
       packageName: "list",
       type: "Number",
       value: "0.8125rem",
@@ -420,7 +420,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-vertical-padding",
       description:
         'The amount of vertical padding to apply to each list item. This is really only added to help with the default "growing height" case of items since the list item is aligned using a centered flexbox.',
-      source: "packages/list/src/_variables.scss#L61",
+      source: "packages/list/src/_variables.scss#L63",
       packageName: "list",
       type: "Number",
       value: "0.5rem",
@@ -430,9 +430,14 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-horizontal-padding",
       description:
         "The amount of horizontal padding to apply to each list item.",
-      source: "packages/list/src/_variables.scss#L66",
+      source: "packages/list/src/_variables.scss#L68",
       usedBy: [
         { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
+        {
+          name: "rmd-tree-item-padding-incrementor",
+          type: "variable",
+          packageName: "tree",
+        },
       ],
       packageName: "list",
       type: "Number",
@@ -443,7 +448,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-height",
       description:
         'The default height for a list item. To help create more general lists and layouts this height will be applied as a `min-height` instead of `height` so that it can grow in height based on the content.  When using the `ListItem` component, it will automatically "upgrade" to use `height` when the `secondaryText` or list item "addons" are provided to help enforce the material design specs.',
-      source: "packages/list/src/_variables.scss#L76",
+      source: "packages/list/src/_variables.scss#L78",
       packageName: "list",
       type: "Number",
       value: "3rem",
@@ -452,7 +457,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-list-item-dense-height": {
       name: "rmd-list-item-dense-height",
       description: "The default height for a dense list item.\n",
-      source: "packages/list/src/_variables.scss#L80",
+      source: "packages/list/src/_variables.scss#L82",
       packageName: "list",
       type: "Number",
       value: "2.5rem",
@@ -462,7 +467,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-medium-height",
       description:
         'The height for a "medium" sized list item. This will normally get applied for any list item that has an icon or avatar.\n',
-      source: "packages/list/src/_variables.scss#L85",
+      source: "packages/list/src/_variables.scss#L87",
       packageName: "list",
       type: "Number",
       value: "3.5rem",
@@ -472,7 +477,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-dense-medium-height",
       description:
         'The height for a "medium" sized list item that is also dense.\n',
-      source: "packages/list/src/_variables.scss#L89",
+      source: "packages/list/src/_variables.scss#L91",
       packageName: "list",
       type: "Number",
       value: "3rem",
@@ -482,7 +487,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-large-height",
       description:
         'The height for a "large" sized list item. This will normally get applied for any list item that has secondary text with no icon, or avatar.\n',
-      source: "packages/list/src/_variables.scss#L94",
+      source: "packages/list/src/_variables.scss#L96",
       packageName: "list",
       type: "Number",
       value: "4rem",
@@ -492,7 +497,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-dense-large-height",
       description:
         'The height for a "large" sized list item that is also dense.\n',
-      source: "packages/list/src/_variables.scss#L98",
+      source: "packages/list/src/_variables.scss#L100",
       packageName: "list",
       type: "Number",
       value: "3.5rem",
@@ -502,7 +507,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-extra-large-height",
       description:
         'The height for an "extra large" sized list item. This will normally get applied for any list item that:\n- is single line but has a media\n- has secondary text with an icon, avatar, media, or metadata',
-      source: "packages/list/src/_variables.scss#L106",
+      source: "packages/list/src/_variables.scss#L108",
       packageName: "list",
       type: "Number",
       value: "4.5rem",
@@ -512,7 +517,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-dense-extra-large-height",
       description:
         'The height for a "extra large" sized list item that is also dense.\n',
-      source: "packages/list/src/_variables.scss#L110",
+      source: "packages/list/src/_variables.scss#L112",
       packageName: "list",
       type: "Number",
       value: "4rem",
@@ -521,7 +526,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-list-item-three-line-height": {
       name: "rmd-list-item-three-line-height",
       description: "The height for a list item with three lines of text.\n",
-      source: "packages/list/src/_variables.scss#L114",
+      source: "packages/list/src/_variables.scss#L116",
       packageName: "list",
       type: "Number",
       value: "5.5rem",
@@ -531,7 +536,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-dense-three-line-height",
       description:
         "The height for a list item with three lines of text while being dense.\n",
-      source: "packages/list/src/_variables.scss#L118",
+      source: "packages/list/src/_variables.scss#L120",
       packageName: "list",
       type: "Number",
       value: "5rem",
@@ -541,7 +546,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-secondary-text-line-height",
       description:
         "The line-height to use for the secondary text within the list item. This is different than the primary text since this can span multiple lines by default.\n",
-      source: "packages/list/src/_variables.scss#L124",
+      source: "packages/list/src/_variables.scss#L126",
       usedBy: [{ name: "rmd-list-item", type: "mixin", packageName: "list" }],
       packageName: "list",
       type: "Number",
@@ -552,7 +557,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-secondary-text-three-line-max-height",
       description:
         "The max allowed height for the three-line list item's secondary text. You probably don't want to change this value unless you changed the other list item heights.\n",
-      source: "packages/list/src/_variables.scss#L130",
+      source: "packages/list/src/_variables.scss#L132",
       packageName: "list",
       type: "Number",
       value: "3rem",
@@ -562,7 +567,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-dense-secondary-text-three-line-max-height",
       description:
         "The max allowed height for the dense three-line list item's secondary text.\nYou probably don't want to change this value unless you changed the other list item heights.\n",
-      source: "packages/list/src/_variables.scss#L136",
+      source: "packages/list/src/_variables.scss#L138",
       packageName: "list",
       type: "Number",
       value: "2.25rem",
@@ -572,7 +577,14 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-text-keyline",
       description:
         "The spacing between the left side of the list item up to the left side of the first character of text. This is normally just used to align the list items with other components.\n",
-      source: "packages/list/src/_variables.scss#L142",
+      source: "packages/list/src/_variables.scss#L144",
+      usedBy: [
+        {
+          name: "rmd-tree-item-padding-base",
+          type: "variable",
+          packageName: "tree",
+        },
+      ],
       packageName: "list",
       type: "Number",
       value: "4.5rem",
@@ -582,7 +594,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-media-size",
       description:
         "The size to use for media that appears before or after the main content in a list item.\n",
-      source: "packages/list/src/_variables.scss#L147",
+      source: "packages/list/src/_variables.scss#L149",
       packageName: "list",
       type: "Number",
       value: "3.5rem",
@@ -592,7 +604,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-media-large-size",
       description:
         "The size to use for large media that appears before or after the main content in a list item.\n",
-      source: "packages/list/src/_variables.scss#L152",
+      source: "packages/list/src/_variables.scss#L154",
       packageName: "list",
       type: "Number",
       value: "6.25rem",
@@ -602,7 +614,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-media-spacing",
       description:
         "The amount of spacing to place between the main content and media that appears in a list item.\n",
-      source: "packages/list/src/_variables.scss#L157",
+      source: "packages/list/src/_variables.scss#L159",
       packageName: "list",
       type: "Number",
       value: "1rem",
@@ -612,7 +624,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-theme-values",
       description:
         'A Map of all the "themeable" parts of the list package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/list/src/_variables.scss#L163-L188",
+      source: "packages/list/src/_variables.scss#L165-L190",
       usedBy: [
         { name: "rmd-list-theme", type: "function", packageName: "list" },
         { name: "rmd-list-theme-var", type: "function", packageName: "list" },

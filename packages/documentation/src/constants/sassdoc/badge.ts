@@ -162,8 +162,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-badge-default-background-color": {
       name: "rmd-badge-default-background-color",
-      description: 'The "default" background color.\n',
-      source: "packages/badge/src/_variables.scss#L17",
+      description: 'The "default" background color.',
+      source: "packages/badge/src/_variables.scss#L19",
       packageName: "badge",
       type: "Color",
       value: "rgba($rmd-black-base, 0.2)",
@@ -172,8 +172,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-badge-default-color": {
       name: "rmd-badge-default-color",
-      description: 'The "default" themed text color.\n',
-      source: "packages/badge/src/_variables.scss#L21-L25",
+      description: 'The "default" themed text color.',
+      source: "packages/badge/src/_variables.scss#L27-L31",
       packageName: "badge",
       type: "Color",
       value:
@@ -184,7 +184,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-badge-font-size": {
       name: "rmd-badge-font-size",
       description: "The badge's font size.\n",
-      source: "packages/badge/src/_variables.scss#L29",
+      source: "packages/badge/src/_variables.scss#L35",
       packageName: "badge",
       type: "Number",
       value: "0.625rem",
@@ -193,7 +193,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-badge-offset-top": {
       name: "rmd-badge-offset-top",
       description: "The `top` position for the badge.\n",
-      source: "packages/badge/src/_variables.scss#L33",
+      source: "packages/badge/src/_variables.scss#L39",
       packageName: "badge",
       type: "Number",
       value: "0",
@@ -203,7 +203,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-badge-offset-right",
       description:
         "The `right` position for the badge. This will be swapped to be `left` for rtl languages.\n",
-      source: "packages/badge/src/_variables.scss#L38",
+      source: "packages/badge/src/_variables.scss#L44",
       packageName: "badge",
       type: "Number",
       value: "0",
@@ -213,7 +213,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-badge-theme-values",
       description:
         'A Map of all the "themeable" parts of the badge package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/badge/src/_variables.scss#L44-L52",
+      source: "packages/badge/src/_variables.scss#L50-L58",
       usedBy: [
         { name: "rmd-badge-theme", type: "function", packageName: "badge" },
         { name: "rmd-badge-theme-var", type: "function", packageName: "badge" },

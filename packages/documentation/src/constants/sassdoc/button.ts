@@ -300,6 +300,18 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-icon-size",
       description: "The height and width to apply to an icon button.\n",
       source: "packages/button/src/_variables.scss#L50",
+      usedBy: [
+        {
+          name: "rmd-app-bar-nav-margin",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-title-nav-margin",
+          type: "variable",
+          packageName: "app-bar",
+        },
+      ],
       packageName: "button",
       type: "Number",
       value: "3rem",
@@ -347,8 +359,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-color": {
       name: "rmd-button-color",
       description:
-        'This is the text color that will be applied when the theme type prop on buttons is set to "clear".\n',
-      source: "packages/button/src/_variables.scss#L75",
+        'This is the text color that will be applied when the theme type prop on buttons is set to "clear".',
+      source: "packages/button/src/_variables.scss#L77",
       packageName: "button",
       type: "Color",
       value: "rmd-theme-var(text-primary-on-background)",
@@ -359,7 +371,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-contained-elevation-transition-time",
       description:
         "The transition time for a contained button to raise to the pressed elevation.\n",
-      source: "packages/button/src/_variables.scss#L80",
+      source: "packages/button/src/_variables.scss#L82",
       packageName: "button",
       type: "Number",
       value: "0.15s",
@@ -369,7 +381,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-contained-resting-elevation",
       description:
         "The elevation to use for a resting contained button. This should be a number between 0 and 24.\n",
-      source: "packages/button/src/_variables.scss#L85",
+      source: "packages/button/src/_variables.scss#L87",
       packageName: "button",
       type: "Number",
       value: "2",
@@ -379,7 +391,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-contained-pressed-elevation",
       description:
         "The elevation to use for a contained button that is being pressed. This should be a number between 0 and 24.\n",
-      source: "packages/button/src/_variables.scss#L90",
+      source: "packages/button/src/_variables.scss#L92",
       packageName: "button",
       type: "Number",
       value: "4",
@@ -389,7 +401,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-theme-values",
       description:
         'A Map of all the "themeable" parts of the button package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/button/src/_variables.scss#L96-L108",
+      source: "packages/button/src/_variables.scss#L98-L110",
       usedBy: [
         { name: "rmd-button-theme", type: "function", packageName: "button" },
         {

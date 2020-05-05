@@ -17,6 +17,7 @@ $rmd-tree-max-depth: 3 !default;
 ///
 /// @see rmd-tree-depths
 /// @see rmd-tree-item-at-depth
+/// @require $rmd-list-item-horizontal-padding
 /// @type Number
 $rmd-tree-item-padding-incrementor: $rmd-list-item-horizontal-padding * 1.5 !default;
 
@@ -27,6 +28,7 @@ $rmd-tree-item-padding-incrementor: $rmd-list-item-horizontal-padding * 1.5 !def
 ///
 /// @see rmd-tree-depths
 /// @see rmd-tree-item-at-depth
+/// @require $rmd-list-item-text-keyline
 /// @type Number
 $rmd-tree-item-padding-base: $rmd-list-item-text-keyline !default;
 
@@ -41,6 +43,7 @@ $rmd-tree-item-focused-styles: () !default;
 /// empty Map `()`.
 ///
 /// @see rmd-tree-item-focused-styles
+/// @require $rmd-blue-500
 /// @type Map
 $rmd-tree-item-keyboard-focused-styles: (
   box-shadow: inset 0 0 0 2px $rmd-blue-500,

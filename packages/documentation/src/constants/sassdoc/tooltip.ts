@@ -206,7 +206,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-background-color": {
       name: "rmd-tooltip-background-color",
       description: "The background color to use for tooltips.\n",
-      source: "packages/tooltip/src/_variables.scss#L11",
+      source: "packages/tooltip/src/_variables.scss#L12",
       packageName: "tooltip",
       type: "Color",
       value: "#616161",
@@ -215,19 +215,19 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-color": {
       name: "rmd-tooltip-color",
       description:
-        "The text color to use for tooltips. By default, this will inherit the primary text colors for a dark or light background color of the tooltip.\n",
-      source: "packages/tooltip/src/_variables.scss#L16-L20",
+        "The text color to use for tooltips. By default, this will inherit the primary text colors for a dark or light background color of the tooltip.",
+      source: "packages/tooltip/src/_variables.scss#L19-L23",
       packageName: "tooltip",
       type: "Color",
       value:
-        "if(\n  rmd-theme-contrast-tone($rmd-tooltip-background-color) == 'light',\n  rmd-theme-var(text-primary-on-dark),\n  rmd-theme-var(text-primary-on-light)\n)",
+        "if(\n  rmd-theme-tone($rmd-tooltip-background-color) == light,\n  rmd-theme-var(text-primary-on-light),\n  rmd-theme-var(text-primary-on-dark)\n)",
       compiled: "var(--rmd-theme-text-primary-on-dark, #d9d9d9)",
       overridable: true,
     },
     "rmd-tooltip-max-width": {
       name: "rmd-tooltip-max-width",
       description: "The max width to apply to tooltips.\n",
-      source: "packages/tooltip/src/_variables.scss#L24",
+      source: "packages/tooltip/src/_variables.scss#L27",
       packageName: "tooltip",
       type: "Number",
       value: "15rem",
@@ -236,8 +236,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-enter-duration": {
       name: "rmd-tooltip-enter-duration",
       description:
-        "The enter transition time for the tooltip to enter or to exit.\n",
-      source: "packages/tooltip/src/_variables.scss#L28",
+        "The enter transition time for the tooltip to enter or to exit.",
+      source: "packages/tooltip/src/_variables.scss#L33",
       usedBy: [{ name: "rmd-tooltip", type: "mixin", packageName: "tooltip" }],
       packageName: "tooltip",
       type: "Number",
@@ -248,8 +248,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-exit-duration": {
       name: "rmd-tooltip-exit-duration",
       description:
-        "The exit transition time for the tooltip to enter or to exit.\n",
-      source: "packages/tooltip/src/_variables.scss#L32",
+        "The exit transition time for the tooltip to enter or to exit.",
+      source: "packages/tooltip/src/_variables.scss#L39",
       usedBy: [{ name: "rmd-tooltip", type: "mixin", packageName: "tooltip" }],
       packageName: "tooltip",
       type: "Number",
@@ -260,7 +260,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-z-index": {
       name: "rmd-tooltip-z-index",
       description: "The z-index to use for tooltips when they are visible.\n",
-      source: "packages/tooltip/src/_variables.scss#L36",
+      source: "packages/tooltip/src/_variables.scss#L43",
       packageName: "tooltip",
       type: "Number",
       value: "100",
@@ -269,7 +269,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-font-size": {
       name: "rmd-tooltip-font-size",
       description: "The font size to use for tooltips",
-      source: "packages/tooltip/src/_variables.scss#L42",
+      source: "packages/tooltip/src/_variables.scss#L49",
       see: [
         {
           name: "rmd-tooltip-dense-font-size",
@@ -285,7 +285,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-line-height": {
       name: "rmd-tooltip-line-height",
       description: "The default line-height to use for tooltips.\n",
-      source: "packages/tooltip/src/_variables.scss#L46",
+      source: "packages/tooltip/src/_variables.scss#L53",
       packageName: "tooltip",
       type: "Number",
       value: "1.5rem",
@@ -295,7 +295,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-min-height",
       description:
         "The min height to use for tooltips. This allows the tooltips to grow in height automatically based on line wrapping. You will need to add additional padding in these cases though.",
-      source: "packages/tooltip/src/_variables.scss#L54",
+      source: "packages/tooltip/src/_variables.scss#L61",
       see: [
         {
           name: "rmd-tooltip-dense-min-height",
@@ -311,7 +311,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-horizontal-padding": {
       name: "rmd-tooltip-horizontal-padding",
       description: "The left and right padding to apply to tooltips.",
-      source: "packages/tooltip/src/_variables.scss#L60",
+      source: "packages/tooltip/src/_variables.scss#L67",
       see: [
         {
           name: "rmd-tooltip-dense-horizontal-padding",
@@ -328,7 +328,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-line-wrap-vertical-padding",
       description:
         "The top and bottom padding to apply to tooltips when line wrapping is enabled.",
-      source: "packages/tooltip/src/_variables.scss#L67",
+      source: "packages/tooltip/src/_variables.scss#L74",
       see: [
         {
           name: "rmd-tooltip-dense-line-wrap-vertical-padding",
@@ -345,7 +345,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-spacing",
       description:
         "The amount of spacing to place between the tooltip and the tooltip's container element.",
-      source: "packages/tooltip/src/_variables.scss#L74",
+      source: "packages/tooltip/src/_variables.scss#L81",
       see: [
         {
           name: "rmd-tooltip-dense-spacing",
@@ -361,7 +361,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-dense-font-size": {
       name: "rmd-tooltip-dense-font-size",
       description: "The font size to use for dense tooltips.\n",
-      source: "packages/tooltip/src/_variables.scss#L78",
+      source: "packages/tooltip/src/_variables.scss#L85",
       packageName: "tooltip",
       type: "Number",
       value: "0.625rem",
@@ -370,7 +370,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-dense-line-height": {
       name: "rmd-tooltip-dense-line-height",
       description: "The line height to use for dense tooltips.\n",
-      source: "packages/tooltip/src/_variables.scss#L82",
+      source: "packages/tooltip/src/_variables.scss#L89",
       packageName: "tooltip",
       type: "Number",
       value: "0.825rem",
@@ -380,7 +380,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-dense-min-height",
       description:
         "The min-height to use for dense tooltips. This allows the tooltips to grow in height automatically based on line wrapping. You will need to add additional padding in these cases though.",
-      source: "packages/tooltip/src/_variables.scss#L90",
+      source: "packages/tooltip/src/_variables.scss#L97",
       see: [
         {
           name: "rmd-tooltip-min-height",
@@ -396,7 +396,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-dense-horizontal-padding": {
       name: "rmd-tooltip-dense-horizontal-padding",
       description: "The left and right padding to use for dense tooltips\n",
-      source: "packages/tooltip/src/_variables.scss#L94",
+      source: "packages/tooltip/src/_variables.scss#L101",
       packageName: "tooltip",
       type: "Number",
       value: "0.5rem",
@@ -406,7 +406,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-dense-line-wrap-vertical-padding",
       description:
         "The top and bottom padding to apply to dense tooltips when line wrapping is enabled.",
-      source: "packages/tooltip/src/_variables.scss#L101",
+      source: "packages/tooltip/src/_variables.scss#L108",
       see: [
         {
           name: "rmd-tooltip-line-wrap-vertical-padding",
@@ -423,7 +423,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-dense-spacing",
       description:
         "The amount of spacing to place between the dense tooltip and the tooltip's container element.\n",
-      source: "packages/tooltip/src/_variables.scss#L106",
+      source: "packages/tooltip/src/_variables.scss#L113",
       packageName: "tooltip",
       type: "Number",
       value: "0.875rem",
@@ -432,7 +432,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-border-radius": {
       name: "rmd-tooltip-border-radius",
       description: "The border radius to apply to tooltips\n",
-      source: "packages/tooltip/src/_variables.scss#L110",
+      source: "packages/tooltip/src/_variables.scss#L117",
       usedBy: [
         { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
       ],
@@ -445,7 +445,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-transition-distance",
       description:
         "The distance that the tooltip should animate from the tooltip's control element.\n",
-      source: "packages/tooltip/src/_variables.scss#L115",
+      source: "packages/tooltip/src/_variables.scss#L122",
       packageName: "tooltip",
       type: "Number",
       value: "0.5rem",
@@ -455,7 +455,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-position-values",
       description:
         "This is really just for internal use and a ncie way to loop over the four positions when creating styles.\n",
-      source: "packages/tooltip/src/_variables.scss#L120",
+      source: "packages/tooltip/src/_variables.scss#L127",
       packageName: "tooltip",
       type: "List",
       value: "above below left right",
@@ -465,7 +465,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-theme-values",
       description:
         'A Map of all the "themeable" parts of the overlay package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/tooltip/src/_variables.scss#L126-L144",
+      source: "packages/tooltip/src/_variables.scss#L133-L151",
       usedBy: [
         { name: "rmd-tooltip-theme", type: "function", packageName: "tooltip" },
         {

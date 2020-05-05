@@ -187,8 +187,8 @@ const sassdoc: PackageSassDoc = {
   variables: {
     "rmd-form-error-color": {
       name: "rmd-form-error-color",
-      description: "The color to use when a form contains an error.\n",
-      source: "packages/form/src/_variables.scss#L17",
+      description: "The color to use when a form contains an error.",
+      source: "packages/form/src/_variables.scss#L19",
       packageName: "form",
       type: "Color",
       value: "$rmd-theme-error",
@@ -198,8 +198,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-form-error-hover-color": {
       name: "rmd-form-error-hover-color",
       description:
-        "This is the color that is used when a text field/textarea is errored and the user hovers over it.\n",
-      source: "packages/form/src/_variables.scss#L22-L27",
+        "This is the color that is used when a text field/textarea is errored and the user hovers over it.",
+      source: "packages/form/src/_variables.scss#L26-L31",
       packageName: "form",
       type: "Color",
       value:
@@ -210,8 +210,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-form-active-color": {
       name: "rmd-form-active-color",
       description:
-        "The color to use when a form element (text, checkbox, radio, etc) is currently active by the user(normally focus).\n",
-      source: "packages/form/src/_variables.scss#L32",
+        "The color to use when a form element (text, checkbox, radio, etc) is currently active by the user(normally focus).",
+      source: "packages/form/src/_variables.scss#L38",
       packageName: "form",
       type: "Color",
       value: "rmd-theme-var(secondary)",
@@ -220,8 +220,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-form-disabled-color": {
       name: "rmd-form-disabled-color",
-      description: "The color to use when a form element is disabled.\n",
-      source: "packages/form/src/_variables.scss#L36",
+      description: "The color to use when a form element is disabled.",
+      source: "packages/form/src/_variables.scss#L44",
       packageName: "form",
       type: "Color",
       value: "rmd-theme-var(text-disabled-on-background)",
@@ -231,8 +231,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-form-placeholder-color": {
       name: "rmd-form-placeholder-color",
       description:
-        "The default color to use for placeholder text within text fields.\n",
-      source: "packages/form/src/_variables.scss#L40",
+        "The default color to use for placeholder text within text fields.",
+      source: "packages/form/src/_variables.scss#L50",
       packageName: "form",
       type: "Color",
       value: "rmd-theme-var(text-secondary-on-background)",
@@ -243,7 +243,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-theme-values",
       description:
         'A Map of all the "themeable" parts of the form package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/form/src/_variables.scss#L48-L80",
+      source: "packages/form/src/_variables.scss#L58-L90",
       usedBy: [
         { name: "rmd-form-theme", type: "function", packageName: "form" },
         { name: "rmd-form-theme-var", type: "function", packageName: "form" },
@@ -363,8 +363,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-option-focused-styles": {
       name: "rmd-option-focused-styles",
       description:
-        "The styles to apply when an option is focused with `aria-activedescendant` behavior. This should be a map of styles that should be applied.\n",
-      source: "packages/form/src/select/_variables.scss#L31-L33",
+        "The styles to apply when an option is focused with `aria-activedescendant` behavior. This should be a map of styles that should be applied.",
+      source: "packages/form/src/select/_variables.scss#L33-L35",
       packageName: "form",
       type: "Map",
       value: "(\n  box-shadow: inset 0 0 0 2px $rmd-blue-500,\n)",
@@ -374,8 +374,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-option-selected-styles": {
       name: "rmd-option-selected-styles",
       description:
-        "The styles to apply when an option is selected. This should be a map of style properties with values to apply.\n",
-      source: "packages/form/src/select/_variables.scss#L38-L41",
+        "The styles to apply when an option is selected. This should be a map of style properties with values to apply.",
+      source: "packages/form/src/select/_variables.scss#L43-L46",
       packageName: "form",
       type: "Map",
       value:
@@ -387,7 +387,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-option-selected-offset",
       description:
         "The amount of `left` (or right when rtl languages are used) to apply to the option's selected checkmark css.\n",
-      source: "packages/form/src/select/_variables.scss#L46",
+      source: "packages/form/src/select/_variables.scss#L51",
       packageName: "form",
       type: "Number",
       value: "0.5rem",
@@ -397,7 +397,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-option-selected-content",
       description:
         "The content to use for the selected state of the option. If this value is set to null, the `::after` styles will not be created and the `$rmd-option-horizontal-padding` variable will not be used to update the list item's horizontal padding for options. This is useful if you want to use icons or ignore the selected state instead.\n",
-      source: "packages/form/src/select/_variables.scss#L54",
+      source: "packages/form/src/select/_variables.scss#L59",
       packageName: "form",
       type: "String",
       value: "'\\2713'",
@@ -407,7 +407,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-option-horizontal-padding",
       description:
         "The amount of horizontal padding that should be applied to each option.\nThis overrides the `$rmd-list-item-horizontal-padding` css variable so that the selected checkmark styles can appear nicely.\n",
-      source: "packages/form/src/select/_variables.scss#L61",
+      source: "packages/form/src/select/_variables.scss#L66",
       see: [
         {
           name: "rmd-option-selected-content",
@@ -423,8 +423,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-active-color": {
       name: "rmd-text-field-active-color",
       description:
-        "The color to use for the text field's borders/underlines while the user is focusing the text field.\n",
-      source: "packages/form/src/text-field/_variables.scss#L13",
+        "The color to use for the text field's borders/underlines while the user is focusing the text field.",
+      source: "packages/form/src/text-field/_variables.scss#L15",
       packageName: "form",
       type: "Color",
       value: "$rmd-states-focus-shadow-color",
@@ -434,8 +434,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-light-border-color": {
       name: "rmd-text-field-light-border-color",
       description:
-        "The text field's border color to use in light themed apps or backgrounds.\n",
-      source: "packages/form/src/text-field/_variables.scss#L17",
+        "The text field's border color to use in light themed apps or backgrounds.",
+      source: "packages/form/src/text-field/_variables.scss#L21",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -448,8 +448,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-dark-border-color": {
       name: "rmd-text-field-dark-border-color",
       description:
-        "The text field's border color to use in dark themed apps or backgrounds.\n",
-      source: "packages/form/src/text-field/_variables.scss#L21",
+        "The text field's border color to use in dark themed apps or backgrounds.",
+      source: "packages/form/src/text-field/_variables.scss#L27",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "form",
       type: "Color",
@@ -459,8 +459,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-text-field-border-color": {
       name: "rmd-text-field-border-color",
-      description: "The default text field's border color to use.\n",
-      source: "packages/form/src/text-field/_variables.scss#L25-L29",
+      description: "The default text field's border color to use.",
+      source: "packages/form/src/text-field/_variables.scss#L33-L37",
       packageName: "form",
       type: "Color",
       value:
@@ -471,8 +471,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-light-border-hover-color": {
       name: "rmd-text-field-light-border-hover-color",
       description:
-        "The text field's border color to use in light themed apps or backgrounds when the user is hovering the text field.\n",
-      source: "packages/form/src/text-field/_variables.scss#L34",
+        "The text field's border color to use in light themed apps or backgrounds when the user is hovering the text field.",
+      source: "packages/form/src/text-field/_variables.scss#L44",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -485,8 +485,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-dark-border-hover-color": {
       name: "rmd-text-field-dark-border-hover-color",
       description:
-        "The text field's border color to use in dark themed apps or backgrounds when the user is hovering the text field.\n",
-      source: "packages/form/src/text-field/_variables.scss#L39",
+        "The text field's border color to use in dark themed apps or backgrounds when the user is hovering the text field.",
+      source: "packages/form/src/text-field/_variables.scss#L51",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "form",
       type: "Color",
@@ -496,8 +496,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-text-field-border-hover-color": {
       name: "rmd-text-field-border-hover-color",
-      description: "The default text field's hover border color to use.\n",
-      source: "packages/form/src/text-field/_variables.scss#L43-L47",
+      description: "The default text field's hover border color to use.",
+      source: "packages/form/src/text-field/_variables.scss#L57-L61",
       packageName: "form",
       type: "Color",
       value:
@@ -508,7 +508,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-border-radius": {
       name: "rmd-text-field-border-radius",
       description: "The border radius to apply to text fields.\n",
-      source: "packages/form/src/text-field/_variables.scss#L51",
+      source: "packages/form/src/text-field/_variables.scss#L65",
       packageName: "form",
       type: "Number",
       value: "0.25rem",
@@ -517,7 +517,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-border-width": {
       name: "rmd-text-field-border-width",
       description: "The default border width for outlined text fields.\n",
-      source: "packages/form/src/text-field/_variables.scss#L55",
+      source: "packages/form/src/text-field/_variables.scss#L69",
       packageName: "form",
       type: "Number",
       value: "1px",
@@ -527,7 +527,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-border-width-active",
       description:
         "The border width for outlined text fields that are currently focused.\n",
-      source: "packages/form/src/text-field/_variables.scss#L59",
+      source: "packages/form/src/text-field/_variables.scss#L73",
       packageName: "form",
       type: "Number",
       value: "2px",
@@ -536,7 +536,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-label-height": {
       name: "rmd-text-field-label-height",
       description: "The height to use for a text field with a label.\n",
-      source: "packages/form/src/text-field/_variables.scss#L63",
+      source: "packages/form/src/text-field/_variables.scss#L77",
       packageName: "form",
       type: "Number",
       value: "3.5rem",
@@ -546,7 +546,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-label-dense-height",
       description:
         "The height to use for a text field with a label with the dense spec.\n",
-      source: "packages/form/src/text-field/_variables.scss#L67",
+      source: "packages/form/src/text-field/_variables.scss#L81",
       packageName: "form",
       type: "Number",
       value: "3.25rem",
@@ -556,7 +556,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-height",
       description:
         "The height to use for a text field without a label (so placeholder only).\n",
-      source: "packages/form/src/text-field/_variables.scss#L71",
+      source: "packages/form/src/text-field/_variables.scss#L85",
       packageName: "form",
       type: "Number",
       value: "3rem",
@@ -566,7 +566,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-dense-height",
       description:
         "The height to use for a text field without a label with the dense spec (so placeholder only).\n",
-      source: "packages/form/src/text-field/_variables.scss#L76",
+      source: "packages/form/src/text-field/_variables.scss#L90",
       packageName: "form",
       type: "Number",
       value: "2.5rem",
@@ -576,7 +576,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-outline-padding",
       description:
         "The amount of padding to apply to the left and right of the text field when it has the outline theme applied.\n",
-      source: "packages/form/src/text-field/_variables.scss#L81",
+      source: "packages/form/src/text-field/_variables.scss#L95",
       packageName: "form",
       type: "Number",
       value: "1rem",
@@ -586,7 +586,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-underline-label-padding-top",
       description:
         "The amount of padding to apply to the top of an underlined or filled text field. This is used to push the input down a little bit to look nice with the floating label.\n",
-      source: "packages/form/src/text-field/_variables.scss#L87",
+      source: "packages/form/src/text-field/_variables.scss#L101",
       packageName: "form",
       type: "Number",
       value: "1rem",
@@ -595,8 +595,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-underline-label-left-offset": {
       name: "rmd-text-field-underline-label-left-offset",
       description:
-        "The amount of offset to apply to the floating label for an underlined or filled text field when there is an icon to the left of the input.\n",
-      source: "packages/form/src/text-field/_variables.scss#L92",
+        "The amount of offset to apply to the floating label for an underlined or filled text field when there is an icon to the left of the input.",
+      source: "packages/form/src/text-field/_variables.scss#L108",
       packageName: "form",
       type: "Number",
       value: "$rmd-icon-spacing-with-text",
@@ -607,7 +607,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-underline-dense-padding-top",
       description:
         "The amount of padding to apply to the top of an underlined or filled text field when the dense theme is enabled. This is used to push the input down a little bit to look nice with the floating label.\n",
-      source: "packages/form/src/text-field/_variables.scss#L98",
+      source: "packages/form/src/text-field/_variables.scss#L114",
       packageName: "form",
       type: "Number",
       value: "0.25rem",
@@ -617,7 +617,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-underline-padding",
       description:
         "The amount of padding to apply to the left and right of the text field when it has the underline theme applied.\n",
-      source: "packages/form/src/text-field/_variables.scss#L103",
+      source: "packages/form/src/text-field/_variables.scss#L119",
       packageName: "form",
       type: "Number",
       value: "null",
@@ -627,7 +627,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-filled-padding",
       description:
         "The amount of padding to apply to the left and right of the text field when it has the filled theme applied.\n",
-      source: "packages/form/src/text-field/_variables.scss#L108",
+      source: "packages/form/src/text-field/_variables.scss#L124",
       packageName: "form",
       type: "Number",
       value: "0.75rem",
@@ -636,8 +636,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-filled-light-background-color": {
       name: "rmd-text-field-filled-light-background-color",
       description:
-        "The background color to use for filled text fields when using the light theme.\n",
-      source: "packages/form/src/text-field/_variables.scss#L113",
+        "The background color to use for filled text fields when using the light theme.",
+      source: "packages/form/src/text-field/_variables.scss#L131",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -650,8 +650,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-filled-dark-background-color": {
       name: "rmd-text-field-filled-dark-background-color",
       description:
-        "The background color to use for filled text fields when using the dark theme.\n",
-      source: "packages/form/src/text-field/_variables.scss#L118",
+        "The background color to use for filled text fields when using the dark theme.",
+      source: "packages/form/src/text-field/_variables.scss#L138",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "form",
       type: "Color",
@@ -661,8 +661,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-text-field-filled-background-color": {
       name: "rmd-text-field-filled-background-color",
-      description: "The default background color for filled text fields.\n",
-      source: "packages/form/src/text-field/_variables.scss#L122-L126",
+      description: "The default background color for filled text fields.",
+      source: "packages/form/src/text-field/_variables.scss#L144-L148",
       packageName: "form",
       type: "Color",
       value:
@@ -674,7 +674,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-filled-border-radius",
       description:
         "The border radius to apply to the top left and top right of the filled text field.\n",
-      source: "packages/form/src/text-field/_variables.scss#L131",
+      source: "packages/form/src/text-field/_variables.scss#L153",
       packageName: "form",
       type: "Number",
       value: "0.25rem",
@@ -683,8 +683,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-addon-margin": {
       name: "rmd-text-field-addon-margin",
       description:
-        "The amount of spacing between the left or right of the text field and the icon.\n",
-      source: "packages/form/src/text-field/_variables.scss#L136",
+        "The amount of spacing between the left or right of the text field and the icon.",
+      source: "packages/form/src/text-field/_variables.scss#L160",
       packageName: "form",
       type: "Number",
       value: "$rmd-icon-spacing-with-text",
@@ -694,7 +694,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-textarea-vertical-padding": {
       name: "rmd-textarea-vertical-padding",
       description: "An additional amount of padding to apply to textareas.\n",
-      source: "packages/form/src/text-field/_variables.scss#L140",
+      source: "packages/form/src/text-field/_variables.scss#L164",
       packageName: "form",
       type: "Number",
       value: "0.5rem",
@@ -704,7 +704,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-textarea-addon-top",
       description:
         "The amount to start offseting the textarea's left/right inline addon icons.\nIf this value isn't set, the icons will be centered in the textarea's height and will continually be centered as the user types more and more text.\n",
-      source: "packages/form/src/text-field/_variables.scss#L146",
+      source: "packages/form/src/text-field/_variables.scss#L170",
       packageName: "form",
       type: "Number",
       value: "1rem",
@@ -714,7 +714,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-message-min-height",
       description:
         "The minimum height for the `FormMessage` component. This is really just required to help prevent layout changes when the messages are added and removed from the DOM.",
-      source: "packages/form/src/text-field/_variables.scss#L153",
+      source: "packages/form/src/text-field/_variables.scss#L177",
       packageName: "form",
       type: "Number",
       value: "2rem",
@@ -724,7 +724,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-message-margin-top",
       description:
         "The amount of margin that should be applied to the top of the `FormMessage` component.\n",
-      source: "packages/form/src/text-field/_variables.scss#L158",
+      source: "packages/form/src/text-field/_variables.scss#L182",
       packageName: "form",
       type: "Number",
       value: "0.5rem",
@@ -734,7 +734,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-message-margin-bottom",
       description:
         "The amount of margin that should be applied to the top of the `FormMessage` component.\n",
-      source: "packages/form/src/text-field/_variables.scss#L163",
+      source: "packages/form/src/text-field/_variables.scss#L187",
       packageName: "form",
       type: "Number",
       value: "1rem",
@@ -744,7 +744,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-message-counter-spacing",
       description:
         "The amount of padding to apply to the left of the `FormMessage`'s counter component.",
-      source: "packages/form/src/text-field/_variables.scss#L169",
+      source: "packages/form/src/text-field/_variables.scss#L194",
       packageName: "form",
       type: "Number",
       value: "$rmd-icon-spacing-with-text",
@@ -755,7 +755,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-message-font-size",
       description:
         "The font size to apply to the `FormMessage` component for the messages as well as the counter component.\n\nNote: The remaining typography styles will come from `body-2`.",
-      source: "packages/form/src/text-field/_variables.scss#L177",
+      source: "packages/form/src/text-field/_variables.scss#L202",
       packageName: "form",
       type: "Number",
       value: "0.75rem",
@@ -836,8 +836,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-track-background-color": {
       name: "rmd-switch-track-background-color",
       description:
-        "The background color for a switch's track. This is the element that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L46",
+        "The background color for a switch's track. This is the element that the ball animates left and right on.",
+      source: "packages/form/src/toggle/_variables.scss#L48",
       packageName: "form",
       type: "Color",
       value: "rgba($rmd-black-base, 0.38)",
@@ -848,7 +848,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-border-radius",
       description:
         "The border radius to apply to the switch's track. This is the element that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L51",
+      source: "packages/form/src/toggle/_variables.scss#L53",
       packageName: "form",
       type: "Number",
       value: "0.5rem",
@@ -857,7 +857,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-size": {
       name: "rmd-switch-ball-size",
       description: "The size of the switch's ball.\n",
-      source: "packages/form/src/toggle/_variables.scss#L55",
+      source: "packages/form/src/toggle/_variables.scss#L57",
       packageName: "form",
       type: "Number",
       value: "1.25rem",
@@ -866,7 +866,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-border-radius": {
       name: "rmd-switch-ball-border-radius",
       description: "The border radius for the switch's ball.\n",
-      source: "packages/form/src/toggle/_variables.scss#L59",
+      source: "packages/form/src/toggle/_variables.scss#L61",
       packageName: "form",
       type: "Number",
       value: "50%",
@@ -876,7 +876,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-ball-offset",
       description:
         "The amount of offset that should be applied to the ball relative to its track. This is really used so the ball can overlap the track a bit to look a bit nicer.\n",
-      source: "packages/form/src/toggle/_variables.scss#L64",
+      source: "packages/form/src/toggle/_variables.scss#L66",
       packageName: "form",
       type: "Number",
       value: "0.25rem",
@@ -886,7 +886,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-container-vertical-padding",
       description:
         "The vertical padding for the switch container. This should generally be large enough so that the ball does not overlap any other elements.\n",
-      source: "packages/form/src/toggle/_variables.scss#L69",
+      source: "packages/form/src/toggle/_variables.scss#L71",
       packageName: "form",
       type: "Number",
       value: "0.5rem",
@@ -895,8 +895,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-container-horizontal-padding": {
       name: "rmd-switch-container-horizontal-padding",
       description:
-        "The horizontal padding for the switch container. This should generally be large enough so that the ball does not overlap the label or other elements.\n",
-      source: "packages/form/src/toggle/_variables.scss#L74",
+        "The horizontal padding for the switch container. This should generally be large enough so that the ball does not overlap the label or other elements.",
+      source: "packages/form/src/toggle/_variables.scss#L77",
       packageName: "form",
       type: "Number",
       value: "$rmd-switch-ball-size / 2",
@@ -906,8 +906,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-disabled-color": {
       name: "rmd-switch-ball-disabled-color",
       description:
-        "The color to use for the switch's ball when it is toggled on and disabled.\n",
-      source: "packages/form/src/toggle/_variables.scss#L78-L83",
+        "The color to use for the switch's ball when it is toggled on and disabled.",
+      source: "packages/form/src/toggle/_variables.scss#L84-L89",
       packageName: "form",
       type: "Color",
       value:
@@ -919,7 +919,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-width",
       description:
         "The width of the circular progress bar. This will make the progress bar more prominent than the normal circular progress.\n",
-      source: "packages/form/src/toggle/_variables.scss#L88",
+      source: "packages/form/src/toggle/_variables.scss#L94",
       packageName: "form",
       type: "Number",
       value: "12",
@@ -928,8 +928,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-progress-background-color": {
       name: "rmd-switch-progress-background-color",
       description:
-        "The background color to use for the switch's ball while the the switch is loading.\n",
-      source: "packages/form/src/toggle/_variables.scss#L92",
+        "The background color to use for the switch's ball while the the switch is loading.",
+      source: "packages/form/src/toggle/_variables.scss#L100",
       packageName: "form",
       type: "Color",
       value: "$rmd-white-base",
@@ -940,7 +940,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-padding",
       description:
         "The amount of padding to apply to the async switch's progress bar. This will make it so there is some space between the switch's ball and the progress bar.\n",
-      source: "packages/form/src/toggle/_variables.scss#L97",
+      source: "packages/form/src/toggle/_variables.scss#L105",
       packageName: "form",
       type: "Number",
       value: "0.125rem",

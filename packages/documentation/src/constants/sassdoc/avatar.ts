@@ -203,7 +203,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-background-color",
       description:
         "The default background color for an avatar. This will be used until the `color` prop is provided to the `Avatar` component.",
-      source: "packages/avatar/src/_variables.scss#L13",
+      source: "packages/avatar/src/_variables.scss#L14",
       see: [
         { name: "rmd-avatar-colors", type: "mixin", packageName: "avatar" },
       ],
@@ -215,8 +215,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-avatar-border-color": {
       name: "rmd-avatar-border-color",
-      description: "The border color to apply to the avatar.\n",
-      source: "packages/avatar/src/_variables.scss#L17-L20",
+      description: "The border color to apply to the avatar.",
+      source: "packages/avatar/src/_variables.scss#L22-L25",
       packageName: "avatar",
       type: "Color",
       value:
@@ -227,7 +227,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-avatar-border-radius": {
       name: "rmd-avatar-border-radius",
       description: "The border-radius for the avatar.\n",
-      source: "packages/avatar/src/_variables.scss#L24",
+      source: "packages/avatar/src/_variables.scss#L29",
       packageName: "avatar",
       type: "Number",
       value: "50%",
@@ -236,8 +236,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-avatar-color": {
       name: "rmd-avatar-color",
       description:
-        "The default text color for the avatar. This will be used until the `color` prop is provided to the `Avatar` component.\n",
-      source: "packages/avatar/src/_variables.scss#L29",
+        "The default text color for the avatar. This will be used until the `color` prop is provided to the `Avatar` component.",
+      source: "packages/avatar/src/_variables.scss#L36",
       packageName: "avatar",
       type: "Color",
       value: "$rmd-grey-100",
@@ -247,7 +247,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-avatar-size": {
       name: "rmd-avatar-size",
       description: "The size for the avatar.\n",
-      source: "packages/avatar/src/_variables.scss#L33",
+      source: "packages/avatar/src/_variables.scss#L40",
       packageName: "avatar",
       type: "Number",
       value: "2.5rem",
@@ -257,7 +257,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-font-size",
       description:
         "The font size to apply to avatars. This is used when the avatar is a letter.\n",
-      source: "packages/avatar/src/_variables.scss#L37",
+      source: "packages/avatar/src/_variables.scss#L44",
       packageName: "avatar",
       type: "Number",
       value: "1.5rem",
@@ -266,8 +266,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-avatar-line-height": {
       name: "rmd-avatar-line-height",
       description:
-        "The line height to use for avatars. This is really only useful when the avatar is a letter.\n",
-      source: "packages/avatar/src/_variables.scss#L42",
+        "The line height to use for avatars. This is really only useful when the avatar is a letter.",
+      source: "packages/avatar/src/_variables.scss#L51",
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
       ],
@@ -281,7 +281,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-colors",
       description:
         "A Map of all the available colors for the avatar. This map can be updated with new values if the defaults are not to your liking, but it is recommended to create your own themes instead.",
-      source: "packages/avatar/src/_variables.scss#L49-L69",
+      source: "packages/avatar/src/_variables.scss#L90-L110",
       packageName: "avatar",
       type: "Map",
       value:
@@ -294,7 +294,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-theme-values",
       description:
         'A Map of all the "themeable" parts of the avatar package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/avatar/src/_variables.scss#L75-L82",
+      source: "packages/avatar/src/_variables.scss#L116-L123",
       usedBy: [
         { name: "rmd-avatar-theme", type: "function", packageName: "avatar" },
         {

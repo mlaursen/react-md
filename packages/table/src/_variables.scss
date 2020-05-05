@@ -44,6 +44,7 @@ $rmd-table-cell-dense-height: 2rem !default;
 
 /// The text color for `<td>` cells within a table.
 ///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-table-cell-color: rmd-theme-var(text-primary-on-background) !default;
 
@@ -103,12 +104,14 @@ $rmd-table-header-sticky-position: 0 !default;
 /// The background color to use when hovering over a row within the `<tbody>`
 /// and the `hoverable` styles have been enabled.
 ///
+/// @require $rmd-black-base
 /// @type Color
 $rmd-table-row-hover-color: rgba($rmd-black-base, 0.12) !default;
 
 /// The background color to use when a row has been selected within the
 /// `<tbody>`.
 ///
+/// @require rmd-states-theme-var
 /// @type Color|String
 $rmd-table-row-selected-color: rmd-states-theme-var(selected-color) !default;
 

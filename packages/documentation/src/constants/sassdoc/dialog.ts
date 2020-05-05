@@ -142,8 +142,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-dialog-z-index": {
       name: "rmd-dialog-z-index",
       description:
-        "The z-index for dialogs. This value is a bit larger than overlays just in case other components are using the overlay as well. The dialog's overlay will also gain this z-index value.\n",
-      source: "packages/dialog/src/_variables.scss#L17",
+        "The z-index for dialogs. This value is a bit larger than overlays just in case other components are using the overlay as well. The dialog's overlay will also gain this z-index value.",
+      source: "packages/dialog/src/_variables.scss#L19",
       packageName: "dialog",
       type: "Number",
       value: "$rmd-overlay-z-index + 10",
@@ -154,7 +154,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-vertical-margin",
       description:
         "The amount of vertical viewport spacing there should be between the edge of the screen and a non-full page dialog. This value should be big enough so that users can still touch the overlay when a dialog is visible.\n",
-      source: "packages/dialog/src/_variables.scss#L23",
+      source: "packages/dialog/src/_variables.scss#L25",
       packageName: "dialog",
       type: "Number",
       value: "1.5rem",
@@ -164,7 +164,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-horizontal-margin",
       description:
         "The amount of horizontal viewport spacing there should be between the edge of the screen and a non-full page dialog. This value should be big enough so that users can still touch the overlay when a dialog is visible.\n",
-      source: "packages/dialog/src/_variables.scss#L29",
+      source: "packages/dialog/src/_variables.scss#L31",
       packageName: "dialog",
       type: "Number",
       value: "2.5rem",
@@ -174,7 +174,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-header-padding",
       description:
         "The amount of padding to apply to the `DialogHeader` component.\n",
-      source: "packages/dialog/src/_variables.scss#L33",
+      source: "packages/dialog/src/_variables.scss#L35",
       packageName: "dialog",
       type: "Number",
       value: "1.5rem",
@@ -184,7 +184,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-header-padding-bottom",
       description:
         "The amount of padding-bottom to apply to the `DialogHeader` component. This is a bit smaller than the `$rmd-dialog-header-padding` value since it is usually used alongside the `DialogContent` component which has its own padding attached.\n",
-      source: "packages/dialog/src/_variables.scss#L40",
+      source: "packages/dialog/src/_variables.scss#L42",
       packageName: "dialog",
       type: "Number",
       value: "1.25rem",
@@ -194,7 +194,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-content-padding",
       description:
         "The amount of padding to apply to the `DialogContent` component.\n",
-      source: "packages/dialog/src/_variables.scss#L44",
+      source: "packages/dialog/src/_variables.scss#L46",
       packageName: "dialog",
       type: "Number",
       value: "1.5rem",
@@ -204,7 +204,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-footer-padding",
       description:
         "The amount of padding to apply to the `DialogFooter` component.\n",
-      source: "packages/dialog/src/_variables.scss#L48",
+      source: "packages/dialog/src/_variables.scss#L50",
       packageName: "dialog",
       type: "Number",
       value: "0.5rem",
@@ -214,7 +214,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-transition-distance",
       description:
         'The distance that the dialog should travel while animating in and out of view. By default, this animation will cause the dialog to "fly" upwards. If you change this value to be a negative number, it will "fly" downwards.\n',
-      source: "packages/dialog/src/_variables.scss#L54",
+      source: "packages/dialog/src/_variables.scss#L56",
       packageName: "dialog",
       type: "Number",
       value: "1.875rem",
@@ -224,7 +224,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-enter-duration",
       description:
         "The enter animation duration. This should match the `timeout` prop for the `Dialog` component.\n",
-      source: "packages/dialog/src/_variables.scss#L59",
+      source: "packages/dialog/src/_variables.scss#L61",
       packageName: "dialog",
       type: "Number",
       value: "0.2s",
@@ -234,7 +234,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-leave-duration",
       description:
         "The leave animation duration. This should match the `timeout` prop for the `Dialog` component.\n",
-      source: "packages/dialog/src/_variables.scss#L64",
+      source: "packages/dialog/src/_variables.scss#L66",
       packageName: "dialog",
       type: "Number",
       value: "0.15s",
@@ -244,7 +244,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-min-width",
       description:
         "The min width for a centered dialog. This is really just applied so you don't have super tiny dialogs if there isn't enough content in the dialog.\n",
-      source: "packages/dialog/src/_variables.scss#L69",
+      source: "packages/dialog/src/_variables.scss#L71",
       packageName: "dialog",
       type: "Number",
       value: "17.5rem",
@@ -254,7 +254,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-theme-values",
       description:
         'A Map of all the "themeable" parts of the dialog package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/dialog/src/_variables.scss#L75-L84",
+      source: "packages/dialog/src/_variables.scss#L77-L86",
       usedBy: [
         { name: "rmd-dialog-theme", type: "function", packageName: "dialog" },
         {

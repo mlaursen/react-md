@@ -41,11 +41,13 @@ $rmd-list-dense-horizontal-padding: $rmd-list-horizontal-padding !default;
 /// typography applied to lists uses the `subtitle-1` typography specs, but it
 /// looks better to apply the main text line-height within lists.
 ///
+/// @require rmd-typography-value
 /// @type Number
 $rmd-list-line-height: rmd-typography-value(body-1, line-height) !default;
 
 /// The font size to apply to all items in a list.
 ///
+/// @require rmd-typography-value
 /// @type Number
 $rmd-list-font-size: rmd-typography-value(subtitle-1, font-size) !default;
 

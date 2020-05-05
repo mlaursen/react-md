@@ -214,8 +214,8 @@ const sassdoc: PackageSassDoc = {
   variables: {
     "rmd-media-overlay-background-color": {
       name: "rmd-media-overlay-background-color",
-      description: "The background color for a media overlay.\n",
-      source: "packages/media/src/_variables.scss#L9",
+      description: "The background color for a media overlay.",
+      source: "packages/media/src/_variables.scss#L11",
       packageName: "media",
       type: "Color",
       value: "rgba($rmd-black-base, 0.54)",
@@ -225,8 +225,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-selectors": {
       name: "rmd-media-selectors",
       description:
-        "A list of selectors or html elements that should be considered responsive media by default. This will make it so that when using the `MediaContainer` component, the following elements will be responsive automatically.\n",
-      source: "packages/media/src/_variables.scss#L15",
+        "A list of selectors or html elements that should be considered responsive media by default. This will make it so that when using the `MediaContainer` component, the following elements will be responsive automatically.",
+      source: "packages/media/src/_variables.scss#L18",
       usedBy: [
         { name: "rmd-media-container", type: "mixin", packageName: "media" },
       ],
@@ -238,8 +238,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-default-aspect-ratio": {
       name: "rmd-media-default-aspect-ratio",
       description:
-        "The default aspect ratio for the media component when an aspect ratio is enforced.\n",
-      source: "packages/media/src/_variables.scss#L20",
+        "The default aspect ratio for the media component when an aspect ratio is enforced.",
+      source: "packages/media/src/_variables.scss#L24",
       packageName: "media",
       type: "Number",
       value: "percentage(9 / 16)",
@@ -249,7 +249,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-media-default-aspect-ratios",
       description:
         "A Map including the default aspect ratios to create for responsive media with a forced aspect ratio. Each key must be a string for a class name suffix and each value should be a list in the form of (width height).\n",
-      source: "packages/media/src/_variables.scss#L26-L30",
+      source: "packages/media/src/_variables.scss#L30-L34",
       usedBy: [
         { name: "rmd-media-container", type: "mixin", packageName: "media" },
       ],
@@ -261,7 +261,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-media-overlay-padding": {
       name: "rmd-media-overlay-padding",
       description: "The default padding for the media overlay component.\n",
-      source: "packages/media/src/_variables.scss#L34",
+      source: "packages/media/src/_variables.scss#L38",
       usedBy: [
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
       ],
@@ -274,7 +274,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-media-overlay-horizontal-width",
       description:
         "This is the default width for the media overlay component when the position is set to `left`, `right`, or `center`. This is really just added since these positions might cause overflow issues since their width will change based on the content size. Setting it to a width will prevent this.\n\nSo if you'd like to add the default behavior back, you can set this to `100%` or `null`.\n",
-      source: "packages/media/src/_variables.scss#L44",
+      source: "packages/media/src/_variables.scss#L48",
       usedBy: [
         {
           name: "rmd-media-overlay-position",
@@ -291,7 +291,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-media-overlay-positions",
       description:
         "The positions for the media overlay. This can be set to an empty list or null if you'd like to save a few bytes by not generating the styles for some positions.\n",
-      source: "packages/media/src/_variables.scss#L50",
+      source: "packages/media/src/_variables.scss#L54",
       usedBy: [
         {
           name: "rmd-media-overlay-position",

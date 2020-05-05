@@ -9,18 +9,26 @@
 
 /// The color to use for the text field's borders/underlines while the user is
 /// focusing the text field.
+///
+/// @require $rmd-states-focus-shadow-color
 /// @type Color
 $rmd-text-field-active-color: $rmd-states-focus-shadow-color !default;
 
 /// The text field's border color to use in light themed apps or backgrounds.
+///
+/// @require $rmd-black-base
 /// @type Color
 $rmd-text-field-light-border-color: rgba($rmd-black-base, 0.12) !default;
 
 /// The text field's border color to use in dark themed apps or backgrounds.
+///
+/// @require $rmd-white-base
 /// @type Color
 $rmd-text-field-dark-border-color: rgba($rmd-white-base, 0.5) !default;
 
 /// The default text field's border color to use.
+///
+/// @require $rmd-theme-light
 /// @type Color
 $rmd-text-field-border-color: if(
   $rmd-theme-light,
@@ -30,15 +38,21 @@ $rmd-text-field-border-color: if(
 
 /// The text field's border color to use in light themed apps or backgrounds
 /// when the user is hovering the text field.
+///
+/// @require $rmd-black-base
 /// @type Color
 $rmd-text-field-light-border-hover-color: rgba($rmd-black-base, 0.87) !default;
 
 /// The text field's border color to use in dark themed apps or backgrounds when
 /// the user is hovering the text field.
+///
+/// @require $rmd-white-base
 /// @type Color
 $rmd-text-field-dark-border-hover-color: rgba($rmd-white-base, 0.87) !default;
 
 /// The default text field's hover border color to use.
+///
+/// @require $rmd-theme-light
 /// @type Color
 $rmd-text-field-border-hover-color: if(
   $rmd-theme-light,
@@ -88,6 +102,8 @@ $rmd-text-field-underline-label-padding-top: 1rem !default;
 
 /// The amount of offset to apply to the floating label for an underlined or
 /// filled text field when there is an icon to the left of the input.
+///
+/// @require $rmd-icon-spacing-with-text
 /// @type Number
 $rmd-text-field-underline-label-left-offset: $rmd-icon-spacing-with-text !default;
 
@@ -109,15 +125,21 @@ $rmd-text-field-filled-padding: 0.75rem !default;
 
 /// The background color to use for filled text fields when using the light
 /// theme.
+///
+/// @require $rmd-grey-100
 /// @type Color
 $rmd-text-field-filled-light-background-color: $rmd-grey-100 !default;
 
 /// The background color to use for filled text fields when using the dark
 /// theme.
+///
+/// @require $rmd-grey-700
 /// @type Color
 $rmd-text-field-filled-dark-background-color: $rmd-grey-700 !default;
 
 /// The default background color for filled text fields.
+///
+/// @require $rmd-theme-light
 /// @type Color
 $rmd-text-field-filled-background-color: if(
   $rmd-theme-light,
@@ -132,6 +154,8 @@ $rmd-text-field-filled-border-radius: 0.25rem !default;
 
 /// The amount of spacing between the left or right of the text field and the
 /// icon.
+///
+/// @require $rmd-icon-spacing-with-text
 /// @type Number
 $rmd-text-field-addon-margin: $rmd-icon-spacing-with-text !default;
 
@@ -165,6 +189,7 @@ $rmd-form-message-margin-bottom: 1rem !default;
 /// The amount of padding to apply to the left of the `FormMessage`'s counter
 /// component.
 ///
+/// @require $rmd-icon-spacing-with-text
 /// @type Number
 $rmd-form-message-counter-spacing: $rmd-icon-spacing-with-text !default;
 

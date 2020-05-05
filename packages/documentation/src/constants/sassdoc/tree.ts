@@ -285,7 +285,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-item-padding-incrementor",
       description:
         "The amount of padding that should be multiplied by the current depth and added to the `rmd-tree-item-padding-base`.",
-      source: "packages/tree/src/_variables.scss#L21",
+      source: "packages/tree/src/_variables.scss#L22",
       see: [
         { name: "rmd-tree-depths", type: "mixin", packageName: "tree" },
         { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
@@ -300,7 +300,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-item-padding-base",
       description:
         "The base amout of padding to apply to a tree item that has a depth greater than 1. This is set to a value that assumes you have icons to the left of the items at the base level. If you do not, it would be better to set this value to something smaller or `$rmd-list-item-horizontal-padding * 2.5`.",
-      source: "packages/tree/src/_variables.scss#L31",
+      source: "packages/tree/src/_variables.scss#L33",
       see: [
         { name: "rmd-tree-depths", type: "mixin", packageName: "tree" },
         { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
@@ -315,7 +315,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-item-focused-styles",
       description:
         "The styles to apply when a tree item gains focus. These styles will be applied even after a touch or mouse click.\n",
-      source: "packages/tree/src/_variables.scss#L36",
+      source: "packages/tree/src/_variables.scss#L38",
       usedBy: [{ name: "rmd-tree-item", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       type: "Map",
@@ -326,7 +326,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-item-keyboard-focused-styles",
       description:
         "The styles to apply to a tree item that is **focused while in keyboard mode** only.  If you want to apply focus styles for all modes, use the `$rmd-tree-item-focused-styles` instead and set this value to `null` or an empty Map `()`.",
-      source: "packages/tree/src/_variables.scss#L45-L47",
+      source: "packages/tree/src/_variables.scss#L48-L50",
       see: [
         {
           name: "rmd-tree-item-focused-styles",
@@ -345,7 +345,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-theme-values",
       description:
         'A Map of all the "themeable" parts of the tree package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/tree/src/_variables.scss#L53-L56",
+      source: "packages/tree/src/_variables.scss#L56-L59",
       usedBy: [
         { name: "rmd-tree-theme", type: "function", packageName: "tree" },
         { name: "rmd-tree-theme-var", type: "function", packageName: "tree" },

@@ -10,6 +10,7 @@
 /// keyboard focus. This is disabled by default since the focus shadow looks a
 /// bit nicer than the background color changes due to the colors of the chips.
 ///
+/// @require $rmd-states-use-focus-shadow
 /// @type Boolean
 $rmd-chip-disable-focus-background-color: $rmd-states-use-focus-shadow !default;
 
@@ -61,10 +62,17 @@ $rmd-chip-progress-width: 12 !default;
 
 /// The background color to use for the selected themed state of the chip. This
 /// is basically a secondary type of selected state.
+///
+/// @require rmd-theme-get-swatch
+/// @require $rmd-theme-primary
 /// @type Color
 $rmd-chip-themed-background-color: rmd-theme-get-swatch($rmd-theme-primary, 300) !default;
 
 /// The color to use for the selected themed state of the chip.
+///
+/// @require rmd-theme-tone
+/// @require $rmd-black-base
+/// @require $rmd-white-base
 /// @type Color
 $rmd-chip-themed-color: if(
   rmd-theme-tone($rmd-chip-themed-background-color) == light,
@@ -74,10 +82,16 @@ $rmd-chip-themed-color: if(
 
 /// The background color to use for "solid" themed chips when using the light
 /// theme.
+///
+/// @require $rmd-grey-300
 /// @type Color
 $rmd-chip-solid-light-background-color: $rmd-grey-300 !default;
 
 /// The text color to use for "solid" themed chips when using the light theme.
+///
+/// @require rmd-theme-tone
+/// @require $rmd-black-base
+/// @require $rmd-white-base
 /// @type Color
 $rmd-chip-solid-light-color: if(
   rmd-theme-tone($rmd-chip-solid-light-background-color) == light,
@@ -87,15 +101,23 @@ $rmd-chip-solid-light-color: if(
 
 /// The background color to use for a solid disabled chip when using the light
 /// theme.
+///
+/// @require $rmd-grey-100
 /// @type Color
 $rmd-chip-solid-light-disabled-background-color: $rmd-grey-100 !default;
 
 /// The background color to use for "solid" themed chips when using the dark
 /// theme.
+///
+/// @require $rmd-grey-900
 /// @type Color
 $rmd-chip-solid-dark-background-color: $rmd-grey-900 !default;
 
 /// The text color to use for "solid" themed chips when using the dark theme.
+///
+/// @require rmd-theme-tone
+/// @require $rmd-black-base
+/// @require $rmd-white-base
 /// @type Color
 $rmd-chip-solid-dark-color: if(
   rmd-theme-tone($rmd-chip-solid-dark-background-color) == light,
@@ -105,10 +127,14 @@ $rmd-chip-solid-dark-color: if(
 
 /// The background color to use for a solid disabled chip when using the dark
 /// theme.
+///
+/// @require $rmd-grey-900
 /// @type Color
 $rmd-chip-solid-dark-disabled-background-color: lighten($rmd-grey-900, 2%) !default;
 
 /// The background color to use for "solid" themed chips.
+///
+/// @require $rmd-theme-light
 /// @type Color
 $rmd-chip-solid-background-color: if(
   $rmd-theme-light,
@@ -117,6 +143,8 @@ $rmd-chip-solid-background-color: if(
 ) !default;
 
 /// The text color to use for "solid" themed chips.
+///
+/// @require $rmd-theme-light
 /// @type Color
 $rmd-chip-solid-color: if(
   $rmd-theme-light,
@@ -125,6 +153,8 @@ $rmd-chip-solid-color: if(
 ) !default;
 
 /// The background color to use for "solid" themed chips that are disabled.
+///
+/// @require $rmd-theme-light
 /// @type Color
 $rmd-chip-solid-disabled-background-color: if(
   $rmd-theme-light,
@@ -134,11 +164,17 @@ $rmd-chip-solid-disabled-background-color: if(
 
 /// The background color to use for "outlined" themed chips when using the light
 /// theme.
+///
+/// @require $rmd-theme-light-surface
 /// @type Color
 $rmd-chip-outline-light-background-color: $rmd-theme-light-surface !default;
 
 /// The text color to use for "outlined" themed chips when using the light
 /// theme.
+///
+/// @require rmd-theme-tone
+/// @require $rmd-black-base
+/// @require $rmd-white-base
 /// @type Color
 $rmd-chip-outline-light-color: if(
   rmd-theme-tone($rmd-chip-outline-light-background-color) == light,
@@ -148,10 +184,16 @@ $rmd-chip-outline-light-color: if(
 
 /// The background color to use for "outlined" themed chips when using the dark
 /// theme.
+///
+/// @require $rmd-theme-dark-surface
 /// @type Color
 $rmd-chip-outline-dark-background-color: $rmd-theme-dark-surface !default;
 
 /// The text color to use for "outlined" themed chips when using the dark theme.
+///
+/// @require rmd-theme-tone
+/// @require $rmd-black-base
+/// @require $rmd-white-base
 /// @type Color
 $rmd-chip-outline-dark-color: if(
   rmd-theme-tone($rmd-chip-outline-dark-background-color) == light,
@@ -160,6 +202,8 @@ $rmd-chip-outline-dark-color: if(
 ) !default;
 
 /// The background color to use for "outlined" themed chips.
+///
+/// @require $rmd-theme-light
 /// @type Color
 $rmd-chip-outline-background-color: if(
   $rmd-theme-light,
@@ -168,6 +212,8 @@ $rmd-chip-outline-background-color: if(
 ) !default;
 
 /// The tect color to use for "outlined" themed chips.
+///
+/// @require $rmd-theme-light
 /// @type Color
 $rmd-chip-outline-color: if(
   $rmd-theme-light,
@@ -176,11 +222,15 @@ $rmd-chip-outline-color: if(
 ) !default;
 
 /// The border color to use for "outline" themed chips.
+///
+/// @require $rmd-grey-300
 /// @type Color
 $rmd-chip-outline-border-color: $rmd-grey-300 !default;
 
 /// The transition duration for animating the box-shadow elevation for a chip
 /// while being pressed by a keyboard.
+///
+/// @require $rmd-transition-standard-time
 /// @type Number
 $rmd-chip-transition-duration: $rmd-transition-standard-time !default;
 

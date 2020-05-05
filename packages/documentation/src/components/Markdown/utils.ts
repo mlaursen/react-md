@@ -3,7 +3,11 @@ import * as marked from "marked";
 import cn from "classnames";
 
 import { GITHUB_URL } from "constants/github";
-import { DEMOABLE_PACKAGES, PACKAGE_NAMES } from "constants/packages";
+import {
+  DEMOABLE_PACKAGES,
+  PACKAGE_NAMES,
+  SCSS_PACKAGES,
+} from "constants/packages";
 
 export function getLanguage(language: string): string {
   switch (language) {
@@ -125,6 +129,11 @@ ${PACKAGE_NAMES.map(
   (name) => `- [@react-md/${name}](/packages/${name}/installation)`
 ).join("\n")}
 `;
+const sassdocPackageList = `
+${SCSS_PACKAGES.map(
+  (name) => `- [@react-md/${name} SassDoc](/packages/${name}/sassdoc)`
+).join("\n")}
+`;
 const whitespace = "(?=\r?\n| |[^/])";
 
 /**
@@ -165,9 +174,12 @@ export const packagePageQuickLink: Transformer = (md) =>
  * #packages -> markdown list for all react-md packages
  */
 export const listAllPackages: Transformer = (md) =>
-  md.replace(/#packages(\/demos)?/g, (_, demos) => {
-    if (demos) {
+  md.replace(/#packages(\/(demos|sassdoc))?/g, (_, subpath) => {
+    if (subpath === "/demos") {
       return packagesList.replace(/^(?!layout)(.+)\/installation/g, "$1/demos");
+    }
+    if (subpath === "/sassdoc") {
+      return sassdocPackageList;
     }
 
     return packagesList;

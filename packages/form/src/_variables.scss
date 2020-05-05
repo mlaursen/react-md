@@ -13,11 +13,15 @@
 @import './toggle/variables';
 
 /// The color to use when a form contains an error.
+///
+/// @require $rmd-theme-error
 /// @type Color
 $rmd-form-error-color: $rmd-theme-error !default;
 
 /// This is the color that is used when a text field/textarea is errored
 /// and the user hovers over it.
+///
+/// @require rmd-theme-get-swatch
 /// @type Color
 $rmd-form-error-hover-color: rmd-theme-get-swatch(
   $rmd-form-error-color,
@@ -28,14 +32,20 @@ $rmd-form-error-hover-color: rmd-theme-get-swatch(
 
 /// The color to use when a form element (text, checkbox, radio, etc) is
 /// currently active by the user(normally focus).
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-form-active-color: rmd-theme-var(secondary) !default;
 
 /// The color to use when a form element is disabled.
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-form-disabled-color: rmd-theme-var(text-disabled-on-background) !default;
 
 /// The default color to use for placeholder text within text fields.
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-form-placeholder-color: rmd-theme-var(text-secondary-on-background) !default;
 

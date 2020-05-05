@@ -191,7 +191,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-table-cell-color": {
       name: "rmd-table-cell-color",
       description: "The text color for `<td>` cells within a table.",
-      source: "packages/table/src/_variables.scss#L48",
+      source: "packages/table/src/_variables.scss#L49",
       packageName: "table",
       type: "Color",
       value: "rmd-theme-var(text-primary-on-background)",
@@ -202,7 +202,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-cell-horizontal-alignments",
       description:
         "The supported horizontal alignments for the table cell. You can set this value to `null` if you do not want to generate any additional alignments other than the default (`left`), or set to a list of one value if you do not need all the alignments.",
-      source: "packages/table/src/_variables.scss#L56",
+      source: "packages/table/src/_variables.scss#L57",
       packageName: "table",
       type: "List",
       value: "(center right)",
@@ -212,7 +212,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-cell-vertical-alignments",
       description:
         'A map of the supported `vertical-align` for a table cell align with the amount of padding to apply. Tables are "fun" to style since theres some weird stuff with how `height` + `padding` works by default so when the `vertical-align` is set to `top` or `bottom`, you also need to apply some padding OR update the `line-height` for the cell. I decided to go with a `padding` approach to make things a bit easier for non-text cells.\n\nNote: You can also set this value to `null` if you do not want to generate the minimal styles for the non-middle alignments.',
-      source: "packages/table/src/_variables.scss#L69",
+      source: "packages/table/src/_variables.scss#L70",
       packageName: "table",
       type: "List",
       value: "(top bottom)",
@@ -222,7 +222,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-header-cell-height",
       description:
         "The minimum height for each `<th>` that appears in the `<thead>`.\n\nNote: No styles will be generated if this is `null` or the same value as the `$rmd-table-cell-height`.",
-      source: "packages/table/src/_variables.scss#L77",
+      source: "packages/table/src/_variables.scss#L78",
       packageName: "table",
       type: "Number",
       value: "3.5rem",
@@ -232,7 +232,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-header-cell-dense-height",
       description:
         "The minimum height for each `<th>` that appears in the `<thead>` with the dense spec.\n\nNote: No styles will be generated if this is `null` or the same value as the `$rmd-table-cell-dense-height`.",
-      source: "packages/table/src/_variables.scss#L86",
+      source: "packages/table/src/_variables.scss#L87",
       packageName: "table",
       type: "Number",
       value: "2.125rem",
@@ -242,7 +242,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-header-cell-color",
       description:
         "The color to use for `<th>` cells within a table.\n\nNote: No styles will be generated if this is `null` or the same value as the `$rmd-table-cell-color`.",
-      source: "packages/table/src/_variables.scss#L94",
+      source: "packages/table/src/_variables.scss#L95",
       packageName: "table",
       type: "Number",
       value: "$rmd-table-cell-color",
@@ -253,7 +253,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-header-sticky-position",
       description:
         "The default position for a sticky header cell in all tables. If you want to update the header position for a specific table, you can just use the `rmd-table-theme-update-var` mixin for the `sticky-header` variable instead.",
-      source: "packages/table/src/_variables.scss#L101",
+      source: "packages/table/src/_variables.scss#L102",
       packageName: "table",
       type: "Number",
       value: "0",
@@ -263,7 +263,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-row-hover-color",
       description:
         "The background color to use when hovering over a row within the `<tbody>` and the `hoverable` styles have been enabled.",
-      source: "packages/table/src/_variables.scss#L107",
+      source: "packages/table/src/_variables.scss#L109",
       packageName: "table",
       type: "Color",
       value: "rgba($rmd-black-base, 0.12)",
@@ -274,7 +274,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-row-selected-color",
       description:
         "The background color to use when a row has been selected within the `<tbody>`.",
-      source: "packages/table/src/_variables.scss#L113",
+      source: "packages/table/src/_variables.scss#L116",
       packageName: "table",
       type: "Color|String",
       value: "rmd-states-theme-var(selected-color)",
@@ -285,7 +285,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-footer-sticky-position",
       description:
         "The default position for a sticky footer cell in all tables. If you want to update the footer position for a specific table, you can just use the `rmd-table-theme-update-var` mixin for the `sticky-footer` variable instead.",
-      source: "packages/table/src/_variables.scss#L120",
+      source: "packages/table/src/_variables.scss#L123",
       packageName: "table",
       type: "Number",
       value: "0",
@@ -295,7 +295,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-checkbox-padding",
       description:
         "The amount of padding to apply to a table checkbox cell. This should normally be smaller than the default left and right padding to reduce the width of this cell.",
-      source: "packages/table/src/_variables.scss#L127",
+      source: "packages/table/src/_variables.scss#L130",
       packageName: "table",
       type: "Number",
       value: "0.5rem",
@@ -305,7 +305,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-theme-values",
       description:
         'A Map of all the "themeable" parts of the table package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.',
-      source: "packages/table/src/_variables.scss#L134-L145",
+      source: "packages/table/src/_variables.scss#L137-L148",
       usedBy: [
         { name: "rmd-table-theme", type: "function", packageName: "table" },
         { name: "rmd-table-theme-var", type: "function", packageName: "table" },

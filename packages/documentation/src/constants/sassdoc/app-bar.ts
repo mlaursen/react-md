@@ -78,6 +78,7 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-app-bar-offset", type: "mixin", packageName: "app-bar" },
         { name: "rmd-app-bar-offsets", type: "mixin", packageName: "app-bar" },
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
+        { name: "rmd-layout-main", type: "mixin", packageName: "layout" },
       ],
       packageName: "app-bar",
       code:
@@ -301,6 +302,13 @@ const sassdoc: PackageSassDoc = {
       description:
         "This mixin is used to apply an offset to an element so that it can be placed with a fixed App Bar. This is really used to help layout your app so that the initial content isn't covered by the app bar.\n\n @example scss - Example Usage\n   .offset-by-height {\n     @include rmd-app-bar-offset;\n   }\n\n   .offset-by-dense-height {\n     @include rmd-app-bar-ofset($height-type: dense-height);\n   }",
       source: "packages/app-bar/src/_mixins.scss#L258-L263",
+      usedBy: [
+        {
+          name: "rmd-layout-app-bar-offset",
+          type: "mixin",
+          packageName: "layout",
+        },
+      ],
       packageName: "app-bar",
       code:
         "@mixin rmd-app-bar-offset($property: padding-top, $height-type: height) { … }",
@@ -446,8 +454,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-nav-margin": {
       name: "rmd-app-bar-nav-margin",
       description:
-        "The amount of margin to apply to the `AppBarNav` based on the `$rmd-app-bar-keyline` so that the icon will be positioned at the keyline\n(ignoring the button padding).\n",
-      source: "packages/app-bar/src/_variables.scss#L47",
+        "The amount of margin to apply to the `AppBarNav` based on the `$rmd-app-bar-keyline` so that the icon will be positioned at the keyline\n(ignoring the button padding).",
+      source: "packages/app-bar/src/_variables.scss#L50",
       packageName: "app-bar",
       type: "Number",
       value:
@@ -459,7 +467,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-app-bar-title-keyline",
       description:
         "The keyline for the `AppBarTitle` to use when used with the `AppBarNav` or the `offset` prop is enabled.\n",
-      source: "packages/app-bar/src/_variables.scss#L52",
+      source: "packages/app-bar/src/_variables.scss#L55",
       usedBy: [
         { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
       ],
@@ -471,8 +479,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-title-nav-margin": {
       name: "rmd-app-bar-title-nav-margin",
       description:
-        "The amount of margin to apply to the title when used with the `AppBarNav` component.\n",
-      source: "packages/app-bar/src/_variables.scss#L57-L58",
+        "The amount of margin to apply to the title when used with the `AppBarNav` component.",
+      source: "packages/app-bar/src/_variables.scss#L62-L63",
       usedBy: [
         { name: "rmd-app-bar-nav", type: "mixin", packageName: "app-bar" },
       ],
@@ -486,8 +494,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-lr-margin": {
       name: "rmd-app-bar-lr-margin",
       description:
-        "The amount of margin to apply to the first and last element within the app bar (per row basis). This will automatically be applied if using the `AppBarNav` component and will be applied to the `AppBarAction` component that enables the `last` prop.\n",
-      source: "packages/app-bar/src/_variables.scss#L65",
+        "The amount of margin to apply to the first and last element within the app bar (per row basis). This will automatically be applied if using the `AppBarNav` component and will be applied to the `AppBarAction` component that enables the `last` prop.",
+      source: "packages/app-bar/src/_variables.scss#L71",
       usedBy: [
         { name: "rmd-app-bar-nav", type: "mixin", packageName: "app-bar" },
         {
@@ -504,8 +512,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-primary-background-color": {
       name: "rmd-app-bar-primary-background-color",
       description:
-        'The background color for the app bar when the `theme` prop is set to `"primary"`.\n',
-      source: "packages/app-bar/src/_variables.scss#L70",
+        'The background color for the app bar when the `theme` prop is set to `"primary"`.',
+      source: "packages/app-bar/src/_variables.scss#L78",
       packageName: "app-bar",
       type: "Color",
       value: "rmd-theme-var(primary)",
@@ -515,8 +523,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-primary-color": {
       name: "rmd-app-bar-primary-color",
       description:
-        'The text color for the app bar when the `theme` prop is set to `"primary"`.\n',
-      source: "packages/app-bar/src/_variables.scss#L74",
+        'The text color for the app bar when the `theme` prop is set to `"primary"`.',
+      source: "packages/app-bar/src/_variables.scss#L84",
       packageName: "app-bar",
       type: "Color",
       value: "rmd-theme-var(on-primary)",
@@ -526,8 +534,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-secondary-background-color": {
       name: "rmd-app-bar-secondary-background-color",
       description:
-        'The background color for the app bar when the `theme` prop is set to `"secondary"`.\n',
-      source: "packages/app-bar/src/_variables.scss#L79",
+        'The background color for the app bar when the `theme` prop is set to `"secondary"`.',
+      source: "packages/app-bar/src/_variables.scss#L91",
       packageName: "app-bar",
       type: "Color",
       value: "rmd-theme-var(secondary)",
@@ -537,8 +545,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-secondary-color": {
       name: "rmd-app-bar-secondary-color",
       description:
-        'The text color for the app bar when the `theme` prop is set to `"secondary"`.\n',
-      source: "packages/app-bar/src/_variables.scss#L84",
+        'The text color for the app bar when the `theme` prop is set to `"secondary"`.',
+      source: "packages/app-bar/src/_variables.scss#L98",
       packageName: "app-bar",
       type: "Color",
       value: "rmd-theme-var(on-secondary)",
@@ -548,8 +556,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-default-light-theme-background-color": {
       name: "rmd-app-bar-default-light-theme-background-color",
       description:
-        'The background color for the app bar when the `theme` prop is set to `"default"` and the app is currently using a light theme.\n',
-      source: "packages/app-bar/src/_variables.scss#L89",
+        'The background color for the app bar when the `theme` prop is set to `"default"` and the app is currently using a light theme.',
+      source: "packages/app-bar/src/_variables.scss#L105",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -562,8 +570,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-default-light-theme-color": {
       name: "rmd-app-bar-default-light-theme-color",
       description:
-        'The text color for the app bar when the `theme` prop is set to `"default"` and the app is currently using a light theme.\n',
-      source: "packages/app-bar/src/_variables.scss#L94-L98",
+        'The text color for the app bar when the `theme` prop is set to `"default"` and the app is currently using a light theme.',
+      source: "packages/app-bar/src/_variables.scss#L114-L118",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -577,8 +585,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-default-dark-theme-background-color": {
       name: "rmd-app-bar-default-dark-theme-background-color",
       description:
-        'The background color for the app bar when the `theme` prop is set to `"default"` and the app is currently using a dark theme.\n',
-      source: "packages/app-bar/src/_variables.scss#L103",
+        'The background color for the app bar when the `theme` prop is set to `"default"` and the app is currently using a dark theme.',
+      source: "packages/app-bar/src/_variables.scss#L125",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "app-bar",
       type: "Color",
@@ -589,8 +597,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-default-dark-theme-color": {
       name: "rmd-app-bar-default-dark-theme-color",
       description:
-        'The text color for the app bar when the `theme` prop is set to `"default"` and the app is currently using a dark theme.\n',
-      source: "packages/app-bar/src/_variables.scss#L108-L112",
+        'The text color for the app bar when the `theme` prop is set to `"default"` and the app is currently using a dark theme.',
+      source: "packages/app-bar/src/_variables.scss#L134-L138",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "app-bar",
       type: "Color",
@@ -602,8 +610,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-default-background-color": {
       name: "rmd-app-bar-default-background-color",
       description:
-        "The background color to use for the app bar that is using the `default` theme. This value is derived based on the current background color of the app for light or dark themed apps.\n",
-      source: "packages/app-bar/src/_variables.scss#L118-L122",
+        "The background color to use for the app bar that is using the `default` theme. This value is derived based on the current background color of the app for light or dark themed apps.",
+      source: "packages/app-bar/src/_variables.scss#L146-L150",
       packageName: "app-bar",
       type: "Color",
       value:
@@ -614,8 +622,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-app-bar-default-color": {
       name: "rmd-app-bar-default-color",
       description:
-        "The text color to use for the app bar that is using the `default` theme.\nThis value is derived based on the current background color of the app for light or dark themed apps.\n",
-      source: "packages/app-bar/src/_variables.scss#L128-L132",
+        "The text color to use for the app bar that is using the `default` theme.\nThis value is derived based on the current background color of the app for light or dark themed apps.",
+      source: "packages/app-bar/src/_variables.scss#L158-L162",
       packageName: "app-bar",
       type: "Color",
       value:
@@ -627,7 +635,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-app-bar-theme-values",
       description:
         'A Map of all the "themeable" parts of the app-bar package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/app-bar/src/_variables.scss#L138-L155",
+      source: "packages/app-bar/src/_variables.scss#L168-L185",
       usedBy: [
         { name: "rmd-app-bar-theme", type: "function", packageName: "app-bar" },
         {

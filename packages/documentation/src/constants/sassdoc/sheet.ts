@@ -31,7 +31,10 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to get one of the sheet's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-sheet-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/sheet/src/_functions.scss#L32-L34",
-      usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
+      usedBy: [
+        { name: "rmd-layout-header", type: "mixin", packageName: "layout" },
+        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
+      ],
       packageName: "sheet",
       code:
         "@function rmd-sheet-theme-var($theme-style, $fallback: null) { … }",
@@ -65,7 +68,11 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for one of the sheet's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/sheet/src/_mixins.scss#L23-L25",
-      usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
+      usedBy: [
+        { name: "rmd-layout-header", type: "mixin", packageName: "layout" },
+        { name: "rmd-layout-main", type: "mixin", packageName: "layout" },
+        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
+      ],
       packageName: "sheet",
       code:
         "@mixin rmd-sheet-theme($property, $theme-style, $fallback: null) { … }",
@@ -158,8 +165,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-sheet-raised-z-index": {
       name: "rmd-sheet-raised-z-index",
       description:
-        "The z-index to use for sheets that normally appear with an overlay and covering other elements on the page.\n",
-      source: "packages/sheet/src/_variables.scss#L19",
+        "The z-index to use for sheets that normally appear with an overlay and covering other elements on the page.",
+      source: "packages/sheet/src/_variables.scss#L21",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       type: "Number",
@@ -170,8 +177,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-sheet-overlay-z-index": {
       name: "rmd-sheet-overlay-z-index",
       description:
-        "The z-index to use for a sheet's overlay. This value just needs to be smaller than the `$rmd-sheet-raised-z-index` value so the overlay does not cover the sheet.\n",
-      source: "packages/sheet/src/_variables.scss#L25",
+        "The z-index to use for a sheet's overlay. This value just needs to be smaller than the `$rmd-sheet-raised-z-index` value so the overlay does not cover the sheet.",
+      source: "packages/sheet/src/_variables.scss#L28",
       usedBy: [{ name: "react-md-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       type: "Number",
@@ -183,7 +190,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-elevation",
       description:
         'This is the default elevation to use for sheets that do not have an overlay.\nThis is normally used for showing sheets more "inline" with other content.\n',
-      source: "packages/sheet/src/_variables.scss#L30",
+      source: "packages/sheet/src/_variables.scss#L33",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       type: "Number",
@@ -194,7 +201,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-raised-elevation",
       description:
         "The elevation to use for temporary sheets that usually display an overlay as well.\n",
-      source: "packages/sheet/src/_variables.scss#L35",
+      source: "packages/sheet/src/_variables.scss#L38",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       type: "Number",
@@ -203,8 +210,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-sheet-enter-duration": {
       name: "rmd-sheet-enter-duration",
-      description: "The duration for the enter transition.\n",
-      source: "packages/sheet/src/_variables.scss#L39",
+      description: "The duration for the enter transition.",
+      source: "packages/sheet/src/_variables.scss#L44",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       type: "Number",
@@ -214,8 +221,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-sheet-leave-duration": {
       name: "rmd-sheet-leave-duration",
-      description: "The duration for the leave transition.\n",
-      source: "packages/sheet/src/_variables.scss#L43",
+      description: "The duration for the leave transition.",
+      source: "packages/sheet/src/_variables.scss#L50",
       packageName: "sheet",
       type: "Number",
       value: "$rmd-transition-leave-duration",
@@ -226,7 +233,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-touch-margin",
       description:
         "The amount of horizontal margin to use between the viewport's edge and the sheet's edge. This is used so that mobile devices have an overlay \"touch target\" to close the sheet without requiring one of the actions to be clicked.\n",
-      source: "packages/sheet/src/_variables.scss#L50",
+      source: "packages/sheet/src/_variables.scss#L57",
       packageName: "sheet",
       type: "Number",
       value: "3.5rem",
@@ -235,7 +242,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-sheet-touch-width": {
       name: "rmd-sheet-touch-width",
       description: "The width of a sheet on small touch devices.\n",
-      source: "packages/sheet/src/_variables.scss#L54",
+      source: "packages/sheet/src/_variables.scss#L61",
       packageName: "sheet",
       type: "Number",
       value: "calc(100vw - #{$rmd-sheet-touch-margin})",
@@ -246,7 +253,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-static-width",
       description:
         'The width to apply to "static" width sheets. This width **should not** be used on phones but can be used for tablets or desktops.\n',
-      source: "packages/sheet/src/_variables.scss#L59",
+      source: "packages/sheet/src/_variables.scss#L66",
       packageName: "sheet",
       type: "Number",
       value: "16rem",
@@ -256,7 +263,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-max-height",
       description:
         "The max height to set for sheets. It is recommended to leave this as 100%\nand instead update the `$rmd-sheet-touchable-max-height` instead.\n",
-      source: "packages/sheet/src/_variables.scss#L65",
+      source: "packages/sheet/src/_variables.scss#L72",
       see: [
         {
           name: "rmd-sheet-touchable-max-height",
@@ -274,7 +281,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-touchable-max-height",
       description:
         'The max height for a sheet that has a "touchable" area that can be used to close the sheet without selecting one of the actions.',
-      source: "packages/sheet/src/_variables.scss#L71",
+      source: "packages/sheet/src/_variables.scss#L78",
       packageName: "sheet",
       type: "Number",
       value: "calc(100% - #{$rmd-sheet-touch-margin})",
@@ -285,7 +292,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-recommended-min-height",
       description:
         'The "recommended" min-height from the material design spec for bottom sheets.\n',
-      source: "packages/sheet/src/_variables.scss#L76",
+      source: "packages/sheet/src/_variables.scss#L83",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       type: "Number",
@@ -296,7 +303,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-recommended-max-height",
       description:
         'The "recommended" max-height from the material design spec for bottom sheets. I personally think it is better to either set the max-height to `calc(100% - 3.5rem)` or `100%` with a close button.\n',
-      source: "packages/sheet/src/_variables.scss#L82",
+      source: "packages/sheet/src/_variables.scss#L89",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       type: "Number",
@@ -307,7 +314,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-positions",
       description:
         "A list of positions that are supported by the sheet component.\n",
-      source: "packages/sheet/src/_variables.scss#L86",
+      source: "packages/sheet/src/_variables.scss#L93",
       packageName: "sheet",
       type: "List",
       value: "top right bottom left",
@@ -317,7 +324,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-enabled-positions",
       description:
         "The positions that are created by default with the `react-md-sheet` mixin.\nWhen generating styles, this list will be looped through to create the correct position styles.\n",
-      source: "packages/sheet/src/_variables.scss#L92",
+      source: "packages/sheet/src/_variables.scss#L99",
       packageName: "sheet",
       type: "List",
       value: "$rmd-sheet-positions",
@@ -328,7 +335,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-theme-values",
       description:
         'A Map of all the "themeable" parts of the sheet package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/sheet/src/_variables.scss#L98-L106",
+      source: "packages/sheet/src/_variables.scss#L105-L113",
       usedBy: [
         { name: "rmd-sheet-theme", type: "function", packageName: "sheet" },
         { name: "rmd-sheet-theme-var", type: "function", packageName: "sheet" },

@@ -5,6 +5,8 @@
 @import '~@react-md/theme/dist/functions';
 
 /// The base icon color to apply.
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-icon-color: rmd-theme-var(text-icon-on-background) !default;
 

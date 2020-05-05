@@ -131,17 +131,18 @@ const sassdoc: PackageSassDoc = {
   variables: {
     "rmd-link-transition-time": {
       name: "rmd-link-transition-time",
-      description: "The transition time for links to change color.\n",
-      source: "packages/link/src/_variables.scss#L10",
+      description: "The transition time for links to change color.",
+      source: "packages/link/src/_variables.scss#L13",
       packageName: "link",
       type: "Number",
-      value: "0.15s",
+      value: "$rmd-transition-standard-time",
+      compiled: "0.15s",
       overridable: true,
     },
     "rmd-link-color": {
       name: "rmd-link-color",
-      description: "The default color to use for links.\n",
-      source: "packages/link/src/_variables.scss#L14",
+      description: "The default color to use for links.",
+      source: "packages/link/src/_variables.scss#L19",
       packageName: "link",
       type: "Color",
       value: "$rmd-blue-500",
@@ -150,8 +151,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-link-visited-color": {
       name: "rmd-link-visited-color",
-      description: "The color to use for links that have been visited.\n",
-      source: "packages/link/src/_variables.scss#L18",
+      description: "The color to use for links that have been visited.",
+      source: "packages/link/src/_variables.scss#L25",
       packageName: "link",
       type: "Color",
       value: "$rmd-blue-600",
@@ -160,8 +161,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-link-hover-color": {
       name: "rmd-link-hover-color",
-      description: "The color to use for links that are being hovered.\n",
-      source: "packages/link/src/_variables.scss#L22",
+      description: "The color to use for links that are being hovered.",
+      source: "packages/link/src/_variables.scss#L31",
       packageName: "link",
       type: "Color",
       value: "$rmd-blue-400",
@@ -172,7 +173,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-skip-z-index",
       description:
         "The z-index to apply for the skip to main content link. This should always be the biggest z-index in your app so it can be visible.\n",
-      source: "packages/link/src/_variables.scss#L27",
+      source: "packages/link/src/_variables.scss#L36",
       packageName: "link",
       type: "Number",
       value: "10000",
@@ -181,8 +182,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-link-skip-styles": {
       name: "rmd-link-skip-styles",
       description:
-        "The default styles to apply to the skip to main content link.\n",
-      source: "packages/link/src/_variables.scss#L31-L37",
+        "The default styles to apply to the skip to main content link.",
+      source: "packages/link/src/_variables.scss#L42-L48",
       packageName: "link",
       type: "Map",
       value:
@@ -194,8 +195,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-link-skip-active-styles": {
       name: "rmd-link-skip-active-styles",
       description:
-        "The default styles to apply to the skip to main content link when it has become keyboard focused.\n",
-      source: "packages/link/src/_variables.scss#L42-L44",
+        "The default styles to apply to the skip to main content link when it has become keyboard focused.",
+      source: "packages/link/src/_variables.scss#L55-L57",
       packageName: "link",
       type: "Map",
       value: "(\n  outline: 0.25rem dashed $rmd-black-base,\n)",
@@ -206,7 +207,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-theme-values",
       description:
         'A Map of all the "themeable" parts of the link package. Every key in this map will be used to create a css variable to dynamically update the values of the link as needed.\n',
-      source: "packages/link/src/_variables.scss#L50-L54",
+      source: "packages/link/src/_variables.scss#L63-L67",
       usedBy: [
         { name: "rmd-link-theme", type: "function", packageName: "link" },
         { name: "rmd-link-theme-var", type: "function", packageName: "link" },

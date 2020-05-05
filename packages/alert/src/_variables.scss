@@ -22,6 +22,8 @@ $rmd-toast-border-radius: 0.25rem !default;
 $rmd-toast-background-color: #323232 !default;
 
 /// The text color for a toast.
+///
+/// @require $rmd-white-base
 /// @type Color
 $rmd-toast-color: $rmd-white-base !default;
 

@@ -19,6 +19,7 @@
 ///     box-shadow: rmd-elevation(2), inset 0 0 0 1px $rmd-blue-500;
 ///   }
 ///
+/// @require rmd-theme
 /// @param {Number} z-value - This should be a number between 0 and 24.
 /// @param {Color} color [$rmd-elevation-color] - The color to use for the
 /// box-shadow.

@@ -296,10 +296,6 @@ const tocs: TOCRecord = {
       title: "Using the Sass Exports",
     },
     {
-      anchor: "#general-export-structure",
-      title: "General Export Structure",
-    },
-    {
       anchor: "#general-naming-conventions",
       title: "General Naming Conventions",
     },
@@ -310,10 +306,6 @@ const tocs: TOCRecord = {
     {
       anchor: "#accessibility-functions",
       title: "Accessibility Functions",
-    },
-    {
-      anchor: "#mixins",
-      title: "Mixins",
     },
   ],
   "/guides/working-with-v1": [

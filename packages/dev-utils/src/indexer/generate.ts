@@ -55,7 +55,7 @@ export default async function generate(
           throw new Error("This should never happen.");
       }
     } else {
-      throw new Error("Unhandled route type");
+      throw new Error(`Unhandled route type: "${route}"`);
     }
 
     if (!summary) {

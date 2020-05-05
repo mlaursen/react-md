@@ -6,10 +6,14 @@
 @import '~@react-md/list/dist/functions';
 
 /// The background color to use for menus
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-menu-background-color: rmd-theme-var(surface) !default;
 
 /// The text color to use for menus
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-menu-color: rmd-theme-var(on-surface) !default;
 

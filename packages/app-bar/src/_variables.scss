@@ -43,6 +43,9 @@ $rmd-app-bar-keyline: 1rem !default;
 /// The amount of margin to apply to the `AppBarNav` based on the
 /// `$rmd-app-bar-keyline` so that the icon will be positioned at the keyline
 /// (ignoring the button padding).
+///
+/// @require $rmd-icon-size
+/// @require $rmd-button-icon-size
 /// @type Number
 $rmd-app-bar-nav-margin: $rmd-app-bar-keyline - (($rmd-button-icon-size - $rmd-icon-size) / 2);
 
@@ -53,6 +56,8 @@ $rmd-app-bar-title-keyline: 4.5rem !default;
 
 /// The amount of margin to apply to the title when used with the `AppBarNav`
 /// component.
+///
+/// @require $rmd-button-icon-size
 /// @type Number
 $rmd-app-bar-title-nav-margin: $rmd-app-bar-title-keyline - $rmd-app-bar-nav-margin -
   $rmd-button-icon-size;
@@ -61,35 +66,50 @@ $rmd-app-bar-title-nav-margin: $rmd-app-bar-title-keyline - $rmd-app-bar-nav-mar
 /// bar (per row basis). This will automatically be applied if using the
 /// `AppBarNav` component and will be applied to the `AppBarAction` component
 /// that enables the `last` prop.
+///
 /// @type Number
 $rmd-app-bar-lr-margin: 0.25rem !default;
 
 /// The background color for the app bar when the `theme` prop is set to
 /// `"primary"`.
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-app-bar-primary-background-color: rmd-theme-var(primary) !default;
 
 /// The text color for the app bar when the `theme` prop is set to `"primary"`.
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-app-bar-primary-color: rmd-theme-var(on-primary) !default;
 
 /// The background color for the app bar when the `theme` prop is set to
 /// `"secondary"`.
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-app-bar-secondary-background-color: rmd-theme-var(secondary) !default;
 
 /// The text color for the app bar when the `theme` prop is set to
 /// `"secondary"`.
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-app-bar-secondary-color: rmd-theme-var(on-secondary) !default;
 
 /// The background color for the app bar when the `theme` prop is set to
 /// `"default"` and the app is currently using a light theme.
+///
+/// @require $rmd-grey-100
 /// @type Color
 $rmd-app-bar-default-light-theme-background-color: $rmd-grey-100 !default;
 
 /// The text color for the app bar when the `theme` prop is set to `"default"`
 /// and the app is currently using a light theme.
+///
+/// @require rmd-theme-tone
+/// @require $rmd-black-base
+/// @require $rmd-white-base
 /// @type Color
 $rmd-app-bar-default-light-theme-color: if(
   rmd-theme-tone($rmd-app-bar-default-light-theme-background-color) == light,
@@ -99,11 +119,17 @@ $rmd-app-bar-default-light-theme-color: if(
 
 /// The background color for the app bar when the `theme` prop is set to
 /// `"default"` and the app is currently using a dark theme.
+///
+/// @require $rmd-grey-900
 /// @type Color
 $rmd-app-bar-default-dark-theme-background-color: $rmd-grey-900 !default;
 
 /// The text color for the app bar when the `theme` prop is set to `"default"`
 /// and the app is currently using a dark theme.
+///
+/// @require rmd-theme-tone
+/// @require $rmd-black-base
+/// @require $rmd-white-base
 /// @type Color
 $rmd-app-bar-default-dark-theme-color: if(
   rmd-theme-tone($rmd-app-bar-default-dark-theme-background-color) == light,
@@ -114,6 +140,8 @@ $rmd-app-bar-default-dark-theme-color: if(
 /// The background color to use for the app bar that is using the `default`
 /// theme. This value is derived based on the current background color of the
 /// app for light or dark themed apps.
+///
+/// @require rmd-theme-tone
 /// @type Color
 $rmd-app-bar-default-background-color: if(
   rmd-theme-tone($rmd-theme-background) == light,
@@ -124,6 +152,8 @@ $rmd-app-bar-default-background-color: if(
 /// The text color to use for the app bar that is using the `default` theme.
 /// This value is derived based on the current background color of the app for
 /// light or dark themed apps.
+///
+/// @require rmd-theme-tone
 /// @type Color
 $rmd-app-bar-default-color: if(
   rmd-theme-tone($rmd-app-bar-default-background-color) == light,

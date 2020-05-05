@@ -33,7 +33,7 @@ export async function getRoutes(): Promise<string[]> {
   const pagesFolder = join(documentationRoot, src, "pages");
   const paths = await glob("**/*.+(ts|tsx)", {
     cwd: pagesFolder,
-    ignore: ["api/**/*", "index.ts"],
+    ignore: ["api/**/*", "index.ts", "_*"],
   });
 
   const guidesFolder = join(documentationRoot, src, "guides");

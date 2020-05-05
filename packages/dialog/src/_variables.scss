@@ -13,6 +13,8 @@ $rmd-dialog-elevation: 16 !default;
 /// The z-index for dialogs. This value is a bit larger than overlays just in
 /// case other components are using the overlay as well. The dialog's overlay
 /// will also gain this z-index value.
+///
+/// @require $rmd-overlay-z-index
 /// @type Number
 $rmd-dialog-z-index: $rmd-overlay-z-index + 10 !default;
 

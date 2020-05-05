@@ -71,6 +71,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/typography/src/_functions.scss#L67-L71",
       usedBy: [
         {
+          name: "rmd-avatar-line-height",
+          type: "variable",
+          packageName: "avatar",
+        },
+        { name: "rmd-list-line-height", type: "variable", packageName: "list" },
+        { name: "rmd-list-font-size", type: "variable", packageName: "list" },
+        {
           name: "rmd-typography-value",
           type: "mixin",
           packageName: "typography",

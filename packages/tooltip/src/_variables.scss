@@ -3,6 +3,7 @@
 ////
 
 @import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/theme/dist/color-a11y';
 @import '~@react-md/theme/dist/functions';
 @import '~@react-md/transition/dist/variables';
 
@@ -12,11 +13,13 @@ $rmd-tooltip-background-color: #616161 !default;
 
 /// The text color to use for tooltips. By default, this will inherit the
 /// primary text colors for a dark or light background color of the tooltip.
+///
+/// @require rmd-theme-tone
 /// @type Color
 $rmd-tooltip-color: if(
-  rmd-theme-contrast-tone($rmd-tooltip-background-color) == 'light',
-  rmd-theme-var(text-primary-on-dark),
-  rmd-theme-var(text-primary-on-light)
+  rmd-theme-tone($rmd-tooltip-background-color) == light,
+  rmd-theme-var(text-primary-on-light),
+  rmd-theme-var(text-primary-on-dark)
 ) !default;
 
 /// The max width to apply to tooltips.
@@ -24,10 +27,14 @@ $rmd-tooltip-color: if(
 $rmd-tooltip-max-width: 15rem !default;
 
 /// The enter transition time for the tooltip to enter or to exit.
+///
+/// @require $rmd-transition-standard-time
 /// @type Number
 $rmd-tooltip-enter-duration: $rmd-transition-standard-time !default;
 
 /// The exit transition time for the tooltip to enter or to exit.
+///
+/// @require $rmd-transition-standard-time
 /// @type Number
 $rmd-tooltip-exit-duration: $rmd-transition-standard-time !default;
 

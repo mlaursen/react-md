@@ -15,12 +15,78 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       usedBy: [
+        {
+          name: "rmd-app-bar-default-light-theme-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-default-dark-theme-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-default-background-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-default-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-avatar-border-color",
+          type: "variable",
+          packageName: "avatar",
+        },
+        {
+          name: "rmd-badge-default-color",
+          type: "variable",
+          packageName: "badge",
+        },
+        {
+          name: "rmd-card-secondary-color",
+          type: "variable",
+          packageName: "card",
+        },
+        {
+          name: "rmd-chip-themed-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-solid-light-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-solid-dark-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-outline-light-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-outline-dark-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-divider-background-color",
+          type: "variable",
+          packageName: "divider",
+        },
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
         {
           name: "rmd-theme-contrast-tone",
           type: "function",
           packageName: "theme",
         },
+        { name: "rmd-tooltip-color", type: "variable", packageName: "tooltip" },
       ],
       packageName: "theme",
       code:
@@ -89,6 +155,28 @@ const sassdoc: PackageSassDoc = {
       description:
         "A theme utility function to convert a material design color to the same color but with a different swatch. If your app is not using material design colors, this utility function is useless but you will need to define fallback colors so compliation does not fail.",
       source: "packages/theme/src/_functions.scss#L50-L106",
+      usedBy: [
+        {
+          name: "rmd-chip-themed-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-form-error-hover-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-switch-ball-disabled-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-progress-background-color",
+          type: "variable",
+          packageName: "progress",
+        },
+      ],
       packageName: "theme",
       examples: [
         {
@@ -154,6 +242,128 @@ const sassdoc: PackageSassDoc = {
         description:
           "the new color within the same color family with the provided\nswatch and optional accent.",
       },
+    },
+    "rmd-theme": {
+      name: "rmd-theme",
+      description:
+        "A small utility function to get a color from the current theme. This is normally used along with the `rmd-theme-var` function so that both css variables and a fallback can be applied. If the provided style prop is a color or 'currentColor', the provided style prop will be returned instead.\n\nYou are _most_ likely looking for the `rmd-theme` mixin and not the functions instead.",
+      source: "packages/theme/src/_functions.scss#L119-L121",
+      usedBy: [
+        { name: "rmd-elevation", type: "function", packageName: "elevation" },
+        { name: "rmd-tab-active-color", type: "variable", packageName: "tabs" },
+        {
+          name: "rmd-tab-inactive-color",
+          type: "variable",
+          packageName: "tabs",
+        },
+        {
+          name: "rmd-tab-disabled-color",
+          type: "variable",
+          packageName: "tabs",
+        },
+      ],
+      packageName: "theme",
+      code: "@function rmd-theme($theme-name) { … }",
+      sourceCode:
+        "@function rmd-theme($theme-name) {\n  @return rmd-theme-get-var-value($theme-name, $rmd-theme-values, theme);\n}\n",
+      type: "function",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-name",
+          description:
+            "The theme style to get. This should be one of the keys from `$rmd-theme-values`.",
+        },
+      ],
+      returns: { type: "Color", description: "the theme color." },
+    },
+    "rmd-theme-var": {
+      name: "rmd-theme-var",
+      description:
+        "A small utility function to get a color from the current theme as a css variable. This is normally used along with the `rmd-theme` function so that both css variables and a fallback can be applied.\n\nYou are _most_ likely looking for the `rmd-theme` mixin and not the functions instead.",
+      source: "packages/theme/src/_functions.scss#L133-L135",
+      usedBy: [
+        {
+          name: "rmd-app-bar-primary-background-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-primary-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-secondary-background-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-secondary-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        { name: "rmd-button-color", type: "variable", packageName: "button" },
+        {
+          name: "rmd-card-background-color",
+          type: "variable",
+          packageName: "card",
+        },
+        { name: "rmd-card-color", type: "variable", packageName: "card" },
+        {
+          name: "rmd-card-secondary-color",
+          type: "variable",
+          packageName: "card",
+        },
+        {
+          name: "rmd-form-active-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-form-disabled-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-form-placeholder-color",
+          type: "variable",
+          packageName: "form",
+        },
+        { name: "rmd-icon-color", type: "variable", packageName: "icon" },
+        { name: "rmd-link-skip-styles", type: "variable", packageName: "link" },
+        { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
+        {
+          name: "rmd-menu-background-color",
+          type: "variable",
+          packageName: "menu",
+        },
+        { name: "rmd-menu-color", type: "variable", packageName: "menu" },
+        {
+          name: "rmd-table-cell-color",
+          type: "variable",
+          packageName: "table",
+        },
+        {
+          name: "rmd-tab-indicator-color",
+          type: "variable",
+          packageName: "tabs",
+        },
+      ],
+      packageName: "theme",
+      code: "@function rmd-theme-var($theme-name) { … }",
+      sourceCode:
+        "@function rmd-theme-var($theme-name) {\n  @return rmd-theme-get-var(\n    $theme-name,\n    $rmd-theme-values,\n    theme,\n    $fallback-color\n  );\n}\n",
+      type: "function",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-name",
+          description:
+            "The theme style to get. This should be one of the keys from `$rmd-theme-values`.",
+        },
+      ],
+      returns: { type: "Color", description: "the theme color." },
     },
     "rmd-theme-text-color": {
       name: "rmd-theme-text-color",
@@ -365,6 +575,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-red-50",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L6",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#ffebee",
@@ -482,6 +695,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-red-a-700",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L45",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#d50000",
@@ -545,6 +761,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-pink-600",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L66",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#d81b60",
@@ -626,6 +845,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-purple-100",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L93",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#e1bee7",
@@ -680,6 +902,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-purple-700",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L111",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#7b1fa2",
@@ -752,6 +977,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-deep-purple-100",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L135",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#d1c4e9",
@@ -824,6 +1052,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-deep-purple-900",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L159",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#311b92",
@@ -878,6 +1109,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-indigo-100",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L177",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#c5cae9",
@@ -923,6 +1157,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-indigo-600",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L192",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#3949ab",
@@ -1031,6 +1268,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-blue-400",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L228",
+      usedBy: [
+        { name: "rmd-link-hover-color", type: "variable", packageName: "link" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#42a5f5",
@@ -1040,6 +1280,24 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-blue-500",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L231",
+      usedBy: [
+        {
+          name: "rmd-option-focused-styles",
+          type: "variable",
+          packageName: "form",
+        },
+        { name: "rmd-link-color", type: "variable", packageName: "link" },
+        {
+          name: "rmd-states-focus-shadow-color",
+          type: "variable",
+          packageName: "states",
+        },
+        {
+          name: "rmd-tree-item-keyboard-focused-styles",
+          type: "variable",
+          packageName: "tree",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#2196f3",
@@ -1049,6 +1307,13 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-blue-600",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L234",
+      usedBy: [
+        {
+          name: "rmd-link-visited-color",
+          type: "variable",
+          packageName: "link",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#1e88e5",
@@ -1076,6 +1341,13 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-blue-900",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L243",
+      usedBy: [
+        {
+          name: "rmd-option-selected-styles",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#0d47a1",
@@ -1148,6 +1420,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-light-blue-300",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L267",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#4fc3f7",
@@ -1283,6 +1558,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-cyan-400",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L312",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#26c6da",
@@ -1445,6 +1723,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-teal-800",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L366",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#00695c",
@@ -1454,6 +1735,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-teal-900",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L369",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#004d40",
@@ -1481,6 +1765,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-teal-a-400",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L378",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#1de9b6",
@@ -1499,6 +1786,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-green-50",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L384",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#e8f5e9",
@@ -1571,6 +1861,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-green-800",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L408",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#2e7d32",
@@ -1580,6 +1873,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-green-900",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L411",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#1b5e20",
@@ -1652,6 +1948,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-light-green-300",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L435",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#aed581",
@@ -1787,6 +2086,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-lime-400",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L480",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#d4e157",
@@ -1976,6 +2278,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-yellow-a-200",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L543",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#ff0",
@@ -2039,6 +2344,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-amber-400",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L564",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#ffca28",
@@ -2183,6 +2491,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-orange-600",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L612",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#fb8c00",
@@ -2363,6 +2674,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-deep-orange-a-400",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L672",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#ff3d00",
@@ -2381,6 +2695,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-brown-50",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L678",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#efebe9",
@@ -2426,6 +2743,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-brown-500",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L693",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#795548",
@@ -2453,6 +2773,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-brown-800",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L702",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#4e342e",
@@ -2480,6 +2803,25 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grey-100",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L711",
+      usedBy: [
+        {
+          name: "rmd-app-bar-default-light-theme-background-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        { name: "rmd-avatar-color", type: "variable", packageName: "avatar" },
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+        {
+          name: "rmd-chip-solid-light-disabled-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-text-field-filled-light-background-color",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#f5f5f5",
@@ -2498,6 +2840,18 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grey-300",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L717",
+      usedBy: [
+        {
+          name: "rmd-chip-solid-light-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-outline-border-color",
+          type: "variable",
+          packageName: "chip",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#e0e0e0",
@@ -2534,6 +2888,19 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grey-700",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L729",
+      usedBy: [
+        {
+          name: "rmd-avatar-background-color",
+          type: "variable",
+          packageName: "avatar",
+        },
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+        {
+          name: "rmd-text-field-filled-dark-background-color",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#616161",
@@ -2552,6 +2919,24 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grey-900",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L735",
+      usedBy: [
+        {
+          name: "rmd-app-bar-default-dark-theme-background-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+        {
+          name: "rmd-chip-solid-dark-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-solid-dark-disabled-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#212121",
@@ -2561,6 +2946,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-blue-grey-50",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L738",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#eceff1",
@@ -2624,6 +3012,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-blue-grey-700",
       description: "",
       source: "packages/theme/src/_color-palette.scss#L759",
+      usedBy: [
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "#455a64",
@@ -2652,6 +3043,107 @@ const sassdoc: PackageSassDoc = {
       description: "",
       source: "packages/theme/src/_color-palette.scss#L768",
       usedBy: [
+        {
+          name: "rmd-app-bar-default-light-theme-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-default-dark-theme-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-avatar-border-color",
+          type: "variable",
+          packageName: "avatar",
+        },
+        {
+          name: "rmd-badge-default-background-color",
+          type: "variable",
+          packageName: "badge",
+        },
+        {
+          name: "rmd-badge-default-color",
+          type: "variable",
+          packageName: "badge",
+        },
+        {
+          name: "rmd-chip-themed-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-solid-light-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-solid-dark-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-outline-light-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-outline-dark-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-divider-background-color-on-light",
+          type: "variable",
+          packageName: "divider",
+        },
+        {
+          name: "rmd-elevation-color",
+          type: "variable",
+          packageName: "elevation",
+        },
+        {
+          name: "rmd-text-field-light-border-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-text-field-light-border-hover-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-switch-track-background-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-link-skip-active-styles",
+          type: "variable",
+          packageName: "link",
+        },
+        {
+          name: "rmd-media-overlay-background-color",
+          type: "variable",
+          packageName: "media",
+        },
+        { name: "rmd-overlay-color", type: "variable", packageName: "overlay" },
+        {
+          name: "rmd-states-light-theme-background-color",
+          type: "variable",
+          packageName: "states",
+        },
+        {
+          name: "rmd-states-dark-theme-background-color",
+          type: "variable",
+          packageName: "states",
+        },
+        {
+          name: "rmd-table-row-hover-color",
+          type: "variable",
+          packageName: "table",
+        },
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -2665,6 +3157,78 @@ const sassdoc: PackageSassDoc = {
       description: "",
       source: "packages/theme/src/_color-palette.scss#L771",
       usedBy: [
+        { name: "rmd-toast-color", type: "variable", packageName: "alert" },
+        {
+          name: "rmd-app-bar-default-light-theme-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-default-dark-theme-color",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-avatar-border-color",
+          type: "variable",
+          packageName: "avatar",
+        },
+        { name: "rmd-avatar-colors", type: "variable", packageName: "avatar" },
+        {
+          name: "rmd-badge-default-color",
+          type: "variable",
+          packageName: "badge",
+        },
+        {
+          name: "rmd-chip-themed-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-solid-light-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-solid-dark-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-outline-light-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-outline-dark-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-divider-background-color-on-dark",
+          type: "variable",
+          packageName: "divider",
+        },
+        {
+          name: "rmd-option-selected-styles",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-text-field-dark-border-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-text-field-dark-border-hover-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-switch-progress-background-color",
+          type: "variable",
+          packageName: "form",
+        },
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
       ],
@@ -2779,6 +3343,74 @@ const sassdoc: PackageSassDoc = {
       description:
         "Boolean if the light theme **default** colors should be used. This means that the background-color, surface, and text colors will be updated to their light theme defaults.  Setting this to `false`, will use their dark theme defaults.\n",
       source: "packages/theme/src/_variables.scss#L28",
+      usedBy: [
+        {
+          name: "rmd-chip-solid-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        { name: "rmd-chip-solid-color", type: "variable", packageName: "chip" },
+        {
+          name: "rmd-chip-solid-disabled-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-outline-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-chip-outline-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-text-field-border-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-text-field-border-hover-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-text-field-filled-background-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-states-background-color",
+          type: "variable",
+          packageName: "states",
+        },
+        {
+          name: "rmd-states-hover-color",
+          type: "variable",
+          packageName: "states",
+        },
+        {
+          name: "rmd-states-focus-color",
+          type: "variable",
+          packageName: "states",
+        },
+        {
+          name: "rmd-states-pressed-color",
+          type: "variable",
+          packageName: "states",
+        },
+        {
+          name: "rmd-states-selected-color",
+          type: "variable",
+          packageName: "states",
+        },
+        {
+          name: "rmd-states-ripple-background-color",
+          type: "variable",
+          packageName: "states",
+        },
+      ],
       packageName: "theme",
       type: "Boolean",
       value: "true",
@@ -2789,6 +3421,23 @@ const sassdoc: PackageSassDoc = {
       description:
         "The primary theme color to use for your app. This is normally one of the material design colors with a `-500` suffix, but it can be any color.\n",
       source: "packages/theme/src/_variables.scss#L33",
+      usedBy: [
+        {
+          name: "rmd-chip-themed-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-progress-color",
+          type: "variable",
+          packageName: "progress",
+        },
+        {
+          name: "rmd-progress-background-color",
+          type: "variable",
+          packageName: "progress",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value: "$rmd-purple-500",
@@ -2812,6 +3461,13 @@ const sassdoc: PackageSassDoc = {
       description:
         "The secondary theme color to use for your app. This is normally one of the material design colors with an accent suffix (`-a-100` or `-a-200` or `-a-400` or `-a-700`, but it can really be any color.\n",
       source: "packages/theme/src/_variables.scss#L53",
+      usedBy: [
+        {
+          name: "rmd-switch-ball-disabled-color",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value: "$rmd-pink-a-400",
@@ -2857,6 +3513,9 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-error",
       description: "The error theme color to use for your app.\n",
       source: "packages/theme/src/_variables.scss#L91",
+      usedBy: [
+        { name: "rmd-form-error-color", type: "variable", packageName: "form" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "$rmd-red-500",
@@ -2916,6 +3575,11 @@ const sassdoc: PackageSassDoc = {
       description: "The light theme's surface color.\n",
       source: "packages/theme/src/_variables.scss#L133",
       usedBy: [
+        {
+          name: "rmd-chip-outline-light-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
       packageName: "theme",
@@ -2938,7 +3602,14 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-surface",
       description: "The dark theme's surface color.\n",
       source: "packages/theme/src/_variables.scss#L141",
-      usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
+      usedBy: [
+        {
+          name: "rmd-chip-outline-dark-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+      ],
       packageName: "theme",
       type: "Color",
       value: "$rmd-grey-800",
@@ -2949,6 +3620,13 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-background",
       description: "The theme's background color.\n",
       source: "packages/theme/src/_variables.scss#L145-L149",
+      usedBy: [
+        {
+          name: "rmd-divider-background-color",
+          type: "variable",
+          packageName: "divider",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value:
@@ -2961,6 +3639,13 @@ const sassdoc: PackageSassDoc = {
       description:
         "The theme's surface background color. This is the background color that will be used for any temporary 'material' (or surface)\n\nEx: Dialogs, Lists\n",
       source: "packages/theme/src/_variables.scss#L156-L160",
+      usedBy: [
+        {
+          name: "rmd-card-secondary-color",
+          type: "variable",
+          packageName: "card",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value:
@@ -3425,6 +4110,8 @@ const sassdoc: PackageSassDoc = {
         "A Map of all the theme values that can be used throughout the app. This is mainly created so that the specific `rmd-theme--NAME` classes can be created, but also for the `rmd-theme` function to get a specific color within your theme.\n",
       source: "packages/theme/src/_variables.scss#L403-L436",
       usedBy: [
+        { name: "rmd-theme", type: "function", packageName: "theme" },
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
         { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
         { name: "react-md-theme", type: "mixin", packageName: "theme" },

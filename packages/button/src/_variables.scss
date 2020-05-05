@@ -71,6 +71,8 @@ $rmd-button-background-color: transparent !default;
 
 /// This is the text color that will be applied when the theme type prop on
 /// buttons is set to "clear".
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-button-color: rmd-theme-var(text-primary-on-background) !default;
 

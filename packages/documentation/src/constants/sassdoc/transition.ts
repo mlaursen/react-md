@@ -213,6 +213,13 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-transition-enter-duration",
       description: "The default enter transition time.\n",
       source: "packages/transition/src/_variables.scss#L29",
+      usedBy: [
+        {
+          name: "rmd-sheet-enter-duration",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       packageName: "transition",
       type: "Number",
       value: "0.2s",
@@ -222,6 +229,13 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-transition-leave-duration",
       description: "The default leave transition time.\n",
       source: "packages/transition/src/_variables.scss#L33",
+      usedBy: [
+        {
+          name: "rmd-sheet-leave-duration",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       packageName: "transition",
       type: "Number",
       value: "0.15s",
@@ -234,11 +248,36 @@ const sassdoc: PackageSassDoc = {
       source: "packages/transition/src/_variables.scss#L37",
       usedBy: [
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        {
+          name: "rmd-chip-transition-duration",
+          type: "variable",
+          packageName: "chip",
+        },
         { name: "rmd-label", type: "mixin", packageName: "form" },
+        {
+          name: "rmd-link-transition-time",
+          type: "variable",
+          packageName: "link",
+        },
+        {
+          name: "rmd-overlay-transition-duration",
+          type: "variable",
+          packageName: "overlay",
+        },
         {
           name: "rmd-states-surface-base",
           type: "mixin",
           packageName: "states",
+        },
+        {
+          name: "rmd-tooltip-enter-duration",
+          type: "variable",
+          packageName: "tooltip",
+        },
+        {
+          name: "rmd-tooltip-exit-duration",
+          type: "variable",
+          packageName: "tooltip",
         },
       ],
       packageName: "transition",

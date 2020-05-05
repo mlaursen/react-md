@@ -18,6 +18,8 @@ $rmd-expansion-panel-header-padding: 1rem !default;
 
 /// The spacing to use for the expansion panel's expander icon. This is applied
 /// as `padding-left` on the icon's containing `<span>`.
+///
+/// @require $rmd-icon-spacing-with-text
 /// @type Number
 $rmd-expansion-panel-expander-icon-spacing: $rmd-icon-spacing-with-text !default;
 

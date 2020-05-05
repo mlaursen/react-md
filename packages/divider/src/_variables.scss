@@ -39,14 +39,21 @@ $rmd-divider-spacing: 0.25rem auto !default;
 $rmd-divider-vertical-spacing: auto 0.25rem !default;
 
 /// The divider color to use on light backgrounds.
+///
+/// @require $rmd-black-base
 /// @type Color
 $rmd-divider-background-color-on-light: rgba($rmd-black-base, 0.12) !default;
 
 /// The divider color to use on dark backgrounds.
+///
+/// @require $rmd-white-base
 /// @type Color
 $rmd-divider-background-color-on-dark: rgba($rmd-white-base, 0.12) !default;
 
 /// The default divider background color to use.
+///
+/// @require rmd-theme-tone
+/// @require $rmd-theme-background
 /// @type Color
 $rmd-divider-background-color: if(
   rmd-theme-tone($rmd-theme-background) == light,

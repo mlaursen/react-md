@@ -118,7 +118,8 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   },
   {
     title: "Using The Sass Exports",
-    summary: "",
+    summary:
+      "The naming conventions and export structure will be the same for the majority of the packages within react-md and should follow this pattern (with a few exceptions):",
     type: "guide",
     pageUrl: "/guides/[id]",
     pathname: "/guides/using-the-sass-exports",
@@ -604,14 +605,16 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   },
   {
     title: "Chip Demo - Input Chips",
-    summary: "",
+    summary:
+      "Chips can also be used alongside text fields or autocompletes to help show selected values. This example will show an idea for how something like this might be implemented, but it's nowhere near perfect. The email field will allow for showing a list of contacts that create chips when clicked.",
     type: "demo",
     pageUrl: "/packages/chip/demos#input-chips-title",
     pathname: "/packages/chip/demos#input-chips-title",
   },
   {
     title: "Chip Installation",
-    summary: "",
+    summary:
+      "Create a compact actionable element that can be used to represent an input, attribute, or action. A chip can be used to represent filters, tags, emails, or other inline elements.",
     type: "guide",
     pageUrl: "/packages/[id]/installation",
     pathname: "/packages/chip/installation",
@@ -1392,7 +1395,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Menu Installation",
     summary:
-      "Create accessible dropdown menus that auto-position themselves to stay within the viewport. The menus are entirely navigatable with a keyboard along with some additional behavior:",
+      "Create accessible dropdown menus that auto-position themselves to stay within the viewport. The menus are entirely navigable with a keyboard along with some additional behavior:",
     type: "guide",
     pageUrl: "/packages/[id]/installation",
     pathname: "/packages/menu/installation",

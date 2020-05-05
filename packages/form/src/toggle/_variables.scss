@@ -42,6 +42,8 @@ $rmd-switch-track-width: 2.25rem !default;
 
 /// The background color for a switch's track. This is the element that the ball animates
 /// left and right on.
+///
+/// @require $rmd-black-base
 /// @type Color
 $rmd-switch-track-background-color: rgba($rmd-black-base, 0.38) !default;
 
@@ -70,10 +72,14 @@ $rmd-switch-container-vertical-padding: 0.5rem !default;
 
 /// The horizontal padding for the switch container. This should generally be large
 /// enough so that the ball does not overlap the label or other elements.
+///
 /// @type Number
 $rmd-switch-container-horizontal-padding: $rmd-switch-ball-size / 2 !default;
 
 /// The color to use for the switch's ball when it is toggled on and disabled.
+///
+/// @require rmd-theme-get-swatch
+/// @require $rmd-theme-secondary
 /// @type Color
 $rmd-switch-ball-disabled-color: rmd-theme-get-swatch(
   $rmd-theme-secondary,
@@ -88,6 +94,8 @@ $rmd-switch-ball-disabled-color: rmd-theme-get-swatch(
 $rmd-switch-progress-width: 12 !default;
 
 /// The background color to use for the switch's ball while the the switch is loading.
+///
+/// @require $rmd-white-base
 /// @type Color
 $rmd-switch-progress-background-color: $rmd-white-base !default;
 

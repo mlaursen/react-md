@@ -15,12 +15,17 @@ $rmd-progress-include-circular: true !default;
 
 /// This is the main color that should be used for the linear progress and the
 /// circular progress components.
+///
+/// @require $rmd-theme-primary
 /// @type Color
 $rmd-progress-color: $rmd-theme-primary !default;
 
 /// This is the background color that is used fot the linear progress only.  You
 /// normally want this color to be a bit ligher than the main progress color
 /// since it'll be underneath the main progress.
+///
+/// @require rmd-theme-get-swatch
+/// @require $rmd-theme-primary
 /// @type Color
 $rmd-progress-background-color: rmd-theme-get-swatch(
   $rmd-theme-primary,

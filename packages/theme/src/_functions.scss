@@ -113,7 +113,6 @@
 /// You are _most_ likely looking for the `rmd-theme` mixin and not the
 /// functions instead.
 ///
-/// @access private
 /// @param {String} theme-name - The theme style to get. This should be one of
 /// the keys from `$rmd-theme-values`.
 /// @return {Color} the theme color.
@@ -128,7 +127,6 @@
 /// You are _most_ likely looking for the `rmd-theme` mixin and not the
 /// functions instead.
 ///
-/// @access private
 /// @param {String} theme-name - The theme style to get. This should be one of
 /// the keys from `$rmd-theme-values`.
 /// @return {Color} the theme color.

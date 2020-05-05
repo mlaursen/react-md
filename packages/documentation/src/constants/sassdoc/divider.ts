@@ -31,7 +31,14 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to get one of the divider's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-divider-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/divider/src/_functions.scss#L32-L34",
-      usedBy: [{ name: "rmd-divider", type: "mixin", packageName: "divider" }],
+      usedBy: [
+        {
+          name: "rmd-card-border-color",
+          type: "variable",
+          packageName: "card",
+        },
+        { name: "rmd-divider", type: "mixin", packageName: "divider" },
+      ],
       packageName: "divider",
       code:
         "@function rmd-divider-theme-var($theme-style, $fallback: null) { … }",
@@ -131,6 +138,9 @@ const sassdoc: PackageSassDoc = {
       description:
         "This mixin allows you to add a custom border to any element if you don't want to add an extra element within your page for a divider.",
       source: "packages/divider/src/_mixins.scss#L40-L46",
+      usedBy: [
+        { name: "react-md-layout", type: "mixin", packageName: "layout" },
+      ],
       packageName: "divider",
       code: "@mixin rmd-divider-border($position) { … }",
       sourceCode:
@@ -178,6 +188,13 @@ const sassdoc: PackageSassDoc = {
       description:
         "The size for the divider. This really just modifies the border-width.\n",
       source: "packages/divider/src/_variables.scss#L10",
+      usedBy: [
+        {
+          name: "rmd-card-border-width",
+          type: "variable",
+          packageName: "card",
+        },
+      ],
       packageName: "divider",
       type: "Number",
       value: "1px",
@@ -230,8 +247,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-divider-background-color-on-light": {
       name: "rmd-divider-background-color-on-light",
-      description: "The divider color to use on light backgrounds.\n",
-      source: "packages/divider/src/_variables.scss#L43",
+      description: "The divider color to use on light backgrounds.",
+      source: "packages/divider/src/_variables.scss#L45",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -243,8 +260,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-divider-background-color-on-dark": {
       name: "rmd-divider-background-color-on-dark",
-      description: "The divider color to use on dark backgrounds.\n",
-      source: "packages/divider/src/_variables.scss#L47",
+      description: "The divider color to use on dark backgrounds.",
+      source: "packages/divider/src/_variables.scss#L51",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "divider",
       type: "Color",
@@ -254,8 +271,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-divider-background-color": {
       name: "rmd-divider-background-color",
-      description: "The default divider background color to use.\n",
-      source: "packages/divider/src/_variables.scss#L51-L55",
+      description: "The default divider background color to use.",
+      source: "packages/divider/src/_variables.scss#L58-L62",
       packageName: "divider",
       type: "Color",
       value:
@@ -267,7 +284,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-divider-theme-values",
       description:
         'A Map of all the "themeable" parts of the divider package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/divider/src/_variables.scss#L61-L70",
+      source: "packages/divider/src/_variables.scss#L68-L77",
       usedBy: [
         { name: "rmd-divider-theme", type: "function", packageName: "divider" },
         {

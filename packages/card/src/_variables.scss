@@ -7,16 +7,24 @@
 @import '~@react-md/theme/dist/functions';
 
 /// The base background color to apply to cards.
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-card-background-color: rmd-theme-var(surface) !default;
 
 /// The base primary text color to apply to cards.
+///
+/// @require rmd-theme-var
 /// @type Color
 $rmd-card-color: rmd-theme-var(on-surface) !default;
 
 /// The base secondary text color to apply to cards. The `CardSubtitle` and
 /// `CardContent` components will use this color by default unless the
 /// `disableSecondaryColor` prop is enabled.
+///
+/// @require rmd-theme-var
+/// @require rmd-theme-tone
+/// @require $rmd-theme-surface
 /// @type Color
 $rmd-card-secondary-color: if(
   rmd-theme-tone($rmd-theme-surface) == light,
@@ -71,10 +79,14 @@ $rmd-card-content-padding-extra: 1.5rem !default;
 $rmd-card-actions-padding: 0.5rem !default;
 
 /// The border color for a bordered card.
+///
+/// @require rmd-divider-theme-var
 /// @type Color|String
 $rmd-card-border-color: rmd-divider-theme-var(background-color) !default;
 
 /// The width for a bordered card.
+///
+/// @require $rmd-divider-size
 /// @type Number
 $rmd-card-border-width: $rmd-divider-size !default;
 

@@ -253,6 +253,7 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-button-base", type: "mixin", packageName: "button" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-text-field-base", type: "mixin", packageName: "form" },
+        { name: "rmd-layout-main", type: "mixin", packageName: "layout" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
         { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
         { name: "rmd-states-surface", type: "mixin", packageName: "states" },

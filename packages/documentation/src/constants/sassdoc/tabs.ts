@@ -194,8 +194,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-tab-indicator-color": {
       name: "rmd-tab-indicator-color",
-      description: "The tab indicator color to use.\n",
-      source: "packages/tabs/src/_variables.scss#L38",
+      description: "The tab indicator color to use.",
+      source: "packages/tabs/src/_variables.scss#L40",
       packageName: "tabs",
       type: "Color|String",
       value: "rmd-theme-var(primary)",
@@ -204,8 +204,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-tab-active-color": {
       name: "rmd-tab-active-color",
-      description: "The color to use when a tab has become active.\n",
-      source: "packages/tabs/src/_variables.scss#L42",
+      description: "The color to use when a tab has become active.",
+      source: "packages/tabs/src/_variables.scss#L46",
       packageName: "tabs",
       type: "Color|String",
       value: "rmd-theme(text-primary-on-background)",
@@ -214,8 +214,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-tab-inactive-color": {
       name: "rmd-tab-inactive-color",
-      description: "The color to use when a tab is inactive.\n",
-      source: "packages/tabs/src/_variables.scss#L46",
+      description: "The color to use when a tab is inactive.",
+      source: "packages/tabs/src/_variables.scss#L52",
       packageName: "tabs",
       type: "Color|String",
       value: "rmd-theme(text-secondary-on-background)",
@@ -224,8 +224,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-tab-disabled-color": {
       name: "rmd-tab-disabled-color",
-      description: "The color to use when a tab is disabled.\n",
-      source: "packages/tabs/src/_variables.scss#L50",
+      description: "The color to use when a tab is disabled.",
+      source: "packages/tabs/src/_variables.scss#L58",
       packageName: "tabs",
       type: "Color|String",
       value: "rmd-theme(text-disabled-on-background)",
@@ -235,7 +235,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tab-active-indicator-height": {
       name: "rmd-tab-active-indicator-height",
       description: "The height for the active tab indicator divider.\n",
-      source: "packages/tabs/src/_variables.scss#L54",
+      source: "packages/tabs/src/_variables.scss#L62",
       packageName: "tabs",
       type: "Number",
       value: "0.125rem",
@@ -245,7 +245,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tabs-positions",
       description:
         "A list of alignments that should be supported by the Tabs component. These values should be valid values for the `justify-content` property.\n",
-      source: "packages/tabs/src/_variables.scss#L59",
+      source: "packages/tabs/src/_variables.scss#L67",
       packageName: "tabs",
       type: "List",
       value: "(left center right)",
@@ -255,7 +255,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tabs-scrollable-padding",
       description:
         "The amount of padding to use when the `scollable` prop is enabled on the `Tabs` component that will be added to the left of the first tab (or right for RTL languages). This padding is useful to help users know that the content is scrollable.\n",
-      source: "packages/tabs/src/_variables.scss#L65",
+      source: "packages/tabs/src/_variables.scss#L73",
       packageName: "tabs",
       type: "Number",
       value: "3.25rem",
@@ -264,7 +264,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tabs-theme-values": {
       name: "rmd-tabs-theme-values",
       description: "A map of all the themeable parts of the tabs package.\n",
-      source: "packages/tabs/src/_variables.scss#L69-L74",
+      source: "packages/tabs/src/_variables.scss#L77-L82",
       usedBy: [
         { name: "rmd-tabs-theme", type: "function", packageName: "tabs" },
         { name: "rmd-tabs-theme-var", type: "function", packageName: "tabs" },

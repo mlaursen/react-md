@@ -13,10 +13,16 @@ $rmd-badge-size: 1.5rem !default;
 $rmd-badge-border-radius: 50% !default;
 
 /// The "default" background color.
+///
+/// @require $rmd-black-base
 /// @type Color
 $rmd-badge-default-background-color: rgba($rmd-black-base, 0.2) !default;
 
 /// The "default" themed text color.
+///
+/// @require rmd-theme-tone
+/// @require $rmd-black-base
+/// @require $rmd-white-base
 /// @type Color
 $rmd-badge-default-color: if(
   rmd-theme-tone($rmd-badge-default-background-color) == light,

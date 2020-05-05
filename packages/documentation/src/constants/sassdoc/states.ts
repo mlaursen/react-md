@@ -38,6 +38,11 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "states",
         },
+        {
+          name: "rmd-table-row-selected-color",
+          type: "variable",
+          packageName: "table",
+        },
       ],
       packageName: "states",
       code:
@@ -349,6 +354,11 @@ const sassdoc: PackageSassDoc = {
       source: "packages/states/src/_variables.scss#L33",
       usedBy: [
         {
+          name: "rmd-chip-disable-focus-background-color",
+          type: "variable",
+          packageName: "chip",
+        },
+        {
           name: "rmd-states-focus-shadow",
           type: "mixin",
           packageName: "states",
@@ -375,8 +385,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-light-theme-background-color": {
       name: "rmd-states-light-theme-background-color",
       description:
-        "The base background color to use for the different interaction states for a light themed application. This is the color that gets different opacities applied to it.\n",
-      source: "packages/states/src/_variables.scss#L48",
+        "The base background color to use for the different interaction states for a light themed application. This is the color that gets different opacities applied to it.",
+      source: "packages/states/src/_variables.scss#L50",
       packageName: "states",
       type: "Color",
       value: "$rmd-black-base",
@@ -386,8 +396,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-dark-theme-background-color": {
       name: "rmd-states-dark-theme-background-color",
       description:
-        "The base background color to use for the different interaction states for a dark themed application. This is the color that gets different opacities applied to it. This is currently the same color as the light themed version,\nbut it's available for reconfiguration if it's desired.\n",
-      source: "packages/states/src/_variables.scss#L55",
+        "The base background color to use for the different interaction states for a dark themed application. This is the color that gets different opacities applied to it. This is currently the same color as the light themed version,\nbut it's available for reconfiguration if it's desired.",
+      source: "packages/states/src/_variables.scss#L59",
       packageName: "states",
       type: "Color",
       value: "$rmd-black-base",
@@ -397,7 +407,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-light-theme-hover-color": {
       name: "rmd-states-light-theme-hover-color",
       description: "The hover color to use for light themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L59",
+      source: "packages/states/src/_variables.scss#L63",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -411,7 +421,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-light-theme-focus-color",
       description:
         "The keyboard focus color to use for light themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L63",
+      source: "packages/states/src/_variables.scss#L67",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -424,7 +434,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-light-theme-pressed-color": {
       name: "rmd-states-light-theme-pressed-color",
       description: "The pressed color to use for light themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L67-L70",
+      source: "packages/states/src/_variables.scss#L71-L74",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -437,7 +447,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-light-theme-selected-color": {
       name: "rmd-states-light-theme-selected-color",
       description: "The selected color to use for light themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L74-L77",
+      source: "packages/states/src/_variables.scss#L78-L81",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -450,7 +460,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-dark-theme-hover-color": {
       name: "rmd-states-dark-theme-hover-color",
       description: "The hover color to use for dark themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L81",
+      source: "packages/states/src/_variables.scss#L85",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "states",
       type: "Color",
@@ -462,7 +472,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-dark-theme-focus-color",
       description:
         "The keyboard focus color to use for dark themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L85",
+      source: "packages/states/src/_variables.scss#L89",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "states",
       type: "Color",
@@ -473,7 +483,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-dark-theme-pressed-color": {
       name: "rmd-states-dark-theme-pressed-color",
       description: "The pressed color to use for dark themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L89",
+      source: "packages/states/src/_variables.scss#L93",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "states",
       type: "Color",
@@ -484,7 +494,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-dark-theme-selected-color": {
       name: "rmd-states-dark-theme-selected-color",
       description: "The selected color to use for dark themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L93",
+      source: "packages/states/src/_variables.scss#L97",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "states",
       type: "Color",
@@ -496,7 +506,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-light-theme-ripple-background-color",
       description:
         "The base background color to use for the ripple effect in a light themed application.\n",
-      source: "packages/states/src/_variables.scss#L98",
+      source: "packages/states/src/_variables.scss#L102",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -510,7 +520,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-dark-theme-ripple-background-color",
       description:
         "The base background color to use for the ripple effect in a dark themed application.\n",
-      source: "packages/states/src/_variables.scss#L103",
+      source: "packages/states/src/_variables.scss#L107",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "states",
       type: "Color",
@@ -521,8 +531,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-background-color": {
       name: "rmd-states-background-color",
       description:
-        "The background color to use for the different states. The default behavior is to use a base color and apply different opacities depending on the interaction with the element.\n",
-      source: "packages/states/src/_variables.scss#L109-L113",
+        "The background color to use for the different states. The default behavior is to use a base color and apply different opacities depending on the interaction with the element.",
+      source: "packages/states/src/_variables.scss#L115-L119",
       packageName: "states",
       type: "Color",
       value:
@@ -533,8 +543,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-hover-color": {
       name: "rmd-states-hover-color",
       description:
-        "The default hover color to use. This will be determined based on the current theme type of light or dark.\n",
-      source: "packages/states/src/_variables.scss#L118-L122",
+        "The default hover color to use. This will be determined based on the current theme type of light or dark.",
+      source: "packages/states/src/_variables.scss#L126-L130",
       packageName: "states",
       type: "Color",
       value:
@@ -545,8 +555,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-focus-color": {
       name: "rmd-states-focus-color",
       description:
-        "The default focus color to use. This will be determined based on the current theme type of light or dark.\n",
-      source: "packages/states/src/_variables.scss#L127-L131",
+        "The default focus color to use. This will be determined based on the current theme type of light or dark.",
+      source: "packages/states/src/_variables.scss#L137-L141",
       packageName: "states",
       type: "Color",
       value:
@@ -557,8 +567,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-pressed-color": {
       name: "rmd-states-pressed-color",
       description:
-        "The default pressed color to use. This will be determined based on the current theme type of light or dark.\n",
-      source: "packages/states/src/_variables.scss#L136-L140",
+        "The default pressed color to use. This will be determined based on the current theme type of light or dark.",
+      source: "packages/states/src/_variables.scss#L148-L152",
       packageName: "states",
       type: "Color",
       value:
@@ -569,8 +579,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-selected-color": {
       name: "rmd-states-selected-color",
       description:
-        "The default selected color to use. This will be determined based on the current theme type of light or dark.\n",
-      source: "packages/states/src/_variables.scss#L145-L149",
+        "The default selected color to use. This will be determined based on the current theme type of light or dark.",
+      source: "packages/states/src/_variables.scss#L159-L163",
       packageName: "states",
       type: "Color",
       value:
@@ -582,7 +592,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-focus-shadow-width",
       description:
         "The keyboard focus shadow width to use when the `$rmd-states-use-focus-shadow` variable is enabled.\n",
-      source: "packages/states/src/_variables.scss#L154",
+      source: "packages/states/src/_variables.scss#L168",
       packageName: "states",
       type: "Number",
       value: "0.125rem",
@@ -591,8 +601,15 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-focus-shadow-color": {
       name: "rmd-states-focus-shadow-color",
       description:
-        "The keyboard focus shadow color to use when the `$rmd-states-use-focus-shadow` variable is enabled.\n",
-      source: "packages/states/src/_variables.scss#L159",
+        "The keyboard focus shadow color to use when the `$rmd-states-use-focus-shadow` variable is enabled.",
+      source: "packages/states/src/_variables.scss#L175",
+      usedBy: [
+        {
+          name: "rmd-text-field-active-color",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       packageName: "states",
       type: "Color",
       value: "$rmd-blue-500",
@@ -602,8 +619,15 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-focus-shadow": {
       name: "rmd-states-focus-shadow",
       description:
-        "The box-shadow to use when the user keyboard-focuses an element and the `$rmd-states-use-focus-shadow` variable is enabled.\n",
-      source: "packages/states/src/_variables.scss#L164",
+        "The box-shadow to use when the user keyboard-focuses an element and the `$rmd-states-use-focus-shadow` variable is enabled.",
+      source: "packages/states/src/_variables.scss#L181",
+      usedBy: [
+        {
+          name: "rmd-layout-main-focus-shadow",
+          type: "variable",
+          packageName: "layout",
+        },
+      ],
       packageName: "states",
       type: "String",
       value:
@@ -613,8 +637,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-states-ripple-background-color": {
       name: "rmd-states-ripple-background-color",
-      description: "The base background color for the ripple effect.\n",
-      source: "packages/states/src/_variables.scss#L168-L172",
+      description: "The base background color for the ripple effect.",
+      source: "packages/states/src/_variables.scss#L187-L191",
       packageName: "states",
       type: "Color",
       value:
@@ -626,7 +650,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-ripple-transform-duration",
       description:
         "The transition duration for the ripple transformation animation. This is the expanding circle animation that overlaps a bit with the fade out animation.\n",
-      source: "packages/states/src/_variables.scss#L177",
+      source: "packages/states/src/_variables.scss#L196",
       packageName: "states",
       type: "Number",
       value: "0.45s",
@@ -636,7 +660,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-ripple-opacity-duration",
       description:
         "The transition duration for the ripple opacity animation. This will be triggered when the ripple starts its exit animation.\n",
-      source: "packages/states/src/_variables.scss#L182",
+      source: "packages/states/src/_variables.scss#L201",
       packageName: "states",
       type: "Number",
       value: "0.3s",
@@ -646,7 +670,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-pressed-class-name",
       description:
         "The class name to use when using the pressed interaction fallback\n",
-      source: "packages/states/src/_variables.scss#L186",
+      source: "packages/states/src/_variables.scss#L205",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "states",
       type: "String",
@@ -658,7 +682,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-theme-values",
       description:
         'A Map of all the "themeable" parts of the states package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/states/src/_variables.scss#L192-L210",
+      source: "packages/states/src/_variables.scss#L211-L229",
       usedBy: [
         { name: "rmd-states-theme", type: "function", packageName: "states" },
         {

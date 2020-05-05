@@ -155,8 +155,8 @@ const sassdoc: PackageSassDoc = {
     "rmd-expansion-panel-expander-icon-spacing": {
       name: "rmd-expansion-panel-expander-icon-spacing",
       description:
-        "The spacing to use for the expansion panel's expander icon. This is applied as `padding-left` on the icon's containing `<span>`.\n",
-      source: "packages/expansion-panel/src/_variables.scss#L22",
+        "The spacing to use for the expansion panel's expander icon. This is applied as `padding-left` on the icon's containing `<span>`.",
+      source: "packages/expansion-panel/src/_variables.scss#L24",
       packageName: "expansion-panel",
       type: "Number",
       value: "$rmd-icon-spacing-with-text",
@@ -167,7 +167,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-expansion-panel-theme-values",
       description:
         'A Map of all the "themeable" parts of the expansion-panel package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n\nNote: these variables feel useless to me. probably won\'t configure these\n',
-      source: "packages/expansion-panel/src/_variables.scss#L30-L34",
+      source: "packages/expansion-panel/src/_variables.scss#L32-L36",
       usedBy: [
         {
           name: "rmd-expansion-panel-theme",

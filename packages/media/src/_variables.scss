@@ -5,17 +5,21 @@
 @import '~@react-md/theme/dist/color-palette';
 
 /// The background color for a media overlay.
+///
+/// @require $rmd-black-base
 /// @type Color
 $rmd-media-overlay-background-color: rgba($rmd-black-base, 0.54) !default;
 
 /// A list of selectors or html elements that should be considered responsive
 /// media by default. This will make it so that when using the `MediaContainer`
 /// component, the following elements will be responsive automatically.
+///
 /// @type List
 $rmd-media-selectors: (img '>svg' iframe video embed object) !default;
 
 /// The default aspect ratio for the media component when an aspect ratio is
 /// enforced.
+///
 /// @type Number
 $rmd-media-default-aspect-ratio: percentage(9 / 16) !default;
 

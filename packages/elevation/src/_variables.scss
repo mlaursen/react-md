@@ -9,6 +9,8 @@
 @import '~@react-md/theme/dist/color-palette';
 
 /// The normal elevation color to use.
+///
+/// @require $rmd-black-base
 /// @type Color
 $rmd-elevation-color: $rmd-black-base;
 

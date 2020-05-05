@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-elevation",
       description:
         "Returns a box shadow string for the current material design elevation. This is useful if you want to merge material design elevation with custom box shadow values as well.",
-      source: "packages/elevation/src/_functions.scss#L28-L49",
+      source: "packages/elevation/src/_functions.scss#L29-L50",
       usedBy: [
         { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
         {
@@ -180,8 +180,8 @@ const sassdoc: PackageSassDoc = {
   variables: {
     "rmd-elevation-color": {
       name: "rmd-elevation-color",
-      description: "The normal elevation color to use.\n",
-      source: "packages/elevation/src/_variables.scss#L13",
+      description: "The normal elevation color to use.",
+      source: "packages/elevation/src/_variables.scss#L15",
       packageName: "elevation",
       type: "Color",
       value: "$rmd-black-base",
@@ -191,7 +191,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-elevation-shadow-1-opacity": {
       name: "rmd-elevation-shadow-1-opacity",
       description: "The opacity to apply to the first box-shadow\n",
-      source: "packages/elevation/src/_variables.scss#L18",
+      source: "packages/elevation/src/_variables.scss#L20",
       see: [
         {
           name: "rmd-elevation-shadow-1-map",
@@ -210,7 +210,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-elevation-shadow-2-opacity": {
       name: "rmd-elevation-shadow-2-opacity",
       description: "The opacity to apply to the second box-shadow\n",
-      source: "packages/elevation/src/_variables.scss#L23",
+      source: "packages/elevation/src/_variables.scss#L25",
       see: [
         {
           name: "rmd-elevation-shadow-2-map",
@@ -229,7 +229,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-elevation-shadow-3-opacity": {
       name: "rmd-elevation-shadow-3-opacity",
       description: "The opacity to apply to the third box-shadow\n",
-      source: "packages/elevation/src/_variables.scss#L28",
+      source: "packages/elevation/src/_variables.scss#L30",
       see: [
         {
           name: "rmd-elevation-shadow-3-map",
@@ -249,7 +249,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-elevation-shadow-1-map",
       description:
         "A Map of the first layer of box-shadows to apply for elevation. This is a map of numbers from 0 -> 24.\n",
-      source: "packages/elevation/src/_variables.scss#L33-L59",
+      source: "packages/elevation/src/_variables.scss#L35-L61",
       usedBy: [
         { name: "rmd-elevation", type: "function", packageName: "elevation" },
       ],
@@ -263,7 +263,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-elevation-shadow-2-map",
       description:
         "A Map of the second layer of box-shadows to apply for elevation. This is a map of numbers from 0 -> 24.\n",
-      source: "packages/elevation/src/_variables.scss#L64-L90",
+      source: "packages/elevation/src/_variables.scss#L66-L92",
       usedBy: [
         { name: "rmd-elevation", type: "function", packageName: "elevation" },
       ],
@@ -277,7 +277,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-elevation-shadow-3-map",
       description:
         "A Map of the third layer of box-shadows to apply for elevation.  This is a map of numbers from 0 -> 24.\n",
-      source: "packages/elevation/src/_variables.scss#L95-L121",
+      source: "packages/elevation/src/_variables.scss#L97-L123",
       usedBy: [
         { name: "rmd-elevation", type: "function", packageName: "elevation" },
       ],

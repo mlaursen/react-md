@@ -58,7 +58,8 @@ export default function parseDemoIndex(demoRoute: string): MarkdownResult {
       const markdown = readFileSync(join(demoFolder, `${fileName}.md`), "utf8");
       const { summary } = parseMarkdown(markdown);
       if (!summary) {
-        log.warn(`\`${title}\` demo does not have a valid summary!`);
+        const name = toTitle(pkgName, " ");
+        log.warn(`${name}'s \`${title}\` demo does not have a valid summary!`);
       }
 
       result.anchors.push({ anchor: `#${toId(title)}`, title });
