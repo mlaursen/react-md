@@ -11,6 +11,7 @@ import {
 } from "./types";
 import { getMarkdownForRoute, getTitleForRoute } from "./utils";
 import { toTitle, toId } from "../utils/titles";
+import parseSassDocAnchors from "./parseSassDocAnchors";
 
 export default async function generate(
   routes: readonly string[]
@@ -50,6 +51,7 @@ export default async function generate(
         case "sassdoc":
           type = "sassdoc";
           summary = `Documentation for all the SCSS variables, functions, and mixins for the @react-md/${pkgName} package.`;
+          anchors = parseSassDocAnchors(pkgName);
           break;
         default:
           throw new Error("This should never happen.");

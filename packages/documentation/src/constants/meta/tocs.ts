@@ -350,6 +350,20 @@ const tocs: TOCRecord = {
       title: "Typescript Types",
     },
   ],
+  "/packages/alert/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#alert-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#alert-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#alert-variables",
+    },
+  ],
   "/packages/app-bar/demos": [
     {
       anchor: "#simple-usage",
@@ -380,6 +394,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/app-bar/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#app-bar-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#app-bar-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#app-bar-variables",
     },
   ],
   "/packages/autocomplete/demos": [
@@ -426,6 +454,20 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/avatar/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#avatar-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#avatar-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#avatar-variables",
+    },
+  ],
   "/packages/badge/demos": [
     {
       anchor: "#simple-examples",
@@ -452,6 +494,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/badge/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#badge-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#badge-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#badge-variables",
     },
   ],
   "/packages/button/demos": [
@@ -502,6 +558,20 @@ const tocs: TOCRecord = {
       title: "Buttons with Icons Only",
     },
   ],
+  "/packages/button/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#button-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#button-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#button-variables",
+    },
+  ],
   "/packages/card/demos": [
     {
       anchor: "#simple-example",
@@ -528,6 +598,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/card/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#card-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#card-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#card-variables",
     },
   ],
   "/packages/chip/demos": [
@@ -560,6 +644,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/chip/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#chip-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#chip-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#chip-variables",
     },
   ],
   "/packages/dialog/demos": [
@@ -598,6 +696,20 @@ const tocs: TOCRecord = {
       title: "Example",
     },
   ],
+  "/packages/dialog/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#dialog-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#dialog-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#dialog-variables",
+    },
+  ],
   "/packages/divider/demos": [
     {
       anchor: "#horizontal-dividers",
@@ -622,6 +734,20 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/divider/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#divider-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#divider-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#divider-variables",
+    },
+  ],
   "/packages/elevation/demos": [
     {
       anchor: "#all-elevations",
@@ -640,6 +766,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/elevation/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#elevation-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#elevation-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#elevation-variables",
     },
   ],
   "/packages/expansion-panel/demos": [
@@ -664,6 +804,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/expansion-panel/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#expansion-panel-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#expansion-panel-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#expansion-panel-variables",
     },
   ],
   "/packages/form/demos": [
@@ -734,6 +888,20 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/form/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#form-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#form-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#form-variables",
+    },
+  ],
   "/packages/icon/demos": [
     {
       anchor: "#simple-examples",
@@ -762,6 +930,20 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/icon/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#icon-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#icon-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#icon-variables",
+    },
+  ],
   "/packages/layout/installation": [
     {
       anchor: "#installation",
@@ -770,6 +952,16 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/layout/sassdoc": [
+    {
+      title: "Mixins",
+      anchor: "#layout-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#layout-variables",
     },
   ],
   "/packages/link/demos": [
@@ -812,6 +1004,20 @@ const tocs: TOCRecord = {
       title: "SkipToMainContent",
     },
   ],
+  "/packages/link/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#link-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#link-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#link-variables",
+    },
+  ],
   "/packages/list/demos": [
     {
       anchor: "#single-line-examples",
@@ -838,6 +1044,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/list/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#list-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#list-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#list-variables",
     },
   ],
   "/packages/material-icons/demos": [
@@ -896,6 +1116,16 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/media/sassdoc": [
+    {
+      title: "Mixins",
+      anchor: "#media-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#media-variables",
+    },
+  ],
   "/packages/menu/demos": [
     {
       anchor: "#simple-examples",
@@ -944,6 +1174,20 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/menu/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#menu-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#menu-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#menu-variables",
+    },
+  ],
   "/packages/overlay/demos": [
     {
       anchor: "#simple-example",
@@ -966,6 +1210,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/overlay/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#overlay-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#overlay-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#overlay-variables",
     },
   ],
   "/packages/portal/demos": [
@@ -1016,6 +1274,20 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/progress/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#progress-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#progress-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#progress-variables",
+    },
+  ],
   "/packages/sheet/demos": [
     {
       anchor: "#position-examples",
@@ -1038,6 +1310,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/sheet/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#sheet-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#sheet-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#sheet-variables",
     },
   ],
   "/packages/states/demos": [
@@ -1074,6 +1360,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#useinteractionstates",
       title: "useInteractionStates",
+    },
+  ],
+  "/packages/states/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#states-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#states-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#states-variables",
     },
   ],
   "/packages/table/demos": [
@@ -1120,6 +1420,20 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/table/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#table-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#table-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#table-variables",
+    },
+  ],
   "/packages/tabs/demos": [
     {
       anchor: "#basic-usage",
@@ -1152,6 +1466,20 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/tabs/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#tabs-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#tabs-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#tabs-variables",
+    },
+  ],
   "/packages/theme/demos": [
     {
       anchor: "#simple-example",
@@ -1182,6 +1510,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#recommended-base-project-files",
       title: "Recommended base project files",
+    },
+  ],
+  "/packages/theme/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#theme-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#theme-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#theme-variables",
     },
   ],
   "/packages/tooltip/demos": [
@@ -1224,6 +1566,20 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/tooltip/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#tooltip-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#tooltip-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#tooltip-variables",
+    },
+  ],
   "/packages/transition/demos": [
     {
       anchor: "#cross-fade-examples",
@@ -1264,6 +1620,16 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/transition/sassdoc": [
+    {
+      title: "Mixins",
+      anchor: "#transition-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#transition-variables",
+    },
+  ],
   "/packages/tree/demos": [
     {
       anchor: "#single-select-tree",
@@ -1288,6 +1654,20 @@ const tocs: TOCRecord = {
       title: "Usage",
     },
   ],
+  "/packages/tree/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#tree-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#tree-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#tree-variables",
+    },
+  ],
   "/packages/typography/demos": [
     {
       anchor: "#text-examples",
@@ -1306,6 +1686,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/typography/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#typography-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#typography-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#typography-variables",
     },
   ],
   "/packages/utils/demos": [
@@ -1346,6 +1740,20 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage-with-other-packages",
       title: "Usage with other packages",
+    },
+  ],
+  "/packages/utils/sassdoc": [
+    {
+      title: "Functions",
+      anchor: "#utils-functions",
+    },
+    {
+      title: "Mixins",
+      anchor: "#utils-mixins",
+    },
+    {
+      title: "Variables",
+      anchor: "#utils-variables",
     },
   ],
 };
