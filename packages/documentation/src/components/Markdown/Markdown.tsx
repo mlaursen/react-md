@@ -53,6 +53,22 @@ function useHTML(children: MarkdownChildren): DangerHTML {
   return html;
 }
 
+type RouterArgs = [string] | [string, string];
+function getRouterArgs(href: string): RouterArgs {
+  const args: RouterArgs = [href];
+
+  const parts = href.split("/");
+  const index = parts.findIndex(
+    (part) => part === "guides" || part === "packages"
+  );
+  if (index !== -1) {
+    const name = parts[index + 1];
+    args.unshift(href.replace(name, "[id]"));
+  }
+
+  return args;
+}
+
 function useCustomMarkdownBehavior({
   __html: html,
 }: DangerHTML): MutableRefObject<HTMLDivElement | null> {
@@ -75,16 +91,11 @@ function useCustomMarkdownBehavior({
           event.preventDefault();
           const href = link.href.replace(origin, "");
 
-          // convert the href into an as+href if it's a known guide
-          const [, guide] = href.match(/\/guides\/([a-z]+(-[a-z]+)*)$/) || [
-            "",
-            "",
-          ];
-
-          if (guide) {
-            router.push(href.replace(guide, "[id]"), href);
+          const [url, as] = getRouterArgs(href);
+          if (as) {
+            router.push(url, as);
           } else {
-            router.push(href);
+            router.push(url);
           }
         };
       }
