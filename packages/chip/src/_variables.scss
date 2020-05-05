@@ -84,20 +84,15 @@ $rmd-chip-solid-light-color: if(
   $rmd-white-base
 ) !default;
 
-/// The background color to use for "solid" themed chips when using the dark
-/// theme.
-/// @type Color
-$rmd-chip-solid-dark-background-color: $rmd-grey-900 !default;
-
 /// The background color to use for a solid disabled chip when using the light
 /// theme.
 /// @type Color
 $rmd-chip-solid-light-disabled-background-color: $rmd-grey-100 !default;
 
-/// The background color to use for a solid disabled chip when using the dark
+/// The background color to use for "solid" themed chips when using the dark
 /// theme.
 /// @type Color
-$rmd-chip-solid-dark-disabled-background-color: lighten($rmd-grey-900, 2%) !default;
+$rmd-chip-solid-dark-background-color: $rmd-grey-900 !default;
 
 /// The text color to use for "solid" themed chips when using the dark theme.
 /// @type Color
@@ -106,6 +101,11 @@ $rmd-chip-solid-dark-color: if(
   $rmd-black-base,
   $rmd-white-base
 ) !default;
+
+/// The background color to use for a solid disabled chip when using the dark
+/// theme.
+/// @type Color
+$rmd-chip-solid-dark-disabled-background-color: lighten($rmd-grey-900, 2%) !default;
 
 /// The background color to use for "solid" themed chips.
 /// @type Color

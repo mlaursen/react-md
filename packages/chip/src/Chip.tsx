@@ -110,7 +110,7 @@ const block = bem("rmd-chip");
  * A chip is a simplified and condensed button component that be used to create
  * compact radio groups, checkboxes, and trigger actions. The chip only has a
  * `"solid"` and `"outline"` theme but can be raisable once clicked or
- * selectable with an inline icon. A chip also suppors rendering icons, avatars,
+ * selectable with an inline icon. A chip also supports rendering icons, avatars,
  * or circular progress bars to the left and right of the children.
  */
 function Chip(

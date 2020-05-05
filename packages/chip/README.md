@@ -1,5 +1,9 @@
 # @react-md/chip
 
+Create a compact actionable element that can be used to represent an input,
+attribute, or action. A chip can be used to represent filters, tags, emails, or
+other inline elements.
+
 ## Installation
 
 ```sh

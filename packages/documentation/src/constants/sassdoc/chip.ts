@@ -302,23 +302,11 @@ const sassdoc: PackageSassDoc = {
       compiled: "#000",
       overridable: true,
     },
-    "rmd-chip-solid-dark-background-color": {
-      name: "rmd-chip-solid-dark-background-color",
-      description:
-        'The background color to use for "solid" themed chips when using the dark theme.\n',
-      source: "packages/chip/src/_variables.scss#L90",
-      usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
-      packageName: "chip",
-      type: "Color",
-      value: "$rmd-grey-900",
-      compiled: "#212121",
-      overridable: true,
-    },
     "rmd-chip-solid-light-disabled-background-color": {
       name: "rmd-chip-solid-light-disabled-background-color",
       description:
         "The background color to use for a solid disabled chip when using the light theme.\n",
-      source: "packages/chip/src/_variables.scss#L95",
+      source: "packages/chip/src/_variables.scss#L90",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -328,29 +316,41 @@ const sassdoc: PackageSassDoc = {
       compiled: "#f5f5f5",
       overridable: true,
     },
-    "rmd-chip-solid-dark-disabled-background-color": {
-      name: "rmd-chip-solid-dark-disabled-background-color",
+    "rmd-chip-solid-dark-background-color": {
+      name: "rmd-chip-solid-dark-background-color",
       description:
-        "The background color to use for a solid disabled chip when using the dark theme.\n",
-      source: "packages/chip/src/_variables.scss#L100",
+        'The background color to use for "solid" themed chips when using the dark theme.\n',
+      source: "packages/chip/src/_variables.scss#L95",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "chip",
       type: "Color",
-      value: "lighten($rmd-grey-900, 2%)",
-      compiled: "#262626",
+      value: "$rmd-grey-900",
+      compiled: "#212121",
       overridable: true,
     },
     "rmd-chip-solid-dark-color": {
       name: "rmd-chip-solid-dark-color",
       description:
         'The text color to use for "solid" themed chips when using the dark theme.\n',
-      source: "packages/chip/src/_variables.scss#L104-L108",
+      source: "packages/chip/src/_variables.scss#L99-L103",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "chip",
       type: "Color",
       value:
         "if(\n  rmd-theme-tone($rmd-chip-solid-dark-background-color) == light,\n  $rmd-black-base,\n  $rmd-white-base\n)",
       compiled: "#fff",
+      overridable: true,
+    },
+    "rmd-chip-solid-dark-disabled-background-color": {
+      name: "rmd-chip-solid-dark-disabled-background-color",
+      description:
+        "The background color to use for a solid disabled chip when using the dark theme.\n",
+      source: "packages/chip/src/_variables.scss#L108",
+      usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
+      packageName: "chip",
+      type: "Color",
+      value: "lighten($rmd-grey-900, 2%)",
+      compiled: "#262626",
       overridable: true,
     },
     "rmd-chip-solid-background-color": {
