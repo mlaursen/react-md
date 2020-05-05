@@ -19,7 +19,7 @@
     "content": {
       "title": "Avatar Example - Color Examples",
       "description": "Example from https://react-md.dev/packages/avatar/demos#color-examples",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/avatar": "next",
         "@react-md/elevation": "next",

@@ -19,7 +19,7 @@
     "content": {
       "title": "Typography Example - Text Examples",
       "description": "Example from https://react-md.dev/packages/typography/demos#text-examples",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/states": "next",

@@ -19,7 +19,7 @@
     "content": {
       "title": "Menu Example - Horizontal Menu",
       "description": "Example from https://react-md.dev/packages/menu/demos#horizontal-menu",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/material-icons": "next",

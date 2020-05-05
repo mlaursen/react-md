@@ -19,7 +19,7 @@
     "content": {
       "title": "List Example - Non Interactable",
       "description": "Example from https://react-md.dev/packages/list/demos#non-interactable",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/elevation": "next",
         "@react-md/layout": "next",

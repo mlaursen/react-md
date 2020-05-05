@@ -19,7 +19,7 @@
     "content": {
       "title": "Theme Example - Simple Example",
       "description": "Example from https://react-md.dev/packages/theme/demos#simple-example",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/divider": "next",
         "@react-md/layout": "next",

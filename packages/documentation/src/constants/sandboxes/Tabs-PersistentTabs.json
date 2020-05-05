@@ -19,7 +19,7 @@
     "content": {
       "title": "Tabs Example - Persistent Tabs",
       "description": "Example from https://react-md.dev/packages/tabs/demos#persistent-tabs",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/form": "next",

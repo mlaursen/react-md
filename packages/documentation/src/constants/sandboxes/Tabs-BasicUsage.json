@@ -19,7 +19,7 @@
     "content": {
       "title": "Tabs Example - Basic Usage",
       "description": "Example from https://react-md.dev/packages/tabs/demos#basic-usage",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/states": "next",

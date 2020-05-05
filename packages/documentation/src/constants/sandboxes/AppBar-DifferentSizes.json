@@ -19,7 +19,7 @@
     "content": {
       "title": "AppBar Example - Different Sizes",
       "description": "Example from https://react-md.dev/packages/app-bar/demos#different-sizes",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/icon": "next",

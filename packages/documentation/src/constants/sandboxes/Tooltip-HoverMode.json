@@ -19,7 +19,7 @@
     "content": {
       "title": "Tooltip Example - Hover Mode",
       "description": "Example from https://react-md.dev/packages/tooltip/demos#hover-mode",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

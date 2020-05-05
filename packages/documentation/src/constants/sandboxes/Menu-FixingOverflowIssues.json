@@ -19,7 +19,7 @@
     "content": {
       "title": "Menu Example - Fixing Overflow Issues",
       "description": "Example from https://react-md.dev/packages/menu/demos#fixing-overflow-issues",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/dialog": "next",

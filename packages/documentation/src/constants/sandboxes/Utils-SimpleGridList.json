@@ -19,7 +19,7 @@
     "content": {
       "title": "Utils Example - Simple Grid List",
       "description": "Example from https://react-md.dev/packages/utils/demos#simple-grid-list",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/elevation": "next",
         "@react-md/form": "next",

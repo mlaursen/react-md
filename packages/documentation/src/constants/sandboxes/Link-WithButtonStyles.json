@@ -19,7 +19,7 @@
     "content": {
       "title": "Link Example - With Button Styles",
       "description": "Example from https://react-md.dev/packages/link/demos#with-button-styles",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

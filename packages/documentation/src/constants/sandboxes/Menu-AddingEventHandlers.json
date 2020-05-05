@@ -19,7 +19,7 @@
     "content": {
       "title": "Menu Example - Adding Event Handlers",
       "description": "Example from https://react-md.dev/packages/menu/demos#adding-event-handlers",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/divider": "next",
         "@react-md/layout": "next",

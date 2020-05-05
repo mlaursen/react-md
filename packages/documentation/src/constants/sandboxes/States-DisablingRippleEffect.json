@@ -19,7 +19,7 @@
     "content": {
       "title": "States Example - Disabling Ripple Effect",
       "description": "Example from https://react-md.dev/packages/states/demos#disabling-ripple-effect",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

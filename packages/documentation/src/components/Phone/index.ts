@@ -1,7 +1,4 @@
-import Phone from "./Phone";
-
-export default Phone;
-
+export { default } from "./Phone";
 export { default as DefaultAppBar } from "./DefaultAppBar";
 export { default as PhoneAppBar } from "./PhoneAppBar";
 export { default as ClosePhone } from "./ClosePhone";

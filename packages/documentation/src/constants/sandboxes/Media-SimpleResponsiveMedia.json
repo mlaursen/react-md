@@ -19,7 +19,7 @@
     "content": {
       "title": "Media Example - Simple Responsive Media",
       "description": "Example from https://react-md.dev/packages/media/demos#simple-responsive-media",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/media": "next",

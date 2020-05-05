@@ -19,7 +19,7 @@
     "content": {
       "title": "List Example - Single Line Examples",
       "description": "Example from https://react-md.dev/packages/list/demos#single-line-examples",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/avatar": "next",
         "@react-md/divider": "next",

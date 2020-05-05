@@ -19,7 +19,7 @@
     "content": {
       "title": "Table Example - Sortable Columns",
       "description": "Example from https://react-md.dev/packages/table/demos#sortable-columns",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/states": "next",

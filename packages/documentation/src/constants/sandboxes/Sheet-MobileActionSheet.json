@@ -19,7 +19,7 @@
     "content": {
       "title": "Sheet Example - Mobile Action Sheet",
       "description": "Example from https://react-md.dev/packages/sheet/demos#mobile-action-sheet",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/list": "next",

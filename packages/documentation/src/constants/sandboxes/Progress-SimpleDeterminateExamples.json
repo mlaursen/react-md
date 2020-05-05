@@ -19,7 +19,7 @@
     "content": {
       "title": "Progress Example - Simple Determinate Examples",
       "description": "Example from https://react-md.dev/packages/progress/demos#simple-determinate-examples",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/icon": "next",

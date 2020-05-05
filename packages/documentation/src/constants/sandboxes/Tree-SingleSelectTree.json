@@ -19,7 +19,7 @@
     "content": {
       "title": "Tree Example - Single Select Tree",
       "description": "Example from https://react-md.dev/packages/tree/demos#single-select-tree",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/states": "next",

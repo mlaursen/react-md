@@ -19,7 +19,7 @@
     "content": {
       "title": "Dialog Example - Nested Dialogs",
       "description": "Example from https://react-md.dev/packages/dialog/demos#nested-dialogs",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/button": "next",

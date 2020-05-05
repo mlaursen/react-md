@@ -19,7 +19,7 @@
     "content": {
       "title": "Transition Example - Simple Collapse Example",
       "description": "Example from https://react-md.dev/packages/transition/demos#simple-collapse-example",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

@@ -19,7 +19,7 @@
     "content": {
       "title": "Dialog Example - Simple Example",
       "description": "Example from https://react-md.dev/packages/dialog/demos#simple-example",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/dialog": "next",

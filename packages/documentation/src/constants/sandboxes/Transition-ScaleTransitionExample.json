@@ -19,7 +19,7 @@
     "content": {
       "title": "Transition Example - Scale Transition Example",
       "description": "Example from https://react-md.dev/packages/transition/demos#scale-transition-example",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/elevation": "next",

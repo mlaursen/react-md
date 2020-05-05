@@ -15,6 +15,7 @@ import {
   SANDBOXES_FILE,
   SANDBOXES_PATH,
   VARIABLES_SCSS_FILE,
+  PHONE_INDEX_FILE,
 } from "./constants";
 import { isSvg } from "./matchers";
 
@@ -162,7 +163,7 @@ export default async function generate({
     description: `Example from ${homepage}/packages/${toUrlId(
       packageName
     )}/demos#${toUrlId(demoName)}`,
-    main: "src/index.tsx",
+    main: "src/Demo.tsx",
     dependencies: toDependencyJson(packageDependencies),
     devDependencies: toDependencyJson(ALWAYS_REQUIRED_DEV_DEPENDENCIES),
     scripts: {
@@ -198,6 +199,16 @@ export default async function generate({
     },
   };
 
+  if (
+    aliased.find((path) => path.includes("/Phone/")) &&
+    !aliased.find((path) => path.includes("Phone/index.ts"))
+  ) {
+    baseFiles["src/Phone/index.ts"] = {
+      content: PHONE_INDEX_FILE,
+      isBinary: false,
+    };
+  }
+
   const files = (
     await Promise.all(
       [demoPath, ...aliased].map(async (filePath) => {
@@ -219,10 +230,19 @@ export default async function generate({
         );
 
         if (!isSvg(filePath)) {
+          const parentFolders = pathname.split("/").length;
+          let aliasReplacement = "./";
+          if (parentFolders > 1) {
+            aliasReplacement = Array.from(
+              { length: parentFolders - 1 },
+              () => "../"
+            ).join("");
+          }
+
           content = content
             .replace(/^import Code.+;$/gm, "")
             .replace(/<\/?Code/g, "<code")
-            .replace(aliasRegExp, "./");
+            .replace(aliasRegExp, aliasReplacement);
         }
 
         if (demoPath === filePath) {

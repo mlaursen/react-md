@@ -19,7 +19,7 @@
     "content": {
       "title": "Link Example - Malicious Target",
       "description": "Example from https://react-md.dev/packages/link/demos#malicious-target",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/link": "next",

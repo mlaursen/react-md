@@ -19,7 +19,7 @@
     "content": {
       "title": "Form Example - Customizing Select Options",
       "description": "Example from https://react-md.dev/packages/form/demos#customizing-select-options",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/avatar": "next",
         "@react-md/form": "next",

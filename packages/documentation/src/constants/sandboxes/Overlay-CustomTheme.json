@@ -19,7 +19,7 @@
     "content": {
       "title": "Overlay Example - Custom Theme",
       "description": "Example from https://react-md.dev/packages/overlay/demos#custom-theme",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/elevation": "next",

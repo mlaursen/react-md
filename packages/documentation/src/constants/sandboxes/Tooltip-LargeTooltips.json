@@ -19,7 +19,7 @@
     "content": {
       "title": "Tooltip Example - Large Tooltips",
       "description": "Example from https://react-md.dev/packages/tooltip/demos#large-tooltips",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/link": "next",

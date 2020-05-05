@@ -19,7 +19,7 @@
     "content": {
       "title": "Alert Example - Simple Message Queue",
       "description": "Example from https://react-md.dev/packages/alert/demos#simple-message-queue",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/alert": "next",
         "@react-md/button": "next",

@@ -19,7 +19,7 @@
     "content": {
       "title": "Form Example - Checkbox And Radio Examples",
       "description": "Example from https://react-md.dev/packages/form/demos#checkbox-and-radio-examples",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/form": "next",
         "@react-md/layout": "next",

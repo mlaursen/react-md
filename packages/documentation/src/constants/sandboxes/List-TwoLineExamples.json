@@ -19,7 +19,7 @@
     "content": {
       "title": "List Example - Two Line Examples",
       "description": "Example from https://react-md.dev/packages/list/demos#two-line-examples",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/avatar": "next",
         "@react-md/elevation": "next",

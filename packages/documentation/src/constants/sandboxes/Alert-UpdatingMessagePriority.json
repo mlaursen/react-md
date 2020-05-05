@@ -19,7 +19,7 @@
     "content": {
       "title": "Alert Example - Updating Message Priority",
       "description": "Example from https://react-md.dev/packages/alert/demos#updating-message-priority",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/alert": "next",
         "@react-md/button": "next",

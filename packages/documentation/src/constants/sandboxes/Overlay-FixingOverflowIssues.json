@@ -19,7 +19,7 @@
     "content": {
       "title": "Overlay Example - Fixing Overflow Issues",
       "description": "Example from https://react-md.dev/packages/overlay/demos#fixing-overflow-issues",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/button": "next",

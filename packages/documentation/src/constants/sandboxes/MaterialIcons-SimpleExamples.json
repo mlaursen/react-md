@@ -19,7 +19,7 @@
     "content": {
       "title": "MaterialIcons Example - Simple Examples",
       "description": "Example from https://react-md.dev/packages/material-icons/demos#simple-examples",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/material-icons": "next",

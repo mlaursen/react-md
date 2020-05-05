@@ -19,7 +19,7 @@
     "content": {
       "title": "Overlay Example - Simple Example",
       "description": "Example from https://react-md.dev/packages/overlay/demos#simple-example",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

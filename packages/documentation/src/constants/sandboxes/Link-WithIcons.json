@@ -19,7 +19,7 @@
     "content": {
       "title": "Link Example - With Icons",
       "description": "Example from https://react-md.dev/packages/link/demos#with-icons",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/icon": "next",
         "@react-md/layout": "next",

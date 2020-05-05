@@ -19,7 +19,7 @@
     "content": {
       "title": "Badge Example - With Tooltips",
       "description": "Example from https://react-md.dev/packages/badge/demos#with-tooltips",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/badge": "next",
         "@react-md/layout": "next",

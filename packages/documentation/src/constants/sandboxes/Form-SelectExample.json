@@ -19,7 +19,7 @@
     "content": {
       "title": "Form Example - Select Example",
       "description": "Example from https://react-md.dev/packages/form/demos#select-example",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/form": "next",
         "@react-md/layout": "next",

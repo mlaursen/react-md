@@ -19,7 +19,7 @@
     "content": {
       "title": "AutoComplete Example - Using Object Data Sets",
       "description": "Example from https://react-md.dev/packages/auto-complete/demos#using-object-data-sets",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/autocomplete": "next",
         "@react-md/avatar": "next",

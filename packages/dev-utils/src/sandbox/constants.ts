@@ -128,3 +128,6 @@ const sandboxes: Sandboxes = {{SANDBOXES_JSON}};
 
 export default sandboxes;
 `;
+
+export const PHONE_INDEX_FILE = `export { default } from "./Phone";
+`;

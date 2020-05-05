@@ -19,7 +19,7 @@
     "content": {
       "title": "Media Example - With Overlay",
       "description": "Example from https://react-md.dev/packages/media/demos#with-overlay",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/media": "next",

@@ -19,7 +19,7 @@
     "content": {
       "title": "Divider Example - Vertical Dividers",
       "description": "Example from https://react-md.dev/packages/divider/demos#vertical-dividers",
-      "main": "src/index.tsx",
+      "main": "src/Demo.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/divider": "next",
