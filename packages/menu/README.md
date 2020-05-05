@@ -1,7 +1,7 @@
 # @react-md/menu
 
 Create accessible dropdown menus that auto-position themselves to stay within
-the viewport. The menus are entirely navigatable with a keyboard along with some
+the viewport. The menus are entirely navigable with a keyboard along with some
 additional behavior:
 
 - `ArrowUp` and `ArrowDown` to focus the previous/next `MenuItem` that also
