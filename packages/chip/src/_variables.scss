@@ -3,6 +3,7 @@
 ////
 
 @import '~@react-md/states/dist/variables';
+@import '~@react-md/transition/dist/variables';
 @import '~@react-md/theme/dist/functions';
 
 /// Boolean if the chip should disable the background color change when it gains
@@ -177,6 +178,11 @@ $rmd-chip-outline-color: if(
 /// The border color to use for "outline" themed chips.
 /// @type Color
 $rmd-chip-outline-border-color: $rmd-grey-300 !default;
+
+/// The transition duration for animating the box-shadow elevation for a chip
+/// while being pressed by a keyboard.
+/// @type Number
+$rmd-chip-transition-duration: $rmd-transition-standard-time !default;
 
 /// The base box-shadow to apply to chips when outlined. This will normally be
 /// used along with a color variable to define a box shadow.

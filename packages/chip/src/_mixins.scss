@@ -65,13 +65,25 @@
   position: relative;
 
   &--solid {
-    @include rmd-elevation-transition(0, 4, '&#{$rmd-states-pressed-class-name}', false, 0.15s);
+    @include rmd-elevation-transition(
+      0,
+      4,
+      '&#{$rmd-states-pressed-class-name}',
+      false,
+      $rmd-chip-transition-duration
+    );
     @include rmd-chip-theme(background-color, solid-background-color);
     @include rmd-chip-theme(color, solid-color);
   }
 
   &--outline {
-    @include rmd-elevation-transition(0, 8, '&#{$rmd-states-pressed-class-name}', false, 0.15s);
+    @include rmd-elevation-transition(
+      0,
+      8,
+      '&#{$rmd-states-pressed-class-name}',
+      false,
+      $rmd-chip-transition-duration
+    );
     @include rmd-chip-theme(background-color, outline-background-color);
     @include rmd-chip-theme(color, outline-color);
 

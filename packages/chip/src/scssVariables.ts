@@ -28,6 +28,7 @@ export default {
   "rmd-chip-outline-background-color": "#fff",
   "rmd-chip-outline-color": "#000",
   "rmd-chip-outline-border-color": "#e0e0e0",
+  "rmd-chip-transition-duration": "0.15s",
   "rmd-chip-box-shadow": "inset 0 0 0 1px",
   "rmd-chip-theme-values": {
     height: "2rem",

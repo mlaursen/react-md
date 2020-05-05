@@ -129,7 +129,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "chip",
       code: "@mixin rmd-chip { … }",
       sourceCode:
-        '@mixin rmd-chip {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-states-surface(\n    $no-focus-state: $rmd-chip-disable-focus-background-color\n  );\n  @include rmd-states-surface-selected;\n  @include rmd-typography(body-2);\n  @include rmd-chip-theme(height);\n  @include rmd-chip-theme(border-radius);\n  @include rmd-chip-theme(padding-left, large-spacing);\n  @include rmd-chip-theme(padding-right, large-spacing);\n\n  @include rmd-icon-theme-update-var(size, $rmd-chip-icon-size);\n  @if mixin-exists(rmd-avatar-theme-update-var) {\n    @include rmd-avatar-theme-update-var(size, $rmd-chip-avatar-size);\n  }\n  @if mixin-exists(rmd-progress-theme-update-var) {\n    @include rmd-progress-theme-update-var(\n      circular-size,\n      $rmd-chip-progress-size\n    );\n    @include rmd-progress-theme-update-var(\n      circular-width,\n      $rmd-chip-progress-width\n    );\n  }\n\n  align-items: center;\n  border-width: 0;\n  display: inline-flex;\n  flex-shrink: 0;\n  max-width: 100%;\n  position: relative;\n\n  &--solid {\n    @include rmd-elevation-transition(\n      0,\n      4,\n      "&#{$rmd-states-pressed-class-name}",\n      false,\n      0.15s\n    );\n    @include rmd-chip-theme(background-color, solid-background-color);\n    @include rmd-chip-theme(color, solid-color);\n  }\n\n  &--outline {\n    @include rmd-elevation-transition(\n      0,\n      8,\n      "&#{$rmd-states-pressed-class-name}",\n      false,\n      0.15s\n    );\n    @include rmd-chip-theme(background-color, outline-background-color);\n    @include rmd-chip-theme(color, outline-color);\n\n    box-shadow: $rmd-chip-box-shadow rmd-chip-theme-var(outline-border-color);\n  }\n\n  &--themed {\n    @include rmd-chip-theme(background-color, themed-background-color);\n    @include rmd-chip-theme(color, themed-color);\n    @include rmd-icon-theme-update-var(color, currentColor);\n  }\n\n  &--disabled {\n    @include rmd-theme(color, text-disabled-on-background);\n    @include rmd-icon-theme-update-var(color, currentColor);\n  }\n\n  &--solid-disabled {\n    @include rmd-chip-theme(background-color, solid-disabled);\n  }\n\n  &--leading-icon {\n    @include rmd-utils-rtl {\n      @include rmd-chip-theme(padding-left, large-spacing);\n      @include rmd-chip-theme(padding-right, small-spacing);\n    }\n\n    @include rmd-chip-theme(padding-left, small-spacing);\n  }\n\n  &--trailing-icon {\n    @include rmd-utils-rtl {\n      @include rmd-chip-theme(padding-left, medium-spacing);\n      @include rmd-chip-theme(padding-right, large-spacing);\n    }\n\n    @include rmd-chip-theme(padding-right, medium-spacing);\n  }\n\n  &--surrounded {\n    @include rmd-utils-rtl {\n      @include rmd-chip-theme(padding-left, medium-spacing);\n      @include rmd-chip-theme(padding-right, small-spacing);\n    }\n\n    @include rmd-chip-theme(padding-left, small-spacing);\n    @include rmd-chip-theme(padding-right, medium-spacing);\n  }\n\n  &__content {\n    @include rmd-typography-text-overflow-ellipsis;\n\n    flex: 1 1 auto;\n  }\n\n  &__selected-icon {\n    @include rmd-transition(standard);\n\n    max-width: 0;\n    transition: max-width $rmd-transition-standard-time;\n\n    &--visible {\n      @include rmd-icon-theme(max-width, size);\n    }\n  }\n}\n',
+        '@mixin rmd-chip {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-states-surface(\n    $no-focus-state: $rmd-chip-disable-focus-background-color\n  );\n  @include rmd-states-surface-selected;\n  @include rmd-typography(body-2);\n  @include rmd-chip-theme(height);\n  @include rmd-chip-theme(border-radius);\n  @include rmd-chip-theme(padding-left, large-spacing);\n  @include rmd-chip-theme(padding-right, large-spacing);\n\n  @include rmd-icon-theme-update-var(size, $rmd-chip-icon-size);\n  @if mixin-exists(rmd-avatar-theme-update-var) {\n    @include rmd-avatar-theme-update-var(size, $rmd-chip-avatar-size);\n  }\n  @if mixin-exists(rmd-progress-theme-update-var) {\n    @include rmd-progress-theme-update-var(\n      circular-size,\n      $rmd-chip-progress-size\n    );\n    @include rmd-progress-theme-update-var(\n      circular-width,\n      $rmd-chip-progress-width\n    );\n  }\n\n  align-items: center;\n  border-width: 0;\n  display: inline-flex;\n  flex-shrink: 0;\n  max-width: 100%;\n  position: relative;\n\n  &--solid {\n    @include rmd-elevation-transition(\n      0,\n      4,\n      "&#{$rmd-states-pressed-class-name}",\n      false,\n      $rmd-chip-transition-duration\n    );\n    @include rmd-chip-theme(background-color, solid-background-color);\n    @include rmd-chip-theme(color, solid-color);\n  }\n\n  &--outline {\n    @include rmd-elevation-transition(\n      0,\n      8,\n      "&#{$rmd-states-pressed-class-name}",\n      false,\n      $rmd-chip-transition-duration\n    );\n    @include rmd-chip-theme(background-color, outline-background-color);\n    @include rmd-chip-theme(color, outline-color);\n\n    box-shadow: $rmd-chip-box-shadow rmd-chip-theme-var(outline-border-color);\n  }\n\n  &--themed {\n    @include rmd-chip-theme(background-color, themed-background-color);\n    @include rmd-chip-theme(color, themed-color);\n    @include rmd-icon-theme-update-var(color, currentColor);\n  }\n\n  &--disabled {\n    @include rmd-theme(color, text-disabled-on-background);\n    @include rmd-icon-theme-update-var(color, currentColor);\n  }\n\n  &--solid-disabled {\n    @include rmd-chip-theme(background-color, solid-disabled);\n  }\n\n  &--leading-icon {\n    @include rmd-utils-rtl {\n      @include rmd-chip-theme(padding-left, large-spacing);\n      @include rmd-chip-theme(padding-right, small-spacing);\n    }\n\n    @include rmd-chip-theme(padding-left, small-spacing);\n  }\n\n  &--trailing-icon {\n    @include rmd-utils-rtl {\n      @include rmd-chip-theme(padding-left, medium-spacing);\n      @include rmd-chip-theme(padding-right, large-spacing);\n    }\n\n    @include rmd-chip-theme(padding-right, medium-spacing);\n  }\n\n  &--surrounded {\n    @include rmd-utils-rtl {\n      @include rmd-chip-theme(padding-left, medium-spacing);\n      @include rmd-chip-theme(padding-right, small-spacing);\n    }\n\n    @include rmd-chip-theme(padding-left, small-spacing);\n    @include rmd-chip-theme(padding-right, medium-spacing);\n  }\n\n  &__content {\n    @include rmd-typography-text-overflow-ellipsis;\n\n    flex: 1 1 auto;\n  }\n\n  &__selected-icon {\n    @include rmd-transition(standard);\n\n    max-width: 0;\n    transition: max-width $rmd-transition-standard-time;\n\n    &--visible {\n      @include rmd-icon-theme(max-width, size);\n    }\n  }\n}\n',
       type: "mixin",
     },
     "react-md-chip": {
@@ -150,7 +150,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-disable-focus-background-color",
       description:
         "Boolean if the chip should disable the background color change when it gains keyboard focus. This is disabled by default since the focus shadow looks a bit nicer than the background color changes due to the colors of the chips.",
-      source: "packages/chip/src/_variables.scss#L13",
+      source: "packages/chip/src/_variables.scss#L14",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "chip",
       type: "Boolean",
@@ -161,7 +161,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-height": {
       name: "rmd-chip-height",
       description: "The height for chips.\n",
-      source: "packages/chip/src/_variables.scss#L17",
+      source: "packages/chip/src/_variables.scss#L18",
       packageName: "chip",
       type: "Number",
       value: "2rem",
@@ -170,7 +170,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-border-radius": {
       name: "rmd-chip-border-radius",
       description: "The border radius to use for all chip types.\n",
-      source: "packages/chip/src/_variables.scss#L21",
+      source: "packages/chip/src/_variables.scss#L22",
       packageName: "chip",
       type: "Number",
       value: "1rem",
@@ -180,7 +180,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-small-spacing",
       description:
         "The amount of spacing to use when between the left edge and the leading icon/avatar in the chip.\n",
-      source: "packages/chip/src/_variables.scss#L26",
+      source: "packages/chip/src/_variables.scss#L27",
       packageName: "chip",
       type: "Number",
       value: "0.25rem",
@@ -190,7 +190,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-medium-spacing",
       description:
         "The amount of spacing to use between the leading icon/avatar and the chip's text as well as the trailing icon and the chip's edge.\n",
-      source: "packages/chip/src/_variables.scss#L31",
+      source: "packages/chip/src/_variables.scss#L32",
       packageName: "chip",
       type: "Number",
       value: "0.5rem",
@@ -200,7 +200,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-large-spacing",
       description:
         "The amount of spacing to use for the chip's edge when there are no leading or trailing icons/avatars.\n",
-      source: "packages/chip/src/_variables.scss#L36",
+      source: "packages/chip/src/_variables.scss#L37",
       packageName: "chip",
       type: "Number",
       value: "0.75rem",
@@ -209,7 +209,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-icon-size": {
       name: "rmd-chip-icon-size",
       description: "The size to update icons to that appear within a chip.\n",
-      source: "packages/chip/src/_variables.scss#L40",
+      source: "packages/chip/src/_variables.scss#L41",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "chip",
       type: "Number",
@@ -220,7 +220,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-avatar-size",
       description:
         "The size for avatars that appear within a chip.\n\nNote: This will only be generated if the `@react-md/avatar` package has been installed and imported\n",
-      source: "packages/chip/src/_variables.scss#L47",
+      source: "packages/chip/src/_variables.scss#L48",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "chip",
       type: "Number",
@@ -231,7 +231,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-progress-size",
       description:
         "The size to use for a circular progress that is being rendered as the `leftIcon` or `rightIcon`. This should be a number smaller than the height of the chip minus vertical padding.",
-      source: "packages/chip/src/_variables.scss#L54",
+      source: "packages/chip/src/_variables.scss#L55",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "chip",
       type: "Number",
@@ -243,7 +243,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-progress-width",
       description:
         "The width to use for the circular progress that is being rendered as the `leftIcon` or `rightIcon`.\n",
-      source: "packages/chip/src/_variables.scss#L59",
+      source: "packages/chip/src/_variables.scss#L60",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "chip",
       type: "Number",
@@ -254,7 +254,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-themed-background-color",
       description:
         "The background color to use for the selected themed state of the chip. This is basically a secondary type of selected state.\n",
-      source: "packages/chip/src/_variables.scss#L64",
+      source: "packages/chip/src/_variables.scss#L65",
       packageName: "chip",
       type: "Color",
       value: "rmd-theme-get-swatch($rmd-theme-primary, 300)",
@@ -265,7 +265,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-themed-color",
       description:
         "The color to use for the selected themed state of the chip.\n",
-      source: "packages/chip/src/_variables.scss#L68-L72",
+      source: "packages/chip/src/_variables.scss#L69-L73",
       packageName: "chip",
       type: "Color",
       value:
@@ -277,7 +277,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-light-background-color",
       description:
         'The background color to use for "solid" themed chips when using the light theme.\n',
-      source: "packages/chip/src/_variables.scss#L77",
+      source: "packages/chip/src/_variables.scss#L78",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -291,7 +291,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-light-color",
       description:
         'The text color to use for "solid" themed chips when using the light theme.\n',
-      source: "packages/chip/src/_variables.scss#L81-L85",
+      source: "packages/chip/src/_variables.scss#L82-L86",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -306,7 +306,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-light-disabled-background-color",
       description:
         "The background color to use for a solid disabled chip when using the light theme.\n",
-      source: "packages/chip/src/_variables.scss#L90",
+      source: "packages/chip/src/_variables.scss#L91",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -320,7 +320,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-dark-background-color",
       description:
         'The background color to use for "solid" themed chips when using the dark theme.\n',
-      source: "packages/chip/src/_variables.scss#L95",
+      source: "packages/chip/src/_variables.scss#L96",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "chip",
       type: "Color",
@@ -332,7 +332,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-dark-color",
       description:
         'The text color to use for "solid" themed chips when using the dark theme.\n',
-      source: "packages/chip/src/_variables.scss#L99-L103",
+      source: "packages/chip/src/_variables.scss#L100-L104",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "chip",
       type: "Color",
@@ -345,7 +345,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-dark-disabled-background-color",
       description:
         "The background color to use for a solid disabled chip when using the dark theme.\n",
-      source: "packages/chip/src/_variables.scss#L108",
+      source: "packages/chip/src/_variables.scss#L109",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "chip",
       type: "Color",
@@ -356,7 +356,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-solid-background-color": {
       name: "rmd-chip-solid-background-color",
       description: 'The background color to use for "solid" themed chips.\n',
-      source: "packages/chip/src/_variables.scss#L112-L116",
+      source: "packages/chip/src/_variables.scss#L113-L117",
       packageName: "chip",
       type: "Color",
       value:
@@ -367,7 +367,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-solid-color": {
       name: "rmd-chip-solid-color",
       description: 'The text color to use for "solid" themed chips.\n',
-      source: "packages/chip/src/_variables.scss#L120-L124",
+      source: "packages/chip/src/_variables.scss#L121-L125",
       packageName: "chip",
       type: "Color",
       value:
@@ -379,7 +379,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-disabled-background-color",
       description:
         'The background color to use for "solid" themed chips that are disabled.\n',
-      source: "packages/chip/src/_variables.scss#L128-L132",
+      source: "packages/chip/src/_variables.scss#L129-L133",
       packageName: "chip",
       type: "Color",
       value:
@@ -391,7 +391,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-outline-light-background-color",
       description:
         'The background color to use for "outlined" themed chips when using the light theme.\n',
-      source: "packages/chip/src/_variables.scss#L137",
+      source: "packages/chip/src/_variables.scss#L138",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -405,7 +405,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-outline-light-color",
       description:
         'The text color to use for "outlined" themed chips when using the light theme.\n',
-      source: "packages/chip/src/_variables.scss#L142-L146",
+      source: "packages/chip/src/_variables.scss#L143-L147",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -420,7 +420,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-outline-dark-background-color",
       description:
         'The background color to use for "outlined" themed chips when using the dark theme.\n',
-      source: "packages/chip/src/_variables.scss#L151",
+      source: "packages/chip/src/_variables.scss#L152",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "chip",
       type: "Color",
@@ -432,7 +432,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-outline-dark-color",
       description:
         'The text color to use for "outlined" themed chips when using the dark theme.\n',
-      source: "packages/chip/src/_variables.scss#L155-L159",
+      source: "packages/chip/src/_variables.scss#L156-L160",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "chip",
       type: "Color",
@@ -444,7 +444,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-outline-background-color": {
       name: "rmd-chip-outline-background-color",
       description: 'The background color to use for "outlined" themed chips.\n',
-      source: "packages/chip/src/_variables.scss#L163-L167",
+      source: "packages/chip/src/_variables.scss#L164-L168",
       packageName: "chip",
       type: "Color",
       value:
@@ -455,7 +455,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-outline-color": {
       name: "rmd-chip-outline-color",
       description: 'The tect color to use for "outlined" themed chips.\n',
-      source: "packages/chip/src/_variables.scss#L171-L175",
+      source: "packages/chip/src/_variables.scss#L172-L176",
       packageName: "chip",
       type: "Color",
       value:
@@ -466,18 +466,30 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-outline-border-color": {
       name: "rmd-chip-outline-border-color",
       description: 'The border color to use for "outline" themed chips.\n',
-      source: "packages/chip/src/_variables.scss#L179",
+      source: "packages/chip/src/_variables.scss#L180",
       packageName: "chip",
       type: "Color",
       value: "$rmd-grey-300",
       compiled: "#e0e0e0",
       overridable: true,
     },
+    "rmd-chip-transition-duration": {
+      name: "rmd-chip-transition-duration",
+      description:
+        "The transition duration for animating the box-shadow elevation for a chip while being pressed by a keyboard.\n",
+      source: "packages/chip/src/_variables.scss#L185",
+      usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
+      packageName: "chip",
+      type: "Number",
+      value: "$rmd-transition-standard-time",
+      compiled: "0.15s",
+      overridable: true,
+    },
     "rmd-chip-box-shadow": {
       name: "rmd-chip-box-shadow",
       description:
         "The base box-shadow to apply to chips when outlined. This will normally be used along with a color variable to define a box shadow.\n",
-      source: "packages/chip/src/_variables.scss#L184",
+      source: "packages/chip/src/_variables.scss#L190",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "chip",
       type: "String",
@@ -488,7 +500,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-theme-values",
       description:
         'A Map of all the "themeable" parts of the chip package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/chip/src/_variables.scss#L190-L204",
+      source: "packages/chip/src/_variables.scss#L196-L210",
       usedBy: [
         { name: "rmd-chip-theme", type: "function", packageName: "chip" },
         { name: "rmd-chip-theme-var", type: "function", packageName: "chip" },
