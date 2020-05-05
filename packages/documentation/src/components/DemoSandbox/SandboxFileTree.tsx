@@ -1,17 +1,22 @@
-import React, { FC } from "react";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import React, { FC, useMemo } from "react";
 import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
-import { Tree, useTreeItemExpansion } from "@react-md/tree";
+import {
+  Tree,
+  useTreeItemExpansion,
+  TreeData,
+  getItemsFrom,
+} from "@react-md/tree";
 import { bem } from "@react-md/utils";
 
-import useFiles from "./useFiles";
+import { FileTreeData } from "./useFiles";
 
 export interface SandboxFileTreeProps {
   fileName: string;
   inline: boolean;
   visible: boolean;
-  sandbox: IFiles | null;
+  folders: readonly string[];
+  files: TreeData<FileTreeData>;
   onFileChange: (fileName: string) => void;
   onRequestClose: () => void;
   disableTransition: boolean;
@@ -19,18 +24,32 @@ export interface SandboxFileTreeProps {
 
 const block = bem("sandbox-modal");
 const noop = (): void => {};
-const EMPTY = {};
 
 const SandboxFileTree: FC<SandboxFileTreeProps> = ({
   inline,
   visible,
   fileName,
-  sandbox,
+  files,
+  folders,
   onFileChange,
   onRequestClose,
   disableTransition,
 }) => {
-  const data = useFiles(sandbox || EMPTY);
+  const defaultExpandedIds = useMemo(() => {
+    const children = getItemsFrom(files, fileName).reduce<string[]>(
+      (folderIds, { itemId }) => {
+        if (folders.includes(itemId)) {
+          folderIds.push(itemId);
+        }
+
+        return folderIds;
+      },
+      []
+    );
+
+    return Array.from(new Set(["src", "public", ...children]));
+  }, [folders, files, fileName]);
+
   return (
     <Sheet
       id="code-previewer-file-sheet"
@@ -49,11 +68,11 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
       <Tree
         id="code-previewer-files"
         aria-label="Files"
-        data={data}
+        data={files}
         onItemSelect={onFileChange}
         onMultiItemSelect={noop}
         selectedIds={[fileName]}
-        {...useTreeItemExpansion(["src", "public"])}
+        {...useTreeItemExpansion(defaultExpandedIds)}
         labelKey="children"
         valueKey="children"
         expanderIcon={<KeyboardArrowDownSVGIcon />}

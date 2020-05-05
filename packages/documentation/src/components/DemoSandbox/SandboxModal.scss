@@ -50,10 +50,6 @@
   }
 
   &__error {
-    @include rmd-theme(background-color, background);
-
-    flex-grow: 1;
-
     &--offset {
       @include rmd-utils-rtl {
         @include rmd-sheet-theme(margin-right, static-width);

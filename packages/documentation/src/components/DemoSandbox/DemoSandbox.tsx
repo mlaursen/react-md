@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, useMemo } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useRouter } from "next/router";
 
@@ -8,10 +8,12 @@ import { parseSandbox, SandboxQuery } from "utils/routes";
 import SandboxList from "./SandboxList";
 import SandboxModal from "./SandboxModal";
 import useSandbox from "./useSandbox";
+import useFiles from "./useFiles";
 
 interface DemoSandboxProps {
   sandbox: IFiles | null;
 }
+const EMPTY = {};
 
 const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
   const router = useRouter();
@@ -21,6 +23,21 @@ const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
     name,
     pathname: router.pathname,
   });
+  const files = useFiles(sandbox || EMPTY);
+  const folders = useMemo(
+    () =>
+      Object.values(files).reduce<string[]>(
+        (foldersPaths, { itemId }, _i, list) => {
+          if (list.find(({ parentId }) => itemId === parentId)) {
+            foldersPaths.push(itemId);
+          }
+
+          return foldersPaths;
+        },
+        []
+      ),
+    [files]
+  );
 
   const onRequestClose = useCallback(() => {
     if (from && from.startsWith("/packages")) {
@@ -32,16 +49,8 @@ const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
   }, [from, router]);
   const onFileChange = useCallback(
     (nextFileName: string) => {
-      if (
-        nextFileName === fileName ||
-        ["src", "public"].includes(nextFileName)
-      ) {
+      if (nextFileName === fileName || folders.includes(nextFileName)) {
         return;
-      }
-
-      let fn: string | undefined = nextFileName;
-      if (fn === "src/Demo.tsx") {
-        fn = undefined;
       }
 
       const query: SandboxQuery = { pkg, name };
@@ -55,7 +64,7 @@ const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
 
       router.replace({ pathname: router.pathname, query });
     },
-    [router, pkg, name, from, fileName]
+    [folders, router, pkg, name, from, fileName]
   );
 
   if (!sandbox && !loading && (pkg || name || from)) {
@@ -70,6 +79,8 @@ const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
         name={name}
         fileName={fileName}
         from={from}
+        files={files}
+        folders={folders}
         sandbox={sandbox}
         onFileChange={onFileChange}
         onRequestClose={onRequestClose}

@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState, useCallback } from "react";
 import Head from "next/head";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Dialog } from "@react-md/dialog";
+import { TreeData } from "@react-md/tree";
 import { bem, useAppSize } from "@react-md/utils";
 
 import { toTitle } from "utils/toTitle";
@@ -10,13 +11,16 @@ import "./SandboxModal.scss";
 import CodePreview from "./CodePreview";
 import SandboxFileTree from "./SandboxFileTree";
 import SandboxNavigation from "./SandboxNavigation";
+import { FileTreeData } from "./useFiles";
 
 interface SandboxModalProps {
   pkg: string;
   name: string;
   from: string;
   fileName: string;
+  folders: readonly string[];
   sandbox: IFiles | null;
+  files: TreeData<FileTreeData>;
   onFileChange: (fileName: string) => void;
   onRequestClose: () => void;
 }
@@ -29,6 +33,8 @@ const SandboxModal: FC<SandboxModalProps> = ({
   from,
   fileName,
   sandbox,
+  files,
+  folders,
   onFileChange,
   onRequestClose,
 }) => {
@@ -86,7 +92,8 @@ const SandboxModal: FC<SandboxModalProps> = ({
         onRequestClose={onRequestClose}
       />
       <SandboxFileTree
-        sandbox={sandbox}
+        files={files}
+        folders={folders}
         fileName={fileName}
         inline={inline}
         visible={isTreeVisible}
