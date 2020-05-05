@@ -70,7 +70,7 @@ export default function useNestedTreeList<T extends BaseTreeItem>(
   tree: TreeData<T>,
   sort?: TreeItemSorter<T>,
   rootId: null | TreeItemId = null
-): NestedTreeItem<T>[] {
+): readonly NestedTreeItem<T>[] {
   return useMemo(() => buildTree(rootId, Object.values(tree), sort) || [], [
     rootId,
     sort,

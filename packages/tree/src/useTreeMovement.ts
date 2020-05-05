@@ -45,7 +45,7 @@ interface ReturnValue {
    * A nested list representation of the provided tree data. This is used for
    * rendering all the treeitem nodes.
    */
-  items: NestedTreeItem<UnknownTreeItem>[];
+  items: readonly NestedTreeItem<UnknownTreeItem>[];
 
   /**
    * The current treeitem's DOM id that is currently keyboard focused.

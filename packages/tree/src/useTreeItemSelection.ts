@@ -43,7 +43,7 @@ export default function useTreeItemSelection(
     [multiSelect]
   );
 
-  const onMultiItemSelect = useCallback((itemIds: TreeItemId[]) => {
+  const onMultiItemSelect = useCallback((itemIds: SelectedIds) => {
     setSelectedIds(itemIds);
   }, []);
 

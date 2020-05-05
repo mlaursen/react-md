@@ -15,10 +15,10 @@ import { BaseTreeItem, UnknownTreeItem, TreeData, TreeItemId } from "./types";
  * to sort by `parentId` or something else if you want a specific order.
  */
 export default function getChildItems<T extends BaseTreeItem = UnknownTreeItem>(
-  data: TreeData<T> | T[],
+  data: TreeData<T> | readonly T[],
   parentId: TreeItemId | null,
   recursive: boolean = false
-): T[] {
+): readonly T[] {
   const items = Array.isArray(data) ? data : Object.values(data);
 
   return items.reduce<T[]>((list, item) => {

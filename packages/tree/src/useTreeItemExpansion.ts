@@ -19,7 +19,7 @@ export default function useTreeItemExpansion(
   const onItemExpansion = useCallback(
     (itemId: TreeItemId, expanded: boolean) => {
       setExpandedIds((expandedIds) => {
-        let nextExpandedIds = expandedIds;
+        let nextExpandedIds = expandedIds as string[];
         const i = expandedIds.indexOf(itemId);
         if (i === -1 && expanded) {
           nextExpandedIds = expandedIds.slice();
@@ -35,7 +35,7 @@ export default function useTreeItemExpansion(
     []
   );
 
-  const onMultiItemExpansion = useCallback((itemIds: TreeItemId[]) => {
+  const onMultiItemExpansion = useCallback((itemIds: ExpandedIds) => {
     setExpandedIds(itemIds);
   }, []);
 

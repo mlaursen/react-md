@@ -87,9 +87,9 @@ function Tree(
   });
 
   const renderChildItems = (
-    items: NestedTreeItem<UnknownTreeItem>[],
+    items: readonly NestedTreeItem<UnknownTreeItem>[],
     depth: number,
-    parentIndexes: number[]
+    parentIndexes: readonly number[]
   ): ReactNode => {
     const listSize = items.length;
 

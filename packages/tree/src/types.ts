@@ -14,8 +14,8 @@ import {
 } from "@react-md/list";
 
 export type TreeItemId = string;
-export type ExpandedIds = TreeItemId[];
-export type SelectedIds = TreeItemId[];
+export type ExpandedIds = readonly TreeItemId[];
+export type SelectedIds = readonly TreeItemId[];
 
 export interface TreeItemIds {
   /**

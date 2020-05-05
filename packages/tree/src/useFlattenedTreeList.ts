@@ -78,7 +78,7 @@ function flatten({
 
 interface Options extends TreeConfig {
   id: string;
-  items: NestedTreeItem<UnknownTreeItem>[];
+  items: readonly NestedTreeItem<UnknownTreeItem>[];
   expandedIds: ExpandedIds;
   rootId: TreeItemId | null;
 }

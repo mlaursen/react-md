@@ -11,7 +11,7 @@
 export default function getTreeItemId(
   treeId: string,
   index: number,
-  parentIndexes: number[] = []
+  parentIndexes: readonly number[] = []
 ): string {
   if (!parentIndexes.length) {
     return `${treeId}-item-${index + 1}`;

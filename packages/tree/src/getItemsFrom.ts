@@ -13,7 +13,7 @@ import { BaseTreeItem, UnknownTreeItem, TreeData, TreeItemId } from "./types";
 export default function getItemsFrom<T extends BaseTreeItem = UnknownTreeItem>(
   data: TreeData<T>,
   itemId: TreeItemId | null
-): T[] {
+): readonly T[] {
   const items: T[] = [];
   let currentId = itemId;
   while (currentId) {
