@@ -10,6 +10,7 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { useRouter } from "next/router";
+import { UrlObject } from "url";
 
 import GoogleFont from "components/GoogleFont";
 
@@ -69,6 +70,8 @@ function getRouterArgs(href: string): RouterArgs {
   return args;
 }
 
+type Url = UrlObject | string;
+
 function useCustomMarkdownBehavior({
   __html: html,
 }: DangerHTML): MutableRefObject<HTMLDivElement | null> {
@@ -92,11 +95,25 @@ function useCustomMarkdownBehavior({
           const href = link.href.replace(origin, "");
 
           const [url, as] = getRouterArgs(href);
+          const args: [Url] | [Url, string] = [url];
           if (as) {
-            router.push(url, as);
-          } else {
-            router.push(url);
+            args.push(as);
           }
+
+          router.push(...args).then((success) => {
+            if (success) {
+              const [, hash] = href.split("#");
+              if (hash) {
+                const el = document.getElementById(hash);
+                if (el && typeof el.focus === "function") {
+                  el.focus();
+                  return;
+                }
+              }
+
+              window.scrollTo(0, 0);
+            }
+          });
         };
       }
     });
