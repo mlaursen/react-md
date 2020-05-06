@@ -5,6 +5,13 @@
 @import '~@react-md/typography/dist/functions';
 @import '~@react-md/theme/dist/variables';
 
+/// The default text color for the avatar. This will be used until the `color`
+/// prop is provided to the `Avatar` component.
+///
+/// @require $rmd-grey-100
+/// @type Color
+$rmd-avatar-color: $rmd-grey-100 !default;
+
 /// The default background color for an avatar. This will be used until the
 /// `color` prop is provided to the `Avatar` component.
 ///
@@ -27,13 +34,6 @@ $rmd-avatar-border-color: rgba(
 /// The border-radius for the avatar.
 /// @type Number
 $rmd-avatar-border-radius: 50% !default;
-
-/// The default text color for the avatar. This will be used until the `color`
-/// prop is provided to the `Avatar` component.
-///
-/// @require $rmd-grey-100
-/// @type Color
-$rmd-avatar-color: $rmd-grey-100 !default;
 
 /// The size for the avatar.
 /// @type Number

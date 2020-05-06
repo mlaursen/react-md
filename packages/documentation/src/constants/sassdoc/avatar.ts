@@ -199,11 +199,22 @@ const sassdoc: PackageSassDoc = {
     },
   },
   variables: {
+    "rmd-avatar-color": {
+      name: "rmd-avatar-color",
+      description:
+        "The default text color for the avatar. This will be used until the `color` prop is provided to the `Avatar` component.",
+      source: "packages/avatar/src/_variables.scss#L13",
+      packageName: "avatar",
+      type: "Color",
+      value: "$rmd-grey-100",
+      compiled: "#f5f5f5",
+      overridable: true,
+    },
     "rmd-avatar-background-color": {
       name: "rmd-avatar-background-color",
       description:
         "The default background color for an avatar. This will be used until the `color` prop is provided to the `Avatar` component.",
-      source: "packages/avatar/src/_variables.scss#L14",
+      source: "packages/avatar/src/_variables.scss#L21",
       see: [
         { name: "rmd-avatar-colors", type: "mixin", packageName: "avatar" },
       ],
@@ -216,7 +227,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-avatar-border-color": {
       name: "rmd-avatar-border-color",
       description: "The border color to apply to the avatar.",
-      source: "packages/avatar/src/_variables.scss#L22-L25",
+      source: "packages/avatar/src/_variables.scss#L29-L32",
       packageName: "avatar",
       type: "Color",
       value:
@@ -227,21 +238,10 @@ const sassdoc: PackageSassDoc = {
     "rmd-avatar-border-radius": {
       name: "rmd-avatar-border-radius",
       description: "The border-radius for the avatar.\n",
-      source: "packages/avatar/src/_variables.scss#L29",
+      source: "packages/avatar/src/_variables.scss#L36",
       packageName: "avatar",
       type: "Number",
       value: "50%",
-      overridable: true,
-    },
-    "rmd-avatar-color": {
-      name: "rmd-avatar-color",
-      description:
-        "The default text color for the avatar. This will be used until the `color` prop is provided to the `Avatar` component.",
-      source: "packages/avatar/src/_variables.scss#L36",
-      packageName: "avatar",
-      type: "Color",
-      value: "$rmd-grey-100",
-      compiled: "#f5f5f5",
       overridable: true,
     },
     "rmd-avatar-size": {

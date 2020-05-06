@@ -1,9 +1,9 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
+  "rmd-avatar-color": "#f5f5f5",
   "rmd-avatar-background-color": "#616161",
   "rmd-avatar-border-color": "rgba(0, 0, 0, 0.12)",
   "rmd-avatar-border-radius": "50%",
-  "rmd-avatar-color": "#f5f5f5",
   "rmd-avatar-size": "2.5rem",
   "rmd-avatar-font-size": "1.5rem",
   "rmd-avatar-line-height": "1.75rem",
