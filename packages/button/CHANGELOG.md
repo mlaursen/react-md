@@ -12,6 +12,9 @@ default styles.
 
 ## New Behavior and Features
 
+- added a new `UnstyledButton` component that can be used for simple clickable
+  elements without the default browser button styles (think of this as a better
+  version of `AccessibleFakeButton`)
 - buttons can be rendered without requiring any of the theme props
 - buttons will have a static size across all device sizes instead of changing
   between mobile and desktop
