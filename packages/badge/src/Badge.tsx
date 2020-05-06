@@ -40,6 +40,11 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 
 const block = bem("rmd-badge");
 
+/**
+ * This component is generally used for displaying notifications with a count
+ * relative to another element with the `BadgeContainer` component. However, it
+ * can be used by itself to display any subpplementary content if needed.
+ */
 function Badge(
   {
     className,
