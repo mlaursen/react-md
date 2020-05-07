@@ -23,7 +23,6 @@ export { default as useInterval } from "./useInterval";
 export { default as useTimeout } from "./useTimeout";
 export { default as useTempValue } from "./useTempValue";
 export { default as useRefCache } from "./useRefCache";
-export { default as usePrevious } from "./usePrevious";
 export {
   default as useCloseOnOutsideClick,
   OnOutsideClick,
