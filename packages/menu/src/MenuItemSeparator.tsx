@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import {
   Divider,
   DividerElement,
@@ -19,43 +19,36 @@ export interface MenuItemSeparatorProps
   "aria-orientation"?: "horizontal" | "vertical";
 }
 
-function MenuItemSeparator(
-  {
-    "aria-orientation": ariaOrientation,
-    maxHeight,
-    ...props
-  }: MenuItemSeparatorProps,
-  ref?: Ref<DividerElement>
-): ReactElement {
-  const menuOrientation = useOrientation();
-  if (
-    ariaOrientation === "vertical" ||
-    (!ariaOrientation && menuOrientation === "horizontal")
+const MenuItemSeparator = forwardRef<DividerElement, MenuItemSeparatorProps>(
+  function MenuItemSeparator(
+    { "aria-orientation": ariaOrientation, maxHeight, ...props },
+    ref
   ) {
-    return (
-      <VerticalDivider
-        {...props}
-        ref={ref}
-        aria-orientation="vertical"
-        maxHeight={maxHeight}
-        role="separator"
-      />
-    );
+    const menuOrientation = useOrientation();
+    if (
+      ariaOrientation === "vertical" ||
+      (!ariaOrientation && menuOrientation === "horizontal")
+    ) {
+      return (
+        <VerticalDivider
+          {...props}
+          ref={ref}
+          aria-orientation="vertical"
+          maxHeight={maxHeight}
+          role="separator"
+        />
+      );
+    }
+
+    return <Divider {...props} ref={ref} role="separator" />;
   }
-
-  return <Divider {...props} ref={ref} role="separator" />;
-}
-
-const ForwardedMenuItemSeparator = forwardRef<
-  DividerElement,
-  MenuItemSeparatorProps
->(MenuItemSeparator);
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedMenuItemSeparator.propTypes = {
+    MenuItemSeparator.propTypes = {
       "aria-orientation": PropTypes.oneOf(["horizontal", "vertical"]),
       className: PropTypes.string,
       maxHeight: PropTypes.number,
@@ -63,4 +56,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedMenuItemSeparator;
+export default MenuItemSeparator;

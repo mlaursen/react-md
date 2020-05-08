@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 
@@ -71,103 +71,101 @@ export interface DropdownMenuProps
   extends Omit<MenuButtonProps, "id" | "visible" | "aria-haspopup">,
     BaseDropdownMenuProps {}
 
-function DropdownMenu(
-  {
-    onClick: propOnClick,
-    onKeyDown: propOnKeyDown,
-    children,
-    anchor,
-    menuLabel,
-    menuLabelledBy,
-    menuRenderer = defaultMenuRenderer,
-    items,
-    itemRenderer = defaultMenuItemRenderer,
-    horizontal,
-    onVisibilityChange,
-    portal,
-    portalInto,
-    portalIntoId,
-    positionOptions,
-    defaultVisible = false,
-    disableCloseOnScroll,
-    disableCloseOnResize,
-    dropdownIcon: propDropdownIcon,
-    disableDropdownIcon = false,
-    ...props
-  }: DropdownMenuProps,
-  ref?: Ref<HTMLButtonElement>
-): ReactElement {
-  const { id } = props;
-  const dropdownIcon = useIcon("dropdown", propDropdownIcon);
+const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
+  function DropdownMenu(
+    {
+      onClick: propOnClick,
+      onKeyDown: propOnKeyDown,
+      children,
+      anchor,
+      menuLabel,
+      menuLabelledBy,
+      menuRenderer = defaultMenuRenderer,
+      items,
+      itemRenderer = defaultMenuItemRenderer,
+      horizontal,
+      onVisibilityChange,
+      portal,
+      portalInto,
+      portalIntoId,
+      positionOptions,
+      defaultVisible = false,
+      disableCloseOnScroll,
+      disableCloseOnResize,
+      dropdownIcon: propDropdownIcon,
+      disableDropdownIcon = false,
+      ...props
+    },
+    ref
+  ) {
+    const { id } = props;
+    const dropdownIcon = useIcon("dropdown", propDropdownIcon);
 
-  const {
-    visible,
-    defaultFocus,
-    onClick,
-    onKeyDown,
-    hide,
-  } = useButtonVisibility({
-    onClick: propOnClick,
-    onKeyDown: propOnKeyDown,
-    defaultVisible,
-    onVisibilityChange,
-  });
+    const {
+      visible,
+      defaultFocus,
+      onClick,
+      onKeyDown,
+      hide,
+    } = useButtonVisibility({
+      onClick: propOnClick,
+      onKeyDown: propOnKeyDown,
+      defaultVisible,
+      onVisibilityChange,
+    });
 
-  let labelledBy = menuLabelledBy;
-  if (!menuLabel && !menuLabelledBy) {
-    labelledBy = id;
+    let labelledBy = menuLabelledBy;
+    if (!menuLabel && !menuLabelledBy) {
+      labelledBy = id;
+    }
+
+    return (
+      <>
+        <MenuButton
+          {...props}
+          ref={ref}
+          aria-haspopup="menu"
+          visible={visible}
+          onClick={onClick}
+          onKeyDown={onKeyDown}
+          dropdownIcon={dropdownIcon}
+          disableDropdownIcon={disableDropdownIcon}
+        >
+          {children}
+        </MenuButton>
+        {menuRenderer(
+          {
+            "aria-label": menuLabel,
+            // ok to typecast since one of these two should be a string by this
+            // line
+            "aria-labelledby": labelledBy as string,
+            id: `${id}-menu`,
+            controlId: id,
+            anchor,
+            positionOptions,
+            disableCloseOnScroll,
+            disableCloseOnResize,
+            horizontal,
+            visible,
+            defaultFocus,
+            onRequestClose: hide,
+            children: items.map((item, i) => itemRenderer(item, `item-${i}`)),
+            portal,
+            portalInto,
+            portalIntoId,
+          },
+          items
+        )}
+      </>
+    );
   }
-
-  return (
-    <>
-      <MenuButton
-        {...props}
-        ref={ref}
-        aria-haspopup="menu"
-        visible={visible}
-        onClick={onClick}
-        onKeyDown={onKeyDown}
-        dropdownIcon={dropdownIcon}
-        disableDropdownIcon={disableDropdownIcon}
-      >
-        {children}
-      </MenuButton>
-      {menuRenderer(
-        {
-          "aria-label": menuLabel,
-          // ok to typecast since one of these two should be a string by this
-          // line
-          "aria-labelledby": labelledBy as string,
-          id: `${id}-menu`,
-          controlId: id,
-          anchor,
-          positionOptions,
-          disableCloseOnScroll,
-          disableCloseOnResize,
-          horizontal,
-          visible,
-          defaultFocus,
-          onRequestClose: hide,
-          children: items.map((item, i) => itemRenderer(item, `item-${i}`)),
-          portal,
-          portalInto,
-          portalIntoId,
-        },
-        items
-      )}
-    </>
-  );
-}
-
-const ForwardedDropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
-  DropdownMenu
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedDropdownMenu.propTypes = {
+    DropdownMenu.propTypes = {
       id: PropTypes.string.isRequired,
       defaultVisible: PropTypes.bool,
       menuLabel: PropTypes.string,
@@ -181,12 +179,45 @@ if (process.env.NODE_ENV !== "production") {
           PropTypes.object,
         ])
       ).isRequired,
+      onClick: PropTypes.func,
+      onKeyDown: PropTypes.func,
+      children: PropTypes.node,
+      horizontal: PropTypes.bool,
+      portal: PropTypes.bool,
+      portalInto: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
+      portalIntoId: PropTypes.string,
+      anchor: PropTypes.shape({
+        x: PropTypes.oneOf([
+          "left",
+          "right",
+          "center",
+          "inner-left",
+          "inner-right",
+        ]).isRequired,
+        y: PropTypes.oneOf(["above", "below", "center", "top", "bottom"])
+          .isRequired,
+      }),
+      positionOptions: PropTypes.shape({
+        vwMargin: PropTypes.number,
+        vhMargin: PropTypes.number,
+        xMargin: PropTypes.number,
+        yMargin: PropTypes.number,
+        initialX: PropTypes.number,
+        initialY: PropTypes.number,
+        disableSwapping: PropTypes.bool,
+      }),
       itemRenderer: PropTypes.func,
       dropdownIcon: PropTypes.node,
       disableDropdownIcon: PropTypes.bool,
       onVisibilityChange: PropTypes.func,
+      disableCloseOnScroll: PropTypes.bool,
+      disableCloseOnResize: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedDropdownMenu;
+export default DropdownMenu;

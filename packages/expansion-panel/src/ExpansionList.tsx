@@ -2,9 +2,7 @@ import React, {
   forwardRef,
   HTMLAttributes,
   KeyboardEventHandler,
-  ReactElement,
   ReactNode,
-  Ref,
 } from "react";
 
 export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
@@ -26,24 +24,21 @@ export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
  * styles. It is a simple wrapper for a `<div>` that updates the props to
  * require the `children` and `onKeyDown` props.
  */
-function ExpansionList(
-  { children, ...props }: ExpansionListProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  return (
-    <div {...props} ref={ref}>
-      {children}
-    </div>
-  );
-}
-
-const ForwardedExpansionList = forwardRef(ExpansionList);
+const ExpansionList = forwardRef<HTMLDivElement, ExpansionListProps>(
+  function ExpansionList({ children, ...props }, ref) {
+    return (
+      <div {...props} ref={ref}>
+        {children}
+      </div>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedExpansionList.propTypes = {
+    ExpansionList.propTypes = {
       children: PropTypes.node.isRequired,
       className: PropTypes.string,
       onKeyDown: PropTypes.func.isRequired,
@@ -51,4 +46,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedExpansionList;
+export default ExpansionList;

@@ -2,9 +2,7 @@ import React, {
   CSSProperties,
   forwardRef,
   HTMLAttributes,
-  ReactElement,
   ReactNode,
-  Ref,
 } from "react";
 import cn from "classnames";
 import CSSTransition from "react-transition-group/CSSTransition";
@@ -208,7 +206,7 @@ const DEFAULT_DIALOG_TIMEOUT = {
   exit: 150,
 };
 
-function Dialog(
+const Dialog = forwardRef<HTMLDivElement, StrictProps>(function Dialog(
   {
     component = "div",
     tabIndex = -1,
@@ -252,9 +250,9 @@ function Dialog(
     disableNestedDialogFixes = false,
     onKeyDown,
     ...props
-  }: StrictProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  ref
+) {
   const { id } = props;
   const isNoneRole = role === "none";
   const isFullPage = type === "full-page";
@@ -364,15 +362,13 @@ function Dialog(
       </>
     </ConditionalPortal>
   );
-}
-
-const ForwardedDialog = forwardRef<HTMLDivElement, StrictProps>(Dialog);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedDialog.propTypes = {
+    Dialog.propTypes = {
       id: PropTypes.string.isRequired,
       role: PropTypes.oneOf(["dialog", "alertdialog", "menu", "none"]),
       "aria-label": PropTypes.string,
@@ -392,6 +388,7 @@ if (process.env.NODE_ENV !== "production") {
       containerStyle: PropTypes.object,
       containerClassName: PropTypes.string,
       forceContainer: PropTypes.bool,
+      onKeyDown: PropTypes.func,
       component: PropTypes.oneOf(["div", "nav"]),
       children: PropTypes.node,
       classNames: PropTypes.oneOfType([
@@ -439,8 +436,10 @@ if (process.env.NODE_ENV !== "production") {
       disableEscapeClose: PropTypes.bool,
       disableFocusContainer: PropTypes.bool,
       disableNestedDialogFixes: PropTypes.bool,
+      disableFocusOnMount: PropTypes.bool,
+      disableFocusOnUnmount: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedDialog;
+export default Dialog;

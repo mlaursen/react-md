@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 
 /**
@@ -27,33 +27,32 @@ export interface MediaOverlayProps extends HTMLAttributes<HTMLDivElement> {
  * items within the `MediaContainer` component. You will need to apply most of
  * your own styles as this is really just used for positioning.
  */
-function MediaOverlay(
-  { className, children, position = "bottom", ...props }: MediaOverlayProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      className={cn(
-        `rmd-media-overlay rmd-media-overlay--${position}`,
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-}
-
-const ForwardedMediaOverlay = forwardRef<HTMLDivElement, MediaOverlayProps>(
-  MediaOverlay
+const MediaOverlay = forwardRef<HTMLDivElement, MediaOverlayProps>(
+  function MediaOverlay(
+    { className, children, position = "bottom", ...props },
+    ref
+  ) {
+    return (
+      <div
+        {...props}
+        ref={ref}
+        className={cn(
+          `rmd-media-overlay rmd-media-overlay--${position}`,
+          className
+        )}
+      >
+        {children}
+      </div>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
-    ForwardedMediaOverlay.propTypes = {
+    MediaOverlay.propTypes = {
       className: PropTypes.string,
+      children: PropTypes.node,
       position: PropTypes.oneOf([
         "top",
         "right",
@@ -67,4 +66,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedMediaOverlay;
+export default MediaOverlay;

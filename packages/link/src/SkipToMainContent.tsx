@@ -1,9 +1,7 @@
 import React, {
   forwardRef,
-  HTMLAttributes,
-  ReactElement,
+  AnchorHTMLAttributes,
   ReactNode,
-  Ref,
   useCallback,
 } from "react";
 import cn from "classnames";
@@ -12,7 +10,7 @@ import { bem } from "@react-md/utils";
 import Link from "./Link";
 
 export interface SkipToMainContentProps
-  extends HTMLAttributes<HTMLAnchorElement> {
+  extends AnchorHTMLAttributes<HTMLAnchorElement> {
   /**
    * An id to use for the link.
    */
@@ -51,75 +49,73 @@ const block = bem("rmd-link-skip");
  * through before the main content can be focused and this component should
  * normally be the first focusable element on your page.
  */
-function SkipToMainContent(
-  {
-    id = "skip-to-main-content",
-    children = "Skip to main content",
-    unstyled = false,
-    mainId,
-    className,
-    onClick,
-    ...props
-  }: SkipToMainContentProps,
-  ref?: Ref<HTMLAnchorElement>
-): ReactElement {
-  const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLAnchorElement>) => {
-      if (onClick) {
-        onClick(event);
-      }
-
-      event.preventDefault();
-      const main = document.getElementById(mainId);
-      if (!main) {
-        if (process.env.NODE_ENV !== "production") {
-          /* eslint-disable no-console */
-          const foundMain = document.querySelector("main");
-          const foundMainId = foundMain && foundMain.id;
-          console.error(
-            `Unable to find a main element to focus with an id of: "${mainId}".`
-          );
-          if (foundMainId) {
-            console.error(
-              `However, a "<main>" element was found with an id: "${foundMainId}". Should this be the "mainId" prop for the "SkipToMainContent" component?`
-            );
-          }
+const SkipToMainContent = forwardRef<HTMLAnchorElement, SkipToMainContentProps>(
+  function SkipToMainContent(
+    {
+      id = "skip-to-main-content",
+      children = "Skip to main content",
+      unstyled = false,
+      mainId,
+      className,
+      onClick,
+      ...props
+    },
+    ref
+  ) {
+    const handleClick = useCallback(
+      (event: React.MouseEvent<HTMLAnchorElement>) => {
+        if (onClick) {
+          onClick(event);
         }
 
-        return;
-      }
+        event.preventDefault();
+        const main = document.getElementById(mainId);
+        if (!main) {
+          if (process.env.NODE_ENV !== "production") {
+            /* eslint-disable no-console */
+            const foundMain = document.querySelector("main");
+            const foundMainId = foundMain && foundMain.id;
+            console.error(
+              `Unable to find a main element to focus with an id of: "${mainId}".`
+            );
+            if (foundMainId) {
+              console.error(
+                `However, a "<main>" element was found with an id: "${foundMainId}". Should this be the "mainId" prop for the "SkipToMainContent" component?`
+              );
+            }
+          }
 
-      main.focus();
-    },
-    [mainId, onClick]
-  );
+          return;
+        }
 
-  return (
-    <Link
-      {...props}
-      id={id}
-      ref={ref}
-      href={`#${mainId}`}
-      onClick={handleClick}
-      className={cn(block({ styled: !unstyled }), className)}
-    >
-      {children}
-    </Link>
-  );
-}
+        main.focus();
+      },
+      [mainId, onClick]
+    );
 
-const ForwardedSkipToMainContent = forwardRef<
-  HTMLAnchorElement,
-  SkipToMainContentProps
->(SkipToMainContent);
+    return (
+      <Link
+        {...props}
+        id={id}
+        ref={ref}
+        href={`#${mainId}`}
+        onClick={handleClick}
+        className={cn(block({ styled: !unstyled }), className)}
+      >
+        {children}
+      </Link>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedSkipToMainContent.propTypes = {
+    SkipToMainContent.propTypes = {
       id: PropTypes.string,
       mainId: PropTypes.string.isRequired,
+      onClick: PropTypes.func,
       className: PropTypes.string,
       children: PropTypes.node,
       unstyled: PropTypes.bool,
@@ -127,4 +123,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedSkipToMainContent;
+export default SkipToMainContent;

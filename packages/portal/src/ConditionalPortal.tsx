@@ -36,7 +36,7 @@ export interface ConditionalPortalProps extends RenderConditionalPortalProps {
  * to conditionally render the children within a portal or not based on general
  * portal config props.
  */
-function ConditionalPortal({
+export default function ConditionalPortal({
   portal,
   portalInto,
   portalIntoId,
@@ -69,5 +69,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ConditionalPortal;

@@ -1,14 +1,8 @@
-import React, {
-  ElementType,
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  Ref,
-} from "react";
+import React, { ElementType, forwardRef, AnchorHTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-export interface LinkProps extends HTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   /**
    * An optional component to render as. This should really only be used if you
    * are using a router library like
@@ -79,7 +73,7 @@ export interface LinkWithComponentProps extends LinkProps {
    * `component` prop is provided, all valid props from that component should
    * also be allowed.
    */
-  [key: string]: unknown;
+  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
   component: ElementType;
 }
 
@@ -92,7 +86,10 @@ const block = bem("rmd-link");
  * `react-router` or `reach-router` by providing the `Link` as the
  * `linkComponent` prop.
  */
-function Link(
+const Link = forwardRef<
+  HTMLAnchorElement | ElementType,
+  LinkProps | LinkWithComponentProps
+>(function Link(
   {
     className: propClassName,
     component: Component = "a",
@@ -102,9 +99,9 @@ function Link(
     flexCentered = false,
     preventMaliciousTarget = true,
     ...props
-  }: LinkProps,
-  ref?: Ref<HTMLAnchorElement | ElementType>
-): ReactElement {
+  },
+  ref
+) {
   const { target } = props;
   const href = propHref === "" ? undefined : propHref;
   const className = cn(block({ "flex-centered": flexCentered }), propClassName);
@@ -123,20 +120,16 @@ function Link(
       {children}
     </Component>
   );
-}
-
-const ForwardedLink = forwardRef<
-  HTMLAnchorElement | ElementType,
-  LinkProps | LinkWithComponentProps
->(Link);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedLink.propTypes = {
+    Link.propTypes = {
       className: PropTypes.string,
       href: PropTypes.string,
+      children: PropTypes.node,
       component: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.func,
@@ -150,4 +143,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedLink;
+export default Link;

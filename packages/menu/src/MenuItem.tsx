@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import cn from "classnames";
 import { ListItem, ListItemProps } from "@react-md/list";
 
@@ -21,16 +21,10 @@ export interface MenuItemProps extends ListItemProps {
   tabIndex?: number;
 }
 
-function MenuItem(
-  {
-    className,
-    children,
-    role = "menuitem",
-    tabIndex = -1,
-    ...props
-  }: MenuItemProps,
-  ref?: Ref<HTMLLIElement>
-): ReactElement {
+const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(function MenuItem(
+  { className, children, role = "menuitem", tabIndex = -1, ...props },
+  ref
+) {
   return (
     <ListItem
       {...props}
@@ -42,21 +36,20 @@ function MenuItem(
       {children}
     </ListItem>
   );
-}
-
-const ForwardedMenuItem = forwardRef<HTMLLIElement, MenuItemProps>(MenuItem);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedMenuItem.propTypes = {
+    MenuItem.propTypes = {
       id: PropTypes.string,
       className: PropTypes.string,
       role: PropTypes.string,
       tabIndex: PropTypes.number,
+      children: PropTypes.node,
     };
   } catch (e) {}
 }
 
-export default ForwardedMenuItem;
+export default MenuItem;

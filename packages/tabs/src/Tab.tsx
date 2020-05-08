@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import {
@@ -6,7 +6,6 @@ import {
   useInteractionStates,
 } from "@react-md/states";
 import { bem } from "@react-md/utils";
-
 import { TabConfig } from "./types";
 
 export interface TabProps
@@ -27,7 +26,7 @@ export interface TabProps
 
   /**
    * The id for the `TabPanel` that the `Tab` controls. This is really just used
-   * to create an `aria-controls` attribute on the `Tab` itself, but googling
+   * to create an `aria-controls` attribute on the `Tab` itself, but Googling
    * this results in some "interesting" results showing `aria-controls` doesn't
    * really do much so this prop can be omitted.
    *
@@ -44,7 +43,7 @@ const block = bem("rmd-tab");
  * The `Tab` is a low-level component that just renders an accessible tab widget
  * along with some general styles and an optional icon.
  */
-function Tab(
+const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
   {
     className: propClassName,
     contentStyle,
@@ -64,9 +63,9 @@ function Tab(
     rippleContainerClassName,
     enablePressedAndRipple,
     ...props
-  }: TabProps,
-  ref?: Ref<HTMLButtonElement>
-): ReactElement {
+  },
+  ref
+) {
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
     className: propClassName,
@@ -104,15 +103,13 @@ function Tab(
       {ripples}
     </button>
   );
-}
-
-const ForwardedTab = forwardRef<HTMLButtonElement, TabProps>(Tab);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTab.propTypes = {
+    Tab.propTypes = {
       id: PropTypes.string.isRequired,
       panelId: PropTypes.string,
       active: PropTypes.bool.isRequired,
@@ -125,8 +122,34 @@ if (process.env.NODE_ENV !== "production") {
       iconAfter: PropTypes.bool,
       disabled: PropTypes.bool,
       onKeyDown: PropTypes.func,
+      disableRipple: PropTypes.bool,
+      disableProgrammaticRipple: PropTypes.bool,
+      rippleTimeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          appear: PropTypes.number,
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      rippleClassNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          enterDone: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+          exitDone: PropTypes.string,
+        }),
+      ]),
+      rippleClassName: PropTypes.string,
+      rippleContainerClassName: PropTypes.string,
+      enablePressedAndRipple: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedTab;
+export default Tab;

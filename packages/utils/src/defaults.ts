@@ -5,6 +5,7 @@ type Rec = Record<string, unknown>;
  * shared options with default values that should be used. This basically works
  * just like `defaultProps` in react.
  *
+ * @internal
  * @param optional The original object that has the optional/omitted values
  * @param required The required default values that should be used to fill the
  * optional object with

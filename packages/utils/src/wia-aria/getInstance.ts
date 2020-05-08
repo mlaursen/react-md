@@ -1,5 +1,9 @@
 import { MutableRefObject } from "react";
 
+/**
+ * A simple type that can be used to get a DOM node either as a ref object from
+ * react, an HTMLElement, or null
+ */
 export type RefOrInstance =
   | HTMLElement
   | null
@@ -11,6 +15,7 @@ export type RefOrInstance =
  *
  * @param refOrInstance The ref or instance to get an HTMLElement from
  * @return The HTMLElement or null.
+ * @internal
  */
 export default function getInstance(
   refOrInstance: RefOrInstance

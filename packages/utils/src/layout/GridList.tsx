@@ -2,9 +2,7 @@ import React, {
   Children,
   forwardRef,
   HTMLAttributes,
-  ReactElement,
   ReactNode,
-  Ref,
   useCallback,
   useRef,
   useState,
@@ -139,6 +137,9 @@ type CSSProperties = React.CSSProperties & {
 };
 
 const block = bem("rmd-grid-list");
+const isRenderFunction = (
+  children: GridListProps["children"]
+): children is RenderGridListChildren => typeof children === "function";
 
 /**
  * The `GridList` component is a different way to render a list of data where
@@ -149,7 +150,7 @@ const block = bem("rmd-grid-list");
  * displaying a list of images or thumbnails and allowing the user to see a full
  * screen preview once selected/clicked.
  */
-function GridList(
+const GridList = forwardRef<HTMLDivElement, GridListProps>(function GridList(
   {
     style,
     className,
@@ -163,9 +164,9 @@ function GridList(
     disableHeightObserver = false,
     disableWidthObserver = false,
     ...props
-  }: GridListProps,
-  forwardedRef?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  forwardedRef
+) {
   const [gridSize, setGridSize] = useState(
     defaultSize || { columns: -1, cellWidth: maxCellSize }
   );
@@ -217,7 +218,7 @@ function GridList(
   };
 
   let content: ReactNode = null;
-  if (typeof children === "function") {
+  if (isRenderFunction(children)) {
     content = children(gridSize);
   } else if (clone || wrapOnly) {
     content = Children.map(children, (child) => (
@@ -237,21 +238,27 @@ function GridList(
       {content}
     </div>
   );
-}
-
-const ForwardedGridList = forwardRef<HTMLDivElement, GridListProps>(GridList);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedGridList.propTypes = {
+    GridList.propTypes = {
+      style: PropTypes.object,
       clone: PropTypes.bool,
       wrapOnly: PropTypes.bool,
       className: PropTypes.string,
       children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
       cellMargin: PropTypes.string,
       maxCellSize: PropTypes.number,
+      defaultSize: PropTypes.oneOfType([
+        PropTypes.shape({
+          columns: PropTypes.number.isRequired,
+          cellWidth: PropTypes.number.isRequired,
+        }),
+        PropTypes.func,
+      ]),
       containerPadding: PropTypes.number,
       disableHeightObserver: PropTypes.bool,
       disableWidthObserver: PropTypes.bool,
@@ -259,4 +266,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedGridList;
+export default GridList;

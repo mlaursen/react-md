@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref, useCallback } from "react";
+import React, { forwardRef, useCallback } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import { ListElement, ListItemChildren } from "@react-md/list";
@@ -16,7 +16,10 @@ const block = bem("rmd-tree-item");
  * should almost always be used from the `itemRenderer` prop from the `Tree`
  * component as it provides a lot of the required a11y props for you.
  */
-function TreeItem(
+const TreeItem = forwardRef<
+  HTMLLIElement,
+  TreeItemProps | TreeItemWithContentComponentProps
+>(function TreeItem(
   {
     id,
     className: propClassName,
@@ -53,9 +56,9 @@ function TreeItem(
     readOnly,
     onFocus,
     ...props
-  }: TreeItemProps,
-  ref?: Ref<HTMLLIElement>
-): ReactElement {
+  },
+  ref
+) {
   const expanderIcon = useIcon("expander", propExpanderIcon);
 
   const isLink =
@@ -161,18 +164,13 @@ function TreeItem(
       {group}
     </li>
   );
-}
-
-const ForwardedTreeItem = forwardRef<
-  HTMLLIElement,
-  TreeItemProps | TreeItemWithContentComponentProps
->(TreeItem);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTreeItem.propTypes = {
+    TreeItem.propTypes = {
       id: PropTypes.string.isRequired,
       depth: PropTypes.number.isRequired,
       itemIndex: PropTypes.number.isRequired,
@@ -181,15 +179,21 @@ if (process.env.NODE_ENV !== "production") {
       expanded: PropTypes.bool.isRequired,
       focused: PropTypes.bool.isRequired,
       renderChildItems: PropTypes.func,
+      className: PropTypes.string,
+      liRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
       liStyle: PropTypes.object,
       liClassName: PropTypes.string,
+      textClassName: PropTypes.string,
+      secondaryTextClassName: PropTypes.string,
       isLink: PropTypes.bool,
+      onFocus: PropTypes.func,
       contentComponent: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.func,
         PropTypes.object,
       ]),
       disabled: PropTypes.bool,
+      readOnly: PropTypes.bool,
       expanderLeft: PropTypes.bool,
       expanderIcon: PropTypes.node,
       height: PropTypes.oneOf([
@@ -201,8 +205,28 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       threeLines: PropTypes.bool,
       textChildren: PropTypes.bool,
+      children: PropTypes.node,
+      primaryText: PropTypes.node,
+      secondaryText: PropTypes.node,
+      leftAddon: PropTypes.node,
+      leftAddonType: PropTypes.oneOf([
+        "icon",
+        "avatar",
+        "media",
+        "large-media",
+      ]),
+      leftAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      rightAddon: PropTypes.node,
+      rightAddonType: PropTypes.oneOf([
+        "icon",
+        "avatar",
+        "media",
+        "large-media",
+      ]),
+      rightAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      forceAddonWrap: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedTreeItem;
+export default TreeItem;

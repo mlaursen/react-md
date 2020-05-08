@@ -1,9 +1,7 @@
 import React, {
   CSSProperties,
   forwardRef,
-  ReactElement,
   ReactNode,
-  Ref,
   useCallback,
   useState,
   MouseEventHandler,
@@ -98,7 +96,7 @@ function isConfigurableIcon(
  * rendered for password inputs. There is built-in functionality to be able to
  * temporarily show the password's value by swapping the `type` to `"text"`.
  */
-function Password(
+const Password = forwardRef<HTMLInputElement, PasswordProps>(function Password(
   {
     className,
     inputClassName,
@@ -110,9 +108,9 @@ function Password(
     getVisibilityIcon,
     disableVisibility = false,
     ...props
-  }: PasswordProps,
-  ref?: Ref<HTMLInputElement>
-): ReactElement {
+  },
+  ref
+) {
   const { id } = props;
   const [type, setType] = useState<"password" | "text">("password");
   const toggle = useCallback(
@@ -164,16 +162,16 @@ function Password(
       }
     />
   );
-}
-
-const ForwardedPassword = forwardRef<HTMLInputElement, PasswordProps>(Password);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedPassword.propTypes = {
+    Password.propTypes = {
       id: PropTypes.string.isRequired,
+      className: PropTypes.string,
+      inputClassName: PropTypes.string,
       visibilityIcon: PropTypes.oneOfType([
         PropTypes.node,
         PropTypes.shape({
@@ -185,8 +183,10 @@ if (process.env.NODE_ENV !== "production") {
       visibilityClassName: PropTypes.string,
       visibilityLabel: PropTypes.string,
       disableVisibility: PropTypes.bool,
+      onVisibilityClick: PropTypes.func,
+      getVisibilityIcon: PropTypes.func,
     };
   } catch (e) {}
 }
 
-export default ForwardedPassword;
+export default Password;

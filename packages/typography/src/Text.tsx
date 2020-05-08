@@ -5,7 +5,6 @@ import {
   HTMLAttributes,
   ReactElement,
   ReactNode,
-  Ref,
 } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
@@ -218,7 +217,7 @@ const block = bem("rmd-typography");
  * NOTE: if the `component` prop is not `null`, this logic will be ignored and
  * the provided `component` will be used instead.
  */
-function Text(
+const Text = forwardRef<TextElement, TextProps>(function Text(
   {
     className: propClassName,
     children,
@@ -232,9 +231,9 @@ function Text(
     fontStyle,
     margin = "initial",
     ...props
-  }: TextProps,
-  ref?: Ref<TextElement>
-): ReactElement {
+  },
+  ref
+) {
   const className = cn(
     block({
       [type]: true,
@@ -261,15 +260,13 @@ function Text(
     { ...props, className, ref },
     children
   );
-}
-
-const ForwardedText = forwardRef<TextElement, TextProps>(Text);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedText.propTypes = {
+    Text.propTypes = {
       className: PropTypes.string,
       type: PropTypes.oneOf([
         "headline-1",
@@ -318,4 +315,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedText;
+export default Text;

@@ -4,8 +4,6 @@ import React, {
   forwardRef,
   HTMLAttributes,
   isValidElement,
-  ReactElement,
-  Ref,
 } from "react";
 import cn from "classnames";
 
@@ -101,7 +99,7 @@ export interface GridCellProps
 
 const block = bem("rmd-grid");
 
-function GridCell(
+const GridCell = forwardRef<HTMLDivElement, GridCellProps>(function GridCell(
   {
     style,
     className,
@@ -118,9 +116,9 @@ function GridCell(
     desktop,
     largeDesktop,
     ...props
-  }: GridCellProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  ref
+) {
   const { isPhone, isTablet, isDesktop, isLargeDesktop } = useAppSize();
 
   let colSpan = propColSpan;
@@ -173,9 +171,7 @@ function GridCell(
       {children}
     </div>
   );
-}
-
-const ForwardedGridCell = forwardRef<HTMLDivElement, GridCellProps>(GridCell);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -190,7 +186,7 @@ if (process.env.NODE_ENV !== "production") {
       colEnd: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     });
 
-    ForwardedGridCell.propTypes = {
+    GridCell.propTypes = {
       style: PropTypes.object,
       className: PropTypes.string,
       clone: PropTypes.bool,
@@ -209,4 +205,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedGridCell;
+export default GridCell;

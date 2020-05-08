@@ -13,7 +13,7 @@ const block = bem("rmd-tree-item");
  * The `TreeItemExpanderIcon` is a simple wrapper of the `IconRotator` prop to
  * be used within a `TreeView`.
  */
-function TreeItemExpanderIcon({
+export default function TreeItemExpanderIcon({
   className,
   children,
   rotated = false,
@@ -31,5 +31,3 @@ function TreeItemExpanderIcon({
     </IconRotator>
   );
 }
-
-export default TreeItemExpanderIcon;

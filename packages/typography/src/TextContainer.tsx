@@ -4,7 +4,6 @@ import React, {
   HTMLAttributes,
   ReactElement,
   ReactNode,
-  Ref,
 } from "react";
 import cn from "classnames";
 
@@ -54,16 +53,19 @@ export interface TextContainerProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode | TextContainerRenderFunction;
 }
 
-function TextContainer(
+const TextContainer = forwardRef<
+  HTMLDivElement | ElementType,
+  TextContainerProps
+>(function TextContainer(
   {
     className: propClassName,
     component: Component = "div",
     size = "auto",
     children,
     ...props
-  }: TextContainerProps,
-  ref?: Ref<HTMLDivElement | ElementType>
-): ReactElement {
+  },
+  ref
+) {
   const className = cn(
     `rmd-text-container rmd-text-container--${size}`,
     propClassName
@@ -77,18 +79,13 @@ function TextContainer(
       {children}
     </Component>
   );
-}
-
-const ForwardedTextContainer = forwardRef<
-  HTMLDivElement | ElementType,
-  TextContainerProps
->(TextContainer);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTextContainer.propTypes = {
+    TextContainer.propTypes = {
       className: PropTypes.string,
       size: PropTypes.oneOf(["auto", "mobile", "desktop"]),
       component: PropTypes.oneOfType([
@@ -101,4 +98,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedTextContainer;
+export default TextContainer;

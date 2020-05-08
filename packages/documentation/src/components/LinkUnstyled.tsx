@@ -1,11 +1,9 @@
-import React, { FC, HTMLAttributes } from "react";
+import React, { FC, AnchorHTMLAttributes } from "react";
 import Link, { LinkProps } from "next/link";
 
 export interface LinkUnstyledProps
   extends Omit<LinkProps, "children" | "passHref" | "onError">,
-    Omit<HTMLAttributes<HTMLAnchorElement>, "onError"> {
-  href: string;
-}
+    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "onError" | "href"> {}
 
 const LinkUnstyled: FC<LinkUnstyledProps> = ({
   shallow,
@@ -16,7 +14,7 @@ const LinkUnstyled: FC<LinkUnstyledProps> = ({
   children,
   ...props
 }) => {
-  if (href.startsWith("http")) {
+  if (typeof href === "string" && href.startsWith("http")) {
     return (
       <a {...props} href={href} rel="noopener noreferrer">
         {children}

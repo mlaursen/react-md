@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import cn from "classnames";
 import { List, ListElement, ListProps } from "@react-md/list";
 import { Collapse, CollapseProps } from "@react-md/transition";
@@ -13,7 +13,7 @@ export interface TreeGroupProps
  * behind the scenes to animate in-and-out of view and will fully unrender when
  * the `expanded` prop is `false`.
  */
-function TreeGroup(
+const TreeGroup = forwardRef<ListElement, TreeGroupProps>(function TreeGroup(
   {
     style,
     className,
@@ -31,9 +31,9 @@ function TreeGroup(
     children,
     temporary,
     ...props
-  }: TreeGroupProps,
-  ref?: Ref<ListElement>
-): ReactElement {
+  },
+  ref
+) {
   return (
     <Collapse
       style={style}
@@ -56,15 +56,13 @@ function TreeGroup(
       </List>
     </Collapse>
   );
-}
-
-const ForwardedTreeGroup = forwardRef<ListElement, TreeGroupProps>(TreeGroup);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTreeGroup.propTypes = {
+    TreeGroup.propTypes = {
       style: PropTypes.object,
       className: PropTypes.string,
       collapsed: PropTypes.bool.isRequired,
@@ -94,4 +92,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedTreeGroup;
+export default TreeGroup;

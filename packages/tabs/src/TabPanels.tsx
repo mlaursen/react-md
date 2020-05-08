@@ -4,8 +4,6 @@ import React, {
   forwardRef,
   HTMLAttributes,
   isValidElement,
-  ReactElement,
-  Ref,
   useCallback,
   useEffect,
   useRef,
@@ -33,7 +31,7 @@ export interface TabPanelsProps extends HTMLAttributes<HTMLDivElement> {
 
   /**
    * Boolean if the conditional rendering for the active tab panel only should
-   * be disabled. This means that all the children will be visible in the dom
+   * be disabled. This means that all the children will be visible in the DOM
    * instead of mounting and unmounting when their active state changes. The
    * panels will also be updated to ensure that inactive panels can not be
    * tab focusable.
@@ -42,20 +40,15 @@ export interface TabPanelsProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const block = bem("rmd-tab-panels");
-// const defaultProps: DefaultProps = {
-//   disableScrollFix: false,
-//   disableTransition: false,
-//   persistent: false,
-// };
 
 /**
- * This component allows you to control the visibility of the `TabPanel` components
- * and animating the next? and current panels as needed. This works by looping over
- * all the children and getting the current `TabPanel` by the `activeIndex`. This is
- * why the children for this component can only be `TabPanel` and should not be
- * conditional.
+ * This component allows you to control the visibility of the `TabPanel`
+ * components and animating the next and current panels as needed. This works by
+ * looping over all the children and getting the current `TabPanel` by the
+ * `activeIndex`. This is why the children for this component can only be
+ * `TabPanel` and should not be conditional.
  */
-function TabPanels(
+const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(function TabPanels(
   {
     className,
     children,
@@ -63,9 +56,9 @@ function TabPanels(
     disableTransition = false,
     persistent = false,
     ...props
-  }: TabPanelsProps,
-  forwardedRef?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  forwardedRef
+) {
   const { tabsId, tabs, activeIndex } = useTabs();
   const prevIndex = useRef(activeIndex);
   const [{ previous, incrementing }, setState] = useState({
@@ -115,7 +108,7 @@ function TabPanels(
 
     ref.current.scrollTop = 0;
     // don't want it to be triggered if only the disableScrollFix prop has changed
-    // since it might be independant from active indexes
+    // since it might be independent from active indexes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIndex]);
 
@@ -178,17 +171,13 @@ function TabPanels(
       </PanelGroup>
     </div>
   );
-}
-
-const ForwardedTabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(
-  TabPanels
-);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTabPanels.propTypes = {
+    TabPanels.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
       disableScrollFix: PropTypes.bool,
@@ -198,4 +187,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedTabPanels;
+export default TabPanels;

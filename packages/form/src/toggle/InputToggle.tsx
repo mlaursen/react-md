@@ -2,9 +2,7 @@ import React, {
   CSSProperties,
   forwardRef,
   InputHTMLAttributes,
-  ReactElement,
   ReactNode,
-  Ref,
 } from "react";
 import cn from "classnames";
 import {
@@ -139,8 +137,11 @@ type CheckboxOrRadioProps = InputToggleProps & {
 
 const block = bem("rmd-toggle");
 
-function InputToggle(
-  {
+const InputToggle = forwardRef<HTMLInputElement, Props>(function InputToggle(
+  allProps,
+  ref
+) {
+  const {
     style,
     className,
     iconStyle,
@@ -167,9 +168,8 @@ function InputToggle(
     children,
     indeterminate,
     ...props
-  }: CheckboxOrRadioProps,
-  ref?: Ref<HTMLInputElement>
-): ReactElement {
+  } = allProps as CheckboxOrRadioProps;
+
   const { id, type } = props;
 
   const {
@@ -249,16 +249,16 @@ function InputToggle(
       {!iconAfter && labelEl}
     </ToggleContainer>
   );
-}
-
-const ForwardedInputToggle = forwardRef<HTMLInputElement, Props>(InputToggle);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedInputToggle.propTypes = {
+    InputToggle.propTypes = {
       id: PropTypes.string.isRequired,
+      style: PropTypes.object,
+      className: PropTypes.string,
       type: PropTypes.oneOf(["radio", "checkbox"]).isRequired,
       icon: PropTypes.node,
       iconStyle: PropTypes.object,
@@ -267,13 +267,43 @@ if (process.env.NODE_ENV !== "production") {
       toggleClassName: PropTypes.string,
       error: PropTypes.bool,
       label: PropTypes.node,
+      labelStyle: PropTypes.object,
+      labelClassName: PropTypes.string,
+      labelDisabled: PropTypes.bool,
       inline: PropTypes.bool,
       stacked: PropTypes.bool,
       disabled: PropTypes.bool,
       iconAfter: PropTypes.bool,
+      onBlur: PropTypes.func,
+      onFocus: PropTypes.func,
       disableIconOverlay: PropTypes.bool,
+      disableRipple: PropTypes.bool,
+      disableProgrammaticRipple: PropTypes.bool,
+      rippleTimeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          appear: PropTypes.number,
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      rippleClassNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          enterDone: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+          exitDone: PropTypes.string,
+        }),
+      ]),
+      children: PropTypes.node,
+      indeterminate: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedInputToggle;
+export default InputToggle;

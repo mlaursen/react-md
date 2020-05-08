@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -39,10 +39,10 @@ const block = bem("rmd-avatar");
  * the avatar is not an image, different themes can be applied to make the
  * avatar more unique.
  */
-function Avatar(
-  { className, children, src, alt = "", color = "", ...props }: AvatarProps,
-  ref?: Ref<HTMLSpanElement>
-): ReactElement {
+const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
+  { className, children, src, alt = "", color = "", ...props },
+  ref
+) {
   let img;
   if (src) {
     img = <img src={src} alt={alt} className={block("image")} />;
@@ -58,21 +58,20 @@ function Avatar(
       {children}
     </span>
   );
-}
-
-const ForwardedAvatar = forwardRef<HTMLSpanElement, AvatarProps>(Avatar);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedAvatar.propTypes = {
+    Avatar.propTypes = {
       alt: PropTypes.string,
       src: PropTypes.string,
       color: PropTypes.string,
+      className: PropTypes.string,
       children: PropTypes.node,
     };
   } catch (e) {}
 }
 
-export default ForwardedAvatar;
+export default Avatar;

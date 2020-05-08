@@ -1,10 +1,4 @@
-import React, {
-  ElementType,
-  forwardRef,
-  HTMLAttributes,
-  Ref,
-  ReactElement,
-} from "react";
+import React, { ElementType, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -97,7 +91,7 @@ const block = bem("rmd-app-bar");
  * converted by the app bar. You can also use any of the exposed mixins to add
  * these offsets as well.
  */
-function AppBar(
+const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
   {
     className,
     children,
@@ -111,9 +105,9 @@ function AppBar(
     fixedElevation = true,
     inheritColor,
     ...remaining
-  }: AppBarProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  ref
+) {
   const parentContext = useParentContext();
   const inheritContext = useInheritContext(undefined);
 
@@ -155,15 +149,13 @@ function AppBar(
       </InheritContext.Provider>
     </ParentContext.Provider>
   );
-}
-
-const ForwardedAppBar = forwardRef<HTMLDivElement, AppBarProps>(AppBar);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedAppBar.propTypes = {
+    AppBar.propTypes = {
       className: PropTypes.string,
       component: PropTypes.oneOfType([
         PropTypes.string,
@@ -183,4 +175,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedAppBar;
+export default AppBar;

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -39,7 +39,7 @@ export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
 
 const block = bem("rmd-label");
 
-function Label(
+const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
   {
     htmlFor,
     className,
@@ -49,9 +49,9 @@ function Label(
     component: Component = "label",
     children,
     ...props
-  }: LabelProps,
-  ref?: Ref<HTMLLabelElement>
-): ReactElement | null {
+  },
+  ref
+) {
   if (!children) {
     return null;
   }
@@ -73,22 +73,22 @@ function Label(
       {children}
     </Component>
   );
-}
-
-const ForwardedLabel = forwardRef<HTMLLabelElement, LabelProps>(Label);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedLabel.propTypes = {
+    Label.propTypes = {
       htmlFor: PropTypes.string.isRequired,
+      className: PropTypes.string,
       error: PropTypes.bool,
       active: PropTypes.bool,
       disabled: PropTypes.bool,
       component: PropTypes.oneOf(["label", "span"]),
+      children: PropTypes.node,
     };
   } catch (e) {}
 }
 
-export default ForwardedLabel;
+export default Label;

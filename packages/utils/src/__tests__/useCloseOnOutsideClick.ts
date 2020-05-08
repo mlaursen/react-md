@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import useCloseOnOutsideClick, {
   getElement,
-  Options,
+  CloseOnOutsideClickOptions,
 } from "../useCloseOnOutsideClick";
 import containsElement from "../containsElement";
 
@@ -63,7 +63,7 @@ describe("useCloseOnOutsideClick", () => {
 
   it("should call the onOutsideClick handler if an element is clicked and the target is null", () => {
     const onOutsideClick = jest.fn();
-    const initialProps: Options<HTMLElement> = {
+    const initialProps: CloseOnOutsideClickOptions<HTMLElement> = {
       enabled: true,
       element: null,
       onOutsideClick,
@@ -96,7 +96,7 @@ describe("useCloseOnOutsideClick", () => {
     child.id = "child";
     element.appendChild(child);
 
-    const initialProps: Options<HTMLElement> = {
+    const initialProps: CloseOnOutsideClickOptions<HTMLElement> = {
       enabled: true,
       element,
       onOutsideClick,

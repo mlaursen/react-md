@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
 
 import InputToggle, { InputToggleProps } from "./InputToggle";
@@ -14,22 +14,20 @@ export interface RadioProps extends InputToggleProps {
  * The `Radio` component is just a wrapper for the `InputToggle` that
  * defaults to reasonable defaults for a radio input.
  */
-function Radio(
-  { icon: propIcon, ...props }: RadioProps,
-  ref?: Ref<HTMLInputElement>
-): ReactElement {
+const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
+  { icon: propIcon, ...props },
+  ref
+) {
   const icon = useIcon("radio", propIcon);
 
   return <InputToggle {...props} icon={icon} ref={ref} type="radio" />;
-}
-
-const ForwardedRadio = forwardRef<HTMLInputElement, RadioProps>(Radio);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedRadio.propTypes = {
+    Radio.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string,
       icon: PropTypes.node,
@@ -42,4 +40,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedRadio;
+export default Radio;

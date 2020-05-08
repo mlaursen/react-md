@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref, useRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { Dialog, DialogProps } from "@react-md/dialog";
@@ -85,7 +85,7 @@ const DEFAULT_SHEET_CLASSNAMES: CSSTransitionClassNames = {
  * to the edges of the viewport instead of centered or full page. This component
  * is great for rendering a navigation tree or menus on mobile devices.
  */
-function Sheet(
+const Sheet = forwardRef<HTMLDivElement, StrictProps>(function Sheet(
   {
     className,
     children,
@@ -114,9 +114,9 @@ function Sheet(
     disableFocusContainer = false,
     disableNestedDialogFixes = false,
     ...props
-  }: StrictProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  ref
+) {
   const horizontal = position === "left" || position === "right";
   const overlay = role !== "none" && propOverlay;
 
@@ -172,15 +172,13 @@ function Sheet(
       {children}
     </Dialog>
   );
-}
-
-const ForwardedSheet = forwardRef<HTMLDivElement, StrictProps>(Sheet);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedSheet.propTypes = {
+    Sheet.propTypes = {
       id: PropTypes.string.isRequired,
       "aria-label": PropTypes.string,
       "aria-labelledby": PropTypes.string,
@@ -251,4 +249,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedSheet;
+export default Sheet;

@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -45,16 +39,16 @@ const block = bem("rmd-badge");
  * relative to another element with the `BadgeContainer` component. However, it
  * can be used by itself to display any subpplementary content if needed.
  */
-function Badge(
+const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
   {
     className,
     theme = "default",
     children = null,
     disableNullOnZero = false,
     ...props
-  }: BadgeProps,
-  ref?: Ref<HTMLSpanElement>
-): ReactElement | null {
+  },
+  ref
+) {
   if (isEmpty(children, disableNullOnZero)) {
     return null;
   }
@@ -68,21 +62,20 @@ function Badge(
       {children}
     </span>
   );
-}
-
-const ForwardedBadge = forwardRef<HTMLSpanElement, BadgeProps>(Badge);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedBadge.propTypes = {
+    Badge.propTypes = {
       id: PropTypes.string.isRequired,
       theme: PropTypes.oneOf(["primary", "secondary", "default", "clear"]),
+      className: PropTypes.string,
       children: PropTypes.node,
       disableNullOnZero: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedBadge;
+export default Badge;

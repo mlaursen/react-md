@@ -4,8 +4,6 @@ import React, {
   forwardRef,
   HTMLAttributes,
   isValidElement,
-  ReactElement,
-  Ref,
 } from "react";
 import cn from "classnames";
 
@@ -28,40 +26,32 @@ export interface GridListCellProps extends HTMLAttributes<HTMLDivElement> {
 
 const block = bem("rmd-grid-list");
 
-function GridListCell(
-  {
-    className,
-    children,
-    square = false,
-    clone = false,
-    ...props
-  }: GridListCellProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  const cellClassName = cn(block("cell", { square }), className);
-  if (clone && isValidElement(children)) {
-    const child = Children.only(children);
-    return cloneElement(child, {
-      className: cn(cellClassName, child.props.className),
-    });
+const GridListCell = forwardRef<HTMLDivElement, GridListCellProps>(
+  function GridListCell(
+    { className, children, square = false, clone = false, ...props },
+    ref
+  ) {
+    const cellClassName = cn(block("cell", { square }), className);
+    if (clone && isValidElement(children)) {
+      const child = Children.only(children);
+      return cloneElement(child, {
+        className: cn(cellClassName, child.props.className),
+      });
+    }
+
+    return (
+      <div {...props} ref={ref} className={cellClassName}>
+        {children}
+      </div>
+    );
   }
-
-  return (
-    <div {...props} ref={ref} className={cellClassName}>
-      {children}
-    </div>
-  );
-}
-
-const ForwardedGridListCell = forwardRef<HTMLDivElement, GridListCellProps>(
-  GridListCell
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedGridListCell.propTypes = {
+    GridListCell.propTypes = {
       clone: PropTypes.bool,
       square: PropTypes.bool,
       className: PropTypes.string,
@@ -70,4 +60,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedGridListCell;
+export default GridListCell;

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
@@ -35,7 +34,7 @@ const block = bem("rmd-list-item");
  * This component us used to create the one to three lines of text within a
  * `ListItem` or `SimpleListItem`.
  */
-function ListItemText({
+export default function ListItemText({
   className,
   secondaryTextClassName,
   secondaryText,
@@ -63,4 +62,15 @@ function ListItemText({
   );
 }
 
-export default ListItemText;
+if (process.env.NODE_ENV !== "production") {
+  try {
+    const PropTypes = require("prop-types");
+
+    ListItemText.propTypes = {
+      className: PropTypes.string,
+      secondaryTextClassName: PropTypes.string,
+      secondaryText: PropTypes.node,
+      children: PropTypes.node,
+    };
+  } catch (e) {}
+}

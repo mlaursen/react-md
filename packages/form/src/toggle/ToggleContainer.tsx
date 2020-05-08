@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -19,43 +19,39 @@ export interface ToggleContainerProps extends HTMLAttributes<HTMLDivElement> {
 const block = bem("rmd-toggle-container");
 
 /**
- * @private
+ * The `ToggleContainer` component should generally be used around a
+ * custom `"checkbox"`, `"radio"`, or `"switch"` component to help with
+ * additional styles. This is mostly an internal component so I'm not
+ * sure useful it will be though.
  */
-function ToggleContainer(
-  {
-    className,
-    inline = false,
-    stacked = false,
-    children,
-    ...props
-  }: ToggleContainerProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      className={cn(block({ stacked, inline }), className)}
-    >
-      {children}
-    </div>
-  );
-}
-
-const ForwardedToggleContainer = forwardRef<
-  HTMLDivElement,
-  ToggleContainerProps
->(ToggleContainer);
+const ToggleContainer = forwardRef<HTMLDivElement, ToggleContainerProps>(
+  function ToggleContainer(
+    { className, inline = false, stacked = false, children, ...props },
+    ref
+  ) {
+    return (
+      <div
+        {...props}
+        ref={ref}
+        className={cn(block({ stacked, inline }), className)}
+      >
+        {children}
+      </div>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedToggleContainer.propTypes = {
+    ToggleContainer.propTypes = {
       inline: PropTypes.bool,
       stacked: PropTypes.bool,
+      className: PropTypes.string,
+      children: PropTypes.node,
     };
   } catch (e) {}
 }
 
-export default ForwardedToggleContainer;
+export default ToggleContainer;

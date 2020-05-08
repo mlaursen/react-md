@@ -1,10 +1,4 @@
-import React, {
-  CSSProperties,
-  forwardRef,
-  ReactElement,
-  Ref,
-  TdHTMLAttributes,
-} from "react";
+import React, { CSSProperties, forwardRef, Ref, TdHTMLAttributes } from "react";
 import cn from "classnames";
 import { Checkbox, CheckboxProps } from "@react-md/form";
 
@@ -77,6 +71,7 @@ export interface TableCheckboxProps
 }
 
 const DEFAULT_ARIA_LABEL = "Toggle Row Selection";
+
 /**
  * This is a simple wrapper for the `Checkbox` component that allows you to
  * render a nicely styled `Checkbox` within a `TableCell` element. This will
@@ -84,80 +79,77 @@ const DEFAULT_ARIA_LABEL = "Toggle Row Selection";
  * since you normally don't want a checkbox with a label within a table since
  * it's more for selection.
  */
-function TableCheckbox(
-  {
-    cellId,
-    className,
-    id,
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabelledBy,
-    "aria-checked": ariaChecked,
-    "aria-controls": ariaControls,
-    checkboxRef,
-    checkboxStyle,
-    checkboxClassName,
-    icon,
-    iconStyle,
-    iconClassName,
-    toggleStyle,
-    toggleClassName,
-    disableIconOverlay,
-    name,
-    value,
-    checked,
-    onChange,
-    defaultChecked,
-    indeterminate,
-    ...props
-  }: TableCheckboxProps,
-  ref?: Ref<HTMLTableDataCellElement>
-): ReactElement {
-  return (
-    <TableCell
-      {...props}
-      ref={ref}
-      id={cellId}
-      header={false}
-      className={cn("rmd-table-cell--checkbox", className)}
-    >
-      <Checkbox
-        id={id}
-        aria-label={
-          ariaLabel ?? ariaLabelledBy ? undefined : DEFAULT_ARIA_LABEL
-        }
-        aria-labelledby={ariaLabelledBy}
-        aria-checked={ariaChecked}
-        aria-controls={ariaControls}
-        ref={checkboxRef}
-        style={checkboxStyle}
-        indeterminate={indeterminate}
-        className={checkboxClassName}
-        icon={icon}
-        iconStyle={iconStyle}
-        iconClassName={iconClassName}
-        toggleStyle={toggleStyle}
-        toggleClassName={toggleClassName}
-        disableIconOverlay={disableIconOverlay}
-        name={name}
-        value={value}
-        checked={checked}
-        onChange={onChange}
-        defaultChecked={defaultChecked}
-      />
-    </TableCell>
-  );
-}
-
-const ForwardedTableCheckbox = forwardRef<
-  HTMLTableDataCellElement,
-  TableCheckboxProps
->(TableCheckbox);
+const TableCheckbox = forwardRef<HTMLTableDataCellElement, TableCheckboxProps>(
+  function TableCheckbox(
+    {
+      cellId,
+      className,
+      id,
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-checked": ariaChecked,
+      "aria-controls": ariaControls,
+      checkboxRef,
+      checkboxStyle,
+      checkboxClassName,
+      icon,
+      iconStyle,
+      iconClassName,
+      toggleStyle,
+      toggleClassName,
+      disableIconOverlay,
+      name,
+      value,
+      checked,
+      onChange,
+      defaultChecked,
+      indeterminate,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <TableCell
+        {...props}
+        ref={ref}
+        id={cellId}
+        header={false}
+        className={cn("rmd-table-cell--checkbox", className)}
+      >
+        <Checkbox
+          id={id}
+          aria-label={
+            ariaLabel ?? ariaLabelledBy ? undefined : DEFAULT_ARIA_LABEL
+          }
+          aria-labelledby={ariaLabelledBy}
+          aria-checked={ariaChecked}
+          aria-controls={ariaControls}
+          ref={checkboxRef}
+          style={checkboxStyle}
+          indeterminate={indeterminate}
+          className={checkboxClassName}
+          icon={icon}
+          iconStyle={iconStyle}
+          iconClassName={iconClassName}
+          toggleStyle={toggleStyle}
+          toggleClassName={toggleClassName}
+          disableIconOverlay={disableIconOverlay}
+          name={name}
+          value={value}
+          checked={checked}
+          onChange={onChange}
+          defaultChecked={defaultChecked}
+        />
+      </TableCell>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTableCheckbox.propTypes = {
+    TableCheckbox.propTypes = {
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
       "aria-label": PropTypes.string,
@@ -184,4 +176,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedTableCheckbox;
+export default TableCheckbox;

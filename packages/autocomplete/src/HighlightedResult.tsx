@@ -1,23 +1,56 @@
-/* eslint-disable react/prop-types */
 import React, { CSSProperties, FC, ReactNode } from "react";
 import cn from "classnames";
 
-/**
- * @private
- */
 export interface HighlightedResultProps {
+  /**
+   * An optional id to use for the `<span>`. This will be suffixed by the
+   * current `index` if it was provided
+   */
   id?: string;
+
+  /**
+   * An optional style to provide to the `<span>`.
+   */
   style?: CSSProperties;
+
+  /**
+   * An optional className to provide to the `<span>`.
+   */
   className?: string;
+
+  /**
+   * The match index which is automatically added when the `repeatable` prop is
+   * used for nested matches.
+   */
   index?: number;
+
+  /**
+   * The current value to match against.
+   */
   value: string;
+
+  /**
+   * Boolean if the highlighting functionality should be enabled. Setting this
+   * to false will just return the `children` instead.
+   */
   enabled?: boolean;
+
+  /**
+   * Boolean if the highlighting can be repeated multiple times within the
+   * children string.
+   */
   repeatable?: boolean;
+
+  /**
+   * The children to highlight. If this is not a string, the highlight will not
+   * work.
+   */
   children: ReactNode;
 }
 
 /**
- * @private
+ * The `HighlightedResult` component can be used to bold specific letters
+ * within the `children` if the `children` is a string.
  */
 const HighlightedResult: FC<HighlightedResultProps> = ({
   id: propId,
@@ -40,7 +73,7 @@ const HighlightedResult: FC<HighlightedResultProps> = ({
 
   const end = i + value.length;
   let id = propId;
-  if (index > 0) {
+  if (id && index > 0) {
     id = `${id}-${index}`;
   }
 
@@ -69,5 +102,21 @@ const HighlightedResult: FC<HighlightedResultProps> = ({
     </>
   );
 };
+
+if (process.env.NODE_ENV !== "production") {
+  try {
+    const PropTypes = require("prop-types");
+    HighlightedResult.propTypes = {
+      id: PropTypes.string,
+      index: PropTypes.number,
+      value: PropTypes.string.isRequired,
+      style: PropTypes.object,
+      className: PropTypes.string,
+      children: PropTypes.node,
+      enabled: PropTypes.bool,
+      repeatable: PropTypes.bool,
+    };
+  } catch (e) {}
+}
 
 export default HighlightedResult;

@@ -120,251 +120,254 @@ const PADDING_VARIABLES =
 // this is the default of 1.5rem line-height in the styles
 const DEFAULT_LINE_HEIGHT = "24";
 
-function TextArea(
-  {
-    style,
-    className,
-    areaStyle,
-    areaClassName,
-    containerRef,
-    label,
-    labelStyle,
-    labelClassName,
-    rows = 2,
-    maxRows = -1,
-    resize = "auto",
-    theme = "outline",
-    dense = false,
-    inline: propInline = false,
-    error = false,
-    disabled = false,
-    animate = true,
-    isLeftAddon = true,
-    isRightAddon = true,
-    underlineDirection = "left",
-    onBlur: propOnBlur,
-    onFocus: propOnFocus,
-    onChange: propOnChange,
-    leftChildren,
-    rightChildren,
-    ...props
-  }: TextAreaProps,
-  forwardedRef?: Ref<HTMLTextAreaElement>
-): ReactElement {
-  const { id, value, defaultValue } = props;
+const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  function TextArea(
+    {
+      style,
+      className,
+      areaStyle,
+      areaClassName,
+      containerRef,
+      label,
+      labelStyle,
+      labelClassName,
+      rows = 2,
+      maxRows = -1,
+      resize = "auto",
+      theme = "outline",
+      dense = false,
+      inline: propInline = false,
+      error = false,
+      disabled = false,
+      animate = true,
+      isLeftAddon = true,
+      isRightAddon = true,
+      underlineDirection = "left",
+      onBlur: propOnBlur,
+      onFocus: propOnFocus,
+      onChange: propOnChange,
+      leftChildren,
+      rightChildren,
+      ...props
+    },
+    forwardedRef
+  ): ReactElement {
+    const { id, value, defaultValue } = props;
 
-  const [focused, onFocus, onBlur] = useFocusState({
-    onBlur: propOnBlur,
-    onFocus: propOnFocus,
-  });
+    const [focused, onFocus, onBlur] = useFocusState({
+      onBlur: propOnBlur,
+      onFocus: propOnFocus,
+    });
 
-  const [height, setHeight] = useState<number>();
-  if (resize !== "auto" && typeof height === "number") {
-    setHeight(undefined);
-  }
-
-  const [mask, setMask] = useState<HTMLTextAreaElement | null>(null);
-  const [scrollable, setScrollable] = useState(false);
-  const updateHeight = (): void => {
-    if (!mask) {
-      return;
+    const [height, setHeight] = useState<number>();
+    if (resize !== "auto" && typeof height === "number") {
+      setHeight(undefined);
     }
 
-    let nextHeight = mask.scrollHeight;
-    if (maxRows > 0) {
-      const lineHeight = parseFloat(
-        window.getComputedStyle(mask).lineHeight || DEFAULT_LINE_HEIGHT
-      );
-      const maxHeight = maxRows * lineHeight;
-      nextHeight = Math.min(maxHeight, nextHeight);
-
-      // only want the textarea to be scrollable if there's a limit on the rows
-      // since it'll flash the scrollbar on most OS during the height transition
-      if (nextHeight === maxHeight && !scrollable) {
-        setScrollable(true);
-      } else if (nextHeight !== maxHeight && scrollable) {
-        setScrollable(false);
-      }
-    }
-
-    if (height !== nextHeight) {
-      setHeight(nextHeight);
-    }
-  };
-
-  // the window can be resized while there is text inside the textarea so need to
-  // recalculate the height when the width changes as well.
-  useResizeObserver({
-    disableHeight: true,
-    target: mask,
-    onResize: updateHeight,
-  });
-  const [valued, onChange] = useValuedState<HTMLTextAreaElement>({
-    value,
-    defaultValue,
-    onChange: (event) => {
-      if (propOnChange) {
-        propOnChange(event);
-      }
-
-      if (!mask || resize !== "auto") {
+    const [mask, setMask] = useState<HTMLTextAreaElement | null>(null);
+    const [scrollable, setScrollable] = useState(false);
+    const updateHeight = (): void => {
+      if (!mask) {
         return;
       }
 
-      // to get the height transition to work, you have to set the height on:
-      // - the main container element (including padding) that has the height
-      //    transition enabled
-      // - a child div wrapper (without padding) that has the height transition
-      //    enabled
-      // - the textarea element (without padding) and without a height transition
-      //
-      // if it isn't done this way, the height transition will look weird since
-      // the text will be fixed to the bottom of the area and more text at the top
-      // will become visible as the height transition completes. applying the
-      // transition on the two parent elements work because:
-      // - the height is set immediately on the text field so it expands to show all
-      //    the text
-      // - the height is correctly applied to both parent elements, but their height
-      //    haven't fully been adjusted due to the animation
-      // - the parent divs have overflow visible by default, so the textarea's text
-      //    will expand past the boundaries of the divs and not cause the upwards
-      //    animation weirdness.
-      mask.value = event.currentTarget.value;
-      updateHeight();
-    },
-  });
+      let nextHeight = mask.scrollHeight;
+      if (maxRows > 0) {
+        const lineHeight = parseFloat(
+          window.getComputedStyle(mask).lineHeight || DEFAULT_LINE_HEIGHT
+        );
+        const maxHeight = maxRows * lineHeight;
+        nextHeight = Math.min(maxHeight, nextHeight);
 
-  const areaRef = useRef<HTMLTextAreaElement | null>(null);
-  const refHandler = useCallback(
-    (instance: HTMLTextAreaElement | null) => {
-      applyRef(instance, forwardedRef);
-      areaRef.current = instance;
-    },
-    [forwardedRef]
-  );
+        // only want the textarea to be scrollable if there's a limit on the rows
+        // since it'll flash the scrollbar on most OS during the height transition
+        if (nextHeight === maxHeight && !scrollable) {
+          setScrollable(true);
+        } else if (nextHeight !== maxHeight && scrollable) {
+          setScrollable(false);
+        }
+      }
 
-  // the container element adds some padding so that the content can scroll and
-  // not be covered by the floating label. unfortunately, this means that the entire
-  // container is no longer clickable to focus the input. This is used to add that
-  // functionality back.
-  const handleClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
-    if (areaRef.current && event.target === event.currentTarget) {
-      areaRef.current.focus();
-    }
-  }, []);
+      if (height !== nextHeight) {
+        setHeight(nextHeight);
+      }
+    };
 
-  const area = (
-    <textarea
-      {...props}
-      ref={refHandler}
-      rows={rows}
-      disabled={disabled}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onChange={onChange}
-      style={{ ...areaStyle, height }}
-      className={cn(
-        block({
-          scrollable: scrollable || resize === "none",
-          floating: label && theme !== "none",
-          rh: resize === "horizontal",
-          rv: resize === "vertical",
-          rn: resize === "auto" || resize === "none",
-        }),
-        areaClassName
-      )}
-    />
-  );
+    // the window can be resized while there is text inside the textarea so need to
+    // recalculate the height when the width changes as well.
+    useResizeObserver({
+      disableHeight: true,
+      target: mask,
+      onResize: updateHeight,
+    });
+    const [valued, onChange] = useValuedState<HTMLTextAreaElement>({
+      value,
+      defaultValue,
+      onChange: (event) => {
+        if (propOnChange) {
+          propOnChange(event);
+        }
 
-  let children = area;
-  if (resize === "auto") {
-    children = (
-      <div style={{ height }} className={container("inner", { animate })}>
-        {area}
-        <textarea
-          aria-hidden
-          defaultValue={value || defaultValue}
-          id={`${id}-mask`}
-          ref={setMask}
-          readOnly
-          rows={rows}
-          tabIndex={-1}
-          style={areaStyle}
-          className={cn(
-            block({
-              rn: true,
-              mask: true,
-              floating: label && theme !== "none",
-            }),
-            areaClassName
-          )}
-        />
-      </div>
+        if (!mask || resize !== "auto") {
+          return;
+        }
+
+        // to get the height transition to work, you have to set the height on:
+        // - the main container element (including padding) that has the height
+        //    transition enabled
+        // - a child div wrapper (without padding) that has the height transition
+        //    enabled
+        // - the textarea element (without padding) and without a height transition
+        //
+        // if it isn't done this way, the height transition will look weird since
+        // the text will be fixed to the bottom of the area and more text at the top
+        // will become visible as the height transition completes. applying the
+        // transition on the two parent elements work because:
+        // - the height is set immediately on the text field so it expands to show all
+        //    the text
+        // - the height is correctly applied to both parent elements, but their height
+        //    haven't fully been adjusted due to the animation
+        // - the parent divs have overflow visible by default, so the textarea's text
+        //    will expand past the boundaries of the divs and not cause the upwards
+        //    animation weirdness.
+        mask.value = event.currentTarget.value;
+        updateHeight();
+      },
+    });
+
+    const areaRef = useRef<HTMLTextAreaElement | null>(null);
+    const refHandler = useCallback(
+      (instance: HTMLTextAreaElement | null) => {
+        applyRef(instance, forwardedRef);
+        areaRef.current = instance;
+      },
+      [forwardedRef]
     );
-  }
 
-  let inline = propInline;
-  if (resize === "horizontal" || resize === "both") {
-    // have to force it inline or else you won't be able to resize
-    // it horizontally.
-    inline = true;
-  }
+    // the container element adds some padding so that the content can scroll and
+    // not be covered by the floating label. unfortunately, this means that the entire
+    // container is no longer clickable to focus the input. This is used to add that
+    // functionality back.
+    const handleClick = useCallback(
+      (event: React.MouseEvent<HTMLDivElement>) => {
+        if (areaRef.current && event.target === event.currentTarget) {
+          areaRef.current.focus();
+        }
+      },
+      []
+    );
 
-  return (
-    <TextFieldContainer
-      style={{
-        ...style,
-        height: height ? `calc(${PADDING_VARIABLES} + ${height}px)` : undefined,
-      }}
-      className={cn(
-        container({
-          animate: animate && resize === "auto",
-          cursor: !disabled,
-        }),
-        className
-      )}
-      ref={containerRef}
-      theme={theme}
-      error={error}
-      active={focused}
-      label={!!label}
-      dense={dense}
-      inline={inline}
-      disabled={disabled}
-      isLeftAddon={isLeftAddon}
-      isRightAddon={isRightAddon}
-      leftChildren={leftChildren}
-      rightChildren={rightChildren}
-      underlineDirection={underlineDirection}
-      onClick={!disabled ? handleClick : undefined}
-    >
-      <FloatingLabel
-        style={labelStyle}
-        className={labelClassName}
-        htmlFor={id}
+    const area = (
+      <textarea
+        {...props}
+        ref={refHandler}
+        rows={rows}
+        disabled={disabled}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onChange={onChange}
+        style={{ ...areaStyle, height }}
+        className={cn(
+          block({
+            scrollable: scrollable || resize === "none",
+            floating: label && theme !== "none",
+            rh: resize === "horizontal",
+            rv: resize === "vertical",
+            rn: resize === "auto" || resize === "none",
+          }),
+          areaClassName
+        )}
+      />
+    );
+
+    let children = area;
+    if (resize === "auto") {
+      children = (
+        <div style={{ height }} className={container("inner", { animate })}>
+          {area}
+          <textarea
+            aria-hidden
+            defaultValue={value || defaultValue}
+            id={`${id}-mask`}
+            ref={setMask}
+            readOnly
+            rows={rows}
+            tabIndex={-1}
+            style={areaStyle}
+            className={cn(
+              block({
+                rn: true,
+                mask: true,
+                floating: label && theme !== "none",
+              }),
+              areaClassName
+            )}
+          />
+        </div>
+      );
+    }
+
+    let inline = propInline;
+    if (resize === "horizontal" || resize === "both") {
+      // have to force it inline or else you won't be able to resize
+      // it horizontally.
+      inline = true;
+    }
+
+    return (
+      <TextFieldContainer
+        style={{
+          ...style,
+          height: height
+            ? `calc(${PADDING_VARIABLES} + ${height}px)`
+            : undefined,
+        }}
+        className={cn(
+          container({
+            animate: animate && resize === "auto",
+            cursor: !disabled,
+          }),
+          className
+        )}
+        ref={containerRef}
+        theme={theme}
         error={error}
         active={focused}
-        floating={focused || valued}
-        valued={valued}
+        label={!!label}
         dense={dense}
+        inline={inline}
         disabled={disabled}
+        isLeftAddon={isLeftAddon}
+        isRightAddon={isRightAddon}
+        leftChildren={leftChildren}
+        rightChildren={rightChildren}
+        underlineDirection={underlineDirection}
+        onClick={!disabled ? handleClick : undefined}
       >
-        {label}
-      </FloatingLabel>
-      {children}
-    </TextFieldContainer>
-  );
-}
-
-const ForwardedTextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  TextArea
+        <FloatingLabel
+          style={labelStyle}
+          className={labelClassName}
+          htmlFor={id}
+          error={error}
+          active={focused}
+          floating={focused || valued}
+          valued={valued}
+          dense={dense}
+          disabled={disabled}
+        >
+          {label}
+        </FloatingLabel>
+        {children}
+      </TextFieldContainer>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTextArea.propTypes = {
+    TextArea.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
@@ -396,8 +399,12 @@ if (process.env.NODE_ENV !== "production") {
         "vertical",
         "both",
       ]),
+      containerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      onBlur: PropTypes.func,
+      onFocus: PropTypes.func,
+      onChange: PropTypes.func,
     };
   } catch (e) {}
 }
 
-export default ForwardedTextArea;
+export default TextArea;

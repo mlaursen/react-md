@@ -2,9 +2,7 @@ import React, {
   CSSProperties,
   forwardRef,
   InputHTMLAttributes,
-  ReactElement,
   ReactNode,
-  Ref,
 } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
@@ -101,7 +99,7 @@ export interface SwitchProps
 
 const block = bem("rmd-switch");
 
-function Switch(
+const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   {
     style,
     className,
@@ -120,9 +118,9 @@ function Switch(
     iconAfter = false,
     children,
     ...props
-  }: SwitchProps,
-  ref?: Ref<HTMLInputElement>
-): ReactElement {
+  },
+  ref
+) {
   const { id } = props;
 
   return (
@@ -168,28 +166,32 @@ function Switch(
       </TextIconSpacing>
     </ToggleContainer>
   );
-}
-
-const ForwardedSwitch = forwardRef<HTMLInputElement, SwitchProps>(Switch);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedSwitch.propTypes = {
+    Switch.propTypes = {
       id: PropTypes.string.isRequired,
+      style: PropTypes.object,
+      className: PropTypes.string,
       ballStyle: PropTypes.object,
       ballClassName: PropTypes.string,
       trackStyle: PropTypes.object,
       trackClassName: PropTypes.string,
       label: PropTypes.node,
+      labelStyle: PropTypes.object,
+      labelClassName: PropTypes.string,
+      labelDisabled: PropTypes.bool,
       error: PropTypes.bool,
       inline: PropTypes.bool,
       disabled: PropTypes.bool,
       stacked: PropTypes.bool,
       iconAfter: PropTypes.bool,
+      children: PropTypes.node,
     };
   } catch (e) {}
 }
 
-export default ForwardedSwitch;
+export default Switch;

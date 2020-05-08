@@ -4,12 +4,12 @@
  * value respectively. This does not work for different increment numbers or any
  * values below 0 for now.
  *
+ * @internal
  * @param x The number to increment or decrement
  * @param max The max number that can be set
  * @param increment Boolean if it should be incremented or decremented
  * @param minmax Boolean if the loop functionality should be replaced with
  * min-max behavior instead of allowing looping
- * @private
  */
 export default function loop(
   x: number,

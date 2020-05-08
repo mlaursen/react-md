@@ -11,15 +11,17 @@ const block = bem("rmd-badge-container");
  * This is a really simple component that will just allow you to position a
  * badge relative to another component.
  */
-function BadgeContainer(
-  { className, children, ...props }: BadgeContainerProps,
-  ref?: Ref<HTMLSpanElement>
-): ReactElement {
-  return (
-    <span {...props} className={cn(block(), className)} ref={ref}>
-      {children}
-    </span>
-  );
-}
+const BadgeContainer = forwardRef<HTMLSpanElement, BadgeContainerProps>(
+  function BadgeContainer(
+    { className, children, ...props }: BadgeContainerProps,
+    ref?: Ref<HTMLSpanElement>
+  ): ReactElement {
+    return (
+      <span {...props} className={cn(block(), className)} ref={ref}>
+        {children}
+      </span>
+    );
+  }
+);
 
-export default forwardRef<HTMLSpanElement, BadgeContainerProps>(BadgeContainer);
+export default BadgeContainer;

@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { OverridableCSSTransitionProps } from "@react-md/transition";
@@ -58,7 +52,7 @@ const DEFAULT_TOAST_CLASSNAMES = {
  * timer and the `onExited` callback to remove the current toast from your
  * queue.
  */
-function Toast(
+const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
   {
     className,
     children,
@@ -75,9 +69,9 @@ function Toast(
     twoLines = false,
     visible,
     ...props
-  }: ToastProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  ref
+) {
   return (
     <CSSTransition
       in={visible}
@@ -114,15 +108,13 @@ function Toast(
       </div>
     </CSSTransition>
   );
-}
-
-const ForwardedToast = forwardRef<HTMLDivElement, ToastProps>(Toast);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedToast.propTypes = {
+    Toast.propTypes = {
       visible: PropTypes.bool.isRequired,
       action: PropTypes.element,
       stacked: PropTypes.bool,
@@ -148,8 +140,15 @@ if (process.env.NODE_ENV !== "production") {
           exit: PropTypes.number,
         }),
       ]),
+      children: PropTypes.node,
+      onEnter: PropTypes.func,
+      onEntering: PropTypes.func,
+      onEntered: PropTypes.func,
+      onExit: PropTypes.func,
+      onExiting: PropTypes.func,
+      onExited: PropTypes.func,
     };
   } catch (e) {}
 }
 
-export default ForwardedToast;
+export default Toast;

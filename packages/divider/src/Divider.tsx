@@ -1,10 +1,4 @@
-import React, {
-  ElementType,
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  Ref,
-} from "react";
+import React, { ElementType, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -35,16 +29,10 @@ export interface DividerProps extends HTMLAttributes<DividerElement> {
 
 const block = bem("rmd-divider");
 
-function Divider(
-  {
-    inset = false,
-    vertical = false,
-    role = "separator",
-    className,
-    ...props
-  }: DividerProps,
-  ref?: Ref<DividerElement>
-): ReactElement {
+const Divider = forwardRef<DividerElement, DividerProps>(function Divider(
+  { inset = false, vertical = false, role = "separator", className, ...props },
+  ref
+) {
   const Component = (vertical ? "div" : "hr") as ElementType;
 
   return (
@@ -55,20 +43,19 @@ function Divider(
       className={cn(block({ inset: !vertical && inset, vertical }), className)}
     />
   );
-}
-
-const ForwardedDivider = forwardRef<DividerElement, DividerProps>(Divider);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedDivider.propTypes = {
+    Divider.propTypes = {
       role: PropTypes.string,
       inset: PropTypes.bool,
+      className: PropTypes.string,
       vertical: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedDivider;
+export default Divider;

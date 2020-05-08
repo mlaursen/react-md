@@ -1,7 +1,6 @@
 import React, {
   CSSProperties,
   forwardRef,
-  ReactElement,
   ReactNode,
   Ref,
   SelectHTMLAttributes,
@@ -100,125 +99,127 @@ const container = bem("rmd-native-select-container");
  * field theme styles. This component is great to use for native behavior and
  * full accessibility.
  */
-function NativeSelect(
-  {
-    style,
-    className,
-    labelStyle,
-    labelClassName,
-    selectStyle,
-    selectClassName,
-    icon: propIcon,
-    theme = "outline",
-    dense = false,
-    inline = false,
-    error = false,
-    disabled = false,
-    label,
-    onBlur: propOnBlur,
-    onFocus: propOnFocus,
-    onChange: propOnChange,
-    containerRef,
-    isLeftAddon,
-    isRightAddon,
-    leftChildren,
-    rightChildren,
-    underlineDirection = "left",
-    children,
-    ...props
-  }: NativeSelectProps,
-  ref?: Ref<HTMLSelectElement>
-): ReactElement {
-  const { id, value, defaultValue, multiple } = props;
-  const underline = theme === "underline" || theme === "filled";
+const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
+  function NativeSelect(
+    {
+      style,
+      className,
+      labelStyle,
+      labelClassName,
+      selectStyle,
+      selectClassName,
+      icon: propIcon,
+      theme = "outline",
+      dense = false,
+      inline = false,
+      error = false,
+      disabled = false,
+      label,
+      onBlur: propOnBlur,
+      onFocus: propOnFocus,
+      onChange: propOnChange,
+      containerRef,
+      isLeftAddon,
+      isRightAddon,
+      leftChildren,
+      rightChildren,
+      underlineDirection = "left",
+      children,
+      ...props
+    },
+    ref
+  ) {
+    const { id, value, defaultValue, multiple } = props;
+    const underline = theme === "underline" || theme === "filled";
 
-  const icon = useIcon("dropdown", propIcon);
-  const [focused, onFocus, onBlur] = useFocusState({
-    onBlur: propOnBlur,
-    onFocus: propOnFocus,
-  });
+    const icon = useIcon("dropdown", propIcon);
+    const [focused, onFocus, onBlur] = useFocusState({
+      onBlur: propOnBlur,
+      onFocus: propOnFocus,
+    });
 
-  const [valued, onChange] = useValuedState({
-    value,
-    defaultValue,
-    onChange: propOnChange,
-  });
+    const [valued, onChange] = useValuedState({
+      value,
+      defaultValue,
+      onChange: propOnChange,
+    });
 
-  return (
-    <TextFieldContainer
-      style={style}
-      className={cn(
-        container({
-          multi: multiple,
-          padded: multiple && label,
-        }),
-        className
-      )}
-      ref={containerRef}
-      theme={theme}
-      error={error}
-      active={focused}
-      label={!!label}
-      dense={dense}
-      inline={inline}
-      disabled={disabled}
-      isLeftAddon={isLeftAddon}
-      isRightAddon={isRightAddon}
-      leftChildren={leftChildren}
-      rightChildren={multiple && rightChildren}
-      underlineDirection={underlineDirection}
-    >
-      <FloatingLabel
-        style={labelStyle}
-        className={cn(block("label"), labelClassName)}
-        htmlFor={id}
-        error={error}
-        active={valued && focused}
-        valued={valued}
-        floating={valued || multiple}
-        dense={dense}
-        disabled={disabled}
-      >
-        {label}
-      </FloatingLabel>
-      <select
-        {...props}
-        ref={ref}
-        style={selectStyle}
+    return (
+      <TextFieldContainer
+        style={style}
         className={cn(
-          block({
-            icon,
+          container({
             multi: multiple,
-            "label-underline": label && underline,
-            "placeholder-underline": !label && underline,
-            floating: label && theme !== "none",
+            padded: multiple && label,
           }),
-          selectClassName
+          className
         )}
+        ref={containerRef}
+        theme={theme}
+        error={error}
+        active={focused}
+        label={!!label}
+        dense={dense}
+        inline={inline}
         disabled={disabled}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onChange={onChange}
+        isLeftAddon={isLeftAddon}
+        isRightAddon={isRightAddon}
+        leftChildren={leftChildren}
+        rightChildren={multiple && rightChildren}
+        underlineDirection={underlineDirection}
       >
-        {children}
-      </select>
-      {!multiple && icon && <span className={block("icon")}>{icon}</span>}
-    </TextFieldContainer>
-  );
-}
-
-const ForwardedNativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
-  NativeSelect
+        <FloatingLabel
+          style={labelStyle}
+          className={cn(block("label"), labelClassName)}
+          htmlFor={id}
+          error={error}
+          active={valued && focused}
+          valued={valued}
+          floating={valued || multiple}
+          dense={dense}
+          disabled={disabled}
+        >
+          {label}
+        </FloatingLabel>
+        <select
+          {...props}
+          ref={ref}
+          style={selectStyle}
+          className={cn(
+            block({
+              icon,
+              multi: multiple,
+              "label-underline": label && underline,
+              "placeholder-underline": !label && underline,
+              floating: label && theme !== "none",
+            }),
+            selectClassName
+          )}
+          disabled={disabled}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onChange={onChange}
+        >
+          {children}
+        </select>
+        {!multiple && icon && <span className={block("icon")}>{icon}</span>}
+      </TextFieldContainer>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedNativeSelect.propTypes = {
+    NativeSelect.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
+      labelStyle: PropTypes.object,
+      labelClassName: PropTypes.string,
+      selectStyle: PropTypes.object,
+      selectClassName: PropTypes.string,
       icon: PropTypes.node,
       value: PropTypes.string,
       defaultValue: PropTypes.oneOfType([
@@ -233,10 +234,18 @@ if (process.env.NODE_ENV !== "production") {
       underlineDirection: PropTypes.oneOf(["left", "right"]),
       isLeftAddon: PropTypes.bool,
       leftChildren: PropTypes.node,
+      rightChildren: PropTypes.node,
+      isRightAddon: PropTypes.bool,
       multiple: PropTypes.bool,
       size: PropTypes.number,
+      children: PropTypes.node,
+      label: PropTypes.node,
+      onBlur: PropTypes.func,
+      onFocus: PropTypes.func,
+      onChange: PropTypes.func,
+      containerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     };
   } catch (e) {}
 }
 
-export default ForwardedNativeSelect;
+export default NativeSelect;

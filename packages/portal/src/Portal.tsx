@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 import getContainer, { PortalInto } from "./getContainer";
@@ -34,7 +34,11 @@ export interface PortalProps {
  * rendering as well as a "nice" way to choose specific portal targets or just
  * falling back to the `document.body`.
  */
-const Portal: FC<PortalProps> = ({ into, intoId, children }) => {
+export default function Portal({
+  into,
+  intoId,
+  children,
+}: PortalProps): ReactElement | null {
   const [container, setContainer] = useState<HTMLElement | null>(null);
 
   // setting the container via useEffect instead of immediately in the render
@@ -52,7 +56,7 @@ const Portal: FC<PortalProps> = ({ into, intoId, children }) => {
   }
 
   return createPortal(children, container);
-};
+}
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -69,5 +73,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Portal;

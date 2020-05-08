@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, ReactElement } from "react";
+import React, { forwardRef } from "react";
 import { Button, ButtonProps } from "@react-md/button";
 
 import useActionClassName, {
@@ -16,41 +16,39 @@ export interface AppBarActionProps
  * either before or after this button when the `first` or `last` props are
  * provided.
  */
-function AppBarAction(
-  {
-    className,
-    first = false,
-    last = false,
-    children,
-    inheritColor,
-    buttonType = "icon",
-    theme = "clear",
-    ...props
-  }: AppBarActionProps,
-  ref?: Ref<HTMLButtonElement>
-): ReactElement {
-  return (
-    <Button
-      {...props}
-      buttonType={buttonType}
-      theme={theme}
-      ref={ref}
-      className={useActionClassName({ first, last, inheritColor, className })}
-    >
-      {children}
-    </Button>
-  );
-}
-
-const ForwardedAppBarAction = forwardRef<HTMLButtonElement, AppBarActionProps>(
-  AppBarAction
+const AppBarAction = forwardRef<HTMLButtonElement, AppBarActionProps>(
+  function AppBarAction(
+    {
+      className,
+      first = false,
+      last = false,
+      children,
+      inheritColor,
+      buttonType = "icon",
+      theme = "clear",
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <Button
+        {...props}
+        buttonType={buttonType}
+        theme={theme}
+        ref={ref}
+        className={useActionClassName({ first, last, inheritColor, className })}
+      >
+        {children}
+      </Button>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedAppBarAction.propTypes = {
+    AppBarAction.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
       first: PropTypes.bool,
@@ -68,4 +66,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedAppBarAction;
+export default AppBarAction;

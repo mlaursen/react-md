@@ -2,9 +2,7 @@ import React, {
   CSSProperties,
   forwardRef,
   HTMLAttributes,
-  ReactElement,
   ReactNode,
-  Ref,
 } from "react";
 import cn from "classnames";
 import CSSTransition, {
@@ -114,7 +112,7 @@ const block = bem("rmd-tooltip");
  * will need to manually add all the event listeners and triggers to change the
  * `visible` prop.
  */
-function Tooltip(
+const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(function Tooltip(
   {
     className,
     classNames = TOOLTIP_CLASS_NAMES,
@@ -133,9 +131,9 @@ function Tooltip(
     mountOnEnter,
     unmountOnExit,
     ...props
-  }: TooltipProps,
-  ref?: Ref<HTMLSpanElement>
-): ReactElement {
+  },
+  ref
+) {
   return (
     <CSSTransition
       classNames={classNames}
@@ -168,15 +166,13 @@ function Tooltip(
       </span>
     </CSSTransition>
   );
-}
-
-const ForwardedTooltip = forwardRef<HTMLSpanElement, TooltipProps>(Tooltip);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTooltip.propTypes = {
+    Tooltip.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
@@ -209,10 +205,12 @@ if (process.env.NODE_ENV !== "production") {
       onExit: PropTypes.func,
       onExiting: PropTypes.func,
       onExited: PropTypes.func,
+      mountOnEnter: PropTypes.bool,
+      unmountOnExit: PropTypes.bool,
       position: PropTypes.oneOf(["above", "below", "left", "right"]),
       visible: PropTypes.bool.isRequired,
     };
   } catch (e) {}
 }
 
-export default ForwardedTooltip;
+export default Tooltip;

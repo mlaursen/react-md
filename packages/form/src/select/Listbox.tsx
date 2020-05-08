@@ -1,11 +1,4 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  Ref,
-  useCallback,
-  useRef,
-} from "react";
+import React, { forwardRef, HTMLAttributes, useCallback, useRef } from "react";
 import cn from "classnames";
 import { List, ListElement } from "@react-md/list";
 import { RenderConditionalPortalProps } from "@react-md/portal";
@@ -189,7 +182,7 @@ let warned: Set<string> | undefined;
  * component, but I'm planning on adding support for an inline listbox at some
  * point.
  */
-function Listbox(
+const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
   {
     className,
     visible = true,
@@ -224,9 +217,9 @@ function Listbox(
     onExiting,
     onExited,
     ...props
-  }: ListboxProps,
-  ref?: Ref<ListElement>
-): ReactElement {
+  },
+  ref
+) {
   const { id } = props;
   let tabIndex = propTabIndex;
   if (temporary) {
@@ -457,17 +450,16 @@ function Listbox(
       </List>
     </ScaleTransition>
   );
-}
-
-const ForwardedListbox = forwardRef<ListElement, ListboxProps>(Listbox);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedListbox.propTypes = {
+    Listbox.propTypes = {
       id: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
+      onChange: PropTypes.func.isRequired,
       className: PropTypes.string,
       labelKey: PropTypes.string,
       valueKey: PropTypes.string,
@@ -479,8 +471,51 @@ if (process.env.NODE_ENV !== "production") {
       temporary: PropTypes.bool,
       onRequestClose: PropTypes.func,
       disableMovementChange: PropTypes.bool,
+      timeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      classNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          enterDone: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+          exitDone: PropTypes.string,
+        }),
+      ]),
+      readOnly: PropTypes.bool,
+      mountOnEnter: PropTypes.bool,
+      unmountOnExit: PropTypes.bool,
+      onEnter: PropTypes.func,
+      onEntering: PropTypes.func,
+      onEntered: PropTypes.func,
+      onExit: PropTypes.func,
+      onExiting: PropTypes.func,
+      onExited: PropTypes.func,
+      portal: PropTypes.bool,
+      portalInto: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+      portalIntoId: PropTypes.string,
+      tabIndex: PropTypes.number,
+      onFocus: PropTypes.func,
+      onKeyDown: PropTypes.func,
+      name: PropTypes.string,
+      options: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number,
+          PropTypes.object,
+        ])
+      ).isRequired,
     };
   } catch (e) {}
 }
 
-export default ForwardedListbox;
+export default Listbox;

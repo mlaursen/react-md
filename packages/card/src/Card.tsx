@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -29,7 +29,7 @@ const block = bem("rmd-card");
  * card parts. It adds some general styles and elevation to help show
  * prominence.
  */
-function Card(
+const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   {
     className,
     children,
@@ -37,9 +37,9 @@ function Card(
     fullWidth = false,
     bordered = false,
     ...props
-  }: CardProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  ref
+) {
   return (
     <div
       {...props}
@@ -57,15 +57,14 @@ function Card(
       {children}
     </div>
   );
-}
-
-const ForwardedCard = forwardRef<HTMLDivElement, CardProps>(Card);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedCard.propTypes = {
+    Card.propTypes = {
+      className: PropTypes.string,
       bordered: PropTypes.bool,
       raiseable: PropTypes.bool,
       fullWidth: PropTypes.bool,
@@ -74,4 +73,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedCard;
+export default Card;

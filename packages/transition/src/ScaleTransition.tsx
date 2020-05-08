@@ -45,7 +45,7 @@ export interface ScaleTransitionProps
  * prop which will update the transition to use `transform: scaleY(0)` to
  * `transform: scaleY(1)` instead.
  */
-function ScaleTransition({
+export default function ScaleTransition({
   visible,
   children,
   classNames: propClassNames,
@@ -119,5 +119,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ScaleTransition;

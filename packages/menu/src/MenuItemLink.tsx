@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import cn from "classnames";
 import {
   ListItemLink,
@@ -22,16 +22,13 @@ export interface MenuItemLinkProps extends ListItemLinkProps {
 export type MenuItemLinkWithComponentProps = MenuItemLinkProps &
   ListItemLinkWithComponentProps;
 
-function MenuItemLink(
-  {
-    className,
-    children,
-    role = "menuitem",
-    tabIndex = -1,
-    ...props
-  }: MenuItemLinkProps,
-  ref?: Ref<HTMLAnchorElement>
-): ReactElement {
+const MenuItemLink = forwardRef<
+  HTMLAnchorElement,
+  MenuItemLinkProps | MenuItemLinkWithComponentProps
+>(function MenuItemLink(
+  { className, children, role = "menuitem", tabIndex = -1, ...props },
+  ref
+) {
   return (
     <li role="none">
       <ListItemLink
@@ -45,11 +42,18 @@ function MenuItemLink(
       </ListItemLink>
     </li>
   );
+});
+if (process.env.NODE_ENV !== "production") {
+  try {
+    const PropTypes = require("prop-types");
+
+    MenuItemLink.propTypes = {
+      className: PropTypes.string,
+      children: PropTypes.node,
+      role: PropTypes.oneOf(["menuitem"]),
+      tabIndex: PropTypes.number,
+    };
+  } catch (e) {}
 }
 
-const ForwardedMenuItemLink = forwardRef<
-  HTMLAnchorElement,
-  MenuItemLinkProps | MenuItemLinkWithComponentProps
->(MenuItemLink);
-
-export default ForwardedMenuItemLink;
+export default MenuItemLink;

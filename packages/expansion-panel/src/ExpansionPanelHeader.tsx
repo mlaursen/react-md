@@ -2,9 +2,7 @@ import React, {
   ButtonHTMLAttributes,
   forwardRef,
   MouseEventHandler,
-  ReactElement,
   ReactNode,
-  Ref,
 } from "react";
 import cn from "classnames";
 import { UnstyledButton } from "@react-md/button";
@@ -58,7 +56,10 @@ const block = bem("rmd-expansion-panel");
  * Reminder: Since this is a `<button>`, only `inline` elements should be
  * rendered within (so use `<span>` instead of `<div>` for children).
  */
-function ExpansionPanelHeader(
+const ExpansionPanelHeader = forwardRef<
+  HTMLButtonElement,
+  ExpansionPanelHeaderProps
+>(function ExpansionPanelHeader(
   {
     icon: propIcon,
     expanded,
@@ -66,9 +67,9 @@ function ExpansionPanelHeader(
     className,
     disableTransition = false,
     ...props
-  }: ExpansionPanelHeaderProps,
-  ref?: Ref<HTMLButtonElement>
-): ReactElement {
+  },
+  ref
+) {
   const icon = useIcon("expander", propIcon);
 
   return (
@@ -88,18 +89,13 @@ function ExpansionPanelHeader(
       )}
     </UnstyledButton>
   );
-}
-
-const ForwardedExpansionPanelHeader = forwardRef<
-  HTMLButtonElement,
-  ExpansionPanelHeaderProps
->(ExpansionPanelHeader);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedExpansionPanelHeader.propTypes = {
+    ExpansionPanelHeader.propTypes = {
       id: PropTypes.string.isRequired,
       icon: PropTypes.node,
       expanded: PropTypes.bool.isRequired,
@@ -111,4 +107,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedExpansionPanelHeader;
+export default ExpansionPanelHeader;

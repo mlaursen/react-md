@@ -1,8 +1,6 @@
 import React, {
   forwardRef,
-  ReactElement,
   ReactNode,
-  Ref,
   ButtonHTMLAttributes,
   CSSProperties,
   cloneElement,
@@ -113,7 +111,7 @@ const block = bem("rmd-chip");
  * selectable with an inline icon. A chip also supports rendering icons, avatars,
  * or circular progress bars to the left and right of the children.
  */
-function Chip(
+const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
   {
     "aria-pressed": ariaPressed,
     className: propClassName,
@@ -131,9 +129,9 @@ function Chip(
     selectedIcon: propSelectedIcon,
     disableIconTransition = false,
     ...props
-  }: ChipProps,
-  ref?: Ref<HTMLButtonElement>
-): ReactElement {
+  },
+  ref
+) {
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
     className: propClassName,
@@ -212,14 +210,17 @@ function Chip(
       {ripples}
     </button>
   );
-}
-
-const ForwardedChip = forwardRef<HTMLButtonElement, ChipProps>(Chip);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
-    ForwardedChip.propTypes = {
+    Chip.propTypes = {
+      "aria-pressed": PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(["true", "false"]),
+      ]),
+      className: PropTypes.string,
       theme: PropTypes.oneOf(["outline", "solid"]),
       disabled: PropTypes.bool,
       leftIcon: PropTypes.node,
@@ -230,8 +231,11 @@ if (process.env.NODE_ENV !== "production") {
       disableContentWrap: PropTypes.bool,
       selected: PropTypes.bool,
       selectedThemed: PropTypes.bool,
+      children: PropTypes.node,
+      selectedIcon: PropTypes.node,
+      disableIconTransition: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedChip;
+export default Chip;

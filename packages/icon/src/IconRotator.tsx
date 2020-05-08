@@ -7,10 +7,11 @@ import React, {
   isValidElement,
   ReactElement,
   ReactNode,
-  Ref,
 } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
+
+export type CloneableClassNameChild = ReactElement<{ className?: string }>;
 
 export interface IconRotatorBaseProps extends HTMLAttributes<HTMLSpanElement> {
   /**
@@ -57,42 +58,41 @@ const block = bem("rmd-icon-rotator");
  * The `IconRotator` is a simple component that is used to rotate an icon from a
  * one degrees to another.
  */
-function IconRotator(
-  {
-    style,
-    className: propClassName,
-    animate = true,
-    rotated,
-    children,
-    forceIconWrap = false,
-    ...props
-  }: IconRotatorProps,
-  ref?: Ref<HTMLSpanElement>
-): ReactElement {
-  const className = cn(block({ animate, rotated }), propClassName);
-  if (!forceIconWrap && isValidElement(children)) {
-    const child: ReactElement<{ className?: string }> = Children.only(children);
-    return cloneElement(child, {
-      className: cn(className, child.props.className),
-    });
+const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
+  function IconRotator(
+    {
+      style,
+      className: propClassName,
+      animate = true,
+      rotated,
+      children,
+      forceIconWrap = false,
+      ...props
+    },
+    ref
+  ) {
+    const className = cn(block({ animate, rotated }), propClassName);
+    if (!forceIconWrap && isValidElement(children)) {
+      const child = Children.only<CloneableClassNameChild>(children);
+      return cloneElement(child, {
+        className: cn(className, child.props.className),
+      });
+    }
+
+    return (
+      <span {...props} style={style} className={className} ref={ref}>
+        {children}
+      </span>
+    );
   }
-
-  return (
-    <span {...props} style={style} className={className} ref={ref}>
-      {children}
-    </span>
-  );
-}
-
-const ForwardedIconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
-  IconRotator
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedIconRotator.propTypes = {
+    IconRotator.propTypes = {
+      style: PropTypes.object,
       className: PropTypes.string,
       animate: PropTypes.bool,
       rotated: PropTypes.bool,
@@ -102,4 +102,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedIconRotator;
+export default IconRotator;

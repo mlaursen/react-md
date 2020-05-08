@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -16,39 +16,35 @@ const block = bem("rmd-card");
  * This component is generally used to hold the main actions for the `Card`.
  * It's a good place to add additional buttons or expansion toggles.
  */
-function CardActions(
-  { className, align = "end", children, ...props }: CardActionsProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      className={cn(
-        block("actions", {
-          [align]: align !== "end",
-        }),
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-}
-
-const ForwardedCardActions = forwardRef<HTMLDivElement, CardActionsProps>(
-  CardActions
+const CardActions = forwardRef<HTMLDivElement, CardActionsProps>(
+  function CardActions({ className, align = "end", children, ...props }, ref) {
+    return (
+      <div
+        {...props}
+        ref={ref}
+        className={cn(
+          block("actions", {
+            [align]: align !== "end",
+          }),
+          className
+        )}
+      >
+        {children}
+      </div>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedCardActions.propTypes = {
+    CardActions.propTypes = {
       align: PropTypes.oneOf(["start", "end", "center"]),
+      className: PropTypes.string,
       children: PropTypes.node,
     };
   } catch (e) {}
 }
 
-export default ForwardedCardActions;
+export default CardActions;

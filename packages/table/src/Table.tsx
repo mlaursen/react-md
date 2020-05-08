@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  ReactElement,
-  Ref,
-  TableHTMLAttributes,
-  useMemo,
-} from "react";
+import React, { forwardRef, TableHTMLAttributes, useMemo } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -33,7 +27,7 @@ const block = bem("rmd-table");
  * might be better to render a table in a different manner for mobile devices to
  * help display all the required data.
  */
-function Table(
+const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
   {
     className,
     children,
@@ -45,9 +39,9 @@ function Table(
     disableHover = false,
     disableBorders = false,
     ...props
-  }: TableProps,
-  ref?: Ref<HTMLTableElement>
-): ReactElement {
+  },
+  ref
+) {
   const configuration = useMemo(
     () => ({
       header: false,
@@ -77,15 +71,14 @@ function Table(
       </table>
     </TableConfigProvider>
   );
-}
-
-const ForwardedTable = forwardRef<HTMLTableElement, TableProps>(Table);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTable.propTypes = {
+    Table.propTypes = {
+      children: PropTypes.node,
       className: PropTypes.string,
       dense: PropTypes.bool,
       fullWidth: PropTypes.bool,
@@ -101,4 +94,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedTable;
+export default Table;

@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import {
   ConditionalPortal,
@@ -17,17 +17,10 @@ export interface SnackbarProps
 
 const block = bem("rmd-snackbar");
 
-function Snackbar(
-  {
-    className,
-    children,
-    portal = false,
-    portalInto,
-    portalIntoId,
-    ...props
-  }: SnackbarProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(function Snackbar(
+  { className, children, portal = false, portalInto, portalIntoId, ...props },
+  ref
+) {
   return (
     <ConditionalPortal
       portal={portal}
@@ -44,20 +37,21 @@ function Snackbar(
       </div>
     </ConditionalPortal>
   );
-}
-
-const ForwardedSnackbar = forwardRef<HTMLDivElement, SnackbarProps>(Snackbar);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedSnackbar.propTypes = {
+    Snackbar.propTypes = {
       id: PropTypes.string.isRequired,
+      className: PropTypes.string,
       children: PropTypes.node,
       portal: PropTypes.bool,
+      portalInto: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+      portalIntoId: PropTypes.string,
     };
   } catch (e) {}
 }
 
-export default ForwardedSnackbar;
+export default Snackbar;

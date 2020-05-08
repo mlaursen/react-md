@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -12,30 +12,25 @@ const block = bem("rmd-dialog");
  * "fixed" to the top of the dialog while the content scrolls. It also applies
  * some minimal padding.
  */
-function DialogHeader(
-  { children, className, ...props }: DialogHeaderProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  return (
-    <header {...props} ref={ref} className={cn(block("header"), className)}>
-      {children}
-    </header>
-  );
-}
-
-const ForwardedDialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
-  DialogHeader
+const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
+  function DialogHeader({ children, className, ...props }, ref) {
+    return (
+      <header {...props} ref={ref} className={cn(block("header"), className)}>
+        {children}
+      </header>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedDialogHeader.propTypes = {
+    DialogHeader.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
     };
   } catch (e) {}
 }
 
-export default ForwardedDialogHeader;
+export default DialogHeader;

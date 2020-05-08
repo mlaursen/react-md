@@ -4,8 +4,6 @@ import React, {
   forwardRef,
   HTMLAttributes,
   isValidElement,
-  ReactElement,
-  Ref,
 } from "react";
 import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
@@ -61,7 +59,7 @@ export interface CrossFadeProps
  * If you want more fine-grain control over the transition, it is recommended to
  * use the `useCrossFade` hook instead.
  */
-function CrossFade(
+const CrossFade = forwardRef<HTMLDivElement, CrossFadeProps>(function CrossFade(
   {
     wrap = false,
     appear = true,
@@ -76,9 +74,9 @@ function CrossFade(
     onExiting,
     onExited,
     ...props
-  }: CrossFadeProps,
-  forwardedRef?: Ref<HTMLDivElement>
-): ReactElement | null {
+  },
+  forwardedRef
+) {
   const [rendered, { ref, className }] = useCrossFade({
     appear,
     className: propClassName,
@@ -116,17 +114,13 @@ function CrossFade(
       {children}
     </div>
   );
-}
-
-const ForwardedCrossFade = forwardRef<HTMLDivElement, CrossFadeProps>(
-  CrossFade
-);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedCrossFade.propTypes = {
+    CrossFade.propTypes = {
       wrap: PropTypes.bool,
       appear: PropTypes.bool,
       temporary: PropTypes.bool,
@@ -144,4 +138,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedCrossFade;
+export default CrossFade;

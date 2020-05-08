@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import {
   InteractionStatesOptions,
   useInteractionStates,
@@ -21,7 +21,7 @@ export interface ListItemProps
  * The `ListItem` creates a clickable and focusable `<li>` within a `List` that
  * can optionally render addons to the left and right of the `children` or text.
  */
-function ListItem(
+const ListItem = forwardRef<HTMLLIElement, ListItemProps>(function ListItem(
   {
     className: propClassName,
     textClassName,
@@ -49,9 +49,9 @@ function ListItem(
     role = "button",
     tabIndex = 0,
     ...props
-  }: ListItemProps,
-  ref?: Ref<HTMLLIElement>
-): ReactElement {
+  },
+  ref
+) {
   const { disabled } = props;
 
   const { ripples, className, handlers } = useInteractionStates({
@@ -107,15 +107,13 @@ function ListItem(
       {ripples}
     </SimpleListItem>
   );
-}
-
-const ForwardedListItem = forwardRef<HTMLLIElement, ListItemProps>(ListItem);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedListItem.propTypes = {
+    ListItem.propTypes = {
       role: PropTypes.string,
       tabIndex: PropTypes.number,
       height: PropTypes.oneOf([
@@ -125,9 +123,56 @@ if (process.env.NODE_ENV !== "production") {
         "large",
         "extra-large",
       ]),
+      children: PropTypes.node,
+      className: PropTypes.string,
+      textClassName: PropTypes.string,
+      secondaryTextClassName: PropTypes.string,
+      primaryText: PropTypes.node,
+      secondaryText: PropTypes.node,
+      forceAddonWrap: PropTypes.bool,
+      leftAddon: PropTypes.node,
+      leftAddonType: PropTypes.oneOf([
+        "icon",
+        "avatar",
+        "media",
+        "large-media",
+      ]),
       leftAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      rightAddon: PropTypes.node,
+      rightAddonType: PropTypes.oneOf([
+        "icon",
+        "avatar",
+        "media",
+        "large-media",
+      ]),
       rightAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
       disabled: PropTypes.bool,
+      disableRipple: PropTypes.bool,
+      disableProgrammaticRipple: PropTypes.bool,
+      rippleTimeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          appear: PropTypes.number,
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      rippleClassNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          enterDone: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+          exitDone: PropTypes.string,
+        }),
+      ]),
+      rippleClassName: PropTypes.string,
+      rippleContainerClassName: PropTypes.string,
+      enablePressedAndRipple: PropTypes.bool,
       disableSpacebarClick: PropTypes.bool,
       disablePressedFallback: PropTypes.bool,
       textChildren: PropTypes.bool,
@@ -135,4 +180,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedListItem;
+export default ListItem;

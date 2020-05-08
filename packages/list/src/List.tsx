@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -36,7 +36,7 @@ const block = bem("rmd-list");
  * should be used with the `ListItem`, `ListItemLink`, and `SimpleListItem`
  * components.
  */
-function List(
+const List = forwardRef<ListElement, ListProps>(function List(
   {
     role = "none",
     dense = false,
@@ -45,9 +45,9 @@ function List(
     className,
     children,
     ...props
-  }: ListProps,
-  ref?: Ref<ListElement>
-): ReactElement {
+  },
+  ref
+) {
   const Component = (ordered ? "ol" : "ul") as "ul";
 
   return (
@@ -60,21 +60,21 @@ function List(
       {children}
     </Component>
   );
-}
-
-const ForwardedList = forwardRef<ListElement, ListProps>(List);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedList.propTypes = {
+    List.propTypes = {
       role: PropTypes.string,
       dense: PropTypes.bool,
       ordered: PropTypes.bool,
+      className: PropTypes.string,
+      children: PropTypes.node,
       horizontal: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedList;
+export default List;

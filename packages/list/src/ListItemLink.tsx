@@ -1,10 +1,4 @@
-import React, {
-  ElementType,
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  Ref,
-} from "react";
+import React, { ElementType, forwardRef, AnchorHTMLAttributes } from "react";
 import cn from "classnames";
 import {
   InteractionStatesOptions,
@@ -15,7 +9,7 @@ import getListItemHeight, { SimpleListItemProps } from "./getListItemHeight";
 import ListItemChildren, { ListItemChildrenProps } from "./ListItemChildren";
 
 export interface ListItemLinkProps
-  extends HTMLAttributes<HTMLAnchorElement>,
+  extends AnchorHTMLAttributes<HTMLAnchorElement>,
     ListItemChildrenProps,
     Pick<SimpleListItemProps, "threeLines" | "height">,
     InteractionStatesOptions<HTMLAnchorElement> {
@@ -45,7 +39,10 @@ export interface ListItemLinkWithComponentProps extends ListItemLinkProps {
  * that has the main `ListItem` styles. It will probably be better to just use
  * the `ListItemChildren` within your `Link` component instead.
  */
-function ListItemLink(
+const ListItemLink = forwardRef<
+  HTMLAnchorElement | ElementType,
+  ListItemLinkProps | ListItemLinkWithComponentProps
+>(function ListItemLink(
   {
     className: propClassName,
     textClassName,
@@ -73,9 +70,9 @@ function ListItemLink(
     rippleClassName,
     rippleContainerClassName,
     ...props
-  }: ListItemLinkProps,
-  ref?: Ref<HTMLAnchorElement | ElementType>
-): ReactElement {
+  },
+  ref
+) {
   const height = getListItemHeight({
     height: propHeight,
     leftAddon,
@@ -131,13 +128,7 @@ function ListItemLink(
       {ripples}
     </Component>
   );
-}
-
-const ForwardedListItemLink = forwardRef<
-  HTMLAnchorElement | ElementType,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ListItemLinkProps & Record<string, any>
->(ListItemLink);
+});
 
 if (process.env.NODE_ENV !== "production") {
   ListItemLink.displayName = "ListItemLink";
@@ -145,7 +136,7 @@ if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedListItemLink.propTypes = {
+    ListItemLink.propTypes = {
       component: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.func,
@@ -158,8 +149,62 @@ if (process.env.NODE_ENV !== "production") {
         "large",
         "extra-large",
       ]),
+      children: PropTypes.node,
+      className: PropTypes.string,
+      textClassName: PropTypes.string,
+      secondaryTextClassName: PropTypes.string,
+      primaryText: PropTypes.node,
+      secondaryText: PropTypes.node,
+      forceAddonWrap: PropTypes.bool,
+      leftAddon: PropTypes.node,
+      leftAddonType: PropTypes.oneOf([
+        "icon",
+        "avatar",
+        "media",
+        "large-media",
+      ]),
+      leftAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      rightAddon: PropTypes.node,
+      rightAddonType: PropTypes.oneOf([
+        "icon",
+        "avatar",
+        "media",
+        "large-media",
+      ]),
+      rightAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
+      disabled: PropTypes.bool,
+      disableRipple: PropTypes.bool,
+      disableProgrammaticRipple: PropTypes.bool,
+      rippleTimeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          appear: PropTypes.number,
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      rippleClassNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          enterDone: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+          exitDone: PropTypes.string,
+        }),
+      ]),
+      rippleClassName: PropTypes.string,
+      rippleContainerClassName: PropTypes.string,
+      enablePressedAndRipple: PropTypes.bool,
+      disableSpacebarClick: PropTypes.bool,
+      disablePressedFallback: PropTypes.bool,
+      textChildren: PropTypes.bool,
+      threeLines: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedListItemLink;
+export default ListItemLink;

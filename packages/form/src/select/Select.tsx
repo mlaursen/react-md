@@ -2,9 +2,7 @@ import React, {
   CSSProperties,
   forwardRef,
   HTMLAttributes,
-  ReactElement,
   ReactNode,
-  Ref,
   useCallback,
   useMemo,
   useRef,
@@ -173,7 +171,7 @@ const block = bem("rmd-select");
  * The `Select` component **must be controlled** with a `value` and `onChange`
  * handler.
  */
-function Select(
+const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   {
     onBlur,
     onFocus,
@@ -219,9 +217,9 @@ function Select(
     onChange,
     rightChildren: propRightChildren,
     ...props
-  }: SelectProps,
-  forwardedRef?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  forwardedRef
+) {
   const { id } = props;
   const rightChildren = useIcon("dropdown", propRightChildren);
 
@@ -432,14 +430,12 @@ function Select(
       />
     </>
   );
-}
-
-const ForwardedSelect = forwardRef<HTMLDivElement, SelectProps>(Select);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
-    ForwardedSelect.propTypes = {
+    Select.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
       className: PropTypes.string,
@@ -447,6 +443,8 @@ if (process.env.NODE_ENV !== "production") {
       labelClassName: PropTypes.string,
       listboxStyle: PropTypes.object,
       listboxClassName: PropTypes.string,
+      displayLabelStyle: PropTypes.object,
+      displayLabelClassName: PropTypes.string,
       label: PropTypes.node,
       portal: PropTypes.bool,
       portalInto: PropTypes.oneOfType([
@@ -489,8 +487,22 @@ if (process.env.NODE_ENV !== "production") {
         y: PropTypes.oneOf(["above", "below", "center", "top", "bottom"]),
       }),
       listboxWidth: PropTypes.oneOf(["equal", "min", "auto"]),
+      name: PropTypes.string,
+      options: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number,
+          PropTypes.object,
+        ])
+      ).isRequired,
+      onBlur: PropTypes.func,
+      onFocus: PropTypes.func,
+      onKeyDown: PropTypes.func,
+      onClick: PropTypes.func,
+      value: PropTypes.string.isRequired,
+      onChange: PropTypes.func.isRequired,
     };
   } catch (e) {}
 }
 
-export default ForwardedSelect;
+export default Select;

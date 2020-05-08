@@ -3,7 +3,6 @@ import React, {
   MutableRefObject,
   ReactElement,
   ReactNode,
-  Ref,
 } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
@@ -27,7 +26,7 @@ const defaultGetItemProps = (): undefined => undefined;
  * `useTreeItemSelection` and `useTreeItemExpansion` hooks for a great starting
  * point for this functionality.
  */
-function Tree(
+const Tree = forwardRef<ListElement, TreeProps<any>>(function Tree( // eslint-disable-line @typescript-eslint/no-explicit-any
   {
     id,
     className,
@@ -54,9 +53,9 @@ function Tree(
     onFocus,
     onKeyDown,
     ...props
-  }: TreeProps,
-  ref?: Ref<ListElement>
-): ReactElement {
+  },
+  ref
+) {
   const expanderIcon = useIcon("dropdown", propExpanderIcon);
 
   const {
@@ -168,21 +167,16 @@ function Tree(
       {renderChildItems(items, 0, [])}
     </List>
   );
-}
-
-// This actually works pretty nice since the only time you really need the
-// "strict" typing for the TreeItem is the `itemRenderer`. Since I also expose
-// the `TreeItemRenderer` type, you can strictly type it there if needed and
-// will not cause type errors.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ForwardedTree = forwardRef<ListElement, TreeProps<any>>(Tree);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTree.propTypes = {
+    Tree.propTypes = {
       id: PropTypes.string.isRequired,
+      className: PropTypes.string,
+      onBlur: PropTypes.func,
       onFocus: PropTypes.func,
       onKeyDown: PropTypes.func,
       "aria-label": PropTypes.string,
@@ -215,4 +209,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedTree;
+export default Tree;

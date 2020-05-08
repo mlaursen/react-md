@@ -1,4 +1,4 @@
-import { useEffect, useRef, MutableRefObject } from "react";
+import { MutableRefObject, useEffect } from "react";
 import containsElement from "./containsElement";
 
 /**
@@ -36,11 +36,25 @@ export type OnOutsideClick<E extends HTMLElement> = (
 ) => void;
 
 /**
- * @private
+ * @typeparam E The HTMLElement type of the container element that should not
+ * trigger the close behavior if an element inside is clicked.
  */
-export interface Options<E extends HTMLElement> {
+export interface CloseOnOutsideClickOptions<E extends HTMLElement> {
+  /**
+   * Boolean if the behavior is enabled.
+   */
   enabled: boolean;
+
+  /**
+   * The element that should not trigger the onOutsideClick callback when it or
+   * a child has been clicked.
+   */
   element: E | null | MutableRefObject<E | null>;
+
+  /**
+   * A callback function when an element outside has been clicked. This is
+   * normally something that closes temporary elements.
+   */
   onOutsideClick: OnOutsideClick<E>;
 }
 
@@ -51,17 +65,14 @@ export interface Options<E extends HTMLElement> {
  *
  * The callback will be provided the current `element` as well as the click
  * target if additional logic should be applied before closing.
+ *
+ * @typeparam E The type of element
  */
 export default function useCloseOnOutsideClick<E extends HTMLElement>({
   enabled,
   element,
   onOutsideClick,
-}: Options<E>): void {
-  const handler = useRef(onOutsideClick);
-  useEffect(() => {
-    handler.current = onOutsideClick;
-  });
-
+}: CloseOnOutsideClickOptions<E>): void {
   useEffect(() => {
     if (!enabled) {
       return;
@@ -72,7 +83,7 @@ export default function useCloseOnOutsideClick<E extends HTMLElement>({
       const el = getElement<E>(element);
 
       if (!containsElement(el, target)) {
-        handler.current(el, target, containsElement);
+        onOutsideClick(el, target, containsElement);
       }
     }
 
@@ -80,5 +91,5 @@ export default function useCloseOnOutsideClick<E extends HTMLElement>({
     return () => {
       window.removeEventListener("click", handleClick);
     };
-  }, [enabled, element]);
+  }, [enabled, element, onOutsideClick]);
 }

@@ -1,10 +1,4 @@
-/* eslint-disable react/prop-types */
-import React, {
-  ButtonHTMLAttributes,
-  forwardRef,
-  ReactElement,
-  Ref,
-} from "react";
+import React, { ButtonHTMLAttributes, forwardRef } from "react";
 import cn from "classnames";
 
 /**
@@ -21,32 +15,26 @@ export type UnstyledButtonProps = Omit<
  * The unstyled button is a really simple button element that resets the default
  * browser button styles into a clear clickable element.
  */
-function UnstyledButton(
-  { className, children, ...props }: UnstyledButtonProps,
-  ref?: Ref<HTMLButtonElement>
-): ReactElement {
-  return (
-    <button
-      {...props}
-      type="button"
-      ref={ref}
-      className={cn("rmd-button-unstyled", className)}
-    >
-      {children}
-    </button>
-  );
-}
-
-const ForwardedUnstyledButton = forwardRef<
-  HTMLButtonElement,
-  UnstyledButtonProps
->(UnstyledButton);
+const UnstyledButton = forwardRef<HTMLButtonElement, UnstyledButtonProps>(
+  function UnstyledButton({ className, children, ...props }, ref) {
+    return (
+      <button
+        {...props}
+        type="button"
+        ref={ref}
+        className={cn("rmd-button-unstyled", className)}
+      >
+        {children}
+      </button>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedUnstyledButton.propTypes = {
+    UnstyledButton.propTypes = {
       className: PropTypes.string,
       disabled: PropTypes.bool,
       children: PropTypes.node,
@@ -54,4 +42,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedUnstyledButton;
+export default UnstyledButton;

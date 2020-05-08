@@ -47,7 +47,7 @@ function isElementType(
  */
 export default function defaultTreeItemRenderer(
   itemProps: ProvidedTreeItemProps,
-  item: BaseTreeItem,
+  item: BaseTreeItem & { visibleIndex: number },
   treeProps: ProvidedTreeProps
 ): ReactElement {
   const treeItem = item as UnknownTreeItem & { visibleIndex: number };

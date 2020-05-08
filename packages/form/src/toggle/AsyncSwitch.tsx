@@ -1,10 +1,10 @@
-import React, { CSSProperties, forwardRef, ReactElement, Ref } from "react";
+import React, { CSSProperties, forwardRef } from "react";
 import cn from "classnames";
 import { CircularProgress, getProgressA11y } from "@react-md/progress";
 
 import Switch, { SwitchProps } from "./Switch";
 
-interface AsyncSwitchProps extends SwitchProps {
+export interface AsyncSwitchProps extends SwitchProps {
   /**
    * Boolean if the switch is still loading. This will "disable" the switch and
    * add the circular progress indicator in the switch's ball until it is set
@@ -34,52 +34,50 @@ const noop = (): void => {};
  * This component will create an async switch that will show a loading indicator
  * and prevent the switch from being toggled while the loading state is true.
  */
-function AsyncSwitch(
-  {
-    id,
-    disabled,
-    className,
-    progressStyle,
-    progressClassName,
-    loading,
-    onChange,
-    ...props
-  }: AsyncSwitchProps,
-  ref?: Ref<HTMLInputElement>
-): ReactElement {
-  const progressId = `${id}-loading`;
-  return (
-    <Switch
-      {...props}
-      {...getProgressA11y(progressId, loading)}
-      id={id}
-      ref={ref}
-      disabled={disabled}
-      className={cn("rmd-switch--async", className)}
-      labelDisabled={disabled || false}
-      onChange={loading ? noop : onChange}
-    >
-      {loading && (
-        <CircularProgress
-          id={progressId}
-          style={progressStyle}
-          className={cn("rmd-switch__progress", progressClassName)}
-          centered={false}
-        />
-      )}
-    </Switch>
-  );
-}
-
-const ForwardedAsyncSwitch = forwardRef<HTMLInputElement, AsyncSwitchProps>(
-  AsyncSwitch
+const AsyncSwitch = forwardRef<HTMLInputElement, AsyncSwitchProps>(
+  function AsyncSwitch(
+    {
+      id,
+      disabled,
+      className,
+      progressStyle,
+      progressClassName,
+      loading,
+      onChange,
+      ...props
+    },
+    ref
+  ) {
+    const progressId = `${id}-loading`;
+    return (
+      <Switch
+        {...props}
+        {...getProgressA11y(progressId, loading)}
+        id={id}
+        ref={ref}
+        disabled={disabled}
+        className={cn("rmd-switch--async", className)}
+        labelDisabled={disabled || false}
+        onChange={loading ? noop : onChange}
+      >
+        {loading && (
+          <CircularProgress
+            id={progressId}
+            style={progressStyle}
+            className={cn("rmd-switch__progress", progressClassName)}
+            centered={false}
+          />
+        )}
+      </Switch>
+    );
+  }
 );
 
 if (process.env.NODE_ENV === "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedAsyncSwitch.propTypes = {
+    AsyncSwitch.propTypes = {
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
       onChange: PropTypes.func,
@@ -91,4 +89,4 @@ if (process.env.NODE_ENV === "production") {
   } catch (e) {}
 }
 
-export default ForwardedAsyncSwitch;
+export default AsyncSwitch;

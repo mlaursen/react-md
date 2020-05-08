@@ -5,6 +5,7 @@ type R = Record<string, unknown>;
  * has all the values copied over except for any keys that are defined in the
  * omitKeys param.
  *
+ * @internal
  * @param object The object to remove keys from
  * @param omitKeys The keys to remove.
  * @return a new object without the specified keys

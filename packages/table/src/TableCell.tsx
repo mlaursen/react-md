@@ -1,8 +1,6 @@
 import React, {
   forwardRef,
-  ReactElement,
   ReactNode,
-  Ref,
   TdHTMLAttributes,
   ThHTMLAttributes,
 } from "react";
@@ -13,7 +11,7 @@ import { bem } from "@react-md/utils";
 import { TableCellConfig, useTableConfig } from "./config";
 import { useTableFooter } from "./footer";
 import { useSticky } from "./sticky";
-import TableCellSortButton, { SortOrder } from "./TableCellSortButton";
+import TableCellContent, { SortOrder } from "./TableCellContent";
 
 export type TableCellElement =
   | HTMLTableDataCellElement
@@ -126,110 +124,113 @@ const block = bem("rmd-table-cell");
  * it is invalid to have a `<th>` without any readable content for screen
  * readers.
  */
-function TableCell(
-  {
-    "aria-sort": sortOrder,
-    id,
-    className,
-    grow = false,
-    scope: propScope,
-    hAlign: propHAlign,
-    vAlign: propVAlign,
-    header: propHeader,
-    lineWrap: propDisableLineWrap,
-    children,
-    sticky: propSticky,
-    sortIcon: propSortIcon,
-    sortIconAfter = false,
-    sortIconRotated,
-    disablePadding,
-    colSpan: propColSpan,
-    ...props
-  }: TableCellProps,
-  ref?: Ref<TableCellElement>
-): ReactElement {
-  // have to double cast to get the `100%` value to work.
-  const colSpan = (propColSpan as unknown) as number;
-  const sortIcon = useIcon("sort", propSortIcon);
-  const isNoPadding = disablePadding ?? (sortIcon && sortOrder);
+const TableCell = forwardRef<TableCellElement, TableCellProps>(
+  function TableCell(
+    {
+      "aria-sort": sortOrder,
+      id,
+      className,
+      grow = false,
+      scope: propScope,
+      hAlign: propHAlign,
+      vAlign: propVAlign,
+      header: propHeader,
+      lineWrap: propDisableLineWrap,
+      children,
+      sticky: propSticky,
+      sortIcon: propSortIcon,
+      sortIconAfter = false,
+      sortIconRotated,
+      disablePadding,
+      colSpan: propColSpan,
+      ...props
+    },
+    ref
+  ) {
+    // have to double cast to get the `100%` value to work.
+    const colSpan = (propColSpan as unknown) as number;
+    const sortIcon = useIcon("sort", propSortIcon);
+    const isNoPadding = disablePadding ?? (sortIcon && sortOrder);
 
-  // Note: unlike the other usages of `useTableConfig`, the `propHeader`
-  // is not provided. This is so that `TableCheckbox` components can still
-  // be a sticky header without being rendered as a `<th>`. This also makes
-  // it so the scope can be defaulted to `col` or `row` automatically.
-  const { header: inheritedHeader, hAlign, vAlign, lineWrap } = useTableConfig({
-    hAlign: propHAlign,
-    vAlign: propVAlign,
-    lineWrap: propDisableLineWrap,
-  });
-  const header = propHeader ?? inheritedHeader;
-  const footer = useTableFooter();
-  const sticky = useSticky(propSticky);
-  const isStickyCell = propSticky === "cell" || (!header && sticky);
-  const isStickyHeader = propSticky === "header";
-  const isStickyFooter = sticky && footer;
-  const isStickyFooterCell =
-    isStickyFooter && (propColSpan === "100%" || propColSpan === 0);
-  const isStickyAbove = propSticky === "header-cell" || isStickyFooterCell;
+    // Note: unlike the other usages of `useTableConfig`, the `propHeader`
+    // is not provided. This is so that `TableCheckbox` components can still
+    // be a sticky header without being rendered as a `<th>`. This also makes
+    // it so the scope can be defaulted to `col` or `row` automatically.
+    const {
+      header: inheritedHeader,
+      hAlign,
+      vAlign,
+      lineWrap,
+    } = useTableConfig({
+      hAlign: propHAlign,
+      vAlign: propVAlign,
+      lineWrap: propDisableLineWrap,
+    });
+    const header = propHeader ?? inheritedHeader;
+    const footer = useTableFooter();
+    const sticky = useSticky(propSticky);
+    const isStickyCell = propSticky === "cell" || (!header && sticky);
+    const isStickyHeader = propSticky === "header";
+    const isStickyFooter = sticky && footer;
+    const isStickyFooterCell =
+      isStickyFooter && (propColSpan === "100%" || propColSpan === 0);
+    const isStickyAbove = propSticky === "header-cell" || isStickyFooterCell;
 
-  let scope = propScope;
-  if (!scope && header) {
-    scope = !inheritedHeader && propHeader ? "row" : "col";
-  }
+    let scope = propScope;
+    if (!scope && header) {
+      scope = !inheritedHeader && propHeader ? "row" : "col";
+    }
 
-  const Component = header ? "th" : "td";
-  return (
-    <Component
-      {...props}
-      ref={ref}
-      id={id}
-      aria-sort={sortOrder === "none" ? undefined : sortOrder}
-      colSpan={colSpan}
-      className={cn(
-        block({
-          grow,
-          header,
-          sticky,
-          "sticky-header":
-            (header && sticky && propSticky !== "cell") ||
-            isStickyHeader ||
-            isStickyAbove,
-          "sticky-cell": isStickyCell || isStickyAbove || isStickyFooterCell,
-          "sticky-footer": isStickyFooter,
-          "sticky-above": isStickyAbove,
-          [hAlign]: hAlign !== "left",
-          [vAlign]: vAlign !== "middle",
-          vertical: vAlign !== "middle",
-          "no-wrap": !lineWrap,
-          padded: !isNoPadding && lineWrap === "padded",
-          "no-padding": isNoPadding,
-        }),
-        className
-      )}
-      scope={scope}
-    >
-      <TableCellSortButton
-        id={id ? `${id}-sort` : undefined}
-        icon={sortIcon}
-        iconAfter={sortIconAfter}
-        sortOrder={sortOrder}
-        rotated={sortIconRotated}
+    const Component = header ? "th" : "td";
+    return (
+      <Component
+        {...props}
+        ref={ref}
+        id={id}
+        aria-sort={sortOrder === "none" ? undefined : sortOrder}
+        colSpan={colSpan}
+        className={cn(
+          block({
+            grow,
+            header,
+            sticky,
+            "sticky-header":
+              (header && sticky && propSticky !== "cell") ||
+              isStickyHeader ||
+              isStickyAbove,
+            "sticky-cell": isStickyCell || isStickyAbove || isStickyFooterCell,
+            "sticky-footer": isStickyFooter,
+            "sticky-above": isStickyAbove,
+            [hAlign]: hAlign !== "left",
+            [vAlign]: vAlign !== "middle",
+            vertical: vAlign !== "middle",
+            "no-wrap": !lineWrap,
+            padded: !isNoPadding && lineWrap === "padded",
+            "no-padding": isNoPadding,
+          }),
+          className
+        )}
+        scope={scope}
       >
-        {children}
-      </TableCellSortButton>
-    </Component>
-  );
-}
-
-const ForwardedTableCell = forwardRef<TableCellElement, TableCellProps>(
-  TableCell
+        <TableCellContent
+          id={id ? `${id}-sort` : undefined}
+          icon={sortIcon}
+          iconAfter={sortIconAfter}
+          sortOrder={sortOrder}
+          rotated={sortIconRotated}
+        >
+          {children}
+        </TableCellContent>
+      </Component>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTableCell.propTypes = {
+    TableCell.propTypes = {
       "aria-sort": PropTypes.oneOf([
         "ascending",
         "descending",
@@ -253,9 +254,15 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       sortIcon: PropTypes.node,
       sortIconAfter: PropTypes.bool,
+      sortIconRotated: PropTypes.bool,
       disablePadding: PropTypes.bool,
+      children: PropTypes.node,
+      sticky: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(["header", "cell", "header-cell"]),
+      ]),
     };
   } catch (e) {}
 }
 
-export default ForwardedTableCell;
+export default TableCell;

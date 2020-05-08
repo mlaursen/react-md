@@ -3,7 +3,6 @@ import React, {
   forwardRef,
   HTMLAttributes,
   InputHTMLAttributes,
-  ReactElement,
   ReactNode,
   Ref,
 } from "react";
@@ -120,108 +119,106 @@ const SPECIAL_TYPES = ["date", "time", "datetime-local", "month", "week"];
  * some nice default themes. It can also be used to render other text input
  * types with _some_ support.
  */
-function TextField(
-  {
-    style,
-    className,
-    inputStyle,
-    inputClassName,
-    label,
-    labelStyle,
-    labelClassName,
-    type = "text",
-    theme = "outline",
-    dense = false,
-    inline = false,
-    error = false,
-    disabled = false,
-    onBlur: propOnBlur,
-    onFocus: propOnFocus,
-    onChange: propOnChange,
-    containerRef,
-    isLeftAddon = true,
-    isRightAddon = true,
-    leftChildren,
-    rightChildren,
-    underlineDirection = "left",
-    containerProps,
-    ...props
-  }: TextFieldProps,
-  ref?: Ref<HTMLInputElement>
-): ReactElement {
-  const { id, value, defaultValue } = props;
+const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+  function TextField(
+    {
+      style,
+      className,
+      inputStyle,
+      inputClassName,
+      label,
+      labelStyle,
+      labelClassName,
+      type = "text",
+      theme = "outline",
+      dense = false,
+      inline = false,
+      error = false,
+      disabled = false,
+      onBlur: propOnBlur,
+      onFocus: propOnFocus,
+      onChange: propOnChange,
+      containerRef,
+      isLeftAddon = true,
+      isRightAddon = true,
+      leftChildren,
+      rightChildren,
+      underlineDirection = "left",
+      containerProps,
+      ...props
+    },
+    ref
+  ) {
+    const { id, value, defaultValue } = props;
 
-  const [focused, onFocus, onBlur] = useFocusState({
-    onBlur: propOnBlur,
-    onFocus: propOnFocus,
-  });
+    const [focused, onFocus, onBlur] = useFocusState({
+      onBlur: propOnBlur,
+      onFocus: propOnFocus,
+    });
 
-  const [valued, onChange] = useValuedState({
-    value,
-    defaultValue,
-    onChange: propOnChange,
-  });
+    const [valued, onChange] = useValuedState({
+      value,
+      defaultValue,
+      onChange: propOnChange,
+    });
 
-  return (
-    <TextFieldContainer
-      {...containerProps}
-      style={style}
-      className={className}
-      ref={containerRef}
-      theme={theme}
-      error={error}
-      active={focused}
-      label={!!label}
-      dense={dense}
-      inline={inline}
-      disabled={disabled}
-      isLeftAddon={isLeftAddon}
-      isRightAddon={isRightAddon}
-      leftChildren={leftChildren}
-      rightChildren={rightChildren}
-      underlineDirection={underlineDirection}
-    >
-      <FloatingLabel
-        style={labelStyle}
-        className={labelClassName}
-        htmlFor={id}
+    return (
+      <TextFieldContainer
+        {...containerProps}
+        style={style}
+        className={className}
+        ref={containerRef}
+        theme={theme}
         error={error}
         active={focused}
-        floating={focused || valued || SPECIAL_TYPES.includes(type)}
-        valued={valued}
+        label={!!label}
         dense={dense}
+        inline={inline}
         disabled={disabled}
+        isLeftAddon={isLeftAddon}
+        isRightAddon={isRightAddon}
+        leftChildren={leftChildren}
+        rightChildren={rightChildren}
+        underlineDirection={underlineDirection}
       >
-        {label}
-      </FloatingLabel>
-      <input
-        {...props}
-        ref={ref}
-        type={type}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onChange={onChange}
-        style={inputStyle}
-        className={cn(
-          block({
-            floating: label && theme !== "none",
-          }),
-          inputClassName
-        )}
-      />
-    </TextFieldContainer>
-  );
-}
-
-const ForwardedTextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  TextField
+        <FloatingLabel
+          style={labelStyle}
+          className={labelClassName}
+          htmlFor={id}
+          error={error}
+          active={focused}
+          floating={focused || valued || SPECIAL_TYPES.includes(type)}
+          valued={valued}
+          dense={dense}
+          disabled={disabled}
+        >
+          {label}
+        </FloatingLabel>
+        <input
+          {...props}
+          ref={ref}
+          type={type}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onChange={onChange}
+          style={inputStyle}
+          className={cn(
+            block({
+              floating: label && theme !== "none",
+            }),
+            inputClassName
+          )}
+        />
+      </TextFieldContainer>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTextField.propTypes = {
+    TextField.propTypes = {
       id: PropTypes.string.isRequired,
       type: PropTypes.oneOf([
         "text",
@@ -256,8 +253,13 @@ if (process.env.NODE_ENV !== "production") {
       rightChildren: PropTypes.node,
       isLeftAddon: PropTypes.bool,
       isRightAddon: PropTypes.bool,
+      onBlur: PropTypes.func,
+      onFocus: PropTypes.func,
+      onChange: PropTypes.func,
+      containerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      containerProps: PropTypes.object,
     };
   } catch (e) {}
 }
 
-export default ForwardedTextField;
+export default TextField;

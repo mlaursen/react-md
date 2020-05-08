@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import cn from "classnames";
 import { SimpleListItem, SimpleListItemProps } from "@react-md/list";
 import { bem } from "@react-md/utils";
@@ -23,7 +23,7 @@ const block = bem("rmd-option");
  * The Option component is a simple wrapper for the `SimpleListItem` that adds
  * some required a11y for behaving as the `option` role.
  */
-function Option(
+const Option = forwardRef<HTMLLIElement, OptionProps>(function Option(
   {
     className,
     selected = false,
@@ -31,9 +31,9 @@ function Option(
     children,
     textChildren = true,
     ...props
-  }: OptionProps,
-  ref?: Ref<HTMLLIElement>
-): ReactElement {
+  },
+  ref
+) {
   return (
     <SimpleListItem
       {...props}
@@ -53,15 +53,13 @@ function Option(
       {children}
     </SimpleListItem>
   );
-}
-
-const ForwardedOption = forwardRef<HTMLLIElement, OptionProps>(Option);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedOption.propTypes = {
+    Option.propTypes = {
       className: PropTypes.string,
       focused: PropTypes.bool.isRequired,
       selected: PropTypes.bool,
@@ -71,4 +69,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedOption;
+export default Option;

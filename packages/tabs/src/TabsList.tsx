@@ -5,7 +5,6 @@ import React, {
   forwardRef,
   HTMLAttributes,
   isValidElement,
-  ReactElement,
   Ref,
   useEffect,
   useRef,
@@ -30,7 +29,7 @@ export interface TabsListProps
    * A function to call when the `activeIndex` should change due to keyboard
    * movement or clicking on a tab.
    */
-  onActiveIndexChange: (activeIndex: number) => void;
+  onActiveIndexChange(activeIndex: number): void;
 }
 
 const block = bem("rmd-tabs");
@@ -45,7 +44,7 @@ const block = bem("rmd-tabs");
  * This should probably not be used outside of this package unless a custom
  * implementation is desired.
  */
-function TabsList(
+const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsList(
   {
     style,
     className,
@@ -59,9 +58,9 @@ function TabsList(
     orientation = "horizontal",
     onActiveIndexChange,
     ...props
-  }: TabsListProps,
-  forwardedRef?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  forwardedRef
+) {
   const horizontal = orientation === "horizontal";
   const { tabs, itemRefs, handleClick, handleKeyDown } = useTabsMovement({
     onClick,
@@ -141,24 +140,26 @@ function TabsList(
       })}
     </div>
   );
-}
-
-const ForwardedTabsList = forwardRef<HTMLDivElement, TabsListProps>(TabsList);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTabsList.propTypes = {
+    TabsList.propTypes = {
+      style: PropTypes.object,
       className: PropTypes.string,
       children: PropTypes.node,
+      onClick: PropTypes.func,
       onKeyDown: PropTypes.func,
       align: PropTypes.oneOf(["left", "center", "right"]),
       automatic: PropTypes.bool,
       padded: PropTypes.bool,
       orientation: PropTypes.oneOf(["horizontal", "vertical"]),
+      activeIndex: PropTypes.number.isRequired,
+      onActiveIndexChange: PropTypes.func.isRequired,
     };
   } catch (e) {}
 }
 
-export default ForwardedTabsList;
+export default TabsList;

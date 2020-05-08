@@ -1,10 +1,4 @@
-import React, {
-  CSSProperties,
-  forwardRef,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import React, { CSSProperties, forwardRef, ReactNode, Ref } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
@@ -65,70 +59,69 @@ export interface BadgedButtonProps
  * adds some reasonable defaults for the most common use-case for badges:
  * notifications.
  */
-function BadgedButton(
-  {
-    "aria-label": ariaLabel = "Notifications",
-    badgeStyle,
-    badgeClassName,
-    badgeRef,
-    badgeId: propBadgeId,
-    buttonChildren: propButtonChildren,
-    buttonType = "icon",
-    badgeTheme,
-    children = null,
-    disableNullOnZero = false,
-    "aria-describedby": propDescribedBy,
-    ...props
-  }: BadgedButtonProps,
-  ref?: Ref<HTMLButtonElement>
-): ReactElement {
-  const { id } = props;
-  const buttonChildren = useIcon("notification", propButtonChildren);
+const BadgedButton = forwardRef<HTMLButtonElement, BadgedButtonProps>(
+  function BadgedButton(
+    {
+      "aria-label": ariaLabel = "Notifications",
+      badgeStyle,
+      badgeClassName,
+      badgeRef,
+      badgeId: propBadgeId,
+      buttonChildren: propButtonChildren,
+      buttonType = "icon",
+      badgeTheme,
+      children = null,
+      disableNullOnZero = false,
+      "aria-describedby": propDescribedBy,
+      ...props
+    },
+    ref
+  ) {
+    const { id } = props;
+    const buttonChildren = useIcon("notification", propButtonChildren);
 
-  let badgeId = propBadgeId || "";
-  if (!badgeId && id) {
-    badgeId = `${id}-badge`;
-  }
+    let badgeId = propBadgeId || "";
+    if (!badgeId && id) {
+      badgeId = `${id}-badge`;
+    }
 
-  let describedBy = propDescribedBy;
-  if (!isEmpty(children, disableNullOnZero)) {
-    describedBy = cn(describedBy, badgeId);
-  }
+    let describedBy = propDescribedBy;
+    if (!isEmpty(children, disableNullOnZero)) {
+      describedBy = cn(describedBy, badgeId);
+    }
 
-  return (
-    <Button
-      {...props}
-      aria-label={ariaLabel}
-      aria-describedby={describedBy}
-      ref={ref}
-      buttonType={buttonType}
-    >
-      {buttonChildren}
-      <Badge
-        id={badgeId}
-        ref={badgeRef}
-        theme={badgeTheme}
-        style={badgeStyle}
-        className={badgeClassName}
-        disableNullOnZero={disableNullOnZero}
+    return (
+      <Button
+        {...props}
+        aria-label={ariaLabel}
+        aria-describedby={describedBy}
+        ref={ref}
+        buttonType={buttonType}
       >
-        {children}
-      </Badge>
-    </Button>
-  );
-}
-
-const ForwardedBadgedButton = forwardRef<HTMLButtonElement, BadgedButtonProps>(
-  BadgedButton
+        {buttonChildren}
+        <Badge
+          id={badgeId}
+          ref={badgeRef}
+          theme={badgeTheme}
+          style={badgeStyle}
+          className={badgeClassName}
+          disableNullOnZero={disableNullOnZero}
+        >
+          {children}
+        </Badge>
+      </Button>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedBadgedButton.propTypes = {
+    BadgedButton.propTypes = {
       id: PropTypes.string,
       "aria-label": PropTypes.string,
+      "aria-describedby": PropTypes.string,
       buttonType: PropTypes.oneOf(["text", "icon"]),
       children: PropTypes.node,
       disableNullOnZero: PropTypes.bool,
@@ -142,4 +135,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedBadgedButton;
+export default BadgedButton;

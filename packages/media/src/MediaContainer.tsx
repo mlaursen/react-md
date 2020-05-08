@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -40,7 +40,10 @@ const block = bem("rmd-media-container");
  * ratio for these elements with both the `height` and `width` props are
  * provided.
  */
-function MediaContainer(
+const MediaContainer = forwardRef<
+  HTMLDivElement,
+  MediaContainerProps | MediaContainerWithAspectRatioProps
+>(function MediaContainer(
   {
     className,
     height,
@@ -49,9 +52,9 @@ function MediaContainer(
     auto = true,
     fullWidth = false,
     ...props
-  }: MediaContainerProps | MediaContainerWithAspectRatioProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  ref
+) {
   const aspectRatio =
     height && width ? `rmd-media-container--${width}-${height}` : "";
 
@@ -72,17 +75,13 @@ function MediaContainer(
       {children}
     </div>
   );
-}
-
-const ForwardedMediaContainer = forwardRef<HTMLDivElement, MediaContainerProps>(
-  MediaContainer
-);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedMediaContainer.propTypes = {
+    MediaContainer.propTypes = {
       auto: PropTypes.bool,
       height: PropTypes.number,
       width: PropTypes.number,
@@ -93,4 +92,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedMediaContainer;
+export default MediaContainer;

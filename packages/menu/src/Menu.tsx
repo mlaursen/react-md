@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import {
@@ -36,7 +36,7 @@ export interface MenuProps
     OverridableCSSTransitionProps,
     RenderConditionalPortalProps {
   /**
-   * The id for the menu. THis is required for a11y.
+   * The id for the menu. This is required for a11y.
    */
   id: string;
 
@@ -151,7 +151,7 @@ const block = bem("rmd-menu");
  * out based on the `visible` prop as well as handle keyboard focus, closing
  * when needed, etc.
  */
-function Menu(
+const Menu = forwardRef<HTMLDivElement, StrictProps>(function Menu(
   {
     role = "menu",
     tabIndex = -1,
@@ -183,9 +183,9 @@ function Menu(
     disableCloseOnResize = false,
     disableControlClickOkay = false,
     ...props
-  }: StrictProps,
-  forwardedRef?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  forwardedRef
+) {
   let anchor = propAnchor;
   if (!anchor) {
     anchor = horizontal ? CENTER_CENTER_ANCHOR : TOP_INNER_RIGHT_ANCHOR;
@@ -261,17 +261,16 @@ function Menu(
       </OrientationProvider>
     </ScaleTransition>
   );
-}
-
-const ForwardedMenu = forwardRef<HTMLDivElement, StrictProps>(Menu);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedMenu.propTypes = {
+    Menu.propTypes = {
       id: PropTypes.string.isRequired,
       role: PropTypes.string,
+      className: PropTypes.string,
       controlId: PropTypes.string.isRequired,
       visible: PropTypes.bool.isRequired,
       onRequestClose: PropTypes.func.isRequired,
@@ -316,9 +315,26 @@ if (process.env.NODE_ENV !== "production") {
           exit: PropTypes.number,
         }),
       ]),
+      onClick: PropTypes.func,
+      onKeyDown: PropTypes.func,
+      children: PropTypes.node,
       horizontal: PropTypes.bool,
+      onEnter: PropTypes.func,
+      onEntering: PropTypes.func,
+      onEntered: PropTypes.func,
+      onExit: PropTypes.func,
+      onExiting: PropTypes.func,
+      onExited: PropTypes.func,
+      portal: PropTypes.bool,
+      portalInto: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+        PropTypes.object,
+      ]),
+      portalIntoId: PropTypes.string,
       disableCloseOnScroll: PropTypes.bool,
       disableCloseOnResize: PropTypes.bool,
+      disableControlClickOkay: PropTypes.bool,
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       _a11yValidator: (props, _propName, component) => {
@@ -336,4 +352,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedMenu;
+export default Menu;

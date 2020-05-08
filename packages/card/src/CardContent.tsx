@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -38,46 +38,45 @@ const block = bem("rmd-card");
  * The main content for the `Card`. This adds some additional padding and removes
  * margin from `<p>` tags by default.
  */
-function CardContent(
-  {
-    disablePadding = false,
-    disableExtraPadding = false,
-    disableSecondaryColor = false,
-    disableParagraphMargin = false,
-    className,
-    children,
-    ...props
-  }: CardContentProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      className={cn(
-        block("content", {
-          padded: !disablePadding,
-          "extra-padding": !disablePadding && !disableExtraPadding,
-          "remove-margin": !disableParagraphMargin,
-          secondary: !disableSecondaryColor,
-        }),
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-}
-
-const ForwardedCardContent = forwardRef<HTMLDivElement, CardContentProps>(
-  CardContent
+const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
+  function CardContent(
+    {
+      disablePadding = false,
+      disableExtraPadding = false,
+      disableSecondaryColor = false,
+      disableParagraphMargin = false,
+      className,
+      children,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <div
+        {...props}
+        ref={ref}
+        className={cn(
+          block("content", {
+            padded: !disablePadding,
+            "extra-padding": !disablePadding && !disableExtraPadding,
+            "remove-margin": !disableParagraphMargin,
+            secondary: !disableSecondaryColor,
+          }),
+          className
+        )}
+      >
+        {children}
+      </div>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedCardContent.propTypes = {
+    CardContent.propTypes = {
+      className: PropTypes.string,
       disablePadding: PropTypes.bool,
       disableExtraPadding: PropTypes.bool,
       disableParagraphMargin: PropTypes.bool,
@@ -87,4 +86,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedCardContent;
+export default CardContent;

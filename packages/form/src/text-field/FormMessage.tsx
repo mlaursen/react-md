@@ -1,10 +1,4 @@
-import React, {
-  HTMLAttributes,
-  Ref,
-  ReactElement,
-  forwardRef,
-  CSSProperties,
-} from "react";
+import React, { HTMLAttributes, forwardRef, CSSProperties } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 import { TextFieldTheme } from "./TextFieldContainer";
@@ -122,7 +116,10 @@ export interface FormMessageWithCounterProps
  * This component can also be used to create form-level validation messages by
  * setting the `role` prop to `"alert"`.
  */
-function FormMessage(
+const FormMessage = forwardRef<
+  HTMLDivElement,
+  FormMessageProps & Partial<FormMessageCounterProps>
+>(function FormMessage(
   {
     id,
     role,
@@ -138,9 +135,9 @@ function FormMessage(
     length,
     maxLength,
     ...props
-  }: FormMessageProps & Partial<FormMessageCounterProps>,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  ref
+) {
   let message = children;
   if (!disableWrap && children) {
     message = (
@@ -181,18 +178,13 @@ function FormMessage(
       )}
     </div>
   );
-}
-
-const ForwardedFormMessage = forwardRef<
-  HTMLDivElement,
-  FormMessageProps | FormMessageWithCounterProps
->(FormMessage);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedFormMessage.propTypes = {
+    FormMessage.propTypes = {
       id: PropTypes.string.isRequired,
       role: PropTypes.oneOf(["alert"]),
       className: PropTypes.string,
@@ -226,4 +218,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedFormMessage;
+export default FormMessage;

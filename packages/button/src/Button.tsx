@@ -1,11 +1,5 @@
 /* eslint-disable react/button-has-type */
-import React, {
-  ButtonHTMLAttributes,
-  forwardRef,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 import {
   InteractionStatesOptions,
   useInteractionStates,
@@ -41,7 +35,7 @@ export interface ButtonProps
   children?: ReactNode;
 }
 
-function Button(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     type = "button",
     disabled = false,
@@ -58,9 +52,9 @@ function Button(
     rippleContainerClassName,
     enablePressedAndRipple: propEnablePressedAndRipple,
     ...props
-  }: ButtonProps,
-  ref?: Ref<HTMLButtonElement>
-): ReactElement {
+  },
+  ref
+) {
   const enablePressedAndRipple =
     typeof propEnablePressedAndRipple === "boolean"
       ? propEnablePressedAndRipple
@@ -98,15 +92,13 @@ function Button(
       {ripples}
     </button>
   );
-}
-
-const ForwardedButton = forwardRef<HTMLButtonElement, ButtonProps>(Button);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedButton.propTypes = {
+    Button.propTypes = {
       type: PropTypes.oneOf(["button", "reset", "submit"]),
       className: PropTypes.string,
       theme: PropTypes.oneOf([
@@ -120,8 +112,34 @@ if (process.env.NODE_ENV !== "production") {
       buttonType: PropTypes.oneOf(["text", "icon"]),
       disabled: PropTypes.bool,
       children: PropTypes.node,
+      disableRipple: PropTypes.bool,
+      disableProgrammaticRipple: PropTypes.bool,
+      rippleTimeout: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.shape({
+          appear: PropTypes.number,
+          enter: PropTypes.number,
+          exit: PropTypes.number,
+        }),
+      ]),
+      rippleClassNames: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          appear: PropTypes.string,
+          appearActive: PropTypes.string,
+          enter: PropTypes.string,
+          enterActive: PropTypes.string,
+          enterDone: PropTypes.string,
+          exit: PropTypes.string,
+          exitActive: PropTypes.string,
+          exitDone: PropTypes.string,
+        }),
+      ]),
+      rippleClassName: PropTypes.string,
+      rippleContainerClassName: PropTypes.string,
+      enablePressedAndRipple: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedButton;
+export default Button;

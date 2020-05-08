@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -50,7 +44,7 @@ const block = bem("rmd-icon");
  * with a perfect 1:1 scale (such as font awesome), it is recommended to use the
  * `forceSize` and `forceFontSize` props to fix the sizing issues.
  */
-function FontIcon(
+const FontIcon = forwardRef<HTMLElement, FontIconProps>(function FontIcon(
   {
     className,
     children,
@@ -60,9 +54,9 @@ function FontIcon(
     forceSize = false,
     forceFontSize = false,
     ...props
-  }: FontIconProps,
-  ref?: Ref<HTMLElement>
-): ReactElement {
+  },
+  ref
+) {
   return (
     <i
       {...props}
@@ -82,15 +76,13 @@ function FontIcon(
       {children}
     </i>
   );
-}
-
-const ForwardedFontIcon = forwardRef<HTMLElement, FontIconProps>(FontIcon);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedFontIcon.propTypes = {
+    FontIcon.propTypes = {
       "aria-hidden": PropTypes.oneOfType([
         PropTypes.oneOf(["true", "false"]),
         PropTypes.bool,
@@ -105,4 +97,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedFontIcon;
+export default FontIcon;

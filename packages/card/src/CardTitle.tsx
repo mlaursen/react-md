@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -19,47 +19,40 @@ export interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
 
 const block = bem("rmd-card");
 
-function CardTitle(
-  {
-    className,
-    children,
-    small = false,
-    noWrap = false,
-    ...props
-  }: CardTitleProps,
-  ref?: Ref<HTMLHeadingElement>
-): ReactElement {
-  return (
-    <h5
-      {...props}
-      ref={ref}
-      className={cn(
-        block("title", { small }),
-        {
-          "rmd-card--no-wrap": noWrap,
-        },
-        className
-      )}
-    >
-      {children}
-    </h5>
-  );
-}
-
-const ForwardedCardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
-  CardTitle
+const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
+  function CardTitle(
+    { className, children, small = false, noWrap = false, ...props },
+    ref
+  ) {
+    return (
+      <h5
+        {...props}
+        ref={ref}
+        className={cn(
+          block("title", { small }),
+          {
+            "rmd-card--no-wrap": noWrap,
+          },
+          className
+        )}
+      >
+        {children}
+      </h5>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedCardTitle.propTypes = {
+    CardTitle.propTypes = {
       small: PropTypes.bool,
       noWrap: PropTypes.bool,
+      className: PropTypes.string,
       children: PropTypes.node,
     };
   } catch (e) {}
 }
 
-export default ForwardedCardTitle;
+export default CardTitle;

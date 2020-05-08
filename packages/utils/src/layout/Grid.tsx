@@ -1,10 +1,4 @@
-import React, {
-  Children,
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  Ref,
-} from "react";
+import React, { Children, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 
 import bem from "../bem";
@@ -122,7 +116,7 @@ const block = bem("rmd-grid");
  * Note: This component relies on the `AppSizeListener` as a parent component to
  * work and will throw an error if it does not exist as a parent.
  */
-function Grid(
+const Grid = forwardRef<HTMLDivElement, GridProps>(function Grid(
   {
     style,
     className,
@@ -138,9 +132,9 @@ function Grid(
     gutter,
     minCellWidth,
     ...props
-  }: GridProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  ref
+) {
   const { isPhone, isTablet, isDesktop, isLargeDesktop } = useAppSize();
 
   const mergedStyle: CSSProperties = {
@@ -175,15 +169,13 @@ function Grid(
       {content}
     </div>
   );
-}
-
-const ForwardedGrid = forwardRef<HTMLDivElement, GridProps>(Grid);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedGrid.propTypes = {
+    Grid.propTypes = {
       style: PropTypes.object,
       className: PropTypes.string,
       clone: PropTypes.bool,
@@ -201,4 +193,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedGrid;
+export default Grid;

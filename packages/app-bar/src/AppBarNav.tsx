@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { bem } from "@react-md/utils";
@@ -21,33 +21,35 @@ const block = bem("rmd-app-bar");
  * This component is generally really only used when you want to have a
  * temporary navigation element like a hamburger menu.
  */
-function AppBarNav(
-  {
-    className,
-    children,
-    inheritColor,
-    theme = "clear",
-    buttonType = "icon",
-    ...props
-  }: AppBarNavProps,
-  ref?: Ref<HTMLButtonElement>
-): ReactElement {
-  return (
-    <Button
-      {...props}
-      theme={theme}
-      buttonType={buttonType}
-      ref={ref}
-      className={cn(
-        block("nav", {
-          inherit: useInheritContext(inheritColor),
-        }),
-        className
-      )}
-    >
-      {children}
-    </Button>
-  );
-}
+const AppBarNav = forwardRef<HTMLButtonElement, AppBarNavProps>(
+  function AppBarNav(
+    {
+      className,
+      children,
+      inheritColor,
+      theme = "clear",
+      buttonType = "icon",
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <Button
+        {...props}
+        theme={theme}
+        buttonType={buttonType}
+        ref={ref}
+        className={cn(
+          block("nav", {
+            inherit: useInheritContext(inheritColor),
+          }),
+          className
+        )}
+      >
+        {children}
+      </Button>
+    );
+  }
+);
 
-export default forwardRef<HTMLButtonElement, AppBarNavProps>(AppBarNav);
+export default AppBarNav;

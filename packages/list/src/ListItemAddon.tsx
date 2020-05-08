@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { ReactElement, ReactNode } from "react";
 import { TextIconSpacing, TextIconSpacingProps } from "@react-md/icon";
 import { bem } from "@react-md/utils";
@@ -43,7 +42,7 @@ const base = bem("rmd-list-item");
  * The `ListItemAddon` is used to create an addon to the left or right of the
  * text/children of a `ListItem`.
  */
-function ListItemAddon({
+export default function ListItemAddon({
   className,
   children,
   addon,
@@ -78,4 +77,18 @@ function ListItemAddon({
   );
 }
 
-export default ListItemAddon;
+if (process.env.NODE_ENV !== "production") {
+  try {
+    const PropTypes = require("prop-types");
+
+    ListItemAddon.propTypes = {
+      className: PropTypes.string,
+      children: PropTypes.node,
+      addon: PropTypes.node,
+      addonAfter: PropTypes.bool,
+      type: PropTypes.oneOf(["icon", "avatar", "media", "large-media"]),
+      position: PropTypes.oneOf(["top", "middle", "bottom"]),
+      forceAddonWrap: PropTypes.bool,
+    };
+  } catch (e) {}
+}

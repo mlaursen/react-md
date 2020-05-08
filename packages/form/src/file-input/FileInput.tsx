@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  InputHTMLAttributes,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import React, { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
 import { TextIconSpacing, useIcon } from "@react-md/icon";
@@ -62,38 +56,20 @@ const block = bem("rmd-file-input");
  * This component is a wrapper for the `<input type="file" />` that can be themed
  * like a button.
  */
-function FileInput(
-  {
-    style,
-    className: propClassName,
-    icon: propIcon,
-    iconAfter = false,
-    children = <SrOnly>Upload</SrOnly>,
-    theme = "primary",
-    themeType = "contained",
-    buttonType = "icon",
-    multiple = false,
-    disableIconSpacing = false,
-    disableRepeatableFiles = false,
-    onKeyDown,
-    onKeyUp,
-    onMouseDown,
-    onMouseUp,
-    onMouseLeave,
-    onClick,
-    onTouchStart,
-    onTouchMove,
-    onTouchEnd,
-    onChange,
-    ...props
-  }: FileInputProps,
-  ref?: Ref<HTMLInputElement>
-): ReactElement {
-  const { id, disabled } = props;
-  const icon = useIcon("download", propIcon);
-
-  const { ripples, className, handlers } = useInteractionStates({
-    handlers: {
+const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
+  function FileInput(
+    {
+      style,
+      className: propClassName,
+      icon: propIcon,
+      iconAfter = false,
+      children = <SrOnly>Upload</SrOnly>,
+      theme = "primary",
+      themeType = "contained",
+      buttonType = "icon",
+      multiple = false,
+      disableIconSpacing = false,
+      disableRepeatableFiles = false,
       onKeyDown,
       onKeyUp,
       onMouseDown,
@@ -103,69 +79,87 @@ function FileInput(
       onTouchStart,
       onTouchMove,
       onTouchEnd,
+      onChange,
+      ...props
     },
-    className: buttonThemeClassNames({
-      theme,
-      themeType,
-      buttonType,
-      disabled,
-      className: propClassName,
-    }),
-    // pressing enter or space would trigger two click events otherwise.
-    disableEnterClick: true,
-  });
+    ref
+  ) {
+    const { id, disabled } = props;
+    const icon = useIcon("download", propIcon);
 
-  let content: ReactNode = icon;
-  if (disableIconSpacing || (children && !icon)) {
-    content = (
+    const { ripples, className, handlers } = useInteractionStates({
+      handlers: {
+        onKeyDown,
+        onKeyUp,
+        onMouseDown,
+        onMouseUp,
+        onMouseLeave,
+        onClick,
+        onTouchStart,
+        onTouchMove,
+        onTouchEnd,
+      },
+      className: buttonThemeClassNames({
+        theme,
+        themeType,
+        buttonType,
+        disabled,
+        className: propClassName,
+      }),
+      // pressing enter or space would trigger two click events otherwise.
+      disableEnterClick: true,
+    });
+
+    let content: ReactNode = icon;
+    if (disableIconSpacing || (children && !icon)) {
+      content = (
+        <>
+          {!iconAfter && icon}
+          {children}
+          {iconAfter && icon}
+        </>
+      );
+    } else if (children) {
+      content = (
+        <TextIconSpacing icon={icon} iconAfter={iconAfter}>
+          {children}
+        </TextIconSpacing>
+      );
+    }
+
+    return (
       <>
-        {!iconAfter && icon}
-        {children}
-        {iconAfter && icon}
+        <input
+          {...props}
+          {...handlers}
+          ref={ref}
+          onChange={onChange}
+          value={disableRepeatableFiles ? undefined : ""}
+          type="file"
+          className={block()}
+          multiple={multiple}
+        />
+        <label
+          htmlFor={id}
+          style={style}
+          className={cn("rmd-file-input-label", className)}
+        >
+          {content}
+          {ripples}
+        </label>
       </>
     );
-  } else if (children) {
-    content = (
-      <TextIconSpacing icon={icon} iconAfter={iconAfter}>
-        {children}
-      </TextIconSpacing>
-    );
   }
-
-  return (
-    <>
-      <input
-        {...props}
-        {...handlers}
-        ref={ref}
-        onChange={onChange}
-        value={disableRepeatableFiles ? undefined : ""}
-        type="file"
-        className={block()}
-        multiple={multiple}
-      />
-      <label
-        htmlFor={id}
-        style={style}
-        className={cn("rmd-file-input-label", className)}
-      >
-        {content}
-        {ripples}
-      </label>
-    </>
-  );
-}
-
-const ForwardedFileInput = forwardRef<HTMLInputElement, FileInputProps>(
-  FileInput
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedFileInput.propTypes = {
+    FileInput.propTypes = {
       id: PropTypes.string.isRequired,
+      style: PropTypes.object,
+      className: PropTypes.string,
       name: PropTypes.string,
       onChange: PropTypes.func.isRequired,
       icon: PropTypes.node,
@@ -184,8 +178,17 @@ if (process.env.NODE_ENV !== "production") {
       buttonType: PropTypes.oneOf(["text", "icon"]),
       disabled: PropTypes.bool,
       children: PropTypes.node,
+      onKeyDown: PropTypes.func,
+      onKeyUp: PropTypes.func,
+      onMouseDown: PropTypes.func,
+      onMouseUp: PropTypes.func,
+      onMouseLeave: PropTypes.func,
+      onClick: PropTypes.func,
+      onTouchStart: PropTypes.func,
+      onTouchMove: PropTypes.func,
+      onTouchEnd: PropTypes.func,
     };
   } catch (e) {}
 }
 
-export default ForwardedFileInput;
+export default FileInput;

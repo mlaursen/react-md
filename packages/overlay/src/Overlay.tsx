@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import CSSTransition, {
   CSSTransitionClassNames,
@@ -58,7 +58,7 @@ const DEFAULT_OVERLAY_CLASSNAMES: CSSTransitionClassNames = {
  * issues or you need to portal the overlay to a different area within your app,
  * you should use the `OverlayPortal` component instead.
  */
-function Overlay(
+const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay(
   {
     className,
     visible,
@@ -81,9 +81,9 @@ function Overlay(
     classNames = DEFAULT_OVERLAY_CLASSNAMES,
     tabIndex = -1,
     ...props
-  }: OverlayProps,
-  ref?: Ref<HTMLSpanElement>
-): ReactElement {
+  },
+  ref
+) {
   return (
     <ConditionalPortal
       portal={portal}
@@ -128,15 +128,14 @@ function Overlay(
       </CSSTransition>
     </ConditionalPortal>
   );
-}
-
-const ForwardedOverlay = forwardRef<HTMLSpanElement, OverlayProps>(Overlay);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedOverlay.propTypes = {
+    Overlay.propTypes = {
+      className: PropTypes.string,
       classNames: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.shape({
@@ -172,6 +171,7 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
       portalIntoId: PropTypes.string,
+      children: PropTypes.node,
       tabIndex: PropTypes.number,
       visible: PropTypes.bool.isRequired,
       onRequestClose: PropTypes.func.isRequired,
@@ -181,4 +181,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedOverlay;
+export default Overlay;

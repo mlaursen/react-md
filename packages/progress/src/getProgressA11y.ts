@@ -1,4 +1,4 @@
-interface ProgressA11y {
+export interface ProgressA11y {
   "aria-busy": true;
   "aria-describedby": string;
 }

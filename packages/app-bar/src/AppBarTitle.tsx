@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -27,50 +27,49 @@ const block = bem("rmd-app-bar");
  * not using the `AppBarNav` component, you can enable the `keyline` prop to
  * ensure that your title aligns with the keyline of your navigation element.
  */
-function AppBarTitle(
-  {
-    noWrap = true,
-    keyline = false,
-    className,
-    children,
-    inheritColor,
-    ...props
-  }: AppBarTitleProps,
-  ref?: Ref<HTMLHeadingElement>
-): ReactElement {
-  return (
-    <h6
-      {...props}
-      ref={ref}
-      className={cn(
-        block("title", {
-          "no-wrap": noWrap,
-          keyline,
-          inherit: useInheritContext(inheritColor),
-        }),
-        className
-      )}
-    >
-      {children}
-    </h6>
-  );
-}
-
-const ForwardedAppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
-  AppBarTitle
+const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
+  function AppBarTitle(
+    {
+      noWrap = true,
+      keyline = false,
+      className,
+      children,
+      inheritColor,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <h6
+        {...props}
+        ref={ref}
+        className={cn(
+          block("title", {
+            "no-wrap": noWrap,
+            keyline,
+            inherit: useInheritContext(inheritColor),
+          }),
+          className
+        )}
+      >
+        {children}
+      </h6>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedAppBarTitle.propTypes = {
+    AppBarTitle.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
       keyline: PropTypes.bool,
       noWrap: PropTypes.bool,
+      inheritColor: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedAppBarTitle;
+export default AppBarTitle;

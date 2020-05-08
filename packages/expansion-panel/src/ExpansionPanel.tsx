@@ -1,6 +1,5 @@
 import React, {
   forwardRef,
-  ReactElement,
   ReactNode,
   Ref,
   MouseEventHandler,
@@ -123,96 +122,96 @@ const block = bem("rmd-expansion-panel");
  * The expansion panel renders a header element (that is just a button) and
  * dynamically shows content once expanded.
  */
-function ExpansionPanel(
-  {
-    className,
-    children,
-    headerStyle,
-    headerClassName,
-    contentStyle,
-    contentClassName,
-    headerRef,
-    disablePadding = false,
-    disableSecondaryColor = false,
-    customHeader,
-    header,
-    expanded,
-    onExpandClick,
-    expanderIcon,
-    marginTop = false,
-    fullWidth = true,
-    persistent = false,
-    disabled = false,
-    disableTransition = false,
-    ...props
-  }: ExpansionPanelProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  const { id } = props;
-  const contentId = `${id}-content`;
+const ExpansionPanel = forwardRef<HTMLDivElement, ExpansionPanelProps>(
+  function ExpansionPanel(
+    {
+      className,
+      children,
+      headerStyle,
+      headerClassName,
+      contentStyle,
+      contentClassName,
+      headerRef,
+      disablePadding = false,
+      disableSecondaryColor = false,
+      customHeader,
+      header,
+      expanded,
+      onExpandClick,
+      expanderIcon,
+      marginTop = false,
+      fullWidth = true,
+      persistent = false,
+      disabled = false,
+      disableTransition = false,
+      ...props
+    },
+    ref
+  ) {
+    const { id } = props;
+    const contentId = `${id}-content`;
 
-  return (
-    <Card
-      {...props}
-      id={`${id}-container`}
-      ref={ref}
-      fullWidth={fullWidth}
-      className={cn(block({ expanded, "margin-top": marginTop }), className)}
-    >
-      {customHeader || (
-        <ExpansionPanelHeader
-          aria-disabled={disabled || undefined}
-          id={id}
-          ref={headerRef}
-          style={headerStyle}
-          className={headerClassName}
-          icon={expanderIcon}
-          expanded={expanded}
-          onClick={onExpandClick}
-          disableTransition={disableTransition}
-        >
-          {header}
-        </ExpansionPanelHeader>
-      )}
-      <Collapse
-        collapsed={!expanded}
-        timeout={disableTransition ? 0 : undefined}
-        temporary={!persistent}
+    return (
+      <Card
+        {...props}
+        id={`${id}-container`}
+        ref={ref}
+        fullWidth={fullWidth}
+        className={cn(block({ expanded, "margin-top": marginTop }), className)}
       >
-        <CardContent
-          id={contentId}
-          aria-labelledby={id}
-          role="region"
-          style={contentStyle}
-          className={contentClassName}
-          disableSecondaryColor={disableSecondaryColor}
-          disablePadding={disablePadding}
-          disableExtraPadding
+        {customHeader || (
+          <ExpansionPanelHeader
+            aria-disabled={disabled || undefined}
+            id={id}
+            ref={headerRef}
+            style={headerStyle}
+            className={headerClassName}
+            icon={expanderIcon}
+            expanded={expanded}
+            onClick={onExpandClick}
+            disableTransition={disableTransition}
+          >
+            {header}
+          </ExpansionPanelHeader>
+        )}
+        <Collapse
+          collapsed={!expanded}
+          timeout={disableTransition ? 0 : undefined}
+          temporary={!persistent}
         >
-          {children}
-        </CardContent>
-      </Collapse>
-    </Card>
-  );
-}
-
-const ForwardedExpansionPanel = forwardRef<HTMLDivElement, ExpansionPanelProps>(
-  ExpansionPanel
+          <CardContent
+            id={contentId}
+            aria-labelledby={id}
+            role="region"
+            style={contentStyle}
+            className={contentClassName}
+            disableSecondaryColor={disableSecondaryColor}
+            disablePadding={disablePadding}
+            disableExtraPadding
+          >
+            {children}
+          </CardContent>
+        </Collapse>
+      </Card>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedExpansionPanel.propTypes = {
+    ExpansionPanel.propTypes = {
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
+      disabled: PropTypes.bool,
       children: PropTypes.node,
       headerStyle: PropTypes.object,
       headerClassName: PropTypes.string,
       contentStyle: PropTypes.object,
       contentClassName: PropTypes.string,
       customHeader: PropTypes.node,
+      fullWidth: PropTypes.bool,
       header: PropTypes.node,
       headerRef: PropTypes.oneOfType([
         PropTypes.func,
@@ -224,9 +223,12 @@ if (process.env.NODE_ENV !== "production") {
       expanded: PropTypes.bool.isRequired,
       onExpandClick: PropTypes.func.isRequired,
       persistent: PropTypes.bool,
+      marginTop: PropTypes.bool,
       disableTransition: PropTypes.bool,
+      disablePadding: PropTypes.bool,
+      disableSecondaryColor: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedExpansionPanel;
+export default ExpansionPanel;

@@ -1,11 +1,23 @@
 import { useCallback, useRef } from "react";
 
-import useRefCache from "../useRefCache";
 import getFocusableElements from "./getFocusableElements";
 
 interface Options<E extends HTMLElement> {
+  /**
+   * Boolean if the focus wrap behavior should be disabled.
+   */
   disabled?: boolean;
+
+  /**
+   * Boolean if the list of focusable elements should not be cached after the
+   * first tab key press. This should only be set to `true` if you have a lot of
+   * dynamic content whin your element and the first and last elements change.
+   */
   disableFocusCache?: boolean;
+
+  /**
+   * An optional keydown event handler to merge with the focus wrap behavior.
+   */
   onKeyDown?: React.KeyboardEventHandler<E>;
 }
 
@@ -13,6 +25,8 @@ interface Options<E extends HTMLElement> {
  * Creates an `onKeyDown` event handler to trap keyboard focus within a
  * container element.
  *
+ * @typeparam E The HTMLElement type that has the keydown event listener
+ * attached.
  * @param options All the options for handling tab focus wrapping.
  * @return The kedown event handler to enforce focus wrapping or the onKeyDown
  * prop if this functionality is disabled.
@@ -23,11 +37,9 @@ export default function useTabFocusWrap<E extends HTMLElement>({
   onKeyDown,
 }: Options<E>): React.KeyboardEventHandler<E> | undefined {
   const focusables = useRef<HTMLElement[]>([]);
-  const cache = useRefCache({ disableFocusCache, onKeyDown });
 
   const handleKeyDown = useCallback<React.KeyboardEventHandler<E>>(
     (event): void => {
-      const { onKeyDown, disableFocusCache } = cache.current;
       if (onKeyDown) {
         onKeyDown(event);
       }
@@ -56,9 +68,7 @@ export default function useTabFocusWrap<E extends HTMLElement>({
         elements[0].focus();
       }
     },
-    // disabled since useRefCache
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [onKeyDown, disableFocusCache]
   );
 
   return disabled ? onKeyDown : handleKeyDown;

@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -20,7 +20,7 @@ const block = bem("rmd-sr-only");
  * If you enable the `focusable` prop, the text will become visible to all users
  * while focused.
  */
-function SrOnly(
+const SrOnly = forwardRef<TextElement, SrOnlyProps>(function SrOnly(
   {
     className,
     children,
@@ -28,9 +28,9 @@ function SrOnly(
     tabIndex: propTabIndex,
     component = "span",
     ...props
-  }: SrOnlyProps,
-  ref?: Ref<TextElement>
-): ReactElement {
+  },
+  ref
+) {
   let tabIndex = propTabIndex;
   if (focusable && typeof tabIndex === "undefined") {
     tabIndex = 0;
@@ -47,15 +47,16 @@ function SrOnly(
       {children}
     </Text>
   );
-}
-
-const ForwardedSrOnly = forwardRef<TextElement, SrOnlyProps>(SrOnly);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedSrOnly.propTypes = {
+    SrOnly.propTypes = {
+      className: PropTypes.string,
+      children: PropTypes.node,
+      tabIndex: PropTypes.number,
       focusable: PropTypes.bool,
       component: PropTypes.oneOfType([
         PropTypes.string,
@@ -66,4 +67,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedSrOnly;
+export default SrOnly;

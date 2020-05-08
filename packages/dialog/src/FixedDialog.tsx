@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from "react";
+import React, { forwardRef } from "react";
 import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import {
@@ -51,71 +51,69 @@ const DEFAULT_CLASSNAMES: CSSTransitionClassNames = {
  * be fix itself to another element. Another term for this component might be a
  * "Pop out Dialog".
  */
-function FixedDialog(
-  {
-    fixedTo,
-    anchor = TOP_INNER_RIGHT_ANCHOR,
-    options,
-    getOptions,
-    children,
-    className,
-    classNames = DEFAULT_CLASSNAMES,
-    overlayHidden = true,
-    disableScrollLock = true,
-    ...props
-  }: StrictProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  const { onRequestClose } = props;
-
-  const {
-    style,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExited,
-  } = useFixedPositioning({
-    transformOrigin: true,
-    ...options,
-    onScroll: (_event, { visible }) => {
-      if (!visible) {
-        onRequestClose();
-      }
+const FixedDialog = forwardRef<HTMLDivElement, StrictProps>(
+  function FixedDialog(
+    {
+      fixedTo,
+      anchor = TOP_INNER_RIGHT_ANCHOR,
+      options,
+      getOptions,
+      children,
+      className,
+      classNames = DEFAULT_CLASSNAMES,
+      overlayHidden = true,
+      disableScrollLock = true,
+      ...props
     },
-    fixedTo,
-    anchor,
-    getOptions,
-  });
+    ref
+  ) {
+    const { onRequestClose } = props;
 
-  return (
-    <Dialog
-      {...props}
-      ref={ref}
-      type="custom"
-      style={style}
-      className={cn("rmd-dialog--fixed", className)}
-      classNames={classNames}
-      overlayHidden={overlayHidden}
-      disableScrollLock={disableScrollLock}
-      onEnter={onEnter}
-      onEntering={onEntering}
-      onEntered={onEntered}
-      onExited={onExited}
-    >
-      {children}
-    </Dialog>
-  );
-}
+    const {
+      style,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExited,
+    } = useFixedPositioning({
+      transformOrigin: true,
+      ...options,
+      onScroll: (_event, { visible }) => {
+        if (!visible) {
+          onRequestClose();
+        }
+      },
+      fixedTo,
+      anchor,
+      getOptions,
+    });
 
-const ForwardedFixedDialog = forwardRef<HTMLDivElement, StrictProps>(
-  FixedDialog
+    return (
+      <Dialog
+        {...props}
+        ref={ref}
+        type="custom"
+        style={style}
+        className={cn("rmd-dialog--fixed", className)}
+        classNames={classNames}
+        overlayHidden={overlayHidden}
+        disableScrollLock={disableScrollLock}
+        onEnter={onEnter}
+        onEntering={onEntering}
+        onEntered={onEntered}
+        onExited={onExited}
+      >
+        {children}
+      </Dialog>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedFixedDialog.propTypes = {
+    FixedDialog.propTypes = {
       fixedTo: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.func,
@@ -163,8 +161,10 @@ if (process.env.NODE_ENV !== "production") {
         ]),
         y: PropTypes.oneOf(["above", "below", "center", "top", "bottom"]),
       }),
+      children: PropTypes.node,
+      className: PropTypes.string,
     };
   } catch (e) {}
 }
 
-export default ForwardedFixedDialog;
+export default FixedDialog;

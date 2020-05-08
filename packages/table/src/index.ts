@@ -19,13 +19,14 @@ export * from "./TableRow";
 export { default as TableCell } from "./TableCell";
 export * from "./TableCell";
 
+export { default as TableCellContent } from "./TableCellContent";
+export * from "./TableCellContent";
+
 export { default as Caption } from "./Caption";
 export * from "./Caption";
 
 export { default as TableCheckbox } from "./TableCheckbox";
 export * from "./TableCheckbox";
-
-export { SortOrder } from "./TableCellSortButton";
 
 export {
   TableCellConfiguration,

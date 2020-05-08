@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import CSSTransition, {
   CSSTransitionClassNames,
@@ -46,7 +46,7 @@ const DEFAULT_TABPANEL_CLASSNAMES: CSSTransitionClassNames = {
  * `TabPanels` component along with the `TransitionGroup` from
  * `react-transition-group` to work as expected.
  */
-function TabPanel(
+const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>(function TabPanel(
   {
     className,
     in: transitionIn,
@@ -64,9 +64,9 @@ function TabPanel(
     children,
     hidden,
     ...props
-  }: TabPanelProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
+  },
+  ref
+) {
   return (
     <CSSTransition
       in={transitionIn && !hidden}
@@ -93,15 +93,13 @@ function TabPanel(
       </div>
     </CSSTransition>
   );
-}
-
-const ForwardedTabPanel = forwardRef<HTMLDivElement, TabPanelProps>(TabPanel);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedTabPanel.propTypes = {
+    TabPanel.propTypes = {
       className: PropTypes.string,
       timeout: PropTypes.oneOfType([
         PropTypes.number,
@@ -110,6 +108,16 @@ if (process.env.NODE_ENV !== "production") {
           exit: PropTypes.number,
         }),
       ]),
+      in: PropTypes.bool,
+      appear: PropTypes.bool,
+      enter: PropTypes.bool,
+      exit: PropTypes.bool,
+      onEnter: PropTypes.func,
+      onEntering: PropTypes.func,
+      onEntered: PropTypes.func,
+      onExit: PropTypes.func,
+      onExiting: PropTypes.func,
+      onExited: PropTypes.func,
       classNames: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.shape({
@@ -123,9 +131,10 @@ if (process.env.NODE_ENV !== "production") {
           exitDone: PropTypes.string,
         }),
       ]),
+      hidden: PropTypes.bool,
       children: PropTypes.node,
     };
   } catch (e) {}
 }
 
-export default ForwardedTabPanel;
+export default TabPanel;

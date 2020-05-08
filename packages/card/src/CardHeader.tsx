@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/utils";
@@ -55,55 +49,54 @@ const block = bem("rmd-card");
  * components. There is also additional functionality built in to render items
  * before or after the main children with some additional spacing.
  */
-function CardHeader(
-  {
-    align = "center",
-    className,
-    contentClassName,
-    children,
-    beforeChildren,
-    afterChildren,
-    ...props
-  }: CardHeaderProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  return (
-    <header
-      {...props}
-      ref={ref}
-      className={cn(
-        block("header", {
-          [align]: align !== "none",
-        }),
-        className
-      )}
-    >
-      <TextIconSpacing
-        icon={<CardHeaderAddon>{beforeChildren}</CardHeaderAddon>}
+const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
+  function CardHeader(
+    {
+      align = "center",
+      className,
+      contentClassName,
+      children,
+      beforeChildren,
+      afterChildren,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <header
+        {...props}
+        ref={ref}
+        className={cn(
+          block("header", {
+            [align]: align !== "none",
+          }),
+          className
+        )}
       >
         <TextIconSpacing
-          icon={<CardHeaderAddon>{afterChildren}</CardHeaderAddon>}
-          iconAfter
+          icon={<CardHeaderAddon>{beforeChildren}</CardHeaderAddon>}
         >
-          <span className={cn(block("header-content"), contentClassName)}>
-            {children}
-          </span>
+          <TextIconSpacing
+            icon={<CardHeaderAddon>{afterChildren}</CardHeaderAddon>}
+            iconAfter
+          >
+            <span className={cn(block("header-content"), contentClassName)}>
+              {children}
+            </span>
+          </TextIconSpacing>
         </TextIconSpacing>
-      </TextIconSpacing>
-    </header>
-  );
-}
-
-const ForwardedCardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
-  CardHeader
+      </header>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedCardHeader.propTypes = {
+    CardHeader.propTypes = {
       align: PropTypes.oneOf(["top", "center", "bottom", "none"]),
+      className: PropTypes.string,
       beforeChildren: PropTypes.node,
       afterChildren: PropTypes.node,
       contentClassName: PropTypes.string,
@@ -112,4 +105,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedCardHeader;
+export default CardHeader;

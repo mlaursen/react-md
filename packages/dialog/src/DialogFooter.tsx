@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -19,36 +19,31 @@ export interface DialogFooterProps extends HTMLAttributes<HTMLDivElement> {
 
 const block = bem("rmd-dialog");
 
-function DialogFooter(
-  { children, className, align = "end", ...props }: DialogFooterProps,
-  ref?: Ref<HTMLDivElement>
-): ReactElement {
-  return (
-    <footer
-      {...props}
-      ref={ref}
-      className={cn(
-        block("footer", {
-          flex: align !== "none",
-          [align]: align !== "none",
-        }),
-        className
-      )}
-    >
-      {children}
-    </footer>
-  );
-}
-
-const ForwardedDialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
-  DialogFooter
+const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
+  function DialogFooter({ children, className, align = "end", ...props }, ref) {
+    return (
+      <footer
+        {...props}
+        ref={ref}
+        className={cn(
+          block("footer", {
+            flex: align !== "none",
+            [align]: align !== "none",
+          }),
+          className
+        )}
+      >
+        {children}
+      </footer>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedDialogFooter.propTypes = {
+    DialogFooter.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
       align: PropTypes.oneOf([
@@ -63,4 +58,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedDialogFooter;
+export default DialogFooter;

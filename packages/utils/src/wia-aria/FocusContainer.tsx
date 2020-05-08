@@ -3,7 +3,6 @@ import React, {
   forwardRef,
   HTMLAttributes,
   ReactElement,
-  Ref,
   useCallback,
   useRef,
 } from "react";
@@ -94,61 +93,63 @@ export interface FocusContainerProps
   component?: ElementType;
 }
 
-function FocusContainer(
-  {
-    children,
-    onKeyDown,
-    component: Component = "div",
-    defaultFocus = "first",
-    disableFocusCache = false,
-    disableFocusOnMount = false,
-    disableFocusOnMountScroll = false,
-    disableFocusOnUnmount = false,
-    disableTabFocusWrap = false,
-    unmountFocusFallback = "",
-    ...props
-  }: FocusContainerProps,
-  forwardedRef?: Ref<HTMLElement>
-): ReactElement {
-  const ref = useRef<HTMLElement | null>(null);
-  const refHandler = useCallback(
-    (instance: HTMLElement | null) => {
-      applyRef(instance, forwardedRef);
-      ref.current = instance;
+/**
+ * The `FocusContainer` is a wrapper for a few of the accessibility hooks to
+ * maintain focus within an element.
+ */
+const FocusContainer = forwardRef<HTMLDivElement, FocusContainerProps>(
+  function FocusContainer(
+    {
+      children,
+      onKeyDown,
+      component: Component = "div",
+      defaultFocus = "first",
+      disableFocusCache = false,
+      disableFocusOnMount = false,
+      disableFocusOnMountScroll = false,
+      disableFocusOnUnmount = false,
+      disableTabFocusWrap = false,
+      unmountFocusFallback = "",
+      ...props
     },
-    [forwardedRef]
-  );
+    forwardedRef
+  ): ReactElement {
+    const ref = useRef<HTMLElement | null>(null);
+    const refHandler = useCallback(
+      (instance: HTMLElement | null) => {
+        applyRef(instance, forwardedRef);
+        ref.current = instance;
+      },
+      [forwardedRef]
+    );
 
-  usePreviousFocus(disableFocusOnUnmount, unmountFocusFallback);
-  useFocusOnMount(
-    ref,
-    defaultFocus,
-    disableFocusOnMountScroll,
-    false,
-    disableFocusOnMount
-  );
-  const handleKeyDown = useTabFocusWrap({
-    disabled: disableTabFocusWrap,
-    disableFocusCache,
-    onKeyDown,
-  });
+    usePreviousFocus(disableFocusOnUnmount, unmountFocusFallback);
+    useFocusOnMount(
+      ref,
+      defaultFocus,
+      disableFocusOnMountScroll,
+      false,
+      disableFocusOnMount
+    );
+    const handleKeyDown = useTabFocusWrap({
+      disabled: disableTabFocusWrap,
+      disableFocusCache,
+      onKeyDown,
+    });
 
-  return (
-    <Component {...props} onKeyDown={handleKeyDown} ref={refHandler}>
-      {children}
-    </Component>
-  );
-}
-
-const ForwardedFocusContainer = forwardRef<HTMLElement, FocusContainerProps>(
-  FocusContainer
+    return (
+      <Component {...props} onKeyDown={handleKeyDown} ref={refHandler}>
+        {children}
+      </Component>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedFocusContainer.propTypes = {
+    FocusContainer.propTypes = {
       disableFocusCache: PropTypes.bool,
       disableFocusOnMount: PropTypes.bool,
       disableFocusOnUnmount: PropTypes.bool,
@@ -167,8 +168,11 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.func,
         PropTypes.object,
       ]),
+      children: PropTypes.node,
+      onKeyDown: PropTypes.func,
+      disableFocusOnMountScroll: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedFocusContainer;
+export default FocusContainer;

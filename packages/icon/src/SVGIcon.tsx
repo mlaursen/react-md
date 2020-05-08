@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -74,7 +68,7 @@ const block = bem("rmd-icon");
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a
  * sprite map as an icon.
  */
-function SVGIcon(
+const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
   {
     "aria-hidden": ariaHidden = true,
     focusable = "false",
@@ -85,9 +79,9 @@ function SVGIcon(
     use,
     children: propChildren,
     ...props
-  }: SVGIconProps,
-  ref?: Ref<SVGSVGElement>
-): ReactElement {
+  },
+  ref
+) {
   let children = propChildren;
   if (!children && use) {
     children = <use xlinkHref={use} />;
@@ -106,15 +100,13 @@ function SVGIcon(
       {children}
     </svg>
   );
-}
-
-const ForwardedSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(SVGIcon);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedSVGIcon.propTypes = {
+    SVGIcon.propTypes = {
       className: PropTypes.string,
       role: PropTypes.string,
       "aria-hidden": PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -129,4 +121,4 @@ if (process.env.NODE_ENV !== "production") {
   } catch (e) {}
 }
 
-export default ForwardedSVGIcon;
+export default SVGIcon;
