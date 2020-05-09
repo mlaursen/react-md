@@ -3,7 +3,7 @@
 exports[`AppBarAction should automatically enable the inherit color state if the parent app bar enables the inheritColor prop 1`] = `
 <div>
   <header
-    class="rmd-app-bar rmd-app-bar--primary"
+    class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--normal"
   >
     <button
       class="rmd-button rmd-button--icon rmd-app-bar__action rmd-app-bar__action--inherit"
@@ -20,7 +20,7 @@ exports[`AppBarAction should automatically enable the inherit color state if the
 exports[`AppBarAction should automatically enable the inherit color state if the parent app bar enables the inheritColor prop 2`] = `
 <div>
   <header
-    class="rmd-app-bar rmd-app-bar--primary"
+    class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--normal"
   >
     <button
       class="rmd-button rmd-button--icon rmd-app-bar__action"
@@ -37,7 +37,7 @@ exports[`AppBarAction should automatically enable the inherit color state if the
 exports[`AppBarAction should automatically enable the inherit color state if the parent app bar enables the inheritColor prop 3`] = `
 <div>
   <header
-    class="rmd-app-bar rmd-app-bar--primary"
+    class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--normal"
   >
     <button
       class="rmd-button rmd-button--icon rmd-app-bar__action rmd-app-bar__action--inherit"

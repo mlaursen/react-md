@@ -13,7 +13,7 @@ import AppBarTitle from "components/AppBarTitle";
 import Container from "./Container";
 
 const DenseAppBar: FC = () => (
-  <AppBar dense>
+  <AppBar height="dense">
     <AppBarNav aria-label="Navigation" id="dense-nav">
       <MenuSVGIcon />
     </AppBarNav>
@@ -28,6 +28,7 @@ const DenseAppBar: FC = () => (
 );
 
 const NormalAppBar: FC = () => (
+  // or add height="normal"
   <AppBar>
     <AppBarNav aria-label="Navigation" id="normal-nav">
       <MenuSVGIcon />
@@ -43,8 +44,8 @@ const NormalAppBar: FC = () => (
 );
 
 const DenseProminentAppBar: FC = () => (
-  <AppBar dense prominent>
-    <AppBar dense>
+  <AppBar height="prominent-dense">
+    <AppBar height="dense">
       <AppBarNav aria-label="Navigation" id="dense-prominent-nav">
         <MenuSVGIcon />
       </AppBarNav>
@@ -56,7 +57,7 @@ const DenseProminentAppBar: FC = () => (
         <MoreVertSVGIcon />
       </AppBarAction>
     </AppBar>
-    <AppBar dense>
+    <AppBar height="dense">
       <AppBarTitle keyline>And Prominent!</AppBarTitle>
       <AppBarAction first buttonType="text" id="dense-prominent-new">
         <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>
@@ -68,7 +69,7 @@ const DenseProminentAppBar: FC = () => (
 );
 
 const ProminentAppBar: FC = () => (
-  <AppBar prominent>
+  <AppBar height="prominent">
     <AppBar>
       <AppBarNav aria-label="Navigation">
         <MenuSVGIcon />

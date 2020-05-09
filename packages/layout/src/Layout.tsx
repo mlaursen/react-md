@@ -118,7 +118,7 @@ const Layout: FC<LayoutProps> = ({
   appBarAfterNav = false,
   fixedAppBar = true,
   fixedAppBarElevation = true,
-  denseAppBar = false,
+  appBarHeight = "normal",
   navIcon: propNavIcon,
   navIconLabel = "Navigation toggle",
   navIconLabelledBy,
@@ -196,7 +196,7 @@ const Layout: FC<LayoutProps> = ({
         className={appBarClassName}
         layoutId={id}
         theme={appBarTheme}
-        dense={denseAppBar}
+        height={appBarHeight}
         fixed={fixedAppBar}
         fixedElevation={fixedAppBarElevation}
         appBarTitle={appBarTitle}
@@ -270,7 +270,13 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       fixedAppBar: PropTypes.bool,
       fixedAppBarElevation: PropTypes.bool,
-      denseAppBar: PropTypes.bool,
+      appBarHeight: PropTypes.oneOf([
+        "none",
+        "normal",
+        "dense",
+        "prominent",
+        "prominent-dense",
+      ]),
       appBarTitle: PropTypes.node,
       appBarChildren: PropTypes.node,
       navIcon: PropTypes.node,

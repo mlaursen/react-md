@@ -304,7 +304,6 @@
   .rmd-app-bar {
     @include rmd-app-bar-fixed;
     @include rmd-app-bar-themes;
-    @include rmd-app-bar-theme(height);
 
     align-items: center;
     display: flex;
@@ -315,24 +314,24 @@
     flex: 0 0 auto;
     width: 100%;
 
+    &--wrap {
+      flex-wrap: wrap;
+    }
+
+    &--normal {
+      @include rmd-app-bar-theme(height);
+    }
+
     &--dense {
       @include rmd-app-bar-theme(height, dense-height);
     }
 
     &--prominent {
       @include rmd-app-bar-theme(height, prominent-height);
-
-      flex-wrap: wrap;
     }
 
     &--prominent-dense {
       @include rmd-app-bar-theme(height, prominent-dense-height);
-    }
-
-    &--derived {
-      @include rmd-app-bar-theme(min-height, height);
-
-      height: auto;
     }
 
     &__nav {

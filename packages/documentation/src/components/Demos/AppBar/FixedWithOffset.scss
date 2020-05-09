@@ -21,7 +21,9 @@
     z-index: $rmd-app-bar-z-index - 1;
   }
 
-  .rmd-app-bar--prominent {
+  // you'd normally wrap these examples in another AppBar to get correct
+  // styling
+  .rmd-app-bar--wrap {
     @include rmd-app-bar-theme(padding-bottom, height);
   }
 

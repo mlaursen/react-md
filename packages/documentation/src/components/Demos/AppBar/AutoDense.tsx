@@ -18,7 +18,7 @@ const AutoDense: FC = () => (
     <AppBar
       id="auto-prominent-dense-app-bar"
       className="auto-dense__prominent"
-      prominent
+      height="prominent"
     >
       <AppBar>
         <AppBarNav

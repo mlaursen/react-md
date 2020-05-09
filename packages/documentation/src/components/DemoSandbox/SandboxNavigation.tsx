@@ -24,7 +24,11 @@ const SandboxNavigation: FC<SandboxNavigationProps> = ({
   onRequestClose,
 }) => {
   return (
-    <AppBar prominent dense theme="default" className={block("header")}>
+    <AppBar
+      height="prominent-dense"
+      theme="default"
+      className={block("header")}
+    >
       <AppBar>
         <MobileOnly>
           <AppBarNav

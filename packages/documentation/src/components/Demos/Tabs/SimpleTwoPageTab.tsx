@@ -30,7 +30,7 @@ const Header: FC = () => {
   const { isTablet } = useAppSize();
 
   return (
-    <AppBar theme="default" prominent derived>
+    <AppBar theme="default" height="none">
       <AppBar>
         <AppBarNav aria-label="Menu">
           <MenuSVGIcon />

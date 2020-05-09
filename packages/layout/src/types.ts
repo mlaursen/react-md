@@ -1,5 +1,5 @@
 import { CSSProperties, ElementType, ReactNode } from "react";
-import { AppBarTheme } from "@react-md/app-bar";
+import { AppBarHeight, AppBarTheme } from "@react-md/app-bar";
 import { BaseTreeItem, TreeData, TreeProps } from "@react-md/tree";
 
 /**
@@ -192,12 +192,9 @@ export interface LayoutAppBarProps
   fixedAppBarElevation?: boolean;
 
   /**
-   * Boolean if the main app bar should be dense.
-   *
-   * Note: this prop isn't super helpful since the dense theme is normally
-   * automatically applied via media queries.
+   * The height to use for the main `AppBar`.
    */
-  denseAppBar?: boolean;
+  appBarHeight?: AppBarHeight;
 
   /**
    * An optional title to display in the main app bar. Note: this will always

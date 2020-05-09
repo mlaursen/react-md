@@ -12,6 +12,32 @@ import {
 export type AppBarPosition = "top" | "bottom";
 export type AppBarTheme = "clear" | "primary" | "secondary" | "default";
 
+/**
+ * `AppBar`s have multiple heights available:
+ *
+ * - `"none"` - the height is derived by the `children` of the `AppBar`
+ * - `"normal"` - the height is set to a static height of `$rmd-app-bar-height`
+ * - `"prominent"` - the height is set to a static height of
+ *   `$rmd-app-bar-prominent-height`
+ * - `"dense"` - the height is set to a static height of
+ *   `$rmd-app-bar-dense-height`.
+ * - `"prominent-dense"` - the height is set to a static height of
+ *   `$rmd-app-bar-prominent-dense-height`
+ *
+ * Note: The `"dense"` specs can automatically be enabled with the
+ * `rmd-app-bar-dense-theme` mixin instead of changing this value
+ *
+ * You'll normally want to use the `"normal"` or `"prominent"` height values for
+ * your app, but the `"none"` value is useful if you want to use the `AppBar`
+ * for styling purposes only for other components like `Tabs`.
+ */
+export type AppBarHeight =
+  | "none"
+  | "normal"
+  | "prominent"
+  | "dense"
+  | "prominent-dense";
+
 export interface AppBarProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * The component for the `AppBar` to render as. This should normally either
@@ -42,21 +68,22 @@ export interface AppBarProps extends HTMLAttributes<HTMLDivElement> {
   fixedElevation?: boolean;
 
   /**
-   * Boolean if the `AppBar` should use the `dense` spec. This prop can be used
-   * along with the `prominent` prop to create a prominent and dense `AppBar`.
+   * The height to use for the app bar. See the `AppBarHeight` type for more
+   * information.
    */
-  dense?: boolean;
-
-  /**
-   * Boolean if the `AppBar` should use the `prominent` spec. This prop can be
-   * used along with the `dense` prop to create a prominent and dense `AppBar`.
-   */
-  prominent?: boolean;
+  height?: AppBarHeight;
 
   /**
    * The theme to apply to the `AppBar`.
    */
   theme?: AppBarTheme;
+
+  /**
+   * Boolean if the content of the `AppBar` should be allowed to wrap. When this
+   * is omitted, it will be considered true for `"none"`, `"prominent"` and
+   * `"prominent-dense"` heights
+   */
+  flexWrap?: boolean;
 
   /**
    * Boolean if the `AppBarNav`, `AppBarTitle`, and `AppBarActions` should
@@ -67,17 +94,6 @@ export interface AppBarProps extends HTMLAttributes<HTMLDivElement> {
    * `"primary"`, the defined primary text color will not be inherited.
    */
   inheritColor?: boolean;
-
-  /**
-   * Boolean if the height should be derived from the content's size instead of
-   * having static fixed heights. This will update the `height` to be `auto` and
-   * instead set the `min-height` to the current "static" height. This is great
-   * when you want to add tabs or other elements into the `AppBar`.
-   *
-   * Note: Enabling this prop will **prevent the `rmd-app-bar-offset`
-   * functionality** since the height is no longer static.
-   */
-  derived?: boolean;
 }
 
 const block = bem("rmd-app-bar");
@@ -97,13 +113,14 @@ const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
     children,
     theme: propTheme = "primary",
     component: propComponent = "header",
-    dense = false,
-    prominent = false,
-    derived = false,
+    height = "normal",
     fixed = false,
     fixedPosition = "top",
     fixedElevation = true,
     inheritColor,
+    flexWrap = height === "none" ||
+      height === "prominent" ||
+      height === "prominent-dense",
     ...remaining
   },
   ref
@@ -132,10 +149,8 @@ const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
           className={cn(
             block({
               [theme]: theme !== "clear",
-              dense: dense && !prominent,
-              prominent,
-              "prominent-dense": dense && prominent,
-              derived,
+              [height]: height !== "none",
+              wrap: flexWrap,
               fixed,
               [fixedPosition]: fixed,
               "fixed-elevation": fixed && fixedElevation,
@@ -162,10 +177,15 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.func,
         PropTypes.object,
       ]),
+      height: PropTypes.oneOf([
+        "none",
+        "normal",
+        "dense",
+        "prominent",
+        "prominent-dense",
+      ]),
+      flexWrap: PropTypes.bool,
       children: PropTypes.node,
-      dense: PropTypes.bool,
-      prominent: PropTypes.bool,
-      derived: PropTypes.bool,
       fixed: PropTypes.bool,
       fixedPosition: PropTypes.oneOf(["top", "bottom"]),
       fixedElevation: PropTypes.bool,

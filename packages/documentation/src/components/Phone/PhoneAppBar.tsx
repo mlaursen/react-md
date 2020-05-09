@@ -8,18 +8,30 @@ import StatusBar from "./StatusBar";
 
 const block = bem("phone");
 
-const PhoneAppBar: FC<AppBarProps> = ({ className, children, ...props }) => {
+const PhoneAppBar: FC<AppBarProps> = ({
+  className,
+  children,
+  height: propHeight,
+  ...props
+}) => {
   const { id } = usePhoneContext();
   const { isPhone } = useAppSize();
+
+  let height = propHeight ?? (isPhone ? "normal" : "dense");
+  if (!isPhone && height === "prominent") {
+    // I don't have automatic dense spec in css for this since it makes demos
+    // difficult, so have to do it in js
+    height = "prominent-dense";
+  }
 
   return (
     <AppBar
       {...props}
       id={`${id}-app-bar`}
       className={cn(block("app-bar"), className)}
+      height={height}
       fixed
       fixedElevation={false}
-      dense={!isPhone}
     >
       <StatusBar id={id} isPhone={isPhone} />
       {children}

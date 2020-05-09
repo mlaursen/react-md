@@ -58,7 +58,7 @@ describe("AppBar", () => {
     expect(classList.contains("rmd-app-bar--primary")).toBe(false);
     expect(classList.contains("rmd-app-bar--secondary")).toBe(false);
     expect(classList.contains("rmd-app-bar--default")).toBe(false);
-    expect(getAppBar().className).toBe("rmd-app-bar");
+    expect(getAppBar().className).toBe("rmd-app-bar rmd-app-bar--normal");
   });
 
   it("should apply the correct dense and prominent class names", () => {
@@ -70,22 +70,22 @@ describe("AppBar", () => {
     expect(classList.contains("rmd-app-bar--prominent")).toBe(false);
     expect(classList.contains("rmd-app-bar--prominent-dense")).toBe(false);
 
-    rerender(<AppBar dense />);
+    rerender(<AppBar height="dense" />);
     classList = getClassList();
     expect(classList.contains("rmd-app-bar--dense")).toBe(true);
     expect(classList.contains("rmd-app-bar--prominent")).toBe(false);
     expect(classList.contains("rmd-app-bar--prominent-dense")).toBe(false);
 
-    rerender(<AppBar prominent />);
+    rerender(<AppBar height="prominent" />);
     classList = getClassList();
     expect(classList.contains("rmd-app-bar--dense")).toBe(false);
     expect(classList.contains("rmd-app-bar--prominent")).toBe(true);
     expect(classList.contains("rmd-app-bar--prominent-dense")).toBe(false);
 
-    rerender(<AppBar prominent dense />);
+    rerender(<AppBar height="prominent-dense" />);
     classList = getClassList();
     expect(classList.contains("rmd-app-bar--dense")).toBe(false);
-    expect(classList.contains("rmd-app-bar--prominent")).toBe(true);
+    expect(classList.contains("rmd-app-bar--prominent")).toBe(false);
     expect(classList.contains("rmd-app-bar--prominent-dense")).toBe(true);
   });
 
@@ -169,7 +169,7 @@ describe("AppBar", () => {
 
   it("should render child app bars as divs to help with stacked layouts", () => {
     const { container } = render(
-      <AppBar id="app-bar" prominent>
+      <AppBar id="app-bar" height="prominent">
         <AppBar id="app-bar-row-1">Here is some content on a row</AppBar>
         <AppBar id="app-bar-row-2">Second row</AppBar>
       </AppBar>

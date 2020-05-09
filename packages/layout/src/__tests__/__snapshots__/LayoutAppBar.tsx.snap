@@ -3,7 +3,7 @@
 exports[`LayoutAppBar should render correctly 1`] = `
 <div>
   <header
-    class="rmd-app-bar rmd-app-bar--primary rmd-layout-header"
+    class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--normal rmd-layout-header"
     id="layout-header"
   >
     <button

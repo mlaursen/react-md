@@ -14,7 +14,7 @@ import {
 const block = bem("progress-suspense");
 
 const WithSuspenseAppBar: FC = () => (
-  <PhoneAppBar prominent theme="primary">
+  <PhoneAppBar height="prominent" theme="primary">
     <AppBar component="div" theme="clear">
       <ClosePhone />
       <AppBarAction first id="with-suspense-share" aria-label="Share">

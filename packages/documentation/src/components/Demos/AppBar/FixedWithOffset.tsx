@@ -8,6 +8,7 @@ import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
+  AppBarHeight,
 } from "@react-md/app-bar";
 import {
   MenuSVGIcon,
@@ -21,11 +22,12 @@ import AppBarTitle from "components/AppBarTitle";
 import "./FixedWithOffset.scss";
 
 interface ExampleProps {
-  dense?: boolean;
-  prominent?: boolean;
+  height?: AppBarHeight;
 }
 
-const Example: FC<ExampleProps> = ({ dense, prominent }) => {
+const Example: FC<ExampleProps> = ({ height }) => {
+  const dense = height === "dense" || height === "prominent-dense";
+  const prominent = height === "prominent" || height === "prominent-dense";
   const id = `fixed-with-offset${dense ? "-dense" : ""}${
     prominent ? "-prominent" : ""
   }`;
@@ -38,9 +40,10 @@ const Example: FC<ExampleProps> = ({ dense, prominent }) => {
   if (prominent) {
     title = `${title ? `${title} and ` : ""} Prominent`;
   }
+
   return (
     <div id={id} className="fixed-with-offset">
-      <AppBar id={`${id}-bar`} fixed dense={dense} prominent={prominent}>
+      <AppBar id={`${id}-bar`} fixed height={height}>
         <AppBarNav id={`${id}-nav`} aria-label="Navigation">
           <MenuSVGIcon />
         </AppBarNav>
@@ -105,9 +108,9 @@ const Example: FC<ExampleProps> = ({ dense, prominent }) => {
 const FixedWithOffset: FC = () => (
   <>
     <Example />
-    <Example dense />
-    <Example prominent />
-    <Example dense prominent />
+    <Example height="dense" />
+    <Example height="prominent" />
+    <Example height="prominent-dense" />
   </>
 );
 

@@ -23,7 +23,7 @@ const StatusBar: FC<StatusBarProps> = ({ id, isPhone }) => {
     <AppBar
       id={`${id}-status-bar`}
       className={block("status-bar")}
-      dense
+      height="dense"
       theme="clear"
       component="div"
     >

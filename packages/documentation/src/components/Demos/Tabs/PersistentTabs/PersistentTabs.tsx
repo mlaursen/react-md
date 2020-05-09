@@ -13,7 +13,7 @@ const PersistentTabs: FC = () => {
   const [persistent, handleChange] = useChecked(false);
   return (
     <TabsManager tabs={tabs} tabsId="persistent-tabs">
-      <AppBar theme="default" derived prominent>
+      <AppBar theme="default" height="none">
         <AppBar>
           <Checkbox
             id="persistent-tab-enable"
