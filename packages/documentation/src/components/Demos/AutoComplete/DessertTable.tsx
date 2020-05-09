@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { Table, TableBody, TableRow, TableCell } from "@react-md/table";
 import { CrossFade } from "@react-md/transition";
-import { Text } from "@react-md/typography";
 
 import { Dessert } from "constants/desserts";
 
@@ -11,7 +10,7 @@ export interface DessertTableProps {
 
 const DessertTable: FC<DessertTableProps> = ({ dessert }) => {
   if (!dessert) {
-    return <Text style={{ margin: "1rem" }}>No dessert chosen.</Text>;
+    return null;
   }
 
   const {

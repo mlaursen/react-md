@@ -32,6 +32,7 @@ const HighlightMatches: FC = () => {
       onPhoneClose={() => setDessert(null)}
       disableAppBar
       disableContent={isPhone}
+      contentClassName="autocomplete-listbox-content"
       appBar={
         <PhoneAppBar>
           <AppBar>
@@ -60,11 +61,9 @@ const HighlightMatches: FC = () => {
         </PhoneAppBar>
       }
     >
-      {dessert && (
-        <Text type="headline-6" style={{ margin: "1rem" }}>
-          Nutrition
-        </Text>
-      )}
+      <Text type="headline-6" style={{ margin: "1rem" }}>
+        {dessert ? "Nutrition" : "No Dessert Chosen"}
+      </Text>
       <DessertTable dessert={dessert} />
       <PhoneOnly>
         <ClosePhone id="phone-close" floating />

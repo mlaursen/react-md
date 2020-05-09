@@ -18,3 +18,9 @@
   left: 0 !important;
   right: 0 !important;
 }
+
+.autocomplete-listbox-content {
+  @include rmd-utils-phone-media {
+    @include rmd-app-bar-theme(padding-top, height);
+  }
+}
