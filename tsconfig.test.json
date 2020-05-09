@@ -3,6 +3,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "composite": false,
     "baseUrl": ".",
     "paths": {
       "constants/*": ["packages/documentation/src/constants/*"],
@@ -13,6 +14,10 @@
       "utils/*": ["packages/documentation/src/utils/*"]
     }
   },
+  "files": [
+    "packages/documentation/src/types/next.d.ts",
+    "packages/documentation/src/types/custom.d.ts"
+  ],
   "include": [
     "packages/*/src"
   ],

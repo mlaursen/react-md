@@ -24,7 +24,7 @@
     "lint-scripts": "eslint \"packages/*/+(src|scripts)/**/*.{ts,tsx,js,jsx}\"",
     "lint-styles": "sass-lint -c .sass-lint.yml -v",
     "lint": "npm-run-all lint-scripts lint-styles typecheck",
-    "test": "jest --config jest.config.js",
+    "test": "jest",
     "format": "prettier --write \"packages/*/{src,components,constants,hooks,pages,scripts,server,utils}/**/*.{ts,tsx,scss,js,jsx}\"",
     "clean": "dev-utils clean",
     "clean-dev-utils": "yarn workspace @react-md/dev-utils clean",
