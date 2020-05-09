@@ -36,6 +36,13 @@ export interface FocusContainerOptionsProps {
   disableFocusOnMount?: boolean;
 
   /**
+   * Boolean if the focus behavior should be disabled. This should really be
+   * used if you are using nested focus containers for temporary material (such
+   * as dialogs or menus).
+   */
+  disableTabFocusWrap?: boolean;
+
+  /**
    * Boolean if the element that gets focused on mount should try to not scroll
    * the focused element into view which is the default behavior. This should
    * normally remain `false`, but it is useful to set to `true` if the
@@ -77,13 +84,6 @@ export interface FocusContainerOptionsProps {
 export interface FocusContainerProps
   extends FocusContainerOptionsProps,
     HTMLAttributes<HTMLElement> {
-  /**
-   * Boolean if the focus behavior should be disabled. This should really be
-   * used if you are using nested focus containers for temporary material (such
-   * as dialogs or menus).
-   */
-  disableTabFocusWrap?: boolean;
-
   /**
    * The component to render the focus container as. This should really not be
    * used as it is more for internal usage. The only base requirements for this

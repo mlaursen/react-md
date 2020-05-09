@@ -363,12 +363,12 @@ const sassdoc: PackageSassDoc = {
     "react-md-app-bar": {
       name: "react-md-app-bar",
       description: "Creates all the styles for the app bar package.\n",
-      source: "packages/app-bar/src/_mixins.scss#L301-L352",
+      source: "packages/app-bar/src/_mixins.scss#L301-L351",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "app-bar",
       code: "@mixin react-md-app-bar { … }",
       sourceCode:
-        "@mixin react-md-app-bar {\n  @include rmd-theme-create-root-theme($rmd-app-bar-theme-values, app-bar);\n\n  .rmd-app-bar {\n    @include rmd-app-bar-fixed;\n    @include rmd-app-bar-themes;\n    @include rmd-app-bar-theme(height);\n\n    align-items: center;\n    display: flex;\n    // since app bars can appear a lot in full page dialogs, setting these flex\n    // values allows it be be a direct replacement of the `DialogHeader`\n    // component without all the offsets and additional styles needed for fixed\n    // app bars.\n    flex: 0 0 auto;\n    width: 100%;\n\n    &--dense {\n      @include rmd-app-bar-theme(height, dense-height);\n    }\n\n    &--prominent {\n      @include rmd-app-bar-theme(height, prominent-height);\n\n      flex-wrap: wrap;\n    }\n\n    &--prominent-dense {\n      @include rmd-app-bar-theme(height, prominent-dense-height);\n    }\n\n    &--derived {\n      @include rmd-app-bar-theme(min-height, height);\n\n      height: auto;\n    }\n\n    &__nav {\n      @include rmd-app-bar-nav;\n    }\n\n    &__title {\n      @include rmd-app-bar-title;\n    }\n\n    &__action {\n      @include rmd-app-bar-action;\n    }\n  }\n\n  @include rmd-app-bar-offsets;\n}\n",
+        "@mixin react-md-app-bar {\n  @include rmd-theme-create-root-theme($rmd-app-bar-theme-values, app-bar);\n\n  .rmd-app-bar {\n    @include rmd-app-bar-fixed;\n    @include rmd-app-bar-themes;\n\n    align-items: center;\n    display: flex;\n    // since app bars can appear a lot in full page dialogs, setting these flex\n    // values allows it be be a direct replacement of the `DialogHeader`\n    // component without all the offsets and additional styles needed for fixed\n    // app bars.\n    flex: 0 0 auto;\n    width: 100%;\n\n    &--wrap {\n      flex-wrap: wrap;\n    }\n\n    &--normal {\n      @include rmd-app-bar-theme(height);\n    }\n\n    &--dense {\n      @include rmd-app-bar-theme(height, dense-height);\n    }\n\n    &--prominent {\n      @include rmd-app-bar-theme(height, prominent-height);\n    }\n\n    &--prominent-dense {\n      @include rmd-app-bar-theme(height, prominent-dense-height);\n    }\n\n    &__nav {\n      @include rmd-app-bar-nav;\n    }\n\n    &__title {\n      @include rmd-app-bar-title;\n    }\n\n    &__action {\n      @include rmd-app-bar-action;\n    }\n  }\n\n  @include rmd-app-bar-offsets;\n}\n",
       type: "mixin",
     },
   },

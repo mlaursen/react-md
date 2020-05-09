@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React, { CSSProperties, forwardRef, ReactNode, useMemo } from "react";
+import React, { forwardRef, ReactNode, useMemo, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -8,8 +8,7 @@ import { highlightCode } from "components/Markdown/utils";
 import Code from "./Code";
 import LineNumbers from "./LineNumbers";
 
-export interface CodeBlockProps {
-  style?: CSSProperties;
+export interface CodeBlockProps extends HTMLAttributes<HTMLPreElement> {
   className?: string;
   language?: string;
   children: ReactNode;
@@ -21,12 +20,12 @@ const block = bem("code");
 
 export default forwardRef<HTMLPreElement, CodeBlockProps>(function CodeBlock(
   {
-    style,
     className,
     language = "markdown",
     children: propChildren,
     highlight = true,
     lineNumbers = false,
+    ...props
   },
   ref
 ) {
@@ -46,8 +45,8 @@ export default forwardRef<HTMLPreElement, CodeBlockProps>(function CodeBlock(
   }, [propChildren, highlight, language]);
   return (
     <pre
+      {...props}
       ref={ref}
-      style={style}
       className={cn(
         block({ block: true, counted: lineNumbers }),
         `language-${language}`,

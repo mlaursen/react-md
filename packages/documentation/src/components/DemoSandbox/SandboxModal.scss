@@ -9,8 +9,18 @@
   }
 
   &__code {
+    @include rmd-states-focus-shadow;
+    @include rmd-utils-hide-focus-outline;
+
     flex-grow: 1;
     margin: 0;
+
+    &::before {
+      @include rmd-utils-pseudo-element($position: fixed);
+      @include rmd-app-bar-theme(top, prominent-dense-height);
+
+      margin: inherit;
+    }
 
     &--offset {
       @include rmd-utils-rtl {

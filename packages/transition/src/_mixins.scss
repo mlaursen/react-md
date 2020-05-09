@@ -128,12 +128,6 @@
     transition-property: max-height, padding-bottom, padding-top;
     will-change: max-height, padding-bottom, padding-top;
 
-    &[hidden] {
-      // sass-lint:disable-block no-important
-      // need to add this back in just incase the element has a custom display
-      display: none !important;
-    }
-
     &--no-overflow {
       overflow: hidden;
     }

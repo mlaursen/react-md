@@ -194,8 +194,10 @@
 /// parent to have `position: relative;` to work.
 ///
 /// @param {Number} z-index [0] - The z-index to use.
-@mixin rmd-utils-pseudo-element($z-index: 0) {
-  @include rmd-utils-full-screen(absolute);
+/// @param {String} position [absolute] - CSS position to apply to the pseudo
+/// element. This should normally be `absolute` or `fixed`
+@mixin rmd-utils-pseudo-element($z-index: 0, $position: absolute) {
+  @include rmd-utils-full-screen($position);
 
   border-radius: inherit;
   content: '';
@@ -582,6 +584,14 @@
     @if mixin-exists(rmd-typography-base) {
       @include rmd-typography-base;
     }
+  }
+
+  // this is required since this _should_ be the default behavior, but if you've
+  // manually set a `display` value on an element, it will override this
+  // behavior.
+  [hidden] {
+    // sass-lint:disable-block no-important
+    display: none !important;
   }
 
   body {

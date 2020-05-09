@@ -123,7 +123,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-collapse",
       description:
         "Creates the styles for the Collapse component within react-md\n",
-      source: "packages/transition/src/_mixins.scss#L126-L149",
+      source: "packages/transition/src/_mixins.scss#L126-L143",
       usedBy: [
         {
           name: "react-md-transition",
@@ -134,14 +134,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "transition",
       code: "@mixin rmd-collapse { … }",
       sourceCode:
-        "@mixin rmd-collapse {\n  .rmd-collapse {\n    transition-property: max-height, padding-bottom, padding-top;\n    will-change: max-height, padding-bottom, padding-top;\n\n    &[hidden] {\n      // sass-lint:disable-block no-important\n      // need to add this back in just incase the element has a custom display\n      display: none !important;\n    }\n\n    &--no-overflow {\n      overflow: hidden;\n    }\n\n    &--enter {\n      @include rmd-transition($rmd-collapse-enter-transition-func);\n    }\n\n    &--leave {\n      @include rmd-transition($rmd-collapse-leave-transition-func);\n    }\n  }\n}\n",
+        "@mixin rmd-collapse {\n  .rmd-collapse {\n    transition-property: max-height, padding-bottom, padding-top;\n    will-change: max-height, padding-bottom, padding-top;\n\n    &--no-overflow {\n      overflow: hidden;\n    }\n\n    &--enter {\n      @include rmd-transition($rmd-collapse-enter-transition-func);\n    }\n\n    &--leave {\n      @include rmd-transition($rmd-collapse-leave-transition-func);\n    }\n  }\n}\n",
       type: "mixin",
     },
     "rmd-cross-fade": {
       name: "rmd-cross-fade",
       description:
         "Creates the cross fade animation styles. This animation is usually used when loading in new parts of a page or page transitions as there is no exit animation by default.\n",
-      source: "packages/transition/src/_mixins.scss#L154-L168",
+      source: "packages/transition/src/_mixins.scss#L148-L162",
       usedBy: [
         {
           name: "react-md-transition",
@@ -159,7 +159,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-transition",
       description:
         "Creates the transition theme css variables as well as the styles for components in the transition package.\n",
-      source: "packages/transition/src/_mixins.scss#L235-L239",
+      source: "packages/transition/src/_mixins.scss#L229-L233",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "transition",
       code: "@mixin react-md-transition { … }",

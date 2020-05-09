@@ -60,6 +60,9 @@ const CodePreview: FC<CodePreviewProps> = ({
       language={language}
       className={block("code", { offset })}
       lineNumbers
+      // need to make this focusable so keyboard users can scoll
+      // the page
+      tabIndex={0}
     >
       {content}
     </CodeBlock>

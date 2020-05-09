@@ -7,7 +7,7 @@ import {
   TreeData,
   getItemsFrom,
 } from "@react-md/tree";
-import { bem } from "@react-md/utils";
+import { bem, useIsUserInteractionMode } from "@react-md/utils";
 
 import { FileTreeData } from "./useFiles";
 
@@ -49,6 +49,7 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
 
     return Array.from(new Set(["src", "public", ...children]));
   }, [folders, files, fileName]);
+  const isKeyboard = useIsUserInteractionMode("keyboard");
 
   return (
     <Sheet
@@ -64,6 +65,7 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
       unmountOnExit={!inline}
       disableScrollLock
       disableTransition={disableTransition}
+      disableTabFocusWrap={isKeyboard}
     >
       <Tree
         id="code-previewer-files"
@@ -76,6 +78,7 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
         labelKey="children"
         valueKey="children"
         expanderIcon={<KeyboardArrowDownSVGIcon />}
+        tabIndex={visible ? 0 : -1}
       />
     </Sheet>
   );

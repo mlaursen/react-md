@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from "react";
+import React, { forwardRef, useRef, useState, useCallback } from "react";
 import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { Dialog, DialogProps } from "@react-md/dialog";
@@ -101,6 +101,8 @@ const Sheet = forwardRef<HTMLDivElement, StrictProps>(function Sheet(
     appear = false,
     enter = true,
     exit = true,
+    onExited,
+    hidden: propHidden,
     timeout = DEFAULT_SHEET_TIMEOUT,
     classNames = DEFAULT_SHEET_CLASSNAMES,
     disableTransition = false,
@@ -128,6 +130,24 @@ const Sheet = forwardRef<HTMLDivElement, StrictProps>(function Sheet(
     offscreen.current = false;
   }
 
+  // when sheets are not unmounted on exit, need to set it to hidden so that
+  // tabbing no longer focuses any of the elements inside
+  const [hidden, setHidden] = useState(!visible && !mountOnEnter);
+  if (hidden && visible) {
+    setHidden(false);
+  }
+
+  const handleExited = useCallback(
+    (node: HTMLElement) => {
+      if (onExited) {
+        onExited(node);
+      }
+
+      setHidden(true);
+    },
+    [onExited]
+  );
+
   return (
     <Dialog
       {...props}
@@ -149,6 +169,7 @@ const Sheet = forwardRef<HTMLDivElement, StrictProps>(function Sheet(
         }),
         className
       )}
+      hidden={propHidden ?? hidden}
       overlay={overlay}
       overlayClassName={cn("rmd-sheet-overlay", overlayClassName)}
       component={component}
@@ -161,6 +182,7 @@ const Sheet = forwardRef<HTMLDivElement, StrictProps>(function Sheet(
       disableTransition={disableTransition}
       mountOnEnter={mountOnEnter}
       unmountOnExit={unmountOnExit}
+      onExited={handleExited}
       portal={portal}
       overlayHidden={overlayHidden}
       defaultFocus={defaultFocus}
@@ -244,6 +266,7 @@ if (process.env.NODE_ENV !== "production") {
       horizontalSize: PropTypes.oneOf(["none", "media", "touch", "static"]),
       verticalSize: PropTypes.oneOf(["none", "touch", "recommended"]),
       role: PropTypes.oneOf(["dialog", "menu", "none"]),
+      hidden: PropTypes.bool,
       component: PropTypes.oneOf(["div", "nav"]),
     };
   } catch (e) {}

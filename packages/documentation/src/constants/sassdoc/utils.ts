@@ -308,7 +308,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-pseudo-element",
       description:
         "Creates the styles to apply to a pseudo element (`::before` or `::after`) so that it spans the entire size of the container element. This is really useful for focus effects or other interaction states. This relies on the parent to have `position: relative;` to work.",
-      source: "packages/utils/src/_mixins.scss#L197-L204",
+      source: "packages/utils/src/_mixins.scss#L199-L206",
       usedBy: [
         {
           name: "rmd-states-surface-base",
@@ -322,9 +322,10 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "utils",
-      code: "@mixin rmd-utils-pseudo-element($z-index: 0) { … }",
+      code:
+        "@mixin rmd-utils-pseudo-element($z-index: 0, $position: absolute) { … }",
       sourceCode:
-        '@mixin rmd-utils-pseudo-element($z-index: 0) {\n  @include rmd-utils-full-screen(absolute);\n\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: $z-index;\n}\n',
+        '@mixin rmd-utils-pseudo-element($z-index: 0, $position: absolute) {\n  @include rmd-utils-full-screen($position);\n\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: $z-index;\n}\n',
       type: "mixin",
       parameters: [
         {
@@ -333,13 +334,20 @@ const sassdoc: PackageSassDoc = {
           default: "0",
           description: "The z-index to use.",
         },
+        {
+          type: "String",
+          name: "position",
+          default: "absolute",
+          description:
+            "CSS position to apply to the pseudo element. This should normally be `absolute` or `fixed`",
+        },
       ],
     },
     "rmd-utils-sr-only": {
       name: "rmd-utils-sr-only",
       description:
         "Creates styles so that an element is visible only for screen readers.",
-      source: "packages/utils/src/_mixins.scss#L232-L253",
+      source: "packages/utils/src/_mixins.scss#L234-L255",
       links: [
         {
           name: "",
@@ -381,7 +389,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-hide-scrollbar",
       description:
         "This mixin will hide the scrollbar for an element but still allow scrolling by using the scrollbar-width property along with the -webkit-scrollbar pseudo selector.  If on a non-MacOS and the horizontal scrollbars were hidden, the user can still scroll by holding shift while scrolling.\n\nNote: This only works due to the limited browser support of this library. If you need to support older browsers, don't use this.\n",
-      source: "packages/utils/src/_mixins.scss#L263-L270",
+      source: "packages/utils/src/_mixins.scss#L265-L272",
       links: [{ name: "", href: "https://caniuse.com/#feat=css-scrollbar" }],
       packageName: "utils",
       code: "@mixin rmd-utils-hide-scrollbar { … }",
@@ -393,7 +401,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-phone-media",
       description:
         "Creates a media query so that only phones will be targeted with the styles.\nThis media query **will stop** at the phone's max width instead of being a `min-width` query since it would be better to just apply the phone styles as a base and use the tablet or desktop min-width queries for additional overrides.\n",
-      source: "packages/utils/src/_mixins.scss#L277-L281",
+      source: "packages/utils/src/_mixins.scss#L279-L283",
       packageName: "utils",
       code: "@mixin rmd-utils-phone-media { … }",
       sourceCode:
@@ -404,7 +412,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-tablet-media",
       description:
         "Creates a media query so devices targeted at the min-width of a tablet and above will gain these styles.\n",
-      source: "packages/utils/src/_mixins.scss#L285-L289",
+      source: "packages/utils/src/_mixins.scss#L287-L291",
       packageName: "utils",
       code: "@mixin rmd-utils-tablet-media { … }",
       sourceCode:
@@ -415,7 +423,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-tablet-only-media",
       description:
         "Creates a media query so that screen sizes between the min and max width of a tablet will only gain these styles.\n",
-      source: "packages/utils/src/_mixins.scss#L293-L297",
+      source: "packages/utils/src/_mixins.scss#L295-L299",
       packageName: "utils",
       code: "@mixin rmd-utils-tablet-only-media { … }",
       sourceCode:
@@ -426,7 +434,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-desktop-media",
       description:
         "Creates a media query so that screen sizes matching at least the min width for a desktop will gain these styles.\n",
-      source: "packages/utils/src/_mixins.scss#L301-L305",
+      source: "packages/utils/src/_mixins.scss#L303-L307",
       packageName: "utils",
       code: "@mixin rmd-utils-desktop-media { … }",
       sourceCode:
@@ -437,7 +445,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-large-desktop-media",
       description:
         "Creates a media query so that screen sizes matching at least the min width for a large desktop will gain these styles.\n",
-      source: "packages/utils/src/_mixins.scss#L309-L313",
+      source: "packages/utils/src/_mixins.scss#L311-L315",
       packageName: "utils",
       code: "@mixin rmd-utils-large-desktop-media { … }",
       sourceCode:
@@ -448,7 +456,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-touch-only",
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app on a touch device.\n",
-      source: "packages/utils/src/_mixins.scss#L317-L321",
+      source: "packages/utils/src/_mixins.scss#L319-L323",
       packageName: "utils",
       code: "@mixin rmd-utils-touch-only { … }",
       sourceCode:
@@ -459,7 +467,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-keyboard-only",
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app with a keyboard.\n",
-      source: "packages/utils/src/_mixins.scss#L325-L329",
+      source: "packages/utils/src/_mixins.scss#L327-L331",
       packageName: "utils",
       code: "@mixin rmd-utils-keyboard-only { … }",
       sourceCode:
@@ -470,7 +478,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-mouse-only",
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app with a mouse.\n",
-      source: "packages/utils/src/_mixins.scss#L333-L337",
+      source: "packages/utils/src/_mixins.scss#L335-L339",
       packageName: "utils",
       code: "@mixin rmd-utils-mouse-only { … }",
       sourceCode:
@@ -481,7 +489,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid",
       description:
         "Generates a new grid based on the provided padding, margin, and columns.",
-      source: "packages/utils/src/_mixins.scss#L360-L397",
+      source: "packages/utils/src/_mixins.scss#L362-L399",
       packageName: "utils",
       code:
         "@mixin rmd-grid($padding: $rmd-grid-padding, $gutter: $rmd-grid-cell-margin, $phone-columns: $rmd-grid-phone-columns, $tablet-columns: $rmd-grid-tablet-columns, $desktop-columns: $rmd-grid-desktop-columns, $large-desktop-columns: $rmd-grid-large-desktop-columns) { … }",
@@ -537,7 +545,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-full",
       description:
         "This mixin is just a nice way to quickly make a cell span the entire width of the grid.\n\nNote: if you set the number of columns for phone or tablet to `1`, you'll need to also wrap this in the `@include rmd-utils-tablet-media` or `@include rmd-utils-desktop-media` mixins respectively.\n",
-      source: "packages/utils/src/_mixins.scss#L405-L407",
+      source: "packages/utils/src/_mixins.scss#L407-L409",
       packageName: "utils",
       code: "@mixin rmd-grid-cell-full { … }",
       sourceCode:
@@ -548,7 +556,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-size",
       description:
         "A mixin that allows you to override the size of a cell within the `Grid` component manually.  This is useful if you want to specify sizing without using the `GridCell` component wrapper.",
-      source: "packages/utils/src/_mixins.scss#L424-L451",
+      source: "packages/utils/src/_mixins.scss#L426-L453",
       packageName: "utils",
       code:
         "@mixin rmd-grid-cell-size($size, $phone-columns: $rmd-grid-phone-columns, $tablet-columns: $rmd-grid-tablet-columns, $desktop-columns: $rmd-grid-desktop-columns) { … }",
@@ -589,7 +597,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell-size",
       description:
         "A simple mixin that will allow you to add the current grid list cell size to any property.",
-      source: "packages/utils/src/_mixins.scss#L475-L486",
+      source: "packages/utils/src/_mixins.scss#L477-L488",
       usedBy: [
         { name: "rmd-grid-list-cell", type: "mixin", packageName: "utils" },
       ],
@@ -625,7 +633,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell",
       description:
         "Adds the current grid list cell's size to any element if you don't want to use the `GridListCell` component for sizing. This will **always** apply the `margin` and `width`, but the `height` can be opted-out if desired.",
-      source: "packages/utils/src/_mixins.scss#L500-L511",
+      source: "packages/utils/src/_mixins.scss#L502-L513",
       packageName: "utils",
       code:
         "@mixin rmd-grid-list-cell($margin: $rmd-grid-list-cell-margin, $max-size: $rmd-grid-list-cell-max-size, $include-height: true) { … }",
@@ -660,19 +668,19 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-base",
       description:
         "This is a small utility function that helps set up your react-md app.\n\nThis will:\n- update the `box-sizing` to be `border-box` (helpful for calculation positions and sizing)\n- remove the margin and padding from the `html` and `body`\n- apply the base background color and text colors to the `html` tag if the `@react-md/theme` package\n  has been correctly included\n- apply the base typography to the `html` element if the `@react-md/typography` package\n  has been correctly included\n",
-      source: "packages/utils/src/_mixins.scss#L560-L596",
+      source: "packages/utils/src/_mixins.scss#L562-L606",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "utils",
       code: "@mixin rmd-utils-base { … }",
       sourceCode:
-        "@mixin rmd-utils-base {\n  *,\n  *::before,\n  *::after {\n    // setting everything to border-box for easier positioning\n    // and calculations\n    box-sizing: border-box;\n  }\n\n  html,\n  body {\n    height: 100%;\n    margin: 0;\n    padding: 0;\n  }\n\n  html {\n    @if mixin-exists(rmd-theme) {\n      @include rmd-theme(background-color, background);\n      @include rmd-theme(color, text-primary-on-background);\n    }\n\n    @if mixin-exists(rmd-typography-base) {\n      @include rmd-typography-base;\n    }\n  }\n\n  body {\n    &.rmd-utils--touch {\n      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n\n      // this allows for click events to be bubbleable on iOS to the root document. Without this,\n      // all the `onOutsideClick` behavior won't work.\n      cursor: pointer;\n    }\n  }\n}\n",
+        "@mixin rmd-utils-base {\n  *,\n  *::before,\n  *::after {\n    // setting everything to border-box for easier positioning\n    // and calculations\n    box-sizing: border-box;\n  }\n\n  html,\n  body {\n    height: 100%;\n    margin: 0;\n    padding: 0;\n  }\n\n  html {\n    @if mixin-exists(rmd-theme) {\n      @include rmd-theme(background-color, background);\n      @include rmd-theme(color, text-primary-on-background);\n    }\n\n    @if mixin-exists(rmd-typography-base) {\n      @include rmd-typography-base;\n    }\n  }\n\n  // this is required since this _should_ be the default behavior, but if you've\n  // manually set a `display` value on an element, it will override this\n  // behavior.\n  [hidden] {\n    // sass-lint:disable-block no-important\n    display: none !important;\n  }\n\n  body {\n    &.rmd-utils--touch {\n      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n\n      // this allows for click events to be bubbleable on iOS to the root document. Without this,\n      // all the `onOutsideClick` behavior won't work.\n      cursor: pointer;\n    }\n  }\n}\n",
       type: "mixin",
     },
     "rmd-utils-dense": {
       name: "rmd-utils-dense",
       description:
         "This mixin will attempt to apply all the available dense theme mixins that have been imported. This should normally be used within a `:root` selector and a media query.",
-      source: "packages/utils/src/_mixins.scss#L608-L632",
+      source: "packages/utils/src/_mixins.scss#L618-L642",
       packageName: "utils",
       examples: [
         {
@@ -693,7 +701,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-utils",
       description:
         "This mixin will include the styles for all packages that have been imported in your scss files. If there are missing styles, you need to make sure to correctly import that package before calling this function.\n",
-      source: "packages/utils/src/_mixins.scss#L638-L763",
+      source: "packages/utils/src/_mixins.scss#L648-L773",
       packageName: "utils",
       code: "@mixin react-md-utils { … }",
       sourceCode:

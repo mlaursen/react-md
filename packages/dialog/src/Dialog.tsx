@@ -245,6 +245,7 @@ const Dialog = forwardRef<HTMLDivElement, StrictProps>(function Dialog(
     disableScrollLock = false,
     disableEscapeClose: propDisableEscapeClose = false,
     disableFocusContainer = false,
+    disableTabFocusWrap = false,
     disableFocusOnMount = false,
     disableFocusOnUnmount = false,
     disableNestedDialogFixes = false,
@@ -294,7 +295,9 @@ const Dialog = forwardRef<HTMLDivElement, StrictProps>(function Dialog(
       tabIndex={tabIndex}
       component={component}
       defaultFocus={defaultFocus}
-      disableTabFocusWrap={isNoneRole || disableFocusContainer}
+      disableTabFocusWrap={
+        isNoneRole || disableTabFocusWrap || disableFocusContainer
+      }
       disableFocusOnMount={
         isNoneRole || disableFocusContainer || disableFocusOnMount
       }
@@ -436,6 +439,7 @@ if (process.env.NODE_ENV !== "production") {
       disableEscapeClose: PropTypes.bool,
       disableFocusContainer: PropTypes.bool,
       disableNestedDialogFixes: PropTypes.bool,
+      disableTabFocusWrap: PropTypes.bool,
       disableFocusOnMount: PropTypes.bool,
       disableFocusOnUnmount: PropTypes.bool,
     };
