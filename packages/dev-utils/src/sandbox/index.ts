@@ -1,3 +1,4 @@
+import { execSync } from "child_process";
 import { ensureDir, existsSync, remove, writeJson } from "fs-extra";
 import log from "loglevel";
 import path from "path";
@@ -144,6 +145,13 @@ export default async function sandbox({
   staged,
 }: ResolveConfig): Promise<void> {
   if (staged) {
+    if (!components.length) {
+      const stagedFiles = execSync("git diff --staged --name-only")
+        .toString()
+        .trim()
+        .split("\n");
+      components = stagedFiles.filter((name) => name.includes("Demos"));
+    }
     const demos = Array.from(
       new Set(
         components.map((filePath) => {
