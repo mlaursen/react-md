@@ -66,11 +66,11 @@
     "@typescript-eslint/parser": "^2.31.0",
     "babel-eslint": "^10.1.0",
     "chokidar": "^3.4.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jest": "^23.9.0",
+    "eslint-plugin-jest": "^23.10.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^4.0.0",
@@ -84,7 +84,7 @@
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "sass-lint": "^1.13.1",
-    "ts-jest": "^25.4.0",
+    "ts-jest": "^25.5.0",
     "typescript": "^3.8.3"
   },
   "husky": {
