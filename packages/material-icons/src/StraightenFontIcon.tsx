@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const StraightenFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>straighten</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function StraightenFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        straighten
+      </FontIcon>
+    );
+  }
 );
-
-export default StraightenFontIcon;

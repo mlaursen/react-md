@@ -1,12 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const SpaceBarSVGIcon: FC<SVGIconProps> = (props) => (
-  <SVGIcon {...props}>
-    <path d="M18 9v4H6V9H4v6h16V9z" />
-  </SVGIcon>
-);
-
-export default SpaceBarSVGIcon;
+export default forwardRef<SVGSVGElement, SVGIconProps>(function SpaceBarSVGIcon(
+  props,
+  ref
+) {
+  return (
+    <SVGIcon {...props} ref={ref}>
+      <path d="M18 9v4H6V9H4v6h16V9z" />
+    </SVGIcon>
+  );
+});

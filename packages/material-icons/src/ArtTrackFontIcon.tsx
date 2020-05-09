@@ -1,10 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ArtTrackFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>art_track</FontIcon>
-);
-
-export default ArtTrackFontIcon;
+export default forwardRef<HTMLElement, FontIconProps>(function ArtTrackFontIcon(
+  props,
+  ref
+) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      art_track
+    </FontIcon>
+  );
+});

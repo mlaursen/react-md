@@ -1,10 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const LoupeFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>loupe</FontIcon>
-);
-
-export default LoupeFontIcon;
+export default forwardRef<HTMLElement, FontIconProps>(function LoupeFontIcon(
+  props,
+  ref
+) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      loupe
+    </FontIcon>
+  );
+});

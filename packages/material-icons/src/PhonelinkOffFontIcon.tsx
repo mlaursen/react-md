@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PhonelinkOffFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>phonelink_off</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function PhonelinkOffFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        phonelink_off
+      </FontIcon>
+    );
+  }
 );
-
-export default PhonelinkOffFontIcon;

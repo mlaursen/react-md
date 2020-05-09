@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const SwapVerticalCircleFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>swap_vertical_circle</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function SwapVerticalCircleFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        swap_vertical_circle
+      </FontIcon>
+    );
+  }
 );
-
-export default SwapVerticalCircleFontIcon;

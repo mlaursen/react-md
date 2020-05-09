@@ -1,10 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const LiveHelpFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>live_help</FontIcon>
-);
-
-export default LiveHelpFontIcon;
+export default forwardRef<HTMLElement, FontIconProps>(function LiveHelpFontIcon(
+  props,
+  ref
+) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      live_help
+    </FontIcon>
+  );
+});

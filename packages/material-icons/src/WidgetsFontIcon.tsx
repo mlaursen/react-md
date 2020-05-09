@@ -1,10 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const WidgetsFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>widgets</FontIcon>
-);
-
-export default WidgetsFontIcon;
+export default forwardRef<HTMLElement, FontIconProps>(function WidgetsFontIcon(
+  props,
+  ref
+) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      widgets
+    </FontIcon>
+  );
+});

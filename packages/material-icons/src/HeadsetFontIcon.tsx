@@ -1,10 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const HeadsetFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>headset</FontIcon>
-);
-
-export default HeadsetFontIcon;
+export default forwardRef<HTMLElement, FontIconProps>(function HeadsetFontIcon(
+  props,
+  ref
+) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      headset
+    </FontIcon>
+  );
+});

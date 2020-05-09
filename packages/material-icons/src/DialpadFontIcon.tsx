@@ -1,10 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const DialpadFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>dialpad</FontIcon>
-);
-
-export default DialpadFontIcon;
+export default forwardRef<HTMLElement, FontIconProps>(function DialpadFontIcon(
+  props,
+  ref
+) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      dialpad
+    </FontIcon>
+  );
+});

@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FormatStrikethroughFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>format_strikethrough</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function FormatStrikethroughFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        format_strikethrough
+      </FontIcon>
+    );
+  }
 );
-
-export default FormatStrikethroughFontIcon;

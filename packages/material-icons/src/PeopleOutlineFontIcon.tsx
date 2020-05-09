@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PeopleOutlineFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>people_outline</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function PeopleOutlineFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        people_outline
+      </FontIcon>
+    );
+  }
 );
-
-export default PeopleOutlineFontIcon;

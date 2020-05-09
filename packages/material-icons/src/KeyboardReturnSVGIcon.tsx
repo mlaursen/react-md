@@ -1,12 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const KeyboardReturnSVGIcon: FC<SVGIconProps> = (props) => (
-  <SVGIcon {...props}>
-    <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z" />
-  </SVGIcon>
+export default forwardRef<SVGSVGElement, SVGIconProps>(
+  function KeyboardReturnSVGIcon(props, ref) {
+    return (
+      <SVGIcon {...props} ref={ref}>
+        <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z" />
+      </SVGIcon>
+    );
+  }
 );
-
-export default KeyboardReturnSVGIcon;

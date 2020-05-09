@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const VolumeDownFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>volume_down</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function VolumeDownFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        volume_down
+      </FontIcon>
+    );
+  }
 );
-
-export default VolumeDownFontIcon;

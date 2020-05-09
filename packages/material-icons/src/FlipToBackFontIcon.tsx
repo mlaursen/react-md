@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FlipToBackFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>flip_to_back</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function FlipToBackFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        flip_to_back
+      </FontIcon>
+    );
+  }
 );
-
-export default FlipToBackFontIcon;

@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const Rotation3DFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>3d_rotation</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function Rotation3DFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        3d_rotation
+      </FontIcon>
+    );
+  }
 );
-
-export default Rotation3DFontIcon;

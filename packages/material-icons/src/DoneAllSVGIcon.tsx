@@ -1,12 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-const DoneAllSVGIcon: FC<SVGIconProps> = (props) => (
-  <SVGIcon {...props}>
-    <path d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z" />
-  </SVGIcon>
-);
-
-export default DoneAllSVGIcon;
+export default forwardRef<SVGSVGElement, SVGIconProps>(function DoneAllSVGIcon(
+  props,
+  ref
+) {
+  return (
+    <SVGIcon {...props} ref={ref}>
+      <path d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z" />
+    </SVGIcon>
+  );
+});

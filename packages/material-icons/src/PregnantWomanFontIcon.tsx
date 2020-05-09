@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PregnantWomanFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>pregnant_woman</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function PregnantWomanFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        pregnant_woman
+      </FontIcon>
+    );
+  }
 );
-
-export default PregnantWomanFontIcon;

@@ -1,10 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ZoomOutFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>zoom_out</FontIcon>
-);
-
-export default ZoomOutFontIcon;
+export default forwardRef<HTMLElement, FontIconProps>(function ZoomOutFontIcon(
+  props,
+  ref
+) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      zoom_out
+    </FontIcon>
+  );
+});

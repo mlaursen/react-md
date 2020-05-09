@@ -6,7 +6,7 @@ import { tempDownloadDir, svgsDir } from "./constants";
 
 const EXCLUDE_REGEX = /(signal_wifi_[0-3])|(battery_(charging_)?\d)|((cellular|internet)_[^4]_bar)/;
 
-export async function flatten() {
+export default async function flatten(): Promise<void> {
   await fs.remove(svgsDir);
   await fs.ensureDir(svgsDir);
 
@@ -17,7 +17,7 @@ export async function flatten() {
 
   const result = await Promise.all(
     allProdIcons
-      .map(iconPath => [
+      .map((iconPath) => [
         iconPath
           .substring(iconPath.lastIndexOf("/") + 1)
           .substring("ic_".length)

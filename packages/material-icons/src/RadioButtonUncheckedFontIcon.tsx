@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RadioButtonUncheckedFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>radio_button_unchecked</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function RadioButtonUncheckedFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        radio_button_unchecked
+      </FontIcon>
+    );
+  }
 );
-
-export default RadioButtonUncheckedFontIcon;

@@ -1,10 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const Timer3FontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>timer_3</FontIcon>
-);
-
-export default Timer3FontIcon;
+export default forwardRef<HTMLElement, FontIconProps>(function Timer3FontIcon(
+  props,
+  ref
+) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      timer_3
+    </FontIcon>
+  );
+});

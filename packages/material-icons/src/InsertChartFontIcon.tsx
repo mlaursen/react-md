@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const InsertChartFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>insert_chart</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function InsertChartFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        insert_chart
+      </FontIcon>
+    );
+  }
 );
-
-export default InsertChartFontIcon;

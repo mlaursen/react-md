@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const ClosedCaptionFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>closed_caption</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function ClosedCaptionFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        closed_caption
+      </FontIcon>
+    );
+  }
 );
-
-export default ClosedCaptionFontIcon;

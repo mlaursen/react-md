@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const PersonPinCircleFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>person_pin_circle</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function PersonPinCircleFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        person_pin_circle
+      </FontIcon>
+    );
+  }
 );
-
-export default PersonPinCircleFontIcon;

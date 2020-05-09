@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const TimeToLeaveFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>time_to_leave</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function TimeToLeaveFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        time_to_leave
+      </FontIcon>
+    );
+  }
 );
-
-export default TimeToLeaveFontIcon;

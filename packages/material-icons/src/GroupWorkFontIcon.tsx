@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const GroupWorkFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>group_work</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function GroupWorkFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        group_work
+      </FontIcon>
+    );
+  }
 );
-
-export default GroupWorkFontIcon;

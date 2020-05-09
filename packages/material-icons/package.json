@@ -46,6 +46,8 @@
     "@react-md/icon": "^2.0.0-alpha.15"
   },
   "devDependencies": {
+    "@types/download": "^6.2.4",
+    "@types/unzipper": "^0.10.3",
     "commander": "^5.1.0",
     "download": "^8.0.0",
     "unzipper": "^0.10.11"

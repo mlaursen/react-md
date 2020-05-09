@@ -192,5 +192,11 @@ module.exports = {
         'react/no-array-index-key': 0,
       },
     },
+    {
+      files: ['packages/material-icons/scripts/**/*'],
+      rules: {
+        'no-console': 0,
+      },
+    },
   ],
 };

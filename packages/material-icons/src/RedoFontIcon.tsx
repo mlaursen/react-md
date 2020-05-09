@@ -1,10 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RedoFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>redo</FontIcon>
-);
-
-export default RedoFontIcon;
+export default forwardRef<HTMLElement, FontIconProps>(function RedoFontIcon(
+  props,
+  ref
+) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      redo
+    </FontIcon>
+  );
+});

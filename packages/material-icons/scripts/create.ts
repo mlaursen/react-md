@@ -6,7 +6,7 @@ import prettier from "prettier";
 import { glob } from "./utils";
 import { srcDir } from "./constants";
 
-function toPascalCase(fileName): string {
+function toPascalCase(fileName: string): string {
   if (fileName.match(/^[0-9]/)) {
     const [first, second, ...remaining] = fileName.split("_");
     fileName = `${second}_${first}${
@@ -17,17 +17,21 @@ function toPascalCase(fileName): string {
   return _.upperFirst(_.camelCase(fileName));
 }
 
-function createIconFile(componentName, children, iconType): string {
+function createIconFile(
+  componentName: string,
+  children: string,
+  iconType: "SVG" | "Font"
+): string {
+  const element = iconType === "SVG" ? "SVGSVGElement" : "HTMLElement";
   return prettier.format(
     `// This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { ${iconType}Icon, ${iconType}IconProps } from "@react-md/icon";
 
-const ${componentName}${iconType}Icon: FC<${iconType}IconProps> = props => <${iconType}Icon {...props}>${children}</${iconType}Icon>;
-
-export default ${componentName}${iconType}Icon;
-
+export default forwardRef<${element}, ${iconType}IconProps>(function ${componentName}${iconType}Icon(props, ref) {
+  return <${iconType}Icon {...props} ref={ref}>${children}</${iconType}Icon>;
+});
 `,
     { printWidth: 80, trailingComma: "es5", parser: "typescript" }
   );
@@ -72,8 +76,7 @@ ${components.reduce(
   return fs.outputFile(path.join(srcDir, "index.ts"), contents);
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export async function create(): Promise<void> {
+export default async function create(): Promise<void> {
   const svgFiles = await glob("svgs/*.svg");
 
   await fs.remove(srcDir);
@@ -81,7 +84,7 @@ export async function create(): Promise<void> {
 
   const components: string[] = [];
   await Promise.all(
-    svgFiles.map(svgFilePath => {
+    svgFiles.map((svgFilePath) => {
       const iconName = svgFilePath.replace(/.+\//, "").replace(/\.svg$/, "");
       const componentName = toPascalCase(iconName);
       const svgIconName = `${componentName}SVGIcon`;

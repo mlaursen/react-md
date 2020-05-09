@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const BackspaceFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>backspace</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function BackspaceFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        backspace
+      </FontIcon>
+    );
+  }
 );
-
-export default BackspaceFontIcon;

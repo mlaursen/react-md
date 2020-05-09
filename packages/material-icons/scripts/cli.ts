@@ -2,14 +2,14 @@
 
 import commander from "commander";
 
-import { download } from "./download";
-import { flatten } from "./flatten";
-import { create } from "./create";
+import download from "./download";
+import flatten from "./flatten";
+import create from "./create";
 
 commander
   .command("download [options...]")
   .option("-v, --version [version]")
-  .action((_, program: any) => {
+  .action((_, program: { version?: string }) => {
     download(typeof program.version === "string" ? program.version : "");
   });
 

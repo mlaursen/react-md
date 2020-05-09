@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const EditLocationFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>edit_location</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function EditLocationFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        edit_location
+      </FontIcon>
+    );
+  }
 );
-
-export default EditLocationFontIcon;

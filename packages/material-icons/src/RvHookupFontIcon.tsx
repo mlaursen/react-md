@@ -1,10 +1,15 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const RvHookupFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>rv_hookup</FontIcon>
-);
-
-export default RvHookupFontIcon;
+export default forwardRef<HTMLElement, FontIconProps>(function RvHookupFontIcon(
+  props,
+  ref
+) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      rv_hookup
+    </FontIcon>
+  );
+});

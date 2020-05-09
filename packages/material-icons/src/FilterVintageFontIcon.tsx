@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const FilterVintageFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>filter_vintage</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function FilterVintageFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        filter_vintage
+      </FontIcon>
+    );
+  }
 );
-
-export default FilterVintageFontIcon;

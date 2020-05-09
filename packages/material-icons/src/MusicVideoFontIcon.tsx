@@ -1,10 +1,14 @@
 // This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { FC } from "react";
+import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-const MusicVideoFontIcon: FC<FontIconProps> = (props) => (
-  <FontIcon {...props}>music_video</FontIcon>
+export default forwardRef<HTMLElement, FontIconProps>(
+  function MusicVideoFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        music_video
+      </FontIcon>
+    );
+  }
 );
-
-export default MusicVideoFontIcon;

@@ -7,12 +7,7 @@ import unzipper from "unzipper";
 import { tempDownloadDir } from "./constants";
 import { list } from "./utils";
 
-export async function download(version: string) {
-  version = getVersion(version);
-  await downloadSource(version);
-}
-
-function getVersion(version) {
+function getVersion(version: string): string {
   const versions = JSON.parse(
     execSync("npm view material-design-icons versions --json").toString()
   );
@@ -30,20 +25,8 @@ function getVersion(version) {
   return version;
 }
 
-async function downloadSource(version: string) {
-  console.log(`Removing ${tempDownloadDir}`);
-  await fs.remove(tempDownloadDir);
-  await fs.ensureDir(tempDownloadDir);
-
-  const fileName = `material-design-icons-${version}.zip`;
-  const downloadUrl = `https://github.com/google/material-design-icons/archive/${version}.zip`;
-  console.log(`Downloading: ${downloadUrl}`);
-  await Download(downloadUrl, tempDownloadDir);
-  await extract(fileName);
-}
-
 function extract(fileName: string): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     console.log(
       `Unzipping to ${path.join(
         tempDownloadDir,
@@ -57,4 +40,21 @@ function extract(fileName: string): Promise<void> {
         resolve();
       });
   });
+}
+
+async function downloadSource(version: string): Promise<void> {
+  console.log(`Removing ${tempDownloadDir}`);
+  await fs.remove(tempDownloadDir);
+  await fs.ensureDir(tempDownloadDir);
+
+  const fileName = `material-design-icons-${version}.zip`;
+  const downloadUrl = `https://github.com/google/material-design-icons/archive/${version}.zip`;
+  console.log(`Downloading: ${downloadUrl}`);
+  await Download(downloadUrl, tempDownloadDir);
+  await extract(fileName);
+}
+
+export default async function download(version: string): Promise<void> {
+  version = getVersion(version);
+  await downloadSource(version);
 }
