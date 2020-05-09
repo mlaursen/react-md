@@ -363,7 +363,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/typography/src/_mixins.scss#L209-L213",
       usedBy: [
         { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
-        { name: "react-md-card", type: "mixin", packageName: "card" },
+        { name: "rmd-card", type: "mixin", packageName: "card" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
       ],

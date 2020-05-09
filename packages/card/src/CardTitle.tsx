@@ -19,6 +19,12 @@ export interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
 
 const block = bem("rmd-card");
 
+/**
+ * The `Cardtitle` component should normally be used within the `CardHeader` to
+ * create a nicely styled `<h5>` title for your card. This can also be used
+ * along with the `CardSubtitle` component within the `CardHeader` for a main
+ * title and a subtitle.
+ */
 const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   function CardTitle(
     { className, children, small = false, noWrap = false, ...props },

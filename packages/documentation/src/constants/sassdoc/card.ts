@@ -124,19 +124,19 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card",
       description:
         "Creates all the styles for the `Card` component only. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L43-L75",
+      source: "packages/card/src/_mixins.scss#L43-L79",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card { … }",
       sourceCode:
-        '@mixin rmd-card {\n  @include rmd-theme-update-var(\n    background,\n    rmd-card-theme-var(background-color)\n  );\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    rmd-card-theme-var(color)\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    rmd-card-theme-var(secondary-color)\n  );\n  @include rmd-utils-mouse-only {\n    &--raiseable {\n      // Note: Only worthwhile with the `--shadowed` class\n      @include rmd-elevation-transition(\n        $rmd-card-base-elevation,\n        $rmd-card-raised-elevation,\n        "&:hover"\n      );\n    }\n  }\n  @include rmd-theme(background-color, surface);\n  @include rmd-theme(color, text-primary-on-background);\n\n  border-radius: $rmd-card-border-radius;\n  display: inline-block;\n\n  &--shadowed {\n    @include rmd-elevation($rmd-card-elevation);\n  }\n\n  &--bordered {\n    border: $rmd-card-border-width solid $rmd-card-border-color;\n  }\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n}\n',
+        '@mixin rmd-card {\n  @include rmd-theme-update-var(\n    background,\n    rmd-card-theme-var(background-color)\n  );\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    rmd-card-theme-var(color)\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    rmd-card-theme-var(secondary-color)\n  );\n  @include rmd-utils-mouse-only {\n    &--raiseable {\n      // Note: Only worthwhile with the `--shadowed` class\n      @include rmd-elevation-transition(\n        $rmd-card-base-elevation,\n        $rmd-card-raised-elevation,\n        "&:hover"\n      );\n    }\n  }\n  @include rmd-theme(background-color, surface);\n  @include rmd-theme(color, text-primary-on-background);\n\n  border-radius: $rmd-card-border-radius;\n  display: inline-block;\n\n  &--shadowed {\n    @include rmd-elevation($rmd-card-elevation);\n  }\n\n  &--bordered {\n    border: $rmd-card-border-width solid $rmd-card-border-color;\n  }\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n\n  &--no-wrap {\n    @include rmd-typography-text-overflow-ellipsis;\n  }\n}\n',
       type: "mixin",
     },
     "rmd-card-header": {
       name: "rmd-card-header",
       description:
         "Creates all the styles for the `CardHeader` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L79-L97",
+      source: "packages/card/src/_mixins.scss#L83-L101",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card-header { … }",
@@ -148,7 +148,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-title",
       description:
         "Creates all the styles for the `CardTitle` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L101-L110",
+      source: "packages/card/src/_mixins.scss#L105-L114",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card-title { … }",
@@ -160,7 +160,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-subtitle",
       description:
         "Creates all the styles for the `CardSubtitle` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L114-L123",
+      source: "packages/card/src/_mixins.scss#L118-L127",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card-subtitle { … }",
@@ -172,7 +172,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-content",
       description:
         "Creates all the styles for the `CardContent` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L127-L147",
+      source: "packages/card/src/_mixins.scss#L131-L151",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card-content { … }",
@@ -184,7 +184,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-actions",
       description:
         "Creates all the styles for the `CardActions` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L151-L164",
+      source: "packages/card/src/_mixins.scss#L155-L168",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       packageName: "card",
       code: "@mixin rmd-card-actions { … }",
@@ -195,12 +195,12 @@ const sassdoc: PackageSassDoc = {
     "react-md-card": {
       name: "react-md-card",
       description: "Creates all the styles for the @react-md/card package.\n",
-      source: "packages/card/src/_mixins.scss#L167-L206",
+      source: "packages/card/src/_mixins.scss#L171-L206",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "card",
       code: "@mixin react-md-card { … }",
       sourceCode:
-        "@mixin react-md-card {\n  @include rmd-theme-create-root-theme($rmd-card-theme-values, card);\n\n  .rmd-card {\n    @include rmd-card;\n\n    &--no-wrap {\n      @include rmd-typography-text-overflow-ellipsis;\n    }\n\n    &__header {\n      @include rmd-card-header;\n    }\n\n    &__header-addon {\n      flex-shrink: 0;\n    }\n\n    &__header-content {\n      flex-grow: 1;\n      min-width: 0;\n    }\n\n    &__title {\n      @include rmd-card-title;\n    }\n\n    &__subtitle {\n      @include rmd-card-subtitle;\n    }\n\n    &__content {\n      @include rmd-card-content;\n    }\n\n    &__actions {\n      @include rmd-card-actions;\n    }\n  }\n}\n",
+        "@mixin react-md-card {\n  @include rmd-theme-create-root-theme($rmd-card-theme-values, card);\n\n  .rmd-card {\n    @include rmd-card;\n\n    &__header {\n      @include rmd-card-header;\n    }\n\n    &__header-addon {\n      flex-shrink: 0;\n    }\n\n    &__header-content {\n      flex-grow: 1;\n      min-width: 0;\n    }\n\n    &__title {\n      @include rmd-card-title;\n    }\n\n    &__subtitle {\n      @include rmd-card-subtitle;\n    }\n\n    &__content {\n      @include rmd-card-content;\n    }\n\n    &__actions {\n      @include rmd-card-actions;\n    }\n  }\n}\n",
       type: "mixin",
     },
   },
@@ -239,7 +239,7 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-card-elevation": {
       name: "rmd-card-elevation",
-      description: "The elevation to use for cards that are not raiseable.\n",
+      description: "The elevation to use for cards that are not raisable.\n",
       source: "packages/card/src/_variables.scss#L37",
       usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
       packageName: "card",
@@ -249,7 +249,7 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-card-base-elevation": {
       name: "rmd-card-base-elevation",
-      description: "The starting elevation for a raiseable card.\n",
+      description: "The starting elevation for a raisable card.\n",
       source: "packages/card/src/_variables.scss#L41",
       usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
       packageName: "card",
@@ -259,7 +259,7 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-card-raised-elevation": {
       name: "rmd-card-raised-elevation",
-      description: "The ending elevation for a raiseable card.\n",
+      description: "The ending elevation for a raisable card.\n",
       source: "packages/card/src/_variables.scss#L45",
       usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
       packageName: "card",
@@ -291,7 +291,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-card-header-padding-top": {
       name: "rmd-card-header-padding-top",
       description:
-        "Any extra amount of padding to apply to the top of the `cardHeader` component.  This is really just added since it looks a bit nicer to have extra padding top.\n",
+        "Any extra amount of padding to apply to the top of the `CardHeader` component. This is really just added since it looks a bit nicer to have extra padding top.\n",
       source: "packages/card/src/_variables.scss#L59",
       usedBy: [{ name: "rmd-card-header", type: "mixin", packageName: "card" }],
       packageName: "card",

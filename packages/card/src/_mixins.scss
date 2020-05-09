@@ -72,6 +72,10 @@
     display: block;
     width: 100%;
   }
+
+  &--no-wrap {
+    @include rmd-typography-text-overflow-ellipsis;
+  }
 }
 
 /// Creates all the styles for the `CardHeader` component. You'll need to use
@@ -169,10 +173,6 @@
 
   .rmd-card {
     @include rmd-card;
-
-    &--no-wrap {
-      @include rmd-typography-text-overflow-ellipsis;
-    }
 
     &__header {
       @include rmd-card-header;

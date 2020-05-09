@@ -32,15 +32,15 @@ $rmd-card-secondary-color: if(
   rmd-theme-var(text-primary-on-dark)
 ) !default;
 
-/// The elevation to use for cards that are not raiseable.
+/// The elevation to use for cards that are not raisable.
 /// @type Number
 $rmd-card-elevation: 2 !default;
 
-/// The starting elevation for a raiseable card.
+/// The starting elevation for a raisable card.
 /// @type Number
 $rmd-card-base-elevation: 1 !default;
 
-/// The ending elevation for a raiseable card.
+/// The ending elevation for a raisable card.
 /// @type Number
 $rmd-card-raised-elevation: 8 !default;
 
@@ -52,8 +52,8 @@ $rmd-card-border-radius: 0.25rem !default;
 /// @type Number
 $rmd-card-header-padding: 1rem !default;
 
-/// Any extra amount of padding to apply to the top of the `cardHeader`
-/// component.  This is really just added since it looks a bit nicer to have
+/// Any extra amount of padding to apply to the top of the `CardHeader`
+/// component. This is really just added since it looks a bit nicer to have
 /// extra padding top.
 /// @type Number
 $rmd-card-header-padding-top: 1.5rem !default;
