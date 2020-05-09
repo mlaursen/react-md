@@ -124,13 +124,13 @@ export interface MenuProps
    * normally don't want to enable this prop as the menu won't close if the menu
    * control element is no longer in the viewport.
    */
-  disableCloseOnScroll?: boolean;
+  closeOnScroll?: boolean;
 
   /**
    * Boolean if the menu should no longer close when the page is resized.
    * Instead, it'll automatically update its position within the viewport.
    */
-  disableCloseOnResize?: boolean;
+  closeOnResize?: boolean;
 
   /**
    * Boolean if the close on outside click logic should consider the control
@@ -179,8 +179,8 @@ const Menu = forwardRef<HTMLDivElement, StrictProps>(function Menu(
     defaultFocus = "first",
     horizontal = false,
     positionOptions,
-    disableCloseOnScroll = false,
-    disableCloseOnResize = false,
+    closeOnScroll = false,
+    closeOnResize = false,
     disableControlClickOkay = false,
     ...props
   },
@@ -191,7 +191,7 @@ const Menu = forwardRef<HTMLDivElement, StrictProps>(function Menu(
     anchor = horizontal ? CENTER_CENTER_ANCHOR : TOP_INNER_RIGHT_ANCHOR;
   }
 
-  const { ref, menuRef, onScroll, onClick, onKeyDown } = useMenu({
+  const { ref, menuRef, onClick, onKeyDown } = useMenu({
     ref: forwardedRef,
     visible,
     controlId,
@@ -201,7 +201,6 @@ const Menu = forwardRef<HTMLDivElement, StrictProps>(function Menu(
     portalled: portal || typeof portalInto !== "undefined" || !!portalIntoId,
     defaultFocus,
     onRequestClose,
-    disableCloseOnScroll,
     disableControlClickOkay,
   });
 
@@ -214,8 +213,12 @@ const Menu = forwardRef<HTMLDivElement, StrictProps>(function Menu(
   } = useFixedPositioning({
     ...positionOptions,
     fixedTo: () => document.getElementById(controlId),
-    onScroll,
-    onResize: disableCloseOnResize ? undefined : onRequestClose,
+    // TODO: Look into a way to make this interact like the autocomplete to
+    // close when the menu is no longer visible within the viewport as well.
+    // current problem is related to focusing the menu button once it closes
+    // which scrolls back to that element
+    onScroll: closeOnScroll ? onRequestClose : undefined,
+    onResize: closeOnResize ? onRequestClose : undefined,
     anchor,
     onEnter: propOnEnter,
     onEntering: propOnEntering,
@@ -332,8 +335,8 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
       portalIntoId: PropTypes.string,
-      disableCloseOnScroll: PropTypes.bool,
-      disableCloseOnResize: PropTypes.bool,
+      closeOnScroll: PropTypes.bool,
+      closeOnResize: PropTypes.bool,
       disableControlClickOkay: PropTypes.bool,
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore

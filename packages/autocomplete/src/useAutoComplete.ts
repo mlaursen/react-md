@@ -119,8 +119,8 @@ export default function useAutoComplete({
   preventOverlap,
   disableSwapping,
   disableVHBounds,
-  disableHideOnResize,
-  disableHideOnScroll,
+  closeOnResize,
+  closeOnScroll,
   disableShowOnFocus: propDisableShowOnFocus,
   isListAutocomplete,
   isInlineAutocomplete,
@@ -416,11 +416,11 @@ export default function useAutoComplete({
     fixedTo: () => inputRef.current,
     anchor,
     onScroll(_event, { visible }) {
-      if (!disableHideOnScroll || !visible) {
+      if (closeOnScroll || !visible) {
         hide();
       }
     },
-    onResize: disableHideOnResize ? undefined : hide,
+    onResize: closeOnResize ? hide : undefined,
     width: listboxWidth,
     xMargin,
     yMargin,

@@ -59,8 +59,8 @@ const renderSheet: MenuRenderer = ({
   controlId: _controlId,
   anchor: _anchor,
   positionOptions: _positionOptions,
-  disableCloseOnResize: _disableCloseOnResize,
-  disableCloseOnScroll: _disableCloseOnScroll,
+  closeOnResize: _closeOnResize,
+  closeOnScroll: _closeOnScroll,
   ...props
 }) => <MenuSheet {...props} />;
 

@@ -73,8 +73,8 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
       disableVHBounds = false,
       disableSwapping = true,
       disableShowOnFocus,
-      disableHideOnResize = true,
-      disableHideOnScroll = true,
+      closeOnResize = false,
+      closeOnScroll = false,
       ...props
     },
     forwardedRef
@@ -134,8 +134,8 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
       preventOverlap,
       disableSwapping,
       disableVHBounds,
-      disableHideOnResize,
-      disableHideOnScroll,
+      closeOnResize,
+      closeOnScroll,
       disableShowOnFocus,
     });
 
@@ -266,8 +266,8 @@ if (process.env.NODE_ENV !== "production") {
       preventOverlap: PropTypes.bool,
       disableSwapping: PropTypes.bool,
       disableVHBounds: PropTypes.bool,
-      disableHideOnResize: PropTypes.bool,
-      disableHideOnScroll: PropTypes.bool,
+      closeOnResize: PropTypes.bool,
+      closeOnScroll: PropTypes.bool,
       style: PropTypes.object,
       className: PropTypes.string,
       inputStyle: PropTypes.object,

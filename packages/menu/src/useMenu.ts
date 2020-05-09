@@ -1,10 +1,14 @@
-import { HTMLAttributes, MutableRefObject, Ref } from "react";
-import { useCloseOnOutsideClick } from "@react-md/utils";
+import {
+  HTMLAttributes,
+  MutableRefObject,
+  Ref,
+  useCallback,
+  useRef,
+} from "react";
+import { useCloseOnOutsideClick, applyRef } from "@react-md/utils";
 
-import useCloseOnScroll from "./useCloseOnScroll";
 import useMenuClick from "./useMenuClick";
 import useMenuKeyDown from "./useMenuKeyDown";
-import useMenuRef from "./useMenuRef";
 
 export interface MenuOptions {
   /**
@@ -57,12 +61,6 @@ export interface MenuOptions {
   onRequestClose: () => void;
 
   /**
-   * Boolean if the menu should no longer close when the page or any outside
-   * element scrolled.
-   */
-  disableCloseOnScroll?: boolean;
-
-  /**
    * Boolean if the close on outside click logic should consider the control
    * element within the menu and not call the `onRequestClose` function when it
    * is been clicked. This should be enabled when creating a context menu but
@@ -82,7 +80,6 @@ interface ReturnValue
   extends Pick<HTMLAttributes<HTMLDivElement>, "onClick" | "onKeyDown"> {
   ref: (instance: HTMLDivElement | null) => void;
   menuRef: MutableRefObject<HTMLDivElement | null>;
-  onScroll?: (event: Event) => void;
 }
 
 /**
@@ -97,7 +94,7 @@ interface ReturnValue
  * - conditionally close the menu if the page is scrolled while visible.
  */
 export default function useMenu({
-  ref: forwardedRef,
+  ref,
   visible,
   controlId,
   horizontal = false,
@@ -106,15 +103,16 @@ export default function useMenu({
   portalled = false,
   defaultFocus,
   onRequestClose,
-  disableCloseOnScroll = false,
   disableControlClickOkay = false,
 }: MenuOptions): ReturnValue {
-  const { menu, ref } = useMenuRef(forwardedRef);
-  const onScroll = useCloseOnScroll({
-    menu,
-    disabled: disableCloseOnScroll,
-    onRequestClose,
-  });
+  const menu = useRef<HTMLDivElement | null>(null);
+  const refHandler = useCallback(
+    (instance: HTMLDivElement | null) => {
+      applyRef(instance, ref);
+      menu.current = instance;
+    },
+    [ref]
+  );
 
   useCloseOnOutsideClick({
     element: menu,
@@ -155,9 +153,8 @@ export default function useMenu({
   });
 
   return {
-    ref,
+    ref: refHandler,
     menuRef: menu,
-    onScroll,
     onClick,
     onKeyDown,
   };

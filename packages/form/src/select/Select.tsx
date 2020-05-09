@@ -141,13 +141,13 @@ export interface SelectProps
    * Boolean if the select's listbox should not hide if the user resizes the
    * browser while it is visible.
    */
-  disableHideOnResize?: boolean;
+  closeOnResize?: boolean;
 
   /**
    * Boolean if the select's listbox should not hide if the user scrolls the
    * page while it is visible.
    */
-  disableHideOnScroll?: boolean;
+  closeOnScroll?: boolean;
 
   /**
    * An optional icon to display to the right of the select. This should
@@ -214,8 +214,8 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
     isOptionDisabled = defaultIsOptionDisabled,
     disableLeftAddon = false,
     disableMovementChange = false,
-    disableHideOnResize = false,
-    disableHideOnScroll = false,
+    closeOnResize = false,
+    closeOnScroll = false,
     readOnly,
     placeholder,
     value,
@@ -318,8 +318,8 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   } = useFixedPositioning({
     fixedTo: () => selectRef.current,
     anchor,
-    onScroll: disableHideOnScroll ? undefined : hide,
-    onResize: disableHideOnResize ? undefined : hide,
+    onScroll: closeOnScroll ? hide : undefined,
+    onResize: closeOnResize ? hide : undefined,
     transformOrigin: true,
     width: listboxWidth,
     onEntering(node) {
@@ -479,8 +479,8 @@ if (process.env.NODE_ENV !== "production") {
       rightChildren: PropTypes.node,
       isLeftAddon: PropTypes.bool,
       isRightAddon: PropTypes.bool,
-      disableHideOnResize: PropTypes.bool,
-      disableHideOnScroll: PropTypes.bool,
+      closeOnResize: PropTypes.bool,
+      closeOnScroll: PropTypes.bool,
       anchor: PropTypes.shape({
         x: PropTypes.oneOf([
           "inner-left",

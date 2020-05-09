@@ -56,10 +56,10 @@ const DropdownMenuItem = forwardRef<HTMLLIElement, DropdownMenuItemProps>(
       positionOptions,
       rightAddon: propRightAddon,
       dropdownIcon: propDropdownIcon,
+      closeOnScroll = false,
+      closeOnResize = false,
       disableEscapeCascade = false,
       disableDropdownIcon = false,
-      disableCloseOnScroll = false,
-      disableCloseOnResize = false,
       ...props
     },
     ref
@@ -118,8 +118,8 @@ const DropdownMenuItem = forwardRef<HTMLLIElement, DropdownMenuItemProps>(
             controlId: id,
             anchor,
             positionOptions,
-            disableCloseOnScroll,
-            disableCloseOnResize,
+            closeOnScroll,
+            closeOnResize,
             horizontal,
             visible,
             defaultFocus,
@@ -201,8 +201,8 @@ if (process.env.NODE_ENV !== "production") {
       onVisibilityChange: PropTypes.func,
       disableDropdownIcon: PropTypes.bool,
       disableEscapeCascade: PropTypes.bool,
-      disableCloseOnScroll: PropTypes.bool,
-      disableCloseOnResize: PropTypes.bool,
+      closeOnScroll: PropTypes.bool,
+      closeOnResize: PropTypes.bool,
     };
   } catch (e) {}
 }

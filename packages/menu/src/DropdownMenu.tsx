@@ -90,8 +90,8 @@ const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
       portalIntoId,
       positionOptions,
       defaultVisible = false,
-      disableCloseOnScroll,
-      disableCloseOnResize,
+      closeOnScroll,
+      closeOnResize,
       dropdownIcon: propDropdownIcon,
       disableDropdownIcon = false,
       ...props
@@ -143,8 +143,8 @@ const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
             controlId: id,
             anchor,
             positionOptions,
-            disableCloseOnScroll,
-            disableCloseOnResize,
+            closeOnScroll,
+            closeOnResize,
             horizontal,
             visible,
             defaultFocus,
@@ -214,8 +214,8 @@ if (process.env.NODE_ENV !== "production") {
       dropdownIcon: PropTypes.node,
       disableDropdownIcon: PropTypes.bool,
       onVisibilityChange: PropTypes.func,
-      disableCloseOnScroll: PropTypes.bool,
-      disableCloseOnResize: PropTypes.bool,
+      closeOnScroll: PropTypes.bool,
+      closeOnResize: PropTypes.bool,
     };
   } catch (e) {}
 }

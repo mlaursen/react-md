@@ -124,13 +124,13 @@ export interface AutoCompleteListboxPositionOptions
    * Boolean if the select's listbox should not hide if the user resizes the
    * browser while it is visible.
    */
-  disableHideOnResize?: boolean;
+  closeOnResize?: boolean;
 
   /**
    * Boolean if the select's listbox should not hide if the user scrolls the
    * page while it is visible.
    */
-  disableHideOnScroll?: boolean;
+  closeOnScroll?: boolean;
 }
 
 export interface AutoCompleteProps

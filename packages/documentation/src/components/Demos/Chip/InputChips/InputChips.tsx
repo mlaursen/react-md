@@ -17,7 +17,7 @@ const InputChips: FC = () => {
       contentClassName={styles()}
       disableFocusOnMount={isTouch}
     >
-      <To isTouch={isTouch} />
+      <To />
       <Divider />
       <TextField
         id="input-chips-subject"

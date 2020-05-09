@@ -20,11 +20,7 @@ import { BELOW_INNER_LEFT_ANCHOR } from "@react-md/utils";
 import contacts, { Contact } from "./contacts";
 import styles from "./styles";
 
-interface ToProps {
-  isTouch: boolean;
-}
-
-const To: FC<ToProps> = ({ isTouch }) => {
+const To: FC = () => {
   const [chips, setChips] = useState<Contact[]>([]);
   const data = useMemo<(AutoCompleteData & { label: string })[]>(
     () =>
@@ -103,8 +99,6 @@ const To: FC<ToProps> = ({ isTouch }) => {
           vhMargin={0}
           vwMargin={0}
           disableSwapping
-          disableHideOnScroll={isTouch}
-          disableHideOnResize={isTouch}
           listboxClassName={styles("contacts")}
         />
       </div>

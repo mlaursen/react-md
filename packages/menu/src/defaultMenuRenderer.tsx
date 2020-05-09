@@ -11,8 +11,8 @@ export type MenuPositionProps = Pick<
   | "anchor"
   | "horizontal"
   | "positionOptions"
-  | "disableCloseOnScroll"
-  | "disableCloseOnResize"
+  | "closeOnScroll"
+  | "closeOnResize"
 >;
 
 type RequiredMenuProps = Required<
