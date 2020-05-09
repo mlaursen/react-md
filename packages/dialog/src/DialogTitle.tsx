@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -10,30 +10,25 @@ const block = bem("rmd-dialog");
  * This component adds some base styles to an `<h2>` element for a title within
  * a `Dialog`.
  */
-function DialogTitle(
-  { children, className, ...props }: DialogTitleProps,
-  ref?: Ref<HTMLHeadingElement>
-): ReactElement {
-  return (
-    <h2 {...props} ref={ref} className={cn(block("title"), className)}>
-      {children}
-    </h2>
-  );
-}
-
-const ForwardedDialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
-  DialogTitle
+const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
+  function DialogTitle({ children, className, ...props }, ref) {
+    return (
+      <h2 {...props} ref={ref} className={cn(block("title"), className)}>
+        {children}
+      </h2>
+    );
+  }
 );
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedDialogTitle.propTypes = {
+    DialogTitle.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
     };
   } catch (e) {}
 }
 
-export default ForwardedDialogTitle;
+export default DialogTitle;

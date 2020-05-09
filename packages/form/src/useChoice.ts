@@ -10,7 +10,8 @@ type DefaultValue =
 type SetValue<T extends DefaultValue> = Dispatch<SetStateAction<T>>;
 
 /**
- * This hook can be used with a radio group or a select element
+ * This hook can be used to control the state of a radio group or a select
+ * element.
  *
  * @param defaultValue The default value. If you want the user to specifically
  * choose a value, set this to the empty string.

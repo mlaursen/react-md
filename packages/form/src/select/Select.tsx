@@ -170,6 +170,11 @@ const block = bem("rmd-select");
  *
  * The `Select` component **must be controlled** with a `value` and `onChange`
  * handler.
+ *
+ * Note: The value from this element **will not be submitted in forms since it
+ * is not a native form element**. You can use an `<input type="hidden" />`
+ * along with this component if it needs to be submitted, but it's recommended
+ * to send a custom ajax request instead.
  */
 const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   {

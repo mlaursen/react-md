@@ -2,11 +2,10 @@ import React, { FC, useState } from "react";
 import { Button } from "@react-md/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
 import { DialogFooter } from "@react-md/dialog";
-import { Fieldset, Form, Select, TextField } from "@react-md/form";
+import { Fieldset, Form, Select, TextField, FormMessage } from "@react-md/form";
 import { Collapse } from "@react-md/transition";
-import { Grid, useAppSize } from "@react-md/utils";
+import { Grid } from "@react-md/utils";
 
-import ErrorMessage from "components/ErrorMessage";
 import useNumberInput from "hooks/useNumberInput";
 
 import "./ConfigurableCollapseExample.scss";
@@ -53,9 +52,6 @@ const ConfigurableCollapseExample: FC = () => {
     temporary = temporaryBehavior === "true";
   }
 
-  const { isDesktop, isLargeDesktop } = useAppSize();
-  const twoLines = isDesktop && !isLargeDesktop;
-
   return (
     <>
       <Form
@@ -78,12 +74,9 @@ const ConfigurableCollapseExample: FC = () => {
                 label="Min Height"
                 {...minHeightProps}
               />
-              <ErrorMessage
-                id="collapse-min-height-message"
-                twoLines={twoLines}
-              >
+              <FormMessage id="collapse-min-height-message" error>
                 {minHeightError}
-              </ErrorMessage>
+              </FormMessage>
             </div>
             <div>
               <TextField
@@ -93,12 +86,9 @@ const ConfigurableCollapseExample: FC = () => {
                 label="Min Padding Top"
                 {...minPaddingTopProps}
               />
-              <ErrorMessage
-                id="collapse-min-padding-top-message"
-                twoLines={twoLines}
-              >
+              <FormMessage id="collapse-min-padding-top-message" error>
                 {minPaddingTopError}
-              </ErrorMessage>
+              </FormMessage>
             </div>
             <div>
               <TextField
@@ -108,12 +98,9 @@ const ConfigurableCollapseExample: FC = () => {
                 label="Min Padding Bottom"
                 {...minPaddingBottomProps}
               />
-              <ErrorMessage
-                id="collapse-min-padding-bottom-message"
-                twoLines={twoLines}
-              >
+              <FormMessage id="collapse-min-padding-bottom-message" error>
                 {minPaddingBottomError}
-              </ErrorMessage>
+              </FormMessage>
             </div>
             <Select
               id="collapse-temporary"

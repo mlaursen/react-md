@@ -1,14 +1,10 @@
-import React, {
-  FormHTMLAttributes,
-  forwardRef,
-  ReactElement,
-  Ref,
-  useCallback,
-} from "react";
+import React, { FormHTMLAttributes, forwardRef, useCallback } from "react";
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   /**
-   * Boolean if the form should no longer prevent default submit behavior.
+   * Boolean if the form should no longer prevent default submit behavior. If
+   * you enable this prop you should honestly just use a `<form>` element
+   * instead
    */
   disablePreventDefault?: boolean;
 }
@@ -18,10 +14,10 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
  * do much styling or logic. All this form component will do is add basic flex
  * behavior and prevent the default form submit behavior.
  */
-function Form(
-  { children, disablePreventDefault = false, onSubmit, ...props }: FormProps,
-  ref?: Ref<HTMLFormElement>
-): ReactElement {
+const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
+  { children, disablePreventDefault = false, onSubmit, ...props },
+  ref
+) {
   const handleOnSubmit = useCallback<React.FormEventHandler<HTMLFormElement>>(
     (event) => {
       if (!disablePreventDefault) {
@@ -40,18 +36,18 @@ function Form(
       {children}
     </form>
   );
-}
-
-const ForwardedForm = forwardRef<HTMLFormElement, FormProps>(Form);
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    ForwardedForm.propTypes = {
+    Form.propTypes = {
+      children: PropTypes.node,
+      onSubmit: PropTypes.func,
       disablePreventDefault: PropTypes.bool,
     };
   } catch (e) {}
 }
 
-export default ForwardedForm;
+export default Form;
