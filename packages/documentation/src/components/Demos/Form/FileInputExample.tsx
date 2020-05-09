@@ -7,7 +7,7 @@ import {
   FileInput,
   Form,
   Radio,
-  useCheckboxState,
+  useChecked,
   useChoice,
 } from "@react-md/form";
 import { SrOnly, Text } from "@react-md/typography";
@@ -39,7 +39,7 @@ const SimpleFileInputs: FC = () => {
 
   const [theme, handleThemeChange] = useChoice<ButtonTheme>("clear");
   const [themeType, handleTypeChange] = useChoice<ButtonThemeType>("flat");
-  const [isIcon, handleIconChange] = useCheckboxState(false);
+  const [isIcon, handleIconChange] = useChecked(false);
 
   return (
     <>

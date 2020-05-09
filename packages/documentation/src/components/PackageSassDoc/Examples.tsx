@@ -2,7 +2,7 @@ import React, { FC, Fragment } from "react";
 import { Text } from "@react-md/typography";
 import { CompiledExample } from "utils/sassdoc";
 import CodeBlock from "components/Code/CodeBlock";
-import { useCheckboxState, Switch } from "@react-md/form";
+import { useChecked, Switch } from "@react-md/form";
 import styles from "./styles";
 
 export interface ExamplesProps {
@@ -11,7 +11,7 @@ export interface ExamplesProps {
 }
 
 const Examples: FC<ExamplesProps> = ({ baseId, examples }) => {
-  const [enabled, handleChange] = useCheckboxState(false);
+  const [enabled, handleChange] = useChecked(false);
   if (!examples) {
     return null;
   }

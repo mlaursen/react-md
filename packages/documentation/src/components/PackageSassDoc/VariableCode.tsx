@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Switch, useCheckboxState } from "@react-md/form";
+import { Switch, useChecked } from "@react-md/form";
 
 import { CodeBlock } from "components/Code";
 import { FormattedVariableItem } from "utils/sassdoc";
@@ -19,7 +19,7 @@ const VariableCode: FC<VariableCodeProps> = ({
   compiled,
   overridable,
 }) => {
-  const [enabled, handleChange] = useCheckboxState(false);
+  const [enabled, handleChange] = useChecked(false);
   let code = `${value}${overridable ? " !default" : ""};`;
   if (enabled && compiled) {
     code = `${compiled};`;

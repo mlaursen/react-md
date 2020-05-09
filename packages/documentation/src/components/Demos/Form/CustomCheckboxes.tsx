@@ -1,11 +1,6 @@
 import React, { FC } from "react";
 import { Divider } from "@react-md/divider";
-import {
-  Checkbox,
-  Form,
-  InputToggleProps,
-  useCheckboxState,
-} from "@react-md/form";
+import { Checkbox, Form, InputToggleProps, useChecked } from "@react-md/form";
 import {
   FavoriteBorderFontIcon,
   FavoriteSVGIcon,
@@ -18,7 +13,7 @@ const CustomCheckbox: FC<InputToggleProps> = ({
   onChange: propOnChange,
   ...props
 }) => {
-  const [checked, onChange] = useCheckboxState(defaultChecked, propOnChange);
+  const [checked, onChange] = useChecked(defaultChecked, propOnChange);
 
   return (
     <Checkbox

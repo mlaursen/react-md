@@ -14,7 +14,7 @@ type SetChecked = Dispatch<SetStateAction<boolean>>;
  * @return a list containing the checked state, a change event handler, and then
  * a manual set checked action.
  */
-export default function useCheckboxState(
+export default function useChecked(
   defaultChecked: boolean | (() => boolean),
   onChange?: ChangeEventHandler
 ): [boolean, ChangeEventHandler, SetChecked] {

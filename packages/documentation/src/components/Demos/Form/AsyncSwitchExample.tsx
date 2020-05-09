@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
-import { AsyncSwitch, Checkbox, useCheckboxState } from "@react-md/form";
+import { AsyncSwitch, Checkbox, useChecked } from "@react-md/form";
 import { useTimeout } from "@react-md/utils";
 
 const AsyncSwitchExample: FC = () => {
   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
-  const [fail, handleFailChange] = useCheckboxState(false);
+  const [fail, handleFailChange] = useChecked(false);
   const [start] = useTimeout(() => {
     setLoading(false);
     if (fail) {

@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler } from "react";
-import { useCheckboxState, useChoice } from "@react-md/form";
+import { useChecked, useChoice } from "@react-md/form";
 import {
   FavoriteSVGIcon,
   NearMeSVGIcon,
@@ -75,17 +75,17 @@ export interface TabConfiguration {
 
 export default function useConfiguration(): TabConfiguration {
   // Tabs config
-  const [themed, handleThemedChange] = useCheckboxState(false);
-  const [padded, handlePaddedChange] = useCheckboxState(false);
-  const [automatic, handleAutomaticChange] = useCheckboxState(false);
+  const [themed, handleThemedChange] = useChecked(false);
+  const [padded, handlePaddedChange] = useChecked(false);
+  const [automatic, handleAutomaticChange] = useChecked(false);
 
   // Tab config
   const [icons, handleIconChange] = useChoice<IconBehavior>("none");
-  const [stacked, handleStackedChange] = useCheckboxState(false);
-  const [iconAfter, handleIconAfterChange] = useCheckboxState(false);
+  const [stacked, handleStackedChange] = useChecked(false);
+  const [iconAfter, handleIconAfterChange] = useChecked(false);
 
   // TabPanel config
-  const [persistent, handlePersistentChange] = useCheckboxState(false);
+  const [persistent, handlePersistentChange] = useChecked(false);
   const [transition, handleTransitionChange, setTransition] = useChoice<
     TransitionBehavior
   >("enabled");

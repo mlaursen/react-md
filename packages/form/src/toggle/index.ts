@@ -12,4 +12,4 @@ export * from "./Switch";
 
 export { default as AsyncSwitch } from "./AsyncSwitch";
 
-export { default as useCheckboxState } from "./useCheckboxState";
+export { default as useChecked } from "./useChecked";

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
-import { Checkbox, useCheckboxState } from "@react-md/form";
+import { Checkbox, useChecked } from "@react-md/form";
 import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
@@ -10,7 +10,7 @@ import "./FixingOverflowIssues.scss";
 
 const FixingOverflowIssues: FC = () => {
   const [visible, , disable, toggle] = useToggle(false);
-  const [portal, handlePortalChange] = useCheckboxState(false);
+  const [portal, handlePortalChange] = useChecked(false);
   return (
     <>
       <AppBar theme="default">

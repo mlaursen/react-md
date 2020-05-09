@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useState } from "react";
 import { Button } from "@react-md/button";
-import { Checkbox, Form, useCheckboxState } from "@react-md/form";
+import { Checkbox, Form, useChecked } from "@react-md/form";
 import { CloseSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
 import { ScaleTransition } from "@react-md/transition";
@@ -13,8 +13,8 @@ const styles = bem("scale-transition-example");
 
 const ScaleTransitionExample: FC = () => {
   const [visible, setVisible] = useState(false);
-  const [temporary, onTemporaryChange] = useCheckboxState(false);
-  const [vertical, onVerticalChange] = useCheckboxState(false);
+  const [temporary, onTemporaryChange] = useChecked(false);
+  const [vertical, onVerticalChange] = useChecked(false);
   const hide = useCallback(() => setVisible(false), []);
 
   return (

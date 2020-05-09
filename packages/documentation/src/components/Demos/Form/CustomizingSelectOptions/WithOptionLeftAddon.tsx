@@ -1,12 +1,7 @@
 import React, { FC } from "react";
 import { Avatar } from "@react-md/avatar";
 import scssVariables from "@react-md/avatar/dist/scssVariables";
-import {
-  Checkbox,
-  Select,
-  useCheckboxState,
-  ListboxOption,
-} from "@react-md/form";
+import { Checkbox, Select, useChecked, ListboxOption } from "@react-md/form";
 import { CloseSVGIcon } from "@react-md/material-icons";
 
 import immutableStates from "constants/states";
@@ -33,7 +28,7 @@ const states: ListboxOption[] = immutableStates.map(
 
 const WithOptionLeftAddon: FC = () => {
   const [value, handleChange] = useSelect("");
-  const [disableLeftAddon, handleLeftAddonChange] = useCheckboxState(false);
+  const [disableLeftAddon, handleLeftAddonChange] = useChecked(false);
   return (
     <>
       <Checkbox

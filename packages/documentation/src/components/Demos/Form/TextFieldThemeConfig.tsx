@@ -6,7 +6,7 @@ import {
   Radio,
   TextFieldProps,
   TextFieldTheme,
-  useCheckboxState,
+  useChecked,
   useChoice,
 } from "@react-md/form";
 import { FavoriteSVGIcon, LocationOnSVGIcon } from "@react-md/material-icons";
@@ -48,14 +48,14 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
   disableDense,
   disableRightIcon,
 }) => {
-  const [useLeft, handleLeftChange, setLeftIcon] = useCheckboxState(false);
-  const [useRight, handleRightChange, setRightIcon] = useCheckboxState(false);
-  const [dense, handleDenseChange, setDense] = useCheckboxState(false);
-  const [label, handleLabelChange, setLabel] = useCheckboxState(true);
-  const [inline, handleInlineChange] = useCheckboxState(false);
-  const [readOnly, handleReadOnlyChange, setReadOnly] = useCheckboxState(false);
-  const [error, handleErrorChange, setError] = useCheckboxState(false);
-  const [disabled, handleDisabledChange] = useCheckboxState(false);
+  const [useLeft, handleLeftChange, setLeftIcon] = useChecked(false);
+  const [useRight, handleRightChange, setRightIcon] = useChecked(false);
+  const [dense, handleDenseChange, setDense] = useChecked(false);
+  const [label, handleLabelChange, setLabel] = useChecked(true);
+  const [inline, handleInlineChange] = useChecked(false);
+  const [readOnly, handleReadOnlyChange, setReadOnly] = useChecked(false);
+  const [error, handleErrorChange, setError] = useChecked(false);
+  const [disabled, handleDisabledChange] = useChecked(false);
   const [currentTheme, handleThemeChange] = useChoice<TextFieldTheme>(
     "outline",
     (event) => {

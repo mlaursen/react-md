@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Checkbox, useCheckboxState } from "@react-md/form";
+import { Checkbox, useChecked } from "@react-md/form";
 import { Text } from "@react-md/typography";
 import { ResizeListener } from "@react-md/utils";
 
@@ -14,8 +14,8 @@ const ResizeListenerExample: FC = () => {
     return 0;
   });
 
-  const [enabled, handleEnabledChange] = useCheckboxState(true);
-  const [immediate, handleImmediateChange] = useCheckboxState(true);
+  const [enabled, handleEnabledChange] = useChecked(true);
+  const [immediate, handleImmediateChange] = useChecked(true);
 
   return (
     <>

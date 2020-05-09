@@ -4,7 +4,7 @@ import {
   Fieldset,
   NativeSelect,
   TextField,
-  useCheckboxState,
+  useChecked,
   useChoice,
 } from "@react-md/form";
 
@@ -41,10 +41,10 @@ const States: FC<{ states: readonly State[]; readOnly?: boolean }> = ({
 );
 
 const NativeSelectExample: FC = () => {
-  const [icon, handleIconChange, setIcon] = useCheckboxState(true);
+  const [icon, handleIconChange, setIcon] = useChecked(true);
   const [size, handleSizeChange] = useChoice("4");
-  const [multiple, handleMultipleChange] = useCheckboxState(false);
-  const [optgroup, handleOptgroupChange] = useCheckboxState(false);
+  const [multiple, handleMultipleChange] = useChecked(false);
+  const [optgroup, handleOptgroupChange] = useChecked(false);
   if (multiple && icon) {
     setIcon(false);
   }

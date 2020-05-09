@@ -4,7 +4,7 @@ import {
   Fieldset,
   ListboxOption,
   Select,
-  useCheckboxState,
+  useChecked,
 } from "@react-md/form";
 
 import TextFieldThemeConfig from "./TextFieldThemeConfig";
@@ -19,7 +19,7 @@ const SelectExample: FC = () => {
     },
     []
   );
-  const [disableMovementChange, handleMovementChange] = useCheckboxState(false);
+  const [disableMovementChange, handleMovementChange] = useChecked(false);
 
   return (
     <TextFieldThemeConfig

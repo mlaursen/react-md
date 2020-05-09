@@ -5,7 +5,7 @@ import {
   NativeSelect,
   TextArea,
   TextAreaResize,
-  useCheckboxState,
+  useChecked,
   useChoice,
 } from "@react-md/form";
 
@@ -15,7 +15,7 @@ const MAX_ROWS = [-1, 4, 5, 6, 7, 8, 9, 10];
 
 const TextAreaExample: FC = () => {
   const [resize, handleResizeChange] = useChoice<TextAreaResize>("auto");
-  const [animate, handleAnimateChange] = useCheckboxState(true);
+  const [animate, handleAnimateChange] = useChecked(true);
   const [rows, handleRowChange] = useChoice("2");
   const [maxRows, handleMaxRowChange, setMaxRows] = useChoice<string>("-1");
   const rowsInt = parseInt(rows, 10);

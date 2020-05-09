@@ -53,7 +53,7 @@ without any additional wrappers.
 - added an `AsyncSwitch` component to be able to render a `CircularProgress`
   indicator within a `Switch` while some asyncronous action is waiting
 - added a few hooks that might be helpful for the form control states:
-  `useChoise`, `useSelectState`, `useCheckboxState` (might change going forward)
+  `useChoice`, `useSelectState`, `useChecked` (might change going forward)
 - updated the `Select` component to use fixed positioning instead of relative
   pospositioning by default so that the menu always appears within the viewport
 

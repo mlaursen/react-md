@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { AppBar } from "@react-md/app-bar";
-import { Checkbox, useCheckboxState } from "@react-md/form";
+import { Checkbox, useChecked } from "@react-md/form";
 import { TabsManager, Tabs, TabPanels } from "@react-md/tabs";
 
 import "./PersistentTabs.scss";
@@ -10,7 +10,7 @@ import Content2 from "./Content2";
 const tabs = ["Tab 1", "Tab 2"];
 
 const PersistentTabs: FC = () => {
-  const [persistent, handleChange] = useCheckboxState(false);
+  const [persistent, handleChange] = useChecked(false);
   return (
     <TabsManager tabs={tabs} tabsId="persistent-tabs">
       <AppBar theme="default" derived prominent>

@@ -7,7 +7,7 @@ import {
   Form,
   ListboxOption,
   Select,
-  useCheckboxState,
+  useChecked,
 } from "@react-md/form";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
@@ -65,10 +65,10 @@ const CENTERED_ANCHOR = anchorOptions.find(
 const FixedPositioningExample: FC = () => {
   const [visible, show, hide] = useToggle(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const [disableSwapping, handleSwapCange] = useCheckboxState(false);
-  const [transformOrigin, handleOriginChange] = useCheckboxState(false);
-  const [hideOnScroll, handleScrollChange] = useCheckboxState(true);
-  const [hideOnResize, handleScrollResize] = useCheckboxState(true);
+  const [disableSwapping, handleSwapCange] = useChecked(false);
+  const [transformOrigin, handleOriginChange] = useChecked(false);
+  const [hideOnScroll, handleScrollChange] = useChecked(true);
+  const [hideOnResize, handleScrollResize] = useChecked(true);
   const [anchor, setAnchor] = useState(anchorOptions[0]);
   const handleAnchorChange = useCallback(
     (_value: string, anchor: ListboxOption) => {

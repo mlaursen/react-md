@@ -17,5 +17,5 @@ This package exposes a few components to help render accessible forms:
 There are also some hooks available for controlling the state of these
 components:
 
-- `useCheckboxState`
+- `useChecked`
 - `useChoice`

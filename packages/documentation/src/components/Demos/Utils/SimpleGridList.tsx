@@ -1,11 +1,6 @@
 import React, { FC } from "react";
 import cn from "classnames";
-import {
-  Checkbox,
-  Fieldset,
-  TextField,
-  useCheckboxState,
-} from "@react-md/form";
+import { Checkbox, Fieldset, TextField, useChecked } from "@react-md/form";
 import { bem, Grid, GridList, GridListCell } from "@react-md/utils";
 
 import useNumberField from "hooks/useNumberField";
@@ -38,7 +33,7 @@ const SimpleGridList: FC = () => {
     max: 48,
   });
 
-  const [restricted, handleRestrictedChange] = useCheckboxState(true);
+  const [restricted, handleRestrictedChange] = useChecked(true);
 
   return (
     <>

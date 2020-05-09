@@ -4,7 +4,7 @@ import {
   ExpansionPanel,
   usePanels,
 } from "@react-md/expansion-panel";
-import { Checkbox, Fieldset, useCheckboxState } from "@react-md/form";
+import { Checkbox, Fieldset, useChecked } from "@react-md/form";
 import { Grid } from "@react-md/utils";
 
 interface Props {
@@ -64,9 +64,9 @@ const Example: FC<Props> = ({ multiple, expandedIndex, preventAllClosed }) => {
 };
 
 const ConfiguringUsePanelsBehavior: FC = () => {
-  const [multiple, onMultipleChange] = useCheckboxState(false);
-  const [expandedIndex, onExpandedIndexChange] = useCheckboxState(false);
-  const [preventAllClosed, onPreventAllClosedChange] = useCheckboxState(false);
+  const [multiple, onMultipleChange] = useChecked(false);
+  const [expandedIndex, onExpandedIndexChange] = useChecked(false);
+  const [preventAllClosed, onPreventAllClosedChange] = useChecked(false);
 
   return (
     <Grid columns={1}>
