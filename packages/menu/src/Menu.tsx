@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, useState, useRef } from "react";
 import cn from "classnames";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import {
@@ -191,6 +191,8 @@ const Menu = forwardRef<HTMLDivElement, StrictProps>(function Menu(
     anchor = horizontal ? CENTER_CENTER_ANCHOR : TOP_INNER_RIGHT_ANCHOR;
   }
 
+  // TODO: Refactor all the menu functionality since I made this when I had no
+  // idea what I was doing with hooks
   const { ref, menuRef, onClick, onKeyDown } = useMenu({
     ref: forwardedRef,
     visible,
@@ -204,6 +206,15 @@ const Menu = forwardRef<HTMLDivElement, StrictProps>(function Menu(
     disableControlClickOkay,
   });
 
+  const [cancelled, setCancelled] = useState(false);
+  const prevVisible = useRef(visible);
+  if (prevVisible.current !== visible) {
+    prevVisible.current = visible;
+    if (cancelled) {
+      setCancelled(false);
+    }
+  }
+
   const {
     style,
     onEnter,
@@ -213,11 +224,16 @@ const Menu = forwardRef<HTMLDivElement, StrictProps>(function Menu(
   } = useFixedPositioning({
     ...positionOptions,
     fixedTo: () => document.getElementById(controlId),
-    // TODO: Look into a way to make this interact like the autocomplete to
-    // close when the menu is no longer visible within the viewport as well.
-    // current problem is related to focusing the menu button once it closes
-    // which scrolls back to that element
-    onScroll: closeOnScroll ? onRequestClose : undefined,
+    onScroll(_event, { visible }) {
+      if (!closeOnScroll && visible) {
+        return;
+      }
+
+      if (!visible) {
+        setCancelled(true);
+      }
+      onRequestClose();
+    },
     onResize: closeOnResize ? onRequestClose : undefined,
     anchor,
     onEnter: propOnEnter,
@@ -250,16 +266,20 @@ const Menu = forwardRef<HTMLDivElement, StrictProps>(function Menu(
         <div
           {...props}
           aria-orientation={orientation}
+          ref={ref}
           role={role}
           tabIndex={tabIndex}
           style={style}
-          ref={ref}
           className={cn(block({ horizontal }), className)}
           onClick={onClick}
           onKeyDown={onKeyDown}
         >
           {children}
-          <MenuEvents menuRef={menuRef} defaultFocus={defaultFocus} />
+          <MenuEvents
+            menuRef={menuRef}
+            cancelled={cancelled}
+            defaultFocus={defaultFocus}
+          />
         </div>
       </OrientationProvider>
     </ScaleTransition>

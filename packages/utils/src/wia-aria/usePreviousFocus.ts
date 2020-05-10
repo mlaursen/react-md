@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-
-import useRefCache from "../useRefCache";
+import { useEffect, useRef } from "react";
 
 /**
  * This can either be a query selector string, a specific HTMLElement, or a
@@ -40,14 +38,23 @@ export default function usePreviousFocus(
   fallback: FocusFallback = undefined,
   previousElement: HTMLElement | null = null
 ): void {
-  const ref = useRefCache({ fallback, previousElement });
+  const options = useRef({
+    disabled,
+    fallback,
+  });
+
+  useEffect(() => {
+    options.current = {
+      disabled,
+      fallback,
+    };
+  });
 
   useEffect(() => {
     if (disabled) {
       return;
     }
 
-    const { previousElement, fallback } = ref.current;
     const element = previousElement || (document.activeElement as HTMLElement);
 
     // i'll need to think of a better way to handle this flow. There's just a
@@ -75,6 +82,15 @@ export default function usePreviousFocus(
     }
 
     return () => {
+      const { fallback, disabled } = options.current;
+      if (disabled) {
+        // this has been added just for support for scrolling menus out of view.
+        // It is not ideal since keyboard focus is lost at this point, but
+        // _technically_ shouldn't be able to reach this flow with keyboard
+        // movement
+        return;
+      }
+
       if (
         menu &&
         menuButton &&

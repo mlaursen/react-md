@@ -3,6 +3,7 @@ import { usePreviousFocus, useFocusOnMount } from "@react-md/utils";
 
 export interface MenuEventsProps {
   menuRef: MutableRefObject<HTMLDivElement | null>;
+  cancelled: boolean;
   defaultFocus: "first" | "last" | string;
 }
 
@@ -14,9 +15,10 @@ export interface MenuEventsProps {
  */
 export default function MenuEvents({
   menuRef,
+  cancelled,
   defaultFocus,
 }: MenuEventsProps): null {
-  usePreviousFocus(false);
+  usePreviousFocus(cancelled);
   useFocusOnMount(menuRef, defaultFocus, false, true);
   return null;
 }
