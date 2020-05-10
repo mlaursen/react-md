@@ -1,19 +1,13 @@
 import React, { FC, ReactElement } from "react";
-import { StatesConfig } from "@react-md/states";
-import { TooltipHoverModeConfig } from "@react-md/tooltip";
-import {
-  AppSize,
-  AppSizeListener,
-  InteractionModeListener,
-} from "@react-md/utils";
+import { RouterContext } from "next/dist/next-server/lib/router-context";
+import { NextRouter } from "next/router";
+import { Configuration } from "@react-md/layout";
+import { AppSize } from "@react-md/utils";
 import {
   render as baseRender,
   RenderOptions,
   RenderResult,
 } from "@testing-library/react";
-
-import { RouterContext } from "next/dist/next-server/lib/router-context";
-import { NextRouter } from "next/router";
 
 export * from "@testing-library/react";
 
@@ -50,13 +44,7 @@ const AllProviders: FC<CustomOptions> = ({
   defaultAppSize,
 }) => (
   <RouterContext.Provider value={{ ...DEFAULT_ROUTER, ...router }}>
-    <AppSizeListener defaultSize={defaultAppSize}>
-      <InteractionModeListener>
-        <StatesConfig>
-          <TooltipHoverModeConfig>{children}</TooltipHoverModeConfig>
-        </StatesConfig>
-      </InteractionModeListener>
-    </AppSizeListener>
+    <Configuration defaultSize={defaultAppSize}>{children}</Configuration>
   </RouterContext.Provider>
 );
 
