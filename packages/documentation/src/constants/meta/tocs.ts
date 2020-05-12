@@ -356,12 +356,12 @@ const tocs: TOCRecord = {
       anchor: "#alert-variables",
     },
     {
-      title: "Functions",
-      anchor: "#alert-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#alert-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#alert-functions",
     },
   ],
   "/packages/app-bar/demos": [
@@ -402,12 +402,12 @@ const tocs: TOCRecord = {
       anchor: "#app-bar-variables",
     },
     {
-      title: "Functions",
-      anchor: "#app-bar-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#app-bar-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#app-bar-functions",
     },
   ],
   "/packages/autocomplete/demos": [
@@ -460,12 +460,12 @@ const tocs: TOCRecord = {
       anchor: "#avatar-variables",
     },
     {
-      title: "Functions",
-      anchor: "#avatar-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#avatar-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#avatar-functions",
     },
   ],
   "/packages/badge/demos": [
@@ -502,12 +502,12 @@ const tocs: TOCRecord = {
       anchor: "#badge-variables",
     },
     {
-      title: "Functions",
-      anchor: "#badge-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#badge-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#badge-functions",
     },
   ],
   "/packages/button/demos": [
@@ -564,12 +564,12 @@ const tocs: TOCRecord = {
       anchor: "#button-variables",
     },
     {
-      title: "Functions",
-      anchor: "#button-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#button-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#button-functions",
     },
   ],
   "/packages/card/demos": [
@@ -606,12 +606,12 @@ const tocs: TOCRecord = {
       anchor: "#card-variables",
     },
     {
-      title: "Functions",
-      anchor: "#card-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#card-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#card-functions",
     },
   ],
   "/packages/chip/demos": [
@@ -652,12 +652,12 @@ const tocs: TOCRecord = {
       anchor: "#chip-variables",
     },
     {
-      title: "Functions",
-      anchor: "#chip-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#chip-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#chip-functions",
     },
   ],
   "/packages/dialog/demos": [
@@ -702,12 +702,12 @@ const tocs: TOCRecord = {
       anchor: "#dialog-variables",
     },
     {
-      title: "Functions",
-      anchor: "#dialog-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#dialog-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#dialog-functions",
     },
   ],
   "/packages/divider/demos": [
@@ -740,12 +740,12 @@ const tocs: TOCRecord = {
       anchor: "#divider-variables",
     },
     {
-      title: "Functions",
-      anchor: "#divider-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#divider-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#divider-functions",
     },
   ],
   "/packages/elevation/demos": [
@@ -774,12 +774,12 @@ const tocs: TOCRecord = {
       anchor: "#elevation-variables",
     },
     {
-      title: "Functions",
-      anchor: "#elevation-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#elevation-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#elevation-functions",
     },
   ],
   "/packages/expansion-panel/demos": [
@@ -812,12 +812,12 @@ const tocs: TOCRecord = {
       anchor: "#expansion-panel-variables",
     },
     {
-      title: "Functions",
-      anchor: "#expansion-panel-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#expansion-panel-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#expansion-panel-functions",
     },
   ],
   "/packages/form/demos": [
@@ -894,12 +894,12 @@ const tocs: TOCRecord = {
       anchor: "#form-variables",
     },
     {
-      title: "Functions",
-      anchor: "#form-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#form-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#form-functions",
     },
   ],
   "/packages/icon/demos": [
@@ -936,12 +936,12 @@ const tocs: TOCRecord = {
       anchor: "#icon-variables",
     },
     {
-      title: "Functions",
-      anchor: "#icon-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#icon-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#icon-functions",
     },
   ],
   "/packages/layout/installation": [
@@ -1010,12 +1010,12 @@ const tocs: TOCRecord = {
       anchor: "#link-variables",
     },
     {
-      title: "Functions",
-      anchor: "#link-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#link-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#link-functions",
     },
   ],
   "/packages/list/demos": [
@@ -1052,12 +1052,12 @@ const tocs: TOCRecord = {
       anchor: "#list-variables",
     },
     {
-      title: "Functions",
-      anchor: "#list-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#list-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#list-functions",
     },
   ],
   "/packages/material-icons/demos": [
@@ -1180,12 +1180,12 @@ const tocs: TOCRecord = {
       anchor: "#menu-variables",
     },
     {
-      title: "Functions",
-      anchor: "#menu-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#menu-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#menu-functions",
     },
   ],
   "/packages/overlay/demos": [
@@ -1218,12 +1218,12 @@ const tocs: TOCRecord = {
       anchor: "#overlay-variables",
     },
     {
-      title: "Functions",
-      anchor: "#overlay-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#overlay-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#overlay-functions",
     },
   ],
   "/packages/portal/demos": [
@@ -1280,12 +1280,12 @@ const tocs: TOCRecord = {
       anchor: "#progress-variables",
     },
     {
-      title: "Functions",
-      anchor: "#progress-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#progress-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#progress-functions",
     },
   ],
   "/packages/sheet/demos": [
@@ -1318,12 +1318,12 @@ const tocs: TOCRecord = {
       anchor: "#sheet-variables",
     },
     {
-      title: "Functions",
-      anchor: "#sheet-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#sheet-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#sheet-functions",
     },
   ],
   "/packages/states/demos": [
@@ -1368,12 +1368,12 @@ const tocs: TOCRecord = {
       anchor: "#states-variables",
     },
     {
-      title: "Functions",
-      anchor: "#states-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#states-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#states-functions",
     },
   ],
   "/packages/table/demos": [
@@ -1426,12 +1426,12 @@ const tocs: TOCRecord = {
       anchor: "#table-variables",
     },
     {
-      title: "Functions",
-      anchor: "#table-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#table-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#table-functions",
     },
   ],
   "/packages/tabs/demos": [
@@ -1472,12 +1472,12 @@ const tocs: TOCRecord = {
       anchor: "#tabs-variables",
     },
     {
-      title: "Functions",
-      anchor: "#tabs-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#tabs-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#tabs-functions",
     },
   ],
   "/packages/theme/demos": [
@@ -1518,12 +1518,12 @@ const tocs: TOCRecord = {
       anchor: "#theme-variables",
     },
     {
-      title: "Functions",
-      anchor: "#theme-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#theme-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#theme-functions",
     },
   ],
   "/packages/tooltip/demos": [
@@ -1572,12 +1572,12 @@ const tocs: TOCRecord = {
       anchor: "#tooltip-variables",
     },
     {
-      title: "Functions",
-      anchor: "#tooltip-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#tooltip-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#tooltip-functions",
     },
   ],
   "/packages/transition/demos": [
@@ -1660,12 +1660,12 @@ const tocs: TOCRecord = {
       anchor: "#tree-variables",
     },
     {
-      title: "Functions",
-      anchor: "#tree-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#tree-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#tree-functions",
     },
   ],
   "/packages/typography/demos": [
@@ -1694,12 +1694,12 @@ const tocs: TOCRecord = {
       anchor: "#typography-variables",
     },
     {
-      title: "Functions",
-      anchor: "#typography-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#typography-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#typography-functions",
     },
   ],
   "/packages/utils/demos": [
@@ -1748,12 +1748,12 @@ const tocs: TOCRecord = {
       anchor: "#utils-variables",
     },
     {
-      title: "Functions",
-      anchor: "#utils-functions",
-    },
-    {
       title: "Mixins",
       anchor: "#utils-mixins",
+    },
+    {
+      title: "Functions",
+      anchor: "#utils-functions",
     },
   ],
 };
