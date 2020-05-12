@@ -269,20 +269,20 @@
 /// - APP_BAR_OFFSET_DENSE_CLASSNAME
 /// - APP_BAR_OFFSET_PROMINENT_CLASSNAME
 /// - APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME
-@mixin rmd-app-bar-offsets {
+@mixin rmd-app-bar-offsets($property: padding-top) {
   .rmd-app-bar-offset {
-    @include rmd-app-bar-theme(padding-top, height);
+    @include rmd-app-bar-offset($property, height);
 
     &--dense {
-      @include rmd-app-bar-theme(padding-top, dense-height);
+      @include rmd-app-bar-offset($property, dense-height);
     }
 
     &--prominent {
-      @include rmd-app-bar-theme(padding-top, prominent-height);
+      @include rmd-app-bar-offset($property, prominent-height);
     }
 
     &--prominent-dense {
-      @include rmd-app-bar-theme(padding-top, prominent-dense-height);
+      @include rmd-app-bar-offset($property, prominent-dense-height);
     }
   }
 }

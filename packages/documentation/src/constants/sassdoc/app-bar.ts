@@ -76,7 +76,6 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "rmd-app-bar-themes", type: "mixin", packageName: "app-bar" },
         { name: "rmd-app-bar-offset", type: "mixin", packageName: "app-bar" },
-        { name: "rmd-app-bar-offsets", type: "mixin", packageName: "app-bar" },
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
         { name: "rmd-layout-main", type: "mixin", packageName: "layout" },
       ],
@@ -303,6 +302,7 @@ const sassdoc: PackageSassDoc = {
         "This mixin is used to apply an offset to an element so that it can be placed with a fixed App Bar. This is really used to help layout your app so that the initial content isn't covered by the app bar.\n\n @example scss - Example Usage\n   .offset-by-height {\n     @include rmd-app-bar-offset;\n   }\n\n   .offset-by-dense-height {\n     @include rmd-app-bar-ofset($height-type: dense-height);\n   }",
       source: "packages/app-bar/src/_mixins.scss#L258-L263",
       usedBy: [
+        { name: "rmd-app-bar-offsets", type: "mixin", packageName: "app-bar" },
         {
           name: "rmd-layout-app-bar-offset",
           type: "mixin",
@@ -343,7 +343,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "app-bar",
       code: "@mixin rmd-app-bar-offsets { … }",
       sourceCode:
-        "@mixin rmd-app-bar-offsets {\n  .rmd-app-bar-offset {\n    @include rmd-app-bar-theme(padding-top, height);\n\n    &--dense {\n      @include rmd-app-bar-theme(padding-top, dense-height);\n    }\n\n    &--prominent {\n      @include rmd-app-bar-theme(padding-top, prominent-height);\n    }\n\n    &--prominent-dense {\n      @include rmd-app-bar-theme(padding-top, prominent-dense-height);\n    }\n  }\n}\n",
+        "@mixin rmd-app-bar-offsets {\n  .rmd-app-bar-offset {\n    @include rmd-app-bar-offset($property, height);\n\n    &--dense {\n      @include rmd-app-bar-offset($property, dense-height);\n    }\n\n    &--prominent {\n      @include rmd-app-bar-offset($property, prominent-height);\n    }\n\n    &--prominent-dense {\n      @include rmd-app-bar-offset($property, prominent-dense-height);\n    }\n  }\n}\n",
       type: "mixin",
     },
     "rmd-app-bar-dense-theme": {
