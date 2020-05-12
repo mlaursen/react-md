@@ -19,7 +19,7 @@
     "content": {
       "title": "Button Example - Outlined Buttons",
       "description": "Example from https://react-md.dev/packages/button/demos#outlined-buttons",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

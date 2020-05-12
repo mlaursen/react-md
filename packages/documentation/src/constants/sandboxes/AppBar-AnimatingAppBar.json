@@ -19,7 +19,7 @@
     "content": {
       "title": "AppBar Example - Animating App Bar",
       "description": "Example from https://react-md.dev/packages/app-bar/demos#animating-app-bar",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/avatar": "next",

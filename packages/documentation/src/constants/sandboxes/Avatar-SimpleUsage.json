@@ -19,7 +19,7 @@
     "content": {
       "title": "Avatar Example - Simple Usage",
       "description": "Example from https://react-md.dev/packages/avatar/demos#simple-usage",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/avatar": "next",
         "@react-md/icon": "next",

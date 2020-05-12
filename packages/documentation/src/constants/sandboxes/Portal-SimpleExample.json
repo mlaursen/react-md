@@ -19,7 +19,7 @@
     "content": {
       "title": "Portal Example - Simple Example",
       "description": "Example from https://react-md.dev/packages/portal/demos#simple-example",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/elevation": "next",

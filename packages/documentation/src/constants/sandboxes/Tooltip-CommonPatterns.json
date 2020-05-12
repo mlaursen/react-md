@@ -19,7 +19,7 @@
     "content": {
       "title": "Tooltip Example - Common Patterns",
       "description": "Example from https://react-md.dev/packages/tooltip/demos#common-patterns",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

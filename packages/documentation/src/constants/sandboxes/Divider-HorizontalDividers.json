@@ -19,7 +19,7 @@
     "content": {
       "title": "Divider Example - Horizontal Dividers",
       "description": "Example from https://react-md.dev/packages/divider/demos#horizontal-dividers",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/divider": "next",
         "@react-md/layout": "next",

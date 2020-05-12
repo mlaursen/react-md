@@ -19,7 +19,7 @@
     "content": {
       "title": "Menu Example - Accessibility Example",
       "description": "Example from https://react-md.dev/packages/menu/demos#accessibility-example",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/dialog": "next",

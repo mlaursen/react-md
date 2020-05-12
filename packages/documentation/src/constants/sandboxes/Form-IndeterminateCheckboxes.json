@@ -19,7 +19,7 @@
     "content": {
       "title": "Form Example - Indeterminate Checkboxes",
       "description": "Example from https://react-md.dev/packages/form/demos#indeterminate-checkboxes",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/form": "next",
         "@react-md/layout": "next",

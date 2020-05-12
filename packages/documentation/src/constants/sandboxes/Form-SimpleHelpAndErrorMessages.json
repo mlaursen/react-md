@@ -19,7 +19,7 @@
     "content": {
       "title": "Form Example - Simple Help And Error Messages",
       "description": "Example from https://react-md.dev/packages/form/demos#simple-help-and-error-messages",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/form": "next",
         "@react-md/layout": "next",

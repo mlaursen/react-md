@@ -19,7 +19,7 @@
     "content": {
       "title": "Icon Example - Icon Spacing",
       "description": "Example from https://react-md.dev/packages/icon/demos#icon-spacing",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/divider": "next",

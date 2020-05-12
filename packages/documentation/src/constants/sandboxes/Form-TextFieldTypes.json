@@ -19,7 +19,7 @@
     "content": {
       "title": "Form Example - Text Field Types",
       "description": "Example from https://react-md.dev/packages/form/demos#text-field-types",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/divider": "next",
         "@react-md/form": "next",

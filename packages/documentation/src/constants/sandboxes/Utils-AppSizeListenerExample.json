@@ -19,7 +19,7 @@
     "content": {
       "title": "Utils Example - App Size Listener Example",
       "description": "Example from https://react-md.dev/packages/utils/demos#app-size-listener-example",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/states": "next",

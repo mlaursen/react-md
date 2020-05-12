@@ -19,7 +19,7 @@
     "content": {
       "title": "AppBar Example - Fixed With Offset",
       "description": "Example from https://react-md.dev/packages/app-bar/demos#fixed-with-offset",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/elevation": "next",

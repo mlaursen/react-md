@@ -19,7 +19,7 @@
     "content": {
       "title": "Progress Example - With Suspense",
       "description": "Example from https://react-md.dev/packages/progress/demos#with-suspense",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/button": "next",

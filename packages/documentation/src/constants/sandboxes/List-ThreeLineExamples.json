@@ -19,7 +19,7 @@
     "content": {
       "title": "List Example - Three Line Examples",
       "description": "Example from https://react-md.dev/packages/list/demos#three-line-examples",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/elevation": "next",
         "@react-md/layout": "next",

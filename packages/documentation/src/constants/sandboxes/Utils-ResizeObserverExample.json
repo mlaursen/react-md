@@ -19,7 +19,7 @@
     "content": {
       "title": "Utils Example - Resize Observer Example",
       "description": "Example from https://react-md.dev/packages/utils/demos#resize-observer-example",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/elevation": "next",

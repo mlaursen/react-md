@@ -19,7 +19,7 @@
     "content": {
       "title": "Tabs Example - Swipeable Tabs",
       "description": "Example from https://react-md.dev/packages/tabs/demos#swipeable-tabs",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/states": "next",

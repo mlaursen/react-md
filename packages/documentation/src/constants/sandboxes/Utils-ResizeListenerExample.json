@@ -19,7 +19,7 @@
     "content": {
       "title": "Utils Example - Resize Listener Example",
       "description": "Example from https://react-md.dev/packages/utils/demos#resize-listener-example",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/form": "next",
         "@react-md/layout": "next",

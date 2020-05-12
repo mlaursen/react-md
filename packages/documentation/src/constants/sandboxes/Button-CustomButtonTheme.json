@@ -19,7 +19,7 @@
     "content": {
       "title": "Button Example - Custom Button Theme",
       "description": "Example from https://react-md.dev/packages/button/demos#custom-button-theme",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/icon": "next",

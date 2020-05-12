@@ -19,7 +19,7 @@
     "content": {
       "title": "Link Example - Third Party Routing Libraries",
       "description": "Example from https://react-md.dev/packages/link/demos#third-party-routing-libraries",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/link": "next",

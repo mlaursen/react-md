@@ -19,7 +19,7 @@
     "content": {
       "title": "ExpansionPanel Example - Simple Example",
       "description": "Example from https://react-md.dev/packages/expansion-panel/demos#simple-example",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/expansion-panel": "next",
         "@react-md/form": "next",

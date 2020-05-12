@@ -19,7 +19,7 @@
     "content": {
       "title": "Button Example - Icon Buttons",
       "description": "Example from https://react-md.dev/packages/button/demos#icon-buttons",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/icon": "next",

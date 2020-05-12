@@ -19,7 +19,7 @@
     "content": {
       "title": "Form Example - File Input Example",
       "description": "Example from https://react-md.dev/packages/form/demos#file-input-example",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/divider": "next",

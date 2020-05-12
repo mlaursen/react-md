@@ -19,7 +19,7 @@
     "content": {
       "title": "Tooltip Example - AdvancedAPI And Gotchas",
       "description": "Example from https://react-md.dev/packages/tooltip/demos#advancedapi-and-gotchas",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

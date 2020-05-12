@@ -19,7 +19,7 @@
     "content": {
       "title": "Divider Example - Within Lists",
       "description": "Example from https://react-md.dev/packages/divider/demos#within-lists",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/divider": "next",
         "@react-md/elevation": "next",

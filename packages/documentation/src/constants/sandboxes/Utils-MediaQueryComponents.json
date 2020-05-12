@@ -19,7 +19,7 @@
     "content": {
       "title": "Utils Example - Media Query Components",
       "description": "Example from https://react-md.dev/packages/utils/demos#media-query-components",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/divider": "next",
         "@react-md/elevation": "next",

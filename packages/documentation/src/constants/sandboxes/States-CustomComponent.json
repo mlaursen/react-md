@@ -19,7 +19,7 @@
     "content": {
       "title": "States Example - Custom Component",
       "description": "Example from https://react-md.dev/packages/states/demos#custom-component",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

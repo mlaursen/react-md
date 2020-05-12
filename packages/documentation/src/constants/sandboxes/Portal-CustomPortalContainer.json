@@ -19,7 +19,7 @@
     "content": {
       "title": "Portal Example - Custom Portal Container",
       "description": "Example from https://react-md.dev/packages/portal/demos#custom-portal-container",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/elevation": "next",
         "@react-md/form": "next",

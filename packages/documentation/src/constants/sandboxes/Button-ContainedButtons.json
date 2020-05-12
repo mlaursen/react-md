@@ -19,7 +19,7 @@
     "content": {
       "title": "Button Example - Contained Buttons",
       "description": "Example from https://react-md.dev/packages/button/demos#contained-buttons",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

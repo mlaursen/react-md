@@ -19,7 +19,7 @@
     "content": {
       "title": "Progress Example - Within Buttons",
       "description": "Example from https://react-md.dev/packages/progress/demos#within-buttons",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/icon": "next",

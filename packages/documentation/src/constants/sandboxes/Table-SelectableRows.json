@@ -19,7 +19,7 @@
     "content": {
       "title": "Table Example - Selectable Rows",
       "description": "Example from https://react-md.dev/packages/table/demos#selectable-rows",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/form": "next",
         "@react-md/layout": "next",

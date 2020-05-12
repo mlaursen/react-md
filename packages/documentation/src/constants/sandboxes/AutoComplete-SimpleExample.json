@@ -19,7 +19,7 @@
     "content": {
       "title": "AutoComplete Example - Simple Example",
       "description": "Example from https://react-md.dev/packages/auto-complete/demos#simple-example",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/autocomplete": "next",
         "@react-md/layout": "next",

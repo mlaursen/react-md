@@ -19,7 +19,7 @@
     "content": {
       "title": "Chip Example - Action Chips",
       "description": "Example from https://react-md.dev/packages/chip/demos#action-chips",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/card": "next",

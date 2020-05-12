@@ -19,7 +19,7 @@
     "content": {
       "title": "Utils Example - Material Grid Example",
       "description": "Example from https://react-md.dev/packages/utils/demos#material-grid-example",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/elevation": "next",
         "@react-md/layout": "next",

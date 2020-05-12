@@ -19,7 +19,7 @@
     "content": {
       "title": "Form Example - Example Form",
       "description": "Example from https://react-md.dev/packages/form/demos#example-form",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/button": "next",

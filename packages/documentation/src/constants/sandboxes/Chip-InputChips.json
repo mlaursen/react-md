@@ -19,7 +19,7 @@
     "content": {
       "title": "Chip Example - Input Chips",
       "description": "Example from https://react-md.dev/packages/chip/demos#input-chips",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/autocomplete": "next",

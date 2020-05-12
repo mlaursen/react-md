@@ -19,7 +19,7 @@
     "content": {
       "title": "Menu Example - Nested Dropdown Menus",
       "description": "Example from https://react-md.dev/packages/menu/demos#nested-dropdown-menus",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/form": "next",
         "@react-md/layout": "next",

@@ -19,7 +19,7 @@
     "content": {
       "title": "Menu Example - Simple Context Menu",
       "description": "Example from https://react-md.dev/packages/menu/demos#simple-context-menu",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/divider": "next",
         "@react-md/layout": "next",

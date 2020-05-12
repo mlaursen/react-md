@@ -19,7 +19,7 @@
     "content": {
       "title": "Table Example - Default Styles",
       "description": "Example from https://react-md.dev/packages/table/demos#default-styles",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/states": "next",

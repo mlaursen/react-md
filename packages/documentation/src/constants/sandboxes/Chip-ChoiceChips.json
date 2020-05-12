@@ -19,7 +19,7 @@
     "content": {
       "title": "Chip Example - Choice Chips",
       "description": "Example from https://react-md.dev/packages/chip/demos#choice-chips",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/card": "next",

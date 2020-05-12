@@ -19,7 +19,7 @@
     "content": {
       "title": "Chip Example - Simple Chips",
       "description": "Example from https://react-md.dev/packages/chip/demos#simple-chips",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/avatar": "next",
         "@react-md/chip": "next",

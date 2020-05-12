@@ -19,7 +19,7 @@
     "content": {
       "title": "AutoComplete Example - Highlight Matches",
       "description": "Example from https://react-md.dev/packages/auto-complete/demos#highlight-matches",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/autocomplete": "next",

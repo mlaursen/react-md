@@ -19,7 +19,7 @@
     "content": {
       "title": "Menu Example - Custom Renderers",
       "description": "Example from https://react-md.dev/packages/menu/demos#custom-renderers",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/avatar": "next",
         "@react-md/layout": "next",

@@ -19,7 +19,7 @@
     "content": {
       "title": "Table Example - Sticky Columns Part2",
       "description": "Example from https://react-md.dev/packages/table/demos#sticky-columns-part2",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/app-bar": "next",
         "@react-md/layout": "next",

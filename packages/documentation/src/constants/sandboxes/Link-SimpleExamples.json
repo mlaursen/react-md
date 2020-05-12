@@ -19,7 +19,7 @@
     "content": {
       "title": "Link Example - Simple Examples",
       "description": "Example from https://react-md.dev/packages/link/demos#simple-examples",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/layout": "next",
         "@react-md/link": "next",

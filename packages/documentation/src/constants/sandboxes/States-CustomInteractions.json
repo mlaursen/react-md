@@ -19,7 +19,7 @@
     "content": {
       "title": "States Example - Custom Interactions",
       "description": "Example from https://react-md.dev/packages/states/demos#custom-interactions",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/elevation": "next",

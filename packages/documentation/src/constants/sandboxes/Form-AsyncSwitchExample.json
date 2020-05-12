@@ -19,7 +19,7 @@
     "content": {
       "title": "Form Example - Async Switch Example",
       "description": "Example from https://react-md.dev/packages/form/demos#async-switch-example",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/form": "next",
         "@react-md/layout": "next",

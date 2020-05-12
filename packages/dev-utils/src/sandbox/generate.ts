@@ -163,7 +163,7 @@ export default async function generate({
     description: `Example from ${homepage}/packages/${toUrlId(
       packageName
     )}/demos#${toUrlId(demoName)}`,
-    main: "src/Demo.tsx",
+    main: "src/index.tsx",
     dependencies: toDependencyJson(packageDependencies),
     devDependencies: toDependencyJson(ALWAYS_REQUIRED_DEV_DEPENDENCIES),
     scripts: {

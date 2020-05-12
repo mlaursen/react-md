@@ -19,7 +19,7 @@
     "content": {
       "title": "Transition Example - UseCSS Transition",
       "description": "Example from https://react-md.dev/packages/transition/demos#usecss-transition",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/button": "next",
         "@react-md/layout": "next",

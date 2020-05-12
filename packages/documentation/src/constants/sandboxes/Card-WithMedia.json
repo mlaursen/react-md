@@ -19,7 +19,7 @@
     "content": {
       "title": "Card Example - With Media",
       "description": "Example from https://react-md.dev/packages/card/demos#with-media",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/card": "next",
         "@react-md/layout": "next",

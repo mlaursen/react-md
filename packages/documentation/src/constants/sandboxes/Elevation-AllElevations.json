@@ -19,7 +19,7 @@
     "content": {
       "title": "Elevation Example - All Elevations",
       "description": "Example from https://react-md.dev/packages/elevation/demos#all-elevations",
-      "main": "src/Demo.tsx",
+      "main": "src/index.tsx",
       "dependencies": {
         "@react-md/elevation": "next",
         "@react-md/layout": "next",
