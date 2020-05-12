@@ -261,7 +261,7 @@ const sassdoc: PackageSassDoc = {
         "Applies one of the provided material design styles to an element.\n",
       source: "packages/typography/src/_mixins.scss#L91-L99",
       usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "rmd-toast", type: "mixin", packageName: "alert" },
         { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
         { name: "rmd-badge", type: "mixin", packageName: "badge" },
         { name: "rmd-button-text", type: "mixin", packageName: "button" },

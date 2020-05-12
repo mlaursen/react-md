@@ -31,7 +31,7 @@ export interface Message {
    * existing messages will maintain their order but pushed behind this new
    * message.
    *
-   * @default "next"
+   * @default "normal"
    */
   messagePriority?: MessagePriority;
 

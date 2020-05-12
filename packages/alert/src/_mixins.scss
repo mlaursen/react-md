@@ -35,107 +35,123 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-alert-theme-values, alert);
 }
 
+/// Generates the styles for a snackbar and should probably only be used
+/// internally.
+@mixin rmd-snackbar {
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  margin: $rmd-snackbar-margin;
+  // disable pointer events since otherwise this will block clicking on elements while the toast
+  // is visible. they will be re-enabled on the toast itself.
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  z-index: $rmd-snackbar-z-index;
+}
+
+/// Generates the styles for a toast and should probably only be used
+/// internally.
+@mixin rmd-toast {
+  @include rmd-elevation($rmd-toast-elevation);
+  @include rmd-typography(subtitle-2);
+  @include rmd-alert-theme(background-color);
+  @include rmd-alert-theme(color);
+
+  align-items: center;
+  border-radius: $rmd-toast-border-radius;
+  display: flex;
+  min-height: $rmd-toast-min-height;
+  min-width: $rmd-toast-min-width;
+  padding: 0 $rmd-toast-horizontal-padding;
+  pointer-events: auto;
+  transform-origin: center;
+
+  &--padded {
+    padding-bottom: $rmd-toast-vertical-padding;
+    padding-top: $rmd-toast-vertical-padding;
+  }
+
+  &--action {
+    @include rmd-utils-rtl-auto(padding-right, 0, $rmd-toast-horizontal-padding);
+  }
+
+  &--two-lines {
+    min-height: $rmd-toast-two-line-min-height;
+  }
+
+  &--stacked {
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+
+  &--enter {
+    @include rmd-transition(deceleration);
+
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity $rmd-toast-enter-duration, transform $rmd-toast-enter-duration;
+  }
+
+  &--enter-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &--exit {
+    @include rmd-transition(acceleration);
+
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &--exit-active {
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity $rmd-toast-exit-duration, transform $rmd-toast-exit-duration;
+  }
+
+  &__message {
+    @include rmd-utils-rtl-auto(margin-right, auto);
+
+    display: inline-flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+
+    &--action {
+      @include rmd-utils-rtl-auto(padding-right, $rmd-toast-horizontal-padding, 0);
+    }
+
+    p {
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  &__action {
+    display: inline-flex;
+    flex-shrink: 0;
+    margin: 0 $rmd-toast-action-margin;
+
+    &--stacked {
+      align-self: flex-end;
+      margin-bottom: $rmd-toast-action-margin;
+      margin-top: $rmd-toast-stacked-action-margin-top;
+    }
+  }
+}
+
 /// Creates all the styles for this package as well as defining all the theme
 /// CSS variables.
 @mixin react-md-alert {
   @include rmd-theme-create-root-theme($rmd-alert-theme-values, alert);
 
   .rmd-snackbar {
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    left: 0;
-    margin: $rmd-snackbar-margin;
-    // disable pointer events since otherwise this will block clicking on elements while the toast
-    // is visible. they will be re-enabled on the toast itself.
-    pointer-events: none;
-    position: fixed;
-    right: 0;
-    z-index: $rmd-snackbar-z-index;
+    @include rmd-snackbar;
   }
 
   .rmd-toast {
-    @include rmd-elevation($rmd-toast-elevation);
-    @include rmd-typography(subtitle-2);
-    @include rmd-alert-theme(background-color, toast-background-color);
-    @include rmd-alert-theme(color, toast-color);
-
-    align-items: center;
-    border-radius: $rmd-toast-border-radius;
-    display: flex;
-    min-height: $rmd-toast-min-height;
-    min-width: $rmd-toast-min-width;
-    padding: 0 $rmd-toast-horizontal-padding;
-    pointer-events: auto;
-    transform-origin: center;
-
-    &--padded {
-      padding-bottom: $rmd-toast-vertical-padding;
-      padding-top: $rmd-toast-vertical-padding;
-    }
-
-    &--action {
-      @include rmd-utils-rtl-auto(padding-right, 0, $rmd-toast-horizontal-padding);
-    }
-
-    &--two-lines {
-      min-height: $rmd-toast-two-line-min-height;
-    }
-
-    &--stacked {
-      flex-direction: column;
-      padding-bottom: 0;
-    }
-
-    &--enter {
-      @include rmd-transition(deceleration);
-
-      opacity: 0;
-      transform: scale(0);
-      transition: opacity $rmd-toast-enter-duration, transform $rmd-toast-enter-duration;
-    }
-
-    &--enter-active {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    &--exit {
-      @include rmd-transition(acceleration);
-
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    &--exit-active {
-      opacity: 0;
-      transform: scale(0);
-      transition: opacity $rmd-toast-exit-duration, transform $rmd-toast-exit-duration;
-    }
-
-    &__message {
-      @include rmd-utils-rtl-auto(margin-right, auto);
-
-      display: inline-flex;
-      flex: 1 1 auto;
-      flex-wrap: wrap;
-
-      p {
-        margin: 0;
-        width: 100%;
-      }
-    }
-
-    &__action {
-      display: inline-flex;
-      flex-shrink: 0;
-      margin: 0 $rmd-toast-action-margin;
-
-      &--stacked {
-        align-self: flex-end;
-        margin-bottom: $rmd-toast-action-margin;
-        margin-top: $rmd-toast-stacked-action-margin-top;
-      }
-    }
+    @include rmd-toast;
   }
 }

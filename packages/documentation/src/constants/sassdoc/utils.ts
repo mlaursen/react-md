@@ -113,7 +113,7 @@ const sassdoc: PackageSassDoc = {
         "This mixin will try to automatically swap the positioning styles for rtl languages.  If the swapped style should have something other than `auto` as the new style, that style should be included in the `$swapped-styles` map with the correct value.",
       source: "packages/utils/src/_mixins.scss#L56-L76",
       usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "rmd-toast", type: "mixin", packageName: "alert" },
         { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
         {
           name: "rmd-app-bar-action-position",

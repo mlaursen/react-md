@@ -3157,7 +3157,11 @@ const sassdoc: PackageSassDoc = {
       description: "",
       source: "packages/theme/src/_color-palette.scss#L771",
       usedBy: [
-        { name: "rmd-toast-color", type: "variable", packageName: "alert" },
+        {
+          name: "rmd-toast-light-color",
+          type: "variable",
+          packageName: "alert",
+        },
         {
           name: "rmd-app-bar-default-light-theme-color",
           type: "variable",
@@ -3344,6 +3348,12 @@ const sassdoc: PackageSassDoc = {
         "Boolean if the light theme **default** colors should be used. This means that the background-color, surface, and text colors will be updated to their light theme defaults.  Setting this to `false`, will use their dark theme defaults.\n",
       source: "packages/theme/src/_variables.scss#L28",
       usedBy: [
+        {
+          name: "rmd-toast-background-color",
+          type: "variable",
+          packageName: "alert",
+        },
+        { name: "rmd-toast-color", type: "variable", packageName: "alert" },
         {
           name: "rmd-chip-solid-background-color",
           type: "variable",

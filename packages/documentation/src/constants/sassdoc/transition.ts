@@ -10,7 +10,7 @@ const sassdoc: PackageSassDoc = {
         "Adds a transition timing function for the provided transition type.",
       source: "packages/transition/src/_mixins.scss#L14-L22",
       usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "rmd-toast", type: "mixin", packageName: "alert" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-label", type: "mixin", packageName: "form" },
         { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
@@ -247,6 +247,16 @@ const sassdoc: PackageSassDoc = {
         "The default transition time for a linear animation/transition.\n",
       source: "packages/transition/src/_variables.scss#L37",
       usedBy: [
+        {
+          name: "rmd-toast-enter-duration",
+          type: "variable",
+          packageName: "alert",
+        },
+        {
+          name: "rmd-toast-exit-duration",
+          type: "variable",
+          packageName: "alert",
+        },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         {
           name: "rmd-chip-transition-duration",

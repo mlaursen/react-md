@@ -101,7 +101,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
           className
         )}
       >
-        <span className={block("message")}>{children}</span>
+        <span className={block("message", { action })}>{children}</span>
         {action && (
           <span className={block("action", { stacked })}>{action}</span>
         )}

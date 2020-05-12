@@ -75,7 +75,7 @@ const sassdoc: PackageSassDoc = {
       description: "Create the box shadow based on a z-value.",
       source: "packages/elevation/src/_mixins.scss#L27-L29",
       usedBy: [
-        { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "rmd-toast", type: "mixin", packageName: "alert" },
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
         { name: "rmd-card", type: "mixin", packageName: "card" },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
