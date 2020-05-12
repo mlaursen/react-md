@@ -988,7 +988,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Form Installation",
     summary:
-      "Create material design form elements with a lot of customization.",
+      "Create material design form elements with a lot of customization. This package exports the following form components:",
     type: "guide",
     pageUrl: "/packages/[id]/installation",
     pathname: "/packages/form/installation",

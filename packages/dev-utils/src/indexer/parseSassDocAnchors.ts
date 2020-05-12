@@ -17,14 +17,13 @@ export default function parseSassDocAnchors(
   const contents = readFileSync(sassdocPath, "utf8");
 
   // this is some great hacking
-  const exports = contents.match(/\s\s(functions|variables|mixins): {\r?\n/g);
+  // const exports = contents.match(/\s\s(functions|variables|mixins): {\r?\n/g);
+  const exports = ["variables", "functions", "mixins"].filter((type) =>
+    contents.match(new RegExp(`^\\s\\s${type}: {\\r?\\n`, "m"))
+  );
 
-  return exports.map((name) => {
-    const type = name.substring(2, name.indexOf(":"));
-
-    return {
-      title: toTitle(type),
-      anchor: `#${packageName}-${type}`,
-    };
-  });
+  return exports.map((name) => ({
+    title: toTitle(name),
+    anchor: `#${packageName}-${name}`,
+  }));
 }
