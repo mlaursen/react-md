@@ -273,4 +273,20 @@ export interface AutoCompleteProps
    * @see AutoCompleteHandler
    */
   onAutoComplete?: AutoCompleteHandler;
+
+  /**
+   * An optional list of keys that should be omitted from your `data` item
+   * before passing it to the suggestion `Option`. This is useful if you have
+   * additional metadata in your data objects that should not be passed as DOM
+   * attributes.
+   *
+   *
+   * ```ts
+   * const item = { __id: 9432432, name: "Item", value: "guid" }
+   *
+   * // don't want to pass `__id` to the Option
+   * const omitKeys = ["__id"];
+   *```
+   */
+  omitKeys?: readonly string[];
 }

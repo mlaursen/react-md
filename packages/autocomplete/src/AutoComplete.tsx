@@ -27,6 +27,8 @@ const DEFAULT_FILTER_OPTIONS = {
   ignoreWhitespace: true,
 };
 
+const EMPTY_LIST: string[] = [];
+
 /**
  * An AutoComplete is an accessible combobox widget that allows for real-time
  * suggestions as the user types.
@@ -75,6 +77,7 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
       disableShowOnFocus,
       closeOnResize = false,
       closeOnScroll = false,
+      omitKeys = EMPTY_LIST,
       ...props
     },
     forwardedRef
@@ -183,7 +186,7 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
               const resultId = getResultId(suggestionsId, i);
               let optionProps: ListboxOptionProps | undefined;
               if (isListboxOptionProps(datum)) {
-                optionProps = omit(datum, [labelKey, valueKey]);
+                optionProps = omit(datum, [labelKey, valueKey, ...omitKeys]);
               }
 
               return (
@@ -298,6 +301,7 @@ if (process.env.NODE_ENV !== "production") {
       highlightStyle: PropTypes.object,
       highlightClassName: PropTypes.string,
       disableShowOnFocus: PropTypes.bool,
+      omitKeys: PropTypes.arrayOf(PropTypes.string),
     };
   } catch (e) {}
 }
