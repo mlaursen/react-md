@@ -69,7 +69,6 @@ const ConfigurableCollapseExample: FC = () => {
             <div>
               <TextField
                 id="collapse-min-height"
-                type="number"
                 name="minHeight"
                 label="Min Height"
                 {...minHeightProps}
@@ -81,7 +80,6 @@ const ConfigurableCollapseExample: FC = () => {
             <div>
               <TextField
                 id="collapse-min-padding-top"
-                type="number"
                 name="minPaddingTop"
                 label="Min Padding Top"
                 {...minPaddingTopProps}
@@ -93,7 +91,6 @@ const ConfigurableCollapseExample: FC = () => {
             <div>
               <TextField
                 id="collapse-min-padding-bottom"
-                type="number"
                 name="minPaddingBottom"
                 label="Min Padding Bottom"
                 {...minPaddingBottomProps}

@@ -49,7 +49,10 @@ async function parseSVGFileAndCreateComponents(
   svgIconFile: string,
   fontIconFile: string
 ): Promise<void> {
-  const svg = await fs.readFile(path.join(process.cwd(), svgFilePath), "utf8");
+  const svg = (
+    await fs.readFile(path.join(process.cwd(), svgFilePath), "utf8")
+  ).replace(' baseProfile="tiny"', "");
+
   const contents = svg
     .substring(SVG_ICON_PREFIX.length, svg.length - SVG_ICON_SUFFIX.length)
     .replace(/fill-opacity/g, "fillOpacity")

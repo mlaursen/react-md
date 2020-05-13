@@ -28,7 +28,6 @@ import {
   ItemReferenceLink,
   PackageSassDocMap,
   ParameterizedItem,
-  ParameterizedItemParameter,
 } from "./sassdoc-custom";
 import copyStyles from "./utils/copyStyles";
 import format from "./utils/format";
@@ -287,14 +286,9 @@ function formatVariableItem(
   };
 }
 
-interface ParameterizedCodeOptions {
-  name: string;
-  type: "function" | "mixin";
-  code: string;
-  parameters: ParameterizedItemParameter[] | undefined;
-}
+type MixinOrFunction = MixinItem | FunctionItem;
 
-function createParamaterizedItem<T extends MixinItem | FunctionItem>({
+function createParamaterizedItem<T extends MixinOrFunction>({
   context,
   parameter,
   throw: throws,
@@ -358,7 +352,8 @@ function formatMixinItem(
   };
 }
 
-const devUtilsSrc = join(packagesRoot, "dev-utils", src);
+const devUtilsRoot = join(packagesRoot, "dev-utils");
+const devUtilsSrc = join(devUtilsRoot, src);
 const documentationSrc = join(packagesRoot, "documentation", src);
 const documentationSassdoc = join(documentationSrc, "constants", "sassdoc");
 
@@ -369,7 +364,10 @@ const documentationSassdoc = join(documentationSrc, "constants", "sassdoc");
  * reuse these definitions in the documentation site.
  */
 export async function createSassdocUtil(): Promise<void> {
-  const sassdocDef = await readFile(join(devUtilsSrc, "sassdoc.d.ts"), "utf8");
+  const sassdocDef = await readFile(
+    join(devUtilsRoot, "@types", "sassdoc.d.ts"),
+    "utf8"
+  );
   const customDef = await readFile(
     join(devUtilsSrc, "sassdoc-custom.ts"),
     "utf8"

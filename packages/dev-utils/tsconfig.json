@@ -14,9 +14,13 @@
     "lib": [
       "dom",
       "es2019"
+    ],
+    "typeRoots": [
+      "./@types"
     ]
   },
   "include": [
+    "@types",
     "src"
   ],
   "exclude": ["src/old"]
