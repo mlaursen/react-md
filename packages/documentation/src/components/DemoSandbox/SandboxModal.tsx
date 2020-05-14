@@ -3,15 +3,16 @@ import Head from "next/head";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Dialog } from "@react-md/dialog";
 import { TreeData } from "@react-md/tree";
-import { bem, useAppSize } from "@react-md/utils";
+import { useAppSize } from "@react-md/utils";
 
 import { toTitle } from "utils/toTitle";
 
-import "./SandboxModal.scss";
 import CodePreview from "./CodePreview";
 import SandboxFileTree from "./SandboxFileTree";
 import SandboxNavigation from "./SandboxNavigation";
 import { FileTreeData } from "./useFiles";
+
+import styles from "./SandboxModal.module.scss";
 
 interface SandboxModalProps {
   pkg: string;
@@ -24,8 +25,6 @@ interface SandboxModalProps {
   onFileChange: (fileName: string) => void;
   onRequestClose: () => void;
 }
-
-const block = bem("sandbox-modal");
 
 const SandboxModal: FC<SandboxModalProps> = ({
   pkg,
@@ -78,7 +77,7 @@ const SandboxModal: FC<SandboxModalProps> = ({
       type="full-page"
       visible={sandbox !== null}
       onRequestClose={onRequestClose}
-      className={block()}
+      className={styles.dialog}
       disableTransition
     >
       <Head>

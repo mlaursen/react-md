@@ -1,0 +1,21 @@
+@import '~@react-md/badge/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.container {
+  @include rmd-badge-theme-update-var(font-size, rmd-typography-value(body-1, font-size));
+  @include rmd-badge-theme-update-var(top, 0.5rem);
+  @include rmd-badge-theme-update-var(right, -0.25rem);
+
+  // add padding for the badge and auto-swap when direction changes
+  @include rmd-utils-rtl-auto(padding-right, 1rem);
+
+  margin: 1rem;
+}
+
+.custom {
+  // update the badge to partially outside of the button
+  @include rmd-badge-theme-update-var(top, -0.5rem);
+  @include rmd-badge-theme-update-var(right, -0.5rem);
+
+  margin: 1rem;
+}

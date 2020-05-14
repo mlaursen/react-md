@@ -1,13 +1,13 @@
 import React, { FC, useRef } from "react";
 import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
+import { Button } from "@react-md/button";
 import { List, ListItem } from "@react-md/list";
 import { MenuSVGIcon, FavoriteSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
 import { Text } from "@react-md/typography";
 import { useToggle, GridCell } from "@react-md/utils";
 
-import "./Preview.scss";
-import { Button } from "@react-md/button";
+import styles from "./Preview.module.scss";
 
 const Preview: FC = () => {
   const [visible, show, hide] = useToggle(false);
@@ -15,7 +15,7 @@ const Preview: FC = () => {
 
   return (
     <GridCell clone>
-      <div className="theme-preview" ref={container}>
+      <div className={styles.container} ref={container}>
         <AppBar theme="primary">
           <AppBarNav id="theme-preview-nav" onClick={show} aria-label="Menu">
             <MenuSVGIcon />
@@ -36,7 +36,7 @@ const Preview: FC = () => {
             ))}
           </List>
         </Sheet>
-        <div className="theme-preview__content">
+        <div className={styles.content}>
           <Text type="headline-4" margin="bottom">
             Look at this
           </Text>
@@ -48,7 +48,7 @@ const Preview: FC = () => {
             theme="secondary"
             themeType="contained"
             buttonType="icon"
-            className="theme-preview__fab"
+            className={styles.fab}
           >
             <FavoriteSVGIcon />
           </Button>

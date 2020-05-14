@@ -52,12 +52,12 @@
     "content": "import React, { FC, useState } from \"react\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport { TabsManager, Tabs, TabPanel } from \"@react-md/tabs\";\nimport { useCrossFade, ENTER } from \"@react-md/transition\";\n\nimport Container from \"./Container\";\nimport Page1 from \"./Page1\";\nimport Page2 from \"./Page2\";\nimport Page3 from \"./Page3\";\n\nconst tabs = [\"Page 1\", \"Page 2\", \"Page 3\"];\n\nconst Demo: FC = () => {\n  const [page, setPage] = useState(0);\n  const [, transitionProps, dispatch] = useCrossFade({ appear: false });\n  const onActiveIndexChange = (page: number): void => {\n    dispatch(ENTER);\n    setPage(page);\n  };\n\n  return (\n    <TabsManager\n      tabs={tabs}\n      tabsId=\"cross-fade-hook\"\n      activeIndex={page}\n      onActiveIndexChange={onActiveIndexChange}\n    >\n      <AppBar theme=\"default\">\n        <Tabs />\n      </AppBar>\n      <Container {...transitionProps}>\n        {page === 0 && (\n          <TabPanel>\n            <Page1 />\n          </TabPanel>\n        )}\n        {page === 1 && (\n          <TabPanel>\n            <Page2 />\n          </TabPanel>\n        )}\n        {page === 2 && (\n          <TabPanel>\n            <Page3 />\n          </TabPanel>\n        )}\n      </Container>\n    </TabsManager>\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": "@import '~@react-md/utils/dist/mixins';\n\n.transition-container {\n  @include rmd-utils-scroll;\n\n  height: 20rem;\n}\n",
+  "src/Container.module.scss": {
+    "content": "@import '~@react-md/utils/dist/mixins';\n\n.container {\n  @include rmd-utils-scroll;\n\n  height: 20rem;\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { forwardRef, HTMLAttributes, ReactNode } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\ninterface Props extends HTMLAttributes<HTMLDivElement> {\n  children: ReactNode;\n}\n\nexport default forwardRef<HTMLDivElement, Props>(\n  ({ children, className, ...props }, ref) => (\n    <div {...props} className={cn(\"transition-container\", className)} ref={ref}>\n      {children}\n    </div>\n  )\n);\n",
+    "content": "import React, { forwardRef, HTMLAttributes, ReactNode } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\ninterface Props extends HTMLAttributes<HTMLDivElement> {\n  children: ReactNode;\n}\n\nexport default forwardRef<HTMLDivElement, Props>(\n  ({ children, className, ...props }, ref) => (\n    <div {...props} className={cn(styles.container, className)} ref={ref}>\n      {children}\n    </div>\n  )\n);\n",
     "isBinary": false
   },
   "src/Page1.tsx": {

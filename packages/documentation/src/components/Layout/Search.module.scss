@@ -1,0 +1,57 @@
+@import '~@react-md/icon/dist/variables';
+@import '~@react-md/list/dist/mixins';
+@import '~@react-md/form/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.container {
+  @include rmd-utils-rtl-auto(margin-left, auto);
+  @include rmd-form-theme-update-var(text-filled-color, rgba($rmd-black-base, 0.15));
+  @include rmd-icon-theme-update-var(color, rmd-theme-var(on-primary));
+  @include rmd-utils-phone-media {
+    max-width: 2.5rem;
+  }
+
+  border: 0;
+  border-radius: $rmd-text-field-border-radius;
+  max-width: 10rem;
+  transition: max-width $rmd-transition-standard-time * 2;
+  width: 100%;
+
+  &::after {
+    display: none;
+  }
+}
+
+.expanded {
+  max-width: 30rem - $rmd-list-item-media-large-size - $rmd-option-horizontal-padding;
+}
+
+@include rmd-utils-phone-media {
+  .transparent {
+    @include rmd-form-theme-update-var(text-filled-color, transparent);
+  }
+}
+
+.input {
+  @include rmd-text-field-placeholder {
+    color: inherit;
+    opacity: 0.7;
+  }
+}
+
+.listbox {
+  @include rmd-utils-tablet-media {
+    width: 100%;
+  }
+
+  max-width: 30rem;
+}
+
+.result {
+  @include rmd-theme(color, text-primary-on-background);
+}
+
+.option {
+  align-self: flex-start;
+}

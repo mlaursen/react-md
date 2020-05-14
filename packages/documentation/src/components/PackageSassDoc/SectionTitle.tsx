@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import Heading from "components/Heading";
 
-import styles from "./styles";
+import styles from "./PackageSassDoc.module.scss";
 
 export interface SectionTitleProps {
   packageName: string;
@@ -13,7 +13,7 @@ const SectionTitle: FC<SectionTitleProps> = ({ packageName, type }) => (
   <Heading
     id={`${packageName}-${type.toLowerCase()}`}
     level={1}
-    className={styles("section")}
+    className={styles.title}
   >
     {type}
   </Heading>

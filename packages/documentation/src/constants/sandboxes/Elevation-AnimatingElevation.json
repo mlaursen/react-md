@@ -29,6 +29,7 @@
         "@react-md/transition": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
+        "classnames": "latest",
         "react": "latest",
         "react-dom": "latest"
       },
@@ -48,11 +49,11 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\n\nimport \"./AnimatingElevation.scss\";\n\nconst Demo: FC = () => (\n  <div className=\"animating-elevation-container\">\n    <button\n      id=\"animating-elevation-1\"\n      type=\"button\"\n      className=\"animating-elevation animating-elevation--1\"\n    >\n      This button will animate elevation when the button is hovered or focused.\n    </button>\n    <button\n      id=\"animating-elevation-2\"\n      type=\"button\"\n      className=\"animating-elevation animating-elevation--2\"\n    >\n      This button will animate elevation when hovered, as well as a custom focus\n      effect that merges box shadows.\n    </button>\n  </div>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./AnimatingElevation.module.scss\";\n\nconst Demo: FC = () => (\n  <>\n    <button\n      id=\"animating-elevation-1\"\n      type=\"button\"\n      className={cn(styles.example, styles.simple)}\n    >\n      This button will animate elevation when the button is hovered or focused.\n    </button>\n    <button\n      id=\"animating-elevation-2\"\n      type=\"button\"\n      className={cn(styles.example, styles.merging)}\n    >\n      This button will animate elevation when hovered, as well as a custom focus\n      effect that merges box shadows.\n    </button>\n  </>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/AnimatingElevation.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n\n.animating-elevation {\n  @include rmd-theme(color, on-surface);\n  @include rmd-button-unstyled;\n  @include rmd-typography(body-1);\n\n  margin: 2rem;\n  padding: 2rem 4rem;\n\n  &:hover {\n    cursor: pointer;\n  }\n\n  &--1 {\n    @include rmd-elevation-transition(4, 16, ('&:focus' '&:hover'));\n  }\n\n  &--2 {\n    $focus-box-shadow: inset 0 0 0 1px $rmd-blue-500;\n    $start-shadow: none;\n    $end-shadow: rmd-elevation(8), $focus-box-shadow;\n\n    // create a shadow using the :;before pseudo element for the focus effect\n    @include rmd-transition-shadow-transition($start-shadow, $end-shadow, '&:focus');\n\n    // create a shadow using the ::after pseudo element for the hover effect. They can't\n    // be done on the same one as the hover effect has a different box shadow value\n    // than the focus effect and would override the focus shadow.\n    @include rmd-elevation-transition(none, 8, '&:not(:focus):hover', false, 0.5s);\n  }\n}\n",
+  "src/AnimatingElevation.module.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n\n.example {\n  @include rmd-theme(color, on-surface);\n  @include rmd-button-unstyled;\n  @include rmd-typography(body-1);\n\n  margin: 2rem;\n  padding: 2rem 4rem;\n\n  &:hover {\n    cursor: pointer;\n  }\n}\n\n.simple {\n  @include rmd-elevation-transition(4, 16, ('&:focus' '&:hover'));\n}\n\n.merging {\n  $focus-box-shadow: inset 0 0 0 1px $rmd-blue-500;\n  $start-shadow: none;\n  $end-shadow: rmd-elevation(8), $focus-box-shadow;\n\n  // create a shadow using the :;before pseudo element for the focus effect\n  @include rmd-transition-shadow-transition($start-shadow, $end-shadow, '&:focus');\n\n  // create a shadow using the ::after pseudo element for the hover effect. They can't\n  // be done on the same one as the hover effect has a different box shadow value\n  // than the focus effect and would override the focus shadow.\n  @include rmd-elevation-transition(none, 8, '&:not(:focus):hover', false, 0.5s);\n}\n",
     "isBinary": false
   }
 }

@@ -47,11 +47,11 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { Button } from \"@react-md/button\";\n\nimport \"./CustomInteractions.scss\";\n\nconst Demo: FC = () => (\n  <Button\n    id=\"custom-state-button\"\n    enablePressedAndRipple\n    className=\"custom-state-button\"\n  >\n    Button\n  </Button>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { Button } from \"@react-md/button\";\n\nimport styles from \"./CustomInteractions.module.scss\";\n\nconst Demo: FC = () => (\n  <Button\n    id=\"custom-state-button\"\n    enablePressedAndRipple\n    className={styles.button}\n  >\n    Button\n  </Button>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/CustomInteractions.scss": {
-    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n\n.custom-state-button {\n  @include rmd-elevation-transition(8, 12, '&#{$rmd-states-pressed-class-name}', false);\n  @include rmd-states-pressed-styles {\n    // disable normal pressed states background color change since we want\n    // to use elevation as the interaction instead\n    @include rmd-states-theme-update-var(background-color, transparent);\n  }\n  margin: 1rem;\n}\n",
+  "src/CustomInteractions.module.scss": {
+    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n\n.button {\n  @include rmd-elevation-transition(8, 12, '&#{$rmd-states-pressed-class-name}', false);\n  @include rmd-states-pressed-styles {\n    // disable normal pressed states background color change since we want\n    // to use elevation as the interaction instead\n    @include rmd-states-theme-update-var(background-color, transparent);\n  }\n  margin: 1rem;\n}\n",
     "isBinary": false
   }
 }

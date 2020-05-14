@@ -1,15 +1,14 @@
 import React, { FC, useCallback, useState } from "react";
+import cn from "classnames";
 import { Button } from "@react-md/button";
 import { Checkbox, Form, useChecked } from "@react-md/form";
 import { CloseSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
 import { ScaleTransition } from "@react-md/transition";
-import { bem, FocusContainer } from "@react-md/utils";
+import { FocusContainer } from "@react-md/utils";
 
 import Page1 from "./Page1";
-import "./ScaleTransitionExample.scss";
-
-const styles = bem("scale-transition-example");
+import styles from "./ScaleTransitionExample.module.scss";
 
 const ScaleTransitionExample: FC = () => {
   const [visible, setVisible] = useState(false);
@@ -18,7 +17,7 @@ const ScaleTransitionExample: FC = () => {
   const hide = useCallback(() => setVisible(false), []);
 
   return (
-    <div className={styles({ temporary })}>
+    <div className={styles.container}>
       <Form>
         <Checkbox
           id="scale-transition-temporary"
@@ -36,7 +35,7 @@ const ScaleTransitionExample: FC = () => {
       </Form>
       <ScaleTransition visible={visible} vertical={vertical}>
         <FocusContainer
-          className={styles("popup", { temporary })}
+          className={cn({ [styles.temporary]: temporary })}
           disableFocusOnMount={!temporary}
         >
           {temporary && (
@@ -44,7 +43,7 @@ const ScaleTransitionExample: FC = () => {
               onClick={hide}
               buttonType="icon"
               aria-label="Close"
-              className={styles("close")}
+              className={styles.close}
             >
               <CloseSVGIcon />
             </Button>

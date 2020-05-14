@@ -1,0 +1,21 @@
+@import '~@react-md/utils/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+
+.primary {
+  @include rmd-theme(fill, primary);
+}
+
+.secondary {
+  @include rmd-theme(fill, secondary);
+}
+
+.text {
+  @include rmd-typography(headline-6);
+  @include rmd-utils-rtl {
+    transform: translateX(0.7em);
+  }
+
+  font-weight: map-get($rmd-typography-font-weights, bold);
+  transform: translateX(-0.8em);
+}

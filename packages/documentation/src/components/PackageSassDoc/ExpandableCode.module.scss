@@ -1,0 +1,14 @@
+@import '~@react-md/elevation/dist/mixins';
+
+.container {
+  @include rmd-elevation(8);
+
+  padding: 0;
+  text-align: left;
+  width: 100%;
+
+  pre {
+    margin: 0;
+    width: 100%;
+  }
+}

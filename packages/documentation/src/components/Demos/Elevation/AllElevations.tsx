@@ -1,16 +1,20 @@
 import React, { FC } from "react";
+import cn from "classnames";
+
 import Code from "components/Code/Code";
 
-import "./AllElevations.scss";
+import styles from "./AllElevations.module.scss";
 
 const AllElevations: FC = () => (
-  <ul className="elevations-container">
+  <ul className={styles.container}>
     {Array.from(new Array(25)).map((_, elevation) => (
       <li
         key={elevation}
-        className={`elevation-container elevation-container--${elevation}`}
+        className={cn(styles.example, styles[`elevation${elevation}`])}
       >
-        <Code className="elevation-container__import">{`@include rmd-elevation(${elevation})`}</Code>
+        <Code className={styles.code}>
+          {`@include rmd-elevation(${elevation})`}
+        </Code>
       </li>
     ))}
   </ul>

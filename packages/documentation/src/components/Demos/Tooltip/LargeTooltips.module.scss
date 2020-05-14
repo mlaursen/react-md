@@ -1,0 +1,5 @@
+@import '~@react-md/typography/dist/mixins';
+
+.link {
+  @include rmd-typography-text-overflow-ellipsis;
+}

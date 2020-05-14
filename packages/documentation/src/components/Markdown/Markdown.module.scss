@@ -1,0 +1,29 @@
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.p,
+.list {
+  @include rmd-typography(subtitle-1);
+}
+
+.container {
+  @include rmd-utils-phone-media {
+    @each $headline in (1 2 3) {
+      .rmd-typography--headline-#{$headline} {
+        $name: 'headline-' + ($headline + 2);
+        @include rmd-typography($name);
+      }
+    }
+  }
+
+  ul,
+  ol {
+    @include rmd-utils-scroll;
+  }
+}
+
+.marginless {
+  > p:only-child {
+    margin-top: 0;
+  }
+}

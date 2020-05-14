@@ -1,0 +1,10 @@
+@import '~@react-md/button/dist/mixins';
+
+.link {
+  @include rmd-button-theme(color);
+
+  &:visited,
+  &:hover {
+    @include rmd-button-theme(color);
+  }
+}

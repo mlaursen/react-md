@@ -7,6 +7,7 @@ import { CloseSVGIcon } from "@react-md/material-icons";
 import immutableStates from "constants/states";
 
 import useSelect from "./useSelect";
+import styles from "./WithOptionLeftAddon.module.scss";
 
 const COLORS = Object.keys(scssVariables["rmd-avatar-colors"]);
 const states: ListboxOption[] = immutableStates.map(
@@ -45,7 +46,7 @@ const WithOptionLeftAddon: FC = () => {
         value={value}
         onChange={handleChange}
         disableLeftAddon={disableLeftAddon}
-        displayLabelClassName="customizing-select-options__value"
+        displayLabelClassName={styles.label}
       />
     </>
   );

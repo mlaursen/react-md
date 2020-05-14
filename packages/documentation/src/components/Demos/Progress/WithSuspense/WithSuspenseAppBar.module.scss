@@ -1,0 +1,19 @@
+@import '~@react-md/button/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+
+$size: 2rem;
+
+.button {
+  @include rmd-button-theme-update-var(icon-size, $size);
+
+  bottom: -$size / 2;
+  left: 1rem;
+  z-index: 300;
+
+  &.button {
+    @include rmd-theme(color, text-primary-on-light);
+
+    background-color: $rmd-white-base;
+    position: absolute;
+  }
+}

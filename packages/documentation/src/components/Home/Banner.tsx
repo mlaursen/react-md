@@ -1,7 +1,10 @@
 import React, { FC, useRef, useEffect } from "react";
 import { Text } from "@react-md/typography";
+
 import { useFixedAppBarContext } from "components/Layout/fixedAppBarContext";
+
 import Logo from "./Logo";
+import styles from "./Banner.module.scss";
 
 const Banner: FC = () => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -30,11 +33,11 @@ const Banner: FC = () => {
     };
   }, [setElevation]);
   return (
-    <div ref={ref} className="home__banner">
-      <Text type="headline-2" className="home__title">
+    <div ref={ref} className={styles.banner}>
+      <Text type="headline-2" className={styles.title}>
         react-md
       </Text>
-      <Logo className="home__logo" />
+      <Logo className={styles.logo} />
     </div>
   );
 };

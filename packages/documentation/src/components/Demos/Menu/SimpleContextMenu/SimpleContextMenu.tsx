@@ -8,7 +8,6 @@ import {
   TableBody,
 } from "@react-md/table";
 
-import "./SimpleContextMenu.scss";
 import { contents } from "./data";
 import RowWithMenu from "./RowWithMenu";
 

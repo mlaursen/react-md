@@ -8,7 +8,7 @@ import { Grid } from "@react-md/utils";
 
 import useNumberInput from "hooks/useNumberInput";
 
-import "./ConfigurableCollapseExample.scss";
+import styles from "./ConfigurableCollapseExample.module.scss";
 
 const options = ["undefined", "true", "false"];
 
@@ -120,7 +120,7 @@ const ConfigurableCollapseExample: FC = () => {
             }
             onClick={() => setCollapsed(!collapsed)}
             type="submit"
-            className="configurable-collapse-submit"
+            className={styles.submit}
           >
             Toggle
           </Button>

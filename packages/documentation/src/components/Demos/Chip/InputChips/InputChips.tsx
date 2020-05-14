@@ -5,7 +5,8 @@ import { useIsUserInteractionMode } from "@react-md/utils";
 
 import Phone from "components/Phone/Phone";
 
-import styles from "./styles";
+import styles from "./InputChips.module.scss";
+
 import To from "./To";
 
 const InputChips: FC = () => {
@@ -14,7 +15,7 @@ const InputChips: FC = () => {
     <Phone
       id="input-chips"
       statusBar
-      contentClassName={styles()}
+      contentClassName={styles.container}
       disableFocusOnMount={isTouch}
     >
       <To />
@@ -23,7 +24,7 @@ const InputChips: FC = () => {
         id="input-chips-subject"
         name="subject"
         theme="none"
-        inputClassName={styles("subject")}
+        inputClassName={styles.padded}
         placeholder="Subject"
         defaultValue="Re: Vacation Request"
       />
@@ -32,8 +33,8 @@ const InputChips: FC = () => {
         id="input-chips-message"
         placeholder="Message"
         theme="none"
-        className={styles("message")}
-        areaClassName={styles("message-area")}
+        className={styles.message}
+        areaClassName={styles.padded}
         resize="none"
       />
     </Phone>

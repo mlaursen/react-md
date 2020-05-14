@@ -46,11 +46,11 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { Text } from \"@react-md/typography\";\nimport {\n  AccessAlarmFontIcon,\n  AccessAlarmSVGIcon,\n  Rotation3DFontIcon, // the sprite name for this was 3d_rotation.svg\n  Rotation3DSVGIcon, // the sprite name for this was 3d_rotation.svg\n  TvFontIcon,\n  TvSVGIcon,\n  HomeFontIcon,\n  HomeSVGIcon,\n} from \"@react-md/material-icons\";\n\nimport \"./SimpleExamples.scss\";\n\nconst Demo: FC = () => (\n  <div className=\"material-icons-container\">\n    <Text type=\"headline-4\">Font Icon Versions</Text>\n    <AccessAlarmFontIcon />\n    <Rotation3DFontIcon />\n    <HomeFontIcon />\n    <TvFontIcon />\n    <Text type=\"headline-4\">SVG Icon Versions</Text>\n    <AccessAlarmSVGIcon />\n    <Rotation3DSVGIcon />\n    <HomeSVGIcon />\n    <TvSVGIcon />\n  </div>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { Text } from \"@react-md/typography\";\nimport {\n  AccessAlarmFontIcon,\n  AccessAlarmSVGIcon,\n  Rotation3DFontIcon, // the sprite name for this was 3d_rotation.svg\n  Rotation3DSVGIcon, // the sprite name for this was 3d_rotation.svg\n  TvFontIcon,\n  TvSVGIcon,\n  HomeFontIcon,\n  HomeSVGIcon,\n} from \"@react-md/material-icons\";\n\nimport styles from \"./SimpleExamples.module.scss\";\n\nconst Demo: FC = () => (\n  <div className={styles.container}>\n    <Text type=\"headline-4\">Font Icon Versions</Text>\n    <AccessAlarmFontIcon />\n    <Rotation3DFontIcon />\n    <HomeFontIcon />\n    <TvFontIcon />\n    <Text type=\"headline-4\">SVG Icon Versions</Text>\n    <AccessAlarmSVGIcon />\n    <Rotation3DSVGIcon />\n    <HomeSVGIcon />\n    <TvSVGIcon />\n  </div>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/SimpleExamples.scss": {
-    "content": ".material-icons-container {\n  .rmd-icon {\n    margin: 1rem;\n    vertical-align: top;\n  }\n}\n",
+  "src/SimpleExamples.module.scss": {
+    "content": ".container {\n  :global .rmd-icon {\n    margin: 1rem;\n    vertical-align: top;\n  }\n}\n",
     "isBinary": false
   }
 }

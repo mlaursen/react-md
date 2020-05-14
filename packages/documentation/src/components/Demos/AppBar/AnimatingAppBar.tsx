@@ -9,7 +9,7 @@ import { useScrollListener } from "@react-md/utils";
 import people from "constants/people";
 import AppBarTitle from "components/AppBarTitle";
 
-import "./AnimatingAppBar.scss";
+import styles from "./AnimatingAppBar.module.scss";
 
 type CSSProperties = React.CSSProperties & {
   "--offset": string;
@@ -59,24 +59,22 @@ const AnimatingAppBar: FC = () => {
   };
 
   return (
-    <div style={style} className="animating-app-bar">
+    <div style={style} className={styles.container}>
       <AppBar
         id="animating-app-bar"
-        className="animating-app-bar__bar"
+        className={styles.header}
         fixed
         theme="clear"
       >
         <AppBarNav id="animating-app-bar-nav" aria-label="Navigation">
           <MenuSVGIcon />
         </AppBarNav>
-        <AppBarTitle className="animating-app-bar__title">
-          Animating App Bar
-        </AppBarTitle>
+        <AppBarTitle className={styles.title}>Animating App Bar</AppBarTitle>
         <AppBarAction id="animating-app-bar-kebab" aria-label="Actions" first>
           <MoreVertSVGIcon />
         </AppBarAction>
       </AppBar>
-      <div className="animating-app-bar__content" ref={setRef}>
+      <div className={styles.content} ref={setRef}>
         <List>
           {transformedPeople.map(({ id, name, avatar, color }, i) => (
             <ListItem

@@ -1,0 +1,20 @@
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+
+.container {
+  @include rmd-app-bar-theme-update-var(dense-height, rmd-icon-theme-var(size));
+  background-color: rgba($rmd-black-base, 0.12);
+
+  width: 100%;
+}
+
+.icon {
+  @include rmd-icon-dense-theme;
+
+  margin: 0 $rmd-app-bar-lr-margin;
+}
+
+.first {
+  @include rmd-utils-rtl-auto(margin-left, auto, $rmd-app-bar-lr-margin);
+}

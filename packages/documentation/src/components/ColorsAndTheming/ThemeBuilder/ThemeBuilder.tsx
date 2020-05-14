@@ -8,7 +8,7 @@ import ThemeConfiguration from "./ThemeConfiguration";
 import Preview from "./Preview";
 import ThemeUsage from "./ThemeUsage";
 
-import "./ThemeBuilder.scss";
+import styles from "./ThemeBuilder.module.scss";
 
 const ThemeBuilder: FC = () => {
   const { primary, secondary, accent, theme } = useTheme();
@@ -18,7 +18,7 @@ const ThemeBuilder: FC = () => {
   const secondaryColor = scssVariables[secondaryName];
 
   return (
-    <Grid desktopColumns={2} columns={1} className="theme-builder">
+    <Grid desktopColumns={2} columns={1} className={styles.container}>
       <ThemeConfiguration
         primary={primary}
         secondary={secondary}

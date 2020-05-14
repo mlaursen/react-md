@@ -3,6 +3,8 @@ import { ViewHeadlineSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 
 import Button from "components/Button";
 
+import styles from "./Toggle.module.scss";
+
 export interface ToggleProps {
   onClick: HTMLAttributes<HTMLButtonElement>["onClick"];
   isLargeDesktop: boolean;
@@ -25,7 +27,7 @@ const Toggle: FC<ToggleProps> = ({
       tooltip={tooltip}
       theme="clear"
       buttonType="icon"
-      className="table-of-contents-toggle"
+      className={styles.button}
       aria-label="Table of Contents"
       onClick={onClick}
       disabled={isLargeDesktop}

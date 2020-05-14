@@ -8,8 +8,8 @@ import {
 
 import Phone from "components/Phone";
 
-import "./SimpleExamples.scss";
 import useTemporaryToggle from "./useTemporaryToggle";
+import styles from "./SimpleDeterminateExamples.module.scss";
 
 const SimpleIndeterminateExamples: FC = () => {
   const {
@@ -33,7 +33,7 @@ const SimpleIndeterminateExamples: FC = () => {
           onClick={toggleLinear}
           theme="primary"
           themeType="contained"
-          className="centered-progress-toggle"
+          className={styles.button}
           disabled={linearVisible}
         >
           Toggle Progress
@@ -51,7 +51,7 @@ const SimpleIndeterminateExamples: FC = () => {
           onClick={toggleCircular}
           theme="primary"
           themeType="contained"
-          className="centered-progress-toggle"
+          className={styles.button}
           disabled={circularVisible}
         >
           Toggle Progress

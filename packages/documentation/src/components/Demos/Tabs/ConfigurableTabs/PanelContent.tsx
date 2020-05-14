@@ -3,7 +3,7 @@ import { Button } from "@react-md/button";
 import { CrossFade } from "@react-md/transition";
 import { Text } from "@react-md/typography";
 
-import styles from "./styles";
+import styles from "./PanelContent.module.scss";
 
 export interface PanelContentProps {
   i: number;
@@ -15,8 +15,8 @@ const PanelContent: FC<PanelContentProps> = ({ i, customTransition }) => {
 
   return (
     <Container>
-      <div className={styles("container")}>
-        <Text type="headline-4" className={styles("full-width")}>
+      <div className={styles.container}>
+        <Text type="headline-4" className={styles.block}>
           {`Panel ${i + 1}`}
         </Text>
         <Button

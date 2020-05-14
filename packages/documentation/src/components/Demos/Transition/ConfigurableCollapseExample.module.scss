@@ -1,0 +1,5 @@
+@import '~@react-md/utils/dist/mixins';
+
+.submit {
+  @include rmd-utils-rtl-auto(margin-right, 1rem);
+}

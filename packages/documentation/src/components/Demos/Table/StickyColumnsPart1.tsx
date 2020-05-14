@@ -8,10 +8,10 @@ import {
   TableRow,
 } from "@react-md/table";
 
-import "./StickyColumnsPart1.scss";
+import styles from "./StickyColumnsPart1.module.scss";
 
 const StickyColumnsPart1: FC = () => (
-  <TableContainer className="sticky-columns-1">
+  <TableContainer className={styles.container}>
     <Table fullWidth>
       <TableHeader sticky>
         <TableRow>

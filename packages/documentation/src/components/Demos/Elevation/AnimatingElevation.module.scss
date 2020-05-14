@@ -1,0 +1,37 @@
+@import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/button/dist/mixins';
+
+.example {
+  @include rmd-theme(color, on-surface);
+  @include rmd-button-unstyled;
+  @include rmd-typography(body-1);
+
+  margin: 2rem;
+  padding: 2rem 4rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.simple {
+  @include rmd-elevation-transition(4, 16, ('&:focus' '&:hover'));
+}
+
+.merging {
+  $focus-box-shadow: inset 0 0 0 1px $rmd-blue-500;
+  $start-shadow: none;
+  $end-shadow: rmd-elevation(8), $focus-box-shadow;
+
+  // create a shadow using the :;before pseudo element for the focus effect
+  @include rmd-transition-shadow-transition($start-shadow, $end-shadow, '&:focus');
+
+  // create a shadow using the ::after pseudo element for the hover effect. They can't
+  // be done on the same one as the hover effect has a different box shadow value
+  // than the focus effect and would override the focus shadow.
+  @include rmd-elevation-transition(none, 8, '&:not(:focus):hover', false, 0.5s);
+}

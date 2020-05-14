@@ -46,7 +46,11 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { MediaContainer } from \"@react-md/media\";\n\nconst Demo: FC = () => (\n  <div className=\"forced-aspect-ratio\">\n    <MediaContainer height={9} width={16} className=\"responsive-item\">\n      <img src=\"https://picsum.photos/400/300?image=3\" alt=\"\" />\n    </MediaContainer>\n    <MediaContainer height={1} width={1} className=\"responsive-item\">\n      <img src=\"https://picsum.photos/400/300?image=623\" alt=\"\" />\n    </MediaContainer>\n    <MediaContainer height={9} width={16} className=\"responsive-item\">\n      <iframe\n        src=\"https://www.youtube.com/embed/kyAn3fSs8_A\"\n        allowFullScreen\n        frameBorder=\"0\"\n        title=\"YouTube Video\"\n      />\n    </MediaContainer>\n  </div>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { MediaContainer } from \"@react-md/media\";\n\nimport styles from \"./Container.module.scss\";\n\nconst Demo: FC = () => (\n  <>\n    <MediaContainer height={9} width={16} className={styles.container}>\n      <img src=\"https://picsum.photos/400/300?image=3\" alt=\"\" />\n    </MediaContainer>\n    <MediaContainer height={1} width={1} className={styles.container}>\n      <img src=\"https://picsum.photos/400/300?image=623\" alt=\"\" />\n    </MediaContainer>\n    <MediaContainer height={9} width={16} className={styles.container}>\n      <iframe\n        src=\"https://www.youtube.com/embed/kyAn3fSs8_A\"\n        allowFullScreen\n        frameBorder=\"0\"\n        title=\"YouTube Video\"\n      />\n    </MediaContainer>\n  </>\n);\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/Container.module.scss": {
+    "content": ".container {\n  margin: 0.5rem;\n}\n",
     "isBinary": false
   }
 }

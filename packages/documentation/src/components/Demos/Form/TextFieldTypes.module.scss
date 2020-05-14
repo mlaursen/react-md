@@ -1,0 +1,29 @@
+$rmd-utils-desktop-min-width: 92em;
+$rmd-utils-large-desktop-min-width: 120em;
+
+@import '~@react-md/utils/dist/mixins';
+
+.container {
+  @include rmd-grid(
+    $phone-columns: 1,
+    $tablet-columns: 2,
+    $desktop-columns: 3,
+    $large-desktop-columns: 4
+  );
+
+  fieldset {
+    @include rmd-utils-tablet-media {
+      @include rmd-grid-cell-full;
+    }
+  }
+
+  :global .rmd-divider {
+    @include rmd-utils-tablet-media {
+      @include rmd-grid-cell-full;
+    }
+  }
+
+  :global .rmd-floating-label {
+    text-transform: capitalize;
+  }
+}

@@ -48,11 +48,11 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { ButtonThemeProps, buttonThemeClassNames } from \"@react-md/button\";\nimport { Link, LinkProps } from \"@react-md/link\";\n\nimport \"./WithButtonStyles.scss\";\n\nconst LinkStyledButton: FC<ButtonThemeProps & LinkProps> = ({\n  className,\n  theme,\n  themeType,\n  buttonType,\n  disabled,\n  children,\n  ...props\n}) => (\n  <Link\n    {...props}\n    className={buttonThemeClassNames({\n      disabled,\n      theme,\n      themeType,\n      buttonType,\n      className: cn(\"link-styled-button\", className),\n    })}\n  >\n    {children}\n  </Link>\n);\n\nLinkStyledButton.defaultProps = {\n  theme: \"primary\",\n  themeType: \"contained\",\n  buttonType: \"text\",\n};\n\nconst Demo: FC = () => (\n  <div className=\"link-button-styles\">\n    <LinkStyledButton href=\"https://react-md.dev\">\n      https://react-md.dev\n    </LinkStyledButton>\n  </div>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { ButtonThemeProps, buttonThemeClassNames } from \"@react-md/button\";\nimport { Link, LinkProps } from \"@react-md/link\";\n\nimport styles from \"./WithButtonStyles.module.scss\";\n\nconst LinkStyledButton: FC<ButtonThemeProps & LinkProps> = ({\n  className,\n  theme,\n  themeType,\n  buttonType,\n  disabled,\n  children,\n  ...props\n}) => (\n  <Link\n    {...props}\n    className={buttonThemeClassNames({\n      disabled,\n      theme,\n      themeType,\n      buttonType,\n      className: cn(styles.link, className),\n    })}\n  >\n    {children}\n  </Link>\n);\n\nLinkStyledButton.defaultProps = {\n  theme: \"primary\",\n  themeType: \"contained\",\n  buttonType: \"text\",\n};\n\nconst Demo: FC = () => (\n  <LinkStyledButton href=\"https://react-md.dev\">\n    https://react-md.dev\n  </LinkStyledButton>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/WithButtonStyles.scss": {
-    "content": "@import '~@react-md/button/dist/mixins';\n\n.link-styled-button {\n  @include rmd-button-theme(color);\n\n  &:visited,\n  &:hover {\n    @include rmd-button-theme(color);\n  }\n}\n",
+  "src/WithButtonStyles.module.scss": {
+    "content": "@import '~@react-md/button/dist/mixins';\n\n.link {\n  @include rmd-button-theme(color);\n\n  &:visited,\n  &:hover {\n    @include rmd-button-theme(color);\n  }\n}\n",
     "isBinary": false
   }
 }

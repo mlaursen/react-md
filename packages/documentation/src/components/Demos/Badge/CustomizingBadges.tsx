@@ -1,15 +1,16 @@
 import React, { FC } from "react";
-import { BadgeContainer, Badge } from "@react-md/badge";
+import { Badge, BadgeContainer } from "@react-md/badge";
 import { Button } from "@react-md/button";
 import { NotificationsSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
+
 import { COPYRIGHT } from "constants/unicode";
 
-import "./CustomizingBadges.scss";
+import styles from "./CustomizingBadges.module.scss";
 
 const CustomizingBadges: FC = () => (
   <>
-    <BadgeContainer className="copyright-badge-container">
+    <BadgeContainer className={styles.container}>
       {/* since the badge is presentational, don't add the `aria-describedby` value */}
       <Text>Some amazing product</Text>
       <Badge id="copyright-badge" theme="clear">
@@ -17,7 +18,7 @@ const CustomizingBadges: FC = () => (
       </Badge>
     </BadgeContainer>
     {/* this is _basically_ the `BadgedButton` component except with an extra `<span>` */}
-    <BadgeContainer className="custom-badged-button">
+    <BadgeContainer className={styles.custom}>
       <Button
         id="custom-badged-button"
         aria-describedby="custom-badged-button-badge"

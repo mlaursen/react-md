@@ -1,0 +1,19 @@
+@import '~@react-md/link/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+
+.list {
+  margin: 0;
+  margin-left: -1rem;
+  padding-left: 2rem;
+}
+
+.item {
+  @include rmd-link-theme-update-var(color, rmd-theme-var(text-primary-on-background));
+  @include rmd-link-theme-update-var(visited-color, rmd-theme-var(text-primary-on-background));
+  @include rmd-link-theme-update-var(hover-color, rmd-theme-var(text-secondary-on-background));
+  @include rmd-typography(subtitle-1);
+  @include rmd-typography-value(body-1, line-height);
+
+  margin: 0.25rem 0;
+}

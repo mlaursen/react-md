@@ -1,5 +1,7 @@
 import React, { FC, useCallback, useRef, useState } from "react";
-import CSSTransition from "react-transition-group/CSSTransition";
+import CSSTransition, {
+  CSSTransitionClassNames,
+} from "react-transition-group/CSSTransition";
 import { Button } from "@react-md/button";
 import {
   Checkbox,
@@ -21,7 +23,7 @@ import {
   VerticalPosition,
 } from "@react-md/utils";
 
-import "./FixedPositioningExample.scss";
+import styles from "./FixedPositioningExample.module.scss";
 
 const horizontals: HorizontalPosition[] = [
   "left",
@@ -61,6 +63,15 @@ type Anchor = typeof anchorOptions[0];
 const CENTERED_ANCHOR = anchorOptions.find(
   (anchor) => anchor.label === "center center"
 ) as Anchor;
+
+const CLASSNAMES: CSSTransitionClassNames = {
+  appear: styles.enter,
+  appearActive: styles.entering,
+  enter: styles.enter,
+  enterActive: styles.entering,
+  exit: styles.exit,
+  exitActive: styles.exiting,
+};
 
 const FixedPositioningExample: FC = () => {
   const [visible, show, hide] = useToggle(false);
@@ -119,7 +130,7 @@ const FixedPositioningExample: FC = () => {
 
   return (
     <>
-      <Form className="fixed-position-form">
+      <Form className={styles.form}>
         <Fieldset legend="Fixed Positioning Options">
           <Checkbox
             id="fixed-swap"
@@ -153,8 +164,8 @@ const FixedPositioningExample: FC = () => {
         <Select
           id="fixed-anchor-type"
           label="Anchor"
-          className="fixed-position-select"
-          listboxClassName="fixed-position-listbox"
+          className={styles.select}
+          listboxClassName={styles.listbox}
           inline
           options={anchorOptions}
           value={anchor.value}
@@ -169,14 +180,14 @@ const FixedPositioningExample: FC = () => {
         <Select
           id="fixed-anchor-width"
           label="Fixed element width"
-          className="fixed-position-select"
+          className={styles.select}
           inline
           options={widths}
           value={width}
           onChange={handleWidthChange}
           rightChildren={<ArrowDropDownSVGIcon />}
         />
-        <div className="fixed-position-footer">
+        <div className={styles.footer}>
           <Button
             id="fixed-positioning-button"
             ref={buttonRef}
@@ -199,25 +210,14 @@ const FixedPositioningExample: FC = () => {
         in={visible}
         mountOnEnter
         unmountOnExit
-        classNames={{
-          appear: "fixed-position--enter",
-          appearActive: "fixed-position--enter-active",
-          enter: "fixed-position--enter",
-          enterActive: "fixed-position--enter-active",
-          exit: "fixed-position--exit",
-          exitActive: "fixed-position--exit-active",
-        }}
+        classNames={CLASSNAMES}
         timeout={{ enter: 200, exit: 150 }}
         onEnter={onEnter}
         onEntering={onEntering}
         onEntered={onEntered}
         onExited={onExited}
       >
-        <div
-          id="fixed-position-div"
-          style={style}
-          className="fixed-position-div"
-        >
+        <div id="fixed-position-div" style={style} className={styles.div}>
           <Text>This is some amazing text in a fixed element!</Text>
         </div>
       </CSSTransition>

@@ -4,14 +4,11 @@ import { TextIconSpacing } from "@react-md/icon";
 import { HomeSVGIcon } from "@react-md/material-icons";
 import { MediaContainer } from "@react-md/media";
 import { Text, TextContainer } from "@react-md/typography";
-import { bem } from "@react-md/utils";
 
 import LinkButton from "components/LinkButton";
 
-import "./NotFoundPage.scss";
-import { Component as NotFoundSVG } from "./404.svg";
-
-const block = bem("not-found");
+import NotFoundSVG from "./NotFoundSVG";
+import styles from "./NotFoundPage.module.scss";
 
 interface Props {
   className?: string;
@@ -19,12 +16,16 @@ interface Props {
 
 const NotFoundPage: FC<Props> = ({ className }) => {
   return (
-    <MediaContainer className={cn(block(), className)} height={9} width={16}>
+    <MediaContainer
+      className={cn(styles.container, className)}
+      height={9}
+      width={16}
+    >
       <NotFoundSVG />
-      <Text type="headline-2" className={block("uhh")}>
+      <Text type="headline-2" className={styles.uhh}>
         Uhhh...
       </Text>
-      <TextContainer className={block("message")}>
+      <TextContainer className={styles.message}>
         <Text type="headline-6">
           Looks like this page can&apos;t be found. You can try using the
           navigation tree to find a specific page or return the home page with
@@ -34,7 +35,7 @@ const NotFoundPage: FC<Props> = ({ className }) => {
       <LinkButton
         id="go-home-link"
         href="/"
-        className={block("home")}
+        className={styles.link}
         theme="secondary"
         themeType="contained"
       >

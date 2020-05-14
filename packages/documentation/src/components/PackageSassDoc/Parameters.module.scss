@@ -1,0 +1,30 @@
+@import '~@react-md/table/dist/variables';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.caption {
+  @include rmd-typography(headline-6);
+  @include rmd-utils-rtl {
+    text-align: right;
+  }
+
+  margin-top: 2em;
+  padding-left: $rmd-table-cell-horizontal-padding;
+  text-align: left;
+}
+
+.description {
+  p {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.returns {
+  padding-left: $rmd-table-cell-horizontal-padding;
+}

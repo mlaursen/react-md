@@ -10,6 +10,8 @@ import {
 } from "./useTheme";
 import { ThemeActions } from "./useThemeActions";
 
+import styles from "./styles.module.scss";
+
 export type ThemeConfiguration = Theme & ThemeActions;
 
 const THEME_TRANSITION_DURATION = 150;
@@ -51,7 +53,7 @@ export default function useThemeConfiguration(
 
     Cookie.set("theme", theme);
     localStorage.setItem("theme", theme);
-    root.classList.add("toggle-theme-transition");
+    root.classList.add(styles.transition);
     // force dom repaint
     root.scrollTop; // eslint-disable-line no-unused-expressions
     const previous = theme === "light" ? "dark" : "light";
@@ -59,7 +61,7 @@ export default function useThemeConfiguration(
     root.classList.add(`${theme}-theme`);
 
     const timeout = window.setTimeout(() => {
-      root.classList.remove("toggle-theme-transition");
+      root.classList.remove(styles.transition);
     }, THEME_TRANSITION_DURATION);
 
     return () => {

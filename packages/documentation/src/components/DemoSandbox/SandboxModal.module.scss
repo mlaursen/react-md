@@ -1,0 +1,12 @@
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/button/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+
+.dialog {
+  @include rmd-app-bar-theme-update-var(prominent-dense-height, 5rem);
+
+  :global .light-theme :local & {
+    @include rmd-theme-dark;
+    @include rmd-button-theme-update-var(color, rmd-app-bar-theme-var(default-color));
+  }
+}

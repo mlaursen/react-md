@@ -46,11 +46,11 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableContainer,\n  TableHeader,\n  TableRow,\n} from \"@react-md/table\";\n\nimport \"./StickyColumnsPart1.scss\";\n\nconst Demo: FC = () => (\n  <TableContainer className=\"sticky-columns-1\">\n    <Table fullWidth>\n      <TableHeader sticky>\n        <TableRow>\n          <TableCell>Header 1</TableCell>\n          <TableCell>Header 2</TableCell>\n        </TableRow>\n      </TableHeader>\n      <TableBody>\n        {Array.from(new Array(20), (_, i) => (\n          <TableRow key={i}>\n            <TableCell>{`Row ${i + 1} Cell 1`}</TableCell>\n            <TableCell>{`Row ${i + 1} Cell 2`}</TableCell>\n          </TableRow>\n        ))}\n      </TableBody>\n    </Table>\n  </TableContainer>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableContainer,\n  TableHeader,\n  TableRow,\n} from \"@react-md/table\";\n\nimport styles from \"./StickyColumnsPart1.module.scss\";\n\nconst Demo: FC = () => (\n  <TableContainer className={styles.container}>\n    <Table fullWidth>\n      <TableHeader sticky>\n        <TableRow>\n          <TableCell>Header 1</TableCell>\n          <TableCell>Header 2</TableCell>\n        </TableRow>\n      </TableHeader>\n      <TableBody>\n        {Array.from(new Array(20), (_, i) => (\n          <TableRow key={i}>\n            <TableCell>{`Row ${i + 1} Cell 1`}</TableCell>\n            <TableCell>{`Row ${i + 1} Cell 2`}</TableCell>\n          </TableRow>\n        ))}\n      </TableBody>\n    </Table>\n  </TableContainer>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/StickyColumnsPart1.scss": {
-    "content": ".sticky-columns-1 {\n  max-height: 20rem;\n}\n",
+  "src/StickyColumnsPart1.module.scss": {
+    "content": ".container {\n  max-height: 20rem;\n}\n",
     "isBinary": false
   }
 }

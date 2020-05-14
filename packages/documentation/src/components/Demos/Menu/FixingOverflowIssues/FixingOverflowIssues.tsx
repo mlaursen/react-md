@@ -9,8 +9,8 @@ import {
 import { DropdownMenu } from "@react-md/menu";
 import { useToggle } from "@react-md/utils";
 
-import "./FixingOverflowIssues.scss";
 import InaccessibleMenu from "./InaccessibleMenu";
+import styles from "./FixingOverflowIssues.module.scss";
 
 const ITEMS = Array.from(new Array(20), (_, i) => `Item ${i + 1}`);
 
@@ -35,13 +35,14 @@ const FixingOverflowIssues: FC = () => {
         <DialogHeader>
           <DialogTitle>Overflow Dialog</DialogTitle>
         </DialogHeader>
-        <DialogContent className="overflow-dialog-content">
+        <DialogContent className={styles.content}>
           <InaccessibleMenu items={ITEMS} />
           <DropdownMenu
             id="overflow-menu"
             items={ITEMS}
             theme="secondary"
             themeType="outline"
+            className={styles.menu}
           >
             Dropdown
           </DropdownMenu>

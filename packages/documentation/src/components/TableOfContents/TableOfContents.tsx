@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
 import { Text } from "@react-md/typography";
-import { bem, useAppSize } from "@react-md/utils";
+import { useAppSize } from "@react-md/utils";
 
 import tocs from "constants/meta/tocs";
 
@@ -9,18 +9,17 @@ import List from "./List";
 import Toggle from "./Toggle";
 import { useTOCActions, useTOCVisibility } from "./VisibilityContext";
 
-import "./TableOfContents.scss";
+import styles from "./TableOfContents.module.scss";
 
 export interface TableOfContentsProps {
   pathname: string;
 }
 
-const block = bem("table-of-contents");
 const CLASSNAMES = {
-  enter: "table-of-contents--enter",
-  enterActive: "table-of-contents--enter-active",
-  exit: "table-of-contents--exit",
-  exitActive: "table-of-contents--exit-active",
+  enter: styles.enter,
+  enterActive: styles.entering,
+  exit: styles.exit,
+  exitActive: styles.exiting,
 };
 
 const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
@@ -50,19 +49,19 @@ const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
         overlay={isPhone}
         visible={visible}
         onRequestClose={hide}
-        className={block()}
-        overlayClassName={block("overlay")}
+        className={styles.dialog}
+        overlayClassName={styles.overlay}
         classNames={CLASSNAMES}
         disableScrollLock={!isPhone}
         disableFocusOnMount
         disableFocusContainer
       >
-        <DialogHeader className={block("header")}>
+        <DialogHeader className={styles.header}>
           <Text id="table-of-contents-title" type="headline-6" margin="none">
             Table of Contents
           </Text>
         </DialogHeader>
-        <DialogContent className={block("content")}>
+        <DialogContent className={styles.content}>
           <List
             anchors={anchors}
             isLargeDesktop={isLargeDesktop}

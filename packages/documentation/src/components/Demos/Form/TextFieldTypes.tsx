@@ -11,7 +11,7 @@ import {
   useChoice,
 } from "@react-md/form";
 
-import "./TextFieldTypes.scss";
+import styles from "./TextFieldTypes.module.scss";
 
 const types: SupportedInputTypes[] = [
   "password",
@@ -33,7 +33,7 @@ const TextFieldTypes: FC = () => {
   );
 
   return (
-    <Form className="text-field-types">
+    <Form className={styles.container}>
       <Fieldset legend="Text field theme">
         {themes.map((theme) => (
           <Radio

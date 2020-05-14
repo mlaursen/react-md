@@ -1,0 +1,12 @@
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+
+.button {
+  @include rmd-elevation-transition(8, 12, '&#{$rmd-states-pressed-class-name}', false);
+  @include rmd-states-pressed-styles {
+    // disable normal pressed states background color change since we want
+    // to use elevation as the interaction instead
+    @include rmd-states-theme-update-var(background-color, transparent);
+  }
+  margin: 1rem;
+}

@@ -1,0 +1,7 @@
+@import '~@react-md/utils/dist/mixins';
+
+.list {
+  @include rmd-utils-rtl-auto(padding-left, 1rem);
+
+  margin: 0;
+}

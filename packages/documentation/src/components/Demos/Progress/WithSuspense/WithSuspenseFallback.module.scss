@@ -1,0 +1,11 @@
+@import '~@react-md/utils/dist/mixins';
+
+.container {
+  @include rmd-utils-absolute-centered;
+
+  white-space: nowrap;
+}
+
+.title {
+  margin: 0 0 1rem;
+}

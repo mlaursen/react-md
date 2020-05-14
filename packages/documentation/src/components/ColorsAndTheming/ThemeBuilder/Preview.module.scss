@@ -1,0 +1,32 @@
+@import '~@react-md/elevation/dist/mixins';
+
+.container {
+  @include rmd-elevation(6);
+
+  height: 25rem;
+  overflow: hidden;
+  position: relative;
+
+  :global {
+    .rmd-sheet,
+    .rmd-overlay {
+      position: absolute;
+      z-index: 1;
+    }
+  }
+}
+
+.content {
+  padding: 1rem;
+}
+
+.fab {
+  @include rmd-utils-rtl-auto(right, 1rem, 0);
+
+  bottom: 1rem;
+
+  // import order stuff where rmd-button position: relative overrides :/
+  &.fab {
+    position: absolute;
+  }
+}

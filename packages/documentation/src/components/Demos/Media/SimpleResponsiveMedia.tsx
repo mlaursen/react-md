@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { MediaContainer } from "@react-md/media";
 
-import "./SimpleResponsiveMedia.scss";
+import styles from "./Container.module.scss";
 
 const images = [
   "/200/300?image=30",
@@ -13,7 +13,7 @@ const images = [
 const SimpleResponsiveImages: FC = () => (
   <>
     {images.map((image, i) => (
-      <MediaContainer key={i} className="responsive-item">
+      <MediaContainer key={i} className={styles.container}>
         <img src={`https://picsum.photos${image}`} alt="" />
       </MediaContainer>
     ))}

@@ -13,7 +13,8 @@ import ActionChipAlarm from "./ActionChipAlarm";
 import ActionChipBlinds from "./ActionChipBlinds";
 import ActionChipLights from "./ActionChipLights";
 import Blinds from "./Blinds";
-import styles from "./styles";
+
+import styles from "./ActionChips.module.scss";
 
 const width = 240;
 const height = width * 0.75;
@@ -21,7 +22,7 @@ const height = width * 0.75;
 const ActionChips: FC = () => {
   const [blinds, setBlinds] = useState(false);
   return (
-    <Card id="action-chips-card" className={styles()}>
+    <Card id="action-chips-card" className={styles.container}>
       <MediaContainer fullWidth>
         <Blinds visible={blinds} />
         <img src={`https://picsum.photos/id/218/${width}/${height}`} alt="" />
@@ -31,7 +32,7 @@ const ActionChips: FC = () => {
         <CardSubtitle noWrap>Monday 12:30 PM, Mostly Sunny</CardSubtitle>
       </CardHeader>
       <Divider />
-      <CardContent className={styles("chips")} disableExtraPadding>
+      <CardContent className={styles.content} disableExtraPadding>
         <ActionChipLights />
         <ActionChipAlarm />
         <ActionChipBlinds

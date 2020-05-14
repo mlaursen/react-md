@@ -1,10 +1,12 @@
 import React, { FC } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
-import { bem, MobileOnly } from "@react-md/utils";
+import { MobileOnly } from "@react-md/utils";
 
 import AppBarNav from "components/AppBarNav";
 import AppBarTitle from "components/AppBarTitle";
+
+import styles from "./SandboxNavigation.module.scss";
 
 interface SandboxNavigationProps {
   name: string;
@@ -14,8 +16,6 @@ interface SandboxNavigationProps {
   onRequestClose: () => void;
 }
 
-const block = bem("sandbox-modal");
-
 const SandboxNavigation: FC<SandboxNavigationProps> = ({
   name,
   from,
@@ -24,11 +24,7 @@ const SandboxNavigation: FC<SandboxNavigationProps> = ({
   onRequestClose,
 }) => {
   return (
-    <AppBar
-      height="prominent-dense"
-      theme="default"
-      className={block("header")}
-    >
+    <AppBar height="prominent-dense" theme="default" className={styles.header}>
       <AppBar>
         <MobileOnly>
           <AppBarNav
@@ -53,7 +49,7 @@ const SandboxNavigation: FC<SandboxNavigationProps> = ({
           {from ? "Go Back" : "Close"}
         </AppBarAction>
       </AppBar>
-      <code className={block("breadcrumbs")}>
+      <code className={styles.breadcrumbs}>
         {fileName.replace(/\//g, " / ")}
       </code>
     </AppBar>

@@ -14,6 +14,7 @@ import { Menu, MenuItem, useContextMenu } from "@react-md/menu";
 import { TableCell, TableRow } from "@react-md/table";
 
 import { DriveContentItem } from "./data";
+import styles from "./RowWithMenu.module.scss";
 
 interface Props extends Omit<DriveContentItem, "id"> {
   size?: number;
@@ -38,7 +39,7 @@ const RowWithMenu = ({
         tabIndex={0}
         onContextMenu={onContextMenu}
         selected={visible}
-        className="simple-context-menu__row"
+        className={styles.row}
       >
         <TableCell>{name}</TableCell>
         <TableCell>{owner}</TableCell>

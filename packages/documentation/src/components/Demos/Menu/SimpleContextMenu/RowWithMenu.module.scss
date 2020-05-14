@@ -1,0 +1,12 @@
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.row {
+  @include rmd-utils-hide-focus-outline;
+
+  @include rmd-utils-keyboard-only {
+    &:focus {
+      @include rmd-states-theme(box-shadow, focus-shadow);
+    }
+  }
+}

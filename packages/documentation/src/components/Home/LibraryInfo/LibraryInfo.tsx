@@ -2,7 +2,6 @@ import React, { ReactElement } from "react";
 import { Table, TableBody } from "@react-md/table";
 import { Text, TextContainer } from "@react-md/typography";
 
-import styles from "./styles";
 import Header from "./Header";
 import ResponsiveBlock from "./ResponsiveBlock";
 
@@ -17,6 +16,8 @@ import OtherPros from "./OtherPros";
 import StylingCons from "./StylingCons";
 import StylingPros from "./StylingPros";
 
+import styles from "./LibraryInfo.module.scss";
+
 const LibraryInfo = (): ReactElement | null => (
   <>
     <TextContainer>
@@ -25,7 +26,7 @@ const LibraryInfo = (): ReactElement | null => (
         the pros and cons list below.
       </Text>
     </TextContainer>
-    <Table fullWidth className={styles()} disableHover>
+    <Table fullWidth className={styles.container} disableHover>
       <Header />
       <TableBody vAlign="top" lineWrap="padded">
         <ResponsiveBlock

@@ -7,7 +7,7 @@ import { ArrowBackSVGIcon } from "@react-md/material-icons";
 import { MediaContainer } from "@react-md/media";
 
 import AppBarTitle from "components/AppBarTitle";
-import "./FullPageExample.scss";
+import styles from "./FullPageExample.module.scss";
 
 // just grabbed some "large" images from https://picsum.photos/list
 interface FullImageData {
@@ -148,7 +148,7 @@ const FullPageExample: FC = () => {
             id={`image-preview-${id}`}
             onClick={show}
             aria-label={`Show image ${i + 1}`}
-            className="dialog-image-preview-item"
+            className={styles.button}
           >
             <img src={src} alt="" />
           </Button>
@@ -170,7 +170,7 @@ const FullPageExample: FC = () => {
           </AppBarTitle>
         </AppBar>
         <DialogContent>
-          <MediaContainer className="dialog-image-full-preview">
+          <MediaContainer className={styles.preview}>
             <img
               src={`https://picsum.photos/id/${imageId}/${width}/${height}`}
               alt=""

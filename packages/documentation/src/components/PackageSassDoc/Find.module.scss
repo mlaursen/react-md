@@ -1,0 +1,25 @@
+@import '~@react-md/button/dist/variables';
+@import '~@react-md/dialog/dist/variables';
+@import '~@react-md/utils/dist/mixins';
+
+.button {
+  @include rmd-utils-rtl-auto(right, 1.5rem);
+
+  bottom: 1.5rem;
+  position: fixed;
+  z-index: 3;
+}
+
+.dialog {
+  $distance: 1.5rem + $rmd-button-icon-size + 1rem;
+  @include rmd-utils-rtl-auto(right, $distance);
+
+  bottom: 1.5rem;
+  position: fixed;
+  width: 25rem;
+  z-index: $rmd-dialog-z-index;
+}
+
+.listbox {
+  z-index: $rmd-dialog-z-index;
+}

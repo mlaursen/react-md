@@ -1,19 +1,22 @@
+import React, { FC, ReactNode, useCallback, useMemo, useState } from "react";
+import { useRouter } from "next/router";
 import { AutoComplete, FilterFunction } from "@react-md/autocomplete";
 import { Button } from "@react-md/button";
 import { Dialog } from "@react-md/dialog";
 import { SearchSVGIcon } from "@react-md/material-icons";
 import {
-  caseInsensitiveFilter,
   ABOVE_CENTER_ANCHOR,
+  caseInsensitiveFilter,
   useAppSize,
 } from "@react-md/utils";
+
 import Code from "components/Code/Code";
-import { useRouter } from "next/router";
-import React, { FC, ReactNode, useCallback, useMemo, useState } from "react";
 import { FormattedSassDocItem, FormattedVariableItem } from "utils/sassdoc";
+
 import getId from "./getId";
 import getType from "./getType";
-import styles from "./styles";
+
+import styles from "./Find.module.scss";
 
 interface FindProps {
   items: FormattedSassDocItem[];
@@ -67,7 +70,7 @@ const Find: FC<FindProps> = ({ items }) => {
         buttonType="icon"
         theme="secondary"
         themeType="contained"
-        className={styles("find-toggle")}
+        className={styles.button}
       >
         <SearchSVGIcon />
       </Button>
@@ -77,7 +80,7 @@ const Find: FC<FindProps> = ({ items }) => {
         visible={visible}
         onRequestClose={() => setVisible(false)}
         type="custom"
-        className={styles("finder")}
+        className={styles.dialog}
       >
         <AutoComplete
           id="sassdoc-autocomplete"
@@ -87,7 +90,7 @@ const Find: FC<FindProps> = ({ items }) => {
           valueKey="name"
           placeholder="Search..."
           filter={filter}
-          listboxClassName={styles("listbox")}
+          listboxClassName={styles.listbox}
           clearOnAutoComplete
           onAutoComplete={(data) => {
             const result = data.result as typeof searchables[0];

@@ -47,11 +47,11 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport { VerticalDivider } from \"@react-md/divider\";\nimport { Text } from \"@react-md/typography\";\n\nimport \"./VerticalDividers.scss\";\n\nconst Demo: FC = () => (\n  <AppBar theme=\"default\">\n    <img\n      src=\"https://picsum.photos/80/48?image=815\"\n      alt=\"Logo\"\n      className=\"vertical-dividers-logo\"\n    />\n    <VerticalDivider />\n    <Text type=\"headline-5\">Company Name</Text>\n    <VerticalDivider maxHeight={0.6} />\n  </AppBar>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport { VerticalDivider } from \"@react-md/divider\";\nimport { Text } from \"@react-md/typography\";\n\nimport styles from \"./VerticalDividers.module.scss\";\n\nconst Demo: FC = () => (\n  <AppBar theme=\"default\">\n    <img\n      src=\"https://picsum.photos/80/48?image=815\"\n      alt=\"Logo\"\n      className={styles.logo}\n    />\n    <VerticalDivider />\n    <Text type=\"headline-5\">Company Name</Text>\n    <VerticalDivider maxHeight={0.6} />\n  </AppBar>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/VerticalDividers.scss": {
-    "content": "@import '~@react-md/utils/dist/mixins';\n@import '~@react-md/app-bar/dist/mixins';\n\n.vertical-dividers-logo {\n  @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-lr-margin, auto);\n}\n",
+  "src/VerticalDividers.module.scss": {
+    "content": "@import '~@react-md/utils/dist/mixins';\n@import '~@react-md/app-bar/dist/mixins';\n\n.logo {\n  @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-lr-margin, 0);\n}\n",
     "isBinary": false
   }
 }

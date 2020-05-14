@@ -3,9 +3,9 @@ import { AppBar } from "@react-md/app-bar";
 import { Checkbox, useChecked } from "@react-md/form";
 import { TabsManager, Tabs, TabPanels } from "@react-md/tabs";
 
-import "./PersistentTabs.scss";
 import Content1 from "./Content1";
 import Content2 from "./Content2";
+import styles from "./PersistentTabs.module.scss";
 
 const tabs = ["Tab 1", "Tab 2"];
 
@@ -24,7 +24,7 @@ const PersistentTabs: FC = () => {
         </AppBar>
         <Tabs />
       </AppBar>
-      <TabPanels persistent={persistent} className="persistent-tabs">
+      <TabPanels persistent={persistent} className={styles.container}>
         <Content1 />
         <Content2 />
       </TabPanels>

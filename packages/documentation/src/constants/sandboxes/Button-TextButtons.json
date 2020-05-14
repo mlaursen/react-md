@@ -50,12 +50,12 @@
     "content": "import React, { FC } from \"react\";\nimport { Button } from \"@react-md/button\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container>\n    <Button id=\"text-button-1\" theme=\"primary\">\n      Text Button 1\n    </Button>\n    <Button id=\"text-button-2\" theme=\"secondary\">\n      Text Button 2\n    </Button>\n    <Button id=\"text-button-3\" theme=\"warning\">\n      Text Button 3\n    </Button>\n    <Button id=\"text-button-4\" theme=\"error\">\n      Text Button 4\n    </Button>\n    <Button id=\"text-button-5\" theme=\"clear\">\n      Text Button 5\n    </Button>\n    <Button id=\"text-button-6\" disabled>\n      Disabled Text Button\n    </Button>\n  </Container>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": ".button-container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  // justify-content: center;\n\n  .rmd-button {\n    margin: 1rem;\n  }\n}\n",
+  "src/Container.module.scss": {
+    "content": ".container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n\n  :global .rmd-button {\n    margin: 1rem;\n  }\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"button-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(styles.container, className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
     "isBinary": false
   }
 }

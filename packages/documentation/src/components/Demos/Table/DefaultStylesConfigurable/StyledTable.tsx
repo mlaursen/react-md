@@ -12,7 +12,7 @@ import {
 } from "@react-md/table";
 
 import { useDefaultStylesContext } from "./context";
-import styles from "./styles";
+import styles from "./StyledTable.module.scss";
 
 interface ContainerProps {
   container: boolean;
@@ -28,7 +28,7 @@ const Container: FC<ContainerProps> = ({ container, children }) => {
   }
 
   return (
-    <TableContainer className={styles("container")}>{children}</TableContainer>
+    <TableContainer className={styles.container}>{children}</TableContainer>
   );
 };
 
@@ -74,7 +74,7 @@ const StyledTable: FC = () => {
 
   return (
     <Container container={container}>
-      <Table {...props} className={styles("table")}>
+      <Table {...props} className={styles.table}>
         <Caption>Configured Table</Caption>
         <TableHeader>
           <TableRow>
@@ -91,7 +91,7 @@ const StyledTable: FC = () => {
               {Array.from(new Array(cols), (_, colIndex) => (
                 <TableCell
                   key={colIndex}
-                  className={styles("cell")}
+                  className={styles.cell}
                   {...getCellProps(rowIndex, colIndex)}
                 >
                   {`Cell ${rowIndex + 1}-${colIndex + 1}`}

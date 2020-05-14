@@ -28,9 +28,10 @@ import { TOCVisibilityProvider } from "components/TableOfContents/VisibilityCont
 import navItems from "constants/navItems";
 
 import Actions from "./Actions";
-import "./Layout.scss";
 import NavHeaderTitle from "./NavHeaderTitle";
 import { Provider } from "./fixedAppBarContext";
+
+import styles from "./Layout.module.scss";
 
 export interface LayoutProps
   extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
@@ -95,7 +96,7 @@ const Layout: FC<LayoutProps> = ({
           appBarAfterNav
           fixedAppBarElevation={elevated}
           navHeaderTitle={<NavHeaderTitle />}
-          navHeaderClassName="layout-nav-header"
+          navHeaderClassName={styles.navHeader}
           appBarChildren={<Actions />}
           linkComponent={LinkUnstyled}
           mainRef={mainRef}

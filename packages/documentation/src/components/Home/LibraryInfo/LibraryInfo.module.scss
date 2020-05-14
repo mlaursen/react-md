@@ -1,0 +1,28 @@
+// sass-lint:disable class-name-format
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/table/dist/mixins';
+
+.container {
+  @include rmd-table-theme-update-var(cell-v-padding, 1rem);
+
+  margin: 0 auto;
+  max-width: 75rem;
+}
+
+.header {
+  @include rmd-table-theme-update-var(sticky-header, rmd-app-bar-theme-var(height));
+}
+
+.leftHeader {
+  @include rmd-table-theme-update-var(
+    sticky-header,
+    calc(#{rmd-app-bar-theme-var(height)} + #{$rmd-table-header-cell-height})
+  );
+}
+
+.mobileHeader {
+  @include rmd-table-theme-update-var(
+    sticky-header,
+    calc(#{rmd-app-bar-theme-var(height)} + #{$rmd-table-cell-height})
+  );
+}

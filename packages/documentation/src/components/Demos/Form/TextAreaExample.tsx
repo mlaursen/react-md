@@ -10,6 +10,7 @@ import {
 } from "@react-md/form";
 
 import TextFieldThemeConfig from "./TextFieldThemeConfig";
+import styles from "./TextAreaExample.module.scss";
 
 const MAX_ROWS = [-1, 4, 5, 6, 7, 8, 9, 10];
 
@@ -55,7 +56,7 @@ const TextAreaExample: FC = () => {
           name="resize"
           value={resize}
           onChange={handleResizeChange}
-          className="text-field-theme-config__select"
+          className={styles.select}
         >
           <option value="none">None</option>
           <option value="auto">Auto</option>
@@ -69,7 +70,7 @@ const TextAreaExample: FC = () => {
           name="rows"
           value={rows}
           onChange={handleRowChange}
-          className="text-field-theme-config__select"
+          className={styles.select}
         >
           {Array.from(new Array(6), (_, i) => (
             <option key={i} value={i + 2}>
@@ -83,7 +84,7 @@ const TextAreaExample: FC = () => {
           name="maxRows"
           value={maxRows}
           onChange={handleMaxRowChange}
-          className="text-field-theme-config__select"
+          className={styles.select}
         >
           {MAX_ROWS.map((amount) => (
             <option

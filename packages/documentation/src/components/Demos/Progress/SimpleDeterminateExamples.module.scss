@@ -1,0 +1,22 @@
+@import '~@react-md/utils/dist/mixins';
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.button.button {
+  @include rmd-utils-absolute-centered;
+
+  white-space: nowrap;
+}
+
+.linear {
+  margin: 1rem 0;
+}
+
+.circular {
+  margin-left: 1.5rem;
+}

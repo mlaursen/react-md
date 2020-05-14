@@ -4,21 +4,21 @@ import { Tooltipped } from "@react-md/tooltip";
 
 import Code from "components/Code/Code";
 
-import "./AllIcons.scss";
+import styles from "./AllIcons.module.scss";
 
 const allIcons = Object.entries(MaterialIcons).filter(([name]) =>
   name.endsWith("SVGIcon")
 );
 
 const AllIcons: FC = () => (
-  <div className="all-icons-container">
+  <div className={styles.container}>
     {allIcons.map(([name, Icon]) => (
-      <div key={name} className="all-icons__info">
+      <div key={name} className={styles.icon}>
         <Icon />
         <Tooltipped id={`icon-${name}`} tooltip={name}>
           {({ tooltip, ...a11y }) => (
             <>
-              <Code {...a11y} className="all-icons__name" tabIndex={0}>
+              <Code {...a11y} className={styles.name} tabIndex={0}>
                 {name.replace(/SVGIcon/, "")}
               </Code>
               {tooltip}

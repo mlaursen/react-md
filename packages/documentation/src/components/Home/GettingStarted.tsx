@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import {
-  Card,
   CardHeader,
   CardTitle,
   CardContent,
@@ -9,17 +8,15 @@ import {
 import { Divider } from "@react-md/divider";
 import { MediaContainer } from "@react-md/media";
 import { Text } from "@react-md/typography";
-import { bem } from "@react-md/utils";
 
 import { Code } from "components/Code";
 import LinkButton from "components/LinkButton";
 
+import JumpStartCard from "./JumpStartCard";
 import { Component as SVG } from "./getting-started.svg";
 
-const block = bem("home");
-
 const GettingStarted: FC = () => (
-  <Card className={block("card")}>
+  <JumpStartCard>
     <CardHeader>
       <CardTitle>Getting Started</CardTitle>
     </CardHeader>
@@ -45,7 +42,7 @@ const GettingStarted: FC = () => (
         Get started!
       </LinkButton>
     </CardActions>
-  </Card>
+  </JumpStartCard>
 );
 
 export default GettingStarted;

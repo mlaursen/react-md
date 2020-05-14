@@ -1,9 +1,10 @@
 import React, { FC, useState } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogFooter } from "@react-md/dialog";
+import { TextArea } from "@react-md/form";
 import { Text } from "@react-md/typography";
 
-import "./AlertDialogsAndModals.scss";
+import styles from "./AlertDialogsAndModals.module.scss";
 
 const DRAFT = `This is some initial text to show in the draft area.
 When you click on "Reset", a dialog will ask you if you want to discard the
@@ -33,10 +34,11 @@ const AlertDialogsAndModals: FC = () => {
           e.preventDefault();
         }}
       >
-        <textarea
+        <TextArea
           id="draft-area"
-          className="dialog-draft"
           defaultValue={DRAFT}
+          className={styles.textarea}
+          resize="none"
         />
         <DialogFooter>
           <Button
@@ -74,7 +76,11 @@ const AlertDialogsAndModals: FC = () => {
           <Button id="dialog-cancel" onClick={hide}>
             Cancel
           </Button>
-          <Button id="dialog-discard" onClick={hide}>
+          <Button
+            id="dialog-discard"
+            onClick={hide}
+            theme={modal ? "primary" : "error"}
+          >
             {!modal ? "Discard" : "Submit"}
           </Button>
         </DialogFooter>

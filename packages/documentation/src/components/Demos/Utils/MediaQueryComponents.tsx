@@ -8,7 +8,7 @@ import {
   DesktopOnly,
 } from "@react-md/utils";
 
-import "./MediaQueryComponents.scss";
+import styles from "./MediaQueryComponents.module.scss";
 
 const MediaQueryComponents: FC = () => (
   <>
@@ -27,7 +27,7 @@ const MediaQueryComponents: FC = () => (
       </DesktopOnly>
     </TextContainer>
     <Divider />
-    <div className="mq-example">
+    <div className={styles.container}>
       <Text margin="none">
         This section will gain different styles as the viewport increases. I
         highly recommend opening the dev tools and seeing how the different

@@ -9,6 +9,8 @@ import {
   SCSS_PACKAGES,
 } from "constants/packages";
 
+import styles from "./Markdown.module.scss";
+
 export function getLanguage(language: string): string {
   switch (language) {
     case "":
@@ -102,7 +104,7 @@ renderer.link = (href, title, text) => {
   return `<a class="rmd-link" href="${href}"${title}>${text}</a>`;
 };
 
-renderer.paragraph = (text: string) => `<p class="markdown__p">${text}</p>`;
+renderer.paragraph = (text: string) => `<p class="${styles.p}">${text}</p>`;
 
 renderer.image = (href, title, alt) => {
   return (
@@ -116,7 +118,7 @@ renderer.image = (href, title, alt) => {
 
 renderer.list = (body, ordered) => {
   const tag = ordered ? "ol" : "ul";
-  return `<${tag} class="markdown__list">${body}</${tag}>`;
+  return `<${tag} class="${styles.list}">${body}</${tag}>`;
 };
 
 // ///////////////////////////////////////////////////

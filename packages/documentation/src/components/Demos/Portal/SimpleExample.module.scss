@@ -1,0 +1,24 @@
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/overlay/dist/variables';
+@import '~@react-md/utils/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/overlay/dist/mixins';
+
+.container {
+  @include rmd-utils-scroll;
+
+  height: 10rem;
+  position: relative;
+}
+
+.overlay {
+  @include rmd-overlay-theme(background-color, transparent);
+}
+
+.menu {
+  @include rmd-elevation(4);
+  @include rmd-theme(background-color, surface);
+
+  position: fixed;
+  z-index: $rmd-overlay-z-index + 1;
+}

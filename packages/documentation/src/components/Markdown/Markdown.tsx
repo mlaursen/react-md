@@ -14,7 +14,7 @@ import { UrlObject } from "url";
 
 import GoogleFont from "components/GoogleFont";
 
-import "./Markdown.scss";
+import styles from "./Markdown.module.scss";
 import { markdownToHTML } from "./utils";
 
 function useMarkdownResolver(markdown: MarkdownProps["children"]): string {
@@ -146,8 +146,10 @@ const Markdown: FC<MarkdownProps> = ({
         {...props}
         ref={ref}
         className={cn(
-          "markdown-container",
-          { "markdown-container--no-p-margin": disableSinglePMargin },
+          styles.container,
+          {
+            [styles.marginless]: disableSinglePMargin,
+          },
           className
         )}
         dangerouslySetInnerHTML={html}

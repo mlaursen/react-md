@@ -1,4 +1,5 @@
 import React, { FC, useMemo } from "react";
+import cn from "classnames";
 import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
 import {
@@ -7,9 +8,11 @@ import {
   TreeData,
   getItemsFrom,
 } from "@react-md/tree";
-import { bem, useIsUserInteractionMode } from "@react-md/utils";
+import { useIsUserInteractionMode } from "@react-md/utils";
 
 import { FileTreeData } from "./useFiles";
+
+import styles from "./SandboxFileTree.module.scss";
 
 export interface SandboxFileTreeProps {
   fileName: string;
@@ -22,7 +25,6 @@ export interface SandboxFileTreeProps {
   disableTransition: boolean;
 }
 
-const block = bem("sandbox-modal");
 const noop = (): void => {};
 
 const SandboxFileTree: FC<SandboxFileTreeProps> = ({
@@ -60,7 +62,9 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
       position="left"
       overlay={!inline}
       portal={false}
-      className={block("files", { inline })}
+      className={cn({
+        [styles.inline]: inline,
+      })}
       mountOnEnter={!inline}
       unmountOnExit={!inline}
       disableScrollLock

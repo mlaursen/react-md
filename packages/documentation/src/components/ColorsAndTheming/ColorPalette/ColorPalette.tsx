@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import scssVariables from "@react-md/theme/dist/scssVariables";
-import { bem } from "@react-md/utils";
 
-import "./ColorPalette.scss";
 import About from "./About";
 import Color, { ColorValue } from "./Color";
 import ColorList from "./ColorList";
+
+import styles from "./ColorPalette.module.scss";
 
 interface ColorMap {
   [baseColor: string]: ColorValue[];
@@ -37,17 +37,15 @@ const colorMap = uniqueColors.reduce<ColorMap>((map, color) => {
   return map;
 }, {});
 
-const block = bem("color-palette");
-
 const ColorPalette: FC = () => {
   return (
     <>
       <About />
-      <div className={block()}>
+      <div className={styles.container}>
         {Object.entries(colorMap).map(([baseColor, colors]) => (
           <ColorList key={baseColor} baseColor={baseColor} colors={colors} />
         ))}
-        <ul className={block("list")}>
+        <ul className={styles.list}>
           <Color
             primary="black"
             name="rmd-black-base"

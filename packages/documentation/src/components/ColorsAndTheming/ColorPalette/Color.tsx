@@ -1,6 +1,8 @@
 import React, { FC } from "react";
+import cn from "classnames";
 import { Text } from "@react-md/typography";
-import { bem } from "@react-md/utils";
+
+import styles from "./Color.module.scss";
 
 export interface ColorValue {
   name: string;
@@ -11,8 +13,6 @@ interface ColorProps extends ColorValue {
   primary?: string;
   secondary?: boolean;
 }
-
-const block = bem("color-palette");
 
 const Color: FC<ColorProps> = ({ name, value, primary, secondary }) => {
   const withoutRMD = name.replace("rmd-", "");
@@ -25,16 +25,19 @@ const Color: FC<ColorProps> = ({ name, value, primary, secondary }) => {
 
   return (
     <li
-      className={block("color", {
-        primary,
-        secondary,
-        [withoutRMD]: true,
-      })}
+      className={cn(
+        styles.container,
+        {
+          [styles.primary]: primary,
+          [styles.secondary]: secondary,
+        },
+        styles[withoutRMD]
+      )}
     >
       {primary && (
         <Text
           type="headline-6"
-          className={block("primary-color")}
+          className={styles.header}
           transform="capitalize"
         >
           {primary.replace("-", " ")}

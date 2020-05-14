@@ -1,0 +1,5 @@
+@import '~@react-md/app-bar/dist/mixins';
+
+.inline {
+  @include rmd-app-bar-offset(top, prominent-dense-height);
+}

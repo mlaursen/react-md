@@ -51,12 +51,12 @@
     "content": "import React, { FC } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Tooltipped } from \"@react-md/tooltip\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container stacked>\n    <Tooltipped\n      id=\"auto-positioning-above\"\n      tooltip=\"This is a tooltip\"\n      defaultPosition=\"above\"\n    >\n      <Button themeType=\"outline\">Above</Button>\n    </Tooltipped>\n    <Tooltipped\n      id=\"auto-positioning-right\"\n      tooltip=\"This is a tooltip\"\n      defaultPosition=\"right\"\n    >\n      <Button themeType=\"outline\">Right</Button>\n    </Tooltipped>\n    <Tooltipped\n      id=\"auto-positioning-bottom\"\n      tooltip=\"This is a tooltip\"\n      defaultPosition=\"below\"\n    >\n      <Button themeType=\"outline\">Below</Button>\n    </Tooltipped>\n    <Tooltipped\n      id=\"auto-positioning-left\"\n      tooltip=\"This is a tooltip\"\n      defaultPosition=\"left\"\n    >\n      <Button themeType=\"outline\">Left</Button>\n    </Tooltipped>\n  </Container>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": ".tooltip-example-container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n\n  &--stacked {\n    flex-direction: column;\n  }\n\n  > .rmd-button {\n    margin: 1rem;\n  }\n}\n",
+  "src/Container.module.scss": {
+    "content": ".container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n\n  :global .rmd-button {\n    margin: 1rem;\n  }\n}\n\n.stacked {\n  flex-direction: column;\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\nimport { bem } from \"@react-md/utils\";\n\nimport \"./Container.scss\";\n\ninterface ContainerProps extends HTMLAttributes<HTMLDivElement> {\n  stacked?: boolean;\n}\n\nconst block = bem(\"tooltip-example-container\");\n\nconst Container: FC<ContainerProps> = ({\n  className,\n  children,\n  stacked,\n  ...props\n}) => (\n  <div {...props} className={cn(block({ stacked }), className)}>\n    {children}\n  </div>\n);\n\nContainer.defaultProps = {\n  stacked: false,\n};\n\nexport default Container;\n",
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\ninterface ContainerProps extends HTMLAttributes<HTMLDivElement> {\n  stacked?: boolean;\n}\n\nconst Container: FC<ContainerProps> = ({\n  className,\n  children,\n  stacked,\n  ...props\n}) => (\n  <div\n    {...props}\n    className={cn(\n      styles.container,\n      {\n        [styles.stacked]: stacked,\n      },\n      className\n    )}\n  >\n    {children}\n  </div>\n);\n\nContainer.defaultProps = {\n  stacked: false,\n};\n\nexport default Container;\n",
     "isBinary": false
   }
 }

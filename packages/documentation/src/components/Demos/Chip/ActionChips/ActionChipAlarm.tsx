@@ -4,7 +4,7 @@ import { AlarmSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
 
 import ActionChip from "./ActionChip";
-import styles from "./styles";
+import styles from "./ActionChipAlarm.module.scss";
 
 const ActionChipAlarm: FC = () => {
   const [visible, setVisible] = useState(false);
@@ -22,8 +22,8 @@ const ActionChipAlarm: FC = () => {
       <Sheet
         id="action-chip-alarm-sheet"
         aria-label="Alarm"
-        className={styles("sheet")}
-        overlayClassName={styles("sheet")}
+        className={styles.absolute}
+        overlayClassName={styles.absolute}
         position="bottom"
         visible={visible}
         onRequestClose={hide}

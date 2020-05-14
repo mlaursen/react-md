@@ -1,0 +1,82 @@
+@import '~@react-md/utils/dist/mixins';
+@import '~@react-md/button/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/dialog/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/link/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/overlay/dist/mixins';
+
+$page-margin: 1rem;
+$toc-width: 15rem;
+$toc-z-index: 9;
+
+.dialog {
+  @include rmd-utils-rtl {
+    left: $page-margin;
+    right: auto;
+    transform-origin: 2% ($rmd-icon-size / 2);
+  }
+  @include rmd-elevation(2);
+
+  max-height: calc(100% - #{$rmd-app-bar-height + $page-margin + $page-margin});
+  position: fixed;
+  right: $rmd-app-bar-lr-margin;
+  top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin});
+  transform-origin: 98% ($rmd-icon-size / 2);
+  width: calc(100% - #{$rmd-app-bar-lr-margin * 2});
+  z-index: $toc-z-index;
+
+  @media (min-width: 40rem) {
+    max-width: 20rem;
+  }
+
+  @media (min-width: 56rem) {
+    max-width: $toc-width;
+  }
+}
+
+.overlay {
+  @include rmd-utils-tablet-only-media {
+    @include rmd-overlay-theme-update-var(active-opacity, 0);
+  }
+
+  z-index: $toc-z-index;
+}
+
+.enter {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.entering {
+  @include rmd-transition(acceleration);
+
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity $rmd-dialog-enter-duration, transform $rmd-dialog-enter-duration;
+}
+
+.exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.exiting {
+  @include rmd-transition(deceleration);
+
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity $rmd-dialog-leave-duration, transform $rmd-dialog-leave-duration;
+}
+
+.header {
+  padding-top: 2rem;
+}
+
+.content {
+  padding-top: 0;
+}

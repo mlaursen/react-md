@@ -5,11 +5,9 @@ import { IconRotator, TextIconSpacing } from "@react-md/icon";
 import { List } from "@react-md/list";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { MenuItem } from "@react-md/menu";
-import { bem, useToggle } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 
-import "./InaccessibleMenu.scss";
-
-const block = bem("inaccessible-menu");
+import styles from "./InaccessibleMenu.module.scss";
 
 // sorry -- too lazy to fully implement a11y and functionality just for a "broken" demo
 const InaccessibleMenu: FC<{ items: string[] }> = ({ items }) => {
@@ -34,7 +32,7 @@ const InaccessibleMenu: FC<{ items: string[] }> = ({ items }) => {
   }, [visible, disable]);
 
   return (
-    <div className={block()}>
+    <div className={styles.container}>
       <Button
         id="inaccessible-menu-button"
         themeType="outline"
@@ -56,7 +54,7 @@ const InaccessibleMenu: FC<{ items: string[] }> = ({ items }) => {
         <div
           role="menu"
           id="inacceesible-menu"
-          className={block("menu")}
+          className={styles.menu}
           aria-label="Menu"
           onClick={disable}
         >

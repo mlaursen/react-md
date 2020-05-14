@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+
+  fieldset {
+    margin: 1rem;
+  }
+}
+
+.demo {
+  margin-top: 4rem;
+  width: 100%;
+}

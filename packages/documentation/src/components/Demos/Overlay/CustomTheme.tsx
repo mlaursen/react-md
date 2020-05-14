@@ -4,7 +4,7 @@ import { List, ListItem } from "@react-md/list";
 import { Overlay } from "@react-md/overlay";
 import { useToggle } from "@react-md/utils";
 
-import "./CustomTheme.scss";
+import styles from "./CustomTheme.module.scss";
 
 const CustomTheme: FC = () => {
   const [toggled, , disable, toggle] = useToggle(false);
@@ -22,9 +22,9 @@ const CustomTheme: FC = () => {
         id="custom-theme-overlay"
         onRequestClose={disable}
         visible={toggled}
-        className="custom-theme-overlay"
+        className={styles.overlay}
       >
-        <List className="custom-theme-overlay__list">
+        <List className={styles.list}>
           {Array.from(new Array(10)).map((_, i) => (
             <ListItem id={`item-${i}`} key={i}>
               {`Item ${i + 1}`}

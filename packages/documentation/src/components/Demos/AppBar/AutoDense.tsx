@@ -4,11 +4,11 @@ import { MenuSVGIcon } from "@react-md/material-icons";
 
 import AppBarTitle from "components/AppBarTitle";
 
-import "./AutoDense.scss";
 import Container from "./Container";
+import styles from "./AutoDense.module.scss";
 
 const AutoDense: FC = () => (
-  <Container className="auto-dense">
+  <Container className={styles.container}>
     <AppBar id="auto-dense-app-bar">
       <AppBarNav id="auto-dense-app-bar-nav" aria-label="Navigation">
         <MenuSVGIcon />
@@ -17,7 +17,7 @@ const AutoDense: FC = () => (
     </AppBar>
     <AppBar
       id="auto-prominent-dense-app-bar"
-      className="auto-dense__prominent"
+      className={styles.prominent}
       height="prominent"
     >
       <AppBar>

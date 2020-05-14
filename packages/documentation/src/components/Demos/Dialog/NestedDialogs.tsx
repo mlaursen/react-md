@@ -11,9 +11,10 @@ import { useToggle } from "@react-md/utils";
 
 import AppBarTitle from "components/AppBarTitle";
 
-import "./NestedDialogs.scss";
 import LoremIpsum from "./LoremIpsum";
 import NestedDemo from "./NestedDemo";
+
+import styles from "./NestedDialogs.module.scss";
 
 const NestedDialogs: FC = () => {
   const [visible, enable, disable] = useToggle(false);
@@ -36,7 +37,7 @@ const NestedDialogs: FC = () => {
           </AppBarNav>
           <AppBarTitle>Main Full Page Dialog</AppBarTitle>
         </AppBar>
-        <DialogContent className="nested-dialogs-content">
+        <DialogContent className={styles.content}>
           <NestedDemo depth={0} />
           <LoremIpsum />
         </DialogContent>

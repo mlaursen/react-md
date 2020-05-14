@@ -1,0 +1,11 @@
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.list {
+  @include rmd-elevation(4);
+  @include rmd-utils-scroll;
+
+  margin: 2rem auto;
+  max-height: 30rem;
+  max-width: 25rem;
+}

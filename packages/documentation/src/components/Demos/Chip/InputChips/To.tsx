@@ -18,7 +18,7 @@ import { AddCircleSVGIcon } from "@react-md/material-icons";
 import { BELOW_INNER_LEFT_ANCHOR } from "@react-md/utils";
 
 import contacts, { Contact } from "./contacts";
-import styles from "./styles";
+import styles from "./To.module.scss";
 
 const To: FC = () => {
   const [chips, setChips] = useState<Contact[]>([]);
@@ -59,11 +59,11 @@ const To: FC = () => {
     }
   }, [chips]);
   return (
-    <div className={styles("to")}>
-      <Label htmlFor="input-chips-email" className={styles("label")}>
+    <div className={styles.container}>
+      <Label htmlFor="input-chips-email" className={styles.spacing}>
         To
       </Label>
-      <div className={styles("emails")} ref={emailsRef}>
+      <div className={styles.emails} ref={emailsRef}>
         {chips.map(({ id, name, avatar }) => (
           <Chip
             key={id}
@@ -72,8 +72,8 @@ const To: FC = () => {
                 <img src={avatar} alt="" />
               </Avatar>
             }
-            rightIcon={<AddCircleSVGIcon className={styles("remove")} />}
-            className={styles("chip")}
+            rightIcon={<AddCircleSVGIcon className={styles.rotate} />}
+            className={styles.spacing}
             onClick={() =>
               setChips((prevChips) =>
                 prevChips.filter((chip) => chip.id !== id)
@@ -91,7 +91,7 @@ const To: FC = () => {
           data={data}
           listboxWidth="auto"
           anchor={BELOW_INNER_LEFT_ANCHOR}
-          className={styles("email")}
+          className={styles.email}
           inline
           highlight
           clearOnAutoComplete
@@ -99,7 +99,7 @@ const To: FC = () => {
           vhMargin={0}
           vwMargin={0}
           disableSwapping
-          listboxClassName={styles("contacts")}
+          listboxClassName={styles.listbox}
         />
       </div>
     </div>

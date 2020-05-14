@@ -6,7 +6,7 @@ import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
-import "./FixingOverflowIssues.scss";
+import styles from "./FixingOverflowIssues.module.scss";
 
 const FixingOverflowIssues: FC = () => {
   const [visible, , disable, toggle] = useToggle(false);
@@ -22,7 +22,7 @@ const FixingOverflowIssues: FC = () => {
           label="Enable Portal"
         />
       </AppBar>
-      <div className="overlay-overflow-container">
+      <div className={styles.container}>
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
           eros in augue fermentum tempus. Aliquam ullamcorper ullamcorper
@@ -44,7 +44,7 @@ const FixingOverflowIssues: FC = () => {
         >
           Show Overlay
         </Button>
-        <div className="fixing-overflow-fixed-container">
+        <div className={styles.fixed}>
           <Overlay
             id="fixing-overflow-overlay"
             visible={visible}

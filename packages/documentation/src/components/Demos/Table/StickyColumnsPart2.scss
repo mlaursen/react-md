@@ -1,6 +1,0 @@
-@import '~@react-md/app-bar/dist/functions';
-@import '~@react-md/table/dist/mixins';
-
-.sticky-columns-2 {
-  @include rmd-table-theme-update-var(sticky-header, rmd-app-bar-theme-var(height));
-}

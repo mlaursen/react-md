@@ -52,12 +52,12 @@
     "content": "import React, { FC } from \"react\";\nimport { Avatar } from \"@react-md/avatar\";\nimport { FontIcon } from \"@react-md/icon\";\nimport { NoteSVGIcon } from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container>\n    <Avatar src=\"https://picsum.photos/40/40?image=153\" />\n    <Avatar src=\"https://picsum.photos/40/40?image=103\" color=\"blue\" />\n    <Avatar>A</Avatar>\n    <Avatar color=\"orange\">PL</Avatar>\n    <Avatar color=\"red\">\n      <FontIcon>favorite</FontIcon>\n    </Avatar>\n    <Avatar color=\"teal\">\n      <NoteSVGIcon />\n    </Avatar>\n  </Container>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": ".avatar-container {\n  .rmd-avatar {\n    margin: 1rem;\n    vertical-align: top;\n  }\n}\n",
+  "src/Container.module.scss": {
+    "content": ".container {\n  :global .rmd-avatar {\n    margin: 1rem;\n    vertical-align: top;\n  }\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  className,\n  ...props\n}) => (\n  <div className={cn(\"avatar-container\", className)} {...props}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  children,\n  className,\n  ...props\n}) => (\n  <div className={cn(styles.container, className)} {...props}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
     "isBinary": false
   }
 }

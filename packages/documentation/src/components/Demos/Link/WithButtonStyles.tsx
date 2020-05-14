@@ -3,7 +3,7 @@ import cn from "classnames";
 import { ButtonThemeProps, buttonThemeClassNames } from "@react-md/button";
 import { Link, LinkProps } from "@react-md/link";
 
-import "./WithButtonStyles.scss";
+import styles from "./WithButtonStyles.module.scss";
 
 const LinkStyledButton: FC<ButtonThemeProps & LinkProps> = ({
   className,
@@ -21,7 +21,7 @@ const LinkStyledButton: FC<ButtonThemeProps & LinkProps> = ({
       theme,
       themeType,
       buttonType,
-      className: cn("link-styled-button", className),
+      className: cn(styles.link, className),
     })}
   >
     {children}
@@ -35,11 +35,9 @@ LinkStyledButton.defaultProps = {
 };
 
 const WithButtonStyles: FC = () => (
-  <div className="link-button-styles">
-    <LinkStyledButton href="https://react-md.dev">
-      https://react-md.dev
-    </LinkStyledButton>
-  </div>
+  <LinkStyledButton href="https://react-md.dev">
+    https://react-md.dev
+  </LinkStyledButton>
 );
 
 export default WithButtonStyles;

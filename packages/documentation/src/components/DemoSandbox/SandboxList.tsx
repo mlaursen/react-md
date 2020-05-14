@@ -9,24 +9,21 @@ import {
 } from "@react-md/card";
 import { TextIconSpacing } from "@react-md/icon";
 import { CodeSVGIcon, OpenInBrowserSVGIcon } from "@react-md/material-icons";
-import { bem } from "@react-md/utils";
 import { Text } from "@react-md/typography";
 
 import LinkButton from "components/LinkButton";
 import sandboxes from "constants/sandboxes";
 import { toId, toTitle } from "utils/toTitle";
 
-import "./SandboxList.scss";
-
-const block = bem("sandbox-list");
+import styles from "./SandboxList.module.scss";
 
 const SandboxList: FC = () => (
-  <div className={block()}>
+  <div className={styles.container}>
     {Object.entries(sandboxes).map(([packageName, lookups]) => {
       const pkgName = toTitle(packageName, " ", true);
 
       return (
-        <Card key={pkgName} className={block("card")}>
+        <Card key={pkgName} className={styles.card}>
           <CardHeader>
             <CardTitle id={`${toId(pkgName)}`}>{pkgName}</CardTitle>
           </CardHeader>

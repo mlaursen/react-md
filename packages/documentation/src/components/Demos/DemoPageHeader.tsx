@@ -1,17 +1,16 @@
 import React, { FC } from "react";
-import { bem } from "@react-md/utils";
 
 import Heading from "components/Heading";
 import { Markdown } from "components/Markdown";
 
 import { toTitle } from "utils/toTitle";
 
+import styles from "./Demo.module.scss";
+
 interface DemoPageHeaderProps {
   children?: string;
   packageName: string;
 }
-
-const block = bem("demo");
 
 const DemoPageHeader: FC<DemoPageHeaderProps> = ({ children, packageName }) => {
   if (!children) {
@@ -19,11 +18,11 @@ const DemoPageHeader: FC<DemoPageHeaderProps> = ({ children, packageName }) => {
   }
 
   return (
-    <header className={block()}>
+    <header className={styles.container}>
       <Heading level={2} id="demo-page-title">
         {toTitle(packageName)}
       </Heading>
-      <Markdown className={block("description")}>{children}</Markdown>
+      <Markdown className={styles.description}>{children}</Markdown>
     </header>
   );
 };

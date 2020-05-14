@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from "react";
+import cn from "classnames";
 import {
   ArrowDropDownSVGIcon,
   FolderOpenSVGIcon,
@@ -12,7 +13,6 @@ import {
   useTreeItemExpansion,
   useTreeItemSelection,
 } from "@react-md/tree";
-import { bem } from "@react-md/utils";
 
 import FileSVGIcon from "icons/FileSVGIcon";
 import HTML5SVGIcon from "icons/HTML5SVGIcon";
@@ -20,7 +20,7 @@ import SassSVGIcon from "icons/SassSVGIcon";
 import TypescriptSVGIcon from "icons/TypescriptSVGIcon";
 import createIdGenerator from "utils/createIdGenerator";
 
-import "./CustomizingTreeItems.scss";
+import styles from "./CustomizingTreeItems.module.scss";
 
 type ItemType = "folder" | "html" | "typescript" | "scss" | "text";
 interface Item extends TreeItemIds {
@@ -64,8 +64,6 @@ const data = [
   {}
 );
 
-const styles = bem("customizing-tree-items");
-
 const getItemProps: GetItemProps<Item> = (item) => {
   const { selected, focused, expanded, type } = item;
   let leftAddon: ReactNode = null;
@@ -91,9 +89,9 @@ const getItemProps: GetItemProps<Item> = (item) => {
   return {
     leftAddon,
     expanderIcon: <ArrowDropDownSVGIcon />,
-    className: styles("item", {
-      focused,
-      selected,
+    className: cn(styles.item, {
+      [styles.focused]: focused,
+      [styles.selected]: selected,
     }),
   };
 };
@@ -110,7 +108,7 @@ const CustomizingTreeItems: FC = () => {
       id="customizing-tree-items"
       data={data}
       aria-label="Tree"
-      className={styles()}
+      className={styles.tree}
       {...selection}
       {...expansion}
       getItemProps={getItemProps}

@@ -1,0 +1,26 @@
+@import '~@react-md/utils/dist/mixins';
+
+.container {
+  @include rmd-utils-block-centered;
+
+  max-width: 18rem;
+}
+
+.subtitle {
+  margin: 0.5rem 0;
+}
+
+.content {
+  @include rmd-utils-scroll(x);
+
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.button {
+  width: 100%;
+}
+
+.chip + .chip {
+  @include rmd-utils-rtl-auto(margin-left, 0.5rem);
+}

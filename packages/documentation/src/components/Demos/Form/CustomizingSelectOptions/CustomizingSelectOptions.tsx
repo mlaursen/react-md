@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import { Text } from "@react-md/typography";
 
-import "./CustomizingSelectOptions.scss";
 import UsingKeys from "./UsingKeys";
 import CustomChildren from "./CustomChildren";
 import WithOptionLeftAddon from "./WithOptionLeftAddon";
+import styles from "./CustomizingSelectOptions.module.scss";
 
 const CustomizingSelectOptions: FC = () => (
-  <div className="customizing-select-options">
+  <div className={styles.container}>
     <Text type="headline-6" margin="none">
       Using Keys
     </Text>

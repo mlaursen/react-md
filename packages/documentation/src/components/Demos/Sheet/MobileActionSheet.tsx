@@ -14,7 +14,7 @@ import {
 import { Sheet, SheetProps } from "@react-md/sheet";
 import { LabelRequiredForA11y, useAppSize } from "@react-md/utils";
 
-import "./MobileActionSheet.scss";
+import styles from "./MobileActionSheet.module.scss";
 
 const items = [
   { leftAddon: <ShareSVGIcon />, children: "Share" },
@@ -40,7 +40,7 @@ const MenuSheet: FC<LabelRequiredForA11y<SheetProps>> = ({
   return (
     <Sheet
       {...props}
-      className="mobile-sheet"
+      className={styles.sheet}
       onRequestClose={onRequestClose}
       role="menu"
       disableFocusOnMount

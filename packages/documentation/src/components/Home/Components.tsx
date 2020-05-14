@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import {
-  Card,
   CardHeader,
   CardTitle,
   CardContent,
@@ -15,11 +14,12 @@ import { Code, CodeBlock } from "components/Code";
 import LinkButton from "components/LinkButton";
 
 import { Component as SVG } from "./components.svg";
+import JumpStartCard from "./JumpStartCard";
 
 const block = bem("home");
 
 const Components: FC = () => (
-  <Card className={block("card")}>
+  <JumpStartCard>
     <CardHeader>
       <CardTitle>Components and Styles</CardTitle>
     </CardHeader>
@@ -43,7 +43,7 @@ const Components: FC = () => (
         See Examples!
       </LinkButton>
     </CardActions>
-  </Card>
+  </JumpStartCard>
 );
 
 export default Components;

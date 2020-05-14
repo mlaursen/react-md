@@ -16,7 +16,7 @@ import { Button } from "@react-md/button";
 import { Fieldset, Form, Radio, useChoice } from "@react-md/form";
 import { Text } from "@react-md/typography";
 
-import "./UpdatingMessagePriority.scss";
+import styles from "./UpdatingMessagePriority.module.scss";
 
 interface ExampleMessage
   extends Required<Pick<Message, "messageId" | "messagePriority">> {
@@ -72,7 +72,7 @@ const UpdatingMessagePriority: FC = () => {
 
   return (
     <>
-      <div className="updating-message-priority">
+      <div className={styles.output}>
         <Text type="headline-6" margin="bottom">
           Message queue:
         </Text>

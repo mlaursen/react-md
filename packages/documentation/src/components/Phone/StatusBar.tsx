@@ -1,18 +1,18 @@
 import React, { FC } from "react";
+import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import {
   NetworkWifiSVGIcon,
   NetworkCellSVGIcon,
   BatteryFullSVGIcon,
 } from "@react-md/material-icons";
-import { bem } from "@react-md/utils";
+
+import styles from "./StatusBar.module.scss";
 
 export interface StatusBarProps {
   id: string;
   isPhone: boolean;
 }
-
-const block = bem("phone");
 
 const StatusBar: FC<StatusBarProps> = ({ id, isPhone }) => {
   if (isPhone) {
@@ -22,17 +22,17 @@ const StatusBar: FC<StatusBarProps> = ({ id, isPhone }) => {
   return (
     <AppBar
       id={`${id}-status-bar`}
-      className={block("status-bar")}
+      className={styles.container}
       height="dense"
       theme="clear"
       component="div"
     >
       <NetworkWifiSVGIcon
         role="presentation"
-        className={block("icon", { first: true })}
+        className={cn(styles.icon, styles.first)}
       />
-      <NetworkCellSVGIcon role="presentation" className={block("icon")} />
-      <BatteryFullSVGIcon role="presentation" className={block("icon")} />
+      <NetworkCellSVGIcon role="presentation" className={styles.icon} />
+      <BatteryFullSVGIcon role="presentation" className={styles.icon} />
     </AppBar>
   );
 };

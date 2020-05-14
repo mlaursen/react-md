@@ -1,14 +1,11 @@
 import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/utils";
 
-import "./Container.scss";
+import styles from "./Container.module.scss";
 
 interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
   inline?: boolean;
 }
-
-const block = bem("progress-container");
 
 const Container: FC<ContainerProps> = ({
   className,
@@ -17,7 +14,16 @@ const Container: FC<ContainerProps> = ({
   ...props
 }) => {
   return (
-    <div {...props} className={cn(block({ inline }), className)}>
+    <div
+      {...props}
+      className={cn(
+        styles.container,
+        {
+          [styles.inline]: inline,
+        },
+        className
+      )}
+    >
       {children}
     </div>
   );

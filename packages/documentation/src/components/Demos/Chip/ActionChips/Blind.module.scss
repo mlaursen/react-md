@@ -1,0 +1,51 @@
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+$blind-height: 1.5rem;
+$blind-margin: 2px;
+$blind-margin-extra: 8px;
+$blind-rotation: 12deg;
+$blind-rotation-extra: 24deg;
+
+.blind {
+  @include rmd-elevation(8);
+
+  background-color: rgba($rmd-white-base, 0.94);
+  flex-shrink: 0;
+  height: $blind-height;
+  margin-bottom: $blind-margin-extra;
+  transform: skewX($blind-rotation-extra);
+  width: 100%;
+}
+
+.animate {
+  @include rmd-transition(standard);
+  $duration: 2s;
+
+  transition: margin-bottom $duration, transform $duration;
+}
+
+.enter {
+  margin-bottom: $blind-margin-extra;
+  transition-delay: 0.5s;
+}
+
+.entering {
+  margin-bottom: $blind-margin;
+  transform: skewX($blind-rotation);
+}
+
+.done {
+  margin-bottom: $blind-margin;
+  transform: skewX($blind-rotation);
+}
+
+.exit {
+  margin-bottom: $blind-margin;
+  transform: skewX($blind-rotation);
+}
+
+.exiting {
+  margin-bottom: $blind-margin-extra;
+  transform: skewX($blind-rotation-extra);
+}

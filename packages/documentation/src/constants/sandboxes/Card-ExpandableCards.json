@@ -34,6 +34,7 @@
         "@react-md/transition": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
+        "classnames": "latest",
         "react": "latest",
         "react-dom": "latest"
       },
@@ -56,12 +57,12 @@
     "content": "import React, { FC } from \"react\";\nimport { Collapse } from \"@react-md/transition\";\nimport { Card, CardHeader, CardTitle, CardSubtitle } from \"@react-md/card\";\nimport { Avatar } from \"@react-md/avatar\";\nimport { useToggle } from \"@react-md/utils\";\nimport { Button } from \"@react-md/button\";\nimport { IconRotator } from \"@react-md/icon\";\nimport {\n  PhoneSVGIcon,\n  EmailSVGIcon,\n  KeyboardArrowDownSVGIcon,\n} from \"@react-md/material-icons\";\nimport { List, ListItem } from \"@react-md/list\";\nimport { MediaContainer } from \"@react-md/media\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => {\n  const [expanded, , , toggle] = useToggle(false);\n  return (\n    <Container centered>\n      <Card>\n        <MediaContainer fullWidth>\n          <img src=\"https://picsum.photos/300/200?image=1011\" alt=\"\" />\n        </MediaContainer>\n        <CardHeader\n          beforeChildren={\n            <Avatar>\n              <img src=\"https://picsum.photos/40?image=1011\" alt=\"\" />\n            </Avatar>\n          }\n          afterChildren={\n            <Button\n              id=\"expand-card-button\"\n              onClick={toggle}\n              buttonType=\"icon\"\n              aria-label=\"Expand\"\n              theme=\"clear\"\n            >\n              <IconRotator rotated={expanded}>\n                <KeyboardArrowDownSVGIcon />\n              </IconRotator>\n            </Button>\n          }\n        >\n          <CardTitle>Elizabeth Park</CardTitle>\n          <CardSubtitle>Work contact</CardSubtitle>\n        </CardHeader>\n        <Collapse collapsed={!expanded}>\n          <List>\n            <ListItem leftAddon={<PhoneSVGIcon />} secondaryText=\"Mobile\">\n              (000) 000-0000\n            </ListItem>\n            <ListItem leftAddon={<EmailSVGIcon />} secondaryText=\"Work\">\n              heyfromelizabeth@gmail.com\n            </ListItem>\n          </List>\n        </Collapse>\n      </Card>\n    </Container>\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": ".card-container {\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n\n  &--centered {\n    justify-content: center;\n  }\n\n  .rmd-card {\n    margin: 0.5rem;\n  }\n\n  .rmd-dialog--full-page & {\n    .rmd-card {\n      width: 100%;\n    }\n  }\n}\n",
+  "src/Container.module.scss": {
+    "content": ".container {\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n\n  :global .rmd-card {\n    margin: 0.5rem;\n  }\n\n  :global .rmd-dialog--full-page :local & {\n    :global .rmd-card {\n      width: 100%;\n    }\n  }\n}\n\n.centered {\n  justify-content: center;\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { bem } from \"@react-md/utils\";\n\nimport \"./Container.scss\";\n\ninterface Props {\n  centered?: boolean;\n}\n\nconst block = bem(\"card-container\");\n\nconst Container: FC<Props> = ({ children, centered }) => (\n  <div className={block({ centered })}>{children}</div>\n);\n\nexport default Container;\n",
+    "content": "import React, { FC } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\ninterface Props {\n  centered?: boolean;\n}\n\nconst Container: FC<Props> = ({ children, centered }) => (\n  <div\n    className={cn(styles.container, {\n      [styles.centered]: centered,\n    })}\n  >\n    {children}\n  </div>\n);\n\nexport default Container;\n",
     "isBinary": false
   }
 }

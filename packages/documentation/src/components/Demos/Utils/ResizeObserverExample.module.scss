@@ -1,0 +1,34 @@
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+
+.container {
+  @include rmd-elevation(4);
+
+  overflow: hidden;
+  transition-duration: 1s;
+  transition-property: max-height, max-width;
+}
+
+.button {
+  margin-bottom: 1rem;
+}
+
+.table {
+  // make it grow to fit the entire max-height
+  padding-bottom: 100%;
+  width: 100%;
+}
+
+.th {
+  @include rmd-typography(subtitle-2);
+  @include rmd-theme(color, text-secondary-on-background);
+
+  height: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1.5rem;
+}
+
+.td {
+  width: 100%;
+}

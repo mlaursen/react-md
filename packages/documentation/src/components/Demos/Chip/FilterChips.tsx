@@ -1,9 +1,8 @@
 import React, { FC, useState } from "react";
 import { Chip } from "@react-md/chip";
 import { Text } from "@react-md/typography";
-import { bem } from "@react-md/utils";
 
-import "./FilterChips.scss";
+import styles from "./FilterChips.module.scss";
 
 const amenities = [
   "Elevator",
@@ -14,16 +13,14 @@ const amenities = [
   "Cats ok",
 ];
 
-const styles = bem("filter-chips");
-
 const FilterChips: FC = () => {
   const [selectedAmenities, setSelected] = useState<string[]>([]);
   return (
     <>
-      <Text type="headline-5" className={styles("header")}>
+      <Text type="headline-5" className={styles.header}>
         Choose amenities
       </Text>
-      <div className={styles()}>
+      <div className={styles.container}>
         {amenities.map((amenity) => {
           const selected = selectedAmenities.includes(amenity);
 
@@ -31,7 +28,7 @@ const FilterChips: FC = () => {
             <Chip
               key={amenity}
               selected={selected}
-              className={styles("chip")}
+              className={styles.chip}
               onClick={() =>
                 setSelected((prevSelected) => {
                   if (prevSelected.includes(amenity)) {

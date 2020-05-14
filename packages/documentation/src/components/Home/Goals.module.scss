@@ -1,0 +1,11 @@
+@import '~@react-md/typography/dist/mixins';
+
+.goals {
+  @media (min-width: 37.5625rem) {
+    padding: 0 2rem;
+  }
+
+  p {
+    @include rmd-typography(headline-6);
+  }
+}

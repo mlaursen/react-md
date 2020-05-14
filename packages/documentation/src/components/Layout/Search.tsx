@@ -19,7 +19,7 @@ import { throttle } from "lodash";
 
 import { RouteMetadata } from "constants/meta/types";
 
-import "./Search.scss";
+import styles from "./Search.module.scss";
 import SearchType from "./SearchType";
 
 const Search: FC = () => {
@@ -95,7 +95,7 @@ const Search: FC = () => {
         secondaryText: (
           <HighlightedResult
             enabled
-            className="layout__search-match"
+            className={styles.result}
             value={value}
             repeatable={value.length > 2}
           >
@@ -105,7 +105,7 @@ const Search: FC = () => {
         threeLines: true,
         leftAddon: <SearchType type={type} />,
         leftAddonType: "large-media",
-        textClassName: "layout__search-option",
+        textClassName: styles.option,
       }))}
       labelKey="title"
       valueKey="title"
@@ -117,13 +117,13 @@ const Search: FC = () => {
       portal
       highlight
       theme="filled"
-      className={cn("layout__search", {
-        "layout__search--expanded": focused,
+      className={cn(styles.container, {
+        [styles.expanded]: focused,
         // really only transparent on mobile
-        "layout__search--transparent": !focused,
+        [styles.transparent]: !focused,
       })}
-      inputClassName="layout__search-input"
-      listboxClassName="layout__search-listbox"
+      inputClassName={styles.input}
+      listboxClassName={styles.listbox}
       clearOnAutoComplete
       listboxWidth="auto"
       leftChildren={<SearchSVGIcon />}

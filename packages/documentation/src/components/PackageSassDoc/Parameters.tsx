@@ -13,7 +13,7 @@ import { Markdown } from "components/Markdown";
 import { M_DASH } from "constants/unicode";
 import { ParameterizedItemParameter } from "utils/sassdoc";
 
-import styles from "./styles";
+import styles from "./Parameters.module.scss";
 
 export interface ParametersProps {
   parameters: ParameterizedItemParameter[] | undefined;
@@ -27,7 +27,7 @@ const Parameters: FC<ParametersProps> = ({ parameters }) => {
   return (
     <TableContainer>
       <Table>
-        <caption className={styles("caption")}>Parameters</caption>
+        <caption className={styles.caption}>Parameters</caption>
         <TableHeader>
           <TableRow>
             <TableCell>Name</TableCell>
@@ -43,7 +43,7 @@ const Parameters: FC<ParametersProps> = ({ parameters }) => {
                 <TableCell>
                   <Code noWrap>${name}</Code>
                 </TableCell>
-                <TableCell className={styles("description")} lineWrap>
+                <TableCell className={styles.description} lineWrap>
                   <Markdown>{description}</Markdown>
                 </TableCell>
                 <TableCell>

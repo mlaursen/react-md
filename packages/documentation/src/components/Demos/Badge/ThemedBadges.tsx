@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { BadgedButton, BadgeTheme } from "@react-md/badge";
 
-import "./SimpleExamples.scss";
+import styles from "./SimpleExamples.module.scss";
 
 const themes: BadgeTheme[] = ["primary", "secondary", "default", "clear"];
 
@@ -12,7 +12,7 @@ const ThemedBadges: FC = () => (
         key={theme}
         id={`badged-button-${theme}`}
         badgeTheme={theme}
-        className="badge-container"
+        className={styles.container}
       >
         {theme.length}
       </BadgedButton>

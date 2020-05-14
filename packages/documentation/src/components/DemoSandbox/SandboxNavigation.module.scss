@@ -1,0 +1,30 @@
+@import '~@react-md/app-bar/dist/variables';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.header {
+  align-items: flex-start;
+  position: relative;
+}
+
+.breadcrumbs {
+  @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-keyline);
+  @include rmd-utils-phone-media {
+    @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-title-keyline);
+
+    max-width: calc(100% - #{$rmd-app-bar-title-keyline + $rmd-app-bar-keyline});
+  }
+  @include rmd-theme(color, text-secondary-on-dark);
+  @include rmd-typography(subtitle-2);
+
+  bottom: 0.5rem;
+  font-family: 'Source Code Pro', Consolas, Monaco, monospace;
+  margin-bottom: 0;
+  margin-top: 0;
+  max-width: calc(100% - #{$rmd-app-bar-keyline * 2});
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

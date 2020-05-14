@@ -1,0 +1,29 @@
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/sheet/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.code {
+  @include rmd-states-focus-shadow;
+  @include rmd-utils-hide-focus-outline;
+
+  flex-grow: 1;
+  margin: 0;
+
+  &::before {
+    @include rmd-utils-pseudo-element($position: fixed);
+    @include rmd-app-bar-theme(top, prominent-dense-height);
+
+    margin: inherit;
+  }
+}
+
+.offset {
+  @include rmd-utils-rtl {
+    @include rmd-sheet-theme(margin-right, static-width);
+
+    margin-left: auto;
+  }
+
+  @include rmd-sheet-theme(margin-left, static-width);
+}

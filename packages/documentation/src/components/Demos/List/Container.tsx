@@ -1,14 +1,14 @@
 import React, { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 
-import "./Container.scss";
+import styles from "./Container.module.scss";
 
 const Container: FC<HTMLAttributes<HTMLDivElement>> = ({
   className,
   children,
   ...props
 }) => (
-  <div {...props} className={cn("list-container", className)}>
+  <div {...props} className={cn(styles.container, className)}>
     {children}
   </div>
 );

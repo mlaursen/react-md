@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@react-md/table";
 
-import "./StickyColumnsPart4.scss";
+import styles from "./StickyColumnsPart4.module.scss";
 
 const rows = Array.from(new Array(30), (_, i) => `row-${i + 1}`);
 const headers = Array.from(new Array(20), (_, i) => `Header ${i + 1}`);
@@ -19,7 +19,7 @@ const StickyColumnsPart4: FC = () => {
   const { rootProps, getProps } = useIndeterminateChecked(rows);
 
   return (
-    <TableContainer className="sticky-columns-part-4">
+    <TableContainer className={styles.container}>
       <Table fullWidth>
         <TableHeader sticky>
           <TableRow>
@@ -63,7 +63,7 @@ const StickyColumnsPart4: FC = () => {
                    * `top`
                    */
                   sticky="cell"
-                  className="sticky-columns-part-4__sticky"
+                  className={styles.sticky}
                 >
                   Row Header
                 </TableCell>

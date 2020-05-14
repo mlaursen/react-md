@@ -2,25 +2,22 @@ import React, { FC } from "react";
 import { Divider } from "@react-md/divider";
 import { Text } from "@react-md/typography";
 
-import "./SimpleExample.scss";
+import styles from "./SimpleExample.module.scss";
 
 const SimpleExample: FC = () => (
-  <div className="custom-theme-example">
+  <div className={styles.container}>
     <Text>This is a new surface and defining some new theme colors.</Text>
-    <Text className="custom-theme-example__existing-primary" type="subtitle-1">
+    <Text className={styles.defaultPrimary} type="subtitle-1">
       This is the pre-compiled primary color.
     </Text>
-    <Text
-      className="custom-theme-example__existing-secondary"
-      type="subtitle-1"
-    >
+    <Text className={styles.defaultSecondary} type="subtitle-1">
       This is the pre-compiled secondary color.
     </Text>
     <Divider />
-    <Text className="custom-theme-example__primary" type="subtitle-1">
+    <Text className={styles.themePrimary} type="subtitle-1">
       This is the new primary color.
     </Text>
-    <Text className="custom-theme-example__secondary" type="subtitle-1">
+    <Text className={styles.themeSecondary} type="subtitle-1">
       This is the new secondary color.
     </Text>
   </div>

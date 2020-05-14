@@ -1,0 +1,18 @@
+@import '../../variables';
+@import '~@react-md/theme/dist/mixins';
+
+.oval {
+  @include rmd-theme(fill, secondary);
+}
+
+.circle1 {
+  fill: rmd-theme-get-swatch($rmd-theme-primary, 700);
+}
+
+.circle2 {
+  fill: rmd-theme-get-swatch($rmd-theme-primary, 600);
+}
+
+.circle3 {
+  @include rmd-theme(fill, primary);
+}

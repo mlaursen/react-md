@@ -4,10 +4,10 @@ import { TextIconSpacing } from "@react-md/icon";
 
 import TwitterIcon from "icons/TwitterIcon";
 
-import "./WithIcons.scss";
+import styles from "./WithIcons.module.scss";
 
 const WithIcons: FC = () => (
-  <div className="link-container">
+  <div className={styles.container}>
     <Link href="https://twitter.com" flexCentered>
       <TextIconSpacing icon={<TwitterIcon role="presentation" />}>
         Twitter

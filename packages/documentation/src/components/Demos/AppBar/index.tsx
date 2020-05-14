@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 
-import "./index.scss";
+import styles from "./index.module.scss";
 import DemoPage from "../DemoPage";
 
 import SimpleUsage from "./SimpleUsage";
@@ -50,7 +50,7 @@ export default (): ReactElement => (
   <DemoPage
     demos={demos}
     packageName="app-bar"
-    className="app-bar-demos"
+    className={styles.container}
     fullPageFAB
     phoneFullPage
     disableFullPageAppBar

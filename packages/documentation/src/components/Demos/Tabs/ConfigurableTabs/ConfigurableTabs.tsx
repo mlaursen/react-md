@@ -1,12 +1,11 @@
 import React, { FC } from "react";
+import cn from "classnames";
 import { TabPanel, TabPanels, Tabs, TabsManager } from "@react-md/tabs";
-
-import "./ConfigurableTabs.scss";
 
 import ConfigurationForm from "./ConfigurationForm";
 import PanelContent from "./PanelContent";
 import useConfiguration from "./useConfiguration";
-import styles from "./styles";
+import styles from "./ConfigurableTabs.module.scss";
 
 const ConfigurableTabs: FC = () => {
   const { tabs, ...configuration } = useConfiguration();
@@ -26,7 +25,7 @@ const ConfigurableTabs: FC = () => {
   return (
     <>
       <ConfigurationForm {...configuration} />
-      <div className={styles()}>
+      <div className={styles.container}>
         <TabsManager
           tabsId="configurable-tabs"
           tabs={tabs}
@@ -36,14 +35,16 @@ const ConfigurableTabs: FC = () => {
           <Tabs
             automatic={automatic}
             padded={padded}
-            className={styles("tabs", { themed })}
+            className={cn(styles.tabs, {
+              [styles.themed]: themed,
+            })}
           />
           <TabPanels
             disableTransition={disableTransition || customTransition}
             persistent={persistent}
           >
             {tabs.map((_, i) => (
-              <TabPanel key={i} className={styles("content")}>
+              <TabPanel key={i} className={styles.content}>
                 <PanelContent i={i} customTransition={customTransition} />
               </TabPanel>
             ))}

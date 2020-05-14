@@ -1,0 +1,22 @@
+@import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/utils/dist/mixins';
+
+.on {
+  @include rmd-utils-mouse-only(true) {
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  color: $rmd-yellow-500;
+  // only needed for the menu-item implementation
+  fill: currentColor;
+}
+
+.off {
+  @include rmd-utils-mouse-only(true) {
+    &:hover {
+      color: $rmd-yellow-500;
+    }
+  }
+}

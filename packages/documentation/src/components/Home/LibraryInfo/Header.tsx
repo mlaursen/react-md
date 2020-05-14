@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { TableHeader, TableRow, TableCell } from "@react-md/table";
 import { useAppSize } from "@react-md/utils";
 
-import styles from "./styles";
+import styles from "./LibraryInfo.module.scss";
 
 const Header = (): ReactElement | null => {
   const { isPhone } = useAppSize();
@@ -11,7 +11,7 @@ const Header = (): ReactElement | null => {
   }
 
   return (
-    <TableHeader sticky className={styles("header")}>
+    <TableHeader sticky className={styles.header}>
       <TableRow>
         <TableCell header={false} sticky="header" />
         <TableCell>Pros</TableCell>

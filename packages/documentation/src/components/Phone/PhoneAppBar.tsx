@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import cn from "classnames";
 import { AppBar, AppBarProps } from "@react-md/app-bar";
-import { bem, useAppSize } from "@react-md/utils";
+import { useAppSize } from "@react-md/utils";
 
 import { usePhoneContext } from "./context";
 import StatusBar from "./StatusBar";
 
-const block = bem("phone");
+import styles from "./Phone.module.scss";
 
 const PhoneAppBar: FC<AppBarProps> = ({
   className,
@@ -28,7 +28,7 @@ const PhoneAppBar: FC<AppBarProps> = ({
     <AppBar
       {...props}
       id={`${id}-app-bar`}
-      className={cn(block("app-bar"), className)}
+      className={cn(styles.header, className)}
       height={height}
       fixed
       fixedElevation={false}

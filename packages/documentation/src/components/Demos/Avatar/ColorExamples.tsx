@@ -6,7 +6,7 @@ import { List, ListItem } from "@react-md/list";
 import people from "constants/people";
 
 import Container from "./Container";
-import "./ColorExamples.scss";
+import styles from "./ColorExamples.module.scss";
 
 const COLORS = Object.keys(scssVariables["rmd-avatar-colors"]);
 const transformedPeople = people.map((name, i) => ({
@@ -25,7 +25,7 @@ const ColorExamples: FC = () => (
         </Avatar>
       ))}
     </Container>
-    <List className="avatar-color-list">
+    <List className={styles.list}>
       {transformedPeople.map(({ id, name, avatar, color }, i) => (
         <ListItem
           id={`person-${i}`}

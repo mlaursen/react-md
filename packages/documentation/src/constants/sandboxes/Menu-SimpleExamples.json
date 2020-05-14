@@ -51,12 +51,12 @@
     "content": "import React, { FC } from \"react\";\nimport {\n  ArrowDropDownSVGIcon,\n  HomeSVGIcon,\n  InfoOutlineSVGIcon,\n  MoreVertSVGIcon,\n} from \"@react-md/material-icons\";\nimport { DropdownMenu, MenuItem, MenuItemLink } from \"@react-md/menu\";\n\nimport Container from \"./Container\";\n\nconst items = [\n  \"Item 1\",\n  null,\n  0,\n  1,\n  \"separator\",\n  { children: \"Item 2\" },\n  { role: \"separator\", inset: true },\n  { rightAddon: <HomeSVGIcon />, children: \"Home\" },\n  { leftAddon: <InfoOutlineSVGIcon />, children: <span>Custom content</span> },\n  { href: \"#\", children: \"Link\" },\n  <MenuItem>Custom item</MenuItem>,\n  <MenuItemLink href=\"#\">Link</MenuItemLink>,\n];\n\nconst Demo: FC = () => {\n  return (\n    <Container>\n      <DropdownMenu id=\"dropdown-menu-1\" items={items}>\n        Options...\n      </DropdownMenu>\n      <DropdownMenu\n        id=\"dropdown-menu-2\"\n        items={items}\n        buttonType=\"icon\"\n        aria-label=\"Options...\"\n      >\n        <MoreVertSVGIcon />\n      </DropdownMenu>\n      <DropdownMenu id=\"dropdown-menu-3\" items={items} disableDropdownIcon>\n        Options\n      </DropdownMenu>\n      <DropdownMenu\n        id=\"dropdown-menu-4\"\n        items={items}\n        dropdownIcon={<ArrowDropDownSVGIcon />}\n      >\n        Options\n      </DropdownMenu>\n    </Container>\n  );\n};\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": ".menu-container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n\n  .rmd-menu-button {\n    margin: 1rem;\n  }\n}\n",
+  "src/Container.module.scss": {
+    "content": ".container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n\n  :global .rmd-menu-button {\n    margin: 1rem;\n  }\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"menu-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(styles.container, className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
     "isBinary": false
   }
 }

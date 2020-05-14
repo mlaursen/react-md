@@ -47,11 +47,11 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport TooltippedBadgedButton from \"./TooltippedBadgedButton\";\n\nimport \"./SimpleExamples.scss\";\n\nconst Demo: FC = () => (\n  <>\n    <TooltippedBadgedButton\n      id=\"tooltipped-badged-button-1\"\n      tooltip=\"No Alerts\"\n      className=\"badge-container\"\n    />\n    <TooltippedBadgedButton\n      id=\"tooltipped-badged-button-2\"\n      tooltip=\"10 New Alerts\"\n      className=\"badge-container\"\n    >\n      10\n    </TooltippedBadgedButton>\n    <TooltippedBadgedButton\n      id=\"tooltipped-badged-button-3\"\n      tooltip=\"100 New Alerts\"\n      className=\"badge-container\"\n    >\n      99+\n    </TooltippedBadgedButton>\n  </>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport TooltippedBadgedButton from \"./TooltippedBadgedButton\";\n\nimport styles from \"./SimpleExamples.module.scss\";\n\nconst Demo: FC = () => (\n  <>\n    <TooltippedBadgedButton\n      id=\"tooltipped-badged-button-1\"\n      tooltip=\"No Alerts\"\n      className={styles.container}\n    />\n    <TooltippedBadgedButton\n      id=\"tooltipped-badged-button-2\"\n      tooltip=\"10 New Alerts\"\n      className={styles.container}\n    >\n      10\n    </TooltippedBadgedButton>\n    <TooltippedBadgedButton\n      id=\"tooltipped-badged-button-3\"\n      tooltip=\"100 New Alerts\"\n      className={styles.container}\n    >\n      99+\n    </TooltippedBadgedButton>\n  </>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/SimpleExamples.scss": {
-    "content": ".badge-container {\n  margin: 1rem;\n}\n",
+  "src/SimpleExamples.module.scss": {
+    "content": ".container {\n  margin: 1rem;\n}\n",
     "isBinary": false
   },
   "src/TooltippedBadgedButton.tsx": {

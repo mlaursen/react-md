@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import {
-  Card,
   CardHeader,
   CardTitle,
   CardContent,
@@ -9,17 +8,15 @@ import {
 import { Divider } from "@react-md/divider";
 import { MediaContainer } from "@react-md/media";
 import { Text } from "@react-md/typography";
-import { bem } from "@react-md/utils";
 
 import { Code } from "components/Code";
 import LinkButton from "components/LinkButton";
 
 import { Component as SVG } from "./customization.svg";
-
-const block = bem("home");
+import JumpStartCard from "./JumpStartCard";
 
 const GettingStarted: FC = () => (
-  <Card className={block("card")}>
+  <JumpStartCard>
     <CardHeader>
       <CardTitle>Customization and Themes</CardTitle>
     </CardHeader>
@@ -40,7 +37,7 @@ const GettingStarted: FC = () => (
         Customize!
       </LinkButton>
     </CardActions>
-  </Card>
+  </JumpStartCard>
 );
 
 export default GettingStarted;

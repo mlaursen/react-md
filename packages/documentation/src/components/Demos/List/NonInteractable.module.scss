@@ -1,0 +1,27 @@
+@import '~@react-md/utils/dist/mixins';
+
+// since the `SimpleListItem` component has `display: flex`, the
+// default list item numbering and styles are no longer applied.
+// If you want to add it back, you can use one of the following
+// methods
+// - using a counter for ordered lists
+// - inserting the custom style in the ::before tag
+
+.ordered {
+  counter-reset: non-interactable-list;
+
+  .item::before {
+    content: counter(non-interactable-list);
+    counter-increment: non-interactable-list;
+  }
+}
+
+.margin::before {
+  @include rmd-utils-rtl-auto(margin-right, 1rem);
+}
+
+.dotted::before {
+  // dot character
+  content: '\2022';
+  font-size: 2em;
+}

@@ -1,0 +1,6 @@
+@import '~@react-md/avatar/dist/mixins';
+
+.label {
+  @include rmd-avatar-theme-update-var(size, 1.5rem);
+  @include rmd-avatar-theme-update-var(font-size, 0.75rem);
+}

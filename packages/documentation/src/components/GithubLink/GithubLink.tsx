@@ -1,12 +1,11 @@
 import React, { FC } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/utils";
 
 import { GITHUB_URL } from "constants/github";
 import GithubSVGIcon from "icons/GithubSVGIcon";
 import LinkButton, { LinkButtonProps } from "components/LinkButton";
 
-import "./GithubLink.scss";
+import styles from "./GithubLink.module.scss";
 
 export interface GithubLinkProps extends Omit<LinkButtonProps, "href"> {
   href?: string;
@@ -15,8 +14,6 @@ export interface GithubLinkProps extends Omit<LinkButtonProps, "href"> {
 }
 
 type WithDefaultProps = GithubLinkProps & { href: string };
-
-const block = bem("github-link");
 
 const GithubLink: FC<GithubLinkProps> = (providedProps) => {
   const {
@@ -31,7 +28,13 @@ const GithubLink: FC<GithubLinkProps> = (providedProps) => {
     <LinkButton
       {...props}
       href={`${href}${suffix}`}
-      className={cn(block({ inherit }), className)}
+      className={cn(
+        styles.link,
+        {
+          [styles.inherit]: inherit,
+        },
+        className
+      )}
     >
       <GithubSVGIcon />
     </LinkButton>

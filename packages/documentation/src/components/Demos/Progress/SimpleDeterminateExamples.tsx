@@ -8,11 +8,11 @@ import {
   LinearProgress,
 } from "@react-md/progress";
 
-import "./SimpleDeterminateExample.scss";
 import useDownloadInterval from "./useDownloadInterval";
+import styles from "./SimpleDeterminateExamples.module.scss";
 
 const Container: FC = ({ children }) => (
-  <div className="determinate-example-container">{children}</div>
+  <div className={styles.container}>{children}</div>
 );
 
 const SimpleDeterminateExamples: FC = () => {
@@ -44,7 +44,7 @@ const SimpleDeterminateExamples: FC = () => {
         </Button>
         <LinearProgress
           id="determinate-linear-progress"
-          className="determinate-example-linear"
+          className={styles.linear}
           value={value1}
         />
       </Container>
@@ -65,7 +65,7 @@ const SimpleDeterminateExamples: FC = () => {
           id="determinate-circular-progress"
           value={value2}
           centered={false}
-          className="determinate-example-circular"
+          className={styles.circular}
         />
       </Container>
     </>

@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import cn from "classnames";
 import {
   Fieldset,
   Form,
@@ -14,14 +15,11 @@ import {
   PersonSVGIcon,
   PhoneSVGIcon,
 } from "@react-md/material-icons";
-import { bem } from "@react-md/utils";
 
 import Phone from "components/Phone";
 import states from "constants/states";
 
-import "./ExampleForm.scss";
-
-const block = bem("example-form");
+import styles from "./ExampleForm.module.scss";
 
 const themes: TextFieldTheme[] = ["none", "underline", "filled", "outline"];
 
@@ -45,7 +43,7 @@ const ExampleForm: FC = () => {
         ))}
       </Fieldset>
       <Phone id="example-form-phone">
-        <Form className={block()}>
+        <Form className={styles.container}>
           <PersonSVGIcon />
           <TextField
             id="contact-name"
@@ -65,8 +63,8 @@ const ExampleForm: FC = () => {
             maxLength={8}
             theme={currentTheme}
           />
-          <LocationOnSVGIcon className={block("address-icon")} />
-          <Fieldset legend="Full Address" legendClassName={block("legend")}>
+          <LocationOnSVGIcon className={styles.icon} />
+          <Fieldset legend="Full Address" legendClassName={styles.legend}>
             <TextField
               id="contact-address"
               name="address"
@@ -79,7 +77,7 @@ const ExampleForm: FC = () => {
               name="city"
               label={!isUnstyled && "City"}
               placeholder="Denver"
-              className={block("address-field")}
+              className={styles.field}
               theme={currentTheme}
             />
             <NativeSelect
@@ -88,7 +86,7 @@ const ExampleForm: FC = () => {
               name="state"
               inline
               label="State"
-              className={block("address-field", { inline: true, first: true })}
+              className={cn(styles.field, styles.inline, styles.first)}
               theme={currentTheme}
             >
               {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
@@ -107,7 +105,7 @@ const ExampleForm: FC = () => {
               inline
               pattern="\d{5}"
               maxLength={5}
-              className={block("address-field", { inline: true })}
+              className={cn(styles.field, styles.inline)}
               theme={currentTheme}
             />
           </Fieldset>

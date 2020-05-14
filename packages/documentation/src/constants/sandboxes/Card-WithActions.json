@@ -28,6 +28,7 @@
         "@react-md/theme": "next",
         "@react-md/typography": "next",
         "@react-md/utils": "next",
+        "classnames": "latest",
         "react": "latest",
         "react-dom": "latest"
       },
@@ -50,12 +51,12 @@
     "content": "import React, { FC } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport {\n  Card,\n  CardTitle,\n  CardContent,\n  CardActions,\n  CardHeader,\n} from \"@react-md/card\";\nimport { Text } from \"@react-md/typography\";\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container>\n    <Card raiseable>\n      <CardHeader>\n        <CardTitle>This is a title</CardTitle>\n      </CardHeader>\n      <CardContent>\n        <Text>\n          Sed molestie finibus varius. Maecenas tincidunt eu quam eget sodales.\n          Fusce ut lacus luctus, aliquam erat eu, fringilla libero. Nulla\n          rhoncus mi nec orci ultricies ultricies. Aenean et hendrerit velit.\n          Curabitur condimentum a tortor sit amet porttitor. Sed ut neque eget\n          massa feugiat ullamcorper. Sed quis vulputate mi, imperdiet egestas\n          diam. Nullam rutrum nisl sed mi posuere commodo. Nulla eleifend\n          interdum euismod. Suspendisse sit amet rutrum lorem, nec aliquet\n          tellus. Nam non massa imperdiet, vehicula diam nec, efficitur turpis.\n          In non suscipit tellus. Vivamus ac volutpat velit, sit amet faucibus\n          nisi. Pellentesque condimentum dignissim augue, sit amet porta ipsum\n          feugiat nec.\n        </Text>\n      </CardContent>\n      <CardActions>\n        <Button>Action 1</Button>\n        <Button>Action 2</Button>\n      </CardActions>\n    </Card>\n  </Container>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": ".card-container {\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n\n  &--centered {\n    justify-content: center;\n  }\n\n  .rmd-card {\n    margin: 0.5rem;\n  }\n\n  .rmd-dialog--full-page & {\n    .rmd-card {\n      width: 100%;\n    }\n  }\n}\n",
+  "src/Container.module.scss": {
+    "content": ".container {\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n\n  :global .rmd-card {\n    margin: 0.5rem;\n  }\n\n  :global .rmd-dialog--full-page :local & {\n    :global .rmd-card {\n      width: 100%;\n    }\n  }\n}\n\n.centered {\n  justify-content: center;\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { bem } from \"@react-md/utils\";\n\nimport \"./Container.scss\";\n\ninterface Props {\n  centered?: boolean;\n}\n\nconst block = bem(\"card-container\");\n\nconst Container: FC<Props> = ({ children, centered }) => (\n  <div className={block({ centered })}>{children}</div>\n);\n\nexport default Container;\n",
+    "content": "import React, { FC } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\ninterface Props {\n  centered?: boolean;\n}\n\nconst Container: FC<Props> = ({ children, centered }) => (\n  <div\n    className={cn(styles.container, {\n      [styles.centered]: centered,\n    })}\n  >\n    {children}\n  </div>\n);\n\nexport default Container;\n",
     "isBinary": false
   }
 }

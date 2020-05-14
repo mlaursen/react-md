@@ -1,8 +1,10 @@
 import React, { FC, useState } from "react";
-import { CodeBlock } from "components/Code";
-import { Collapse } from "@react-md/transition";
 import { UnstyledButton } from "@react-md/button";
-import styles from "./styles";
+import { Collapse } from "@react-md/transition";
+
+import { CodeBlock } from "components/Code";
+
+import styles from "./ExpandableCode.module.scss";
 
 export interface ExpandableCodeProps {
   code: string;
@@ -21,7 +23,7 @@ const ExpandableCode: FC<ExpandableCodeProps> = ({ code, sourceCode }) => {
         setCollapsed(!collapsed);
         setCurrentCode(sourceCode);
       }}
-      className={styles("expandable-source")}
+      className={styles.container}
     >
       <Collapse
         collapsed={collapsed}

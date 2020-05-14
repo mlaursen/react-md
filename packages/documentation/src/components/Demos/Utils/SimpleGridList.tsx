@@ -1,14 +1,12 @@
 import React, { FC } from "react";
 import cn from "classnames";
 import { Checkbox, Fieldset, TextField, useChecked } from "@react-md/form";
-import { bem, Grid, GridList, GridListCell } from "@react-md/utils";
+import { Grid, GridList, GridListCell } from "@react-md/utils";
 
 import useNumberField from "hooks/useNumberField";
 
-import "./Grid.scss";
-import "./SimpleGridList.scss";
-
-const block = bem("simple-grid-list");
+import gridStyles from "./Grid.module.scss";
+import styles from "./SimpleGridList.module.scss";
 
 const SimpleGridList: FC = () => {
   const [cells, cellsProps] = useNumberField({
@@ -68,7 +66,15 @@ const SimpleGridList: FC = () => {
           onChange={handleRestrictedChange}
         />
       </Fieldset>
-      <div className={cn(block({ restricted }), "grid")}>
+      <div
+        className={cn(
+          styles.container,
+          {
+            [styles.restricted]: restricted,
+          },
+          gridStyles.grid
+        )}
+      >
         <GridList
           style={{
             padding: containerPadding > 0 ? containerPadding / 2 : 0,
@@ -78,7 +84,7 @@ const SimpleGridList: FC = () => {
           containerPadding={containerPadding}
         >
           {Array.from(new Array(cells), (_, i) => (
-            <GridListCell key={i} square className="grid__item">
+            <GridListCell key={i} square className={gridStyles.item}>
               {`Cell ${i + 1}`}
             </GridListCell>
           ))}

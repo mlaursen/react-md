@@ -6,7 +6,7 @@ import {
   FavoriteSVGIcon,
 } from "@react-md/material-icons";
 
-import "./CustomCheckboxes.scss";
+import styles from "./CustomCheckboxes.module.scss";
 
 const CustomCheckbox: FC<InputToggleProps> = ({
   defaultChecked = false,
@@ -57,13 +57,13 @@ const CustomCheckboxes: FC = () => (
       id="custom-checkbox-5"
       label="Super Small"
       name="custom-checkbox"
-      className="super-small-toggle"
+      className={styles.small}
     />
     <Checkbox
       id="custom-checkbox-6"
       label="Super Large"
       name="custom-checkbox"
-      className="super-large-toggle"
+      className={styles.large}
     />
   </Form>
 );

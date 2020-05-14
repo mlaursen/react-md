@@ -1,0 +1,64 @@
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/divider/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/sheet/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+// duplicated from TableOfContents.scss
+$toc-width: 15rem;
+$demo-padding: 2rem;
+$demo-padding-extra: 6rem;
+
+.container {
+  @include rmd-utils-tablet-media {
+    @include rmd-utils-rtl-auto(margin-right, $toc-width, auto);
+
+    padding: 0 $demo-padding-extra;
+
+    :global .code--counted {
+      width: calc(100vw - #{$demo-padding-extra * 2});
+    }
+  }
+
+  @include rmd-utils-desktop-media {
+    :global .code--counted {
+      $offset: $rmd-sheet-static-width + $toc-width + ($demo-padding-extra * 2);
+
+      width: calc(100vw - #{$offset});
+    }
+  }
+
+  padding: 0 $demo-padding;
+}
+
+.description {
+  @include rmd-typography(subtitle-1);
+  @include rmd-typography-theme(max-width, line-width);
+
+  p {
+    font: inherit;
+  }
+
+  strong {
+    font-weight: map-get($rmd-typography-font-weights, bold);
+  }
+
+  em {
+    font-style: italic;
+  }
+}
+
+.preview {
+  @include rmd-elevation(2);
+  @include rmd-theme(background-color, background);
+  @include rmd-theme-update-var(background, rmd-theme-var(surface));
+  @include rmd-app-bar-theme-update-var(color, rmd-theme-var(on-surface));
+
+  padding: 2rem;
+}
+
+.divider {
+  @include rmd-divider-theme-update-var(spacing, 6rem auto 2rem);
+}

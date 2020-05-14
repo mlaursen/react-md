@@ -2,11 +2,11 @@ import React, { FC, Fragment } from "react";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";
-import { bem, HorizontalPosition, VerticalPosition } from "@react-md/utils";
+import { HorizontalPosition, VerticalPosition } from "@react-md/utils";
 
 import Code from "components/Code/Code";
 
-import "./MenuPositioning.scss";
+import styles from "./MenuPositioning.module.scss";
 
 const items = ["Item 1", "Item 2", "Item 3"];
 
@@ -25,8 +25,6 @@ const horizontalPositions: HorizontalPosition[] = [
   "right",
 ];
 
-const block = bem("example-menu-button");
-
 const MenuPositioning: FC = () => (
   <>
     {horizontalPositions.map((x, i) => (
@@ -34,8 +32,8 @@ const MenuPositioning: FC = () => (
         <Text type="headline-6" margin={i === 0 ? "none" : "top"}>
           Horizontal Position: <Code>{x}</Code>
         </Text>
-        <div className="menu-positioning-container">
-          <div className="menu-positioning-group">
+        <div className={styles.container}>
+          <div className={styles.group}>
             {verticalPositions.map((y) => (
               <DropdownMenu
                 id={`position-${x}-${y}`}
@@ -44,12 +42,10 @@ const MenuPositioning: FC = () => (
                 items={items}
                 menuLabel="Menu"
                 themeType="outline"
-                dropdownIcon={
-                  <ArrowDropDownSVGIcon className={block("icon")} />
-                }
-                className={block()}
+                dropdownIcon={<ArrowDropDownSVGIcon className={styles.icon} />}
+                className={styles.button}
               >
-                <span className={block("text")}>{y}</span>
+                <span className={styles.text}>{y}</span>
               </DropdownMenu>
             ))}
           </div>

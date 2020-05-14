@@ -5,7 +5,7 @@ import Code from "components/Code/Code";
 import { M_DASH } from "constants/unicode";
 import { ItemReturn, SupportedItemDataType } from "utils/sassdoc";
 
-import styles from "./styles";
+import styles from "./Parameters.module.scss";
 
 interface ReturnsProps {
   returns?: ItemReturn<SupportedItemDataType>;
@@ -20,11 +20,11 @@ const Returns: FC<ReturnsProps> = ({ returns }) => {
 
   return (
     <>
-      <Text type="headline-6" margin="none" className={styles("caption")}>
+      <Text type="headline-6" margin="none" className={styles.caption}>
         {`Returns ${M_DASH} `}
         <Code>{type}</Code>
       </Text>
-      <Text className={styles("returns")}>{description}</Text>
+      <Text className={styles.returns}>{description}</Text>
     </>
   );
 };

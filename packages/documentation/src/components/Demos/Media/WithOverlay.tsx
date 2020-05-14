@@ -6,6 +6,8 @@ import {
 } from "@react-md/media";
 import { Text } from "@react-md/typography";
 
+import styles from "./Container.module.scss";
+
 const positions: MediaOverlayPosition[] = [
   "top",
   "right",
@@ -24,7 +26,7 @@ const WithOverlay: FC = () => (
         id={`overlay-container-${i}`}
         height={9}
         width={16}
-        className="responsive-item"
+        className={styles.container}
       >
         <img
           src={`https://picsum.photos/800/800?image=43${i}`}

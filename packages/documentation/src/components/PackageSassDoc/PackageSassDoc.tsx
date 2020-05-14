@@ -4,7 +4,8 @@ import { PackageSassDoc as FoundSassDoc } from "utils/sassdoc";
 
 import Find from "./Find";
 import Section from "./Section";
-import styles from "./styles";
+
+import styles from "./PackageSassDoc.module.scss";
 
 interface PackageSassDocProps extends FoundSassDoc {
   packageName: string;
@@ -38,7 +39,7 @@ const PackageSassDoc: FC<PackageSassDocProps> = ({
   ]);
 
   return (
-    <div className={styles()}>
+    <div className={styles.container}>
       <Find items={items} />
       <Section items={variables} type="Variables" packageName={packageName} />
       <Section items={mixins} type="Mixins" packageName={packageName} />

@@ -1,0 +1,8 @@
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

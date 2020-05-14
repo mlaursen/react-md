@@ -1,0 +1,17 @@
+@import '~@react-md/utils/dist/mixins';
+
+.card {
+  @include rmd-utils-tablet-media {
+    width: calc(50% - 2rem);
+  }
+
+  @include rmd-utils-desktop-media {
+    width: calc(#{100% / 3} - 2rem);
+  }
+
+  align-self: flex-start;
+  margin: 1rem;
+  min-width: 20rem;
+  // text-decoration: none;
+  width: calc(100% - 2rem);
+}

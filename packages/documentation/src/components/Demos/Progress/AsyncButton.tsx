@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from "react";
+import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloudDownloadSVGIcon } from "@react-md/material-icons";
@@ -7,9 +8,8 @@ import {
   getProgressA11y,
   LinearProgress,
 } from "@react-md/progress";
-import { bem } from "@react-md/utils";
 
-import "./AsyncButton.scss";
+import styles from "./AsyncButton.module.scss";
 
 export interface AsyncButtonProps extends ButtonProps {
   id: string;
@@ -23,8 +23,6 @@ export interface AsyncButtonProps extends ButtonProps {
 
 type DefaultProps = Required<Pick<AsyncButtonProps, "loading">>;
 type WithDefaultProps = AsyncButtonProps & DefaultProps;
-
-const block = bem("async-button");
 
 // this is used while the loading state is enabled to "disable" the button.
 // If we disable the entire button, keyboard focus is lost which is not desired.
@@ -69,7 +67,11 @@ const AsyncButton: FC<AsyncButtonProps> = (providedProps) => {
             {loading ? "Loading..." : "Download"}
           </TextIconSpacing>
           {loading && (
-            <span className={block("overlay", { linear })}>
+            <span
+              className={cn(styles.overlay, {
+                [styles.linear]: linear,
+              })}
+            >
               {linear ? (
                 <LinearProgress id={progressId} />
               ) : (
@@ -85,7 +87,7 @@ const AsyncButton: FC<AsyncButtonProps> = (providedProps) => {
     <Button
       {...props}
       id={id}
-      className={block({ loading })}
+      className={cn(styles.button, { [styles.loading]: loading })}
       {...getProgressA11y(progressId, loading)}
       theme={loading ? "clear" : "primary"}
       onClick={loading ? noop : onClick}

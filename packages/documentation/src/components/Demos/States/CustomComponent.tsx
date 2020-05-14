@@ -5,7 +5,7 @@ import {
   useInteractionStates,
 } from "@react-md/states";
 
-import "./CustomComponent.scss";
+import styles from "./CustomComponent.module.scss";
 
 interface CustomButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
@@ -50,7 +50,7 @@ const CustomButton: FC<CustomButtonProps> = ({
     <button
       {...props}
       type="button"
-      className={cn("custom-states-component", className)}
+      className={cn(styles.button, className)}
       {...handlers}
     >
       {children}

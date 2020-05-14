@@ -14,7 +14,6 @@ import {
 
 import getId from "./getId";
 import getType from "./getType";
-import styles from "./styles";
 import VariableCode from "./VariableCode";
 import Examples from "./Examples";
 import ExpandableCode from "./ExpandableCode";
@@ -23,6 +22,8 @@ import Returns from "./Returns";
 import Links from "./Links";
 import Throws from "./Throws";
 import UsedBy from "./UsedBy";
+
+import styles from "./SassDocItem.module.scss";
 
 const SassDocItem: FC<FormattedSassDocItem> = (props) => {
   const {
@@ -56,7 +57,7 @@ const SassDocItem: FC<FormattedSassDocItem> = (props) => {
       <Heading id={id} level={3} margin="top">
         {name}
       </Heading>
-      <div className={styles("row")}>
+      <div className={styles.row}>
         <Code>{type}</Code>
         <GithubLink
           id={githubId}

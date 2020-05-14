@@ -1,0 +1,35 @@
+@import '~@react-md/icon/dist/functions';
+@import '~@react-md/utils/dist/mixins';
+
+.form {
+  align-items: center;
+  display: grid;
+  grid-row-gap: 1rem;
+  grid-template-columns: calc(#{rmd-icon-theme-var(size)} + 1rem) 1fr;
+  margin: 1rem;
+}
+
+.legend {
+  margin-bottom: 1rem;
+}
+
+.icon {
+  align-self: flex-start;
+  margin-top: 3.5rem;
+}
+
+.field {
+  margin-top: 1rem;
+}
+
+.first {
+  @include rmd-utils-rtl-auto(margin-right, 0.5rem);
+}
+
+.inline {
+  width: calc(50% - 0.5rem);
+
+  &:last-child {
+    margin-left: 0.5rem;
+  }
+}

@@ -7,7 +7,7 @@ import {
 import { Grid } from "@react-md/utils";
 
 import { useDefaultStylesContext } from "./context";
-import styles from "./styles";
+import styles from "./TableConfiguration.module.scss";
 
 const horizontals: TableCellHorizontalAlignment[] = ["left", "center", "right"];
 const verticals: TableCellVerticalAlignment[] = ["top", "middle", "bottom"];
@@ -82,12 +82,7 @@ const TableConfiguration: FC = () => {
           onChange={onInputChange}
         />
       </Fieldset>
-      <Grid
-        columns={2}
-        phoneColumns={1}
-        padding={0}
-        className={styles("right-opts")}
-      >
+      <Grid columns={2} phoneColumns={1} padding={0} className={styles.right}>
         <TextField
           id="table-cols"
           name="cols"
@@ -152,12 +147,7 @@ const TableConfiguration: FC = () => {
         />
       </Fieldset>
       <Fieldset legend="Cell 1-2 Options">
-        <Grid
-          columns={2}
-          phoneColumns={1}
-          padding={0}
-          className={styles("right-opts")}
-        >
+        <Grid columns={2} phoneColumns={1} padding={0} className={styles.right}>
           <Select
             id="table-cell-h-align"
             name="cellHAlign"

@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import { Button } from "@react-md/button";
 import {
-  bem,
   ObservedResizeEventHandler,
   ResizeObserver,
   useToggle,
@@ -16,9 +15,8 @@ import {
 
 import { randomInt } from "utils/random";
 
-import "./ResizeObserverExample.scss";
+import styles from "./ResizeObserverExample.module.scss";
 
-const block = bem("simple-resize");
 const DEFAULT_HEIGHT = 100;
 const DEFAULT_WIDTH = 150;
 
@@ -110,25 +108,25 @@ const SimpleExample: FC = () => {
         onClick={toggle}
         theme="primary"
         themeType="contained"
-        className={block("toggle")}
+        className={styles.button}
       >
         {enabled ? "Stop" : "Start"}
       </Button>
-      <div ref={containerRef} className={block()} style={style}>
+      <div ref={containerRef} className={styles.container} style={style}>
         <ResizeObserver onResize={onResize} />
-        <table className={block("table")}>
+        <table className={styles.table}>
           <tbody>
             <tr>
-              <th scope="row" className={block("th")}>
+              <th scope="row" className={styles.th}>
                 height:
               </th>
-              <td className={block("td")}>{height}</td>
+              <td className={styles.td}>{height}</td>
             </tr>
             <tr>
-              <th scope="row" className={block("th")}>
+              <th scope="row" className={styles.th}>
                 width:
               </th>
-              <td className={block("td")}>{width}</td>
+              <td className={styles.td}>{width}</td>
             </tr>
           </tbody>
         </table>

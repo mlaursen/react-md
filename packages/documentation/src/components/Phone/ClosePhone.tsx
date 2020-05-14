@@ -4,11 +4,10 @@ import {
   KeyboardArrowLeftSVGIcon,
   CloseSVGIcon,
 } from "@react-md/material-icons";
-import { bem } from "@react-md/utils";
 
 import { usePhoneContext } from "./context";
 
-const block = bem("phone");
+import styles from "./ClosePhone.module.scss";
 
 interface Props extends AppBarNavProps {
   floating?: boolean;
@@ -49,7 +48,7 @@ const ClosePhone: FC<Props> = ({
     return button;
   }
 
-  return <span className={block("close-container")}>{button}</span>;
+  return <span className={styles.container}>{button}</span>;
 };
 
 ClosePhone.defaultProps = {

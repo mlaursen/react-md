@@ -8,8 +8,7 @@ import simpleIndeterminateExamples from "./SimpleIndeterminateExamples.md";
 import SimpleDeterminateExamples from "./SimpleDeterminateExamples";
 import simpleDeterminateExamples from "./SimpleDeterminateExamples.md";
 
-import WithSuspense from "./WithSuspense";
-import withSuspense from "./WithSuspense.md";
+import { WithSuspense, withSuspense } from "./WithSuspense";
 
 import WithinButtons from "./WithinButtons";
 import withinButtons from "./WithinButtons.md";

@@ -54,12 +54,12 @@
     "content": "import React, { FC } from \"react\";\nimport { Divider } from \"@react-md/divider\";\nimport { Text } from \"@react-md/typography\";\n\n\n\nimport CrossFadeExamplesAsync from \"./CrossFadeExamplesAsync\";\nimport CrossFadeExamplesStatic from \"./CrossFadeExamplesStatic\";\n\nconst Demo: FC = () => (\n  <>\n    <Text type=\"headline-6\" margin=\"bottom\">\n      Static Transitions\n    </Text>\n    <CrossFadeExamplesStatic />\n    <Divider />\n    <Text type=\"headline-6\">\n      Async with <code>Suspense<code>\n    </Text>\n    <CrossFadeExamplesAsync />\n    <Divider />\n  </>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": "@import '~@react-md/utils/dist/mixins';\n\n.transition-container {\n  @include rmd-utils-scroll;\n\n  height: 20rem;\n}\n",
+  "src/Container.module.scss": {
+    "content": "@import '~@react-md/utils/dist/mixins';\n\n.container {\n  @include rmd-utils-scroll;\n\n  height: 20rem;\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { forwardRef, HTMLAttributes, ReactNode } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\ninterface Props extends HTMLAttributes<HTMLDivElement> {\n  children: ReactNode;\n}\n\nexport default forwardRef<HTMLDivElement, Props>(\n  ({ children, className, ...props }, ref) => (\n    <div {...props} className={cn(\"transition-container\", className)} ref={ref}>\n      {children}\n    </div>\n  )\n);\n",
+    "content": "import React, { forwardRef, HTMLAttributes, ReactNode } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\ninterface Props extends HTMLAttributes<HTMLDivElement> {\n  children: ReactNode;\n}\n\nexport default forwardRef<HTMLDivElement, Props>(\n  ({ children, className, ...props }, ref) => (\n    <div {...props} className={cn(styles.container, className)} ref={ref}>\n      {children}\n    </div>\n  )\n);\n",
     "isBinary": false
   },
   "src/CrossFadeExamplesAsync.tsx": {

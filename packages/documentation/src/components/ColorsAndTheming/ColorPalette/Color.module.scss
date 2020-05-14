@@ -1,0 +1,36 @@
+@import '~@react-md/typography/dist/variables';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/functions';
+
+.container {
+  color: $rmd-black-base;
+  display: flex;
+  font-weight: map-get($rmd-typography-font-weights, bold);
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.header {
+  margin: 0 0 1em;
+  width: 100%;
+}
+
+.primary {
+  flex-wrap: wrap;
+}
+
+.secondary {
+  margin-top: 0.5rem;
+}
+
+@each $name, $color in $rmd-theme-color-map {
+  $name: str-replace($name, 'rmd-', '');
+
+  .#{$name} {
+    background-color: $color;
+
+    @if rmd-theme-tone($color, 4.5) == dark {
+      color: $rmd-white-base;
+    }
+  }
+}

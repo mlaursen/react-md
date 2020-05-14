@@ -1,0 +1,19 @@
+@import '~@react-md/divider/dist/mixins';
+@import '~@react-md/list/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+.type {
+  &::after {
+    @include rmd-divider-theme(background-color);
+    @include rmd-divider-theme(width, size);
+    @include rmd-utils-rtl-auto(
+      left,
+      calc(#{rmd-list-theme-var(item-horizontal-padding)} + #{rmd-list-theme-var(media-size)})
+    );
+
+    bottom: 10%;
+    content: '';
+    position: absolute;
+    top: 10%;
+  }
+}

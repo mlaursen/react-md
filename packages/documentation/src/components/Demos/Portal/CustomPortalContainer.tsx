@@ -5,7 +5,7 @@ import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 
-import "./CustomPortalContainer.scss";
+import styles from "./CustomPortalContainer.module.scss";
 
 const values = [
   { intoId: "example-portal-container-1" },
@@ -20,7 +20,7 @@ const CustomPortalContainer: FC = () => {
   const [selected, handleChange] = useChoice<"0" | "1" | "2">("0");
 
   return (
-    <div className="portal-container-example">
+    <>
       <Radio
         id="use-into-id"
         label="Use intoId"
@@ -50,16 +50,16 @@ const CustomPortalContainer: FC = () => {
           Portal content!
         </Text>
       </Portal>
-      <div id="example-portal-container-1" className="custom-portal-container">
+      <div id="example-portal-container-1" className={styles.container}>
         <Code>&quot;example-portal-container-1&quot;</Code>
       </div>
-      <div id="example-portal-container-2" className="custom-portal-container">
+      <div id="example-portal-container-2" className={styles.container}>
         <Code>&quot;example-portal-container-2&quot;</Code>
       </div>
-      <div id="example-portal-container-3" className="custom-portal-container">
+      <div id="example-portal-container-3" className={styles.container}>
         <Code>&quot;example-portal-container-3&quot;</Code>
       </div>
-    </div>
+    </>
   );
 };
 

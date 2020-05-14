@@ -11,10 +11,10 @@ import {
   HomeSVGIcon,
 } from "@react-md/material-icons";
 
-import "./SimpleExamples.scss";
+import styles from "./SimpleExamples.module.scss";
 
 const SimpleExamples: FC = () => (
-  <div className="material-icons-container">
+  <div className={styles.container}>
     <Text type="headline-4">Font Icon Versions</Text>
     <AccessAlarmFontIcon />
     <Rotation3DFontIcon />

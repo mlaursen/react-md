@@ -48,19 +48,19 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { List, SimpleListItem } from \"@react-md/list\";\n\nimport people from \"./people\";\n\nimport Container from \"./Container\";\nimport \"./NonInteractable.scss\";\n\nconst Demo: FC = () => (\n  <div className=\"simple-list-examples\">\n    <Container>\n      <List>\n        {people.slice(0, 10).map((name) => (\n          <SimpleListItem key={name} className=\"li li--dotted li--margin\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n      <List className=\"ordered-list\">\n        {people.slice(11, 20).map((name) => (\n          <SimpleListItem key={name} className=\"li li--margin\">\n            {name}\n          </SimpleListItem>\n        ))}\n      </List>\n    </Container>\n  </div>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport cn from \"classnames\";\nimport { List, SimpleListItem } from \"@react-md/list\";\n\nimport people from \"./people\";\n\nimport Container from \"./Container\";\nimport styles from \"./NonInteractable.module.scss\";\n\nconst Demo: FC = () => (\n  <Container>\n    <List>\n      {people.slice(0, 10).map((name) => (\n        <SimpleListItem\n          key={name}\n          className={cn(styles.item, styles.dotted, styles.margin)}\n        >\n          {name}\n        </SimpleListItem>\n      ))}\n    </List>\n    <List className={styles.ordered}>\n      {people.slice(11, 20).map((name) => (\n        <SimpleListItem key={name} className={cn(styles.item, styles.margin)}>\n          {name}\n        </SimpleListItem>\n      ))}\n    </List>\n  </Container>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": "@import '~@react-md/elevation/dist/mixins';\n\n.list-container {\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  .rmd-list {\n    @include rmd-elevation(4);\n\n    margin: 1rem;\n    max-width: 20rem;\n    width: 100%;\n  }\n}\n",
+  "src/Container.module.scss": {
+    "content": "@import '~@react-md/elevation/dist/mixins';\n\n.container {\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  :global .rmd-list {\n    @include rmd-elevation(4);\n\n    margin: 1rem;\n    max-width: 20rem;\n    width: 100%;\n  }\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"list-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(styles.container, className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
     "isBinary": false
   },
-  "src/NonInteractable.scss": {
-    "content": "@import '~@react-md/utils/dist/mixins';\n\n// since the `SimpleListItem` component has `display: flex`, the\n// default list item numbering and styles are no longer applied.\n// If you want to add it back, you can use one of the following\n// methods\n// - using a counter for ordered lists\n// - inserting the custom style in the ::before tag\n\n.ordered-list {\n  counter-reset: non-interactable-list;\n\n  .li::before {\n    content: counter(non-interactable-list);\n    counter-increment: non-interactable-list;\n  }\n}\n\n.li--margin::before {\n  @include rmd-utils-rtl-auto(margin-right, 1rem);\n}\n\n.li--dotted::before {\n  // dot character\n  content: '\\2022';\n  font-size: 2em;\n}\n",
+  "src/NonInteractable.module.scss": {
+    "content": "@import '~@react-md/utils/dist/mixins';\n\n// since the `SimpleListItem` component has `display: flex`, the\n// default list item numbering and styles are no longer applied.\n// If you want to add it back, you can use one of the following\n// methods\n// - using a counter for ordered lists\n// - inserting the custom style in the ::before tag\n\n.ordered {\n  counter-reset: non-interactable-list;\n\n  .item::before {\n    content: counter(non-interactable-list);\n    counter-increment: non-interactable-list;\n  }\n}\n\n.margin::before {\n  @include rmd-utils-rtl-auto(margin-right, 1rem);\n}\n\n.dotted::before {\n  // dot character\n  content: '\\2022';\n  font-size: 2em;\n}\n",
     "isBinary": false
   },
   "src/people.ts": {

@@ -9,6 +9,8 @@ import DemoPageHeader from "./DemoPageHeader";
 import DemoPageFont from "./DemoPageFont";
 import { DemoPageConfig, DemoProps, DemoConfig } from "./types";
 
+import styles from "./DemoPage.module.scss";
+
 export interface DemoPageProps extends DemoPageConfig {
   className?: string;
   packageName: string;
@@ -46,7 +48,7 @@ const DemoPage: FC<DemoPageProps> = (props) => {
   } = props as WithDefaultProps;
 
   return (
-    <div id="demo-page-container" className={cn("demo-page", className)}>
+    <div id="demo-page-container" className={cn(styles.container, className)}>
       {fonts.map((font) => (
         <DemoPageFont font={font} key={font} />
       ))}

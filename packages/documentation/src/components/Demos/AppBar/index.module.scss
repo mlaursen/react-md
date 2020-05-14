@@ -1,0 +1,6 @@
+@import '~@react-md/app-bar/dist/mixins';
+
+.container {
+  @include rmd-app-bar-theme-update-var(height, $rmd-app-bar-height);
+  @include rmd-app-bar-theme-update-var(prominent-height, $rmd-app-bar-prominent-height);
+}

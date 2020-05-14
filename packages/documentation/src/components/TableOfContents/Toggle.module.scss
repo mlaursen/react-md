@@ -1,0 +1,23 @@
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/button/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+$page-margin: 1rem;
+$button-size: 2rem;
+$size-difference: ($rmd-button-icon-size - $button-size) / 2;
+$margin: $size-difference + $rmd-app-bar-lr-margin;
+$toc-z-index: 9;
+
+.button {
+  @include rmd-button-theme-update-var(icon-size, $button-size);
+  @include rmd-utils-rtl-auto(right, $margin);
+
+  position: fixed;
+  top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin + $size-difference});
+  z-index: $toc-z-index + 1;
+
+  &[disabled] {
+    @include rmd-theme(color, on-surface);
+  }
+}

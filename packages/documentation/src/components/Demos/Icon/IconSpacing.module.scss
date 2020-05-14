@@ -1,0 +1,19 @@
+@import '~@react-md/list/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+
+.button {
+  margin: 1rem;
+  vertical-align: top;
+}
+
+.list {
+  @include rmd-list-unstyled;
+
+  li {
+    @include rmd-typography(subtitle-1);
+
+    align-items: center;
+    display: flex;
+    margin: 1rem auto;
+  }
+}

@@ -1,0 +1,29 @@
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/list/dist/mixins';
+@import '~@react-md/utils/dist/functions';
+
+.container {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+$list-horizontal-margin: 0.5rem;
+$total-list-horizontal-margin: $list-horizontal-margin * 2;
+
+.list {
+  @include rmd-list-unstyled;
+  @include rmd-elevation(2);
+  @include rmd-theme(background-color, surface);
+  @include rmd-utils-tablet-media {
+    width: calc(50% - #{$total-list-horizontal-margin});
+  }
+  @include rmd-utils-large-desktop-media {
+    width: calc((100% / 3) - #{$total-list-horizontal-margin});
+  }
+
+  margin: 1rem $list-horizontal-margin;
+  width: calc(100% - #{$total-list-horizontal-margin});
+}

@@ -1,0 +1,69 @@
+// sass-lint:disable class-name-format
+@import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/sheet/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+$phone-height: 35.5rem;
+$phone-width: 20rem;
+
+$fixed-classes: (
+  rmd-app-bar--fixed: 1,
+  rmd-sheet-overlay: 1,
+  rmd-sheet--raised: 2,
+);
+
+.phone {
+  height: 100%;
+}
+
+.emulated {
+  @include rmd-elevation(4);
+  @include rmd-utils-block-centered(1rem);
+  @include rmd-theme(background-color, background);
+  @include rmd-icon-theme-update-var(size, $rmd-icon-size);
+  @include rmd-app-bar-theme-update-var(height, $rmd-app-bar-height);
+  @include rmd-app-bar-theme-update-var(dense-height, $rmd-app-bar-height + $rmd-icon-size);
+  @include rmd-app-bar-theme-update-var(
+    prominent-dense-height,
+    $rmd-app-bar-prominent-height + $rmd-icon-size
+  );
+  @include rmd-sheet-theme-update-var(touch-width, calc(100% - #{$rmd-sheet-touch-margin}));
+  @include rmd-typography-theme-update-var(line-width, $rmd-typography-mobile-max-line-length);
+
+  height: $phone-height;
+  overflow: hidden;
+  position: relative;
+  width: $phone-width;
+
+  @each $fixed-class, $z-index in $fixed-classes {
+    :global .#{$fixed-class} {
+      position: absolute;
+      z-index: $z-index;
+    }
+  }
+
+  .header {
+    // updated the shadow to be bottom only
+    box-shadow: 0 3px 2px -3px rgba($rmd-black-base, 0.2),
+      0 2px 2px -2px rgba($rmd-black-base, 0.14), 0 1px 5px -1px rgba($rmd-black-base, 0.12);
+  }
+}
+
+.header {
+  flex-wrap: wrap;
+}
+
+.content {
+  @include rmd-utils-scroll;
+
+  height: 100%;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}

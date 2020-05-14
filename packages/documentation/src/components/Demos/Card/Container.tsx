@@ -1,16 +1,20 @@
 import React, { FC } from "react";
-import { bem } from "@react-md/utils";
+import cn from "classnames";
 
-import "./Container.scss";
+import styles from "./Container.module.scss";
 
 interface Props {
   centered?: boolean;
 }
 
-const block = bem("card-container");
-
 const Container: FC<Props> = ({ children, centered }) => (
-  <div className={block({ centered })}>{children}</div>
+  <div
+    className={cn(styles.container, {
+      [styles.centered]: centered,
+    })}
+  >
+    {children}
+  </div>
 );
 
 export default Container;

@@ -14,7 +14,7 @@ import { SrOnly, Text } from "@react-md/typography";
 
 import CodeBlock from "components/Code/CodeBlock";
 
-import "./FileInputExample.scss";
+import styles from "./FileInputExample.module.scss";
 
 const themes: ButtonTheme[] = [
   "primary",
@@ -47,7 +47,7 @@ const SimpleFileInputs: FC = () => {
         Last selected file:
       </Text>
       <CodeBlock aria-live="polite">{file || "None"}</CodeBlock>
-      <Form className="file-input-example">
+      <Form className={styles.container}>
         <Fieldset legend="Theme">
           {themes.map((t) => (
             <Radio

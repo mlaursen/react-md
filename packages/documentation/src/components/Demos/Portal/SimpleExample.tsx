@@ -7,7 +7,7 @@ import { Overlay } from "@react-md/overlay";
 import { Text } from "@react-md/typography";
 import { getFixedPosition, ScrollListener, useToggle } from "@react-md/utils";
 
-import "./SimpleExample.scss";
+import styles from "./SimpleExample.module.scss";
 
 const SimpleExample: FC = () => {
   const [visible, , hide, toggle] = useToggle(false);
@@ -32,7 +32,7 @@ const SimpleExample: FC = () => {
   }, []);
 
   return (
-    <div className="portal-container">
+    <div className={styles.container}>
       <Button
         id="portal-button"
         theme="secondary"
@@ -48,7 +48,7 @@ const SimpleExample: FC = () => {
       </Button>
       <Overlay
         id="portal-menu-overlay"
-        className="portal-menu-overlay"
+        className={styles.overlay}
         visible={visible}
         onRequestClose={hide}
       >
@@ -59,7 +59,7 @@ const SimpleExample: FC = () => {
           tabIndex={-1}
           ref={listRefCB}
           style={style}
-          className="portal-menu"
+          className={styles.menu}
           onClick={(event) => {
             if (event.currentTarget !== event.target) {
               hide();

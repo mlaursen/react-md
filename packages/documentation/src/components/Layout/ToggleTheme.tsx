@@ -1,16 +1,15 @@
 import React, { FC } from "react";
+import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
-import { bem, useIsUserInteractionMode, useToggle } from "@react-md/utils";
+import { useIsUserInteractionMode, useToggle } from "@react-md/utils";
 
 import useTheme from "components/Theme/useTheme";
 import useThemeActions from "components/Theme/useThemeActions";
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
 
-import "./ToggleTheme.scss";
-
-const block = bem("toggle-theme");
+import styles from "./ToggleTheme.module.scss";
 
 const ToggleTheme: FC = () => {
   const { theme } = useTheme();
@@ -33,7 +32,10 @@ const ToggleTheme: FC = () => {
         onClick={toggleTheme}
         onMouseEnter={isMouseMode ? enable : undefined}
         onMouseLeave={isMouseMode ? disable : undefined}
-        className={block({ on: isLight, off: !isLight })}
+        className={cn({
+          [styles.on]: isLight,
+          [styles.off]: !isLight,
+        })}
         inheritColor={!isLight}
       >
         {icon}

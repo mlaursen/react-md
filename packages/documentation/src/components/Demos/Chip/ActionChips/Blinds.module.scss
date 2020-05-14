@@ -1,0 +1,35 @@
+@import '~@react-md/transition/dist/mixins';
+
+.blinds {
+  @include rmd-transition(deceleration);
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  transform-origin: top;
+  width: 100%;
+}
+
+.animate {
+  @include rmd-transition(deceleration);
+
+  transition: transform 1.5s;
+}
+
+.enter {
+  transform: scaleY(0);
+}
+
+.entering {
+  transform: scaleY(1);
+}
+
+.exit {
+  transform: scaleY(1);
+}
+
+.exiting {
+  transform: scaleY(0);
+}

@@ -5,9 +5,10 @@ import { Avatar, AvatarProps } from "@react-md/avatar";
 import { FolderSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";
 import { List, ListItem, ListSubheader } from "@react-md/list";
 import { SVGIconProps } from "@react-md/icon";
+import { Tooltipped } from "@react-md/tooltip";
 
-import "./TwoLineExamples.scss";
 import Container from "./Container";
+import styles from "./TwoLineExamples.module.scss";
 
 const lastAccessedPhotos = new Date(2019, 0, 4);
 const lastAccessedRecipes = new Date();
@@ -30,22 +31,23 @@ const Folder: FC<AvatarProps> = (props) => (
 const InfoIcon: FC<SVGIconProps & { id: string; date: Date }> = ({
   id,
   className,
-  // TODO: Remember why I added a date to these demos
-  date: _date,
+  date,
   ...props
 }) => (
-  <span
+  <Tooltipped
     id={`${id}-info`}
-    tabIndex={0}
-    className={cn("two-line-list-example__icon", className)}
+    tooltip={date.toLocaleString()}
+    defaultPosition="left"
   >
-    <InfoOutlineSVGIcon {...props} />
-  </span>
+    <span tabIndex={0} className={cn(styles.icon, className)}>
+      <InfoOutlineSVGIcon {...props} />
+    </span>
+  </Tooltipped>
 );
 
 const TwoLineExamples: FC = () => (
   <Container>
-    <List className="two-line-list-example">
+    <List>
       <ListSubheader>Folders</ListSubheader>
       <ListItem
         id="two-line-item-0"

@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode } from "react";
 import { TableCell, TableRow } from "@react-md/table";
 import { useAppSize } from "@react-md/utils";
 
-import styles from "./styles";
+import styles from "./LibraryInfo.module.scss";
 
 export interface ResponsiveBlockProps {
   name: ReactNode;
@@ -19,7 +19,7 @@ const ResponsiveBlock = ({
   if (!isPhone) {
     return (
       <TableRow>
-        <TableCell header sticky className={styles("row-header")}>
+        <TableCell header sticky className={styles.leftHeader}>
           {name}
         </TableCell>
         {pros}
@@ -30,19 +30,29 @@ const ResponsiveBlock = ({
 
   return (
     <>
-      <TableRow className={styles("header")}>
+      <TableRow className={styles.header}>
         <TableCell header sticky hAlign="center">
           {name}
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell header sticky hAlign="center" className={styles("pro-con")}>
+        <TableCell
+          header
+          sticky
+          hAlign="center"
+          className={styles.mobileHeader}
+        >
           Pros
         </TableCell>
       </TableRow>
       <TableRow>{pros}</TableRow>
       <TableRow>
-        <TableCell header sticky hAlign="center" className={styles("pro-con")}>
+        <TableCell
+          header
+          sticky
+          hAlign="center"
+          className={styles.mobileHeader}
+        >
           Cons
         </TableCell>
       </TableRow>

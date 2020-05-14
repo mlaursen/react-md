@@ -11,7 +11,7 @@ import {
 } from "@react-md/form";
 import { FavoriteSVGIcon, LocationOnSVGIcon } from "@react-md/material-icons";
 
-import "./TextFieldThemeConfig.scss";
+import styles from "./TextFieldThemeConfig.module.scss";
 
 const themes: TextFieldTheme[] = ["none", "underline", "filled", "outline"];
 
@@ -88,7 +88,7 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
   }
 
   return (
-    <Form className="text-field-theme-config">
+    <Form className={styles.container}>
       <Fieldset legend="Text field theme">
         {themes.map((theme, i) => (
           <Radio
@@ -167,7 +167,7 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
         />
       </Fieldset>
       {children}
-      <div className="text-field-theme-config__demo">
+      <div className={styles.demo}>
         {renderField({
           label: label && "Label",
           placeholder: "Placeholder",

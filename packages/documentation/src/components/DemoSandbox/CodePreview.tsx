@@ -1,10 +1,12 @@
 import React, { FC, useEffect, useRef } from "react";
+import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
-import { bem } from "@react-md/utils";
 
 import { CodeBlock } from "components/Code";
 
 import FileNotFound from "./FileNotFound";
+
+import styles from "./CodePreview.module.scss";
 
 export interface CodePreviewProps {
   fileName: string;
@@ -12,8 +14,6 @@ export interface CodePreviewProps {
   offset: boolean;
   onFileChange: (fileName: string) => void;
 }
-
-const block = bem("sandbox-modal");
 
 const CodePreview: FC<CodePreviewProps> = ({
   fileName,
@@ -58,7 +58,9 @@ const CodePreview: FC<CodePreviewProps> = ({
     <CodeBlock
       ref={code}
       language={language}
-      className={block("code", { offset })}
+      className={cn(styles.code, {
+        [styles.offset]: offset,
+      })}
       lineNumbers
       // need to make this focusable so keyboard users can scoll
       // the page

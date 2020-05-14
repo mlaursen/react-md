@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import cn from "classnames";
 import { Chip, ChipProps } from "@react-md/chip";
 
-import styles from "./styles";
+import styles from "./ActionChip.module.scss";
 
 interface ActionChipProps extends ChipProps {
   yellow?: boolean;
@@ -18,7 +18,13 @@ const ActionChip: FC<ActionChipProps> = ({
   <Chip
     {...props}
     theme={theme}
-    className={cn(styles("chip", { yellow }), className)}
+    className={cn(
+      styles.chip,
+      {
+        [styles.yellow]: yellow,
+      },
+      className
+    )}
   >
     {children}
   </Chip>

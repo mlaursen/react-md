@@ -1,0 +1,10 @@
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/theme/dist/color-palette';
+
+.chip {
+  margin: 0.25rem;
+}
+
+.yellow {
+  @include rmd-icon-theme-update-var(color, $rmd-yellow-300);
+}

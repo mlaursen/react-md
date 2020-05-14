@@ -8,10 +8,10 @@ import {
   TableRow,
 } from "@react-md/table";
 
-import "./DefaultStyles.scss";
+import styles from "./DefaultStyles.module.scss";
 
 const DefaultStyles: FC = () => (
-  <Table className="base-styles-table">
+  <Table className={styles.centered}>
     <Caption>This is a caption</Caption>
     <TableHeader>
       <TableRow>

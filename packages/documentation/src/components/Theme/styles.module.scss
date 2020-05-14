@@ -1,0 +1,16 @@
+@import '~@react-md/transition/dist/mixins';
+
+@mixin transition {
+  @include rmd-transition(standard);
+
+  transition-duration: $rmd-transition-standard-time;
+  transition-property: background-color, color;
+}
+
+.transition {
+  @include transition;
+
+  * {
+    @include transition;
+  }
+}

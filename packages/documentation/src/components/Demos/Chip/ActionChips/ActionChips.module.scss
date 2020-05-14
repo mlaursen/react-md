@@ -1,0 +1,26 @@
+@import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+$blind-height: 1.5rem;
+$blind-margin: 2px;
+$blind-margin-extra: 8px;
+$blind-rotation: 12deg;
+$blind-rotation-extra: 24deg;
+
+.container {
+  @include rmd-utils-block-centered;
+  @media screen and (min-width: 23.4375em) {
+    width: 19rem;
+  }
+
+  overflow: hidden;
+  position: relative;
+  width: 15rem;
+}
+
+.content {
+  @include rmd-utils-scroll(x);
+
+  display: flex;
+}

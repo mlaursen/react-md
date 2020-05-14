@@ -13,8 +13,8 @@ import { PhoneOnly, useAppSize } from "@react-md/utils";
 import dessertList, { Dessert } from "constants/desserts";
 import Phone, { PhoneAppBar, ClosePhone } from "components/Phone";
 
-import "./HighlightMatches.scss";
 import DessertTable from "./DessertTable";
+import styles from "./HighlightMatches.module.scss";
 
 const desserts = dessertList.map(({ name }) => name);
 
@@ -32,7 +32,7 @@ const HighlightMatches: FC = () => {
       onPhoneClose={() => setDessert(null)}
       disableAppBar
       disableContent={isPhone}
-      contentClassName="autocomplete-listbox-content"
+      contentClassName={styles.container}
       appBar={
         <PhoneAppBar>
           <AppBar>
@@ -48,7 +48,7 @@ const HighlightMatches: FC = () => {
                 highlight
                 theme="none"
                 listboxWidth="auto"
-                listboxClassName="autocomplete-listbox-highlight"
+                listboxClassName={styles.listbox}
                 vhMargin={0}
                 vwMargin={0}
                 clearOnAutoComplete

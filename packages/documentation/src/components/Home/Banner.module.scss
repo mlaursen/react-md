@@ -1,0 +1,17 @@
+@import '~@react-md/theme/dist/mixins';
+
+.banner {
+  @include rmd-theme(background-color, primary);
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  @include rmd-theme(color, on-surface);
+}
+
+.logo {
+  margin-bottom: 2em;
+}

@@ -9,10 +9,10 @@ import {
 
 import Container from "./Container";
 
-import "./CustomButtonTheme.scss";
+import styles from "./CustomButtonTheme.module.scss";
 
 const CustomButtonTheme: FC = () => (
-  <Container className="custom-button-themes">
+  <Container className={styles.container}>
     <Button id="custom-themed-button-1" themeType="outline" theme="secondary">
       Custom
     </Button>
@@ -34,7 +34,7 @@ const CustomButtonTheme: FC = () => (
       buttonType="icon"
       themeType="outline"
       theme="warning"
-      className="custom-button-themes__big-icon"
+      className={styles.large}
     >
       <ChatSVGIcon />
     </Button>

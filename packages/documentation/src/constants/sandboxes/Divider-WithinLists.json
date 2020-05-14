@@ -53,12 +53,12 @@
     "content": "import React, { FC } from \"react\";\nimport { Divider } from \"@react-md/divider\";\nimport { List, ListItem } from \"@react-md/list\";\nimport {\n  FavoriteSVGIcon,\n  BookSVGIcon,\n  TvSVGIcon,\n  AddSVGIcon,\n  TocSVGIcon,\n  AdbSVGIcon,\n} from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\n\nconst Demo: FC = () => (\n  <Container>\n    <List>\n      <ListItem id=\"list1-item-0\">First Item</ListItem>\n      <ListItem id=\"list1-item-1\">Second Item</ListItem>\n      <ListItem id=\"list1-item-2\">Third Item</ListItem>\n      <ListItem id=\"list1-item-3\">Fourth Item</ListItem>\n      <Divider />\n      <ListItem id=\"list1-item-4\">Fifth Item</ListItem>\n      <ListItem id=\"list1-item-5\">Sixth Item</ListItem>\n    </List>\n    <List>\n      <ListItem id=\"list2-item-0\" leftAddon={<FavoriteSVGIcon />}>\n        First Item\n      </ListItem>\n      <ListItem id=\"list2-item-1\" leftAddon={<BookSVGIcon />}>\n        Second Item\n      </ListItem>\n      <ListItem id=\"list2-item-2\" leftAddon={<TvSVGIcon />}>\n        Third Item\n      </ListItem>\n      <ListItem id=\"list2-item-3\" leftAddon={<AddSVGIcon />}>\n        Fourth Item\n      </ListItem>\n      <Divider inset />\n      <ListItem id=\"list2-item-4\" leftAddon={<TocSVGIcon />}>\n        Fifth Item\n      </ListItem>\n      <ListItem id=\"list2-item-5\" leftAddon={<AdbSVGIcon />}>\n        Sixth Item\n      </ListItem>\n    </List>\n  </Container>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
-  "src/Container.scss": {
-    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n\n.divider-container {\n  .rmd-list {\n    @include rmd-elevation(2);\n\n    margin: 2rem auto;\n    max-width: 25rem;\n  }\n}\n",
+  "src/Container.module.scss": {
+    "content": "@import '~@react-md/elevation/dist/mixins';\n\n.container {\n  :global .rmd-list {\n    @include rmd-elevation(2);\n\n    margin: 2rem auto;\n    max-width: 25rem;\n  }\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
-    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport \"./Container.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(\"divider-container\", className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(styles.container, className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
     "isBinary": false
   }
 }

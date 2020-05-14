@@ -5,19 +5,19 @@ import { TextIconSpacing } from "@react-md/icon";
 import { CloseSVGIcon, HomeSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
 
-import "./IconSpacing.scss";
+import styles from "./IconSpacing.module.scss";
 
 const CustomIcon: FC = () => <HomeSVGIcon />;
 
 const IconSpacing: FC = () => (
   <>
     <Text type="headline-5">Within buttons</Text>
-    <Button id="icon-button-1" className="icon-spacing-button">
+    <Button id="icon-button-1" className={styles.button}>
       <TextIconSpacing icon={<HomeSVGIcon />}>Button</TextIconSpacing>
     </Button>
     <Button
       id="icon-button-2"
-      className="icon-spacing-button"
+      className={styles.button}
       themeType="outline"
       theme="secondary"
     >
@@ -27,7 +27,7 @@ const IconSpacing: FC = () => (
     </Button>
     <Button
       id="icon-button-3"
-      className="icon-spacing-button"
+      className={styles.button}
       themeType="contained"
       theme="warning"
     >
@@ -38,7 +38,7 @@ const IconSpacing: FC = () => (
       </TextIconSpacing>
     </Button>
     <Text type="headline-5">Normal usage</Text>
-    <ul className="icon-spacing-container">
+    <ul className={styles.list}>
       <li>
         <TextIconSpacing icon={<HomeSVGIcon />}>Icon Before</TextIconSpacing>
       </li>

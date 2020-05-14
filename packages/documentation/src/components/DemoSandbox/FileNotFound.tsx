@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
 import { DialogContent } from "@react-md/dialog";
@@ -7,6 +8,8 @@ import { Text, TextContainer } from "@react-md/typography";
 import { bem } from "@react-md/utils";
 
 import Code from "components/Code/Code";
+
+import styles from "./CodePreview.module.scss";
 
 export interface FileNotFoundProps {
   fileName: string;
@@ -24,7 +27,11 @@ const FileNotFound: FC<FileNotFoundProps> = ({
   sandbox,
 }) => {
   return (
-    <DialogContent className={block("error", { offset })}>
+    <DialogContent
+      className={cn({
+        [styles.offset]: offset,
+      })}
+    >
       <TextContainer>
         <Text color="theme-error" type="headline-4">
           Unable to find a file with a file name of: <Code>{fileName}</Code>

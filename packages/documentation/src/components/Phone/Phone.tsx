@@ -4,17 +4,18 @@ import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
 } from "@react-md/app-bar";
-import { bem, useAppSize, useToggle, PhoneOnly } from "@react-md/utils";
+import { useAppSize, useToggle, PhoneOnly } from "@react-md/utils";
 
 import ConditionalFullPageDialog, {
   ConditionalFullPageDialogProps,
 } from "components/ConditionalFullPageDialog";
 
-import "./Phone.scss";
 import { PhoneContext } from "./context";
 import DefaultAppBar from "./DefaultAppBar";
 import StatusBar from "./StatusBar";
 import ClosePhone from "./ClosePhone";
+
+import styles from "./Phone.module.scss";
 
 export interface PhoneConfiguration {
   /**
@@ -83,8 +84,6 @@ export interface PhoneProps
   statusBar?: boolean;
 }
 
-const block = bem("phone");
-
 const DEFAULT_APP_BAR = <DefaultAppBar />;
 
 const Phone: FC<PhoneProps> = ({
@@ -138,14 +137,21 @@ const Phone: FC<PhoneProps> = ({
       >
         <div
           id={`${id}-phone`}
-          className={cn(block({ emulated: !isPhone }), className)}
+          className={cn(
+            styles.phone,
+            {
+              [styles.emulated]: !isPhone,
+            },
+            className
+          )}
         >
           {(statusBar && <StatusBar id={id} isPhone={isPhone} />) || appBar}
           <div
             id={`${id}-content`}
             className={cn(
-              block("content", { stacked }),
+              styles.content,
               {
+                [styles.flexColumn]: stacked,
                 [APP_BAR_OFFSET_DENSE_CLASSNAME]:
                   !statusBar && appBar && !isPhone,
                 [APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME]:

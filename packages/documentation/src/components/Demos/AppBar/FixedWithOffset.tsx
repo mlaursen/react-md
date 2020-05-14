@@ -19,7 +19,7 @@ import { Text, TextContainer } from "@react-md/typography";
 
 import AppBarTitle from "components/AppBarTitle";
 
-import "./FixedWithOffset.scss";
+import styles from "./FixedWithOffset.module.scss";
 
 interface ExampleProps {
   height?: AppBarHeight;
@@ -42,12 +42,12 @@ const Example: FC<ExampleProps> = ({ height }) => {
   }
 
   return (
-    <div id={id} className="fixed-with-offset">
+    <div id={id} className={styles.container}>
       <AppBar id={`${id}-bar`} fixed height={height}>
         <AppBarNav id={`${id}-nav`} aria-label="Navigation">
           <MenuSVGIcon />
         </AppBarNav>
-        <AppBarTitle className="fixed-with-offset__title">{title}</AppBarTitle>
+        <AppBarTitle className={styles.title}>{title}</AppBarTitle>
         <AppBarAction id={`${id}-search`} first aria-label="Search">
           <SearchSVGIcon />
         </AppBarAction>
@@ -56,7 +56,7 @@ const Example: FC<ExampleProps> = ({ height }) => {
         </AppBarAction>
       </AppBar>
       <div
-        className={cn("fixed-with-offset__content", {
+        className={cn(styles.content, {
           [APP_BAR_OFFSET_CLASSNAME]: !dense && !prominent,
           [APP_BAR_OFFSET_DENSE_CLASSNAME]: dense && !prominent,
           [APP_BAR_OFFSET_PROMINENT_CLASSNAME]: !dense && prominent,

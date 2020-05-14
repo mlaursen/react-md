@@ -1,7 +1,8 @@
 import React, { FC } from "react";
+import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
-import { bem, useAppSize, useToggle } from "@react-md/utils";
+import { useAppSize, useToggle } from "@react-md/utils";
 
 import { GITHUB_DEMO_URL } from "constants/github";
 import getSandbox from "utils/getSandbox";
@@ -17,7 +18,7 @@ import GithubDemoLink from "./GithubDemoLink";
 import Sandbox from "./Sandbox";
 import { DemoProps } from "./types";
 
-import "./Demo.scss";
+import styles from "./Demo.module.scss";
 
 type WithDefaultProps = DemoProps &
   Required<
@@ -31,8 +32,6 @@ type WithDefaultProps = DemoProps &
       | "emulated"
     >
   >;
-
-const block = bem("demo");
 
 const Demo: FC<DemoProps> = (props) => {
   const {
@@ -92,8 +91,8 @@ const Demo: FC<DemoProps> = (props) => {
   const [toggled, enable, disable] = useToggle(false);
   return (
     <>
-      {index > 0 && <Divider key="divider" className={block("divider")} />}
-      <section id={id} className={block()}>
+      {index > 0 && <Divider key="divider" className={styles.divider} />}
+      <section id={id} className={styles.container}>
         <Heading
           level={2}
           id={`${id}-title`}
@@ -101,7 +100,7 @@ const Demo: FC<DemoProps> = (props) => {
         >
           {name}
         </Heading>
-        <Markdown id={`${id}-description`} className={block("description")}>
+        <Markdown id={`${id}-description`} className={styles.description}>
           {description}
         </Markdown>
         <AppBar id={`${id}-preview-toolbar`} theme="clear">
@@ -111,7 +110,9 @@ const Demo: FC<DemoProps> = (props) => {
         </AppBar>
         <div
           id={`${id}-preview`}
-          className={(!disableCard && block("preview")) || undefined}
+          className={cn({
+            [styles.preview]: !disableCard,
+          })}
         >
           <ConditionalFullPageDialog
             id={`${id}-preview`}
