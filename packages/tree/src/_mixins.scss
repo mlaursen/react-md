@@ -37,8 +37,19 @@
 /// Creates the styles for all the depths from the provided min and max values
 /// for a tree.
 ///
+/// @example scss - Simple Usage
+///   .tree {
+///     @include rmd-tree-depths($max: 2, $base-padding: 2rem);
+///   }
+///
+/// @example scss - CSS Modules Usage
+///   .tree {
+///     @include rmd-tree-depths($selector-prefix: ':global ', $max: 2, $base-padding: 2rem);
+///   }
+///
 /// @param {String} selector-prefix [''] - An optional prefix to apply before
-/// the `aria-level` selector.
+/// the `aria-level` selector. This should be set to `':global '` when using CSS
+/// Modules since it relies on global `.rmd-tree-item__content` class names.
 /// @param {Number} min [1] - The min level to use. This needs to be a number
 /// greater than 0.
 /// @param {Number} max [$rmd-tree-max-depth] - The max number of levels to
@@ -80,8 +91,9 @@
 /// ```
 ///
 /// @param {Number} depth - The depth to create styles for.
-/// @param {String} selector-prefix [''] - An optional selector prefix to add
-/// before the `aria-level`.
+/// @param {String} selector-prefix [''] - An optional prefix to apply before
+/// the `aria-level` selector. This should be set to `':global '` when using CSS
+/// Modules since it relies on global `.rmd-tree-item__content` class names.
 /// @param {Number} incrementor [$rmd-tree-item-padding-incrementor] - The amount
 /// of padding to be used for each level of depth.
 /// @param {Number} base [$rmd-tree-item-padding-base] - The base amount of

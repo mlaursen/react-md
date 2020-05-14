@@ -316,25 +316,109 @@
 
 /// This mixin allows you to add styles to an element only when the user is
 /// interacting with your app on a touch device.
-@mixin rmd-utils-touch-only {
-  .rmd-utils--touch & {
-    @content;
+///
+/// @example scss - Normal Usage
+///   .my-class-name {
+///     @include rmd-utils-touch-only {
+///       &:hover {
+///         background-color: transparent;
+///       }
+///     }
+///   }
+///
+/// @example scss - CSS Modules Usage
+///   .container {
+///     @include rmd-utils-touch-only(true) {
+///       &:hover {
+///         background-color: transparent;
+///       }
+///     }
+///   }
+///
+/// @param {Boolean} modules [false] - Boolean if this is being used within CSS
+/// Modules which will update the selector to work correctly by wrapping
+/// different parts with `:global` and `:local`.
+@mixin rmd-utils-touch-only($css-modules: false) {
+  @if $css-modules {
+    :global .rmd-utils--touch :local & {
+      @content;
+    }
+  } @else {
+    .rmd-utils--touch & {
+      @content;
+    }
   }
 }
 
 /// This mixin allows you to add styles to an element only when the user is
 /// interacting with your app with a keyboard.
-@mixin rmd-utils-keyboard-only {
-  .rmd-utils--keyboard & {
-    @content;
+///
+/// @example scss - Normal Usage
+///   .my-class-name {
+///     @include rmd-utils-keyboard-only {
+///       &:focus {
+///         box-shadow: inset 0 0 0 1px blue;
+///       }
+///     }
+///   }
+///
+/// @example scss - CSS Modules Usage
+///   .container {
+///     @include rmd-utils-keyboard-only(true) {
+///       &:focus {
+///         box-shadow: inset 0 0 0 1px blue;
+///       }
+///     }
+///   }
+///
+/// @param {Boolean} modules [false] - Boolean if this is being used within CSS
+/// Modules which will update the selector to work correctly by wrapping
+/// different parts with `:global` and `:local`.
+@mixin rmd-utils-keyboard-only($css-modules: false) {
+  @if $css-modules {
+    :global .rmd-utils--keyboard :local & {
+      @content;
+    }
+  } @else {
+    .rmd-utils--keyboard & {
+      @content;
+    }
   }
 }
 
 /// This mixin allows you to add styles to an element only when the user is
 /// interacting with your app with a mouse.
-@mixin rmd-utils-mouse-only {
-  .rmd-utils--mouse & {
-    @content;
+///
+/// @example scss - Normal Usage
+///   .my-class-name {
+///     @include rmd-utils-mouse-only {
+///       &:hover {
+///         background-color: yellow;
+///       }
+///     }
+///   }
+///
+/// @example scss - CSS Modules Usage
+///   .container {
+///     @include rmd-utils-mouse-only(true) {
+///       &:hover {
+///         background-color: yellow;
+///       }
+///     }
+///   }
+///
+/// @param {Boolean} modules [false] - Boolean if this is being used within CSS
+/// Modules which will update the selector to work correctly by wrapping
+/// different parts with `:global` and `:local`.
+@mixin rmd-utils-mouse-only($css-modules: false) {
+  @if $css-modules {
+    :global .rmd-utils--mouse :local & {
+      @content;
+    }
+  } @else {
+    .rmd-utils--mouse & {
+      @content;
+    }
   }
 }
 

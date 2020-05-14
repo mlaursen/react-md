@@ -119,9 +119,27 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-depths",
       description:
         "Creates the styles for all the depths from the provided min and max values for a tree.",
-      source: "packages/tree/src/_mixins.scss#L50-L71",
+      source: "packages/tree/src/_mixins.scss#L61-L82",
       usedBy: [{ name: "rmd-tree", type: "mixin", packageName: "tree" }],
       packageName: "tree",
+      examples: [
+        {
+          code:
+            ".tree {\n  @include rmd-tree-depths($max: 2, $base-padding: 2rem);\n}\n",
+          compiled:
+            '.tree [aria-level="2"].rmd-tree-item__content,\n.tree [aria-level="2"] > .rmd-tree-item__content {\n  padding-left: 2rem;\n}\n[dir="rtl"] .tree [aria-level="2"].rmd-tree-item__content,\n[dir="rtl"] .tree [aria-level="2"] > .rmd-tree-item__content {\n  padding-left: 1rem;\n  padding-right: 2rem;\n}\n',
+          type: "scss",
+          description: "Simple Usage",
+        },
+        {
+          code:
+            '.tree {\n  @include rmd-tree-depths(\n    $selector-prefix: ":global ",\n    $max: 2,\n    $base-padding: 2rem\n  );\n}\n',
+          compiled:
+            '.tree :global [aria-level="2"].rmd-tree-item__content,\n.tree :global [aria-level="2"] > .rmd-tree-item__content {\n  padding-left: 2rem;\n}\n[dir="rtl"] .tree :global [aria-level="2"].rmd-tree-item__content,\n[dir="rtl"] .tree :global [aria-level="2"] > .rmd-tree-item__content {\n  padding-left: 1rem;\n  padding-right: 2rem;\n}\n',
+          type: "scss",
+          description: "CSS Modules Usage",
+        },
+      ],
       code:
         "@mixin rmd-tree-depths($selector-prefix: '', $min: 1, $max: $rmd-tree-max-depth, $incrementor: $rmd-tree-item-padding-incrementor, $base: $rmd-tree-item-padding-base) { … }",
       sourceCode:
@@ -134,7 +152,7 @@ const sassdoc: PackageSassDoc = {
           name: "selector-prefix",
           default: "''",
           description:
-            "An optional prefix to apply before the `aria-level` selector.",
+            "An optional prefix to apply before the `aria-level` selector. This should be set to `':global '` when using CSS Modules since it relies on global `.rmd-tree-item__content` class names.",
         },
         {
           type: "Number",
@@ -169,7 +187,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-item-at-depth",
       description:
         "Creates styles to add additional padding to tree items based on depth. This will only work if you correctly apply the `aria-level` attributes to the list items.\n\nThe formula used for creating padding is:\n```scss\n$padding: (($depth - 1) * $incrementor) + $base;\n```",
-      source: "packages/tree/src/_mixins.scss#L89-L101",
+      source: "packages/tree/src/_mixins.scss#L101-L113",
       usedBy: [{ name: "rmd-tree-depths", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       code:
@@ -188,7 +206,7 @@ const sassdoc: PackageSassDoc = {
           name: "selector-prefix",
           default: "''",
           description:
-            "An optional selector prefix to add before the `aria-level`.",
+            "An optional prefix to apply before the `aria-level` selector. This should be set to `':global '` when using CSS Modules since it relies on global `.rmd-tree-item__content` class names.",
         },
         {
           type: "Number",
@@ -209,7 +227,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree": {
       name: "rmd-tree",
       description: "Creates all the styles for a tree.\n",
-      source: "packages/tree/src/_mixins.scss#L104-L111",
+      source: "packages/tree/src/_mixins.scss#L116-L123",
       usedBy: [{ name: "react-md-tree", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       code: "@mixin rmd-tree { … }",
@@ -221,7 +239,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-item",
       description:
         "Creates the styles for a tree item. This really requires the `@react-md/list` styles to be created beforehand since these styles just prevent the outline when focused to work with the `@react-md/states` package.",
-      source: "packages/tree/src/_mixins.scss#L122-L138",
+      source: "packages/tree/src/_mixins.scss#L134-L150",
       usedBy: [{ name: "react-md-tree", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       examples: [
@@ -241,7 +259,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-group": {
       name: "rmd-tree-group",
       description: "Creates the styles for the tree group.",
-      source: "packages/tree/src/_mixins.scss#L146-L155",
+      source: "packages/tree/src/_mixins.scss#L158-L167",
       usedBy: [{ name: "react-md-tree", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       examples: [
@@ -261,7 +279,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-tree": {
       name: "react-md-tree",
       description: "Creates all the styles for a tree\n",
-      source: "packages/tree/src/_mixins.scss#L158-L176",
+      source: "packages/tree/src/_mixins.scss#L170-L188",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "tree",
       code: "@mixin react-md-tree { … }",

@@ -455,41 +455,122 @@ const sassdoc: PackageSassDoc = {
     "rmd-utils-touch-only": {
       name: "rmd-utils-touch-only",
       description:
-        "This mixin allows you to add styles to an element only when the user is interacting with your app on a touch device.\n",
-      source: "packages/utils/src/_mixins.scss#L319-L323",
+        "This mixin allows you to add styles to an element only when the user is interacting with your app on a touch device.",
+      source: "packages/utils/src/_mixins.scss#L341-L351",
       packageName: "utils",
-      code: "@mixin rmd-utils-touch-only { … }",
+      examples: [
+        {
+          code:
+            ".my-class-name {\n  @include rmd-utils-touch-only {\n    &:hover {\n      background-color: transparent;\n    }\n  }\n}\n",
+          compiled:
+            ".rmd-utils--touch .my-class-name:hover {\n  background-color: transparent;\n}\n",
+          type: "scss",
+          description: "Normal Usage",
+        },
+        {
+          code:
+            ".container {\n  @include rmd-utils-touch-only(true) {\n    &:hover {\n      background-color: transparent;\n    }\n  }\n}\n",
+          compiled:
+            ":global .rmd-utils--touch :local .container:hover {\n  background-color: transparent;\n}\n",
+          type: "scss",
+          description: "CSS Modules Usage",
+        },
+      ],
+      code: "@mixin rmd-utils-touch-only($modules: false) { … }",
       sourceCode:
-        "@mixin rmd-utils-touch-only {\n  .rmd-utils--touch & {\n    @content;\n  }\n}\n",
+        "@mixin rmd-utils-touch-only($modules: false) {\n  @if $css-modules {\n    :global .rmd-utils--touch :local & {\n      @content;\n    }\n  } @else {\n    .rmd-utils--touch & {\n      @content;\n    }\n  }\n}\n",
       type: "mixin",
+      parameters: [
+        {
+          type: "Boolean",
+          name: "modules",
+          default: "false",
+          description:
+            "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",
+        },
+      ],
     },
     "rmd-utils-keyboard-only": {
       name: "rmd-utils-keyboard-only",
       description:
-        "This mixin allows you to add styles to an element only when the user is interacting with your app with a keyboard.\n",
-      source: "packages/utils/src/_mixins.scss#L327-L331",
+        "This mixin allows you to add styles to an element only when the user is interacting with your app with a keyboard.",
+      source: "packages/utils/src/_mixins.scss#L377-L387",
       packageName: "utils",
-      code: "@mixin rmd-utils-keyboard-only { … }",
+      examples: [
+        {
+          code:
+            ".my-class-name {\n  @include rmd-utils-keyboard-only {\n    &:focus {\n      box-shadow: inset 0 0 0 1px blue;\n    }\n  }\n}\n",
+          compiled:
+            ".rmd-utils--keyboard .my-class-name:focus {\n  box-shadow: inset 0 0 0 1px blue;\n}\n",
+          type: "scss",
+          description: "Normal Usage",
+        },
+        {
+          code:
+            ".container {\n  @include rmd-utils-keyboard-only(true) {\n    &:focus {\n      box-shadow: inset 0 0 0 1px blue;\n    }\n  }\n}\n",
+          compiled:
+            ":global .rmd-utils--keyboard :local .container:focus {\n  box-shadow: inset 0 0 0 1px blue;\n}\n",
+          type: "scss",
+          description: "CSS Modules Usage",
+        },
+      ],
+      code: "@mixin rmd-utils-keyboard-only($modules: false) { … }",
       sourceCode:
-        "@mixin rmd-utils-keyboard-only {\n  .rmd-utils--keyboard & {\n    @content;\n  }\n}\n",
+        "@mixin rmd-utils-keyboard-only($modules: false) {\n  @if $css-modules {\n    :global .rmd-utils--keyboard :local & {\n      @content;\n    }\n  } @else {\n    .rmd-utils--keyboard & {\n      @content;\n    }\n  }\n}\n",
       type: "mixin",
+      parameters: [
+        {
+          type: "Boolean",
+          name: "modules",
+          default: "false",
+          description:
+            "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",
+        },
+      ],
     },
     "rmd-utils-mouse-only": {
       name: "rmd-utils-mouse-only",
       description:
-        "This mixin allows you to add styles to an element only when the user is interacting with your app with a mouse.\n",
-      source: "packages/utils/src/_mixins.scss#L335-L339",
+        "This mixin allows you to add styles to an element only when the user is interacting with your app with a mouse.",
+      source: "packages/utils/src/_mixins.scss#L413-L423",
       packageName: "utils",
-      code: "@mixin rmd-utils-mouse-only { … }",
+      examples: [
+        {
+          code:
+            ".my-class-name {\n  @include rmd-utils-mouse-only {\n    &:hover {\n      background-color: yellow;\n    }\n  }\n}\n",
+          compiled:
+            ".rmd-utils--mouse .my-class-name:hover {\n  background-color: yellow;\n}\n",
+          type: "scss",
+          description: "Normal Usage",
+        },
+        {
+          code:
+            ".container {\n  @include rmd-utils-mouse-only(true) {\n    &:hover {\n      background-color: yellow;\n    }\n  }\n}\n",
+          compiled:
+            ":global .rmd-utils--mouse :local .container:hover {\n  background-color: yellow;\n}\n",
+          type: "scss",
+          description: "CSS Modules Usage",
+        },
+      ],
+      code: "@mixin rmd-utils-mouse-only($modules: false) { … }",
       sourceCode:
-        "@mixin rmd-utils-mouse-only {\n  .rmd-utils--mouse & {\n    @content;\n  }\n}\n",
+        "@mixin rmd-utils-mouse-only($modules: false) {\n  @if $css-modules {\n    :global .rmd-utils--mouse :local & {\n      @content;\n    }\n  } @else {\n    .rmd-utils--mouse & {\n      @content;\n    }\n  }\n}\n",
       type: "mixin",
+      parameters: [
+        {
+          type: "Boolean",
+          name: "modules",
+          default: "false",
+          description:
+            "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",
+        },
+      ],
     },
     "rmd-grid": {
       name: "rmd-grid",
       description:
         "Generates a new grid based on the provided padding, margin, and columns.",
-      source: "packages/utils/src/_mixins.scss#L362-L399",
+      source: "packages/utils/src/_mixins.scss#L446-L483",
       packageName: "utils",
       code:
         "@mixin rmd-grid($padding: $rmd-grid-padding, $gutter: $rmd-grid-cell-margin, $phone-columns: $rmd-grid-phone-columns, $tablet-columns: $rmd-grid-tablet-columns, $desktop-columns: $rmd-grid-desktop-columns, $large-desktop-columns: $rmd-grid-large-desktop-columns) { … }",
@@ -545,7 +626,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-full",
       description:
         "This mixin is just a nice way to quickly make a cell span the entire width of the grid.\n\nNote: if you set the number of columns for phone or tablet to `1`, you'll need to also wrap this in the `@include rmd-utils-tablet-media` or `@include rmd-utils-desktop-media` mixins respectively.\n",
-      source: "packages/utils/src/_mixins.scss#L407-L409",
+      source: "packages/utils/src/_mixins.scss#L491-L493",
       packageName: "utils",
       code: "@mixin rmd-grid-cell-full { … }",
       sourceCode:
@@ -556,7 +637,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-size",
       description:
         "A mixin that allows you to override the size of a cell within the `Grid` component manually.  This is useful if you want to specify sizing without using the `GridCell` component wrapper.",
-      source: "packages/utils/src/_mixins.scss#L426-L453",
+      source: "packages/utils/src/_mixins.scss#L510-L537",
       packageName: "utils",
       code:
         "@mixin rmd-grid-cell-size($size, $phone-columns: $rmd-grid-phone-columns, $tablet-columns: $rmd-grid-tablet-columns, $desktop-columns: $rmd-grid-desktop-columns) { … }",
@@ -597,7 +678,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell-size",
       description:
         "A simple mixin that will allow you to add the current grid list cell size to any property.",
-      source: "packages/utils/src/_mixins.scss#L477-L488",
+      source: "packages/utils/src/_mixins.scss#L561-L572",
       usedBy: [
         { name: "rmd-grid-list-cell", type: "mixin", packageName: "utils" },
       ],
@@ -633,7 +714,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell",
       description:
         "Adds the current grid list cell's size to any element if you don't want to use the `GridListCell` component for sizing. This will **always** apply the `margin` and `width`, but the `height` can be opted-out if desired.",
-      source: "packages/utils/src/_mixins.scss#L502-L513",
+      source: "packages/utils/src/_mixins.scss#L586-L597",
       packageName: "utils",
       code:
         "@mixin rmd-grid-list-cell($margin: $rmd-grid-list-cell-margin, $max-size: $rmd-grid-list-cell-max-size, $include-height: true) { … }",
@@ -668,7 +749,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-base",
       description:
         "This is a small utility function that helps set up your react-md app.\n\nThis will:\n- update the `box-sizing` to be `border-box` (helpful for calculation positions and sizing)\n- remove the margin and padding from the `html` and `body`\n- apply the base background color and text colors to the `html` tag if the `@react-md/theme` package\n  has been correctly included\n- apply the base typography to the `html` element if the `@react-md/typography` package\n  has been correctly included\n",
-      source: "packages/utils/src/_mixins.scss#L562-L606",
+      source: "packages/utils/src/_mixins.scss#L646-L690",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "utils",
       code: "@mixin rmd-utils-base { … }",
@@ -680,7 +761,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-dense",
       description:
         "This mixin will attempt to apply all the available dense theme mixins that have been imported. This should normally be used within a `:root` selector and a media query.",
-      source: "packages/utils/src/_mixins.scss#L618-L642",
+      source: "packages/utils/src/_mixins.scss#L702-L726",
       packageName: "utils",
       examples: [
         {
@@ -701,7 +782,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-utils",
       description:
         "This mixin will include the styles for all packages that have been imported in your scss files. If there are missing styles, you need to make sure to correctly import that package before calling this function.\n",
-      source: "packages/utils/src/_mixins.scss#L648-L773",
+      source: "packages/utils/src/_mixins.scss#L732-L857",
       packageName: "utils",
       code: "@mixin react-md-utils { … }",
       sourceCode:
