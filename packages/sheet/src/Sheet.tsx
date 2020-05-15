@@ -1,9 +1,8 @@
 import React, { forwardRef, useRef, useState, useCallback } from "react";
 import cn from "classnames";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { Dialog, DialogProps } from "@react-md/dialog";
-import { TransitionTimeout } from "@react-md/transition";
 import { bem, LabelRequiredForA11y } from "@react-md/utils";
+import { DEFAULT_SHEET_TIMEOUT, DEFAULT_SHEET_CLASSNAMES } from "./constants";
 
 type AllowedDialogProps = Omit<
   DialogProps,
@@ -64,21 +63,6 @@ export interface SheetProps extends AllowedDialogProps {
 type StrictProps = LabelRequiredForA11y<SheetProps>;
 
 const block = bem("rmd-sheet");
-
-const DEFAULT_SHEET_TIMEOUT: TransitionTimeout = {
-  enter: 200,
-  exit: 150,
-};
-
-const DEFAULT_SHEET_CLASSNAMES: CSSTransitionClassNames = {
-  appear: "rmd-sheet--offscreen",
-  appearActive: "rmd-sheet--enter rmd-sheet--visible",
-  enter: "rmd-sheet--offscreen",
-  enterActive: "rmd-sheet--enter rmd-sheet--visible",
-  exit: "rmd-sheet--exit",
-  exitActive: "rmd-sheet--offscreen",
-  exitDone: "rmd-sheet--offscreen rmd-sheet--hidden",
-};
 
 /**
  * The Sheet component is an extension of the `Dialog` except that it is fixed
