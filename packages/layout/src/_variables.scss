@@ -2,7 +2,23 @@
 /// @group layout
 ////
 
+@import '~@react-md/app-bar/dist/variables';
+@import '~@react-md/sheet/dist/variables';
 @import '~@react-md/states/dist/variables';
+
+/// The transition time for the toggleable navigation panel to come into view or
+/// expand to full width.
+///
+/// @require $rmd-sheet-enter-duration
+/// @type Number
+$rmd-layout-enter-duration: $rmd-sheet-enter-duration !default;
+
+/// The transition time for the toggleable navigation panel to leave from view
+/// or shrink to the mini width.
+///
+/// @require $rmd-sheet-leave-duration
+/// @type Number
+$rmd-layout-leave-duration: $rmd-sheet-leave-duration !default;
 
 /// The box-shadow to use when the `<main>` element has been keyboard focused
 /// from the `SkipToMainContent` link.
@@ -15,3 +31,27 @@ $rmd-layout-main-focus-shadow: $rmd-states-focus-shadow !default;
 /// This z-index is just used so that it should appear over all elements.
 /// @type Number
 $rmd-layout-main-focus-z-index: 999 !default;
+
+/// The z-index to use for the navigation pane (`Sheet`).
+///
+/// @require $rmd-app-bar-z-index
+/// @type Number
+$rmd-layout-navigation-z-index: $rmd-app-bar-z-index + 20 !default;
+
+/// The width to use for the desktop navigation tree.
+///
+/// @require $rmd-sheet-static-width
+/// @type Number
+$rmd-layout-navigation-width: $rmd-sheet-static-width !default;
+
+/// The width to use for the mini navigation tree.
+///
+/// @type Number
+$rmd-layout-mini-navigation-width: 4.5rem !default;
+
+/// A map of all the themeable parts of the layout package.
+/// @type Map
+$rmd-layout-theme-values: (
+  nav-width: $rmd-layout-navigation-width,
+  mini-nav-width: $rmd-layout-mini-navigation-width,
+) !default;

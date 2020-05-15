@@ -32,7 +32,7 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the sheet's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-sheet-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/sheet/src/_functions.scss#L32-L34",
       usedBy: [
-        { name: "rmd-layout-header", type: "mixin", packageName: "layout" },
+        { name: "react-md-layout", type: "mixin", packageName: "layout" },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
       ],
       packageName: "sheet",
@@ -68,11 +68,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for one of the sheet's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/sheet/src/_mixins.scss#L23-L25",
-      usedBy: [
-        { name: "rmd-layout-header", type: "mixin", packageName: "layout" },
-        { name: "rmd-layout-main", type: "mixin", packageName: "layout" },
-        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
-      ],
+      usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
       code:
         "@mixin rmd-sheet-theme($property, $theme-style, $fallback: null) { … }",
@@ -212,7 +208,14 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-enter-duration",
       description: "The duration for the enter transition.",
       source: "packages/sheet/src/_variables.scss#L44",
-      usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
+      usedBy: [
+        {
+          name: "rmd-layout-enter-duration",
+          type: "variable",
+          packageName: "layout",
+        },
+        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
+      ],
       packageName: "sheet",
       type: "Number",
       value: "$rmd-transition-enter-duration",
@@ -223,6 +226,13 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-sheet-leave-duration",
       description: "The duration for the leave transition.",
       source: "packages/sheet/src/_variables.scss#L50",
+      usedBy: [
+        {
+          name: "rmd-layout-leave-duration",
+          type: "variable",
+          packageName: "layout",
+        },
+      ],
       packageName: "sheet",
       type: "Number",
       value: "$rmd-transition-leave-duration",
@@ -254,6 +264,13 @@ const sassdoc: PackageSassDoc = {
       description:
         'The width to apply to "static" width sheets. This width **should not** be used on phones but can be used for tablets or desktops.\n',
       source: "packages/sheet/src/_variables.scss#L66",
+      usedBy: [
+        {
+          name: "rmd-layout-navigation-width",
+          type: "variable",
+          packageName: "layout",
+        },
+      ],
       packageName: "sheet",
       type: "Number",
       value: "16rem",

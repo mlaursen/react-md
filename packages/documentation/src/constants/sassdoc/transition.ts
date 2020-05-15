@@ -13,6 +13,7 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-toast", type: "mixin", packageName: "alert" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-label", type: "mixin", packageName: "form" },
+        { name: "react-md-layout", type: "mixin", packageName: "layout" },
         { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
         {

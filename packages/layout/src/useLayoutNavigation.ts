@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, ElementType } from "react";
+import { Link } from "@react-md/link";
 import {
   BaseTreeItem,
   getItemsFrom,
@@ -14,7 +15,18 @@ import { LayoutNavigationItem, LayoutNavigationTree } from "./types";
 export interface LayoutNavigationState<
   T extends BaseTreeItem = LayoutNavigationItem
 > extends TreeItemSelection, TreeItemExpansion {
+  /**
+   * The navigation items to use that will be passed to the `Tree` component
+   * from `@react-md/tree`
+   */
   navItems: LayoutNavigationTree<T>;
+
+  /**
+   * The link component to use when a nav item is clicked. This defaults to the
+   * `Link` component from `@react-md/link`, but can also be a `Link` from
+   * `react-router` or another routing library.
+   */
+  linkComponent: ElementType;
 }
 
 /**
@@ -50,6 +62,10 @@ const noop = (): void => {};
  * so the current route won't be hidden from view. This sort of flow happens if
  * you have a link outside of the navigation tree.
  * @param pathname The current pathname
+ * @param linkComponent The link component to use within the navigation tree for
+ * any item that has a `to` or `href` attribute. This defaults to the `Link`
+ * from `@react-md/link` but should be changed to whatever link component you
+ * need if using a routing library like `react-router`.
  * @return the required `Tree` selection and expansion state and handlers that
  * should be passed to the `Layout` component.
  */
@@ -57,7 +73,8 @@ export default function useLayoutNavigation<
   T extends BaseTreeItem = LayoutNavigationItem
 >(
   navItems: LayoutNavigationTree<T>,
-  pathname: string
+  pathname: string,
+  linkComponent: ElementType = Link
 ): LayoutNavigationState<T> {
   const itemId = pathname.replace(/\?.*$/, "");
   const {
@@ -85,5 +102,6 @@ export default function useLayoutNavigation<
     expandedIds,
     onItemExpansion,
     onMultiItemExpansion,
+    linkComponent,
   };
 }

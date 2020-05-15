@@ -77,7 +77,6 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-app-bar-themes", type: "mixin", packageName: "app-bar" },
         { name: "rmd-app-bar-offset", type: "mixin", packageName: "app-bar" },
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
-        { name: "rmd-layout-main", type: "mixin", packageName: "layout" },
       ],
       packageName: "app-bar",
       code:
@@ -303,11 +302,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/app-bar/src/_mixins.scss#L258-L263",
       usedBy: [
         { name: "rmd-app-bar-offsets", type: "mixin", packageName: "app-bar" },
-        {
-          name: "rmd-layout-app-bar-offset",
-          type: "mixin",
-          packageName: "layout",
-        },
+        { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "app-bar",
       code:
@@ -380,6 +375,11 @@ const sassdoc: PackageSassDoc = {
       source: "packages/app-bar/src/_variables.scss#L13",
       usedBy: [
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
+        {
+          name: "rmd-layout-navigation-z-index",
+          type: "variable",
+          packageName: "layout",
+        },
       ],
       packageName: "app-bar",
       type: "Number",
@@ -445,6 +445,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/app-bar/src/_variables.scss#L41",
       usedBy: [
         { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
+        { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "app-bar",
       type: "Number",
@@ -483,6 +484,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/app-bar/src/_variables.scss#L62-L63",
       usedBy: [
         { name: "rmd-app-bar-nav", type: "mixin", packageName: "app-bar" },
+        { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "app-bar",
       type: "Number",
@@ -503,6 +505,7 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "app-bar",
         },
+        { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "app-bar",
       type: "Number",

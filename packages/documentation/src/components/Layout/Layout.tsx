@@ -31,8 +31,6 @@ import Actions from "./Actions";
 import NavHeaderTitle from "./NavHeaderTitle";
 import { Provider } from "./fixedAppBarContext";
 
-import styles from "./Layout.module.scss";
-
 export interface LayoutProps
   extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
   title: string;
@@ -73,7 +71,6 @@ const Layout: FC<LayoutProps> = ({
 
   const prevPathname = useRef(pathname);
   const [, transitionProps, dispatch] = useCrossFade();
-  const { ref: mainRef, className: mainClassName } = transitionProps;
   if (prevPathname.current !== pathname) {
     // since the sandbox route is a full page modal, don't want to transition
     // to make it appear smoother between the two
@@ -91,16 +88,14 @@ const Layout: FC<LayoutProps> = ({
     <Configuration defaultSize={defaultSize} icons={icons}>
       <TOCVisibilityProvider pathname={pathname}>
         <RMDLayout
-          {...useLayoutNavigation(navItems, pathname)}
-          appBarTitle={title.replace("react-md@v2 - ", "")}
-          appBarAfterNav
-          fixedAppBarElevation={elevated}
-          navHeaderTitle={<NavHeaderTitle />}
-          navHeaderClassName={styles.navHeader}
-          appBarChildren={<Actions />}
-          linkComponent={LinkUnstyled}
-          mainRef={mainRef}
-          mainClassName={mainClassName}
+          appBarProps={{
+            fixedElevation: elevated,
+            children: <Actions />,
+          }}
+          title={title.replace("react-md@v2 - ", "")}
+          mainProps={transitionProps}
+          treeProps={useLayoutNavigation(navItems, pathname, LinkUnstyled)}
+          navHeaderProps={{ children: <NavHeaderTitle /> }}
         >
           <TableOfContents pathname={pathname} />
           <Provider value={setElevated}>{children}</Provider>

@@ -82,7 +82,6 @@ import {
   AppsSVGIcon,
   BookSVGIcon,
   HomeSVGIcon,
-  KeyboardArrowDownSVGIcon,
   MenuSVGIcon,
   TVSVGIcon,
 } from "@react-md/material-icons";
@@ -102,7 +101,6 @@ const navItems: LayoutNavigationTree = {
     children: "Home",
     leftAddon: <HomeSVGIcon />,
     to: "/",
-    contentComponent: Link,
   },
   "/route-1": {
     itemId: "/route-1",
@@ -110,7 +108,6 @@ const navItems: LayoutNavigationTree = {
     children: "Route 1",
     leftAddon: <TVSVGIcon />,
     to: "/route-1",
-    contentComponent: Link,
   },
   "/route-2": {
     itemId: "/route-2",
@@ -118,7 +115,6 @@ const navItems: LayoutNavigationTree = {
     children: "Route 2",
     leftAddon: <AppsSVGIcon />,
     to: "/route-2",
-    contentComponent: Link,
   },
   "/route-3": {
     itemId: "/route-3",
@@ -126,7 +122,6 @@ const navItems: LayoutNavigationTree = {
     children: "Route 3",
     leftAddon: <BookSVGIcon />,
     to: "/route-3",
-    contentComponent: Link,
   },
 };
 
@@ -137,15 +132,10 @@ const Route3: FC = () => <Text>Third Route</Text>;
 
 const App: FC = () => {
   const { pathname } = useLocation();
-  const navigation = useLayoutNavigation(navItems, pathname);
+  const navigation = useLayoutNavigation(navItems, pathname, Link);
 
   return (
-    <Layout
-      {...navigation}
-      appBarTitle="Example Title"
-      navIcon={<MenuSVGIcon />}
-      expanderIcon={<KeyboardArrowDownSVGIcon />}
-    >
+    <Layout appBarTitle="Example Title" treeProps={navigation}>
       <Switch>
         <Route path="/route-1" component={Route1} />
         <Route path="/route-2" component={Route2} />

@@ -33,6 +33,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/button/src/_functions.scss#L32-L34",
       usedBy: [
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
+        { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "button",
       code:

@@ -1,16 +1,17 @@
-import { LayoutConfiguration } from "../types";
 import {
   DEFAULT_DESKTOP_LAYOUT,
   DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
-  getLayout,
+} from "../constants";
+import { LayoutConfiguration } from "../types";
+import {
+  getLayoutType,
   isFullHeightLayout,
-  isInlineLayout,
   isPersistentLayout,
   isTemporaryLayout,
   isToggleableLayout,
-} from "../useLayout";
+} from "../utils";
 
 const VERTICAL_PHONE = {
   isPhone: true,
@@ -76,27 +77,33 @@ const HORIZONTAL_LARGE_DESKTOP = {
   isLandscape: true,
 };
 
-describe("getLayout", () => {
+describe("getLayoutType", () => {
   it("should return the correct layout type based on the app size and the default values for each layout type", () => {
-    expect(getLayout({ appSize: VERTICAL_PHONE })).toBe(DEFAULT_PHONE_LAYOUT);
-    expect(getLayout({ appSize: HORIZONTAL_PHONE })).toBe(DEFAULT_PHONE_LAYOUT);
+    expect(getLayoutType({ appSize: VERTICAL_PHONE })).toBe(
+      DEFAULT_PHONE_LAYOUT
+    );
+    expect(getLayoutType({ appSize: HORIZONTAL_PHONE })).toBe(
+      DEFAULT_PHONE_LAYOUT
+    );
 
-    expect(getLayout({ appSize: VERTICAL_TABLET })).toBe(DEFAULT_TABLET_LAYOUT);
-    expect(getLayout({ appSize: HORIZONTAL_TABLET })).toBe(
+    expect(getLayoutType({ appSize: VERTICAL_TABLET })).toBe(
+      DEFAULT_TABLET_LAYOUT
+    );
+    expect(getLayoutType({ appSize: HORIZONTAL_TABLET })).toBe(
       DEFAULT_LANDSCAPE_TABLET_LAYOUT
     );
 
-    expect(getLayout({ appSize: VERTICAL_DESKTOP })).toBe(
+    expect(getLayoutType({ appSize: VERTICAL_DESKTOP })).toBe(
       DEFAULT_DESKTOP_LAYOUT
     );
-    expect(getLayout({ appSize: HORIZONTAL_DESKTOP })).toBe(
+    expect(getLayoutType({ appSize: HORIZONTAL_DESKTOP })).toBe(
       DEFAULT_DESKTOP_LAYOUT
     );
 
-    expect(getLayout({ appSize: VERTICAL_LARGE_DESKTOP })).toBe(
+    expect(getLayoutType({ appSize: VERTICAL_LARGE_DESKTOP })).toBe(
       DEFAULT_DESKTOP_LAYOUT
     );
-    expect(getLayout({ appSize: HORIZONTAL_LARGE_DESKTOP })).toBe(
+    expect(getLayoutType({ appSize: HORIZONTAL_LARGE_DESKTOP })).toBe(
       DEFAULT_DESKTOP_LAYOUT
     );
   });
@@ -109,45 +116,51 @@ describe("getLayout", () => {
       desktopLayout: "clipped",
       largeDesktopLayout: "floating",
     };
-    expect(getLayout({ ...customLayout, appSize: VERTICAL_PHONE })).toBe(
+    expect(getLayoutType({ ...customLayout, appSize: VERTICAL_PHONE })).toBe(
       "temporary-mini"
     );
-    expect(getLayout({ ...customLayout, appSize: HORIZONTAL_PHONE })).toBe(
+    expect(getLayoutType({ ...customLayout, appSize: HORIZONTAL_PHONE })).toBe(
       "temporary-mini"
     );
 
-    expect(getLayout({ ...customLayout, appSize: VERTICAL_TABLET })).toBe(
+    expect(getLayoutType({ ...customLayout, appSize: VERTICAL_TABLET })).toBe(
       "toggleable-mini"
     );
-    expect(getLayout({ ...customLayout, appSize: HORIZONTAL_TABLET })).toBe(
+    expect(getLayoutType({ ...customLayout, appSize: HORIZONTAL_TABLET })).toBe(
       "full-height"
     );
 
     expect(
-      getLayout({ ...customLayout, appSize: VERTICAL_LARGE_DESKTOP })
+      getLayoutType({ ...customLayout, appSize: VERTICAL_LARGE_DESKTOP })
     ).toBe("floating");
     expect(
-      getLayout({ ...customLayout, appSize: HORIZONTAL_LARGE_DESKTOP })
+      getLayoutType({ ...customLayout, appSize: HORIZONTAL_LARGE_DESKTOP })
     ).toBe("floating");
   });
 
   it("should default the largeDesktopLayout to the desktop layout", () => {
     expect(
-      getLayout({ appSize: VERTICAL_LARGE_DESKTOP, desktopLayout: "clipped" })
+      getLayoutType({
+        appSize: VERTICAL_LARGE_DESKTOP,
+        desktopLayout: "clipped",
+      })
     ).toBe("clipped");
     expect(
-      getLayout({ appSize: HORIZONTAL_LARGE_DESKTOP, desktopLayout: "clipped" })
+      getLayoutType({
+        appSize: HORIZONTAL_LARGE_DESKTOP,
+        desktopLayout: "clipped",
+      })
     ).toBe("clipped");
 
     expect(
-      getLayout({
+      getLayoutType({
         appSize: VERTICAL_LARGE_DESKTOP,
         desktopLayout: "clipped",
         largeDesktopLayout: "full-height",
       })
     ).toBe("full-height");
     expect(
-      getLayout({
+      getLayoutType({
         appSize: HORIZONTAL_LARGE_DESKTOP,
         desktopLayout: "clipped",
         largeDesktopLayout: "full-height",
@@ -192,20 +205,7 @@ describe("isPersistentLayout", () => {
   });
 });
 
-describe("isInlineLayout", () => {
-  it("should return true for the inline layout types", () => {
-    expect(isInlineLayout("temporary")).toBe(false);
-    expect(isInlineLayout("temporary-mini")).toBe(false);
-    expect(isInlineLayout("toggleable")).toBe(true);
-    expect(isInlineLayout("toggleable-mini")).toBe(true);
-    expect(isInlineLayout("full-height")).toBe(true);
-    expect(isInlineLayout("clipped")).toBe(true);
-    expect(isInlineLayout("floating")).toBe(true);
-  });
-});
-
 describe("isFullHeightLayout", () => {
-  // I don't remember why this is a thing
   it("should return true for the full-height layout type", () => {
     expect(isFullHeightLayout("temporary")).toBe(false);
     expect(isFullHeightLayout("temporary-mini")).toBe(false);

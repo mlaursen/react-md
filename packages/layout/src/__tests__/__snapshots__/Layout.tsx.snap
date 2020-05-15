@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout header behavior should allow for any children to be rendered after the title with the appBarProps 1`] = `
+<div>
+  <a
+    class="rmd-link rmd-link-skip rmd-link-skip--styled"
+    href="#layout-main"
+    id="skip-to-main-content"
+  >
+    Skip to main content
+  </a>
+  <div
+    aria-label="Navigation"
+    class="rmd-dialog rmd-sheet rmd-sheet--horizontal rmd-sheet--left rmd-sheet--media-width rmd-layout-navigation"
+    id="layout-nav-container"
+    tabindex="-1"
+  >
+    <header
+      class="rmd-app-bar rmd-app-bar--normal rmd-layout-nav-header rmd-layout-nav-header--bordered"
+    />
+  </div>
+  <header
+    class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--normal rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--fixed-elevation"
+    id="layout-header"
+  >
+    <h6
+      class="rmd-app-bar__title rmd-app-bar__title--no-wrap rmd-app-bar__title--inherit rmd-layout-title rmd-layout-title--offset"
+      id="layout-title"
+    >
+      My Title
+    </h6>
+    <span>
+      Other Children
+    </span>
+  </header>
+  <main
+    class="rmd-layout-main rmd-layout-main--header-offset rmd-layout-main--nav-offset"
+    id="layout-main"
+  />
+</div>
+`;
+
+exports[`Layout header behavior should allow for any children to be rendered after the title with the appBarProps 2`] = `
+<div>
+  <a
+    class="rmd-link rmd-link-skip rmd-link-skip--styled"
+    href="#layout-main"
+    id="skip-to-main-content"
+  >
+    Skip to main content
+  </a>
+  <div
+    aria-label="Navigation"
+    class="rmd-dialog rmd-sheet rmd-sheet--horizontal rmd-sheet--left rmd-sheet--media-width rmd-layout-navigation"
+    id="layout-nav-container"
+    tabindex="-1"
+  >
+    <header
+      class="rmd-app-bar rmd-app-bar--normal rmd-layout-nav-header rmd-layout-nav-header--bordered"
+    />
+  </div>
+  <header
+    class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--normal rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--fixed-elevation"
+    id="layout-header"
+  >
+    <h6
+      class="rmd-app-bar__title rmd-app-bar__title--no-wrap rmd-app-bar__title--inherit rmd-layout-title rmd-layout-title--offset"
+      id="layout-title"
+    >
+      <span>
+        Updated Title
+      </span>
+    </h6>
+    <button
+      aria-label="Light Theme"
+      class="rmd-button rmd-button--icon rmd-app-bar__action rmd-app-bar__action--first rmd-app-bar__action--last rmd-app-bar__action--inherit"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--svg"
+        focusable="false"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"
+        />
+      </svg>
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </header>
+  <main
+    class="rmd-layout-main rmd-layout-main--header-offset rmd-layout-main--nav-offset"
+    id="layout-main"
+  />
+</div>
+`;
+
+exports[`Layout header behavior should render the \`title\` prop as the main title 1`] = `
+<div>
+  <a
+    class="rmd-link rmd-link-skip rmd-link-skip--styled"
+    href="#layout-main"
+    id="skip-to-main-content"
+  >
+    Skip to main content
+  </a>
+  <div
+    aria-label="Navigation"
+    class="rmd-dialog rmd-sheet rmd-sheet--horizontal rmd-sheet--left rmd-sheet--media-width rmd-layout-navigation"
+    id="layout-nav-container"
+    tabindex="-1"
+  >
+    <header
+      class="rmd-app-bar rmd-app-bar--normal rmd-layout-nav-header rmd-layout-nav-header--bordered"
+    />
+  </div>
+  <header
+    class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--normal rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--fixed-elevation"
+    id="layout-header"
+  >
+    <h6
+      class="rmd-app-bar__title rmd-app-bar__title--no-wrap rmd-app-bar__title--inherit rmd-layout-title rmd-layout-title--offset"
+      id="layout-title"
+    >
+      My Title
+    </h6>
+  </header>
+  <main
+    class="rmd-layout-main rmd-layout-main--header-offset rmd-layout-main--nav-offset"
+    id="layout-main"
+  />
+</div>
+`;
+
+exports[`Layout header behavior should render the \`title\` prop as the main title 2`] = `
+<div>
+  <a
+    class="rmd-link rmd-link-skip rmd-link-skip--styled"
+    href="#layout-main"
+    id="skip-to-main-content"
+  >
+    Skip to main content
+  </a>
+  <div
+    aria-label="Navigation"
+    class="rmd-dialog rmd-sheet rmd-sheet--horizontal rmd-sheet--left rmd-sheet--media-width rmd-layout-navigation"
+    id="layout-nav-container"
+    tabindex="-1"
+  >
+    <header
+      class="rmd-app-bar rmd-app-bar--normal rmd-layout-nav-header rmd-layout-nav-header--bordered"
+    />
+  </div>
+  <header
+    class="rmd-app-bar rmd-app-bar--primary rmd-app-bar--normal rmd-app-bar--fixed rmd-app-bar--top rmd-app-bar--fixed-elevation"
+    id="layout-header"
+  >
+    <h6
+      class="rmd-app-bar__title rmd-app-bar__title--no-wrap rmd-app-bar__title--inherit rmd-layout-title rmd-layout-title--offset"
+      id="layout-title"
+    >
+      <span
+        data-testid="custom"
+      >
+        This is a custom title
+      </span>
+    </h6>
+  </header>
+  <main
+    class="rmd-layout-main rmd-layout-main--header-offset rmd-layout-main--nav-offset"
+    id="layout-main"
+  />
+</div>
+`;

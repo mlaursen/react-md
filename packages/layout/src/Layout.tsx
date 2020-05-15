@@ -1,37 +1,218 @@
-import React, { CSSProperties, FC, ReactNode, Ref, useMemo } from "react";
-import cn from "classnames";
-import { useIcon } from "@react-md/icon";
-import { SkipToMainContent } from "@react-md/link";
-import { bem, useIsUserInteractionMode } from "@react-md/utils";
+import React, { FC, ReactNode } from "react";
+import { SkipToMainContent, SkipToMainContentProps } from "@react-md/link";
+import { BaseTreeItem } from "@react-md/tree";
 
-import defaultNavigationItemRenderer from "./defaultNavigationItemRenderer";
-import LayoutAppBar from "./LayoutAppBar";
-import LayoutNavigation from "./LayoutNavigation";
 import {
-  LayoutAppBarProps,
-  LayoutConfiguration,
-  LayoutNavigationProps,
-} from "./types";
-import useLayout, {
   DEFAULT_DESKTOP_LAYOUT,
   DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
-  isToggleableLayout,
-} from "./useLayout";
-import { Provider } from "./useNavigationVisibility";
+} from "./constants";
+import LayoutAppBar, { LayoutAppBarProps } from "./LayoutAppBar";
+import LayoutMain, { LayoutMainProps } from "./LayoutMain";
+import LayoutNavigation, { LayoutNavigationProps } from "./LayoutNavigation";
+import { LayoutWithNavToggle } from "./LayoutNavToggle";
+import LayoutProvider from "./LayoutProvider";
+import { LayoutTreeProps } from "./LayoutTree";
+import {
+  LayoutConfiguration,
+  LayoutNavigationItem,
+  LayoutWithTitle,
+  PropsWithRef,
+} from "./types";
 
-export interface LayoutProps
+/**
+ * Since the layout is a combination of multiple nested configurable components,
+ * it can be annoying to have to apply multiple levels of prop configurations to
+ * this root component. The main `Layout` flattens some of these props and
+ * components if this is preferable.
+ *
+ * Example:
+ *
+ * ```tsx
+ * <Layout
+ *   appBarProps={{
+ *     title: "Current Page Title",
+ *     navToggleProps: {
+ *       "aria-label": "A custom label"
+ *     }
+ *   }}
+ *   navProps={{
+ *     navHeaderProps: {
+ *       title: "Company Name"
+ *       closeNavProps: {
+ *         disabled: true,
+ *       },
+ *       treeProps: useLayoutNavigation(navItems, window.location.pathname),
+ *     },
+ *   }}
+ *   {...props}
+ * />
+ *
+ *
+ * // can also be written as
+ * <Layout
+ *   title="Current Page Title"
+ *   navToggleProps={{
+ *     "aria-label": "A custom label"
+ *   }}
+ *   navHeaderTitle="Current Page Title"
+ *   closeNavProps={{ disaled: true }}
+ *   treeProps={useLayoutNavigation(navItems, window.location.pathname)}
+ *   {...props}
+ * />
+ * ```
+ */
+export interface FlattenedLayoutComponentConfiguration<
+  T extends BaseTreeItem = LayoutNavigationItem
+> extends LayoutWithTitle, LayoutWithNavToggle {
+  /**
+   * A custom implementation for the main `AppBar` within the `Layout` that will
+   * be used instead of the default `LayoutAppBar` if it is not `undefined`.
+   * This means that if you don't want to use an `AppBar` at all in your
+   * application, set this value to `null`.
+   *
+   * Using this prop will make the following props do nothing:
+   *
+   * - `appBarProps`
+   * - `customTitle`
+   * - `title`
+   * - `titleProps`
+   */
+  appBar?: ReactNode;
+
+  /**
+   * Any additional props to provide to the default `LayoutAppBar`
+   */
+  appBarProps?: PropsWithRef<LayoutAppBarProps, HTMLDivElement>;
+
+  /**
+   * A custom implementation for the main navigation component within the
+   * `Layout`. If this is not `undefined`, it will be used instead of the
+   * default implementation.
+   *
+   * Using this prop will make the following props do nothing:
+   *
+   * - `navProps`
+   * - `navHeader`
+   * - `navHeaderProps`
+   * - `navHeaderTitle`
+   * - `navHeaderTitleProps`
+   * - `closeNav`
+   * - `closeNavProps`
+   * - `treeProps`
+   */
+  nav?: ReactNode;
+
+  /**
+   * Any additional props to provide to the default `LayoutNavigation`.
+   */
+  navProps?: PropsWithRef<LayoutNavigationProps<T>, HTMLDivElement>;
+
+  /**
+   * A custom implementation for the main navigation component's header element
+   * within the `Layout`. If this is not `undefined`, it will be used instead of
+   * the default implementation.
+   *
+   * Using this prop will make the following props do nothing:
+   *
+   * - `navHeaderProps`
+   * - `navHeaderTitle`
+   * - `navHeaderTitleProps`
+   * - `closeNav`
+   * - `closeNavProps`
+   */
+  navHeader?: LayoutNavigationProps["header"];
+
+  /**
+   * Any additional props to provide to the default `LayoutNavigation`
+   * component.
+   */
+  navHeaderProps?: PropsWithRef<
+    Required<LayoutNavigationProps<T>>["headerProps"],
+    HTMLDivElement
+  >;
+
+  /**
+   * An optional title to display within the `LayoutNavigation`'s header
+   * component. This will be defaulted to being wrapped with an `AppBarTitle`
+   * component for additional styling.
+   */
+  navHeaderTitle?: LayoutNavigationProps["headerTitle"];
+
+  /**
+   * Any additional props to provide to the `AppBarTitle` surrounding the
+   * `navHeaderTitle`.
+   */
+  navHeaderTitleProps?: PropsWithRef<
+    Required<LayoutNavigationProps>["headerTitleProps"],
+    HTMLDivElement
+  >;
+
+  /**
+   * A custom implementation for the button that closes the toggleable layouts.
+   * If this is not `undefined`, it will be used instead of the default
+   * implementation.
+   *
+   * The default implementation for this component will be to only render for
+   * toggleable layouts and close the navigation panel once clicked.
+   *
+   * Using this prop will make the `closeNavProps` do nothing.
+   */
+  closeNav?: LayoutNavigationProps["closeNav"];
+
+  /**
+   * Any additional props to provide to the default
+   * `LayoutCloseNavigationButton` compoent.
+   */
+  closeNavProps?: PropsWithRef<
+    Required<LayoutNavigationProps>["closeNavProps"],
+    HTMLButtonElement
+  >;
+
+  /**
+   * This is the most important prop within the `Layout` if you want to have a
+   * navigation tree. This prop should normally be created by using the
+   * `useLayoutNavigation` hook but you can always provide any additional props
+   * that are required to style or customize your tree.
+   *
+   * Example:
+   *
+   * ```tsx
+   * <Layout
+   *   treeProps={useLayoutNavigation(navItems, window.location.pathname)}
+   *   {...props}
+   * />
+   * ```
+   *
+   * or with additional props:
+   *
+   * ```tsx
+   * <Layout
+   *   treeProps={{
+   *     ...useLayoutNavigation(navItems, window.location.pathname),
+   *     ...otherTreeProps
+   *   }}
+   *   {...props}
+   * />
+   * ```
+   *
+   * Please see the `useLayoutNavigation` hook for additional documentation.
+   */
+  treeProps?: PropsWithRef<LayoutTreeProps<T>, HTMLUListElement>;
+}
+
+export interface LayoutProps<T extends BaseTreeItem = LayoutNavigationItem>
   extends LayoutConfiguration,
-    LayoutAppBarProps,
-    LayoutNavigationProps {
+    FlattenedLayoutComponentConfiguration<T> {
   /**
    * The base id to use for everything within the layout component. The `id`
    * will be applied to:
    *
-   * - the main `AppBarTitle` as `${id}-title`
-   * - the main `AppBarNav` as `${id}-nav`
-   * - the `<main>` element as `${id}-main`
+   * - the `LayoutAppBar` as `${id}-header`
+   * - the `AppBarTitle` as `${id}-title`
+   * - the `LayoutNavToggle` as `${id}-nav-toggle`
+   * - the `LayoutMain` element as `${id}-main`
    */
   id?: string;
 
@@ -43,28 +224,15 @@ export interface LayoutProps
   children?: ReactNode;
 
   /**
-   * If the default app bar configuration doesn't allow you enough control due
-   * to lacking props or styling, you can provide your own `AppBar`
-   * implementation by using this render prop. It will replace the default
-   * `AppBar` and provide the required styles and state for the `AppBar` and
-   * controlling the main navigation element.
+   * Any additional props to provide to the `<SkipToMainContent />` link that is
+   * automatically rendered in the layout.
    */
-  appBar?: ReactNode;
+  skipProps?: Omit<SkipToMainContentProps, "mainId">;
 
   /**
-   * An optional ref to apply to the `AppBar` component.
+   * Any optional props to provide to the `<main>` element of the page.
    */
-  appBarRef?: Ref<HTMLDivElement>;
-
-  /**
-   * An optional style to apply to the `AppBar` component.
-   */
-  appBarStyle?: CSSProperties;
-
-  /**
-   * An optional className to apply to the `AppBar` component.
-   */
-  appBarClassName?: string;
+  mainProps?: PropsWithRef<LayoutMainProps, HTMLDivElement>;
 
   /**
    * Boolean if the main app bar should appear after the navigation component.
@@ -72,34 +240,8 @@ export interface LayoutProps
    * as a focusable element in the header since it will have a better tab focus
    * order.
    */
-  appBarAfterNav?: boolean;
-
-  /**
-   * An optional ref to apply to the `<main>` element.
-   */
-  mainRef?: Ref<HTMLDivElement>;
-
-  /**
-   * An optional style to apply to the `<main>` element.
-   */
-  mainStyle?: CSSProperties;
-
-  /**
-   * An optional className to apply to the `<main>` element.
-   */
-  mainClassName?: string;
-
-  /**
-   * The component to render the main element as. This should normally stay as
-   * the default of `"main"`, but if you want to have multiple `Layout` on the
-   * page for some reason, you'll need to use `"div"` for the other `Layout`s
-   * since you can only have one `<main>` per page (unless you set the `hidden`
-   * attribute on all the others).
-   */
-  mainComponent?: "main" | "div";
+  navAfterAppBar?: boolean;
 }
-
-const main = bem("rmd-layout-main");
 
 /**
  * The layout to use for your app. There are 9 different types of layouts
@@ -114,137 +256,81 @@ const main = bem("rmd-layout-main");
 const Layout: FC<LayoutProps> = ({
   id = "layout",
   appBar: propAppBar,
-  appBarTheme = "primary",
-  appBarAfterNav = false,
-  fixedAppBar = true,
-  fixedAppBarElevation = true,
-  appBarHeight = "normal",
-  navIcon: propNavIcon,
-  navIconLabel = "Navigation toggle",
-  navIconLabelledBy,
-  appBarTitle,
-  appBarChildren,
-  appBarRef,
-  appBarStyle,
-  appBarClassName,
-  mainRef,
-  mainStyle,
-  mainClassName,
-  navTreeLabel = "Navigation tree",
-  hideNavLabel = "Hide navigation",
-  sheetLabel = "Navigation",
+  appBarProps,
+  navAfterAppBar = false,
+  children,
+  skipProps,
+  mainProps,
   phoneLayout = DEFAULT_PHONE_LAYOUT,
   tabletLayout = DEFAULT_TABLET_LAYOUT,
   landscapeTabletLayout = DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   desktopLayout = DEFAULT_DESKTOP_LAYOUT,
   largeDesktopLayout,
-  children,
-  navItems,
-  itemRenderer = defaultNavigationItemRenderer,
-  mainComponent: Main = "main",
-  labelKey = "children",
-  valueKey = "children",
-  disableTemporaryAutoclose = false,
-  ...props
+  customTitle,
+  title,
+  titleProps,
+  navToggle,
+  navToggleProps,
+  nav: propNav,
+  navProps,
+  navHeader,
+  navHeaderProps,
+  navHeaderTitle,
+  navHeaderTitleProps,
+  closeNav,
+  closeNavProps,
+  treeProps,
 }) => {
-  const {
-    showNav,
-    hideNav,
-    layout,
-    isNavVisible,
-    isFullHeight,
-    isPersistent,
-  } = useLayout({
-    phoneLayout,
-    tabletLayout,
-    landscapeTabletLayout,
-    desktopLayout,
-    largeDesktopLayout,
-  });
-
-  const mainId = `${id}-main`;
-  // this makes it so that the SkipToMainContent button can still
-  // focus the `<main>` element, but the `<main>` will no longer be
-  // focused if the user clicks inside. This is super nice since one
-  // of my bigger patterns is to click somewhere then press tab to
-  // focus a specific element. Without this fix, the first element in
-  // the `<main>` tag would be focused instead of the closest focusable
-  // element to the click area.
-  let mainTabIndex: number | undefined;
-  if (useIsUserInteractionMode("keyboard")) {
-    mainTabIndex = -1;
-  }
-
-  const navIcon = useIcon("menu", propNavIcon);
-  const value = useMemo(
-    () => ({
-      showNav,
-      hideNav,
-      layout,
-      isNavVisible,
-      isFullHeight,
-      isPersistent,
-    }),
-    [hideNav, isFullHeight, isNavVisible, isPersistent, layout, showNav]
-  );
+  const fixedAppBar = appBarProps?.fixed ?? typeof propAppBar === "undefined";
+  const mainId = mainProps?.id || `${id}-main`;
 
   let appBar = propAppBar;
-  if (typeof propAppBar === "undefined") {
+  if (typeof appBar === "undefined") {
     appBar = (
       <LayoutAppBar
-        style={appBarStyle}
-        className={appBarClassName}
-        layoutId={id}
-        theme={appBarTheme}
-        height={appBarHeight}
-        fixed={fixedAppBar}
-        fixedElevation={fixedAppBarElevation}
-        appBarTitle={appBarTitle}
-        appBarRef={appBarRef}
-        navIcon={navIcon}
-        navIconLabel={navIconLabel}
-        navIconLabelledBy={navIconLabelledBy}
-      >
-        {appBarChildren}
-      </LayoutAppBar>
+        {...appBarProps}
+        customTitle={customTitle}
+        title={title}
+        titleProps={titleProps}
+        navToggle={navToggle}
+        navToggleProps={navToggleProps}
+      />
+    );
+  }
+
+  let nav = propNav;
+  if (typeof nav === "undefined") {
+    nav = (
+      <LayoutNavigation
+        header={navHeader}
+        headerProps={navHeaderProps}
+        headerTitle={navHeaderTitle}
+        headerTitleProps={navHeaderTitleProps}
+        closeNav={closeNav}
+        closeNavProps={closeNavProps}
+        treeProps={treeProps}
+        {...navProps}
+      />
     );
   }
 
   return (
-    <Provider value={value}>
-      <SkipToMainContent mainId={mainId} />
-      {!appBarAfterNav && appBar}
-      <LayoutNavigation
-        {...props}
-        fixedAppBar={fixedAppBar}
-        layoutId={id}
-        navItems={navItems}
-        navTreeLabel={navTreeLabel}
-        hideNavLabel={hideNavLabel}
-        sheetLabel={sheetLabel}
-        itemRenderer={itemRenderer}
-        labelKey={labelKey}
-        valueKey={valueKey}
-        disableTemporaryAutoclose={disableTemporaryAutoclose}
-      />
-      {appBarAfterNav && appBar}
-      <Main
-        id={mainId}
-        ref={mainRef}
-        tabIndex={mainTabIndex}
-        style={mainStyle}
-        className={cn(
-          main({
-            offset: fixedAppBar,
-            "nav-offset":
-              isPersistent || (isNavVisible && isToggleableLayout(layout)),
-          }),
-          mainClassName
-        )}
-      >
+    <LayoutProvider
+      baseId={id}
+      phoneLayout={phoneLayout}
+      tabletLayout={tabletLayout}
+      landscapeTabletLayout={landscapeTabletLayout}
+      desktopLayout={desktopLayout}
+      largeDesktopLayout={largeDesktopLayout}
+    >
+      <SkipToMainContent {...skipProps} mainId={mainId} />
+      {navAfterAppBar && appBar}
+      {nav}
+      {!navAfterAppBar && appBar}
+      <LayoutMain headerOffset={fixedAppBar} {...mainProps} id={mainId}>
         {children}
-      </Main>
-    </Provider>
+      </LayoutMain>
+    </LayoutProvider>
   );
 };
 
@@ -259,46 +345,9 @@ if (process.env.NODE_ENV !== "production") {
       "floating",
       "full-height",
     ];
+
     Layout.propTypes = {
       id: PropTypes.string,
-      appBar: PropTypes.node,
-      appBarTheme: PropTypes.oneOf([
-        "primary",
-        "secondary",
-        "default",
-        "clear",
-      ]),
-      fixedAppBar: PropTypes.bool,
-      fixedAppBarElevation: PropTypes.bool,
-      appBarHeight: PropTypes.oneOf([
-        "none",
-        "normal",
-        "dense",
-        "prominent",
-        "prominent-dense",
-      ]),
-      appBarTitle: PropTypes.node,
-      appBarChildren: PropTypes.node,
-      navIcon: PropTypes.node,
-      navIconLabel: PropTypes.string,
-      navIconLabelledBy: PropTypes.string,
-      hideNavIcon: PropTypes.node,
-      hideNavLabel: PropTypes.string,
-      hideNavLabelledBy: PropTypes.string,
-      appBarRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-      appBarStyle: PropTypes.object,
-      appBarClassName: PropTypes.string,
-      appBarAfterNav: PropTypes.bool,
-
-      navTreeLabel: PropTypes.string,
-      navTreeLabelledBy: PropTypes.string,
-      sheetLabel: PropTypes.string,
-      sheetLabelledBy: PropTypes.string,
-
-      mainRef: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-      mainStyle: PropTypes.object,
-      mainClassName: PropTypes.string,
-      mainComponent: PropTypes.oneOf(["main", "div"]),
       children: PropTypes.node,
       phoneLayout: PropTypes.oneOf(phoneLayouts),
       tabletLayout: PropTypes.oneOf(tabletLayouts),
@@ -306,14 +355,31 @@ if (process.env.NODE_ENV !== "production") {
       desktopLayout: PropTypes.oneOf(wideLayouts),
       largeDesktopLayout: PropTypes.oneOf(wideLayouts),
 
-      labelKey: PropTypes.string,
-      valueKey: PropTypes.string,
-      itemRenderer: PropTypes.func,
-      navItems: PropTypes.object.isRequired,
+      appBar: PropTypes.node,
+      appBarProps: PropTypes.object,
+      navAfterAppBar: PropTypes.bool,
 
-      disableTemporaryAutoclose: PropTypes.bool,
+      customTitle: PropTypes.node,
+      title: PropTypes.node,
+      titleProps: PropTypes.object,
+
+      navToggle: PropTypes.node,
+      navToggleProps: PropTypes.object,
+
+      skipProps: PropTypes.object,
+      nav: PropTypes.node,
+      navProps: PropTypes.object,
+      navHeader: PropTypes.node,
+      navHeaderProps: PropTypes.object,
+      navHeaderTitle: PropTypes.node,
+      navHeaderTitleProps: PropTypes.object,
+      closeNav: PropTypes.node,
+      closeNavProps: PropTypes.object,
+      treeProps: PropTypes.object,
+
+      mainProps: PropTypes.object,
     };
-  } catch (e) {}
+  } catch (error) {}
 }
 
 export default Layout;

@@ -156,9 +156,9 @@ app to use the `Layout` component along with this navigation tree:
  render(
    <Configuration {...overrides}>
 +    <Layout
-+      {...useLayoutNavigation(navItems, window.location.pathname)}
-+      appBarTitle="My Title"
++      title="My Title"
 +      navHeaderTitle="My Title"
++      treeProps={useLayoutNavigation(navItems, window.location.pathname)}
 +    >
        <App />
 +    </Layout>
@@ -215,10 +215,10 @@ to the `Layout` component:
 +  <BrowserRouter>
 +    <Configuration {...overrides}>
        <Layout
-         {...useLayoutNavigation(navItems, window.location.pathname)}
-         appBarTitle="My Title"
+         title="My Title"
          navHeaderTitle="My Title"
-+        linkComponent={Link}
+-        treeProps={useLayoutNavigation(navItems, window.location.pathname)}
++        treeProps={useLayoutNavigation(navItems, window.location.pathname, Link)}
        >
          <App />
        </Layout>
@@ -254,10 +254,9 @@ export default (): ReactElement => {
 
   return (
     <Layout
-      {...useLayoutNavigation(navItems, pathname)}
-      appBarTitle="My Title"
+      title="My Title"
       navHeaderTitle="My Title"
-      linkComponent={Link}
+      treeProps={useLayoutNavigation(navItems, pathname, Link)}
     >
       <App />
     </Layout>
@@ -297,10 +296,9 @@ your app:
    <BrowserRouter>
      <Configuration {...overrides}>
 -      <Layout
--        {...useLayoutNavigation(navItems, window.location.pathname)}
--        appBarTitle="My Title"
+-        title="My Title"
 -        navHeaderTitle="My Title"
--        linkComponent={Link}
+-        treeProps={useLayoutNavigation(navItems, window.location.pathname, Link)}
 -      >
 -        <App />
 -      </Layout>
@@ -338,7 +336,6 @@ cross fade transition on route changes with the `useCrossFade` hook.
  export default (): ReactElement => {
    const { pathname } = useLocation();
 +  const [_rendered, transitionProps, dispatch] = useCrossFade();
-+  const { ref: mainRef, className: mainClassName } = transitionProps;
 +
 +  const prevPathname = useRef(pathname);
 +  if (pathname !== prevPathname.current) {
@@ -348,12 +345,10 @@ cross fade transition on route changes with the `useCrossFade` hook.
 
    return (
      <Layout
-       {...useLayoutNavigation(navItems, pathname)}
-       appBarTitle="My Title"
+       title="My Title"
        navHeaderTitle="My Title"
-       linkComponent={Link}
-+      mainRef={mainRef}
-+      mainClassName={mainClassName}
+       treeProps={useLayoutNavigation(navItems, pathname, Link)}
++      mainProps={transitionProps}
      >
        <App />
      </Layout>
@@ -376,7 +371,7 @@ You might be wondering...
 There isn't really a big reason other than I prefer handling transitions this
 way instead of having a custom `useEffect` that skips the first callback. If the
 first callback for this effect isn't cancelled, the "appear" transition will
-stil be triggered.
+still be triggered.
 
 If you prefer using `useEffect`, here's an example of this pattern instead.
 
@@ -413,12 +408,10 @@ If you prefer using `useEffect`, here's an example of this pattern instead.
 
    return (
      <Layout
-       {...useLayoutNavigation(navItems, pathname)}
-       appBarTitle="My Title"
+       title="My Title"
        navHeaderTitle="My Title"
-       linkComponent={Link}
-       mainRef={mainRef}
-       mainClassName={mainClassName}
+       treeProps={useLayoutNavigation(navItems, pathname, Link)}
+       mainProps={transitionProps}
      >
        <App />
      </Layout>

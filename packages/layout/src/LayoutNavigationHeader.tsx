@@ -1,66 +1,120 @@
-/* eslint-disable react/prop-types */
-import React, { CSSProperties, FC, ReactNode } from "react";
+import React, { forwardRef, ReactNode } from "react";
 import cn from "classnames";
-import { AppBar, AppBarAction, AppBarTitle } from "@react-md/app-bar";
+import { AppBar, AppBarProps, AppBarTitle } from "@react-md/app-bar";
 import { bem } from "@react-md/utils";
 
-import { LayoutToggleableAppBarNavProps } from "./types";
-import { isFullHeightLayout, isToggleableLayout } from "./useLayout";
-import useNavigationVisibility from "./useNavigationVisibility";
+import LayoutCloseNavigationButton, {
+  LayoutCloseNavigationButtonProps,
+} from "./LayoutCloseNavigationButton";
+import { useLayoutConfig } from "./LayoutProvider";
+import { PropsWithRef } from "./types";
 
-interface LayoutNavigationHeaderProps extends LayoutToggleableAppBarNavProps {
-  style?: CSSProperties;
-  className?: string;
-  layoutId: string;
-  children?: ReactNode;
+export interface LayoutNavigationHeaderProps
+  extends Omit<AppBarProps, "title"> {
+  /**
+   * An optional title to display that will be wrapped in the `AppBarTitle`
+   * component.
+   *
+   * Note: If you do not want to wrap the title with the `AppBarTitle` component
+   * and want additional configuration, just provide your own `children`
+   * instead.
+   */
+  title?: ReactNode;
+
+  /**
+   * Any additional props to provide to the `AppBarTitle` when the `title` prop
+   * was provided.
+   */
+  titleProps?: PropsWithRef<AppBarProps, HTMLDivElement>;
+
+  /**
+   * Boolean if the header should gain a border-bottom.
+   */
+  disableBorderBottom?: boolean;
+
+  /**
+   * An optional close navigation button to use instead of the default
+   * `LayoutCloseNavigationButton`.
+   */
+  closeNav?: ReactNode;
+
+  /**
+   * Any props to pass to the default `LayoutCloseNavigationButton` when the
+   * `closeNav` prop was omitted.
+   */
+  closeNavProps?: PropsWithRef<
+    LayoutCloseNavigationButtonProps,
+    HTMLButtonElement
+  >;
 }
 
-const block = bem("rmd-layout-nav-header");
+const styles = bem("rmd-layout-nav-header");
 
-const LayoutNavigationHeader: FC<LayoutNavigationHeaderProps> = ({
-  style,
-  className,
-  layoutId,
-  hideNavIcon,
-  hideNavLabel,
-  hideNavLabelledBy,
-  children,
-}) => {
-  const { hideNav, layout } = useNavigationVisibility();
-  const isFullHeight = isFullHeightLayout(layout);
-
-  // only want this header to show on the toggleable types
-  if (!isToggleableLayout(layout) && !isFullHeight) {
+/**
+ * The default implementation for the `AppBar` within the `LayoutNavigation`
+ * that allows for rendering a title along with the `LayoutCloseNavigationButton`.
+ */
+const LayoutNavigationHeader = forwardRef<
+  HTMLDivElement,
+  LayoutNavigationHeaderProps
+>(function LayoutNavigationHeader(
+  {
+    theme = "clear",
+    children,
+    className,
+    closeNav,
+    closeNavProps,
+    title: propTitle,
+    titleProps,
+    disableBorderBottom = false,
+    ...props
+  },
+  ref
+) {
+  const { layout } = useLayoutConfig();
+  if (layout === "clipped" || layout === "floating") {
     return null;
+  }
+
+  let title: ReactNode = null;
+  if (propTitle) {
+    title = <AppBarTitle {...titleProps}>{title}</AppBarTitle>;
+  }
+
+  let action = closeNav;
+  if (typeof action === "undefined") {
+    action = <LayoutCloseNavigationButton {...closeNavProps} />;
   }
 
   return (
     <AppBar
-      id={`${layoutId}-nav-header`}
-      style={style}
-      className={cn(block(), className)}
-      inheritColor
-      theme="clear"
+      {...props}
+      ref={ref}
+      theme={theme}
+      className={cn(styles({ bordered: !disableBorderBottom }), className)}
     >
-      {children && (
-        <AppBarTitle id={`${layoutId}-nav-header-title`} keyline>
-          {children}
-        </AppBarTitle>
-      )}
-      {!isFullHeight && (
-        <AppBarAction
-          id={`${layoutId}-hide-nav`}
-          aria-label={hideNavLabel}
-          aria-labelledby={hideNavLabelledBy}
-          onClick={hideNav}
-          first
-          last
-        >
-          {hideNavIcon}
-        </AppBarAction>
-      )}
+      {title}
+      {children}
+      {action}
     </AppBar>
   );
-};
+});
+
+if (process.env.NODE_ENV !== "production") {
+  try {
+    const PropTypes = require("prop-types");
+
+    LayoutNavigationHeader.propTypes = {
+      disableBorderBottom: PropTypes.bool,
+      className: PropTypes.string,
+      closeNav: PropTypes.node,
+      closeNavProps: PropTypes.object,
+      theme: PropTypes.oneOf(["clear", "primary", "secondary", "default"]),
+      children: PropTypes.node,
+      title: PropTypes.node,
+      titleProps: PropTypes.object,
+    };
+  } catch (error) {}
+}
 
 export default LayoutNavigationHeader;

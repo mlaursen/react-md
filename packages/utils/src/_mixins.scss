@@ -787,10 +787,6 @@
     @include react-md-icon;
   }
 
-  @if mixin-exists(react-md-layout) {
-    @include react-md-layout;
-  }
-
   @if mixin-exists(react-md-link) {
     @include react-md-link;
   }
@@ -813,6 +809,11 @@
 
   @if mixin-exists(react-md-sheet) {
     @include react-md-sheet;
+  }
+
+  // has to come after sheet
+  @if mixin-exists(react-md-layout) {
+    @include react-md-layout;
   }
 
   @if mixin-exists(react-md-states) {

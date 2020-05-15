@@ -1,5 +1,7 @@
 import { UnknownTreeItem } from "./types";
 
+let warnedOnce = false;
+
 /**
  * A "reasonable" default implementation for the getItemValue prop on a tree
  * that will warn about items that are not keyboard searchable in non-production
@@ -14,7 +16,8 @@ export default function defaultGetItemValue(
   const result = item[valueKey];
   if (process.env.NODE_ENV !== "production") {
     const type = typeof result;
-    if (type !== "string" && type !== "number") {
+    if (!warnedOnce && type !== "string" && type !== "number") {
+      warnedOnce = true;
       /* eslint-disable no-console */
       console.warn(
         "Unable to extract a string or number from an item within the tree for the item:"

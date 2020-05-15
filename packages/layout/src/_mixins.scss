@@ -3,6 +3,7 @@
 ////
 
 @import '~@react-md/app-bar/dist/mixins';
+@import '~@react-md/button/dist/mixins';
 @import '~@react-md/divider/dist/mixins';
 @import '~@react-md/icon/dist/mixins';
 @import '~@react-md/list/dist/mixins';
@@ -12,90 +13,141 @@
 @import '~@react-md/transition/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
 @import './variables';
+@import './functions';
 
-/// A utility function to apply offset to one of the layout components. This
-/// should probably not be used externally.
-@mixin rmd-layout-app-bar-offset {
-  &--offset {
-    @include rmd-app-bar-offset;
-  }
+/// Creates the styles for one of the layout's theme values. This is mostly going
+/// to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-layout-theme-values`
+/// value to.
+/// @param {String} theme-style [property] - One of the keys of
+/// `rmd-layout-theme-values` to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-layout-theme-values` map when
+/// `null`.
+@mixin rmd-layout-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-layout-theme-values, layout);
 }
 
-/// Creates all the styles for the layout header/app-bar. This should probably
-/// not be used externally.
-@mixin rmd-layout-header {
-  &--nav-offset {
-    @include rmd-utils-rtl {
-      @include rmd-sheet-theme(right, static-width);
-
-      left: auto;
-    }
-
-    @include rmd-sheet-theme(left, static-width);
-
-    // using left and right doesn't actually work how I expected...
-    // left: 0, right: 0 will span the entire relative container or
-    // viewport when fixed, but left: 16, right: 0 won't set the right
-    // edge to the edge of the viewport/relative container so you
-    // have to also adjust the width
-    width: calc(100% - #{rmd-sheet-theme-var(static-width)});
-  }
-}
-
-/// Creates the styles for the `<main>` element. This should probably not be
-/// used externally.
-@mixin rmd-layout-main {
-  @include rmd-layout-app-bar-offset;
-
-  // going to replace the default focus outline with the custom box-shadow
-  // instead
-  @include rmd-utils-hide-focus-outline;
-
-  @include rmd-utils-keyboard-only {
-    @include rmd-transition-shadow-transition(none, $rmd-layout-main-focus-shadow, '&:focus');
-
-    &::before {
-      @include rmd-app-bar-theme(top, height);
-
-      // need to inherit the margin based for the offsets
-      margin: inherit;
-      position: fixed;
-      z-index: $rmd-layout-main-focus-z-index;
-    }
-  }
-
-  // need to polyfill for IE11 even though not 100% supported
-  display: block;
-  height: 100%;
-
-  &--nav-offset {
-    @include rmd-utils-rtl {
-      @include rmd-sheet-theme(margin-right, static-width);
-
-      margin-left: auto;
-    }
-
-    // might need to change to just left and right instead of margin-left and
-    // margin-right for some browser support
-    @include rmd-sheet-theme(margin-left, static-width);
-  }
+/// Updates one of the layout's theme variables with the new value for the section
+/// of your app.
+///
+/// @param {String} theme-style - The layout theme style type to update. This
+/// should be one of the `$rmd-layout-theme-values` keys.
+/// @param {Color|String|Number} value - The new value to use.
+@mixin rmd-layout-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-layout-theme-values, layout);
 }
 
 /// Creates all the styles for the layout package.
 @mixin react-md-layout {
-  .rmd-layout-header {
-    @include rmd-layout-header;
+  // this is used for the title and main elements for animating their margin
+  // while the toggleable layout appears. it will use the same transition
+  // functions and time as the sheet so it all transitions together
+  .rmd-layout-transition {
+    &--enter {
+      @include rmd-transition(deceleration);
+
+      transition: margin $rmd-layout-enter-duration;
+    }
+
+    &--exit {
+      @include rmd-transition(acceleration);
+
+      transition: margin $rmd-layout-leave-duration;
+    }
+  }
+
+  .rmd-layout-navigation {
+    z-index: $rmd-layout-navigation-z-index;
+
+    &--floating {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    &--header-offset {
+      @include rmd-app-bar-offset(top);
+    }
   }
 
   .rmd-layout-nav {
-    @include rmd-layout-app-bar-offset;
+    @include rmd-utils-scroll;
+
+    height: 100%;
+    flex: 1 1 auto;
+  }
+
+  .rmd-layout-tree {
+    height: auto;
+    overflow: visible;
+  }
+
+  .rmd-layout-title {
+    &--offset {
+      $margin: calc(#{rmd-sheet-theme-var(static-width)} + #{$rmd-app-bar-keyline});
+
+      @include rmd-utils-rtl-auto(margin-left, $margin);
+    }
+  }
+
+  .rmd-layout-nav-toggle {
+    &--offset {
+      $nav-size: rmd-layout-theme-var(nav-width);
+      $icon-size: rmd-button-theme-var(icon-size);
+      $distance: calc(#{$rmd-app-bar-title-nav-margin} + #{$nav-size} - #{$icon-size});
+
+      @include rmd-utils-rtl-auto(margin-right, $distance, $rmd-app-bar-lr-margin);
+    }
   }
 
   .rmd-layout-nav-header {
-    @include rmd-divider-border(bottom);
+    &--bordered {
+      @include rmd-divider-border(bottom);
+    }
   }
 
   .rmd-layout-main {
-    @include rmd-layout-main;
+    // going to replace the default focus outline with the custom box-shadow
+    // instead
+    @include rmd-utils-hide-focus-outline;
+
+    @include rmd-utils-keyboard-only {
+      @include rmd-transition-shadow-transition(none, $rmd-layout-main-focus-shadow, '&:focus');
+
+      &::before {
+        // need to inherit the margin based for the offsets
+        margin: inherit;
+        position: fixed;
+        z-index: $rmd-layout-main-focus-z-index;
+      }
+    }
+
+    // need to polyfill for IE11 even though not 100% supported
+    display: block;
+    height: 100%;
+
+    &--header-offset {
+      @include rmd-app-bar-offset;
+
+      @include rmd-utils-keyboard-only {
+        &::before {
+          @include rmd-app-bar-offset(top);
+        }
+      }
+    }
+
+    &--nav-offset {
+      @include rmd-utils-rtl {
+        @include rmd-layout-theme(margin-right, nav-width);
+
+        margin-left: auto;
+      }
+
+      // might need to change to just left and right instead of margin-left and
+      // margin-right for some browser support
+      @include rmd-layout-theme(margin-left, nav-width);
+    }
   }
 }

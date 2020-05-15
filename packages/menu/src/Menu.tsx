@@ -20,15 +20,9 @@ import MenuEvents from "./MenuEvents";
 import { OrientationProvider } from "./Orientation";
 import useMenu from "./useMenu";
 
-export type MenuPositionOptions = Pick<
+export type MenuPositionOptions = Omit<
   FixedPositionOptions,
-  | "vwMargin"
-  | "vhMargin"
-  | "xMargin"
-  | "yMargin"
-  | "initialX"
-  | "initialY"
-  | "disableSwapping"
+  "container" | "element" | "anchor"
 >;
 
 export interface MenuProps

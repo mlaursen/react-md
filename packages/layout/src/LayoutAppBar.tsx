@@ -1,98 +1,84 @@
-/* eslint-disable react/prop-types */
-import React, { FC, ReactNode, Ref } from "react";
-import cn from "classnames";
-import { AppBar, AppBarNav, AppBarProps, AppBarTitle } from "@react-md/app-bar";
-import { bem } from "@react-md/utils";
+import React, { forwardRef } from "react";
+import { AppBar, AppBarProps } from "@react-md/app-bar";
 
-import { LayoutAppBarNavProps } from "./types";
-import { isToggleableLayout } from "./useLayout";
-import useNavigationVisibility from "./useNavigationVisibility";
+import LayoutAppBarTitle from "./LayoutAppBarTitle";
+import LayoutNavToggle, { LayoutWithNavToggle } from "./LayoutNavToggle";
+import { useLayoutConfig } from "./LayoutProvider";
+import { LayoutWithTitle } from "./types";
 
-/**
- * @private
- */
-export interface LayoutAppBarProps extends AppBarProps, LayoutAppBarNavProps {
+export interface BaseLayoutAppBarProps extends Omit<AppBarProps, "title"> {
   /**
-   * The id for the base `Layout` component. This is used to prefix all the
-   * element ids.
+   * Boolean if the `AppBar` should be fixed to the top of the page. Unlike the
+   * regular `AppBar`, this will be defaulted to `true`
    */
-  layoutId: string;
-
-  /**
-   * The optional app bar title.
-   */
-  appBarTitle?: ReactNode;
-
-  /**
-   * An optional ref to apply to the AppBar.
-   */
-  appBarRef?: Ref<HTMLDivElement>;
-
-  /**
-   * An optional class name ot merge to with the required layout app bar's
-   * className.
-   */
-  className?: string;
+  fixed?: boolean;
 }
 
-const block = bem("rmd-layout-header");
+export interface LayoutAppBarProps
+  extends BaseLayoutAppBarProps,
+    LayoutWithNavToggle,
+    LayoutWithTitle {}
 
 /**
- * @private
+ * This is the default implementation for an `AppBar` within the `Layout` that
+ * will conditionally render the default `LayoutNavToggle` button and
+ * `AppBarTitle` depending on specific props that were provided.
  */
-const LayoutAppBar: FC<LayoutAppBarProps> = ({
-  children,
-  layoutId,
-  appBarTitle,
-  appBarRef,
-  navIcon,
-  navIconLabel,
-  navIconLabelledBy,
-  className: propClassName,
-  ...props
-}) => {
-  const {
-    showNav,
-    layout,
-    isNavVisible,
-    isFullHeight,
-    isPersistent,
-  } = useNavigationVisibility();
+const LayoutAppBar = forwardRef<HTMLDivElement, LayoutAppBarProps>(
+  function LayoutAppBar(
+    {
+      children,
+      fixed = true,
+      navToggle: propNavToggle,
+      navToggleProps,
+      customTitle,
+      title: titleChildren,
+      titleProps,
+      ...props
+    },
+    ref
+  ) {
+    const { baseId, layout } = useLayoutConfig();
 
-  const isToggleable = isToggleableLayout(layout);
-  const isToggleableVisible = isToggleable && isNavVisible;
+    let nav = propNavToggle;
+    if (typeof nav === "undefined") {
+      // set the key to the current layout since we want the button to re-mount
+      // on layout changes so the transition does not occur
+      nav = <LayoutNavToggle key={layout} {...navToggleProps} />;
+    }
 
-  return (
-    <AppBar
-      id={`${layoutId}-header`}
-      {...props}
-      ref={appBarRef}
-      className={cn(
-        block({
-          "nav-offset": isFullHeight || isToggleableVisible,
-        }),
-        propClassName
-      )}
-    >
-      {!isPersistent && !isToggleableVisible && (
-        <AppBarNav
-          id={`${layoutId}-nav`}
-          aria-label={navIconLabel}
-          aria-labelledby={navIconLabelledBy}
-          disabled={isNavVisible}
-          onClick={showNav}
-        >
-          {navIcon}
-        </AppBarNav>
-      )}
-      {appBarTitle && (
-        <AppBarTitle id={`${layoutId}-title`} noWrap>
-          {appBarTitle}
-        </AppBarTitle>
-      )}
-      {children}
-    </AppBar>
-  );
-};
+    let title = customTitle;
+    if (typeof title === "undefined") {
+      title = (
+        <LayoutAppBarTitle {...titleProps}>{titleChildren}</LayoutAppBarTitle>
+      );
+    }
+
+    return (
+      <AppBar id={`${baseId}-header`} {...props} ref={ref} fixed={fixed}>
+        {nav}
+        {title}
+        {children}
+      </AppBar>
+    );
+  }
+);
+
+if (process.env.NODE_ENV !== "production") {
+  try {
+    const PropTypes = require("prop-types");
+
+    LayoutAppBar.propTypes = {
+      fixed: PropTypes.bool,
+      navToggle: PropTypes.node,
+      navToggleProps: PropTypes.object,
+      className: PropTypes.string,
+      customTitle: PropTypes.node,
+      title: PropTypes.node,
+      titleProps: PropTypes.object,
+      children: PropTypes.node,
+    };
+  } catch (error) {}
+}
 
 export default LayoutAppBar;
