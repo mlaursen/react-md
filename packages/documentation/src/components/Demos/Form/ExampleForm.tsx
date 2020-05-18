@@ -43,7 +43,7 @@ const ExampleForm: FC = () => {
         ))}
       </Fieldset>
       <Phone id="example-form-phone">
-        <Form className={styles.container}>
+        <Form className={styles.form}>
           <PersonSVGIcon />
           <TextField
             id="contact-name"

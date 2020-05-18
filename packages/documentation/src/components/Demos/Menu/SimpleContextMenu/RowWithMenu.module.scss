@@ -4,7 +4,7 @@
 .row {
   @include rmd-utils-hide-focus-outline;
 
-  @include rmd-utils-keyboard-only {
+  @include rmd-utils-keyboard-only(true) {
     &:focus {
       @include rmd-states-theme(box-shadow, focus-shadow);
     }

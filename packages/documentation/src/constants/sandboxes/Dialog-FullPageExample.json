@@ -60,7 +60,7 @@
     "isBinary": false
   },
   "src/FullPageExample.module.scss": {
-    "content": "@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.button {\n  @include rmd-utils-keyboard-only {\n    $start-shadow: none;\n    $end-shadow: inset 0 0 0 2px $rmd-black-base;\n\n    @include rmd-transition-shadow-transition($start-shadow, $end-shadow, '&:focus', false);\n  }\n\n  border-radius: 0;\n  margin: 1rem;\n  overflow: hidden;\n  padding: 0;\n\n  &:focus,\n  &:hover {\n    img {\n      transform: scale(1.25);\n    }\n  }\n\n  img {\n    @include rmd-transition(standard);\n\n    transition: transform 0.15s;\n  }\n}\n\n.preview {\n  @include rmd-app-bar-theme(margin-top, height);\n\n  max-height: calc(100% - #{rmd-app-bar-theme-var(height)});\n}\n",
+    "content": "@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.button {\n  @include rmd-utils-keyboard-only(true) {\n    $start-shadow: none;\n    $end-shadow: inset 0 0 0 2px $rmd-black-base;\n\n    @include rmd-transition-shadow-transition($start-shadow, $end-shadow, '&:focus', false);\n  }\n\n  border-radius: 0;\n  margin: 1rem;\n  overflow: hidden;\n  padding: 0;\n\n  &:focus,\n  &:hover {\n    img {\n      transform: scale(1.25);\n    }\n  }\n\n  img {\n    @include rmd-transition(standard);\n\n    transition: transform 0.15s;\n  }\n}\n\n.preview {\n  @include rmd-app-bar-theme(margin-top, height);\n\n  max-height: calc(100% - #{rmd-app-bar-theme-var(height)});\n}\n",
     "isBinary": false
   },
   "src/createIdGenerator.ts": {
