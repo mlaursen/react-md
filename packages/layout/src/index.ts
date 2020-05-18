@@ -23,6 +23,9 @@ export * from "./LayoutNavigationHeader";
 export { default as LayoutTree } from "./LayoutTree";
 export * from "./LayoutTree";
 
+export { default as LayoutCloseNavigationButton } from "./LayoutCloseNavigationButton";
+export * from "./LayoutCloseNavigationButton";
+
 export { default as LayoutMain } from "./LayoutMain";
 export * from "./LayoutMain";
 

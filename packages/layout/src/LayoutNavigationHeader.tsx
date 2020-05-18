@@ -78,7 +78,7 @@ const LayoutNavigationHeader = forwardRef<
 
   let title: ReactNode = null;
   if (propTitle) {
-    title = <AppBarTitle {...titleProps}>{title}</AppBarTitle>;
+    title = <AppBarTitle {...titleProps}>{propTitle}</AppBarTitle>;
   }
 
   let action = closeNav;

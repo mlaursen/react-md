@@ -4,9 +4,9 @@ import React, {
   ReactNode,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
+  useRef,
 } from "react";
 import { useAppSize } from "@react-md/utils";
 
@@ -120,24 +120,23 @@ const LayoutProvider: FC<LayoutProviderProps> = ({
 
   const { isDesktop } = appSize;
   const [visible, setVisible] = useState(isPersistent && isDesktop);
-
-  useEffect(() => {
+  const prevLayout = useRef(layout);
+  if (prevLayout.current !== layout) {
+    prevLayout.current = layout;
     if (visible !== isPersistent) {
       setVisible(isPersistent);
     }
-
-    // only want this to be fired when the layout changes to ensure that
-    // the visiiblity is updated
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPersistent]);
+  }
 
   const showNav = useCallback(() => {
     setVisible(true);
   }, []);
 
   const hideNav = useCallback(() => {
-    setVisible(false);
-  }, []);
+    if (!isPersistentLayout(layout)) {
+      setVisible(false);
+    }
+  }, [layout]);
 
   const value = useMemo(
     () => ({

@@ -136,6 +136,7 @@ const LayoutNavigation = forwardRef<HTMLDivElement, LayoutNavigationProps>(
     return (
       <Sheet
         {...props}
+        key={layout}
         id={id}
         ref={ref}
         aria-label={ariaLabel}

@@ -3,9 +3,15 @@ import { AppBarAction, AppBarActionProps } from "@react-md/app-bar";
 import { useIcon } from "@react-md/icon";
 
 import { useLayoutConfig } from "./LayoutProvider";
-import { isPersistentLayout, isTemporaryLayout } from "./utils";
+import { isToggleableLayout } from "./utils";
 
-export type LayoutCloseNavigationButtonProps = AppBarActionProps;
+export interface LayoutCloseNavigationButtonProps extends AppBarActionProps {
+  /**
+   * Boolean if the button should be rendered. If this is omitted, it will only
+   * be rendered for toggleable layouts.
+   */
+  rendered?: boolean;
+}
 
 /**
  * The `LayoutCloseNavigationButton` is used to close the navigation panel for
@@ -24,6 +30,7 @@ const LayoutCloseNavigationButton = forwardRef<
     last = true,
     buttonType = "icon",
     children: propChildren,
+    rendered,
     ...props
   },
   ref
@@ -42,7 +49,8 @@ const LayoutCloseNavigationButton = forwardRef<
   );
 
   const id = propId ?? `${baseId}-nav-x`;
-  if (isPersistentLayout(layout) || isTemporaryLayout(layout)) {
+  const isRendered = rendered ?? isToggleableLayout(layout);
+  if (!isRendered) {
     return null;
   }
 
@@ -76,6 +84,7 @@ if (process.env.NODE_ENV !== "production") {
       onClick: PropTypes.func,
       children: PropTypes.node,
       buttonType: PropTypes.oneOf(["icon", "text"]),
+      rendered: PropTypes.bool,
     };
   } catch (error) {}
 }
