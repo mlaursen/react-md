@@ -963,6 +963,10 @@ const tocs: TOCRecord = {
       title: "Mixins",
       anchor: "#layout-mixins",
     },
+    {
+      title: "Functions",
+      anchor: "#layout-functions",
+    },
   ],
   "/packages/link/demos": [
     {

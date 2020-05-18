@@ -3,7 +3,7 @@ import { ensureDir, writeFileSync } from "fs-extra";
 import log from "loglevel";
 import { renderSync } from "node-sass";
 import { join } from "path";
-import postcss from "postcss";
+import postcss, { AcceptedPlugin } from "postcss";
 import combineDuplicatedSelectors from "postcss-combine-duplicated-selectors";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import postcssPresetEnv from "postcss-preset-env";
@@ -100,7 +100,7 @@ $rmd-theme-light: ${tone === "light"};
       "unspecified-properties-position": "bottom",
     }),
     combineDuplicatedSelectors,
-    cssnano({ preset: "default" }),
+    cssnano({ preset: "default" }) as AcceptedPlugin,
   ]).process(unmodifiedCSS, { from: outFile });
 
   checkForInvalidCSS(css);
