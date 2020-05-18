@@ -325,7 +325,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-select-native-multiple-padding",
       description:
         "The additional amount of apdding to apply to the top of the select field container in addition to normal text field padding. This is used so the floating label does not cover the scrollable content.\n",
-      source: "packages/form/src/select/_variables.scss#L11",
+      source: "packages/form/src/select/_variables.scss#L12",
       packageName: "form",
       type: "Number",
       value: "0.75rem",
@@ -335,7 +335,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-select-native-addon-top",
       description:
         "The default position for a text-field addon when the native select is a multi-select. If this isn't set, the addon will always be centered based on the size of the select field instead.\n",
-      source: "packages/form/src/select/_variables.scss#L17",
+      source: "packages/form/src/select/_variables.scss#L18",
       packageName: "form",
       type: "Number",
       value: "1rem",
@@ -343,18 +343,19 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-listbox-z-index": {
       name: "rmd-listbox-z-index",
-      description: "The z-index to use for a temporary listbox.\n",
-      source: "packages/form/src/select/_variables.scss#L21",
+      description: "The z-index to use for a temporary listbox.",
+      source: "packages/form/src/select/_variables.scss#L24",
       packageName: "form",
       type: "Number",
-      value: "10",
+      value: "$rmd-utils-temporary-element-z-index",
+      compiled: "30",
       overridable: true,
     },
     "rmd-listbox-elevation": {
       name: "rmd-listbox-elevation",
       description:
         "The elevation level for a temporary listbox. This should be a number between 0-24 as it generates a material design box shadow value.\n",
-      source: "packages/form/src/select/_variables.scss#L26",
+      source: "packages/form/src/select/_variables.scss#L29",
       packageName: "form",
       type: "Number",
       value: "8",
@@ -364,7 +365,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-option-focused-styles",
       description:
         "The styles to apply when an option is focused with `aria-activedescendant` behavior. This should be a map of styles that should be applied.",
-      source: "packages/form/src/select/_variables.scss#L33-L35",
+      source: "packages/form/src/select/_variables.scss#L36-L38",
       packageName: "form",
       type: "Map",
       value: "(\n  box-shadow: inset 0 0 0 2px $rmd-blue-500,\n)",
@@ -375,7 +376,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-option-selected-styles",
       description:
         "The styles to apply when an option is selected. This should be a map of style properties with values to apply.",
-      source: "packages/form/src/select/_variables.scss#L43-L46",
+      source: "packages/form/src/select/_variables.scss#L46-L49",
       packageName: "form",
       type: "Map",
       value:
@@ -387,7 +388,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-option-selected-offset",
       description:
         "The amount of `left` (or right when rtl languages are used) to apply to the option's selected checkmark css.\n",
-      source: "packages/form/src/select/_variables.scss#L51",
+      source: "packages/form/src/select/_variables.scss#L54",
       packageName: "form",
       type: "Number",
       value: "0.5rem",
@@ -397,7 +398,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-option-selected-content",
       description:
         "The content to use for the selected state of the option. If this value is set to null, the `::after` styles will not be created and the `$rmd-option-horizontal-padding` variable will not be used to update the list item's horizontal padding for options. This is useful if you want to use icons or ignore the selected state instead.\n",
-      source: "packages/form/src/select/_variables.scss#L59",
+      source: "packages/form/src/select/_variables.scss#L62",
       packageName: "form",
       type: "String",
       value: "'\\2713'",
@@ -407,7 +408,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-option-horizontal-padding",
       description:
         "The amount of horizontal padding that should be applied to each option.\nThis overrides the `$rmd-list-item-horizontal-padding` css variable so that the selected checkmark styles can appear nicely.\n",
-      source: "packages/form/src/select/_variables.scss#L66",
+      source: "packages/form/src/select/_variables.scss#L69",
       see: [
         {
           name: "rmd-option-selected-content",

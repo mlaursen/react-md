@@ -3,6 +3,7 @@
 ////
 
 @import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/utils/dist/variables';
 
 /// The additional amount of apdding to apply to the top of the select field
 /// container in addition to normal text field padding. This is used so the
@@ -17,8 +18,10 @@ $rmd-select-native-multiple-padding: 0.75rem !default;
 $rmd-select-native-addon-top: 1rem !default;
 
 /// The z-index to use for a temporary listbox.
+///
+/// @require $rmd-utils-temporary-element-z-index
 /// @type Number
-$rmd-listbox-z-index: 10 !default;
+$rmd-listbox-z-index: $rmd-utils-temporary-element-z-index !default;
 
 /// The elevation level for a temporary listbox. This should be a number between
 /// 0-24 as it generates a material design box shadow value.

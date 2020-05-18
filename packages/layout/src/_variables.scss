@@ -3,6 +3,7 @@
 ////
 
 @import '~@react-md/app-bar/dist/variables';
+@import '~@react-md/dialog/dist/variables';
 @import '~@react-md/sheet/dist/variables';
 @import '~@react-md/states/dist/variables';
 
@@ -34,9 +35,9 @@ $rmd-layout-main-focus-z-index: 999 !default;
 
 /// The z-index to use for the navigation pane (`Sheet`).
 ///
-/// @require $rmd-app-bar-z-index
+/// @require $rmd-dialog-z-index
 /// @type Number
-$rmd-layout-navigation-z-index: $rmd-app-bar-z-index + 1 !default;
+$rmd-layout-navigation-z-index: $rmd-dialog-z-index !default;
 
 /// The width to use for the desktop navigation tree.
 ///

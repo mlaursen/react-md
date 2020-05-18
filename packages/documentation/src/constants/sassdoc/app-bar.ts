@@ -375,11 +375,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/app-bar/src/_variables.scss#L13",
       usedBy: [
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
-        {
-          name: "rmd-layout-navigation-z-index",
-          type: "variable",
-          packageName: "layout",
-        },
       ],
       packageName: "app-bar",
       type: "Number",

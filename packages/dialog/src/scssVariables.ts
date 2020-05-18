@@ -1,7 +1,7 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
   "rmd-dialog-elevation": 16,
-  "rmd-dialog-z-index": 26,
+  "rmd-dialog-z-index": 30,
   "rmd-dialog-vertical-margin": "1.5rem",
   "rmd-dialog-horizontal-margin": "2.5rem",
   "rmd-dialog-header-padding": "1.5rem",
@@ -20,6 +20,6 @@ export default {
     "header-padding-bottom": "1.25rem",
     "content-padding": "1.5rem",
     "footer-padding": "0.5rem",
-    "z-index": 26,
+    "z-index": 30,
   },
 };

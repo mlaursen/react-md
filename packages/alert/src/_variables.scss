@@ -5,6 +5,7 @@
 @import '~@react-md/transition/dist/variables';
 @import '~@react-md/theme/dist/color-palette';
 @import '~@react-md/theme/dist/variables';
+@import '~@react-md/utils/dist/variables';
 
 /// The amount of margin to apply to the snackbar so that it does not touch the
 /// viewport edges.
@@ -12,8 +13,10 @@
 $rmd-snackbar-margin: 1rem !default;
 
 /// The z-index for the snackbar.
+///
+/// @require $rmd-utils-temporary-element-z-index
 /// @type Number
-$rmd-snackbar-z-index: 100 !default;
+$rmd-snackbar-z-index: $rmd-utils-temporary-element-z-index + 10 !default;
 
 /// The border radius to apply to a toast.
 /// @type Number

@@ -6,6 +6,7 @@
 @import '~@react-md/theme/dist/color-a11y';
 @import '~@react-md/theme/dist/functions';
 @import '~@react-md/transition/dist/variables';
+@import '~@react-md/utils/dist/variables';
 
 /// The background color to use for tooltips.
 /// @type Color
@@ -39,8 +40,10 @@ $rmd-tooltip-enter-duration: $rmd-transition-standard-time !default;
 $rmd-tooltip-exit-duration: $rmd-transition-standard-time !default;
 
 /// The z-index to use for tooltips when they are visible.
+///
+/// @require $rmd-utils-temporary-element-z-index
 /// @type Number
-$rmd-tooltip-z-index: 100 !default;
+$rmd-tooltip-z-index: $rmd-utils-temporary-element-z-index + 20 !default;
 
 /// The font size to use for tooltips
 ///

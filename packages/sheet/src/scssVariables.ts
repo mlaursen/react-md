@@ -1,8 +1,8 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
   "rmd-sheet-z-index": 5,
-  "rmd-sheet-raised-z-index": 17,
-  "rmd-sheet-overlay-z-index": 16,
+  "rmd-sheet-raised-z-index": 30,
+  "rmd-sheet-overlay-z-index": 30,
   "rmd-sheet-elevation": 2,
   "rmd-sheet-raised-elevation": 16,
   "rmd-sheet-enter-duration": "0.2s",

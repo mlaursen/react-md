@@ -3,10 +3,12 @@
 ////
 
 @import '~@react-md/overlay/dist/variables';
+@import '~@react-md/utils/dist/variables';
 
 /// The elevation (box-shadow) to use for the dialog when it is not full page.
 /// This should be a number between 0 and 24 since it gets passed to the
 /// `rmd-elevation` mixin.
+///
 /// @type Number
 $rmd-dialog-elevation: 16 !default;
 
@@ -14,9 +16,9 @@ $rmd-dialog-elevation: 16 !default;
 /// case other components are using the overlay as well. The dialog's overlay
 /// will also gain this z-index value.
 ///
-/// @require $rmd-overlay-z-index
+/// @require $rmd-utils-temporary-element-z-index
 /// @type Number
-$rmd-dialog-z-index: $rmd-overlay-z-index + 10 !default;
+$rmd-dialog-z-index: $rmd-utils-temporary-element-z-index !default;
 
 /// The amount of vertical viewport spacing there should be between the edge of
 /// the screen and a non-full page dialog. This value should be big enough so

@@ -48,7 +48,7 @@ export default {
   "rmd-label-padding": "0.25rem",
   "rmd-select-native-multiple-padding": "0.75rem",
   "rmd-select-native-addon-top": "1rem",
-  "rmd-listbox-z-index": 10,
+  "rmd-listbox-z-index": 30,
   "rmd-listbox-elevation": 8,
   "rmd-option-focused-styles": { "box-shadow": "inset 0 0 0 2px #2196f3" },
   "rmd-option-selected-styles": {

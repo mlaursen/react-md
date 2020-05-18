@@ -6,26 +6,29 @@
 @import '~@react-md/transition/dist/variables';
 @import '~@react-md/theme/dist/functions';
 @import '~@react-md/theme/dist/variables';
+@import '~@react-md/utils/dist/variables';
 
 /// The z-index to use for sheets that normally appear without an overlay and
 /// inline with other content. This should be a number greater than 1 in case
 /// you have sticky table headers.
+///
 /// @type Number
 $rmd-sheet-z-index: 5 !default;
 
 /// The z-index to use for sheets that normally appear with an overlay and
 /// covering other elements on the page.
 ///
-/// @require $rmd-overlay-z-index
+/// @require $rmd-utils-temporary-element-z-index
 /// @type Number
-$rmd-sheet-raised-z-index: $rmd-overlay-z-index + 1 !default;
+$rmd-sheet-raised-z-index: $rmd-utils-temporary-element-z-index !default;
 
 /// The z-index to use for a sheet's overlay. This value just needs to be
 /// smaller than the `$rmd-sheet-raised-z-index` value so the overlay does not
 /// cover the sheet.
 ///
+/// @require $rmd-overlay-z-index
 /// @type Number
-$rmd-sheet-overlay-z-index: $rmd-sheet-raised-z-index - 1 !default;
+$rmd-sheet-overlay-z-index: $rmd-overlay-z-index !default;
 
 /// This is the default elevation to use for sheets that do not have an overlay.
 /// This is normally used for showing sheets more "inline" with other content.

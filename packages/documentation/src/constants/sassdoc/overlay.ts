@@ -146,25 +146,25 @@ const sassdoc: PackageSassDoc = {
   variables: {
     "rmd-overlay-z-index": {
       name: "rmd-overlay-z-index",
-      description: "The z-index for overlays.\n",
-      source: "packages/overlay/src/_variables.scss#L11",
+      description: "The z-index for overlays.",
+      source: "packages/overlay/src/_variables.scss#L13",
       usedBy: [
-        { name: "rmd-dialog-z-index", type: "variable", packageName: "dialog" },
         {
-          name: "rmd-sheet-raised-z-index",
+          name: "rmd-sheet-overlay-z-index",
           type: "variable",
           packageName: "sheet",
         },
       ],
       packageName: "overlay",
       type: "Number",
-      value: "16",
+      value: "$rmd-utils-temporary-element-z-index",
+      compiled: "30",
       overridable: true,
     },
     "rmd-overlay-transition-duration": {
       name: "rmd-overlay-transition-duration",
       description: "The transition duration for overlays entering and leaving.",
-      source: "packages/overlay/src/_variables.scss#L17",
+      source: "packages/overlay/src/_variables.scss#L19",
       usedBy: [{ name: "rmd-overlay", type: "mixin", packageName: "overlay" }],
       packageName: "overlay",
       type: "Number",
@@ -176,7 +176,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-overlay-color",
       description:
         "The background color for the overlay. It is recommended to make sure that an opacity is applied instead of a static color.",
-      source: "packages/overlay/src/_variables.scss#L24",
+      source: "packages/overlay/src/_variables.scss#L26",
       packageName: "overlay",
       type: "Color",
       value: "rgba($rmd-black-base, 0.4)",
@@ -187,7 +187,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-overlay-theme-values",
       description:
         'A Map of all the "themeable" parts of the overlay package. Every key in this map will be used to create a css variable to dynamically update the values of the overlay as needed.\n',
-      source: "packages/overlay/src/_variables.scss#L30-L34",
+      source: "packages/overlay/src/_variables.scss#L32-L36",
       usedBy: [
         { name: "rmd-overlay-theme", type: "function", packageName: "overlay" },
         {
@@ -208,7 +208,7 @@ const sassdoc: PackageSassDoc = {
       value:
         "(\n  background-color: $rmd-overlay-color,\n  active-opacity: 1,\n  z-index: $rmd-overlay-z-index,\n)",
       compiled:
-        "(\n  background-color: rgba(0, 0, 0, 0.4),\n  active-opacity: 1,\n  z-index: 16,\n)",
+        "(\n  background-color: rgba(0, 0, 0, 0.4),\n  active-opacity: 1,\n  z-index: 30,\n)",
       overridable: true,
     },
   },

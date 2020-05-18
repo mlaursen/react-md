@@ -1,7 +1,7 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
   "rmd-snackbar-margin": "1rem",
-  "rmd-snackbar-z-index": 100,
+  "rmd-snackbar-z-index": 40,
   "rmd-toast-border-radius": "0.25rem",
   "rmd-toast-light-background-color": "#323232",
   "rmd-toast-light-color": "#fff",

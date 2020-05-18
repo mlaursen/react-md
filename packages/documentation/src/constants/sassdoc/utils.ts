@@ -825,11 +825,46 @@ const sassdoc: PackageSassDoc = {
       value: "true",
       overridable: true,
     },
+    "rmd-utils-temporary-element-z-index": {
+      name: "rmd-utils-temporary-element-z-index",
+      description:
+        "The default z-index to use for temporary elements like dialogs and menus. It is recommended to keep all of these the same since it makes portalling work much better. If the z-indexes are different, you might need to update the portal container to be a parent temporary element instead.",
+      source: "packages/utils/src/_variables.scss#L30",
+      usedBy: [
+        {
+          name: "rmd-snackbar-z-index",
+          type: "variable",
+          packageName: "alert",
+        },
+        { name: "rmd-dialog-z-index", type: "variable", packageName: "dialog" },
+        { name: "rmd-listbox-z-index", type: "variable", packageName: "form" },
+        { name: "rmd-menu-z-index", type: "variable", packageName: "menu" },
+        {
+          name: "rmd-overlay-z-index",
+          type: "variable",
+          packageName: "overlay",
+        },
+        {
+          name: "rmd-sheet-raised-z-index",
+          type: "variable",
+          packageName: "sheet",
+        },
+        {
+          name: "rmd-tooltip-z-index",
+          type: "variable",
+          packageName: "tooltip",
+        },
+      ],
+      packageName: "utils",
+      type: "Number",
+      value: "30",
+      overridable: true,
+    },
     "rmd-utils-swappable-positions": {
       name: "rmd-utils-swappable-positions",
       description:
         "A list of the supported swappable variables for `rmd-utils-swap-position`.\n",
-      source: "packages/utils/src/_variables.scss#L26",
+      source: "packages/utils/src/_variables.scss#L34",
       usedBy: [
         {
           name: "rmd-utils-swap-position",
@@ -846,7 +881,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-swappable-position-prefixes",
       description:
         "A list of the supported swappable variables prefixes for `rmd-utils-swap-position`.\n",
-      source: "packages/utils/src/_variables.scss#L31",
+      source: "packages/utils/src/_variables.scss#L39",
       usedBy: [
         {
           name: "rmd-utils-swap-position",
@@ -864,7 +899,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-skip-validation",
       description:
         "Boolean if the validation for valid themes and other things should occur. It is recommended to keep this enabled, but you might see a build speed perf by setting this to true.\n",
-      source: "packages/utils/src/_variables.scss#L37",
+      source: "packages/utils/src/_variables.scss#L45",
       packageName: "utils",
       type: "Boolean",
       value: "false",
@@ -874,7 +909,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-fix-moz-focus",
       description:
         "Boolean if the moz focusring and inner-focus styles should be removed for the `rmd-utils-hide-focus-outline` mixin by default. This is generally recommended since custom focus styles will be added instead.\n",
-      source: "packages/utils/src/_variables.scss#L43",
+      source: "packages/utils/src/_variables.scss#L51",
       packageName: "utils",
       type: "Boolean",
       value: "true",
@@ -884,7 +919,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-phone-max-width",
       description:
         "The max width for a phone when in portrait or landscape mode.\n",
-      source: "packages/utils/src/_variables.scss#L47",
+      source: "packages/utils/src/_variables.scss#L55",
       usedBy: [
         { name: "rmd-utils-phone-media", type: "mixin", packageName: "utils" },
       ],
@@ -897,7 +932,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-tablet-min-width",
       description:
         "The min width for a tablet in portrait or landscape mode.\n",
-      source: "packages/utils/src/_variables.scss#L51",
+      source: "packages/utils/src/_variables.scss#L59",
       usedBy: [
         { name: "rmd-utils-tablet-media", type: "mixin", packageName: "utils" },
         {
@@ -915,7 +950,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-tablet-max-width",
       description:
         "The max width for a tablet in portrait or landscape mode.\n",
-      source: "packages/utils/src/_variables.scss#L55",
+      source: "packages/utils/src/_variables.scss#L63",
       usedBy: [
         {
           name: "rmd-utils-tablet-only-media",
@@ -931,7 +966,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-utils-desktop-min-width": {
       name: "rmd-utils-desktop-min-width",
       description: "The min width for a desktop screen.\n",
-      source: "packages/utils/src/_variables.scss#L59",
+      source: "packages/utils/src/_variables.scss#L67",
       usedBy: [
         {
           name: "rmd-utils-desktop-media",
@@ -947,7 +982,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-utils-large-desktop-min-width": {
       name: "rmd-utils-large-desktop-min-width",
       description: "The min width for a large desktop screen.\n",
-      source: "packages/utils/src/_variables.scss#L63",
+      source: "packages/utils/src/_variables.scss#L71",
       usedBy: [
         {
           name: "rmd-utils-large-desktop-media",
@@ -964,7 +999,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-columns-var",
       description:
         "The css variable that is used to track how many columns there are within the `Grid` component.\n",
-      source: "packages/utils/src/_variables.scss#L68",
+      source: "packages/utils/src/_variables.scss#L76",
       usedBy: [
         { name: "rmd-grid", type: "mixin", packageName: "utils" },
         { name: "rmd-grid-cell-full", type: "mixin", packageName: "utils" },
@@ -978,7 +1013,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-gutter-var",
       description:
         "The css variable that is used to apply a gutter between each cell in the `Grid` component.\n",
-      source: "packages/utils/src/_variables.scss#L73",
+      source: "packages/utils/src/_variables.scss#L81",
       usedBy: [{ name: "rmd-grid", type: "mixin", packageName: "utils" }],
       packageName: "utils",
       type: "String",
@@ -989,7 +1024,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-margin-var",
       description:
         "The css variable that is used to apply margin to cells within the grid components.\n",
-      source: "packages/utils/src/_variables.scss#L78",
+      source: "packages/utils/src/_variables.scss#L86",
       usedBy: [
         {
           name: "rmd-grid-list-cell-size",
@@ -1007,7 +1042,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-size-var",
       description:
         "The css variable that is used to apply size to cells within the `GridList` component.\n",
-      source: "packages/utils/src/_variables.scss#L83",
+      source: "packages/utils/src/_variables.scss#L91",
       usedBy: [
         {
           name: "rmd-grid-list-cell-size",
@@ -1024,7 +1059,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-padding",
       description:
         "The default amount of padding to apply to the `Grid` component. This is a bit different than the flex grid since the cells within this grid will not have outer margin.\n",
-      source: "packages/utils/src/_variables.scss#L89",
+      source: "packages/utils/src/_variables.scss#L97",
       packageName: "utils",
       type: "Number",
       value: "1rem",
@@ -1034,7 +1069,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-margin",
       description:
         "The default amount of margin to apply between each cell within the `Grid` component.\n",
-      source: "packages/utils/src/_variables.scss#L94",
+      source: "packages/utils/src/_variables.scss#L102",
       packageName: "utils",
       type: "Number",
       value: "1rem",
@@ -1044,7 +1079,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-columns",
       description:
         "The material design grid system is a bit weird and does a 4 -> 8 -> 12 column layout for phone -> tablet -> desktop. This is really nice when your grid only uses even numbers, but the second you add an odd number in there,\nit breaks down and becomes confusing.\n\nThis variable is a quick way to opt-out of this grid system and have a static number of columns for each media type.\n",
-      source: "packages/utils/src/_variables.scss#L104",
+      source: "packages/utils/src/_variables.scss#L112",
       packageName: "utils",
       type: "Number",
       value: "null",
@@ -1054,7 +1089,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-phone-columns",
       description:
         "The default number of columns to render on mobile devices in the `Grid` component.\n",
-      source: "packages/utils/src/_variables.scss#L109",
+      source: "packages/utils/src/_variables.scss#L117",
       usedBy: [
         { name: "rmd-grid-cell-full", type: "mixin", packageName: "utils" },
       ],
@@ -1068,7 +1103,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-tablet-columns",
       description:
         "The default number of columns to render on tablet devices in the `Grid` component.\n",
-      source: "packages/utils/src/_variables.scss#L114",
+      source: "packages/utils/src/_variables.scss#L122",
       packageName: "utils",
       type: "Number",
       value: "if($rmd-grid-columns, $rmd-grid-columns, 8)",
@@ -1079,7 +1114,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-desktop-columns",
       description:
         "The default number of columns to render on desktop screens in the `Grid` component.\n",
-      source: "packages/utils/src/_variables.scss#L119",
+      source: "packages/utils/src/_variables.scss#L127",
       packageName: "utils",
       type: "Number",
       value: "if($rmd-grid-columns, $rmd-grid-columns, 12)",
@@ -1090,7 +1125,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-large-desktop-columns",
       description:
         "The default number of columns to render on large desktop screens in the `Grid` component.\n",
-      source: "packages/utils/src/_variables.scss#L124",
+      source: "packages/utils/src/_variables.scss#L132",
       packageName: "utils",
       type: "Number",
       value: "$rmd-grid-desktop-columns",
@@ -1101,7 +1136,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-padding",
       description:
         "The default amount of padding to apply to the `GridList` component.\n",
-      source: "packages/utils/src/_variables.scss#L128",
+      source: "packages/utils/src/_variables.scss#L136",
       packageName: "utils",
       type: "Number",
       value: "0.5rem",
@@ -1111,7 +1146,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell-margin",
       description:
         "The default amount of margin to apply to each cell within the `GridList` component.\n",
-      source: "packages/utils/src/_variables.scss#L133",
+      source: "packages/utils/src/_variables.scss#L141",
       packageName: "utils",
       type: "Number",
       value: "0.5rem",
@@ -1121,7 +1156,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell-max-size",
       description:
         "The default max size that each cell can be within the `GridList` component.\n",
-      source: "packages/utils/src/_variables.scss#L137",
+      source: "packages/utils/src/_variables.scss#L145",
       packageName: "utils",
       type: "Number",
       value: "9.375rem",

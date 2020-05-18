@@ -21,6 +21,14 @@ $rmd-utils-auto-dense: false !default;
 /// @type Boolean
 $rmd-utils-enable-rtl: true !default;
 
+/// The default z-index to use for temporary elements like dialogs and menus. It
+/// is recommended to keep all of these the same since it makes portalling work
+/// much better. If the z-indexes are different, you might need to update the
+/// portal container to be a parent temporary element instead.
+///
+/// @type Number
+$rmd-utils-temporary-element-z-index: 30 !default;
+
 /// A list of the supported swappable variables for `rmd-utils-swap-position`.
 /// @type List
 $rmd-utils-swappable-positions: top right bottom left;

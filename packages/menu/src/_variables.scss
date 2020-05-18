@@ -4,6 +4,7 @@
 
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/list/dist/functions';
+@import '~@react-md/utils/dist/variables';
 
 /// The background color to use for menus
 ///
@@ -18,8 +19,10 @@ $rmd-menu-background-color: rmd-theme-var(surface) !default;
 $rmd-menu-color: rmd-theme-var(on-surface) !default;
 
 /// The z-index for menus.
+///
+/// @require $rmd-utils-temporary-element-z-index
 /// @type Number
-$rmd-menu-z-index: 11 !default;
+$rmd-menu-z-index: $rmd-utils-temporary-element-z-index !default;
 
 /// The elevation for menus. This should be a number from 0 to 24 (inclusive) as
 /// it gets passed to the `rmd-elevation` mixin.

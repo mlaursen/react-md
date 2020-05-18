@@ -2,7 +2,7 @@
 export default {
   "rmd-menu-background-color": "var(--rmd-theme-surface, #fff)",
   "rmd-menu-color": "var(--rmd-theme-on-surface, #000)",
-  "rmd-menu-z-index": 11,
+  "rmd-menu-z-index": 30,
   "rmd-menu-elevation": 8,
   "rmd-menu-min-width": "7rem",
   "rmd-menu-icon-spacing": "1rem",
@@ -11,6 +11,6 @@ export default {
     color: "var(--rmd-theme-on-surface, #000)",
     "min-width": "7rem",
     "icon-spacing": "1rem",
-    "z-index": 11,
+    "z-index": 30,
   },
 };

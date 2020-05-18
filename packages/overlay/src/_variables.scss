@@ -7,8 +7,10 @@
 @import '~@react-md/theme/dist/helpers';
 
 /// The z-index for overlays.
+///
+/// @require $rmd-utils-temporary-element-z-index
 /// @type Number
-$rmd-overlay-z-index: 16 !default;
+$rmd-overlay-z-index: $rmd-utils-temporary-element-z-index !default;
 
 /// The transition duration for overlays entering and leaving.
 ///

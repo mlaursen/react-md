@@ -140,7 +140,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-layout-enter-duration",
       description:
         "The transition time for the toggleable navigation panel to come into view or expand to full width.",
-      source: "packages/layout/src/_variables.scss#L14",
+      source: "packages/layout/src/_variables.scss#L15",
       usedBy: [
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
@@ -154,7 +154,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-layout-leave-duration",
       description:
         "The transition time for the toggleable navigation panel to leave from view or shrink to the mini width.",
-      source: "packages/layout/src/_variables.scss#L21",
+      source: "packages/layout/src/_variables.scss#L22",
       usedBy: [
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
@@ -168,7 +168,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-layout-main-focus-shadow",
       description:
         "The box-shadow to use when the `<main>` element has been keyboard focused from the `SkipToMainContent` link.",
-      source: "packages/layout/src/_variables.scss#L28",
+      source: "packages/layout/src/_variables.scss#L29",
       usedBy: [
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
@@ -182,7 +182,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-layout-main-focus-z-index",
       description:
         "The z-index to use for the `<main>` element when it is keyboard focused.\nThis z-index is just used so that it should appear over all elements.\n",
-      source: "packages/layout/src/_variables.scss#L33",
+      source: "packages/layout/src/_variables.scss#L34",
       usedBy: [
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
@@ -194,20 +194,20 @@ const sassdoc: PackageSassDoc = {
     "rmd-layout-navigation-z-index": {
       name: "rmd-layout-navigation-z-index",
       description: "The z-index to use for the navigation pane (`Sheet`).",
-      source: "packages/layout/src/_variables.scss#L39",
+      source: "packages/layout/src/_variables.scss#L40",
       usedBy: [
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "layout",
       type: "Number",
-      value: "$rmd-app-bar-z-index + 1",
-      compiled: "11",
+      value: "$rmd-dialog-z-index",
+      compiled: "30",
       overridable: true,
     },
     "rmd-layout-navigation-width": {
       name: "rmd-layout-navigation-width",
       description: "The width to use for the desktop navigation tree.",
-      source: "packages/layout/src/_variables.scss#L45",
+      source: "packages/layout/src/_variables.scss#L46",
       packageName: "layout",
       type: "Number",
       value: "$rmd-sheet-static-width",
@@ -217,7 +217,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-layout-mini-navigation-width": {
       name: "rmd-layout-mini-navigation-width",
       description: "The width to use for the mini navigation tree.",
-      source: "packages/layout/src/_variables.scss#L50",
+      source: "packages/layout/src/_variables.scss#L51",
       packageName: "layout",
       type: "Number",
       value: "4.5rem",
@@ -226,7 +226,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-layout-theme-values": {
       name: "rmd-layout-theme-values",
       description: "A map of all the themeable parts of the layout package.\n",
-      source: "packages/layout/src/_variables.scss#L54-L57",
+      source: "packages/layout/src/_variables.scss#L55-L58",
       usedBy: [
         { name: "rmd-layout-theme", type: "function", packageName: "layout" },
         {

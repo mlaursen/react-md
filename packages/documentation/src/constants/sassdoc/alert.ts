@@ -159,7 +159,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-snackbar-margin",
       description:
         "The amount of margin to apply to the snackbar so that it does not touch the viewport edges.\n",
-      source: "packages/alert/src/_variables.scss#L12",
+      source: "packages/alert/src/_variables.scss#L13",
       usedBy: [{ name: "rmd-snackbar", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -168,18 +168,19 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-snackbar-z-index": {
       name: "rmd-snackbar-z-index",
-      description: "The z-index for the snackbar.\n",
-      source: "packages/alert/src/_variables.scss#L16",
+      description: "The z-index for the snackbar.",
+      source: "packages/alert/src/_variables.scss#L19",
       usedBy: [{ name: "rmd-snackbar", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
-      value: "100",
+      value: "$rmd-utils-temporary-element-z-index + 10",
+      compiled: "40",
       overridable: true,
     },
     "rmd-toast-border-radius": {
       name: "rmd-toast-border-radius",
       description: "The border radius to apply to a toast.\n",
-      source: "packages/alert/src/_variables.scss#L20",
+      source: "packages/alert/src/_variables.scss#L23",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -189,7 +190,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-toast-light-background-color": {
       name: "rmd-toast-light-background-color",
       description: "The background color for a toast in light themes.\n",
-      source: "packages/alert/src/_variables.scss#L24",
+      source: "packages/alert/src/_variables.scss#L27",
       packageName: "alert",
       type: "Color",
       value: "#323232",
@@ -198,7 +199,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-toast-light-color": {
       name: "rmd-toast-light-color",
       description: "The text color for a toast in light themes.",
-      source: "packages/alert/src/_variables.scss#L30",
+      source: "packages/alert/src/_variables.scss#L33",
       packageName: "alert",
       type: "Color",
       value: "$rmd-white-base",
@@ -208,7 +209,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-toast-dark-background-color": {
       name: "rmd-toast-dark-background-color",
       description: "The background color for a toast in dark themes.\n",
-      source: "packages/alert/src/_variables.scss#L34",
+      source: "packages/alert/src/_variables.scss#L37",
       packageName: "alert",
       type: "Color",
       value: "$rmd-toast-light-background-color",
@@ -218,7 +219,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-toast-dark-color": {
       name: "rmd-toast-dark-color",
       description: "The text color for a toast in dark themes",
-      source: "packages/alert/src/_variables.scss#L39",
+      source: "packages/alert/src/_variables.scss#L42",
       packageName: "alert",
       type: "Color",
       value: "$rmd-toast-light-color",
@@ -228,7 +229,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-toast-background-color": {
       name: "rmd-toast-background-color",
       description: "The default background color for toasts.",
-      source: "packages/alert/src/_variables.scss#L45-L49",
+      source: "packages/alert/src/_variables.scss#L48-L52",
       packageName: "alert",
       type: "Color",
       value:
@@ -239,7 +240,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-toast-color": {
       name: "rmd-toast-color",
       description: "The default text color for toasts",
-      source: "packages/alert/src/_variables.scss#L55",
+      source: "packages/alert/src/_variables.scss#L58",
       packageName: "alert",
       type: "Color",
       value:
@@ -250,7 +251,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-toast-min-height": {
       name: "rmd-toast-min-height",
       description: "The minimum height for a single line toast.\n",
-      source: "packages/alert/src/_variables.scss#L59",
+      source: "packages/alert/src/_variables.scss#L62",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -260,7 +261,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-toast-two-line-min-height": {
       name: "rmd-toast-two-line-min-height",
       description: "The minimum height for a two line toast.\n",
-      source: "packages/alert/src/_variables.scss#L63",
+      source: "packages/alert/src/_variables.scss#L66",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -271,7 +272,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toast-min-width",
       description:
         "The min-width to apply to toasts for larger screens. Mobile devices that are smaller than this will just span the entire viewport excluding the default snackbar margin.\n",
-      source: "packages/alert/src/_variables.scss#L69",
+      source: "packages/alert/src/_variables.scss#L72",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -282,7 +283,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toast-vertical-padding",
       description:
         "The amount of padding to apply to the top and bottom of the toast.\n",
-      source: "packages/alert/src/_variables.scss#L73",
+      source: "packages/alert/src/_variables.scss#L76",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -293,7 +294,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toast-horizontal-padding",
       description:
         "The amount of padding to apply to the left and right of the toast's message.\nWhen there is also an action in the toast, the right padding will be reduced to the `$rmd-toast-action-margin`.\n",
-      source: "packages/alert/src/_variables.scss#L79",
+      source: "packages/alert/src/_variables.scss#L82",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -304,7 +305,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toast-action-margin",
       description:
         "The amount of margin to apply to the toast's action if there is one. This will be applied to the left and right of the action.\n",
-      source: "packages/alert/src/_variables.scss#L84",
+      source: "packages/alert/src/_variables.scss#L87",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -315,7 +316,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toast-stacked-action-margin-top",
       description:
         "The amount of margin-top to apply to the action button when it has been stacked within the toast.\n",
-      source: "packages/alert/src/_variables.scss#L89",
+      source: "packages/alert/src/_variables.scss#L92",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -326,7 +327,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toast-elevation",
       description:
         "The elevation to add to a toast. This will be used to create the correct box-shadow.\n",
-      source: "packages/alert/src/_variables.scss#L94",
+      source: "packages/alert/src/_variables.scss#L97",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -337,7 +338,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toast-enter-duration",
       description:
         "The transition duration for the enter animation for a toast. If this value gets updated, you'll also need to update the `timoout` prop on the `Toast` as well.",
-      source: "packages/alert/src/_variables.scss#L102",
+      source: "packages/alert/src/_variables.scss#L105",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -349,7 +350,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toast-exit-duration",
       description:
         "The transition duration for the exit animation for a toast. If this value gets updated, you'll also need to update the `timoout` prop on the `Toast` as well.",
-      source: "packages/alert/src/_variables.scss#L110",
+      source: "packages/alert/src/_variables.scss#L113",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       type: "Number",
@@ -361,7 +362,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-alert-theme-values",
       description:
         'A Map of all the "themeable" parts of the alert package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/alert/src/_variables.scss#L116-L123",
+      source: "packages/alert/src/_variables.scss#L119-L126",
       usedBy: [
         { name: "rmd-alert-theme", type: "function", packageName: "alert" },
         { name: "rmd-alert-theme-var", type: "function", packageName: "alert" },

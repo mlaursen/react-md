@@ -132,7 +132,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-menu-background-color": {
       name: "rmd-menu-background-color",
       description: "The background color to use for menus",
-      source: "packages/menu/src/_variables.scss#L12",
+      source: "packages/menu/src/_variables.scss#L13",
       packageName: "menu",
       type: "Color",
       value: "rmd-theme-var(surface)",
@@ -142,7 +142,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-menu-color": {
       name: "rmd-menu-color",
       description: "The text color to use for menus",
-      source: "packages/menu/src/_variables.scss#L18",
+      source: "packages/menu/src/_variables.scss#L19",
       packageName: "menu",
       type: "Color",
       value: "rmd-theme-var(on-surface)",
@@ -151,18 +151,19 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-menu-z-index": {
       name: "rmd-menu-z-index",
-      description: "The z-index for menus.\n",
-      source: "packages/menu/src/_variables.scss#L22",
+      description: "The z-index for menus.",
+      source: "packages/menu/src/_variables.scss#L25",
       packageName: "menu",
       type: "Number",
-      value: "11",
+      value: "$rmd-utils-temporary-element-z-index",
+      compiled: "30",
       overridable: true,
     },
     "rmd-menu-elevation": {
       name: "rmd-menu-elevation",
       description:
         "The elevation for menus. This should be a number from 0 to 24 (inclusive) as it gets passed to the `rmd-elevation` mixin.\n",
-      source: "packages/menu/src/_variables.scss#L27",
+      source: "packages/menu/src/_variables.scss#L30",
       packageName: "menu",
       type: "Number",
       value: "8",
@@ -171,7 +172,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-menu-min-width": {
       name: "rmd-menu-min-width",
       description: "The min-width to apply to menus.\n",
-      source: "packages/menu/src/_variables.scss#L31",
+      source: "packages/menu/src/_variables.scss#L34",
       packageName: "menu",
       type: "Number",
       value: "7rem",
@@ -181,7 +182,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-menu-icon-spacing",
       description:
         'The amount of spacing to use between icons and text within menu items. This really overwrites the additional spacing provided in the base `list` package since menu items are normally more dense and don\'t need to align with specific "keylines" in your app.\n',
-      source: "packages/menu/src/_variables.scss#L38",
+      source: "packages/menu/src/_variables.scss#L41",
       packageName: "menu",
       type: "Number",
       value: "1rem",
@@ -191,7 +192,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-menu-theme-values",
       description:
         'A Map of all the "themeable" parts of the menu package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/menu/src/_variables.scss#L44-L50",
+      source: "packages/menu/src/_variables.scss#L47-L53",
       usedBy: [
         { name: "rmd-menu-theme", type: "function", packageName: "menu" },
         { name: "rmd-menu-theme-var", type: "function", packageName: "menu" },
@@ -208,7 +209,7 @@ const sassdoc: PackageSassDoc = {
       value:
         "(\n  background-color: $rmd-menu-background-color,\n  color: $rmd-menu-color,\n  min-width: $rmd-menu-min-width,\n  icon-spacing: $rmd-menu-icon-spacing,\n  z-index: $rmd-menu-z-index,\n)",
       compiled:
-        "(\n  background-color: var(--rmd-theme-surface, #fff),\n  color: var(--rmd-theme-on-surface, #000),\n  min-width: 7rem,\n  icon-spacing: 1rem,\n  z-index: 11,\n)",
+        "(\n  background-color: var(--rmd-theme-surface, #fff),\n  color: var(--rmd-theme-on-surface, #000),\n  min-width: 7rem,\n  icon-spacing: 1rem,\n  z-index: 30,\n)",
       overridable: true,
     },
   },

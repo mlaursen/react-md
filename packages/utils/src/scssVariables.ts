@@ -3,6 +3,7 @@ export default {
   "rmd-utils-ios-scroll-momentum": true,
   "rmd-utils-auto-dense": true,
   "rmd-utils-enable-rtl": true,
+  "rmd-utils-temporary-element-z-index": 30,
   "rmd-utils-swappable-positions": ["top", "right", "bottom", "left"],
   "rmd-utils-swappable-position-prefixes": ["border", "margin", "padding"],
   "rmd-utils-skip-validation": true,
