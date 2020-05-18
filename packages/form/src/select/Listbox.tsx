@@ -351,6 +351,10 @@ const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
       switch (event.key) {
         case "Tab":
         case "Escape":
+          if (event.key === "Escape") {
+            event.stopPropagation();
+          }
+
           if (temporary && onRequestClose) {
             onRequestClose();
           }
