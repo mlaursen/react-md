@@ -36,7 +36,7 @@ $rmd-layout-main-focus-z-index: 999 !default;
 ///
 /// @require $rmd-app-bar-z-index
 /// @type Number
-$rmd-layout-navigation-z-index: $rmd-app-bar-z-index + 20 !default;
+$rmd-layout-navigation-z-index: $rmd-app-bar-z-index + 1 !default;
 
 /// The width to use for the desktop navigation tree.
 ///

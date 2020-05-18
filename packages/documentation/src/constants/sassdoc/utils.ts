@@ -210,6 +210,7 @@ const sassdoc: PackageSassDoc = {
         'An extremely simple util that is used to add scrolling to an element with a\n"patch" for adding scroll momentum to iOS.',
       source: "packages/utils/src/_mixins.scss#L141-L157",
       usedBy: [
+        { name: "react-md-layout", type: "mixin", packageName: "layout" },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
         { name: "react-md-table", type: "mixin", packageName: "table" },
         { name: "rmd-tree", type: "mixin", packageName: "tree" },
