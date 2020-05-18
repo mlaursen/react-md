@@ -153,6 +153,7 @@ export default function useAutoComplete({
     };
   });
   const filteredData = filterFn === "none" ? data : stateFilteredData;
+  const startsWith = filterOptions?.startsWith ?? isInlineAutocomplete;
 
   const setValue = useCallback(
     (nextValue: string) => {
@@ -166,7 +167,7 @@ export default function useAutoComplete({
           ...filterOptions,
           valueKey,
           getItemValue: getResultValue,
-          startsWith: filterOptions?.startsWith ?? isInlineAutocomplete,
+          startsWith,
         };
 
         filtered = filter(nextValue, data, options);
@@ -194,6 +195,7 @@ export default function useAutoComplete({
       getResultValue,
       value,
       match,
+      startsWith,
       valueKey,
     ]
   );

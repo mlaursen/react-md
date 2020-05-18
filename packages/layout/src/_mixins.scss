@@ -75,8 +75,8 @@
   .rmd-layout-nav {
     @include rmd-utils-scroll;
 
-    height: 100%;
     flex: 1 1 auto;
+    height: 100%;
   }
 
   .rmd-layout-tree {
