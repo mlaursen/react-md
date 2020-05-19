@@ -53,9 +53,10 @@
 
 .heading {
   @include rmd-utils-phone-media {
-    // decrease font size and line-height so it can fit on mobile screens.
+    // decrease font size and line-height so it can fit on mobile screens. this
+    // should match the size in Markdown.module.scss
     &.rmd-typography--headline-2 {
-      @include rmd-typography-value(headline-3, font-size, line-height);
+      @include rmd-typography-value(headline-4, font-size, line-height);
     }
   }
 
