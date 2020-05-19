@@ -54,7 +54,7 @@
     "isBinary": false
   },
   "src/RowWithMenu.module.scss": {
-    "content": "@import '~@react-md/states/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.row {\n  @include rmd-utils-hide-focus-outline;\n\n  @include rmd-utils-keyboard-only(true) {\n    &:focus {\n      @include rmd-states-theme(box-shadow, focus-shadow);\n    }\n  }\n}\n",
+    "content": "@import '~@react-md/states/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.row {\n  @include rmd-utils-hide-focus-outline;\n\n  @include rmd-utils-keyboard-only(true) {\n    &:focus {\n      // Note: box-shadow does not work on `<tr>` in safari (well anything that\n      // isn't `display: block`). You should handle focus behavior differently\n      // in a real app\n      @include rmd-states-theme(box-shadow, focus-shadow);\n    }\n  }\n}\n",
     "isBinary": false
   },
   "src/RowWithMenu.tsx": {

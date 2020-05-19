@@ -6,6 +6,9 @@
 
   @include rmd-utils-keyboard-only(true) {
     &:focus {
+      // Note: box-shadow does not work on `<tr>` in safari (well anything that
+      // isn't `display: block`). You should handle focus behavior differently
+      // in a real app
       @include rmd-states-theme(box-shadow, focus-shadow);
     }
   }
