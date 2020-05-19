@@ -172,7 +172,7 @@ export default async function generate({
   };
 
   const aliasRegExp = new RegExp(
-    `(${aliases.join("|").replace(/src\//g, "")}).*/(?=[A-z]+(.[a-z]+)?")`,
+    `"(${aliases.join("|").replace(/src\//g, "")}).*/(?=[A-z]+(.[a-z]+)?")`,
     "g"
   );
 
@@ -242,7 +242,7 @@ export default async function generate({
           content = content
             .replace(/^import Code.+;$/gm, "")
             .replace(/<\/?Code/g, "<code")
-            .replace(aliasRegExp, aliasReplacement);
+            .replace(aliasRegExp, `"${aliasReplacement}`);
         }
 
         if (demoPath === filePath) {

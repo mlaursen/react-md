@@ -9,15 +9,7 @@
     "target": "esnext",
     "rootDir": "src",
     "baseUrl": "src",
-    "isolatedModules": true,
-    "paths": {
-      "constants/*": ["constants/*"],
-      "components/*": ["components/*"],
-      "hooks/*": ["hooks/*"],
-      "icons/*": ["icons/*"],
-      "pages/*": ["pages/*"],
-      "utils/*": ["utils/*"]
-    }
+    "isolatedModules": true
   },
   "include": [
     "src"

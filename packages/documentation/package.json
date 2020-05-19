@@ -88,7 +88,6 @@
     "@types/qs": "^6.9.2",
     "@types/react-virtualized": "^9.21.10",
     "babel-plugin-inline-react-svg": "^1.1.1",
-    "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-prismjs": "^2.0.1",
     "cross-env": "^7.0.2",
     "next-images": "^1.4.0",

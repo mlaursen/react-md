@@ -1,8 +1,15 @@
 import { execSync } from "child_process";
-import { ensureDir, existsSync, remove, writeJson } from "fs-extra";
+import {
+  ensureDir,
+  existsSync,
+  readdirSync,
+  remove,
+  writeJson,
+} from "fs-extra";
 import log from "loglevel";
-import path from "path";
+import path, { join } from "path";
 
+import { documentationRoot, src } from "../constants";
 import glob from "../utils/glob";
 import list from "../utils/list";
 import { toTitle } from "../utils/titles";
@@ -14,7 +21,6 @@ import generate, {
   findGeneratedSandboxes,
   getSandboxFileName,
 } from "./generate";
-import getAliases from "./getAliases";
 import getCompilerOptions from "./getCompilerOptions";
 
 export interface ResolveConfig {
@@ -57,7 +63,9 @@ async function createSandboxJsonFiles(
   log.debug(JSON.stringify(compilerOptions, null, 2));
   log.debug();
 
-  const aliases = getAliases(compilerOptions);
+  const aliases = readdirSync(join(documentationRoot, src)).map(
+    (name) => `${src}/${name}`
+  );
   const demos = (
     await Promise.all(
       demoIndexes.map((demoIndexPath) => extractDemoFiles(demoIndexPath))

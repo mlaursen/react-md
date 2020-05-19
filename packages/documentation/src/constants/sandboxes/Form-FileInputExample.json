@@ -67,7 +67,7 @@
     "isBinary": false
   },
   "src/Markdown/Markdown.module.scss": {
-    "content": "@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.p,\n.list {\n  @include rmd-typography(subtitle-1);\n}\n\n.container {\n  @include rmd-utils-phone-media {\n    @each $headline in (1 2 3) {\n      .rmd-typography--headline-#{$headline} {\n        $name: 'headline-' + ($headline + 2);\n        @include rmd-typography($name);\n      }\n    }\n  }\n\n  ul,\n  ol {\n    @include rmd-utils-scroll;\n  }\n}\n\n.marginless {\n  > p:only-child {\n    margin-top: 0;\n  }\n}\n",
+    "content": "@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.p,\n.list {\n  @include rmd-typography(subtitle-1);\n}\n\n.container {\n  @include rmd-utils-phone-media {\n    @each $headline in (1 2 3) {\n      :global .rmd-typography--headline-#{$headline} {\n        $name: 'headline-' + ($headline + 2);\n        @include rmd-typography($name);\n      }\n    }\n  }\n\n  ul,\n  ol {\n    @include rmd-utils-scroll;\n  }\n}\n\n.marginless {\n  > p:only-child {\n    margin-top: 0;\n  }\n}\n",
     "isBinary": false
   },
   "src/Markdown/utils.ts": {
