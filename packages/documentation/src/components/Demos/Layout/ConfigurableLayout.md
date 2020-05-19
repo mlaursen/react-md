@@ -1,8 +1,8 @@
 The `Layout` component is used to structure the general layout within your app
 which can be configured for each app size breakpoint (see
 [AppSizeListener](/packages/utils/demos#app-size-listener-example-title) for
-more informat). A general layout has a fixed `AppBar` at the top of the page, a
-`<main>` element that contains your app's main content, a configurable
+more information). A general layout has a fixed `AppBar` at the top of the page,
+a `<main>` element that contains your app's main content, a configurable
 navigation `Tree`, and a keyboard focusable only link that can skip everything
 in the `AppBar` and navigation `Tree` and focus the `<main>` content instead.
 
