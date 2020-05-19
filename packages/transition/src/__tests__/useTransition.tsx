@@ -1,4 +1,4 @@
-import React, { MutableRefObject, FC, Component, Ref, createRef } from "react";
+import React, { MutableRefObject, FC, Ref, createRef } from "react";
 import { render, act } from "@testing-library/react";
 
 import useTransition, { TransitionReturnValue } from "../useTransition";
@@ -208,52 +208,6 @@ describe("useTransition", () => {
     expect(onExit).toBeCalledWith(nodeRef.current);
     expect(onExiting).toBeCalledWith(nodeRef.current);
     expect(onExited).toBeCalledWith(nodeRef.current);
-  });
-
-  it("should throw an during the transition if the ref is not correctly passed to a DOM node", () => {
-    // hide errors in console due to how the ErrorReporting works in React
-    // even though I expect it to throw error, it'll still log it
-    const error = jest.spyOn(console, "error");
-    error.mockImplementation(() => {});
-
-    interface ErrorTestProps {
-      transitionIn: boolean;
-    }
-
-    const Test1 = ({ transitionIn }: ErrorTestProps) => {
-      useTransition({ transitionIn, timeout: 200 });
-      return null;
-    };
-
-    let { rerender } = render(<Test1 transitionIn={false} />);
-
-    expect(() => rerender(<Test1 transitionIn />)).toThrowError(
-      new Error("Node not provided. Ref not passed correctly to child")
-    );
-
-    class CustomComponent extends Component {
-      public render() {
-        return <div />;
-      }
-    }
-
-    const Test2 = ({ transitionIn }: ErrorTestProps) => {
-      const { ref } = useTransition({ transitionIn, timeout: 200 });
-      return (
-        <CustomComponent
-          // this is caught by TS, but not for JS devs
-          ref={(ref as unknown) as MutableRefObject<CustomComponent>}
-        />
-      );
-    };
-
-    ({ rerender } = render(<Test2 transitionIn={false} />));
-
-    expect(() => rerender(<Test2 transitionIn />)).toThrowError(
-      new Error("Node is not an HTMLElement")
-    );
-
-    error.mockRestore();
   });
 
   it("should only access the `node.scrollTop` if the repaint option is enabled only on the ENTER, ENTERING, EXIT, EXITING phases", () => {

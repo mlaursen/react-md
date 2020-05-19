@@ -23,7 +23,6 @@ import {
 import getNextStage from "./getNextStage";
 import getTimeout from "./getTimeout";
 import getTimeoutDuration from "./getTimeoutDuration";
-import getNode from "./getNode";
 
 export interface TransitionState {
   /**
@@ -236,53 +235,55 @@ export default function useTransition<E extends HTMLElement = HTMLDivElement>({
       return;
     }
 
-    const node = getNode(nodeRef);
-    if (repaint && stage !== EXITED && stage !== ENTERED) {
-      // force repaint for CSS transitions
-      // eslint-disable-next-line no-unused-expressions
-      node.scrollTop;
-    }
+    const node = nodeRef.current;
+    if (node) {
+      if (repaint && stage !== EXITED && stage !== ENTERED) {
+        // force repaint for CSS transitions
+        // eslint-disable-next-line no-unused-expressions
+        node.scrollTop;
+      }
 
-    const {
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-    } = handlers.current;
-    switch (stage) {
-      case ENTER:
-        if (onEnter) {
-          onEnter(node, appearing);
-        }
-        break;
-      case ENTERING:
-        if (onEntering) {
-          onEntering(node, appearing);
-        }
-        break;
-      case ENTERED:
-        if (onEntered) {
-          onEntered(node, appearing);
-        }
-        break;
-      case EXIT:
-        if (onExit) {
-          onExit(node);
-        }
-        break;
-      case EXITING:
-        if (onExiting) {
-          onExiting(node);
-        }
-        break;
-      case EXITED:
-        if (onExited) {
-          onExited(node);
-        }
-        break;
-      // no default
+      const {
+        onEnter,
+        onEntering,
+        onEntered,
+        onExit,
+        onExiting,
+        onExited,
+      } = handlers.current;
+      switch (stage) {
+        case ENTER:
+          if (onEnter) {
+            onEnter(node, appearing);
+          }
+          break;
+        case ENTERING:
+          if (onEntering) {
+            onEntering(node, appearing);
+          }
+          break;
+        case ENTERED:
+          if (onEntered) {
+            onEntered(node, appearing);
+          }
+          break;
+        case EXIT:
+          if (onExit) {
+            onExit(node);
+          }
+          break;
+        case EXITING:
+          if (onExiting) {
+            onExiting(node);
+          }
+          break;
+        case EXITED:
+          if (onExited) {
+            onExited(node);
+          }
+          break;
+        // no default
+      }
     }
 
     const nextStage = getNextStage(stage);
