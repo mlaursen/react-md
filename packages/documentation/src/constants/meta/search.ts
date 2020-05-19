@@ -1064,6 +1064,22 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/layout/api",
   },
   {
+    title: "Layout Demos",
+    summary:
+      "Demos using the @react-md/layout's exported components, hooks, and utils.",
+    type: "demos",
+    pageUrl: "/packages/layout/demos",
+    pathname: "/packages/layout/demos",
+  },
+  {
+    title: "Layout Demo - Configurable Layout",
+    summary:
+      "The Layout component is used to structure the general layout within your app which can be configured for each app size breakpoint (see AppSizeListener for more information). A general layout has a fixed AppBar at the top of the page, a <main> element that contains your app's main content, a configurable navigation Tree, and a keyboard focusable only link that can skip everything in the AppBar and navigation Tree and focus the <main> content instead.",
+    type: "demo",
+    pageUrl: "/packages/layout/demos#configurable-layout-title",
+    pathname: "/packages/layout/demos#configurable-layout-title",
+  },
+  {
     title: "Layout Installation",
     summary:
       "Create your app's layout and configure all of react-md in one place. There are eight different types of layouts supported that change automatically based on the window size and have reasonable defaults to get you started. The base layout will create a persistent navigation tree with a fixed header on desktop, while the navigation tree will be toggleable in a sliding sheet on mobile.",

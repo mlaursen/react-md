@@ -944,6 +944,12 @@ const tocs: TOCRecord = {
       anchor: "#icon-functions",
     },
   ],
+  "/packages/layout/demos": [
+    {
+      anchor: "#configurable-layout",
+      title: "Configurable Layout",
+    },
+  ],
   "/packages/layout/installation": [
     {
       anchor: "#installation",
