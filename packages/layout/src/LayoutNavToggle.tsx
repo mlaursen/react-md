@@ -1,11 +1,10 @@
-import React, { forwardRef, ReactNode, useCallback } from "react";
+import React, { forwardRef, ReactNode } from "react";
 import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { AppBarNav, AppBarNavProps } from "@react-md/app-bar";
 import { useIcon } from "@react-md/icon";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";
 import { TransitionTimeout, useCSSTransition } from "@react-md/transition";
-import { applyRef } from "@react-md/utils";
 
 import { DEFFAULT_LAYOUT_NAV_TOGGLE_CLASS_NAMES } from "./constants";
 import { useLayoutConfig } from "./LayoutProvider";
@@ -109,20 +108,13 @@ const LayoutNavToggle = forwardRef<HTMLButtonElement, LayoutNavToggleProps>(
     }
 
     const [, { ref, className }] = useCSSTransition<HTMLButtonElement>({
+      ref: forwardedRef,
       transitionIn: offset,
       temporary: false,
       className: propClassName,
       timeout,
       classNames,
     });
-
-    const refHandler = useCallback(
-      (instance: HTMLButtonElement | null) => {
-        applyRef(instance, forwardedRef);
-        ref.current = instance;
-      },
-      [ref, forwardedRef]
-    );
 
     if (!isRendered) {
       return null;
@@ -159,7 +151,7 @@ const LayoutNavToggle = forwardRef<HTMLButtonElement, LayoutNavToggleProps>(
         {...props}
         aria-label={ariaLabel}
         aria-pressed={ariaPressed}
-        ref={refHandler}
+        ref={ref}
         onClick={(event) => {
           if (onClick) {
             onClick(event);

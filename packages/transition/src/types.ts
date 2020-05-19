@@ -1,4 +1,4 @@
-import { CSSProperties, MutableRefObject } from "react";
+import { CSSProperties, Ref, RefCallback } from "react";
 import {
   CSSTransitionClassNames,
   CSSTransitionProps,
@@ -155,6 +155,18 @@ export interface TransitionOptions<E extends HTMLElement = HTMLDivElement>
   appear?: boolean;
 
   /**
+   * Boolean if the transition should allow for an enter animation once the
+   * `transitionIn` booleanis set to `true`.
+   */
+  enter?: boolean;
+
+  /**
+   * Boolean if the transition should allow for an exit animation once the
+   * `transitionIn` booleanis set to `false`.
+   */
+  exit?: boolean;
+
+  /**
    * Boolean if the component should mount and unmount based on the current
    * `transitionIn` stage with a default value of `false`. When this is
    * `false`, the first result (`rendered`) in the return value array will
@@ -193,6 +205,12 @@ export interface TransitionOptions<E extends HTMLElement = HTMLDivElement>
    * the `enter` duration.
    */
   timeout: TransitionTimeout;
+
+  /**
+   * An optional ref that will get merged with the required ref for the
+   * transition to work.
+   */
+  ref?: Ref<E>;
 }
 
 export interface CSSTransitionOptions<E extends HTMLElement>
@@ -251,7 +269,7 @@ export interface CSSTransitionProvidedProps<E extends HTMLElement> {
    * the ref is still `null` or the `ref` was passed to a component instance
    * instead of a DOM node.
    */
-  ref: MutableRefObject<E | null>;
+  ref: RefCallback<E>;
 
   /**
    * The current class name based on the provided `className` options and the
@@ -320,7 +338,7 @@ export interface CollapseTransitionProvidedProps<
    * the ref is still `null` or the `ref` was passed to a component instance
    * instead of a DOM node.
    */
-  ref: MutableRefObject<E | null>;
+  ref: RefCallback<E>;
 
   /**
    * The `hidden` DOM attribute that will be enabled if the component is fully

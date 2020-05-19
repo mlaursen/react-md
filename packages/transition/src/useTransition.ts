@@ -1,10 +1,13 @@
 import {
-  MutableRefObject,
   useEffect,
   useReducer,
   useRef,
   Dispatch,
+  useCallback,
+  RefCallback,
 } from "react";
+import { applyRef } from "@react-md/utils";
+
 import { TransitionOptions } from "./types";
 import {
   TransitionStage,
@@ -54,7 +57,7 @@ export interface TransitionReturnValue<E extends HTMLElement>
    * it seems like too much work to make it conditional for those types for
    * transitions.
    */
-  ref: MutableRefObject<E | null>;
+  ref: RefCallback<E>;
 
   /**
    * A dispatch function that cna update the transition state manually. This
@@ -150,6 +153,7 @@ export default function useTransition<E extends HTMLElement = HTMLDivElement>({
   onExit,
   onExiting,
   onExited,
+  ref,
 }: TransitionOptions<E>): TransitionReturnValue<E> {
   const [{ stage, rendered, appearing }, dispatch] = useReducer(
     reducer,
@@ -320,8 +324,16 @@ export default function useTransition<E extends HTMLElement = HTMLDivElement>({
     timeout.exit,
   ]);
 
+  const refHandler = useCallback(
+    (instance: E | null) => {
+      applyRef(instance, ref);
+      nodeRef.current = instance;
+    },
+    [ref]
+  );
+
   return {
-    ref: nodeRef,
+    ref: refHandler,
     stage,
     rendered,
     appearing,

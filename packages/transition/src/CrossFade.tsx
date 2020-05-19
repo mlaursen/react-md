@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
-import { applyRef } from "@react-md/utils";
 
 import { TransitionTimeout } from "./types";
 import useCrossFade, { CrossFadeOptions } from "./useCrossFade";
@@ -78,6 +77,7 @@ const CrossFade = forwardRef<HTMLDivElement, CrossFadeProps>(function CrossFade(
   forwardedRef
 ) {
   const [rendered, { ref, className }] = useCrossFade({
+    ref: forwardedRef,
     appear,
     className: propClassName,
     onEnter,
@@ -103,14 +103,7 @@ const CrossFade = forwardRef<HTMLDivElement, CrossFadeProps>(function CrossFade(
   }
 
   return (
-    <div
-      {...props}
-      className={className}
-      ref={(instance) => {
-        applyRef(instance, forwardedRef);
-        ref.current = instance;
-      }}
-    >
+    <div {...props} className={className} ref={ref}>
       {children}
     </div>
   );

@@ -1,9 +1,9 @@
-import React, { forwardRef, HTMLAttributes, useCallback, useRef } from "react";
+import React, { forwardRef, HTMLAttributes, useRef } from "react";
 import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";
 import { TransitionTimeout, useCSSTransition } from "@react-md/transition";
-import { applyRef, bem, useIsUserInteractionMode } from "@react-md/utils";
+import { bem, useIsUserInteractionMode } from "@react-md/utils";
 
 import { DEFAULT_LAYOUT_MAIN_CLASS_NAMES } from "./constants";
 import { useLayoutConfig } from "./LayoutProvider";
@@ -97,6 +97,7 @@ const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
     }
 
     const [, { ref, className }] = useCSSTransition<HTMLDivElement>({
+      ref: forwardedRef,
       transitionIn: !!navOffset,
       temporary: false,
       className: propClassName,
@@ -110,18 +111,10 @@ const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       },
     });
 
-    const refHandler = useCallback(
-      (instance: HTMLDivElement | null) => {
-        applyRef(instance, forwardedRef);
-        ref.current = instance;
-      },
-      [ref, forwardedRef]
-    );
-
     return (
       <Component
         {...props}
-        ref={refHandler}
+        ref={ref}
         tabIndex={tabIndex}
         className={cn(styles({ "header-offset": headerOffset }), className)}
       />

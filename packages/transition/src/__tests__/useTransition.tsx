@@ -1,4 +1,4 @@
-import React, { MutableRefObject, FC, Component } from "react";
+import React, { MutableRefObject, FC, Component, Ref, createRef } from "react";
 import { render, act } from "@testing-library/react";
 
 import useTransition, { TransitionReturnValue } from "../useTransition";
@@ -8,13 +8,14 @@ import { TransitionOptions } from "../types";
 type TestResult = MutableRefObject<TransitionReturnValue<HTMLDivElement>>;
 
 interface TestProps extends TransitionOptions<HTMLDivElement> {
+  nodeRef?: Ref<HTMLDivElement>;
   result: TestResult;
 }
 
 const createResultRef = (): TestResult => (({} as unknown) as TestResult);
 
-const Test: FC<TestProps> = ({ result, ...options }) => {
-  const hookResult = useTransition(options);
+const Test: FC<TestProps> = ({ result, nodeRef, ...options }) => {
+  const hookResult = useTransition({ ...options, ref: nodeRef });
   result.current = hookResult;
 
   return <div ref={hookResult.ref} />;
@@ -151,7 +152,9 @@ describe("useTransition", () => {
     const onExiting = jest.fn();
     const onExited = jest.fn();
     const result = createResultRef();
+    const nodeRef = createRef<HTMLDivElement>();
     const props = {
+      nodeRef,
       onEnter,
       onEntering,
       onEntered,
@@ -171,8 +174,8 @@ describe("useTransition", () => {
     expect(onExited).not.toBeCalled();
 
     rerender(<Test {...props} transitionIn />);
-    expect(onEnter).toBeCalledWith(result.current.ref.current, false);
-    expect(onEntering).toBeCalledWith(result.current.ref.current, false);
+    expect(onEnter).toBeCalledWith(nodeRef.current, false);
+    expect(onEntering).toBeCalledWith(nodeRef.current, false);
     expect(onEntered).not.toBeCalled();
     expect(onExit).not.toBeCalled();
     expect(onExiting).not.toBeCalled();
@@ -181,9 +184,9 @@ describe("useTransition", () => {
     act(() => {
       jest.advanceTimersByTime(200);
     });
-    expect(onEnter).toBeCalledWith(result.current.ref.current, false);
-    expect(onEntering).toBeCalledWith(result.current.ref.current, false);
-    expect(onEntered).toBeCalledWith(result.current.ref.current, false);
+    expect(onEnter).toBeCalledWith(nodeRef.current, false);
+    expect(onEntering).toBeCalledWith(nodeRef.current, false);
+    expect(onEntered).toBeCalledWith(nodeRef.current, false);
     expect(onExit).not.toBeCalled();
     expect(onExiting).not.toBeCalled();
     expect(onExited).not.toBeCalled();
@@ -192,8 +195,8 @@ describe("useTransition", () => {
     expect(onEnter).toBeCalledTimes(1);
     expect(onEntering).toBeCalledTimes(1);
     expect(onEntered).toBeCalledTimes(1);
-    expect(onExit).toBeCalledWith(result.current.ref.current);
-    expect(onExiting).toBeCalledWith(result.current.ref.current);
+    expect(onExit).toBeCalledWith(nodeRef.current);
+    expect(onExiting).toBeCalledWith(nodeRef.current);
     expect(onExited).not.toBeCalled();
 
     act(() => {
@@ -202,9 +205,9 @@ describe("useTransition", () => {
     expect(onEnter).toBeCalledTimes(1);
     expect(onEntering).toBeCalledTimes(1);
     expect(onEntered).toBeCalledTimes(1);
-    expect(onExit).toBeCalledWith(result.current.ref.current);
-    expect(onExiting).toBeCalledWith(result.current.ref.current);
-    expect(onExited).toBeCalledWith(result.current.ref.current);
+    expect(onExit).toBeCalledWith(nodeRef.current);
+    expect(onExiting).toBeCalledWith(nodeRef.current);
+    expect(onExited).toBeCalledWith(nodeRef.current);
   });
 
   it("should throw an during the transition if the ref is not correctly passed to a DOM node", () => {
@@ -272,7 +275,7 @@ describe("useTransition", () => {
     const ScrollTopTest: FC<ScrollTopTestProps> = (props) => {
       const { ref } = useTransition({ timeout: 200, ...props });
 
-      ref.current = div;
+      ref(div);
 
       return null;
     };
