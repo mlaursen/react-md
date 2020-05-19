@@ -57,6 +57,9 @@ function useHTML(children: MarkdownChildren): DangerHTML {
 type RouterArgs = [string] | [string, string];
 function getRouterArgs(href: string): RouterArgs {
   const args: RouterArgs = [href];
+  if (href.includes("/demos")) {
+    return args;
+  }
 
   const parts = href.split("/");
   const index = parts.findIndex(

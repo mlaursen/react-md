@@ -3,11 +3,7 @@ import * as marked from "marked";
 import cn from "classnames";
 
 import { GITHUB_URL } from "constants/github";
-import {
-  DEMOABLE_PACKAGES,
-  PACKAGE_NAMES,
-  SCSS_PACKAGES,
-} from "constants/packages";
+import { PACKAGE_NAMES, SCSS_PACKAGES } from "constants/packages";
 
 import styles from "./Markdown.module.scss";
 
@@ -149,10 +145,7 @@ const whitespace = "(?=\r?\n| |[^/])";
 export const packageQuickLink: Transformer = (md) =>
   md.replace(
     new RegExp(`(\\s|\\()#(${joinedNames})${whitespace}`, "g"),
-    (_, char, pkg) =>
-      `${char}[@react-md/${pkg}](/packages/${pkg}/${
-        DEMOABLE_PACKAGES.includes(pkg) ? "demos" : "installation"
-      })`
+    (_, char, pkg) => `${char}[@react-md/${pkg}](/packages/${pkg}/demos)`
   );
 
 /**

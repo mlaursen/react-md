@@ -1,0 +1,57 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Layout Example - Configurable Layout</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "isBinary": false
+  },
+  "src/index.tsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
+    "isBinary": false
+  },
+  "src/styles.scss": {
+    "content": "@import 'variables';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "isBinary": false
+  },
+  "src/_variables.scss": {
+    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "isBinary": false
+  },
+  "package.json": {
+    "content": {
+      "title": "Layout Example - Configurable Layout",
+      "description": "Example from https://react-md.dev/packages/layout/demos#configurable-layout",
+      "main": "src/index.tsx",
+      "dependencies": {
+        "@react-md/form": "next",
+        "@react-md/layout": "next",
+        "@react-md/states": "next",
+        "@react-md/theme": "next",
+        "@react-md/typography": "next",
+        "@react-md/utils": "next",
+        "classnames": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    },
+    "isBinary": false
+  },
+  "src/Demo.tsx": {
+    "content": "import React, { FC, useState } from \"react\";\nimport { Form, Select } from \"@react-md/form\";\nimport {\n  DEFAULT_DESKTOP_LAYOUT,\n  DEFAULT_LANDSCAPE_TABLET_LAYOUT,\n  DEFAULT_PHONE_LAYOUT,\n  Layout,\n  SupportedPhoneLayout,\n  SupportedTabletLayout,\n  SupportedWideLayout,\n} from \"@react-md/layout\";\nimport { Text } from \"@react-md/typography\";\nimport { Grid } from \"@react-md/utils\";\n\n\n\nimport CloseButton from \"./CloseButton\";\n\nconst PHONE_LAYOUTS: SupportedPhoneLayout[] = [\"temporary\"];\nconst TABLET_LAYOUTS: SupportedTabletLayout[] = [\n  ...PHONE_LAYOUTS,\n  \"toggleable\",\n];\nconst WIDE_LAYOUTS: SupportedWideLayout[] = [\n  ...TABLET_LAYOUTS,\n  \"clipped\",\n  \"floating\",\n  \"full-height\",\n];\n\nconst Demo: FC = () => {\n  const [phoneLayout, setPhoneLayout] = useState<SupportedPhoneLayout>(\n    DEFAULT_PHONE_LAYOUT\n  );\n  const [tabletLayout, setTabletLayout] = useState<SupportedTabletLayout>(\n    DEFAULT_LANDSCAPE_TABLET_LAYOUT\n  );\n  const [landscapeTabletLayout, setLandscapeTabletLayout] = useState<\n    SupportedTabletLayout\n  >(DEFAULT_LANDSCAPE_TABLET_LAYOUT);\n  const [desktopLayout, setDesktopLayout] = useState<SupportedWideLayout>(\n    DEFAULT_DESKTOP_LAYOUT\n  );\n\n  return (\n    <Layout\n      id=\"configurable-layout\"\n      title=\"Configurable Layout Title\"\n      navHeaderTitle=\"Another Title\"\n      phoneLayout={phoneLayout}\n      tabletLayout={tabletLayout}\n      landscapeTabletLayout={landscapeTabletLayout}\n      desktopLayout={desktopLayout}\n      navProps={{\n        children: (\n          <>\n            <CloseButton />\n            <Text style={{ padding: \"1rem\" }}>\n              Here is some amazing content that should normally be a navigation\n              tree. You can actually still display a navigation tree along with\n              any custom content you want by using the{\" \"}\n              <code>navProps.children<code>\n            </Text>\n          </>\n        ),\n      }}\n      // this is only required since I already have a main element due to the\n      // documentation site's Layout component\n      mainProps={{ component: \"div\" }}\n    >\n      <Form>\n        <Grid clone columns={2} desktopColumns={4}>\n          <Select\n            id=\"phone-layout-type\"\n            label=\"Phone Layout\"\n            value={phoneLayout}\n            options={TABLET_LAYOUTS}\n            onChange={(nextValue) =>\n              setPhoneLayout(nextValue as SupportedPhoneLayout)\n            }\n          />\n          <Select\n            id=\"tablet-layout-type\"\n            label=\"Tablet Layout\"\n            value={tabletLayout}\n            options={TABLET_LAYOUTS}\n            onChange={(nextValue) =>\n              setTabletLayout(nextValue as SupportedTabletLayout)\n            }\n          />\n          <Select\n            id=\"landscape-tablet-layout-type\"\n            label=\"Landscape Tablet Layout\"\n            value={landscapeTabletLayout}\n            options={TABLET_LAYOUTS}\n            onChange={(nextValue) =>\n              setLandscapeTabletLayout(nextValue as SupportedTabletLayout)\n            }\n          />\n          <Select\n            id=\"desktop-layout-type\"\n            label=\"Desktop Layout\"\n            value={desktopLayout}\n            options={WIDE_LAYOUTS}\n            onChange={(nextValue) =>\n              setDesktopLayout(nextValue as SupportedWideLayout)\n            }\n          />\n        </Grid>\n      </Form>\n    </Layout>\n  );\n};\n\nexport default Demo;\n",
+    "isBinary": false
+  },
+  "src/CloseButton.tsx": {
+    "content": "import React, { FC } from \"react\";\nimport {\n  useLayoutConfig,\n  isPersistentLayout,\n  LayoutCloseNavigationButton,\n} from \"@react-md/layout\";\n\nconst CloseButton: FC = () => {\n  const { layout } = useLayoutConfig();\n\n  // the default behavior for this button is only to be rendered for toggleable\n  // layouts, but want something focusable for temporary in these demos\n  return (\n    <LayoutCloseNavigationButton\n      buttonType=\"text\"\n      rendered={!isPersistentLayout(layout)}\n    >\n      Close\n    </LayoutCloseNavigationButton>\n  );\n};\n\nexport default CloseButton;\n",
+    "isBinary": false
+  }
+}

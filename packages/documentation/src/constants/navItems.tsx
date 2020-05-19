@@ -13,12 +13,7 @@ import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
 import createIdGenerator from "utils/createIdGenerator";
 import { toTitle } from "utils/toTitle";
 
-import {
-  PACKAGE_NAMES,
-  DEMOABLE_PACKAGES,
-  TYPESCRIPT_PACKAGES,
-  SCSS_PACKAGES,
-} from "./packages";
+import { PACKAGE_NAMES, TYPESCRIPT_PACKAGES, SCSS_PACKAGES } from "./packages";
 
 interface Route {
   href: string;
@@ -45,12 +40,10 @@ const uuid = createIdGenerator("nav");
 const getPackageRoutes = (name: string): Route[] => {
   const routes: Route[] = [];
 
-  if (DEMOABLE_PACKAGES.includes(name)) {
-    routes.push({
-      href: "/demos",
-      children: "Demos",
-    });
-  }
+  routes.push({
+    href: "/demos",
+    children: "Demos",
+  });
 
   routes.push({
     href: "/installation",

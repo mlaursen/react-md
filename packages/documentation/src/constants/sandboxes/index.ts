@@ -20,6 +20,7 @@ export type PackageName =
   | "ExpansionPanel"
   | "Form"
   | "Icon"
+  | "Layout"
   | "Link"
   | "List"
   | "MaterialIcons"
@@ -148,6 +149,10 @@ const sandboxes: Sandboxes = {
     OverridingDefaultIcons: () =>
       resolve(import("./Icon-OverridingDefaultIcons.json")),
     SimpleExamples: () => resolve(import("./Icon-SimpleExamples.json")),
+  },
+  Layout: {
+    ConfigurableLayout: () =>
+      resolve(import("./Layout-ConfigurableLayout.json")),
   },
   Link: {
     MaliciousTarget: () => resolve(import("./Link-MaliciousTarget.json")),
