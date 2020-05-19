@@ -146,6 +146,13 @@ export default function useAppSizeMedia({
       return;
     }
 
+    // for some reason, it's sometimes possible to fail every single matchMedia
+    // value when you are resizing the browser a lot. this is an "invalid" event
+    // so skip it. It normally happens between 760px-768px
+    if (!isPhone && !isTablet && !isDesktop && !isLargeDesktop) {
+      return;
+    }
+
     setAppSize({ isPhone, isTablet, isDesktop, isLargeDesktop, isLandscape });
   }, [isPhone, isTablet, isDesktop, isLargeDesktop, isLandscape, appSize]);
 
