@@ -41,6 +41,9 @@ const ConfigurableLayout: FC = () => {
   const [desktopLayout, setDesktopLayout] = useState<SupportedWideLayout>(
     DEFAULT_DESKTOP_LAYOUT
   );
+  const [largeDesktopLayout, setLargeDesktopLayout] = useState<
+    SupportedWideLayout
+  >(DEFAULT_DESKTOP_LAYOUT);
 
   return (
     <Layout
@@ -74,37 +77,56 @@ const ConfigurableLayout: FC = () => {
             id="phone-layout-type"
             label="Phone Layout"
             value={phoneLayout}
-            options={TABLET_LAYOUTS}
-            onChange={(nextValue) =>
-              setPhoneLayout(nextValue as SupportedPhoneLayout)
-            }
+            options={PHONE_LAYOUTS}
+            onChange={(nextValue) => {
+              if (PHONE_LAYOUTS.includes(nextValue as SupportedPhoneLayout)) {
+                setPhoneLayout(nextValue as SupportedPhoneLayout);
+              }
+            }}
           />
           <Select
             id="tablet-layout-type"
             label="Tablet Layout"
             value={tabletLayout}
             options={TABLET_LAYOUTS}
-            onChange={(nextValue) =>
-              setTabletLayout(nextValue as SupportedTabletLayout)
-            }
+            onChange={(nextValue) => {
+              if (TABLET_LAYOUTS.includes(nextValue as SupportedTabletLayout)) {
+                setTabletLayout(nextValue as SupportedTabletLayout);
+              }
+            }}
           />
           <Select
             id="landscape-tablet-layout-type"
             label="Landscape Tablet Layout"
             value={landscapeTabletLayout}
             options={TABLET_LAYOUTS}
-            onChange={(nextValue) =>
-              setLandscapeTabletLayout(nextValue as SupportedTabletLayout)
-            }
+            onChange={(nextValue) => {
+              if (TABLET_LAYOUTS.includes(nextValue as SupportedTabletLayout)) {
+                setLandscapeTabletLayout(nextValue as SupportedTabletLayout);
+              }
+            }}
           />
           <Select
             id="desktop-layout-type"
             label="Desktop Layout"
             value={desktopLayout}
             options={WIDE_LAYOUTS}
-            onChange={(nextValue) =>
-              setDesktopLayout(nextValue as SupportedWideLayout)
-            }
+            onChange={(nextValue) => {
+              if (WIDE_LAYOUTS.includes(nextValue as SupportedWideLayout)) {
+                setDesktopLayout(nextValue as SupportedWideLayout);
+              }
+            }}
+          />
+          <Select
+            id="large-desktop-layout-type"
+            label="Large Desktop Layout"
+            value={largeDesktopLayout}
+            options={WIDE_LAYOUTS}
+            onChange={(nextValue) => {
+              if (WIDE_LAYOUTS.includes(nextValue as SupportedWideLayout)) {
+                setLargeDesktopLayout(nextValue as SupportedWideLayout);
+              }
+            }}
           />
         </Grid>
       </Form>
