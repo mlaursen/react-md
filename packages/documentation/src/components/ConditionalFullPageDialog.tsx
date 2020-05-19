@@ -1,53 +1,42 @@
 import React, { FC, ReactElement, ReactNode } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
-import { Dialog, DialogContent } from "@react-md/dialog";
+import { Dialog, DialogContent, DialogProps } from "@react-md/dialog";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloseSVGIcon, LaunchSVGIcon } from "@react-md/material-icons";
 import { Text } from "@react-md/typography";
 
 import AppBarTitle from "components/AppBarTitle";
 
-export interface ConditionalFullPageDialogProps {
-  id: string;
+type AllowedDialogProps = Omit<
+  DialogProps,
+  "aria-label" | "aria-labelledby" | "onRequestClose" | "title"
+>;
+
+export interface ConditionalFullPageDialogProps extends AllowedDialogProps {
   title?: ReactNode;
   children: ReactElement;
   enable: () => void;
   disable: () => void;
-  visible: boolean;
   disabled?: boolean;
   disableAppBar?: boolean;
   disableContent?: boolean;
   disableFocusOnMount?: boolean;
 }
 
-type DefaultProps = Required<
-  Pick<
-    ConditionalFullPageDialogProps,
-    | "title"
-    | "disabled"
-    | "disableAppBar"
-    | "disableContent"
-    | "disableFocusOnMount"
-  >
->;
-type WithDefaultProps = ConditionalFullPageDialogProps & DefaultProps;
-
-const ConditionalFullPageDialog: FC<ConditionalFullPageDialogProps> = (
-  providedProps
-) => {
-  const {
-    id,
-    title,
-    children,
-    enable,
-    disable,
-    visible,
-    disabled,
-    disableAppBar,
-    disableContent,
-    disableFocusOnMount,
-  } = providedProps as WithDefaultProps;
+const ConditionalFullPageDialog: FC<ConditionalFullPageDialogProps> = ({
+  id,
+  title = "Full Page Demo",
+  children,
+  enable,
+  disable,
+  visible,
+  disabled = false,
+  disableAppBar = false,
+  disableContent = false,
+  disableFocusOnMount = false,
+  ...props
+}) => {
   if (disabled) {
     return children;
   }
@@ -67,6 +56,7 @@ const ConditionalFullPageDialog: FC<ConditionalFullPageDialogProps> = (
         <TextIconSpacing icon={<LaunchSVGIcon />}>Launch</TextIconSpacing>
       </Button>
       <Dialog
+        {...props}
         id={`${id}-dialog`}
         aria-labelledby={`${id}-dialog-title`}
         visible={visible}
@@ -93,15 +83,5 @@ const ConditionalFullPageDialog: FC<ConditionalFullPageDialogProps> = (
     </>
   );
 };
-
-const defaultProps: DefaultProps = {
-  title: "Full Page Demo",
-  disabled: false,
-  disableAppBar: false,
-  disableContent: false,
-  disableFocusOnMount: false,
-};
-
-ConditionalFullPageDialog.defaultProps = defaultProps;
 
 export default ConditionalFullPageDialog;

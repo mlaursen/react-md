@@ -14,13 +14,14 @@ interface Props extends AppBarNavProps {
 }
 
 const ClosePhone: FC<Props> = ({
+  id,
   children,
   onClick,
   floating,
   className,
   ...props
 }) => {
-  const { id, closePhone } = usePhoneContext();
+  const { id: phoneId, closePhone } = usePhoneContext();
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       if (onClick) {
@@ -35,7 +36,7 @@ const ClosePhone: FC<Props> = ({
   const button = (
     <AppBarNav
       {...props}
-      id={`${id}-close`}
+      id={id ?? `${phoneId ?? "demo"}-close`}
       onClick={handleClick}
       theme={floating ? "secondary" : undefined}
       themeType={floating ? "contained" : undefined}

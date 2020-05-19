@@ -20,35 +20,23 @@ import { DemoProps } from "./types";
 
 import styles from "./Demo.module.scss";
 
-type WithDefaultProps = DemoProps &
-  Required<
-    Pick<
-      DemoProps,
-      | "fullPage"
-      | "phoneFullPage"
-      | "mobileFullPage"
-      | "fullPageFAB"
-      | "disableCard"
-      | "emulated"
-    >
-  >;
-
-const Demo: FC<DemoProps> = (props) => {
-  const {
-    id,
-    name,
-    description,
-    fullPage,
-    phoneFullPage,
-    mobileFullPage,
-    children,
-    index,
-    packageName,
-    emulated,
-    fullPageFAB,
-    disableCard,
-  } = props as WithDefaultProps;
-
+const Demo: FC<DemoProps> = ({
+  id,
+  name,
+  description,
+  fullPage = false,
+  phoneFullPage = false,
+  mobileFullPage = false,
+  children,
+  index,
+  packageName,
+  emulated = false,
+  fullPageFAB = false,
+  fullPageProps,
+  disableCard = false,
+  disableFullPageAppBar = false,
+  disableFullPageContent = false,
+}) => {
   const title = toTitle(packageName, "");
   let fileName = `${GITHUB_DEMO_URL}/${title}/${name.replace(
     / |-|\(|\)/g,
@@ -79,10 +67,6 @@ const Demo: FC<DemoProps> = (props) => {
     );
   }
 
-  let {
-    disableFullPageAppBar,
-    disableFullPageContent,
-  } = props as WithDefaultProps;
   if (emulated && typeof emulated === "object" && !emulated.appBar) {
     disableFullPageAppBar = true;
     disableFullPageContent = true;
@@ -122,6 +106,7 @@ const Demo: FC<DemoProps> = (props) => {
             disable={disable}
             disableAppBar={disableFullPageAppBar}
             disableContent={disableFullPageContent}
+            {...fullPageProps}
           >
             <>
               {content}
@@ -134,17 +119,6 @@ const Demo: FC<DemoProps> = (props) => {
       </section>
     </>
   );
-};
-
-Demo.defaultProps = {
-  fullPage: false,
-  phoneFullPage: false,
-  mobileFullPage: false,
-  disableFullPageAppBar: false,
-  disableFullPageContent: false,
-  fullPageFAB: false,
-  disableCard: false,
-  emulated: false,
 };
 
 export default Demo;

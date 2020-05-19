@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { PhoneConfiguration } from "components/Phone/Phone";
+import { ConditionalFullPageDialogProps } from "components/ConditionalFullPageDialog";
 
 export interface DemoOptions {
   /**
@@ -28,6 +29,11 @@ export interface DemoOptions {
    * button by default that closes the modal.
    */
   fullPageFAB?: boolean;
+
+  fullPageProps?: Omit<
+    ConditionalFullPageDialogProps,
+    "id" | "children" | "enable" | "disable" | "visible"
+  >;
 
   /**
    * Boolean if only phones should be forced into a full page modal.
