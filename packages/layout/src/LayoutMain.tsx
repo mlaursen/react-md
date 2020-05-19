@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, useCallback } from "react";
+import React, { forwardRef, HTMLAttributes, useCallback, useRef } from "react";
 import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";
@@ -58,7 +58,7 @@ const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       component: Component = "main",
       navOffset: propNavOffset,
       headerOffset = false,
-      timeout = DEFAULT_SHEET_TIMEOUT,
+      timeout: propTimeout = DEFAULT_SHEET_TIMEOUT,
       classNames = DEFAULT_LAYOUT_MAIN_CLASS_NAMES,
       ...props
     },
@@ -85,12 +85,29 @@ const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       navOffset = visible && !isTemporaryLayout(layout);
     }
 
+    let timeout = propTimeout;
+    const prevLayout = useRef(layout);
+    if (prevLayout.current !== layout) {
+      // this is kind of weird and hacky, but this will allow for the required
+      // classnames to be applied to the main element based on the current
+      // layout type without needing a unique `key` for the main content. this
+      // is super nice since we really don't want to remount the full app each
+      // time the layout changes.
+      timeout = 0;
+    }
+
     const [, { ref, className }] = useCSSTransition<HTMLDivElement>({
       transitionIn: !!navOffset,
       temporary: false,
       className: propClassName,
       timeout,
       classNames,
+      onEntered: () => {
+        prevLayout.current = layout;
+      },
+      onExited: () => {
+        prevLayout.current = layout;
+      },
     });
 
     const refHandler = useCallback(
