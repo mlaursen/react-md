@@ -1,3 +1,1 @@
-import Divider from "components/Demos/Divider/index.tsx";
-
-export default Divider;
+export { default } from "components/Demos/Divider";
