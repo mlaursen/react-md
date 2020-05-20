@@ -78,7 +78,7 @@ const StyledTable: FC = () => {
         <Caption>Configured Table</Caption>
         <TableHeader>
           <TableRow>
-            {Array.from(new Array(cols), (_, colIndex) => (
+            {Array.from({ length: cols }, (_, colIndex) => (
               <TableCell key={colIndex} grow={col2Grow && colIndex === 1}>
                 {`Header ${colIndex + 1}`}
               </TableCell>
@@ -86,9 +86,9 @@ const StyledTable: FC = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Array.from(new Array(rows), (_, rowIndex) => (
+          {Array.from({ length: rows }, (_, rowIndex) => (
             <TableRow key={rowIndex} {...getRowProps(rowIndex)}>
-              {Array.from(new Array(cols), (_, colIndex) => (
+              {Array.from({ length: cols }, (_, colIndex) => (
                 <TableCell
                   key={colIndex}
                   className={styles.cell}

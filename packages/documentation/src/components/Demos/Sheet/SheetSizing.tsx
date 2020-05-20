@@ -116,7 +116,7 @@ const SheetSizing: FC = () => {
           </AppBar>
           <DialogContent>
             <List>
-              {Array.from(new Array(10), (_, i) => (
+              {Array.from({ length: 10 }, (_, i) => (
                 <ListItem id={`example-sheet-item-${i + 1}`} key={i}>
                   {`Item ${i + 1}`}
                 </ListItem>

@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 
 import NativeSelect from "../NativeSelect";
 
-const options = Array.from(new Array(3), (_, i) => `Option ${i + 1}`);
+const options = Array.from({ length: 3 }, (_, i) => `Option ${i + 1}`);
 const PROPS = {
   id: "select",
   children: options.map((option) => (

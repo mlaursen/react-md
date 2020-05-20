@@ -7,7 +7,7 @@ import styles from "./AllElevations.module.scss";
 
 const AllElevations: FC = () => (
   <ul className={styles.container}>
-    {Array.from(new Array(25)).map((_, elevation) => (
+    {Array.from({ length: 25 }).map((_, elevation) => (
       <li
         key={elevation}
         className={cn(styles.example, styles[`elevation${elevation}`])}

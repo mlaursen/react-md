@@ -31,7 +31,7 @@ const Preview: FC = () => {
           disableScrollLock
         >
           <List>
-            {Array.from(new Array(5), (_, i) => (
+            {Array.from({ length: 5 }, (_, i) => (
               <ListItem key={i}>{`Item ${i + 1}`}</ListItem>
             ))}
           </List>

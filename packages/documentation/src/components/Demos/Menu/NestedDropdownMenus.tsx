@@ -17,7 +17,7 @@ const InfiniteNestedMenus: FC<{
     items={[
       "Item 1",
       "Item 2",
-      ...Array.from(new Array(4), (_, i) => (
+      ...Array.from({ length: 4 }, (_, i) => (
         <InfiniteNestedMenus depth={depth + 1} index={i} portal={portal} />
       )),
       "Item 8",

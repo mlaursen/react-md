@@ -108,7 +108,7 @@ export const DEMO_TS_CONFIG = `{
 }
 `;
 
-export const VARIABLES_SCSS_FILE = `@import '~@react-md/theme/dist/color-palette';
+export const VARIABLES_SCSS_FILE = `@import "~@react-md/theme/dist/color-palette";
 
 $rmd-theme-light: true;
 $rmd-theme-primary: $rmd-teal-500;

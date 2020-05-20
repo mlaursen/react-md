@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/link/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/link/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -52,7 +52,7 @@
     "isBinary": false
   },
   "src/WithButtonStyles.module.scss": {
-    "content": "@import '~@react-md/button/dist/mixins';\n\n.link {\n  @include rmd-button-theme(color);\n\n  &:visited,\n  &:hover {\n    @include rmd-button-theme(color);\n  }\n}\n",
+    "content": "@import \"~@react-md/button/dist/mixins\";\n\n.link {\n  @include rmd-button-theme(color);\n\n  &:visited,\n  &:hover {\n    @include rmd-button-theme(color);\n  }\n}\n",
     "isBinary": false
   }
 }

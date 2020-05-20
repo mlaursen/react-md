@@ -25,7 +25,7 @@ const CustomTheme: FC = () => {
         className={styles.overlay}
       >
         <List className={styles.list}>
-          {Array.from(new Array(10)).map((_, i) => (
+          {Array.from({ length: 10 }).map((_, i) => (
             <ListItem id={`item-${i}`} key={i}>
               {`Item ${i + 1}`}
             </ListItem>

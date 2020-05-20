@@ -46,7 +46,7 @@ const OverridingDefaultIcons: FC = () => {
           id="select-1"
           label="Inherits"
           placeholder="Item..."
-          options={Array.from(new Array(10), (_, i) => `Item ${i + 1}`)}
+          options={Array.from({ length: 10 }, (_, i) => `Item ${i + 1}`)}
           value={value1}
           onChange={(value) => setValue1(value)}
         />
@@ -54,7 +54,7 @@ const OverridingDefaultIcons: FC = () => {
           id="select-2"
           label="Prop Overrides"
           placeholder="Item..."
-          options={Array.from(new Array(10), (_, i) => `Item ${i + 1}`)}
+          options={Array.from({ length: 10 }, (_, i) => `Item ${i + 1}`)}
           value={value2}
           onChange={(value) => setValue2(value)}
           rightChildren={<ArrowDropDownFontIcon />}

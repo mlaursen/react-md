@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -51,7 +51,7 @@
     "isBinary": false
   },
   "src/ResizeObserverExample.module.scss": {
-    "content": "@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n\n.container {\n  @include rmd-elevation(4);\n\n  overflow: hidden;\n  transition-duration: 1s;\n  transition-property: max-height, max-width;\n}\n\n.button {\n  margin-bottom: 1rem;\n}\n\n.table {\n  // make it grow to fit the entire max-height\n  padding-bottom: 100%;\n  width: 100%;\n}\n\n.th {\n  @include rmd-typography(subtitle-2);\n  @include rmd-theme(color, text-secondary-on-background);\n\n  height: 2.5rem;\n  padding-left: 1rem;\n  padding-right: 1.5rem;\n}\n\n.td {\n  width: 100%;\n}\n",
+    "content": "@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n\n.container {\n  @include rmd-elevation(4);\n\n  overflow: hidden;\n  transition-duration: 1s;\n  transition-property: max-height, max-width;\n}\n\n.button {\n  margin-bottom: 1rem;\n}\n\n.table {\n  // make it grow to fit the entire max-height\n  padding-bottom: 100%;\n  width: 100%;\n}\n\n.th {\n  @include rmd-typography(subtitle-2);\n  @include rmd-theme(color, text-secondary-on-background);\n\n  height: 2.5rem;\n  padding-left: 1rem;\n  padding-right: 1.5rem;\n}\n\n.td {\n  width: 100%;\n}\n",
     "isBinary": false
   },
   "src/random.ts": {

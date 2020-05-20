@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -51,7 +51,7 @@
     "isBinary": false
   },
   "src/CustomInteractions.module.scss": {
-    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n\n.button {\n  @include rmd-elevation-transition(8, 12, '&#{$rmd-states-pressed-class-name}', false);\n  @include rmd-states-pressed-styles {\n    // disable normal pressed states background color change since we want\n    // to use elevation as the interaction instead\n    @include rmd-states-theme-update-var(background-color, transparent);\n  }\n  margin: 1rem;\n}\n",
+    "content": "@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n\n.button {\n  @include rmd-elevation-transition(\n    8,\n    12,\n    \"&#{$rmd-states-pressed-class-name}\",\n    false\n  );\n  @include rmd-states-pressed-styles {\n    // disable normal pressed states background color change since we want\n    // to use elevation as the interaction instead\n    @include rmd-states-theme-update-var(background-color, transparent);\n  }\n  margin: 1rem;\n}\n",
     "isBinary": false
   }
 }

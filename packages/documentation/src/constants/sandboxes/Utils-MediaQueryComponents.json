@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/divider/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -51,7 +51,7 @@
     "isBinary": false
   },
   "src/MediaQueryComponents.module.scss": {
-    "content": "@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n\n.container {\n  @include rmd-utils-phone-media {\n    // only applied **up** to the phone max width\n    border: 1px solid rmd-theme-var(error);\n  }\n\n  @include rmd-utils-tablet-only-media {\n    // only applied between the phone max width + 1 and the tablet max width\n    border: 4px solid rmd-theme-var(warning);\n  }\n\n  @include rmd-utils-tablet-media {\n    // everything tablet sized and up will gain an elevation of 4\n    @include rmd-elevation(4);\n\n    // now that we have more real estate, double the padding for tablets\n    // and above\n    padding: 2rem;\n  }\n\n  @include rmd-utils-desktop-media {\n    // add a primary border ond desktops\n    border: 2px solid rmd-theme-var(primary);\n  }\n\n  @include rmd-utils-large-desktop-media {\n    // increase the box-shadow on large screens\n    @include rmd-elevation(8);\n  }\n\n  // every size will gain a 1rem margin and padding\n  margin: 1rem;\n  padding: 1rem;\n}\n",
+    "content": "@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n\n.container {\n  @include rmd-utils-phone-media {\n    // only applied **up** to the phone max width\n    border: 1px solid rmd-theme-var(error);\n  }\n\n  @include rmd-utils-tablet-only-media {\n    // only applied between the phone max width + 1 and the tablet max width\n    border: 4px solid rmd-theme-var(warning);\n  }\n\n  @include rmd-utils-tablet-media {\n    // everything tablet sized and up will gain an elevation of 4\n    @include rmd-elevation(4);\n\n    // now that we have more real estate, double the padding for tablets\n    // and above\n    padding: 2rem;\n  }\n\n  @include rmd-utils-desktop-media {\n    // add a primary border ond desktops\n    border: 2px solid rmd-theme-var(primary);\n  }\n\n  @include rmd-utils-large-desktop-media {\n    // increase the box-shadow on large screens\n    @include rmd-elevation(8);\n  }\n\n  // every size will gain a 1rem margin and padding\n  margin: 1rem;\n  padding: 1rem;\n}\n",
     "isBinary": false
   }
 }

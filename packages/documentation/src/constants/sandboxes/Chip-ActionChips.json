@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/card/dist/mixins';\n@import '~@react-md/chip/dist/mixins';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/media/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n@import '~@react-md/sheet/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/card/dist/mixins\";\n@import \"~@react-md/chip/dist/mixins\";\n@import \"~@react-md/divider/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/media/dist/mixins\";\n@import \"~@react-md/progress/dist/mixins\";\n@import \"~@react-md/sheet/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/transition/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -62,7 +62,7 @@
     "isBinary": false
   },
   "src/ActionChip.module.scss": {
-    "content": "@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/theme/dist/color-palette';\n\n.chip {\n  margin: 0.25rem;\n}\n\n.yellow {\n  @include rmd-icon-theme-update-var(color, $rmd-yellow-300);\n}\n",
+    "content": "@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/theme/dist/color-palette\";\n\n.chip {\n  margin: 0.25rem;\n}\n\n.yellow {\n  @include rmd-icon-theme-update-var(color, $rmd-yellow-300);\n}\n",
     "isBinary": false
   },
   "src/ActionChip.tsx": {
@@ -86,11 +86,11 @@
     "isBinary": false
   },
   "src/ActionChips.module.scss": {
-    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n$blind-height: 1.5rem;\n$blind-margin: 2px;\n$blind-margin-extra: 8px;\n$blind-rotation: 12deg;\n$blind-rotation-extra: 24deg;\n\n.container {\n  @include rmd-utils-block-centered;\n  @media screen and (min-width: 23.4375em) {\n    width: 19rem;\n  }\n\n  overflow: hidden;\n  position: relative;\n  width: 15rem;\n}\n\n.content {\n  @include rmd-utils-scroll(x);\n\n  display: flex;\n}\n",
+    "content": "@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n$blind-height: 1.5rem;\n$blind-margin: 2px;\n$blind-margin-extra: 8px;\n$blind-rotation: 12deg;\n$blind-rotation-extra: 24deg;\n\n.container {\n  @include rmd-utils-block-centered;\n  @media screen and (min-width: 23.4375em) {\n    width: 19rem;\n  }\n\n  overflow: hidden;\n  position: relative;\n  width: 15rem;\n}\n\n.content {\n  @include rmd-utils-scroll(x);\n\n  display: flex;\n}\n",
     "isBinary": false
   },
   "src/Blind.module.scss": {
-    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n$blind-height: 1.5rem;\n$blind-margin: 2px;\n$blind-margin-extra: 8px;\n$blind-rotation: 12deg;\n$blind-rotation-extra: 24deg;\n\n.blind {\n  @include rmd-elevation(8);\n\n  background-color: rgba($rmd-white-base, 0.94);\n  flex-shrink: 0;\n  height: $blind-height;\n  margin-bottom: $blind-margin-extra;\n  transform: skewX($blind-rotation-extra);\n  width: 100%;\n}\n\n.animate {\n  @include rmd-transition(standard);\n  $duration: 2s;\n\n  transition: margin-bottom $duration, transform $duration;\n}\n\n.enter {\n  margin-bottom: $blind-margin-extra;\n  transition-delay: 0.5s;\n}\n\n.entering {\n  margin-bottom: $blind-margin;\n  transform: skewX($blind-rotation);\n}\n\n.done {\n  margin-bottom: $blind-margin;\n  transform: skewX($blind-rotation);\n}\n\n.exit {\n  margin-bottom: $blind-margin;\n  transform: skewX($blind-rotation);\n}\n\n.exiting {\n  margin-bottom: $blind-margin-extra;\n  transform: skewX($blind-rotation-extra);\n}\n",
+    "content": "@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n$blind-height: 1.5rem;\n$blind-margin: 2px;\n$blind-margin-extra: 8px;\n$blind-rotation: 12deg;\n$blind-rotation-extra: 24deg;\n\n.blind {\n  @include rmd-elevation(8);\n\n  background-color: rgba($rmd-white-base, 0.94);\n  flex-shrink: 0;\n  height: $blind-height;\n  margin-bottom: $blind-margin-extra;\n  transform: skewX($blind-rotation-extra);\n  width: 100%;\n}\n\n.animate {\n  @include rmd-transition(standard);\n  $duration: 2s;\n\n  transition: margin-bottom $duration, transform $duration;\n}\n\n.enter {\n  margin-bottom: $blind-margin-extra;\n  transition-delay: 0.5s;\n}\n\n.entering {\n  margin-bottom: $blind-margin;\n  transform: skewX($blind-rotation);\n}\n\n.done {\n  margin-bottom: $blind-margin;\n  transform: skewX($blind-rotation);\n}\n\n.exit {\n  margin-bottom: $blind-margin;\n  transform: skewX($blind-rotation);\n}\n\n.exiting {\n  margin-bottom: $blind-margin-extra;\n  transform: skewX($blind-rotation-extra);\n}\n",
     "isBinary": false
   },
   "src/Blind.tsx": {
@@ -98,11 +98,11 @@
     "isBinary": false
   },
   "src/Blinds.module.scss": {
-    "content": "@import '~@react-md/transition/dist/mixins';\n\n.blinds {\n  @include rmd-transition(deceleration);\n\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  overflow: hidden;\n  position: absolute;\n  transform-origin: top;\n  width: 100%;\n}\n\n.animate {\n  @include rmd-transition(deceleration);\n\n  transition: transform 1.5s;\n}\n\n.enter {\n  transform: scaleY(0);\n}\n\n.entering {\n  transform: scaleY(1);\n}\n\n.exit {\n  transform: scaleY(1);\n}\n\n.exiting {\n  transform: scaleY(0);\n}\n",
+    "content": "@import \"~@react-md/transition/dist/mixins\";\n\n.blinds {\n  @include rmd-transition(deceleration);\n\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  overflow: hidden;\n  position: absolute;\n  transform-origin: top;\n  width: 100%;\n}\n\n.animate {\n  @include rmd-transition(deceleration);\n\n  transition: transform 1.5s;\n}\n\n.enter {\n  transform: scaleY(0);\n}\n\n.entering {\n  transform: scaleY(1);\n}\n\n.exit {\n  transform: scaleY(1);\n}\n\n.exiting {\n  transform: scaleY(0);\n}\n",
     "isBinary": false
   },
   "src/Blinds.tsx": {
-    "content": "import React, { FC, useState } from \"react\";\nimport cn from \"classnames\";\nimport CSSTransition, {\n  CSSTransitionClassNames,\n} from \"react-transition-group/CSSTransition\";\n\nimport Blind from \"./Blind\";\nimport styles from \"./Blinds.module.scss\";\n\ninterface BlindsProps {\n  visible: boolean;\n}\n\nconst CLASSNAMES: CSSTransitionClassNames = {\n  enter: styles.enter,\n  enterActive: cn(styles.entering, styles.animate),\n  exit: styles.exit,\n  exitActive: cn(styles.exiting, styles.animate),\n};\n\nconst Blinds: FC<BlindsProps> = ({ visible }) => {\n  const [exited, setExited] = useState(true);\n  if (visible && exited) {\n    setExited(false);\n  }\n\n  const hide = (): void => setExited(true);\n\n  const isVisible = visible || !exited;\n\n  return (\n    <CSSTransition\n      in={isVisible}\n      mountOnEnter\n      unmountOnExit\n      timeout={1500}\n      classNames={CLASSNAMES}\n    >\n      {(state) => (\n        <div className={styles.blinds}>\n          {Array.from(new Array(11), (_, i) => (\n            <Blind\n              key={i}\n              visible={visible && state === \"entered\"}\n              onExited={i === 10 ? hide : undefined}\n            />\n          ))}\n        </div>\n      )}\n    </CSSTransition>\n  );\n};\n\nexport default Blinds;\n",
+    "content": "import React, { FC, useState } from \"react\";\nimport cn from \"classnames\";\nimport CSSTransition, {\n  CSSTransitionClassNames,\n} from \"react-transition-group/CSSTransition\";\n\nimport Blind from \"./Blind\";\nimport styles from \"./Blinds.module.scss\";\n\ninterface BlindsProps {\n  visible: boolean;\n}\n\nconst CLASSNAMES: CSSTransitionClassNames = {\n  enter: styles.enter,\n  enterActive: cn(styles.entering, styles.animate),\n  exit: styles.exit,\n  exitActive: cn(styles.exiting, styles.animate),\n};\n\nconst Blinds: FC<BlindsProps> = ({ visible }) => {\n  const [exited, setExited] = useState(true);\n  if (visible && exited) {\n    setExited(false);\n  }\n\n  const hide = (): void => setExited(true);\n\n  const isVisible = visible || !exited;\n\n  return (\n    <CSSTransition\n      in={isVisible}\n      mountOnEnter\n      unmountOnExit\n      timeout={1500}\n      classNames={CLASSNAMES}\n    >\n      {(state) => (\n        <div className={styles.blinds}>\n          {Array.from({ length: 11 }, (_, i) => (\n            <Blind\n              key={i}\n              visible={visible && state === \"entered\"}\n              onExited={i === 10 ? hide : undefined}\n            />\n          ))}\n        </div>\n      )}\n    </CSSTransition>\n  );\n};\n\nexport default Blinds;\n",
     "isBinary": false
   },
   "src/random.ts": {

@@ -7,7 +7,7 @@ import { Text } from "@react-md/typography";
 
 import styles from "./ChoiceChips.module.scss";
 
-const sizes = Array.from(new Array(8), (_, i) => {
+const sizes = Array.from({ length: 8 }, (_, i) => {
   const size = (i + 1) * 2;
   return `${size < 10 ? "0" : ""}${size}`;
 });

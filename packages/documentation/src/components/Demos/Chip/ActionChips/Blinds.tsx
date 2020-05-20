@@ -38,7 +38,7 @@ const Blinds: FC<BlindsProps> = ({ visible }) => {
     >
       {(state) => (
         <div className={styles.blinds}>
-          {Array.from(new Array(11), (_, i) => (
+          {Array.from({ length: 11 }, (_, i) => (
             <Blind
               key={i}
               visible={visible && state === "entered"}

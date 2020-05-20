@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/divider/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -50,7 +50,7 @@
     "isBinary": false
   },
   "src/SimpleExample.module.scss": {
-    "content": "// sass-lint:disable class-name-format\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n\n.container {\n  @include rmd-theme-update-var(background, $rmd-white-base);\n  @include rmd-theme-update-var(text-primary-on-background, rgba($rmd-black-base, 0.87));\n  @include rmd-theme-update-var(primary, $rmd-blue-grey-500);\n  @include rmd-theme-update-var(on-primary, $rmd-white-base);\n  @include rmd-theme-update-var(secondary, $rmd-orange-a-200);\n  @include rmd-theme-update-var(on-secondary, $rmd-black-base);\n  @include rmd-divider-theme-update-var(\n    background-color,\n    rmd-divider-theme-var(background-color-on-light)\n  );\n\n  @include rmd-theme(background-color, background);\n  @include rmd-theme(color, text-primary-on-background);\n\n  padding: 2rem 1.5rem;\n  text-align: center;\n\n  h6 {\n    margin: 0.5em 0;\n    padding: 0.25em 0;\n  }\n}\n\n.defaultPrimary {\n  background-color: $rmd-theme-primary;\n  color: $rmd-theme-on-primary;\n}\n\n.defaultSecondary {\n  background-color: $rmd-theme-secondary;\n  color: $rmd-theme-on-secondary;\n}\n\n.themePrimary {\n  @include rmd-theme(background-color, primary);\n  @include rmd-theme(color, on-primary);\n}\n\n.themeSecondary {\n  @include rmd-theme(background-color, secondary);\n  @include rmd-theme(color, on-secondary);\n}\n",
+    "content": "// sass-lint:disable class-name-format\n@import \"~@react-md/divider/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n\n.container {\n  @include rmd-theme-update-var(background, $rmd-white-base);\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    rgba($rmd-black-base, 0.87)\n  );\n  @include rmd-theme-update-var(primary, $rmd-blue-grey-500);\n  @include rmd-theme-update-var(on-primary, $rmd-white-base);\n  @include rmd-theme-update-var(secondary, $rmd-orange-a-200);\n  @include rmd-theme-update-var(on-secondary, $rmd-black-base);\n  @include rmd-divider-theme-update-var(\n    background-color,\n    rmd-divider-theme-var(background-color-on-light)\n  );\n\n  @include rmd-theme(background-color, background);\n  @include rmd-theme(color, text-primary-on-background);\n\n  padding: 2rem 1.5rem;\n  text-align: center;\n\n  h6 {\n    margin: 0.5em 0;\n    padding: 0.25em 0;\n  }\n}\n\n.defaultPrimary {\n  background-color: $rmd-theme-primary;\n  color: $rmd-theme-on-primary;\n}\n\n.defaultSecondary {\n  background-color: $rmd-theme-secondary;\n  color: $rmd-theme-on-secondary;\n}\n\n.themePrimary {\n  @include rmd-theme(background-color, primary);\n  @include rmd-theme(color, on-primary);\n}\n\n.themeSecondary {\n  @include rmd-theme(background-color, secondary);\n  @include rmd-theme(color, on-secondary);\n}\n",
     "isBinary": false
   }
 }

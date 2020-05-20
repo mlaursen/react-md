@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/dialog/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n@import '~@react-md/sheet/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/tooltip/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/app-bar/dist/mixins\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/dialog/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/progress/dist/mixins\";\n@import \"~@react-md/sheet/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/tooltip/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -67,7 +67,7 @@
     "isBinary": false
   },
   "src/SimpleDeterminateExamples.module.scss": {
-    "content": "@import '~@react-md/utils/dist/mixins';\n\n.container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  margin: 1rem 0;\n}\n\n.button.button {\n  @include rmd-utils-absolute-centered;\n\n  white-space: nowrap;\n}\n\n.linear {\n  margin: 1rem 0;\n}\n\n.circular {\n  margin-left: 1.5rem;\n}\n",
+    "content": "@import \"~@react-md/utils/dist/mixins\";\n\n.container {\n  align-items: center;\n  display: flex;\n  flex-wrap: wrap;\n  margin: 1rem 0;\n}\n\n.button.button {\n  @include rmd-utils-absolute-centered;\n\n  white-space: nowrap;\n}\n\n.linear {\n  margin: 1rem 0;\n}\n\n.circular {\n  margin-left: 1.5rem;\n}\n",
     "isBinary": false
   },
   "src/useTemporaryToggle.ts": {
@@ -91,7 +91,7 @@
     "isBinary": false
   },
   "src/Phone/Phone.module.scss": {
-    "content": "// sass-lint:disable class-name-format\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/sheet/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n$phone-height: 35.5rem;\n$phone-width: 20rem;\n\n$fixed-classes: (\n  rmd-app-bar--fixed: 1,\n  rmd-sheet-overlay: 1,\n  rmd-sheet--raised: 2,\n);\n\n.phone {\n  height: 100%;\n}\n\n.emulated {\n  @include rmd-elevation(4);\n  @include rmd-utils-block-centered(1rem);\n  @include rmd-theme(background-color, background);\n  @include rmd-icon-theme-update-var(size, $rmd-icon-size);\n  @include rmd-app-bar-theme-update-var(height, $rmd-app-bar-height);\n  @include rmd-app-bar-theme-update-var(dense-height, $rmd-app-bar-height + $rmd-icon-size);\n  @include rmd-app-bar-theme-update-var(\n    prominent-dense-height,\n    $rmd-app-bar-prominent-height + $rmd-icon-size\n  );\n  @include rmd-sheet-theme-update-var(touch-width, calc(100% - #{$rmd-sheet-touch-margin}));\n  @include rmd-typography-theme-update-var(line-width, $rmd-typography-mobile-max-line-length);\n\n  height: $phone-height;\n  overflow: hidden;\n  position: relative;\n  width: $phone-width;\n\n  @each $fixed-class, $z-index in $fixed-classes {\n    :global .#{$fixed-class} {\n      position: absolute;\n      z-index: $z-index;\n    }\n  }\n\n  .header {\n    // updated the shadow to be bottom only\n    box-shadow: 0 3px 2px -3px rgba($rmd-black-base, 0.2),\n      0 2px 2px -2px rgba($rmd-black-base, 0.14), 0 1px 5px -1px rgba($rmd-black-base, 0.12);\n  }\n}\n\n.header {\n  flex-wrap: wrap;\n}\n\n.content {\n  @include rmd-utils-scroll;\n\n  height: 100%;\n}\n\n.flexColumn {\n  display: flex;\n  flex-direction: column;\n}\n",
+    "content": "// sass-lint:disable class-name-format\n@import \"~@react-md/app-bar/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/sheet/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n$phone-height: 35.5rem;\n$phone-width: 20rem;\n\n$fixed-classes: (\n  rmd-app-bar--fixed: 1,\n  rmd-sheet-overlay: 1,\n  rmd-sheet--raised: 2,\n);\n\n.phone {\n  height: 100%;\n}\n\n.emulated {\n  @include rmd-elevation(4);\n  @include rmd-utils-block-centered(1rem);\n  @include rmd-theme(background-color, background);\n  @include rmd-icon-theme-update-var(size, $rmd-icon-size);\n  @include rmd-app-bar-theme-update-var(height, $rmd-app-bar-height);\n  @include rmd-app-bar-theme-update-var(\n    dense-height,\n    $rmd-app-bar-height + $rmd-icon-size\n  );\n  @include rmd-app-bar-theme-update-var(\n    prominent-dense-height,\n    $rmd-app-bar-prominent-height + $rmd-icon-size\n  );\n  @include rmd-sheet-theme-update-var(\n    touch-width,\n    calc(100% - #{$rmd-sheet-touch-margin})\n  );\n  @include rmd-typography-theme-update-var(\n    line-width,\n    $rmd-typography-mobile-max-line-length\n  );\n\n  height: $phone-height;\n  overflow: hidden;\n  position: relative;\n  width: $phone-width;\n\n  @each $fixed-class, $z-index in $fixed-classes {\n    :global .#{$fixed-class} {\n      position: absolute;\n      z-index: $z-index;\n    }\n  }\n\n  .header {\n    // updated the shadow to be bottom only\n    box-shadow: 0 3px 2px -3px rgba($rmd-black-base, 0.2),\n      0 2px 2px -2px rgba($rmd-black-base, 0.14),\n      0 1px 5px -1px rgba($rmd-black-base, 0.12);\n  }\n}\n\n.header {\n  flex-wrap: wrap;\n}\n\n.content {\n  @include rmd-utils-scroll;\n\n  height: 100%;\n}\n\n.flexColumn {\n  display: flex;\n  flex-direction: column;\n}\n",
     "isBinary": false
   },
   "src/Phone/Phone.tsx": {
@@ -107,7 +107,7 @@
     "isBinary": false
   },
   "src/Phone/StatusBar.module.scss": {
-    "content": "@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n\n.container {\n  @include rmd-app-bar-theme-update-var(dense-height, rmd-icon-theme-var(size));\n  background-color: rgba($rmd-black-base, 0.12);\n\n  width: 100%;\n}\n\n.icon {\n  @include rmd-icon-dense-theme;\n\n  margin: 0 $rmd-app-bar-lr-margin;\n}\n\n.first {\n  @include rmd-utils-rtl-auto(margin-left, auto, $rmd-app-bar-lr-margin);\n}\n",
+    "content": "@import \"~@react-md/app-bar/dist/mixins\";\n@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n\n.container {\n  @include rmd-app-bar-theme-update-var(dense-height, rmd-icon-theme-var(size));\n  background-color: rgba($rmd-black-base, 0.12);\n\n  width: 100%;\n}\n\n.icon {\n  @include rmd-icon-dense-theme;\n\n  margin: 0 $rmd-app-bar-lr-margin;\n}\n\n.first {\n  @include rmd-utils-rtl-auto(margin-left, auto, $rmd-app-bar-lr-margin);\n}\n",
     "isBinary": false
   },
   "src/Phone/StatusBar.tsx": {

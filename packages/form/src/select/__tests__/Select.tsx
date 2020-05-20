@@ -5,7 +5,7 @@ import Select from "../Select";
 
 const PROPS = {
   id: "select",
-  options: Array.from(new Array(3), (_, i) => `Option ${i + 1}`),
+  options: Array.from({ length: 3 }, (_, i) => `Option ${i + 1}`),
   value: "",
   onChange: () => {},
 };

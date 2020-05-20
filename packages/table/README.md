@@ -62,7 +62,7 @@ const App = () => (
         </TableRow>
       </TableHeader>
       <TableBody>
-        {Array.from(new Array(10), (_, i) => (
+        {Array.from({ length: 10 }, (_, i) => (
           <TableRow key={i}>
             <TableCell>{`Cell 1, row ${i + 1}`}</TableCell>
             <TableCell>{`Cell 2, row ${i + 1}`}</TableCell>

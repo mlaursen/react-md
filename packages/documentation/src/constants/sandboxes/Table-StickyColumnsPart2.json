@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/table/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/app-bar/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/table/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -47,11 +47,11 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHeader,\n  TableRow,\n} from \"@react-md/table\";\n\nimport styles from \"./StickyColumnsPart2.module.scss\";\n\nconst Demo: FC = () => (\n  <Table className={styles.container} fullWidth>\n    <TableHeader sticky>\n      <TableRow>\n        <TableCell>Header 1</TableCell>\n        <TableCell>Header 2</TableCell>\n      </TableRow>\n    </TableHeader>\n    <TableBody>\n      {Array.from(new Array(40), (_, i) => (\n        <TableRow key={i}>\n          <TableCell>{`Row ${i + 1} Cell 1`}</TableCell>\n          <TableCell>{`Row ${i + 1} Cell 2`}</TableCell>\n        </TableRow>\n      ))}\n    </TableBody>\n  </Table>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHeader,\n  TableRow,\n} from \"@react-md/table\";\n\nimport styles from \"./StickyColumnsPart2.module.scss\";\n\nconst Demo: FC = () => (\n  <Table className={styles.container} fullWidth>\n    <TableHeader sticky>\n      <TableRow>\n        <TableCell>Header 1</TableCell>\n        <TableCell>Header 2</TableCell>\n      </TableRow>\n    </TableHeader>\n    <TableBody>\n      {Array.from({ length: 40 }, (_, i) => (\n        <TableRow key={i}>\n          <TableCell>{`Row ${i + 1} Cell 1`}</TableCell>\n          <TableCell>{`Row ${i + 1} Cell 2`}</TableCell>\n        </TableRow>\n      ))}\n    </TableBody>\n  </Table>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/StickyColumnsPart2.module.scss": {
-    "content": "@import '~@react-md/app-bar/dist/functions';\n@import '~@react-md/table/dist/mixins';\n\n.container {\n  @include rmd-table-theme-update-var(sticky-header, rmd-app-bar-theme-var(height));\n}\n",
+    "content": "@import \"~@react-md/app-bar/dist/functions\";\n@import \"~@react-md/table/dist/mixins\";\n\n.container {\n  @include rmd-table-theme-update-var(\n    sticky-header,\n    rmd-app-bar-theme-var(height)\n  );\n}\n",
     "isBinary": false
   }
 }

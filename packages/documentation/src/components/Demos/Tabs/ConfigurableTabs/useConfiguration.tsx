@@ -98,7 +98,7 @@ export default function useConfiguration(): TabConfiguration {
   const noIcon = icons === "none";
   const onlyIcon = icons === "only";
   const includeIcon = icons === "include";
-  const tabs = Array.from(new Array(10), (_, i) => {
+  const tabs = Array.from({ length: 10 }, (_, i) => {
     const label = `Tab ${NUMBERS[i]}`;
     const icon = ICONS[i];
 

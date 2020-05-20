@@ -18,7 +18,7 @@ const LineNumbers: FC<LineNumbersProps> = ({ code, enabled }) => {
 
   return (
     <span className={block("lines")}>
-      {Array.from(new Array(lines)).map((_, i) => (
+      {Array.from({ length: lines }).map((_, i) => (
         <span key={i} className={block("line-number")}>
           {i + 1}
         </span>

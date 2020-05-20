@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/overlay/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/app-bar/dist/mixins\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/form/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/overlay/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -53,7 +53,7 @@
     "isBinary": false
   },
   "src/FixingOverflowIssues.module.scss": {
-    "content": "@import '~@react-md/utils/dist/mixins';\n\n.container {\n  @include rmd-utils-scroll;\n\n  max-height: 15rem;\n}\n\n.fixed {\n  bottom: 25%;\n  left: 25%;\n  pointer-events: none;\n  position: fixed;\n  right: 25%;\n  top: 25%;\n}\n",
+    "content": "@import \"~@react-md/utils/dist/mixins\";\n\n.container {\n  @include rmd-utils-scroll;\n\n  max-height: 15rem;\n}\n\n.fixed {\n  bottom: 25%;\n  left: 25%;\n  pointer-events: none;\n  position: fixed;\n  right: 25%;\n  top: 25%;\n}\n",
     "isBinary": false
   }
 }

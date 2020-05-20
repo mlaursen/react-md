@@ -12,7 +12,7 @@ import { useToggle } from "@react-md/utils";
 import InaccessibleMenu from "./InaccessibleMenu";
 import styles from "./FixingOverflowIssues.module.scss";
 
-const ITEMS = Array.from(new Array(20), (_, i) => `Item ${i + 1}`);
+const ITEMS = Array.from({ length: 20 }, (_, i) => `Item ${i + 1}`);
 
 const FixingOverflowIssues: FC = () => {
   const [visible, show, hide] = useToggle(false);

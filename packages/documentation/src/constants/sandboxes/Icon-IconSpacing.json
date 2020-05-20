@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/list/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/divider/dist/mixins\";\n@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/list/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -54,7 +54,7 @@
     "isBinary": false
   },
   "src/IconSpacing.module.scss": {
-    "content": "@import '~@react-md/list/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n\n.button {\n  margin: 1rem;\n  vertical-align: top;\n}\n\n.list {\n  @include rmd-list-unstyled;\n\n  li {\n    @include rmd-typography(subtitle-1);\n\n    align-items: center;\n    display: flex;\n    margin: 1rem auto;\n  }\n}\n",
+    "content": "@import \"~@react-md/list/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n\n.button {\n  margin: 1rem;\n  vertical-align: top;\n}\n\n.list {\n  @include rmd-list-unstyled;\n\n  li {\n    @include rmd-typography(subtitle-1);\n\n    align-items: center;\n    display: flex;\n    margin: 1rem auto;\n  }\n}\n",
     "isBinary": false
   }
 }

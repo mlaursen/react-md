@@ -83,7 +83,7 @@ const SimpleGridList: FC = () => {
           maxCellSize={maxCellSize}
           containerPadding={containerPadding}
         >
-          {Array.from(new Array(cells), (_, i) => (
+          {Array.from({ length: cells }, (_, i) => (
             <GridListCell key={i} square className={gridStyles.item}>
               {`Cell ${i + 1}`}
             </GridListCell>

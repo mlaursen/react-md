@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/progress/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -54,7 +54,7 @@
     "isBinary": false
   },
   "src/AsyncButton.module.scss": {
-    "content": "@import '~@react-md/button/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.button {\n  @include rmd-progress-theme-update-var(circular-size, rmd-icon-theme-var(size));\n\n  // just to make the demos look a bit nicer\n  margin: 1rem;\n  // this makes it so the linear progress doesn't expand past the button bounds\n  overflow: hidden;\n}\n\n.loading {\n  @include rmd-button-theme-update-var(color, rmd-theme-var(text-disabled-on-background));\n  @include rmd-button-theme-update-var(outline, rmd-theme-var(text-disabled-on-background));\n}\n\n.overlay {\n  // you'll really want this to be the `background` value or whatever the current\n  // background is instead. You'll probably also want to add additional styles for\n  // maintaining the \"containted\" styles since the contained button turns into\n  // an \"unstyled\" button when disabled\n  @include rmd-theme(background-color, surface);\n  @include rmd-utils-full-screen(absolute);\n\n  align-items: center;\n  border-radius: inherit;\n  box-shadow: inherit;\n  display: flex;\n  justify-content: center;\n  z-index: 1;\n}\n\n.linear {\n  top: auto;\n}\n",
+    "content": "@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/progress/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n.button {\n  @include rmd-progress-theme-update-var(\n    circular-size,\n    rmd-icon-theme-var(size)\n  );\n\n  // just to make the demos look a bit nicer\n  margin: 1rem;\n  // this makes it so the linear progress doesn't expand past the button bounds\n  overflow: hidden;\n}\n\n.loading {\n  @include rmd-button-theme-update-var(\n    color,\n    rmd-theme-var(text-disabled-on-background)\n  );\n  @include rmd-button-theme-update-var(\n    outline,\n    rmd-theme-var(text-disabled-on-background)\n  );\n}\n\n.overlay {\n  // you'll really want this to be the `background` value or whatever the current\n  // background is instead. You'll probably also want to add additional styles for\n  // maintaining the \"containted\" styles since the contained button turns into\n  // an \"unstyled\" button when disabled\n  @include rmd-theme(background-color, surface);\n  @include rmd-utils-full-screen(absolute);\n\n  align-items: center;\n  border-radius: inherit;\n  box-shadow: inherit;\n  display: flex;\n  justify-content: center;\n  z-index: 1;\n}\n\n.linear {\n  top: auto;\n}\n",
     "isBinary": false
   },
   "src/AsyncButton.tsx": {

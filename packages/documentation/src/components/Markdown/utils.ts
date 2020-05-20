@@ -48,7 +48,7 @@ renderer.code = (rawCode, language) => {
   const lines = (rawCode.match(/\r?\n/g) || []).length + 1;
   let lineNumbers = "";
   if (lines > 3 && !/markup|shell/.test(language) && language) {
-    lineNumbers = Array.from(new Array(lines))
+    lineNumbers = Array.from({ length: lines })
       .map((_, i) => `<span class="code__line-number">${i + 1}</span>`)
       .join("");
     lineNumbers = `<span class="code__lines">${lineNumbers}</span>`;

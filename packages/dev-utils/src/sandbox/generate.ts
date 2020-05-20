@@ -110,14 +110,17 @@ function createDemoStyles(dependencies: string[]): string {
     ...ALWAYS_REQUIRED_DEPENDENCIES.filter(
       (name) => !dependencies.includes(name)
     ),
-  ].map((name) => `@import '~${name}/${dist}/mixins';`);
+  ].map((name) => `@import "~${name}/${dist}/mixins";`);
   imports.sort();
 
-  return `@import 'variables';
+  return format(
+    `@import "variables";
 ${imports.join("\n")}
 
 @include react-md-utils;
-`;
+`,
+    "scss"
+  );
 }
 
 export function getSandboxFileName(demoPath: string): string {
@@ -239,10 +242,13 @@ export default async function generate({
             ).join("");
           }
 
-          content = content
-            .replace(/^import Code.+;$/gm, "")
-            .replace(/<\/?Code/g, "<code")
-            .replace(aliasRegExp, `"${aliasReplacement}`);
+          content = format(
+            content
+              .replace(/^import Code.+;$/gm, "")
+              .replace(/<(\/)?Code/g, "<$1code")
+              .replace(aliasRegExp, `"${aliasReplacement}`),
+            filePath.endsWith(".scss") ? "scss" : "typescript"
+          );
         }
 
         if (demoPath === filePath) {

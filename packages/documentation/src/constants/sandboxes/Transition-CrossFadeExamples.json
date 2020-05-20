@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/divider/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/progress/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/tabs/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/transition/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/app-bar/dist/mixins\";\n@import \"~@react-md/divider/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/progress/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/tabs/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/transition/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -51,11 +51,11 @@
     "isBinary": false
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { Divider } from \"@react-md/divider\";\nimport { Text } from \"@react-md/typography\";\n\n\n\nimport CrossFadeExamplesAsync from \"./CrossFadeExamplesAsync\";\nimport CrossFadeExamplesStatic from \"./CrossFadeExamplesStatic\";\n\nconst Demo: FC = () => (\n  <>\n    <Text type=\"headline-6\" margin=\"bottom\">\n      Static Transitions\n    </Text>\n    <CrossFadeExamplesStatic />\n    <Divider />\n    <Text type=\"headline-6\">\n      Async with <code>Suspense<code>\n    </Text>\n    <CrossFadeExamplesAsync />\n    <Divider />\n  </>\n);\n\nexport default Demo;\n",
+    "content": "import React, { FC } from \"react\";\nimport { Divider } from \"@react-md/divider\";\nimport { Text } from \"@react-md/typography\";\n\nimport CrossFadeExamplesAsync from \"./CrossFadeExamplesAsync\";\nimport CrossFadeExamplesStatic from \"./CrossFadeExamplesStatic\";\n\nconst Demo: FC = () => (\n  <>\n    <Text type=\"headline-6\" margin=\"bottom\">\n      Static Transitions\n    </Text>\n    <CrossFadeExamplesStatic />\n    <Divider />\n    <Text type=\"headline-6\">\n      Async with <code>Suspense</code>\n    </Text>\n    <CrossFadeExamplesAsync />\n    <Divider />\n  </>\n);\n\nexport default Demo;\n",
     "isBinary": false
   },
   "src/Container.module.scss": {
-    "content": "@import '~@react-md/utils/dist/mixins';\n\n.container {\n  @include rmd-utils-scroll;\n\n  height: 20rem;\n}\n",
+    "content": "@import \"~@react-md/utils/dist/mixins\";\n\n.container {\n  @include rmd-utils-scroll;\n\n  height: 20rem;\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {

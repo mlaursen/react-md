@@ -9,7 +9,7 @@ import {
 
 import TextFieldThemeConfig from "./TextFieldThemeConfig";
 
-const options = Array.from(new Array(8), (_, i) => `Option ${i + 1}`);
+const options = Array.from({ length: 8 }, (_, i) => `Option ${i + 1}`);
 
 const SelectExample: FC = () => {
   const [value, setValue] = useState("");

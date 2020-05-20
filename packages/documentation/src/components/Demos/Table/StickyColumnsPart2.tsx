@@ -18,7 +18,7 @@ const StickyColumnsPart2: FC = () => (
       </TableRow>
     </TableHeader>
     <TableBody>
-      {Array.from(new Array(40), (_, i) => (
+      {Array.from({ length: 40 }, (_, i) => (
         <TableRow key={i}>
           <TableCell>{`Row ${i + 1} Cell 1`}</TableCell>
           <TableCell>{`Row ${i + 1} Cell 2`}</TableCell>

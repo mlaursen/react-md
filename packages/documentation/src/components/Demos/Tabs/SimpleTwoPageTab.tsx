@@ -49,7 +49,7 @@ const Panels: FC = () => (
   <TabPanels>
     <TabPanel>
       <GridList maxCellSize={200} clone>
-        {Array.from(new Array(10), (_, i) => (
+        {Array.from({ length: 10 }, (_, i) => (
           <MediaContainer key={i}>
             <img src={`https://picsum.photos/200?image=${i + 1}`} alt="" />
           </MediaContainer>
@@ -58,7 +58,7 @@ const Panels: FC = () => (
     </TabPanel>
     <TabPanel>
       <GridList maxCellSize={200} clone>
-        {Array.from(new Array(22), (_, i) => (
+        {Array.from({ length: 22 }, (_, i) => (
           <MediaContainer key={i}>
             <img src={`https://picsum.photos/200?image=${i + 51}`} alt="" />
           </MediaContainer>

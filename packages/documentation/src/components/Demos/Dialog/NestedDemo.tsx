@@ -24,7 +24,7 @@ const NestedDemo: FC<NestedDemoProps> = ({ depth }) => {
     return null;
   }
 
-  const depthPath = Array.from(new Array(depth + 1))
+  const depthPath = Array.from({ length: depth + 1 })
     .map((_, i) => i)
     .join("-");
 

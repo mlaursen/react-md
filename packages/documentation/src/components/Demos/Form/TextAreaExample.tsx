@@ -72,7 +72,7 @@ const TextAreaExample: FC = () => {
           onChange={handleRowChange}
           className={styles.select}
         >
-          {Array.from(new Array(6), (_, i) => (
+          {Array.from({ length: 6 }, (_, i) => (
             <option key={i} value={i + 2}>
               {i + 2}
             </option>

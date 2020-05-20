@@ -219,7 +219,7 @@ export default function usePanels({
 
   const panels = useMemo<PanelMemo[]>(
     () =>
-      Array.from(new Array(count), (_, i) => ({
+      Array.from({ length: count }, (_, i) => ({
         id: `${idPrefix}-${i + 1}`,
         headerRef: createRef<HTMLButtonElement>(),
       })),

@@ -7,7 +7,7 @@ import Container from "./Container";
 const HoverMode: FC = () => (
   <TooltipHoverModeConfig>
     <Container>
-      {Array.from(new Array(8)).map((_, i) => (
+      {Array.from({ length: 8 }).map((_, i) => (
         <Tooltipped
           id={`hover-mode-button-${i}`}
           tooltip={`Tooltip ${i + 1}`}

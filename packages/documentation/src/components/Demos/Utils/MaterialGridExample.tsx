@@ -7,40 +7,40 @@ import styles from "./Grid.module.scss";
 const GridExample: FC = () => (
   <>
     <Grid className={cn(styles.grid, styles.smallGrid)}>
-      {Array.from(new Array(12), (_, i) => (
+      {Array.from({ length: 12 }, (_, i) => (
         <GridCell key={i} className={styles.item}>{`Cell ${i + 1}`}</GridCell>
       ))}
     </Grid>
     <Grid className={cn(styles.grid, styles.smallGrid)}>
-      {Array.from(new Array(6), (_, i) => (
+      {Array.from({ length: 6 }, (_, i) => (
         <GridCell key={i} className={styles.item} colSpan={2}>
           {`Cell ${i + 1}`}
         </GridCell>
       ))}
     </Grid>
     <Grid className={cn(styles.grid, styles.smallGrid)}>
-      {Array.from(new Array(8), (_, i) => (
+      {Array.from({ length: 8 }, (_, i) => (
         <GridCell key={i} className={styles.item} colSpan={3}>
           {`Cell ${i + 1}`}
         </GridCell>
       ))}
     </Grid>
     <Grid className={cn(styles.grid, styles.smallGrid)}>
-      {Array.from(new Array(3), (_, i) => (
+      {Array.from({ length: 3 }, (_, i) => (
         <GridCell key={i} className={styles.item} colSpan={4}>
           {`Cell ${i + 1}`}
         </GridCell>
       ))}
     </Grid>
     <Grid className={cn(styles.grid, styles.smallGrid)}>
-      {Array.from(new Array(2), (_, i) => (
+      {Array.from({ length: 2 }, (_, i) => (
         <GridCell key={i} className={styles.item} colSpan={5}>
           {`Cell ${i + 1}`}
         </GridCell>
       ))}
     </Grid>
     <Grid className={cn(styles.grid, styles.smallGrid)}>
-      {Array.from(new Array(2), (_, i) => (
+      {Array.from({ length: 2 }, (_, i) => (
         <GridCell key={i} className={styles.item} colSpan={6}>
           {`Cell ${i + 1}`}
         </GridCell>

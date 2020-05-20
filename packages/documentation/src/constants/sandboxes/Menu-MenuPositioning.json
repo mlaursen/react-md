@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/menu/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/form/dist/mixins\";\n@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/menu/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -54,7 +54,7 @@
     "isBinary": false
   },
   "src/MenuPositioning.module.scss": {
-    "content": "@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.container {\n  display: flex;\n  justify-content: center;\n}\n\n.group {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n}\n\n.button {\n  margin: 1rem auto;\n}\n\n.text {\n  // since the icon is aligned to the end with margin, the default icon spacing can't\n  // be applied as it relies on margin as well. If you apply padding to an icon, the sizing\n  // gets messed up so it's easier to apply it to the text element here. now we have the same\n  // text spacing as before for the largest button.\n  @include rmd-icon-text-spacing($property: padding-right);\n}\n\n.icon {\n  // align the icon to the end since equal width buttons look bad with centered text/icons\n  @include rmd-utils-rtl-auto(margin-left, auto);\n}\n",
+    "content": "@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n.container {\n  display: flex;\n  justify-content: center;\n}\n\n.group {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n}\n\n.button {\n  margin: 1rem auto;\n}\n\n.text {\n  // since the icon is aligned to the end with margin, the default icon spacing can't\n  // be applied as it relies on margin as well. If you apply padding to an icon, the sizing\n  // gets messed up so it's easier to apply it to the text element here. now we have the same\n  // text spacing as before for the largest button.\n  @include rmd-icon-text-spacing($property: padding-right);\n}\n\n.icon {\n  // align the icon to the end since equal width buttons look bad with centered text/icons\n  @include rmd-utils-rtl-auto(margin-left, auto);\n}\n",
     "isBinary": false
   }
 }

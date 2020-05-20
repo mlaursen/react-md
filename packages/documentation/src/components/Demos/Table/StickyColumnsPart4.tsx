@@ -12,8 +12,8 @@ import {
 
 import styles from "./StickyColumnsPart4.module.scss";
 
-const rows = Array.from(new Array(30), (_, i) => `row-${i + 1}`);
-const headers = Array.from(new Array(20), (_, i) => `Header ${i + 1}`);
+const rows = Array.from({ length: 30 }, (_, i) => `row-${i + 1}`);
+const headers = Array.from({ length: 20 }, (_, i) => `Header ${i + 1}`);
 
 const StickyColumnsPart4: FC = () => {
   const { rootProps, getProps } = useIndeterminateChecked(rows);

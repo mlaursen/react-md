@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@react-md/table";
 
-const columns = Array.from(new Array(10), (_, i) => `Column ${i + 1}`);
+const columns = Array.from({ length: 10 }, (_, i) => `Column ${i + 1}`);
 
 const StickyColumnsPart3: FC = () => (
   <TableContainer style={{ maxHeight: "20rem" }}>
@@ -22,7 +22,7 @@ const StickyColumnsPart3: FC = () => (
         </TableRow>
       </TableHeader>
       <TableBody>
-        {Array.from(new Array(20), (_, i) => (
+        {Array.from({ length: 20 }, (_, i) => (
           <TableRow key={i}>
             {columns.map((_, j) => (
               <TableCell key={j}>{`Row ${i + 1} Cell ${j + 1}`}</TableCell>

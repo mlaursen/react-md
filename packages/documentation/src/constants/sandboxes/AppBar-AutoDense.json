@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/tooltip/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/app-bar/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/tooltip/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -56,7 +56,7 @@
     "isBinary": false
   },
   "src/AutoDense.module.scss": {
-    "content": "@import '~@react-md/app-bar/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n.container {\n  @include rmd-utils-desktop-media {\n    @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));\n\n    .prominent {\n      @include rmd-app-bar-theme-update-var(\n        prominent-height,\n        rmd-app-bar-theme-var(prominent-dense-height)\n      );\n    }\n  }\n}\n\n.prominent {\n  @include rmd-app-bar-theme-update-var(\n    prominent-height,\n    rmd-app-bar-theme-var(prominent-dense-height)\n  );\n\n  // just because I don't want to create 2 rows of data for this example\n  align-items: flex-start;\n}\n",
+    "content": "@import \"~@react-md/app-bar/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n.container {\n  @include rmd-utils-desktop-media {\n    @include rmd-app-bar-theme-update-var(\n      height,\n      rmd-app-bar-theme-var(dense-height)\n    );\n\n    .prominent {\n      @include rmd-app-bar-theme-update-var(\n        prominent-height,\n        rmd-app-bar-theme-var(prominent-dense-height)\n      );\n    }\n  }\n}\n\n.prominent {\n  @include rmd-app-bar-theme-update-var(\n    prominent-height,\n    rmd-app-bar-theme-var(prominent-dense-height)\n  );\n\n  // just because I don't want to create 2 rows of data for this example\n  align-items: flex-start;\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {

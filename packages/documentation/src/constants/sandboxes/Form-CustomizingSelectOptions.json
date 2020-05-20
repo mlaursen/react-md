@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/avatar/dist/mixins';\n@import '~@react-md/form/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/avatar/dist/mixins\";\n@import \"~@react-md/form/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -64,7 +64,7 @@
     "isBinary": false
   },
   "src/WithOptionLeftAddon.module.scss": {
-    "content": "@import '~@react-md/avatar/dist/mixins';\n\n.label {\n  @include rmd-avatar-theme-update-var(size, 1.5rem);\n  @include rmd-avatar-theme-update-var(font-size, 0.75rem);\n}\n",
+    "content": "@import \"~@react-md/avatar/dist/mixins\";\n\n.label {\n  @include rmd-avatar-theme-update-var(size, 1.5rem);\n  @include rmd-avatar-theme-update-var(font-size, 0.75rem);\n}\n",
     "isBinary": false
   },
   "src/WithOptionLeftAddon.tsx": {

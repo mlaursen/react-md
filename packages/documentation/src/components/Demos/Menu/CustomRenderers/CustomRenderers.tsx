@@ -13,7 +13,7 @@ interface Item {
 }
 
 const colors = Object.keys(scssVariables["rmd-avatar-colors"]);
-const items: Item[] = Array.from(new Array(1000), (_, i) => ({
+const items: Item[] = Array.from({ length: 1000 }, (_, i) => ({
   leftAddon: <Avatar color={colors[i % colors.length]} />,
   leftAddonType: "avatar",
   children: `Item ${i + 1}`,

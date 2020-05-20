@@ -4,7 +4,7 @@ import { render, fireEvent } from "@testing-library/react";
 import Listbox from "../Listbox";
 import { getOptionId } from "../utils";
 
-const options = Array.from(new Array(10), (_, i) => `Option ${i + 1}`);
+const options = Array.from({ length: 10 }, (_, i) => `Option ${i + 1}`);
 const options2 = options.map((opt, i) => ({
   label: opt,
   value: opt,

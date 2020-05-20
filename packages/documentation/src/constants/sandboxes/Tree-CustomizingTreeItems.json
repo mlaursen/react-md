@@ -8,11 +8,11 @@
     "isBinary": false
   },
   "src/styles.scss": {
-    "content": "@import 'variables';\n@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/tree/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n\n@include react-md-utils;\n",
+    "content": "@import \"variables\";\n@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/tree/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
     "isBinary": false
   },
   "src/_variables.scss": {
-    "content": "@import '~@react-md/theme/dist/color-palette';\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
     "isBinary": false
   },
   "package.json": {
@@ -53,7 +53,7 @@
     "isBinary": false
   },
   "src/CustomizingTreeItems.module.scss": {
-    "content": "@import '~@react-md/icon/dist/mixins';\n@import '~@react-md/tree/dist/mixins';\n@import '~@react-md/typography/dist/variables';\n\n.tree {\n  // want to decrease the padding-left for each tree item for a more\n  // \"dense\" theme\n  // NOTE: If you are not using CSS modules, you do not need to use the\n  // `$selector-prefix`\n  @include rmd-tree-depths($selector-prefix: ':global ', $max: 2, $base-padding: 2rem);\n  @include rmd-utils-tablet-media {\n    display: inline-block;\n    width: 15rem;\n  }\n}\n\n.item {\n  // want to decrease the leftAddon spacing for a more \"dense\" theme\n  @include rmd-icon-theme-update-var(text-spacing, 1rem);\n}\n\n.focused {\n  // for this demo, we just want the keyboard focused styles to also appear\n  // for non-keyboard interacting users (usually waits for a keypress)\n  @include rmd-utils-map-to-styles($rmd-tree-item-keyboard-focused-styles);\n}\n\n.selected {\n  color: $rmd-black-base;\n  font-weight: $rmd-typography-bold;\n\n  :global .dark-theme :local & {\n    color: $rmd-white-base;\n  }\n}\n",
+    "content": "@import \"~@react-md/icon/dist/mixins\";\n@import \"~@react-md/tree/dist/mixins\";\n@import \"~@react-md/typography/dist/variables\";\n\n.tree {\n  // want to decrease the padding-left for each tree item for a more\n  // \"dense\" theme\n  // NOTE: If you are not using CSS modules, you do not need to use the\n  // `$selector-prefix`\n  @include rmd-tree-depths(\n    $selector-prefix: \":global \",\n    $max: 2,\n    $base-padding: 2rem\n  );\n  @include rmd-utils-tablet-media {\n    display: inline-block;\n    width: 15rem;\n  }\n}\n\n.item {\n  // want to decrease the leftAddon spacing for a more \"dense\" theme\n  @include rmd-icon-theme-update-var(text-spacing, 1rem);\n}\n\n.focused {\n  // for this demo, we just want the keyboard focused styles to also appear\n  // for non-keyboard interacting users (usually waits for a keypress)\n  @include rmd-utils-map-to-styles($rmd-tree-item-keyboard-focused-styles);\n}\n\n.selected {\n  color: $rmd-black-base;\n  font-weight: $rmd-typography-bold;\n\n  :global .dark-theme :local & {\n    color: $rmd-white-base;\n  }\n}\n",
     "isBinary": false
   },
   "src/FileSVGIcon.tsx": {

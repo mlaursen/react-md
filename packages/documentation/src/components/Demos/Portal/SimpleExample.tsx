@@ -67,7 +67,7 @@ const SimpleExample: FC = () => {
           }}
         >
           <ScrollListener onScroll={updatePosition} />
-          {Array.from(new Array(6)).map((_, i) => (
+          {Array.from({ length: 6 }).map((_, i) => (
             <ListItem id={`menu-item-${i}`} key={i} role="menuitem">
               {`Option ${i + 1}`}
             </ListItem>
