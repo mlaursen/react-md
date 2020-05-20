@@ -231,11 +231,8 @@ render a `DemoPage` component. Each demo will at least need:
 Where the description should be the `DemoName.md` file, the children should be
 the `DemoName.tsx`, and the name should be the `Demo Name`.
 
-It'll probably be the most helpful to just check out the
-[Demo source code](https://github.com/react-md/tree/next/packages/documentation/components/Demos/Demo.tsx)
-as well as an
-[example demo file](https://github.com/mlaursen/react-md/tree/next/packages/documentation/components/Demos/AppBar/index.tsx)
-to get a more in-depth example.
+It'll probably be the most helpful to just check out the [Demo source code] as
+well as an [example demo file] to get a more in-depth example.
 
 If your demo requires more than one additional file, you should create a
 directory for all the demo files including the main readme.
@@ -325,3 +322,7 @@ $ yarn dev-utils --help
 [eslint]: https://github.com/eslint/eslint
 [prettier]: https://github.com/prettier/prettier
 [sass-lint]: https://github.com/sasstools/sass-lint
+[demo source code]:
+  https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/Demos/Demo.tsx
+[example demo file]:
+  https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/Demos/AppBar/index.tsx
