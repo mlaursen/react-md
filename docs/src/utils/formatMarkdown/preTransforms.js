@@ -98,7 +98,7 @@ export function addVersionToUMD(markdown) {
 }
 
 export function fixRootPath(markdown) {
-  return markdown.replace(/\(\/([^)]+)\)/g, `(${ROOT_PATH}$1)`);
+  return markdown.replace(/\(\/([^)]+)\)/g, `(${ROOT_PATH}$1)`).replace('/v1/v1', '/v1');
 }
 
 /**
