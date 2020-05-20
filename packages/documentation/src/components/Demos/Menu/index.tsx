@@ -26,8 +26,7 @@ import horizontalMenu from "./HorizontalMenu.md";
 import NestedDropdownMenus from "./NestedDropdownMenus";
 import nestedDropdownMenus from "./NestedDropdownMenus.md";
 
-import CustomRenderers from "./CustomRenderers";
-import customRenderers from "./CustomRenderers.md";
+import { CustomRenderers, customRenderers } from "./CustomRenderers";
 
 const demos = [
   {

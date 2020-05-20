@@ -166,11 +166,6 @@ the `PORT` environment variable:
 $ PORT=8080 yarn start
 ```
 
-Unfortunately, `nextjs` doesn't play too nice out of the box with external
-stylesheets (`.css` or `.scss`), so you might notice some weird issues while
-running the app in development mode. If you see any weird styling issues, you'll
-just need to refresh the page for the styles to work.
-
 ### File Structure
 
 The documentation folder will contain the following folders:
@@ -243,23 +238,21 @@ as well as an
 to get a more in-depth example.
 
 If your demo requires more than one additional file, you should create a
-directory for all the demo files **except** for the main readme. Check out the
-menu custom renderers as an example:
+directory for all the demo files including the main readme.
 
 ```
 ├── CustomRenderers
 │   ├── CustomRenderers.tsx
 │   ├── NonVirtualizedMenu.tsx
+│   ├── README.md
 │   ├── VirtualizedMenu.tsx
 │   └── index.ts
-├── CustomRenderers.md
 ```
 
 ## Running Tests
 
 Tests are being run with [jest] and using the [react-testing-library] to test
-React components. There are also some tests written using [enzyme], but it is
-preferred to use `react-testing-library`.
+React components.
 
 You can run tests at the root level to test all packages:
 
@@ -305,13 +298,12 @@ The most important scripts while developing and contributing to react-md will be
 the `start`, `test`, and `watch` commands. Running `yarn start` will start up
 the documentation server using [nextjs] and the `watch` command will dynamically
 start up `tsc` watchers for each package when a file change is detected as well
-as re-distributing any changed scss files. Otherwise run:
+as re-distributing any changed scss files. If you want to see any additional
+useful dev utils and scripts, run:
 
 ```bash
 $ yarn dev-utils --help
 ```
-
-to see any additional useful dev utilities and scripts.
 
 [lerna]: https://lernajs.io/
 [yarn]: https://yarnpkg.com

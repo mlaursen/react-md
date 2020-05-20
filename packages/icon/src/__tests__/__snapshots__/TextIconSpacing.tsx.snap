@@ -32,26 +32,22 @@ exports[`TextIconSpacing should return the children if no icon prop is provided 
 
 exports[`TextIconSpacing should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled 1`] = `
 <div>
-  <div>
-    <span
-      class="rmd-text-icon-spacing rmd-icon--before"
-    >
-      Some text
-    </span>
-    <div />
-  </div>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before"
+  >
+    Some text
+  </span>
+  <div />
 </div>
 `;
 
 exports[`TextIconSpacing should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled 2`] = `
 <div>
-  <div>
-    <span
-      class="rmd-text-icon-spacing rmd-icon--before"
-    >
-      <i />
-    </span>
-    <div />
-  </div>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before"
+  >
+    <i />
+  </span>
+  <div />
 </div>
 `;

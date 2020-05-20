@@ -66,23 +66,18 @@ describe("TextIconSpacing", () => {
   });
 
   it("should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled", () => {
-    // have to wrap the tests in divs since enzyme doesn't know how to render React.Fragment or arrays atm
     const { container, rerender } = render(
-      <div>
-        <TextIconSpacing icon="Some text">
-          <div />
-        </TextIconSpacing>
-      </div>
+      <TextIconSpacing icon="Some text">
+        <div />
+      </TextIconSpacing>
     );
 
     expect(container).toMatchSnapshot();
 
     rerender(
-      <div>
-        <TextIconSpacing icon={<i />} forceIconWrap>
-          <div />
-        </TextIconSpacing>
-      </div>
+      <TextIconSpacing icon={<i />} forceIconWrap>
+        <div />
+      </TextIconSpacing>
     );
     expect(container).toMatchSnapshot();
   });
