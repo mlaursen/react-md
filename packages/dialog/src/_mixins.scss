@@ -50,12 +50,12 @@
 
   display: flex;
   flex-direction: column;
+  max-height: 100%;
+  max-width: 100%;
 
   &--centered {
     @include rmd-dialog-theme(min-width);
 
-    max-height: 100%;
-    max-width: 100%;
     pointer-events: auto;
   }
 
