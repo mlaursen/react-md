@@ -11,7 +11,7 @@ import React, {
 
 import { TabConfig } from "./types";
 
-type InitializedTabConfig = TabConfig & Required<Pick<TabConfig, "id">>;
+export type InitializedTabConfig = TabConfig & Required<Pick<TabConfig, "id">>;
 
 export interface TabsManagerContext {
   /**
@@ -44,7 +44,7 @@ export interface TabsManagerContext {
   tabs: InitializedTabConfig[];
 }
 
-type InitializedTabsManagerContext = Required<TabsManagerContext>;
+export type InitializedTabsManagerContext = Required<TabsManagerContext>;
 
 const context = createContext<InitializedTabsManagerContext>({
   tabsId: "tabs",
@@ -54,7 +54,8 @@ const context = createContext<InitializedTabsManagerContext>({
 });
 
 /**
- * @private
+ * This hook returns the current "state" for the tabs which can be useful if you
+ * need additional control or access to the tabs behavior.
  */
 export function useTabs(): InitializedTabsManagerContext {
   return useContext(context);
@@ -124,7 +125,16 @@ export interface TabsManagerProps
   iconAfter?: boolean;
 }
 
-function TabsManager({
+/**
+ * The `TabsManager` is used to configure your `Tabs` component and handle some
+ * of the default behavior such as:
+ *
+ * - controlling the `activeIndex`
+ * - general tab configuration
+ * - callbacks when the tab has changed
+ * - providing an `id` prefix for all tabs for simplicity
+ */
+export function TabsManager({
   tabsId,
   defaultActiveIndex = 0,
   activeIndex: propActiveIndex,
@@ -184,5 +194,3 @@ function TabsManager({
 
   return <Provider value={value}>{children}</Provider>;
 }
-
-export default TabsManager;

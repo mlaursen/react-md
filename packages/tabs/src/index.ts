@@ -13,10 +13,5 @@ export * from "./TabPanels";
 export { default as TabPanel } from "./TabPanel";
 export * from "./TabPanel";
 
-export {
-  default as TabsManager,
-  TabsManagerContext,
-  TabsManagerProps,
-} from "./TabsManager";
-
+export * from "./TabsManager";
 export * from "./types";

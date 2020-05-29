@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 
 import TabPanels from "../TabPanels";
 import TabPanel from "../TabPanel";
-import TabsManager from "../TabsManager";
+import { TabsManager } from "../TabsManager";
 
 describe("TabPanels", () => {
   it("should render without crashing if not wrapped in the tabs manager (even though it _should_ be wrapped in one)", () => {
