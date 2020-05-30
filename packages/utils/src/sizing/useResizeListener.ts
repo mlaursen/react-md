@@ -42,7 +42,7 @@ export default function useResizeListener({
   onResize,
   options,
   immediate,
-  enabled,
+  enabled = true,
 }: ResizeListenerOptions): void {
   const callback = useRefCache(onResize);
   useEffect(() => {
