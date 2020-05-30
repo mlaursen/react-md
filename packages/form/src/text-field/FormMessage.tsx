@@ -200,7 +200,7 @@ if (process.env.NODE_ENV !== "production") {
       disableWrap: PropTypes.bool,
       children: PropTypes.node,
       theme: PropTypes.oneOf(["none", "underline", "filled", "outline"]),
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       _counterValidator: (props, _propName, component) => {
         const { length, maxLength } = props;

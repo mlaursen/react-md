@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable camelcase */
 import React, { FC, useState } from "react";
 import { AppBar, AppBarNav } from "@react-md/app-bar";
 import { Button } from "@react-md/button";

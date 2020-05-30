@@ -22,5 +22,5 @@ export default function createIdGenerator(prefix: string): () => string {
     }
   })();
 
-  return () => generator.next().value;
+  return (): string => generator.next().value;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { FC, useEffect, useState } from "react";
 import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { CircularProgress } from "@react-md/progress";

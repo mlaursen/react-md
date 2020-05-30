@@ -79,7 +79,6 @@ renderer.heading = (text, level, _raw, slugger) => {
   const id = slugger.slug(text.replace("🎉", "")).replace(/39t/g, "t");
   const className = cn(`rmd-typography rmd-typography--headline-${level}`, {
     heading: isValidHeading,
-    // eslint-disable-next-line @typescript-eslint/camelcase
     heading__toc: text.includes("Table of Contents"),
     "rmd-typography--no-margin": isNoMargin,
     "rmd-typography--no-margin-bottom": isNoMarginBottom,

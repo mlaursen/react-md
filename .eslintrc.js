@@ -104,6 +104,12 @@ module.exports = {
 
     // used for dynamic prop-types and easy to catch otherwise
     '@typescript-eslint/no-var-requires': 0,
+
+    // disabled since most of these are super easy to catch but there's a problem with
+    // the `{}` version since the suggestion requires changing to `Record<string, unknown>`
+    // which means that all objects **must** have an index signature which is lame. will
+    // come back to this later.
+    '@typescript-eslint/ban-types': 0,
   },
   overrides: [
     {

@@ -89,8 +89,8 @@ if (process.env.NODE_ENV !== "production") {
     VerticalDivider.propTypes = {
       style: PropTypes.object,
       maxHeight: PropTypes.number,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       _validateMaxHeight: (
         { maxHeight = 1 },
         _: string,
