@@ -5,21 +5,21 @@ import Markdown from 'components/Markdown';
 
 import './NewDomain.scss';
 
+const MIGRATION_DATE = new Date(2020, 5, 13);
+
 function getMarkdown() {
   let remaining = '';
   const today = new Date();
-  // const end = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours() + 8);
-  const end = new Date(2020, 6, 1);
-  const diff = Math.max(0, end.getTime() - today.getTime());
+  const diff = Math.max(0, MIGRATION_DATE.getTime() - today.getTime());
   const hours = diff / 1000 / 60 / 60;
   const days = Math.floor(hours / 24);
   if (days <= 1) {
-    remaining = `**${Math.floor(hours)} hours remaining**`;
+    remaining = `**${Math.floor(hours)} hours**`;
   } else {
-    remaining = `${days} days remaining`;
+    remaining = `${days} days`;
   }
   return `
-Starting July 1, 2020 _(${remaining})_, this website will be permanently moved to
+Starting ${MIGRATION_DATE.toLocaleDateString()} _(${remaining})_, this website will be permanently moved to
 the new domain and url: https://react-md.dev/v1/
 `;
 }
