@@ -9,6 +9,7 @@ import React, {
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
+import { useFormTheme } from "../FormThemeProvider";
 import FloatingLabel from "../label/FloatingLabel";
 import useFocusState from "../useFocusState";
 import TextFieldContainer, {
@@ -130,7 +131,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       labelStyle,
       labelClassName,
       type = "text",
-      theme = "outline",
+      theme: propTheme,
       dense = false,
       inline = false,
       error = false,
@@ -143,7 +144,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       isRightAddon = true,
       leftChildren,
       rightChildren,
-      underlineDirection = "left",
+      underlineDirection: propUnderlineDirection,
       containerProps,
       ...props
     },
@@ -160,6 +161,11 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       value,
       defaultValue,
       onChange: propOnChange,
+    });
+
+    const { theme, underlineDirection } = useFormTheme({
+      theme: propTheme,
+      underlineDirection: propUnderlineDirection,
     });
 
     return (
@@ -248,7 +254,7 @@ if (process.env.NODE_ENV !== "production") {
       inline: PropTypes.bool,
       disabled: PropTypes.bool,
       placeholder: PropTypes.string,
-      underlineDirection: PropTypes.oneOf(["left", "right"]),
+      underlineDirection: PropTypes.oneOf(["left", "center", "right"]),
       leftChildren: PropTypes.node,
       rightChildren: PropTypes.node,
       isLeftAddon: PropTypes.bool,

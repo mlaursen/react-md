@@ -1,7 +1,8 @@
 import React, { HTMLAttributes, forwardRef, CSSProperties } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
-import { TextFieldTheme } from "./TextFieldContainer";
+
+import { FormTheme, useFormTheme } from "../FormThemeProvider";
 
 const block = bem("rmd-form-message");
 
@@ -46,7 +47,7 @@ export interface FormMessageProps
    * The current theme for the related text field. This is really only used to
    * match the current horizontal padding of the text field.
    */
-  theme?: TextFieldTheme;
+  theme?: FormTheme;
 
   /**
    * An optional style to apply to the `<p>` tag that surrounds the `children`.
@@ -130,7 +131,7 @@ const FormMessage = forwardRef<
     messageClassName,
     error = false,
     disableWrap = false,
-    theme = "outline",
+    theme: propTheme,
     children,
     length,
     maxLength,
@@ -138,6 +139,7 @@ const FormMessage = forwardRef<
   },
   ref
 ) {
+  const { theme } = useFormTheme({ theme: propTheme });
   let message = children;
   if (!disableWrap && children) {
     message = (

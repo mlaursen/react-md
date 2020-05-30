@@ -125,19 +125,29 @@ describe("TextFieldContainer", () => {
     const leftChildren = <span data-testid="left">Left</span>;
 
     const { container, getByTestId, rerender } = render(
-      <TextFieldContainer leftChildren={leftChildren} />
+      <TextFieldContainer theme="none" leftChildren={leftChildren} />
     );
     let leftNode = getByTestId("left");
     expect(container).toMatchSnapshot();
     expect(leftNode.parentElement?.className).toBe(addonClassName);
 
-    rerender(<TextFieldContainer leftChildren={leftChildren} isLeftAddon />);
+    rerender(
+      <TextFieldContainer
+        theme="none"
+        leftChildren={leftChildren}
+        isLeftAddon
+      />
+    );
     leftNode = getByTestId("left");
     expect(container).toMatchSnapshot();
     expect(leftNode.parentElement?.className).toBe(addonClassName);
 
     rerender(
-      <TextFieldContainer leftChildren={leftChildren} isLeftAddon={false} />
+      <TextFieldContainer
+        theme="none"
+        leftChildren={leftChildren}
+        isLeftAddon={false}
+      />
     );
     leftNode = getByTestId("left");
     expect(container).toMatchSnapshot();
@@ -152,19 +162,29 @@ describe("TextFieldContainer", () => {
     const rightChildren = <span data-testid="right">Right</span>;
 
     const { container, getByTestId, rerender } = render(
-      <TextFieldContainer rightChildren={rightChildren} />
+      <TextFieldContainer theme="none" rightChildren={rightChildren} />
     );
     let rightNode = getByTestId("right");
     expect(container).toMatchSnapshot();
     expect(rightNode.parentElement?.className).toBe(addonClassName);
 
-    rerender(<TextFieldContainer rightChildren={rightChildren} isRightAddon />);
+    rerender(
+      <TextFieldContainer
+        theme="none"
+        rightChildren={rightChildren}
+        isRightAddon
+      />
+    );
     rightNode = getByTestId("right");
     expect(container).toMatchSnapshot();
     expect(rightNode.parentElement?.className).toBe(addonClassName);
 
     rerender(
-      <TextFieldContainer rightChildren={rightChildren} isRightAddon={false} />
+      <TextFieldContainer
+        theme="none"
+        rightChildren={rightChildren}
+        isRightAddon={false}
+      />
     );
     rightNode = getByTestId("right");
     expect(container).toMatchSnapshot();

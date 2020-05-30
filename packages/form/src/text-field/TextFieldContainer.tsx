@@ -3,37 +3,18 @@ import cn from "classnames";
 import { bem } from "@react-md/utils";
 
 import TextFieldAddon from "./TextFieldAddon";
+import { useFormTheme, FormThemeOptions } from "../FormThemeProvider";
 
-/**
- * The supported themes for a text field.
- *
- * - "none" - display as an unstyled text field without any border or background
- *   colors.
- * - "underline" - display with only an underline that gains the form active
- *   color and animates from the left or right to the other side when the field
- *   is focused.
- * - "filled" - an extension of the `"underline"` state that will also have a
- *   slightly dark background applied.
- * - "outline" - outlines the entire text field in a border and applies the
- *   active color as box shadow when the field is focused.
- */
-export type TextFieldTheme = "none" | "underline" | "filled" | "outline";
-
-export interface TextFieldContainerOptions {
+export interface TextFieldContainerOptions extends FormThemeOptions {
   /**
-   * Boolean if the text field should use the dense spec to reduce the height a
-   * bit.
+   * Boolean if the form components should be using the `dense` spec to reduce
+   * the sizing slightly.
    */
   dense?: boolean;
 
   /**
-   * The theme to use for the text field.
-   */
-  theme?: TextFieldTheme;
-
-  /**
-   * Boolean if the text field should be displayed inline with `inline-flex`
-   * instead of full width with `flex`.
+   * Boolean if the component should be rendered inline with
+   * `display: inline-flex` instead of `display: flex`.
    */
   inline?: boolean;
 
@@ -42,12 +23,6 @@ export interface TextFieldContainerOptions {
    * colors.
    */
   error?: boolean;
-
-  /**
-   * The direction that the underline should appear from when the theme is
-   * `"underline"` or `"filled"`.
-   */
-  underlineDirection?: "left" | "right";
 
   /**
    * An optional addon to apply to the left of the text field. This should
@@ -110,21 +85,26 @@ const TextFieldContainer = forwardRef<HTMLDivElement, TextFieldContainerProps>(
       className,
       children,
       inline = false,
-      theme = "none",
+      theme: propTheme,
       error = false,
       active,
       label,
-      dense,
+      dense = false,
       disabled = false,
       isLeftAddon = true,
       isRightAddon = true,
       leftChildren,
       rightChildren,
-      underlineDirection = "left",
+      underlineDirection: propUnderlineDirection,
       ...props
     },
     ref
   ) {
+    const { theme, underlineDirection } = useFormTheme({
+      theme: propTheme,
+      underlineDirection: propUnderlineDirection,
+    });
+
     const underline = theme === "underline";
     const outline = theme === "outline";
     const filled = theme === "filled";
@@ -188,7 +168,7 @@ if (process.env.NODE_ENV !== "production") {
       theme: PropTypes.oneOf(["none", "underline", "outline", "filled"]),
       active: PropTypes.bool,
       error: PropTypes.bool,
-      underlineDirection: PropTypes.oneOf(["left", "right"]),
+      underlineDirection: PropTypes.oneOf(["left", "center", "right"]),
       isLeftAddon: PropTypes.bool,
       isRightAddon: PropTypes.bool,
       leftChildren: PropTypes.node,

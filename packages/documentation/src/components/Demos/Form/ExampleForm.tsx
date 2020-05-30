@@ -6,8 +6,9 @@ import {
   NativeSelect,
   Radio,
   TextField,
-  TextFieldTheme,
+  FormTheme,
   useChoice,
+  FormThemeProvider,
 } from "@react-md/form";
 import {
   EmailSVGIcon,
@@ -21,14 +22,14 @@ import states from "constants/states";
 
 import styles from "./ExampleForm.module.scss";
 
-const themes: TextFieldTheme[] = ["none", "underline", "filled", "outline"];
+const themes: FormTheme[] = ["none", "underline", "filled", "outline"];
 
 const ExampleForm: FC = () => {
-  const [currentTheme, handleChange] = useChoice<TextFieldTheme>("outline");
+  const [currentTheme, handleChange] = useChoice<FormTheme>("outline");
   const isUnstyled = currentTheme === "none";
 
   return (
-    <>
+    <FormThemeProvider theme={currentTheme}>
       <Fieldset legend="Theme options" unstyled={false}>
         {themes.map((theme) => (
           <Radio
@@ -50,7 +51,6 @@ const ExampleForm: FC = () => {
             name="name"
             label={!isUnstyled && "Name"}
             placeholder="John Snow"
-            theme={currentTheme}
           />
           <PhoneSVGIcon />
           <TextField
@@ -61,7 +61,6 @@ const ExampleForm: FC = () => {
             placeholder="123-4567"
             pattern="\d{3}-\d{4}"
             maxLength={8}
-            theme={currentTheme}
           />
           <LocationOnSVGIcon className={styles.icon} />
           <Fieldset legend="Full Address" legendClassName={styles.legend}>
@@ -70,7 +69,6 @@ const ExampleForm: FC = () => {
               name="address"
               label={!isUnstyled && "Address"}
               placeholder="Some place street"
-              theme={currentTheme}
             />
             <TextField
               id="contact-city"
@@ -78,7 +76,6 @@ const ExampleForm: FC = () => {
               label={!isUnstyled && "City"}
               placeholder="Denver"
               className={styles.field}
-              theme={currentTheme}
             />
             <NativeSelect
               id="contact-state"
@@ -87,7 +84,6 @@ const ExampleForm: FC = () => {
               inline
               label="State"
               className={cn(styles.field, styles.inline, styles.first)}
-              theme={currentTheme}
             >
               {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
               <option value="" disabled hidden />
@@ -106,7 +102,6 @@ const ExampleForm: FC = () => {
               pattern="\d{5}"
               maxLength={5}
               className={cn(styles.field, styles.inline)}
-              theme={currentTheme}
             />
           </Fieldset>
           <EmailSVGIcon />
@@ -115,11 +110,10 @@ const ExampleForm: FC = () => {
             name="email"
             label={!isUnstyled && "Email"}
             placeholder="jsnow@email.com"
-            theme={currentTheme}
           />
         </Form>
       </Phone>
-    </>
+    </FormThemeProvider>
   );
 };
 

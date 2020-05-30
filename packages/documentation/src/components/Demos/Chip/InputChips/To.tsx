@@ -86,7 +86,6 @@ const To: FC = () => {
         <AutoComplete
           id="input-chips-email"
           placeholder="Email"
-          theme="none"
           valueKey="label"
           data={data}
           listboxWidth="auto"

@@ -15,6 +15,7 @@ import TextFieldContainer, {
 } from "../text-field/TextFieldContainer";
 import useValuedState from "../text-field/useValuedState";
 import useFocusState from "../useFocusState";
+import { useFormTheme } from "../FormThemeProvider";
 
 export interface NativeSelectProps
   extends SelectHTMLAttributes<HTMLSelectElement>,
@@ -109,7 +110,7 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       selectStyle,
       selectClassName,
       icon: propIcon,
-      theme = "outline",
+      theme: propTheme,
       dense = false,
       inline = false,
       error = false,
@@ -123,13 +124,17 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       isRightAddon,
       leftChildren,
       rightChildren,
-      underlineDirection = "left",
+      underlineDirection: propUnderlineDirection,
       children,
       ...props
     },
     ref
   ) {
     const { id, value, defaultValue, multiple } = props;
+    const { theme, underlineDirection } = useFormTheme({
+      theme: propTheme,
+      underlineDirection: propUnderlineDirection,
+    });
     const underline = theme === "underline" || theme === "filled";
 
     const icon = useIcon("dropdown", propIcon);
@@ -231,7 +236,7 @@ if (process.env.NODE_ENV !== "production") {
       error: PropTypes.bool,
       inline: PropTypes.bool,
       disabled: PropTypes.bool,
-      underlineDirection: PropTypes.oneOf(["left", "right"]),
+      underlineDirection: PropTypes.oneOf(["left", "center", "right"]),
       isLeftAddon: PropTypes.bool,
       leftChildren: PropTypes.node,
       rightChildren: PropTypes.node,

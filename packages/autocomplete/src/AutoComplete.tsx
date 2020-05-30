@@ -284,7 +284,7 @@ if (process.env.NODE_ENV !== "production") {
       inline: PropTypes.bool,
       disabled: PropTypes.bool,
       placeholder: PropTypes.string,
-      underlineDirection: PropTypes.oneOf(["left", "right"]),
+      underlineDirection: PropTypes.oneOf(["left", "center", "right"]),
       leftChildren: PropTypes.node,
       rightChildren: PropTypes.node,
       isLeftAddon: PropTypes.bool,

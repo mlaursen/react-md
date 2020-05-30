@@ -33,6 +33,7 @@ import {
   getOptionId as DEFAULT_GET_OPTION_ID,
   getOptionLabel as DEFAULT_GET_OPTION_LABEL,
 } from "./utils";
+import { useFormTheme } from "../FormThemeProvider";
 
 type FakeSelectAttributes = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -191,14 +192,14 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
     listboxStyle,
     listboxClassName,
     anchor = BELOW_CENTER_ANCHOR,
-    theme = "outline",
+    theme: propTheme,
     dense = false,
     inline = false,
     error = false,
     disabled = false,
     isLeftAddon = true,
     isRightAddon = true,
-    underlineDirection = "left",
+    underlineDirection: propUnderlineDirection,
     listboxWidth = "equal",
     portal = true,
     portalInto,
@@ -227,6 +228,10 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
 ) {
   const { id } = props;
   const rightChildren = useIcon("dropdown", propRightChildren);
+  const { theme, underlineDirection } = useFormTheme({
+    theme: propTheme,
+    underlineDirection: propUnderlineDirection,
+  });
 
   const valued = typeof value === "number" || !!value;
   const displayValue = useMemo(() => {
@@ -474,7 +479,7 @@ if (process.env.NODE_ENV !== "production") {
       readOnly: PropTypes.bool,
       disabled: PropTypes.bool,
       placeholder: PropTypes.node,
-      underlineDirection: PropTypes.oneOf(["left", "right"]),
+      underlineDirection: PropTypes.oneOf(["left", "center", "right"]),
       leftChildren: PropTypes.node,
       rightChildren: PropTypes.node,
       isLeftAddon: PropTypes.bool,

@@ -4,6 +4,8 @@ export * from "./Form";
 export { default as Fieldset } from "./Fieldset";
 export * from "./Fieldset";
 
+export * from "./FormThemeProvider";
+
 export * from "./file-input";
 export * from "./label";
 export * from "./select";

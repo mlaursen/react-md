@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import { NestedDialogContextProvider } from "@react-md/dialog";
 import { ConfigurableIcons, IconProvider } from "@react-md/icon";
+import { FormThemeProvider, FormThemeOptions } from "@react-md/form";
 import {
   DEFAULT_RIPPLE_CLASSNAMES,
   DEFAULT_RIPPLE_TIMEOUT,
@@ -59,6 +60,11 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
    * throughout react-md.
    */
   icons?: ConfigurableIcons;
+
+  /**
+   * An object of any overrides for the `FormThemeProvider`.
+   */
+  formTheme?: FormThemeOptions;
 }
 
 /**
@@ -69,6 +75,7 @@ const Configuration: FC<ConfigurationProps> = ({
   onAppResize,
   children,
   icons,
+  formTheme,
   phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
   tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH,
   tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH,
@@ -105,7 +112,9 @@ const Configuration: FC<ConfigurationProps> = ({
             defaultDelay={tooltipDefaultDelay}
             delayTimeout={tooltipDelayTimeout}
           >
-            <IconProvider {...icons}>{children}</IconProvider>
+            <IconProvider {...icons}>
+              <FormThemeProvider {...formTheme}>{children}</FormThemeProvider>
+            </IconProvider>
           </TooltipHoverModeConfig>
         </StatesConfig>
       </InteractionModeListener>
@@ -167,6 +176,10 @@ if (process.env.NODE_ENV !== "production") {
         password: PropTypes.node,
         notification: PropTypes.node,
         sort: PropTypes.node,
+      }),
+      formTheme: PropTypes.shape({
+        theme: PropTypes.oneOf(["none", "underline", "outline", "filled"]),
+        underlineDirection: PropTypes.oneOf(["left", "center", "right"]),
       }),
     };
   } catch (e) {}

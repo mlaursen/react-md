@@ -5,15 +5,19 @@ import {
   Form,
   Radio,
   TextFieldProps,
-  TextFieldTheme,
+  FormTheme,
+  FormThemeProvider,
+  FormUnderlineDirection,
   useChecked,
   useChoice,
+  Select,
+  useSelectState,
 } from "@react-md/form";
 import { FavoriteSVGIcon, LocationOnSVGIcon } from "@react-md/material-icons";
 
 import styles from "./TextFieldThemeConfig.module.scss";
 
-const themes: TextFieldTheme[] = ["none", "underline", "filled", "outline"];
+const themes: FormTheme[] = ["none", "underline", "filled", "outline"];
 
 type Config = Pick<
   TextFieldProps,
@@ -21,7 +25,6 @@ type Config = Pick<
   | "rightChildren"
   | "dense"
   | "label"
-  | "theme"
   | "error"
   | "inline"
   | "placeholder"
@@ -56,7 +59,10 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
   const [readOnly, handleReadOnlyChange, setReadOnly] = useChecked(false);
   const [error, handleErrorChange, setError] = useChecked(false);
   const [disabled, handleDisabledChange] = useChecked(false);
-  const [currentTheme, handleThemeChange] = useChoice<TextFieldTheme>(
+  const [underlineDirection, setUnderlineDirection] = useSelectState<
+    FormUnderlineDirection
+  >("left");
+  const [currentTheme, handleThemeChange] = useChoice<FormTheme>(
     "outline",
     (event) => {
       // the "unstyled" state does not support icons and a label out of the box
@@ -166,20 +172,34 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
           onChange={handleErrorChange}
         />
       </Fieldset>
+      <Select
+        id={`${idPrefix}-underline-direction`}
+        label="Underline Direction"
+        name="underlineDirection"
+        value={underlineDirection}
+        onChange={setUnderlineDirection}
+        options={["left", "center", "right"]}
+        disabled={currentTheme !== "underline" && currentTheme !== "filled"}
+        className={styles.select}
+      />
       {children}
       <div className={styles.demo}>
-        {renderField({
-          label: label && "Label",
-          placeholder: "Placeholder",
-          dense,
-          inline,
-          theme: currentTheme,
-          readOnly,
-          disabled,
-          error,
-          leftChildren: useLeft && <FavoriteSVGIcon />,
-          rightChildren: useRight && <LocationOnSVGIcon />,
-        })}
+        <FormThemeProvider
+          theme={currentTheme}
+          underlineDirection={underlineDirection}
+        >
+          {renderField({
+            label: label && "Label",
+            placeholder: "Placeholder",
+            dense,
+            inline,
+            readOnly,
+            disabled,
+            error,
+            leftChildren: useLeft && <FavoriteSVGIcon />,
+            rightChildren: useRight && <LocationOnSVGIcon />,
+          })}
+        </FormThemeProvider>
       </div>
     </Form>
   );

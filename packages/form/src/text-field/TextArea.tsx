@@ -18,6 +18,7 @@ import TextFieldContainer, {
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
 import useValuedState from "./useValuedState";
+import { useFormTheme } from "../FormThemeProvider";
 
 export type TextAreaResize =
   | "none"
@@ -134,7 +135,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       rows = 2,
       maxRows = -1,
       resize = "auto",
-      theme = "outline",
+      theme: propTheme,
       dense = false,
       inline: propInline = false,
       error = false,
@@ -142,7 +143,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       animate = true,
       isLeftAddon = true,
       isRightAddon = true,
-      underlineDirection = "left",
+      underlineDirection: propUnderlineDirection,
       onBlur: propOnBlur,
       onFocus: propOnFocus,
       onChange: propOnChange,
@@ -153,6 +154,10 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     forwardedRef
   ): ReactElement {
     const { id, value, defaultValue } = props;
+    const { theme, underlineDirection } = useFormTheme({
+      theme: propTheme,
+      underlineDirection: propUnderlineDirection,
+    });
 
     const [focused, onFocus, onBlur] = useFocusState({
       onBlur: propOnBlur,
@@ -384,7 +389,7 @@ if (process.env.NODE_ENV !== "production") {
       inline: PropTypes.bool,
       disabled: PropTypes.bool,
       placeholder: PropTypes.string,
-      underlineDirection: PropTypes.oneOf(["left", "right"]),
+      underlineDirection: PropTypes.oneOf(["left", "center", "right"]),
       leftChildren: PropTypes.node,
       rightChildren: PropTypes.node,
       isLeftAddon: PropTypes.bool,

@@ -2,7 +2,7 @@ export { default as TextField } from "./TextField";
 export * from "./TextField";
 
 export { default as TextFieldContainer } from "./TextFieldContainer";
-export { TextFieldTheme } from "./TextFieldContainer";
+export * from "./TextFieldContainer";
 
 export { default as TextFieldAddon } from "./TextFieldAddon";
 export * from "./TextFieldAddon";
