@@ -1,3 +1,5 @@
+@import '~@react-md/alert/dist/mixins';
+@import '~@react-md/button/dist/mixins';
 @import '~globals';
 
 @include react-md-everything;
@@ -83,3 +85,5 @@ h3,
 }
 
 @include react-md-media-aspect-ratio(2, 3);
+@include react-md-alert;
+@include react-md-button;

@@ -182,7 +182,6 @@ function makeConfig(server, production) {
     entry = clientEntry;
     if (!production) {
       entry = [
-        'react-hot-loader/patch',
         `webpack-dev-server/client?${publicPath}`,
         'webpack/hot/only-dev-server',
         entry,
@@ -240,7 +239,6 @@ function makeConfig(server, production) {
         fallback: 'style-loader',
       }),
     });
-    babelPlugins.push('react-hot-loader/babel');
     devServer = {
       host: publicUrl.replace(/https?:\/\/(.+)(:.+)?/, '$1'),
       port: HOT_RELOAD_PORT,

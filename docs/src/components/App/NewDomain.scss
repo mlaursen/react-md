@@ -1,0 +1,20 @@
+@import '~@react-md/theme/dist/variables';
+
+.new-domain-messages.new-domain-messages {
+  bottom: auto;
+  top: 0;
+
+  p {
+    color: #fff;
+    margin: 0.5rem 0;
+  }
+
+  strong {
+    color: $rmd-red-a-700;
+    font-weight: bold;
+  }
+
+  a:hover {
+    color: $rmd-blue-a-100;
+  }
+}
