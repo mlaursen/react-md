@@ -8,7 +8,10 @@ import React, {
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { TransitionTimeout } from "@react-md/transition";
 
-import { RIPPLE_CLASS_NAMES, RIPPLE_TIMEOUT } from "./ripples/constants";
+import {
+  DEFAULT_RIPPLE_CLASSNAMES,
+  DEFAULT_RIPPLE_TIMEOUT,
+} from "./ripples/constants";
 
 /**
  * Contains all the values in the `StatesConfig` component.
@@ -42,8 +45,8 @@ export interface StatesConfigContextType {
 }
 
 export const StatesConfigContext = createContext<StatesConfigContextType>({
-  rippleTimeout: RIPPLE_TIMEOUT,
-  rippleClassNames: RIPPLE_CLASS_NAMES,
+  rippleTimeout: DEFAULT_RIPPLE_TIMEOUT,
+  rippleClassNames: DEFAULT_RIPPLE_CLASSNAMES,
   disableRipple: false,
   disableProgrammaticRipple: false,
 });
@@ -72,8 +75,8 @@ export interface StatesConfigProps extends Partial<StatesConfigContextType> {
  * - disabling or enabling the fix for color pollution
  */
 function StatesConfig({
-  rippleTimeout = RIPPLE_TIMEOUT,
-  rippleClassNames = RIPPLE_CLASS_NAMES,
+  rippleTimeout = DEFAULT_RIPPLE_TIMEOUT,
+  rippleClassNames = DEFAULT_RIPPLE_CLASSNAMES,
   disableRipple = false,
   disableProgrammaticRipple = false,
   children,

@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode, useMemo } from "react";
 
-import { DEFAULT_DELAY } from "./constants";
+import { DEFAULT_TOOLTIP_DELAY } from "./constants";
 import {
   HoverModeActions,
   HoverModeDelay,
@@ -21,8 +21,8 @@ interface TooltipHoverModeConfigProps {
  * tooltips will become visible immediately until 3 seconds have passed.
  */
 function TooltipHoverModeConfig({
-  defaultDelay = DEFAULT_DELAY,
-  delayTimeout = DEFAULT_DELAY,
+  defaultDelay = DEFAULT_TOOLTIP_DELAY,
+  delayTimeout = DEFAULT_TOOLTIP_DELAY,
   enabled = true,
   children,
 }: TooltipHoverModeConfigProps): ReactElement {

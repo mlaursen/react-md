@@ -2,12 +2,15 @@ import React, { FC, ReactNode } from "react";
 import { NestedDialogContextProvider } from "@react-md/dialog";
 import { ConfigurableIcons, IconProvider } from "@react-md/icon";
 import {
-  RIPPLE_CLASS_NAMES,
-  RIPPLE_TIMEOUT,
+  DEFAULT_RIPPLE_CLASSNAMES,
+  DEFAULT_RIPPLE_TIMEOUT,
   StatesConfig,
   StatesConfigProps,
 } from "@react-md/states";
-import { TooltipHoverModeConfig } from "@react-md/tooltip";
+import {
+  TooltipHoverModeConfig,
+  DEFAULT_TOOLTIP_DELAY,
+} from "@react-md/tooltip";
 import {
   AppSizeListener,
   AppSizeListenerProps,
@@ -72,13 +75,13 @@ const Configuration: FC<ConfigurationProps> = ({
   desktopMinWidth = DEFAULT_DESKTOP_MIN_WIDTH,
   desktopLargeMinWidth = DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   defaultSize = DEFAULT_APP_SIZE,
-  rippleTimeout = RIPPLE_TIMEOUT,
-  rippleClassNames = RIPPLE_CLASS_NAMES,
+  rippleTimeout = DEFAULT_RIPPLE_TIMEOUT,
+  rippleClassNames = DEFAULT_RIPPLE_CLASSNAMES,
   disableRipple = false,
   disableProgrammaticRipple = false,
   disableTooltipHoverMode = false,
-  tooltipDefaultDelay = 1000,
-  tooltipDelayTimeout = 1000,
+  tooltipDefaultDelay = DEFAULT_TOOLTIP_DELAY,
+  tooltipDelayTimeout = DEFAULT_TOOLTIP_DELAY,
 }) => (
   <AppSizeListener
     defaultSize={defaultSize}

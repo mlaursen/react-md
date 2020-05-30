@@ -5,7 +5,7 @@ import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";
 import { TransitionTimeout, useCSSTransition } from "@react-md/transition";
 import { bem, useIsUserInteractionMode } from "@react-md/utils";
 
-import { DEFAULT_LAYOUT_MAIN_CLASS_NAMES } from "./constants";
+import { DEFAULT_LAYOUT_MAIN_CLASSNAMES } from "./constants";
 import { useLayoutConfig } from "./LayoutProvider";
 import { isTemporaryLayout } from "./utils";
 
@@ -59,7 +59,7 @@ const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       navOffset: propNavOffset,
       headerOffset = false,
       timeout: propTimeout = DEFAULT_SHEET_TIMEOUT,
-      classNames = DEFAULT_LAYOUT_MAIN_CLASS_NAMES,
+      classNames = DEFAULT_LAYOUT_MAIN_CLASSNAMES,
       ...props
     },
     forwardedRef

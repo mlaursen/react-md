@@ -1,7 +1,7 @@
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { TransitionTimeout } from "@react-md/transition";
 
-export const TOOLTIP_CLASS_NAMES: CSSTransitionClassNames = {
+export const DEFAULT_TOOLTIP_CLASSNAMES: CSSTransitionClassNames = {
   appear: "rmd-tooltip--enter",
   appearActive: "rmd-tooltip--visible",
   enter: "rmd-tooltip--enter",
@@ -11,10 +11,10 @@ export const TOOLTIP_CLASS_NAMES: CSSTransitionClassNames = {
   exitActive: "rmd-tooltip--exit-active",
 };
 
-export const TOOLTIP_TRANSITION_TIMEOUT: TransitionTimeout = {
+export const DEFAULT_TOOLTIP_TIMEOUT: TransitionTimeout = {
   enter: 200,
   exit: 150,
 };
 
-export const DEFAULT_DELAY = 1000;
-export const DEFAULT_THRESHOLD = 0.75;
+export const DEFAULT_TOOLTIP_DELAY = 1000;
+export const DEFAULT_TOOLTIP_THRESHOLD = 0.75;

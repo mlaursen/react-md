@@ -18,7 +18,7 @@ import {
   VerticalPosition,
 } from "@react-md/utils";
 
-import { DEFAULT_DELAY, DEFAULT_THRESHOLD } from "./constants";
+import { DEFAULT_TOOLTIP_DELAY, DEFAULT_TOOLTIP_THRESHOLD } from "./constants";
 import Tooltip, { TooltipProps } from "./Tooltip";
 import { MergableHandlers } from "./useHandlers";
 import useTooltipState, { TooltipStateOptions } from "./useTooltipState";
@@ -162,13 +162,13 @@ function Tooltipped({
   dense = false,
   vhMargin = 16,
   vwMargin = 16,
-  hoverDelay = DEFAULT_DELAY,
-  focusDelay = DEFAULT_DELAY,
-  touchTimeout = DEFAULT_DELAY,
+  hoverDelay = DEFAULT_TOOLTIP_DELAY,
+  focusDelay = DEFAULT_TOOLTIP_DELAY,
+  touchTimeout = DEFAULT_TOOLTIP_DELAY,
   spacing = "1.5rem",
   denseSpacing = "0.875rem",
   position: propPosition,
-  positionThreshold = DEFAULT_THRESHOLD,
+  positionThreshold = DEFAULT_TOOLTIP_THRESHOLD,
   portal = false,
   portalInto,
   portalIntoId,

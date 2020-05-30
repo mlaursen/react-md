@@ -6,7 +6,7 @@ import { useIcon } from "@react-md/icon";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";
 import { TransitionTimeout, useCSSTransition } from "@react-md/transition";
 
-import { DEFFAULT_LAYOUT_NAV_TOGGLE_CLASS_NAMES } from "./constants";
+import { DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";
 import { useLayoutConfig } from "./LayoutProvider";
 import { PropsWithRef } from "./types";
 import { isTemporaryLayout, isToggleableLayout } from "./utils";
@@ -87,7 +87,7 @@ const LayoutNavToggle = forwardRef<HTMLButtonElement, LayoutNavToggleProps>(
       rendered,
       tabIndex: propTabIndex,
       timeout = DEFAULT_SHEET_TIMEOUT,
-      classNames = DEFFAULT_LAYOUT_NAV_TOGGLE_CLASS_NAMES,
+      classNames = DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES,
       ...props
     },
     forwardedRef

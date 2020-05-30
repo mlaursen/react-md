@@ -14,7 +14,10 @@ import {
 } from "@react-md/transition";
 import { bem, SimplePosition } from "@react-md/utils";
 
-import { TOOLTIP_CLASS_NAMES, TOOLTIP_TRANSITION_TIMEOUT } from "./constants";
+import {
+  DEFAULT_TOOLTIP_CLASSNAMES,
+  DEFAULT_TOOLTIP_TIMEOUT,
+} from "./constants";
 
 /**
  * The base props for the `Tooltip` component. This can be extended when
@@ -115,9 +118,9 @@ const block = bem("rmd-tooltip");
 const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(function Tooltip(
   {
     className,
-    classNames = TOOLTIP_CLASS_NAMES,
+    classNames = DEFAULT_TOOLTIP_CLASSNAMES,
     visible,
-    timeout = TOOLTIP_TRANSITION_TIMEOUT,
+    timeout = DEFAULT_TOOLTIP_TIMEOUT,
     dense = false,
     lineWrap = true,
     position = "below",

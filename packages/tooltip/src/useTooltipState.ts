@@ -5,7 +5,7 @@ import {
   useUserInteractionMode,
 } from "@react-md/utils";
 
-import { DEFAULT_DELAY, DEFAULT_THRESHOLD } from "./constants";
+import { DEFAULT_TOOLTIP_DELAY, DEFAULT_TOOLTIP_THRESHOLD } from "./constants";
 import { TooltipProps } from "./Tooltip";
 import {
   MergableHandlers,
@@ -135,10 +135,10 @@ export interface TooltipStateOptions
 export default function useTooltipState({
   position: propPosition,
   defaultPosition,
-  positionThreshold = DEFAULT_THRESHOLD,
-  hoverDelay = DEFAULT_DELAY,
-  touchTimeout = DEFAULT_DELAY,
-  focusDelay = DEFAULT_DELAY,
+  positionThreshold = DEFAULT_TOOLTIP_THRESHOLD,
+  hoverDelay = DEFAULT_TOOLTIP_DELAY,
+  touchTimeout = DEFAULT_TOOLTIP_DELAY,
+  focusDelay = DEFAULT_TOOLTIP_DELAY,
   disableHoverMode,
   onMouseEnter,
   onMouseLeave,

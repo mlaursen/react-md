@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useState } from "react";
 import { useRefCache, useTimeout } from "@react-md/utils";
 
-import { DEFAULT_DELAY } from "./constants";
+import { DEFAULT_TOOLTIP_DELAY } from "./constants";
 
 interface TooltipHoverModeState {
   /**
@@ -69,7 +69,7 @@ export function useTooltipHoverModeState(
  * tooltip components.  When the `enable` function is called, this is updated to
  * be `0` so tooltips can appear immediately on hover.
  */
-export const HoverModeDelay = createContext(DEFAULT_DELAY);
+export const HoverModeDelay = createContext(DEFAULT_TOOLTIP_DELAY);
 
 interface HoverModeActionsContext {
   enable: () => void;
