@@ -38,7 +38,6 @@
 /// Generates the styles for a snackbar and should probably only be used
 /// internally.
 @mixin rmd-snackbar {
-  bottom: 0;
   display: flex;
   justify-content: center;
   left: 0;
@@ -49,6 +48,14 @@
   position: fixed;
   right: 0;
   z-index: $rmd-snackbar-z-index;
+
+  &--top {
+    top: 0;
+  }
+
+  &--bottom {
+    bottom: 0;
+  }
 }
 
 /// Generates the styles for a toast and should probably only be used

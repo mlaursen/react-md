@@ -6,6 +6,8 @@ import {
 } from "@react-md/portal";
 import { bem } from "@react-md/utils";
 
+export type SnackbarPosition = "bottom" | "top";
+
 export interface SnackbarProps
   extends HTMLAttributes<HTMLDivElement>,
     RenderConditionalPortalProps {
@@ -13,12 +15,26 @@ export interface SnackbarProps
    * The id for the snackbar element. This is required for a11y.
    */
   id: string;
+
+  /**
+   * The position for the snackbar to be fixed within the viewport or a
+   * container element.
+   */
+  position?: SnackbarPosition;
 }
 
 const block = bem("rmd-snackbar");
 
 const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(function Snackbar(
-  { className, children, portal = false, portalInto, portalIntoId, ...props },
+  {
+    className,
+    children,
+    portal = false,
+    portalInto,
+    portalIntoId,
+    position = "bottom",
+    ...props
+  },
   ref
 ) {
   return (
@@ -31,7 +47,7 @@ const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(function Snackbar(
         {...props}
         role="status"
         ref={ref}
-        className={cn(block(), className)}
+        className={cn(block({ [position]: true }), className)}
       >
         {children}
       </div>
@@ -47,6 +63,7 @@ if (process.env.NODE_ENV !== "production") {
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
       children: PropTypes.node,
+      position: PropTypes.oneOf(["bottom", "top"]),
       portal: PropTypes.bool,
       portalInto: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
       portalIntoId: PropTypes.string,

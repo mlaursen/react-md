@@ -121,19 +121,19 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-snackbar",
       description:
         "Generates the styles for a snackbar and should probably only be used internally.\n",
-      source: "packages/alert/src/_mixins.scss#L40-L52",
+      source: "packages/alert/src/_mixins.scss#L40-L59",
       usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       code: "@mixin rmd-snackbar { … }",
       sourceCode:
-        "@mixin rmd-snackbar {\n  bottom: 0;\n  display: flex;\n  justify-content: center;\n  left: 0;\n  margin: $rmd-snackbar-margin;\n  // disable pointer events since otherwise this will block clicking on elements while the toast\n  // is visible. they will be re-enabled on the toast itself.\n  pointer-events: none;\n  position: fixed;\n  right: 0;\n  z-index: $rmd-snackbar-z-index;\n}\n",
+        "@mixin rmd-snackbar {\n  display: flex;\n  justify-content: center;\n  left: 0;\n  margin: $rmd-snackbar-margin;\n  // disable pointer events since otherwise this will block clicking on elements while the toast\n  // is visible. they will be re-enabled on the toast itself.\n  pointer-events: none;\n  position: fixed;\n  right: 0;\n  z-index: $rmd-snackbar-z-index;\n\n  &--top {\n    top: 0;\n  }\n\n  &--bottom {\n    bottom: 0;\n  }\n}\n",
       type: "mixin",
     },
     "rmd-toast": {
       name: "rmd-toast",
       description:
         "Generates the styles for a toast and should probably only be used internally.\n",
-      source: "packages/alert/src/_mixins.scss#L56-L143",
+      source: "packages/alert/src/_mixins.scss#L63-L150",
       usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       packageName: "alert",
       code: "@mixin rmd-toast { … }",
@@ -145,7 +145,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-alert",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/alert/src/_mixins.scss#L147-L157",
+      source: "packages/alert/src/_mixins.scss#L154-L164",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "alert",
       code: "@mixin react-md-alert { … }",
