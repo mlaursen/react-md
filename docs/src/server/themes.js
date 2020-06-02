@@ -75,7 +75,8 @@ async function createStylesheet(fileName, css) {
 }
 
 export default async function themes(req, res) {
-  const fileName = req.url.replace(/\/themes\/|\.css/g, '');
+  const fileName = req.url.replace(/(.*\/themes\/)|\.css/g, '');
+
   try {
     const css = await compileSass(fileName);
     if (!__DEV__) {

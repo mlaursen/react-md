@@ -8,7 +8,7 @@ import createPaginatedRoute from 'server/utils/createPaginatedRoute';
 
 const searchRoutes = baseRoutes.map((route) => {
   let upgrade = false;
-  let name = route.replace(/\/(components(\/helpers)?|customization|getting-started|discover-more)\//, '');
+  let name = route.replace(/.*\/(components(\/helpers)?|customization|getting-started|discover-more)\//, '');
   if (name.match(/pickers|progress/)) {
     const [section, component] = name.split('/');
     name = `${component}-${section}`;
