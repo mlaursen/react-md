@@ -35,7 +35,7 @@ and more customization information, but an example usage is shown below.
 ## Usage
 
 The main export from this package is the `Tree` component which allows you to
-render a tree from [TreeData](./src/types.ts#L55) which is really a lookup of
+render a tree from `TreeData` which is really a lookup of
 `Record<TreeItemId, TreeItem>`. The `Tree` component is fully controlled and
 requires you to provide the selection and logic expansion with a few props. You
 can use the `useTreeItemExpansion` and `useTreeItemSelection` hooks to get
