@@ -92,7 +92,9 @@ function handleClearTheme(state) {
 
 export function getInitialState(savedData) {
   let state = DEFAULT_STATE;
-  const keys = savedData ? Object.keys(savedData) : null;
+  const keys = savedData
+    ? Object.keys(savedData).filter(key => THEME_KEYS.includes(key))
+    : null;
   if (keys && keys.length === THEME_KEYS.length) {
     state = {
       ...state,

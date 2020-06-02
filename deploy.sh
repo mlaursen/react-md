@@ -36,4 +36,4 @@ ssh "$ssh_alias" "cd $server_location && git pull && yarn && rm -rf lib && cd do
 scp "$tar_name" "$ssh_alias":"$server_location"
 
 # ssh "$ssh_alias" "cd $server_location && tar jxvf $tar_name && git clean -f && cd .. && pm2 start processes.yml"
-ssh "$ssh_alias" "cd $server_location && tar jxf $tar_name && git clean -f && cd .. && pm2 restart ecosystem.config.js"
+ssh "$ssh_alias" "cd $server_location && tar jxf $tar_name && git clean -f && cd .. && pm2 restart react-md@v1"
