@@ -33,6 +33,26 @@ const tocs: TOCRecord = {
       anchor: "#creating-dynamic-themes",
       title: "Creating Dynamic Themes",
     },
+    {
+      anchor: "#the-react-mdtheme-api",
+      title: "The @react-md/theme API",
+    },
+    {
+      anchor: "#other-packages39-theme-api",
+      title: "Other packages' theme API",
+    },
+    {
+      anchor: "#examples-and-usage-within-react-md",
+      title: "Examples and Usage within react-md",
+    },
+    {
+      anchor: "#documentation-site-usage",
+      title: "Documentation Site Usage",
+    },
+    {
+      anchor: "#server-side-rendering-with-saved-themes",
+      title: "Server Side Rendering with Saved Themes",
+    },
   ],
   "/colors-and-theming/overriding-defaults": [
     {

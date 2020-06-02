@@ -24,7 +24,8 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   },
   {
     title: "Creating Dynamic Themes",
-    summary: "",
+    summary:
+      "Starting with react-md@v2, the majority of the packages now allow for customizing colors and spacing with CSS variables with the new theme API. This new theme API is extremely powerful and allows for a lot of additional customization and configuration in your app since your theme can be configured at a component-by-component basis or at runtime.",
     type: "guide",
     pageUrl: "/colors-and-theming/creating-dynamic-themes",
     pathname: "/colors-and-theming/creating-dynamic-themes",

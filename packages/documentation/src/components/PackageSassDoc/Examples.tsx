@@ -21,7 +21,11 @@ const Examples: FC<ExamplesProps> = ({ baseId, examples }) => {
         Examples
       </Text>
       {examples.map((example, i) => (
-        <Example {...example} id={`${baseId}-example-${i + 1}-compiled`} />
+        <Example
+          key={example.description}
+          {...example}
+          id={`${baseId}-example-${i + 1}-compiled`}
+        />
       ))}
     </>
   );
