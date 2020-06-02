@@ -1247,7 +1247,8 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   },
   {
     title: "MaterialIcons Demo - Simple Examples",
-    summary: "",
+    summary:
+      "All the current material icons are available with a FontIcon and SVGIcon suffix. If you're interested in how these icon components were generated, you can check out the generation script folder.",
     type: "demo",
     pageUrl: "/packages/material-icons/demos#simple-examples-title",
     pathname: "/packages/material-icons/demos#simple-examples-title",
@@ -2152,7 +2153,8 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   },
   {
     title: "Typography Demo - Text Container Examples",
-    summary: "",
+    summary:
+      "The TextContainer is a simple component that can be used to center and apply a max-width to children content (normally text). The line width can be configured with the $rmd-typography-mobile-max-line-length,\n$rmd-typography-desktop-max-line-width,\n$rmd-typography-text-container-breakpoint SCSS variables.",
     type: "demo",
     pageUrl: "/packages/typography/demos#text-container-examples-title",
     pathname: "/packages/typography/demos#text-container-examples-title",
