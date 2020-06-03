@@ -221,9 +221,10 @@ const GridList = forwardRef<HTMLDivElement, GridListProps>(function GridList(
   if (isRenderFunction(children)) {
     content = children(gridSize);
   } else if (clone || wrapOnly) {
-    content = Children.map(children, (child) => (
-      <GridListCell clone={clone}>{child}</GridListCell>
-    ));
+    content = Children.map(
+      children,
+      (child) => child && <GridListCell clone={clone}>{child}</GridListCell>
+    );
   } else {
     content = children;
   }
