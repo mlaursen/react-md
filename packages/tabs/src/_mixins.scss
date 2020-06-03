@@ -64,9 +64,12 @@
     pointer-events: none;
     position: absolute;
     transform: translateX(var(--rmd-tab-offset, 0));
-    transition: transform $rmd-transition-standard-time, max-width $rmd-transition-standard-time;
     width: 100%;
     z-index: 1;
+  }
+
+  &--animate::after {
+    transition: transform $rmd-transition-standard-time, max-width $rmd-transition-standard-time;
   }
 
   @each $position in $rmd-tabs-positions {

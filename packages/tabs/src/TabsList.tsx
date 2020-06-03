@@ -10,7 +10,7 @@ import React, {
   useRef,
 } from "react";
 import cn from "classnames";
-import { applyRef, bem } from "@react-md/utils";
+import { applyRef, bem, useIsUserInteractionMode } from "@react-md/utils";
 
 import { TabsConfig } from "./types";
 import useTabIndicatorStyle from "./useTabIndicatorStyle";
@@ -30,6 +30,12 @@ export interface TabsListProps
    * movement or clicking on a tab.
    */
   onActiveIndexChange(activeIndex: number): void;
+
+  /**
+   * Boolean if the indicator transition should be disabled while the active tab
+   * index changes.
+   */
+  disableTransition?: boolean;
 }
 
 const block = bem("rmd-tabs");
@@ -57,6 +63,7 @@ const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsList(
     padded = false,
     orientation = "horizontal",
     onActiveIndexChange,
+    disableTransition = false,
     ...props
   },
   forwardedRef
@@ -79,6 +86,7 @@ const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsList(
     totalTabs: tabs.length,
     activeIndex,
   });
+  const isKeyboard = useIsUserInteractionMode("keyboard");
 
   const prevActiveIndex = useRef(activeIndex);
   useEffect(() => {
@@ -115,6 +123,7 @@ const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsList(
           [align]: true,
           padded,
           vertical: !horizontal,
+          animate: !disableTransition && (!automatic || !isKeyboard),
         }),
         className
       )}
@@ -158,6 +167,7 @@ if (process.env.NODE_ENV !== "production") {
       orientation: PropTypes.oneOf(["horizontal", "vertical"]),
       activeIndex: PropTypes.number.isRequired,
       onActiveIndexChange: PropTypes.func.isRequired,
+      disableTransition: PropTypes.bool,
     };
   } catch (e) {}
 }
