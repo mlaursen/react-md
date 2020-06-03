@@ -1,5 +1,9 @@
 # v2.0.0
 
+Every transition was re-written in this release so it is a pretty big breaking
+change. The main differences are upgrading to transition API as well as
+shortening most of the transitions throughout `react-md`.
+
 ## New Behavior and Features
 
 - The `Collapse` component will have a static transition time instead of being

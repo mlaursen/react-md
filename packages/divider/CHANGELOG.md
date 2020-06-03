@@ -1,5 +1,9 @@
 # v2.0.0
 
+The `Divider` component was completely re-written for this release, but it
+should not be a breaking change. This package now also has better support for
+rendering dividers vertically with the `VerticalDivider` component.
+
 ## New Behavior and Features
 
 - the `ref` is now correctly passed to the DOM element

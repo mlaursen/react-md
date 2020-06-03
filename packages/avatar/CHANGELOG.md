@@ -1,5 +1,8 @@
 # v2.0.0
 
+The avatar component should be fairly similar to the v1 version except for a few
+behavior changes.
+
 ## New Behavior and Features
 
 - the `Avatar` is now rendered as a `<span>` instead of a `<div>`

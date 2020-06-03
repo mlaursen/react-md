@@ -64,6 +64,11 @@ const getPackageRoutes = (name: string): Route[] => {
     });
   }
 
+  routes.push({
+    href: "/changelog",
+    children: "Changelog",
+  });
+
   return routes;
 };
 

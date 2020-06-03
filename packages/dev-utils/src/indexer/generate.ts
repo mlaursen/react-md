@@ -1,17 +1,22 @@
+import { readFileSync } from "fs-extra";
+import { sync as globSync } from "glob";
 import log from "loglevel";
+import { join } from "path";
+
+import { documentationRoot } from "../constants";
+import { toId, toTitle } from "../utils/titles";
 import parseDemoIndex from "./parseDemoIndex";
 import parseMarkdown from "./parseMarkdown";
+import parseSassDocAnchors from "./parseSassDocAnchors";
 import {
-  TOCAnchor,
   DemoMetadata,
-  MetadataType,
-  TOCRecord,
-  RouteMetadata,
   IndexedResult,
+  MetadataType,
+  RouteMetadata,
+  TOCAnchor,
+  TOCRecord,
 } from "./types";
 import { getMarkdownForRoute, getTitleForRoute } from "./utils";
-import { toTitle, toId } from "../utils/titles";
-import parseSassDocAnchors from "./parseSassDocAnchors";
 
 export default async function generate(
   routes: readonly string[]
@@ -20,6 +25,10 @@ export default async function generate(
   const metadata: RouteMetadata[] = [];
 
   routes.forEach((route) => {
+    if (route.endsWith("/changelog")) {
+      return;
+    }
+
     const title = getTitleForRoute(route);
     const markdown = getMarkdownForRoute(route);
 
@@ -98,6 +107,35 @@ export default async function generate(
         });
       });
     }
+  });
+
+  const changelogs = globSync("src/changelogs/**/*.md", {
+    cwd: documentationRoot,
+  });
+
+  changelogs.forEach((changelogPath) => {
+    const packageName = changelogPath.replace(/.*\/((\w+)(-\w+)*).*/, "$1");
+    const changelog = readFileSync(
+      join(documentationRoot, changelogPath),
+      "utf8"
+    );
+    const { summary, anchors } = parseMarkdown(changelog);
+
+    const pageUrl = "/packages/[id]/changelog";
+    const pathname = `/packages/${packageName}/changelog`;
+    if (!summary) {
+      log.error(`${pathname} does not have a summary!`);
+      log.error();
+    }
+
+    metadata.push({
+      title: `${toTitle(packageName, "")} Changelog`,
+      summary,
+      type: "changelog",
+      pageUrl,
+      pathname,
+    });
+    tocs[pathname] = anchors;
   });
 
   return { tocs, metadata };

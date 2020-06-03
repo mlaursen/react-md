@@ -18,6 +18,7 @@ import copyStyles from "./utils/copyStyles";
 import createThemes from "./utils/createThemes";
 import configs from "./configs";
 import watch from "./watch";
+import changelogs from "./changelogs";
 
 const argv = process.argv.slice(2);
 
@@ -174,5 +175,6 @@ createCommand("clean")
   .action(() => clean(true));
 
 createCommand("configs").action(() => configs());
+createCommand("changelogs").action(() => changelogs());
 
 commander.parse(process.argv);

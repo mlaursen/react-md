@@ -1,4 +1,4 @@
-import * as marked from "marked";
+import marked from "marked";
 import { decode } from "he";
 import { TOCAnchor } from "./types";
 
@@ -13,7 +13,7 @@ const identity = (s: string): string => s;
 export default function parseMarkdown(markdown: string): MarkdownResult {
   const anchors: TOCAnchor[] = [];
   const renderer = new marked.Renderer({ gfm: true, sanitize: false });
-  renderer.heading = (text, level, _raw, slugger) => {
+  renderer.heading = (text, _level, _raw, slugger) => {
     // if it is over 60 characters, it is probably not really a title
     const isNoMargin = text.includes("<!-- no-margin -->");
     const isForcedHeading = text.includes("<!-- force-heading -->");
@@ -85,7 +85,7 @@ export default function parseMarkdown(markdown: string): MarkdownResult {
   renderer.strong = identity;
   renderer.text = identity;
 
-  renderer.link = (href, tile, text) => text;
+  renderer.link = (_href, _tile, text) => text;
 
   marked.parse(markdown.replace(/(:tada:)/g, "🎉"), { renderer });
 

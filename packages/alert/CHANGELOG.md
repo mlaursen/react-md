@@ -1,7 +1,7 @@
 # v2.0.0
 
-This package is a new implementation of th `Snackbar` component from `v1`. There
-should now be some accessibility fixes and hopefully a better way to queue
+This package is a new implementation of the `Snackbar` component from `v1`.
+There should now be some accessibility fixes and hopefully a better way to queue
 messages as well as cancel them but I also feel like I might need to re-work
 this again to work without the React context API.
 

@@ -38,7 +38,8 @@ export type MetadataType =
   | "sassdoc"
   | "demos"
   | "demo"
-  | "api";
+  | "api"
+  | "changelog";
 
 /**
  * A record of all the table of content anchors based on pathname for quick

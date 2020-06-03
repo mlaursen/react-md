@@ -5,9 +5,11 @@ import writeFile from "../utils/writeFile";
 import generate from "./generate";
 import { copySharedToDocs, getRoutes } from "./utils";
 import format from "../utils/format";
+import changelogs from "../changelogs";
 
 export default async function indexer(): Promise<void> {
   await readmes();
+  await changelogs();
   await copySharedToDocs();
 
   const routes = await getRoutes();
