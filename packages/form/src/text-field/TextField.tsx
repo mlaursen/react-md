@@ -33,7 +33,8 @@ export type SupportedInputTypes =
   | "datetime-local"
   | "month"
   | "week"
-  | "url";
+  | "url"
+  | "color";
 
 type TextFieldAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "type">;
 
@@ -113,7 +114,14 @@ export interface TextFieldProps
 
 const block = bem("rmd-text-field");
 
-const SPECIAL_TYPES = ["date", "time", "datetime-local", "month", "week"];
+const SPECIAL_TYPES: SupportedInputTypes[] = [
+  "date",
+  "time",
+  "datetime-local",
+  "month",
+  "week",
+  "color",
+];
 
 /**
  * The text field is a wrapper of the `<input type="text" />` component with
@@ -238,6 +246,7 @@ if (process.env.NODE_ENV !== "production") {
         "month",
         "week",
         "url",
+        "color",
       ]),
       style: PropTypes.object,
       className: PropTypes.string,
