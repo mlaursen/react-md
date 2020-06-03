@@ -65,6 +65,8 @@ interface AutoCompleteOptions
   isInlineAutocomplete: boolean;
   forwardedRef?: Ref<HTMLInputElement>;
   suggestionsId: string;
+  propValue?: string;
+  defaultValue?: string;
 }
 
 interface ReturnValue {
@@ -94,6 +96,8 @@ interface ReturnValue {
 export default function useAutoComplete({
   suggestionsId,
   data,
+  propValue,
+  defaultValue = "",
   filter: filterFn,
   filterOptions,
   filterOnNoValue,
@@ -136,7 +140,7 @@ export default function useAutoComplete({
 
   const filter = getFilterFunction(filterFn);
   const [
-    { value, match, filteredData: stateFilteredData },
+    { value: stateValue, match, filteredData: stateFilteredData },
     setState,
   ] = useState(() => {
     const options = {
@@ -145,15 +149,24 @@ export default function useAutoComplete({
       getItemValue: getResultValue,
       startsWith: filterOptions?.startsWith ?? isInlineAutocomplete,
     };
+    const value = propValue ?? defaultValue;
+    const filteredData =
+      filterOnNoValue || value ? filter(value, data, options) : data;
+
+    let match = value;
+    if (isInlineAutocomplete && filteredData.length) {
+      match = getResultValue(filteredData[0], valueKey);
+    }
 
     return {
-      value: "",
-      match: "",
-      filteredData: filterOnNoValue ? filter("", data, options) : data,
+      value,
+      match,
+      filteredData,
     };
   });
   const filteredData = filterFn === "none" ? data : stateFilteredData;
   const startsWith = filterOptions?.startsWith ?? isInlineAutocomplete;
+  const value = propValue ?? stateValue;
 
   const setValue = useCallback(
     (nextValue: string) => {

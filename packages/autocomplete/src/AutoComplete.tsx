@@ -78,6 +78,8 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
       closeOnResize = false,
       closeOnScroll = false,
       omitKeys = EMPTY_LIST,
+      value: propValue,
+      defaultValue,
       ...props
     },
     forwardedRef
@@ -109,6 +111,7 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
       handleAutoComplete,
     } = useAutoComplete({
       suggestionsId,
+      defaultValue,
       data,
       filter,
       filterOptions,
@@ -150,7 +153,7 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
           aria-controls={comboboxId}
           aria-activedescendant={activeId}
           autoComplete="off"
-          value={match}
+          value={propValue ?? match}
           onBlur={handleBlur}
           onFocus={handleFocus}
           onClick={handleClick}
@@ -203,7 +206,7 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
                     id={`${resultId}-match`}
                     style={highlightStyle}
                     className={highlightClassName}
-                    value={value}
+                    value={propValue ?? value}
                     enabled={highlight}
                     repeatable={highlightReapeating}
                   >
@@ -302,6 +305,8 @@ if (process.env.NODE_ENV !== "production") {
       highlightClassName: PropTypes.string,
       disableShowOnFocus: PropTypes.bool,
       omitKeys: PropTypes.arrayOf(PropTypes.string),
+      value: PropTypes.string,
+      defaultValue: PropTypes.string,
     };
   } catch (e) {}
 }

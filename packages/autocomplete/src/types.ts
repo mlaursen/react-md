@@ -134,7 +134,7 @@ export interface AutoCompleteListboxPositionOptions
 }
 
 export interface AutoCompleteProps
-  extends Omit<TextFieldProps, "type" | "value" | "defaultValue">,
+  extends Omit<TextFieldProps, "type">,
     RenderConditionalPortalProps,
     AutoCompleteListboxPositionOptions {
   /**
