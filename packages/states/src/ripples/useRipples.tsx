@@ -20,6 +20,7 @@ export default function useRipples<E extends HTMLElement = HTMLElement>({
   rippleClassNames,
   rippleContainerClassName,
   rippleClassName,
+  disableRipple,
   disableSpacebarClick,
   ...options
 }: RipplesOptions<E>): ReturnValue<E> {
@@ -35,12 +36,13 @@ export default function useRipples<E extends HTMLElement = HTMLElement>({
     create,
     release,
     cancel,
+    disableRipple,
     ...options,
   });
 
   return {
     handlers,
-    ripples: (
+    ripples: disableRipple ? null : (
       <RippleContainer
         key="ripples"
         ripples={state}
