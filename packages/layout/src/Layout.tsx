@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import { SkipToMainContent, SkipToMainContentProps } from "@react-md/link";
 import { BaseTreeItem } from "@react-md/tree";
+import { PropsWithRef } from "@react-md/utils";
 
 import {
   DEFAULT_DESKTOP_LAYOUT,
@@ -18,7 +19,6 @@ import {
   LayoutConfiguration,
   LayoutNavigationItem,
   LayoutWithTitle,
-  PropsWithRef,
 } from "./types";
 
 /**

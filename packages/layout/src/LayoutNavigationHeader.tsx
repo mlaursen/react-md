@@ -1,13 +1,12 @@
 import React, { forwardRef, ReactNode } from "react";
 import cn from "classnames";
 import { AppBar, AppBarProps, AppBarTitle } from "@react-md/app-bar";
-import { bem } from "@react-md/utils";
+import { bem, PropsWithRef } from "@react-md/utils";
 
 import LayoutCloseNavigationButton, {
   LayoutCloseNavigationButtonProps,
 } from "./LayoutCloseNavigationButton";
 import { useLayoutConfig } from "./LayoutProvider";
-import { PropsWithRef } from "./types";
 
 export interface LayoutNavigationHeaderProps
   extends Omit<AppBarProps, "title"> {

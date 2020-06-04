@@ -2,7 +2,7 @@ import React, { forwardRef, ReactNode } from "react";
 import cn from "classnames";
 import { Sheet, SheetProps } from "@react-md/sheet";
 import { BaseTreeItem } from "@react-md/tree";
-import { bem } from "@react-md/utils";
+import { bem, PropsWithRef } from "@react-md/utils";
 
 import { LayoutCloseNavigationButtonProps } from "./LayoutCloseNavigationButton";
 import LayoutNavigationHeader, {
@@ -10,7 +10,7 @@ import LayoutNavigationHeader, {
 } from "./LayoutNavigationHeader";
 import { useLayoutConfig } from "./LayoutProvider";
 import LayoutTree, { LayoutTreeProps } from "./LayoutTree";
-import { LayoutNavigationItem, PropsWithRef } from "./types";
+import { LayoutNavigationItem } from "./types";
 import {
   isPersistentLayout,
   isTemporaryLayout,

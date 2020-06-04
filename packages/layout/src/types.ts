@@ -1,6 +1,7 @@
-import { ElementType, ReactNode, Ref } from "react";
+import { ElementType, ReactNode } from "react";
 import { AppBarTitleProps } from "@react-md/app-bar";
 import { BaseTreeItem, TreeData } from "@react-md/tree";
+import { PropsWithRef } from "@react-md/utils";
 
 /**
  * Due to the limited screen size for phones, the layout only supports having
@@ -95,17 +96,6 @@ export interface LayoutConfiguration {
    */
   largeDesktopLayout?: SupportedWideLayout;
 }
-
-/**
- * A helper type that allows an optional `ref` to also be applied with a props
- * object even though a `ref` isn't a real prop.
- */
-export type PropsWithRef<P extends {}, E extends HTMLElement> = P & {
-  /**
-   * An optional ref that can be applied.
-   */
-  ref?: Ref<E>;
-};
 
 /**
  * This is the "recommended" layout navigation item configuration that works

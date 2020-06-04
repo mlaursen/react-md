@@ -5,10 +5,10 @@ import { AppBarNav, AppBarNavProps } from "@react-md/app-bar";
 import { useIcon } from "@react-md/icon";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";
 import { TransitionTimeout, useCSSTransition } from "@react-md/transition";
+import { PropsWithRef } from "@react-md/utils";
 
 import { DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";
 import { useLayoutConfig } from "./LayoutProvider";
-import { PropsWithRef } from "./types";
 import { isTemporaryLayout, isToggleableLayout } from "./utils";
 
 export interface LayoutNavToggleProps extends AppBarNavProps {

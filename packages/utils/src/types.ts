@@ -1,4 +1,17 @@
+import { Ref } from "react";
+
 export type Maybe<T, NotFound = null> = T | NotFound;
+
+/**
+ * A helper type that allows an optional `ref` to also be applied with a props
+ * object even though a `ref` isn't a real prop.
+ */
+export type PropsWithRef<P extends {}, E extends HTMLElement> = P & {
+  /**
+   * An optional ref that can be applied.
+   */
+  ref?: Ref<E>;
+};
 
 /**
  * This type allows you to require at least one of the provided keys. This is
