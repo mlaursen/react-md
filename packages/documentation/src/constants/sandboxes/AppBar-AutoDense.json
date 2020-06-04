@@ -64,7 +64,7 @@
     "isBinary": false
   },
   "src/createIdGenerator.ts": {
-    "content": "/**\n * An extremely simplified uuid function that is scoped with a speciifc prefix. This\n * will just always increment the total count at the end of the prefix.\n *\n * ```ts\n * const uuid = createIdGenerator(\"my-custom-prefix\");\n *\n * uuid(); // my-custom-prefix-0\n * uuid(); // my-custom-prefix-1\n * uuid(); // my-custom-prefix-2\n * ```\n *\n * @param prefix The string prefix to use\n * @return a function to call to generate a \"uuid\"\n */\nexport default function createIdGenerator(prefix: string): () => string {\n  const generator = (function* idGenerator() {\n    let index = 0;\n    while (true) {\n      yield `${prefix}-${index}`;\n      index += 1;\n    }\n  })();\n\n  return () => generator.next().value;\n}\n",
+    "content": "/**\n * An extremely simplified uuid function that is scoped with a speciifc prefix. This\n * will just always increment the total count at the end of the prefix.\n *\n * ```ts\n * const uuid = createIdGenerator(\"my-custom-prefix\");\n *\n * uuid(); // my-custom-prefix-0\n * uuid(); // my-custom-prefix-1\n * uuid(); // my-custom-prefix-2\n * ```\n *\n * @param prefix The string prefix to use\n * @return a function to call to generate a \"uuid\"\n */\nexport default function createIdGenerator(prefix: string): () => string {\n  const generator = (function* idGenerator() {\n    let index = 0;\n    while (true) {\n      yield `${prefix}-${index}`;\n      index += 1;\n    }\n  })();\n\n  return (): string => generator.next().value;\n}\n",
     "isBinary": false
   }
 }

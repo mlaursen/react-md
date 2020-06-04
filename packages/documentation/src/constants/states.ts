@@ -172,10 +172,6 @@ export default [
     abbreviation: "OR",
   },
   {
-    name: "Palau",
-    abbreviation: "PW",
-  },
-  {
     name: "Pennsylvania",
     abbreviation: "PA",
   },

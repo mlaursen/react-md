@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutoComplete should handle a normal filter flow 1`] = `
+<div>
+  <div
+    aria-expanded="true"
+    aria-haspopup="listbox"
+    aria-owns="autocomplete-listbox"
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--outline-active rmd-autocomplate"
+    id="autocomplete-combobox"
+    role="combobox"
+  >
+    <input
+      aria-activedescendant=""
+      aria-autocomplete="list"
+      aria-controls="autocomplete-combobox"
+      autocomplete="off"
+      class="rmd-text-field"
+      id="autocomplete"
+      type="text"
+      value="alask"
+    />
+  </div>
+  <ul
+    class="rmd-list rmd-listbox rmd-listbox--temporary rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
+    id="autocomplete-listbox"
+    role="listbox"
+    style="left: 0px; top: 0px; width: 0px; position: fixed; transform-origin: 50% 0;"
+  >
+    <li
+      class="rmd-list-item rmd-list-item--clickable rmd-option"
+      id="autocomplete-listbox-result-1"
+      role="option"
+    >
+      <span
+        class="rmd-list-item__text"
+      >
+        Alaska
+      </span>
+    </li>
+  </ul>
+</div>
+`;

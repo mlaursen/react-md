@@ -368,6 +368,8 @@ export default function useAutoComplete({
             !visible &&
             filteredData.length
           ) {
+            // don't want the cursor to move if there is text
+            event.preventDefault();
             event.stopPropagation();
             show();
             setFocusedIndex(-1);
@@ -375,6 +377,8 @@ export default function useAutoComplete({
           break;
         case "ArrowUp":
           if (isListAutocomplete && event.altKey && visible) {
+            // don't want the cursor to move if there is text
+            event.preventDefault();
             event.stopPropagation();
             hide();
           }

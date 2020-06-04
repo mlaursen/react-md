@@ -123,6 +123,7 @@ module.exports = {
         '@typescript-eslint/no-object-literal-type-assertion': 0,
         '@typescript-eslint/no-var-requires': 0,
         '@typescript-eslint/no-empty-function': 0,
+        '@typescript-eslint/ban-ts-comment': 0,
         'jsx-a11y/no-autofocus': 0,
         'jsx-a11y/no-static-element-interactions': 0,
         'jsx-a11y/anchor-is-valid': 0,

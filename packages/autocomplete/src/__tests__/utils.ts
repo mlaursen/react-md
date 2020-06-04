@@ -117,13 +117,27 @@ describe("getFilterFunction", () => {
   });
 
   it("should throw an error for any other strings for non-typescript users", () => {
-    expect(() => getFilterFunction("" as "fuzzy")).toThrow(
+    // @ts-expect-error
+    expect(() => getFilterFunction("")).toThrow(
       'Invalid filter function: "". Supported values are: "fuzzy", "case-insenitive", "none", or a custom function'
     );
 
-    expect(() => getFilterFunction("custom" as "fuzzy")).toThrow(
+    // @ts-expect-error
+    expect(() => getFilterFunction("custom")).toThrow(
       'Invalid filter function: "custom". Supported values are: "fuzzy", "case-insenitive", "none", or a custom function'
     );
+  });
+
+  it("should returnt he noFilter result for an invalid fulter function if the NODE_ENV is not production", () => {
+    const env = process.env.NODE_ENV;
+    process.env.NODE_ENV = "production";
+
+    // @ts-expect-error
+    expect(getFilterFunction("")).toBe(noFilter);
+    // @ts-expect-error
+    expect(getFilterFunction("custom")).toBe(noFilter);
+
+    process.env.NODE_ENV = env;
   });
 
   it("should return the function itself if it is a function", () => {
