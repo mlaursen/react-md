@@ -201,16 +201,41 @@ const sassdoc: PackageSassDoc = {
         "@mixin rmd-button-unstyled {\n  @include rmd-button-reset;\n  @include rmd-states-focus-shadow($create-pseudo: true);\n\n  display: inline-flex;\n  position: relative;\n\n  &:not(:disabled):hover {\n    cursor: pointer;\n  }\n}\n",
       type: "mixin",
     },
+    "rmd-button-floating-positions": {
+      name: "rmd-button-floating-positions",
+      description: "Creates the styles for all the floating button positions.",
+      source: "packages/button/src/_mixins.scss#L214-L226",
+      usedBy: [{ name: "rmd-fab", type: "mixin", packageName: "button" }],
+      packageName: "button",
+      code: "@mixin rmd-button-floating-positions { … }",
+      sourceCode:
+        "@mixin rmd-button-floating-positions {\n  @each $name, $styles in $rmd-button-floating-positions {\n    &--#{$name} {\n      @each $property, $value in $styles {\n        @if $property == left or $property == right {\n          @include rmd-utils-rtl-auto($property, $value);\n        } @else {\n          #{$property}: #{$value};\n        }\n      }\n    }\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-fab": {
+      name: "rmd-fab",
+      description:
+        "Creates the styles for the floating action button container. `FAB`\n",
+      source: "packages/button/src/_mixins.scss#L229-L234",
+      usedBy: [
+        { name: "react-md-button", type: "mixin", packageName: "button" },
+      ],
+      packageName: "button",
+      code: "@mixin rmd-fab { … }",
+      sourceCode:
+        "@mixin rmd-fab {\n  @include rmd-button-floating-positions;\n\n  position: fixed;\n  z-index: $rmd-button-floating-z-index;\n}\n",
+      type: "mixin",
+    },
     "react-md-button": {
       name: "react-md-button",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/button/src/_mixins.scss#L212-L222",
+      source: "packages/button/src/_mixins.scss#L238-L254",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "button",
       code: "@mixin react-md-button { … }",
       sourceCode:
-        "@mixin react-md-button {\n  @include rmd-theme-create-root-theme($rmd-button-theme-values, button);\n\n  .rmd-button {\n    @include rmd-button;\n  }\n\n  .rmd-button-unstyled {\n    @include rmd-button-unstyled;\n  }\n}\n",
+        "@mixin react-md-button {\n  @include rmd-theme-create-root-theme($rmd-button-theme-values, button);\n\n  .rmd-button {\n    @include rmd-button;\n  }\n\n  .rmd-button-unstyled {\n    @include rmd-button-unstyled;\n  }\n\n  @if $rmd-button-floating-positions {\n    .rmd-fab {\n      @include rmd-fab;\n    }\n  }\n}\n",
       type: "mixin",
     },
   },
@@ -219,7 +244,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-text-icon-inherit-color",
       description:
         "Boolean if text buttons with icons should have the icons inherit the current color. If this is disabled, only icon buttons will inherit the current text color.\n",
-      source: "packages/button/src/_variables.scss#L13",
+      source: "packages/button/src/_variables.scss#L14",
       usedBy: [
         { name: "rmd-button-icon", type: "mixin", packageName: "button" },
       ],
@@ -231,7 +256,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-text-border-radius": {
       name: "rmd-button-text-border-radius",
       description: "The border radius to apply to text buttons.\n",
-      source: "packages/button/src/_variables.scss#L17",
+      source: "packages/button/src/_variables.scss#L18",
       packageName: "button",
       type: "Number",
       value: "0.5rem",
@@ -241,7 +266,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-text-horizontal-padding",
       description:
         "The amount of left and right padding to apply to text buttons.\n",
-      source: "packages/button/src/_variables.scss#L21",
+      source: "packages/button/src/_variables.scss#L22",
       packageName: "button",
       type: "Number",
       value: "1rem",
@@ -251,7 +276,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-text-vertical-padding",
       description:
         "The amount of top and bottom padding to apply to text buttons. Since buttons are now displayed as inline-flex, it is generally recommended to keep this value at 0 and just increase the height of the button instead.",
-      source: "packages/button/src/_variables.scss#L28",
+      source: "packages/button/src/_variables.scss#L29",
       packageName: "button",
       type: "Number",
       value: "0",
@@ -260,7 +285,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-text-height": {
       name: "rmd-button-text-height",
       description: "The height for text buttons.\n",
-      source: "packages/button/src/_variables.scss#L32",
+      source: "packages/button/src/_variables.scss#L33",
       packageName: "button",
       type: "Number",
       value: "2.25rem",
@@ -269,7 +294,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-text-min-width": {
       name: "rmd-button-text-min-width",
       description: "The min width for text buttons.\n",
-      source: "packages/button/src/_variables.scss#L36",
+      source: "packages/button/src/_variables.scss#L37",
       packageName: "button",
       type: "Number",
       value: "4rem",
@@ -279,7 +304,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-text-icon-size",
       description:
         "The text button's icon size. This is smaller than the normal icon size by default since buttons have additional padding. You can set this to `null` if you want consistent icon sizes.\n",
-      source: "packages/button/src/_variables.scss#L42",
+      source: "packages/button/src/_variables.scss#L43",
       usedBy: [
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
       ],
@@ -291,7 +316,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-icon-border-radius": {
       name: "rmd-button-icon-border-radius",
       description: "The border radius to apply to all icon buttons.\n",
-      source: "packages/button/src/_variables.scss#L46",
+      source: "packages/button/src/_variables.scss#L47",
       packageName: "button",
       type: "Number",
       value: "50%",
@@ -300,7 +325,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-icon-size": {
       name: "rmd-button-icon-size",
       description: "The height and width to apply to an icon button.\n",
-      source: "packages/button/src/_variables.scss#L50",
+      source: "packages/button/src/_variables.scss#L51",
       usedBy: [
         {
           name: "rmd-app-bar-nav-margin",
@@ -321,7 +346,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-outline-width": {
       name: "rmd-button-outline-width",
       description: "The base box-shadow width to apply to buttons\n",
-      source: "packages/button/src/_variables.scss#L54",
+      source: "packages/button/src/_variables.scss#L55",
       packageName: "button",
       type: "Number",
       value: "1px",
@@ -331,7 +356,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-box-shadow",
       description:
         "The base box-shadow to apply to buttons when outlined. This will normally be used along with a color variable to define a box shadow.\n",
-      source: "packages/button/src/_variables.scss#L59",
+      source: "packages/button/src/_variables.scss#L60",
       packageName: "button",
       type: "String",
       value: "inset 0 0 0",
@@ -341,7 +366,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-outline-color",
       description:
         "This is the color that will be applied to the box-shadow/border for the button when the `outline` theme type is applied **unless** one of the theme values are defined.\n",
-      source: "packages/button/src/_variables.scss#L65",
+      source: "packages/button/src/_variables.scss#L66",
       packageName: "button",
       type: "Color",
       value: "#999",
@@ -351,7 +376,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-background-color",
       description:
         'This is the background color that will be applied when the theme type prop on buttons is set to "clear".\n',
-      source: "packages/button/src/_variables.scss#L70",
+      source: "packages/button/src/_variables.scss#L71",
       packageName: "button",
       type: "Color",
       value: "transparent",
@@ -361,7 +386,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-color",
       description:
         'This is the text color that will be applied when the theme type prop on buttons is set to "clear".',
-      source: "packages/button/src/_variables.scss#L77",
+      source: "packages/button/src/_variables.scss#L78",
       packageName: "button",
       type: "Color",
       value: "rmd-theme-var(text-primary-on-background)",
@@ -372,7 +397,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-contained-elevation-transition-time",
       description:
         "The transition time for a contained button to raise to the pressed elevation.\n",
-      source: "packages/button/src/_variables.scss#L82",
+      source: "packages/button/src/_variables.scss#L83",
       packageName: "button",
       type: "Number",
       value: "0.15s",
@@ -382,7 +407,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-contained-resting-elevation",
       description:
         "The elevation to use for a resting contained button. This should be a number between 0 and 24.\n",
-      source: "packages/button/src/_variables.scss#L87",
+      source: "packages/button/src/_variables.scss#L88",
       packageName: "button",
       type: "Number",
       value: "2",
@@ -392,17 +417,66 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-contained-pressed-elevation",
       description:
         "The elevation to use for a contained button that is being pressed. This should be a number between 0 and 24.\n",
-      source: "packages/button/src/_variables.scss#L92",
+      source: "packages/button/src/_variables.scss#L93",
       packageName: "button",
       type: "Number",
       value: "4",
+      overridable: true,
+    },
+    "rmd-button-floating-z-index": {
+      name: "rmd-button-floating-z-index",
+      description: "The z-index to use for the floating action button.",
+      source: "packages/button/src/_variables.scss#L99",
+      usedBy: [
+        {
+          name: "rmd-button-floating-positions",
+          type: "mixin",
+          packageName: "button",
+        },
+        { name: "rmd-fab", type: "mixin", packageName: "button" },
+      ],
+      packageName: "button",
+      type: "Number",
+      value: "$rmd-utils-temporary-element-z-index",
+      compiled: "30",
+      overridable: true,
+    },
+    "rmd-button-floating-margin": {
+      name: "rmd-button-floating-margin",
+      description:
+        "The default page margin to use for the floating action button positions.",
+      source: "packages/button/src/_variables.scss#L104",
+      packageName: "button",
+      type: "Number",
+      value: "1.5rem",
+      overridable: true,
+    },
+    "rmd-button-floating-positions": {
+      name: "rmd-button-floating-positions",
+      description:
+        "A Map of floating position styles to create. Each key will be made into a className by `&--floating-#{$key}` and each value will parsed as a style map. If you want to remove positions, override this variable with only the required styles.",
+      source: "packages/button/src/_variables.scss#L112-L129",
+      usedBy: [
+        {
+          name: "rmd-button-floating-positions",
+          type: "mixin",
+          packageName: "button",
+        },
+        { name: "react-md-button", type: "mixin", packageName: "button" },
+      ],
+      packageName: "button",
+      type: "Map",
+      value:
+        "(\n  tl: (\n    left: $rmd-button-floating-margin,\n    top: $rmd-button-floating-margin,\n  ),\n  tr: (\n    right: $rmd-button-floating-margin,\n    top: $rmd-button-floating-margin,\n  ),\n  bl: (\n    bottom: $rmd-button-floating-margin,\n    left: $rmd-button-floating-margin,\n  ),\n  br: (\n    bottom: $rmd-button-floating-margin,\n    right: $rmd-button-floating-margin,\n  ),\n)",
+      compiled:
+        "(\n  tl: (\n    left: 1.5rem,\n    top: 1.5rem,\n  ),\n  tr: (\n    right: 1.5rem,\n    top: 1.5rem,\n  ),\n  bl: (\n    bottom: 1.5rem,\n    left: 1.5rem,\n  ),\n  br: (\n    bottom: 1.5rem,\n    right: 1.5rem,\n  ),\n)",
       overridable: true,
     },
     "rmd-button-theme-values": {
       name: "rmd-button-theme-values",
       description:
         'A Map of all the "themeable" parts of the button package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/button/src/_variables.scss#L98-L110",
+      source: "packages/button/src/_variables.scss#L135-L147",
       usedBy: [
         { name: "rmd-button-theme", type: "function", packageName: "button" },
         {

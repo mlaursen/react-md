@@ -1,6 +1,8 @@
 # @react-md/alert
 
-Create accessible alerts.
+Create accessible alerts that can be displayed to users in your app. This
+package provides a `MessageQueue` for showing messages and a `useAddMessage`
+hook to push alerts into the queue.
 
 ## Installation
 
@@ -69,11 +71,3 @@ const App: FC = () => {
 
 export default App;
 ```
-
-### Typescript Types
-
-All the useful types are exported from the root for convenience. The following
-types might help self-describe how messages work:
-
-- `Message`
-- `ToastMessage`

@@ -18,6 +18,9 @@ import iconButtons from "./IconButtons.md";
 import TextButtonsWithIcons from "./TextButtonsWithIcons";
 import textButtonsWithIcons from "./TextButtonsWithIcons.md";
 
+import FloatingActionButtons from "./FloatingActionButtons";
+import floatingActionButtons from "./FloatingActionButtons.md";
+
 import CustomButtonTheme from "./CustomButtonTheme";
 import customButtonTheme from "./CustomButtonTheme.md";
 
@@ -46,6 +49,13 @@ const demos = [
     name: "Text Buttons with Icons",
     description: textButtonsWithIcons,
     children: <TextButtonsWithIcons />,
+  },
+  {
+    name: "Floating Action Buttons",
+    description: floatingActionButtons,
+    disableCard: true,
+    emulated: { fabOffset: true },
+    children: <FloatingActionButtons />,
   },
   {
     name: "Custom Button Theme",

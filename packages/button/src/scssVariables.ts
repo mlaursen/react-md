@@ -17,6 +17,14 @@ export default {
   "rmd-button-contained-elevation-transition-time": "0.15s",
   "rmd-button-contained-resting-elevation": 2,
   "rmd-button-contained-pressed-elevation": 4,
+  "rmd-button-floating-z-index": 30,
+  "rmd-button-floating-margin": "1.5rem",
+  "rmd-button-floating-positions": {
+    tl: { left: "1.5rem", top: "1.5rem" },
+    tr: { right: "1.5rem", top: "1.5rem" },
+    bl: { bottom: "1.5rem", left: "1.5rem" },
+    br: { bottom: "1.5rem", right: "1.5rem" },
+  },
   "rmd-button-theme-values": {
     "text-border-radius": "0.5rem",
     "text-horizontal-padding": "1rem",

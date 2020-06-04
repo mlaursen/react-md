@@ -3,8 +3,9 @@
 The `Button` component was completely re-written in this release for full
 Typescript support, forwarding the ref to the `<button>` element, and can be
 rendered with only children to enable a default theme. However, the `Button`
-component removed built-in support for tooltips and rendering icons with text as
-well as the floating button styles.
+component removed built-in support for tooltips and rendering icons with text
+but can be easily added back in with the `@react-md/tooltip` and
+`@react-md/icon` packages.
 
 A new `UnstyledButton` component was added that can be used to create a
 clickable element with the native accessibility of a `<button>` without the
@@ -47,6 +48,12 @@ default styles.
 - `$rmd-button-text-border-radius: 0.5rem !default` - a new border radius to
   apply to buttons that include text. **Note: there was no `border-radius` in
   `v1` for text buttons**
+- `$rmd-button-floating-margin: 1.5rem !default` - the default viewport margin
+  to apply to floating buttons. This is used in the
+  `$rmd-button-floating-positions` variable
+- `$rmd-button-floating-positions` - a Map of floating position styles to
+  create. Each key will be made into a `className` and the value will apply the
+  styles
 - `@function rmd-button-theme` - gets one of the theme values and validates that
   the theme name is valid
 - `@function rmd-button-theme-var` - gets one of the theme values as a css
@@ -80,27 +87,28 @@ default styles.
   changed from a default value of `16px` to `1rem` (same size, just `rem`-ified)
 - `$md-btn-min-width` was renamed to `$rmd-button-text-min-width` and changed
   from a default value of `88px` to a smaller `4rem`
+- `$md-btn-fixed-z-index` was renamed to `$rmd-button-floating-z-index` and
+  changed the default value from `10` to `25`
+- `@mixin react-md-button-fixed-positions` was renamed to
+  `@mixin rmd-button-floating-positions`
 
 ### Removed SCSS Variables and Mixins
 
-- the `$md-btn-include-flat`, `$md-btn-include-raised`, `$md-btn-include-icon`,
-  and `$md-btn-include-floating` variables have been completely removed with no
-  new implementation
-- the `$md-btn-fized-z-index`, `$md-btn-mobile-floating-margin`,
-  `$md-btn-desktop-floating-margin`, `$md-btn-floating-size`,
-  `$md-btn-floating-dense-size`, `$md-btn-floating-mini-size`, and
-  `$md-btn-floating-fixed-positions` variables were removed size floating
-  buttons aren't included in this release
-- the `$md-btn-mobile-height`, `$md-btn-mobile-font-size`,
-  `$md-btn-desktop-height`, and `$md-btn-desktop-font-size` variables were
-  removed since buttons no longer change size and font-size based on device size
-- `@mixin react-md-theme-buttons` was removed since the new theming functions
-  and mixins are preferred
-- `@mixin react-md-buttons-mobile`, `@mixin react-md-buttons-desktop`, and
-  `@mixin react-md-buttons-media` removed due to having a static size on all
-  devices now
-- `@mixin react-md-button-fixed-positions` removed due to no longer having
-  floating buttons
+- removed `$md-btn-include-flat`, `$md-btn-include-raised`,
+  `$md-btn-include-icon`, and `$md-btn-include-floating` variables have been
+  completely removed with no new implementation
+- removed `$md-btn-mobile-floating-margin`, `$md-btn-desktop-floating-margin`,
+  `$md-btn-floating-size`, `$md-btn-floating-dense-size`,
+  `$md-btn-floating-mini-size`, and `$md-btn-floating-fixed-positions` in favor
+  of the new floating variables
+- removed `$md-btn-mobile-height`, `$md-btn-mobile-font-size`,
+  `$md-btn-desktop-height`, and `$md-btn-desktop-font-size` since buttons no
+  longer change size and font-size based on device size
+- removed `@mixin react-md-theme-buttons` since the new theming functions and
+  mixins are preferred
+- removed `@mixin react-md-buttons-mobile`, `@mixin react-md-buttons-desktop`,
+  and `@mixin react-md-buttons-media` due to having a static size on all devices
+  now
 
 ## Rendering non-button components and elements
 

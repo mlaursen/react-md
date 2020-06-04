@@ -19,6 +19,7 @@ import Sandbox from "./Sandbox";
 import { DemoProps } from "./types";
 
 import styles from "./Demo.module.scss";
+import phoneStyles from "../Phone/Phone.module.scss";
 
 const Demo: FC<DemoProps> = ({
   id,
@@ -65,9 +66,16 @@ const Demo: FC<DemoProps> = ({
         {children}
       </Phone>
     );
+  } else if (typeof emulated !== "boolean" && emulated.fabOffset) {
+    content = <span className={phoneStyles.fabOffset}>{children}</span>;
   }
 
-  if (emulated && typeof emulated === "object" && !emulated.appBar) {
+  if (
+    emulated &&
+    typeof emulated === "object" &&
+    !emulated.appBar &&
+    !emulated.fabOffset
+  ) {
     disableFullPageAppBar = true;
     disableFullPageContent = true;
   }

@@ -4,10 +4,12 @@ import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
+import { PropsWithRef } from "@react-md/utils";
 
 import buttonThemeClassNames, {
   ButtonThemeProps,
 } from "./buttonThemeClassNames";
+import FAB, { FABPosition, FABProps } from "./FAB";
 
 /**
  * This interface includes all the props that the `Button` component accepts so
@@ -33,15 +35,29 @@ export interface ButtonProps
    * descendant of a `<button>`.
    */
   children?: ReactNode;
+
+  /**
+   * The position within the viewport to display the button as a floating action
+   * button.
+   */
+  floating?: FABPosition;
+
+  /**
+   * Any additional props to provide the to `FAB` container element when the
+   * `floating` prop is provided
+   */
+  floatingProps?: PropsWithRef<FABProps, HTMLSpanElement>;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     type = "button",
     disabled = false,
-    theme = "clear",
-    themeType = "flat",
-    buttonType = "text",
+    floating = null,
+    floatingProps,
+    theme = floating ? "secondary" : "clear",
+    themeType = floating ? "contained" : "flat",
+    buttonType = floating ? "icon" : "text",
     className: propClassName,
     children,
     disableRipple,
@@ -80,17 +96,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   });
 
   return (
-    <button
-      {...props}
-      {...handlers}
-      ref={ref}
-      type={type}
-      className={className}
-      disabled={disabled}
-    >
-      {children}
-      {ripples}
-    </button>
+    <FAB position={floating} {...floatingProps}>
+      <button
+        {...props}
+        {...handlers}
+        ref={ref}
+        type={type}
+        className={className}
+        disabled={disabled}
+      >
+        {children}
+        {ripples}
+      </button>
+    </FAB>
   );
 });
 
@@ -138,6 +156,13 @@ if (process.env.NODE_ENV !== "production") {
       rippleClassName: PropTypes.string,
       rippleContainerClassName: PropTypes.string,
       enablePressedAndRipple: PropTypes.bool,
+      floating: PropTypes.oneOf([
+        "top-left",
+        "top-right",
+        "bottom-left",
+        "bottom-right",
+      ]),
+      floatingProps: PropTypes.object,
     };
   } catch (e) {}
 }

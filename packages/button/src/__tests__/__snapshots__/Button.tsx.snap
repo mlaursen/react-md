@@ -3,7 +3,6 @@
 exports[`Button should render correctly based on the theme props 1`] = `
 <button
   class="rmd-button rmd-button--text"
-  data-testid="button"
   type="button"
 >
   Button Text
@@ -16,7 +15,6 @@ exports[`Button should render correctly based on the theme props 1`] = `
 exports[`Button should render correctly based on the theme props 2`] = `
 <button
   class="rmd-button rmd-button--text rmd-button--disabled"
-  data-testid="button"
   disabled=""
   type="button"
 >
@@ -28,117 +26,140 @@ exports[`Button should render correctly based on the theme props 2`] = `
 `;
 
 exports[`Button should render correctly based on the theme props 3`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--contained"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 4`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 5`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--outline"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 6`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 7`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--text-primary"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 8`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 9`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--br"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 10`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--br"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 11`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--contained"
   type="button"
 >
   Button Text
@@ -150,8 +171,7 @@ exports[`Button should render correctly based on the theme props 11`] = `
 
 exports[`Button should render correctly based on the theme props 12`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--disabled"
   disabled=""
   type="button"
 >
@@ -163,117 +183,140 @@ exports[`Button should render correctly based on the theme props 12`] = `
 `;
 
 exports[`Button should render correctly based on the theme props 13`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--text-secondary"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 14`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 15`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 16`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 17`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 18`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 19`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--text-warning"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--br"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 20`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--br"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 21`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--contained rmd-button--warning"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--outline"
   type="button"
 >
   Button Text
@@ -285,8 +328,7 @@ exports[`Button should render correctly based on the theme props 21`] = `
 
 exports[`Button should render correctly based on the theme props 22`] = `
 <button
-  class="rmd-button rmd-button--text rmd-button--disabled"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
   disabled=""
   type="button"
 >
@@ -298,120 +340,143 @@ exports[`Button should render correctly based on the theme props 22`] = `
 `;
 
 exports[`Button should render correctly based on the theme props 23`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 24`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 25`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--text-error"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 26`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 27`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--contained rmd-button--error"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 28`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 29`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-error rmd-button--outline-error"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--br"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 30`] = `
-<button
-  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--br"
 >
-  Button Text
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 31`] = `
 <button
-  class="rmd-button rmd-button--icon"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--text-primary"
   type="button"
 >
-  <i />
+  Button Text
   <span
     class="rmd-ripple-container"
   />
@@ -420,12 +485,11 @@ exports[`Button should render correctly based on the theme props 31`] = `
 
 exports[`Button should render correctly based on the theme props 32`] = `
 <button
-  class="rmd-button rmd-button--icon rmd-button--disabled"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--disabled"
   disabled=""
   type="button"
 >
-  <i />
+  Button Text
   <span
     class="rmd-ripple-container"
   />
@@ -433,120 +497,143 @@ exports[`Button should render correctly based on the theme props 32`] = `
 `;
 
 exports[`Button should render correctly based on the theme props 33`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--contained"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 34`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 35`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--outline"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 36`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 37`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--text-primary"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 38`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 39`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--br"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 40`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--br"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 41`] = `
 <button
-  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
   type="button"
 >
-  <i />
+  Button Text
   <span
     class="rmd-ripple-container"
   />
@@ -555,12 +642,11 @@ exports[`Button should render correctly based on the theme props 41`] = `
 
 exports[`Button should render correctly based on the theme props 42`] = `
 <button
-  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--disabled"
   disabled=""
   type="button"
 >
-  <i />
+  Button Text
   <span
     class="rmd-ripple-container"
   />
@@ -568,120 +654,143 @@ exports[`Button should render correctly based on the theme props 42`] = `
 `;
 
 exports[`Button should render correctly based on the theme props 43`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--text-secondary"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 44`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 45`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 46`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 47`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 48`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 49`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--text-warning"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--br"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 50`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--br"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 51`] = `
 <button
-  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--warning"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
   type="button"
 >
-  <i />
+  Button Text
   <span
     class="rmd-ripple-container"
   />
@@ -690,12 +799,11 @@ exports[`Button should render correctly based on the theme props 51`] = `
 
 exports[`Button should render correctly based on the theme props 52`] = `
 <button
-  class="rmd-button rmd-button--icon rmd-button--disabled"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
   disabled=""
   type="button"
 >
-  <i />
+  Button Text
   <span
     class="rmd-ripple-container"
   />
@@ -703,90 +811,1553 @@ exports[`Button should render correctly based on the theme props 52`] = `
 `;
 
 exports[`Button should render correctly based on the theme props 53`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 54`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 55`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--text-error"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 56`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--tr"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 57`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--error"
-  data-testid="button"
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 58`] = `
-<button
-  class="rmd-button rmd-button--icon rmd-button--disabled"
-  data-testid="button"
-  disabled=""
-  type="button"
+<span
+  class="rmd-fab rmd-fab--bl"
 >
-  <i />
-  <span
-    class="rmd-ripple-container"
-  />
-</button>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;
 
 exports[`Button should render correctly based on the theme props 59`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 60`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 61`] = `
 <button
-  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-error rmd-button--outline-error"
-  data-testid="button"
+  class="rmd-button rmd-button--text rmd-button--text-secondary"
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 62`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 63`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 64`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 65`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 66`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 67`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 68`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 69`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 70`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 71`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 72`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 73`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 74`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 75`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 76`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 77`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 78`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 79`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 80`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 81`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 82`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+  disabled=""
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 83`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 84`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 85`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 86`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 87`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 88`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 89`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 90`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 91`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--text-warning"
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 92`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 93`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 94`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 95`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 96`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 97`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 98`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 99`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 100`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 101`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--warning"
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 102`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 103`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 104`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 105`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 106`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 107`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 108`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 109`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 110`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 111`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 112`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+  disabled=""
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 113`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 114`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 115`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 116`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 117`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 118`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 119`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 120`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 121`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--text-error"
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 122`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 123`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 124`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 125`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 126`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 127`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 128`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 129`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--text-error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 130`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 131`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--contained rmd-button--error"
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 132`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 133`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 134`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 135`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 136`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 137`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 138`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 139`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 140`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 141`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 142`] = `
+<button
+  class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+  disabled=""
+  type="button"
+>
+  Button Text
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 143`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 144`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 145`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 146`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 147`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 148`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 149`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 150`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--text rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    Button Text
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 151`] = `
+<button
+  class="rmd-button rmd-button--icon"
   type="button"
 >
   <i />
@@ -796,10 +2367,9 @@ exports[`Button should render correctly based on the theme props 59`] = `
 </button>
 `;
 
-exports[`Button should render correctly based on the theme props 60`] = `
+exports[`Button should render correctly based on the theme props 152`] = `
 <button
-  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
-  data-testid="button"
+  class="rmd-button rmd-button--icon rmd-button--disabled"
   disabled=""
   type="button"
 >
@@ -808,4 +2378,2334 @@ exports[`Button should render correctly based on the theme props 60`] = `
     class="rmd-ripple-container"
   />
 </button>
+`;
+
+exports[`Button should render correctly based on the theme props 153`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 154`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 155`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 156`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 157`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 158`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 159`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 160`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 161`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--contained"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 162`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 163`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 164`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 165`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 166`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 167`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 168`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 169`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 170`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 171`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--outline"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 172`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 173`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 174`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 175`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 176`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 177`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 178`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 179`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 180`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 181`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--text-primary"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 182`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 183`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 184`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 185`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 186`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 187`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 188`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 189`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 190`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 191`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 192`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 193`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 194`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 195`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 196`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 197`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 198`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 199`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 200`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 201`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 202`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 203`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 204`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 205`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 206`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 207`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 208`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 209`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-primary rmd-button--outline-primary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 210`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 211`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--text-secondary"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 212`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 213`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 214`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 215`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 216`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 217`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 218`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 219`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 220`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 221`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 222`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 223`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 224`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 225`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 226`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 227`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 228`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 229`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 230`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 231`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 232`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 233`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 234`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 235`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 236`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 237`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 238`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 239`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-secondary rmd-button--outline-secondary"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 240`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 241`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--text-warning"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 242`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 243`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 244`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 245`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 246`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 247`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 248`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 249`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 250`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 251`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--warning"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 252`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 253`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 254`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 255`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 256`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 257`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 258`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 259`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 260`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 261`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 262`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 263`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 264`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 265`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 266`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 267`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 268`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 269`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-warning rmd-button--outline-warning"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 270`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 271`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--text-error"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 272`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 273`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 274`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 275`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 276`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 277`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 278`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 279`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--text-error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 280`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 281`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--contained rmd-button--error"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 282`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 283`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 284`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 285`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 286`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 287`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 288`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 289`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--contained rmd-button--error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 290`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 291`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 292`] = `
+<button
+  class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+  disabled=""
+  type="button"
+>
+  <i />
+  <span
+    class="rmd-ripple-container"
+  />
+</button>
+`;
+
+exports[`Button should render correctly based on the theme props 293`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 294`] = `
+<span
+  class="rmd-fab rmd-fab--tl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 295`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 296`] = `
+<span
+  class="rmd-fab rmd-fab--tr"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 297`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 298`] = `
+<span
+  class="rmd-fab rmd-fab--bl"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 299`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--outline rmd-button--text-error rmd-button--outline-error"
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
+`;
+
+exports[`Button should render correctly based on the theme props 300`] = `
+<span
+  class="rmd-fab rmd-fab--br"
+>
+  <button
+    class="rmd-button rmd-button--icon rmd-button--disabled rmd-button--outline"
+    disabled=""
+    type="button"
+  >
+    <i />
+    <span
+      class="rmd-ripple-container"
+    />
+  </button>
+</span>
 `;

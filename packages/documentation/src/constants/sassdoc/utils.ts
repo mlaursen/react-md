@@ -120,6 +120,11 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "app-bar",
         },
+        {
+          name: "rmd-button-floating-positions",
+          type: "mixin",
+          packageName: "button",
+        },
         { name: "rmd-icon-text-spacing", type: "mixin", packageName: "icon" },
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
         { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
@@ -835,6 +840,11 @@ const sassdoc: PackageSassDoc = {
           name: "rmd-snackbar-z-index",
           type: "variable",
           packageName: "alert",
+        },
+        {
+          name: "rmd-button-floating-z-index",
+          type: "variable",
+          packageName: "button",
         },
         { name: "rmd-dialog-z-index", type: "variable", packageName: "dialog" },
         { name: "rmd-listbox-z-index", type: "variable", packageName: "form" },

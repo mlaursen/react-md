@@ -24,8 +24,9 @@ const AppBarAction = forwardRef<HTMLButtonElement, AppBarActionProps>(
       last = false,
       children,
       inheritColor,
+      floating,
+      theme = floating ? "secondary" : "clear",
       buttonType = "icon",
-      theme = "clear",
       ...props
     },
     ref
@@ -33,8 +34,9 @@ const AppBarAction = forwardRef<HTMLButtonElement, AppBarActionProps>(
     return (
       <Button
         {...props}
-        buttonType={buttonType}
         theme={theme}
+        buttonType={buttonType}
+        floating={floating}
         ref={ref}
         className={useActionClassName({ first, last, inheritColor, className })}
       >
@@ -53,13 +55,19 @@ if (process.env.NODE_ENV !== "production") {
       children: PropTypes.node,
       first: PropTypes.bool,
       last: PropTypes.bool,
-      buttonType: PropTypes.oneOf(["text", "icon"]),
       theme: PropTypes.oneOf([
         "primary",
         "secondary",
         "warning",
         "error",
         "clear",
+      ]),
+      buttonType: PropTypes.oneOf(["text", "icon"]),
+      floating: PropTypes.oneOf([
+        "top-left",
+        "top-right",
+        "bottom-left",
+        "bottom-right",
       ]),
       inheritColor: PropTypes.bool,
     };

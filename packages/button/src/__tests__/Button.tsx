@@ -8,6 +8,7 @@ import {
   ButtonType,
   ButtonThemeProps,
 } from "../buttonThemeClassNames";
+import { FABPosition } from "../FAB";
 
 const themes: ButtonTheme[] = [
   "clear",
@@ -18,6 +19,13 @@ const themes: ButtonTheme[] = [
 ];
 const themeTypes: ButtonThemeType[] = ["flat", "contained", "outline"];
 const buttonTypes: ButtonType[] = ["text", "icon"];
+const floatingTypes: FABPosition[] = [
+  null,
+  "top-left",
+  "top-right",
+  "bottom-left",
+  "bottom-right",
+];
 
 function flattenDeep(
   arr: any[]
@@ -37,22 +45,25 @@ describe("Button", () => {
     flattenDeep(
       buttonTypes.map((buttonType) =>
         themes.map((theme) =>
-          themeTypes.map((themeType) => ({
-            buttonType,
-            theme,
-            themeType,
-            children: buttonType === "text" ? "Button Text" : <i />,
-          }))
+          themeTypes.map((themeType) =>
+            floatingTypes.map((floating) => ({
+              buttonType,
+              theme,
+              themeType,
+              children: buttonType === "text" ? "Button Text" : <i />,
+              floating,
+            }))
+          )
         )
       )
     ).forEach((themeProps) => {
-      const { getByTestId, rerender, unmount } = render(
-        <Button data-testid="button" {...themeProps} />
+      const { container, rerender, unmount } = render(
+        <Button {...themeProps} />
       );
-      expect(getByTestId("button")).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
 
-      rerender(<Button data-testid="button" {...themeProps} disabled />);
-      expect(getByTestId("button")).toMatchSnapshot();
+      rerender(<Button {...themeProps} disabled />);
+      expect(container.firstChild).toMatchSnapshot();
 
       unmount();
     });

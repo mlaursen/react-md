@@ -27,7 +27,8 @@ const AppBarNav = forwardRef<HTMLButtonElement, AppBarNavProps>(
       className,
       children,
       inheritColor,
-      theme = "clear",
+      floating,
+      theme = floating ? "secondary" : "clear",
       buttonType = "icon",
       ...props
     },
@@ -37,6 +38,7 @@ const AppBarNav = forwardRef<HTMLButtonElement, AppBarNavProps>(
       <Button
         {...props}
         theme={theme}
+        floating={floating}
         buttonType={buttonType}
         ref={ref}
         className={cn(

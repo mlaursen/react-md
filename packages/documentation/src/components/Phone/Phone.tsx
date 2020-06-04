@@ -36,17 +36,24 @@ export interface PhoneConfiguration {
   contentClassName?: string;
 
   /**
-   * Boolean if the phone's content should gain the stacked styles which update the content
-   * to be display flex and flex-direction column. THis is great when creating a custom app
-   * bar that isn't fixed to the top with position fixed.
+   * Boolean if the phone's content should gain the stacked styles which update
+   * the content to be display flex and flex-direction column. THis is great
+   * when creating a custom app bar that isn't fixed to the top with position
+   * fixed.
    */
   contentStacked?: boolean;
 
   /**
-   * Boolean if the phone's app bar should be prominent. This is used to add the required offset class names
-   * to the content element.
+   * Boolean if the phone's app bar should be prominent. This is used to add the
+   * required offset class names to the content element.
    */
   prominent?: boolean;
+
+  /**
+   * Boolean if the `children` should always be forced to have the fab offset
+   * class even when not being emulated
+   */
+  fabOffset?: boolean;
 }
 
 export interface PhoneProps
@@ -139,6 +146,7 @@ const Phone: FC<PhoneProps> = ({
           id={`${id}-phone`}
           className={cn(
             styles.phone,
+            styles.fabOffset,
             {
               [styles.emulated]: !isPhone,
             },

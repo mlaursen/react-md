@@ -14,10 +14,18 @@ $fixed-classes: (
   rmd-app-bar--fixed: 1,
   rmd-sheet-overlay: 1,
   rmd-sheet--raised: 2,
+  rmd-fab: 1,
 );
 
 .phone {
   height: 100%;
+}
+
+.fabOffset {
+  :global .rmd-fab--tl,
+  :global .rmd-fab--tr {
+    top: $rmd-app-bar-height + $rmd-button-floating-margin + $rmd-icon-size;
+  }
 }
 
 .emulated {

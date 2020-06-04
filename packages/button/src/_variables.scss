@@ -5,6 +5,7 @@
 @import '~@react-md/theme/dist/helpers';
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/theme/dist/variables';
+@import '~@react-md/utils/dist/variables';
 
 /// Boolean if text buttons with icons should have the icons inherit the current
 /// color. If this is disabled, only icon buttons will inherit the current text
@@ -90,6 +91,42 @@ $rmd-button-contained-resting-elevation: 2 !default;
 /// should be a number between 0 and 24.
 /// @type Number
 $rmd-button-contained-pressed-elevation: 4 !default;
+
+/// The z-index to use for the floating action button.
+///
+/// @require $rmd-utils-temporary-element-z-index
+/// @type Number
+$rmd-button-floating-z-index: $rmd-utils-temporary-element-z-index !default;
+
+/// The default page margin to use for the floating action button positions.
+///
+/// @type Number
+$rmd-button-floating-margin: 1.5rem !default;
+
+/// A Map of floating position styles to create. Each key will be made into a
+/// className by `&--floating-#{$key}` and each value will parsed as a style
+/// map. If you want to remove positions, override this variable with only the
+/// required styles.
+///
+/// @type Map
+$rmd-button-floating-positions: (
+  tl: (
+    left: $rmd-button-floating-margin,
+    top: $rmd-button-floating-margin,
+  ),
+  tr: (
+    right: $rmd-button-floating-margin,
+    top: $rmd-button-floating-margin,
+  ),
+  bl: (
+    bottom: $rmd-button-floating-margin,
+    left: $rmd-button-floating-margin,
+  ),
+  br: (
+    bottom: $rmd-button-floating-margin,
+    right: $rmd-button-floating-margin,
+  ),
+) !default;
 
 /// A Map of all the "themeable" parts of the button package. Every key in this
 /// map will be used to create a css variable to dynamically update the values

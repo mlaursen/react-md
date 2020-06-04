@@ -1,5 +1,6 @@
 import React, { FC, useCallback } from "react";
 import { AppBarNav, AppBarNavProps } from "@react-md/app-bar";
+import { Button } from "@react-md/button";
 import {
   KeyboardArrowLeftSVGIcon,
   CloseSVGIcon,
@@ -7,9 +8,7 @@ import {
 
 import { usePhoneContext } from "./context";
 
-import styles from "./ClosePhone.module.scss";
-
-interface Props extends AppBarNavProps {
+interface Props extends Omit<AppBarNavProps, "floating"> {
   floating?: boolean;
 }
 
@@ -18,7 +17,6 @@ const ClosePhone: FC<Props> = ({
   children,
   onClick,
   floating,
-  className,
   ...props
 }) => {
   const { id: phoneId, closePhone } = usePhoneContext();
@@ -33,23 +31,18 @@ const ClosePhone: FC<Props> = ({
     [onClick, closePhone]
   );
 
-  const button = (
-    <AppBarNav
-      {...props}
-      id={id ?? `${phoneId ?? "demo"}-close`}
-      onClick={handleClick}
-      theme={floating ? "secondary" : undefined}
-      themeType={floating ? "contained" : undefined}
-      className={className}
-    >
-      {floating ? <CloseSVGIcon /> : children}
-    </AppBarNav>
-  );
-  if (!floating) {
-    return button;
+  const sharedProps = {
+    ...props,
+    id: id ?? `${phoneId ?? "demo"}-close`,
+    onClick: handleClick,
+    children: floating ? <CloseSVGIcon /> : children,
+  };
+
+  if (floating) {
+    return <Button {...sharedProps} floating="bottom-right" />;
   }
 
-  return <span className={styles.container}>{button}</span>;
+  return <AppBarNav {...sharedProps} />;
 };
 
 ClosePhone.defaultProps = {

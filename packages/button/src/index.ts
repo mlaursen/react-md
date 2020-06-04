@@ -6,3 +6,6 @@ export * from "./Button";
 
 export { default as UnstyledButton } from "./UnstyledButton";
 export * from "./UnstyledButton";
+
+export { default as FAB } from "./FAB";
+export * from "./FAB";

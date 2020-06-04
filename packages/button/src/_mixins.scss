@@ -207,6 +207,32 @@
   }
 }
 
+/// Creates the styles for all the floating button positions.
+///
+/// @require $rmd-button-floating-positions
+/// @require $rmd-button-floating-z-index
+@mixin rmd-button-floating-positions {
+  @each $name, $styles in $rmd-button-floating-positions {
+    &--#{$name} {
+      @each $property, $value in $styles {
+        @if $property == left or $property == right {
+          @include rmd-utils-rtl-auto($property, $value);
+        } @else {
+          #{$property}: #{$value};
+        }
+      }
+    }
+  }
+}
+
+/// Creates the styles for the floating action button container. `FAB`
+@mixin rmd-fab {
+  @include rmd-button-floating-positions;
+
+  position: fixed;
+  z-index: $rmd-button-floating-z-index;
+}
+
 /// Creates all the styles for this package as well as defining all the theme
 /// CSS variables.
 @mixin react-md-button {
@@ -218,5 +244,11 @@
 
   .rmd-button-unstyled {
     @include rmd-button-unstyled;
+  }
+
+  @if $rmd-button-floating-positions {
+    .rmd-fab {
+      @include rmd-fab;
+    }
   }
 }

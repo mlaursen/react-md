@@ -70,7 +70,7 @@ const Find: FC<FindProps> = ({ items }) => {
         buttonType="icon"
         theme="secondary"
         themeType="contained"
-        className={styles.button}
+        floating="bottom-right"
       >
         <SearchSVGIcon />
       </Button>

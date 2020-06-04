@@ -77,6 +77,8 @@ const sandboxes: Sandboxes = {
   Button: {
     ContainedButtons: () => resolve(import("./Button-ContainedButtons.json")),
     CustomButtonTheme: () => resolve(import("./Button-CustomButtonTheme.json")),
+    FloatingActionButtons: () =>
+      resolve(import("./Button-FloatingActionButtons.json")),
     IconButtons: () => resolve(import("./Button-IconButtons.json")),
     OutlinedButtons: () => resolve(import("./Button-OutlinedButtons.json")),
     TextButtons: () => resolve(import("./Button-TextButtons.json")),
