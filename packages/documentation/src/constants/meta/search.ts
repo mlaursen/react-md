@@ -174,7 +174,8 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   },
   {
     title: "Alert Installation",
-    summary: "Create accessible alerts.",
+    summary:
+      "Create accessible alerts that can be displayed to users in your app. This package provides a MessageQueue for showing messages and a useAddMessage hook to push alerts into the queue.",
     type: "guide",
     pageUrl: "/packages/[id]/installation",
     pathname: "/packages/alert/installation",
@@ -469,6 +470,14 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "demo",
     pageUrl: "/packages/button/demos#text-buttons-with-icons-title",
     pathname: "/packages/button/demos#text-buttons-with-icons-title",
+  },
+  {
+    title: "Button Demo - Floating Action Buttons",
+    summary:
+      "Buttons can also be rendered as a floating action button\n(FAB) by setting the floating prop to a position to render within the viewport. The default available positions are:",
+    type: "demo",
+    pageUrl: "/packages/button/demos#floating-action-buttons-title",
+    pathname: "/packages/button/demos#floating-action-buttons-title",
   },
   {
     title: "Button Demo - Custom Button Theme",
@@ -2297,7 +2306,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Button Changelog",
     summary:
-      "The Button component was completely re-written in this release for full Typescript support, forwarding the ref to the <button> element, and can be rendered with only children to enable a default theme. However, the Button component removed built-in support for tooltips and rendering icons with text as well as the floating button styles.",
+      "The Button component was completely re-written in this release for full Typescript support, forwarding the ref to the <button> element, and can be rendered with only children to enable a default theme. However, the Button component removed built-in support for tooltips and rendering icons with text but can be easily added back in with the @react-md/tooltip and\n@react-md/icon packages.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/button/changelog",

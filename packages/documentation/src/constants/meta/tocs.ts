@@ -16,14 +16,6 @@ const tocs: TOCRecord = {
       title: "What are the supported browsers?",
     },
     {
-      anchor: "#should-i-choose-this-library",
-      title: "Should I Choose This Library?",
-    },
-    {
-      anchor: "#probably-not",
-      title: "Probably not.",
-    },
-    {
       anchor: "#where-do-i-go-from-here",
       title: "Where do I go from here?",
     },
@@ -365,10 +357,6 @@ const tocs: TOCRecord = {
       anchor: "#usage",
       title: "Usage",
     },
-    {
-      anchor: "#typescript-types",
-      title: "Typescript Types",
-    },
   ],
   "/packages/alert/sassdoc": [
     {
@@ -550,6 +538,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#text-buttons-with-icons",
       title: "Text Buttons with Icons",
+    },
+    {
+      anchor: "#floating-action-buttons",
+      title: "Floating Action Buttons",
     },
     {
       anchor: "#custom-button-theme",
