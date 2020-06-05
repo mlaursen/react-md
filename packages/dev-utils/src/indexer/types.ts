@@ -35,6 +35,7 @@ export interface DemoMetadata {
 }
 
 export type MetadataType =
+  | "blog"
   | "guide"
   | "theme"
   | "sassdoc"

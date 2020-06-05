@@ -31,6 +31,8 @@ export default async function generate(
     if (markdown) {
       if (route.endsWith("/changelog")) {
         type = "changelog";
+      } else if (route.startsWith("/blog")) {
+        type = "blog";
       } else {
         type = "guide";
       }
@@ -62,6 +64,9 @@ export default async function generate(
         default:
           throw new Error("This should never happen.");
       }
+    } else if (route === "/blog") {
+      type = "blog";
+      summary = "The latest news about react-md";
     } else {
       throw new Error(`Unhandled route type: "${route}"`);
     }
@@ -78,6 +83,8 @@ export default async function generate(
     let pageUrl = route;
     if (route.startsWith("/guides")) {
       pageUrl = "/guides/[id]";
+    } else if (route.startsWith("/blog/")) {
+      pageUrl = "/blog/[id]";
     } else if (route.startsWith("/packages") && !route.endsWith("demos")) {
       const [suffix] = route.split("/").reverse();
       pageUrl = `/packages/[id]/${suffix}`;

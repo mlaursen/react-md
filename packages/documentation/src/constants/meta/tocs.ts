@@ -20,6 +20,116 @@ const tocs: TOCRecord = {
       title: "Where do I go from here?",
     },
   ],
+  "/blog/v2-release": [
+    {
+      anchor: "#v2-release",
+      title: "v2 Release",
+    },
+    {
+      anchor: "#missing-components-and-functionality-from-v1",
+      title: "Missing Components and Functionality from v1 ",
+    },
+    {
+      anchor: "#what39s-new-in-v2",
+      title: "What's new in v2?",
+    },
+    {
+      anchor: "#rewrite-to-typescript",
+      title: "Rewrite to Typescript",
+    },
+    {
+      anchor: "#new-behavior-for-determining-the-current-application-size",
+      title: "New Behavior for Determining the Current Application Size",
+    },
+    {
+      anchor: "#appsizelistener-component-and-useappsize-hook",
+      title: "AppSizeListener Component and useAppSize Hook ",
+    },
+    {
+      anchor: "#media-query-mixins-and-components",
+      title: "Media Query Mixins and Components ",
+    },
+    {
+      anchor: "#new-theme-api",
+      title: "New Theme API",
+    },
+    {
+      anchor: "#v1-theme-updates",
+      title: "v1 theme updates ",
+    },
+    {
+      anchor: "#v2-theme-updates",
+      title: "v2 theme updates ",
+    },
+    {
+      anchor: "#new-utility-scss-functions-and-mixins",
+      title: "New Utility SCSS Functions and Mixins",
+    },
+    {
+      anchor: "#automatic-color-fixes-for-accessible-contrast-ratios",
+      title: "Automatic Color Fixes for Accessible Contrast Ratios",
+    },
+    {
+      anchor: "#scss-variables-and-default-values-in-javascript",
+      title: "SCSS Variables and Default Values in JavaScript",
+    },
+    {
+      anchor: "#improved-typography-and-css-reset",
+      title: "Improved Typography and CSS Reset",
+    },
+    {
+      anchor: "#improved-user-interaction-states",
+      title: "Improved User Interaction States",
+    },
+    {
+      anchor: "#v1-implementation",
+      title: "v1 implementation",
+    },
+    {
+      anchor: "#starting-with-v2",
+      title: "Starting with v2",
+    },
+    {
+      anchor: "#improved-accessibility-and-keyboard-movement",
+      title: "Improved Accessibility and Keyboard Movement",
+    },
+    {
+      anchor: "#right-to-left-language-support",
+      title: "Right to left Language Support",
+    },
+    {
+      anchor: "#convenience-configuration-and-context-provider-components",
+      title: "Convenience Configuration and Context Provider Components",
+    },
+    {
+      anchor: "#around-50-new-components-and-40-hooks",
+      title: "Around 50 new Components and 40 hooks",
+    },
+    {
+      anchor: "#all-material-icons-available-as-components",
+      title: "All Material Icons Available as Components",
+    },
+    {
+      anchor: "#scoped-packages",
+      title: "Scoped Packages",
+    },
+    {
+      anchor: "#new-documentation-site",
+      title: "New Documentation Site",
+    },
+    {
+      anchor: "#improved-documentation",
+      title: "Improved Documentation ",
+    },
+    {
+      anchor: "#gzip-size-comparison",
+      title: "GZip Size Comparison",
+    },
+    {
+      anchor: "#in-depth-changelogs",
+      title: "In-depth Changelogs",
+    },
+  ],
   "/colors-and-theming/creating-dynamic-themes": [
     {
       anchor: "#creating-dynamic-themes",

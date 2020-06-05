@@ -94,7 +94,13 @@ const Layout: FC<LayoutProps> = ({
           }}
           title={title.replace("react-md@v2 - ", "")}
           mainProps={transitionProps}
-          treeProps={useLayoutNavigation(navItems, pathname, LinkUnstyled)}
+          treeProps={useLayoutNavigation(
+            navItems,
+            // I don't add each blog to the navigation tree, but still want to
+            // show that a blog is being viewed
+            pathname.replace(/^\/blog.*$/, "/blog"),
+            LinkUnstyled
+          )}
           navHeaderProps={{ children: <NavHeaderTitle /> }}
         >
           <TableOfContents pathname={pathname} />

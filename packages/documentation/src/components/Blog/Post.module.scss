@@ -1,0 +1,14 @@
+@import '~@react-md/utils/dist/mixins';
+
+.container {
+  @include rmd-utils-phone-media {
+    max-width: 100%;
+    padding: 0 2rem;
+  }
+
+  margin-bottom: 2rem;
+}
+
+.button {
+  margin-left: -0.5rem;
+}

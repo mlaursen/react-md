@@ -15,6 +15,21 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/about",
   },
   {
+    title: "Blog",
+    summary: "The latest news about react-md",
+    type: "blog",
+    pageUrl: "/blog",
+    pathname: "/blog",
+  },
+  {
+    title: "V2 Release",
+    summary:
+      "The v2 release is a complete re-write of react-md to address the majority of problems encountered while using v1. Unfortunately, this took a lot longer than I had hoped since I ended up using this project to learn Typescript as well as the new React hooks API. Even though there are some missing components from v1, I think the new functionality outweighs it and the components are scoped for a later release.",
+    type: "blog",
+    pageUrl: "/blog/[id]",
+    pathname: "/blog/v2-release",
+  },
+  {
     title: "Color Palette",
     summary:
       "Learn more about the material design color palette and all the default colors provided.",

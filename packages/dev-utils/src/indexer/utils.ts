@@ -34,11 +34,13 @@ const replaceIds = (pathname: string, values: readonly string[]): string[] =>
 interface GetRoutesOptions {
   guides: readonly string[];
   changelogs: readonly string[];
+  blogs: readonly string[];
 }
 
 export async function getRoutes({
   guides,
   changelogs,
+  blogs,
 }: GetRoutesOptions): Promise<string[]> {
   const pagesFolder = join(documentationRoot, src, "pages");
   const paths = await glob("**/*.+(ts|tsx)", {
@@ -56,6 +58,7 @@ export async function getRoutes({
       const pathname = `/${filePath
         .replace(new RegExp(sep, "g"), "/")
         .replace(/\..+$/, "")
+        .replace("blog/index", "blog")
         .replace(/.+\/index$/, "")}`;
 
       switch (pathname) {
@@ -66,6 +69,8 @@ export async function getRoutes({
           return "";
         case "/guides/[id]":
           return replaceIds(pathname, guides);
+        case "/blog/[id]":
+          return replaceIds(pathname, blogs);
         case "/packages/[id]/api":
           return replaceIds(pathname, apiablePackages);
         case "/packages/[id]/demos":
@@ -95,7 +100,7 @@ function pluralize(s: string): string {
 }
 
 export function getMarkdownForRoute(route: string): string | null {
-  const simpleReadmeMatch = route.match(/^\/(guides)\//);
+  const simpleReadmeMatch = route.match(/^\/(blog|guides)\//);
   const packageMarkdownMatch = route.match(/\/(installation|changelog)$/);
 
   let path = "";
