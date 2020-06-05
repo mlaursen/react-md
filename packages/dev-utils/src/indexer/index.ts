@@ -19,8 +19,14 @@ export default async function indexer(): Promise<void> {
   const guides = await glob("*.md", { cwd: guidesFolder });
   const changelogsFolder = join(documentationRoot, src, "changelogs");
   const changelogs = await glob("*.md", { cwd: changelogsFolder });
+  const blogsFolder = join(documentationRoot, src, "blogs");
+  const blogs = await glob("*.md", { cwd: blogsFolder, ignore: ["index.md"] });
 
-  const routes = await getRoutes({ guides, changelogs });
+  const routes = await getRoutes({
+    guides,
+    changelogs,
+    blogs,
+  });
   const { tocs, metadata } = await generate(routes);
 
   const meta = join(documentationRoot, src, "constants", "meta");

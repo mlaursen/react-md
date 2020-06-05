@@ -6,6 +6,7 @@ import {
   DescriptionSVGIcon,
   HomeSVGIcon,
   InfoOutlineSVGIcon,
+  LibraryBooksSVGIcon,
 } from "@react-md/material-icons";
 
 import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
@@ -143,6 +144,11 @@ const routes: NavItem[] = [
       children: toTitle(name),
       routes: getPackageRoutes(name),
     })),
+  },
+  {
+    href: "/blog",
+    children: "Blog",
+    leftAddon: <LibraryBooksSVGIcon />,
   },
   {
     href: "/about",
