@@ -6,7 +6,7 @@ new theme API is **extremely powerful** and allows for a lot of additional
 customization and configuration in your app since your theme can be configured
 at a component-by-component basis or at runtime.
 
-### The [@react-md/theme] API
+### The #theme API
 
 The `@react-md/theme` package is slightly different than the other packages
 since the naming convention will just be `$rmd-theme-values`,
@@ -101,9 +101,9 @@ user to define custom theme values or change the values on the fly, the first
 example allows you to only update the dense CSS variables while the second
 requires you to re-compile or call the mixin again with new values.
 
-Another great example for CSS variable usage is the [@react-md/button] package.
-The button modifies the [@react-md/icon] package's color along with with sizing
-in the [@mixin rmd-button-icon].
+Another great example for CSS variable usage is the #button package. The button
+modifies the #icon package's color along with with sizing in the [@mixin
+rmd-button-icon].
 
 ### Documentation Site Usage
 
@@ -180,19 +180,17 @@ dark theme variable, it is actually recommended to follow the [Conditional Dark
 Theme Guide] instead using the [prefers-color-scheme media query].
 
 [theme values]: /packages/theme/sassdoc#theme-variable-rmd-theme-values
-[@react-md/theme]: /packages/theme/demos
-[@react-md/button]: /packages/button/demos
 [theme builder]: /colors-and-theming/theme-builder
 [v1 theme builder]: /v1/customization/theme-builder
 [react context api]: https://reactjs.org/docs/context.html
 [theme builder github folder]:
-  https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/ColorsAndTheming/ThemeBuilder
+  {{GITHUB_FILE_URL}}/packages/documentation/src/components/ColorsAndTheming/ThemeBuilder
 [themeconfiguration.tsx]:
-  https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/ColorsAndTheming/ThemeBuilder/ThemeConfiguration.tsx#L75
+  {{GITHUB_FILE_URL}}/packages/documentation/src/components/ColorsAndTheming/ThemeBuilder/ThemeConfiguration.tsx#L75
 [usethemevariables.ts]:
-  https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/ColorsAndTheming/ThemeBuilder/useThemeVariables.ts
+  {{GITHUB_FILE_URL}}/packages/documentation/src/components/ColorsAndTheming/ThemeBuilder/useThemeVariables.ts
 [theme github folder]:
-  https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/Theme
+  {{GITHUB_FILE_URL}}/packages/documentation/src/components/Theme
 [conditional dark theme guide]:
   /guides/customizing-your-theme#conditional-dark-theme
 [prefers-color-scheme media query]:

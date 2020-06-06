@@ -26,20 +26,24 @@ export async function copySharedToDocs(): Promise<void> {
   ]);
 }
 
-const replaceIds = (pathname: string, values: string[]): string[] =>
+const replaceIds = (pathname: string, values: readonly string[]): string[] =>
   values.map((value) => pathname.replace("[id]", value.replace(/\..+$/, "")));
 
-export async function getRoutes(): Promise<string[]> {
+interface GetRoutesOptions {
+  guides: readonly string[];
+  changelogs: readonly string[];
+}
+
+export async function getRoutes({
+  guides,
+  changelogs,
+}: GetRoutesOptions): Promise<string[]> {
   const pagesFolder = join(documentationRoot, src, "pages");
   const paths = await glob("**/*.+(ts|tsx)", {
     cwd: pagesFolder,
     ignore: ["api/**/*", "index.ts", "_*"],
   });
 
-  const guidesFolder = join(documentationRoot, src, "guides");
-  const guides = await glob("*.md", {
-    cwd: guidesFolder,
-  });
   const apiablePackages = getPackages("typescript");
   const demoablePackages = apiablePackages.filter((name) => name !== "layout");
   const sassdocablePackages = getPackages("scss");
@@ -54,6 +58,7 @@ export async function getRoutes(): Promise<string[]> {
 
       switch (pathname) {
         case "/":
+        case "/404":
         case "/sandbox":
           // don't care about the index and sandbox routes for this
           return "";
@@ -67,6 +72,8 @@ export async function getRoutes(): Promise<string[]> {
           return replaceIds(pathname, sassdocablePackages);
         case "/packages/[id]/installation":
           return replaceIds(pathname, packages);
+        case "/packages/[id]/changelog":
+          return replaceIds(pathname, changelogs);
         default:
           return pathname;
       }
@@ -77,18 +84,35 @@ export async function getRoutes(): Promise<string[]> {
   return Array.from(new Set(routes));
 }
 
+function pluralize(s: string): string {
+  if (s.endsWith("s")) {
+    return s;
+  }
+
+  return `${s}s`;
+}
+
 export function getMarkdownForRoute(route: string): string | null {
+  const simpleReadmeMatch = route.match(/^\/(guides)\//);
+  const packageMarkdownMatch = route.match(/\/(installation|changelog)$/);
+
   let path = "";
-  if (route.startsWith("/guides")) {
-    path = `${route.substring(1)}.md`.replace(/\//g, sep);
+  if (simpleReadmeMatch) {
+    const [, name] = simpleReadmeMatch;
+    path = `${route.substring(1)}.md`
+      .replace(name, pluralize(name))
+      .replace(/\//g, sep);
   } else if (route.startsWith("/about")) {
     path = join("components", "About", "README.md");
   } else if (/(overriding-defaults|creating-dynamic-themes)$/.test(route)) {
     const name = toTitle(route.substring(route.lastIndexOf("/") + 1), "");
     path = join("components", "ColorsAndTheming", `${name}.md`);
-  } else if (route.endsWith("/installation")) {
-    const [, , name] = route.split("/");
-    path = join("readmes", `${name}.md`);
+  } else if (packageMarkdownMatch) {
+    const [, type] = packageMarkdownMatch;
+    const [, , packageName] = route.split("/");
+    const folder = type === "installation" ? "readmes" : pluralize(type);
+
+    path = join(folder, `${packageName}.md`);
   }
 
   if (!path) {
@@ -106,7 +130,7 @@ export function getTitleForRoute(route: string): string {
     .replace("Sassdoc", "SassDoc");
 
   if (
-    /SassDoc|API|Demos/.test(title) ||
+    /SassDoc|API|Demos|Changelog/.test(title) ||
     (title === "Installation" && route.startsWith("/packages"))
   ) {
     return `${toTitle(pkgName, "")} ${title}`;

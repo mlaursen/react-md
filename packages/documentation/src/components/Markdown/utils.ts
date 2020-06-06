@@ -1,8 +1,8 @@
 import Prism from "prismjs";
-import * as marked from "marked";
+import marked from "marked";
 import cn from "classnames";
 
-import { GITHUB_URL } from "constants/github";
+import { GITHUB_URL, COMMIT_SHA, GITHUB_FILE_URL } from "constants/github";
 import { PACKAGE_NAMES, SCSS_PACKAGES } from "constants/packages";
 
 import styles from "./Markdown.module.scss";
@@ -36,6 +36,12 @@ export function highlightCode(code: string, lang: string = ""): string {
   }
 }
 
+const NO_MARGIN_COMMENT = "<!-- no-margin -->";
+const NO_MARGIN_BOTTOM_COMMENT = "<!-- no-margin-bottom -->";
+const FORCE_HEADING_COMMENT = "<!-- force-heading -->";
+const removeComments = (text: string): string =>
+  text.replace(/<!-- ([A-z]+(-[A-z]+)*) -->/g, "");
+
 /**
  * The custom markdown renderer. This just adds some additional styles to
  * existing elements, and does some fun stuff with code blocks.
@@ -68,11 +74,11 @@ renderer.codespan = (code) => `<code class="code code--inline">${code}</code>`;
 
 renderer.heading = (text, level, _raw, slugger) => {
   // if it is over 60 characters, it is probably not really a title
-  const isNoMargin = text.includes("<!-- no-margin -->");
-  const isNoMarginBottom = text.includes("<!-- no-margin-bottom -->");
-  const isForcedHeading = text.includes("<!-- force-heading -->");
+  const isNoMargin = text.includes(NO_MARGIN_COMMENT);
+  const isNoMarginBottom = text.includes(NO_MARGIN_BOTTOM_COMMENT);
+  const isForcedHeading = text.includes(FORCE_HEADING_COMMENT);
   // replace comments since they will be slugged :/
-  text = text.replace(/<!-- ([A-z]+(-[A-z]+)*) -->/g, "");
+  text = removeComments(text);
 
   const isValidHeading = isForcedHeading || (text.length <= 60 && !isNoMargin);
   // `'t` gets slugged as 39t
@@ -99,7 +105,8 @@ renderer.link = (href, title, text) => {
   return `<a class="rmd-link" href="${href}"${title}>${text}</a>`;
 };
 
-renderer.paragraph = (text: string) => `<p class="${styles.p}">${text}</p>`;
+renderer.paragraph = (text: string) =>
+  `<p class="${styles.p}">${removeComments(text)}</p>`;
 
 renderer.image = (href, title, alt) => {
   return (
@@ -228,6 +235,20 @@ export const linkToGithubCommit: Transformer = (md) =>
  */
 export const replaceEmojis: Transformer = (md) => md.replace(/(:tada:)/g, "🎉");
 
+export const replaceGeneratedConstants: Transformer = (md) =>
+  md.replace(/{{(COMMIT_SHA|GITHUB_URL|GITHUB_FILE_URL)}}/g, (_, type) => {
+    switch (type) {
+      case "COMMIT_SHA":
+        return COMMIT_SHA;
+      case "GITHUB_URL":
+        return GITHUB_URL;
+      case "GITHUB_FILE_URL":
+        return GITHUB_FILE_URL;
+      default:
+        throw new Error(`Unknown git replacement: ${type}`);
+    }
+  });
+
 const transforms: Transformer[] = [
   packageQuickLink,
   packagePageQuickLink,
@@ -236,6 +257,7 @@ const transforms: Transformer[] = [
   linkToGithubIssues,
   linkToGithubCommit,
   replaceEmojis,
+  replaceGeneratedConstants,
 ];
 
 const transform = (markdown: string): string =>

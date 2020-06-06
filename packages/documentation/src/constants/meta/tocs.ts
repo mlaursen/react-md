@@ -270,24 +270,6 @@ const tocs: TOCRecord = {
       title: "Where do I go from here?",
     },
   ],
-  "/guides/layout": [
-    {
-      anchor: "#configuration",
-      title: "Configuration",
-    },
-    {
-      anchor: "#the-included-providers",
-      title: "The included Providers",
-    },
-    {
-      anchor: "#creating-a-layout",
-      title: "Creating a Layout",
-    },
-    {
-      anchor: "#creating-the-navigation-tree",
-      title: "Creating the navigation tree",
-    },
-  ],
   "/guides/scoped-packages": [
     {
       anchor: "#scoped-packages",
@@ -334,6 +316,32 @@ const tocs: TOCRecord = {
       title: "The Pain Points",
     },
   ],
+  "/packages/alert/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
+    },
+  ],
   "/packages/alert/demos": [
     {
       anchor: "#simple-message-queue",
@@ -370,6 +378,32 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#alert-functions",
+    },
+  ],
+  "/packages/app-bar/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
     },
   ],
   "/packages/app-bar/demos": [
@@ -418,6 +452,24 @@ const tocs: TOCRecord = {
       anchor: "#app-bar-functions",
     },
   ],
+  "/packages/autocomplete/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
+    },
+  ],
   "/packages/autocomplete/demos": [
     {
       anchor: "#simple-example",
@@ -440,6 +492,32 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/avatar/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
     },
   ],
   "/packages/avatar/demos": [
@@ -474,6 +552,32 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#avatar-functions",
+    },
+  ],
+  "/packages/badge/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
     },
   ],
   "/packages/badge/demos": [
@@ -516,6 +620,56 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#badge-functions",
+    },
+  ],
+  "/packages/button/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-and-values",
+      title: "Renamed SCSS Variables and Values",
+    },
+    {
+      anchor: "#removed-scss-variables-and-mixins",
+      title: "Removed SCSS Variables and Mixins",
+    },
+    {
+      anchor: "#rendering-non-button-components-and-elements",
+      title: "Rendering non-button components and elements",
+    },
+    {
+      anchor: "#theming",
+      title: "Theming",
+    },
+    {
+      anchor: "#theme",
+      title: "theme",
+    },
+    {
+      anchor: "#themetype",
+      title: "themeType",
+    },
+    {
+      anchor: "#buttontype",
+      title: "buttonType",
+    },
+    {
+      anchor: "#icon-support",
+      title: "Icon Support",
     },
   ],
   "/packages/button/demos": [
@@ -584,6 +738,28 @@ const tocs: TOCRecord = {
       anchor: "#button-functions",
     },
   ],
+  "/packages/card/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
+    },
+  ],
   "/packages/card/demos": [
     {
       anchor: "#simple-example",
@@ -624,6 +800,32 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#card-functions",
+    },
+  ],
+  "/packages/chip/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
     },
   ],
   "/packages/chip/demos": [
@@ -670,6 +872,56 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#chip-functions",
+    },
+  ],
+  "/packages/dialog/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
+    },
+    {
+      anchor: "#separate-components",
+      title: "Separate Components",
+    },
+    {
+      anchor: "#different-dialog-types",
+      title: "Different Dialog Types",
+    },
+    {
+      anchor: "#fixed-dialogs",
+      title: "Fixed Dialogs",
+    },
+    {
+      anchor: "#customizing-the-overlay",
+      title: "Customizing the Overlay",
+    },
+    {
+      anchor: "#fixing-nested-dialogs",
+      title: "Fixing Nested Dialogs",
+    },
+    {
+      anchor: "#fixed-accessibility",
+      title: "Fixed Accessibility",
     },
   ],
   "/packages/dialog/demos": [
@@ -722,6 +974,32 @@ const tocs: TOCRecord = {
       anchor: "#dialog-functions",
     },
   ],
+  "/packages/divider/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
+    },
+  ],
   "/packages/divider/demos": [
     {
       anchor: "#horizontal-dividers",
@@ -760,6 +1038,32 @@ const tocs: TOCRecord = {
       anchor: "#divider-functions",
     },
   ],
+  "/packages/elevation/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
+    },
+  ],
   "/packages/elevation/demos": [
     {
       anchor: "#all-elevations",
@@ -792,6 +1096,32 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#elevation-functions",
+    },
+  ],
+  "/packages/expansion-panel/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
     },
   ],
   "/packages/expansion-panel/demos": [
@@ -830,6 +1160,32 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#expansion-panel-functions",
+    },
+  ],
+  "/packages/form/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
     },
   ],
   "/packages/form/demos": [
@@ -914,6 +1270,32 @@ const tocs: TOCRecord = {
       anchor: "#form-functions",
     },
   ],
+  "/packages/icon/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
+    },
+  ],
   "/packages/icon/demos": [
     {
       anchor: "#simple-examples",
@@ -956,6 +1338,28 @@ const tocs: TOCRecord = {
       anchor: "#icon-functions",
     },
   ],
+  "/packages/layout/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
+    },
+  ],
   "/packages/layout/demos": [
     {
       anchor: "#configurable-layout",
@@ -984,6 +1388,12 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#layout-functions",
+    },
+  ],
+  "/packages/link/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
     },
   ],
   "/packages/link/demos": [
@@ -1040,6 +1450,32 @@ const tocs: TOCRecord = {
       anchor: "#link-functions",
     },
   ],
+  "/packages/list/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables Placeholders, and Mixins",
+    },
+  ],
   "/packages/list/demos": [
     {
       anchor: "#single-line-examples",
@@ -1082,6 +1518,12 @@ const tocs: TOCRecord = {
       anchor: "#list-functions",
     },
   ],
+  "/packages/material-icons/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+  ],
   "/packages/material-icons/demos": [
     {
       anchor: "#simple-examples",
@@ -1112,6 +1554,32 @@ const tocs: TOCRecord = {
     {
       anchor: "#development",
       title: "Development",
+    },
+  ],
+  "/packages/media/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-and-mixins",
+      title: "Removed SCSS Variables and Mixins",
     },
   ],
   "/packages/media/demos": [
@@ -1146,6 +1614,36 @@ const tocs: TOCRecord = {
     {
       title: "Mixins",
       anchor: "#media-mixins",
+    },
+  ],
+  "/packages/menu/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-features--behavior",
+      title: "New Features / Behavior",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-and-mixins",
+      title: "Removed SCSS Variables and Mixins",
+    },
+    {
+      anchor: "#accessibility-fixes",
+      title: "Accessibility Fixes",
     },
   ],
   "/packages/menu/demos": [
@@ -1210,6 +1708,24 @@ const tocs: TOCRecord = {
       anchor: "#menu-functions",
     },
   ],
+  "/packages/overlay/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-features--behavior",
+      title: "New Features / Behavior",
+    },
+    {
+      anchor: "#new-scss-functions-and-mixins",
+      title: "New SCSS Functions and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+  ],
   "/packages/overlay/demos": [
     {
       anchor: "#simple-example",
@@ -1248,6 +1764,28 @@ const tocs: TOCRecord = {
       anchor: "#overlay-functions",
     },
   ],
+  "/packages/portal/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-api-and-props",
+      title: "New API and Props",
+    },
+    {
+      anchor: "#using-the-intoid-prop",
+      title: "Using the intoId prop",
+    },
+    {
+      anchor: "#using-the-into-prop",
+      title: "Using the into prop",
+    },
+  ],
   "/packages/portal/demos": [
     {
       anchor: "#simple-example",
@@ -1266,6 +1804,32 @@ const tocs: TOCRecord = {
     {
       anchor: "#usage",
       title: "Usage",
+    },
+  ],
+  "/packages/progress/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-features--behavior",
+      title: "New Features / Behavior",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-and-mixins",
+      title: "Removed SCSS Variables and Mixins",
     },
   ],
   "/packages/progress/demos": [
@@ -1310,6 +1874,32 @@ const tocs: TOCRecord = {
       anchor: "#progress-functions",
     },
   ],
+  "/packages/sheet/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-features--behavior",
+      title: "New Features / Behavior",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-and-mixins",
+      title: "Removed SCSS Variables and Mixins",
+    },
+  ],
   "/packages/sheet/demos": [
     {
       anchor: "#position-examples",
@@ -1346,6 +1936,32 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#sheet-functions",
+    },
+  ],
+  "/packages/states/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-features--behavior",
+      title: "New Features / Behavior",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-and-mixins",
+      title: "Removed SCSS Variables and Mixins",
     },
   ],
   "/packages/states/demos": [
@@ -1396,6 +2012,32 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#states-functions",
+    },
+  ],
+  "/packages/table/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-features--behavior",
+      title: "New Features / Behavior",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-placeholders-and-mixins",
+      title: "Removed SCSS Variables, Placeholders, and Mixins",
     },
   ],
   "/packages/table/demos": [
@@ -1456,6 +2098,32 @@ const tocs: TOCRecord = {
       anchor: "#table-functions",
     },
   ],
+  "/packages/tabs/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-features--behavior",
+      title: "New Features / Behavior",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-and-mixins",
+      title: "Removed SCSS Variables and Mixins",
+    },
+  ],
   "/packages/tabs/demos": [
     {
       anchor: "#basic-usage",
@@ -1502,6 +2170,32 @@ const tocs: TOCRecord = {
       anchor: "#tabs-functions",
     },
   ],
+  "/packages/theme/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-features--behavior",
+      title: "New Features / Behavior",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-functions-and-mixins",
+      title: "Removed SCSS Variables, Functions, and Mixins",
+    },
+  ],
   "/packages/theme/demos": [
     {
       anchor: "#simple-example",
@@ -1546,6 +2240,32 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#theme-functions",
+    },
+  ],
+  "/packages/tooltip/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-features--behavior",
+      title: "New Features / Behavior",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-and-mixins",
+      title: "Removed SCSS Variables and Mixins",
     },
   ],
   "/packages/tooltip/demos": [
@@ -1602,6 +2322,28 @@ const tocs: TOCRecord = {
       anchor: "#tooltip-functions",
     },
   ],
+  "/packages/transition/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+  ],
   "/packages/transition/demos": [
     {
       anchor: "#cross-fade-examples",
@@ -1652,6 +2394,12 @@ const tocs: TOCRecord = {
       anchor: "#transition-mixins",
     },
   ],
+  "/packages/tree/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+  ],
   "/packages/tree/demos": [
     {
       anchor: "#single-select-tree",
@@ -1690,6 +2438,32 @@ const tocs: TOCRecord = {
       anchor: "#tree-functions",
     },
   ],
+  "/packages/typography/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-functions-and-mixins",
+      title: "Renamed SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#removed-scss-variables-and-mixins",
+      title: "Removed SCSS Variables and Mixins",
+    },
+  ],
   "/packages/typography/demos": [
     {
       anchor: "#text-examples",
@@ -1722,6 +2496,40 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#typography-functions",
+    },
+  ],
+  "/packages/utils/changelog": [
+    {
+      anchor: "#v200",
+      title: "v2.0.0",
+    },
+    {
+      anchor: "#new-behavior-and-features",
+      title: "New Behavior and Features",
+    },
+    {
+      anchor: "#breaking-changes",
+      title: "Breaking Changes",
+    },
+    {
+      anchor: "#new-components-hooks-and-utils",
+      title: "New Components, Hooks, and Utils",
+    },
+    {
+      anchor: "#honorable-mentions",
+      title: "Honorable Mentions",
+    },
+    {
+      anchor: "#new-scss-variables-functions-and-mixins",
+      title: "New SCSS Variables, Functions, and Mixins",
+    },
+    {
+      anchor: "#renamed-scss-variables-and-values",
+      title: "Renamed SCSS Variables and Values",
+    },
+    {
+      anchor: "#removed-scss-variables-functions-and-mixins",
+      title: "Removed SCSS Variables, Functions, and Mixins",
     },
   ],
   "/packages/utils/demos": [
@@ -1776,832 +2584,6 @@ const tocs: TOCRecord = {
     {
       title: "Functions",
       anchor: "#utils-functions",
-    },
-  ],
-  "/packages/alert/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/app-bar/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/autocomplete/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/avatar/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/badge/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/button/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-and-values",
-      title: "Renamed SCSS Variables and Values",
-    },
-    {
-      anchor: "#removed-scss-variables-and-mixins",
-      title: "Removed SCSS Variables and Mixins",
-    },
-    {
-      anchor: "#rendering-non-button-components-and-elements",
-      title: "Rendering non-button components and elements",
-    },
-    {
-      anchor: "#theming",
-      title: "Theming",
-    },
-    {
-      anchor: "#theme",
-      title: "theme",
-    },
-    {
-      anchor: "#themetype",
-      title: "themeType",
-    },
-    {
-      anchor: "#buttontype",
-      title: "buttonType",
-    },
-    {
-      anchor: "#icon-support",
-      title: "Icon Support",
-    },
-  ],
-  "/packages/card/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/chip/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/dialog/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-    {
-      anchor: "#separate-components",
-      title: "Separate Components",
-    },
-    {
-      anchor: "#different-dialog-types",
-      title: "Different Dialog Types",
-    },
-    {
-      anchor: "#fixed-dialogs",
-      title: "Fixed Dialogs",
-    },
-    {
-      anchor: "#customizing-the-overlay",
-      title: "Customizing the Overlay",
-    },
-    {
-      anchor: "#fixing-nested-dialogs",
-      title: "Fixing Nested Dialogs",
-    },
-    {
-      anchor: "#fixed-accessibility",
-      title: "Fixed Accessibility",
-    },
-  ],
-  "/packages/divider/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/elevation/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/expansion-panel/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/form/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/icon/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/layout/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/link/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-  ],
-  "/packages/list/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables Placeholders, and Mixins",
-    },
-  ],
-  "/packages/material-icons/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-  ],
-  "/packages/media/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-and-mixins",
-      title: "Removed SCSS Variables and Mixins",
-    },
-  ],
-  "/packages/menu/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-features--behavior",
-      title: "New Features / Behavior",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-and-mixins",
-      title: "Removed SCSS Variables and Mixins",
-    },
-    {
-      anchor: "#accessibility-fixes",
-      title: "Accessibility Fixes",
-    },
-  ],
-  "/packages/overlay/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-features--behavior",
-      title: "New Features / Behavior",
-    },
-    {
-      anchor: "#new-scss-functions-and-mixins",
-      title: "New SCSS Functions and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-  ],
-  "/packages/portal/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-api-and-props",
-      title: "New API and Props",
-    },
-    {
-      anchor: "#using-the-intoid-prop",
-      title: "Using the intoId prop",
-    },
-    {
-      anchor: "#using-the-into-prop",
-      title: "Using the into prop",
-    },
-  ],
-  "/packages/progress/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-features--behavior",
-      title: "New Features / Behavior",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-and-mixins",
-      title: "Removed SCSS Variables and Mixins",
-    },
-  ],
-  "/packages/sheet/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-features--behavior",
-      title: "New Features / Behavior",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-and-mixins",
-      title: "Removed SCSS Variables and Mixins",
-    },
-  ],
-  "/packages/states/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-features--behavior",
-      title: "New Features / Behavior",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-and-mixins",
-      title: "Removed SCSS Variables and Mixins",
-    },
-  ],
-  "/packages/table/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-features--behavior",
-      title: "New Features / Behavior",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-placeholders-and-mixins",
-      title: "Removed SCSS Variables, Placeholders, and Mixins",
-    },
-  ],
-  "/packages/tabs/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-features--behavior",
-      title: "New Features / Behavior",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-and-mixins",
-      title: "Removed SCSS Variables and Mixins",
-    },
-  ],
-  "/packages/theme/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-features--behavior",
-      title: "New Features / Behavior",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-functions-and-mixins",
-      title: "Removed SCSS Variables, Functions, and Mixins",
-    },
-  ],
-  "/packages/tooltip/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-features--behavior",
-      title: "New Features / Behavior",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-and-mixins",
-      title: "Removed SCSS Variables and Mixins",
-    },
-  ],
-  "/packages/transition/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-  ],
-  "/packages/tree/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-  ],
-  "/packages/typography/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-functions-and-mixins",
-      title: "Renamed SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#removed-scss-variables-and-mixins",
-      title: "Removed SCSS Variables and Mixins",
-    },
-  ],
-  "/packages/utils/changelog": [
-    {
-      anchor: "#v200",
-      title: "v2.0.0",
-    },
-    {
-      anchor: "#new-behavior-and-features",
-      title: "New Behavior and Features",
-    },
-    {
-      anchor: "#breaking-changes",
-      title: "Breaking Changes",
-    },
-    {
-      anchor: "#new-components-hooks-and-utils",
-      title: "New Components, Hooks, and Utils",
-    },
-    {
-      anchor: "#honorable-mentions",
-      title: "Honorable Mentions",
-    },
-    {
-      anchor: "#new-scss-variables-functions-and-mixins",
-      title: "New SCSS Variables, Functions, and Mixins",
-    },
-    {
-      anchor: "#renamed-scss-variables-and-values",
-      title: "Renamed SCSS Variables and Values",
-    },
-    {
-      anchor: "#removed-scss-variables-functions-and-mixins",
-      title: "Removed SCSS Variables, Functions, and Mixins",
     },
   ],
 };

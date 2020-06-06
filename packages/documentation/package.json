@@ -4,7 +4,7 @@
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
-    "prebuild": "dev-utils readmes",
+    "prebuild": "dev-utils doc-index",
     "dev": "npm-run-all prebuild start-dev",
     "dev-log": "cross-env NEXT_TELEMETRY_DISABLED=1 FORCE_COLOR=true next | cat",
     "sandbox": "dev-utils sandbox",

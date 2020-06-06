@@ -1,6 +1,7 @@
 import marked from "marked";
 import { decode } from "he";
 import { TOCAnchor } from "./types";
+import getPackages from "../utils/getPackages";
 
 interface MarkdownResult {
   anchors: readonly TOCAnchor[];
@@ -9,8 +10,10 @@ interface MarkdownResult {
 
 const noop = (): string => "";
 const identity = (s: string): string => s;
+const whitespace = "(?=\r?\n| |[^/])";
 
 export default function parseMarkdown(markdown: string): MarkdownResult {
+  const joinedNames = getPackages().join("|");
   const anchors: TOCAnchor[] = [];
   const renderer = new marked.Renderer({ gfm: true, sanitize: false });
   renderer.heading = (text, _level, _raw, slugger) => {
@@ -87,7 +90,22 @@ export default function parseMarkdown(markdown: string): MarkdownResult {
 
   renderer.link = (_href, _tile, text) => text;
 
-  marked.parse(markdown.replace(/(:tada:)/g, "🎉"), { renderer });
+  // these replaces are some of the ones found in `documentation/src/components/Markdown/utils.ts`
+  const updated = markdown
+    .replace(/(:tada:)/g, "🎉")
+    .replace(
+      new RegExp(`(\\s|\\()#(${joinedNames})${whitespace}`, "g"),
+      (_, char, pkg) => `${char}[@react-md/${pkg}](/packages/${pkg}/demos)`
+    )
+    .replace(
+      new RegExp(`#(${joinedNames})/(demos|api|sassdoc)`, "g"),
+      "[$1 $2](/packages/$1/$2)"
+    )
+    .replace(
+      /#customizing-your-theme/g,
+      "[customizing your theme](/guides/customizing-your-theme)"
+    );
+  marked.parse(updated, { renderer });
 
   return {
     anchors,

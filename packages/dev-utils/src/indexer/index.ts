@@ -5,14 +5,20 @@ import writeFile from "../utils/writeFile";
 import generate from "./generate";
 import { copySharedToDocs, getRoutes } from "./utils";
 import format from "../utils/format";
-import changelogs from "../changelogs";
+import copyChangelogs from "../changelogs";
+import glob from "../utils/glob";
 
 export default async function indexer(): Promise<void> {
   await readmes();
-  await changelogs();
+  await copyChangelogs();
   await copySharedToDocs();
 
-  const routes = await getRoutes();
+  const guidesFolder = join(documentationRoot, src, "guides");
+  const guides = await glob("*.md", { cwd: guidesFolder });
+  const changelogsFolder = join(documentationRoot, src, "changelogs");
+  const changelogs = await glob("*.md", { cwd: changelogsFolder });
+
+  const routes = await getRoutes({ guides, changelogs });
   const { tocs, metadata } = await generate(routes);
 
   const meta = join(documentationRoot, src, "constants", "meta");

@@ -1,44 +1,30 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { LayoutNavigationTree } from "@react-md/layout";
 import {
+  BuildSVGIcon,
+  ColorLensSVGIcon,
+  DescriptionSVGIcon,
   HomeSVGIcon,
   InfoOutlineSVGIcon,
-  DescriptionSVGIcon,
-  ColorLensSVGIcon,
-  BuildSVGIcon,
 } from "@react-md/material-icons";
-import { LayoutNavigationTree } from "@react-md/layout";
 
-import ReactSVGIcon from "icons/ReactSVGIcon";
 import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
+import ReactSVGIcon from "icons/ReactSVGIcon";
 import createIdGenerator from "utils/createIdGenerator";
 import { toTitle } from "utils/toTitle";
 
-import { PACKAGE_NAMES, TYPESCRIPT_PACKAGES, SCSS_PACKAGES } from "./packages";
-
-interface Route {
-  href: string;
-  children: string;
-  leftAddon?: ReactNode;
-  routes?: NavItem[];
-}
-
-interface Divider {
-  divider: true;
-  parentId?: string;
-}
-
-interface Subheader {
-  subheader: true;
-  parentId?: string;
-  children: string;
-}
-
-type NavItem = Route | Divider | Subheader;
+import { PACKAGE_NAMES, SCSS_PACKAGES, TYPESCRIPT_PACKAGES } from "./packages";
+import {
+  RouteNavItem,
+  NavItem,
+  DividerNavItem,
+  SubheaderNavItem,
+} from "./meta/types";
 
 const uuid = createIdGenerator("nav");
 
-const getPackageRoutes = (name: string): Route[] => {
-  const routes: Route[] = [];
+const getPackageRoutes = (name: string): RouteNavItem[] => {
+  const routes: RouteNavItem[] = [];
 
   routes.push({
     href: "/demos",
@@ -177,11 +163,11 @@ const routes: NavItem[] = [
   },
 ];
 
-const isDivider = (navItem: NavItem): navItem is Divider =>
-  (navItem as Divider).divider === true;
+const isDivider = (navItem: NavItem): navItem is DividerNavItem =>
+  (navItem as DividerNavItem).divider === true;
 
-const isSubheader = (navItem: NavItem): navItem is Subheader =>
-  (navItem as Subheader).subheader === true;
+const isSubheader = (navItem: NavItem): navItem is SubheaderNavItem =>
+  (navItem as SubheaderNavItem).subheader === true;
 
 function createNavItem(
   tree: LayoutNavigationTree,

@@ -1,7 +1,9 @@
-import { copy, ensureDir } from "fs-extra";
+import { ensureDir } from "fs-extra";
 import log from "loglevel";
 import { join, sep } from "path";
+
 import { documentationRoot, packagesRoot, src } from "./constants";
+import copyMarkdown from "./utils/copyMarkdown";
 import glob from "./utils/glob";
 
 const documentationChangelogs = join(documentationRoot, src, "changelogs");
@@ -19,7 +21,8 @@ export default async function changelogs(): Promise<void> {
   await Promise.all(
     changelogs.map((changelog) => {
       const [packageName] = changelog.split(sep);
-      return copy(
+
+      return copyMarkdown(
         join(packagesRoot, changelog),
         join(documentationChangelogs, `${packageName}.md`)
       );

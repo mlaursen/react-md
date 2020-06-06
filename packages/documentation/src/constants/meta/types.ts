@@ -3,6 +3,8 @@
  * manually.
  */
 
+import { ReactNode } from "react";
+
 /**
  * An anchor that can be used for a table of contents.
  */
@@ -89,3 +91,23 @@ export interface IndexedResult {
   readonly tocs: TOCRecord;
   readonly metadata: readonly RouteMetadata[];
 }
+
+export interface RouteNavItem {
+  href: string;
+  children: string;
+  leftAddon?: ReactNode;
+  routes?: NavItem[];
+}
+
+export interface DividerNavItem {
+  divider: true;
+  parentId?: string;
+}
+
+export interface SubheaderNavItem {
+  subheader: true;
+  parentId?: string;
+  children: string;
+}
+
+export type NavItem = RouteNavItem | DividerNavItem | SubheaderNavItem;
