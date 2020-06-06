@@ -5,6 +5,7 @@ import React, {
   ReactElement,
   ReactNode,
   useMemo,
+  useRef,
 } from "react";
 import cn from "classnames";
 import {
@@ -111,6 +112,11 @@ export interface TooltippedProps
    * If this behavior is not desired, you can enable this prop and it will only
    * use the provided `spacing` or `denseSpacing` props based on the `dense`
    * prop.
+   *
+   * Note: This will be defaulted to `true` when the `process.env.NODE_ENV ===
+   * 'test'` since test environments normally don't have a default
+   * `window.getComgetComputedStyle` value that is not `NaN` which will display
+   * errors in your tests.
    */
   disableAutoSpacing?: boolean;
 
@@ -155,6 +161,11 @@ export interface TooltippedProps
   children: ChildElement | ChildrenRenderer;
 }
 
+/**
+ * The `Tooltipped` component can be used to dynamically add a tooltip to child
+ * element by cloning the required event handlers and accessibility props into
+ * the child with `React.cloneChild`.
+ */
 function Tooltipped({
   id,
   children,
@@ -169,7 +180,7 @@ function Tooltipped({
   denseSpacing = "0.875rem",
   position: propPosition,
   positionThreshold = DEFAULT_TOOLTIP_THRESHOLD,
-  portal = false,
+  portal = true,
   portalInto,
   portalIntoId,
   onMouseEnter,
@@ -179,15 +190,15 @@ function Tooltipped({
   onContextMenu,
   onFocus,
   onKeyDown,
-  disableAutoSpacing = false,
   onShow,
   onHide,
   disableHoverMode,
   "aria-describedby": describedBy,
   defaultPosition = "below",
   disableSwapping,
-  mountOnEnter = false,
-  unmountOnExit = false,
+  mountOnEnter = true,
+  unmountOnExit = true,
+  disableAutoSpacing = process.env.NODE_ENV === "test",
   ...props
 }: TooltippedProps): ReactElement {
   const { hide, visible, position, handlers } = useTooltipState({
@@ -208,6 +219,8 @@ function Tooltipped({
     onShow,
     onHide,
   });
+
+  const labelledBy = useRef(visible);
 
   const currentSpacing = useMemo(
     () => unitToNumber(dense ? denseSpacing : spacing),
@@ -277,10 +290,22 @@ function Tooltipped({
         mountOnEnter={mountOnEnter}
         unmountOnExit={unmountOnExit}
         style={style}
-        onEnter={onEnter}
+        onEnter={(node, appear) => {
+          if (onEnter) {
+            onEnter(node, appear);
+          }
+
+          labelledBy.current = true;
+        }}
         onEntering={onEntering}
         onEntered={onEntered}
-        onExited={onExited}
+        onExited={(node) => {
+          if (onExited) {
+            onExited(node);
+          }
+
+          labelledBy.current = false;
+        }}
         visible={visible}
       >
         {tooltipChildren}
@@ -290,7 +315,8 @@ function Tooltipped({
 
   const config = {
     id,
-    "aria-describedby": cn(tooltipId, describedBy),
+    "aria-describedby":
+      cn(labelledBy.current && tooltipId, describedBy) || undefined,
     ...handlers,
   };
 

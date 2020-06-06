@@ -131,8 +131,8 @@ const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(function Tooltip(
     onExit,
     onExiting,
     onExited,
-    mountOnEnter,
-    unmountOnExit,
+    mountOnEnter = true,
+    unmountOnExit = true,
     ...props
   },
   ref
