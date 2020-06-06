@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the dialog's theme values. This is really just for the `rmd-dialog-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/dialog/src/_functions.scss#L15-L17",
       packageName: "dialog",
+      requires: [
+        {
+          name: "rmd-dialog-theme-values",
+          type: "variable",
+          packageName: "dialog",
+        },
+      ],
       code: "@function rmd-dialog-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-dialog-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-dialog-theme-values,\n    dialog\n  );\n}\n",
@@ -32,6 +39,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the dialog's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-dialog-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/dialog/src/_functions.scss#L32-L34",
       packageName: "dialog",
+      requires: [
+        {
+          name: "rmd-dialog-theme-values",
+          type: "variable",
+          packageName: "dialog",
+        },
+      ],
       code:
         "@function rmd-dialog-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -65,6 +79,13 @@ const sassdoc: PackageSassDoc = {
         "Creates the styles for one of the dialog's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/dialog/src/_mixins.scss#L25-L27",
       packageName: "dialog",
+      requires: [
+        {
+          name: "rmd-dialog-theme-values",
+          type: "variable",
+          packageName: "dialog",
+        },
+      ],
       code:
         "@mixin rmd-dialog-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -98,6 +119,13 @@ const sassdoc: PackageSassDoc = {
         "Updates one of the dialog's theme variables with the new value for the section of your app.",
       source: "packages/dialog/src/_mixins.scss#L35-L37",
       packageName: "dialog",
+      requires: [
+        {
+          name: "rmd-dialog-theme-values",
+          type: "variable",
+          packageName: "dialog",
+        },
+      ],
       code: "@mixin rmd-dialog-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-dialog-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-dialog-theme-values,\n    dialog\n  );\n}\n",
@@ -122,6 +150,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/dialog/src/_mixins.scss#L218-L248",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "dialog",
+      requires: [
+        {
+          name: "rmd-dialog-theme-values",
+          type: "variable",
+          packageName: "dialog",
+        },
+      ],
       code: "@mixin react-md-dialog { … }",
       sourceCode:
         "@mixin react-md-dialog {\n  @include rmd-theme-create-root-theme($rmd-dialog-theme-values, dialog);\n\n  .rmd-dialog-container {\n    @include rmd-dialog-container;\n  }\n\n  .rmd-dialog-overlay {\n    @include rmd-dialog-overlay;\n  }\n\n  .rmd-dialog {\n    @include rmd-dialog;\n\n    &__header {\n      @include rmd-dialog-header;\n    }\n\n    &__content {\n      @include rmd-dialog-content;\n    }\n\n    &__footer {\n      @include rmd-dialog-footer;\n    }\n\n    &__title {\n      @include rmd-dialog-title;\n    }\n  }\n}\n",
@@ -152,6 +187,13 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "dialog",
+      requires: [
+        {
+          name: "rmd-utils-temporary-element-z-index",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       type: "Number",
       value: "$rmd-utils-temporary-element-z-index",
       compiled: "30",

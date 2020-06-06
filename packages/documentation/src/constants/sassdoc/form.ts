@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the form's theme values. This is really just for the `rmd-form-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/form/src/_functions.scss#L15-L17",
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-form-theme-values",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       code: "@function rmd-form-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-form-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-form-theme-values, form);\n}\n",
@@ -35,6 +42,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
       ],
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-form-theme-values",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       code: "@function rmd-form-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
         "@function rmd-form-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-form-theme-values,\n    form,\n    $fallback\n  );\n}\n",
@@ -68,6 +82,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/form/src/_functions.scss#L47-L49",
       usedBy: [{ name: "rmd-label", type: "mixin", packageName: "form" }],
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-form-theme-values",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       code:
         "@mixin rmd-form-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -106,6 +127,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
       ],
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-form-theme-values",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       code: "@mixin rmd-form-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-form-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-form-theme-values,\n    form\n  );\n}\n",
@@ -131,6 +159,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/form/src/_mixins.scss#L36-L54",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-form-theme-values",
+          type: "variable",
+          packageName: "form",
+        },
+      ],
       code: "@mixin react-md-form { … }",
       sourceCode:
         "@mixin react-md-form {\n  $omit: (\n    addon-top label-left-offset label-top-offset label-active-background-color\n      label-active-padding text-offset text-padding-left text-padding-right\n      text-padding-top\n  );\n  @include rmd-theme-create-root-theme($rmd-form-theme-values, form, $omit);\n\n  @include react-md-file-input;\n  @include react-md-label;\n  @include react-md-toggle;\n  @include react-md-text-field;\n  // has to come after text field since it overrides some of the\n  // text-field-container styles\n  @include react-md-select;\n\n  .rmd-fieldset {\n    @include rmd-fieldset;\n  }\n}\n",
@@ -142,6 +177,17 @@ const sassdoc: PackageSassDoc = {
         "Creates the base styles for a `<label>` element as well as all the different states a label can be in.\n",
       source: "packages/form/src/label/_mixins.scss#L14-L33",
       packageName: "form",
+      requires: [
+        { name: "rmd-typography", type: "mixin", packageName: "typography" },
+        { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        { name: "rmd-form-theme", type: "mixin", packageName: "form" },
+        { name: "rmd-label-font-size", type: "variable", packageName: "form" },
+        {
+          name: "rmd-transition-standard-time",
+          type: "variable",
+          packageName: "transition",
+        },
+      ],
       code: "@mixin rmd-label { … }",
       sourceCode:
         "@mixin rmd-label {\n  @include rmd-typography(body-1);\n  @include rmd-transition(standard);\n\n  display: inline-flex;\n  font-size: $rmd-label-font-size;\n  transition: color $rmd-transition-standard-time;\n\n  &--active {\n    @include rmd-form-theme(color, active-color);\n  }\n\n  &--error {\n    @include rmd-form-theme(color, error-color);\n  }\n\n  &--disabled {\n    @include rmd-form-theme(color, disabled-color);\n  }\n}\n",
@@ -164,6 +210,15 @@ const sassdoc: PackageSassDoc = {
         "Creates the base styles for a text field so that it gains the correct typography and a few different colors based on its state.\n",
       source: "packages/form/src/text-field/_mixins.scss#L221-L249",
       packageName: "form",
+      requires: [
+        { name: "rmd-typography", type: "mixin", packageName: "typography" },
+        {
+          name: "rmd-utils-hide-focus-outline",
+          type: "mixin",
+          packageName: "utils",
+        },
+        { name: "rmd-theme", type: "mixin", packageName: "theme" },
+      ],
       code: "@mixin rmd-text-field-base { … }",
       sourceCode:
         "@mixin rmd-text-field-base {\n  @include rmd-typography(body-1, font-size);\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-text-field-placeholder {\n    @include rmd-transition(standard);\n    @include rmd-theme(color, text-secondary-on-background);\n\n    // want to gain the same font styles as the input/textarea itself,\n    // just apply different colors as needed instead. Can't just do font: inherit\n    // since it'll break the styles in firefox.\n    font-family: inherit;\n    font-size: inherit;\n    font-weight: inherit;\n  }\n\n  background-color: transparent;\n  border-width: 0;\n  color: inherit;\n  font-size: 1em;\n  width: 100%;\n\n  &[disabled] {\n    @include rmd-theme(color, text-disabled-on-background);\n\n    @include rmd-text-field-placeholder {\n      @include rmd-theme(color, text-disabled-on-background);\n    }\n  }\n}\n",
@@ -178,6 +233,14 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
       ],
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-form-theme-update-var",
+          type: "mixin",
+          packageName: "form",
+        },
+        { name: "rmd-form-theme-var", type: "function", packageName: "form" },
+      ],
       code: "@mixin rmd-toggle-dense-theme { … }",
       sourceCode:
         "@mixin rmd-toggle-dense-theme {\n  @include rmd-form-theme-update-var(\n    toggle-inset,\n    rmd-form-theme-var(toggle-dense-inset)\n  );\n  @include rmd-form-theme-update-var(\n    indeterminate-height,\n    rmd-form-theme-var(indeterminate-dense-height)\n  );\n}\n",
@@ -190,6 +253,9 @@ const sassdoc: PackageSassDoc = {
       description: "The color to use when a form contains an error.",
       source: "packages/form/src/_variables.scss#L19",
       packageName: "form",
+      requires: [
+        { name: "rmd-theme-error", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "$rmd-theme-error",
       compiled: "#f44336",
@@ -201,6 +267,13 @@ const sassdoc: PackageSassDoc = {
         "This is the color that is used when a text field/textarea is errored and the user hovers over it.",
       source: "packages/form/src/_variables.scss#L26-L31",
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-theme-get-swatch",
+          type: "function",
+          packageName: "theme",
+        },
+      ],
       type: "Color",
       value:
         "rmd-theme-get-swatch(\n  $rmd-form-error-color,\n  700,\n  true,\n  darken($rmd-form-error-color, 20%)\n)",
@@ -213,6 +286,9 @@ const sassdoc: PackageSassDoc = {
         "The color to use when a form element (text, checkbox, radio, etc) is currently active by the user(normally focus).",
       source: "packages/form/src/_variables.scss#L38",
       packageName: "form",
+      requires: [
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
+      ],
       type: "Color",
       value: "rmd-theme-var(secondary)",
       compiled: "var(--rmd-theme-secondary, #f50057)",
@@ -223,6 +299,9 @@ const sassdoc: PackageSassDoc = {
       description: "The color to use when a form element is disabled.",
       source: "packages/form/src/_variables.scss#L44",
       packageName: "form",
+      requires: [
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
+      ],
       type: "Color",
       value: "rmd-theme-var(text-disabled-on-background)",
       compiled: "var(--rmd-theme-text-disabled-on-background, #9e9e9e)",
@@ -234,6 +313,9 @@ const sassdoc: PackageSassDoc = {
         "The default color to use for placeholder text within text fields.",
       source: "packages/form/src/_variables.scss#L50",
       packageName: "form",
+      requires: [
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
+      ],
       type: "Color",
       value: "rmd-theme-var(text-secondary-on-background)",
       compiled: "var(--rmd-theme-text-secondary-on-background, #757575)",
@@ -346,6 +428,13 @@ const sassdoc: PackageSassDoc = {
       description: "The z-index to use for a temporary listbox.",
       source: "packages/form/src/select/_variables.scss#L24",
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-utils-temporary-element-z-index",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       type: "Number",
       value: "$rmd-utils-temporary-element-z-index",
       compiled: "30",
@@ -367,6 +456,9 @@ const sassdoc: PackageSassDoc = {
         "The styles to apply when an option is focused with `aria-activedescendant` behavior. This should be a map of styles that should be applied.",
       source: "packages/form/src/select/_variables.scss#L36-L38",
       packageName: "form",
+      requires: [
+        { name: "rmd-blue-500", type: "variable", packageName: "theme" },
+      ],
       type: "Map",
       value: "(\n  box-shadow: inset 0 0 0 2px $rmd-blue-500,\n)",
       compiled: "(\n  box-shadow: inset 0 0 0 2px #2196f3,\n)",
@@ -378,6 +470,10 @@ const sassdoc: PackageSassDoc = {
         "The styles to apply when an option is selected. This should be a map of style properties with values to apply.",
       source: "packages/form/src/select/_variables.scss#L46-L49",
       packageName: "form",
+      requires: [
+        { name: "rmd-blue-900", type: "variable", packageName: "theme" },
+        { name: "rmd-white-base", type: "variable", packageName: "theme" },
+      ],
       type: "Map",
       value:
         "(\n  background-color: $rmd-blue-900,\n  color: $rmd-white-base,\n)",
@@ -427,6 +523,13 @@ const sassdoc: PackageSassDoc = {
         "The color to use for the text field's borders/underlines while the user is focusing the text field.",
       source: "packages/form/src/text-field/_variables.scss#L15",
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-states-focus-shadow-color",
+          type: "variable",
+          packageName: "states",
+        },
+      ],
       type: "Color",
       value: "$rmd-states-focus-shadow-color",
       compiled: "#2196f3",
@@ -441,6 +544,9 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
       packageName: "form",
+      requires: [
+        { name: "rmd-black-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "rgba($rmd-black-base, 0.12)",
       compiled: "rgba(0, 0, 0, 0.12)",
@@ -453,6 +559,9 @@ const sassdoc: PackageSassDoc = {
       source: "packages/form/src/text-field/_variables.scss#L27",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "form",
+      requires: [
+        { name: "rmd-white-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "rgba($rmd-white-base, 0.5)",
       compiled: "rgba(255, 255, 255, 0.5)",
@@ -463,6 +572,9 @@ const sassdoc: PackageSassDoc = {
       description: "The default text field's border color to use.",
       source: "packages/form/src/text-field/_variables.scss#L33-L37",
       packageName: "form",
+      requires: [
+        { name: "rmd-theme-light", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value:
         "if(\n  $rmd-theme-light,\n  $rmd-text-field-light-border-color,\n  $rmd-text-field-dark-border-color\n)",
@@ -478,6 +590,9 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
       packageName: "form",
+      requires: [
+        { name: "rmd-black-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "rgba($rmd-black-base, 0.87)",
       compiled: "rgba(0, 0, 0, 0.87)",
@@ -490,6 +605,9 @@ const sassdoc: PackageSassDoc = {
       source: "packages/form/src/text-field/_variables.scss#L51",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "form",
+      requires: [
+        { name: "rmd-white-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "rgba($rmd-white-base, 0.87)",
       compiled: "rgba(255, 255, 255, 0.87)",
@@ -500,6 +618,9 @@ const sassdoc: PackageSassDoc = {
       description: "The default text field's hover border color to use.",
       source: "packages/form/src/text-field/_variables.scss#L57-L61",
       packageName: "form",
+      requires: [
+        { name: "rmd-theme-light", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value:
         "if(\n  $rmd-theme-light,\n  $rmd-text-field-light-border-hover-color,\n  $rmd-text-field-dark-border-hover-color\n)",
@@ -599,6 +720,13 @@ const sassdoc: PackageSassDoc = {
         "The amount of offset to apply to the floating label for an underlined or filled text field when there is an icon to the left of the input.",
       source: "packages/form/src/text-field/_variables.scss#L108",
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-icon-spacing-with-text",
+          type: "variable",
+          packageName: "icon",
+        },
+      ],
       type: "Number",
       value: "$rmd-icon-spacing-with-text",
       compiled: "0.5rem",
@@ -643,6 +771,9 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
       packageName: "form",
+      requires: [
+        { name: "rmd-grey-100", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "$rmd-grey-100",
       compiled: "#f5f5f5",
@@ -655,6 +786,9 @@ const sassdoc: PackageSassDoc = {
       source: "packages/form/src/text-field/_variables.scss#L138",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "form",
+      requires: [
+        { name: "rmd-grey-700", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "$rmd-grey-700",
       compiled: "#616161",
@@ -665,6 +799,9 @@ const sassdoc: PackageSassDoc = {
       description: "The default background color for filled text fields.",
       source: "packages/form/src/text-field/_variables.scss#L144-L148",
       packageName: "form",
+      requires: [
+        { name: "rmd-theme-light", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value:
         "if(\n  $rmd-theme-light,\n  $rmd-text-field-filled-light-background-color,\n  $rmd-text-field-filled-dark-background-color\n)",
@@ -687,6 +824,13 @@ const sassdoc: PackageSassDoc = {
         "The amount of spacing between the left or right of the text field and the icon.",
       source: "packages/form/src/text-field/_variables.scss#L160",
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-icon-spacing-with-text",
+          type: "variable",
+          packageName: "icon",
+        },
+      ],
       type: "Number",
       value: "$rmd-icon-spacing-with-text",
       compiled: "0.5rem",
@@ -747,6 +891,13 @@ const sassdoc: PackageSassDoc = {
         "The amount of padding to apply to the left of the `FormMessage`'s counter component.",
       source: "packages/form/src/text-field/_variables.scss#L194",
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-icon-spacing-with-text",
+          type: "variable",
+          packageName: "icon",
+        },
+      ],
       type: "Number",
       value: "$rmd-icon-spacing-with-text",
       compiled: "0.5rem",
@@ -840,6 +991,9 @@ const sassdoc: PackageSassDoc = {
         "The background color for a switch's track. This is the element that the ball animates left and right on.",
       source: "packages/form/src/toggle/_variables.scss#L48",
       packageName: "form",
+      requires: [
+        { name: "rmd-black-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "rgba($rmd-black-base, 0.38)",
       compiled: "rgba(0, 0, 0, 0.38)",
@@ -910,6 +1064,14 @@ const sassdoc: PackageSassDoc = {
         "The color to use for the switch's ball when it is toggled on and disabled.",
       source: "packages/form/src/toggle/_variables.scss#L84-L89",
       packageName: "form",
+      requires: [
+        {
+          name: "rmd-theme-get-swatch",
+          type: "function",
+          packageName: "theme",
+        },
+        { name: "rmd-theme-secondary", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value:
         "rmd-theme-get-swatch(\n  $rmd-theme-secondary,\n  200,\n  false,\n  lighten($rmd-theme-secondary, 12%)\n)",
@@ -932,6 +1094,9 @@ const sassdoc: PackageSassDoc = {
         "The background color to use for the switch's ball while the the switch is loading.",
       source: "packages/form/src/toggle/_variables.scss#L100",
       packageName: "form",
+      requires: [
+        { name: "rmd-white-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "$rmd-white-base",
       compiled: "#fff",

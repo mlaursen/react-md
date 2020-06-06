@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the overlay's theme values. This is really just for the `rmd-overlay-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/overlay/src/_functions.scss#L15-L17",
       packageName: "overlay",
+      requires: [
+        {
+          name: "rmd-overlay-theme-values",
+          type: "variable",
+          packageName: "overlay",
+        },
+      ],
       code: "@function rmd-overlay-theme($style) { … }",
       sourceCode:
         "@function rmd-overlay-theme($style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-overlay-theme-values,\n    overlay\n  );\n}\n",
@@ -32,6 +39,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the overlay's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-overlay-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/overlay/src/_functions.scss#L32-L34",
       packageName: "overlay",
+      requires: [
+        {
+          name: "rmd-overlay-theme-values",
+          type: "variable",
+          packageName: "overlay",
+        },
+      ],
       code:
         "@function rmd-overlay-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -66,6 +80,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/overlay/src/_mixins.scss#L22-L24",
       usedBy: [{ name: "rmd-overlay", type: "mixin", packageName: "overlay" }],
       packageName: "overlay",
+      requires: [
+        {
+          name: "rmd-overlay-theme-values",
+          type: "variable",
+          packageName: "overlay",
+        },
+      ],
       code:
         "@mixin rmd-overlay-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -99,6 +120,13 @@ const sassdoc: PackageSassDoc = {
         "Updates one of the overlay's theme variables with the new value for the section of your app.",
       source: "packages/overlay/src/_mixins.scss#L32-L34",
       packageName: "overlay",
+      requires: [
+        {
+          name: "rmd-overlay-theme-values",
+          type: "variable",
+          packageName: "overlay",
+        },
+      ],
       code: "@mixin rmd-overlay-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-overlay-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-overlay-theme-values,\n    overlay\n  );\n}\n",
@@ -125,6 +153,21 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-overlay", type: "mixin", packageName: "overlay" },
       ],
       packageName: "overlay",
+      requires: [
+        {
+          name: "rmd-utils-hide-focus-outline",
+          type: "mixin",
+          packageName: "utils",
+        },
+        { name: "rmd-overlay-theme", type: "mixin", packageName: "overlay" },
+        { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        { name: "rmd-utils-full-screen", type: "mixin", packageName: "utils" },
+        {
+          name: "rmd-overlay-transition-duration",
+          type: "variable",
+          packageName: "overlay",
+        },
+      ],
       code: "@mixin rmd-overlay { … }",
       sourceCode:
         "@mixin rmd-overlay {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-overlay-theme(background-color);\n  @include rmd-overlay-theme(z-index);\n  @include rmd-transition(standard);\n  @include rmd-utils-full-screen;\n\n  opacity: 0;\n  pointer-events: none;\n  transition: opacity $rmd-overlay-transition-duration;\n\n  &--active {\n    @include rmd-overlay-theme(opacity, active-opacity);\n  }\n\n  &--clickable {\n    cursor: pointer;\n  }\n\n  &--visible {\n    pointer-events: auto;\n  }\n}\n",
@@ -137,6 +180,14 @@ const sassdoc: PackageSassDoc = {
       source: "packages/overlay/src/_mixins.scss#L63-L69",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "overlay",
+      requires: [
+        { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
+        {
+          name: "rmd-overlay-theme-values",
+          type: "variable",
+          packageName: "overlay",
+        },
+      ],
       code: "@mixin react-md-overlay { … }",
       sourceCode:
         "@mixin react-md-overlay {\n  @include rmd-theme-create-root-theme($rmd-overlay-theme-values, overlay);\n\n  .rmd-overlay {\n    @include rmd-overlay;\n  }\n}\n",
@@ -156,6 +207,13 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "overlay",
+      requires: [
+        {
+          name: "rmd-utils-temporary-element-z-index",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       type: "Number",
       value: "$rmd-utils-temporary-element-z-index",
       compiled: "30",
@@ -167,6 +225,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/overlay/src/_variables.scss#L19",
       usedBy: [{ name: "rmd-overlay", type: "mixin", packageName: "overlay" }],
       packageName: "overlay",
+      requires: [
+        {
+          name: "rmd-transition-standard-time",
+          type: "variable",
+          packageName: "transition",
+        },
+      ],
       type: "Number",
       value: "$rmd-transition-standard-time",
       compiled: "0.15s",
@@ -178,6 +243,9 @@ const sassdoc: PackageSassDoc = {
         "The background color for the overlay. It is recommended to make sure that an opacity is applied instead of a static color.",
       source: "packages/overlay/src/_variables.scss#L26",
       packageName: "overlay",
+      requires: [
+        { name: "rmd-black-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "rgba($rmd-black-base, 0.4)",
       compiled: "rgba(0, 0, 0, 0.4)",

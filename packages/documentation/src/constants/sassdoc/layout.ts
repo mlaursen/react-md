@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the layout's theme values. This is really just for the `rmd-layout-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/layout/src/_functions.scss#L15-L17",
       packageName: "layout",
+      requires: [
+        {
+          name: "rmd-layout-theme-values",
+          type: "variable",
+          packageName: "layout",
+        },
+      ],
       code: "@function rmd-layout-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-layout-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-layout-theme-values,\n    layout\n  );\n}\n",
@@ -35,6 +42,13 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "layout",
+      requires: [
+        {
+          name: "rmd-layout-theme-values",
+          type: "variable",
+          packageName: "layout",
+        },
+      ],
       code:
         "@function rmd-layout-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -71,6 +85,13 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "layout",
+      requires: [
+        {
+          name: "rmd-layout-theme-values",
+          type: "variable",
+          packageName: "layout",
+        },
+      ],
       code:
         "@mixin rmd-layout-theme($property, $theme-style: property, $fallback: null) { … }",
       sourceCode:
@@ -105,6 +126,13 @@ const sassdoc: PackageSassDoc = {
         "Updates one of the layout's theme variables with the new value for the section of your app.",
       source: "packages/layout/src/_mixins.scss#L39-L41",
       packageName: "layout",
+      requires: [
+        {
+          name: "rmd-layout-theme-values",
+          type: "variable",
+          packageName: "layout",
+        },
+      ],
       code: "@mixin rmd-layout-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-layout-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-layout-theme-values,\n    layout\n  );\n}\n",
@@ -129,6 +157,70 @@ const sassdoc: PackageSassDoc = {
       source: "packages/layout/src/_mixins.scss#L44-L153",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "layout",
+      requires: [
+        { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        { name: "rmd-app-bar-offset", type: "mixin", packageName: "app-bar" },
+        { name: "rmd-utils-scroll", type: "mixin", packageName: "utils" },
+        { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
+        { name: "rmd-divider-border", type: "mixin", packageName: "divider" },
+        {
+          name: "rmd-utils-hide-focus-outline",
+          type: "mixin",
+          packageName: "utils",
+        },
+        { name: "rmd-layout-theme", type: "mixin", packageName: "layout" },
+        { name: "rmd-sheet-theme-var", type: "function", packageName: "sheet" },
+        {
+          name: "rmd-layout-theme-var",
+          type: "function",
+          packageName: "layout",
+        },
+        {
+          name: "rmd-button-theme-var",
+          type: "function",
+          packageName: "button",
+        },
+        {
+          name: "rmd-layout-enter-duration",
+          type: "variable",
+          packageName: "layout",
+        },
+        {
+          name: "rmd-layout-leave-duration",
+          type: "variable",
+          packageName: "layout",
+        },
+        {
+          name: "rmd-layout-navigation-z-index",
+          type: "variable",
+          packageName: "layout",
+        },
+        {
+          name: "rmd-app-bar-keyline",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-title-nav-margin",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-lr-margin",
+          type: "variable",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-layout-main-focus-shadow",
+          type: "variable",
+          packageName: "layout",
+        },
+        {
+          name: "rmd-layout-main-focus-z-index",
+          type: "variable",
+          packageName: "layout",
+        },
+      ],
       code: "@mixin react-md-layout { … }",
       sourceCode:
         '@mixin react-md-layout {\n  // this is used for the title and main elements for animating their margin\n  // while the toggleable layout appears. it will use the same transition\n  // functions and time as the sheet so it all transitions together\n  .rmd-layout-transition {\n    &--enter {\n      @include rmd-transition(deceleration);\n\n      transition: margin $rmd-layout-enter-duration;\n    }\n\n    &--exit {\n      @include rmd-transition(acceleration);\n\n      transition: margin $rmd-layout-leave-duration;\n    }\n  }\n\n  .rmd-layout-navigation {\n    z-index: $rmd-layout-navigation-z-index;\n\n    &--floating {\n      background-color: transparent;\n      box-shadow: none;\n    }\n\n    &--header-offset {\n      @include rmd-app-bar-offset(top);\n    }\n  }\n\n  .rmd-layout-nav {\n    @include rmd-utils-scroll;\n\n    flex: 1 1 auto;\n    height: 100%;\n  }\n\n  .rmd-layout-tree {\n    height: auto;\n    overflow: visible;\n  }\n\n  .rmd-layout-title {\n    &--offset {\n      $margin: calc(\n        #{rmd-sheet-theme-var(static-width)} + #{$rmd-app-bar-keyline}\n      );\n\n      @include rmd-utils-rtl-auto(margin-left, $margin);\n    }\n  }\n\n  .rmd-layout-nav-toggle {\n    &--offset {\n      $nav-size: rmd-layout-theme-var(nav-width);\n      $icon-size: rmd-button-theme-var(icon-size);\n      $distance: calc(\n        #{$rmd-app-bar-title-nav-margin} + #{$nav-size} - #{$icon-size}\n      );\n\n      @include rmd-utils-rtl-auto(\n        margin-right,\n        $distance,\n        $rmd-app-bar-lr-margin\n      );\n    }\n  }\n\n  .rmd-layout-nav-header {\n    &--bordered {\n      @include rmd-divider-border(bottom);\n    }\n  }\n\n  .rmd-layout-main {\n    // going to replace the default focus outline with the custom box-shadow\n    // instead\n    @include rmd-utils-hide-focus-outline;\n\n    @include rmd-utils-keyboard-only {\n      @include rmd-transition-shadow-transition(\n        none,\n        $rmd-layout-main-focus-shadow,\n        "&:focus"\n      );\n\n      &::before {\n        // need to inherit the margin based for the offsets\n        margin: inherit;\n        position: fixed;\n        z-index: $rmd-layout-main-focus-z-index;\n      }\n    }\n\n    // need to polyfill for IE11 even though not 100% supported\n    display: block;\n    height: 100%;\n\n    &--header-offset {\n      @include rmd-app-bar-offset;\n\n      @include rmd-utils-keyboard-only {\n        &::before {\n          @include rmd-app-bar-offset(top);\n        }\n      }\n    }\n\n    &--nav-offset {\n      @include rmd-utils-rtl {\n        @include rmd-layout-theme(margin-right, nav-width);\n\n        margin-left: auto;\n      }\n\n      // might need to change to just left and right instead of margin-left and\n      // margin-right for some browser support\n      @include rmd-layout-theme(margin-left, nav-width);\n    }\n  }\n}\n',
@@ -145,6 +237,13 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "layout",
+      requires: [
+        {
+          name: "rmd-sheet-enter-duration",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       type: "Number",
       value: "$rmd-sheet-enter-duration",
       compiled: "0.2s",
@@ -159,6 +258,13 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "layout",
+      requires: [
+        {
+          name: "rmd-sheet-leave-duration",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       type: "Number",
       value: "$rmd-sheet-leave-duration",
       compiled: "0.15s",
@@ -173,6 +279,13 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "layout",
+      requires: [
+        {
+          name: "rmd-states-focus-shadow",
+          type: "variable",
+          packageName: "states",
+        },
+      ],
       type: "String",
       value: "$rmd-states-focus-shadow",
       compiled: "inset 0 0 0 0.125rem #2196f3",
@@ -199,6 +312,9 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
       packageName: "layout",
+      requires: [
+        { name: "rmd-dialog-z-index", type: "variable", packageName: "dialog" },
+      ],
       type: "Number",
       value: "$rmd-dialog-z-index",
       compiled: "30",
@@ -209,6 +325,13 @@ const sassdoc: PackageSassDoc = {
       description: "The width to use for the desktop navigation tree.",
       source: "packages/layout/src/_variables.scss#L46",
       packageName: "layout",
+      requires: [
+        {
+          name: "rmd-sheet-static-width",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       type: "Number",
       value: "$rmd-sheet-static-width",
       compiled: "16rem",

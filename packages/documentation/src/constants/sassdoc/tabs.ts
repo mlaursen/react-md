@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the tabs's theme values. This is really just for the `rmd-tabs-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/tabs/src/_functions.scss#L15-L17",
       packageName: "tabs",
+      requires: [
+        {
+          name: "rmd-tabs-theme-values",
+          type: "variable",
+          packageName: "tabs",
+        },
+      ],
       code: "@function rmd-tabs-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-tabs-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-tabs-theme-values, tabs);\n}\n",
@@ -32,6 +39,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the tabs's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-tabs-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/tabs/src/_functions.scss#L32-L34",
       packageName: "tabs",
+      requires: [
+        {
+          name: "rmd-tabs-theme-values",
+          type: "variable",
+          packageName: "tabs",
+        },
+      ],
       code: "@function rmd-tabs-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
         "@function rmd-tabs-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-tabs-theme-values,\n    tabs,\n    $fallback\n  );\n}\n",
@@ -64,6 +78,13 @@ const sassdoc: PackageSassDoc = {
         "Creates the styles for one of the tabs's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/tabs/src/_mixins.scss#L26-L28",
       packageName: "tabs",
+      requires: [
+        {
+          name: "rmd-tabs-theme-values",
+          type: "variable",
+          packageName: "tabs",
+        },
+      ],
       code:
         "@mixin rmd-tabs-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -101,6 +122,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
       ],
       packageName: "tabs",
+      requires: [
+        {
+          name: "rmd-tabs-theme-values",
+          type: "variable",
+          packageName: "tabs",
+        },
+      ],
       code: "@mixin rmd-tabs-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-tabs-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-tabs-theme-values,\n    tabs\n  );\n}\n",
@@ -126,6 +154,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/tabs/src/_mixins.scss#L247-L265",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "tabs",
+      requires: [
+        {
+          name: "rmd-tabs-theme-values",
+          type: "variable",
+          packageName: "tabs",
+        },
+      ],
       code: "@mixin react-md-tabs { … }",
       sourceCode:
         "@mixin react-md-tabs {\n  @include rmd-theme-create-root-theme($rmd-tabs-theme-values, tabs);\n\n  .rmd-tabs {\n    @include rmd-tabs;\n  }\n\n  .rmd-tab {\n    @include rmd-tab;\n  }\n\n  .rmd-tab-panels {\n    @include rmd-tab-panels;\n  }\n\n  .rmd-tab-panel {\n    @include rmd-tab-panel;\n  }\n}\n",
@@ -197,6 +232,9 @@ const sassdoc: PackageSassDoc = {
       description: "The tab indicator color to use.",
       source: "packages/tabs/src/_variables.scss#L40",
       packageName: "tabs",
+      requires: [
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
+      ],
       type: "Color|String",
       value: "rmd-theme-var(primary)",
       compiled: "var(--rmd-theme-primary, #9c27b0)",
@@ -207,6 +245,7 @@ const sassdoc: PackageSassDoc = {
       description: "The color to use when a tab has become active.",
       source: "packages/tabs/src/_variables.scss#L46",
       packageName: "tabs",
+      requires: [{ name: "rmd-theme", type: "function", packageName: "theme" }],
       type: "Color|String",
       value: "rmd-theme(text-primary-on-background)",
       compiled: "#212121",
@@ -217,6 +256,7 @@ const sassdoc: PackageSassDoc = {
       description: "The color to use when a tab is inactive.",
       source: "packages/tabs/src/_variables.scss#L52",
       packageName: "tabs",
+      requires: [{ name: "rmd-theme", type: "function", packageName: "theme" }],
       type: "Color|String",
       value: "rmd-theme(text-secondary-on-background)",
       compiled: "#757575",
@@ -227,6 +267,7 @@ const sassdoc: PackageSassDoc = {
       description: "The color to use when a tab is disabled.",
       source: "packages/tabs/src/_variables.scss#L58",
       packageName: "tabs",
+      requires: [{ name: "rmd-theme", type: "function", packageName: "theme" }],
       type: "Color|String",
       value: "rmd-theme(text-disabled-on-background)",
       compiled: "#9e9e9e",

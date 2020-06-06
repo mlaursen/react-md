@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the sheet's theme values. This is really just for the `rmd-sheet-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/sheet/src/_functions.scss#L15-L17",
       packageName: "sheet",
+      requires: [
+        {
+          name: "rmd-sheet-theme-values",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       code: "@function rmd-sheet-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-sheet-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-sheet-theme-values, sheet);\n}\n",
@@ -36,6 +43,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
       ],
       packageName: "sheet",
+      requires: [
+        {
+          name: "rmd-sheet-theme-values",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       code:
         "@function rmd-sheet-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -70,6 +84,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/sheet/src/_mixins.scss#L23-L25",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
+      requires: [
+        {
+          name: "rmd-sheet-theme-values",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       code:
         "@mixin rmd-sheet-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -104,6 +125,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/sheet/src/_mixins.scss#L33-L35",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
+      requires: [
+        {
+          name: "rmd-sheet-theme-values",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       code: "@mixin rmd-sheet-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-sheet-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-sheet-theme-values,\n    sheet\n  );\n}\n",
@@ -128,6 +156,50 @@ const sassdoc: PackageSassDoc = {
       source: "packages/sheet/src/_mixins.scss#L70-L147",
       usedBy: [{ name: "react-md-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
+      requires: [
+        { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
+        { name: "rmd-utils-scroll", type: "mixin", packageName: "utils" },
+        { name: "rmd-sheet-theme", type: "mixin", packageName: "sheet" },
+        {
+          name: "rmd-sheet-theme-update-var",
+          type: "mixin",
+          packageName: "sheet",
+        },
+        { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        { name: "rmd-sheet-theme-var", type: "function", packageName: "sheet" },
+        { name: "rmd-sheet-elevation", type: "variable", packageName: "sheet" },
+        { name: "rmd-sheet-z-index", type: "variable", packageName: "sheet" },
+        {
+          name: "rmd-sheet-raised-elevation",
+          type: "variable",
+          packageName: "sheet",
+        },
+        {
+          name: "rmd-sheet-raised-z-index",
+          type: "variable",
+          packageName: "sheet",
+        },
+        {
+          name: "rmd-sheet-max-height",
+          type: "variable",
+          packageName: "sheet",
+        },
+        {
+          name: "rmd-sheet-recommended-max-height",
+          type: "variable",
+          packageName: "sheet",
+        },
+        {
+          name: "rmd-sheet-recommended-min-height",
+          type: "variable",
+          packageName: "sheet",
+        },
+        {
+          name: "rmd-sheet-enter-duration",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       code: "@mixin rmd-sheet { … }",
       sourceCode:
         "@mixin rmd-sheet {\n  @include rmd-elevation($rmd-sheet-elevation);\n  @include rmd-utils-scroll;\n  @include rmd-sheet-positions;\n  @include rmd-sheet-theme(max-height);\n  @include rmd-sheet-theme(height);\n  @include rmd-sheet-theme(width);\n\n  position: fixed;\n  z-index: $rmd-sheet-z-index;\n\n  &--raised {\n    @include rmd-elevation($rmd-sheet-raised-elevation);\n    z-index: $rmd-sheet-raised-z-index;\n  }\n\n  &--horizontal {\n    bottom: 0;\n    top: 0;\n  }\n\n  &--touch-width {\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(touch-width)\n    );\n  }\n\n  &--static-width {\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(static-width)\n    );\n  }\n\n  &--media-width {\n    @include rmd-utils-tablet-media {\n      @include rmd-sheet-theme-update-var(\n        width,\n        rmd-sheet-theme-var(static-width)\n      );\n    }\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(touch-width)\n    );\n  }\n\n  &--vertical {\n    left: 0;\n    right: 0;\n  }\n\n  &--viewport-height {\n    @include rmd-sheet-theme-update-var(max-height, $rmd-sheet-max-height);\n  }\n\n  &--touchable-height {\n    @include rmd-sheet-theme-update-var(\n      max-height,\n      rmd-sheet-theme-var(touchable-max-height)\n    );\n  }\n\n  &--recommended-height {\n    max-height: $rmd-sheet-recommended-max-height;\n    min-height: $rmd-sheet-recommended-min-height;\n  }\n\n  &--offscreen {\n    @include rmd-sheet-theme(transform, transform-offscreen);\n  }\n\n  &--hidden {\n    box-shadow: none;\n  }\n\n  &--visible {\n    transform: translate3d(0, 0, 0);\n  }\n\n  &--enter {\n    @include rmd-transition(deceleration);\n\n    transition: transform $rmd-sheet-enter-duration;\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    transition: transform $rmd-sheet-enter-duration;\n  }\n}\n",
@@ -140,6 +212,19 @@ const sassdoc: PackageSassDoc = {
       source: "packages/sheet/src/_mixins.scss#L151-L161",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "sheet",
+      requires: [
+        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
+        {
+          name: "rmd-sheet-theme-values",
+          type: "variable",
+          packageName: "sheet",
+        },
+        {
+          name: "rmd-sheet-overlay-z-index",
+          type: "variable",
+          packageName: "sheet",
+        },
+      ],
       code: "@mixin react-md-sheet { … }",
       sourceCode:
         "@mixin react-md-sheet {\n  @include rmd-theme-create-root-theme($rmd-sheet-theme-values, sheet);\n\n  .rmd-sheet {\n    @include rmd-sheet;\n  }\n\n  .rmd-sheet-overlay {\n    z-index: $rmd-sheet-overlay-z-index;\n  }\n}\n",
@@ -165,6 +250,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/sheet/src/_variables.scss#L23",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
+      requires: [
+        {
+          name: "rmd-utils-temporary-element-z-index",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       type: "Number",
       value: "$rmd-utils-temporary-element-z-index",
       compiled: "30",
@@ -177,6 +269,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/sheet/src/_variables.scss#L31",
       usedBy: [{ name: "react-md-sheet", type: "mixin", packageName: "sheet" }],
       packageName: "sheet",
+      requires: [
+        {
+          name: "rmd-overlay-z-index",
+          type: "variable",
+          packageName: "overlay",
+        },
+      ],
       type: "Number",
       value: "$rmd-overlay-z-index",
       compiled: "30",
@@ -217,6 +316,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
       ],
       packageName: "sheet",
+      requires: [
+        {
+          name: "rmd-transition-enter-duration",
+          type: "variable",
+          packageName: "transition",
+        },
+      ],
       type: "Number",
       value: "$rmd-transition-enter-duration",
       compiled: "0.2s",
@@ -234,6 +340,13 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "sheet",
+      requires: [
+        {
+          name: "rmd-transition-leave-duration",
+          type: "variable",
+          packageName: "transition",
+        },
+      ],
       type: "Number",
       value: "$rmd-transition-leave-duration",
       compiled: "0.15s",

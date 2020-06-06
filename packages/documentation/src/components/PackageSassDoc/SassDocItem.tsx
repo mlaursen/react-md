@@ -21,7 +21,7 @@ import Parameters from "./Parameters";
 import Returns from "./Returns";
 import Links from "./Links";
 import Throws from "./Throws";
-import UsedBy from "./UsedBy";
+import ReferenceLinkSection from "./ReferenceLinkSection";
 
 import styles from "./SassDocItem.module.scss";
 
@@ -44,6 +44,7 @@ const SassDocItem: FC<FormattedSassDocItem> = (props) => {
     usedBy,
     links,
     see,
+    requires,
   } = props as FormattedVariableItem &
     FormattedMixinItem &
     FormattedFunctionItem;
@@ -83,7 +84,8 @@ const SassDocItem: FC<FormattedSassDocItem> = (props) => {
       <Throws throws={throws} />
       <Examples baseId={id} examples={examples} />
       <Links links={links} see={see} />
-      <UsedBy usedBy={usedBy} />
+      <ReferenceLinkSection links={usedBy}>Used By</ReferenceLinkSection>
+      <ReferenceLinkSection links={requires}>Requires</ReferenceLinkSection>
     </>
   );
 };

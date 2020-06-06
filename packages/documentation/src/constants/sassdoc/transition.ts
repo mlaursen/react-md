@@ -26,6 +26,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-cross-fade", type: "mixin", packageName: "transition" },
       ],
       packageName: "transition",
+      requires: [
+        {
+          name: "rmd-transitions",
+          type: "variable",
+          packageName: "transition",
+        },
+      ],
       code: "@mixin rmd-transition($type, $animation) { … }",
       sourceCode:
         '@mixin rmd-transition($type, $animation) {\n  $function: rmd-utils-validate($rmd-transitions, $type, "transition");\n\n  @if $animation {\n    animation-timing-function: $function;\n  } @else {\n    transition-timing-function: $function;\n  }\n}\n',
@@ -133,6 +140,19 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "transition",
+      requires: [
+        { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        {
+          name: "rmd-collapse-enter-transition-func",
+          type: "variable",
+          packageName: "transition",
+        },
+        {
+          name: "rmd-collapse-leave-transition-func",
+          type: "variable",
+          packageName: "transition",
+        },
+      ],
       code: "@mixin rmd-collapse { … }",
       sourceCode:
         "@mixin rmd-collapse {\n  .rmd-collapse {\n    transition-property: max-height, padding-bottom, padding-top;\n    will-change: max-height, padding-bottom, padding-top;\n\n    &--no-overflow {\n      overflow: hidden;\n    }\n\n    &--enter {\n      @include rmd-transition($rmd-collapse-enter-transition-func);\n    }\n\n    &--leave {\n      @include rmd-transition($rmd-collapse-leave-transition-func);\n    }\n  }\n}\n",
@@ -151,6 +171,19 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "transition",
+      requires: [
+        { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        {
+          name: "rmd-cross-fade-translate-distance",
+          type: "variable",
+          packageName: "transition",
+        },
+        {
+          name: "rmd-cross-fade-transition-duration",
+          type: "variable",
+          packageName: "transition",
+        },
+      ],
       code: "@mixin rmd-cross-fade { … }",
       sourceCode:
         "@mixin rmd-cross-fade {\n  .rmd-cross-fade {\n    opacity: 0;\n    transform: translateY($rmd-cross-fade-translate-distance);\n\n    &--active {\n      @include rmd-transition(deceleration);\n\n      opacity: 1;\n      transform: translateY(0);\n      transition-duration: $rmd-cross-fade-transition-duration;\n      transition-property: opacity, transform;\n    }\n  }\n}\n",
@@ -163,6 +196,10 @@ const sassdoc: PackageSassDoc = {
       source: "packages/transition/src/_mixins.scss#L229-L233",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "transition",
+      requires: [
+        { name: "rmd-collapse", type: "mixin", packageName: "transition" },
+        { name: "rmd-cross-fade", type: "mixin", packageName: "transition" },
+      ],
       code: "@mixin react-md-transition { … }",
       sourceCode:
         "@mixin react-md-transition {\n  @include rmd-collapse;\n  @include rmd-cross-fade;\n  @include rmd-transition-classes;\n}\n",

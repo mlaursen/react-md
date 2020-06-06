@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the progress's theme values.\nThis is really just for the `rmd-progress-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/progress/src/_functions.scss#L16-L18",
       packageName: "progress",
+      requires: [
+        {
+          name: "rmd-progress-theme-values",
+          type: "variable",
+          packageName: "progress",
+        },
+      ],
       code: "@function rmd-progress-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-progress-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-progress-theme-values,\n    progress\n  );\n}\n",
@@ -32,6 +39,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the progress's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-progress-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/progress/src/_functions.scss#L33-L35",
       packageName: "progress",
+      requires: [
+        {
+          name: "rmd-progress-theme-values",
+          type: "variable",
+          packageName: "progress",
+        },
+      ],
       code:
         "@function rmd-progress-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -65,6 +79,13 @@ const sassdoc: PackageSassDoc = {
         "Creates the styles for one of the progress's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/progress/src/_mixins.scss#L22-L24",
       packageName: "progress",
+      requires: [
+        {
+          name: "rmd-progress-theme-values",
+          type: "variable",
+          packageName: "progress",
+        },
+      ],
       code:
         "@mixin rmd-progress-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -99,6 +120,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/progress/src/_mixins.scss#L32-L34",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "progress",
+      requires: [
+        {
+          name: "rmd-progress-theme-values",
+          type: "variable",
+          packageName: "progress",
+        },
+      ],
       code: "@mixin rmd-progress-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-progress-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-progress-theme-values,\n    progress\n  );\n}\n",
@@ -123,6 +151,23 @@ const sassdoc: PackageSassDoc = {
       source: "packages/progress/src/_mixins.scss#L284-L294",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "progress",
+      requires: [
+        {
+          name: "rmd-progress-theme-values",
+          type: "variable",
+          packageName: "progress",
+        },
+        {
+          name: "rmd-progress-include-linear",
+          type: "variable",
+          packageName: "progress",
+        },
+        {
+          name: "rmd-progress-include-circular",
+          type: "variable",
+          packageName: "progress",
+        },
+      ],
       code: "@mixin react-md-progress { … }",
       sourceCode:
         "@mixin react-md-progress {\n  @include rmd-theme-create-root-theme($rmd-progress-theme-values, progress);\n\n  @if $rmd-progress-include-linear {\n    @include rmd-linear-progress;\n  }\n\n  @if $rmd-progress-include-circular {\n    @include rmd-circular-progress;\n  }\n}\n",
@@ -162,6 +207,9 @@ const sassdoc: PackageSassDoc = {
         "This is the main color that should be used for the linear progress and the circular progress components.",
       source: "packages/progress/src/_variables.scss#L21",
       packageName: "progress",
+      requires: [
+        { name: "rmd-theme-primary", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "$rmd-theme-primary",
       compiled: "#9c27b0",
@@ -173,6 +221,14 @@ const sassdoc: PackageSassDoc = {
         "This is the background color that is used fot the linear progress only.  You normally want this color to be a bit ligher than the main progress color since it'll be underneath the main progress.",
       source: "packages/progress/src/_variables.scss#L30-L35",
       packageName: "progress",
+      requires: [
+        {
+          name: "rmd-theme-get-swatch",
+          type: "function",
+          packageName: "theme",
+        },
+        { name: "rmd-theme-primary", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value:
         "rmd-theme-get-swatch(\n  $rmd-theme-primary,\n  300,\n  false,\n  rgba($rmd-theme-primary, 0.4)\n)",

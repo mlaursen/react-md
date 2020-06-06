@@ -712,6 +712,12 @@ export interface FormattedItem {
   usedBy?: ItemReferenceLink[];
 
   /**
+   * An optional list of items that are required the current item. This isn't
+   * super important info, but might help show additional use cases.
+   */
+  requires?: ItemReferenceLink[];
+
+  /**
    * A list of examples provided for the item. These will include a compiled
    * output as well to help show what the example does.
    */

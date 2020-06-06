@@ -72,6 +72,9 @@ const sassdoc: PackageSassDoc = {
           description: "Example Usage for single aspect ratio",
         },
       ],
+      requires: [
+        { name: "rmd-media-aspect-ratio", type: "mixin", packageName: "media" },
+      ],
       code: "@mixin rmd-media-aspect-ratio-container($width, $height) { … }",
       sourceCode:
         "@mixin rmd-media-aspect-ratio-container($width, $height) {\n  display: block;\n  height: 0;\n  overflow: hidden;\n  padding: 0;\n\n  @if $width and $height {\n    @include rmd-media-aspect-ratio($width, $height);\n  }\n}\n",
@@ -147,6 +150,18 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
       ],
       packageName: "media",
+      requires: [
+        {
+          name: "rmd-media-overlay-positions",
+          type: "variable",
+          packageName: "media",
+        },
+        {
+          name: "rmd-media-overlay-horizontal-width",
+          type: "variable",
+          packageName: "media",
+        },
+      ],
       code: "@mixin rmd-media-overlay-position($position) { … }",
       sourceCode:
         '@mixin rmd-media-overlay-position($position) {\n  $position: rmd-utils-validate(\n    $rmd-media-overlay-positions,\n    $position,\n    "rmd-media-overlay-positions"\n  );\n\n  @if $position == left or $position == right or $position == center {\n    bottom: 0;\n    top: 0;\n    width: $rmd-media-overlay-horizontal-width;\n\n    @if $position == left {\n      left: 0;\n    } @else if $position == right {\n      right: 0;\n    } @else if $position == center {\n      left: 50%;\n      transform: translateX(-50%);\n    }\n  } @else if $position == top or $position == bottom or $position == middle {\n    left: 0;\n    right: 0;\n\n    @if $position == top {\n      top: 0;\n    } @else if $position == bottom {\n      bottom: 0;\n    } @else if $position == middle {\n      top: 50%;\n      transform: translateY(-50%);\n    }\n  } @else if $position == absolute-center {\n    left: 50%;\n    top: 50%;\n    transform: translateX(-50%) translateY(-50%);\n  }\n}\n',
@@ -166,6 +181,27 @@ const sassdoc: PackageSassDoc = {
       source: "packages/media/src/_mixins.scss#L153-L178",
       usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       packageName: "media",
+      requires: [
+        { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme", type: "mixin", packageName: "theme" },
+        {
+          name: "rmd-media-overlay-position",
+          type: "mixin",
+          packageName: "media",
+        },
+        { name: "rmd-theme-tone", type: "function", packageName: "theme" },
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
+        {
+          name: "rmd-media-overlay-padding",
+          type: "variable",
+          packageName: "media",
+        },
+        {
+          name: "rmd-media-overlay-positions",
+          type: "variable",
+          packageName: "media",
+        },
+      ],
       code:
         "@mixin rmd-media-overlay($background-color: $rmd-media-overlay-background-color, $color: null) { … }",
       sourceCode:
@@ -194,6 +230,30 @@ const sassdoc: PackageSassDoc = {
       source: "packages/media/src/_mixins.scss#L182-L210",
       usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       packageName: "media",
+      requires: [
+        {
+          name: "rmd-media-responsive-item",
+          type: "mixin",
+          packageName: "media",
+        },
+        {
+          name: "rmd-media-forced-aspect-ratio-item",
+          type: "mixin",
+          packageName: "media",
+        },
+        {
+          name: "rmd-media-aspect-ratio-container",
+          type: "mixin",
+          packageName: "media",
+        },
+        { name: "rmd-media-aspect-ratio", type: "mixin", packageName: "media" },
+        { name: "rmd-media-selectors", type: "variable", packageName: "media" },
+        {
+          name: "rmd-media-default-aspect-ratios",
+          type: "variable",
+          packageName: "media",
+        },
+      ],
       code: "@mixin rmd-media-container { … }",
       sourceCode:
         "@mixin rmd-media-container {\n  display: inline-block;\n  position: relative;\n\n  @each $selector in $rmd-media-selectors {\n    &--auto #{$selector} {\n      @include rmd-media-responsive-item;\n    }\n\n    &--aspect-ratio #{$selector} {\n      @include rmd-media-forced-aspect-ratio-item;\n    }\n  }\n\n  &--aspect-ratio {\n    @include rmd-media-aspect-ratio-container;\n  }\n\n  @each $key, $value in $rmd-media-default-aspect-ratios {\n    &--#{$key} {\n      @include rmd-media-aspect-ratio(nth($value, 1), nth($value, 2));\n    }\n  }\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n}\n",
@@ -205,6 +265,15 @@ const sassdoc: PackageSassDoc = {
       source: "packages/media/src/_mixins.scss#L213-L225",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "media",
+      requires: [
+        { name: "rmd-media-container", type: "mixin", packageName: "media" },
+        {
+          name: "rmd-media-responsive-item",
+          type: "mixin",
+          packageName: "media",
+        },
+        { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
+      ],
       code: "@mixin react-md-media { … }",
       sourceCode:
         "@mixin react-md-media {\n  .rmd-media-container {\n    @include rmd-media-container;\n  }\n\n  .rmd-media {\n    @include rmd-media-responsive-item;\n  }\n\n  .rmd-media-overlay {\n    @include rmd-media-overlay;\n  }\n}\n",
@@ -217,6 +286,9 @@ const sassdoc: PackageSassDoc = {
       description: "The background color for a media overlay.",
       source: "packages/media/src/_variables.scss#L11",
       packageName: "media",
+      requires: [
+        { name: "rmd-black-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "rgba($rmd-black-base, 0.54)",
       compiled: "rgba(0, 0, 0, 0.54)",

@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the alert's theme values. This is really just for the `rmd-alert-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/alert/src/_functions.scss#L15-L17",
       packageName: "alert",
+      requires: [
+        {
+          name: "rmd-alert-theme-values",
+          type: "variable",
+          packageName: "alert",
+        },
+      ],
       code: "@function rmd-alert-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-alert-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-alert-theme-values, alert);\n}\n",
@@ -32,6 +39,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the alert's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-alert-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/alert/src/_functions.scss#L32-L34",
       packageName: "alert",
+      requires: [
+        {
+          name: "rmd-alert-theme-values",
+          type: "variable",
+          packageName: "alert",
+        },
+      ],
       code:
         "@function rmd-alert-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -66,6 +80,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/alert/src/_mixins.scss#L24-L26",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
+      requires: [
+        {
+          name: "rmd-alert-theme-values",
+          type: "variable",
+          packageName: "alert",
+        },
+      ],
       code:
         "@mixin rmd-alert-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -99,6 +120,13 @@ const sassdoc: PackageSassDoc = {
         "Updates one of the alert's theme variables with the new value for the section of your app.",
       source: "packages/alert/src/_mixins.scss#L34-L36",
       packageName: "alert",
+      requires: [
+        {
+          name: "rmd-alert-theme-values",
+          type: "variable",
+          packageName: "alert",
+        },
+      ],
       code: "@mixin rmd-alert-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-alert-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-alert-theme-values,\n    alert\n  );\n}\n",
@@ -124,6 +152,14 @@ const sassdoc: PackageSassDoc = {
       source: "packages/alert/src/_mixins.scss#L40-L59",
       usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       packageName: "alert",
+      requires: [
+        { name: "rmd-snackbar-margin", type: "variable", packageName: "alert" },
+        {
+          name: "rmd-snackbar-z-index",
+          type: "variable",
+          packageName: "alert",
+        },
+      ],
       code: "@mixin rmd-snackbar { … }",
       sourceCode:
         "@mixin rmd-snackbar {\n  display: flex;\n  justify-content: center;\n  left: 0;\n  margin: $rmd-snackbar-margin;\n  // disable pointer events since otherwise this will block clicking on elements while the toast\n  // is visible. they will be re-enabled on the toast itself.\n  pointer-events: none;\n  position: fixed;\n  right: 0;\n  z-index: $rmd-snackbar-z-index;\n\n  &--top {\n    top: 0;\n  }\n\n  &--bottom {\n    bottom: 0;\n  }\n}\n",
@@ -136,6 +172,60 @@ const sassdoc: PackageSassDoc = {
       source: "packages/alert/src/_mixins.scss#L63-L150",
       usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       packageName: "alert",
+      requires: [
+        { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
+        { name: "rmd-typography", type: "mixin", packageName: "typography" },
+        { name: "rmd-alert-theme", type: "mixin", packageName: "alert" },
+        { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
+        { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        { name: "rmd-toast-elevation", type: "variable", packageName: "alert" },
+        {
+          name: "rmd-toast-border-radius",
+          type: "variable",
+          packageName: "alert",
+        },
+        {
+          name: "rmd-toast-min-height",
+          type: "variable",
+          packageName: "alert",
+        },
+        { name: "rmd-toast-min-width", type: "variable", packageName: "alert" },
+        {
+          name: "rmd-toast-horizontal-padding",
+          type: "variable",
+          packageName: "alert",
+        },
+        {
+          name: "rmd-toast-vertical-padding",
+          type: "variable",
+          packageName: "alert",
+        },
+        {
+          name: "rmd-toast-two-line-min-height",
+          type: "variable",
+          packageName: "alert",
+        },
+        {
+          name: "rmd-toast-enter-duration",
+          type: "variable",
+          packageName: "alert",
+        },
+        {
+          name: "rmd-toast-exit-duration",
+          type: "variable",
+          packageName: "alert",
+        },
+        {
+          name: "rmd-toast-action-margin",
+          type: "variable",
+          packageName: "alert",
+        },
+        {
+          name: "rmd-toast-stacked-action-margin-top",
+          type: "variable",
+          packageName: "alert",
+        },
+      ],
       code: "@mixin rmd-toast { … }",
       sourceCode:
         "@mixin rmd-toast {\n  @include rmd-elevation($rmd-toast-elevation);\n  @include rmd-typography(subtitle-2);\n  @include rmd-alert-theme(background-color);\n  @include rmd-alert-theme(color);\n\n  align-items: center;\n  border-radius: $rmd-toast-border-radius;\n  display: flex;\n  min-height: $rmd-toast-min-height;\n  min-width: $rmd-toast-min-width;\n  padding: 0 $rmd-toast-horizontal-padding;\n  pointer-events: auto;\n  transform-origin: center;\n\n  &--padded {\n    padding-bottom: $rmd-toast-vertical-padding;\n    padding-top: $rmd-toast-vertical-padding;\n  }\n\n  &--action {\n    @include rmd-utils-rtl-auto(\n      padding-right,\n      0,\n      $rmd-toast-horizontal-padding\n    );\n  }\n\n  &--two-lines {\n    min-height: $rmd-toast-two-line-min-height;\n  }\n\n  &--stacked {\n    flex-direction: column;\n    padding-bottom: 0;\n  }\n\n  &--enter {\n    @include rmd-transition(deceleration);\n\n    opacity: 0;\n    transform: scale(0);\n    transition: opacity $rmd-toast-enter-duration,\n      transform $rmd-toast-enter-duration;\n  }\n\n  &--enter-active {\n    opacity: 1;\n    transform: scale(1);\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    opacity: 1;\n    transform: scale(1);\n  }\n\n  &--exit-active {\n    opacity: 0;\n    transform: scale(0);\n    transition: opacity $rmd-toast-exit-duration,\n      transform $rmd-toast-exit-duration;\n  }\n\n  &__message {\n    @include rmd-utils-rtl-auto(margin-right, auto);\n\n    display: inline-flex;\n    flex: 1 1 auto;\n    flex-wrap: wrap;\n\n    &--action {\n      @include rmd-utils-rtl-auto(\n        padding-right,\n        $rmd-toast-horizontal-padding,\n        0\n      );\n    }\n\n    p {\n      margin: 0;\n      width: 100%;\n    }\n  }\n\n  &__action {\n    display: inline-flex;\n    flex-shrink: 0;\n    margin: 0 $rmd-toast-action-margin;\n\n    &--stacked {\n      align-self: flex-end;\n      margin-bottom: $rmd-toast-action-margin;\n      margin-top: $rmd-toast-stacked-action-margin-top;\n    }\n  }\n}\n",
@@ -148,6 +238,15 @@ const sassdoc: PackageSassDoc = {
       source: "packages/alert/src/_mixins.scss#L154-L164",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "alert",
+      requires: [
+        { name: "rmd-snackbar", type: "mixin", packageName: "alert" },
+        { name: "rmd-toast", type: "mixin", packageName: "alert" },
+        {
+          name: "rmd-alert-theme-values",
+          type: "variable",
+          packageName: "alert",
+        },
+      ],
       code: "@mixin react-md-alert { … }",
       sourceCode:
         "@mixin react-md-alert {\n  @include rmd-theme-create-root-theme($rmd-alert-theme-values, alert);\n\n  .rmd-snackbar {\n    @include rmd-snackbar;\n  }\n\n  .rmd-toast {\n    @include rmd-toast;\n  }\n}\n",
@@ -172,6 +271,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/alert/src/_variables.scss#L19",
       usedBy: [{ name: "rmd-snackbar", type: "mixin", packageName: "alert" }],
       packageName: "alert",
+      requires: [
+        {
+          name: "rmd-utils-temporary-element-z-index",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       type: "Number",
       value: "$rmd-utils-temporary-element-z-index + 10",
       compiled: "40",
@@ -201,6 +307,9 @@ const sassdoc: PackageSassDoc = {
       description: "The text color for a toast in light themes.",
       source: "packages/alert/src/_variables.scss#L33",
       packageName: "alert",
+      requires: [
+        { name: "rmd-white-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "$rmd-white-base",
       compiled: "#fff",
@@ -231,6 +340,9 @@ const sassdoc: PackageSassDoc = {
       description: "The default background color for toasts.",
       source: "packages/alert/src/_variables.scss#L48-L52",
       packageName: "alert",
+      requires: [
+        { name: "rmd-theme-light", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value:
         "if(\n  $rmd-theme-light,\n  $rmd-toast-light-background-color,\n  $rmd-toast-dark-background-color\n)",
@@ -242,6 +354,9 @@ const sassdoc: PackageSassDoc = {
       description: "The default text color for toasts",
       source: "packages/alert/src/_variables.scss#L58",
       packageName: "alert",
+      requires: [
+        { name: "rmd-theme-light", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value:
         "if($rmd-theme-light, $rmd-toast-light-color, $rmd-toast-dark-color)",
@@ -341,6 +456,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/alert/src/_variables.scss#L105",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
+      requires: [
+        {
+          name: "rmd-transition-standard-time",
+          type: "variable",
+          packageName: "transition",
+        },
+      ],
       type: "Number",
       value: "$rmd-transition-standard-time",
       compiled: "0.15s",
@@ -353,6 +475,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/alert/src/_variables.scss#L113",
       usedBy: [{ name: "rmd-toast", type: "mixin", packageName: "alert" }],
       packageName: "alert",
+      requires: [
+        {
+          name: "rmd-transition-standard-time",
+          type: "variable",
+          packageName: "transition",
+        },
+      ],
       type: "Number",
       value: "$rmd-transition-standard-time",
       compiled: "0.15s",

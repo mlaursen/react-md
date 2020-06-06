@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the badge's theme values. This is really just for the `rmd-badge-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/badge/src/_functions.scss#L15-L17",
       packageName: "badge",
+      requires: [
+        {
+          name: "rmd-badge-theme-values",
+          type: "variable",
+          packageName: "badge",
+        },
+      ],
       code: "@function rmd-badge-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-badge-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-badge-theme-values, badge);\n}\n",
@@ -32,6 +39,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the badge's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-badge-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/badge/src/_functions.scss#L32-L34",
       packageName: "badge",
+      requires: [
+        {
+          name: "rmd-badge-theme-values",
+          type: "variable",
+          packageName: "badge",
+        },
+      ],
       code:
         "@function rmd-badge-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -66,6 +80,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/badge/src/_mixins.scss#L23-L25",
       usedBy: [{ name: "rmd-badge", type: "mixin", packageName: "badge" }],
       packageName: "badge",
+      requires: [
+        {
+          name: "rmd-badge-theme-values",
+          type: "variable",
+          packageName: "badge",
+        },
+      ],
       code:
         "@mixin rmd-badge-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -99,6 +120,13 @@ const sassdoc: PackageSassDoc = {
         "Updates one of the badge's theme variables with the new value for the section of your app.",
       source: "packages/badge/src/_mixins.scss#L33-L35",
       packageName: "badge",
+      requires: [
+        {
+          name: "rmd-badge-theme-values",
+          type: "variable",
+          packageName: "badge",
+        },
+      ],
       code: "@mixin rmd-badge-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-badge-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-badge-theme-values,\n    badge\n  );\n}\n",
@@ -123,6 +151,11 @@ const sassdoc: PackageSassDoc = {
       source: "packages/badge/src/_mixins.scss#L45-L79",
       usedBy: [{ name: "react-md-badge", type: "mixin", packageName: "badge" }],
       packageName: "badge",
+      requires: [
+        { name: "rmd-typography", type: "mixin", packageName: "typography" },
+        { name: "rmd-badge-theme", type: "mixin", packageName: "badge" },
+        { name: "rmd-theme", type: "mixin", packageName: "theme" },
+      ],
       code: "@mixin rmd-badge { … }",
       sourceCode:
         "@mixin rmd-badge {\n  @include rmd-typography(body-1, (line-height font-size));\n  @include rmd-badge-theme(border-radius);\n  @include rmd-badge-theme(height, size);\n  @include rmd-badge-theme(width, size);\n  @include rmd-badge-theme(font-size);\n  @include rmd-badge-theme(right);\n  @include rmd-badge-theme(top);\n  @include rmd-utils-rtl {\n    @include rmd-badge-theme(left, right);\n\n    right: auto;\n  }\n\n  align-items: center;\n  display: inline-flex;\n  justify-content: center;\n  pointer-events: none; // badges are _kind_ of presentational and shouldn't trigger mouse events\n  position: absolute;\n\n  &--primary {\n    @include rmd-theme(background-color, primary);\n    @include rmd-theme(color, on-primary);\n  }\n\n  &--secondary {\n    @include rmd-theme(background-color, secondary);\n    @include rmd-theme(color, on-secondary);\n  }\n\n  &--default {\n    @include rmd-badge-theme(background-color);\n    @include rmd-badge-theme(color);\n  }\n}\n",
@@ -135,6 +168,14 @@ const sassdoc: PackageSassDoc = {
       source: "packages/badge/src/_mixins.scss#L83-L93",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "badge",
+      requires: [
+        { name: "rmd-badge", type: "mixin", packageName: "badge" },
+        {
+          name: "rmd-badge-theme-values",
+          type: "variable",
+          packageName: "badge",
+        },
+      ],
       code: "@mixin react-md-badge { … }",
       sourceCode:
         "@mixin react-md-badge {\n  @include rmd-theme-create-root-theme($rmd-badge-theme-values, badge);\n\n  .rmd-badge-container {\n    @include rmd-badge-container;\n  }\n\n  .rmd-badge {\n    @include rmd-badge;\n  }\n}\n",
@@ -165,6 +206,9 @@ const sassdoc: PackageSassDoc = {
       description: 'The "default" background color.',
       source: "packages/badge/src/_variables.scss#L19",
       packageName: "badge",
+      requires: [
+        { name: "rmd-black-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "rgba($rmd-black-base, 0.2)",
       compiled: "rgba(0, 0, 0, 0.2)",
@@ -175,6 +219,11 @@ const sassdoc: PackageSassDoc = {
       description: 'The "default" themed text color.',
       source: "packages/badge/src/_variables.scss#L27-L31",
       packageName: "badge",
+      requires: [
+        { name: "rmd-theme-tone", type: "function", packageName: "theme" },
+        { name: "rmd-black-base", type: "variable", packageName: "theme" },
+        { name: "rmd-white-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value:
         "if(\n  rmd-theme-tone($rmd-badge-default-background-color) == light,\n  $rmd-black-base,\n  $rmd-white-base\n)",

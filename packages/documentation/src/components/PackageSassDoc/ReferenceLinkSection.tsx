@@ -5,25 +5,28 @@ import { ItemReferenceLink } from "utils/sassdoc";
 
 import ReferenceLinkList from "./ReferenceLinkList";
 
-export interface UsedByProps {
-  usedBy: ItemReferenceLink[] | undefined;
+export interface ReferenceLinkSectionProps {
+  links: ItemReferenceLink[] | undefined;
 }
 
-const UsedBy: FC<UsedByProps> = ({ usedBy }) => {
-  if (!usedBy || !usedBy.length) {
+const ReferenceLinkSection: FC<ReferenceLinkSectionProps> = ({
+  children,
+  links,
+}) => {
+  if (!links || !links.length) {
     return null;
   }
 
   return (
     <>
       <Text type="headline-6" margin="top">
-        Used By
+        {children}
       </Text>
       <ul>
-        <ReferenceLinkList links={usedBy} />
+        <ReferenceLinkList links={links} />
       </ul>
     </>
   );
 };
 
-export default UsedBy;
+export default ReferenceLinkSection;

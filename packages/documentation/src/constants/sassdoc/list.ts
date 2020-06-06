@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the list's theme values. This is really just for the `rmd-list-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/list/src/_functions.scss#L15-L17",
       packageName: "list",
+      requires: [
+        {
+          name: "rmd-list-theme-values",
+          type: "variable",
+          packageName: "list",
+        },
+      ],
       code: "@function rmd-list-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-list-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-list-theme-values, list);\n}\n",
@@ -48,6 +55,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
       ],
       packageName: "list",
+      requires: [
+        {
+          name: "rmd-list-theme-values",
+          type: "variable",
+          packageName: "list",
+        },
+      ],
       code: "@function rmd-list-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
         "@function rmd-list-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-list-theme-values,\n    list,\n    $fallback\n  );\n}\n",
@@ -86,6 +100,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
       ],
       packageName: "list",
+      requires: [
+        {
+          name: "rmd-list-theme-values",
+          type: "variable",
+          packageName: "list",
+        },
+      ],
       code:
         "@mixin rmd-list-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -128,6 +149,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
       ],
       packageName: "list",
+      requires: [
+        {
+          name: "rmd-list-theme-values",
+          type: "variable",
+          packageName: "list",
+        },
+      ],
       code: "@mixin rmd-list-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-list-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-list-theme-values,\n    list\n  );\n}\n",
@@ -191,6 +219,14 @@ const sassdoc: PackageSassDoc = {
           description: "Example Usage",
         },
       ],
+      requires: [
+        {
+          name: "rmd-list-theme-update-var",
+          type: "mixin",
+          packageName: "list",
+        },
+        { name: "rmd-list-theme-var", type: "function", packageName: "list" },
+      ],
       code: "@mixin rmd-list-dense-theme { … }",
       sourceCode:
         "@mixin rmd-list-dense-theme {\n  @include rmd-list-theme-update-var(\n    font-size,\n    rmd-list-theme-var(dense-font-size)\n  );\n  @include rmd-list-theme-update-var(\n    vertical-padding,\n    rmd-list-theme-var(dense-vertical-padding)\n  );\n  @include rmd-list-theme-update-var(\n    horizontal-padding,\n    rmd-list-theme-var(dense-horizontal-padding)\n  );\n}\n",
@@ -202,6 +238,19 @@ const sassdoc: PackageSassDoc = {
       source: "packages/list/src/_mixins.scss#L69-L87",
       usedBy: [{ name: "react-md-list", type: "mixin", packageName: "list" }],
       packageName: "list",
+      requires: [
+        { name: "rmd-typography", type: "mixin", packageName: "typography" },
+        {
+          name: "rmd-divider-theme-update-var",
+          type: "mixin",
+          packageName: "divider",
+        },
+        { name: "rmd-list-unstyled", type: "mixin", packageName: "list" },
+        { name: "rmd-list-theme", type: "mixin", packageName: "list" },
+        { name: "rmd-list-dense-theme", type: "mixin", packageName: "list" },
+        { name: "rmd-list-theme-var", type: "function", packageName: "list" },
+        { name: "rmd-list-line-height", type: "variable", packageName: "list" },
+      ],
       code: "@mixin rmd-list { … }",
       sourceCode:
         "@mixin rmd-list {\n  @include rmd-typography(subtitle-1);\n  @include rmd-divider-theme-update-var(\n    inset,\n    rmd-list-theme-var(text-keyline)\n  );\n  @include rmd-list-unstyled(null);\n  @include rmd-list-theme(font-size);\n\n  line-height: $rmd-list-line-height;\n  padding: rmd-list-theme-var(vertical-padding)\n    rmd-list-theme-var(horizontal-padding);\n\n  &--horizontal {\n    display: flex;\n    flex-wrap: nowrap;\n    padding: rmd-list-theme-var(horizontal-padding)\n      rmd-list-theme-var(vertical-padding);\n  }\n\n  &--dense {\n    @include rmd-list-dense-theme;\n  }\n}\n",
@@ -217,6 +266,10 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
       ],
       packageName: "list",
+      requires: [
+        { name: "rmd-list-theme", type: "mixin", packageName: "list" },
+        { name: "rmd-list-theme-var", type: "function", packageName: "list" },
+      ],
       code: "@mixin rmd-list-item-base { … }",
       sourceCode:
         "@mixin rmd-list-item-base {\n  @include rmd-list-theme(min-height, item-height);\n\n  align-items: center;\n  display: flex;\n  padding: rmd-list-theme-var(item-vertical-padding)\n    rmd-list-theme-var(item-horizontal-padding);\n  position: relative;\n}\n",
@@ -241,6 +294,14 @@ const sassdoc: PackageSassDoc = {
           description: "Example Usage",
         },
       ],
+      requires: [
+        {
+          name: "rmd-list-theme-update-var",
+          type: "mixin",
+          packageName: "list",
+        },
+        { name: "rmd-list-theme-var", type: "function", packageName: "list" },
+      ],
       code: "@mixin rmd-list-item-dense-theme { … }",
       sourceCode:
         "@mixin rmd-list-item-dense-theme {\n  @include rmd-list-theme-update-var(\n    item-height,\n    rmd-list-theme-var(dense-item-height)\n  );\n  @include rmd-list-theme-update-var(\n    item-medium-height,\n    rmd-list-theme-var(dense-item-medium-height)\n  );\n  @include rmd-list-theme-update-var(\n    item-large-height,\n    rmd-list-theme-var(dense-item-large-height)\n  );\n  @include rmd-list-theme-update-var(\n    item-extra-large-height,\n    rmd-list-theme-var(dense-item-extra-large-height)\n  );\n  @include rmd-list-theme-update-var(\n    item-three-line-height,\n    rmd-list-theme-var(dense-item-three-line-height)\n  );\n  @include rmd-list-theme-update-var(\n    item-secondary-three-line-height,\n    rmd-list-theme-var(dense-item-secondary-three-line-height)\n  );\n}\n",
@@ -263,6 +324,14 @@ const sassdoc: PackageSassDoc = {
           description: "Example Usage",
         },
       ],
+      requires: [
+        {
+          name: "rmd-icon-theme-update-var",
+          type: "mixin",
+          packageName: "icon",
+        },
+        { name: "rmd-list-theme-var", type: "function", packageName: "list" },
+      ],
       code: "@mixin rmd-list-item-addon-spacing($subtract) { … }",
       sourceCode:
         "@mixin rmd-list-item-addon-spacing($subtract) {\n  $to-keyline: #{rmd-list-theme-var(text-keyline)} - #{rmd-list-theme-var(\n      item-horizontal-padding\n    )};\n  @include rmd-icon-theme-update-var(\n    text-spacing,\n    calc(#{$to-keyline} - #{$subtract})\n  );\n}\n",
@@ -284,6 +353,59 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-tree-item", type: "mixin", packageName: "tree" },
       ],
       packageName: "list",
+      requires: [
+        { name: "rmd-list-item-base", type: "mixin", packageName: "list" },
+        {
+          name: "rmd-utils-hide-focus-outline",
+          type: "mixin",
+          packageName: "utils",
+        },
+        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
+        { name: "rmd-theme", type: "mixin", packageName: "theme" },
+        {
+          name: "rmd-list-theme-update-var",
+          type: "mixin",
+          packageName: "list",
+        },
+        {
+          name: "rmd-typography-line-clamp",
+          type: "mixin",
+          packageName: "typography",
+        },
+        { name: "rmd-list-theme", type: "mixin", packageName: "list" },
+        {
+          name: "rmd-list-item-dense-theme",
+          type: "mixin",
+          packageName: "list",
+        },
+        {
+          name: "rmd-typography-text-overflow-ellipsis",
+          type: "mixin",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-list-item-addon-spacing",
+          type: "mixin",
+          packageName: "list",
+        },
+        {
+          name: "rmd-icon-theme-update-var",
+          type: "mixin",
+          packageName: "icon",
+        },
+        { name: "rmd-list-theme-var", type: "function", packageName: "list" },
+        { name: "rmd-icon-theme-var", type: "function", packageName: "icon" },
+        {
+          name: "rmd-avatar-theme-var",
+          type: "function",
+          packageName: "avatar",
+        },
+        {
+          name: "rmd-list-item-secondary-text-line-height",
+          type: "variable",
+          packageName: "list",
+        },
+      ],
       code: "@mixin rmd-list-item { … }",
       sourceCode:
         '@mixin rmd-list-item {\n  @include rmd-list-item-base;\n\n  &--clickable {\n    @include rmd-utils-hide-focus-outline;\n    @include rmd-states-surface;\n  }\n\n  &[aria-disabled] {\n    @include rmd-theme(color, text-disabled-on-background);\n  }\n\n  &--link {\n    color: inherit;\n    text-decoration: none;\n  }\n\n  &--medium {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-medium-height)\n    );\n  }\n\n  &--large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-large-height)\n    );\n  }\n\n  &--extra-large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-extra-large-height)\n    );\n  }\n\n  &--three-lines {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-three-line-height)\n    );\n\n    .rmd-list-item__text--secondary {\n      @include rmd-typography-line-clamp;\n      @include rmd-list-theme(max-height, item-secondary-three-line-height);\n\n      line-height: $rmd-list-item-secondary-text-line-height;\n      white-space: normal;\n    }\n  }\n\n  &--dense {\n    @include rmd-list-item-dense-theme;\n  }\n\n  &__text {\n    @include rmd-typography-text-overflow-ellipsis;\n    @include rmd-utils-rtl {\n      margin-left: auto;\n    }\n\n    display: block;\n    flex-grow: 1;\n    // this is so it overlays the background colors from the interaction states\n    z-index: 1;\n\n    &--secondary {\n      @include rmd-theme(color, text-secondary-on-background);\n    }\n  }\n\n  &__addon {\n    flex-shrink: 0;\n\n    &--top {\n      align-self: flex-start;\n    }\n\n    &--bottom {\n      align-self: flex-end;\n    }\n\n    &--before {\n      // this should only be added on the first icon in the list item since it\'s the only\n      // one that should match the "keyline" of the app. The right icon/avatars should\n      // have the existing text icon spacing.\n      @include rmd-list-item-addon-spacing(rmd-icon-theme-var(size));\n    }\n\n    &--avatar-before {\n      @include rmd-list-item-addon-spacing(rmd-avatar-theme-var(size));\n    }\n\n    &--media {\n      @include rmd-icon-theme-update-var(\n        text-spacing,\n        rmd-list-theme-var(media-spacing)\n      );\n      @include rmd-list-theme(width, media-size);\n    }\n\n    &--media-large {\n      @include rmd-list-theme-update-var(\n        media-size,\n        rmd-list-theme-var(media-large-size)\n      );\n    }\n  }\n}\n',
@@ -295,6 +417,12 @@ const sassdoc: PackageSassDoc = {
       source: "packages/list/src/_mixins.scss#L243-L255",
       usedBy: [{ name: "react-md-list", type: "mixin", packageName: "list" }],
       packageName: "list",
+      requires: [
+        { name: "rmd-typography", type: "mixin", packageName: "typography" },
+        { name: "rmd-theme", type: "mixin", packageName: "theme" },
+        { name: "rmd-list-item-base", type: "mixin", packageName: "list" },
+        { name: "rmd-list-theme", type: "mixin", packageName: "list" },
+      ],
       code: "@mixin rmd-list-subheader { … }",
       sourceCode:
         "@mixin rmd-list-subheader {\n  @include rmd-typography(subtitle-2);\n  @include rmd-theme(color, text-secondary-on-background);\n  @include rmd-list-item-base;\n\n  &--inset {\n    @include rmd-list-theme(padding-left, text-keyline);\n    @include rmd-utils-rtl {\n      @include rmd-list-theme(padding-left, item-horizontal-padding);\n      @include rmd-list-theme(padding-right, text-keyline);\n    }\n  }\n}\n",
@@ -306,6 +434,16 @@ const sassdoc: PackageSassDoc = {
       source: "packages/list/src/_mixins.scss#L258-L272",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "list",
+      requires: [
+        { name: "rmd-list", type: "mixin", packageName: "list" },
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
+        {
+          name: "rmd-list-theme-values",
+          type: "variable",
+          packageName: "list",
+        },
+      ],
       code: "@mixin react-md-list { … }",
       sourceCode:
         "@mixin react-md-list {\n  @include rmd-theme-create-root-theme($rmd-list-theme-values, list);\n\n  .rmd-list {\n    @include rmd-list;\n  }\n\n  .rmd-list-item {\n    @include rmd-list-item;\n  }\n\n  .rmd-list-subheader {\n    @include rmd-list-subheader;\n  }\n}\n",
@@ -392,6 +530,13 @@ const sassdoc: PackageSassDoc = {
       source: "packages/list/src/_variables.scss#L46",
       usedBy: [{ name: "rmd-list", type: "mixin", packageName: "list" }],
       packageName: "list",
+      requires: [
+        {
+          name: "rmd-typography-value",
+          type: "function",
+          packageName: "typography",
+        },
+      ],
       type: "Number",
       value: "rmd-typography-value(body-1, line-height)",
       compiled: "1.5rem",
@@ -402,6 +547,13 @@ const sassdoc: PackageSassDoc = {
       description: "The font size to apply to all items in a list.",
       source: "packages/list/src/_variables.scss#L52",
       packageName: "list",
+      requires: [
+        {
+          name: "rmd-typography-value",
+          type: "function",
+          packageName: "typography",
+        },
+      ],
       type: "Number",
       value: "rmd-typography-value(subtitle-1, font-size)",
       compiled: "1rem",

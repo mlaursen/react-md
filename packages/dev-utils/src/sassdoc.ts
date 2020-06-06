@@ -11,6 +11,7 @@ import {
   ItemReference,
   MixinItem,
   VariableItem,
+  ItemRequire,
 } from "sassdoc";
 
 import { nonWebpackDist, packagesRoot, src, tempStylesDir } from "./constants";
@@ -141,18 +142,21 @@ function createReferenceLink(item: Item): FullItemReferenceLink {
   };
 }
 
+const isItemRequire = (
+  item: ItemReference | ItemRequire
+): item is ItemRequire => typeof (item as ItemRequire).name === "string";
+
 function getReferenceLinks(
-  references: ItemReference[] | undefined,
+  items: (ItemReference | ItemRequire)[] | undefined,
   referenceLinks: FullItemReferenceLink[]
 ): ItemReferenceLink[] | undefined {
-  if (!references) {
+  if (!items) {
     return undefined;
   }
 
   const added = new Set<string>();
-  const links = references.reduce<ItemReferenceLink[]>((list, reference) => {
-    const { name, type } = reference.context;
-    const key = `${name}-${type}`;
+  const links = items.reduce<ItemReferenceLink[]>((list, item) => {
+    const { name, type } = isItemRequire(item) ? item : item.context;
     const link = referenceLinks.find(
       (ref) => ref.name === name && ref.type === type
     );
@@ -161,6 +165,7 @@ function getReferenceLinks(
       throw new Error(`Unable to find a reference for ${name} ${type}`);
     }
 
+    const key = `${name}-${type}`;
     if (!link.private && !added.has(key)) {
       added.add(key);
       list.push(omit(link, "private"));
@@ -184,6 +189,7 @@ function formatItem(
     see,
     example,
     usedBy,
+    require,
   } = item;
 
   let examples: CompiledExample[] | undefined;
@@ -225,6 +231,7 @@ function formatItem(
     usedBy: getReferenceLinks(usedBy, references),
     packageName: getPackageName(item),
     examples,
+    requires: getReferenceLinks(require, references),
   };
 }
 

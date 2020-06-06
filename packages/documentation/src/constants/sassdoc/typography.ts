@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the typography's theme values.\nThis is really just for the `rmd-typography-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/typography/src/_functions.scss#L17-L19",
       packageName: "typography",
+      requires: [
+        {
+          name: "rmd-typography-theme-values",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       code: "@function rmd-typography-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-typography-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-typography-theme-values,\n    typography\n  );\n}\n",
@@ -39,6 +46,13 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "typography",
+      requires: [
+        {
+          name: "rmd-typography-theme-values",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       code:
         "@function rmd-typography-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -93,6 +107,13 @@ const sassdoc: PackageSassDoc = {
           description: "Simple Examples",
         },
       ],
+      requires: [
+        {
+          name: "rmd-typography-styles",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       code: "@function rmd-typography-value($style, $property) { … }",
       sourceCode:
         '@function rmd-typography-value($style, $property) {\n  $style-props: rmd-utils-validate($rmd-typography-styles, $style, typography);\n\n  @return rmd-utils-validate(\n    $style-props,\n    $property,\n    "typography #{$style} property"\n  );\n}\n',
@@ -126,6 +147,13 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "typography",
+      requires: [
+        {
+          name: "rmd-typography-theme-values",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       code:
         "@mixin rmd-typography-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -166,6 +194,13 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "typography",
+      requires: [
+        {
+          name: "rmd-typography-theme-values",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       code:
         "@mixin rmd-typography-theme-update-var($theme-style, $value) { … }",
       sourceCode:
@@ -203,6 +238,13 @@ const sassdoc: PackageSassDoc = {
             ".body-1-font-size {\n  font-size: 1rem;\n}\n\n.headline-4-letter-spacing {\n  letter-spacing: 0.00735em;\n}\n\n.caption-styles {\n  font-size: 0.75rem;\n  letter-spacing: 0.03333em;\n  line-height: 1.25rem;\n}\n",
           type: "scss",
           description: "Simple Examples",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-typography-value",
+          type: "function",
+          packageName: "typography",
         },
       ],
       code: "@mixin rmd-typography-value($style, $properties: font-size) { … }",
@@ -250,6 +292,13 @@ const sassdoc: PackageSassDoc = {
           description: "Example Usage SCSS",
         },
       ],
+      requires: [
+        {
+          name: "rmd-typography-base",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       code: "@mixin rmd-typography-base { … }",
       sourceCode:
         "@mixin rmd-typography-base {\n  @each $key, $value in $rmd-typography-base {\n    #{$key}: $value;\n  }\n}\n",
@@ -280,6 +329,13 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "typography",
+      requires: [
+        {
+          name: "rmd-typography-styles",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       code: "@mixin rmd-typography($style, $omit) { … }",
       sourceCode:
         "@mixin rmd-typography($style, $omit) {\n  $style-props: rmd-utils-validate($rmd-typography-styles, $style, typography);\n\n  @each $key, $value in $style-props {\n    @if not index($omit, $key) {\n      #{$key}: $value;\n    }\n  }\n}\n",
@@ -300,6 +356,13 @@ const sassdoc: PackageSassDoc = {
         "Creates the base styles required for the text container. These styles are used to be able to center the text in a container once the `max-width` value has also been applied.\n",
       source: "packages/typography/src/_mixins.scss#L104-L111",
       packageName: "typography",
+      requires: [
+        {
+          name: "rmd-typography-theme",
+          type: "mixin",
+          packageName: "typography",
+        },
+      ],
       code: "@mixin rmd-text-container-base { … }",
       sourceCode:
         "@mixin rmd-text-container-base {\n  @include rmd-typography-theme(max-width, line-width);\n\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 100%;\n}\n",
@@ -325,6 +388,18 @@ const sassdoc: PackageSassDoc = {
             '<main class="blog">\n  <h1 class="title">Blog Title</h1>\n  <p class="paragraph">Lorem ipsum...</p>\n  <p class="paragraph">Lorem ipsum...</p>\n</main>\n',
           type: "html",
           description: 'Creating a "blog"',
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-typography-theme-update-var",
+          type: "mixin",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-theme-var",
+          type: "function",
+          packageName: "typography",
         },
       ],
       code:
@@ -412,6 +487,61 @@ const sassdoc: PackageSassDoc = {
       source: "packages/typography/src/_mixins.scss#L228-L298",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "typography",
+      requires: [
+        {
+          name: "rmd-typography-base",
+          type: "mixin",
+          packageName: "typography",
+        },
+        { name: "rmd-typography", type: "mixin", packageName: "typography" },
+        { name: "rmd-theme", type: "mixin", packageName: "theme" },
+        { name: "rmd-utils-sr-only", type: "mixin", packageName: "utils" },
+        {
+          name: "rmd-typography-theme-values",
+          type: "variable",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-styles",
+          type: "variable",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-default-font-weights",
+          type: "variable",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-font-weights",
+          type: "variable",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-font-styles",
+          type: "variable",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-colors",
+          type: "variable",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-alignments",
+          type: "variable",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-decorations",
+          type: "variable",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-transforms",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       code: "@mixin react-md-typography { … }",
       sourceCode:
         '@mixin react-md-typography {\n  @include rmd-theme-create-root-theme(\n    $rmd-typography-theme-values,\n    typography\n  );\n\n  .rmd-typography {\n    @include rmd-typography-base;\n\n    @each $suffix in map-keys($rmd-typography-styles) {\n      &--#{$suffix} {\n        @include rmd-typography($suffix);\n      }\n    }\n\n    @each $weight in $rmd-typography-default-font-weights {\n      &--#{$weight} {\n        font-weight: map-get($rmd-typography-font-weights, $weight);\n      }\n    }\n\n    @each $font-style in $rmd-typography-font-styles {\n      &--#{$font-style} {\n        font-style: $font-style;\n      }\n    }\n\n    @each $suffix, $theme-style in $rmd-typography-colors {\n      &--#{$suffix} {\n        @include rmd-theme(color, $theme-style);\n      }\n    }\n\n    @each $align in $rmd-typography-alignments {\n      &--#{$align} {\n        text-align: $align;\n      }\n    }\n\n    @each $decoration in $rmd-typography-decorations {\n      $suffix: $decoration +\n        if($decoration == overline, "overline-decoration", "");\n\n      &--#{$suffix} {\n        text-decoration: $decoration;\n      }\n    }\n\n    @each $transform in $rmd-typography-transforms {\n      &--#{$transform} {\n        text-transform: $transform;\n      }\n    }\n\n    &--no-margin {\n      margin: 0;\n    }\n\n    &--no-margin-top {\n      margin-top: 0;\n    }\n\n    &--no-margin-bottom {\n      margin-bottom: 0;\n    }\n  }\n\n  .rmd-text-container {\n    @include rmd-text-container;\n  }\n\n  .rmd-sr-only {\n    @include rmd-utils-sr-only(true);\n  }\n}\n',
@@ -511,6 +641,13 @@ const sassdoc: PackageSassDoc = {
             '@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: light;\n  src: local(Roboto), local(Roboto-Light),\n    url(url(/fonts/roboto/Roboto-Light.ttf)/Roboto-Light.ttf) format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Roboto), local(Roboto-Regular),\n    url(url(/fonts/roboto/Roboto-Regular.ttf)/Roboto-Regular.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: medium;\n  src: local(Roboto), local(Roboto-Medium),\n    url(url(/fonts/roboto/Roboto-Medium.ttf)/Roboto-Medium.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: bold;\n  src: local(Roboto), local(Roboto-Bold),\n    url(url(/fonts/roboto/Roboto-Bold.ttf)/Roboto-Bold.ttf) format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: light;\n  src: local(SourceCodePro), local(SourceCodePro-Light),\n    url(url(/fonts/source-code-pro/SourceCodePro-Light.ttf)/SourceCodePro-Light.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: regular;\n  src: local(SourceCodePro), local(SourceCodePro-Regular),\n    url(url(/fonts/source-code-pro/SourceCodePro-Regular.ttf)/SourceCodePro-Regular.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: medium;\n  src: local(SourceCodePro), local(SourceCodePro-Medium),\n    url(url(/fonts/source-code-pro/SourceCodePro-Medium.ttf)/SourceCodePro-Medium.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: bold;\n  src: local(SourceCodePro), local(SourceCodePro-Bold),\n    url(url(/fonts/source-code-pro/SourceCodePro-Bold.ttf)/SourceCodePro-Bold.ttf)\n      format("truetype");\n}\n',
           type: "scss",
           description: "Custom Font Map Declarations",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-typography-google-font-face",
+          type: "mixin",
+          packageName: "typography",
         },
       ],
       code:

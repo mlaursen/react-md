@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the table's theme values. This is really just for the `rmd-table-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/table/src/_functions.scss#L15-L17",
       packageName: "table",
+      requires: [
+        {
+          name: "rmd-table-theme-values",
+          type: "variable",
+          packageName: "table",
+        },
+      ],
       code: "@function rmd-table-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-table-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-table-theme-values, table);\n}\n",
@@ -32,6 +39,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the table's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-table-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/table/src/_functions.scss#L32-L34",
       packageName: "table",
+      requires: [
+        {
+          name: "rmd-table-theme-values",
+          type: "variable",
+          packageName: "table",
+        },
+      ],
       code:
         "@function rmd-table-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -65,6 +79,13 @@ const sassdoc: PackageSassDoc = {
         "Creates the styles for one of the table's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/table/src/_mixins.scss#L24-L26",
       packageName: "table",
+      requires: [
+        {
+          name: "rmd-table-theme-values",
+          type: "variable",
+          packageName: "table",
+        },
+      ],
       code:
         "@mixin rmd-table-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -98,6 +119,13 @@ const sassdoc: PackageSassDoc = {
         "Updates one of the table's theme variables with the new value for the section of your app.",
       source: "packages/table/src/_mixins.scss#L34-L36",
       packageName: "table",
+      requires: [
+        {
+          name: "rmd-table-theme-values",
+          type: "variable",
+          packageName: "table",
+        },
+      ],
       code: "@mixin rmd-table-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-table-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-table-theme-values,\n    table\n  );\n}\n",
@@ -122,6 +150,15 @@ const sassdoc: PackageSassDoc = {
       source: "packages/table/src/_mixins.scss#L272-L298",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "table",
+      requires: [
+        { name: "rmd-utils-scroll", type: "mixin", packageName: "utils" },
+        { name: "rmd-typography", type: "mixin", packageName: "typography" },
+        {
+          name: "rmd-table-theme-values",
+          type: "variable",
+          packageName: "table",
+        },
+      ],
       code: "@mixin react-md-table { … }",
       sourceCode:
         "@mixin react-md-table {\n  @include rmd-theme-create-root-theme($rmd-table-theme-values, table);\n\n  .rmd-table-container {\n    @include rmd-utils-scroll;\n  }\n\n  .rmd-table {\n    @include rmd-table;\n  }\n\n  .rmd-thead {\n    @include rmd-thead;\n  }\n\n  .rmd-table-cell {\n    @include rmd-table-cell;\n  }\n\n  .rmd-tr {\n    @include rmd-table-row;\n  }\n\n  .rmd-caption {\n    @include rmd-typography(caption);\n  }\n}\n",
@@ -193,6 +230,9 @@ const sassdoc: PackageSassDoc = {
       description: "The text color for `<td>` cells within a table.",
       source: "packages/table/src/_variables.scss#L49",
       packageName: "table",
+      requires: [
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
+      ],
       type: "Color",
       value: "rmd-theme-var(text-primary-on-background)",
       compiled: "var(--rmd-theme-text-primary-on-background, #212121)",
@@ -265,6 +305,9 @@ const sassdoc: PackageSassDoc = {
         "The background color to use when hovering over a row within the `<tbody>` and the `hoverable` styles have been enabled.",
       source: "packages/table/src/_variables.scss#L109",
       packageName: "table",
+      requires: [
+        { name: "rmd-black-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "rgba($rmd-black-base, 0.12)",
       compiled: "rgba(0, 0, 0, 0.12)",
@@ -276,6 +319,13 @@ const sassdoc: PackageSassDoc = {
         "The background color to use when a row has been selected within the `<tbody>`.",
       source: "packages/table/src/_variables.scss#L116",
       packageName: "table",
+      requires: [
+        {
+          name: "rmd-states-theme-var",
+          type: "function",
+          packageName: "states",
+        },
+      ],
       type: "Color|String",
       value: "rmd-states-theme-var(selected-color)",
       compiled: "var(--rmd-states-selected-color, rgba(0, 0, 0, 0.16))",

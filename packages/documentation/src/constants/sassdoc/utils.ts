@@ -17,6 +17,18 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-utils-swappable-position-prefixes",
+          type: "variable",
+          packageName: "utils",
+        },
+        {
+          name: "rmd-utils-swappable-positions",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code: "@function rmd-utils-swap-position($style) { … }",
       sourceCode:
         '@function rmd-utils-swap-position($style) {\n  $prefix: "";\n  $position: $style;\n  @each $valid-prefix in $rmd-utils-swappable-position-prefixes {\n    @if str-index($style, "#{$valid-prefix}-") {\n      $prefix: "#{$valid-prefix}-";\n      $position: str-replace($style, $prefix, "");\n    }\n  }\n\n  $current: rmd-utils-validate(\n    $rmd-utils-swappable-positions,\n    $position,\n    "swappable position"\n  );\n\n  $next-position: bottom;\n  @if $position == left {\n    $next-position: right;\n  } @else if $position == right {\n    $next-position: left;\n  } @else if $position == bottom {\n    $next-position: top;\n  }\n\n  @return "#{$prefix}#{$next-position}";\n}\n',
@@ -102,6 +114,13 @@ const sassdoc: PackageSassDoc = {
           description: "Example Usage SCSS",
         },
       ],
+      requires: [
+        {
+          name: "rmd-utils-enable-rtl",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code: "@mixin rmd-utils-rtl { … }",
       sourceCode:
         '@mixin rmd-utils-rtl {\n  @if $rmd-utils-enable-rtl {\n    [dir="rtl"] & {\n      @content;\n    }\n  }\n}\n',
@@ -130,6 +149,18 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
       ],
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-utils-swap-position",
+          type: "function",
+          packageName: "utils",
+        },
+        {
+          name: "rmd-utils-swappable-position-prefixes",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code:
         "@mixin rmd-utils-rtl-auto($property, $value, $swapped-value: null) { … }",
       sourceCode:
@@ -166,6 +197,18 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-app-bar-nav", type: "mixin", packageName: "app-bar" },
       ],
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-utils-map-to-styles",
+          type: "mixin",
+          packageName: "utils",
+        },
+        {
+          name: "rmd-utils-swap-position",
+          type: "function",
+          packageName: "utils",
+        },
+      ],
       code:
         "@mixin rmd-utils-rtl-auto-group($styles, $swapped-styles: ()) { … }",
       sourceCode:
@@ -329,6 +372,9 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "utils",
+      requires: [
+        { name: "rmd-utils-full-screen", type: "mixin", packageName: "utils" },
+      ],
       code:
         "@mixin rmd-utils-pseudo-element($z-index: 0, $position: absolute) { … }",
       sourceCode:
@@ -410,6 +456,13 @@ const sassdoc: PackageSassDoc = {
         "Creates a media query so that only phones will be targeted with the styles.\nThis media query **will stop** at the phone's max width instead of being a `min-width` query since it would be better to just apply the phone styles as a base and use the tablet or desktop min-width queries for additional overrides.\n",
       source: "packages/utils/src/_mixins.scss#L279-L283",
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-utils-phone-max-width",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code: "@mixin rmd-utils-phone-media { … }",
       sourceCode:
         "@mixin rmd-utils-phone-media {\n  @media screen and (max-width: #{$rmd-utils-phone-max-width}) {\n    @content;\n  }\n}\n",
@@ -421,6 +474,13 @@ const sassdoc: PackageSassDoc = {
         "Creates a media query so devices targeted at the min-width of a tablet and above will gain these styles.\n",
       source: "packages/utils/src/_mixins.scss#L287-L291",
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-utils-tablet-min-width",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code: "@mixin rmd-utils-tablet-media { … }",
       sourceCode:
         "@mixin rmd-utils-tablet-media {\n  @media screen and (min-width: #{$rmd-utils-tablet-min-width}) {\n    @content;\n  }\n}\n",
@@ -432,6 +492,18 @@ const sassdoc: PackageSassDoc = {
         "Creates a media query so that screen sizes between the min and max width of a tablet will only gain these styles.\n",
       source: "packages/utils/src/_mixins.scss#L295-L299",
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-utils-tablet-min-width",
+          type: "variable",
+          packageName: "utils",
+        },
+        {
+          name: "rmd-utils-tablet-max-width",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code: "@mixin rmd-utils-tablet-only-media { … }",
       sourceCode:
         "@mixin rmd-utils-tablet-only-media {\n  @media screen and (min-width: #{$rmd-utils-tablet-min-width}) and (max-width: #{$rmd-utils-tablet-max-width}) {\n    @content;\n  }\n}\n",
@@ -443,6 +515,13 @@ const sassdoc: PackageSassDoc = {
         "Creates a media query so that screen sizes matching at least the min width for a desktop will gain these styles.\n",
       source: "packages/utils/src/_mixins.scss#L303-L307",
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-utils-desktop-min-width",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code: "@mixin rmd-utils-desktop-media { … }",
       sourceCode:
         "@mixin rmd-utils-desktop-media {\n  @media screen and (min-width: #{$rmd-utils-desktop-min-width}) {\n    @content;\n  }\n}\n",
@@ -454,6 +533,13 @@ const sassdoc: PackageSassDoc = {
         "Creates a media query so that screen sizes matching at least the min width for a large desktop will gain these styles.\n",
       source: "packages/utils/src/_mixins.scss#L311-L315",
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-utils-large-desktop-min-width",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code: "@mixin rmd-utils-large-desktop-media { … }",
       sourceCode:
         "@mixin rmd-utils-large-desktop-media {\n  @media screen and (min-width: #{$rmd-utils-large-desktop-min-width}) {\n    @content;\n  }\n}\n",
@@ -579,6 +665,14 @@ const sassdoc: PackageSassDoc = {
         "Generates a new grid based on the provided padding, margin, and columns.",
       source: "packages/utils/src/_mixins.scss#L446-L483",
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-grid-columns-var",
+          type: "variable",
+          packageName: "utils",
+        },
+        { name: "rmd-grid-gutter-var", type: "variable", packageName: "utils" },
+      ],
       code:
         "@mixin rmd-grid($padding: $rmd-grid-padding, $gutter: $rmd-grid-cell-margin, $phone-columns: $rmd-grid-phone-columns, $tablet-columns: $rmd-grid-tablet-columns, $desktop-columns: $rmd-grid-desktop-columns, $large-desktop-columns: $rmd-grid-large-desktop-columns) { … }",
       sourceCode:
@@ -635,6 +729,18 @@ const sassdoc: PackageSassDoc = {
         "This mixin is just a nice way to quickly make a cell span the entire width of the grid.\n\nNote: if you set the number of columns for phone or tablet to `1`, you'll need to also wrap this in the `@include rmd-utils-tablet-media` or `@include rmd-utils-desktop-media` mixins respectively.\n",
       source: "packages/utils/src/_mixins.scss#L491-L493",
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-grid-columns-var",
+          type: "variable",
+          packageName: "utils",
+        },
+        {
+          name: "rmd-grid-phone-columns",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code: "@mixin rmd-grid-cell-full { … }",
       sourceCode:
         "@mixin rmd-grid-cell-full {\n  grid-column: 1 / span var(#{$rmd-grid-columns-var}, $rmd-grid-phone-columns);\n}\n",
@@ -690,6 +796,18 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-grid-list-cell", type: "mixin", packageName: "utils" },
       ],
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-grid-cell-size-var",
+          type: "variable",
+          packageName: "utils",
+        },
+        {
+          name: "rmd-grid-cell-margin-var",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code:
         "@mixin rmd-grid-list-cell-size($property, $max-size: $rmd-grid-list-cell-max-size, $margin: $rmd-grid-list-cell-margin) { … }",
       sourceCode:
@@ -723,6 +841,18 @@ const sassdoc: PackageSassDoc = {
         "Adds the current grid list cell's size to any element if you don't want to use the `GridListCell` component for sizing. This will **always** apply the `margin` and `width`, but the `height` can be opted-out if desired.",
       source: "packages/utils/src/_mixins.scss#L586-L597",
       packageName: "utils",
+      requires: [
+        {
+          name: "rmd-grid-list-cell-size",
+          type: "mixin",
+          packageName: "utils",
+        },
+        {
+          name: "rmd-grid-cell-margin-var",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code:
         "@mixin rmd-grid-list-cell($margin: $rmd-grid-list-cell-margin, $max-size: $rmd-grid-list-cell-max-size, $include-height: true) { … }",
       sourceCode:
@@ -759,6 +889,14 @@ const sassdoc: PackageSassDoc = {
       source: "packages/utils/src/_mixins.scss#L646-L690",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "utils",
+      requires: [
+        { name: "rmd-theme", type: "mixin", packageName: "theme" },
+        {
+          name: "rmd-typography-base",
+          type: "mixin",
+          packageName: "typography",
+        },
+      ],
       code: "@mixin rmd-utils-base { … }",
       sourceCode:
         "@mixin rmd-utils-base {\n  *,\n  *::before,\n  *::after {\n    // setting everything to border-box for easier positioning\n    // and calculations\n    box-sizing: border-box;\n  }\n\n  html,\n  body {\n    height: 100%;\n    margin: 0;\n    padding: 0;\n  }\n\n  html {\n    @if mixin-exists(rmd-theme) {\n      @include rmd-theme(background-color, background);\n      @include rmd-theme(color, text-primary-on-background);\n    }\n\n    @if mixin-exists(rmd-typography-base) {\n      @include rmd-typography-base;\n    }\n  }\n\n  // this is required since this _should_ be the default behavior, but if you've\n  // manually set a `display` value on an element, it will override this\n  // behavior.\n  [hidden] {\n    // sass-lint:disable-block no-important\n    display: none !important;\n  }\n\n  body {\n    &.rmd-utils--touch {\n      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n\n      // this allows for click events to be bubbleable on iOS to the root document. Without this,\n      // all the `onOutsideClick` behavior won't work.\n      cursor: pointer;\n    }\n  }\n}\n",
@@ -780,6 +918,26 @@ const sassdoc: PackageSassDoc = {
           description: "Simple Usage",
         },
       ],
+      requires: [
+        {
+          name: "rmd-app-bar-dense-theme",
+          type: "mixin",
+          packageName: "app-bar",
+        },
+        { name: "rmd-toggle-dense-theme", type: "mixin", packageName: "form" },
+        { name: "rmd-icon-dense-theme", type: "mixin", packageName: "icon" },
+        { name: "rmd-list-dense-theme", type: "mixin", packageName: "list" },
+        {
+          name: "rmd-list-item-dense-theme",
+          type: "mixin",
+          packageName: "list",
+        },
+        {
+          name: "rmd-tooltip-dense-theme",
+          type: "mixin",
+          packageName: "tooltip",
+        },
+      ],
       code: "@mixin rmd-utils-dense { … }",
       sourceCode:
         "@mixin rmd-utils-dense {\n  @if mixin-exists(rmd-app-bar-dense-theme) {\n    @include rmd-app-bar-dense-theme;\n  }\n\n  @if mixin-exists(rmd-toggle-dense-theme) {\n    @include rmd-toggle-dense-theme;\n  }\n\n  @if mixin-exists(rmd-icon-dense-theme) {\n    @include rmd-icon-dense-theme;\n  }\n\n  @if mixin-exists(rmd-list-dense-theme) {\n    @include rmd-list-dense-theme;\n  }\n\n  @if mixin-exists(rmd-list-item-dense-theme) {\n    @include rmd-list-item-dense-theme;\n  }\n\n  @if mixin-exists(rmd-tooltip-dense-theme) {\n    @include rmd-tooltip-dense-theme;\n  }\n}\n",
@@ -791,6 +949,54 @@ const sassdoc: PackageSassDoc = {
         "This mixin will include the styles for all packages that have been imported in your scss files. If there are missing styles, you need to make sure to correctly import that package before calling this function.\n",
       source: "packages/utils/src/_mixins.scss#L732-L858",
       packageName: "utils",
+      requires: [
+        { name: "rmd-utils-base", type: "mixin", packageName: "utils" },
+        { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
+        { name: "react-md-badge", type: "mixin", packageName: "badge" },
+        { name: "react-md-button", type: "mixin", packageName: "button" },
+        { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
+        { name: "react-md-overlay", type: "mixin", packageName: "overlay" },
+        { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
+        { name: "react-md-card", type: "mixin", packageName: "card" },
+        { name: "react-md-chip", type: "mixin", packageName: "chip" },
+        { name: "react-md-divider", type: "mixin", packageName: "divider" },
+        {
+          name: "react-md-expansion-panel",
+          type: "mixin",
+          packageName: "expansion-panel",
+        },
+        { name: "react-md-form", type: "mixin", packageName: "form" },
+        { name: "react-md-icon", type: "mixin", packageName: "icon" },
+        { name: "react-md-link", type: "mixin", packageName: "link" },
+        { name: "react-md-list", type: "mixin", packageName: "list" },
+        { name: "react-md-media", type: "mixin", packageName: "media" },
+        { name: "react-md-menu", type: "mixin", packageName: "menu" },
+        { name: "react-md-progress", type: "mixin", packageName: "progress" },
+        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
+        { name: "react-md-layout", type: "mixin", packageName: "layout" },
+        { name: "react-md-states", type: "mixin", packageName: "states" },
+        { name: "react-md-table", type: "mixin", packageName: "table" },
+        { name: "react-md-tabs", type: "mixin", packageName: "tabs" },
+        { name: "react-md-theme", type: "mixin", packageName: "theme" },
+        { name: "react-md-tooltip", type: "mixin", packageName: "tooltip" },
+        {
+          name: "react-md-transition",
+          type: "mixin",
+          packageName: "transition",
+        },
+        { name: "react-md-tree", type: "mixin", packageName: "tree" },
+        {
+          name: "react-md-typography",
+          type: "mixin",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-utils-auto-dense",
+          type: "variable",
+          packageName: "utils",
+        },
+      ],
       code: "@mixin react-md-utils { … }",
       sourceCode:
         "@mixin react-md-utils {\n  @include rmd-utils-base;\n  @include react-md-utils-grid;\n\n  @if mixin-exists(react-md-alert) {\n    @include react-md-alert;\n  }\n\n  @if mixin-exists(react-md-avatar) {\n    @include react-md-avatar;\n  }\n\n  @if mixin-exists(react-md-badge) {\n    @include react-md-badge;\n  }\n\n  @if mixin-exists(react-md-button) {\n    @include react-md-button;\n  }\n\n  // has to come after buttons since it overrides some button styles\n  @if mixin-exists(react-md-app-bar) {\n    @include react-md-app-bar;\n  }\n\n  @if mixin-exists(react-md-overlay) {\n    @include react-md-overlay;\n  }\n\n  // has to come after overlays since it overrides the z-index\n  @if mixin-exists(react-md-dialog) {\n    @include react-md-dialog;\n  }\n\n  @if mixin-exists(react-md-card) {\n    @include react-md-card;\n  }\n\n  @if mixin-exists(react-md-chip) {\n    @include react-md-chip;\n  }\n\n  @if mixin-exists(react-md-divider) {\n    @include react-md-divider;\n  }\n\n  @if mixin-exists(react-md-expansion-panel) {\n    @include react-md-expansion-panel;\n  }\n\n  @if mixin-exists(react-md-form) {\n    @include react-md-form;\n  }\n\n  @if mixin-exists(react-md-icon) {\n    @include react-md-icon;\n  }\n\n  @if mixin-exists(react-md-link) {\n    @include react-md-link;\n  }\n\n  @if mixin-exists(react-md-list) {\n    @include react-md-list;\n  }\n\n  @if mixin-exists(react-md-media) {\n    @include react-md-media;\n  }\n\n  @if mixin-exists(react-md-menu) {\n    @include react-md-menu;\n  }\n\n  @if mixin-exists(react-md-progress) {\n    @include react-md-progress;\n  }\n\n  @if mixin-exists(react-md-sheet) {\n    @include react-md-sheet;\n  }\n\n  // has to come after sheet\n  @if mixin-exists(react-md-layout) {\n    @include react-md-layout;\n  }\n\n  @if mixin-exists(react-md-states) {\n    @include react-md-states;\n  }\n\n  @if mixin-exists(react-md-table) {\n    @include react-md-table;\n  }\n\n  @if mixin-exists(react-md-tabs) {\n    @include react-md-tabs;\n  }\n\n  @if mixin-exists(react-md-theme) {\n    @include react-md-theme;\n  }\n\n  @if mixin-exists(react-md-tooltip) {\n    @include react-md-tooltip;\n  }\n\n  @if mixin-exists(react-md-transition) {\n    @include react-md-transition;\n  }\n\n  @if mixin-exists(react-md-tree) {\n    @include react-md-tree;\n  }\n\n  @if mixin-exists(react-md-typography) {\n    @include react-md-typography;\n  }\n\n  @if $rmd-utils-auto-dense {\n    :root {\n      @include rmd-utils-desktop-media {\n        @include rmd-utils-dense;\n      }\n    }\n  }\n}\n",

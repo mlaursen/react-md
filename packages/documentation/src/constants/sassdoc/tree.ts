@@ -9,6 +9,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to quickly get one of the tree's theme values. This is really just for the `rmd-tree-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/tree/src/_functions.scss#L15-L17",
       packageName: "tree",
+      requires: [
+        {
+          name: "rmd-tree-theme-values",
+          type: "variable",
+          packageName: "tree",
+        },
+      ],
       code: "@function rmd-tree-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-tree-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-tree-theme-values, tree);\n}\n",
@@ -32,6 +39,13 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the tree's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-tree-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/tree/src/_functions.scss#L32-L34",
       packageName: "tree",
+      requires: [
+        {
+          name: "rmd-tree-theme-values",
+          type: "variable",
+          packageName: "tree",
+        },
+      ],
       code: "@function rmd-tree-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
         "@function rmd-tree-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-tree-theme-values,\n    tree,\n    $fallback\n  );\n}\n",
@@ -64,6 +78,13 @@ const sassdoc: PackageSassDoc = {
         "Creates the styles for one of the tree's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/tree/src/_mixins.scss#L23-L25",
       packageName: "tree",
+      requires: [
+        {
+          name: "rmd-tree-theme-values",
+          type: "variable",
+          packageName: "tree",
+        },
+      ],
       code:
         "@mixin rmd-tree-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -97,6 +118,13 @@ const sassdoc: PackageSassDoc = {
         "Updates one of the tree's theme variables with the new value for the section of your app.",
       source: "packages/tree/src/_mixins.scss#L33-L35",
       packageName: "tree",
+      requires: [
+        {
+          name: "rmd-tree-theme-values",
+          type: "variable",
+          packageName: "tree",
+        },
+      ],
       code: "@mixin rmd-tree-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-tree-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-tree-theme-values,\n    tree\n  );\n}\n",
@@ -139,6 +167,9 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "CSS Modules Usage",
         },
+      ],
+      requires: [
+        { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
       ],
       code:
         "@mixin rmd-tree-depths($selector-prefix: '', $min: 1, $max: $rmd-tree-max-depth, $incrementor: $rmd-tree-item-padding-incrementor, $base: $rmd-tree-item-padding-base) { … }",
@@ -190,6 +221,14 @@ const sassdoc: PackageSassDoc = {
       source: "packages/tree/src/_mixins.scss#L101-L113",
       usedBy: [{ name: "rmd-tree-depths", type: "mixin", packageName: "tree" }],
       packageName: "tree",
+      requires: [
+        { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
+        {
+          name: "rmd-list-item-horizontal-padding",
+          type: "variable",
+          packageName: "list",
+        },
+      ],
       code:
         "@mixin rmd-tree-item-at-depth($depth, $selector-prefix: '', $incrementor: $rmd-tree-item-padding-incrementor, $base: $rmd-tree-item-padding-base) { … }",
       sourceCode:
@@ -230,6 +269,15 @@ const sassdoc: PackageSassDoc = {
       source: "packages/tree/src/_mixins.scss#L116-L123",
       usedBy: [{ name: "react-md-tree", type: "mixin", packageName: "tree" }],
       packageName: "tree",
+      requires: [
+        { name: "rmd-tree-depths", type: "mixin", packageName: "tree" },
+        {
+          name: "rmd-utils-hide-focus-outline",
+          type: "mixin",
+          packageName: "utils",
+        },
+        { name: "rmd-utils-scroll", type: "mixin", packageName: "utils" },
+      ],
       code: "@mixin rmd-tree { … }",
       sourceCode:
         "@mixin rmd-tree {\n  @include rmd-tree-depths;\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-utils-scroll;\n\n  height: 100%;\n  width: 100%;\n}\n",
@@ -249,6 +297,34 @@ const sassdoc: PackageSassDoc = {
             '.rmd-tree-item {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  list-style: none;\n}\n.rmd-tree-item:focus {\n  outline-style: none;\n}\n.rmd-tree-item::-moz-focus-inner {\n  border: 0;\n}\n.rmd-tree-item__content {\n  min-height: var(--rmd-list-item-height, 3rem);\n  align-items: center;\n  display: flex;\n  padding: var(--rmd-list-item-vertical-padding, 0.5rem)\n    var(--rmd-list-item-horizontal-padding, 1rem);\n  position: relative;\n}\n.rmd-tree-item__content--clickable {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n.rmd-tree-item__content--clickable:focus {\n  outline-style: none;\n}\n.rmd-tree-item__content--clickable::-moz-focus-inner {\n  border: 0;\n}\n.rmd-tree-item__content--clickable:focus {\n  outline-style: none;\n}\n.rmd-tree-item__content--clickable::-moz-focus-inner {\n  border: 0;\n}\n.rmd-utils--keyboard .rmd-tree-item__content--clickable:focus::before {\n  box-shadow: var(--rmd-states-focus-shadow, inset 0 0 0 0.125rem #2196f3);\n}\n.rmd-tree-item__content--clickable::before {\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: 0;\n  background-color: var(--rmd-states-background-color, transparent);\n  transition: background-color 0.15s;\n}\n.rmd-tree-item__content--clickable:disabled,\n.rmd-tree-item__content--clickable[aria-disabled="true"] {\n  --rmd-states-hover-color: transparent;\n}\n.rmd-tree-item__content--clickable:not(:disabled):not([aria-disabled="true"]):hover {\n  cursor: pointer;\n}\n.rmd-tree-item__content--clickable:hover {\n  --rmd-states-background-color: var(\n    --rmd-states-hover-color,\n    rgba(0, 0, 0, 0.08)\n  );\n}\n.rmd-utils--keyboard .rmd-tree-item__content--clickable:focus {\n  --rmd-states-background-color: var(\n    --rmd-states-focus-color,\n    rgba(0, 0, 0, 0.24)\n  );\n}\n.rmd-utils--keyboard .rmd-tree-item__content--clickable:focus:hover {\n  --rmd-states-background-color: var(\n    --rmd-states-hover-color,\n    rgba(0, 0, 0, 0.08)\n  );\n}\n.rmd-utils--touch .rmd-tree-item__content--clickable:focus,\n.rmd-utils--touch .rmd-tree-item__content--clickable:hover {\n  --rmd-states-background-color: transparent;\n}\n.rmd-tree-item__content--clickable.rmd-states--pressed {\n  --rmd-states-background-color: var(\n    --rmd-states-pressed-color,\n    rgba(0, 0, 0, 0.32)\n  );\n}\n.rmd-utils--keyboard .rmd-tree-item__content--clickable.rmd-states--pressed {\n  --rmd-states-background-color: var(\n    --rmd-states-pressed-color,\n    rgba(0, 0, 0, 0.32)\n  );\n}\n.rmd-tree-item__content[aria-disabled] {\n  color: var(--rmd-theme-text-disabled-on-background, #9e9e9e);\n}\n.rmd-tree-item__content--link {\n  color: inherit;\n  text-decoration: none;\n}\n.rmd-tree-item__content--medium {\n  --rmd-list-item-height: var(--rmd-list-item-medium-height, 3.5rem);\n}\n.rmd-tree-item__content--large {\n  --rmd-list-item-height: var(--rmd-list-item-large-height, 4rem);\n}\n.rmd-tree-item__content--extra-large {\n  --rmd-list-item-height: var(--rmd-list-item-extra-large-height, 4.5rem);\n}\n.rmd-tree-item__content--three-lines {\n  --rmd-list-item-height: var(--rmd-list-item-three-line-height, 5.5rem);\n}\n.rmd-tree-item__content--three-lines .rmd-list-item__text--secondary {\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n  display: -webkit-box;\n  max-height: var(--rmd-list-item-secondary-three-line-height, 3rem);\n  line-height: 1.42857;\n  white-space: normal;\n}\n.rmd-tree-item__content--dense {\n  --rmd-list-item-height: var(--rmd-list-dense-item-height, 2.5rem);\n  --rmd-list-item-medium-height: var(--rmd-list-dense-item-medium-height, 3rem);\n  --rmd-list-item-large-height: var(--rmd-list-dense-item-large-height, 3.5rem);\n  --rmd-list-item-extra-large-height: var(\n    --rmd-list-dense-item-extra-large-height,\n    4rem\n  );\n  --rmd-list-item-three-line-height: var(\n    --rmd-list-dense-item-three-line-height,\n    5rem\n  );\n  --rmd-list-item-secondary-three-line-height: var(\n    --rmd-list-dense-item-secondary-three-line-height,\n    2.25rem\n  );\n}\n.rmd-tree-item__content__text {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  display: block;\n  flex-grow: 1;\n  z-index: 1;\n}\n[dir="rtl"] .rmd-tree-item__content__text {\n  margin-left: auto;\n}\n.rmd-tree-item__content__text--secondary {\n  color: var(--rmd-theme-text-secondary-on-background, #757575);\n}\n.rmd-tree-item__content__addon {\n  flex-shrink: 0;\n}\n.rmd-tree-item__content__addon--top {\n  align-self: flex-start;\n}\n.rmd-tree-item__content__addon--bottom {\n  align-self: flex-end;\n}\n.rmd-tree-item__content__addon--before {\n  --rmd-icon-text-spacing: calc(\n    var(--rmd-list-text-keyline, 4.5rem) -\n      var(--rmd-list-item-horizontal-padding, 1rem) -\n      var(--rmd-icon-size, 1.5rem)\n  );\n}\n.rmd-tree-item__content__addon--avatar-before {\n  --rmd-icon-text-spacing: calc(\n    var(--rmd-list-text-keyline, 4.5rem) -\n      var(--rmd-list-item-horizontal-padding, 1rem) -\n      var(--rmd-avatar-size, 2.5rem)\n  );\n}\n.rmd-tree-item__content__addon--media {\n  --rmd-icon-text-spacing: var(--rmd-list-media-spacing, 1rem);\n  width: var(--rmd-list-media-size, 3.5rem);\n}\n.rmd-tree-item__content__addon--media-large {\n  --rmd-list-media-size: var(--rmd-list-media-large-size, 6.25rem);\n}\n.rmd-tree-item__content--selected {\n  --rmd-states-background-color: var(\n    --rmd-states-selected-color,\n    rgba(0, 0, 0, 0.16)\n  );\n}\n.rmd-utils--touch .rmd-tree-item__content--selected:hover,\n.rmd-utils--touch .rmd-tree-item__content--selected:focus {\n  --rmd-states-background-color: var(\n    --rmd-states-selected-color,\n    rgba(0, 0, 0, 0.16)\n  );\n}\n.rmd-utils--keyboard .rmd-tree-item__content--focused {\n  box-shadow: inset 0 0 0 2px #2196f3;\n}\n',
           type: "scss",
           description: "Example Usage SCSS",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-utils-hide-focus-outline",
+          type: "mixin",
+          packageName: "utils",
+        },
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        {
+          name: "rmd-states-surface-selected",
+          type: "mixin",
+          packageName: "states",
+        },
+        {
+          name: "rmd-utils-map-to-styles",
+          type: "mixin",
+          packageName: "utils",
+        },
+        {
+          name: "rmd-tree-item-focused-styles",
+          type: "variable",
+          packageName: "tree",
+        },
+        {
+          name: "rmd-tree-item-keyboard-focused-styles",
+          type: "variable",
+          packageName: "tree",
         },
       ],
       code: "@mixin rmd-tree-item { … }",
@@ -282,6 +358,21 @@ const sassdoc: PackageSassDoc = {
       source: "packages/tree/src/_mixins.scss#L170-L188",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       packageName: "tree",
+      requires: [
+        { name: "rmd-tree", type: "mixin", packageName: "tree" },
+        { name: "rmd-tree-item", type: "mixin", packageName: "tree" },
+        { name: "rmd-tree-group", type: "mixin", packageName: "tree" },
+        {
+          name: "rmd-icon-theme-update-var",
+          type: "mixin",
+          packageName: "icon",
+        },
+        {
+          name: "rmd-tree-theme-values",
+          type: "variable",
+          packageName: "tree",
+        },
+      ],
       code: "@mixin react-md-tree { … }",
       sourceCode:
         "@mixin react-md-tree {\n  @include rmd-theme-create-root-theme($rmd-tree-theme-values, tree);\n\n  .rmd-tree {\n    @include rmd-tree;\n  }\n\n  .rmd-tree-item {\n    @include rmd-tree-item;\n  }\n\n  .rmd-tree-group {\n    @include rmd-tree-group;\n  }\n\n  .rmd-tree-item__rotator-icon {\n    @include rmd-icon-theme-update-var(rotate-to, rotate(90deg));\n  }\n}\n",
@@ -309,6 +400,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
       ],
       packageName: "tree",
+      requires: [
+        {
+          name: "rmd-list-item-horizontal-padding",
+          type: "variable",
+          packageName: "list",
+        },
+      ],
       type: "Number",
       value: "$rmd-list-item-horizontal-padding * 1.5",
       compiled: "1.5rem",
@@ -324,6 +422,13 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
       ],
       packageName: "tree",
+      requires: [
+        {
+          name: "rmd-list-item-text-keyline",
+          type: "variable",
+          packageName: "list",
+        },
+      ],
       type: "Number",
       value: "$rmd-list-item-text-keyline",
       compiled: "4.5rem",
@@ -354,6 +459,9 @@ const sassdoc: PackageSassDoc = {
       ],
       usedBy: [{ name: "rmd-tree-item", type: "mixin", packageName: "tree" }],
       packageName: "tree",
+      requires: [
+        { name: "rmd-blue-500", type: "variable", packageName: "theme" },
+      ],
       type: "Map",
       value: "(\n  box-shadow: inset 0 0 0 2px $rmd-blue-500,\n)",
       compiled: "(\n  box-shadow: inset 0 0 0 2px #2196f3,\n)",

@@ -34,6 +34,39 @@ const sassdoc: PackageSassDoc = {
           description: "Merging Shadows",
         },
       ],
+      requires: [
+        {
+          name: "rmd-elevation-shadow-1-map",
+          type: "variable",
+          packageName: "elevation",
+        },
+        {
+          name: "rmd-elevation-shadow-1-opacity",
+          type: "variable",
+          packageName: "elevation",
+        },
+        {
+          name: "rmd-elevation-shadow-2-map",
+          type: "variable",
+          packageName: "elevation",
+        },
+        {
+          name: "rmd-elevation-shadow-2-opacity",
+          type: "variable",
+          packageName: "elevation",
+        },
+        {
+          name: "rmd-elevation-shadow-3-map",
+          type: "variable",
+          packageName: "elevation",
+        },
+        {
+          name: "rmd-elevation-shadow-3-opacity",
+          type: "variable",
+          packageName: "elevation",
+        },
+        { name: "rmd-theme", type: "function", packageName: "theme" },
+      ],
       code:
         "@function rmd-elevation($z-value, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",
       sourceCode:
@@ -91,6 +124,9 @@ const sassdoc: PackageSassDoc = {
           description: "Example Usage SCSS",
         },
       ],
+      requires: [
+        { name: "rmd-elevation", type: "function", packageName: "elevation" },
+      ],
       code:
         "@mixin rmd-elevation($z-value, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",
       sourceCode:
@@ -124,6 +160,14 @@ const sassdoc: PackageSassDoc = {
       source: "packages/elevation/src/_mixins.scss#L56-L79",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "elevation",
+      requires: [
+        {
+          name: "rmd-transition-shadow-transition",
+          type: "mixin",
+          packageName: "transition",
+        },
+        { name: "rmd-elevation", type: "function", packageName: "elevation" },
+      ],
       code:
         "@mixin rmd-elevation-transition($start, $end, $active-selectors, $before: true, $duration: $rmd-transition-standard-time, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",
       sourceCode:
@@ -183,6 +227,9 @@ const sassdoc: PackageSassDoc = {
       description: "The normal elevation color to use.",
       source: "packages/elevation/src/_variables.scss#L15",
       packageName: "elevation",
+      requires: [
+        { name: "rmd-black-base", type: "variable", packageName: "theme" },
+      ],
       type: "Color",
       value: "$rmd-black-base",
       compiled: "#000",
