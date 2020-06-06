@@ -1,6 +1,6 @@
 {
   "name": "@react-md/expansion-panel",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "Create accessible expansion components for accordions and disclosures.",
   "scripts": {
     "build": "dev-utils build",
@@ -37,12 +37,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/button": "^2.0.0-beta.1",
-    "@react-md/card": "^2.0.0-beta.1",
-    "@react-md/icon": "^2.0.0-beta.1",
-    "@react-md/theme": "^2.0.0-beta.1",
-    "@react-md/transition": "^2.0.0-beta.1",
-    "@react-md/utils": "^2.0.0-beta.1",
+    "@react-md/button": "^2.0.0-beta.2",
+    "@react-md/card": "^2.0.0-beta.2",
+    "@react-md/icon": "^2.0.0-beta.2",
+    "@react-md/theme": "^2.0.0-beta.2",
+    "@react-md/transition": "^2.0.0-beta.2",
+    "@react-md/utils": "^2.0.0-beta.2",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {
