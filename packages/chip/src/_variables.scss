@@ -66,7 +66,13 @@ $rmd-chip-progress-width: 12 !default;
 /// @require rmd-theme-get-swatch
 /// @require $rmd-theme-primary
 /// @type Color
-$rmd-chip-themed-background-color: rmd-theme-get-swatch($rmd-theme-primary, 300) !default;
+$rmd-chip-themed-background-color: rmd-theme-get-swatch(
+  $rmd-theme-primary,
+  300,
+  false,
+  darken($rmd-theme-primary, 20%),
+  rmd-chip-themed-background-color
+) !default;
 
 /// The color to use for the selected themed state of the chip.
 ///

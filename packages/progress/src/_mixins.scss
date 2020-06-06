@@ -33,7 +33,9 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-progress-theme-values, progress);
 }
 
-/// @param styles - The current animation styles to use
+/// Creates the styles for the progress animation
+///
+/// @param {Map} styles - The current animation styles to use
 /// @access private
 @mixin rmd-progress-animation($styles) {
   @if $styles != null {

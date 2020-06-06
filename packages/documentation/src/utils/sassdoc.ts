@@ -730,9 +730,11 @@ export interface FormattedItem {
  */
 export type JoinedDataType =
   | "Map|String"
+  | "List|Map"
   | "List|String"
   | "Color|String"
   | "Color|String|Number"
+  | "String|Null"
   | "String|Number"
   | "String...";
 export type SupportedVariableType = DataType | JoinedDataType;

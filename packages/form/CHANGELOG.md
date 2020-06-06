@@ -51,11 +51,11 @@ without any additional wrappers.
 - added new components for creating a custom `TextField` with the
   `TextFieldContainer` and `TextFieldAddon` components
 - added an `AsyncSwitch` component to be able to render a `CircularProgress`
-  indicator within a `Switch` while some asyncronous action is waiting
+  indicator within a `Switch` while some asynchronous action is waiting
 - added a few hooks that might be helpful for the form control states:
   `useChoice`, `useSelectState`, `useChecked` (might change going forward)
 - updated the `Select` component to use fixed positioning instead of relative
-  pospositioning by default so that the menu always appears within the viewport
+  positioning by default so that the menu always appears within the viewport
 
 ## Breaking Changes
 
@@ -67,15 +67,15 @@ without any additional wrappers.
 
 ### New SCSS Variables, Functions, and Mixins
 
-- `$rmd-label-padding: 0.25rem !default` - the amount of horizontl padding t use
-  for a floating label
+- `$rmd-label-padding: 0.25rem !default` - the amount of horizontal padding to
+  use for a floating label
 - `$rmd-toggle-border-radius: 50% !default` - the border radius for the checkbox
   and radio components
-- `$rmd-toggle-inset: 0.3125rem !default` - The distance the background layerf
+- `$rmd-toggle-inset: 0.3125rem !default` - The distance the background layer
   for the checkbox and radio components should be inset relative to the
   container element
 - `$rmd-toggle-dense-inset: 0.25rem !default` - The distance the background
-  layerf for the checkbox and radio components should be inset relative to the
+  layer for the checkbox and radio components should be inset relative to the
   container element when the dense spec i enabled
 - `$rmd-checkbox-indeterminate-height: 0.15rem !default` - the height for the
   indeterminate checkbox's state line that covers the icon
@@ -88,13 +88,13 @@ without any additional wrappers.
   padding for the switch's container
 - `$rmd-switch-container-horizontal-padding: $rmd-switch-ball-size / 2 !default`
   the horizontal padding for the switch's container
-- `$rmd-switch-ball-disabled-color: rmd-theme-get-swatch($rmd-theme-secondary, 200, false, lighten($rmd-theme-secondary, 12%)) !default` -
+- `$rmd-switch-ball-disabled-color: rmd-theme-get-swatch($rmd-theme-secondary, 200, false, darken($rmd-theme-secondary, 5%), rmd-switch-ball-disabled-color) !default` -
   the color to use for the switch's ball when it is toggled on and disabled
 - `$rmd-switch-progress-width: 12 !default` - the width for the circular
   progress bar in the `AsyncSwitch`
 - `$rmd-switch-progress-background-color: $rmd-white-base !default` - the
-  backgrobackground color to use for the switch's ball while the `AsyncSwitch`
-  is loading
+  background color to use for the switch's ball while the `AsyncSwitch` is
+  loading
 - `$rmd-switch-progress-padding: 0.125rem !default` - the amount of padding to
   apply to the `AsyncSwitch`'s progress bar
 

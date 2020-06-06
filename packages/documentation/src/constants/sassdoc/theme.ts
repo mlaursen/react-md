@@ -6,7 +6,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-luminance": {
       name: "rmd-theme-luminance",
       description: "Calculate the luminance for a color.",
-      source: "packages/theme/src/_color-a11y.scss#L100-L109",
+      source: "packages/theme/src/_color-a11y.scss#L99-L108",
       links: [
         {
           name: "",
@@ -31,12 +31,15 @@ const sassdoc: PackageSassDoc = {
       parameters: [
         { type: "Color", name: "color", description: "The color to check" },
       ],
-      returns: { type: "Number" },
+      returns: {
+        type: "Number",
+        description: "A number representing the luminance for the color.",
+      },
     },
     "rmd-theme-contrast": {
       name: "rmd-theme-contrast",
-      description: "Gets the contrast between two colors.\n",
-      source: "packages/theme/src/_color-a11y.scss#L118-L123",
+      description: "Gets the contrast between two colors.",
+      source: "packages/theme/src/_color-a11y.scss#L117-L122",
       usedBy: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
       ],
@@ -57,13 +60,17 @@ const sassdoc: PackageSassDoc = {
             "The foreground color that should be compared to the background color for contrast ratio.",
         },
       ],
-      returns: { type: "Number" },
+      returns: {
+        type: "Number",
+        description:
+          "The contrast ratio between the background and foreground colors",
+      },
     },
     "rmd-theme-tone": {
       name: "rmd-theme-tone",
       description:
         "Determines if a provided color is considered light or dark.",
-      source: "packages/theme/src/_color-a11y.scss#L134-L147",
+      source: "packages/theme/src/_color-a11y.scss#L133-L146",
       links: [
         {
           name: "",
@@ -175,7 +182,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-contrast-tone",
       description:
         "Determines if the provided color should have a light or dark contrast using the luminance algorithm to maintain a required contrast ratio for accessibility.",
-      source: "packages/theme/src/_color-a11y.scss#L161-L163",
+      source: "packages/theme/src/_color-a11y.scss#L160-L162",
       links: [
         {
           name: "",
@@ -278,8 +285,8 @@ const sassdoc: PackageSassDoc = {
       code:
         "@function rmd-theme-get-swatch($color, $swatch, $accent: false, $fallback-color: null, $fallback-name: null) { … }",
       sourceCode:
-        '@function rmd-theme-get-swatch(\n  $color,\n  $swatch,\n  $accent: false,\n  $fallback-color: null,\n  $fallback-name: null\n) {\n  $current-color-index: index(map-values($rmd-theme-color-map), $color);\n\n  @if not $current-color-index or $current-color-index < 1 {\n    @if $fallback-color == null {\n      $fallback: if(\n        $fallback-name,\n        "the \'$#{$fallback-name}\' variable",\n        "a fallback color"\n      );\n\n      $error-msg: "Invalid material design color: \'#{$color}\'. If this was intentional because your app does " +\n        "not use material design colors, set #{$fallback} instead to get a correct color for the provided swatch: " +\n        "#{$swatch}.";\n      @error $error-msg;\n    } @else if type-of($fallback-color) != "color" {\n      @error \'Invalid fallback color: \\\'#{$fallback-color}\\\'. This must be a valid color.\';\n    }\n\n    @return $fallback-color;\n  }\n\n  $suffixes: rmd-utils-validate(\n    if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes),\n    $swatch,\n    "material design color swatch"\n  );\n\n  $current-color-name: nth(\n    map-keys($rmd-theme-color-map),\n    $current-color-index\n  );\n  $accent-index: str-index($current-color-name, "-a-");\n  @if $accent-index {\n    $current-color-name: str-slice($current-color-name, 1, $accent-index - 1);\n  } @else {\n    $index: 1;\n    $found: false;\n    @while not $found and $index < length($rmd-theme-primary-suffixes) {\n      $suffix: nth($rmd-theme-colors, $index);\n      $suffix-index: str-index($current-color-name, $suffix);\n      @if $suffix-index {\n        $found: true;\n        $current-color-name: str-slice(\n          $current-color-name,\n          1,\n          $suffix-index - 1 + str-length($suffix)\n        );\n      }\n\n      $index: $index + 1;\n    }\n  }\n\n  $color-name: "#{$current-color-name}#{if($accent, "-a", "")}-#{$swatch}";\n\n  @return map-get($rmd-theme-color-map, $color-name);\n}\n',
-      throws: ["Invalid fallback color: \\"],
+        '@function rmd-theme-get-swatch(\n  $color,\n  $swatch,\n  $accent: false,\n  $fallback-color: null,\n  $fallback-name: null\n) {\n  $current-color-index: index(map-values($rmd-theme-color-map), $color);\n\n  @if not $current-color-index or $current-color-index < 1 {\n    @if $fallback-color == null {\n      $fallback: if(\n        $fallback-name,\n        "the \'$#{$fallback-name}\' variable",\n        "a fallback color"\n      );\n\n      $error-msg: "Invalid material design color: \'#{$color}\'. If this was intentional because your app does " +\n        "not use material design colors, set #{$fallback} instead to get a correct color for the provided swatch: " +\n        "#{$swatch}.";\n      @error $error-msg;\n    } @else if type-of($fallback-color) != "color" {\n      @error "Invalid fallback color: \'#{$fallback-color}\'. This must be a valid color.";\n    }\n\n    @return $fallback-color;\n  }\n\n  $suffixes: rmd-utils-validate(\n    if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes),\n    $swatch,\n    "material design color swatch"\n  );\n\n  $current-color-name: nth(\n    map-keys($rmd-theme-color-map),\n    $current-color-index\n  );\n  $accent-index: str-index($current-color-name, "-a-");\n  @if $accent-index {\n    $current-color-name: str-slice($current-color-name, 1, $accent-index - 1);\n  } @else {\n    $index: 1;\n    $found: false;\n    @while not $found and $index < length($rmd-theme-primary-suffixes) {\n      $suffix: nth($rmd-theme-colors, $index);\n      $suffix-index: str-index($current-color-name, $suffix);\n      @if $suffix-index {\n        $found: true;\n        $current-color-name: str-slice(\n          $current-color-name,\n          1,\n          $suffix-index - 1 + str-length($suffix)\n        );\n      }\n\n      $index: $index + 1;\n    }\n  }\n\n  $color-name: "#{$current-color-name}#{if($accent, "-a", "")}-#{$swatch}";\n\n  @return map-get($rmd-theme-color-map, $color-name);\n}\n',
+      throws: ["Invalid fallback color: "],
       type: "function",
       parameters: [
         {

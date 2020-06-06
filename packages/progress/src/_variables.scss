@@ -31,7 +31,8 @@ $rmd-progress-background-color: rmd-theme-get-swatch(
   $rmd-theme-primary,
   300,
   false,
-  rgba($rmd-theme-primary, 0.4)
+  rgba($rmd-theme-primary, 0.4),
+  rmd-progress-background-color
 ) !default;
 
 /// This is the linear progress bar's height or the width when switched to

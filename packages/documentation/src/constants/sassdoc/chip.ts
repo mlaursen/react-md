@@ -395,7 +395,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-themed-background-color",
       description:
         "The background color to use for the selected themed state of the chip. This is basically a secondary type of selected state.",
-      source: "packages/chip/src/_variables.scss#L69",
+      source: "packages/chip/src/_variables.scss#L69-L75",
       requires: [
         {
           name: "rmd-theme-get-swatch",
@@ -406,7 +406,8 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "chip",
       type: "Color",
-      value: "rmd-theme-get-swatch($rmd-theme-primary, 300)",
+      value:
+        "rmd-theme-get-swatch(\n  $rmd-theme-primary,\n  300,\n  false,\n  darken($rmd-theme-primary, 20%),\n  rmd-chip-themed-background-color\n)",
       compiled: "#ba68c8",
       overridable: true,
     },
@@ -414,7 +415,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-themed-color",
       description:
         "The color to use for the selected themed state of the chip.",
-      source: "packages/chip/src/_variables.scss#L77-L81",
+      source: "packages/chip/src/_variables.scss#L83-L87",
       requires: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
@@ -431,7 +432,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-light-background-color",
       description:
         'The background color to use for "solid" themed chips when using the light theme.',
-      source: "packages/chip/src/_variables.scss#L88",
+      source: "packages/chip/src/_variables.scss#L94",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -448,7 +449,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-light-color",
       description:
         'The text color to use for "solid" themed chips when using the light theme.',
-      source: "packages/chip/src/_variables.scss#L96-L100",
+      source: "packages/chip/src/_variables.scss#L102-L106",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -468,7 +469,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-light-disabled-background-color",
       description:
         "The background color to use for a solid disabled chip when using the light theme.",
-      source: "packages/chip/src/_variables.scss#L107",
+      source: "packages/chip/src/_variables.scss#L113",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -485,7 +486,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-dark-background-color",
       description:
         'The background color to use for "solid" themed chips when using the dark theme.',
-      source: "packages/chip/src/_variables.scss#L114",
+      source: "packages/chip/src/_variables.scss#L120",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       requires: [
         { name: "rmd-grey-900", type: "variable", packageName: "theme" },
@@ -500,7 +501,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-dark-color",
       description:
         'The text color to use for "solid" themed chips when using the dark theme.',
-      source: "packages/chip/src/_variables.scss#L122-L126",
+      source: "packages/chip/src/_variables.scss#L128-L132",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       requires: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
@@ -518,7 +519,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-dark-disabled-background-color",
       description:
         "The background color to use for a solid disabled chip when using the dark theme.",
-      source: "packages/chip/src/_variables.scss#L133",
+      source: "packages/chip/src/_variables.scss#L139",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       requires: [
         { name: "rmd-grey-900", type: "variable", packageName: "theme" },
@@ -532,7 +533,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-solid-background-color": {
       name: "rmd-chip-solid-background-color",
       description: 'The background color to use for "solid" themed chips.',
-      source: "packages/chip/src/_variables.scss#L139-L143",
+      source: "packages/chip/src/_variables.scss#L145-L149",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -546,7 +547,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-solid-color": {
       name: "rmd-chip-solid-color",
       description: 'The text color to use for "solid" themed chips.',
-      source: "packages/chip/src/_variables.scss#L149-L153",
+      source: "packages/chip/src/_variables.scss#L155-L159",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -561,7 +562,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-solid-disabled-background-color",
       description:
         'The background color to use for "solid" themed chips that are disabled.',
-      source: "packages/chip/src/_variables.scss#L159-L163",
+      source: "packages/chip/src/_variables.scss#L165-L169",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -576,7 +577,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-outline-light-background-color",
       description:
         'The background color to use for "outlined" themed chips when using the light theme.',
-      source: "packages/chip/src/_variables.scss#L170",
+      source: "packages/chip/src/_variables.scss#L176",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -597,7 +598,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-outline-light-color",
       description:
         'The text color to use for "outlined" themed chips when using the light theme.',
-      source: "packages/chip/src/_variables.scss#L179-L183",
+      source: "packages/chip/src/_variables.scss#L185-L189",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -617,7 +618,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-outline-dark-background-color",
       description:
         'The background color to use for "outlined" themed chips when using the dark theme.',
-      source: "packages/chip/src/_variables.scss#L190",
+      source: "packages/chip/src/_variables.scss#L196",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       requires: [
         {
@@ -636,7 +637,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-outline-dark-color",
       description:
         'The text color to use for "outlined" themed chips when using the dark theme.',
-      source: "packages/chip/src/_variables.scss#L198-L202",
+      source: "packages/chip/src/_variables.scss#L204-L208",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       requires: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
@@ -653,7 +654,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-outline-background-color": {
       name: "rmd-chip-outline-background-color",
       description: 'The background color to use for "outlined" themed chips.',
-      source: "packages/chip/src/_variables.scss#L208-L212",
+      source: "packages/chip/src/_variables.scss#L214-L218",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -667,7 +668,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-outline-color": {
       name: "rmd-chip-outline-color",
       description: 'The tect color to use for "outlined" themed chips.',
-      source: "packages/chip/src/_variables.scss#L218-L222",
+      source: "packages/chip/src/_variables.scss#L224-L228",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -681,7 +682,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-chip-outline-border-color": {
       name: "rmd-chip-outline-border-color",
       description: 'The border color to use for "outline" themed chips.',
-      source: "packages/chip/src/_variables.scss#L228",
+      source: "packages/chip/src/_variables.scss#L234",
       requires: [
         { name: "rmd-grey-300", type: "variable", packageName: "theme" },
       ],
@@ -695,7 +696,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-transition-duration",
       description:
         "The transition duration for animating the box-shadow elevation for a chip while being pressed by a keyboard.",
-      source: "packages/chip/src/_variables.scss#L235",
+      source: "packages/chip/src/_variables.scss#L241",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       requires: [
         {
@@ -714,7 +715,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-box-shadow",
       description:
         "The base box-shadow to apply to chips when outlined. This will normally be used along with a color variable to define a box shadow.\n",
-      source: "packages/chip/src/_variables.scss#L240",
+      source: "packages/chip/src/_variables.scss#L246",
       usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
       packageName: "chip",
       type: "String",
@@ -725,7 +726,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-chip-theme-values",
       description:
         'A Map of all the "themeable" parts of the chip package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/chip/src/_variables.scss#L246-L260",
+      source: "packages/chip/src/_variables.scss#L252-L266",
       usedBy: [
         { name: "rmd-chip-theme", type: "function", packageName: "chip" },
         { name: "rmd-chip-theme-var", type: "function", packageName: "chip" },

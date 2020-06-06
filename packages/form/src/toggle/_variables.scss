@@ -85,7 +85,8 @@ $rmd-switch-ball-disabled-color: rmd-theme-get-swatch(
   $rmd-theme-secondary,
   200,
   false,
-  lighten($rmd-theme-secondary, 12%)
+  darken($rmd-theme-secondary, 5%),
+  rmd-switch-ball-disabled-color
 ) !default;
 
 /// The width of the circular progress bar. This will make the progress bar more

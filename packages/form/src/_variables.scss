@@ -27,7 +27,8 @@ $rmd-form-error-hover-color: rmd-theme-get-swatch(
   $rmd-form-error-color,
   700,
   true,
-  darken($rmd-form-error-color, 20%)
+  darken($rmd-form-error-color, 10%),
+  rmd-form-error-color
 ) !default;
 
 /// The color to use when a form element (text, checkbox, radio, etc) is

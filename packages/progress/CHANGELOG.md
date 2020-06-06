@@ -26,7 +26,7 @@ hopefully be easier to work with.
 
 - `$rmd-progress-color: $rmd-theme-primary !default` - A new variable to
   configure the progress color
-- `$rmd-progress-background-color: rmd-theme-get-swatch($rmd-theme-primary, 300, false, rgba($rmd-theme-primary, 0.4)) !default` -
+- `$rmd-progress-background-color: rmd-theme-get-swatch($rmd-theme-primary, 300, false, rgba($rmd-theme-primary, 0.4), rmd-progress-background-color) !default` -
   The background color to use for the incomplete progress part of the linear
   progress bar
 - `$rmd-linear-progress-styles` - A Map that gets converted into the linear

@@ -1231,7 +1231,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-error-hover-color",
       description:
         "This is the color that is used when a text field/textarea is errored and the user hovers over it.",
-      source: "packages/form/src/_variables.scss#L26-L31",
+      source: "packages/form/src/_variables.scss#L26-L32",
       requires: [
         {
           name: "rmd-theme-get-swatch",
@@ -1242,7 +1242,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       type: "Color",
       value:
-        "rmd-theme-get-swatch(\n  $rmd-form-error-color,\n  700,\n  true,\n  darken($rmd-form-error-color, 20%)\n)",
+        "rmd-theme-get-swatch(\n  $rmd-form-error-color,\n  700,\n  true,\n  darken($rmd-form-error-color, 10%),\n  rmd-form-error-color\n)",
       compiled: "#d50000",
       overridable: true,
     },
@@ -1250,7 +1250,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-active-color",
       description:
         "The color to use when a form element (text, checkbox, radio, etc) is currently active by the user(normally focus).",
-      source: "packages/form/src/_variables.scss#L38",
+      source: "packages/form/src/_variables.scss#L39",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
@@ -1263,7 +1263,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-form-disabled-color": {
       name: "rmd-form-disabled-color",
       description: "The color to use when a form element is disabled.",
-      source: "packages/form/src/_variables.scss#L44",
+      source: "packages/form/src/_variables.scss#L45",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
@@ -1277,7 +1277,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-placeholder-color",
       description:
         "The default color to use for placeholder text within text fields.",
-      source: "packages/form/src/_variables.scss#L50",
+      source: "packages/form/src/_variables.scss#L51",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
@@ -1291,7 +1291,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-theme-values",
       description:
         'A Map of all the "themeable" parts of the form package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/form/src/_variables.scss#L58-L90",
+      source: "packages/form/src/_variables.scss#L59-L91",
       usedBy: [
         { name: "rmd-form-theme", type: "function", packageName: "form" },
         { name: "rmd-form-theme-var", type: "function", packageName: "form" },
@@ -2183,7 +2183,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-ball-disabled-color",
       description:
         "The color to use for the switch's ball when it is toggled on and disabled.",
-      source: "packages/form/src/toggle/_variables.scss#L84-L89",
+      source: "packages/form/src/toggle/_variables.scss#L84-L90",
       usedBy: [
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
       ],
@@ -2198,7 +2198,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       type: "Color",
       value:
-        "rmd-theme-get-swatch(\n  $rmd-theme-secondary,\n  200,\n  false,\n  lighten($rmd-theme-secondary, 12%)\n)",
+        "rmd-theme-get-swatch(\n  $rmd-theme-secondary,\n  200,\n  false,\n  darken($rmd-theme-secondary, 5%),\n  rmd-switch-ball-disabled-color\n)",
       compiled: "#f48fb1",
       overridable: true,
     },
@@ -2206,7 +2206,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-width",
       description:
         "The width of the circular progress bar. This will make the progress bar more prominent than the normal circular progress.\n",
-      source: "packages/form/src/toggle/_variables.scss#L94",
+      source: "packages/form/src/toggle/_variables.scss#L95",
       usedBy: [{ name: "rmd-switch", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2217,7 +2217,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-background-color",
       description:
         "The background color to use for the switch's ball while the the switch is loading.",
-      source: "packages/form/src/toggle/_variables.scss#L100",
+      source: "packages/form/src/toggle/_variables.scss#L101",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-white-base", type: "variable", packageName: "theme" },
@@ -2232,7 +2232,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-padding",
       description:
         "The amount of padding to apply to the async switch's progress bar. This will make it so there is some space between the switch's ball and the progress bar.\n",
-      source: "packages/form/src/toggle/_variables.scss#L105",
+      source: "packages/form/src/toggle/_variables.scss#L106",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",

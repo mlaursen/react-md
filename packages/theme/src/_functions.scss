@@ -65,7 +65,7 @@
         '#{$swatch}.';
       @error $error-msg;
     } @else if type-of($fallback-color) != 'color' {
-      @error 'Invalid fallback color: \'#{$fallback-color}\'. This must be a valid color.';
+      @error "Invalid fallback color: '#{$fallback-color}'. This must be a valid color.";
     }
 
     @return $fallback-color;

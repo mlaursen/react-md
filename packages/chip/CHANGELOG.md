@@ -43,7 +43,7 @@ theming support for the v2 release.
   circular progress within a chip
 - `$rmd-chip-progress-width: 12 !default` - the `stroke-width` to use for the
   circular progress within a chip
-- `$rmd-chip-themed-background-color: rmd-theme-get-swatch($rmd-theme-primary, 300) !default` -
+- `$rmd-chip-themed-background-color: rmd-theme-get-swatch($rmd-theme-primary, 300, false, darken($rmd-theme-primary, 20%)) !default` -
   the background-color to use for the selected and themed state of the chip
 - `$rmd-chip-themed-color: if(rmd-theme-tone($rmd-chip-themed-background-color) == light, $rmd-black-base, $rmd-white-base) !default` -
   The text color to use for the selected and themed state of the chip
