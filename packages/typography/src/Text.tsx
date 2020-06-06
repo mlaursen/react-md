@@ -7,7 +7,7 @@ import {
   ReactNode,
 } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/utils";
+import { bem, ClassNameCloneableChild } from "@react-md/utils";
 
 /**
  * A union of all the material design provided typography styles. When used with
@@ -106,7 +106,7 @@ export interface TextProps extends HTMLAttributes<TextElement> {
    * render function, a different wrapper component can be provided using the
    * `component` prop.
    */
-  children?: ReactNode | TextRenderFunction;
+  children?: ReactNode | ClassNameCloneableChild | TextRenderFunction;
 
   /**
    * An optional text alignment to apply.

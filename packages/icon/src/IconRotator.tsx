@@ -5,13 +5,10 @@ import React, {
   forwardRef,
   HTMLAttributes,
   isValidElement,
-  ReactElement,
   ReactNode,
 } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/utils";
-
-export type CloneableClassNameChild = ReactElement<{ className?: string }>;
+import { bem, ClassNameCloneableChild } from "@react-md/utils";
 
 export interface IconRotatorBaseProps extends HTMLAttributes<HTMLSpanElement> {
   /**
@@ -73,7 +70,7 @@ const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
   ) {
     const className = cn(block({ animate, rotated }), propClassName);
     if (!forceIconWrap && isValidElement(children)) {
-      const child = Children.only<CloneableClassNameChild>(children);
+      const child = Children.only<ClassNameCloneableChild>(children);
       return cloneElement(child, {
         className: cn(className, child.props.className),
       });

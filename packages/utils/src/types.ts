@@ -1,4 +1,4 @@
-import { Ref } from "react";
+import { Ref, ReactElement } from "react";
 
 export type Maybe<T, NotFound = null> = T | NotFound;
 
@@ -12,6 +12,14 @@ export type PropsWithRef<P extends {}, E extends HTMLElement> = P & {
    */
   ref?: Ref<E>;
 };
+
+/**
+ * A simple type that can be used for different components that clone a
+ * `className` into a child component.
+ */
+export type ClassNameCloneableChild<T = {}> = ReactElement<
+  T & { className?: string }
+>;
 
 /**
  * This type allows you to require at least one of the provided keys. This is

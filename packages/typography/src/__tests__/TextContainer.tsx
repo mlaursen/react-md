@@ -98,4 +98,34 @@ describe("TextContainer", () => {
       "rmd-text-container rmd-text-container--auto test-class-name"
     );
   });
+
+  it("should be able to clone the class name into the child element", () => {
+    const { getByText, rerender } = render(
+      <TextContainer clone>
+        <div>Content</div>
+      </TextContainer>
+    );
+
+    expect(getByText("Content")).toHaveClass(
+      "rmd-text-container rmd-text-container--auto"
+    );
+
+    rerender(
+      <TextContainer clone className="custom">
+        <div>Content</div>
+      </TextContainer>
+    );
+    expect(getByText("Content")).toHaveClass(
+      "rmd-text-container rmd-text-container--auto custom"
+    );
+
+    rerender(
+      <TextContainer clone className="custom">
+        <div className="div">Content</div>
+      </TextContainer>
+    );
+    expect(getByText("Content")).toHaveClass(
+      "rmd-text-container rmd-text-container--auto custom div"
+    );
+  });
 });

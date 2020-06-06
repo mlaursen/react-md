@@ -1,11 +1,15 @@
 import React, {
+  Children,
+  cloneElement,
   ElementType,
   forwardRef,
   HTMLAttributes,
+  isValidElement,
   ReactElement,
   ReactNode,
 } from "react";
 import cn from "classnames";
+import { ClassNameCloneableChild } from "@react-md/utils";
 
 /**
  * A union of the available text container sizes. One of these values must be
@@ -50,7 +54,16 @@ export interface TextContainerProps extends HTMLAttributes<HTMLDivElement> {
    * render function, a different wrapper component can be provided using the
    * `component` prop.
    */
-  children?: ReactNode | TextContainerRenderFunction;
+  children?: ReactNode | ClassNameCloneableChild | TextContainerRenderFunction;
+
+  /**
+   * Boolean if the `className` should be cloned into the `children` for this
+   * component.
+   *
+   * Note: This will only work if the child component passed the `className`
+   * down to to the DOM element.
+   */
+  clone?: boolean;
 }
 
 const TextContainer = forwardRef<
@@ -62,6 +75,7 @@ const TextContainer = forwardRef<
     component: Component = "div",
     size = "auto",
     children,
+    clone,
     ...props
   },
   ref
@@ -70,6 +84,13 @@ const TextContainer = forwardRef<
     `rmd-text-container rmd-text-container--${size}`,
     propClassName
   );
+  if (clone && isValidElement(children)) {
+    const child = Children.only(children);
+    return cloneElement(child, {
+      className: cn(child.props.className, className),
+    });
+  }
+
   if (typeof children === "function") {
     return (children as TextContainerRenderFunction)({ className });
   }
@@ -94,6 +115,7 @@ if (process.env.NODE_ENV !== "production") {
         PropTypes.object,
       ]),
       children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+      clone: PropTypes.bool,
     };
   } catch (e) {}
 }
