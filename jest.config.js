@@ -37,4 +37,3 @@ module.exports = {
     ...packages.map((name) => `<rootDir>/packages/${name}/lib`),
   ],
 };
-

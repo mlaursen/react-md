@@ -48,7 +48,7 @@ import { Link as ReactMDLink, LinkProps as RMDLinkProps } from "@react-md/link";
 
 export type LinkProps = RDMLinkProps & ReactRouterLinkProps;
 
-const Link: FC<LinkProps> = props => (
+const Link: FC<LinkProps> = (props) => (
   <ReactMDLink {...props} component={ReactRouterLink} />
 );
 

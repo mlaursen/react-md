@@ -44,7 +44,7 @@ const App = () => {
       <button
         id="example-button"
         type="button"
-        onClick={() => setVisible(prevVisible => !prevVisible)}
+        onClick={() => setVisible((prevVisible) => !prevVisible)}
       >
         Show overlay
       </button>

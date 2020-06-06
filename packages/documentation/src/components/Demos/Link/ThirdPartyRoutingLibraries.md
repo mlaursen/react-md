@@ -19,7 +19,7 @@ import { render } from "react-dom";
 import { Link as ReactRouterLink, LinkProps } from "react-router";
 import { Link as ReactMDLink } from "@react-md/link";
 
-const Link: FC<LinkProps> = props => (
+const Link: FC<LinkProps> = (props) => (
   <ReactMDLink component={ReactRouterLink} {...props} />
 );
 

@@ -93,9 +93,7 @@ $ yarn dev
 ```
 
 This will install all the packages, run the build for the first time, and start
-up the development server in watch mode. It is recommended to read more about
-the [watcher configuration] as it'll spin up a `tsc` watcher for **every**
-package in `react-md` by default.
+up the development server in watch mode.
 
 If this is your first time contributing, I really recommend reading the next few
 points for more information before getting started.
@@ -152,8 +150,9 @@ $ yarn dev
 ```
 
 Using `yarn start` will only start up the documentation server while `yarn dev`
-will also start up the main [watcher](#watch) script to recompile packages
-automatically when they have been changed.
+will also start up the `yarn watch` command which will automatically update any
+scss variables that have been changed and create a Typescript watcher for the
+`react-md` packages.
 
 ## Documentation Server
 
@@ -314,7 +313,6 @@ $ yarn dev-utils --help
 [npx]:
   https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b
 [base npm scripts]: #scripts
-[watcher configuration]: #watcher-configuration
 [jest]: https://github.com/facebook/jest
 [react-testing-library]:
   https://github.com/testing-library/react-testing-library
