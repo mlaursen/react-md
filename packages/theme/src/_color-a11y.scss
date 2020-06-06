@@ -94,6 +94,8 @@ $rmd-theme-linear-channel-values: (
 ///
 /// @access private
 /// @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+///
+/// @param {Color} color - The color to check
 /// @returns {Number}
 @function rmd-theme-luminance($color) {
   $red: nth($rmd-theme-linear-channel-values, red($color) + 1);
@@ -108,6 +110,10 @@ $rmd-theme-linear-channel-values: (
 
 /// Gets the contrast between two colors.
 /// @access private
+///
+/// @param {Color} back - The background color
+/// @param {Color} front - The foreground color that should be compared to
+/// the background color for contrast ratio.
 /// @returns {Number}
 @function rmd-theme-contrast($back, $front) {
   $back-luminance: rmd-theme-luminance($back) + 0.05;

@@ -16,24 +16,6 @@ const sassdoc: PackageSassDoc = {
           packageName: "elevation",
         },
       ],
-      packageName: "elevation",
-      examples: [
-        {
-          code: ".my-class {\n  box-shadow: rmd-elevation(2);\n}\n",
-          compiled:
-            ".my-class {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);\n}\n",
-          type: "scss",
-          description: "Simple usage",
-        },
-        {
-          code:
-            ".my-class {\n  box-shadow: rmd-elevation(2), inset 0 0 0 1px $rmd-blue-500;\n}\n",
-          compiled:
-            ".my-class {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12),\n    inset 0 0 0 1px #2196f3;\n}\n",
-          type: "scss",
-          description: "Merging Shadows",
-        },
-      ],
       requires: [
         {
           name: "rmd-elevation-shadow-1-map",
@@ -66,6 +48,24 @@ const sassdoc: PackageSassDoc = {
           packageName: "elevation",
         },
         { name: "rmd-theme", type: "function", packageName: "theme" },
+      ],
+      packageName: "elevation",
+      examples: [
+        {
+          code: ".my-class {\n  box-shadow: rmd-elevation(2);\n}\n",
+          compiled:
+            ".my-class {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);\n}\n",
+          type: "scss",
+          description: "Simple usage",
+        },
+        {
+          code:
+            ".my-class {\n  box-shadow: rmd-elevation(2), inset 0 0 0 1px $rmd-blue-500;\n}\n",
+          compiled:
+            ".my-class {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12),\n    inset 0 0 0 1px #2196f3;\n}\n",
+          type: "scss",
+          description: "Merging Shadows",
+        },
       ],
       code:
         "@function rmd-elevation($z-value, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",
@@ -111,7 +111,14 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-toast", type: "mixin", packageName: "alert" },
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
         { name: "rmd-card", type: "mixin", packageName: "card" },
+        { name: "rmd-dialog", type: "mixin", packageName: "dialog" },
+        { name: "rmd-listbox", type: "mixin", packageName: "form" },
+        { name: "rmd-switch-ball", type: "mixin", packageName: "form" },
+        { name: "rmd-menu", type: "mixin", packageName: "menu" },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
+      ],
+      requires: [
+        { name: "rmd-elevation", type: "function", packageName: "elevation" },
       ],
       packageName: "elevation",
       examples: [
@@ -123,9 +130,6 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "Example Usage SCSS",
         },
-      ],
-      requires: [
-        { name: "rmd-elevation", type: "function", packageName: "elevation" },
       ],
       code:
         "@mixin rmd-elevation($z-value, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",
@@ -158,8 +162,10 @@ const sassdoc: PackageSassDoc = {
       description:
         "This mixin is used to create performant box-shadow transitions between different elevations. What this does behind the scenes is update the element to have `position: relative` along with a pseudo `::before` or `::after` tag that has the new box shadow with an initial opacity set to 0. When the `$active-selectors` class or state is applied to the element, the pseudo element's opacity will be updated to 1 and it'll animate in. This is really just because it is more performant to animate opacity instead of box-shadow itself.",
       source: "packages/elevation/src/_mixins.scss#L56-L79",
-      usedBy: [{ name: "rmd-chip", type: "mixin", packageName: "chip" }],
-      packageName: "elevation",
+      usedBy: [
+        { name: "rmd-button", type: "mixin", packageName: "button" },
+        { name: "rmd-chip", type: "mixin", packageName: "chip" },
+      ],
       requires: [
         {
           name: "rmd-transition-shadow-transition",
@@ -168,6 +174,7 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-elevation", type: "function", packageName: "elevation" },
       ],
+      packageName: "elevation",
       code:
         "@mixin rmd-elevation-transition($start, $end, $active-selectors, $before: true, $duration: $rmd-transition-standard-time, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",
       sourceCode:
@@ -226,10 +233,10 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-elevation-color",
       description: "The normal elevation color to use.",
       source: "packages/elevation/src/_variables.scss#L15",
-      packageName: "elevation",
       requires: [
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
       ],
+      packageName: "elevation",
       type: "Color",
       value: "$rmd-black-base",
       compiled: "#000",

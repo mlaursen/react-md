@@ -8,14 +8,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to quickly get one of the icon's theme values. This is really just for the `rmd-icon-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/icon/src/_functions.scss#L15-L17",
-      packageName: "icon",
       requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
         {
           name: "rmd-icon-theme-values",
           type: "variable",
           packageName: "icon",
         },
       ],
+      packageName: "icon",
       code: "@function rmd-icon-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-icon-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-icon-theme-values, icon);\n}\n",
@@ -39,6 +44,11 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the icon's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-icon-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/icon/src/_functions.scss#L32-L34",
       usedBy: [
+        {
+          name: "rmd-text-field-container",
+          type: "mixin",
+          packageName: "form",
+        },
         { name: "rmd-icon-dense-theme", type: "mixin", packageName: "icon" },
         {
           name: "rmd-icon-spaced-with-text",
@@ -48,14 +58,15 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-icon", type: "mixin", packageName: "icon" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
       ],
-      packageName: "icon",
       requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
           name: "rmd-icon-theme-values",
           type: "variable",
           packageName: "icon",
         },
       ],
+      packageName: "icon",
       code: "@function rmd-icon-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
         "@function rmd-icon-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-icon-theme-values,\n    icon,\n    $fallback\n  );\n}\n",
@@ -94,6 +105,13 @@ const sassdoc: PackageSassDoc = {
           packageName: "icon",
         },
       ],
+      requires: [
+        {
+          name: "rmd-typography-font-weights",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       packageName: "icon",
       examples: [
         {
@@ -111,13 +129,6 @@ const sassdoc: PackageSassDoc = {
             '@font-face {\n  font-family: "Material Icons";\n  font-style: normal;\n  src: local("Material Icons"), local("MaterialIcons-Regular"),\n    url("/MaterialIcons-Regular.woff2") format("woff2"),\n    url("/MaterialIcons-Regular.woff") format("woff")\n      url("/MaterialIcons-Regular.ttf") format("truetype");\n}\n',
           type: "scss",
           description: "Example Usage SCSS",
-        },
-      ],
-      requires: [
-        {
-          name: "rmd-typography-font-weights",
-          type: "variable",
-          packageName: "typography",
         },
       ],
       code:
@@ -155,10 +166,10 @@ const sassdoc: PackageSassDoc = {
           packageName: "icon",
         },
       ],
-      packageName: "icon",
       requires: [
         { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
       ],
+      packageName: "icon",
       code:
         "@mixin rmd-icon-material-icons-class($include-font-size: false) { … }",
       sourceCode:
@@ -179,6 +190,18 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates both the font face and css class for material icons when hosting the fonts locally instead of using the Google fonts service.  This takes either a font url prefix string or a map of urls for each required font file. If you are using create-react-app, you **must** use the Map version so the fonts can be correctly included by the build process.",
       source: "packages/icon/src/_material-icons.scss#L167-L174",
+      requires: [
+        {
+          name: "rmd-icon-material-icons-font-face",
+          type: "mixin",
+          packageName: "icon",
+        },
+        {
+          name: "rmd-icon-material-icons-class",
+          type: "mixin",
+          packageName: "icon",
+        },
+      ],
       packageName: "icon",
       examples: [
         {
@@ -204,18 +227,6 @@ const sassdoc: PackageSassDoc = {
             '@font-face {\n  font-family: "Material Icons";\n  font-style: normal;\n  src: local("Material Icons"), local("MaterialIcons-Regular"),\n    url("/MaterialIcons-Regular.woff2") format("woff2"),\n    url("/MaterialIcons-Regular.woff") format("woff")\n      url("/MaterialIcons-Regular.ttf") format("truetype");\n}\n',
           type: "scss",
           description: "Using Relative Paths",
-        },
-      ],
-      requires: [
-        {
-          name: "rmd-icon-material-icons-font-face",
-          type: "mixin",
-          packageName: "icon",
-        },
-        {
-          name: "rmd-icon-material-icons-class",
-          type: "mixin",
-          packageName: "icon",
         },
       ],
       code:
@@ -254,6 +265,9 @@ const sassdoc: PackageSassDoc = {
       source: "packages/icon/src/_mixins.scss#L21-L23",
       usedBy: [
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-native-select", type: "mixin", packageName: "form" },
+        { name: "rmd-text-field-addon", type: "mixin", packageName: "form" },
+        { name: "rmd-toggle-icon", type: "mixin", packageName: "form" },
         {
           name: "rmd-icon-material-icons-class",
           type: "mixin",
@@ -264,14 +278,19 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-icon-rotator", type: "mixin", packageName: "icon" },
         { name: "rmd-icon", type: "mixin", packageName: "icon" },
       ],
-      packageName: "icon",
       requires: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-icon-theme-values",
           type: "variable",
           packageName: "icon",
         },
       ],
+      packageName: "icon",
       code:
         "@mixin rmd-icon-theme($property, $theme-style: property, $fallback: null) { … }",
       sourceCode:
@@ -309,8 +328,14 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
         { name: "rmd-button-icon", type: "mixin", packageName: "button" },
+        { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "rmd-card-header", type: "mixin", packageName: "card" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        {
+          name: "rmd-text-field-container",
+          type: "mixin",
+          packageName: "form",
+        },
         { name: "rmd-icon-dense-theme", type: "mixin", packageName: "icon" },
         {
           name: "rmd-list-item-addon-spacing",
@@ -319,7 +344,20 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
         { name: "react-md-menu", type: "mixin", packageName: "menu" },
+        { name: "rmd-tab", type: "mixin", packageName: "tabs" },
         { name: "react-md-tree", type: "mixin", packageName: "tree" },
+      ],
+      requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
+        {
+          name: "rmd-icon-theme-values",
+          type: "variable",
+          packageName: "icon",
+        },
       ],
       packageName: "icon",
       examples: [
@@ -337,13 +375,6 @@ const sassdoc: PackageSassDoc = {
             "@media (min-width: 75rem) {\n  --rmd-icon-size: 1.25rem;\n}\n",
           type: "scss",
           description: "Updating the base icon size with a media query",
-        },
-      ],
-      requires: [
-        {
-          name: "rmd-icon-theme-values",
-          type: "variable",
-          packageName: "icon",
         },
       ],
       code: "@mixin rmd-icon-theme-update-var($theme-style, $value) { … }",
@@ -381,6 +412,9 @@ const sassdoc: PackageSassDoc = {
       description: "Creates the base styles for a font icon.",
       source: "packages/icon/src/_mixins.scss#L62-L67",
       usedBy: [{ name: "rmd-icon", type: "mixin", packageName: "icon" }],
+      requires: [
+        { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
+      ],
       packageName: "icon",
       examples: [
         {
@@ -391,9 +425,6 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "Example SCSS Usage",
         },
-      ],
-      requires: [
-        { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
       ],
       code: "@mixin rmd-icon-font { … }",
       sourceCode:
@@ -408,7 +439,6 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-icon", type: "mixin", packageName: "icon" },
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
       ],
-      packageName: "icon",
       requires: [
         {
           name: "rmd-icon-theme-update-var",
@@ -417,6 +447,7 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-icon-theme-var", type: "function", packageName: "icon" },
       ],
+      packageName: "icon",
       code: "@mixin rmd-icon-dense-theme { … }",
       sourceCode:
         "@mixin rmd-icon-dense-theme {\n  @include rmd-icon-theme-update-var(size, rmd-icon-theme-var(dense-size));\n}\n",
@@ -427,6 +458,9 @@ const sassdoc: PackageSassDoc = {
       description: "Creates the base styles for an svg icon.",
       source: "packages/icon/src/_mixins.scss#L81-L85",
       usedBy: [{ name: "rmd-icon", type: "mixin", packageName: "icon" }],
+      requires: [
+        { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
+      ],
       packageName: "icon",
       examples: [
         {
@@ -437,9 +471,6 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "Example SCSS Usage",
         },
-      ],
-      requires: [
-        { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
       ],
       code: "@mixin rmd-icon-svg { … }",
       sourceCode:
@@ -458,10 +489,10 @@ const sassdoc: PackageSassDoc = {
           packageName: "icon",
         },
       ],
-      packageName: "icon",
       requires: [
         { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
       ],
+      packageName: "icon",
       code:
         "@mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text, $property: margin-left) { … }",
       sourceCode:
@@ -489,6 +520,10 @@ const sassdoc: PackageSassDoc = {
         "A mixin to create the styles to space an icon before or after text with the provided selectors and spacing.",
       source: "packages/icon/src/_mixins.scss#L127-L157",
       usedBy: [{ name: "rmd-icon", type: "mixin", packageName: "icon" }],
+      requires: [
+        { name: "rmd-icon-text-spacing", type: "mixin", packageName: "icon" },
+        { name: "rmd-icon-theme-var", type: "function", packageName: "icon" },
+      ],
       packageName: "icon",
       examples: [
         {
@@ -499,10 +534,6 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "Updating Selectors",
         },
-      ],
-      requires: [
-        { name: "rmd-icon-text-spacing", type: "mixin", packageName: "icon" },
-        { name: "rmd-icon-theme-var", type: "function", packageName: "icon" },
       ],
       code:
         "@mixin rmd-icon-spaced-with-text($before-selector: '&--before', $after-selector: '&--after', $above-selector: '&--above', $below-selector: '&--after', $spacing: $rmd-icon-spacing-with-text) { … }",
@@ -552,7 +583,6 @@ const sassdoc: PackageSassDoc = {
         "Creates the styles for the `IconRotator` component. These styles are extremely simple and basically apply different rotate transforms based on a class name.\n",
       source: "packages/icon/src/_mixins.scss#L162-L174",
       usedBy: [{ name: "react-md-icon", type: "mixin", packageName: "icon" }],
-      packageName: "icon",
       requires: [
         { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
         {
@@ -561,6 +591,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "icon",
         },
       ],
+      packageName: "icon",
       code: "@mixin rmd-icon-rotator { … }",
       sourceCode:
         "@mixin rmd-icon-rotator {\n  .rmd-icon-rotator {\n    @include rmd-icon-theme(transform, rotate-from);\n\n    &--animate {\n      transition: transform $rmd-icon-rotator-transition-time linear;\n    }\n\n    &--rotated {\n      @include rmd-icon-theme(transform, rotate-to);\n    }\n  }\n}\n",
@@ -571,7 +602,6 @@ const sassdoc: PackageSassDoc = {
       description: "Creates all the styles for the icon components.\n",
       source: "packages/icon/src/_mixins.scss#L177-L227",
       usedBy: [{ name: "react-md-icon", type: "mixin", packageName: "icon" }],
-      packageName: "icon",
       requires: [
         { name: "rmd-icon-base", type: "mixin", packageName: "icon" },
         { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
@@ -605,6 +635,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "icon",
         },
       ],
+      packageName: "icon",
       code: "@mixin rmd-icon { … }",
       sourceCode:
         "@mixin rmd-icon {\n  .rmd-icon {\n    @include rmd-icon-base;\n\n    @if $rmd-icon-material-icons-font {\n      &.material-icons {\n        // force material-icons to use the size of icons even if the\n        // material-icons font css is loaded after the base react-md styles\n        @include rmd-icon-theme(font-size, size);\n      }\n    }\n\n    // sass-lint:disable no-important\n    // when other icon libraries don't have consistent sizes...\n    &--forced-font {\n      font-size: rmd-icon-theme-var(size) !important;\n    }\n\n    &--forced-size {\n      height: rmd-icon-theme-var(size) !important;\n      width: rmd-icon-theme-var(size) !important;\n    }\n\n    @if $rmd-icon-include-dense {\n      &--dense {\n        @include rmd-icon-dense-theme;\n      }\n    }\n\n    @if $rmd-icon-use-font-icons {\n      &--font {\n        @include rmd-icon-font;\n      }\n    }\n\n    @if $rmd-icon-use-svg-icons {\n      &--svg {\n        @include rmd-icon-svg;\n\n        * {\n          // make sit so that paths and other things won't be event targets\n          // which makes things easier to determine if something is an icon or\n          // not\n          pointer-events: none;\n        }\n      }\n    }\n\n    @include rmd-icon-spaced-with-text;\n  }\n}\n",
@@ -628,8 +659,12 @@ const sassdoc: PackageSassDoc = {
         "Creates the styles for icons within react-md. This requires either the `rmd-icon-use-font-icons` or `rmd-icon-use-svg-icons` variables to be enabled to generate any styles.\n",
       source: "packages/icon/src/_mixins.scss#L242-L252",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
-      packageName: "icon",
       requires: [
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
         { name: "rmd-icon", type: "mixin", packageName: "icon" },
         { name: "rmd-icon-spacing", type: "mixin", packageName: "icon" },
         { name: "rmd-icon-rotator", type: "mixin", packageName: "icon" },
@@ -649,6 +684,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "icon",
         },
       ],
+      packageName: "icon",
       code: "@mixin react-md-icon { … }",
       sourceCode:
         "@mixin react-md-icon {\n  @if not $rmd-icon-use-font-icons and not $rmd-icon-use-svg-icons {\n    @error 'Either svg or font icons must be used for this package but both were set to false. Please enable one of them to include icons.';\n  }\n\n  @include rmd-theme-create-root-theme($rmd-icon-theme-values, icon);\n\n  @include rmd-icon;\n  @include rmd-icon-spacing;\n  @include rmd-icon-rotator;\n}\n",
@@ -663,10 +699,10 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-color",
       description: "The base icon color to apply.",
       source: "packages/icon/src/_variables.scss#L11",
-      packageName: "icon",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
+      packageName: "icon",
       type: "Color",
       value: "rmd-theme-var(text-icon-on-background)",
       compiled: "var(--rmd-theme-text-icon-on-background, #757575)",

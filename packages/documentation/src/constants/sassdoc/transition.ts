@@ -12,27 +12,63 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "rmd-toast", type: "mixin", packageName: "alert" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-dialog", type: "mixin", packageName: "dialog" },
         { name: "rmd-label", type: "mixin", packageName: "form" },
+        { name: "rmd-select", type: "mixin", packageName: "form" },
+        {
+          name: "rmd-text-field-container",
+          type: "mixin",
+          packageName: "form",
+        },
+        { name: "rmd-textarea-container", type: "mixin", packageName: "form" },
+        { name: "rmd-textarea", type: "mixin", packageName: "form" },
+        { name: "rmd-toggle-icon", type: "mixin", packageName: "form" },
+        { name: "rmd-switch", type: "mixin", packageName: "form" },
+        { name: "rmd-switch-ball", type: "mixin", packageName: "form" },
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
         { name: "rmd-overlay", type: "mixin", packageName: "overlay" },
+        {
+          name: "rmd-linear-progress-bar",
+          type: "mixin",
+          packageName: "progress",
+        },
+        {
+          name: "rmd-circular-progress",
+          type: "mixin",
+          packageName: "progress",
+        },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
         {
           name: "rmd-states-surface-base",
           type: "mixin",
           packageName: "states",
         },
+        { name: "rmd-tabs", type: "mixin", packageName: "tabs" },
+        { name: "rmd-tab", type: "mixin", packageName: "tabs" },
+        { name: "rmd-tab-panel", type: "mixin", packageName: "tabs" },
         { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
+        {
+          name: "rmd-transition-pseudo-shadow",
+          type: "mixin",
+          packageName: "transition",
+        },
         { name: "rmd-collapse", type: "mixin", packageName: "transition" },
         { name: "rmd-cross-fade", type: "mixin", packageName: "transition" },
+        {
+          name: "rmd-transition-classes",
+          type: "mixin",
+          packageName: "transition",
+        },
       ],
-      packageName: "transition",
       requires: [
+        { name: "rmd-utils-validate", type: "function", packageName: "utils" },
         {
           name: "rmd-transitions",
           type: "variable",
           packageName: "transition",
         },
       ],
+      packageName: "transition",
       code: "@mixin rmd-transition($type, $animation) { … }",
       sourceCode:
         '@mixin rmd-transition($type, $animation) {\n  $function: rmd-utils-validate($rmd-transitions, $type, "transition");\n\n  @if $animation {\n    animation-timing-function: $function;\n  } @else {\n    transition-timing-function: $function;\n  }\n}\n',
@@ -52,6 +88,77 @@ const sassdoc: PackageSassDoc = {
         },
       ],
     },
+    "rmd-transition-parent-shadow": {
+      name: "rmd-transition-parent-shadow",
+      description:
+        "This is really just used internally to apply a base box shadow and position relative so that the pseudo element with the end box shadow can be shown.\n",
+      source: "packages/transition/src/_mixins.scss#L28-L31",
+      usedBy: [
+        {
+          name: "rmd-transition-shadow-transition",
+          type: "mixin",
+          packageName: "transition",
+        },
+      ],
+      packageName: "transition",
+      code: "@mixin rmd-transition-parent-shadow($shadow) { … }",
+      sourceCode:
+        "@mixin rmd-transition-parent-shadow($shadow) {\n  box-shadow: $shadow;\n  position: relative;\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "shadow",
+          description: "The box shadow to apply.",
+        },
+      ],
+    },
+    "rmd-transition-pseudo-shadow": {
+      name: "rmd-transition-pseudo-shadow",
+      description:
+        "This includes the base styles for animating the pseudo element's shadow.\nThis should really only be used internally.",
+      source: "packages/transition/src/_mixins.scss#L43-L54",
+      usedBy: [
+        {
+          name: "rmd-transition-shadow-transition",
+          type: "mixin",
+          packageName: "transition",
+        },
+      ],
+      requires: [
+        { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        {
+          name: "rmd-utils-pseudo-element",
+          type: "mixin",
+          packageName: "utils",
+        },
+      ],
+      packageName: "transition",
+      code:
+        "@mixin rmd-transition-pseudo-shadow($shadow, $duration, $z-index: 0) { … }",
+      sourceCode:
+        "@mixin rmd-transition-pseudo-shadow($shadow, $duration, $z-index: 0) {\n  @include rmd-transition(standard);\n  @include rmd-utils-pseudo-element($z-index);\n\n  box-shadow: $shadow;\n  opacity: 0;\n  transition: opacity $duration;\n}\n",
+      type: "mixin",
+      parameters: [
+        {
+          type: "String",
+          name: "shadow",
+          description: "The box shadow to apply.",
+        },
+        {
+          type: "String|Number",
+          name: "duration",
+          description: "The transition duration for the shadow opacity change.",
+        },
+        {
+          type: "Number",
+          name: "z-index",
+          default: "0",
+          description:
+            "The z-index to apply. This is set to 0 by default so that it can be shown more easily if there are child elements with position absolute.",
+        },
+      ],
+    },
     "rmd-transition-shadow-transition": {
       name: "rmd-transition-shadow-transition",
       description:
@@ -62,6 +169,18 @@ const sassdoc: PackageSassDoc = {
           name: "rmd-elevation-transition",
           type: "mixin",
           packageName: "elevation",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-transition-parent-shadow",
+          type: "mixin",
+          packageName: "transition",
+        },
+        {
+          name: "rmd-transition-pseudo-shadow",
+          type: "mixin",
+          packageName: "transition",
         },
       ],
       packageName: "transition",
@@ -139,7 +258,6 @@ const sassdoc: PackageSassDoc = {
           packageName: "transition",
         },
       ],
-      packageName: "transition",
       requires: [
         { name: "rmd-transition", type: "mixin", packageName: "transition" },
         {
@@ -153,6 +271,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "transition",
         },
       ],
+      packageName: "transition",
       code: "@mixin rmd-collapse { … }",
       sourceCode:
         "@mixin rmd-collapse {\n  .rmd-collapse {\n    transition-property: max-height, padding-bottom, padding-top;\n    will-change: max-height, padding-bottom, padding-top;\n\n    &--no-overflow {\n      overflow: hidden;\n    }\n\n    &--enter {\n      @include rmd-transition($rmd-collapse-enter-transition-func);\n    }\n\n    &--leave {\n      @include rmd-transition($rmd-collapse-leave-transition-func);\n    }\n  }\n}\n",
@@ -170,7 +289,6 @@ const sassdoc: PackageSassDoc = {
           packageName: "transition",
         },
       ],
-      packageName: "transition",
       requires: [
         { name: "rmd-transition", type: "mixin", packageName: "transition" },
         {
@@ -184,9 +302,50 @@ const sassdoc: PackageSassDoc = {
           packageName: "transition",
         },
       ],
+      packageName: "transition",
       code: "@mixin rmd-cross-fade { … }",
       sourceCode:
         "@mixin rmd-cross-fade {\n  .rmd-cross-fade {\n    opacity: 0;\n    transform: translateY($rmd-cross-fade-translate-distance);\n\n    &--active {\n      @include rmd-transition(deceleration);\n\n      opacity: 1;\n      transform: translateY(0);\n      transition-duration: $rmd-cross-fade-transition-duration;\n      transition-property: opacity, transform;\n    }\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-transition-classes": {
+      name: "rmd-transition-classes",
+      description: "",
+      source: "packages/transition/src/_mixins.scss#L165-L225",
+      usedBy: [
+        {
+          name: "react-md-transition",
+          type: "mixin",
+          packageName: "transition",
+        },
+      ],
+      requires: [
+        { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        {
+          name: "rmd-transition-scale-enter-duration",
+          type: "variable",
+          packageName: "transition",
+        },
+        {
+          name: "rmd-transition-scale-leave-duration",
+          type: "variable",
+          packageName: "transition",
+        },
+        {
+          name: "rmd-transition-scale-y-enter-duration",
+          type: "variable",
+          packageName: "transition",
+        },
+        {
+          name: "rmd-transition-scale-y-leave-duration",
+          type: "variable",
+          packageName: "transition",
+        },
+      ],
+      packageName: "transition",
+      code: "@mixin rmd-transition-classes { … }",
+      sourceCode:
+        "@mixin rmd-transition-classes {\n  .rmd-transition {\n    &--scale-enter {\n      opacity: 0;\n      transform: scale(0);\n    }\n\n    &--scale-enter-active {\n      @include rmd-transition(deceleration);\n\n      opacity: 1;\n      transform: scale(1);\n      transition: transform $rmd-transition-scale-enter-duration,\n        opacity $rmd-transition-scale-enter-duration;\n    }\n\n    &--scale-exit {\n      opacity: 1;\n      transform: scale(1);\n    }\n\n    &--scale-exit-active {\n      @include rmd-transition(acceleration);\n\n      opacity: 0;\n      transform: scale(0);\n      transition: transform $rmd-transition-scale-leave-duration,\n        opacity $rmd-transition-scale-leave-duration;\n    }\n\n    &--scale-y-enter {\n      opacity: 0;\n      transform: scaleY(0);\n      transform-origin: 0 0;\n    }\n\n    &--scale-y-enter-active {\n      @include rmd-transition(deceleration);\n\n      opacity: 1;\n      transform: scaleY(1);\n      transition: transform $rmd-transition-scale-y-enter-duration,\n        opacity $rmd-transition-scale-y-enter-duration;\n    }\n\n    &--scale-y-exit {\n      opacity: 1;\n      transform: scaleY(1);\n      transform-origin: 0 0;\n    }\n\n    &--scale-y-exit-active {\n      @include rmd-transition(acceleration);\n\n      opacity: 0;\n      transform: scaleY(0);\n      transition: transform $rmd-transition-scale-y-leave-duration,\n        opacity $rmd-transition-scale-y-leave-duration;\n    }\n  }\n}\n",
       type: "mixin",
     },
     "react-md-transition": {
@@ -195,11 +354,16 @@ const sassdoc: PackageSassDoc = {
         "Creates the transition theme css variables as well as the styles for components in the transition package.\n",
       source: "packages/transition/src/_mixins.scss#L229-L233",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
-      packageName: "transition",
       requires: [
         { name: "rmd-collapse", type: "mixin", packageName: "transition" },
         { name: "rmd-cross-fade", type: "mixin", packageName: "transition" },
+        {
+          name: "rmd-transition-classes",
+          type: "mixin",
+          packageName: "transition",
+        },
       ],
+      packageName: "transition",
       code: "@mixin react-md-transition { … }",
       sourceCode:
         "@mixin react-md-transition {\n  @include rmd-collapse;\n  @include rmd-cross-fade;\n  @include rmd-transition-classes;\n}\n",
@@ -232,6 +396,9 @@ const sassdoc: PackageSassDoc = {
       description:
         "The transition timing function to use for transitions that should start the animation slowly and build up momentum at the end of the transition. This is normally used for exit/leave transitions.\n",
       source: "packages/transition/src/_variables.scss#L19",
+      usedBy: [
+        { name: "rmd-states-ripple", type: "mixin", packageName: "states" },
+      ],
       packageName: "transition",
       type: "String",
       value: "cubic-bezier(0.4, 0, 1, 1)",
@@ -242,6 +409,9 @@ const sassdoc: PackageSassDoc = {
       description:
         "The transition timing function to use for transitions that should start the animation quickly and slow down momentum at the end of the transition. This is normally used for enter/appear transitions.\n",
       source: "packages/transition/src/_variables.scss#L25",
+      usedBy: [
+        { name: "rmd-states-ripple", type: "mixin", packageName: "states" },
+      ],
       packageName: "transition",
       type: "String",
       value: "cubic-bezier(0, 0, 0.2, 1)",
@@ -302,6 +472,18 @@ const sassdoc: PackageSassDoc = {
           packageName: "chip",
         },
         { name: "rmd-label", type: "mixin", packageName: "form" },
+        { name: "rmd-select", type: "mixin", packageName: "form" },
+        {
+          name: "rmd-text-field-container",
+          type: "mixin",
+          packageName: "form",
+        },
+        { name: "rmd-text-field", type: "mixin", packageName: "form" },
+        { name: "rmd-textarea-container", type: "mixin", packageName: "form" },
+        { name: "rmd-textarea", type: "mixin", packageName: "form" },
+        { name: "rmd-toggle-icon", type: "mixin", packageName: "form" },
+        { name: "rmd-switch", type: "mixin", packageName: "form" },
+        { name: "rmd-switch-ball", type: "mixin", packageName: "form" },
         {
           name: "rmd-link-transition-time",
           type: "variable",
@@ -313,10 +495,20 @@ const sassdoc: PackageSassDoc = {
           packageName: "overlay",
         },
         {
+          name: "rmd-linear-progress-bar",
+          type: "mixin",
+          packageName: "progress",
+        },
+        {
           name: "rmd-states-surface-base",
           type: "mixin",
           packageName: "states",
         },
+        { name: "rmd-table-cell", type: "mixin", packageName: "table" },
+        { name: "rmd-table-row", type: "mixin", packageName: "table" },
+        { name: "rmd-tabs", type: "mixin", packageName: "tabs" },
+        { name: "rmd-tab", type: "mixin", packageName: "tabs" },
+        { name: "rmd-tab-panel", type: "mixin", packageName: "tabs" },
         {
           name: "rmd-tooltip-enter-duration",
           type: "variable",
@@ -388,6 +580,13 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-transition-scale-enter-duration",
       description: "The transition enter duration for the scaling animation.\n",
       source: "packages/transition/src/_variables.scss#L62",
+      usedBy: [
+        {
+          name: "rmd-transition-classes",
+          type: "mixin",
+          packageName: "transition",
+        },
+      ],
       packageName: "transition",
       type: "Number",
       value: "$rmd-transition-enter-duration",
@@ -398,6 +597,13 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-transition-scale-leave-duration",
       description: "The transition leave duration for the scaling animation.\n",
       source: "packages/transition/src/_variables.scss#L66",
+      usedBy: [
+        {
+          name: "rmd-transition-classes",
+          type: "mixin",
+          packageName: "transition",
+        },
+      ],
       packageName: "transition",
       type: "Number",
       value: "$rmd-transition-leave-duration",
@@ -409,6 +615,13 @@ const sassdoc: PackageSassDoc = {
       description:
         "The transition enter duration for the vertical scale animation.\n",
       source: "packages/transition/src/_variables.scss#L70",
+      usedBy: [
+        {
+          name: "rmd-transition-classes",
+          type: "mixin",
+          packageName: "transition",
+        },
+      ],
       packageName: "transition",
       type: "Number",
       value: "$rmd-transition-enter-duration",
@@ -420,6 +633,13 @@ const sassdoc: PackageSassDoc = {
       description:
         "The transition leave duration for the vertical scale animation.\n",
       source: "packages/transition/src/_variables.scss#L74",
+      usedBy: [
+        {
+          name: "rmd-transition-classes",
+          type: "mixin",
+          packageName: "transition",
+        },
+      ],
       packageName: "transition",
       type: "Number",
       value: "$rmd-transition-leave-duration",

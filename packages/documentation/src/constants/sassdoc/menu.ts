@@ -8,14 +8,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to quickly get one of the menu's theme values. This is really just for the `rmd-menu-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/menu/src/_functions.scss#L15-L17",
-      packageName: "menu",
       requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
         {
           name: "rmd-menu-theme-values",
           type: "variable",
           packageName: "menu",
         },
       ],
+      packageName: "menu",
       code: "@function rmd-menu-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-menu-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-menu-theme-values, menu);\n}\n",
@@ -39,14 +44,15 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the menu's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-menu-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/menu/src/_functions.scss#L32-L34",
       usedBy: [{ name: "react-md-menu", type: "mixin", packageName: "menu" }],
-      packageName: "menu",
       requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
           name: "rmd-menu-theme-values",
           type: "variable",
           packageName: "menu",
         },
       ],
+      packageName: "menu",
       code: "@function rmd-menu-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
         "@function rmd-menu-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-menu-theme-values,\n    menu,\n    $fallback\n  );\n}\n",
@@ -78,14 +84,20 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for one of the menu's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/menu/src/_mixins.scss#L25-L27",
-      packageName: "menu",
+      usedBy: [{ name: "rmd-menu", type: "mixin", packageName: "menu" }],
       requires: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-menu-theme-values",
           type: "variable",
           packageName: "menu",
         },
       ],
+      packageName: "menu",
       code:
         "@mixin rmd-menu-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -118,14 +130,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "Updates one of the menu's theme variables with the new value for the section of your app.",
       source: "packages/menu/src/_mixins.scss#L35-L37",
-      packageName: "menu",
       requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-menu-theme-values",
           type: "variable",
           packageName: "menu",
         },
       ],
+      packageName: "menu",
       code: "@mixin rmd-menu-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-menu-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-menu-theme-values,\n    menu\n  );\n}\n",
@@ -144,13 +161,40 @@ const sassdoc: PackageSassDoc = {
         },
       ],
     },
+    "rmd-menu": {
+      name: "rmd-menu",
+      description: "",
+      source: "packages/menu/src/_mixins.scss#L40-L53",
+      usedBy: [{ name: "react-md-menu", type: "mixin", packageName: "menu" }],
+      requires: [
+        {
+          name: "rmd-utils-hide-focus-outline",
+          type: "mixin",
+          packageName: "utils",
+        },
+        { name: "rmd-utils-scroll", type: "mixin", packageName: "utils" },
+        { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
+        { name: "rmd-menu-theme", type: "mixin", packageName: "menu" },
+        { name: "rmd-menu-elevation", type: "variable", packageName: "menu" },
+      ],
+      packageName: "menu",
+      code: "@mixin rmd-menu { … }",
+      sourceCode:
+        "@mixin rmd-menu {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-utils-scroll;\n  @include rmd-elevation($rmd-menu-elevation);\n  @include rmd-menu-theme(background-color);\n  @include rmd-menu-theme(color);\n  @include rmd-menu-theme(min-width);\n  @include rmd-menu-theme(z-index);\n\n  &--horizontal {\n    display: flex;\n    flex-wrap: nowrap;\n  }\n}\n",
+      type: "mixin",
+    },
     "react-md-menu": {
       name: "react-md-menu",
       description: "Creates all the styles for the @react-md/menu package.\n",
       source: "packages/menu/src/_mixins.scss#L56-L66",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
-      packageName: "menu",
       requires: [
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
+        { name: "rmd-menu", type: "mixin", packageName: "menu" },
         {
           name: "rmd-icon-theme-update-var",
           type: "mixin",
@@ -163,6 +207,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "menu",
         },
       ],
+      packageName: "menu",
       code: "@mixin react-md-menu { … }",
       sourceCode:
         "@mixin react-md-menu {\n  @include rmd-theme-create-root-theme($rmd-menu-theme-values, menu);\n\n  .rmd-menu {\n    @include rmd-menu;\n  }\n\n  .rmd-menu-item {\n    @include rmd-icon-theme-update-var(\n      text-spacing,\n      #{rmd-menu-theme-var(icon-spacing)}\n    );\n  }\n}\n",
@@ -174,10 +219,10 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-menu-background-color",
       description: "The background color to use for menus",
       source: "packages/menu/src/_variables.scss#L13",
-      packageName: "menu",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
+      packageName: "menu",
       type: "Color",
       value: "rmd-theme-var(surface)",
       compiled: "var(--rmd-theme-surface, #fff)",
@@ -187,10 +232,10 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-menu-color",
       description: "The text color to use for menus",
       source: "packages/menu/src/_variables.scss#L19",
-      packageName: "menu",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
+      packageName: "menu",
       type: "Color",
       value: "rmd-theme-var(on-surface)",
       compiled: "var(--rmd-theme-on-surface, #000)",
@@ -200,7 +245,6 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-menu-z-index",
       description: "The z-index for menus.",
       source: "packages/menu/src/_variables.scss#L25",
-      packageName: "menu",
       requires: [
         {
           name: "rmd-utils-temporary-element-z-index",
@@ -208,6 +252,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "utils",
         },
       ],
+      packageName: "menu",
       type: "Number",
       value: "$rmd-utils-temporary-element-z-index",
       compiled: "30",
@@ -218,6 +263,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The elevation for menus. This should be a number from 0 to 24 (inclusive) as it gets passed to the `rmd-elevation` mixin.\n",
       source: "packages/menu/src/_variables.scss#L30",
+      usedBy: [{ name: "rmd-menu", type: "mixin", packageName: "menu" }],
       packageName: "menu",
       type: "Number",
       value: "8",

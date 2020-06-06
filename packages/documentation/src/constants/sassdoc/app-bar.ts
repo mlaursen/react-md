@@ -8,14 +8,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to quickly get one of the app-bar's theme values. This is really just for the `rmd-app-bar-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/app-bar/src/_functions.scss#L15-L17",
-      packageName: "app-bar",
       requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
         {
           name: "rmd-app-bar-theme-values",
           type: "variable",
           packageName: "app-bar",
         },
       ],
+      packageName: "app-bar",
       code: "@function rmd-app-bar-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-app-bar-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-app-bar-theme-values,\n    app-bar\n  );\n}\n",
@@ -47,14 +52,15 @@ const sassdoc: PackageSassDoc = {
           packageName: "app-bar",
         },
       ],
-      packageName: "app-bar",
       requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
           name: "rmd-app-bar-theme-values",
           type: "variable",
           packageName: "app-bar",
         },
       ],
+      packageName: "app-bar",
       code:
         "@function rmd-app-bar-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -92,14 +98,19 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-app-bar-offset", type: "mixin", packageName: "app-bar" },
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
       ],
-      packageName: "app-bar",
       requires: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-app-bar-theme-values",
           type: "variable",
           packageName: "app-bar",
         },
       ],
+      packageName: "app-bar",
       code:
         "@mixin rmd-app-bar-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -139,17 +150,23 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "app-bar",
         },
+        { name: "rmd-dialog", type: "mixin", packageName: "dialog" },
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
       ],
-      packageName: "app-bar",
       requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-app-bar-theme-values",
           type: "variable",
           packageName: "app-bar",
         },
       ],
+      packageName: "app-bar",
       code: "@mixin rmd-app-bar-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-app-bar-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-app-bar-theme-values,\n    app-bar\n  );\n}\n",
@@ -176,22 +193,6 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
       ],
-      packageName: "app-bar",
-      examples: [
-        {
-          code: ".app-bar {\n  @include rmd-app-bar-fixed;\n}\n",
-          compiled:
-            ".app-bar--fixed {\n  --rmd-theme-surface: var(--rmd-app-bar-background-color, transparent);\n  left: 0;\n  position: fixed;\n  right: 0;\n  z-index: 10;\n}\n\n.app-bar--fixed-elevation {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);\n}\n\n.app-bar--top {\n  top: 0;\n}\n\n.app-bar--right {\n  right: 0;\n}\n\n.app-bar--bottom {\n  bottom: 0;\n}\n\n.app-bar--left {\n  left: 0;\n}\n",
-          type: "scss",
-          description: "Simple Example",
-        },
-        {
-          code:
-            '<div class="app-bar app-bar--fixed app-bar--top">\n  An app-bar fixed to the top of the page.\n</div>\n\n<div class="app-bar app-bar--fixed app-bar--fixed-elevation app-bar--bottom">\n  An app-bar fixed to the bottom of the page with elevation\n</div>\n',
-          type: "html",
-          description: "Simple Example",
-        },
-      ],
       requires: [
         { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
         { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
@@ -211,6 +212,22 @@ const sassdoc: PackageSassDoc = {
           packageName: "app-bar",
         },
       ],
+      packageName: "app-bar",
+      examples: [
+        {
+          code: ".app-bar {\n  @include rmd-app-bar-fixed;\n}\n",
+          compiled:
+            ".app-bar--fixed {\n  --rmd-theme-surface: var(--rmd-app-bar-background-color, transparent);\n  left: 0;\n  position: fixed;\n  right: 0;\n  z-index: 10;\n}\n\n.app-bar--fixed-elevation {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);\n}\n\n.app-bar--top {\n  top: 0;\n}\n\n.app-bar--right {\n  right: 0;\n}\n\n.app-bar--bottom {\n  bottom: 0;\n}\n\n.app-bar--left {\n  left: 0;\n}\n",
+          type: "scss",
+          description: "Simple Example",
+        },
+        {
+          code:
+            '<div class="app-bar app-bar--fixed app-bar--top">\n  An app-bar fixed to the top of the page.\n</div>\n\n<div class="app-bar app-bar--fixed app-bar--fixed-elevation app-bar--bottom">\n  An app-bar fixed to the bottom of the page with elevation\n</div>\n',
+          type: "html",
+          description: "Simple Example",
+        },
+      ],
       code: "@mixin rmd-app-bar-fixed { … }",
       sourceCode:
         "@mixin rmd-app-bar-fixed {\n  &--fixed {\n    @include rmd-theme-update-var(\n      surface,\n      rmd-app-bar-theme-var(background-color)\n    );\n\n    left: 0;\n    position: fixed;\n    right: 0;\n    z-index: $rmd-app-bar-z-index;\n  }\n\n  &--fixed-elevation {\n    @include rmd-elevation($rmd-app-bar-fixed-elevation);\n  }\n\n  $positions: top right bottom left;\n  @each $position in $positions {\n    &--#{$position} {\n      #{$position}: 0;\n    }\n  }\n}\n",
@@ -223,6 +240,19 @@ const sassdoc: PackageSassDoc = {
       source: "packages/app-bar/src/_mixins.scss#L119-L140",
       usedBy: [
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
+      ],
+      requires: [
+        { name: "rmd-app-bar-theme", type: "mixin", packageName: "app-bar" },
+        {
+          name: "rmd-app-bar-theme-update-var",
+          type: "mixin",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-app-bar-theme-var",
+          type: "function",
+          packageName: "app-bar",
+        },
       ],
       packageName: "app-bar",
       examples: [
@@ -241,19 +271,6 @@ const sassdoc: PackageSassDoc = {
           description: "Simple Example",
         },
       ],
-      requires: [
-        { name: "rmd-app-bar-theme", type: "mixin", packageName: "app-bar" },
-        {
-          name: "rmd-app-bar-theme-update-var",
-          type: "mixin",
-          packageName: "app-bar",
-        },
-        {
-          name: "rmd-app-bar-theme-var",
-          type: "function",
-          packageName: "app-bar",
-        },
-      ],
       code: "@mixin rmd-app-bar-themes { … }",
       sourceCode:
         "@mixin rmd-app-bar-themes {\n  @include rmd-app-bar-theme(background-color);\n  @include rmd-app-bar-theme(color);\n\n  &--primary {\n    @include rmd-app-bar-theme-update-var(\n      background-color,\n      rmd-app-bar-theme-var(primary)\n    );\n    @include rmd-app-bar-theme-update-var(\n      color,\n      rmd-app-bar-theme-var(on-primary)\n    );\n  }\n\n  &--secondary {\n    @include rmd-app-bar-theme-update-var(\n      background-color,\n      rmd-app-bar-theme-var(secondary)\n    );\n    @include rmd-app-bar-theme-update-var(\n      color,\n      rmd-app-bar-theme-var(on-secondary)\n    );\n  }\n\n  &--default {\n    @include rmd-app-bar-theme-update-var(\n      background-color,\n      rmd-app-bar-theme-var(default-background-color)\n    );\n    @include rmd-app-bar-theme-update-var(\n      color,\n      rmd-app-bar-theme-var(default-color)\n    );\n  }\n}\n",
@@ -266,23 +283,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/app-bar/src/_mixins.scss#L158-L170",
       usedBy: [
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
-      ],
-      packageName: "app-bar",
-      examples: [
-        {
-          code:
-            ".app-bar__nav {\n  // add the next two lines if not applying the base .rmd-button classes\n  // @include rmd-button-base;\n  // @include rmd-button-text;\n  @include rmd-app-bar-nav;\n}\n",
-          compiled:
-            '.app-bar__nav {\n  margin-left: 0.25rem;\n  margin-right: 1.25rem;\n  flex-shrink: 0;\n}\n[dir="rtl"] .app-bar__nav {\n  margin-right: 0.25rem;\n  margin-left: 1.25rem;\n}\n.app-bar__nav--inherit {\n  color: inherit;\n}\n',
-          type: "scss",
-          description: "Simple Example",
-        },
-        {
-          code:
-            '<div class="app-bar app-bar--primary">\n  <button type="button" className="app-bar__nav">Nav Button</button>\n</div>\n',
-          type: "html",
-          description: "Simple Example",
-        },
       ],
       requires: [
         {
@@ -301,6 +301,23 @@ const sassdoc: PackageSassDoc = {
           packageName: "app-bar",
         },
       ],
+      packageName: "app-bar",
+      examples: [
+        {
+          code:
+            ".app-bar__nav {\n  // add the next two lines if not applying the base .rmd-button classes\n  // @include rmd-button-base;\n  // @include rmd-button-text;\n  @include rmd-app-bar-nav;\n}\n",
+          compiled:
+            '.app-bar__nav {\n  margin-left: 0.25rem;\n  margin-right: 1.25rem;\n  flex-shrink: 0;\n}\n[dir="rtl"] .app-bar__nav {\n  margin-right: 0.25rem;\n  margin-left: 1.25rem;\n}\n.app-bar__nav--inherit {\n  color: inherit;\n}\n',
+          type: "scss",
+          description: "Simple Example",
+        },
+        {
+          code:
+            '<div class="app-bar app-bar--primary">\n  <button type="button" className="app-bar__nav">Nav Button</button>\n</div>\n',
+          type: "html",
+          description: "Simple Example",
+        },
+      ],
       code: "@mixin rmd-app-bar-nav { … }",
       sourceCode:
         "@mixin rmd-app-bar-nav {\n  @include rmd-utils-rtl-auto-group(\n    (\n      margin-left: $rmd-app-bar-lr-margin,\n      margin-right: $rmd-app-bar-title-nav-margin,\n    )\n  );\n  flex-shrink: 0;\n\n  &--inherit {\n    color: inherit;\n  }\n}\n",
@@ -312,16 +329,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/app-bar/src/_mixins.scss#L178-L201",
       usedBy: [
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
-      ],
-      packageName: "app-bar",
-      examples: [
-        {
-          code: ".rmd-app-bar__title {\n  @include rmd-app-bar-title;\n}\n",
-          compiled:
-            '.rmd-app-bar__title {\n  font-family: Roboto, sans-serif;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-size: 1.25rem;\n  line-height: 2rem;\n  font-weight: 500;\n  letter-spacing: 0.0125em;\n  text-decoration: inherit;\n  text-transform: inherit;\n  margin-left: 1rem;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  margin-bottom: 0;\n  margin-top: 0;\n}\n[dir="rtl"] .rmd-app-bar__title {\n  margin-left: 0;\n  margin-right: 1rem;\n}\n.rmd-app-bar__title:focus {\n  outline-style: none;\n}\n.rmd-app-bar__title::-moz-focus-inner {\n  border: 0;\n}\n.rmd-app-bar__nav ~ .rmd-app-bar__title {\n  margin-left: 0;\n}\n[dir="rtl"] .rmd-app-bar__nav ~ .rmd-app-bar__title {\n  margin-left: 0;\n  margin-right: 0;\n}\n.rmd-app-bar__title--keyline {\n  margin-left: 4.5rem;\n}\n[dir="rtl"] .rmd-app-bar__title--keyline {\n  margin-left: auto;\n  margin-right: 4.5rem;\n}\n.rmd-app-bar__title--no-wrap {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.rmd-app-bar__title--inherit {\n  color: inherit;\n}\n',
-          type: "scss",
-          description: "Example Usage SCSS",
-        },
       ],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -347,6 +354,16 @@ const sassdoc: PackageSassDoc = {
           packageName: "app-bar",
         },
       ],
+      packageName: "app-bar",
+      examples: [
+        {
+          code: ".rmd-app-bar__title {\n  @include rmd-app-bar-title;\n}\n",
+          compiled:
+            '.rmd-app-bar__title {\n  font-family: Roboto, sans-serif;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-size: 1.25rem;\n  line-height: 2rem;\n  font-weight: 500;\n  letter-spacing: 0.0125em;\n  text-decoration: inherit;\n  text-transform: inherit;\n  margin-left: 1rem;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n  margin-bottom: 0;\n  margin-top: 0;\n}\n[dir="rtl"] .rmd-app-bar__title {\n  margin-left: 0;\n  margin-right: 1rem;\n}\n.rmd-app-bar__title:focus {\n  outline-style: none;\n}\n.rmd-app-bar__title::-moz-focus-inner {\n  border: 0;\n}\n.rmd-app-bar__nav ~ .rmd-app-bar__title {\n  margin-left: 0;\n}\n[dir="rtl"] .rmd-app-bar__nav ~ .rmd-app-bar__title {\n  margin-left: 0;\n  margin-right: 0;\n}\n.rmd-app-bar__title--keyline {\n  margin-left: 4.5rem;\n}\n[dir="rtl"] .rmd-app-bar__title--keyline {\n  margin-left: auto;\n  margin-right: 4.5rem;\n}\n.rmd-app-bar__title--no-wrap {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.rmd-app-bar__title--inherit {\n  color: inherit;\n}\n',
+          type: "scss",
+          description: "Example Usage SCSS",
+        },
+      ],
       code: "@mixin rmd-app-bar-title { … }",
       sourceCode:
         "@mixin rmd-app-bar-title {\n  @include rmd-typography(headline-6);\n  @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-keyline);\n  @include rmd-utils-hide-focus-outline;\n\n  margin-bottom: 0;\n  margin-top: 0;\n\n  .rmd-app-bar__nav ~ & {\n    @include rmd-utils-rtl-auto(margin-left, 0);\n  }\n\n  &--keyline {\n    @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-title-keyline, auto);\n  }\n\n  &--no-wrap {\n    @include rmd-typography-text-overflow-ellipsis;\n  }\n\n  &--inherit {\n    color: inherit;\n  }\n}\n",
@@ -360,7 +377,6 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "rmd-app-bar-action", type: "mixin", packageName: "app-bar" },
       ],
-      packageName: "app-bar",
       requires: [
         { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
         {
@@ -369,6 +385,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "app-bar",
         },
       ],
+      packageName: "app-bar",
       code: "@mixin rmd-app-bar-action-position($first) { … }",
       sourceCode:
         "@mixin rmd-app-bar-action-position($first) {\n  @if $first {\n    @include rmd-utils-rtl-auto(margin-left, auto);\n  } @else {\n    @include rmd-utils-rtl-auto(margin-right, $rmd-app-bar-lr-margin);\n  }\n}\n",
@@ -389,6 +406,13 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
       ],
+      requires: [
+        {
+          name: "rmd-app-bar-action-position",
+          type: "mixin",
+          packageName: "app-bar",
+        },
+      ],
       packageName: "app-bar",
       examples: [
         {
@@ -397,13 +421,6 @@ const sassdoc: PackageSassDoc = {
             '.rmd-app-bar__action {\n  flex-shrink: 0;\n}\n.rmd-app-bar__action--last {\n  margin-right: 0.25rem;\n}\n[dir="rtl"] .rmd-app-bar__action--last {\n  margin-right: 0;\n  margin-left: 0.25rem;\n}\n.rmd-app-bar__action--first {\n  margin-left: auto;\n}\n[dir="rtl"] .rmd-app-bar__action--first {\n  margin-left: 0;\n  margin-right: auto;\n}\n.rmd-app-bar__action--inherit {\n  color: inherit;\n}\n',
           type: "scss",
           description: "Example Usage SCSS",
-        },
-      ],
-      requires: [
-        {
-          name: "rmd-app-bar-action-position",
-          type: "mixin",
-          packageName: "app-bar",
         },
       ],
       code: "@mixin rmd-app-bar-action { … }",
@@ -420,10 +437,11 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-app-bar-offsets", type: "mixin", packageName: "app-bar" },
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
-      packageName: "app-bar",
       requires: [
         { name: "rmd-app-bar-theme", type: "mixin", packageName: "app-bar" },
+        { name: "rmd-utils-validate", type: "function", packageName: "utils" },
       ],
+      packageName: "app-bar",
       code:
         "@mixin rmd-app-bar-offset($property: padding-top, $height-type: height) { … }",
       sourceCode:
@@ -454,10 +472,10 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
       ],
-      packageName: "app-bar",
       requires: [
         { name: "rmd-app-bar-offset", type: "mixin", packageName: "app-bar" },
       ],
+      packageName: "app-bar",
       code: "@mixin rmd-app-bar-offsets { … }",
       sourceCode:
         "@mixin rmd-app-bar-offsets {\n  .rmd-app-bar-offset {\n    @include rmd-app-bar-offset($property, height);\n\n    &--dense {\n      @include rmd-app-bar-offset($property, dense-height);\n    }\n\n    &--prominent {\n      @include rmd-app-bar-offset($property, prominent-height);\n    }\n\n    &--prominent-dense {\n      @include rmd-app-bar-offset($property, prominent-dense-height);\n    }\n  }\n}\n",
@@ -471,7 +489,6 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
       ],
-      packageName: "app-bar",
       requires: [
         {
           name: "rmd-app-bar-theme-update-var",
@@ -484,6 +501,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "app-bar",
         },
       ],
+      packageName: "app-bar",
       code: "@mixin rmd-app-bar-dense-theme { … }",
       sourceCode:
         "@mixin rmd-app-bar-dense-theme {\n  @include rmd-app-bar-theme-update-var(\n    height,\n    rmd-app-bar-theme-var(dense-height)\n  );\n  @include rmd-app-bar-theme-update-var(\n    prominent-height,\n    rmd-app-bar-theme-var(prominent-dense-height)\n  );\n}\n",
@@ -494,8 +512,12 @@ const sassdoc: PackageSassDoc = {
       description: "Creates all the styles for the app bar package.\n",
       source: "packages/app-bar/src/_mixins.scss#L301-L351",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
-      packageName: "app-bar",
       requires: [
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
         { name: "rmd-app-bar-themes", type: "mixin", packageName: "app-bar" },
         { name: "rmd-app-bar-theme", type: "mixin", packageName: "app-bar" },
@@ -509,6 +531,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "app-bar",
         },
       ],
+      packageName: "app-bar",
       code: "@mixin react-md-app-bar { … }",
       sourceCode:
         "@mixin react-md-app-bar {\n  @include rmd-theme-create-root-theme($rmd-app-bar-theme-values, app-bar);\n\n  .rmd-app-bar {\n    @include rmd-app-bar-fixed;\n    @include rmd-app-bar-themes;\n\n    align-items: center;\n    display: flex;\n    // since app bars can appear a lot in full page dialogs, setting these flex\n    // values allows it be be a direct replacement of the `DialogHeader`\n    // component without all the offsets and additional styles needed for fixed\n    // app bars.\n    flex: 0 0 auto;\n    width: 100%;\n\n    &--wrap {\n      flex-wrap: wrap;\n    }\n\n    &--normal {\n      @include rmd-app-bar-theme(height);\n    }\n\n    &--dense {\n      @include rmd-app-bar-theme(height, dense-height);\n    }\n\n    &--prominent {\n      @include rmd-app-bar-theme(height, prominent-height);\n    }\n\n    &--prominent-dense {\n      @include rmd-app-bar-theme(height, prominent-dense-height);\n    }\n\n    &__nav {\n      @include rmd-app-bar-nav;\n    }\n\n    &__title {\n      @include rmd-app-bar-title;\n    }\n\n    &__action {\n      @include rmd-app-bar-action;\n    }\n  }\n\n  @include rmd-app-bar-offsets;\n}\n",
@@ -600,7 +623,6 @@ const sassdoc: PackageSassDoc = {
       description:
         "The amount of margin to apply to the `AppBarNav` based on the `$rmd-app-bar-keyline` so that the icon will be positioned at the keyline\n(ignoring the button padding).",
       source: "packages/app-bar/src/_variables.scss#L50",
-      packageName: "app-bar",
       requires: [
         { name: "rmd-icon-size", type: "variable", packageName: "icon" },
         {
@@ -609,6 +631,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "button",
         },
       ],
+      packageName: "app-bar",
       type: "Number",
       value:
         "$rmd-app-bar-keyline - (($rmd-button-icon-size - $rmd-icon-size) / 2)",
@@ -637,7 +660,6 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-app-bar-nav", type: "mixin", packageName: "app-bar" },
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
-      packageName: "app-bar",
       requires: [
         {
           name: "rmd-button-icon-size",
@@ -645,6 +667,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "button",
         },
       ],
+      packageName: "app-bar",
       type: "Number",
       value:
         "$rmd-app-bar-title-keyline - $rmd-app-bar-nav-margin -\n  $rmd-button-icon-size",
@@ -675,10 +698,10 @@ const sassdoc: PackageSassDoc = {
       description:
         'The background color for the app bar when the `theme` prop is set to `"primary"`.',
       source: "packages/app-bar/src/_variables.scss#L78",
-      packageName: "app-bar",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
+      packageName: "app-bar",
       type: "Color",
       value: "rmd-theme-var(primary)",
       compiled: "var(--rmd-theme-primary, #9c27b0)",
@@ -689,10 +712,10 @@ const sassdoc: PackageSassDoc = {
       description:
         'The text color for the app bar when the `theme` prop is set to `"primary"`.',
       source: "packages/app-bar/src/_variables.scss#L84",
-      packageName: "app-bar",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
+      packageName: "app-bar",
       type: "Color",
       value: "rmd-theme-var(on-primary)",
       compiled: "var(--rmd-theme-on-primary, #000)",
@@ -703,10 +726,10 @@ const sassdoc: PackageSassDoc = {
       description:
         'The background color for the app bar when the `theme` prop is set to `"secondary"`.',
       source: "packages/app-bar/src/_variables.scss#L91",
-      packageName: "app-bar",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
+      packageName: "app-bar",
       type: "Color",
       value: "rmd-theme-var(secondary)",
       compiled: "var(--rmd-theme-secondary, #f50057)",
@@ -717,10 +740,10 @@ const sassdoc: PackageSassDoc = {
       description:
         'The text color for the app bar when the `theme` prop is set to `"secondary"`.',
       source: "packages/app-bar/src/_variables.scss#L98",
-      packageName: "app-bar",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
+      packageName: "app-bar",
       type: "Color",
       value: "rmd-theme-var(on-secondary)",
       compiled: "var(--rmd-theme-on-secondary, #000)",
@@ -734,10 +757,10 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
-      packageName: "app-bar",
       requires: [
         { name: "rmd-grey-100", type: "variable", packageName: "theme" },
       ],
+      packageName: "app-bar",
       type: "Color",
       value: "$rmd-grey-100",
       compiled: "#f5f5f5",
@@ -751,12 +774,12 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
-      packageName: "app-bar",
       requires: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
         { name: "rmd-white-base", type: "variable", packageName: "theme" },
       ],
+      packageName: "app-bar",
       type: "Color",
       value:
         "if(\n  rmd-theme-tone($rmd-app-bar-default-light-theme-background-color) == light,\n  $rmd-black-base,\n  $rmd-white-base\n)",
@@ -769,10 +792,10 @@ const sassdoc: PackageSassDoc = {
         'The background color for the app bar when the `theme` prop is set to `"default"` and the app is currently using a dark theme.',
       source: "packages/app-bar/src/_variables.scss#L125",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
-      packageName: "app-bar",
       requires: [
         { name: "rmd-grey-900", type: "variable", packageName: "theme" },
       ],
+      packageName: "app-bar",
       type: "Color",
       value: "$rmd-grey-900",
       compiled: "#212121",
@@ -784,12 +807,12 @@ const sassdoc: PackageSassDoc = {
         'The text color for the app bar when the `theme` prop is set to `"default"` and the app is currently using a dark theme.',
       source: "packages/app-bar/src/_variables.scss#L134-L138",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
-      packageName: "app-bar",
       requires: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
         { name: "rmd-white-base", type: "variable", packageName: "theme" },
       ],
+      packageName: "app-bar",
       type: "Color",
       value:
         "if(\n  rmd-theme-tone($rmd-app-bar-default-dark-theme-background-color) == light,\n  $rmd-black-base,\n  $rmd-white-base\n)",
@@ -801,10 +824,10 @@ const sassdoc: PackageSassDoc = {
       description:
         "The background color to use for the app bar that is using the `default` theme. This value is derived based on the current background color of the app for light or dark themed apps.",
       source: "packages/app-bar/src/_variables.scss#L146-L150",
-      packageName: "app-bar",
       requires: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
       ],
+      packageName: "app-bar",
       type: "Color",
       value:
         "if(\n  rmd-theme-tone($rmd-theme-background) == light,\n  $rmd-app-bar-default-light-theme-background-color,\n  $rmd-app-bar-default-dark-theme-background-color\n)",
@@ -816,10 +839,10 @@ const sassdoc: PackageSassDoc = {
       description:
         "The text color to use for the app bar that is using the `default` theme.\nThis value is derived based on the current background color of the app for light or dark themed apps.",
       source: "packages/app-bar/src/_variables.scss#L158-L162",
-      packageName: "app-bar",
       requires: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
       ],
+      packageName: "app-bar",
       type: "Color",
       value:
         "if(\n  rmd-theme-tone($rmd-app-bar-default-background-color) == light,\n  $rmd-app-bar-default-light-theme-color,\n  $rmd-app-bar-default-dark-theme-color\n)",

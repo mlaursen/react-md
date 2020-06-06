@@ -8,14 +8,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to quickly get one of the link's theme values. This is really just for the `rmd-link-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/link/src/_functions.scss#L15-L17",
-      packageName: "link",
       requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
         {
           name: "rmd-link-theme-values",
           type: "variable",
           packageName: "link",
         },
       ],
+      packageName: "link",
       code: "@function rmd-link-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-link-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-link-theme-values, link);\n}\n",
@@ -38,14 +43,15 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to get one of the link's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-link-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/link/src/_functions.scss#L32-L34",
-      packageName: "link",
       requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
           name: "rmd-link-theme-values",
           type: "variable",
           packageName: "link",
         },
       ],
+      packageName: "link",
       code: "@function rmd-link-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
         "@function rmd-link-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-link-theme-values,\n    link,\n    $fallback\n  );\n}\n",
@@ -77,14 +83,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for one of the link's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/link/src/_mixins.scss#L23-L25",
-      packageName: "link",
       requires: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-link-theme-values",
           type: "variable",
           packageName: "link",
         },
       ],
+      packageName: "link",
       code:
         "@mixin rmd-link-theme($property, $theme-style: property, $fallback: null) { … }",
       sourceCode:
@@ -118,14 +129,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "Updates one of the link's theme variables with the new value for the section of your app.",
       source: "packages/link/src/_mixins.scss#L33-L35",
-      packageName: "link",
       requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-link-theme-values",
           type: "variable",
           packageName: "link",
         },
       ],
+      packageName: "link",
       code: "@mixin rmd-link-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-link-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-link-theme-values,\n    link\n  );\n}\n",
@@ -149,14 +165,19 @@ const sassdoc: PackageSassDoc = {
       description: "Creates the styles for links within react-md.\n",
       source: "packages/link/src/_mixins.scss#L90-L100",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
-      packageName: "link",
       requires: [
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-link-theme-values",
           type: "variable",
           packageName: "link",
         },
       ],
+      packageName: "link",
       code: "@mixin react-md-link { … }",
       sourceCode:
         "@mixin react-md-link {\n  @include rmd-theme-create-root-theme($rmd-link-theme-values, link);\n\n  .rmd-link {\n    @include rmd-link;\n  }\n\n  .rmd-link-skip {\n    @include rmd-link-skip;\n  }\n}\n",
@@ -168,7 +189,6 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-transition-time",
       description: "The transition time for links to change color.",
       source: "packages/link/src/_variables.scss#L13",
-      packageName: "link",
       requires: [
         {
           name: "rmd-transition-standard-time",
@@ -176,6 +196,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "transition",
         },
       ],
+      packageName: "link",
       type: "Number",
       value: "$rmd-transition-standard-time",
       compiled: "0.15s",
@@ -185,10 +206,10 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-color",
       description: "The default color to use for links.",
       source: "packages/link/src/_variables.scss#L19",
-      packageName: "link",
       requires: [
         { name: "rmd-blue-500", type: "variable", packageName: "theme" },
       ],
+      packageName: "link",
       type: "Color",
       value: "$rmd-blue-500",
       compiled: "#2196f3",
@@ -198,10 +219,10 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-visited-color",
       description: "The color to use for links that have been visited.",
       source: "packages/link/src/_variables.scss#L25",
-      packageName: "link",
       requires: [
         { name: "rmd-blue-600", type: "variable", packageName: "theme" },
       ],
+      packageName: "link",
       type: "Color",
       value: "$rmd-blue-600",
       compiled: "#1e88e5",
@@ -211,10 +232,10 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-hover-color",
       description: "The color to use for links that are being hovered.",
       source: "packages/link/src/_variables.scss#L31",
-      packageName: "link",
       requires: [
         { name: "rmd-blue-400", type: "variable", packageName: "theme" },
       ],
+      packageName: "link",
       type: "Color",
       value: "$rmd-blue-400",
       compiled: "#42a5f5",
@@ -235,10 +256,10 @@ const sassdoc: PackageSassDoc = {
       description:
         "The default styles to apply to the skip to main content link.",
       source: "packages/link/src/_variables.scss#L42-L48",
-      packageName: "link",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
+      packageName: "link",
       type: "Map",
       value:
         "(\n  color: rmd-theme-var(on-primary),\n  left: 50%,\n  padding: 0.25rem 1rem,\n  top: 0.25rem,\n  transform: translateX(-50%),\n)",
@@ -251,10 +272,10 @@ const sassdoc: PackageSassDoc = {
       description:
         "The default styles to apply to the skip to main content link when it has become keyboard focused.",
       source: "packages/link/src/_variables.scss#L55-L57",
-      packageName: "link",
       requires: [
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
       ],
+      packageName: "link",
       type: "Map",
       value: "(\n  outline: 0.25rem dashed $rmd-black-base,\n)",
       compiled: "(\n  outline: 0.25rem dashed #000,\n)",

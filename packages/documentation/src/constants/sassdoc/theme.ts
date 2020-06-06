@@ -3,11 +3,67 @@ import { PackageSassDoc } from "utils/sassdoc";
 
 const sassdoc: PackageSassDoc = {
   functions: {
+    "rmd-theme-luminance": {
+      name: "rmd-theme-luminance",
+      description: "Calculate the luminance for a color.",
+      source: "packages/theme/src/_color-a11y.scss#L100-L109",
+      links: [
+        {
+          name: "",
+          href: "https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests",
+        },
+      ],
+      usedBy: [
+        { name: "rmd-theme-contrast", type: "function", packageName: "theme" },
+      ],
+      requires: [
+        {
+          name: "rmd-theme-linear-channel-values",
+          type: "variable",
+          packageName: "theme",
+        },
+      ],
+      packageName: "theme",
+      code: "@function rmd-theme-luminance($color) { … }",
+      sourceCode:
+        "@function rmd-theme-luminance($color) {\n  $red: nth($rmd-theme-linear-channel-values, red($color) + 1);\n  $red-multiplier: 0.2126;\n  $green: nth($rmd-theme-linear-channel-values, green($color) + 1);\n  $green-multiplier: 0.7152;\n  $blue: nth($rmd-theme-linear-channel-values, blue($color) + 1);\n  $blue-multiplier: 0.0722;\n\n  @return ($red * $red-multiplier) + ($green * $green-multiplier) +\n    ($blue * $blue-multiplier);\n}\n",
+      type: "function",
+      parameters: [
+        { type: "Color", name: "color", description: "The color to check" },
+      ],
+      returns: { type: "Number" },
+    },
+    "rmd-theme-contrast": {
+      name: "rmd-theme-contrast",
+      description: "Gets the contrast between two colors.\n",
+      source: "packages/theme/src/_color-a11y.scss#L118-L123",
+      usedBy: [
+        { name: "rmd-theme-tone", type: "function", packageName: "theme" },
+      ],
+      requires: [
+        { name: "rmd-theme-luminance", type: "function", packageName: "theme" },
+      ],
+      packageName: "theme",
+      code: "@function rmd-theme-contrast($back, $front) { … }",
+      sourceCode:
+        "@function rmd-theme-contrast($back, $front) {\n  $back-luminance: rmd-theme-luminance($back) + 0.05;\n  $front-luminance: rmd-theme-luminance($front) + 0.05;\n\n  @return max($back-luminance, $front-luminance) /\n    min($back-luminance, $front-luminance);\n}\n",
+      type: "function",
+      parameters: [
+        { type: "Color", name: "back", description: "The background color" },
+        {
+          type: "Color",
+          name: "front",
+          description:
+            "The foreground color that should be compared to the background color for contrast ratio.",
+        },
+      ],
+      returns: { type: "Number" },
+    },
     "rmd-theme-tone": {
       name: "rmd-theme-tone",
       description:
         "Determines if a provided color is considered light or dark.",
-      source: "packages/theme/src/_color-a11y.scss#L128-L141",
+      source: "packages/theme/src/_color-a11y.scss#L134-L147",
       links: [
         {
           name: "",
@@ -88,11 +144,12 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-tooltip-color", type: "variable", packageName: "tooltip" },
       ],
-      packageName: "theme",
       requires: [
+        { name: "rmd-theme-contrast", type: "function", packageName: "theme" },
         { name: "rmd-white-base", type: "variable", packageName: "theme" },
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
       ],
+      packageName: "theme",
       code:
         "@function rmd-theme-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) { … }",
       sourceCode:
@@ -118,7 +175,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-contrast-tone",
       description:
         "Determines if the provided color should have a light or dark contrast using the luminance algorithm to maintain a required contrast ratio for accessibility.",
-      source: "packages/theme/src/_color-a11y.scss#L155-L157",
+      source: "packages/theme/src/_color-a11y.scss#L161-L163",
       links: [
         {
           name: "",
@@ -132,10 +189,10 @@ const sassdoc: PackageSassDoc = {
           packageName: "theme",
         },
       ],
-      packageName: "theme",
       requires: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
       ],
+      packageName: "theme",
       code:
         "@function rmd-theme-contrast-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) { … }",
       sourceCode:
@@ -184,6 +241,21 @@ const sassdoc: PackageSassDoc = {
           packageName: "progress",
         },
       ],
+      requires: [
+        { name: "rmd-utils-validate", type: "function", packageName: "utils" },
+        { name: "rmd-theme-color-map", type: "variable", packageName: "theme" },
+        {
+          name: "rmd-theme-accent-suffixes",
+          type: "variable",
+          packageName: "theme",
+        },
+        {
+          name: "rmd-theme-primary-suffixes",
+          type: "variable",
+          packageName: "theme",
+        },
+        { name: "rmd-theme-colors", type: "variable", packageName: "theme" },
+      ],
       packageName: "theme",
       examples: [
         {
@@ -202,20 +274,6 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "Example Non-Material Design Color Usage",
         },
-      ],
-      requires: [
-        { name: "rmd-theme-color-map", type: "variable", packageName: "theme" },
-        {
-          name: "rmd-theme-accent-suffixes",
-          type: "variable",
-          packageName: "theme",
-        },
-        {
-          name: "rmd-theme-primary-suffixes",
-          type: "variable",
-          packageName: "theme",
-        },
-        { name: "rmd-theme-colors", type: "variable", packageName: "theme" },
       ],
       code:
         "@function rmd-theme-get-swatch($color, $swatch, $accent: false, $fallback-color: null, $fallback-name: null) { … }",
@@ -283,10 +341,15 @@ const sassdoc: PackageSassDoc = {
           packageName: "tabs",
         },
       ],
-      packageName: "theme",
       requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
         { name: "rmd-theme-values", type: "variable", packageName: "theme" },
       ],
+      packageName: "theme",
       code: "@function rmd-theme($theme-name) { … }",
       sourceCode:
         "@function rmd-theme($theme-name) {\n  @return rmd-theme-get-var-value($theme-name, $rmd-theme-values, theme);\n}\n",
@@ -327,6 +390,7 @@ const sassdoc: PackageSassDoc = {
           type: "variable",
           packageName: "app-bar",
         },
+        { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "rmd-button-color", type: "variable", packageName: "button" },
         {
           name: "rmd-card-background-color",
@@ -339,6 +403,7 @@ const sassdoc: PackageSassDoc = {
           type: "variable",
           packageName: "card",
         },
+        { name: "rmd-dialog", type: "mixin", packageName: "dialog" },
         {
           name: "rmd-form-active-color",
           type: "variable",
@@ -352,6 +417,12 @@ const sassdoc: PackageSassDoc = {
         {
           name: "rmd-form-placeholder-color",
           type: "variable",
+          packageName: "form",
+        },
+        { name: "rmd-native-select", type: "mixin", packageName: "form" },
+        {
+          name: "rmd-text-field-container",
+          type: "mixin",
           packageName: "form",
         },
         { name: "rmd-icon-color", type: "variable", packageName: "icon" },
@@ -374,10 +445,11 @@ const sassdoc: PackageSassDoc = {
           packageName: "tabs",
         },
       ],
-      packageName: "theme",
       requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         { name: "rmd-theme-values", type: "variable", packageName: "theme" },
       ],
+      packageName: "theme",
       code: "@function rmd-theme-var($theme-name) { … }",
       sourceCode:
         "@function rmd-theme-var($theme-name) {\n  @return rmd-theme-get-var(\n    $theme-name,\n    $rmd-theme-values,\n    theme,\n    $fallback-color\n  );\n}\n",
@@ -392,22 +464,232 @@ const sassdoc: PackageSassDoc = {
       ],
       returns: { type: "Color", description: "the theme color." },
     },
+    "rmd-theme-get-var-value": {
+      name: "rmd-theme-get-var-value",
+      description: "",
+      source: "packages/theme/src/_helpers.scss#L16-L22",
+      usedBy: [
+        { name: "rmd-alert-theme", type: "function", packageName: "alert" },
+        { name: "rmd-app-bar-theme", type: "function", packageName: "app-bar" },
+        { name: "rmd-avatar-theme", type: "function", packageName: "avatar" },
+        { name: "rmd-badge-theme", type: "function", packageName: "badge" },
+        { name: "rmd-button-theme", type: "function", packageName: "button" },
+        { name: "rmd-card-theme", type: "function", packageName: "card" },
+        { name: "rmd-chip-theme", type: "function", packageName: "chip" },
+        { name: "rmd-dialog-theme", type: "function", packageName: "dialog" },
+        { name: "rmd-divider-theme", type: "function", packageName: "divider" },
+        {
+          name: "rmd-expansion-panel-theme",
+          type: "function",
+          packageName: "expansion-panel",
+        },
+        { name: "rmd-form-theme", type: "function", packageName: "form" },
+        { name: "rmd-icon-theme", type: "function", packageName: "icon" },
+        { name: "rmd-layout-theme", type: "function", packageName: "layout" },
+        { name: "rmd-link-theme", type: "function", packageName: "link" },
+        { name: "rmd-list-theme", type: "function", packageName: "list" },
+        { name: "rmd-menu-theme", type: "function", packageName: "menu" },
+        { name: "rmd-overlay-theme", type: "function", packageName: "overlay" },
+        {
+          name: "rmd-progress-theme",
+          type: "function",
+          packageName: "progress",
+        },
+        { name: "rmd-sheet-theme", type: "function", packageName: "sheet" },
+        { name: "rmd-states-theme", type: "function", packageName: "states" },
+        { name: "rmd-table-theme", type: "function", packageName: "table" },
+        { name: "rmd-tabs-theme", type: "function", packageName: "tabs" },
+        { name: "rmd-theme", type: "function", packageName: "theme" },
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
+        { name: "rmd-tooltip-theme", type: "function", packageName: "tooltip" },
+        { name: "rmd-tree-theme", type: "function", packageName: "tree" },
+        {
+          name: "rmd-typography-theme",
+          type: "function",
+          packageName: "typography",
+        },
+      ],
+      requires: [
+        { name: "rmd-utils-validate", type: "function", packageName: "utils" },
+      ],
+      packageName: "theme",
+      code:
+        "@function rmd-theme-get-var-value($theme-name, $theme-map, $theme-group) { … }",
+      sourceCode:
+        '@function rmd-theme-get-var-value($theme-name, $theme-map, $theme-group) {\n  @if type-of($theme-name) == "color" or $theme-name == "currentColor" {\n    @return $theme-name;\n  }\n\n  @return rmd-utils-validate(\n    $theme-map,\n    $theme-name,\n    "#{$theme-group} property"\n  );\n}\n',
+      type: "function",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-name",
+          description: "The name of the theme to extract from the theme-map.",
+        },
+        {
+          type: "Map",
+          name: "theme-map",
+          description: "The map containing the theme values.",
+        },
+        {
+          type: "String",
+          name: "theme-group",
+          description:
+            "The group/package that the theme exists in.\nThis should be one of the react-md packages.",
+        },
+      ],
+      returns: {
+        type: "Color|String|Number",
+        description: "The value from the theme map.",
+      },
+    },
+    "rmd-theme-get-var": {
+      name: "rmd-theme-get-var",
+      description:
+        "This function is used behind the scenes of react-md to help get css variables from different packages with some built in validation. This is generally used to create the helper function within each package to get the css var string.",
+      source: "packages/theme/src/_helpers.scss#L54-L63",
+      usedBy: [
+        { name: "rmd-alert-theme-var", type: "function", packageName: "alert" },
+        {
+          name: "rmd-app-bar-theme-var",
+          type: "function",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-avatar-theme-var",
+          type: "function",
+          packageName: "avatar",
+        },
+        { name: "rmd-badge-theme-var", type: "function", packageName: "badge" },
+        {
+          name: "rmd-button-theme-var",
+          type: "function",
+          packageName: "button",
+        },
+        { name: "rmd-card-theme-var", type: "function", packageName: "card" },
+        { name: "rmd-chip-theme-var", type: "function", packageName: "chip" },
+        {
+          name: "rmd-dialog-theme-var",
+          type: "function",
+          packageName: "dialog",
+        },
+        {
+          name: "rmd-divider-theme-var",
+          type: "function",
+          packageName: "divider",
+        },
+        {
+          name: "rmd-expansion-panel-theme-var",
+          type: "function",
+          packageName: "expansion-panel",
+        },
+        { name: "rmd-form-theme-var", type: "function", packageName: "form" },
+        { name: "rmd-icon-theme-var", type: "function", packageName: "icon" },
+        {
+          name: "rmd-layout-theme-var",
+          type: "function",
+          packageName: "layout",
+        },
+        { name: "rmd-link-theme-var", type: "function", packageName: "link" },
+        { name: "rmd-list-theme-var", type: "function", packageName: "list" },
+        { name: "rmd-menu-theme-var", type: "function", packageName: "menu" },
+        {
+          name: "rmd-overlay-theme-var",
+          type: "function",
+          packageName: "overlay",
+        },
+        {
+          name: "rmd-progress-theme-var",
+          type: "function",
+          packageName: "progress",
+        },
+        { name: "rmd-sheet-theme-var", type: "function", packageName: "sheet" },
+        {
+          name: "rmd-states-theme-var",
+          type: "function",
+          packageName: "states",
+        },
+        { name: "rmd-table-theme-var", type: "function", packageName: "table" },
+        { name: "rmd-tabs-theme-var", type: "function", packageName: "tabs" },
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
+        {
+          name: "rmd-tooltip-theme-var",
+          type: "function",
+          packageName: "tooltip",
+        },
+        { name: "rmd-tree-theme-var", type: "function", packageName: "tree" },
+        {
+          name: "rmd-typography-theme-var",
+          type: "function",
+          packageName: "typography",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
+      ],
+      packageName: "theme",
+      examples: [
+        {
+          code:
+            "$rmd-example-theme-values: (\n  background-color: #303030,\n  color: $rmd-red-500,\n);\n\n@function rmd-example-get-var($theme-name) {\n  @return rmd-theme-get-var($theme-name, $rmd-example-theme-values, example);\n}\n\n.example-class {\n  color: rmd-example-get-var(color);\n}\n",
+          compiled:
+            ".example-class {\n  color: var(--rmd-example-color, #f44336);\n}\n",
+          type: "scss",
+          description: "Example Usage SCSS",
+        },
+      ],
+      code:
+        "@function rmd-theme-get-var($theme-name, $theme-map, $theme-group, $fallback: null) { … }",
+      sourceCode:
+        "@function rmd-theme-get-var(\n  $theme-name,\n  $theme-map,\n  $theme-group,\n  $fallback: null\n) {\n  $validated-fallback: rmd-theme-get-var-value(\n    $theme-name,\n    $theme-map,\n    $theme-group\n  );\n  $fallback: if($fallback == null, $validated-fallback, $fallback);\n\n  @if $fallback == null {\n    @return var(--rmd-#{$theme-group}-#{$theme-name});\n  }\n\n  @return var(--rmd-#{$theme-group}-#{$theme-name}, #{$fallback});\n}\n",
+      type: "function",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-name",
+          description: "The name of the theme to extract from the theme-map.",
+        },
+        {
+          type: "Map",
+          name: "theme-map",
+          description: "The map containing the theme values.",
+        },
+        {
+          type: "String",
+          name: "theme-group",
+          description:
+            "The group/package that the theme exists in.\nThis should be one of the react-md packages.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "fallback",
+          default: "null",
+          description:
+            "A fallback value to use for css variables if the theme variable has not been defined somehow. When this is set to `null`, it will automatically use the value from the `theme-map` instead.",
+        },
+      ],
+      returns: {
+        type: "String",
+        description: "a css var string to apply to a css property.",
+      },
+    },
     "rmd-theme-text-color": {
       name: "rmd-theme-text-color",
       description:
         'This function is used to auto-generate "reasonable" defaults for the text colors based on a the background it is on. This will basically check if the provided color is considered light or dark, and choose a value from either the dark theme text colors or the light theme text colors so that it is still legible.\n\nNOTE: This is not perfect since it only handles the min-contrast ration of 3:1 by default so you still might need to define your own overrides.',
       source: "packages/theme/src/_variables.scss#L295-L303",
-      packageName: "theme",
-      examples: [
-        {
-          code:
-            "$variables: primary secondary hint disabled icon;\n$themes: background light dark;\n\n@each $theme in $themes {\n  @each $variable in $variables {\n    .#{$theme}-#{$variable} {\n      // create the corresponding color. When it's the `background`, we'll check the current defined background theme\n      // color so that it \"works out of the box\" (for most cases).\n      color: rmd-theme-text-color(\n        $variable,\n        if($theme == background, $rmd-theme-background, $theme)\n      );\n    }\n  }\n}\n",
-          compiled:
-            ".background-primary {\n  color: #212121;\n}\n\n.background-secondary {\n  color: #757575;\n}\n\n.background-hint {\n  color: #a8a8a8;\n}\n\n.background-disabled {\n  color: #9e9e9e;\n}\n\n.background-icon {\n  color: #757575;\n}\n\n.light-primary {\n  color: #212121;\n}\n\n.light-secondary {\n  color: #757575;\n}\n\n.light-hint {\n  color: #a8a8a8;\n}\n\n.light-disabled {\n  color: #9e9e9e;\n}\n\n.light-icon {\n  color: #757575;\n}\n\n.dark-primary {\n  color: #d9d9d9;\n}\n\n.dark-secondary {\n  color: #b3b3b3;\n}\n\n.dark-hint {\n  color: gray;\n}\n\n.dark-disabled {\n  color: gray;\n}\n\n.dark-icon {\n  color: #b3b3b3;\n}\n",
-          type: "scss",
-          description: "Current Default Values",
-        },
-      ],
       requires: [
         {
           name: "rmd-theme-contrast-tone",
@@ -423,6 +705,17 @@ const sassdoc: PackageSassDoc = {
           name: "rmd-theme-light-text-colors",
           type: "variable",
           packageName: "theme",
+        },
+      ],
+      packageName: "theme",
+      examples: [
+        {
+          code:
+            "$variables: primary secondary hint disabled icon;\n$themes: background light dark;\n\n@each $theme in $themes {\n  @each $variable in $variables {\n    .#{$theme}-#{$variable} {\n      // create the corresponding color. When it's the `background`, we'll check the current defined background theme\n      // color so that it \"works out of the box\" (for most cases).\n      color: rmd-theme-text-color(\n        $variable,\n        if($theme == background, $rmd-theme-background, $theme)\n      );\n    }\n  }\n}\n",
+          compiled:
+            ".background-primary {\n  color: #212121;\n}\n\n.background-secondary {\n  color: #757575;\n}\n\n.background-hint {\n  color: #a8a8a8;\n}\n\n.background-disabled {\n  color: #9e9e9e;\n}\n\n.background-icon {\n  color: #757575;\n}\n\n.light-primary {\n  color: #212121;\n}\n\n.light-secondary {\n  color: #757575;\n}\n\n.light-hint {\n  color: #a8a8a8;\n}\n\n.light-disabled {\n  color: #9e9e9e;\n}\n\n.light-icon {\n  color: #757575;\n}\n\n.dark-primary {\n  color: #d9d9d9;\n}\n\n.dark-secondary {\n  color: #b3b3b3;\n}\n\n.dark-hint {\n  color: gray;\n}\n\n.dark-disabled {\n  color: gray;\n}\n\n.dark-icon {\n  color: #b3b3b3;\n}\n",
+          type: "scss",
+          description: "Current Default Values",
         },
       ],
       code: "@function rmd-theme-text-color($style, $color) { … }",
@@ -451,6 +744,263 @@ const sassdoc: PackageSassDoc = {
     },
   },
   mixins: {
+    "rmd-theme-apply-rmd-var": {
+      name: "rmd-theme-apply-rmd-var",
+      description: "\n",
+      source: "packages/theme/src/_helpers.scss#L67-L74",
+      usedBy: [
+        { name: "rmd-alert-theme", type: "mixin", packageName: "alert" },
+        { name: "rmd-app-bar-theme", type: "mixin", packageName: "app-bar" },
+        { name: "rmd-avatar-theme", type: "mixin", packageName: "avatar" },
+        { name: "rmd-badge-theme", type: "mixin", packageName: "badge" },
+        { name: "rmd-button-theme", type: "mixin", packageName: "button" },
+        { name: "rmd-card-theme", type: "mixin", packageName: "card" },
+        { name: "rmd-chip-theme", type: "mixin", packageName: "chip" },
+        { name: "rmd-dialog-theme", type: "mixin", packageName: "dialog" },
+        { name: "rmd-divider-theme", type: "mixin", packageName: "divider" },
+        {
+          name: "rmd-expansion-panel-theme",
+          type: "mixin",
+          packageName: "expansion-panel",
+        },
+        { name: "rmd-form-theme", type: "mixin", packageName: "form" },
+        { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
+        { name: "rmd-layout-theme", type: "mixin", packageName: "layout" },
+        { name: "rmd-link-theme", type: "mixin", packageName: "link" },
+        { name: "rmd-list-theme", type: "mixin", packageName: "list" },
+        { name: "rmd-menu-theme", type: "mixin", packageName: "menu" },
+        { name: "rmd-overlay-theme", type: "mixin", packageName: "overlay" },
+        { name: "rmd-progress-theme", type: "mixin", packageName: "progress" },
+        { name: "rmd-sheet-theme", type: "mixin", packageName: "sheet" },
+        { name: "rmd-states-theme", type: "mixin", packageName: "states" },
+        { name: "rmd-table-theme", type: "mixin", packageName: "table" },
+        { name: "rmd-tabs-theme", type: "mixin", packageName: "tabs" },
+        { name: "rmd-theme", type: "mixin", packageName: "theme" },
+        { name: "rmd-tooltip-theme", type: "mixin", packageName: "tooltip" },
+        { name: "rmd-tree-theme", type: "mixin", packageName: "tree" },
+        {
+          name: "rmd-typography-theme",
+          type: "mixin",
+          packageName: "typography",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
+        {
+          name: "rmd-theme-no-css-variables-fallback",
+          type: "variable",
+          packageName: "theme",
+        },
+      ],
+      packageName: "theme",
+      code: "@mixin rmd-theme-apply-rmd-var { … }",
+      sourceCode:
+        "@mixin rmd-theme-apply-rmd-var {\n  @if not $rmd-theme-no-css-variables-fallback {\n    // Apply the base property and color-value for browsers that do not support css-variables.\n    #{$property}: rmd-theme-get-var-value(\n      $theme-name,\n      $theme-map,\n      $theme-group\n    );\n  }\n\n  #{$property}: rmd-theme-get-var(\n    $theme-name,\n    $theme-map,\n    $theme-group,\n    $fallback\n  );\n}\n",
+      type: "mixin",
+    },
+    "rmd-theme-update-rmd-var": {
+      name: "rmd-theme-update-rmd-var",
+      description: "\n",
+      source: "packages/theme/src/_helpers.scss#L78-L82",
+      usedBy: [
+        {
+          name: "rmd-alert-theme-update-var",
+          type: "mixin",
+          packageName: "alert",
+        },
+        {
+          name: "rmd-app-bar-theme-update-var",
+          type: "mixin",
+          packageName: "app-bar",
+        },
+        {
+          name: "rmd-avatar-theme-update-var",
+          type: "mixin",
+          packageName: "avatar",
+        },
+        {
+          name: "rmd-badge-theme-update-var",
+          type: "mixin",
+          packageName: "badge",
+        },
+        {
+          name: "rmd-button-theme-update-var",
+          type: "mixin",
+          packageName: "button",
+        },
+        {
+          name: "rmd-card-theme-update-var",
+          type: "mixin",
+          packageName: "card",
+        },
+        {
+          name: "rmd-chip-theme-update-var",
+          type: "mixin",
+          packageName: "chip",
+        },
+        {
+          name: "rmd-dialog-theme-update-var",
+          type: "mixin",
+          packageName: "dialog",
+        },
+        {
+          name: "rmd-divider-theme-update-var",
+          type: "mixin",
+          packageName: "divider",
+        },
+        {
+          name: "rmd-expansion-panel-theme-update-var",
+          type: "mixin",
+          packageName: "expansion-panel",
+        },
+        {
+          name: "rmd-form-theme-update-var",
+          type: "mixin",
+          packageName: "form",
+        },
+        {
+          name: "rmd-icon-theme-update-var",
+          type: "mixin",
+          packageName: "icon",
+        },
+        {
+          name: "rmd-layout-theme-update-var",
+          type: "mixin",
+          packageName: "layout",
+        },
+        {
+          name: "rmd-link-theme-update-var",
+          type: "mixin",
+          packageName: "link",
+        },
+        {
+          name: "rmd-list-theme-update-var",
+          type: "mixin",
+          packageName: "list",
+        },
+        {
+          name: "rmd-menu-theme-update-var",
+          type: "mixin",
+          packageName: "menu",
+        },
+        {
+          name: "rmd-overlay-theme-update-var",
+          type: "mixin",
+          packageName: "overlay",
+        },
+        {
+          name: "rmd-progress-theme-update-var",
+          type: "mixin",
+          packageName: "progress",
+        },
+        {
+          name: "rmd-sheet-theme-update-var",
+          type: "mixin",
+          packageName: "sheet",
+        },
+        {
+          name: "rmd-states-theme-update-var",
+          type: "mixin",
+          packageName: "states",
+        },
+        {
+          name: "rmd-table-theme-update-var",
+          type: "mixin",
+          packageName: "table",
+        },
+        {
+          name: "rmd-tabs-theme-update-var",
+          type: "mixin",
+          packageName: "tabs",
+        },
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
+        { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
+        {
+          name: "rmd-tooltip-theme-update-var",
+          type: "mixin",
+          packageName: "tooltip",
+        },
+        {
+          name: "rmd-tree-theme-update-var",
+          type: "mixin",
+          packageName: "tree",
+        },
+        {
+          name: "rmd-typography-theme-update-var",
+          type: "mixin",
+          packageName: "typography",
+        },
+      ],
+      requires: [
+        { name: "rmd-utils-validate", type: "function", packageName: "utils" },
+      ],
+      packageName: "theme",
+      code: "@mixin rmd-theme-update-rmd-var { … }",
+      sourceCode:
+        '@mixin rmd-theme-update-rmd-var {\n  $validated: rmd-utils-validate(\n    $theme-map,\n    $theme-name,\n    "#{$theme-name} property"\n  );\n\n  #{--rmd-#{$theme-group}-#{$theme-name}}: $value;\n}\n',
+      type: "mixin",
+    },
+    "rmd-theme-create-root-theme": {
+      name: "rmd-theme-create-root-theme",
+      description: "\n",
+      source: "packages/theme/src/_helpers.scss#L86-L94",
+      usedBy: [
+        { name: "react-md-alert", type: "mixin", packageName: "alert" },
+        { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
+        { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
+        { name: "react-md-badge", type: "mixin", packageName: "badge" },
+        { name: "react-md-button", type: "mixin", packageName: "button" },
+        { name: "react-md-card", type: "mixin", packageName: "card" },
+        { name: "react-md-chip", type: "mixin", packageName: "chip" },
+        { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
+        { name: "react-md-divider", type: "mixin", packageName: "divider" },
+        {
+          name: "react-md-expansion-panel",
+          type: "mixin",
+          packageName: "expansion-panel",
+        },
+        { name: "react-md-form", type: "mixin", packageName: "form" },
+        { name: "react-md-icon", type: "mixin", packageName: "icon" },
+        { name: "react-md-link", type: "mixin", packageName: "link" },
+        { name: "react-md-list", type: "mixin", packageName: "list" },
+        { name: "react-md-menu", type: "mixin", packageName: "menu" },
+        { name: "react-md-overlay", type: "mixin", packageName: "overlay" },
+        { name: "react-md-progress", type: "mixin", packageName: "progress" },
+        { name: "react-md-sheet", type: "mixin", packageName: "sheet" },
+        { name: "react-md-states", type: "mixin", packageName: "states" },
+        { name: "react-md-table", type: "mixin", packageName: "table" },
+        { name: "react-md-tabs", type: "mixin", packageName: "tabs" },
+        { name: "react-md-theme", type: "mixin", packageName: "theme" },
+        { name: "react-md-tooltip", type: "mixin", packageName: "tooltip" },
+        { name: "react-md-tree", type: "mixin", packageName: "tree" },
+        {
+          name: "react-md-typography",
+          type: "mixin",
+          packageName: "typography",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
+      ],
+      packageName: "theme",
+      code: "@mixin rmd-theme-create-root-theme { … }",
+      sourceCode:
+        "@mixin rmd-theme-create-root-theme {\n  :root {\n    @each $theme-name, $theme-value in $theme-map {\n      @if $theme-value !=\n        null and\n        ($exclude == null or not index($exclude, $theme-name))\n      {\n        @include rmd-theme-update-rmd-var(\n          $theme-value,\n          $theme-name,\n          $theme-map,\n          $theme-group\n        );\n      }\n    }\n  }\n}\n",
+      type: "mixin",
+    },
     "rmd-theme": {
       name: "rmd-theme",
       description: "Applies one of theme values to the provided property.",
@@ -461,16 +1011,31 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-card-subtitle", type: "mixin", packageName: "card" },
         { name: "rmd-card-content", type: "mixin", packageName: "card" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-dialog", type: "mixin", packageName: "dialog" },
+        { name: "rmd-floating-label", type: "mixin", packageName: "form" },
+        { name: "rmd-select", type: "mixin", packageName: "form" },
+        { name: "rmd-listbox", type: "mixin", packageName: "form" },
         { name: "rmd-text-field-base", type: "mixin", packageName: "form" },
+        { name: "rmd-form-message", type: "mixin", packageName: "form" },
+        { name: "rmd-toggle-icon", type: "mixin", packageName: "form" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
         { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
+        { name: "rmd-table-cell", type: "mixin", packageName: "table" },
         {
           name: "react-md-typography",
           type: "mixin",
           packageName: "typography",
         },
         { name: "rmd-utils-base", type: "mixin", packageName: "utils" },
+      ],
+      requires: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
+        { name: "rmd-theme-values", type: "variable", packageName: "theme" },
       ],
       packageName: "theme",
       examples: [
@@ -482,9 +1047,6 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "Example Theme Application",
         },
-      ],
-      requires: [
-        { name: "rmd-theme-values", type: "variable", packageName: "theme" },
       ],
       code: "@mixin rmd-theme($property, $theme-style) { … }",
       sourceCode:
@@ -513,9 +1075,18 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
         { name: "rmd-card", type: "mixin", packageName: "card" },
+        { name: "rmd-dialog", type: "mixin", packageName: "dialog" },
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+      ],
+      requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
+        { name: "rmd-theme-values", type: "variable", packageName: "theme" },
       ],
       packageName: "theme",
       examples: [
@@ -527,9 +1098,6 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "Example Usage SCSS",
         },
-      ],
-      requires: [
-        { name: "rmd-theme-values", type: "variable", packageName: "theme" },
       ],
       code: "@mixin rmd-theme-update-var($theme-style, $value) { … }",
       sourceCode:
@@ -554,7 +1122,6 @@ const sassdoc: PackageSassDoc = {
       description:
         "This mixin can be used to apply the light theme by updating **every** color theme variable across all react-md packages.\n\nNote: You'll still need to ensure that all the package's mixins were imported to get this to work.\n",
       source: "packages/theme/src/_mixins.scss#L58-L135",
-      packageName: "theme",
       requires: [
         { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
         {
@@ -709,6 +1276,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "states",
         },
       ],
+      packageName: "theme",
       code: "@mixin rmd-theme-light { … }",
       sourceCode:
         "@mixin rmd-theme-light {\n  @include rmd-theme-update-var(background, $rmd-theme-light-background);\n  @include rmd-theme-update-var(surface, $rmd-theme-light-surface);\n  @include rmd-theme-update-var(on-surface, $rmd-black-base);\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    $rmd-theme-primary-text-on-light-color\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    $rmd-theme-secondary-text-on-light-color\n  );\n  @include rmd-theme-update-var(\n    text-hint-on-background,\n    $rmd-theme-hint-text-on-light-color\n  );\n  @include rmd-theme-update-var(\n    text-disabled-on-background,\n    $rmd-theme-disabled-text-on-light-color\n  );\n  @include rmd-theme-update-var(\n    text-icon-on-background,\n    $rmd-theme-icon-on-light-color\n  );\n\n  @if mixin-exists(rmd-app-bar-theme-update-var) {\n    @include rmd-app-bar-theme-update-var(\n      default-background-color,\n      $rmd-app-bar-default-light-theme-background-color\n    );\n    @include rmd-app-bar-theme-update-var(\n      default-color,\n      $rmd-app-bar-default-light-theme-color\n    );\n  }\n\n  @if mixin-exists(rmd-card-theme-update-var) {\n    @include rmd-card-theme-update-var(\n      color,\n      $rmd-theme-primary-text-on-light-color\n    );\n    @include rmd-card-theme-update-var(\n      secondary-color,\n      $rmd-theme-secondary-text-on-light-color\n    );\n  }\n\n  @if mixin-exists(rmd-chip-theme-update-var) {\n    @include rmd-chip-theme-update-var(\n      solid-background-color,\n      $rmd-chip-solid-light-background-color\n    );\n    @include rmd-chip-theme-update-var(\n      solid-color,\n      $rmd-chip-solid-light-color\n    );\n    @include rmd-chip-theme-update-var(\n      solid-disabled,\n      $rmd-chip-solid-light-disabled-background-color\n    );\n    @include rmd-chip-theme-update-var(\n      outline-background-color,\n      $rmd-chip-outline-light-background-color\n    );\n    @include rmd-chip-theme-update-var(\n      outline-color,\n      $rmd-chip-outline-light-color\n    );\n  }\n\n  @if mixin-exists(rmd-divider-theme-update-var) {\n    @include rmd-divider-theme-update-var(\n      background-color,\n      $rmd-divider-background-color-on-light\n    );\n  }\n\n  @if mixin-exists(rmd-form-theme-update-var) {\n    @include rmd-form-theme-update-var(\n      text-border-color,\n      $rmd-text-field-light-border-color\n    );\n    @include rmd-form-theme-update-var(\n      text-border-hover-color,\n      $rmd-text-field-light-border-hover-color\n    );\n    @include rmd-form-theme-update-var(\n      text-filled-color,\n      $rmd-text-field-filled-light-background-color\n    );\n  }\n\n  @if mixin-exists(rmd-states-theme-update-var) {\n    @include rmd-states-theme-update-var(\n      hover-color,\n      $rmd-states-light-theme-hover-color\n    );\n    @include rmd-states-theme-update-var(\n      focus-color,\n      $rmd-states-light-theme-focus-color\n    );\n    @include rmd-states-theme-update-var(\n      pressed-color,\n      $rmd-states-light-theme-pressed-color\n    );\n    @include rmd-states-theme-update-var(\n      selected-color,\n      $rmd-states-light-theme-selected-color\n    );\n    @include rmd-states-theme-update-var(\n      ripple-background-color,\n      $rmd-states-light-theme-ripple-background-color\n    );\n  }\n\n  @if mixin-exists(rmd-tabs-theme-update-var) {\n    @include rmd-tabs-theme-update-var(active, $rmd-black-base);\n    @include rmd-tabs-theme-update-var(\n      inactive,\n      $rmd-theme-secondary-text-on-light-color\n    );\n  }\n}\n",
@@ -719,17 +1287,6 @@ const sassdoc: PackageSassDoc = {
       description:
         "This mixin can be used to apply the dark theme by updating **every** color theme variable across all react-md packages.\n\nThis is really great to use within a media query for browsers that now support the `prefers-color-scheme` so that if the user has the dark theme enabled, they'll automatically gain the dark theme while using your app as well.\n\nNote: You'll still need to ensure that all the package's mixins were imported to get this to work.",
       source: "packages/theme/src/_mixins.scss#L152-L229",
-      packageName: "theme",
-      examples: [
-        {
-          code:
-            "@media (prefers-color-scheme: dark) {\n  :root {\n    @include rmd-theme-dark;\n  }\n}\n",
-          compiled:
-            "@media (prefers-color-scheme: dark) {\n  :root {\n    --rmd-theme-background: #303030;\n    --rmd-theme-surface: #424242;\n    --rmd-theme-on-surface: #fff;\n    --rmd-theme-text-primary-on-background: #d9d9d9;\n    --rmd-theme-text-secondary-on-background: #b3b3b3;\n    --rmd-theme-text-hint-on-background: gray;\n    --rmd-theme-text-disabled-on-background: gray;\n    --rmd-theme-text-icon-on-background: #b3b3b3;\n    --rmd-app-bar-default-background-color: #212121;\n    --rmd-app-bar-default-color: #fff;\n    --rmd-card-color: #d9d9d9;\n    --rmd-card-secondary-color: #b3b3b3;\n    --rmd-chip-solid-background-color: #212121;\n    --rmd-chip-solid-color: #fff;\n    --rmd-chip-solid-disabled: #262626;\n    --rmd-chip-outline-background-color: #424242;\n    --rmd-chip-outline-color: #fff;\n    --rmd-divider-background-color: rgba(255, 255, 255, 0.12);\n    --rmd-form-text-border-color: rgba(255, 255, 255, 0.5);\n    --rmd-form-text-border-hover-color: rgba(255, 255, 255, 0.87);\n    --rmd-form-text-filled-color: #616161;\n    --rmd-states-hover-color: rgba(0, 0, 0, 0.04);\n    --rmd-states-focus-color: rgba(0, 0, 0, 0.12);\n    --rmd-states-pressed-color: rgba(0, 0, 0, 0.16);\n    --rmd-states-selected-color: rgba(0, 0, 0, 0.12);\n    --rmd-states-ripple-background-color: rgba(0, 0, 0, 0.08);\n    --rmd-tabs-active: #fff;\n    --rmd-tabs-inactive: #b3b3b3;\n  }\n}\n",
-          type: "scss",
-          description: "Media Query Example",
-        },
-      ],
       requires: [
         { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
         {
@@ -884,6 +1441,17 @@ const sassdoc: PackageSassDoc = {
           packageName: "states",
         },
       ],
+      packageName: "theme",
+      examples: [
+        {
+          code:
+            "@media (prefers-color-scheme: dark) {\n  :root {\n    @include rmd-theme-dark;\n  }\n}\n",
+          compiled:
+            "@media (prefers-color-scheme: dark) {\n  :root {\n    --rmd-theme-background: #303030;\n    --rmd-theme-surface: #424242;\n    --rmd-theme-on-surface: #fff;\n    --rmd-theme-text-primary-on-background: #d9d9d9;\n    --rmd-theme-text-secondary-on-background: #b3b3b3;\n    --rmd-theme-text-hint-on-background: gray;\n    --rmd-theme-text-disabled-on-background: gray;\n    --rmd-theme-text-icon-on-background: #b3b3b3;\n    --rmd-app-bar-default-background-color: #212121;\n    --rmd-app-bar-default-color: #fff;\n    --rmd-card-color: #d9d9d9;\n    --rmd-card-secondary-color: #b3b3b3;\n    --rmd-chip-solid-background-color: #212121;\n    --rmd-chip-solid-color: #fff;\n    --rmd-chip-solid-disabled: #262626;\n    --rmd-chip-outline-background-color: #424242;\n    --rmd-chip-outline-color: #fff;\n    --rmd-divider-background-color: rgba(255, 255, 255, 0.12);\n    --rmd-form-text-border-color: rgba(255, 255, 255, 0.5);\n    --rmd-form-text-border-hover-color: rgba(255, 255, 255, 0.87);\n    --rmd-form-text-filled-color: #616161;\n    --rmd-states-hover-color: rgba(0, 0, 0, 0.04);\n    --rmd-states-focus-color: rgba(0, 0, 0, 0.12);\n    --rmd-states-pressed-color: rgba(0, 0, 0, 0.16);\n    --rmd-states-selected-color: rgba(0, 0, 0, 0.12);\n    --rmd-states-ripple-background-color: rgba(0, 0, 0, 0.08);\n    --rmd-tabs-active: #fff;\n    --rmd-tabs-inactive: #b3b3b3;\n  }\n}\n",
+          type: "scss",
+          description: "Media Query Example",
+        },
+      ],
       code: "@mixin rmd-theme-dark { … }",
       sourceCode:
         "@mixin rmd-theme-dark {\n  @include rmd-theme-update-var(background, $rmd-theme-dark-background);\n  @include rmd-theme-update-var(surface, $rmd-theme-dark-surface);\n  @include rmd-theme-update-var(on-surface, $rmd-white-base);\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    $rmd-theme-primary-text-on-dark-color\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    $rmd-theme-secondary-text-on-dark-color\n  );\n  @include rmd-theme-update-var(\n    text-hint-on-background,\n    $rmd-theme-hint-text-on-dark-color\n  );\n  @include rmd-theme-update-var(\n    text-disabled-on-background,\n    $rmd-theme-disabled-text-on-dark-color\n  );\n  @include rmd-theme-update-var(\n    text-icon-on-background,\n    $rmd-theme-icon-on-dark-color\n  );\n\n  @if mixin-exists(rmd-app-bar-theme-update-var) {\n    @include rmd-app-bar-theme-update-var(\n      default-background-color,\n      $rmd-app-bar-default-dark-theme-background-color\n    );\n    @include rmd-app-bar-theme-update-var(\n      default-color,\n      $rmd-app-bar-default-dark-theme-color\n    );\n  }\n\n  @if mixin-exists(rmd-card-theme-update-var) {\n    @include rmd-card-theme-update-var(\n      color,\n      $rmd-theme-primary-text-on-dark-color\n    );\n    @include rmd-card-theme-update-var(\n      secondary-color,\n      $rmd-theme-secondary-text-on-dark-color\n    );\n  }\n\n  @if mixin-exists(rmd-chip-theme-update-var) {\n    @include rmd-chip-theme-update-var(\n      solid-background-color,\n      $rmd-chip-solid-dark-background-color\n    );\n    @include rmd-chip-theme-update-var(solid-color, $rmd-chip-solid-dark-color);\n    @include rmd-chip-theme-update-var(\n      solid-disabled,\n      $rmd-chip-solid-dark-disabled-background-color\n    );\n    @include rmd-chip-theme-update-var(\n      outline-background-color,\n      $rmd-chip-outline-dark-background-color\n    );\n    @include rmd-chip-theme-update-var(\n      outline-color,\n      $rmd-chip-outline-dark-color\n    );\n  }\n\n  @if mixin-exists(rmd-divider-theme-update-var) {\n    @include rmd-divider-theme-update-var(\n      background-color,\n      $rmd-divider-background-color-on-dark\n    );\n  }\n\n  @if mixin-exists(rmd-form-theme-update-var) {\n    @include rmd-form-theme-update-var(\n      text-border-color,\n      $rmd-text-field-dark-border-color\n    );\n    @include rmd-form-theme-update-var(\n      text-border-hover-color,\n      $rmd-text-field-dark-border-hover-color\n    );\n    @include rmd-form-theme-update-var(\n      text-filled-color,\n      $rmd-text-field-filled-dark-background-color\n    );\n  }\n\n  @if mixin-exists(rmd-states-theme-update-var) {\n    @include rmd-states-theme-update-var(\n      hover-color,\n      $rmd-states-dark-theme-hover-color\n    );\n    @include rmd-states-theme-update-var(\n      focus-color,\n      $rmd-states-dark-theme-focus-color\n    );\n    @include rmd-states-theme-update-var(\n      pressed-color,\n      $rmd-states-dark-theme-pressed-color\n    );\n    @include rmd-states-theme-update-var(\n      selected-color,\n      $rmd-states-dark-theme-selected-color\n    );\n    @include rmd-states-theme-update-var(\n      ripple-background-color,\n      $rmd-states-dark-theme-ripple-background-color\n    );\n  }\n\n  @if mixin-exists(rmd-tabs-theme-update-var) {\n    @include rmd-tabs-theme-update-var(active, $rmd-white-base);\n    @include rmd-tabs-theme-update-var(\n      inactive,\n      $rmd-theme-secondary-text-on-dark-color\n    );\n  }\n}\n",
@@ -895,6 +1463,14 @@ const sassdoc: PackageSassDoc = {
         "Creates all the styles for a theme in react-md. This will start by creating CSS Variables for each theme variable and then create class names for each variable.",
       source: "packages/theme/src/_mixins.scss#L240-L242",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
+      requires: [
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
+        { name: "rmd-theme-values", type: "variable", packageName: "theme" },
+      ],
       packageName: "theme",
       examples: [
         {
@@ -905,9 +1481,6 @@ const sassdoc: PackageSassDoc = {
           type: "scss",
           description: "Normal SCSS Usage",
         },
-      ],
-      requires: [
-        { name: "rmd-theme-values", type: "variable", packageName: "theme" },
       ],
       code: "@mixin react-md-theme { … }",
       sourceCode:
@@ -931,6 +1504,20 @@ const sassdoc: PackageSassDoc = {
       type: "Number",
       value: "3",
       overridable: true,
+    },
+    "rmd-theme-linear-channel-values": {
+      name: "rmd-theme-linear-channel-values",
+      description:
+        "Precomputed linear color channel values, for use in contrast calculations.\nSee https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests\n\nAlgorithm, for c in 0 to 255:\nf(c) {\n  c = c / 255;\n  return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);\n}\n\nThis lookup table is needed since there is no `pow` in SCSS/Sass. You _can_ make your own, but it is recommended to pass the computed values from a\n'more complete' layer (like node) as a lookup table to speed up compilation time.\n",
+      source: "packages/theme/src/_color-a11y.scss#L32-L91",
+      usedBy: [
+        { name: "rmd-theme-luminance", type: "function", packageName: "theme" },
+      ],
+      packageName: "theme",
+      type: "List",
+      value:
+        "(\n  0 0.0003035269835488375 0.000607053967097675 0.0009105809506465125 0.00121410793419535\n    0.0015176349177441874 0.001821161901293025 0.0021246888848418626 0.0024282158683907\n    0.0027317428519395373 0.003035269835488375 0.003346535763899161 0.003676507324047436\n    0.004024717018496307 0.004391442037410293 0.004776953480693729 0.005181516702338386\n    0.005605391624202723 0.006048833022857054 0.006512090792594475 0.006995410187265387\n    0.007499032043226175 0.008023192985384994 0.008568125618069307 0.009134058702220787\n    0.00972121732023785 0.010329823029626936 0.010960094006488246 0.011612245179743885\n    0.012286488356915872 0.012983032342173012 0.013702083047289686 0.014443843596092545\n    0.01520851442291271 0.01599629336550963 0.016807375752887384 0.017641954488384078\n    0.018500220128379697 0.019382360956935723 0.0202885630566524 0.021219010376003555\n    0.022173884793387385 0.02315336617811041 0.024157632448504756 0.02518685962736163\n    0.026241221894849898 0.027320891639074894 0.028426039504420793 0.0295568344378088\n    0.030713443732993635 0.03189603307301153 0.033104766570885055 0.03433980680868217\n    0.03560131487502034 0.03688945040110004 0.0382043715953465 0.03954623527673284\n    0.04091519690685319 0.042311410620809675 0.043735029256973465 0.04518620438567554\n    0.046665086336880095 0.04817182422688942 0.04970656598412723 0.05126945837404324\n    0.052860647023180246 0.05448027644244237 0.05612849004960009 0.05780543019106723\n    0.0595112381629812 0.06124605423161761 0.06301001765316767 0.06480326669290577\n    0.06662593864377289 0.06847816984440017 0.07036009569659588 0.07227185068231748\n    0.07421356838014963 0.07618538148130785 0.07818742180518633 0.08021982031446832\n    0.0822827071298148 0.08437621154414882 0.08650046203654976 0.08865558628577294\n    0.09084171118340768 0.09305896284668745 0.0953074666309647 0.09758734714186246\n    0.09989872824711389 0.10224173308810132 0.10461648409110419 0.10702310297826761\n    0.10946171077829933 0.1119324278369056 0.11443537382697373 0.11697066775851084\n    0.11953842798834562 0.12213877222960187 0.12477181756095049 0.12743768043564743\n    0.1301364766903643 0.13286832155381798 0.13563332965520566 0.13843161503245183\n    0.14126329114027164 0.14412847085805777 0.14702726649759498 0.14995978981060856\n    0.15292615199615017 0.1559264637078274 0.1589608350608804 0.162029375639111 0.1651321945016676\n    0.16826940018969075 0.1714411007328226 0.17464740365558504 0.17788841598362912\n    0.18116424424986022 0.184474994500441 0.18782077230067787 0.19120168274079138 0.1946178304415758\n    0.19806931955994886 0.20155625379439707 0.20507873639031693 0.20863687014525575\n    0.21223075741405523 0.21586050011389926 0.2195261997292692 0.2232279573168085\n    0.22696587351009836 0.23074004852434915 0.23455058216100522 0.238397573812271\n    0.24228112246555486 0.24620132670783548 0.25015828472995344 0.25415209433082675\n    0.2581828529215958 0.26225065752969623 0.26635560480286247 0.2704977910130658\n    0.27467731206038465 0.2788942634768104 0.2831487404299921 0.2874408377269175 0.29177064981753587\n    0.2961382707983211 0.3005437944157765 0.3049873140698863 0.30946892281750854 0.31398871337571754\n    0.31854677812509186 0.32314320911295075 0.3277780980565422 0.33245153634617935\n    0.33716361504833037 0.3419144249086609 0.3467040563550296 0.35153259950043936 0.3564001441459435\n    0.3613067797835095 0.3662525955988395 0.3712376804741491 0.3762621229909065 0.38132601143253014\n    0.386429433787049 0.39157247774972326 0.39675523072562685 0.4019777798321958 0.4072402119017367\n    0.41254261348390375 0.4178850708481375 0.4232676699860717 0.4286904966139066 0.43415363617474895\n    0.4396571738409188 0.44520119451622786 0.45078578283822346 0.45641102318040466\n    0.4620769996544071 0.467783796112159 0.47353149614800955 0.4793201831008268 0.4851499400560704\n    0.4910208498478356 0.4969329950608704 0.5028864580325687 0.5088813208549338 0.5149176653765214\n    0.5209955732043543 0.5271151257058131 0.5332764040105052 0.5394794890121072 0.5457244613701866\n    0.5520114015120001 0.5583403896342679 0.5647115057049292 0.5711248294648731 0.5775804404296506\n    0.5840784178911641 0.5906188409193369 0.5972017883637634 0.6038273388553378 0.6104955708078648\n    0.6172065624196511 0.6239603916750761 0.6307571363461468 0.6375968739940326 0.6444796819705821\n    0.6514056374198242 0.6583748172794485 0.665387298282272 0.6724431569576875 0.6795424696330938\n    0.6866853124353135 0.6938717612919899 0.7011018919329731 0.7083757798916868 0.7156935005064807\n    0.7230551289219693 0.7304607400903537 0.7379104087727308 0.7454042095403874 0.7529422167760779\n    0.7605245046752924 0.768151147247507 0.7758222183174236 0.7835377915261935 0.7912979403326302\n    0.799102738014409 0.8069522576692516 0.8148465722161012 0.8227857543962835 0.8307698767746546\n    0.83879901174074 0.846873231509858 0.8549926081242338 0.8631572134541023 0.8713671191987972\n    0.8796223968878317 0.8879231178819663 0.8962693533742664 0.9046611743911496 0.9130986517934192\n    0.9215818562772946 0.9301108583754237 0.938685728457888 0.9473065367331999 0.9559733532492861\n    0.9646862478944651 0.9734452903984125 0.9822505503331171 0.9911020971138298 1\n)",
+      overridable: false,
     },
     "rmd-red-50": {
       name: "rmd-red-50",
@@ -3589,6 +4176,7 @@ const sassdoc: PackageSassDoc = {
           type: "variable",
           packageName: "form",
         },
+        { name: "rmd-switch-ball", type: "mixin", packageName: "form" },
         {
           name: "rmd-switch-progress-background-color",
           type: "variable",
@@ -3688,6 +4276,13 @@ const sassdoc: PackageSassDoc = {
       description:
         "Boolean if the main theme mixin should also apply the styles without the `var(--rmd-theme-NAME)` for browsers that don't support CSS Variables yet.\nThis is disabled by default since it is mostly just IE11 at this point and `create-react-app` already is using a postcss plugin to do this automatically.\n",
       source: "packages/theme/src/_variables.scss#L14",
+      usedBy: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
+      ],
       packageName: "theme",
       type: "Boolean",
       value: "true",

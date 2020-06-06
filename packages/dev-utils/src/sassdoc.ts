@@ -166,7 +166,7 @@ function getReferenceLinks(
     }
 
     const key = `${name}-${type}`;
-    if (!link.private && !added.has(key)) {
+    if (!added.has(key)) {
       added.add(key);
       list.push(omit(link, "private"));
     }
@@ -229,9 +229,9 @@ function formatItem(
     links,
     see: getReferenceLinks(see, references),
     usedBy: getReferenceLinks(usedBy, references),
+    requires: getReferenceLinks(require, references),
     packageName: getPackageName(item),
     examples,
-    requires: getReferenceLinks(require, references),
   };
 }
 
@@ -410,10 +410,9 @@ export default async function sassdoc(): Promise<void> {
   await createSassdocUtil();
 
   const sassdocs = await getSassdoc();
-  const publicSassdocs = sassdocs.filter(isPublic);
   const references = sassdocs.map((item) => createReferenceLink(item));
   const lookup: PackageSassDocMap = {};
-  publicSassdocs.forEach((item) => {
+  sassdocs.forEach((item) => {
     const packageName = getPackageName(item);
     if (!lookup[packageName]) {
       lookup[packageName] = {

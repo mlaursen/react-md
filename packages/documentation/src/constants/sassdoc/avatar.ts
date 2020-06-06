@@ -8,14 +8,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to quickly get one of the avatar's theme values. This is really just for the `rmd-avatar-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/avatar/src/_functions.scss#L15-L17",
-      packageName: "avatar",
       requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
         {
           name: "rmd-avatar-theme-values",
           type: "variable",
           packageName: "avatar",
         },
       ],
+      packageName: "avatar",
       code: "@function rmd-avatar-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-avatar-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-avatar-theme-values,\n    avatar\n  );\n}\n",
@@ -39,14 +44,15 @@ const sassdoc: PackageSassDoc = {
         "This function is used to get one of the avatar's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-avatar-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/avatar/src/_functions.scss#L32-L34",
       usedBy: [{ name: "rmd-list-item", type: "mixin", packageName: "list" }],
-      packageName: "avatar",
       requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
           name: "rmd-avatar-theme-values",
           type: "variable",
           packageName: "avatar",
         },
       ],
+      packageName: "avatar",
       code:
         "@function rmd-avatar-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -82,14 +88,19 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
       ],
-      packageName: "avatar",
       requires: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-avatar-theme-values",
           type: "variable",
           packageName: "avatar",
         },
       ],
+      packageName: "avatar",
       code:
         "@mixin rmd-avatar-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -126,14 +137,19 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-avatar-color", type: "mixin", packageName: "avatar" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
       ],
-      packageName: "avatar",
       requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-avatar-theme-values",
           type: "variable",
           packageName: "avatar",
         },
       ],
+      packageName: "avatar",
       code: "@mixin rmd-avatar-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-avatar-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-avatar-theme-values,\n    avatar\n  );\n}\n",
@@ -159,6 +175,13 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "rmd-avatar-colors", type: "mixin", packageName: "avatar" },
       ],
+      requires: [
+        {
+          name: "rmd-avatar-theme-update-var",
+          type: "mixin",
+          packageName: "avatar",
+        },
+      ],
       packageName: "avatar",
       examples: [
         {
@@ -168,13 +191,6 @@ const sassdoc: PackageSassDoc = {
             ".my-red-avatar {\n  --rmd-avatar-background-color: #f44336;\n  --rmd-avatar-color: #000;\n}\n\n.my-orange-avatar {\n  --rmd-avatar-background-color: #ff9800;\n  --rmd-avatar-color: #000;\n}\n",
           type: "scss",
           description: "Example Usage SCSS",
-        },
-      ],
-      requires: [
-        {
-          name: "rmd-avatar-theme-update-var",
-          type: "mixin",
-          packageName: "avatar",
         },
       ],
       code: "@mixin rmd-avatar-color($background-color, $color) { … }",
@@ -202,10 +218,10 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
       ],
-      packageName: "avatar",
       requires: [
         { name: "rmd-avatar-color", type: "mixin", packageName: "avatar" },
       ],
+      packageName: "avatar",
       code: "@mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) { … }",
       sourceCode:
         '@mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) {\n  @each $color-name, $values in $color-map {\n    @if length($values) != 2 {\n      @error \'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. "#{$values}"\';\n    }\n\n    $class-name: "rmd-avatar--" + $color-name;\n\n    .#{$class-name} {\n      @include rmd-avatar-color(nth($values, 1), nth($values, 2));\n    }\n  }\n}\n',
@@ -229,8 +245,12 @@ const sassdoc: PackageSassDoc = {
         "Creates all the styles for the avatar package as well as the root css variable theme.\n",
       source: "packages/avatar/src/_mixins.scss#L75-L104",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
-      packageName: "avatar",
       requires: [
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-typography-base",
           type: "mixin",
@@ -254,6 +274,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "avatar",
         },
       ],
+      packageName: "avatar",
       code: "@mixin react-md-avatar { … }",
       sourceCode:
         "@mixin react-md-avatar {\n  @include rmd-theme-create-root-theme($rmd-avatar-theme-values, avatar);\n\n  .rmd-avatar {\n    @include rmd-typography-base;\n    @include rmd-icon-theme-update-var(color, currentColor);\n    @include rmd-avatar-theme(border-radius);\n    @include rmd-avatar-theme(font-size);\n    @include rmd-avatar-theme(height, size);\n    @include rmd-avatar-theme(width, size);\n    @include rmd-avatar-theme(border-color);\n    @include rmd-avatar-theme(background-color);\n    @include rmd-avatar-theme(color);\n\n    align-items: center;\n    border: 1px solid;\n    display: inline-flex;\n    flex-shrink: 0;\n    justify-content: center;\n    line-height: $rmd-avatar-line-height;\n    overflow: hidden;\n\n    &__image {\n      height: 100%;\n      width: auto;\n    }\n  }\n\n  @include rmd-avatar-colors;\n}\n",
@@ -266,10 +287,10 @@ const sassdoc: PackageSassDoc = {
       description:
         "The default text color for the avatar. This will be used until the `color` prop is provided to the `Avatar` component.",
       source: "packages/avatar/src/_variables.scss#L13",
-      packageName: "avatar",
       requires: [
         { name: "rmd-grey-100", type: "variable", packageName: "theme" },
       ],
+      packageName: "avatar",
       type: "Color",
       value: "$rmd-grey-100",
       compiled: "#f5f5f5",
@@ -283,10 +304,10 @@ const sassdoc: PackageSassDoc = {
       see: [
         { name: "rmd-avatar-colors", type: "mixin", packageName: "avatar" },
       ],
-      packageName: "avatar",
       requires: [
         { name: "rmd-grey-700", type: "variable", packageName: "theme" },
       ],
+      packageName: "avatar",
       type: "Color",
       value: "$rmd-grey-700",
       compiled: "#616161",
@@ -296,12 +317,12 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-border-color",
       description: "The border color to apply to the avatar.",
       source: "packages/avatar/src/_variables.scss#L29-L32",
-      packageName: "avatar",
       requires: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
         { name: "rmd-white-base", type: "variable", packageName: "theme" },
       ],
+      packageName: "avatar",
       type: "Color",
       value:
         "rgba(\n  if(rmd-theme-tone($rmd-theme-background) == light, $rmd-black-base, $rmd-white-base),\n  0.12\n)",
@@ -344,7 +365,6 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
       ],
-      packageName: "avatar",
       requires: [
         {
           name: "rmd-typography-value",
@@ -352,6 +372,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "typography",
         },
       ],
+      packageName: "avatar",
       type: "Number",
       value: "rmd-typography-value(subtitle-1, line-height)",
       compiled: "1.75rem",
@@ -362,7 +383,6 @@ const sassdoc: PackageSassDoc = {
       description:
         "A Map of all the available colors for the avatar. This map can be updated with new values if the defaults are not to your liking, but it is recommended to create your own themes instead.",
       source: "packages/avatar/src/_variables.scss#L90-L110",
-      packageName: "avatar",
       requires: [
         { name: "rmd-amber-400", type: "variable", packageName: "theme" },
         { name: "rmd-blue-grey-50", type: "variable", packageName: "theme" },
@@ -401,6 +421,7 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-white-base", type: "variable", packageName: "theme" },
         { name: "rmd-yellow-a-200", type: "variable", packageName: "theme" },
       ],
+      packageName: "avatar",
       type: "Map",
       value:
         "(\n  red: $rmd-red-a-700 $rmd-red-50,\n  pink: $rmd-pink-600 $rmd-white-base,\n  purple: $rmd-purple-700 $rmd-purple-100,\n  deep-purple: $rmd-deep-purple-900 $rmd-deep-purple-100,\n  indigo: $rmd-indigo-600 $rmd-indigo-100,\n  blue: $rmd-blue-a-700 $rmd-white-base,\n  light-blue: $rmd-light-blue-300 $rmd-deep-purple-900,\n  cyan: $rmd-cyan-400 $rmd-teal-900,\n  teal: $rmd-teal-a-400 $rmd-teal-900,\n  green: $rmd-green-800 $rmd-green-50,\n  light-green: $rmd-light-green-300 $rmd-green-900,\n  lime: $rmd-lime-400 $rmd-teal-800,\n  yellow: $rmd-yellow-a-200 $rmd-brown-500,\n  amber: $rmd-amber-400 $rmd-brown-800,\n  orange: $rmd-orange-600 $rmd-grey-900,\n  deep-orange: $rmd-deep-orange-a-400 $rmd-grey-900,\n  brown: $rmd-brown-500 $rmd-brown-50,\n  grey: $rmd-grey-700 $rmd-grey-100,\n  blue-grey: $rmd-blue-grey-700 $rmd-blue-grey-50,\n)",

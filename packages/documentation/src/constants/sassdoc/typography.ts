@@ -8,14 +8,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to quickly get one of the typography's theme values.\nThis is really just for the `rmd-typography-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/typography/src/_functions.scss#L17-L19",
-      packageName: "typography",
       requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
         {
           name: "rmd-typography-theme-values",
           type: "variable",
           packageName: "typography",
         },
       ],
+      packageName: "typography",
       code: "@function rmd-typography-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-typography-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-typography-theme-values,\n    typography\n  );\n}\n",
@@ -44,15 +49,21 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "typography",
         },
+        {
+          name: "rmd-text-container",
+          type: "mixin",
+          packageName: "typography",
+        },
       ],
-      packageName: "typography",
       requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
           name: "rmd-typography-theme-values",
           type: "variable",
           packageName: "typography",
         },
       ],
+      packageName: "typography",
       code:
         "@function rmd-typography-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -78,6 +89,43 @@ const sassdoc: PackageSassDoc = {
         description: "one of the typography's theme values as a css variable.",
       },
     },
+    "rmd-typography-google-font-suffix": {
+      name: "rmd-typography-google-font-suffix",
+      description: "Gets the Google font suffix for the provided font weight.",
+      source: "packages/typography/src/_functions.scss#L45-L51",
+      usedBy: [
+        {
+          name: "rmd-typography-google-font-face",
+          type: "mixin",
+          packageName: "typography",
+        },
+      ],
+      requires: [
+        { name: "rmd-utils-validate", type: "function", packageName: "utils" },
+        {
+          name: "rmd-typography-google-font-weight-suffixes",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
+      packageName: "typography",
+      code: "@function rmd-typography-google-font-suffix($weight) { … }",
+      sourceCode:
+        '@function rmd-typography-google-font-suffix($weight) {\n  @return rmd-utils-validate(\n    $rmd-typography-google-font-weight-suffixes,\n    $weight,\n    "Google font weight suffix"\n  );\n}\n',
+      type: "function",
+      parameters: [
+        {
+          type: "String",
+          name: "weight",
+          description:
+            "The font weight to get a font suffix string for.\nThis should be one of the `$rmd-typography-google-font-weight-suffixes` keys.",
+        },
+      ],
+      returns: {
+        type: "String",
+        description: "the suffix for the provided font weight.",
+      },
+    },
     "rmd-typography-value": {
       name: "rmd-typography-value",
       description:
@@ -97,6 +145,14 @@ const sassdoc: PackageSassDoc = {
           packageName: "typography",
         },
       ],
+      requires: [
+        { name: "rmd-utils-validate", type: "function", packageName: "utils" },
+        {
+          name: "rmd-typography-styles",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       packageName: "typography",
       examples: [
         {
@@ -105,13 +161,6 @@ const sassdoc: PackageSassDoc = {
           compiled: ".test {\n  font-size: 6rem;\n  line-height: 2.5rem;\n}\n",
           type: "scss",
           description: "Simple Examples",
-        },
-      ],
-      requires: [
-        {
-          name: "rmd-typography-styles",
-          type: "variable",
-          packageName: "typography",
         },
       ],
       code: "@function rmd-typography-value($style, $property) { … }",
@@ -132,6 +181,100 @@ const sassdoc: PackageSassDoc = {
       ],
       returns: { type: "String", description: "the typography style value." },
     },
+    "rmd-typography-get-global-variable": {
+      name: "rmd-typography-get-global-variable",
+      description:
+        "Gets the global variable value for a provided typography style name. This assumes that the global variable exists already.",
+      source: "packages/typography/src/_variables.scss#L12-L42",
+      usedBy: [
+        {
+          name: "rmd-typography-set-styles",
+          type: "function",
+          packageName: "typography",
+        },
+      ],
+      packageName: "typography",
+      code: "@function rmd-typography-get-global-variable($style) { … }",
+      sourceCode:
+        '@function rmd-typography-get-global-variable($style) {\n  @if $style == "headline-1" {\n    @return $rmd-typography-styles-headline-1;\n  } @else if $style == "headline-2" {\n    @return $rmd-typography-styles-headline-2;\n  } @else if $style == "headline-3" {\n    @return $rmd-typography-styles-headline-3;\n  } @else if $style == "headline-4" {\n    @return $rmd-typography-styles-headline-4;\n  } @else if $style == "headline-5" {\n    @return $rmd-typography-styles-headline-5;\n  } @else if $style == "headline-6" {\n    @return $rmd-typography-styles-headline-6;\n  } @else if $style == "subtitle-1" {\n    @return $rmd-typography-styles-subtitle-1;\n  } @else if $style == "subtitle-2" {\n    @return $rmd-typography-styles-subtitle-2;\n  } @else if $style == "body-1" {\n    @return $rmd-typography-styles-body-1;\n  } @else if $style == "body-2" {\n    @return $rmd-typography-styles-body-2;\n  } @else if $style == "caption" {\n    @return $rmd-typography-styles-caption;\n  } @else if $style == "button" {\n    @return $rmd-typography-styles-button;\n  } @else if $style == "overline" {\n    @return $rmd-typography-styles-overline;\n  }\n\n  @return ();\n}\n',
+      type: "function",
+      parameters: [
+        {
+          type: "String",
+          name: "style",
+          description: "The typography style name to return a variable for",
+        },
+      ],
+      returns: {
+        type: "Map",
+        description:
+          "a map of the style properties from the global typography\nvariable.",
+      },
+    },
+    "rmd-typography-set-styles": {
+      name: "rmd-typography-set-styles",
+      description:
+        "A utility function to help merge typography styles together with global definition overrides.",
+      source: "packages/typography/src/_variables.scss#L51-L63",
+      requires: [
+        {
+          name: "rmd-typography-get-global-variable",
+          type: "function",
+          packageName: "typography",
+        },
+      ],
+      packageName: "typography",
+      code:
+        "@function rmd-typography-set-styles($base-styles, $additional-styles) { … }",
+      sourceCode:
+        "@function rmd-typography-set-styles($base-styles, $additional-styles) {\n  @each $style, $style-props in $additional-styles {\n    $style-props: map-merge($base-styles, $style-props);\n\n    @if global-variable-exists(rmd-typography-styles-#{$style}) {\n      $style-props: map-merge(\n        $style-props,\n        rmd-typography-get-global-variable(#{$style})\n      );\n    }\n\n    $additional-styles: map-merge(\n      $additional-styles,\n      (#{$style}: $style-props)\n    );\n  }\n\n  @return $additional-styles;\n}\n",
+      type: "function",
+      parameters: [
+        {
+          type: "Map",
+          name: "base-styles",
+          description: "The base styles to merge with",
+        },
+        {
+          type: "Map",
+          name: "additional-styles",
+          description: "Any additional styles to merge with",
+        },
+      ],
+      returns: {
+        type: "Map",
+        description:
+          "a Map of the base-styles and additional styles merged together",
+      },
+    },
+    "rmd-typography-get-letter-spacing": {
+      name: "rmd-typography-get-letter-spacing",
+      description:
+        "A small utility function to get the letter spacing based on tracking and font-size",
+      source: "packages/typography/src/_variables.scss#L72-L74",
+      packageName: "typography",
+      code:
+        "@function rmd-typography-get-letter-spacing($tracking, $font-size) { … }",
+      sourceCode:
+        "@function rmd-typography-get-letter-spacing($tracking, $font-size) {\n  @return $tracking / ($font-size * 16) * 1em;\n}\n",
+      type: "function",
+      parameters: [
+        {
+          type: "Number",
+          name: "tracking",
+          description: "The tracking to use",
+        },
+        {
+          type: "Number",
+          name: "font-size",
+          description: "The font size to use",
+        },
+      ],
+      returns: {
+        type: "Number",
+        description: "the letter spacing value in em",
+      },
+    },
   },
   mixins: {
     "rmd-typography-theme": {
@@ -146,14 +289,19 @@ const sassdoc: PackageSassDoc = {
           packageName: "typography",
         },
       ],
-      packageName: "typography",
       requires: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-typography-theme-values",
           type: "variable",
           packageName: "typography",
         },
       ],
+      packageName: "typography",
       code:
         "@mixin rmd-typography-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -192,15 +340,25 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "typography",
         },
+        {
+          name: "rmd-text-container",
+          type: "mixin",
+          packageName: "typography",
+        },
       ],
-      packageName: "typography",
       requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-typography-theme-values",
           type: "variable",
           packageName: "typography",
         },
       ],
+      packageName: "typography",
       code:
         "@mixin rmd-typography-theme-update-var($theme-style, $value) { … }",
       sourceCode:
@@ -227,7 +385,15 @@ const sassdoc: PackageSassDoc = {
       source: "packages/typography/src/_mixins.scss#L63-L71",
       usedBy: [
         { name: "rmd-card-title", type: "mixin", packageName: "card" },
+        { name: "rmd-table-cell", type: "mixin", packageName: "table" },
         { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
+      ],
+      requires: [
+        {
+          name: "rmd-typography-value",
+          type: "function",
+          packageName: "typography",
+        },
       ],
       packageName: "typography",
       examples: [
@@ -238,13 +404,6 @@ const sassdoc: PackageSassDoc = {
             ".body-1-font-size {\n  font-size: 1rem;\n}\n\n.headline-4-letter-spacing {\n  letter-spacing: 0.00735em;\n}\n\n.caption-styles {\n  font-size: 0.75rem;\n  letter-spacing: 0.03333em;\n  line-height: 1.25rem;\n}\n",
           type: "scss",
           description: "Simple Examples",
-        },
-      ],
-      requires: [
-        {
-          name: "rmd-typography-value",
-          type: "function",
-          packageName: "typography",
         },
       ],
       code: "@mixin rmd-typography-value($style, $properties: font-size) { … }",
@@ -281,6 +440,13 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-utils-base", type: "mixin", packageName: "utils" },
       ],
+      requires: [
+        {
+          name: "rmd-typography-base",
+          type: "variable",
+          packageName: "typography",
+        },
+      ],
       packageName: "typography",
       examples: [
         {
@@ -290,13 +456,6 @@ const sassdoc: PackageSassDoc = {
             ".custom-class-name {\n  font-family: Roboto, sans-serif;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  font-size: 1.3rem;\n}\n",
           type: "scss",
           description: "Example Usage SCSS",
-        },
-      ],
-      requires: [
-        {
-          name: "rmd-typography-base",
-          type: "variable",
-          packageName: "typography",
         },
       ],
       code: "@mixin rmd-typography-base { … }",
@@ -317,25 +476,37 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-card-title", type: "mixin", packageName: "card" },
         { name: "rmd-card-subtitle", type: "mixin", packageName: "card" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-dialog-title", type: "mixin", packageName: "dialog" },
+        {
+          name: "rmd-expansion-panel",
+          type: "mixin",
+          packageName: "expansion-panel",
+        },
+        { name: "rmd-fieldset", type: "mixin", packageName: "form" },
         { name: "rmd-label", type: "mixin", packageName: "form" },
+        { name: "rmd-select", type: "mixin", packageName: "form" },
         { name: "rmd-text-field-base", type: "mixin", packageName: "form" },
+        { name: "rmd-form-message", type: "mixin", packageName: "form" },
         { name: "rmd-list", type: "mixin", packageName: "list" },
         { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
+        { name: "rmd-table-cell", type: "mixin", packageName: "table" },
         { name: "react-md-table", type: "mixin", packageName: "table" },
+        { name: "rmd-tab", type: "mixin", packageName: "tabs" },
         {
           name: "react-md-typography",
           type: "mixin",
           packageName: "typography",
         },
       ],
-      packageName: "typography",
       requires: [
+        { name: "rmd-utils-validate", type: "function", packageName: "utils" },
         {
           name: "rmd-typography-styles",
           type: "variable",
           packageName: "typography",
         },
       ],
+      packageName: "typography",
       code: "@mixin rmd-typography($style, $omit) { … }",
       sourceCode:
         "@mixin rmd-typography($style, $omit) {\n  $style-props: rmd-utils-validate($rmd-typography-styles, $style, typography);\n\n  @each $key, $value in $style-props {\n    @if not index($omit, $key) {\n      #{$key}: $value;\n    }\n  }\n}\n",
@@ -355,7 +526,13 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the base styles required for the text container. These styles are used to be able to center the text in a container once the `max-width` value has also been applied.\n",
       source: "packages/typography/src/_mixins.scss#L104-L111",
-      packageName: "typography",
+      usedBy: [
+        {
+          name: "rmd-text-container",
+          type: "mixin",
+          packageName: "typography",
+        },
+      ],
       requires: [
         {
           name: "rmd-typography-theme",
@@ -363,6 +540,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "typography",
         },
       ],
+      packageName: "typography",
       code: "@mixin rmd-text-container-base { … }",
       sourceCode:
         "@mixin rmd-text-container-base {\n  @include rmd-typography-theme(max-width, line-width);\n\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 100%;\n}\n",
@@ -373,6 +551,25 @@ const sassdoc: PackageSassDoc = {
       description:
         "This will generate the styles to apply to an element that will set the max width for legibility. By default, this will create styles that change based on the provided `$mobile-breakpoint` and apply different max widths on a media query. This feature can be disabled by setting the `$mobile-breakpoint` or the `$desktop-max-width` parameters to `null`.\n\nUnlike everything else in react-md, the text container relies on having the `box-sizing` set to `content-box` so that the text contents can be centered correctly with a max width and padding. When this is set to `border-box`,\nyou will lose the padding real estate in your text container which is something that might not be desired. Keeping this as `content-box` will allow padding to be applied without shrinking the max line length.",
       source: "packages/typography/src/_mixins.scss#L162-L173",
+      usedBy: [
+        {
+          name: "rmd-text-container",
+          type: "mixin",
+          packageName: "typography",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-typography-theme-update-var",
+          type: "mixin",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-theme-var",
+          type: "function",
+          packageName: "typography",
+        },
+      ],
       packageName: "typography",
       examples: [
         {
@@ -388,18 +585,6 @@ const sassdoc: PackageSassDoc = {
             '<main class="blog">\n  <h1 class="title">Blog Title</h1>\n  <p class="paragraph">Lorem ipsum...</p>\n  <p class="paragraph">Lorem ipsum...</p>\n</main>\n',
           type: "html",
           description: 'Creating a "blog"',
-        },
-      ],
-      requires: [
-        {
-          name: "rmd-typography-theme-update-var",
-          type: "mixin",
-          packageName: "typography",
-        },
-        {
-          name: "rmd-typography-theme-var",
-          type: "function",
-          packageName: "typography",
         },
       ],
       code:
@@ -431,6 +616,45 @@ const sassdoc: PackageSassDoc = {
         },
       ],
     },
+    "rmd-text-container": {
+      name: "rmd-text-container",
+      description: "Creates all the styles for the text container component.",
+      source: "packages/typography/src/_mixins.scss#L178-L198",
+      usedBy: [
+        {
+          name: "react-md-typography",
+          type: "mixin",
+          packageName: "typography",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-text-container-base",
+          type: "mixin",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-text-container-auto",
+          type: "mixin",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-theme-update-var",
+          type: "mixin",
+          packageName: "typography",
+        },
+        {
+          name: "rmd-typography-theme-var",
+          type: "function",
+          packageName: "typography",
+        },
+      ],
+      packageName: "typography",
+      code: "@mixin rmd-text-container { … }",
+      sourceCode:
+        "@mixin rmd-text-container {\n  @include rmd-text-container-base;\n\n  &--auto {\n    @include rmd-text-container-auto;\n  }\n\n  &--mobile {\n    @include rmd-typography-theme-update-var(\n      line-width,\n      rmd-typography-theme-var(mobile-line-width)\n    );\n  }\n\n  &--desktop {\n    @include rmd-typography-theme-update-var(\n      line-width,\n      rmd-typography-theme-var(desktop-line-width)\n    );\n  }\n}\n",
+      type: "mixin",
+    },
     "rmd-typography-text-overflow-ellipsis": {
       name: "rmd-typography-text-overflow-ellipsis",
       description:
@@ -440,7 +664,10 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-app-bar-title", type: "mixin", packageName: "app-bar" },
         { name: "rmd-card", type: "mixin", packageName: "card" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
+        { name: "rmd-select", type: "mixin", packageName: "form" },
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
+        { name: "rmd-table-cell", type: "mixin", packageName: "table" },
+        { name: "rmd-tab", type: "mixin", packageName: "tabs" },
       ],
       packageName: "typography",
       examples: [
@@ -486,8 +713,12 @@ const sassdoc: PackageSassDoc = {
         "Creates all the typography styles from the react-md typography variables.\n",
       source: "packages/typography/src/_mixins.scss#L228-L298",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
-      packageName: "typography",
       requires: [
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-typography-base",
           type: "mixin",
@@ -495,6 +726,11 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
+        {
+          name: "rmd-text-container",
+          type: "mixin",
+          packageName: "typography",
+        },
         { name: "rmd-utils-sr-only", type: "mixin", packageName: "utils" },
         {
           name: "rmd-typography-theme-values",
@@ -542,6 +778,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "typography",
         },
       ],
+      packageName: "typography",
       code: "@mixin react-md-typography { … }",
       sourceCode:
         '@mixin react-md-typography {\n  @include rmd-theme-create-root-theme(\n    $rmd-typography-theme-values,\n    typography\n  );\n\n  .rmd-typography {\n    @include rmd-typography-base;\n\n    @each $suffix in map-keys($rmd-typography-styles) {\n      &--#{$suffix} {\n        @include rmd-typography($suffix);\n      }\n    }\n\n    @each $weight in $rmd-typography-default-font-weights {\n      &--#{$weight} {\n        font-weight: map-get($rmd-typography-font-weights, $weight);\n      }\n    }\n\n    @each $font-style in $rmd-typography-font-styles {\n      &--#{$font-style} {\n        font-style: $font-style;\n      }\n    }\n\n    @each $suffix, $theme-style in $rmd-typography-colors {\n      &--#{$suffix} {\n        @include rmd-theme(color, $theme-style);\n      }\n    }\n\n    @each $align in $rmd-typography-alignments {\n      &--#{$align} {\n        text-align: $align;\n      }\n    }\n\n    @each $decoration in $rmd-typography-decorations {\n      $suffix: $decoration +\n        if($decoration == overline, "overline-decoration", "");\n\n      &--#{$suffix} {\n        text-decoration: $decoration;\n      }\n    }\n\n    @each $transform in $rmd-typography-transforms {\n      &--#{$transform} {\n        text-transform: $transform;\n      }\n    }\n\n    &--no-margin {\n      margin: 0;\n    }\n\n    &--no-margin-top {\n      margin-top: 0;\n    }\n\n    &--no-margin-bottom {\n      margin-bottom: 0;\n    }\n  }\n\n  .rmd-text-container {\n    @include rmd-text-container;\n  }\n\n  .rmd-sr-only {\n    @include rmd-utils-sr-only(true);\n  }\n}\n',
@@ -556,6 +793,14 @@ const sassdoc: PackageSassDoc = {
         {
           name: "rmd-typography-host-google-font",
           type: "mixin",
+          packageName: "typography",
+        },
+      ],
+      requires: [
+        { name: "str-replace", type: "function", packageName: "utils" },
+        {
+          name: "rmd-typography-google-font-suffix",
+          type: "function",
           packageName: "typography",
         },
       ],
@@ -616,6 +861,14 @@ const sassdoc: PackageSassDoc = {
           packageName: "typography",
         },
       ],
+      requires: [
+        {
+          name: "rmd-typography-google-font-face",
+          type: "mixin",
+          packageName: "typography",
+        },
+        { name: "rmd-utils-validate", type: "function", packageName: "utils" },
+      ],
       packageName: "typography",
       examples: [
         {
@@ -641,13 +894,6 @@ const sassdoc: PackageSassDoc = {
             '@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: light;\n  src: local(Roboto), local(Roboto-Light),\n    url(url(/fonts/roboto/Roboto-Light.ttf)/Roboto-Light.ttf) format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Roboto), local(Roboto-Regular),\n    url(url(/fonts/roboto/Roboto-Regular.ttf)/Roboto-Regular.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: medium;\n  src: local(Roboto), local(Roboto-Medium),\n    url(url(/fonts/roboto/Roboto-Medium.ttf)/Roboto-Medium.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "Roboto";\n  font-style: normal;\n  font-weight: bold;\n  src: local(Roboto), local(Roboto-Bold),\n    url(url(/fonts/roboto/Roboto-Bold.ttf)/Roboto-Bold.ttf) format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: light;\n  src: local(SourceCodePro), local(SourceCodePro-Light),\n    url(url(/fonts/source-code-pro/SourceCodePro-Light.ttf)/SourceCodePro-Light.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: regular;\n  src: local(SourceCodePro), local(SourceCodePro-Regular),\n    url(url(/fonts/source-code-pro/SourceCodePro-Regular.ttf)/SourceCodePro-Regular.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: medium;\n  src: local(SourceCodePro), local(SourceCodePro-Medium),\n    url(url(/fonts/source-code-pro/SourceCodePro-Medium.ttf)/SourceCodePro-Medium.ttf)\n      format("truetype");\n}\n\n@font-face {\n  font-family: "SourceCodePro";\n  font-style: normal;\n  font-weight: bold;\n  src: local(SourceCodePro), local(SourceCodePro-Bold),\n    url(url(/fonts/source-code-pro/SourceCodePro-Bold.ttf)/SourceCodePro-Bold.ttf)\n      format("truetype");\n}\n',
           type: "scss",
           description: "Custom Font Map Declarations",
-        },
-      ],
-      requires: [
-        {
-          name: "rmd-typography-google-font-face",
-          type: "mixin",
-          packageName: "typography",
         },
       ],
       code:
@@ -933,6 +1179,13 @@ const sassdoc: PackageSassDoc = {
       description:
         "A Map of font weights to a font file suffix for a Google font.",
       source: "packages/typography/src/_variables.scss#L209-L217",
+      usedBy: [
+        {
+          name: "rmd-typography-google-font-suffix",
+          type: "function",
+          packageName: "typography",
+        },
+      ],
       packageName: "typography",
       type: "Map",
       value:

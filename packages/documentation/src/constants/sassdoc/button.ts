@@ -8,14 +8,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to quickly get one of the button's theme values. This is really just for the `rmd-button-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/button/src/_functions.scss#L15-L17",
-      packageName: "button",
       requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
         {
           name: "rmd-button-theme-values",
           type: "variable",
           packageName: "button",
         },
       ],
+      packageName: "button",
       code: "@function rmd-button-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-button-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-button-theme-values,\n    button\n  );\n}\n",
@@ -40,16 +45,19 @@ const sassdoc: PackageSassDoc = {
       source: "packages/button/src/_functions.scss#L32-L34",
       usedBy: [
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
+        { name: "rmd-button", type: "mixin", packageName: "button" },
+        { name: "rmd-password", type: "mixin", packageName: "form" },
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
       ],
-      packageName: "button",
       requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
           name: "rmd-button-theme-values",
           type: "variable",
           packageName: "button",
         },
       ],
+      packageName: "button",
       code:
         "@function rmd-button-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -86,15 +94,21 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-button-base", type: "mixin", packageName: "button" },
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
         { name: "rmd-button-icon", type: "mixin", packageName: "button" },
+        { name: "rmd-toggle", type: "mixin", packageName: "form" },
       ],
-      packageName: "button",
       requires: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-button-theme-values",
           type: "variable",
           packageName: "button",
         },
       ],
+      packageName: "button",
       code:
         "@mixin rmd-button-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -127,14 +141,20 @@ const sassdoc: PackageSassDoc = {
       description:
         "Updates one of the button's theme variables with the new value for the section of your app.",
       source: "packages/button/src/_mixins.scss#L39-L41",
-      packageName: "button",
+      usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-button-theme-values",
           type: "variable",
           packageName: "button",
         },
       ],
+      packageName: "button",
       code: "@mixin rmd-button-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-button-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-button-theme-values,\n    button\n  );\n}\n",
@@ -161,6 +181,13 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "rmd-button-unstyled", type: "mixin", packageName: "button" },
       ],
+      requires: [
+        {
+          name: "rmd-utils-hide-focus-outline",
+          type: "mixin",
+          packageName: "utils",
+        },
+      ],
       packageName: "button",
       examples: [
         {
@@ -172,13 +199,6 @@ const sassdoc: PackageSassDoc = {
           description: "Example Usage SCSS",
         },
       ],
-      requires: [
-        {
-          name: "rmd-utils-hide-focus-outline",
-          type: "mixin",
-          packageName: "utils",
-        },
-      ],
       code: "@mixin rmd-button-reset { … }",
       sourceCode:
         "@mixin rmd-button-reset {\n  @include rmd-utils-hide-focus-outline;\n\n  background-color: transparent;\n  border-width: 0;\n}\n",
@@ -188,6 +208,15 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-base",
       description: "The base styles for a button.",
       source: "packages/button/src/_mixins.scss#L70-L80",
+      usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
+      requires: [
+        {
+          name: "rmd-utils-hide-focus-outline",
+          type: "mixin",
+          packageName: "utils",
+        },
+        { name: "rmd-button-theme", type: "mixin", packageName: "button" },
+      ],
       packageName: "button",
       examples: [
         {
@@ -198,14 +227,6 @@ const sassdoc: PackageSassDoc = {
           description: "Example Usage SCSS",
         },
       ],
-      requires: [
-        {
-          name: "rmd-utils-hide-focus-outline",
-          type: "mixin",
-          packageName: "utils",
-        },
-        { name: "rmd-button-theme", type: "mixin", packageName: "button" },
-      ],
       code: "@mixin rmd-button-base { … }",
       sourceCode:
         "@mixin rmd-button-base {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-button-theme(background-color);\n  @include rmd-button-theme(color);\n\n  align-items: center;\n  border-width: 0;\n  display: inline-flex;\n  justify-content: center;\n  position: relative;\n}\n",
@@ -215,7 +236,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-text",
       description: "Creates the base styles for a text button.\n",
       source: "packages/button/src/_mixins.scss#L83-L99",
-      packageName: "button",
+      usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
         {
@@ -245,6 +266,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "button",
         },
       ],
+      packageName: "button",
       code: "@mixin rmd-button-text { … }",
       sourceCode:
         "@mixin rmd-button-text {\n  @include rmd-typography(button);\n\n  // icons have smaller sizes due to the padding on buttons. This is also not\n  // applied below in the rmd-button__icon since a user of this library _could_\n  // include the icon styles after the button styles which would prevent these\n  // styles from working\n  @if $rmd-icon-use-font-icons or $rmd-icon-use-svg-icons {\n    @include rmd-icon-theme-update-var(size, $rmd-button-text-icon-size);\n  }\n\n  @include rmd-button-theme(border-radius, text-border-radius);\n  @include rmd-button-theme(min-height, text-height);\n  @include rmd-button-theme(min-width, text-min-width);\n\n  padding: rmd-button-theme-var(text-vertical-padding)\n    rmd-button-theme-var(text-horizontal-padding);\n}\n",
@@ -254,7 +276,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-icon",
       description: "Creates the base styles for an icon button.\n",
       source: "packages/button/src/_mixins.scss#L102-L112",
-      packageName: "button",
+      usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       requires: [
         {
           name: "rmd-icon-theme-update-var",
@@ -268,9 +290,86 @@ const sassdoc: PackageSassDoc = {
           packageName: "button",
         },
       ],
+      packageName: "button",
       code: "@mixin rmd-button-icon { … }",
       sourceCode:
         "@mixin rmd-button-icon {\n  @if not $rmd-button-text-icon-inherit-color {\n    @include rmd-icon-theme-update-var(color, currentColor);\n  }\n\n  @include rmd-button-theme(border-radius, icon-border-radius);\n  @include rmd-button-theme(height, icon-size);\n  @include rmd-button-theme(width, icon-size);\n\n  padding: 0;\n}\n",
+      type: "mixin",
+    },
+    "rmd-button": {
+      name: "rmd-button",
+      description:
+        "Creates all the styles for a button. This should be used within a class or selector.\n",
+      source: "packages/button/src/_mixins.scss#L117-L195",
+      usedBy: [
+        { name: "react-md-button", type: "mixin", packageName: "button" },
+      ],
+      requires: [
+        {
+          name: "rmd-icon-theme-update-var",
+          type: "mixin",
+          packageName: "icon",
+        },
+        { name: "rmd-button-base", type: "mixin", packageName: "button" },
+        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
+        { name: "rmd-button-text", type: "mixin", packageName: "button" },
+        { name: "rmd-button-icon", type: "mixin", packageName: "button" },
+        {
+          name: "rmd-button-theme-update-var",
+          type: "mixin",
+          packageName: "button",
+        },
+        {
+          name: "rmd-elevation-transition",
+          type: "mixin",
+          packageName: "elevation",
+        },
+        {
+          name: "rmd-states-theme-update-var",
+          type: "mixin",
+          packageName: "states",
+        },
+        {
+          name: "rmd-button-theme-var",
+          type: "function",
+          packageName: "button",
+        },
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
+        {
+          name: "rmd-button-text-icon-inherit-color",
+          type: "variable",
+          packageName: "button",
+        },
+        {
+          name: "rmd-button-box-shadow",
+          type: "variable",
+          packageName: "button",
+        },
+        {
+          name: "rmd-button-contained-resting-elevation",
+          type: "variable",
+          packageName: "button",
+        },
+        {
+          name: "rmd-button-contained-pressed-elevation",
+          type: "variable",
+          packageName: "button",
+        },
+        {
+          name: "rmd-states-pressed-class-name",
+          type: "variable",
+          packageName: "states",
+        },
+        {
+          name: "rmd-button-contained-elevation-transition-time",
+          type: "variable",
+          packageName: "button",
+        },
+      ],
+      packageName: "button",
+      code: "@mixin rmd-button { … }",
+      sourceCode:
+        '@mixin rmd-button {\n  @if $rmd-button-text-icon-inherit-color {\n    @include rmd-icon-theme-update-var(color, currentColor);\n  }\n  @include rmd-button-base;\n  @include rmd-states-surface;\n\n  &--text {\n    @include rmd-button-text;\n  }\n\n  &--icon {\n    @include rmd-button-icon;\n  }\n\n  &--outline {\n    box-shadow: $rmd-button-box-shadow rmd-button-theme-var(outline-width)\n      rmd-button-theme-var(outline);\n  }\n\n  &--contained {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(surface)\n    );\n    @include rmd-elevation-transition(\n      $rmd-button-contained-resting-elevation,\n      $rmd-button-contained-pressed-elevation,\n      "&#{$rmd-states-pressed-class-name}",\n      false,\n      $rmd-button-contained-elevation-transition-time\n    );\n    // don\'t want the normal pressed colors to appear since we have an elevation\n    // change instead\n    @include rmd-states-theme-update-var(background-color, transparent);\n  }\n\n  &--disabled {\n    @include rmd-button-theme-update-var(\n      color,\n      rmd-theme-var(text-disabled-on-background)\n    );\n    @include rmd-button-theme-update-var(\n      outline,\n      rmd-theme-var(text-disabled-on-background)\n    );\n  }\n\n  &--primary {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(primary)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-primary));\n  }\n\n  &--text-primary {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(primary));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(primary));\n  }\n\n  &--secondary {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(secondary)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-secondary));\n  }\n\n  &--text-secondary {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(secondary));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(secondary));\n  }\n\n  &--warning {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(warning)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-warning));\n  }\n\n  &--text-warning {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(warning));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(warning));\n  }\n\n  &--error {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(error)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-error));\n  }\n\n  &--text-error {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(error));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(error));\n  }\n}\n',
       type: "mixin",
     },
     "rmd-button-unstyled": {
@@ -280,7 +379,6 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "react-md-button", type: "mixin", packageName: "button" },
       ],
-      packageName: "button",
       requires: [
         { name: "rmd-button-reset", type: "mixin", packageName: "button" },
         {
@@ -289,6 +387,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "states",
         },
       ],
+      packageName: "button",
       code: "@mixin rmd-button-unstyled { … }",
       sourceCode:
         "@mixin rmd-button-unstyled {\n  @include rmd-button-reset;\n  @include rmd-states-focus-shadow($create-pseudo: true);\n\n  display: inline-flex;\n  position: relative;\n\n  &:not(:disabled):hover {\n    cursor: pointer;\n  }\n}\n",
@@ -299,7 +398,6 @@ const sassdoc: PackageSassDoc = {
       description: "Creates the styles for all the floating button positions.",
       source: "packages/button/src/_mixins.scss#L214-L226",
       usedBy: [{ name: "rmd-fab", type: "mixin", packageName: "button" }],
-      packageName: "button",
       requires: [
         { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
         {
@@ -313,6 +411,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "button",
         },
       ],
+      packageName: "button",
       code: "@mixin rmd-button-floating-positions { … }",
       sourceCode:
         "@mixin rmd-button-floating-positions {\n  @each $name, $styles in $rmd-button-floating-positions {\n    &--#{$name} {\n      @each $property, $value in $styles {\n        @if $property == left or $property == right {\n          @include rmd-utils-rtl-auto($property, $value);\n        } @else {\n          #{$property}: #{$value};\n        }\n      }\n    }\n  }\n}\n",
@@ -326,7 +425,6 @@ const sassdoc: PackageSassDoc = {
       usedBy: [
         { name: "react-md-button", type: "mixin", packageName: "button" },
       ],
-      packageName: "button",
       requires: [
         {
           name: "rmd-button-floating-positions",
@@ -339,6 +437,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "button",
         },
       ],
+      packageName: "button",
       code: "@mixin rmd-fab { … }",
       sourceCode:
         "@mixin rmd-fab {\n  @include rmd-button-floating-positions;\n\n  position: fixed;\n  z-index: $rmd-button-floating-z-index;\n}\n",
@@ -350,8 +449,13 @@ const sassdoc: PackageSassDoc = {
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
       source: "packages/button/src/_mixins.scss#L238-L254",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
-      packageName: "button",
       requires: [
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
+        { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "rmd-button-unstyled", type: "mixin", packageName: "button" },
         { name: "rmd-fab", type: "mixin", packageName: "button" },
         {
@@ -365,6 +469,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "button",
         },
       ],
+      packageName: "button",
       code: "@mixin react-md-button { … }",
       sourceCode:
         "@mixin react-md-button {\n  @include rmd-theme-create-root-theme($rmd-button-theme-values, button);\n\n  .rmd-button {\n    @include rmd-button;\n  }\n\n  .rmd-button-unstyled {\n    @include rmd-button-unstyled;\n  }\n\n  @if $rmd-button-floating-positions {\n    .rmd-fab {\n      @include rmd-fab;\n    }\n  }\n}\n",
@@ -379,6 +484,7 @@ const sassdoc: PackageSassDoc = {
       source: "packages/button/src/_variables.scss#L14",
       usedBy: [
         { name: "rmd-button-icon", type: "mixin", packageName: "button" },
+        { name: "rmd-button", type: "mixin", packageName: "button" },
       ],
       packageName: "button",
       type: "Boolean",
@@ -489,6 +595,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The base box-shadow to apply to buttons when outlined. This will normally be used along with a color variable to define a box shadow.\n",
       source: "packages/button/src/_variables.scss#L60",
+      usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       packageName: "button",
       type: "String",
       value: "inset 0 0 0",
@@ -519,10 +626,10 @@ const sassdoc: PackageSassDoc = {
       description:
         'This is the text color that will be applied when the theme type prop on buttons is set to "clear".',
       source: "packages/button/src/_variables.scss#L78",
-      packageName: "button",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
+      packageName: "button",
       type: "Color",
       value: "rmd-theme-var(text-primary-on-background)",
       compiled: "var(--rmd-theme-text-primary-on-background, #212121)",
@@ -533,6 +640,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The transition time for a contained button to raise to the pressed elevation.\n",
       source: "packages/button/src/_variables.scss#L83",
+      usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       packageName: "button",
       type: "Number",
       value: "0.15s",
@@ -543,6 +651,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The elevation to use for a resting contained button. This should be a number between 0 and 24.\n",
       source: "packages/button/src/_variables.scss#L88",
+      usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       packageName: "button",
       type: "Number",
       value: "2",
@@ -553,6 +662,7 @@ const sassdoc: PackageSassDoc = {
       description:
         "The elevation to use for a contained button that is being pressed. This should be a number between 0 and 24.\n",
       source: "packages/button/src/_variables.scss#L93",
+      usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       packageName: "button",
       type: "Number",
       value: "4",
@@ -570,7 +680,6 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-fab", type: "mixin", packageName: "button" },
       ],
-      packageName: "button",
       requires: [
         {
           name: "rmd-utils-temporary-element-z-index",
@@ -578,6 +687,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "utils",
         },
       ],
+      packageName: "button",
       type: "Number",
       value: "$rmd-utils-temporary-element-z-index",
       compiled: "30",

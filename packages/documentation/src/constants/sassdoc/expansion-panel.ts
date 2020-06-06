@@ -8,14 +8,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to quickly get one of the expansion-panel's theme values. This is really just for the `rmd-expansion-panel-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/expansion-panel/src/_functions.scss#L16-L18",
-      packageName: "expansion-panel",
       requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
         {
           name: "rmd-expansion-panel-theme-values",
           type: "variable",
           packageName: "expansion-panel",
         },
       ],
+      packageName: "expansion-panel",
       code: "@function rmd-expansion-panel-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-expansion-panel-theme($theme-style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-expansion-panel-theme-values,\n    expansion-panel\n  );\n}\n",
@@ -38,14 +43,15 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to get one of the expansion-panel's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-expansion-panel-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/expansion-panel/src/_functions.scss#L35-L42",
-      packageName: "expansion-panel",
       requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
           name: "rmd-expansion-panel-theme-values",
           type: "variable",
           packageName: "expansion-panel",
         },
       ],
+      packageName: "expansion-panel",
       code:
         "@function rmd-expansion-panel-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -79,14 +85,26 @@ const sassdoc: PackageSassDoc = {
       description:
         "Creates the styles for one of the expansion-panel's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/expansion-panel/src/_mixins.scss#L22-L29",
-      packageName: "expansion-panel",
+      usedBy: [
+        {
+          name: "rmd-expansion-panel",
+          type: "mixin",
+          packageName: "expansion-panel",
+        },
+      ],
       requires: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-expansion-panel-theme-values",
           type: "variable",
           packageName: "expansion-panel",
         },
       ],
+      packageName: "expansion-panel",
       code:
         "@mixin rmd-expansion-panel-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -119,14 +137,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "Updates one of the expansion-panel's theme variables with the new value for the section of your app.",
       source: "packages/expansion-panel/src/_mixins.scss#L37-L44",
-      packageName: "expansion-panel",
       requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-expansion-panel-theme-values",
           type: "variable",
           packageName: "expansion-panel",
         },
       ],
+      packageName: "expansion-panel",
       code:
         "@mixin rmd-expansion-panel-theme-update-var($theme-style, $value) { … }",
       sourceCode:
@@ -146,20 +169,56 @@ const sassdoc: PackageSassDoc = {
         },
       ],
     },
+    "rmd-expansion-panel": {
+      name: "rmd-expansion-panel",
+      description:
+        "Creates the styles for the expansion panel and all the child elements.\n",
+      source: "packages/expansion-panel/src/_mixins.scss#L48-L78",
+      usedBy: [
+        {
+          name: "react-md-expansion-panel",
+          type: "mixin",
+          packageName: "expansion-panel",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-expansion-panel-theme",
+          type: "mixin",
+          packageName: "expansion-panel",
+        },
+        { name: "rmd-typography", type: "mixin", packageName: "typography" },
+      ],
+      packageName: "expansion-panel",
+      code: "@mixin rmd-expansion-panel { … }",
+      sourceCode:
+        "@mixin rmd-expansion-panel {\n  &--margin-top {\n    @include rmd-expansion-panel-theme(margin-top, spacing);\n  }\n\n  &__header {\n    @include rmd-typography(subtitle-1);\n    @include rmd-expansion-panel-theme(padding, padding);\n\n    align-items: center;\n    color: inherit;\n    width: 100%;\n  }\n\n  &__icon {\n    @include rmd-utils-rtl {\n      @include rmd-expansion-panel-theme(padding-right, icon-spacing);\n\n      margin-left: 0;\n      margin-right: auto;\n      padding-left: 0;\n    }\n    @include rmd-expansion-panel-theme(padding-left, icon-spacing);\n\n    // flexing (💪) makes it align nicer with text content\n    align-items: center;\n    display: inline-flex;\n    justify-content: center;\n    margin-left: auto;\n  }\n}\n",
+      type: "mixin",
+    },
     "react-md-expansion-panel": {
       name: "react-md-expansion-panel",
       description:
         "Creates all the styles for the expansion-panel package as well as the root css variable theme.\n",
       source: "packages/expansion-panel/src/_mixins.scss#L82-L88",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
-      packageName: "expansion-panel",
       requires: [
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
+        {
+          name: "rmd-expansion-panel",
+          type: "mixin",
+          packageName: "expansion-panel",
+        },
         {
           name: "rmd-expansion-panel-theme-values",
           type: "variable",
           packageName: "expansion-panel",
         },
       ],
+      packageName: "expansion-panel",
       code: "@mixin react-md-expansion-panel { … }",
       sourceCode:
         "@mixin react-md-expansion-panel {\n  @include rmd-theme-create-root-theme(\n    $rmd-expansion-panel-theme-values,\n    expansion-panel\n  );\n\n  .rmd-expansion-panel {\n    @include rmd-expansion-panel;\n  }\n}\n",
@@ -192,7 +251,6 @@ const sassdoc: PackageSassDoc = {
       description:
         "The spacing to use for the expansion panel's expander icon. This is applied as `padding-left` on the icon's containing `<span>`.",
       source: "packages/expansion-panel/src/_variables.scss#L24",
-      packageName: "expansion-panel",
       requires: [
         {
           name: "rmd-icon-spacing-with-text",
@@ -200,6 +258,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "icon",
         },
       ],
+      packageName: "expansion-panel",
       type: "Number",
       value: "$rmd-icon-spacing-with-text",
       compiled: "0.5rem",

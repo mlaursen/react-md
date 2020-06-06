@@ -8,14 +8,19 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to quickly get one of the sheet's theme values. This is really just for the `rmd-sheet-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
       source: "packages/sheet/src/_functions.scss#L15-L17",
-      packageName: "sheet",
       requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
         {
           name: "rmd-sheet-theme-values",
           type: "variable",
           packageName: "sheet",
         },
       ],
+      packageName: "sheet",
       code: "@function rmd-sheet-theme($theme-style) { … }",
       sourceCode:
         "@function rmd-sheet-theme($theme-style) {\n  @return rmd-theme-get-var-value($theme-style, $rmd-sheet-theme-values, sheet);\n}\n",
@@ -42,14 +47,15 @@ const sassdoc: PackageSassDoc = {
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
       ],
-      packageName: "sheet",
       requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
           name: "rmd-sheet-theme-values",
           type: "variable",
           packageName: "sheet",
         },
       ],
+      packageName: "sheet",
       code:
         "@function rmd-sheet-theme-var($theme-style, $fallback: null) { … }",
       sourceCode:
@@ -83,14 +89,19 @@ const sassdoc: PackageSassDoc = {
         "Creates the styles for one of the sheet's theme values. This is mostly going to be an internal helper mixin util.",
       source: "packages/sheet/src/_mixins.scss#L23-L25",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
-      packageName: "sheet",
       requires: [
+        {
+          name: "rmd-theme-apply-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-sheet-theme-values",
           type: "variable",
           packageName: "sheet",
         },
       ],
+      packageName: "sheet",
       code:
         "@mixin rmd-sheet-theme($property, $theme-style, $fallback: null) { … }",
       sourceCode:
@@ -123,15 +134,23 @@ const sassdoc: PackageSassDoc = {
       description:
         "Updates one of the sheet's theme variables with the new value for the section of your app.",
       source: "packages/sheet/src/_mixins.scss#L33-L35",
-      usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
-      packageName: "sheet",
+      usedBy: [
+        { name: "rmd-sheet-positions", type: "mixin", packageName: "sheet" },
+        { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
+      ],
       requires: [
+        {
+          name: "rmd-theme-update-rmd-var",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-sheet-theme-values",
           type: "variable",
           packageName: "sheet",
         },
       ],
+      packageName: "sheet",
       code: "@mixin rmd-sheet-theme-update-var($theme-style, $value) { … }",
       sourceCode:
         "@mixin rmd-sheet-theme-update-var($theme-style, $value) {\n  @include rmd-theme-update-rmd-var(\n    $value,\n    $theme-style,\n    $rmd-sheet-theme-values,\n    sheet\n  );\n}\n",
@@ -150,15 +169,42 @@ const sassdoc: PackageSassDoc = {
         },
       ],
     },
+    "rmd-sheet-positions": {
+      name: "rmd-sheet-positions",
+      description:
+        "Creates the different positioning styles for all the sheet positions.\n",
+      source: "packages/sheet/src/_mixins.scss#L39-L67",
+      usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
+      requires: [
+        { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
+        {
+          name: "rmd-sheet-theme-update-var",
+          type: "mixin",
+          packageName: "sheet",
+        },
+        { name: "rmd-utils-validate", type: "function", packageName: "utils" },
+        {
+          name: "rmd-sheet-enabled-positions",
+          type: "variable",
+          packageName: "sheet",
+        },
+        { name: "rmd-sheet-positions", type: "variable", packageName: "sheet" },
+      ],
+      packageName: "sheet",
+      code: "@mixin rmd-sheet-positions { … }",
+      sourceCode:
+        '@mixin rmd-sheet-positions {\n  @if $rmd-sheet-enabled-positions {\n    @each $position in $rmd-sheet-enabled-positions {\n      $position: rmd-utils-validate(\n        $rmd-sheet-positions,\n        $position,\n        "sheet position"\n      );\n\n      &--#{$position} {\n        @if $position == left {\n          @include rmd-utils-rtl-auto(left, 0) {\n            @include rmd-sheet-theme-update-var(\n              transform-offscreen,\n              translate3d(100%, 0, 0)\n            );\n          }\n          @include rmd-sheet-theme-update-var(\n            transform-offscreen,\n            translate3d(-100%, 0, 0)\n          );\n        } @else if $position == right {\n          @include rmd-utils-rtl-auto(right, 0) {\n            @include rmd-sheet-theme-update-var(\n              transform-offscreen,\n              translate3d(-100%, 0, 0)\n            );\n          }\n          @include rmd-sheet-theme-update-var(\n            transform-offscreen,\n            translate3d(100%, 0, 0)\n          );\n        } @else if $position == top {\n          @include rmd-sheet-theme-update-var(\n            transform-offscreen,\n            translate3d(0, -100%, 0)\n          );\n\n          top: 0;\n        } @else if $position == bottom {\n          @include rmd-sheet-theme-update-var(\n            transform-offscreen,\n            translate3d(0, 100%, 0)\n          );\n\n          bottom: 0;\n        }\n      }\n    }\n  }\n}\n',
+      type: "mixin",
+    },
     "rmd-sheet": {
       name: "rmd-sheet",
       description: "Creates the styles for a sheet component\n",
       source: "packages/sheet/src/_mixins.scss#L70-L147",
       usedBy: [{ name: "react-md-sheet", type: "mixin", packageName: "sheet" }],
-      packageName: "sheet",
       requires: [
         { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
         { name: "rmd-utils-scroll", type: "mixin", packageName: "utils" },
+        { name: "rmd-sheet-positions", type: "mixin", packageName: "sheet" },
         { name: "rmd-sheet-theme", type: "mixin", packageName: "sheet" },
         {
           name: "rmd-sheet-theme-update-var",
@@ -200,6 +246,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "sheet",
         },
       ],
+      packageName: "sheet",
       code: "@mixin rmd-sheet { … }",
       sourceCode:
         "@mixin rmd-sheet {\n  @include rmd-elevation($rmd-sheet-elevation);\n  @include rmd-utils-scroll;\n  @include rmd-sheet-positions;\n  @include rmd-sheet-theme(max-height);\n  @include rmd-sheet-theme(height);\n  @include rmd-sheet-theme(width);\n\n  position: fixed;\n  z-index: $rmd-sheet-z-index;\n\n  &--raised {\n    @include rmd-elevation($rmd-sheet-raised-elevation);\n    z-index: $rmd-sheet-raised-z-index;\n  }\n\n  &--horizontal {\n    bottom: 0;\n    top: 0;\n  }\n\n  &--touch-width {\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(touch-width)\n    );\n  }\n\n  &--static-width {\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(static-width)\n    );\n  }\n\n  &--media-width {\n    @include rmd-utils-tablet-media {\n      @include rmd-sheet-theme-update-var(\n        width,\n        rmd-sheet-theme-var(static-width)\n      );\n    }\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(touch-width)\n    );\n  }\n\n  &--vertical {\n    left: 0;\n    right: 0;\n  }\n\n  &--viewport-height {\n    @include rmd-sheet-theme-update-var(max-height, $rmd-sheet-max-height);\n  }\n\n  &--touchable-height {\n    @include rmd-sheet-theme-update-var(\n      max-height,\n      rmd-sheet-theme-var(touchable-max-height)\n    );\n  }\n\n  &--recommended-height {\n    max-height: $rmd-sheet-recommended-max-height;\n    min-height: $rmd-sheet-recommended-min-height;\n  }\n\n  &--offscreen {\n    @include rmd-sheet-theme(transform, transform-offscreen);\n  }\n\n  &--hidden {\n    box-shadow: none;\n  }\n\n  &--visible {\n    transform: translate3d(0, 0, 0);\n  }\n\n  &--enter {\n    @include rmd-transition(deceleration);\n\n    transition: transform $rmd-sheet-enter-duration;\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    transition: transform $rmd-sheet-enter-duration;\n  }\n}\n",
@@ -211,8 +258,12 @@ const sassdoc: PackageSassDoc = {
         "Creates all the styles for the sheet package as well as the root css variable theme.\n",
       source: "packages/sheet/src/_mixins.scss#L151-L161",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
-      packageName: "sheet",
       requires: [
+        {
+          name: "rmd-theme-create-root-theme",
+          type: "mixin",
+          packageName: "theme",
+        },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
         {
           name: "rmd-sheet-theme-values",
@@ -225,6 +276,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "sheet",
         },
       ],
+      packageName: "sheet",
       code: "@mixin react-md-sheet { … }",
       sourceCode:
         "@mixin react-md-sheet {\n  @include rmd-theme-create-root-theme($rmd-sheet-theme-values, sheet);\n\n  .rmd-sheet {\n    @include rmd-sheet;\n  }\n\n  .rmd-sheet-overlay {\n    z-index: $rmd-sheet-overlay-z-index;\n  }\n}\n",
@@ -249,7 +301,6 @@ const sassdoc: PackageSassDoc = {
         "The z-index to use for sheets that normally appear with an overlay and covering other elements on the page.",
       source: "packages/sheet/src/_variables.scss#L23",
       usedBy: [{ name: "rmd-sheet", type: "mixin", packageName: "sheet" }],
-      packageName: "sheet",
       requires: [
         {
           name: "rmd-utils-temporary-element-z-index",
@@ -257,6 +308,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "utils",
         },
       ],
+      packageName: "sheet",
       type: "Number",
       value: "$rmd-utils-temporary-element-z-index",
       compiled: "30",
@@ -268,7 +320,6 @@ const sassdoc: PackageSassDoc = {
         "The z-index to use for a sheet's overlay. This value just needs to be smaller than the `$rmd-sheet-raised-z-index` value so the overlay does not cover the sheet.",
       source: "packages/sheet/src/_variables.scss#L31",
       usedBy: [{ name: "react-md-sheet", type: "mixin", packageName: "sheet" }],
-      packageName: "sheet",
       requires: [
         {
           name: "rmd-overlay-z-index",
@@ -276,6 +327,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "overlay",
         },
       ],
+      packageName: "sheet",
       type: "Number",
       value: "$rmd-overlay-z-index",
       compiled: "30",
@@ -315,7 +367,6 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-sheet", type: "mixin", packageName: "sheet" },
       ],
-      packageName: "sheet",
       requires: [
         {
           name: "rmd-transition-enter-duration",
@@ -323,6 +374,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "transition",
         },
       ],
+      packageName: "sheet",
       type: "Number",
       value: "$rmd-transition-enter-duration",
       compiled: "0.2s",
@@ -339,7 +391,6 @@ const sassdoc: PackageSassDoc = {
           packageName: "layout",
         },
       ],
-      packageName: "sheet",
       requires: [
         {
           name: "rmd-transition-leave-duration",
@@ -347,6 +398,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "transition",
         },
       ],
+      packageName: "sheet",
       type: "Number",
       value: "$rmd-transition-leave-duration",
       compiled: "0.15s",
@@ -445,6 +497,9 @@ const sassdoc: PackageSassDoc = {
       description:
         "A list of positions that are supported by the sheet component.\n",
       source: "packages/sheet/src/_variables.scss#L96",
+      usedBy: [
+        { name: "rmd-sheet-positions", type: "mixin", packageName: "sheet" },
+      ],
       packageName: "sheet",
       type: "List",
       value: "top right bottom left",
@@ -455,6 +510,9 @@ const sassdoc: PackageSassDoc = {
       description:
         "The positions that are created by default with the `react-md-sheet` mixin.\nWhen generating styles, this list will be looped through to create the correct position styles.\n",
       source: "packages/sheet/src/_variables.scss#L102",
+      usedBy: [
+        { name: "rmd-sheet-positions", type: "mixin", packageName: "sheet" },
+      ],
       packageName: "sheet",
       type: "List",
       value: "$rmd-sheet-positions",
