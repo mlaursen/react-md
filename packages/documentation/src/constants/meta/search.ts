@@ -2200,8 +2200,8 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     summary:
       "All the examples above might have seen like \"magic\" for how the tooltip events are added to the child component. The way the tooltip works is that it clones the child element and injects the required accessibility props and event handlers into it for convenience. This means that if your component doesn't accept the required event handlers and pass it down to a DOM node or the DOM node is not focusable, the tooltip won't work!",
     type: "demo",
-    pageUrl: "/packages/tooltip/demos#advanced-a-p-i-and-gotchas-title",
-    pathname: "/packages/tooltip/demos#advanced-a-p-i-and-gotchas-title",
+    pageUrl: "/packages/tooltip/demos#advanced-api-and-gotchas-title",
+    pathname: "/packages/tooltip/demos#advanced-api-and-gotchas-title",
   },
   {
     title: "Tooltip Installation",

@@ -2294,7 +2294,7 @@ const tocs: TOCRecord = {
       title: "Common Patterns",
     },
     {
-      anchor: "#advanced-a-p-i-and-gotchas",
+      anchor: "#advanced-api-and-gotchas",
       title: "Advanced API and Gotchas",
     },
   ],
