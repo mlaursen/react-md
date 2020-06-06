@@ -210,7 +210,24 @@ export default function useTreeMovement({
             return;
           }
 
+          // if a user is navigating through the app with a keyboard and presses
+          // cmd+shift+enter (Mac) or ctrl+shift+enter (Windows), the link will
+          // be forcefully opened in a new tab irregardless of the target
+          // attribute on the anchor tag. Since a tree doesn't actually focus
+          // the link in this case, need to "polyfill" it with this workaround.
+          // the `meta` key is for Mac and `ctrlKey` for Windows
+          const forceNewTab =
+            event.shiftKey && (event.metaKey || event.ctrlKey);
+
+          const prevTarget = anchor.target;
+          if (forceNewTab) {
+            anchor.target = "_blank";
+          }
           anchor.click();
+          if (forceNewTab) {
+            anchor.target = prevTarget;
+          }
+
           break;
         }
         case "ArrowRight":
