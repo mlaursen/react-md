@@ -20,7 +20,7 @@
     "cpx": "^1.5.0",
     "cssnano": "^4.1.10",
     "filesize": "^6.1.0",
-    "fs-extra": "^9.0.0",
+    "fs-extra": "^9.0.1",
     "glob": "^7.1.6",
     "gzip-size": "^5.1.1",
     "he": "^1.2.0",
@@ -29,7 +29,7 @@
     "markdown-toc": "^1.2.0",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
-    "postcss": "^7.0.31",
+    "postcss": "^7.0.32",
     "postcss-combine-duplicated-selectors": "^8.1.0",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
@@ -37,8 +37,8 @@
     "prettier": "^2.0.5",
     "pretty-ms": "^7.0.0",
     "rimraf": "^3.0.2",
-    "sassdoc": "^2.7.1",
-    "typescript": "^3.9.3"
+    "sassdoc": "^2.7.2",
+    "typescript": "^3.9.5"
   },
   "devDependencies": {
     "@types/cssnano": "^4.0.0",
