@@ -5,14 +5,13 @@
   "private": true,
   "scripts": {
     "prebuild": "dev-utils doc-index",
-    "dev": "npm-run-all prebuild start-dev",
-    "dev-log": "cross-env NEXT_TELEMETRY_DISABLED=1 FORCE_COLOR=true next | cat",
+    "dev": "nodemon",
     "sandbox": "dev-utils sandbox",
     "build": "npm-run-all build-client build-server",
     "build-server": "tsc -p tsconfig.server.json",
     "build-client": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
     "start": "cross-env NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production node .next/server",
-    "start-dev": "nodemon",
+    "start-dev": "npm-run-all prebuild dev",
     "start-prod": "npm-run-all build start"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
