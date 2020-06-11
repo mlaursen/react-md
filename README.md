@@ -2,7 +2,7 @@
 
 React Material Design - React components built with sass
 
-[![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
+[![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=v1)](https://travis-ci.org/mlaursen/react-md)
 [![Join the chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
 
 react-md is a set of React components and sass files for implementing [Google's Material Design](https://material.google.com). The
