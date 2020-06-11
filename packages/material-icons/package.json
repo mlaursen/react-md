@@ -24,12 +24,13 @@
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mlaursen/react-md",
+    "url": "https://github.com/mlaursen/react-md.git",
     "directory": "packages/material-icons"
   },
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
   },
+  "homepage": "https://react-md.dev/packages/material-icons/demos",
   "keywords": [
     "react-md",
     "material design",

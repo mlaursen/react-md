@@ -19,12 +19,13 @@
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mlaursen/react-md",
+    "url": "https://github.com/mlaursen/react-md.git",
     "directory": "packages/tabs"
   },
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
   },
+  "homepage": "https://react-md.dev/packages/tabs/demos",
   "keywords": [
     "accessibility",
     "a11y",
@@ -47,6 +48,10 @@
     "classnames": "^2.2.6",
     "react-transition-group": "^4.3.0"
   },
+  "devDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "peerDependencies": {
     "react": ">= 16.8"
   },
@@ -55,9 +60,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
   }
 }

@@ -19,12 +19,13 @@
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mlaursen/react-md",
+    "url": "https://github.com/mlaursen/react-md.git",
     "directory": "packages/link"
   },
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
   },
+  "homepage": "https://react-md.dev/packages/link/demos",
   "keywords": [
     "accessibility",
     "a11y",
