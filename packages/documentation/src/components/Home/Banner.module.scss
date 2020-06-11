@@ -9,7 +9,7 @@
 }
 
 .title {
-  @include rmd-theme(color, on-surface);
+  @include rmd-theme(color, on-primary);
 }
 
 .logo {

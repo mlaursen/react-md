@@ -85,7 +85,9 @@ export function toId(title: string): string {
     .replace(/\/|\\|\[|]|-/g, "")
     .replace(/SCSS/g, "scss ")
     .replace(/CSS/g, "css ")
+    .replace(/API/g, "api")
     .replace(/\s+/g, " ")
+    .trim()
     .split(/\s|(?=[A-Z])/)
     .join("-")
     .toLowerCase();
