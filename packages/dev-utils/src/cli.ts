@@ -4,21 +4,22 @@ import commander from "commander";
 import loglevel from "loglevel";
 
 import build from "./build";
+import changelogs from "./changelogs";
 import clean from "./clean";
+import configs from "./configs";
 import { DEBUG, SILENT } from "./constants";
 import docPackages from "./docPackages";
 import indexer from "./indexer";
 import libsize from "./libsize";
 import prepublish from "./prepublish";
 import readmes from "./readmes";
+import rmdReadme from "./rmdReadme";
 import sandbox from "./sandbox";
 import sassdoc from "./sassdoc";
 import createScssVariables from "./scssVariables";
 import copyStyles from "./utils/copyStyles";
 import createThemes from "./utils/createThemes";
-import configs from "./configs";
 import watch from "./watch";
-import changelogs from "./changelogs";
 
 const argv = process.argv.slice(2);
 
@@ -176,5 +177,6 @@ createCommand("clean")
 
 createCommand("configs").action(() => configs());
 createCommand("changelogs").action(() => changelogs());
+createCommand("rmd-readme").action(() => rmdReadme());
 
 commander.parse(process.argv);

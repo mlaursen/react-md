@@ -19,6 +19,8 @@ Create an accessible React application with the
 
 #### If you are still on v1, please see the [v1 documentation site](https://react-md.dev/v1) and [branch](../../tree/v1) instead
 
+<!-- rmd-readme-replace -->
+
 ### Highlights/Features
 
 - Matches the accessibility guidelines from

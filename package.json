@@ -97,7 +97,10 @@
     }
   },
   "lint-staged": {
-    "**/*.md": [
+    "**/*.{js,md}": [
+      "prettier --write"
+    ],
+    "{.github,testSetup}/*": [
       "prettier --write"
     ],
     "packages/*/src/**/*.{ts,tsx,scss,js,jsx}": [

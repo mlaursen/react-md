@@ -19,12 +19,13 @@
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mlaursen/react-md",
+    "url": "https://github.com/mlaursen/react-md.git",
     "directory": "packages/divider"
   },
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
   },
+  "homepage": "https://react-md.dev/packages/divider/demos",
   "keywords": [
     "react-md",
     "material design",
@@ -39,6 +40,10 @@
     "@react-md/utils": "^2.0.0-beta.2",
     "classnames": "^2.2.6"
   },
+  "devDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "peerDependencies": {
     "react": ">= 16.8"
   },
@@ -47,9 +52,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
   }
 }
