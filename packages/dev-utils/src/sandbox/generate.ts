@@ -244,7 +244,9 @@ export default async function generate({
 
           content = format(
             content
-              .replace(/^import Code.+;$/gm, "")
+              .replace(/^import Code(Block)?.+;$/gm, "")
+              .replace(/<CodeBlock[^>]*>/g, "<pre><code>")
+              .replace(/<\/CodeBlock>/g, "</code></pre>")
               .replace(/<(\/)?Code/g, "<$1code")
               .replace(aliasRegExp, `"${aliasReplacement}`),
             filePath.endsWith(".scss") ? "scss" : "typescript"

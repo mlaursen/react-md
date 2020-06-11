@@ -22,6 +22,10 @@ import { isMarkdown, isStyle, isSvg, isRaw, isRelative } from "./matchers";
 
 const SCSS_IMPORT = /@import '(.+)';/g;
 
+// since I don't want to include markdown stuff
+const IGNORED_MODULES = ["marked", "prismjs"];
+const IGNORED_FILE_REGEXP = /Markdown|Code|constants\/(github|packages)/;
+
 const {
   getCurrentDirectory,
   getDirectories,
@@ -89,17 +93,25 @@ export function resolveModuleNames(
       }
 
       importName = getModuleName(importName);
-      if (!/Code\.tsx/.test(importName)) {
+      if (
+        !IGNORED_MODULES.includes(importName) &&
+        !IGNORED_FILE_REGEXP.test(importName)
+      ) {
         imports.add(importName);
       }
       return;
     }
+
     if (isRaw(name)) {
       resolvedModules.push({ resolvedFileName: `${name}.ts` });
       return;
     }
     if (isStyle(name) || isSvg(name) || isMarkdown(name)) {
       resolvedModules.push({ resolvedFileName: `${name}.ts` });
+      if (IGNORED_FILE_REGEXP.test(name)) {
+        return;
+      }
+
       let updatedName = getModuleName(name);
       if (isRelative(updatedName)) {
         updatedName = path.join(
