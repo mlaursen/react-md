@@ -3,6 +3,7 @@ import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
 import { CodeBlock } from "components/Code";
+import { RMD_VERSION } from "constants/github";
 
 import FileNotFound from "./FileNotFound";
 
@@ -66,7 +67,7 @@ const CodePreview: FC<CodePreviewProps> = ({
       // the page
       tabIndex={0}
     >
-      {content}
+      {content.replace(/{{RMD_VERSION}}/g, RMD_VERSION)}
     </CodeBlock>
   );
 };

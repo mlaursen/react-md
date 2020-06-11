@@ -70,7 +70,7 @@ export const DEMO_INDEX_HTML = `<!DOCTYPE html>
     />
     <link
       rel="stylesheet"
-      href="https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css"
+      href="https://unpkg.com/react-md@{{RMD_VERSION}}/dist/css/react-md.teal-pink-200-light.min.css"
     />
     <title>{{DEMO_TITLE}}</title>
   </head>
