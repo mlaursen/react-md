@@ -4,3 +4,6 @@ src/changelogs
 
 # this is copied over from .github/CONTRIBUTING.md
 src/guides/contributing.md
+
+# this is copied over with the dev-utils command
+src/utils/toTitle.ts

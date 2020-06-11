@@ -28,5 +28,4 @@ export default async function changelogs(): Promise<void> {
       );
     })
   );
-  log.info();
 }

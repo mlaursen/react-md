@@ -1,4 +1,5 @@
 import { join } from "path";
+import log from "loglevel";
 import { documentationRoot, src, BANNER } from "../constants";
 import readmes from "../readmes";
 import writeFile from "../utils/writeFile";
@@ -12,6 +13,7 @@ export default async function indexer(): Promise<void> {
   await readmes();
   await copyChangelogs();
   await copySharedToDocs();
+  log.info();
 
   const guidesFolder = join(documentationRoot, src, "guides");
   const guides = await glob("*.md", { cwd: guidesFolder });

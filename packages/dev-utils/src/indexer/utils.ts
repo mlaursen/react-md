@@ -1,4 +1,5 @@
 import { readFileSync } from "fs-extra";
+import log from "loglevel";
 import { join, sep } from "path";
 
 import { documentationRoot, packagesRoot, src } from "../constants";
@@ -8,6 +9,7 @@ import glob from "../utils/glob";
 import { toTitle } from "../utils/titles";
 
 export async function copySharedToDocs(): Promise<void> {
+  log.info("Finding and copying shared utils and types...");
   const devUtilsSrc = join(packagesRoot, "dev-utils", src);
   const indexerTypes = join(devUtilsSrc, "indexer", "types.ts");
   const docTypesPath = join(
