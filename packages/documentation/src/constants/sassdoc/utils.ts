@@ -791,14 +791,14 @@ const sassdoc: PackageSassDoc = {
           description: "CSS Modules Usage",
         },
       ],
-      code: "@mixin rmd-utils-touch-only($modules: false) { … }",
+      code: "@mixin rmd-utils-touch-only($css-modules: false) { … }",
       sourceCode:
-        "@mixin rmd-utils-touch-only($modules: false) {\n  @if $css-modules {\n    :global .rmd-utils--touch :local & {\n      @content;\n    }\n  } @else {\n    .rmd-utils--touch & {\n      @content;\n    }\n  }\n}\n",
+        "@mixin rmd-utils-touch-only($css-modules: false) {\n  @if $css-modules {\n    :global .rmd-utils--touch :local & {\n      @content;\n    }\n  } @else {\n    .rmd-utils--touch & {\n      @content;\n    }\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "Boolean",
-          name: "modules",
+          name: "css-modules",
           default: "false",
           description:
             "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",
@@ -829,14 +829,14 @@ const sassdoc: PackageSassDoc = {
           description: "CSS Modules Usage",
         },
       ],
-      code: "@mixin rmd-utils-keyboard-only($modules: false) { … }",
+      code: "@mixin rmd-utils-keyboard-only($css-modules: false) { … }",
       sourceCode:
-        "@mixin rmd-utils-keyboard-only($modules: false) {\n  @if $css-modules {\n    :global .rmd-utils--keyboard :local & {\n      @content;\n    }\n  } @else {\n    .rmd-utils--keyboard & {\n      @content;\n    }\n  }\n}\n",
+        "@mixin rmd-utils-keyboard-only($css-modules: false) {\n  @if $css-modules {\n    :global .rmd-utils--keyboard :local & {\n      @content;\n    }\n  } @else {\n    .rmd-utils--keyboard & {\n      @content;\n    }\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "Boolean",
-          name: "modules",
+          name: "css-modules",
           default: "false",
           description:
             "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",
@@ -867,14 +867,14 @@ const sassdoc: PackageSassDoc = {
           description: "CSS Modules Usage",
         },
       ],
-      code: "@mixin rmd-utils-mouse-only($modules: false) { … }",
+      code: "@mixin rmd-utils-mouse-only($css-modules: false) { … }",
       sourceCode:
-        "@mixin rmd-utils-mouse-only($modules: false) {\n  @if $css-modules {\n    :global .rmd-utils--mouse :local & {\n      @content;\n    }\n  } @else {\n    .rmd-utils--mouse & {\n      @content;\n    }\n  }\n}\n",
+        "@mixin rmd-utils-mouse-only($css-modules: false) {\n  @if $css-modules {\n    :global .rmd-utils--mouse :local & {\n      @content;\n    }\n  } @else {\n    .rmd-utils--mouse & {\n      @content;\n    }\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
           type: "Boolean",
-          name: "modules",
+          name: "css-modules",
           default: "false",
           description:
             "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",

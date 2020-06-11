@@ -335,7 +335,7 @@
 ///     }
 ///   }
 ///
-/// @param {Boolean} modules [false] - Boolean if this is being used within CSS
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within CSS
 /// Modules which will update the selector to work correctly by wrapping
 /// different parts with `:global` and `:local`.
 @mixin rmd-utils-touch-only($css-modules: false) {
@@ -371,7 +371,7 @@
 ///     }
 ///   }
 ///
-/// @param {Boolean} modules [false] - Boolean if this is being used within CSS
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within CSS
 /// Modules which will update the selector to work correctly by wrapping
 /// different parts with `:global` and `:local`.
 @mixin rmd-utils-keyboard-only($css-modules: false) {
@@ -407,7 +407,7 @@
 ///     }
 ///   }
 ///
-/// @param {Boolean} modules [false] - Boolean if this is being used within CSS
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within CSS
 /// Modules which will update the selector to work correctly by wrapping
 /// different parts with `:global` and `:local`.
 @mixin rmd-utils-mouse-only($css-modules: false) {

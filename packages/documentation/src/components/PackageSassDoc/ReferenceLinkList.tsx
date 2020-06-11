@@ -33,10 +33,10 @@ const ReferenceLinkList: FC<ReferenceLinkListProps> = ({ links }) => {
         let children: ReactNode;
         switch (type) {
           case "mixin":
-            children = `[Mixin] - ${name}`;
+            children = `@mixin ${name}`;
             break;
           case "function":
-            children = `[Function] - ${name}`;
+            children = `@function ${name}`;
             break;
           default:
             children = `$${name}`;

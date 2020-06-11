@@ -14,7 +14,7 @@ import getInstance, { RefOrInstance } from "./getInstance";
  *
  * @param refOrInstance This is either a ref object containing the element to
  * focus or the element itself.
- * @param defaultFoucs The element to focus within the containing element once
+ * @param defaultFocus The element to focus within the containing element once
  * it has been mounted. This can either be "first" or "last" to focus the first
  * or last focusable elements or a query selector string to find an element to
  * focus.

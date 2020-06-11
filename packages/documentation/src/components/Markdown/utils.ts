@@ -109,11 +109,18 @@ renderer.paragraph = (text: string) =>
   `<p class="${styles.p}">${removeComments(text)}</p>`;
 
 renderer.image = (href, title, alt) => {
+  let content = `<img src="${href}" alt="${alt}" title="${title || alt}" />`;
+  if (href?.endsWith(".mp4")) {
+    content =
+      "<video autoplay loop muted>" +
+      `<source src="${href}" type="video/mp4">${title || alt}` +
+      "</video>";
+  }
+
   return (
     `<a href="${href}">` +
     '<div class="rmd-media-container rmd-media-container--auto">' +
-    `<img src="${href}" alt="${alt}" title="${title || alt}" />` +
-    "</div>" +
+    `${content}</div>` +
     "</a>"
   );
 };
@@ -122,6 +129,8 @@ renderer.list = (body, ordered) => {
   const tag = ordered ? "ol" : "ul";
   return `<${tag} class="${styles.list}">${body}</${tag}>`;
 };
+
+renderer.hr = () => '<hr class="rmd-divider">';
 
 // ///////////////////////////////////////////////////
 // MARKDOWN TRANSFORMATIONS
@@ -177,7 +186,7 @@ export const packagePageQuickLink: Transformer = (md) =>
 export const listAllPackages: Transformer = (md) =>
   md.replace(/#packages(\/(demos|sassdoc))?/g, (_, subpath) => {
     if (subpath === "/demos") {
-      return packagesList.replace(/^(?!layout)(.+)\/installation/g, "$1/demos");
+      return packagesList.replace(/\/installation/g, "/demos");
     }
     if (subpath === "/sassdoc") {
       return sassdocPackageList;
