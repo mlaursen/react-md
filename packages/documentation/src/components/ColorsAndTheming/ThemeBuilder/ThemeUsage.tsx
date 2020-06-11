@@ -71,7 +71,7 @@ $rmd-theme-secondary: $rmd-${secondary}-a-${accent};
        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
      -->
      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-+    <link rel="stylesheet" href="https://unpkg.com/react-md@next/${cssName}" />
++    <link rel="stylesheet" href="https://unpkg.com/react-md@{{RMD_VERSION}}/${cssName}" />
 \`\`\`
         `}
       </Markdown>

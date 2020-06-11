@@ -33,7 +33,7 @@ To use the UMD bundle, you'll want to add a new `<script>` tag to your
    <body>
      <noscript>You need to enable JavaScript to run this app.</noscript>
      <div id="root"></div>
-+    <script src="https://unpkg.com/react-md@next/dist/umd/react-md.production.min.js"></script>
++    <script src="https://unpkg.com/react-md@{{RMD_VERSION}}/dist/umd/react-md.production.min.js"></script>
      <!--
        This HTML file is a template.
        If you open it directly in the browser, you will see an empty page.
@@ -47,9 +47,9 @@ To use the UMD bundle, you'll want to add a new `<script>` tag to your
    </body>
 ```
 
-> Note the `@next` in the pathname. You'll want to change this to be the
-> specific version of `react-md` you are using otherwise you'll always get the
-> latest version which might cause your app to break.
+> Note the `@{{RMD_VERSION}}` in the pathname. You'll want to change this to be
+> the specific version of `react-md` you are using otherwise you'll always get
+> the latest version which might cause your app to break.
 
 This _can_ be used with a custom webpack configuration as well, but requires a
 bit more work. Check out the documentation on [configuring externals].
@@ -87,16 +87,16 @@ include a new `<link>` tag in the `<header>`:
        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
      -->
      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-+    <link rel="stylesheet" href="https://unpkg.com/react-md@next/dist/css/react-md/teal-pink-200-light.min.css" />
++    <link rel="stylesheet" href="https://unpkg.com/react-md@{{RMD_VERSION}}/dist/css/react-md/teal-pink-200-light.min.css" />
 ```
 
-> Note the `@next` in the pathname. You'll want to change this to be the
-> specific version of `react-md` you are using otherwise you'll always get the
-> latest version which might cause your app to break.
+> Note the `@{{RMD_VERSION}}` in the pathname. You'll want to change this to be
+> the specific version of `react-md` you are using otherwise you'll always get
+> the latest version which might cause your app to break.
 
 If you want to see which themes are available, you can use the browse feature
 from unpkg.com to see all the `.css` files:
-https://unpkg.com/browse/react-md@next/dist/css/
+https://unpkg.com/browse/react-md@{{RMD_VERSION}}/dist/css/
 
 ## Pre-compiling the base react-md styles for quicker builds
 

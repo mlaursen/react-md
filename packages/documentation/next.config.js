@@ -7,6 +7,12 @@ const commitHash = isProduction
   ? execSync('git rev-parse HEAD').toString().trim()
   : 'master';
 
+// Note: this _might_ cause problems for scoped packages since they
+// aren't always published together right now
+const rmdVersion = isProduction
+  ? require('../../lerna.json').version
+  : 'latest';
+
 const withCustomConfig = (nextConfig = {}) => ({
   ...nextConfig,
   poweredByHeader: false,
@@ -21,6 +27,7 @@ const withCustomConfig = (nextConfig = {}) => ({
       new webpack.DefinePlugin({
         'process.env': {
           COMMIT_SHA: JSON.stringify(commitHash),
+          RMD_VERSION: JSON.stringify(rmdVersion),
         },
       })
     );

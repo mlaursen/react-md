@@ -2,7 +2,12 @@ import Prism from "prismjs";
 import marked from "marked";
 import cn from "classnames";
 
-import { GITHUB_URL, COMMIT_SHA, GITHUB_FILE_URL } from "constants/github";
+import {
+  RMD_VERSION,
+  GITHUB_URL,
+  COMMIT_SHA,
+  GITHUB_FILE_URL,
+} from "constants/github";
 import { PACKAGE_NAMES, SCSS_PACKAGES } from "constants/packages";
 
 import styles from "./Markdown.module.scss";
@@ -245,18 +250,23 @@ export const linkToGithubCommit: Transformer = (md) =>
 export const replaceEmojis: Transformer = (md) => md.replace(/(:tada:)/g, "🎉");
 
 export const replaceGeneratedConstants: Transformer = (md) =>
-  md.replace(/{{(COMMIT_SHA|GITHUB_URL|GITHUB_FILE_URL)}}/g, (_, type) => {
-    switch (type) {
-      case "COMMIT_SHA":
-        return COMMIT_SHA;
-      case "GITHUB_URL":
-        return GITHUB_URL;
-      case "GITHUB_FILE_URL":
-        return GITHUB_FILE_URL;
-      default:
-        throw new Error(`Unknown git replacement: ${type}`);
+  md.replace(
+    /{{(COMMIT_SHA|GITHUB_URL|GITHUB_FILE_URL|RMD_VERSION)}}/g,
+    (_, type) => {
+      switch (type) {
+        case "COMMIT_SHA":
+          return COMMIT_SHA;
+        case "GITHUB_URL":
+          return GITHUB_URL;
+        case "GITHUB_FILE_URL":
+          return GITHUB_FILE_URL;
+        case "RMD_VERSION":
+          return RMD_VERSION;
+        default:
+          throw new Error(`Unknown git replacement: ${type}`);
+      }
     }
-  });
+  );
 
 const transforms: Transformer[] = [
   packageQuickLink,

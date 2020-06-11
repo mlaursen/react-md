@@ -1,6 +1,6 @@
 {
   "public/index.html": {
-    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@next/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Menu Example - Fixing Overflow Issues</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://unpkg.com/react-md@{{RMD_VERSION}}/dist/css/react-md.teal-pink-200-light.min.css\"\n    />\n    <title>Menu Example - Fixing Overflow Issues</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
     "isBinary": false
   },
   "src/index.tsx": {
@@ -21,18 +21,18 @@
       "description": "Example from https://react-md.dev/packages/menu/demos#fixing-overflow-issues",
       "main": "src/index.tsx",
       "dependencies": {
-        "@react-md/button": "next",
-        "@react-md/dialog": "next",
-        "@react-md/elevation": "next",
-        "@react-md/icon": "next",
-        "@react-md/layout": "next",
-        "@react-md/list": "next",
-        "@react-md/material-icons": "next",
-        "@react-md/menu": "next",
-        "@react-md/states": "next",
-        "@react-md/theme": "next",
-        "@react-md/typography": "next",
-        "@react-md/utils": "next",
+        "@react-md/button": "{{RMD_VERSION}}",
+        "@react-md/dialog": "{{RMD_VERSION}}",
+        "@react-md/elevation": "{{RMD_VERSION}}",
+        "@react-md/icon": "{{RMD_VERSION}}",
+        "@react-md/layout": "{{RMD_VERSION}}",
+        "@react-md/list": "{{RMD_VERSION}}",
+        "@react-md/material-icons": "{{RMD_VERSION}}",
+        "@react-md/menu": "{{RMD_VERSION}}",
+        "@react-md/states": "{{RMD_VERSION}}",
+        "@react-md/theme": "{{RMD_VERSION}}",
+        "@react-md/typography": "{{RMD_VERSION}}",
+        "@react-md/utils": "{{RMD_VERSION}}",
         "react": "latest",
         "react-dom": "latest"
       },
