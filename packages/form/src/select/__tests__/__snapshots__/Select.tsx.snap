@@ -11,7 +11,12 @@ exports[`Select should render correctly 1`] = `
   >
     <span
       class="rmd-select__value"
+      id="select-display-value"
+    />
+    <input
       id="select-value"
+      type="hidden"
+      value=""
     />
     <span
       class="rmd-text-field-addon rmd-text-field-addon--presentational"
@@ -38,10 +43,15 @@ exports[`Select should render correctly 2`] = `
   >
     <span
       class="rmd-select__value rmd-select__value--placeholder"
-      id="select-value"
+      id="select-display-value"
     >
       Choose...
     </span>
+    <input
+      id="select-value"
+      type="hidden"
+      value=""
+    />
     <span
       class="rmd-text-field-addon rmd-text-field-addon--presentational"
     >
@@ -67,15 +77,21 @@ exports[`Select should render correctly 3`] = `
   >
     <span
       class="rmd-label rmd-floating-label rmd-select__label"
+      id="select-label"
     >
       Label
     </span>
     <span
       class="rmd-select__value rmd-select__value--placeholder"
-      id="select-value"
+      id="select-display-value"
     >
       Choose...
     </span>
+    <input
+      id="select-value"
+      type="hidden"
+      value=""
+    />
     <span
       class="rmd-text-field-addon rmd-text-field-addon--presentational"
     >
@@ -101,15 +117,21 @@ exports[`Select should update the label and select class names when focused as w
   >
     <span
       class="rmd-label rmd-floating-label rmd-select__label"
+      id="select-label"
     >
       Label
     </span>
     <span
       class="rmd-select__value rmd-select__value--placeholder"
-      id="select-value"
+      id="select-display-value"
     >
       Choose...
     </span>
+    <input
+      id="select-value"
+      type="hidden"
+      value=""
+    />
     <span
       class="rmd-text-field-addon rmd-text-field-addon--presentational"
     >
@@ -135,15 +157,21 @@ exports[`Select should update the label and select class names when focused as w
   >
     <span
       class="rmd-label rmd-floating-label rmd-floating-label--active rmd-select__label"
+      id="select-label"
     >
       Label
     </span>
     <span
       class="rmd-select__value rmd-select__value--placeholder rmd-select__value--placeholder-active"
-      id="select-value"
+      id="select-display-value"
     >
       Choose...
     </span>
+    <input
+      id="select-value"
+      type="hidden"
+      value=""
+    />
     <span
       class="rmd-text-field-addon rmd-text-field-addon--presentational"
     >

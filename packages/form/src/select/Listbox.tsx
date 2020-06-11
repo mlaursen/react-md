@@ -54,9 +54,8 @@ export type ListboxChangeEventHandler = (
 
 export interface ListboxOptions extends RenderConditionalPortalProps {
   /**
-   * An optional name to provide for the listbox. This will be rendered in the
-   * dom as `data-name={name}` since there isn't a real `<input>` element for
-   * this component.
+   * An optional name to provide for the listbox that will be provided with the
+   * `onChange` callback.
    */
   name?: string;
 
@@ -411,7 +410,6 @@ const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
         aria-activedescendant={activeId}
         ref={ref}
         role="listbox"
-        data-name={name}
         tabIndex={tabIndex}
         className={cn(block({ temporary }), className)}
         onFocus={handleFocus}

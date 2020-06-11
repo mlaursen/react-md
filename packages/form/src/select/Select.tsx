@@ -172,10 +172,10 @@ const block = bem("rmd-select");
  * The `Select` component **must be controlled** with a `value` and `onChange`
  * handler.
  *
- * Note: The value from this element **will not be submitted in forms since it
- * is not a native form element**. You can use an `<input type="hidden" />`
- * along with this component if it needs to be submitted, but it's recommended
- * to send a custom ajax request instead.
+ * Note: Since this is not a native `<select>` component, the current value will
+ * be rendered in an `<input type="hidden" />` element so that the value can be
+ * sent along in forms. It is highly recommended to always provide a `name` prop
+ * so this value is sent.
  */
 const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   {
@@ -355,6 +355,11 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
     }
   }, [hide]);
 
+  const labelId = `${id}-label`;
+  const valueId = `${id}-value`;
+  const listboxId = `${id}-listbox`;
+  const displayValueId = `${id}-display-value`;
+
   return (
     <>
       <TextFieldContainer
@@ -381,6 +386,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
         className={cn(block({ disabled }), className)}
       >
         <FloatingLabel
+          id={labelId}
           style={labelStyle}
           className={cn(block("label"), labelClassName)}
           htmlFor={id}
@@ -395,7 +401,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
           {label}
         </FloatingLabel>
         <span
-          id={`${id}-value`}
+          id={displayValueId}
           style={displayLabelStyle}
           className={cn(
             block("value", {
@@ -410,9 +416,10 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
         >
           {displayValue || (!valued && placeholder)}
         </span>
+        <input id={valueId} type="hidden" name={name} value={value} />
       </TextFieldContainer>
       <Listbox
-        id={`${id}-listbox`}
+        id={listboxId}
         aria-labelledby={id}
         style={{ ...fixedStyle, ...listboxStyle }}
         className={listboxClassName}

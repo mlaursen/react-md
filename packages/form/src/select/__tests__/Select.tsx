@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { render, fireEvent } from "@testing-library/react";
 
 import Select from "../Select";
@@ -94,5 +94,35 @@ describe("Select", () => {
     fireEvent.focus(select);
     fireEvent.keyDown(select, { key: "Enter" });
     expect(getListbox).toThrow();
+  });
+
+  it("should set the hidden input's value correctly", () => {
+    const Test = () => {
+      const [value, setValue] = useState("");
+
+      return (
+        <Select
+          {...PROPS}
+          value={value}
+          onChange={(nextValue) => setValue(nextValue)}
+        />
+      );
+    };
+
+    const { getByText } = render(<Test />);
+    const input = document.getElementById(
+      `${PROPS.id}-value`
+    ) as HTMLInputElement;
+    if (!input) {
+      throw new Error();
+    }
+
+    expect(input.value).toBe("");
+    fireEvent.click(getSelect());
+
+    expect(input.value).toBe("");
+    fireEvent.click(getByText("Option 1"));
+
+    expect(input.value).toBe("Option 1");
   });
 });
