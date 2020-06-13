@@ -14,7 +14,7 @@ import ReactSVGIcon from "icons/ReactSVGIcon";
 import createIdGenerator from "utils/createIdGenerator";
 import { toTitle } from "utils/toTitle";
 
-import { PACKAGE_NAMES, SCSS_PACKAGES, TYPESCRIPT_PACKAGES } from "./packages";
+import { PACKAGE_NAMES, SCSS_PACKAGES } from "./packages";
 import {
   RouteNavItem,
   NavItem,
@@ -36,13 +36,6 @@ const getPackageRoutes = (name: string): RouteNavItem[] => {
     href: "/installation",
     children: "Installation",
   });
-
-  if (TYPESCRIPT_PACKAGES.includes(name)) {
-    routes.push({
-      href: "/api",
-      children: "API",
-    });
-  }
 
   if (SCSS_PACKAGES.includes(name)) {
     routes.push({

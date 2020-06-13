@@ -141,13 +141,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/guides/working-with-v1",
   },
   {
-    title: "Alert API",
-    summary: "The component API for the @react-md/alert package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/alert/api",
-  },
-  {
     title: "Alert Changelog",
     summary:
       "This package is a new implementation of the Snackbar component from v1. There should now be some accessibility fixes and hopefully a better way to queue messages as well as cancel them but I also feel like I might need to re-work this again to work without the React context API.",
@@ -202,13 +195,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/alert/sassdoc",
-  },
-  {
-    title: "AppBar API",
-    summary: "The component API for the @react-md/app-bar package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/app-bar/api",
   },
   {
     title: "AppBar Changelog",
@@ -283,13 +269,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/app-bar/sassdoc",
   },
   {
-    title: "AutoComplete API",
-    summary: "The component API for the @react-md/autocomplete package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/autocomplete/api",
-  },
-  {
     title: "AutoComplete Changelog",
     summary:
       "The v2 release completely re-write the Autocomplete component and renamed it to AutoComplete. There is a new API for dealing with data as well as a lot of accessibility fixes.",
@@ -338,13 +317,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/autocomplete/installation",
   },
   {
-    title: "Avatar API",
-    summary: "The component API for the @react-md/avatar package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/avatar/api",
-  },
-  {
     title: "Avatar Changelog",
     summary:
       "The avatar component should be fairly similar to the v1 version except for a few behavior changes.",
@@ -391,13 +363,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/avatar/sassdoc",
-  },
-  {
-    title: "Badge API",
-    summary: "The component API for the @react-md/badge package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/badge/api",
   },
   {
     title: "Badge Changelog",
@@ -462,13 +427,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/badge/sassdoc",
-  },
-  {
-    title: "Button API",
-    summary: "The component API for the @react-md/button package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/button/api",
   },
   {
     title: "Button Changelog",
@@ -559,13 +517,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/button/sassdoc",
   },
   {
-    title: "Card API",
-    summary: "The component API for the @react-md/card package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/card/api",
-  },
-  {
     title: "Card Changelog",
     summary:
       "The card package was re-written from the ground up for the v2 release which should allow for additional customization and styling behavior. Almost everything is a breaking change.",
@@ -628,13 +579,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/card/sassdoc",
-  },
-  {
-    title: "Chip API",
-    summary: "The component API for the @react-md/chip package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/chip/api",
   },
   {
     title: "Chip Changelog",
@@ -707,13 +651,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/chip/sassdoc",
-  },
-  {
-    title: "Dialog API",
-    summary: "The component API for the @react-md/dialog package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/dialog/api",
   },
   {
     title: "Dialog Changelog",
@@ -794,13 +731,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/dialog/sassdoc",
-  },
-  {
-    title: "Divider API",
-    summary: "The component API for the @react-md/divider package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/divider/api",
   },
   {
     title: "Divider Changelog",
@@ -907,13 +837,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/elevation/sassdoc",
   },
   {
-    title: "ExpansionPanel API",
-    summary: "The component API for the @react-md/expansion-panel package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/expansion-panel/api",
-  },
-  {
     title: "ExpansionPanel Changelog",
     summary:
       "This release has fixed the keyboard movement behavior for the expansion panels as well as updating the API to use a hook instead of React.cloneElement hacks. In addition, the ExpansionPanel will now no longer attempt to create equal width labels within each panel and instead will need to be done manually.",
@@ -970,13 +893,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/expansion-panel/sassdoc",
-  },
-  {
-    title: "Form API",
-    summary: "The component API for the @react-md/form package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/form/api",
   },
   {
     title: "Form Changelog",
@@ -1123,13 +1039,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/form/sassdoc",
   },
   {
-    title: "Icon API",
-    summary: "The component API for the @react-md/icon package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/icon/api",
-  },
-  {
     title: "Icon Changelog",
     summary:
       "This is a new component implementation for the\n.md-collapser/getCollapserStyles that existed in v1 but wasn't really documented",
@@ -1186,13 +1095,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/icon/sassdoc",
   },
   {
-    title: "Layout API",
-    summary: "The component API for the @react-md/layout package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/layout/api",
-  },
-  {
     title: "Layout Changelog",
     summary:
       "This package is kind of a replacement for the NavigationDrawer component that also now has a top-level Configuration provider for react-md.",
@@ -1231,13 +1133,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/layout/sassdoc",
-  },
-  {
-    title: "Link API",
-    summary: "The component API for the @react-md/link package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/link/api",
   },
   {
     title: "Link Changelog",
@@ -1312,13 +1207,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/link/sassdoc",
   },
   {
-    title: "List API",
-    summary: "The component API for the @react-md/list package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/list/api",
-  },
-  {
     title: "List Changelog",
     summary:
       "This package has a lot of changes from the v1 API that should hopefully make it easier to use. There are also new components to help with styling and positioning of addons that can be used without a ListItem/List component.",
@@ -1383,13 +1271,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/list/sassdoc",
   },
   {
-    title: "MaterialIcons API",
-    summary: "The component API for the @react-md/material-icons package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/material-icons/api",
-  },
-  {
     title: "MaterialIcons Changelog",
     summary:
       "This package is completely new for v2 and introduced the new 1864 icons (932 font icons and 932 svg icons).",
@@ -1428,13 +1309,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "guide",
     pageUrl: "/packages/[id]/installation",
     pathname: "/packages/material-icons/installation",
-  },
-  {
-    title: "Media API",
-    summary: "The component API for the @react-md/media package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/media/api",
   },
   {
     title: "Media Changelog",
@@ -1491,13 +1365,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/media/sassdoc",
-  },
-  {
-    title: "Menu API",
-    summary: "The component API for the @react-md/menu package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/menu/api",
   },
   {
     title: "Menu Changelog",
@@ -1603,13 +1470,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/menu/sassdoc",
   },
   {
-    title: "Overlay API",
-    summary: "The component API for the @react-md/overlay package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/overlay/api",
-  },
-  {
     title: "Overlay Changelog",
     summary:
       "This package is kind of new for the v2 release since the Overlay was never actually a public component but the SCSS variables were public.",
@@ -1666,13 +1526,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/overlay/sassdoc",
   },
   {
-    title: "Portal API",
-    summary: "The component API for the @react-md/portal package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/portal/api",
-  },
-  {
     title: "Portal Changelog",
     summary:
       'This was a re-write of the Portal component that created a "more usable" API as well as removing temporary workarounds before the createPortal API was added into React.',
@@ -1711,13 +1564,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "guide",
     pageUrl: "/packages/[id]/installation",
     pathname: "/packages/portal/installation",
-  },
-  {
-    title: "Progress API",
-    summary: "The component API for the @react-md/progress package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/progress/api",
   },
   {
     title: "Progress Changelog",
@@ -1784,13 +1630,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/progress/sassdoc",
   },
   {
-    title: "Sheet API",
-    summary: "The component API for the @react-md/sheet package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/sheet/api",
-  },
-  {
     title: "Sheet Changelog",
     summary:
       "This package is the new version of the Drawer component from v1 that is no longer really used for layout and app size.",
@@ -1845,13 +1684,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/sheet/sassdoc",
-  },
-  {
-    title: "States API",
-    summary: "The component API for the @react-md/states package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/states/api",
   },
   {
     title: "States Changelog",
@@ -1916,13 +1748,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/states/sassdoc",
-  },
-  {
-    title: "Table API",
-    summary: "The component API for the @react-md/table package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/table/api",
   },
   {
     title: "Table Changelog",
@@ -2019,13 +1844,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/table/sassdoc",
-  },
-  {
-    title: "Tabs API",
-    summary: "The component API for the @react-md/tabs package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/tabs/api",
   },
   {
     title: "Tabs Changelog",
@@ -2140,13 +1958,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/theme/sassdoc",
   },
   {
-    title: "Tooltip API",
-    summary: "The component API for the @react-md/tooltip package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/tooltip/api",
-  },
-  {
     title: "Tooltip Changelog",
     summary:
       'Tooltips were completely re-written for the v2 release to help fix the missing accessibility issues from v1. One of the most "exciting" things that was added during the re-write is that tooltips will now automatically determine the "best" location to render itself within the viewport instead of manually needing to change the position yourself! Woo hoo!',
@@ -2233,13 +2044,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/tooltip/sassdoc",
-  },
-  {
-    title: "Transition API",
-    summary: "The component API for the @react-md/transition package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/transition/api",
   },
   {
     title: "Transition Changelog",
@@ -2330,13 +2134,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/transition/sassdoc",
   },
   {
-    title: "Tree API",
-    summary: "The component API for the @react-md/tree package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/tree/api",
-  },
-  {
     title: "Tree Changelog",
     summary:
       "The tree package is completely new for the v2 release with the closest counterpart being the nestedItems from the ListItem component from v1. This package creates an accessible tree widget with selection, expansion, and keyboard functionality with the provided components and hooks.",
@@ -2393,13 +2190,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/tree/sassdoc",
   },
   {
-    title: "Typography API",
-    summary: "The component API for the @react-md/typography package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/typography/api",
-  },
-  {
     title: "Typography Changelog",
     summary:
       "The typography package is kind of new for the v2 release since there weren't any components beforehand for typography. This package exports three components: Text, TextContainer, and SrOnly. The Text component can be used to render any of the typography styles. The TextContainer component is used to create a centered block of text that uses the recommended line-width for legibility on different device sizes. Finally, the SrOnly component allows for text to only be visible to screen readers.",
@@ -2446,13 +2236,6 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     type: "sassdoc",
     pageUrl: "/packages/[id]/sassdoc",
     pathname: "/packages/typography/sassdoc",
-  },
-  {
-    title: "Utils API",
-    summary: "The component API for the @react-md/utils package.",
-    type: "api",
-    pageUrl: "/packages/[id]/api",
-    pathname: "/packages/utils/api",
   },
   {
     title: "Utils Changelog",
