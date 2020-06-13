@@ -1,0 +1,115 @@
+alert:
+  - packages/alert/src/**/*
+
+app-bar:
+  - packages/app-bar/src/**/*
+
+autocomplete:
+  - packages/autocomplete/src/**/*
+
+avatar:
+  - packages/avatar/src/**/*
+
+badge:
+  - packages/badge/src/**/*
+
+button:
+  - packages/button/src/**/*
+
+card:
+  - packages/card/src/**/*
+
+chip:
+  - packages/chip/src/**/*
+
+dialog:
+  - packages/dialog/src/**/*
+
+divider:
+  - packages/divider/src/**/*
+
+elevation:
+  - packages/elevation/src/**/*
+
+expansion-panel:
+  - packages/expansion-panel/src/**/*
+
+form:
+  - packages/form/src/**/*
+
+icon:
+  - packages/icon/src/**/*
+
+layout:
+  - packages/layout/src/**/*
+
+link:
+  - packages/link/src/**/*
+
+list:
+  - packages/list/src/**/*
+
+material-icons:
+  - packages/material-icons/**/*
+
+media:
+  - packages/media/src/**/*
+
+menu:
+  - packages/menu/src/**/*
+
+overlay:
+  - packages/overlay/src/**/*
+
+portal:
+  - packages/portal/src/**/*
+
+progress:
+  - packages/progress/src/**/*
+
+sheet:
+  - packages/sheet/src/**/*
+
+states:
+  - packages/states/src/**/*
+
+table:
+  - packages/table/src/**/*
+
+tabs:
+  - packages/tabs/src/**/*
+
+theme:
+  - packages/theme/src/**/*
+
+tooltip:
+  - packages/tooltip/src/**/*
+
+transition:
+  - packages/transition/src/**/*
+
+tree:
+  - packages/tree/src/**/*
+
+typography:
+  - packages/typography/src/**/*
+
+utils:
+  - packages/utils/src/**/*
+
+# special cases
+documentation:
+  - packages/documentation/**/*
+
+form-control:
+  - packages/form/src/toggle/**/*
+  - packages/form/src/label/**/*
+
+select:
+  - packages/form/src/select/**/*
+
+text-field:
+  - packages/form/src/text-field/**/*
+
+wia-aria:
+  - packages/utils/src/wia-aria/**/*
