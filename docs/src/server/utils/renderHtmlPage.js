@@ -116,7 +116,7 @@ function getScriptLinks(assets) {
   }, '');
 }
 
-const ANALYTICS_CODE = process.env.GOOGLE_ANALYTICS_CODE || 'UA-76079335-1';
+const ANALYTICS_CODE = process.env.GOOGLE_ANALYTICS_CODE || 'UA-76079335-2';
 
 let assets;
 export default function renderHtmlPage(store, bundles = [], html = '') {
