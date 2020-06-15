@@ -153,15 +153,20 @@ app to use the `Layout` component along with this navigation tree:
    // your configuration overrides
  };
 
++const MyLayout = () => (
++  <Layout
++    title="My Title"
++    navHeaderTitle="My Nav Title"
++    treeProps={useLayoutNavigation(navItems, window.location.pathname)}
++  >
++    <App />
++  </Layout>
++);
+
  render(
    <Configuration {...overrides}>
-+    <Layout
-+      title="My Title"
-+      navHeaderTitle="My Title"
-+      treeProps={useLayoutNavigation(navItems, window.location.pathname)}
-+    >
-       <App />
-+    </Layout>
+-    <App />
++    <MyLayout />
    </Configuration>,
    document.getElementById("root")
  );
@@ -185,8 +190,8 @@ Or with `yarn`:
 $ yarn add react-router-dom
 ```
 
-Next, let's wrap the app in the `BrowserRouter` and add the `linkComponent` prop
-to the `Layout` component:
+Next, let's wrap the app in the `BrowserRouter` and add the `Link` option to the
+`useLayoutNavigation` hook:
 
 ```diff
  import React from "react";
@@ -210,18 +215,22 @@ to the `Layout` component:
    // your configuration overrides
  };
 
+ const MyLayout = () => (
+   <Layout
+     title="My Title"
+     navHeaderTitle="My Nav Title"
+-    treeProps={useLayoutNavigation(navItems, window.location.pathname)}
++    treeProps={useLayoutNavigation(navItems, window.location.pathname, Link)}
+   >
+     <App />
+   </Layout>
+ );
+
  render(
 -  <Configuration {...overrides}>
 +  <BrowserRouter>
 +    <Configuration {...overrides}>
-       <Layout
-         title="My Title"
-         navHeaderTitle="My Title"
--        treeProps={useLayoutNavigation(navItems, window.location.pathname)}
-+        treeProps={useLayoutNavigation(navItems, window.location.pathname, Link)}
-       >
-         <App />
-       </Layout>
+       <MyLayout />
 -  </Configuration>,
 +    </Configuration>
 +  </BrowserRouter>,
@@ -229,9 +238,10 @@ to the `Layout` component:
  );
 ```
 
-> The `linkComponent` prop is really just a convenience prop that will update
-> any navigation item that has an `href`, `to`, or `isLink` prop to render with
-> that component instead of the default `<div>`
+> Adding the `Link` component as the third argument to `useLayoutNavigation` is
+> really just a convenience option that will update any navigation item that has
+> an `href`, `to`, or `isLink` to be rendered with that component instead of the
+> default `<div>`.
 
 We're almost done! You might notice that the navigation pane doesn't update when
 a new route has changed. This is because we are using the
@@ -255,7 +265,7 @@ export default (): ReactElement => {
   return (
     <Layout
       title="My Title"
-      navHeaderTitle="My Title"
+      navHeaderTitle="My Nav Title"
       treeProps={useLayoutNavigation(navItems, pathname, Link)}
     >
       <App />
@@ -295,13 +305,7 @@ your app:
  render(
    <BrowserRouter>
      <Configuration {...overrides}>
--      <Layout
--        title="My Title"
--        navHeaderTitle="My Title"
--        treeProps={useLayoutNavigation(navItems, window.location.pathname, Link)}
--      >
--        <App />
--      </Layout>
+-      <MyLayout />
 +      <Layout />
      </Configuration>
    </BrowserRouter>,
@@ -346,7 +350,7 @@ cross fade transition on route changes with the `useCrossFade` hook.
    return (
      <Layout
        title="My Title"
-       navHeaderTitle="My Title"
+       navHeaderTitle="My Nav Title"
        treeProps={useLayoutNavigation(navItems, pathname, Link)}
 +      mainProps={transitionProps}
      >
@@ -409,7 +413,7 @@ If you prefer using `useEffect`, here's an example of this pattern instead.
    return (
      <Layout
        title="My Title"
-       navHeaderTitle="My Title"
+       navHeaderTitle="My Nav Title"
        treeProps={useLayoutNavigation(navItems, pathname, Link)}
        mainProps={transitionProps}
      >
@@ -422,11 +426,5 @@ If you prefer using `useEffect`, here's an example of this pattern instead.
 However this _is_ opinionated, so feel free to handle transitions however you
 prefer.
 
-### Completed Codesandbox
-
-<iframe
-  class="iframe"
-  src="https://codesandbox.io/embed/react-md-creating-a-layout-c1g8c?fontsize=14&runonclick=1"
-  title="react-md - Creating a Layout"
-  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin">
-</iframe>
+You can check out the completed sandbox here:
+https://codesandbox.io/s/react-md-creating-a-layout-c1g8c

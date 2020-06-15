@@ -237,10 +237,6 @@ const tocs: TOCRecord = {
       anchor: "#adding-route-transitions-optional",
       title: "Adding Route Transitions (Optional)",
     },
-    {
-      anchor: "#completed-codesandbox",
-      title: "Completed Codesandbox",
-    },
   ],
   "/guides/contributing": [
     {
