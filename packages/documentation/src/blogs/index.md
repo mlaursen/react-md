@@ -1,6 +1,6 @@
 Title: react-md 2.0.0
 
-Date: 06/13/2020
+Date: 06/15/2020
 
 Read More: v2-release
 

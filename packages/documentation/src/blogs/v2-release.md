@@ -72,8 +72,8 @@ throughout your app because some patterns seem repetitive.
 
 [v1.1.0](/v1/discover-more/whats-new#v1-1-0-released) was the first `react-md`
 release to add support for Typescript but unfortunately the type definitions
-were [not that great]({{GITHUB_URL}}/blob/v1/src/js/index.ts) because I did not
-fully understand Typescript and kept getting out of sync or forgotten. Since
+were [not that great]({{GITHUB_URL}}/blob/v1/src/js/index.d.ts) because I did
+not fully understand Typescript and kept getting out of sync or forgotten. Since
 Typescript is becoming the new trend for web development with additional tooling
 and editor integrations, it seemed like a good time to finally start learning
 Typescript and re-write `react-md` to use it natively.

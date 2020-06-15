@@ -15,7 +15,7 @@ const RelativeDate: FC<RelativeDateProps> = ({ date: propDate }) => {
   }
 
   const now = new Date();
-  const diff = differenceInDays(date, now);
+  const diff = differenceInDays(now, date);
   let relative = "Today";
   if (isAfter(now, date) && diff > 0) {
     relative = `${diff} days ago`;
