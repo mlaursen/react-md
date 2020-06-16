@@ -32,12 +32,12 @@ const OtherPros = (): ReactElement | null => (
         <li>
           Production UMD Bundle:
           <br />
-          <b>55 bytes</b>
+          <b>202.95 KB</b>
         </li>
         <li>
           Default Production CSS Bundles:
           <br />
-          <b>61 bytes</b> - <b>76 bytes</b>
+          <b>15.65 KB</b> - <b>15.71</b>
         </li>
       </ul>
     </li>
