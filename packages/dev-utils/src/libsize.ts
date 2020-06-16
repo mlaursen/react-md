@@ -1,5 +1,6 @@
 import { execSync } from "child_process";
 import filesize from "filesize";
+import { readFileSync } from "fs";
 import gzipSize from "gzip-size";
 import log from "loglevel";
 import { join } from "path";
@@ -34,7 +35,16 @@ async function umdSize(): Promise<void> {
   }
 
   log.info("The gzipped UMD bundle size is:");
-  log.info(list(umd.map((name) => `${name} ${filesize(gzipSize.sync(name))}`)));
+  log.info(
+    list(
+      umd.map(
+        (name) =>
+          `${name} ${filesize(
+            gzipSize.sync(readFileSync(join(cwd, name), "utf8"))
+          )}`
+      )
+    )
+  );
   log.info();
 }
 
@@ -50,7 +60,7 @@ async function cssSize(): Promise<void> {
 
   const { min, max } = css.reduce(
     (result, cssPath) => {
-      const size = gzipSize.sync(cssPath);
+      const size = gzipSize.sync(readFileSync(join(cwd, cssPath), "utf8"));
       const update = { name: cssPath, size };
       if (size > result.max.size) {
         result.max = update;

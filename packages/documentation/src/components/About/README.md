@@ -20,11 +20,11 @@ estimated size for this library, check out the results below:
 $ yarn dev-utils libsize
 
 The gzipped UMD bundle size is:
- - dist/umd/react-md.production.min.js 55 B
+ - dist/umd/react-md.production.min.js 202.95 KB
 
 The min and max gzipped CSS bundle sizes are:
- - dist/css/react-md.red-lime-100-light.min.css 61 B
- - dist/css/react-md.deep_orange-blue_grey-100-light.min.css 76 B
+ - dist/css/react-md.grey-deep_orange-200-light.min.css 15.65 KB
+ - dist/css/react-md.indigo-blue-400-dark.min.css 15.71 KB
 ```
 
 ## What are the supported browsers?
