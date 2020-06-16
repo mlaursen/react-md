@@ -54,6 +54,58 @@ To use the UMD bundle, you'll want to add a new `<script>` tag to your
 This _can_ be used with a custom webpack configuration as well, but requires a
 bit more work. Check out the documentation on [configuring externals].
 
+#### Using the CDN hosted Material Icon Components
+
+Since you'll normally only ever want to include either SVG icons or Font icons,
+the icon components have been separated into two separate bundles and can be
+referenced as `ReactMDIconFont` or `ReactMDIconSVG`.
+
+```ts
+import { TvFontIcon } from "react-md";
+```
+
+Would be the same as:
+
+```ts
+const { TvFontIcon } = ReactMDIconSVG;
+```
+
+Or with svg icons:
+
+```ts
+import { TvSVGIcon } from "react-md";
+```
+
+Would be the same as:
+
+```ts
+const { TvSVGIcon } = ReactMDIconSVG;
+```
+
+To use the UMD bundle, choose either the font or svg icon bundle and a new
+`<script>` tag to your `index.html` **after** the base react-md bundle:
+
+```diff
+   <body>
+     <noscript>You need to enable JavaScript to run this app.</noscript>
+     <div id="root"></div>
+     <script src="https://unpkg.com/react-md@{{RMD_VERSION}}/dist/umd/react-md.production.min.js"></script>
++    <!-- only choose one of the following for your app -->
++    <script src="https://unpkg.com/react-md@{{RMD_VERSION}}/dist/umd/react-md.font-icon.production.min.js"></script>
++    <script src="https://unpkg.com/react-md@{{RMD_VERSION}}/dist/umd/react-md.svg-icon.production.min.js"></script>
+     <!--
+       This HTML file is a template.
+       If you open it directly in the browser, you will see an empty page.
+
+       You can add webfonts, meta tags, or analytics to this file.
+       The build step will place the bundled scripts into the <body> tag.
+
+       To begin the development, run `npm start` or `yarn start`.
+       To create a production bundle, use `npm run build` or `yarn build`.
+     -->
+   </body>
+```
+
 ## Using the CDN hosted pre-compiled themes
 
 The base `react-md` package also pre-compiles a few different themes for you

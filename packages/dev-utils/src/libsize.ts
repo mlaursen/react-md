@@ -1,20 +1,61 @@
 import { execSync } from "child_process";
 import filesize from "filesize";
 import { readFileSync } from "fs";
+import { remove } from "fs-extra";
 import gzipSize from "gzip-size";
 import log from "loglevel";
-import { join } from "path";
+import { join, sep } from "path";
 
 import { packagesRoot } from "./constants";
 import createThemes from "./utils/createThemes";
+import format from "./utils/format";
 import glob from "./utils/glob";
 import list from "./utils/list";
+import writeFile from "./utils/writeFile";
 
 const cwd = join(packagesRoot, "react-md");
 
-function createUmd(): void {
+const createIconBundle = (fileNames: readonly string[]): string =>
+  format(
+    `export {
+${fileNames
+  .map((name) => name.substring(name.indexOf(sep)).replace(/\..+$/, ""))
+  .join(", ")}
+} from "@react-md/material-icons"`,
+    "typescript"
+  );
+
+/**
+ * Create three entry points for the bundles:
+ * - base react-md library (as `ReactMD`)
+ * - only SVG icon components from material-icons (as `ReactMDIconSVG`)
+ * - only Font icon components from material-icons as (`ReactMDIconFont`)
+ *
+ * 99% of the time, you don't want to import both svg and font icons into one
+ * app so this helps separate this out.
+ */
+async function createUmd(): Promise<void> {
   log.info("Creating the UMD bundles...");
+  const cwd = join(packagesRoot, "material-icons", "src");
+  const svgs = await glob("*SVGIcon.tsx", { cwd });
+  const fonts = await glob("*.FontIcon.tsx", { cwd });
+  const reactMDSrc = join(packagesRoot, "react-md", "src");
+  const mainBundlePath = join(reactMDSrc, "rollup.ts");
+  const svgBundlePath = join(reactMDSrc, "svg.ts");
+  const fontBundlePath = join(reactMDSrc, "font.ts");
+
+  const indexFile = readFileSync(join(reactMDSrc, "index.ts"), "utf8");
+  const withoutIcons = format(indexFile.replace(/^.+material-icons.+$/gm, ""));
+  await writeFile(mainBundlePath, withoutIcons);
+  await writeFile(svgBundlePath, createIconBundle(svgs));
+  await writeFile(fontBundlePath, createIconBundle(fonts));
+
   execSync("yarn workspace react-md umd --silent", { stdio: "inherit" });
+  await Promise.all(
+    [mainBundlePath, svgBundlePath, fontBundlePath].map((filePath) =>
+      remove(filePath)
+    )
+  );
   log.info();
 }
 
@@ -30,9 +71,22 @@ async function umdSize(): Promise<void> {
     log.info("No umd bundles found...");
     log.info("Creating...");
     log.info();
-    createUmd();
+    await createUmd();
     umd = await glob("dist/umd/*.min.js", { cwd });
   }
+
+  // want base lib first
+  umd.sort((a, b) => {
+    if (!a.includes("icon")) {
+      return -1;
+    }
+
+    if (!b.includes("icon")) {
+      return 1;
+    }
+
+    return a.localeCompare(b);
+  });
 
   log.info("The gzipped UMD bundle size is:");
   log.info(
@@ -92,7 +146,7 @@ export default async function libsize(
   themes: boolean = true
 ): Promise<void> {
   if (umd) {
-    createUmd();
+    await createUmd();
   }
 
   if (themes) {
