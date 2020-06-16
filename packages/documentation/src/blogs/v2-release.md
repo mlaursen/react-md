@@ -553,12 +553,8 @@ has been helpful and what has not.
 
 ### GZip Size Comparison
 
-Due to including the new 1800+ material icons in the UMD bundle by default, the
-UMD size has increased by `105.66%` while the CSS bundles have increased by
-`18.56% - 18.75%`:
-
-> The gzip size of the new UMD bundle without all the material icons is actually
-> `86.49 KB` which is a **12.35% decrease** in size.
+The v2 release has decreased the UMD bundle size by `12.35%` while the CSS
+bundles have increased by `18.56% - 18.75%`:
 
 ```sh
 v1 size
@@ -571,16 +567,18 @@ The min and max gzipped CSS bundle sizes are:
 
 v2 size
 The gzipped UMD bundle size is:
- - dist/umd/react-md.production.min.js 202.95 KB
+ - dist/umd/react-md.production.min.js 86.49 KB
+ - dist/umd/react-md.font-icon.production.min.js 106.77 KB
+ - dist/umd/react-md.svg-icon.production.min.js 116.86 KB
 
 The min and max gzipped CSS bundle sizes are:
  - dist/css/react-md.grey-deep_orange-200-light.min.css 15.65 KB
  - dist/css/react-md.indigo-blue-400-dark.min.css 15.71 KB
 ```
 
-That being said, v2 _should_ have finally solved the code splitting issue that
-existing in v1 and produce a smaller bundle if every feature within `react-md`
-is not used.
+In addition, v2 _should_ have finally solved the code splitting issue that
+existing in v1 and produce an even smaller bundle if every feature within
+`react-md` is not used.
 
 ## In-depth Changelogs
 
