@@ -46,7 +46,7 @@ async function createUmd(): Promise<void> {
   log.info("Creating the UMD bundles...");
   const cwd = join(packagesRoot, "material-icons", "src");
   const svgs = await glob("*SVGIcon.tsx", { cwd });
-  const fonts = await glob("*.FontIcon.tsx", { cwd });
+  const fonts = await glob("*FontIcon.tsx", { cwd });
   const reactMDSrc = join(packagesRoot, "react-md", "src");
   const mainBundlePath = join(reactMDSrc, "rollup.ts");
   const svgBundlePath = join(reactMDSrc, "svg.ts");
