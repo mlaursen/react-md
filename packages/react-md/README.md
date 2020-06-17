@@ -236,7 +236,7 @@ $ yarn dev-utils libsize
 
 The gzipped UMD bundle sizes are:
  - dist/umd/react-md.production.min.js 86.49 KB
- - dist/umd/react-md-with-font-icons.production.min.js 186.23 KB
+ - dist/umd/react-md-with-font-icons.production.min.js 196.05 KB
  - dist/umd/react-md-with-svg-icons.production.min.js 196.03 KB
 
 
@@ -251,5 +251,4 @@ Please read the [contributing guidelines](./.github/CONTRIBUTING.md) if you
 would like to contribute.
 
 [typescript]: https://www.typescriptlang.org/
-[create-react-app]:
-  https://facebook.github.io/create-react-app/docs/getting-started
+[create-react-app]: https://facebook.github.io/create-react-app/docs/getting-started

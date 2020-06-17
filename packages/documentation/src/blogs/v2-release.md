@@ -568,7 +568,7 @@ The min and max gzipped CSS bundle sizes are:
 v2 size
 The gzipped UMD bundle size is:
  - dist/umd/react-md.production.min.js 86.49 KB
- - dist/umd/react-md-with-font-icons.production.min.js 186.23 KB
+ - dist/umd/react-md-with-font-icons.production.min.js 196.05 KB
  - dist/umd/react-md-with-svg-icons.production.min.js 196.03 KB
 
 The min and max gzipped CSS bundle sizes are:
