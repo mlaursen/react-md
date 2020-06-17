@@ -1,3 +1,31 @@
+Title: react-md 2.0.1
+
+Date: 06/17/2020
+
+Summary:
+
+This is _technically_ a breaking change for the UMD bundle since this splits the
+material-icon component wrappers into separate bundles to minimize the library's
+size. I'm going with a patch bump though since it's only been two days since the
+v2 release and it's highly doubtful that consumers of the library have fully
+upgraded to v2 or even using the UMD bundle to begin with.
+
+react-md will now be available as these bundles:
+
+1. Base `ReactMD` library:<br />
+   https://unpkg.com/react-md@2.0.1/dist/umd/react-md.production.min.js
+1. `ReactMDIconFont` components:<br />
+   https://unpkg.com/react-md@2.0.1/dist/umd/react-md.font-icon.production.min.js
+1. `ReactMDIconSVG` components:<br />
+   https://unpkg.com/react-md@2.0.1/dist/umd/react-md.svg-icon.production.min.js
+
+The
+[advanced installation guide](/guides/advanced-installation#using-the-cdn-hosted-material-icon-components)
+and the [library size notes](/about#what39s-the-library-size) have been updated
+for this information.
+
+---
+
 Title: react-md 2.0.0
 
 Date: 06/15/2020

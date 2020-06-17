@@ -46,7 +46,8 @@ const Post: FC<PostProps> = ({
         <Text color="secondary" type="body-2" component="p" margin="bottom">
           <RelativeDate date={date} />
         </Text>
-        <Markdown>{summary}</Markdown>
+        {/* hackily converts "lists" into bulleted lists without it be converted to the bullets part of a post */}
+        <Markdown>{summary.replace(/^1. /gm, "- ")}</Markdown>
         {bullets.length > 0 && (
           <Text component="ul" type="subtitle-1">
             {bullets.map((bullet) => {
