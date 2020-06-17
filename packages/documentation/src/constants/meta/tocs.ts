@@ -184,8 +184,8 @@ const tocs: TOCRecord = {
       title: "Using the CDN hosted UMD bundle of react-md",
     },
     {
-      anchor: "#using-the-cdn-hosted-material-icon-components",
-      title: "Using the CDN hosted Material Icon Components",
+      anchor: "#react-md--material-icons-umd-bundle",
+      title: "react-md + Material Icons UMD Bundle",
     },
     {
       anchor: "#using-the-cdn-hosted-pre-compiled-themes",

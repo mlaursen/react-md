@@ -1,4 +1,4 @@
-# react-md [![codecov](https://codecov.io/gh/mlaursen/react-md/branch/master/graph/badge.svg)](https://codecov.io/gh/mlaursen/react-md) [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=next)](https://travis-ci.org/mlaursen/react-md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/mlaursen/react-md/pulls) [![Join the chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
+# react-md [![codecov](https://codecov.io/gh/mlaursen/react-md/branch/master/graph/badge.svg)](https://codecov.io/gh/mlaursen/react-md) [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/mlaursen/react-md/pulls) [![Join the chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
 
 Create an accessible React application with the
 [material design specifications](https://material.io/design/) and Scss.
@@ -234,12 +234,15 @@ estimated size for this library, check out the results below:
 ```sh
 $ yarn dev-utils libsize
 
-The gzipped UMD bundle size is:
- - dist/umd/react-md.production.min.js 55 B
+The gzipped UMD bundle sizes are:
+ - dist/umd/react-md.production.min.js 86.49 KB
+ - dist/umd/react-md-with-font-icons.production.min.js 186.23 KB
+ - dist/umd/react-md-with-svg-icons.production.min.js 196.03 KB
+
 
 The min and max gzipped CSS bundle sizes are:
- - dist/css/react-md.red-lime-100-light.min.css 61 B
- - dist/css/react-md.deep_orange-blue_grey-100-light.min.css 76 B
+ - dist/css/react-md.grey-deep_orange-200-light.min.css 15.65 KB
+ - dist/css/react-md.indigo-blue-400-dark.min.css 15.71 KB
 ```
 
 ## Contributing
@@ -248,4 +251,5 @@ Please read the [contributing guidelines](./.github/CONTRIBUTING.md) if you
 would like to contribute.
 
 [typescript]: https://www.typescriptlang.org/
-[create-react-app]: https://facebook.github.io/create-react-app/docs/getting-started
+[create-react-app]:
+  https://facebook.github.io/create-react-app/docs/getting-started

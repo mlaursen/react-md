@@ -14,13 +14,13 @@ react-md will now be available as these bundles:
 
 1. Base `ReactMD` library:<br />
    https://unpkg.com/react-md@2.0.1/dist/umd/react-md.production.min.js
-1. `ReactMDIconFont` components:<br />
-   https://unpkg.com/react-md@2.0.1/dist/umd/react-md.font-icon.production.min.js
-1. `ReactMDIconSVG` components:<br />
-   https://unpkg.com/react-md@2.0.1/dist/umd/react-md.svg-icon.production.min.js
+1. `ReactMD` with `*FontIcon` components:<br />
+   https://unpkg.com/react-md@2.0.1/dist/umd/react-md-with-font-icons.production.min.js
+1. `ReactMD` with `*SVGIcon` components:<br />
+   https://unpkg.com/react-md@2.0.1/dist/umd/react-md-with-svg-icons.production.min.js
 
 The
-[advanced installation guide](/guides/advanced-installation#using-the-cdn-hosted-material-icon-components)
+[advanced installation guide](/guides/advanced-installation#react-md--material-icons-umd-bundle)
 and the [library size notes](/about#what39s-the-library-size) have been updated
 for this information.
 

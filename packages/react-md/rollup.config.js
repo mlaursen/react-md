@@ -7,26 +7,17 @@ function createConfig(type) {
   const globals = {
     react: 'React',
     'react-dom': 'ReactDOM',
-    'react-md': 'ReactMD',
   };
 
-  const external = ['react', 'react-dom', 'react-md'];
-
-  let umdSuffix;
   let fileNameSuffix;
   switch (type) {
     case 'svg':
-      umdSuffix = 'IconSVG';
-      fileNameSuffix = '.svg-icon';
+      fileNameSuffix = '-with-svg-icons';
       break;
     case 'font':
-      umdSuffix = 'IconFont';
-      fileNameSuffix = '.font-icon';
+      fileNameSuffix = '-with-font-icons';
       break;
     default:
-      external.pop();
-      delete globals['react-md'];
-      umdSuffix = '';
       fileNameSuffix = '';
   }
 
@@ -35,14 +26,14 @@ function createConfig(type) {
     output: [
       {
         file: `dist/umd/react-md${fileNameSuffix}.development.js`,
-        name: `ReactMD${umdSuffix}`,
+        name: 'ReactMD',
         format: 'umd',
         globals,
         sourcemap: true,
       },
       {
         file: `dist/umd/react-md${fileNameSuffix}.production.min.js`,
-        name: `ReactMD${umdSuffix}`,
+        name: 'ReactMD',
         format: 'umd',
         globals,
         plugins: [terser()],
@@ -55,7 +46,7 @@ function createConfig(type) {
 
       warn(warning);
     },
-    external,
+    external: ['react', 'react-dom'],
     plugins: [
       resolve(),
       commonjs(),

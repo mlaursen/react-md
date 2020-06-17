@@ -15,15 +15,23 @@ import writeFile from "./utils/writeFile";
 
 const cwd = join(packagesRoot, "react-md");
 
-const createIconBundle = (fileNames: readonly string[]): string =>
-  format(
-    `export {
+const MATERIAL_ICONS_REGEXP = /^.+material-icons.+$/gm;
+
+const createIconBundle = (
+  fileNames: readonly string[],
+  indexFile: string
+): string => {
+  const exports = `export {
 ${fileNames
   .map((name) => name.substring(name.indexOf(sep)).replace(/\..+$/, ""))
   .join(", ")}
-} from "@react-md/material-icons"`,
+} from "@react-md/material-icons"`;
+
+  return format(
+    indexFile.replace(MATERIAL_ICONS_REGEXP, exports),
     "typescript"
   );
+};
 
 /**
  * Create three entry points for the bundles:
@@ -45,10 +53,10 @@ async function createUmd(): Promise<void> {
   const fontBundlePath = join(reactMDSrc, "font.ts");
 
   const indexFile = readFileSync(join(reactMDSrc, "index.ts"), "utf8");
-  const withoutIcons = format(indexFile.replace(/^.+material-icons.+$/gm, ""));
+  const withoutIcons = format(indexFile.replace(MATERIAL_ICONS_REGEXP, ""));
   await writeFile(mainBundlePath, withoutIcons);
-  await writeFile(svgBundlePath, createIconBundle(svgs));
-  await writeFile(fontBundlePath, createIconBundle(fonts));
+  await writeFile(svgBundlePath, createIconBundle(svgs, indexFile));
+  await writeFile(fontBundlePath, createIconBundle(fonts, indexFile));
 
   execSync("yarn workspace react-md umd --silent", { stdio: "inherit" });
   await Promise.all(
@@ -88,7 +96,7 @@ async function umdSize(): Promise<void> {
     return a.localeCompare(b);
   });
 
-  log.info("The gzipped UMD bundle size is:");
+  log.info("The gzipped UMD bundle sizes are:");
   log.info(
     list(
       umd.map(
