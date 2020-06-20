@@ -27,7 +27,3 @@ declare module "http" {
   }
 }
 
-interface Window {
-  // this is the only ga event I really need
-  ga?(event: "send", type: "pageview", url: string): void;
-}

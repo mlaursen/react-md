@@ -15,11 +15,37 @@ import {
   AppSize,
 } from "@react-md/utils";
 
+import { GA_CODE } from "constants/github";
 import Layout from "components/Layout";
 import GoogleFont from "components/GoogleFont";
 import Theme, { ThemeMode } from "components/Theme";
 import { toBreadcrumbPageTitle } from "utils/toTitle";
 import { qsToString } from "utils/routes";
+
+interface NextWebVitalsMetrics {
+  id: string;
+  label: string;
+  name: string;
+  startTime: number;
+  value: number;
+}
+
+export function reportWebVitals(metrics: NextWebVitalsMetrics): void {
+  if (process.env.NODE_ENV !== "production") {
+    // eslint-disable-next-line no-console
+    console.debug(metrics);
+  } else if (typeof window.gtag === "function") {
+    const { id, label, value, name } = metrics;
+    window.gtag("event", "web_vitals", {
+      eventCategory:
+        label === "web-vital" ? "Web Vitals" : "Next.js custom metric",
+      eventAction: name,
+      eventValue: Math.round(name === "CLS" ? value * 1000 : value),
+      eventLabel: id,
+      nonInteraction: true,
+    });
+  }
+}
 
 interface AppProps extends AppInitialProps {
   pageProps: {
@@ -101,9 +127,12 @@ export default class App extends NextApp<AppProps> {
   private handleRouteChange = (url: string): void => {
     if (
       process.env.NODE_ENV === "production" &&
-      typeof window.ga === "function"
+      typeof window.gtag === "function"
     ) {
-      window.ga("send", "pageview", url);
+      window.gtag("config", GA_CODE, {
+        page_title: toBreadcrumbPageTitle(url),
+        page_path: url,
+      });
     }
   };
 

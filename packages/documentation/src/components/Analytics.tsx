@@ -1,7 +1,8 @@
 /* eslint-disable react/no-danger */
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 
-const GA_CODE = process.env.GA_CODE || "UA-76079335-2";
+import { GA_CODE } from "constants/github";
+
 const GA_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_CODE}`;
 
 const html = {
@@ -12,7 +13,7 @@ gtag('js', new Date());
 gtag('config', '${GA_CODE}');`,
 };
 
-const Analytics: FC = () => {
+export default function Analytics(): ReactElement | null {
   if (process.env.NODE_ENV !== "production") {
     return null;
   }
@@ -23,6 +24,4 @@ const Analytics: FC = () => {
       <script dangerouslySetInnerHTML={html} />
     </>
   );
-};
-
-export default Analytics;
+}
