@@ -35,8 +35,6 @@ const SimpleListItem = forwardRef<HTMLLIElement, SimpleListItemProps>(
       children,
       height: propHeight = "auto",
       threeLines = false,
-      "aria-disabled": ariaDisabled,
-      disabled,
       clickable = false,
       ...props
     },
@@ -54,11 +52,6 @@ const SimpleListItem = forwardRef<HTMLLIElement, SimpleListItemProps>(
     return (
       <li
         {...props}
-        aria-disabled={
-          typeof ariaDisabled === "string"
-            ? ariaDisabled
-            : (disabled && "true") || undefined
-        }
         ref={ref}
         className={cn(
           block({
