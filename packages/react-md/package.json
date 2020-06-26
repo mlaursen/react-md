@@ -11,6 +11,7 @@
   "module": "./es/index.js",
   "unpkg": "./dist/umd/react-md.production.min.js",
   "types": "./types/index.d.ts",
+  "sideEffects": ["dist/**/*"],
   "files": [
     "es/*",
     "lib/*",

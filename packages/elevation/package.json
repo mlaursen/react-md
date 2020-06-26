@@ -9,6 +9,7 @@
   "main": "./dist/scssVariables.js",
   "module": "./dist/scssVariables.js",
   "types": "./dist/scssVariables.d.ts",
+  "sideEffects": ["dist/**/*"],
   "files": [
     "src/*",
     "dist/*"
