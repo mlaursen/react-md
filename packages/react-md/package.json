@@ -9,6 +9,7 @@
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",
+  "unpkg": "./dist/umd/react-md.production.min.js",
   "types": "./types/index.d.ts",
   "files": [
     "es/*",
