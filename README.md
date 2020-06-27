@@ -159,9 +159,9 @@ components from react-md. It is generally recommended to update your base
 +  return (
 +    <Configuration>
 +      <Layout
-+        {...useLayoutNavigation(routes, pathname)}
-+        appBarTitle="My App"
-+        navHeaderTitle="My App"
++        title="My Title"
++        navHeaderTitle="My Nav Title"
++        treeProps={...useLayoutNavigation(routes, pathname)}
 +      >
 +        <Text type="headline-4">Hello, world!</Text>
 +        <Button theme="primary">Example button</Button>
