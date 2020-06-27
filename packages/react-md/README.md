@@ -1,4 +1,9 @@
-# react-md [![codecov](https://codecov.io/gh/mlaursen/react-md/branch/master/graph/badge.svg)](https://codecov.io/gh/mlaursen/react-md) [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/mlaursen/react-md/pulls) [![Join the chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
+# react-md [![license](https://img.shields.io/npm/l/react-md)](https://github.com/mlaursen/react-md/blob/master/LICENSE) [![codecov](https://codecov.io/gh/mlaursen/react-md/branch/master/graph/badge.svg)](https://codecov.io/gh/mlaursen/react-md) [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
+
+[![npm](https://img.shields.io/npm/v/react-md)](https://www.npmjs.com/package/react-md)
+[![downloads](https://img.shields.io/npm/dw/react-md)](https://www.npmjs.com/package/react-md)
+[![Join the Chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com)
+[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
 
 Create an accessible React application with the
 [material design specifications](https://material.io/design/) and Scss.
