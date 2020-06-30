@@ -113,6 +113,3 @@ text-field:
 
 wia-aria:
   - packages/utils/src/wia-aria/**/*
-
-styles:
-  - any: ['packages/*/src/**/*.scss', '!packages/documentation/**/*']
