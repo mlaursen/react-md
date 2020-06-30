@@ -98,6 +98,12 @@ import { ReactNode } from "react";
 import { LayoutNavigationItem, LayoutNavigationTree } from "@react-md/layout";
 import { HomeSVGIcon, TVSVGIcon } from "@react-md/material-icons";
 
+/**
+ * Note: The `parentId` **must** be defaulted to `null` for the navigation tree
+ * to render correctly since this uses the @react-md/tree package behind the
+ * scenes. Each item that has a `parentId` set to `null` will appear at the root
+ * level of your navigation tree.
+ */
 function createRoute(
   pathname: string,
   children: string,
@@ -360,12 +366,22 @@ cross fade transition on route changes with the `useCrossFade` hook.
  };
 ```
 
-So how does this work? First, the `ref` and `className` from the cross fade
-transition are extracted from the `transitionProps` and then passed to the
-`<main>` element within the `Layout` component by using the `mainRef` and
-`mainClassName` props. Finally, the previous `pathname` is stored in a `ref` so
-that pathname changes can be determined during the render and dispatch the
-`ENTER` event to trigger the animation.
+So how does this work? The
+[useCrossFade hook](/packages/transition/demos#cross-fade-hook-example-title)
+returns an ordered list containing:
+
+- a `boolean` if the content should be rendered
+- an object containing a `ref` and `className` to pass to the transitionable
+  element (`transitionProps`)
+- a `dispatch` function that can be used to trigger an animation
+
+Since the children should always be rendered, the rendered `boolean` can be
+ignored and just provide the `transitionProps` to the `<main>` element in the
+`Layout` with the `mainProps` prop. Next, a `ref` is created to store the
+previous `pathname` so that it is possible to check for `pathname` changes.
+Finally, if there is a `pathname` change, the `pathname` ref is updated to store
+the new `pathname` and then the `ENTER` stage of the transition is triggered
+with the `dispatch` function.
 
 You might be wondering...
 
