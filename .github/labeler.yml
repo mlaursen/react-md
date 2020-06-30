@@ -50,7 +50,7 @@ list:
   - packages/list/src/**/*
 
 material-icons:
-  - packages/material-icons/**/*
+  - packages/material-icons/src/**/*
 
 media:
   - packages/media/src/**/*
@@ -99,7 +99,7 @@ utils:
 
 # special cases
 documentation:
-  - packages/documentation/**/*
+  - packages/documentation/src/**/*
 
 form-control:
   - packages/form/src/toggle/**/*
@@ -113,3 +113,6 @@ text-field:
 
 wia-aria:
   - packages/utils/src/wia-aria/**/*
+
+styles:
+  - any: ['packages/*/src/**/*.scss', '!packages/documentation/**/*']
