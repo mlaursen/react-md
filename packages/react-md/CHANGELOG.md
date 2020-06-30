@@ -1,16 +1,3 @@
-# v2.0.2
-
-### Bug Fixes
-
-- **LICENSE:** Fixed the LICENSE to not have a year range
-  ([50c9021](https://github.com/mlaursen/react-md/commit/50c9021cedc0d642758b9fd541bb6c93d2fe1786))
-- Added sideEffects field to package.json
-  ([31820b9](https://github.com/mlaursen/react-md/commit/31820b9b43705e5849664500a17b6849eb6dc2a9))
-  and
-  ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
-- Added unpkg url to serve UMD bundle by default
-  ([d0efc59](https://github.com/mlaursen/react-md/commit/d0efc59aed0b0ccaa9acadb4e8cf8037bad1f3b3))
-
 # v2.0.1
 
 This release just updated the UMD bundle to be separated into three parts to
