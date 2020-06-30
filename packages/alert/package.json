@@ -1,6 +1,6 @@
 {
   "name": "@react-md/alert",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "Create accessible alerts through snackbars and banners.",
   "scripts": {
     "build": "dev-utils build",
@@ -42,13 +42,13 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/button": "^2.0.0",
-    "@react-md/elevation": "^2.0.0",
-    "@react-md/portal": "^2.0.0",
-    "@react-md/theme": "^2.0.0",
-    "@react-md/transition": "^2.0.0",
-    "@react-md/typography": "^2.0.0",
-    "@react-md/utils": "^2.0.0",
+    "@react-md/button": "^2.0.2",
+    "@react-md/elevation": "^2.0.2",
+    "@react-md/portal": "^2.0.2",
+    "@react-md/theme": "^2.0.2",
+    "@react-md/transition": "^2.0.2",
+    "@react-md/typography": "^2.0.2",
+    "@react-md/utils": "^2.0.2",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.3.0"
   },
