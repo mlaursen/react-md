@@ -4,12 +4,13 @@ import { TextIconSpacing } from "@react-md/icon";
 import { KeyboardArrowRightSVGIcon } from "@react-md/material-icons";
 import { Text, TextContainer } from "@react-md/typography";
 
+import { GITHUB_URL } from "constants/github";
 import Heading from "components/Heading";
+import Link from "components/Link";
 import LinkButton from "components/LinkButton";
 import { Markdown } from "components/Markdown";
 import RelativeDate from "components/RelativeDate";
 import { toId } from "utils/toTitle";
-import Link from "components/Link";
 
 import styles from "./Post.module.scss";
 
@@ -25,7 +26,26 @@ export interface PostProps extends BlogPost {
   isLast: boolean;
 }
 
-const href = "/blog/[id]";
+function resolveReadMore(
+  readMore: string | null
+): [] | [string] | [string, string] {
+  if (readMore === null) {
+    return [];
+  }
+
+  // github issue read more
+  if (readMore.startsWith("#")) {
+    return [`${GITHUB_URL}/issues/${readMore.substring(1)}`];
+  }
+
+  // general link
+  if (/^https?:\/\//.test(readMore)) {
+    return [readMore];
+  }
+
+  // link to specific blog
+  return ["/blog/[id]", `/blog/${readMore}`];
+}
 
 const Post: FC<PostProps> = ({
   title,
@@ -35,7 +55,7 @@ const Post: FC<PostProps> = ({
   bullets,
   isLast,
 }) => {
-  const asLink = `/blog/${readMore}`;
+  const [href, asLink] = resolveReadMore(readMore);
 
   return (
     <>
@@ -46,13 +66,12 @@ const Post: FC<PostProps> = ({
         <Text color="secondary" type="body-2" component="p" margin="bottom">
           <RelativeDate date={date} />
         </Text>
-        {/* hackily converts "lists" into bulleted lists without it be converted to the bullets part of a post */}
-        <Markdown>{summary.replace(/^1. /gm, "- ")}</Markdown>
+        <Markdown>{summary}</Markdown>
         {bullets.length > 0 && (
           <Text component="ul" type="subtitle-1">
             {bullets.map((bullet) => {
-              let content: ReactNode = bullet;
-              if (readMore) {
+              let content: ReactNode = <Markdown>{bullet}</Markdown>;
+              if (asLink) {
                 const id = toId(bullet);
                 content = (
                   <Link as={`${asLink}#${id}`} href={`${href}#${id}`}>
@@ -65,7 +84,7 @@ const Post: FC<PostProps> = ({
             })}
           </Text>
         )}
-        {readMore && (
+        {href && (
           <LinkButton
             as={asLink}
             href={href}

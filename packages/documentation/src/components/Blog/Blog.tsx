@@ -15,7 +15,9 @@ export default function Blog({ children }: BlogProps): ReactElement {
       const titleMatch = postMarkdown.match(/^Title: (.+)$/m);
       const dateMatch = postMarkdown.match(/^Date: (\d{2}\/\d{2}\/\d{4})$/m);
       const readMoreMatch = postMarkdown.match(/^Read More: (.+)$/m);
-      const summaryMatch = postMarkdown.match(/^Summary:$/m);
+      const summaryMatch = postMarkdown.match(
+        /^Summary:(<!-- no-bullets -->)?$/m
+      );
       if (!titleMatch) {
         throw new Error("A blog post must have a title.");
       }
@@ -32,12 +34,15 @@ export default function Blog({ children }: BlogProps): ReactElement {
       const [, date] = dateMatch;
       const readMore = readMoreMatch?.[1] || null;
       let summary = postMarkdown
-        .substring(summaryMatch.index + "Summary:".length)
+        .substring(summaryMatch.index + summaryMatch[0].length)
         .trim();
 
-      const bulletsMatch = summary.match(/^- /m);
+      const bulletsMatch =
+        !summaryMatch[0].includes("<!-- no-bullets -->") &&
+        summary.match(/^- /m);
+
       let bullets: string[] = [];
-      if (bulletsMatch?.index) {
+      if (bulletsMatch && bulletsMatch.index) {
         bullets = summary
           .substring(bulletsMatch.index)
           .split("- ")

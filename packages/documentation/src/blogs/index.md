@@ -1,8 +1,32 @@
+Title: react-md 2.0.2
+
+Date: 06/30/2020
+
+Read More: #877
+
+Summary:<!-- no-bullets -->
+
+This release focused on fixing bundle sizes with webpack as well as increasing
+build performance with the `sideEffects` field for each `package.json`. For more
+information, check out the v2.0.2 release PR #877 which goes into details about
+build time and sizing changes.
+
+This release also includes the following changes:
+
+- **LICENSE:** Removed the time range from license since it was incorrect
+  (50c9021)
+- Added unpkg url for base react-md package (d0efc59)
+- Updated the changelogs to be updated by
+  [conventional commits](https://www.conventionalcommits.org/) which allows for
+  a combined root [CHANGELOG.md]({{GITHUB_FILE_URL}}/CHANGELOG.md) (46f4e26)
+
+---
+
 Title: react-md 2.0.1
 
 Date: 06/17/2020
 
-Summary:
+Summary:<!-- no-bullets -->
 
 This is _technically_ a breaking change for the UMD bundle since this splits the
 material-icon component wrappers into separate bundles to minimize the library's
@@ -12,12 +36,12 @@ upgraded to v2 or even using the UMD bundle to begin with.
 
 react-md will now be available as these bundles:
 
-1. Base `ReactMD` library:<br />
-   https://unpkg.com/react-md@2.0.1/dist/umd/react-md.production.min.js
-1. `ReactMD` with `*FontIcon` components:<br />
-   https://unpkg.com/react-md@2.0.1/dist/umd/react-md-with-font-icons.production.min.js
-1. `ReactMD` with `*SVGIcon` components:<br />
-   https://unpkg.com/react-md@2.0.1/dist/umd/react-md-with-svg-icons.production.min.js
+- Base `ReactMD` library:<br />
+  https://unpkg.com/react-md@2.0.1/dist/umd/react-md.production.min.js
+- `ReactMD` with `*FontIcon` components:<br />
+  https://unpkg.com/react-md@2.0.1/dist/umd/react-md-with-font-icons.production.min.js
+- `ReactMD` with `*SVGIcon` components:<br />
+  https://unpkg.com/react-md@2.0.1/dist/umd/react-md-with-svg-icons.production.min.js
 
 The
 [advanced installation guide](/guides/advanced-installation#react-md--material-icons-umd-bundle)

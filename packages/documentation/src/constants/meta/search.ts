@@ -143,7 +143,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Alert Changelog",
     summary:
-      "This package is a new implementation of the Snackbar component from v1. There should now be some accessibility fixes and hopefully a better way to queue messages as well as cancel them but I also feel like I might need to re-work this again to work without the React context API.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/alert/changelog",
@@ -199,7 +199,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "AppBar Changelog",
     summary:
-      "This package is a replacement of the old Toolbar component in v1 that has now been separated into multiple components for additional customization.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/app-bar/changelog",
@@ -271,7 +271,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "AutoComplete Changelog",
     summary:
-      "The v2 release completely re-write the Autocomplete component and renamed it to AutoComplete. There is a new API for dealing with data as well as a lot of accessibility fixes.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/autocomplete/changelog",
@@ -319,7 +319,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Avatar Changelog",
     summary:
-      "The avatar component should be fairly similar to the v1 version except for a few behavior changes.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/avatar/changelog",
@@ -367,7 +367,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Badge Changelog",
     summary:
-      "This release has introduced two additional components: BadgeContainer and BadgedButton. The BadgedButton is the closest thing to the old Badge component but it always renders as a Button instead. The BadgeContainer is a small wrapper component to add basic styles to allow a Badge to be positioned relative to another component.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/badge/changelog",
@@ -431,7 +431,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Button Changelog",
     summary:
-      "The Button component was completely re-written in this release for full Typescript support, forwarding the ref to the <button> element, and can be rendered with only children to enable a default theme. However, the Button component removed built-in support for tooltips and rendering icons with text but can be easily added back in with the @react-md/tooltip and\n@react-md/icon packages.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/button/changelog",
@@ -519,7 +519,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Card Changelog",
     summary:
-      "The card package was re-written from the ground up for the v2 release which should allow for additional customization and styling behavior. Almost everything is a breaking change.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/card/changelog",
@@ -583,7 +583,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Chip Changelog",
     summary:
-      "The chip package was completely re-written with Typescript and additional theming support for the v2 release.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/chip/changelog",
@@ -655,7 +655,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Dialog Changelog",
     summary:
-      "The Dialog component was completely re-written in this release and each part of the dialog has been exported for additional customization. Since the goal of react-md@v2 is to be an extension of HTML Elements with additional styling, all refs will be forwarded on to the component's element instead so you have access to the DOM nodes.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/dialog/changelog",
@@ -735,7 +735,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Divider Changelog",
     summary:
-      "The Divider component was completely re-written for this release, but it should not be a breaking change. This package now also has better support for rendering dividers vertically with the VerticalDivider component.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/divider/changelog",
@@ -791,7 +791,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Elevation Changelog",
     summary:
-      "This is a re-write of the old Paper component as well as the paper styles. It has now been renamed to elevation to match the material design specs. This package no longer includes any styles by default and is a utility package instead.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/elevation/changelog",
@@ -839,7 +839,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "ExpansionPanel Changelog",
     summary:
-      "This release has fixed the keyboard movement behavior for the expansion panels as well as updating the API to use a hook instead of React.cloneElement hacks. In addition, the ExpansionPanel will now no longer attempt to create equal width labels within each panel and instead will need to be done manually.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/expansion-panel/changelog",
@@ -897,7 +897,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Form Changelog",
     summary:
-      'Starting with v2 of react-md, all checkbox and radio inputs will now correctly work like native <input type="checkbox" /> and <input type="radio" /> without any additional wrappers.',
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/form/changelog",
@@ -1041,7 +1041,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Icon Changelog",
     summary:
-      "This is a new component implementation for the\n.md-collapser/getCollapserStyles that existed in v1 but wasn't really documented",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/icon/changelog",
@@ -1097,7 +1097,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Layout Changelog",
     summary:
-      "This package is kind of a replacement for the NavigationDrawer component that also now has a top-level Configuration provider for react-md.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/layout/changelog",
@@ -1137,7 +1137,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Link Changelog",
     summary:
-      "There are no breaking changes for this release as this is the first time a link component has been introduced into react-md.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/link/changelog",
@@ -1209,7 +1209,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "List Changelog",
     summary:
-      "This package has a lot of changes from the v1 API that should hopefully make it easier to use. There are also new components to help with styling and positioning of addons that can be used without a ListItem/List component.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/list/changelog",
@@ -1273,7 +1273,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "MaterialIcons Changelog",
     summary:
-      "This package is completely new for v2 and introduced the new 1864 icons (932 font icons and 932 svg icons).",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/material-icons/changelog",
@@ -1313,7 +1313,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Media Changelog",
     summary:
-      "The media package contains some helper components to help create responsive media like images and videos and optionally enforcing an aspect ratio.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/media/changelog",
@@ -1369,7 +1369,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Menu Changelog",
     summary:
-      "The menu package was completely re-written to fix all the accessibility issues and keyboard focus behavior.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/menu/changelog",
@@ -1472,7 +1472,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Overlay Changelog",
     summary:
-      "This package is kind of new for the v2 release since the Overlay was never actually a public component but the SCSS variables were public.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/overlay/changelog",
@@ -1528,7 +1528,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Portal Changelog",
     summary:
-      'This was a re-write of the Portal component that created a "more usable" API as well as removing temporary workarounds before the createPortal API was added into React.',
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/portal/changelog",
@@ -1568,7 +1568,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Progress Changelog",
     summary:
-      "The progress package probably went through the least amount of changes for the v2 release. The main changes involved were switching to <span>s instead of\n<div>s so they can be rendered within buttons and a few API changes to hopefully be easier to work with.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/progress/changelog",
@@ -1632,7 +1632,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Sheet Changelog",
     summary:
-      "This package is the new version of the Drawer component from v1 that is no longer really used for layout and app size.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/sheet/changelog",
@@ -1688,7 +1688,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "States Changelog",
     summary:
-      'This package is kind of new for the v2 release but the closest thing within v1 is the injectInk and "ink" effects. The ink effect has been renamed to a ripple effect and there are some other additional goodies included now.',
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/states/changelog",
@@ -1752,7 +1752,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Table Changelog",
     summary:
-      "This release focused on updating the tables to be more customizable, easier to style, and better for accessibility with sticky cells. To create a table within v2, you'll have access to the following components:",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/table/changelog",
@@ -1848,7 +1848,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Tabs Changelog",
     summary:
-      "Tabs were completely re-written for the v2 release to help fix the missing accessibility issues from v1. The API was changed a lot to hopefully make working with tabs a bit easier by no longer doing weird things under the hood like cloning props into each tab and content.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/tabs/changelog",
@@ -1920,7 +1920,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Theme Changelog",
     summary:
-      "This package is new for the v2 release, but replaces and expands upon the existing theming and color system in v1. Starting with v2, the theme has built-in support for automatically attempting to fix color contrast ratios.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/theme/changelog",
@@ -1960,7 +1960,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Tooltip Changelog",
     summary:
-      'Tooltips were completely re-written for the v2 release to help fix the missing accessibility issues from v1. One of the most "exciting" things that was added during the re-write is that tooltips will now automatically determine the "best" location to render itself within the viewport instead of manually needing to change the position yourself! Woo hoo!',
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/tooltip/changelog",
@@ -2048,7 +2048,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Transition Changelog",
     summary:
-      "Every transition was re-written in this release so it is a pretty big breaking change. The main differences are upgrading to transition API as well as shortening most of the transitions throughout react-md.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/transition/changelog",
@@ -2136,7 +2136,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Tree Changelog",
     summary:
-      "The tree package is completely new for the v2 release with the closest counterpart being the nestedItems from the ListItem component from v1. This package creates an accessible tree widget with selection, expansion, and keyboard functionality with the provided components and hooks.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/tree/changelog",
@@ -2192,7 +2192,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Typography Changelog",
     summary:
-      "The typography package is kind of new for the v2 release since there weren't any components beforehand for typography. This package exports three components: Text, TextContainer, and SrOnly. The Text component can be used to render any of the typography styles. The TextContainer component is used to create a centered block of text that uses the recommended line-width for legibility on different device sizes. Finally, the SrOnly component allows for text to only be visible to screen readers.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/typography/changelog",
@@ -2240,7 +2240,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Utils Changelog",
     summary:
-      "This package is pretty new for react-md, but might be seen as a replacement for the old grid, helpers, and utils.",
+      "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",
     type: "changelog",
     pageUrl: "/packages/[id]/changelog",
     pathname: "/packages/utils/changelog",
