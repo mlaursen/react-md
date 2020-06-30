@@ -2,6 +2,15 @@
   "packages": [
     "packages/*"
   ],
+  "command": {
+    "version": {
+      "message": "chore(release): publish %s"
+    },
+    "publish": {
+      "conventionalCommits": true
+    }
+  },
+  "ignoreChanges": ["**/__tests__/**", "**/*.md"],
   "useWorkspaces": true,
   "npmClient": "yarn",
   "version": "2.0.1"
