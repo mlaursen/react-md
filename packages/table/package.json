@@ -1,6 +1,6 @@
 {
   "name": "@react-md/table",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Create responsive data tables and accessible fixed tables",
   "scripts": {
     "build": "dev-utils build",
@@ -42,7 +42,7 @@
   "license": "MIT",
   "dependencies": {
     "@react-md/divider": "^2.0.2",
-    "@react-md/form": "^2.0.2",
+    "@react-md/form": "^2.0.3",
     "@react-md/theme": "^2.0.2",
     "@react-md/transition": "^2.0.2",
     "@react-md/typography": "^2.0.2",

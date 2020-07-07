@@ -1,6 +1,6 @@
 {
   "name": "@react-md/form",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "This package is for creating all the different form input types.",
   "scripts": {
     "build": "dev-utils build",
