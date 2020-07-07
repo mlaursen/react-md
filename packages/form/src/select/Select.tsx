@@ -258,6 +258,10 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
         onKeyDown(event);
       }
 
+      if (disabled) {
+        return;
+      }
+
       switch (event.key) {
         case " ":
         case "ArrowUp":
@@ -296,7 +300,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
         // no default
       }
     },
-    [onKeyDown, show]
+    [onKeyDown, disabled, show]
   );
 
   const selectRef = useRef<HTMLDivElement | null>(null);

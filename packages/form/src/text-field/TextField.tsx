@@ -212,6 +212,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           {...props}
           ref={ref}
           type={type}
+          disabled={disabled}
           onFocus={onFocus}
           onBlur={onBlur}
           onChange={onChange}

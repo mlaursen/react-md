@@ -125,4 +125,23 @@ describe("Select", () => {
 
     expect(input.value).toBe("Option 1");
   });
+
+  it("should not open the listbox while disabled", () => {
+    render(<Select {...PROPS} disabled />);
+    expect(getListbox).toThrow();
+    const select = getSelect();
+
+    fireEvent.click(select);
+    expect(getListbox).toThrow();
+
+    fireEvent.focus(select);
+    fireEvent.keyDown(select, { key: " " });
+    expect(getListbox).toThrow();
+
+    fireEvent.keyDown(select, { key: "ArrowDown" });
+    expect(getListbox).toThrow();
+
+    fireEvent.keyDown(select, { key: "ArrowUp" });
+    expect(getListbox).toThrow();
+  });
 });

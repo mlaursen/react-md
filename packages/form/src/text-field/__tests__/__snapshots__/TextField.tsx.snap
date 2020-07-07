@@ -34,3 +34,25 @@ exports[`TextField should render correctly 2`] = `
   </div>
 </div>
 `;
+
+exports[`TextField should render correctly 3`] = `
+<div>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--disabled rmd-text-field-container--label"
+  >
+    <label
+      class="rmd-label rmd-label--disabled rmd-floating-label"
+      for="field"
+    >
+      Label
+    </label>
+    <input
+      class="rmd-text-field rmd-text-field--floating"
+      disabled=""
+      id="field"
+      placeholder="Placeholder"
+      type="text"
+    />
+  </div>
+</div>
+`;

@@ -12,5 +12,11 @@ describe("TextField", () => {
 
     rerender(<TextField {...props} label="Label" placeholder="Placeholder" />);
     expect(container).toMatchSnapshot();
+
+    rerender(
+      <TextField {...props} label="Label" placeholder="Placeholder" disabled />
+    );
+    expect(container).toMatchSnapshot();
+    expect(document.getElementById("field")).toHaveAttribute("disabled");
   });
 });
