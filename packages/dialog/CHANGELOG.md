@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The `Dialog` component was completely re-written in this release and each part
 of the dialog has been exported for additional customization. Since the goal of
@@ -26,7 +26,7 @@ of the dialog has been exported for additional customization. Since the goal of
 all refs will be forwarded on to the component's element instead so you have
 access to the DOM nodes.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - the dialog transition now animates downwards instead of upwards
 - all dialog parts are exported as separate components and must be used to
@@ -43,7 +43,7 @@ access to the DOM nodes.
   `DialogHeader`
 - support for nested dialogs with a new `NestedDialogContextProvider`
 
-## Breaking Changes
+### Breaking Changes
 
 Basically everything. The `DialogContainer` component no longer exists and all
 the old props to generate a dialog were removed. Instead, there are additional
@@ -97,7 +97,7 @@ helper components to help structure your dialog for more customization.
 - the animation was changed to animate upwards instead of downwards and the full
   page dialog transition was updated to be the same as other dialog transitions
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-dialog-elevation: 16 !default` - the elevation (box-shadow) to use for
   dialogs
@@ -118,7 +118,7 @@ helper components to help structure your dialog for more customization.
 - `@mixin rmd-dialog-theme-update-var` - updates one of the theme values as a
   css variable
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-dialog-overlay-z-index` to `$rmd-dialog-z-index` for better
   clarity and changed the default value from `20` to `$rmd-overlay-z-index + 10`
@@ -135,7 +135,7 @@ helper components to help structure your dialog for more customization.
   `$rmd-dialog-header-padding-bottom` and changed the default value from `20px`
   to `1.25rem`
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-dialog-use-flex-positioning` since this is now required
 - removed `$md-dialog-full-page-z-index` since it is no longer used and caused
@@ -146,7 +146,7 @@ helper components to help structure your dialog for more customization.
   variables
 - removed `@mixin react-md-dialog-width` since it was pretty worthless
 
-### Separate Components
+#### Separate Components
 
 After using the dialogs for awhile and needing additional customization, I
 learned that following the material design guidelines strictly was a bad way to
@@ -206,7 +206,7 @@ const App = () => (
 );
 ```
 
-### Different Dialog Types
+#### Different Dialog Types
 
 Dialogs now have a new prop: `type` which allows the dialog to be rendered
 `full-page`, `centered`, or `custom`. Just like the previous versions, the
@@ -223,26 +223,26 @@ You can also use the `forceContainer` prop to force wrap the dialog in the
 `.rmd-dialog-container` element which is generally just used for centering
 within the page.
 
-### Fixed Dialogs
+#### Fixed Dialogs
 
 This release also introduces a new component: `FixedDialog` which allows you to
 "fix" a dialog to another element within the page (like a popover).
 
-### Customizing the Overlay
+#### Customizing the Overlay
 
 There are some new props to allow additional customization for the overlay
 created once a dialog becomes visible. The default behavior is to show an
 `Overlay` when the `type` is `centered` or `custom`, but can be fully controlled
 by using the `overlay` prop.
 
-### Fixing Nested Dialogs
+#### Fixing Nested Dialogs
 
 There is now a way to handle nested dialogs automatically through `react-md` so
 that the overlays do not stack and the escape key will only close the top-most
 dialog instead of all of them. To use this new feature, just use the
 `NestedDialogContext` component near the root of your app.
 
-## Fixed Accessibility
+### Fixed Accessibility
 
 With the new changes behind the scenes for accessibility, the `Dialog` component
 will now be a bit better at re-focusing elements once closed that were in

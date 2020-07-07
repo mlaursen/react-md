@@ -14,29 +14,29 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The media package contains some helper components to help create responsive
 media like images and videos and optionally enforcing an aspect ratio.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - Enforcing an aspect ratio now works by providing a `height` and `width`
   instead of using the `forceAspect` and `aspectRatio` props.
 - Added new positioning options for the `MediaOverlay` component
 
-## Breaking Changes
+### Breaking Changes
 
 - the `Media` component was renamed to `MediaContainer` to hopefully describe
   the purpose of the component better
 - the `forceAspect`, `aspectRatio`, and `component` props are no longer
   available
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-media-default-aspect-ratio: percentage(16 / 9) !default` - the default
   aspect ratio to use for media in the `MediaContainer`
@@ -52,7 +52,7 @@ media like images and videos and optionally enforcing an aspect ratio.
   alongside the `rmd-media-aspect-ratio-container` mixin to force a specific
   aspect ratio for a media item
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - `$md-media-overlay-color` was renamed to `$rmd-media-overlay-background-color`
 - `$md-media-aspect-ratios` was renamed to `$rmd-media-default-aspect-ratios`
@@ -63,7 +63,7 @@ media like images and videos and optionally enforcing an aspect ratio.
   `@mixin rmd-media-aspect-ratio` and changed the behavior to no longer generate
   a class name. It should now be used within a selector
 
-### Removed SCSS Variables and Mixins
+#### Removed SCSS Variables and Mixins
 
 - removed `$md-media-include-overlay` since overlays are always included
 - removed `$md-media-include-embedded` since this functionality was removed and

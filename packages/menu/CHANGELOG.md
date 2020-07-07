@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The menu package was completely re-written to fix all the accessibility issues
 and keyboard focus behavior.
@@ -34,7 +34,7 @@ The main exports starting in v2:
 - `defaultMenuItemRenderer`
 - `useContextMenu`
 
-## New Features / Behavior
+### New Features / Behavior
 
 - the menu will now automatically position itself within the viewport with fixed
   positioning
@@ -45,7 +45,7 @@ The main exports starting in v2:
   instead within the `DropdownMenu`
 - no longer uses the weird `Layover` component
 
-## Breaking Changes
+### Breaking Changes
 
 - the visibility for the menus can no longer be controlled externally. this
   functionality will come back in a later release
@@ -53,7 +53,7 @@ The main exports starting in v2:
 - the `MenuButton` is no longer a combination of a `Button` and a `Menu` and
   instead is an accessibility helper component
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-menu-background-color: rmd-theme-var(surface) !default` - The background
   color to use in menus
@@ -70,14 +70,14 @@ The main exports starting in v2:
 - `@mixin rmd-menu-theme-update-var` - updates one of the theme values as a css
   variable
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-menu-z-index` to `$rmd-menu-z-index` and changed the default
   value from `null` (`100` from `Layover`) to `11`
 - renamed `$md-menu-min-width` to `$rmd-menu-min-width` and changed the default
   value from `112px` to `7rem`
 
-### Removed SCSS Variables and Mixins
+#### Removed SCSS Variables and Mixins
 
 - removed `$md-menu-include-cascading`, `$md-menu-include-cascading-styles`,
   `$md-menu-cascading-font-size`, `$md-menu-cascading-padding`,
@@ -86,7 +86,7 @@ The main exports starting in v2:
   styles
 - removed all other SCSS variables relating to height and width
 
-### Accessibility Fixes
+#### Accessibility Fixes
 
 The accessibility props were moved from the surrounding `<div>` and instead
 applied correctly to the `MenuButton` instead. This also changed the

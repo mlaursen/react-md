@@ -14,18 +14,18 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The progress package probably went through the least amount of changes for the
 v2 release. The main changes involved were switching to `<span>`s instead of
 `<div>`s so they can be rendered within buttons and a few API changes to
 hopefully be easier to work with.
 
-## New Features / Behavior
+### New Features / Behavior
 
 - new theme variables and mixins to dynamically change the color and size of the
   progress bars
@@ -36,13 +36,13 @@ hopefully be easier to work with.
 - the `CircularProgress`'s size is now configurable with CSS instead of a
   `scale` prop
 
-## Breaking Changes
+### Breaking Changes
 
 - dropped support for the `progressStyle` function but might be added back later
 - dropped support for updating the `CircularProgress`'s size with component
   props since it's easier to style in CSS now
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-progress-color: $rmd-theme-primary !default` - A new variable to
   configure the progress color
@@ -86,7 +86,7 @@ hopefully be easier to work with.
 - `@mixin rmd-progress-theme-update-var` - updates one of the theme values as a
   css variable
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-progress-include-linear` to `$rmd-progress-include-linear`
 - renamed `$md-progress-include-circular` to `$rmd-progress-include-circular`
@@ -102,7 +102,7 @@ hopefully be easier to work with.
   `$rmd-cirular-progress-dasharray` and changed the default value from `187px`
   to `187`
 
-### Removed SCSS Variables and Mixins
+#### Removed SCSS Variables and Mixins
 
 - removed `$md-linear-progress-swatch` and `$md-linear-progress-fallback-color`
   since they are no longer used and already has sensible defaults with the new

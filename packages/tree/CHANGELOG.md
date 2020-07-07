@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The tree package is completely new for the v2 release with the closest
 counterpart being the `nestedItems` from the `ListItem` component from v1. This

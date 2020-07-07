@@ -14,13 +14,13 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
-## New Behavior and Features
+### New Behavior and Features
 
 - all refs are now forwarded to the DOM elements
 - new theme API that allows for customizing the size and color of icons a lot
@@ -47,7 +47,7 @@ No changes.
 - changing the size for font icons and svg icons is now the same since they use
   css variables
 
-## Breaking Changes
+### Breaking Changes
 
 - all icons were updated to have `aria-hidden="true"` by default.
 - all icons no longer support applying theme colors with the `primary`,
@@ -60,7 +60,7 @@ No changes.
   `aria-label`/`aria-labelledby` is preferred
 - the `SVGIcon` changed the default `role` from `"img"` to `"presentation"`
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-icon-material-icons-font: false !default` - boolean if you are using the
   `material-icons` font icon library and automatically fix the dense spec
@@ -80,7 +80,7 @@ No changes.
 - `@mixin rmd-icon-text-spacing` - a mixin that allows you to separate two
   elements
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-font-icon-include-dense` to `$rmd-icon-include-dense`
 - renamed `$md-font-icon-size` to `$rmd-icon-size` and changed the default value
@@ -91,7 +91,7 @@ No changes.
   changed the default value from `16px` to `0.5rem`
 - renamed `@mixin react-md-icons-dense` to `rmd-icon-dense-theme`
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-font-icon-include-separators` since it is always included by
   default

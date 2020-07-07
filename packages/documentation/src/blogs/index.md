@@ -1,3 +1,21 @@
+Title: react-md 2.0.3
+
+Date: 07/07/2020
+
+Summary:<!-- no-bullets -->
+
+This release fixed a few styling issues for the #form package and correctly
+passing the `disabled` prop to the `TextField`'s `<input>` element:
+
+- **form:** Select disabled styling
+  ([d79d007](https://github.com/mlaursen/react-md/commit/d79d0079307ccc735ebac0730d1d45aabe1419bd))
+- **form:** TextArea disabled styles
+  ([ef118bf](https://github.com/mlaursen/react-md/commit/ef118bf325e68e9ae8c988f9f93a1e19e1468084))
+- **form:** TextField and Select disabled behavior
+  ([e8f2c57](https://github.com/mlaursen/react-md/commit/e8f2c579a1ee502674bfddbcc10713d4b50d7cc4))
+
+---
+
 Title: react-md 2.0.2
 
 Date: 06/30/2020

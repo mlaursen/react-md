@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The `Button` component was completely re-written in this release for full
 Typescript support, forwarding the ref to the `<button>` element, and can be
@@ -31,7 +31,7 @@ A new `UnstyledButton` component was added that can be used to create a
 clickable element with the native accessibility of a `<button>` without the
 default styles.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - added a new `UnstyledButton` component that can be used for simple clickable
   elements without the default browser button styles (think of this as a better
@@ -44,7 +44,7 @@ default styles.
   to the `dist` (and `dist/scss`) folder instead of `src`
 - updated the theme to be configured with css variables and utility mixins
 
-## Breaking changes
+### Breaking changes
 
 - updated the ref to be forwarded on to the `<button>` element
 - removed built-in support for rendering icons
@@ -59,7 +59,7 @@ default styles.
   `FloatingButton` components
 - every SCSS variable, function, and mixin has been renamed or removed
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-button-text-icon-inherit-color: true !default` - boolean if buttons that
   have both text and icons should force the icons to inherit the button color
@@ -99,7 +99,7 @@ default styles.
 - `mixin rmd-button-styled` - generates the base styles for an unstyled button
   if it's useful to not use the `UnstyledButton` component
 
-### Renamed SCSS Variables and Values
+#### Renamed SCSS Variables and Values
 
 - `$md-btn-tb-padding` was renamed to `$rmd-button-text-vertical-padding` and
   changed from a default value of `8px` to `0`
@@ -112,7 +112,7 @@ default styles.
 - `@mixin react-md-button-fixed-positions` was renamed to
   `@mixin rmd-button-floating-positions`
 
-### Removed SCSS Variables and Mixins
+#### Removed SCSS Variables and Mixins
 
 - removed `$md-btn-include-flat`, `$md-btn-include-raised`,
   `$md-btn-include-icon`, and `$md-btn-include-floating` variables have been
@@ -130,7 +130,7 @@ default styles.
   and `@mixin react-md-buttons-media` due to having a static size on all devices
   now
 
-## Rendering non-button components and elements
+### Rendering non-button components and elements
 
 This release "simplified" the button component as now it can only be rendered as
 a `<button>`. There is no longer support to render as a link (when the `href`)
@@ -163,7 +163,7 @@ const LinkStyledButton = ({
 );
 ```
 
-## Theming
+### Theming
 
 The theme has been updated along with the default props so now you can render a
 `Button` without provided any props and it will render without any warnings and
@@ -174,7 +174,7 @@ into:
 - `themeType`
 - `buttonType`
 
-### `theme`
+#### `theme`
 
 Using the new `theme` prop is a replacement the `primary` and `secondary` props,
 but also includes 3 additional themes. The supported values are:
@@ -185,7 +185,7 @@ but also includes 3 additional themes. The supported values are:
 - `warning`
 - `error`
 
-### `themeType`
+#### `themeType`
 
 Using the new `themeType` prop is a replacement for the `raised`, `flat`, and
 `floating` props. The supported values are:
@@ -201,7 +201,7 @@ the button. Finally, a `themeType` of `contained` will apply the theme color to
 the background of the button and update the text color to be legible on that
 background color.
 
-### `buttonType`
+#### `buttonType`
 
 Using the new `buttonType` prop is how you can now render either as a text or
 icon button. The supported values are:
@@ -212,7 +212,7 @@ icon button. The supported values are:
 A small change is that the `floating` spec was entirely removed as it can be
 implemented by providing `buttonType="icon"` and `themeType="contained"`.
 
-## Icon Support
+### Icon Support
 
 Built-in icon rendering support was also removed since it became confusing about
 how to render an icon button vs an text button with an icon. The icons can be

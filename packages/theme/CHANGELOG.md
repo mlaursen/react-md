@@ -14,17 +14,17 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This package is new for the v2 release, but replaces and expands upon the
 existing theming and color system in v1. Starting with v2, the theme has
 built-in support for automatically attempting to fix color contrast ratios.
 
-## New Features / Behavior
+### New Features / Behavior
 
 - completely new theming system that utilizes functions, mixins, and CSS
   variables (applies to other `react-md` packages as well)
@@ -34,12 +34,12 @@ built-in support for automatically attempting to fix color contrast ratios.
   with the `prefers-color-scheme` media query to automatically adjust based on
   user OS settings
 
-## Breaking Changes
+### Breaking Changes
 
 - `color` and `background-color` class names can no longer be generated for you
   with a mixin
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-theme-no-css-variables-fallback: true !default` - Boolean if the main
   `@mixin rmd-theme` should no longer provide a fallback value when a css
@@ -85,7 +85,7 @@ built-in support for automatically attempting to fix color contrast ratios.
 - `@mixin rmd-theme-dark` - Updates all the `@import`-ed `react-md` packages to
   use the dark theme
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed all the color variables to be prefixed with `rmd` instead of `md`
 - renamed `$md-light-theme` to `$md-theme-light`
@@ -135,7 +135,7 @@ built-in support for automatically attempting to fix color contrast ratios.
 - renamed `$md-dark-theme-colors` to `$rmd-theme-dark-text-colors`
 - renamed `@function get-swatch` to `@function rmd-theme-get-swatch`
 
-### Removed SCSS Variables, Functions, and Mixins
+#### Removed SCSS Variables, Functions, and Mixins
 
 - removed `$md-colors-include-class-names`
 - removed `$md-colors-warn-md`

@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 Tabs were completely re-written for the v2 release to help fix the missing
 accessibility issues from v1. The API was changed a lot to hopefully make
@@ -52,7 +52,7 @@ const Example = () => (
 );
 ```
 
-## New Features / Behavior
+### New Features / Behavior
 
 - the new `TabsManager` allows for the `Tabs` and `TabPanel` to be as a child at
   any depth of the `TabsManager` since the tabs configuration and state is now
@@ -63,7 +63,7 @@ const Example = () => (
   widget specifications
 - the tab indicator color can now be configured with SCSS variables
 
-## Breaking Changes
+### Breaking Changes
 
 - removed the built-in (somewhat broken) support for swiping on mobile devices
   to change tabs
@@ -73,7 +73,7 @@ const Example = () => (
 - removed the `TabsContainer` component
 - dropped support for multiline text tabs
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-tab-veritcal-padding: 0.75rem !default` - the amount of padding to apply
   to the top and bottom of the tab's content
@@ -97,7 +97,7 @@ const Example = () => (
 - `@mixin rmd-tabs-theme-update-var` - updates one of the theme values as a css
   variable
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-tab-height` to `$rmd-tab-height` and changed the default value
   from `48px` to `3rem`
@@ -112,7 +112,7 @@ const Example = () => (
 - renamed `$md-tab-padding` to `$rmd-tab-horizontal-padding` and changed the
   default value from `12px` to `1rem`
 
-### Removed SCSS Variables and Mixins
+#### Removed SCSS Variables and Mixins
 
 - removed `$md-tab-include-icons` since the styles are always included
 - removed `$md-tab-include-toolbars` and `$md-tab-include-prominent-toolbars`

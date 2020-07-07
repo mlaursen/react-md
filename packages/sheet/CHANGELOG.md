@@ -14,16 +14,16 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This package is the new version of the `Drawer` component from v1 that is no
 longer really used for layout and app size.
 
-## New Features / Behavior
+### New Features / Behavior
 
 - relies on the `AppSizeListener` from [@react-md/utils] to determine the app
   size
@@ -42,7 +42,7 @@ longer really used for layout and app size.
   viewport
 - added the ability to theme the width and height with CSS variables and mixins
 
-## Breaking Changes
+### Breaking Changes
 
 - no longer supports the mini variants but will be added in a later release
 - no longer has the `getCurrentMedia` and `matchesMedia` static methods
@@ -51,7 +51,7 @@ longer really used for layout and app size.
   `zDepth` prop
 - no longer renders `navItems`
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-sheet-z-index: 5` - The z-index for a sheet that appears inline with
   other content
@@ -90,7 +90,7 @@ longer really used for layout and app size.
 - `@mixin rmd-sheet-theme-update-var` - updates one of the theme values as a css
   variable
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-sheet-z-index` to `$rmd-sheet-raised-z-index` and changed the
 - `$md-sheet-transition-time` was split into two variables
@@ -99,7 +99,7 @@ longer really used for layout and app size.
 - renamed `$md-sheet-mobile-margin` to `$rmd-sheet-touch-margin` and changed the
   default value from `56px` to `3.5rem`
 
-### Removed SCSS Variables and Mixins
+#### Removed SCSS Variables and Mixins
 
 - removed `$md-drawer-mobile-max-width`
 - removed `$md-drawer-mobile-mini-width`, `$md-drawer-desktop-mini-width`,

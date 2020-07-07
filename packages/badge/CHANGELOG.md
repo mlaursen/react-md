@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This release has introduced two additional components: `BadgeContainer` and
 `BadgedButton`. The `BadgedButton` is the closest thing to the old `Badge`
@@ -26,7 +26,7 @@ component but it always renders as a `Button` instead. The `BadgeContainer` is a
 small wrapper component to add basic styles to allow a `Badge` to be positioned
 relative to another component.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - the `Badge` now renders as a `<span>` instead of a `<div>`
 - the `ref` is now correctly forwarded to the DOM element
@@ -38,7 +38,7 @@ relative to another component.
   API and CSS variables
 - the badge's positioning automatically updates for right-to-left languages
 
-## Breaking Changes
+### Breaking Changes
 
 - the `max` prop no longer exists and the `Badge` will no longer automatically
   change a number greater than a specific threshold into `${max}+`
@@ -52,14 +52,14 @@ relative to another component.
   theme now
 - the badge will no longer be offset from the parent element by default
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-badge-default-background-color: rgba($rmd-black-base, 0.2) !default` -
   the background-color to use for the `"default"` theme
 - `$rmd-badge-default-color: rmd-theme-tone($rmd-badge-default-background-color) == light, $rmd-black-base, $rmd-white-base) !default` -
   the text color to use for the `"default"` theme
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-badge-top` to `$rmd-badge-offset-top` and changed the default
   value from `-8px` to `0`
@@ -79,7 +79,7 @@ relative to another component.
 - `@mixin rmd-badge-theme-update-var` - updates one of the theme values as a css
   variable
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-badge-include-circular` since badges are always circular going
   forward

@@ -7,11 +7,6 @@ All notable changes to this project will be documented in this file. See
 
 **Note:** Version bump only for package react-md
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [2.0.2](https://github.com/mlaursen/react-md/compare/v2.0.1...v2.0.2) (2020-06-30)
 
 ### Bug Fixes
@@ -25,13 +20,13 @@ All notable changes to this project will be documented in this file. See
 - Added unpkg url for base react-md package
   ([d0efc59](https://github.com/mlaursen/react-md/commit/d0efc59aed0b0ccaa9acadb4e8cf8037bad1f3b3))
 
-# v2.0.1
+## v2.0.1
 
 This release just updated the UMD bundle to be separated into three parts to
 keep the library as small as possible. This really should not affect anyone even
 though it is a "breaking" change.
 
-#### Base react-md library (no material icons)
+##### Base react-md library (no material icons)
 
 Development:
 
@@ -41,7 +36,7 @@ Production:
 
 - https://unpkg.com/react-md@2.0.1/dist/umd/react-md.production.min.js
 
-#### Base react-md library with the Font Icon components for material icons
+##### Base react-md library with the Font Icon components for material icons
 
 Development:
 
@@ -51,7 +46,7 @@ Production:
 
 - https://unpkg.com/react-md@2.0.1/dist/umd/react-md-with-font-icons.production.min.js
 
-#### Base react-md library with the SVG Icon components for material icons
+##### Base react-md library with the SVG Icon components for material icons
 
 Development:
 
@@ -61,7 +56,7 @@ Production:
 
 - https://unpkg.com/react-md@2.0.1/dist/umd/react-md-with-svg-icons.production.min.js
 
-## Fixed and updated GZip Size
+### Fixed and updated GZip Size
 
 ```sh
 v1 size
@@ -84,7 +79,7 @@ The min and max gzipped CSS bundle sizes are:
 
 ```
 
-# v2.0.0
+## v2.0.0
 
 The v2 release is a complete re-write of react-md to address the majority of
 problems encountered while using v1. Unfortunately, this took a **lot** longer
@@ -93,7 +88,7 @@ well as the new [React hooks API]. Even though there are some missing components
 from v1, I think the new functionality outweighs it and the components are
 scoped for a later release.
 
-#### Missing Components and Functionality from v1 <!-- no-margin-bottom -->
+##### Missing Components and Functionality from v1 <!-- no-margin-bottom -->
 
 Before starting the migration to v2, I highly recommend reviewing the [Working
 with v1] guide and reviewing the following missing functionality:
@@ -136,7 +131,7 @@ with v1] guide and reviewing the following missing functionality:
 - removed the `Version` component since it was probably only ever used by the
   documentation site.
 
-## What's new in v2?
+### What's new in v2?
 
 This release focused on updating `react-md` to be as customizable as possible by
 exporting a lot more low-level components, hooks, and utils that were used
@@ -149,7 +144,7 @@ hooks should be able to help for these use cases but the down side is that
 you'll still need to create a custom implementation for common patterns
 throughout your app because some patterns seem repetitive.
 
-### Rewrite to Typescript
+#### Rewrite to Typescript
 
 > Note: Upgrading to v2 of `react-md` does **not** require you to also use
 > Typescript even though it is highly recommended to do so. You can still use
@@ -175,7 +170,7 @@ That being said, there are a few type definitions that could still be improved
 in v2 especially around [generics and Records]({{GITHUB_URL}}/issues/859) so any
 suggestions or PRs are welcomed.
 
-### New Behavior for Determining the Current Application Size
+#### New Behavior for Determining the Current Application Size
 
 In v1, the `Drawer` and `NavigationDrawer` components were used to be able to
 determine the current app size using the static methods: `getCurrentMedia` and
@@ -195,7 +190,7 @@ Starting with v2 these issues should be resolved due to React implementing the
 new [Context API] along with the new [AppSizeListener] component and media query
 SCSS mixins.
 
-#### AppSizeListener Component and useAppSize Hook <!-- no-margin-bottom -->
+##### AppSizeListener Component and useAppSize Hook <!-- no-margin-bottom -->
 
 The new `AppSizeListener` component should be mounted **once** near the root of
 your app which will initialize multiple resize and media query event listeners
@@ -204,7 +199,7 @@ to determine what size your app is currently being rendered while the
 
 Check out the [AppSizeListener] example for more details and a live demo.
 
-#### Media Query Mixins and Components <!-- no-margin-bottom -->
+##### Media Query Mixins and Components <!-- no-margin-bottom -->
 
 In addition to the new component and hook, `react-md` now provides a few utility
 SCSS mixins for applying styles at different media query sizes:
@@ -219,7 +214,7 @@ There are also a few media query components which can be used to conditionally
 render components based on the current application site. Check out the [Media
 Query Components example] for some more information.
 
-### New Theme API
+#### New Theme API
 
 Since this release dropped IE 11 support, all the dynamic theming is done
 through [Custom CSS Properties (CSS Variables)] with the new theme SCSS
@@ -230,7 +225,7 @@ and padding. The new theme API allows you to easily modify existing themes
 without all the boilerplate and "hacks" from the v1 release. Here is a quick
 example:
 
-###### v1 theme updates <!-- no-margin -->
+####### v1 theme updates <!-- no-margin -->
 
 ```scss
 .custom-theme--v1 {
@@ -259,7 +254,7 @@ example:
 }
 ```
 
-###### v2 theme updates <!-- no-margin -->
+####### v2 theme updates <!-- no-margin -->
 
 ```scss
 // in v2
@@ -298,7 +293,7 @@ more information.
 > [material components web](https://github.com/material-components/material-components-web)
 > library.
 
-### New Utility SCSS Functions and Mixins
+#### New Utility SCSS Functions and Mixins
 
 This release added a bunch of new utility functions and mixins to add additional
 styling throughout your app for common use cases such as:
@@ -345,7 +340,7 @@ mixins:
 - [@react-md/typography](/packages/typography/sassdoc#typography-mixins)
 - [@react-md/utils](/packages/utils/sassdoc#utils-mixins)
 
-### Automatic Color Fixes for Accessible Contrast Ratios
+#### Automatic Color Fixes for Accessible Contrast Ratios
 
 The default styles from `react-md` will now **attempt** to automatically fix
 contrast ratio issues between foreground and background colors using the new
@@ -354,7 +349,7 @@ but it is still recommended to verify colors meet the recommended contrast ratio
 for accessibility. You can check out the [Theme Builder] for a few examples of
 contrast ratio issues by playing with the theme colors.
 
-### SCSS Variables and Default Values in JavaScript
+#### SCSS Variables and Default Values in JavaScript
 
 Every SCSS variable is now automatically compiled with its default value and
 written to a `dist/scssVariables.js` file for each package as a record of
@@ -378,7 +373,7 @@ const colorKeys = Object.keys(scssVariables).filter(
 
 > Note: This will be strictly typed for Typescript users as well.
 
-### Improved Typography and CSS Reset
+#### Improved Typography and CSS Reset
 
 To be honest, I had no idea what I was doing with typography in v1 <sup>_(I
 still don't really understand typography)_</sup> and defaulted to modifying the
@@ -399,7 +394,7 @@ overridden or merged with new styles using the
 The new #typography package also exports two new components for general text
 styling and reusable typography mixins.
 
-### Improved User Interaction States
+#### Improved User Interaction States
 
 A user interaction state is the feedback presented to the user when one of the
 following actions happens:
@@ -408,7 +403,7 @@ following actions happens:
 - click a clickable element with the mouse
 - focus an element with the keyboard
 
-###### v1 implementation<!-- no-margin -->
+####### v1 implementation<!-- no-margin -->
 
 ![v1 implementation](https://i.imgur.com/MTxYr1e.mp4)
 
@@ -424,7 +419,7 @@ state. The rewrite for v2 has solved these issues by introducing interaction
 states, providing mixins to dynamically apply styles based on an interaction
 state, and providing a new keyboard focus state.
 
-###### Starting with v2<!-- no-margin -->
+####### Starting with v2<!-- no-margin -->
 
 ![v2 implementation](https://i.imgur.com/wsvliUy.mp4)
 
@@ -450,7 +445,7 @@ non-react-md component as well with the following mixins:
 - [rmd-states-theme]
 - [rmd-states-theme-update-var]
 
-### Improved Accessibility and Keyboard Movement
+#### Improved Accessibility and Keyboard Movement
 
 The v1 release of `react-md` implemented _some_ accessibility features and
 keyboard movement but the majority of the behavior was incorrect and caused more
@@ -474,7 +469,7 @@ components. It is highly recommended to check out the [AutoComplete],
 noticeable and a few of the demos showcase this functionality.
 
 Finally, the accessibility helpers have been created as reusable hooks in the
-#utils package so that non react-md components can implement this functionality
+##utils package so that non react-md components can implement this functionality
 as well.
 
 - [useFocusOnMount] - Focuses an element when the component mounts which
@@ -495,7 +490,7 @@ as well.
   `useFocusMovement` and `useActiveDescendantMovement` to provide keyboard
   movement and optional search functionality.
 
-### Right to left Language Support
+#### Right to left Language Support
 
 `react-md` will now automatically update the provided styles when a parent
 element (normally the root `<html>`) for `dir="rtl"` to support right to left
@@ -531,7 +526,7 @@ $rmd-utils-enable-rtl: false;
 @import "~react-md/dist/react-md";
 ```
 
-### Convenience Configuration and Context Provider Components
+#### Convenience Configuration and Context Provider Components
 
 v2 of react-md heavily uses the [Context API] to implement different features
 and configuration for things such as:
@@ -545,21 +540,21 @@ Check out the #layout package for more information since it provides a
 `Configuration` component that combines all of these context providers into a
 single component.
 
-### Around 50 new Components and 40 hooks
+#### Around 50 new Components and 40 hooks
 
 In order to allow more customization and reconfigurability within react-md, more
 low level components are now exported as well as moving some functionality
 within hooks.
 
-### All Material Icons Available as Components
+#### All Material Icons Available as Components
 
 Since it can be difficult to remember all the icon names or even mistyping a
 font icon name, `react-md@v2` now provides every material icon as a `FontIcon`
 and `SVGIcon` implementation. At the time of writing these release notes, there
 are **932 icons available** which means **1864 icon components**. Check out the
-#material-icons package for more info and previewing every icon.
+##material-icons package for more info and previewing every icon.
 
-### Scoped Packages
+#### Scoped Packages
 
 Since v2 of `react-md` ended up being a complete re-write, I wanted to create a
 way to be able to slowly update existing apps from v1 to v2 without forcing an
@@ -571,7 +566,7 @@ the scoped packages.
 
 Please see the [scoped packages] documentation for a more in-depth write up.
 
-### New Documentation Site
+#### New Documentation Site
 
 The documentation site has been re-written to use [NextJS](https://nextjs.org/)
 instead of the extremely outdated custom implementation with different webpack
@@ -586,7 +581,7 @@ improvements that will be outlined below.
 > than the grid components. These can be found in the #utils package as
 > `GridList` and `Grid`.
 
-#### Improved Documentation <!-- no-margin-bottom -->
+##### Improved Documentation <!-- no-margin-bottom -->
 
 After reviewing feedback about the v1 documentation site, the main problem areas
 were:
@@ -637,7 +632,7 @@ along with some background information about what the demo is trying to
 accomplish. **Documentation is difficult** so please provide feedback for what
 has been helpful and what has not.
 
-### GZip Size Comparison
+#### GZip Size Comparison
 
 The v2 release has decreased the UMD bundle size by `12.35%` while the CSS
 bundles have increased by `18.56% - 18.75%`:
@@ -666,7 +661,7 @@ In addition, v2 _should_ have finally solved the code splitting issue that
 existing in v1 and produce an even smaller bundle if every feature within
 `react-md` is not used.
 
-## In-depth Changelogs
+### In-depth Changelogs
 
 This should be the main highlights for the v2 release. If you are interested in
 an in-depth package-by-package update and changelog, you can view one of the

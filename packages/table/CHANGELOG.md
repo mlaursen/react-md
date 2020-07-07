@@ -7,11 +7,6 @@ All notable changes to this project will be documented in this file. See
 
 **Note:** Version bump only for package @react-md/table
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [2.0.2](https://github.com/mlaursen/react-md/compare/v2.0.1...v2.0.2) (2020-06-30)
 
 ### Bug Fixes
@@ -23,11 +18,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This release focused on updating the tables to be more customizable, easier to
 style, and better for accessibility with sticky cells. To create a table within
@@ -43,7 +38,7 @@ v2, you'll have access to the following components:
 - `Caption`
 - `TableCheckbox`
 
-## New Features / Behavior
+### New Features / Behavior
 
 - the table components no longer use the `React.cloneElement` API so "gotchas"
   with custom wrappers should no longer happen
@@ -64,7 +59,7 @@ v2, you'll have access to the following components:
 - fixed the accessibility for the sortable header cells so that they are
   keyboard focusable as well as providing the correct `aria-sort` and `scope`
 
-## Breaking Changes
+### Breaking Changes
 
 - no longer supports automatically rendering checkboxes in each row since it
   never really worked as expected anyways
@@ -76,7 +71,7 @@ v2, you'll have access to the following components:
 - the `TableCell` no longer supports tooltips by default but can be quickly
   added back with the `Tooltipped` component from [@react-md/tooltip]
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-table-cell-vertical-padding: 0.375rem !default` - the amount of padding
   to apply to the top or bottom of each cell when the vertical alignment is set
@@ -104,7 +99,7 @@ v2, you'll have access to the following components:
 - `@mixin rmd-table-theme-update-var` - updates one of the theme values as a css
   variable
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-data-table-padding` to `$rmd-table-cell-horizontal-padding` and
   changed the default value from `24px` to `1rem`
@@ -121,7 +116,7 @@ v2, you'll have access to the following components:
   `$rmd-table-row-selected-color` that now defaults to
   `rmd-states-theme-var(selected-color)`
 
-### Removed SCSS Variables, Placeholders, and Mixins
+#### Removed SCSS Variables, Placeholders, and Mixins
 
 - removed `$md-data-table-include-plain` and
   `$md-data-table-plain-column-height` since there is no concept of a "data

@@ -7,11 +7,6 @@ All notable changes to this project will be documented in this file. See
 
 **Note:** Version bump only for package @react-md/autocomplete
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [2.0.2](https://github.com/mlaursen/react-md/compare/v2.0.1...v2.0.2) (2020-06-30)
 
 ### Bug Fixes
@@ -23,17 +18,17 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The v2 release completely re-write the `Autocomplete` component and renamed it
 to `AutoComplete`. There is a new API for dealing with data as well as a lot of
 accessibility fixes.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - correctly forwards the ref to the `<input />` element
 - inherits all the new text field styles
@@ -54,7 +49,7 @@ accessibility fixes.
 - added `getResultId`, `getResultLabel` and `getResultValue` to customizing the
   displayed matches a bit nicer (this is also have the `data` is filtered)
 
-## Breaking Changes
+### Breaking Changes
 
 Everything is honestly a breaking change, but here's a few that are important to
 mention:
@@ -72,7 +67,7 @@ mention:
 - renamed the `deleteKeys` to `omitKeys`
 - all the positioning options were renamed
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-inline-autocomplete`
 - removed `$md-autocomplete-suggestion-top`

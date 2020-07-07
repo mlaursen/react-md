@@ -14,17 +14,17 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The card package was re-written from the ground up for the v2 release which
 should allow for additional customization and styling behavior. Almost
 everything is a breaking change.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - all the card components now correctly forward the `ref` to the DOM element
 - the card's title component has been separated into three components for
@@ -36,7 +36,7 @@ everything is a breaking change.
 - a new theming API to update all the colors for a card through SCSS mixins
 - cards now have a default border radius
 
-## Breaking Changes
+### Breaking Changes
 
 - The `Card` component no longer handles anything with expanding child items and
   must now be done manually
@@ -46,7 +46,7 @@ everything is a breaking change.
 - The `CardText` component was removed since the new `CardContent` component is
   recommended instead
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-card-background-color: rmd-theme-var(surface) !default` - The background
   colors to use for cards
@@ -87,7 +87,7 @@ everything is a breaking change.
 - `@mixin rmd-card-theme-update-var` - updates one of the theme values as a css
   variable
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-card-include-text` since it is no longer required
 - removed `$md-card-include-title` since it is no longer required

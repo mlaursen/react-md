@@ -600,6 +600,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#203-2020-07-07",
+      title: "2.0.3 (2020-07-07)",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
@@ -1470,11 +1474,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#203-2020-07-07",
+      title: "2.0.3 (2020-07-07)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -2528,6 +2540,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#203-2020-07-07",
+      title: "2.0.3 (2020-07-07)",
     },
     {
       anchor: "#202-2020-06-30",

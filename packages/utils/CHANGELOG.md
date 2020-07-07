@@ -14,16 +14,16 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This package is pretty new for `react-md`, but might be seen as a replacement
 for the old grid, helpers, and utils.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - automatically update styles for right to left languages (opt-out)
 - static sizing across all screen sizes with opt-in support for an auto-dense
@@ -46,7 +46,7 @@ for the old grid, helpers, and utils.
 - "feature detection" utility mixin to only include styles for installed scoped
   `react-md` packages with `react-md-utils`
 
-## Breaking Changes
+### Breaking Changes
 
 - removed `react-md-helpers-everything`
 - removed `.md-full-width`, `.md-inline-block`, and `.md-block-centered` helper
@@ -58,7 +58,7 @@ for the old grid, helpers, and utils.
 - renamed/removed all remaining scss variables, functions, mixins, and
   placeholders
 
-### New Components, Hooks, and Utils
+#### New Components, Hooks, and Utils
 
 This package contains many useful utilities for internal use, but also exports
 some components and hooks that might be useful externally.
@@ -93,7 +93,7 @@ some components and hooks that might be useful externally.
 - `useCloseOnOutsideClick` hook if a callback should be fired once an element
   outside of a container element has been clicked
 
-#### Honorable Mentions
+##### Honorable Mentions
 
 - `isContrastCompliant` - utility function to check if two hex colors meet a
   minimal contrast ratio compliance for accessibility
@@ -109,7 +109,7 @@ some components and hooks that might be useful externally.
   within the viewport. However, you most likely are looking for the
   `useFixedPositioning` hook in [@react-md/transition]
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-utils-phone-max-width: 47.9375em !default` - the max width to still be
   considered a phone while in portrait or landscape mode
@@ -175,7 +175,7 @@ some components and hooks that might be useful externally.
 - `@mixin rmd-utils-mouse-only` - a utility mixin to apply styles only while the
   app is being interacted with a mouse
 
-### Renamed SCSS Variables and Values
+#### Renamed SCSS Variables and Values
 
 - renamed `$md-tablet-min-width` to `$rmd-utils-tablet-min-width` and changed
   the default value from `768px` to `48em`
@@ -185,7 +185,7 @@ some components and hooks that might be useful externally.
 - renamed `$md-grid-tablet-columns` to `$rmd-grid-tablet-columns`
 - renamed `$md-grid-desktop-columns` to `$rmd-grid-desktop-columns`
 
-### Removed SCSS Variables, Functions, and Mixins
+#### Removed SCSS Variables, Functions, and Mixins
 
 - removed `$md-mobile-min-width` since the media queries will use `max-width`
   for phones instead

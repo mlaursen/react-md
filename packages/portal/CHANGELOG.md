@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This was a re-write of the `Portal` component that created a "more usable" API
 as well as removing temporary workarounds before the `createPortal` API was
@@ -29,7 +29,7 @@ conditionally render children wrapped in the `Portal` component **only** when
 portal props have been enabled. This will most likely be used internally between
 packages though, but it is still exported and documented for external use.
 
-## Breaking Changes
+### Breaking Changes
 
 - No longer supports `react@15` and only uses the new `createPortal` API from
   `react@16+`. This major change removed all need for the following props since
@@ -40,7 +40,7 @@ packages though, but it is still exported and documented for external use.
   - `lastChild`
   - `renderNode` (see API changes below)
 
-## New API and Props
+### New API and Props
 
 With the switch to using the `createPortal` API from React, you can create
 portals by using the `into` or `intoId` props instead of using the `renderNode`
@@ -56,7 +56,7 @@ each time to create temporary nodes in your app as needed. This also means that
 if you are removing elements from your page, you need to ensure that there is a
 valid DOM element to be rendered into at the time the portal is visible.
 
-### Using the `intoId` prop
+#### Using the `intoId` prop
 
 The `intoId` prop is used when you want to render into a specific element on the
 page by id.
@@ -72,7 +72,7 @@ const App = () => {
 };
 ```
 
-### Using the `into` prop
+#### Using the `into` prop
 
 The `into` prop can either be a `string`, `function`, an `HTMLElement`, or
 `null`. When the value is `null`, the portal will not be able to render even

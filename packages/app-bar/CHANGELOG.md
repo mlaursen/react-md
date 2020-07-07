@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This package is a replacement of the old `Toolbar` component in `v1` that has
 now been separated into multiple components for additional customization.
@@ -30,7 +30,7 @@ Now exports:
 - `AppBarNav`
 - `AppBarAction`
 
-## New Behavior and Features
+### New Behavior and Features
 
 - now exports multiple components for rendering an `AppBar`
 - now supports right-to-left languages out of the box to update margin and
@@ -45,7 +45,7 @@ Now exports:
 - automatically updates the theme colors to have accessible text
 - now supports multiple themes: `"primary"`, `"secondary"`, and `"default"`
 
-## Breaking Changes
+### Breaking Changes
 
 - the sizing behavior was updated to use a `height` prop instead of multiple
   boolean flags
@@ -54,7 +54,7 @@ Now exports:
   `children` of the `AppBar`
 - no longer supports the `titleMenu` props since it is no longer required
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-app-bar-fixed-elevation: 2 !default` - the material design elevation
   (box-shadow) to apply when an `AppBar` is fixed to the top or bottom of the
@@ -103,14 +103,14 @@ Now exports:
   mixin that can be used to apply one of the app bar's height types as a css
   property
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-toolbar-z-index` to `$rmd-app-bar-z-index` and changed the
   default value from `15` to `10`
 - renamed `$md-toolbar-title-keyline` to `$rmd-app-bar-title-keyline` and
   changed the default value from `null` to `4.5rem`
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-toolbar-include-themed` since it is no longer required
 - removed `$md-toolbar-include-prominent` since it is no longer required

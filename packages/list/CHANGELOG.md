@@ -14,17 +14,17 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This package has a lot of changes from the v1 API that should hopefully make it
 easier to use. There are also new components to help with styling and
 positioning of addons that can be used without a `ListItem`/`List` component.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - all components now correctly forward the `ref` to the DOM element
 - introduced a new `dense` spec instead of using `mobile`/`desktop` which is
@@ -60,7 +60,7 @@ positioning of addons that can be used without a `ListItem`/`List` component.
   configurable with CSS variables along with the new theming API available
   through mixins
 
-## Breaking Changes
+### Breaking Changes
 
 - removed the `ListItemControl` component and built-in functionality for
   rendering checkbox, radio, or switch elements within a `ListItem`
@@ -72,7 +72,7 @@ positioning of addons that can be used without a `ListItem`/`List` component.
   `@react-md/tree` to handle those use-cases
 - basically everything about the `ListItem` component is a breaking change
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-list-dense-horizontal-padding: 0 !default` - a new variable if you want
   to add left/right padding to the `List` component
@@ -117,7 +117,7 @@ positioning of addons that can be used without a `ListItem`/`List` component.
 - `@mixin rmd-list-item-dense-theme` - applies styles to implement a dense theme
   for the `ListItem` component
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-list-mobile-padding` to `$rmd-list-vertical-padding` and changed
   the default value from `8px` to `0.5rem`
@@ -150,7 +150,7 @@ positioning of addons that can be used without a `ListItem`/`List` component.
 - renamed `$md-list-left-padding` to `$rmd-list-item-text-keyline` and changed
   the default value from `72px` to `4.5rem`
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-list-inline-padding`
 - removed `$md-list-include-icon`, `$md-list-include-avatar`,

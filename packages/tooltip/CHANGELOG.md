@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 Tooltips were completely re-written for the v2 release to help fix the missing
 accessibility issues from v1. One of the most "exciting" things that was added
@@ -30,7 +30,7 @@ Starting from v2, you'll probably just want to use the `Tooltipped` component as
 it'll handle all the functionality of a tooltip for you and ensuring that
 correct props are added to the element being tooltipped.
 
-## New Features / Behavior
+### New Features / Behavior
 
 - tooltips now automatically position themselves within the viewport.
 - tooltips no longer require being within a `position: relative` container
@@ -50,12 +50,12 @@ correct props are added to the element being tooltipped.
 - the text color can now be configured for tooltips
 - the majority of the tooltip's theme can be changed with CSS variables
 
-## Breaking Changes
+### Breaking Changes
 
 - the `injectTooltip` higher order component was removed
 - the `TooltipContainer` component was removed
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-toolip-line-height: 1.5rem !default` - The line height to use for the
   tooltip text.
@@ -88,7 +88,7 @@ correct props are added to the element being tooltipped.
   CSS variables to use the dense theme (automatically handled from
   [@react-md/utils] if the `$rmd-utils-auto-dense` variable has been enabled).
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - `$md-tooltip-mobile-font-size` was renamed to `$rmd-tooltip-font-size` and
   changed the default value from `14px` to `1rem`
@@ -110,7 +110,7 @@ correct props are added to the element being tooltipped.
 - `$md-tooltip-desktop-top-margin` was renamed to `$md-tooltip-dense-spacing`
   and changed the default value from `14px` to `0.875rem`
 
-### Removed SCSS Variables and Mixins
+#### Removed SCSS Variables and Mixins
 
 - `$md-tooltip-mobile-tb-padding` was removed since there is new line wrap
   functionality and variables

@@ -14,23 +14,23 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This package is kind of new for the v2 release since the `Overlay` was never
 actually a public component but the SCSS variables were public.
 
-## New Features / Behavior
+### New Features / Behavior
 
 - the `Overlay` can be conditionally portalled
 - the `Overlay` can be rendered as an invisible element to capture click
   behavior if desired
 - the overlay opacity and background-color can are now themeable
 
-### New SCSS Functions and Mixins
+#### New SCSS Functions and Mixins
 
 - `@function rmd-overlay-theme` - gets one of the theme values and validates
   that the theme name is valid
@@ -41,7 +41,7 @@ actually a public component but the SCSS variables were public.
 - `@mixin rmd-overlay-theme-update-var` - updates one of the theme values as a
   css variable
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-overlay-z-index` to `$rmd-overlay-z-index`
 - renamed `$md-overay-transition-time` to `$rmd-overlay-transition-duration`

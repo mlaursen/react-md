@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The typography package is kind of new for the v2 release since there weren't any
 components beforehand for typography. This package exports three components:
@@ -48,7 +48,7 @@ variables that will be merged with the recommended values:
 - `$rmd-typography-caption`
 - `$rmd-typography-overline`
 
-## New Behavior and Features
+### New Behavior and Features
 
 - typography will never modify the default tags by default
 - all typography styles are configurable in a SCSS Map
@@ -60,13 +60,13 @@ variables that will be merged with the recommended values:
 - added a simpler "css reset" for the `html` and `body` that is in the
   [@react-md/utils] package now
 
-## Breaking Changes
+### Breaking Changes
 
 - removed the `react-md-typography-utilities` mixin
 - removed all the SCSS placeholders
 - every SCSS variable, function, and mixin has been renamed or removed
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-typography-text-container-breakpoint: 37.5rem !default` - breakpoint to
   use for switching the typography max line-length from mobile to desktop
@@ -99,7 +99,7 @@ variables that will be merged with the recommended values:
 - `@mixin rmd-text-overflow-ellispis` - updates a class name or selector so that
   long text will be overflown with an ellipsis
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - `$md-font-family` was renamed to `$rmd-typography-font-family` but keeps the
   same default value of `Roboto, sans-serif`
@@ -117,7 +117,7 @@ variables that will be merged with the recommended values:
 - `host-material-icons` was renamed to `rmd-icon-host-google-icons` but is now
   part of the [@react-md/icon] package
 
-### Removed SCSS Variables and Mixins
+#### Removed SCSS Variables and Mixins
 
 - removed `$md-typography-extended` since global namespace is no longer touched
 - removed `$md-typography-include-text-container` since it is always created now

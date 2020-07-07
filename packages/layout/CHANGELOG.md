@@ -14,16 +14,16 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This package is kind of a replacement for the `NavigationDrawer` component that
 also now has a top-level `Configuration` provider for `react-md`.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - every part of the layout is now completely configurable by exporting multiple
   layout components along with a `<name>Props` configuration object
@@ -48,7 +48,7 @@ also now has a top-level `Configuration` provider for `react-md`.
   element. This is super nice since it allows you to click somewhere within the
   `<main>` element and press `tab` to focus the closest focusable element
 
-## Breaking Changes
+### Breaking Changes
 
 Everything is a really a breaking change since the components were re-written
 and the API has changed, but here are a few notable points:
@@ -62,7 +62,7 @@ and the API has changed, but here are a few notable points:
 - removed the static `getCurrentMedia` function from the component
 - removed the `DrawerType` and `DrawerTypes` static enums from the component
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-layout-enter-duration: $rmd-sheet-enter-duration !default` - the
   duration when the toggleable navigation panel comes into view
@@ -85,7 +85,7 @@ and the API has changed, but here are a few notable points:
 - `@mixin rmd-layout-theme-update-var` - updates one of the theme values as a
   css variable
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-navigation-drawer-enforce-height` since it is no longer used
 - removed `$md-navigation-drawer-use-view-height` since it lead to a lot of

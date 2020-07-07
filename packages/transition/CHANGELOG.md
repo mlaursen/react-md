@@ -14,17 +14,17 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 Every transition was re-written in this release so it is a pretty big breaking
 change. The main differences are upgrading to transition API as well as
 shortening most of the transitions throughout `react-md`.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - The `Collapse` component will have a static transition time instead of being
   based on the size of the content
@@ -41,7 +41,7 @@ shortening most of the transitions throughout `react-md`.
   element to another element within the page. (Similar to the `Layover`
   component)
 
-## Breaking Changes
+### Breaking Changes
 
 - The `Collapse` component no longer uses [react-motion] and spring
   configuration.
@@ -55,7 +55,7 @@ shortening most of the transitions throughout `react-md`.
   - `.md-transition--acceleration`
   - `.md-transition--deceleration`
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-transition-enter-time: 0.2s !default` - The duration for an enter
   transition used for most transitions
@@ -81,7 +81,7 @@ shortening most of the transitions throughout `react-md`.
 - `@mixin rmd-transition-shadow-transition` - adds a performant version of a
   `box-shadow` transition using a pseudo element and opacity changes.
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - `$md-transition-sharp` was renamed to `$rmd-transition-sharp`
 - `$md-transition-standard` was renamed to `$rmd-transition-standard`

@@ -14,18 +14,18 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This package is a new implementation of the `Snackbar` component from `v1`.
 There should now be some accessibility fixes and hopefully a better way to queue
 messages as well as cancel them but I also feel like I might need to re-work
 this again to work without the React context API.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - requires mounting a `MessageQueue` context provider near the root of your app
 - messages are now queued by using the new `useAddMessage` hook
@@ -54,7 +54,7 @@ this again to work without the React context API.
 - added a `useQueue` hook if you need to see what messages are currently queued
   and their order
 
-## Breaking Changes
+### Breaking Changes
 
 - no longer attempts to update its position if there is a floating action button
   in the app since floating action buttons aren't implemented by default and it
@@ -63,7 +63,7 @@ this again to work without the React context API.
 - the `SnackbarContainer` no longer exists and was replaced by the new
   `MessageQueue`
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-toast-enter-duration: $rmd-transition-standard-time !default` - the
   transition time for the toast's enter transition
@@ -100,7 +100,7 @@ this again to work without the React context API.
 - `@mixin rmd-alert-theme-update-var` - updates one of the theme values as a css
   variable
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-snackbar-z-index` to `$rmd-snackbar-z-index` and change the
   default value from `20` to `100`
@@ -114,7 +114,7 @@ this again to work without the React context API.
 - renamed `$md-snackbar-horizontal-padding` to `$rmd-toast-horizontal-padding`
   and changed the default value from `24px` to `1rem`
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-snackbar-transition-time` since it was replaced by
   `$rmd-toast-enter-duration` and `$rmd-toast-exit-duration`

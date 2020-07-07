@@ -14,11 +14,6 @@ All notable changes to this project will be documented in this file. See
 - **form:** TextField and Select disabled behavior
   ([e8f2c57](https://github.com/mlaursen/react-md/commit/e8f2c579a1ee502674bfddbcc10713d4b50d7cc4))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [2.0.2](https://github.com/mlaursen/react-md/compare/v2.0.1...v2.0.2) (2020-06-30)
 
 ### Bug Fixes
@@ -30,17 +25,17 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 Starting with v2 of react-md, all checkbox and radio inputs will now correctly
 work like native `<input type="checkbox" />` and `<input type="radio" />`
 without any additional wrappers.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - all components now correctly forward the `ref` to the DOM element
 - implemented the new themes for form controls so that there is now a
@@ -93,7 +88,7 @@ without any additional wrappers.
 - updated the `Select` component to use fixed positioning instead of relative
   positioning by default so that the menu always appears within the viewport
 
-## Breaking Changes
+### Breaking Changes
 
 - there is no longer a concept of "selection control" and instead has been
   changed to a "toggle" concept
@@ -101,7 +96,7 @@ without any additional wrappers.
   and is no longer required
 - the `FileUpload` component was removed since it didn't seem extremely helpful
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-label-padding: 0.25rem !default` - the amount of horizontal padding to
   use for a floating label
@@ -134,7 +129,7 @@ without any additional wrappers.
 - `$rmd-switch-progress-padding: 0.125rem !default` - the amount of padding to
   apply to the `AsyncSwitch`'s progress bar
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-text-field-error-color` to `$rmd-form-error-color`
 - renamed `$md-switch-track-height` to `$rmd-switch-track-height` and changed
@@ -148,7 +143,7 @@ without any additional wrappers.
 - renamed `$md-switch-thumb-offset` to `$rmd-switch-ball-offset` and changed the
   default value from `4px` to `0.25rem`
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-selection-controls-include-group` since it is no longer required
 - removed `$md-selection-controls-include-switches` since they are always

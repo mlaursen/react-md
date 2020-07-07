@@ -14,16 +14,16 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The chip package was completely re-written with Typescript and additional
 theming support for the v2 release.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - supports a new `"outline"` theme along with the old `"solid"` theme
 - supports rendering as a checkbox/radio component with a new `selected` state
@@ -34,13 +34,13 @@ theming support for the v2 release.
   with the new theme functions and mixins
 - renders as a [toggle button](https://www.w3.org/TR/wai-aria-practices/#button)
 
-## Breaking Changes
+### Breaking Changes
 
 - everything related to styling and props for the chip
 - no longer supports a dense spec out of the box since they are already pretty
   dense
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-chip-disable-focus-background-color: $rmd-states-use-focus-shadow !default` -
   boolean if the chip should disable the background-color change when it gains
@@ -103,7 +103,7 @@ theming support for the v2 release.
 - `@mixin rmd-chip-theme-update-var` - updates one of the theme values as a css
   variable
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-chip-height` to `$rmd-chip-height` and changed the default value
   from `32px` to `2rem`
@@ -118,7 +118,7 @@ theming support for the v2 release.
 - renamed `$md-chip-dark-theme-bg-color` to `$rmd-chip-dark-background-color`
   and changed the default value from `$md-grey-600` to `$rmd-grey-900`
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-chip-include-remove` since it's no longer required
 - removed `$md-chip-include-avatar` since it's no longer required

@@ -14,11 +14,11 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 This package is kind of new for the v2 release but the closest thing within v1
 is the `injectInk` and "ink" effects. The ink effect has been renamed to a
@@ -34,7 +34,7 @@ The v2 release has introduced three interaction modes to help prevent this sort
 of thing where styles can be added only for `touch`, `mouse`, or `keyboard`.
 Super exciting stuff; I know.
 
-## New Features / Behavior
+### New Features / Behavior
 
 - the material design ripple effect can now be disabled with React context
 - added a new optional "pressed" state that can be used instead of ripples for a
@@ -45,13 +45,13 @@ Super exciting stuff; I know.
   the visibility of the current focused item (can be opted-out, but not
   recommended for accessibility)
 
-## Breaking Changes
+### Breaking Changes
 
 - `injectInk` higher order component no longer exists with no alternative
 - the material design ripple has no "pulsing" effect anymore (this was defaulted
   to `false` in v1 anyways)
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-states-use-ripple: true !default` - boolean if the ripple effect should
   be used when a user clicks or touches an interactable element such as buttons
@@ -109,14 +109,14 @@ Super exciting stuff; I know.
 - `@mixin rmd-states-surface` - the new main mixin that will apply all the
   interaction states to a new component
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-ink-enter-transition-time` to
   `$rmd-states-ripple-transform-duration`
 - renamed `$md-ink-leave-transition-time` to
   `$rmd-states-ripple-opacity-duration`
 
-### Removed SCSS Variables and Mixins
+#### Removed SCSS Variables and Mixins
 
 - removed `$md-ink-pulse-time`, `$md-ink-expanded-scale`, and
   `$md-ink-border-radius` since it's no longer configurable

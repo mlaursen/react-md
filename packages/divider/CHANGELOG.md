@@ -14,17 +14,17 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The `Divider` component was completely re-written for this release, but it
 should not be a breaking change. This package now also has better support for
 rendering dividers vertically with the `VerticalDivider` component.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - the `ref` is now correctly passed to the DOM element
 - the `role` has been specifically set to `"separator"` by default
@@ -34,11 +34,11 @@ rendering dividers vertically with the `VerticalDivider` component.
   `background-color`, `size`, `inset`, `spacing`, `vertical-spacing`, and
   `max-size`
 
-## Breaking Changes
+### Breaking Changes
 
 - only styling behavior
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-divider-max-size: 100% !default` - The max size for a divider that can
   be used to make all dividers centered if desired
@@ -68,11 +68,11 @@ rendering dividers vertically with the `VerticalDivider` component.
 - `@mixin rmd-divider` - a mixin to generate all the divider styles for a class
   name selector
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-divider-height` to `$rmd-divider-size`
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - removed `$md-divider-include-borders` since the border class names are no
   longer included and the new `rmd-divider-border` mixin should be used instead

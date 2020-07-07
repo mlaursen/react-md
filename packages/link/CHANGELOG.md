@@ -12,11 +12,11 @@ All notable changes to this project will be documented in this file. See
 - Added sideEffects field to package.json
   ([31820b9](https://github.com/mlaursen/react-md/commit/31820b9b43705e5849664500a17b6849eb6dc2a9))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 There are no breaking changes for this release as this is the first time a link
 component has been introduced into react-md.

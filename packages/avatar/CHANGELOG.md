@@ -14,16 +14,16 @@ All notable changes to this project will be documented in this file. See
 - sideEffects formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
-# v2.0.1
+## v2.0.1
 
 No changes.
 
-# v2.0.0
+## v2.0.0
 
 The avatar component should be fairly similar to the v1 version except for a few
 behavior changes.
 
-## New Behavior and Features
+### New Behavior and Features
 
 - the `Avatar` is now rendered as a `<span>` instead of a `<div>`
 - the `ref` is correctly forwarded to the `<span>` element
@@ -32,7 +32,7 @@ behavior changes.
 - the `alt` tag will be defaulted to the empty string if the `src` tag is
   provided for convenience
 
-## Breaking Changes
+### Breaking Changes
 
 - no longer supports and `icon` prop since icons should just be rendered as the
   `children` for the `Avatar`
@@ -44,7 +44,7 @@ behavior changes.
 - the `contentStyle` and `contentClassName` props were removed since they are no
   longer required
 
-### New SCSS Variables, Functions, and Mixins
+#### New SCSS Variables, Functions, and Mixins
 
 - `$rmd-avatar-colors` - a map of all the colors to generate by default that
   have been updated to support minimal contrast ratio accessibility checks.
@@ -61,7 +61,7 @@ behavior changes.
 - `@mixin rmd-avatar-theme-update-var` - updates one of the theme values as a
   css variable
 
-### Renamed SCSS Variables, Functions, and Mixins
+#### Renamed SCSS Variables, Functions, and Mixins
 
 - renamed `$md-avatar-default-background` to `$rmd-avatar-background-color`
 - renamed `$md-avatar-default-color` to `$rmd-avatar-color`
@@ -71,7 +71,7 @@ behavior changes.
 - renamed `$md-avatar-size` to `$rmd-avatar-size` and changed the default value
   from `40px` to `2.5rem`
 
-### Removed SCSS Variables Placeholders, and Mixins
+#### Removed SCSS Variables Placeholders, and Mixins
 
 - `$md-avatar-icon-sized` was removed since it is no longer required
 - removed `$md-avatar-include-suffixes` and `$md-avatar-colors` since the colors
