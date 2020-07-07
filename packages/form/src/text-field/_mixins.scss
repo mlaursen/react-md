@@ -246,21 +246,6 @@
       @include rmd-theme(color, text-disabled-on-background);
     }
   }
-}
-
-/// @access private
-@mixin rmd-text-field {
-  @include rmd-utils-rtl {
-    @include rmd-form-theme(padding-left, text-padding-right);
-    @include rmd-form-theme(padding-right, text-padding-left);
-  }
-  @include rmd-form-theme(padding-left, text-padding-left);
-  @include rmd-form-theme(padding-right, text-padding-right);
-  @include rmd-form-theme(padding-top, text-padding-top);
-  @include rmd-text-field-base;
-
-  flex: 1 1 auto;
-  height: 100%;
 
   &--floating {
     @include rmd-text-field-placeholder {
@@ -280,6 +265,21 @@
       }
     }
   }
+}
+
+/// @access private
+@mixin rmd-text-field {
+  @include rmd-utils-rtl {
+    @include rmd-form-theme(padding-left, text-padding-right);
+    @include rmd-form-theme(padding-right, text-padding-left);
+  }
+  @include rmd-form-theme(padding-left, text-padding-left);
+  @include rmd-form-theme(padding-right, text-padding-right);
+  @include rmd-form-theme(padding-top, text-padding-top);
+  @include rmd-text-field-base;
+
+  flex: 1 1 auto;
+  height: 100%;
 }
 
 /// @access private
@@ -353,19 +353,6 @@
 
   flex: 1 1 auto;
   height: 100%;
-
-  &--floating {
-    @include rmd-text-field-placeholder {
-      color: transparent;
-      transition: color $rmd-transition-standard-time;
-    }
-
-    &:focus {
-      @include rmd-text-field-placeholder {
-        @include rmd-theme(color, text-secondary-on-background);
-      }
-    }
-  }
 
   &--rh {
     resize: horizontal;
