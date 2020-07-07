@@ -80,6 +80,10 @@
 
   &--disabled {
     @include rmd-theme(color, text-disabled-on-background);
+
+    // this mimics the native select better since it would show the text icon
+    // without this while disabled
+    cursor: default;
   }
 
   &__value {
