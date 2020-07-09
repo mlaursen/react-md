@@ -35,7 +35,7 @@ function parse(value: CompiledScssValue): CompiledScssValue {
   }
 
   if (/^(true|false)$/i.test(value)) {
-    return Boolean(value);
+    return value === "true";
   }
 
   const number = parseFloat(value);
