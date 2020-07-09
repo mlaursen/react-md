@@ -24,16 +24,16 @@ export interface AppSizeListenerProps extends AppSizeOptions {
   children: ReactNode;
 
   /**
-   * An change handler for the app size. This will be called each time the app size
-   * changes based on a window resize event and will be provided the
-   * next size and the previous size.
+   * An change handler for the app size. This will be called each time the app
+   * size changes based on a window resize event and will be provided the next
+   * size and the previous size.
    */
   onChange?: (nextSize: AppSize, lastSize: AppSize) => void;
 }
 
 /**
- * This component should be mounted near the top of your app as it will keep track
- * of the current app size based on the provided breakpoint widths.
+ * This component should be mounted near the top of your app as it will keep
+ * track of the current app size based on the provided breakpoint widths.
  */
 function AppSizeListener({
   children,
