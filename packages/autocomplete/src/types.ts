@@ -289,4 +289,18 @@ export interface AutoCompleteProps
    *```
    */
   omitKeys?: readonly string[];
+
+  /**
+   * Any optional children to display before the matched results in the
+   * autocomplete's menu. This should normally be for any presentational data or
+   * things that should not be searchable.
+   */
+  beforeResultsChildren?: ReactNode;
+
+  /**
+   * Any optional children to display after the matched results in the
+   * autocomplete's menu. This should normally be for any presentational data or
+   * things that should not be searchable.
+   */
+  afterResultsChildren?: ReactNode;
 }

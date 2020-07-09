@@ -80,6 +80,8 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
       omitKeys = EMPTY_LIST,
       value: propValue,
       defaultValue,
+      beforeResultsChildren,
+      afterResultsChildren,
       ...props
     },
     forwardedRef
@@ -185,6 +187,7 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
             style={fixedStyle}
             className={cn(listbox({ temporary: true }), listboxClassName)}
           >
+            {beforeResultsChildren}
             {filteredData.map((datum, i) => {
               const resultId = getResultId(suggestionsId, i);
               let optionProps: ListboxOptionProps | undefined;
@@ -215,6 +218,7 @@ const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
                 </Option>
               );
             })}
+            {afterResultsChildren}
           </List>
         </ScaleTransition>
       </>
@@ -307,6 +311,8 @@ if (process.env.NODE_ENV !== "production") {
       omitKeys: PropTypes.arrayOf(PropTypes.string),
       value: PropTypes.string,
       defaultValue: PropTypes.string,
+      beforeResultsChildren: PropTypes.node,
+      afterResultsChildren: PropTypes.node,
     };
   } catch (e) {}
 }

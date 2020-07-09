@@ -195,4 +195,46 @@ describe("AutoComplete", () => {
     expect(getListbox).toThrow();
     fireEvent.blur(input);
   });
+
+  it("should be able to render content before and after the matching data", () => {
+    const beforeResultsChildren = <div>Before Results</div>;
+    const afterResultsChildren = <div>After Results</div>;
+    const { getByText, getByRole } = render(
+      <AutoComplete
+        {...PROPS}
+        data={states.slice(0, 5)}
+        beforeResultsChildren={beforeResultsChildren}
+        afterResultsChildren={afterResultsChildren}
+      />
+    );
+
+    const input = getById<HTMLInputElement>("autocomplete");
+    const getListbox = () => getByRole("listbox");
+    const getBeforeResults = () => getByText("Before Results");
+    const getAfterResults = () => getByText("After Results");
+
+    expect(getBeforeResults).toThrow();
+    expect(getAfterResults).toThrow();
+
+    fireEvent.focus(input);
+    expect(getBeforeResults).not.toThrow();
+    expect(getAfterResults).not.toThrow();
+
+    const listbox = getListbox();
+    expect(listbox.firstChild?.textContent).toBe("Before Results");
+    expect(listbox.lastChild?.textContent).toBe("After Results");
+    expect(listbox).toMatchSnapshot();
+
+    // filtered matches
+    fireEvent.change(input, { value: "Am" });
+    expect(listbox.firstChild?.textContent).toBe("Before Results");
+    expect(listbox.lastChild?.textContent).toBe("After Results");
+    expect(listbox).toMatchSnapshot();
+
+    // no matches
+    fireEvent.change(input, { value: "Aml" });
+    expect(listbox.firstChild?.textContent).toBe("Before Results");
+    expect(listbox.lastChild?.textContent).toBe("After Results");
+    expect(listbox).toMatchSnapshot();
+  });
 });
