@@ -1,12 +1,12 @@
 /** this is an auto-generated file from @react-md/dev-utils */
 export default {
   "rmd-utils-ios-scroll-momentum": true,
-  "rmd-utils-auto-dense": true,
+  "rmd-utils-auto-dense": false,
   "rmd-utils-enable-rtl": true,
   "rmd-utils-temporary-element-z-index": 30,
   "rmd-utils-swappable-positions": ["top", "right", "bottom", "left"],
   "rmd-utils-swappable-position-prefixes": ["border", "margin", "padding"],
-  "rmd-utils-skip-validation": true,
+  "rmd-utils-skip-validation": false,
   "rmd-utils-fix-moz-focus": true,
   "rmd-utils-phone-max-width": "47.9375em",
   "rmd-utils-tablet-min-width": "48em",
