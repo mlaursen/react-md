@@ -24,7 +24,7 @@
     "glob": "^7.1.6",
     "gzip-size": "^5.1.1",
     "he": "^1.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "loglevel": "^1.6.8",
     "markdown-toc": "^1.2.0",
     "node-sass": "^4.14.1",
@@ -38,7 +38,7 @@
     "pretty-ms": "^7.0.0",
     "rimraf": "^3.0.2",
     "sassdoc": "^2.7.2",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.6"
   },
   "devDependencies": {
     "@types/cssnano": "^4.0.0",
