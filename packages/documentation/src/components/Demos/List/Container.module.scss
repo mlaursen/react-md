@@ -5,14 +5,14 @@ $rmd-theme-dark-elevation: true;
 @import '~@react-md/utils/dist/mixins';
 
 .container {
+  @include rmd-utils-optional-css-modules('.rmd-list', true, false) {
+    @include rmd-theme-dark-elevation(6, true);
+  }
+
   align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
-  @include rmd-utils-optional-css-modules('.rmd-list', true, false) {
-    @include rmd-theme-dark-elevation(6, true);
-  }
 
   :global .rmd-list {
     @include rmd-elevation(4);
