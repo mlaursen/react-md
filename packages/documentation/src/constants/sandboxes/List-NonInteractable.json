@@ -52,7 +52,7 @@
     "isBinary": false
   },
   "src/Container.module.scss": {
-    "content": "@import \"~@react-md/elevation/dist/mixins\";\n\n.container {\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  :global .rmd-list {\n    @include rmd-elevation(4);\n\n    margin: 1rem;\n    max-width: 20rem;\n    width: 100%;\n  }\n}\n",
+    "content": "$rmd-theme-dark-elevation: true;\n\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n.container {\n  @include rmd-utils-optional-css-modules(\".rmd-list\", true, false) {\n    @include rmd-theme-dark-elevation(6, true);\n  }\n\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  :global .rmd-list {\n    @include rmd-elevation(4);\n\n    margin: 1rem;\n    max-width: 20rem;\n    width: 100%;\n  }\n}\n",
     "isBinary": false
   },
   "src/Container.tsx": {
