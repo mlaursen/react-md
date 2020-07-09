@@ -24,7 +24,7 @@ export default {
   "rmd-app-bar-default-color": "#000",
   "rmd-app-bar-theme-values": {
     "background-color": "transparent",
-    color: "initial",
+    color: "var(--rmd-theme-text-primary-on-background, #212121)",
     primary: "var(--rmd-theme-primary, #9c27b0)",
     "on-primary": "var(--rmd-theme-on-primary, #000)",
     secondary: "var(--rmd-theme-secondary, #f50057)",
