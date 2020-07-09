@@ -167,7 +167,7 @@ $rmd-app-bar-default-color: if(
 /// @type Map
 $rmd-app-bar-theme-values: (
   background-color: transparent,
-  color: initial,
+  color: rmd-theme-var(text-primary-on-background),
   primary: $rmd-app-bar-primary-background-color,
   on-primary: $rmd-app-bar-primary-color,
   secondary: $rmd-app-bar-secondary-background-color,
