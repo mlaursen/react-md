@@ -31,12 +31,12 @@ export interface ResizeListenerOptions {
 }
 
 /**
- * This is a simple hook that will attach a throttled resize event listener
- * when mounted, and detach when it unmounts.
+ * This is a simple hook that will attach a throttled resize event listener when
+ * mounted, and detach when it unmounts.
  *
  * This hook only works for entire app resize events. If you are looking for
- * specific element resize events, check out the `ResizeObserver` component
- * or `useReiszeObserver` hook instead.
+ * specific element resize events, check out the `ResizeObserver` component or
+ * `useReiszeObserver` hook instead.
  */
 export default function useResizeListener({
   onResize,
@@ -61,7 +61,8 @@ export default function useResizeListener({
     return () => {
       eventHandler.remove(handler);
     };
-    // disabled since useRefCache for callback and don't want immediate to re-trigger it.
+    // disabled since useRefCache for callback and don't want immediate to
+    // re-trigger it.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options, enabled]);
 }
