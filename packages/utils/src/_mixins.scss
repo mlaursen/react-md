@@ -314,6 +314,27 @@
   }
 }
 
+/// This mixin should mostally be used internally within react-md so that
+/// react-md mixins that use a `rmd-` prefixed class work correctly if included
+/// from a css module file. This basically prefixes the react-md class with
+/// `:global` and suffixes with `:local &`.
+///
+/// @param {String} class-name - The class name that should be optionally
+/// prefixed with `:global` when the `$css-modules` parameter is `true`.
+/// @param {Boolean} css-modules [false] - Boolean if the class name should be
+/// updated to be used with css modules.
+/// @param {Boolean} parent-selector [true] - Boolean if the selector should end
+/// with the parent selector ` & ` so that the `$class-name` is a parent of the
+/// current class.
+@mixin rmd-utils-optional-css-modules($class-name, $css-modules: false, $parent-selector: true) {
+  $selector: if($css-modules, ':global #{$class-name} :local', $class-name);
+  $selector: if($parent-selector, '#{$selector} &', $selector);
+
+  #{$selector} {
+    @content;
+  }
+}
+
 /// This mixin allows you to add styles to an element only when the user is
 /// interacting with your app on a touch device.
 ///
@@ -335,18 +356,12 @@
 ///     }
 ///   }
 ///
-/// @param {Boolean} css-modules [false] - Boolean if this is being used within CSS
-/// Modules which will update the selector to work correctly by wrapping
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within
+/// CSS Modules which will update the selector to work correctly by wrapping
 /// different parts with `:global` and `:local`.
 @mixin rmd-utils-touch-only($css-modules: false) {
-  @if $css-modules {
-    :global .rmd-utils--touch :local & {
-      @content;
-    }
-  } @else {
-    .rmd-utils--touch & {
-      @content;
-    }
+  @include rmd-utils-optional-css-modules('.rmd-utils--touch', $css-modules) {
+    @content;
   }
 }
 
@@ -371,18 +386,12 @@
 ///     }
 ///   }
 ///
-/// @param {Boolean} css-modules [false] - Boolean if this is being used within CSS
-/// Modules which will update the selector to work correctly by wrapping
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within
+/// CSS Modules which will update the selector to work correctly by wrapping
 /// different parts with `:global` and `:local`.
 @mixin rmd-utils-keyboard-only($css-modules: false) {
-  @if $css-modules {
-    :global .rmd-utils--keyboard :local & {
-      @content;
-    }
-  } @else {
-    .rmd-utils--keyboard & {
-      @content;
-    }
+  @include rmd-utils-optional-css-modules('.rmd-utils--keyboard', $css-modules) {
+    @content;
   }
 }
 
@@ -407,18 +416,12 @@
 ///     }
 ///   }
 ///
-/// @param {Boolean} css-modules [false] - Boolean if this is being used within CSS
-/// Modules which will update the selector to work correctly by wrapping
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within
+/// CSS Modules which will update the selector to work correctly by wrapping
 /// different parts with `:global` and `:local`.
 @mixin rmd-utils-mouse-only($css-modules: false) {
-  @if $css-modules {
-    :global .rmd-utils--mouse :local & {
-      @content;
-    }
-  } @else {
-    .rmd-utils--mouse & {
-      @content;
-    }
+  @include rmd-utils-optional-css-modules('.rmd-utils--mouse', $css-modules) {
+    @content;
   }
 }
 
