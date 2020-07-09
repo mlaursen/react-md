@@ -37,7 +37,7 @@ type EventHandlers = Pick<
   "onBlur" | "onFocus" | "onChange" | "onClick" | "onKeyDown"
 >;
 
-type RequiredAutoCompleteProps = Required<
+export type RequiredAutoCompleteProps = Required<
   Pick<
     AutoCompleteProps,
     | "data"
@@ -51,12 +51,12 @@ type RequiredAutoCompleteProps = Required<
   >
 >;
 
-type OptionalAutoCompleteProps = Pick<
+export type OptionalAutoCompleteProps = Pick<
   AutoCompleteProps,
   "onAutoComplete" | "disableShowOnFocus"
 >;
 
-interface AutoCompleteOptions
+export interface AutoCompleteOptions
   extends EventHandlers,
     OptionalAutoCompleteProps,
     RequiredAutoCompleteProps,
@@ -69,7 +69,7 @@ interface AutoCompleteOptions
   defaultValue?: string;
 }
 
-interface ReturnValue {
+export interface AutoCompleteReturnValue {
   ref: (instance: HTMLInputElement | null) => void;
   match: string;
   value: string;
@@ -128,7 +128,7 @@ export default function useAutoComplete({
   disableShowOnFocus: propDisableShowOnFocus,
   isListAutocomplete,
   isInlineAutocomplete,
-}: AutoCompleteOptions): ReturnValue {
+}: AutoCompleteOptions): AutoCompleteReturnValue {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const ref = useCallback(
     (instance: HTMLInputElement | null) => {
