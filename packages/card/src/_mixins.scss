@@ -62,6 +62,7 @@
 
   &--shadowed {
     @include rmd-elevation($rmd-card-elevation);
+    @include rmd-theme-dark-elevation($rmd-card-elevation);
   }
 
   &--bordered {

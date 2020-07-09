@@ -69,6 +69,7 @@
 /// Creates the styles for a sheet component
 @mixin rmd-sheet {
   @include rmd-elevation($rmd-sheet-elevation);
+  @include rmd-theme-dark-elevation($rmd-sheet-elevation);
   @include rmd-utils-scroll;
   @include rmd-sheet-positions;
   @include rmd-sheet-theme(max-height);
@@ -80,6 +81,8 @@
 
   &--raised {
     @include rmd-elevation($rmd-sheet-raised-elevation);
+    @include rmd-theme-dark-elevation($rmd-sheet-elevation);
+
     z-index: $rmd-sheet-raised-z-index;
   }
 

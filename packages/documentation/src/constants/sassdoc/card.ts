@@ -168,12 +168,17 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card",
       description:
         "Creates all the styles for the `Card` component only. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L43-L79",
+      source: "packages/card/src/_mixins.scss#L43-L80",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
         { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
+        {
+          name: "rmd-theme-dark-elevation",
+          type: "mixin",
+          packageName: "theme",
+        },
         {
           name: "rmd-typography-text-overflow-ellipsis",
           type: "mixin",
@@ -210,14 +215,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "card",
       code: "@mixin rmd-card { … }",
       sourceCode:
-        '@mixin rmd-card {\n  @include rmd-theme-update-var(\n    background,\n    rmd-card-theme-var(background-color)\n  );\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    rmd-card-theme-var(color)\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    rmd-card-theme-var(secondary-color)\n  );\n  @include rmd-utils-mouse-only {\n    &--raiseable {\n      // Note: Only worthwhile with the `--shadowed` class\n      @include rmd-elevation-transition(\n        $rmd-card-base-elevation,\n        $rmd-card-raised-elevation,\n        "&:hover"\n      );\n    }\n  }\n  @include rmd-theme(background-color, surface);\n  @include rmd-theme(color, text-primary-on-background);\n\n  border-radius: $rmd-card-border-radius;\n  display: inline-block;\n\n  &--shadowed {\n    @include rmd-elevation($rmd-card-elevation);\n  }\n\n  &--bordered {\n    border: $rmd-card-border-width solid $rmd-card-border-color;\n  }\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n\n  &--no-wrap {\n    @include rmd-typography-text-overflow-ellipsis;\n  }\n}\n',
+        '@mixin rmd-card {\n  @include rmd-theme-update-var(\n    background,\n    rmd-card-theme-var(background-color)\n  );\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    rmd-card-theme-var(color)\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    rmd-card-theme-var(secondary-color)\n  );\n  @include rmd-utils-mouse-only {\n    &--raiseable {\n      // Note: Only worthwhile with the `--shadowed` class\n      @include rmd-elevation-transition(\n        $rmd-card-base-elevation,\n        $rmd-card-raised-elevation,\n        "&:hover"\n      );\n    }\n  }\n  @include rmd-theme(background-color, surface);\n  @include rmd-theme(color, text-primary-on-background);\n\n  border-radius: $rmd-card-border-radius;\n  display: inline-block;\n\n  &--shadowed {\n    @include rmd-elevation($rmd-card-elevation);\n    @include rmd-theme-dark-elevation($rmd-card-elevation);\n  }\n\n  &--bordered {\n    border: $rmd-card-border-width solid $rmd-card-border-color;\n  }\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n\n  &--no-wrap {\n    @include rmd-typography-text-overflow-ellipsis;\n  }\n}\n',
       type: "mixin",
     },
     "rmd-card-header": {
       name: "rmd-card-header",
       description:
         "Creates all the styles for the `CardHeader` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L83-L101",
+      source: "packages/card/src/_mixins.scss#L84-L102",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         {
@@ -251,7 +256,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-title",
       description:
         "Creates all the styles for the `CardTitle` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L105-L114",
+      source: "packages/card/src/_mixins.scss#L106-L115",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -271,7 +276,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-subtitle",
       description:
         "Creates all the styles for the `CardSubtitle` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L118-L127",
+      source: "packages/card/src/_mixins.scss#L119-L128",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -287,7 +292,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-content",
       description:
         "Creates all the styles for the `CardContent` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L131-L151",
+      source: "packages/card/src/_mixins.scss#L132-L152",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
@@ -312,7 +317,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-actions",
       description:
         "Creates all the styles for the `CardActions` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L155-L168",
+      source: "packages/card/src/_mixins.scss#L156-L169",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         {
@@ -330,7 +335,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-card": {
       name: "react-md-card",
       description: "Creates all the styles for the @react-md/card package.\n",
-      source: "packages/card/src/_mixins.scss#L171-L206",
+      source: "packages/card/src/_mixins.scss#L172-L207",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

@@ -62,6 +62,7 @@
 /// internally.
 @mixin rmd-toast {
   @include rmd-elevation($rmd-toast-elevation);
+  @include rmd-theme-dark-elevation($rmd-toast-elevation);
   @include rmd-typography(subtitle-2);
   @include rmd-alert-theme(background-color);
   @include rmd-alert-theme(color);

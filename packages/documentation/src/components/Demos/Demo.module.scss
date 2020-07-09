@@ -1,3 +1,5 @@
+$rmd-theme-dark-elevation: true;
+
 @import '~@react-md/app-bar/dist/mixins';
 @import '~@react-md/divider/dist/mixins';
 @import '~@react-md/elevation/dist/mixins';
@@ -52,6 +54,7 @@ $demo-padding-extra: 6rem;
 
 .preview {
   @include rmd-elevation(2);
+  @include rmd-theme-dark-elevation(2, true);
   @include rmd-theme(background-color, background);
   @include rmd-theme-update-var(background, rmd-theme-var(surface));
   @include rmd-app-bar-theme-update-var(color, rmd-theme-var(on-surface));

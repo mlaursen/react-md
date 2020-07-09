@@ -1,9 +1,12 @@
+$rmd-theme-dark-elevation: true;
+
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/elevation/dist/mixins';
 @import '~@react-md/typography/dist/mixins';
 
 .container {
   @include rmd-elevation(4);
+  @include rmd-theme-dark-elevation(4, true);
 
   overflow: hidden;
   transition-duration: 1s;

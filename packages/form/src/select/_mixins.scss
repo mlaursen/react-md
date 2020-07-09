@@ -118,6 +118,7 @@
 
   &--temporary {
     @include rmd-elevation($rmd-listbox-elevation);
+    @include rmd-theme-dark-elevation($rmd-listbox-elevation);
     @include rmd-theme(background-color, surface);
     @include rmd-theme(color, on-surface);
 

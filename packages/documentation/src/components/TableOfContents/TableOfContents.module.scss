@@ -1,3 +1,5 @@
+$rmd-theme-dark-elevation: true;
+
 @import '~@react-md/utils/dist/mixins';
 @import '~@react-md/button/dist/mixins';
 @import '~@react-md/theme/dist/mixins';
@@ -21,6 +23,7 @@ $toc-z-index: 9;
     transform-origin: 2% ($rmd-icon-size / 2);
   }
   @include rmd-elevation(2);
+  @include rmd-theme-dark-elevation(2, true);
 
   max-height: calc(100% - #{$rmd-app-bar-height + $page-margin + $page-margin});
   position: fixed;

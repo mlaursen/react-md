@@ -1,8 +1,16 @@
+$rmd-theme-dark-elevation: true;
+
 @import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
 
 .container {
+  @include rmd-utils-optional-css-modules('.rmd-list', true, false) {
+    @include rmd-theme-dark-elevation(6, true);
+  }
+
   :global .rmd-list {
-    @include rmd-elevation(2);
+    @include rmd-elevation(4);
 
     margin: 2rem auto;
     max-width: 25rem;
