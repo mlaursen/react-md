@@ -164,7 +164,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-menu": {
       name: "rmd-menu",
       description: "",
-      source: "packages/menu/src/_mixins.scss#L40-L53",
+      source: "packages/menu/src/_mixins.scss#L40-L54",
       usedBy: [{ name: "react-md-menu", type: "mixin", packageName: "menu" }],
       requires: [
         {
@@ -174,19 +174,24 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-utils-scroll", type: "mixin", packageName: "utils" },
         { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
+        {
+          name: "rmd-theme-dark-elevation",
+          type: "mixin",
+          packageName: "theme",
+        },
         { name: "rmd-menu-theme", type: "mixin", packageName: "menu" },
         { name: "rmd-menu-elevation", type: "variable", packageName: "menu" },
       ],
       packageName: "menu",
       code: "@mixin rmd-menu { … }",
       sourceCode:
-        "@mixin rmd-menu {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-utils-scroll;\n  @include rmd-elevation($rmd-menu-elevation);\n  @include rmd-menu-theme(background-color);\n  @include rmd-menu-theme(color);\n  @include rmd-menu-theme(min-width);\n  @include rmd-menu-theme(z-index);\n\n  &--horizontal {\n    display: flex;\n    flex-wrap: nowrap;\n  }\n}\n",
+        "@mixin rmd-menu {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-utils-scroll;\n  @include rmd-elevation($rmd-menu-elevation);\n  @include rmd-theme-dark-elevation($rmd-menu-elevation);\n  @include rmd-menu-theme(background-color);\n  @include rmd-menu-theme(color);\n  @include rmd-menu-theme(min-width);\n  @include rmd-menu-theme(z-index);\n\n  &--horizontal {\n    display: flex;\n    flex-wrap: nowrap;\n  }\n}\n",
       type: "mixin",
     },
     "react-md-menu": {
       name: "react-md-menu",
       description: "Creates all the styles for the @react-md/menu package.\n",
-      source: "packages/menu/src/_mixins.scss#L56-L66",
+      source: "packages/menu/src/_mixins.scss#L57-L67",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

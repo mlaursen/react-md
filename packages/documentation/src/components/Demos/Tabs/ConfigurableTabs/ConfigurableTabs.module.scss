@@ -1,3 +1,5 @@
+$rmd-theme-dark-elevation: true;
+
 @import '~@react-md/app-bar/dist/mixins';
 @import '~@react-md/elevation/dist/mixins';
 @import '~@react-md/tabs/dist/mixins';
@@ -8,6 +10,7 @@
   @include rmd-utils-tablet-media {
     @include rmd-utils-block-centered;
     @include rmd-elevation(4);
+    @include rmd-theme-dark-elevation(4, true);
 
     max-width: 40rem;
   }

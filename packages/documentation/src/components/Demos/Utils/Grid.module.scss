@@ -1,4 +1,6 @@
 // sass-lint:disable class-name-format
+$rmd-theme-dark-elevation: true;
+
 @import '~@react-md/elevation/dist/mixins';
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
@@ -10,13 +12,14 @@
     margin-top: 1rem;
   }
 
-  :global .dark-theme :local & {
-    background-color: #121212;
+  @include rmd-utils-optional-css-modules($rmd-theme-dark-class, true) {
+    background-color: $rmd-theme-dark-background;
   }
 }
 
 .item {
   @include rmd-elevation(2);
+  @include rmd-theme-dark-elevation(2, true);
   @include rmd-theme(background-color, surface);
   @include rmd-theme(color, text-primary-on-background);
 
@@ -25,11 +28,6 @@
   justify-content: center;
   min-height: 10rem;
   text-align: center;
-
-  :global .dark-theme :local & {
-    background-color: rgba($rmd-white-base, 0.05);
-    color: $rmd-white-base;
-  }
 }
 
 .smallGrid {

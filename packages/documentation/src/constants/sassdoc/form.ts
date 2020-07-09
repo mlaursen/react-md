@@ -414,7 +414,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-select": {
       name: "rmd-select",
       description: "",
-      source: "packages/form/src/select/_mixins.scss#L78-L108",
+      source: "packages/form/src/select/_mixins.scss#L78-L112",
       usedBy: [{ name: "react-md-select", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -440,13 +440,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       code: "@mixin rmd-select { … }",
       sourceCode:
-        "@mixin rmd-select {\n  @include rmd-utils-hide-focus-outline;\n\n  &--disabled {\n    @include rmd-theme(color, text-disabled-on-background);\n  }\n\n  &__value {\n    @include rmd-utils-rtl {\n      @include rmd-form-theme(padding-left, text-padding-right);\n      @include rmd-form-theme(padding-right, text-padding-left);\n    }\n    @include rmd-form-theme(padding-left, text-padding-left);\n    @include rmd-form-theme(padding-right, text-padding-right);\n    @include rmd-form-theme(padding-top, text-padding-top);\n    @include rmd-typography(body-1, font-size);\n    @include rmd-typography-text-overflow-ellipsis;\n\n    &--placeholder {\n      @include rmd-transition(standard);\n      @include rmd-theme(color, text-secondary-on-background);\n\n      color: transparent;\n      transition: color $rmd-transition-standard-time;\n    }\n\n    &--placeholder-active {\n      @include rmd-theme(color, text-secondary-on-background);\n    }\n  }\n}\n",
+        "@mixin rmd-select {\n  @include rmd-utils-hide-focus-outline;\n\n  &--disabled {\n    @include rmd-theme(color, text-disabled-on-background);\n\n    // this mimics the native select better since it would show the text icon\n    // without this while disabled\n    cursor: default;\n  }\n\n  &__value {\n    @include rmd-utils-rtl {\n      @include rmd-form-theme(padding-left, text-padding-right);\n      @include rmd-form-theme(padding-right, text-padding-left);\n    }\n    @include rmd-form-theme(padding-left, text-padding-left);\n    @include rmd-form-theme(padding-right, text-padding-right);\n    @include rmd-form-theme(padding-top, text-padding-top);\n    @include rmd-typography(body-1, font-size);\n    @include rmd-typography-text-overflow-ellipsis;\n\n    &--placeholder {\n      @include rmd-transition(standard);\n      @include rmd-theme(color, text-secondary-on-background);\n\n      color: transparent;\n      transition: color $rmd-transition-standard-time;\n    }\n\n    &--placeholder-active {\n      @include rmd-theme(color, text-secondary-on-background);\n    }\n  }\n}\n",
       type: "mixin",
     },
     "rmd-listbox": {
       name: "rmd-listbox",
       description: "",
-      source: "packages/form/src/select/_mixins.scss#L111-L122",
+      source: "packages/form/src/select/_mixins.scss#L115-L127",
       usedBy: [{ name: "react-md-select", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -456,6 +456,11 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-utils-scroll", type: "mixin", packageName: "utils" },
         { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
+        {
+          name: "rmd-theme-dark-elevation",
+          type: "mixin",
+          packageName: "theme",
+        },
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
         {
           name: "rmd-listbox-elevation",
@@ -467,13 +472,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       code: "@mixin rmd-listbox { … }",
       sourceCode:
-        "@mixin rmd-listbox {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-utils-scroll;\n\n  &--temporary {\n    @include rmd-elevation($rmd-listbox-elevation);\n    @include rmd-theme(background-color, surface);\n    @include rmd-theme(color, on-surface);\n\n    z-index: $rmd-listbox-z-index;\n  }\n}\n",
+        "@mixin rmd-listbox {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-utils-scroll;\n\n  &--temporary {\n    @include rmd-elevation($rmd-listbox-elevation);\n    @include rmd-theme-dark-elevation($rmd-listbox-elevation);\n    @include rmd-theme(background-color, surface);\n    @include rmd-theme(color, on-surface);\n\n    z-index: $rmd-listbox-z-index;\n  }\n}\n",
       type: "mixin",
     },
     "rmd-option": {
       name: "rmd-option",
       description: "",
-      source: "packages/form/src/select/_mixins.scss#L125-L148",
+      source: "packages/form/src/select/_mixins.scss#L130-L153",
       usedBy: [{ name: "react-md-select", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -517,7 +522,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-select": {
       name: "react-md-select",
       description: "",
-      source: "packages/form/src/select/_mixins.scss#L151-L171",
+      source: "packages/form/src/select/_mixins.scss#L156-L176",
       usedBy: [{ name: "react-md-form", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -652,7 +657,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-base",
       description:
         "Creates the base styles for a text field so that it gains the correct typography and a few different colors based on its state.\n",
-      source: "packages/form/src/text-field/_mixins.scss#L221-L249",
+      source: "packages/form/src/text-field/_mixins.scss#L221-L268",
       usedBy: [
         { name: "rmd-text-field", type: "mixin", packageName: "form" },
         { name: "rmd-textarea", type: "mixin", packageName: "form" },
@@ -665,24 +670,6 @@ const sassdoc: PackageSassDoc = {
           packageName: "utils",
         },
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
-      ],
-      packageName: "form",
-      code: "@mixin rmd-text-field-base { … }",
-      sourceCode:
-        "@mixin rmd-text-field-base {\n  @include rmd-typography(body-1, font-size);\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-text-field-placeholder {\n    @include rmd-transition(standard);\n    @include rmd-theme(color, text-secondary-on-background);\n\n    // want to gain the same font styles as the input/textarea itself,\n    // just apply different colors as needed instead. Can't just do font: inherit\n    // since it'll break the styles in firefox.\n    font-family: inherit;\n    font-size: inherit;\n    font-weight: inherit;\n  }\n\n  background-color: transparent;\n  border-width: 0;\n  color: inherit;\n  font-size: 1em;\n  width: 100%;\n\n  &[disabled] {\n    @include rmd-theme(color, text-disabled-on-background);\n\n    @include rmd-text-field-placeholder {\n      @include rmd-theme(color, text-disabled-on-background);\n    }\n  }\n}\n",
-      type: "mixin",
-    },
-    "rmd-text-field": {
-      name: "rmd-text-field",
-      description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L252-L283",
-      usedBy: [
-        { name: "rmd-native-select", type: "mixin", packageName: "form" },
-        { name: "react-md-text-field", type: "mixin", packageName: "form" },
-      ],
-      requires: [
-        { name: "rmd-form-theme", type: "mixin", packageName: "form" },
-        { name: "rmd-text-field-base", type: "mixin", packageName: "form" },
         {
           name: "rmd-transition-standard-time",
           type: "variable",
@@ -690,9 +677,27 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "form",
+      code: "@mixin rmd-text-field-base { … }",
+      sourceCode:
+        "@mixin rmd-text-field-base {\n  @include rmd-typography(body-1, font-size);\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-text-field-placeholder {\n    @include rmd-transition(standard);\n    @include rmd-theme(color, text-secondary-on-background);\n\n    // want to gain the same font styles as the input/textarea itself,\n    // just apply different colors as needed instead. Can't just do font: inherit\n    // since it'll break the styles in firefox.\n    font-family: inherit;\n    font-size: inherit;\n    font-weight: inherit;\n  }\n\n  background-color: transparent;\n  border-width: 0;\n  color: inherit;\n  font-size: 1em;\n  width: 100%;\n\n  &[disabled] {\n    @include rmd-theme(color, text-disabled-on-background);\n\n    @include rmd-text-field-placeholder {\n      @include rmd-theme(color, text-disabled-on-background);\n    }\n  }\n\n  &--floating {\n    @include rmd-text-field-placeholder {\n      color: transparent;\n      transition: color $rmd-transition-standard-time;\n    }\n\n    &[disabled] {\n      @include rmd-text-field-placeholder {\n        color: transparent;\n      }\n    }\n\n    &:focus {\n      @include rmd-text-field-placeholder {\n        @include rmd-theme(color, text-secondary-on-background);\n      }\n    }\n  }\n}\n",
+      type: "mixin",
+    },
+    "rmd-text-field": {
+      name: "rmd-text-field",
+      description: "",
+      source: "packages/form/src/text-field/_mixins.scss#L271-L283",
+      usedBy: [
+        { name: "rmd-native-select", type: "mixin", packageName: "form" },
+        { name: "react-md-text-field", type: "mixin", packageName: "form" },
+      ],
+      requires: [
+        { name: "rmd-form-theme", type: "mixin", packageName: "form" },
+        { name: "rmd-text-field-base", type: "mixin", packageName: "form" },
+      ],
+      packageName: "form",
       code: "@mixin rmd-text-field { … }",
       sourceCode:
-        "@mixin rmd-text-field {\n  @include rmd-utils-rtl {\n    @include rmd-form-theme(padding-left, text-padding-right);\n    @include rmd-form-theme(padding-right, text-padding-left);\n  }\n  @include rmd-form-theme(padding-left, text-padding-left);\n  @include rmd-form-theme(padding-right, text-padding-right);\n  @include rmd-form-theme(padding-top, text-padding-top);\n  @include rmd-text-field-base;\n\n  flex: 1 1 auto;\n  height: 100%;\n\n  &--floating {\n    @include rmd-text-field-placeholder {\n      color: transparent;\n      transition: color $rmd-transition-standard-time;\n    }\n\n    &[disabled] {\n      @include rmd-text-field-placeholder {\n        color: transparent;\n      }\n    }\n\n    &:focus {\n      @include rmd-text-field-placeholder {\n        @include rmd-theme(color, text-secondary-on-background);\n      }\n    }\n  }\n}\n",
+        "@mixin rmd-text-field {\n  @include rmd-utils-rtl {\n    @include rmd-form-theme(padding-left, text-padding-right);\n    @include rmd-form-theme(padding-right, text-padding-left);\n  }\n  @include rmd-form-theme(padding-left, text-padding-left);\n  @include rmd-form-theme(padding-right, text-padding-right);\n  @include rmd-form-theme(padding-top, text-padding-top);\n  @include rmd-text-field-base;\n\n  flex: 1 1 auto;\n  height: 100%;\n}\n",
       type: "mixin",
     },
     "rmd-text-field-addon": {
@@ -754,7 +759,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-textarea": {
       name: "rmd-textarea",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L343-L399",
+      source: "packages/form/src/text-field/_mixins.scss#L343-L386",
       usedBy: [
         { name: "react-md-text-field", type: "mixin", packageName: "form" },
       ],
@@ -762,22 +767,17 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-transition", type: "mixin", packageName: "transition" },
         { name: "rmd-form-theme", type: "mixin", packageName: "form" },
         { name: "rmd-text-field-base", type: "mixin", packageName: "form" },
-        {
-          name: "rmd-transition-standard-time",
-          type: "variable",
-          packageName: "transition",
-        },
       ],
       packageName: "form",
       code: "@mixin rmd-textarea { … }",
       sourceCode:
-        "@mixin rmd-textarea {\n  @include rmd-transition(standard);\n  @include rmd-utils-rtl {\n    @include rmd-form-theme(padding-left, text-padding-right);\n    @include rmd-form-theme(padding-right, text-padding-left);\n  }\n  @include rmd-form-theme(padding-left, text-padding-left);\n  @include rmd-form-theme(padding-right, text-padding-right);\n  @include rmd-form-theme(min-height, text-height);\n  @include rmd-text-field-base;\n\n  flex: 1 1 auto;\n  height: 100%;\n\n  &--floating {\n    @include rmd-text-field-placeholder {\n      color: transparent;\n      transition: color $rmd-transition-standard-time;\n    }\n\n    &:focus {\n      @include rmd-text-field-placeholder {\n        @include rmd-theme(color, text-secondary-on-background);\n      }\n    }\n  }\n\n  &--rh {\n    resize: horizontal;\n  }\n\n  &--rv {\n    resize: vertical;\n  }\n\n  &--rn {\n    overflow: hidden;\n    resize: none;\n  }\n\n  // only want the textarea to be scrollable if there's a limit on the rows\n  // since it'll flash the scrollbar on most OS during the height transition\n  &--scrollable {\n    overflow: auto;\n  }\n\n  &--mask {\n    height: auto;\n    left: 0;\n    opacity: 0;\n    overflow: hidden;\n    pointer-events: none;\n    position: absolute;\n    right: 0;\n    z-index: -1;\n  }\n}\n",
+        "@mixin rmd-textarea {\n  @include rmd-transition(standard);\n  @include rmd-utils-rtl {\n    @include rmd-form-theme(padding-left, text-padding-right);\n    @include rmd-form-theme(padding-right, text-padding-left);\n  }\n  @include rmd-form-theme(padding-left, text-padding-left);\n  @include rmd-form-theme(padding-right, text-padding-right);\n  @include rmd-form-theme(min-height, text-height);\n  @include rmd-text-field-base;\n\n  flex: 1 1 auto;\n  height: 100%;\n\n  &--rh {\n    resize: horizontal;\n  }\n\n  &--rv {\n    resize: vertical;\n  }\n\n  &--rn {\n    overflow: hidden;\n    resize: none;\n  }\n\n  // only want the textarea to be scrollable if there's a limit on the rows\n  // since it'll flash the scrollbar on most OS during the height transition\n  &--scrollable {\n    overflow: auto;\n  }\n\n  &--mask {\n    height: auto;\n    left: 0;\n    opacity: 0;\n    overflow: hidden;\n    pointer-events: none;\n    position: absolute;\n    right: 0;\n    z-index: -1;\n  }\n}\n",
       type: "mixin",
     },
     "rmd-password": {
       name: "rmd-password",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L402-L420",
+      source: "packages/form/src/text-field/_mixins.scss#L389-L407",
       usedBy: [
         { name: "react-md-text-field", type: "mixin", packageName: "form" },
       ],
@@ -803,7 +803,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-form-message": {
       name: "rmd-form-message",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L423-L463",
+      source: "packages/form/src/text-field/_mixins.scss#L410-L450",
       usedBy: [
         { name: "react-md-text-field", type: "mixin", packageName: "form" },
       ],
@@ -862,7 +862,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-text-field": {
       name: "react-md-text-field",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L466-L494",
+      source: "packages/form/src/text-field/_mixins.scss#L453-L481",
       usedBy: [{ name: "react-md-form", type: "mixin", packageName: "form" }],
       requires: [
         {

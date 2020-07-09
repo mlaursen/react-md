@@ -174,12 +174,17 @@ const sassdoc: PackageSassDoc = {
     "rmd-dialog": {
       name: "rmd-dialog",
       description: "Creates the styles for the base dialog element.\n",
-      source: "packages/dialog/src/_mixins.scss#L41-L121",
+      source: "packages/dialog/src/_mixins.scss#L41-L122",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
       requires: [
         { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
+        {
+          name: "rmd-theme-dark-elevation",
+          type: "mixin",
+          packageName: "theme",
+        },
         { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
         {
@@ -221,13 +226,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "dialog",
       code: "@mixin rmd-dialog { … }",
       sourceCode:
-        "@mixin rmd-dialog {\n  @include rmd-elevation($rmd-dialog-elevation);\n  @include rmd-theme-update-var(background, rmd-theme-var(surface));\n  @include rmd-theme(background-color, background);\n  @include rmd-theme(color, text-primary-on-background);\n  @include rmd-utils-hide-focus-outline;\n  @if mixin-exists(rmd-app-bar-theme-update-var) {\n    @include rmd-app-bar-theme-update-var(\n      color,\n      rmd-theme-var(text-primary-on-background)\n    );\n  }\n\n  display: flex;\n  flex-direction: column;\n  max-height: 100%;\n  max-width: 100%;\n\n  &--centered {\n    @include rmd-dialog-theme(min-width);\n\n    pointer-events: auto;\n  }\n\n  &--full-page {\n    // this is applied here since there is no longer a container element for\n    // full page dialogs.\n    @include rmd-utils-full-screen;\n    @include rmd-utils-scroll;\n    @include rmd-dialog-theme(z-index);\n  }\n\n  &--enter {\n    transform: translateY($rmd-dialog-transition-distance);\n  }\n\n  &--enter-active {\n    @include rmd-transition(deceleration);\n\n    transform: translateY(0);\n    transition: transform $rmd-dialog-enter-duration;\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    opacity: 1;\n    transform: translateY(0);\n    transition: transform $rmd-dialog-leave-duration,\n      opacity $rmd-dialog-leave-duration;\n  }\n\n  &--exit-active {\n    opacity: 0;\n    transform: translateY($rmd-dialog-transition-distance);\n  }\n\n  &--fixed {\n    @include rmd-dialog-theme(z-index);\n  }\n\n  &--fixed-enter {\n    transform: scale(0);\n  }\n\n  &--fixed-enter-active {\n    @include rmd-transition(deceleration);\n\n    transform: scale(1);\n    transition: transform $rmd-dialog-enter-duration;\n  }\n\n  &--fixed-exit {\n    @include rmd-transition(deceleration);\n\n    opacity: 1;\n    transform: scale(1);\n    transition: transform $rmd-dialog-leave-duration,\n      opacity $rmd-dialog-leave-duration;\n  }\n\n  &--fixed-exit-active {\n    opacity: 0;\n    transform: scale(0);\n  }\n}\n",
+        "@mixin rmd-dialog {\n  @include rmd-elevation($rmd-dialog-elevation);\n  @include rmd-theme-dark-elevation($rmd-dialog-elevation);\n  @include rmd-theme-update-var(background, rmd-theme-var(surface));\n  @include rmd-theme(background-color, background);\n  @include rmd-theme(color, text-primary-on-background);\n  @include rmd-utils-hide-focus-outline;\n  @if mixin-exists(rmd-app-bar-theme-update-var) {\n    @include rmd-app-bar-theme-update-var(\n      color,\n      rmd-theme-var(text-primary-on-background)\n    );\n  }\n\n  display: flex;\n  flex-direction: column;\n  max-height: 100%;\n  max-width: 100%;\n\n  &--centered {\n    @include rmd-dialog-theme(min-width);\n\n    pointer-events: auto;\n  }\n\n  &--full-page {\n    // this is applied here since there is no longer a container element for\n    // full page dialogs.\n    @include rmd-utils-full-screen;\n    @include rmd-utils-scroll;\n    @include rmd-dialog-theme(z-index);\n  }\n\n  &--enter {\n    transform: translateY($rmd-dialog-transition-distance);\n  }\n\n  &--enter-active {\n    @include rmd-transition(deceleration);\n\n    transform: translateY(0);\n    transition: transform $rmd-dialog-enter-duration;\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    opacity: 1;\n    transform: translateY(0);\n    transition: transform $rmd-dialog-leave-duration,\n      opacity $rmd-dialog-leave-duration;\n  }\n\n  &--exit-active {\n    opacity: 0;\n    transform: translateY($rmd-dialog-transition-distance);\n  }\n\n  &--fixed {\n    @include rmd-dialog-theme(z-index);\n  }\n\n  &--fixed-enter {\n    transform: scale(0);\n  }\n\n  &--fixed-enter-active {\n    @include rmd-transition(deceleration);\n\n    transform: scale(1);\n    transition: transform $rmd-dialog-enter-duration;\n  }\n\n  &--fixed-exit {\n    @include rmd-transition(deceleration);\n\n    opacity: 1;\n    transform: scale(1);\n    transition: transform $rmd-dialog-leave-duration,\n      opacity $rmd-dialog-leave-duration;\n  }\n\n  &--fixed-exit-active {\n    opacity: 0;\n    transform: scale(0);\n  }\n}\n",
       type: "mixin",
     },
     "rmd-dialog-header": {
       name: "rmd-dialog-header",
       description: "Creates the styles for the `DialogHeader` component.\n",
-      source: "packages/dialog/src/_mixins.scss#L125-L132",
+      source: "packages/dialog/src/_mixins.scss#L126-L133",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -244,7 +249,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-title",
       description:
         "Creates the minimal required styles for the `DialogTitle` component.\n",
-      source: "packages/dialog/src/_mixins.scss#L136-L140",
+      source: "packages/dialog/src/_mixins.scss#L137-L141",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -261,7 +266,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-content",
       description:
         "Creates the styles for the `DialogContent` component. It is set up so that it will grow to fill the remaining space within the `Dialog` and the `DialogHeader` and `DialogFooter` components will be fixed to the top and bottom edges respectively. It will also include scrolling by default.\n",
-      source: "packages/dialog/src/_mixins.scss#L147-L155",
+      source: "packages/dialog/src/_mixins.scss#L148-L156",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -279,7 +284,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-footer",
       description:
         "Creates the styles for the `DialogFooter` component. It has styles built-in to position the actions in different locations.\n",
-      source: "packages/dialog/src/_mixins.scss#L160-L184",
+      source: "packages/dialog/src/_mixins.scss#L161-L185",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -296,7 +301,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-container",
       description:
         "When the dialog is not set to be full page, the dialog gets wrapped in this container component so that it can be centered within the page using flexbox.\n\nIn the past versions, I did some old-school centering logic with `left`,\n`top`, and `transform`, but unfortunately this adds text blur in some browsers and made the transitions harder to customize since you would always need to apply the transforms at each stage of the transition. Using a flexbox approach fixes this.\n",
-      source: "packages/dialog/src/_mixins.scss#L196-L205",
+      source: "packages/dialog/src/_mixins.scss#L197-L206",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -319,7 +324,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-overlay",
       description:
         "Creates the styles for the dialog's overlay. This really requires the base styles and component from the overlay package and adds a few changes to help with nested dialogs.\n",
-      source: "packages/dialog/src/_mixins.scss#L211-L215",
+      source: "packages/dialog/src/_mixins.scss#L212-L216",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -335,7 +340,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-dialog": {
       name: "react-md-dialog",
       description: "Creates all the styles for the dialog package.\n",
-      source: "packages/dialog/src/_mixins.scss#L218-L248",
+      source: "packages/dialog/src/_mixins.scss#L219-L249",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

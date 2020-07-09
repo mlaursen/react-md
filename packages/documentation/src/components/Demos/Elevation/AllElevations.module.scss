@@ -1,3 +1,5 @@
+$rmd-theme-dark-elevation: true;
+
 @import '~@react-md/elevation/dist/mixins';
 @import '~@react-md/list/dist/mixins';
 @import '~@react-md/theme/dist/mixins';
@@ -24,6 +26,7 @@
 @for $i from 0 through 24 {
   .elevation#{$i} {
     @include rmd-elevation($i);
+    @include rmd-theme-dark-elevation($i);
   }
 }
 

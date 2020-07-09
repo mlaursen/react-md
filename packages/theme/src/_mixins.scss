@@ -50,6 +50,38 @@
   @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-theme-values, theme);
 }
 
+/// This mixin should normally be used with the `rmd-elevation` mixin to change
+/// the background color based on the current elevation in dark themes.
+///
+/// @param {Number} z-value - This should be a number between 0 and 24
+/// representing the current elevation.
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within
+/// CSS Modules which will update the selector to work correctly by wrapping
+/// different parts with `:global` and `:local`.
+@mixin rmd-theme-dark-elevation($z-value, $css-modules: false) {
+  @if $rmd-theme-dark-elevation {
+    @if $rmd-theme-dark-class == 'prefers-color-scheme' {
+      @media (prefers-color-scheme: dark) {
+        & {
+          @include rmd-theme-update-var(
+            background,
+            map-get($rmd-theme-dark-elevation-colors, $z-value)
+          );
+          @include rmd-theme(background-color, background);
+        }
+      }
+    } @else {
+      @include rmd-utils-optional-css-modules($rmd-theme-dark-class, $css-modules) {
+        @include rmd-theme-update-var(
+          background,
+          map-get($rmd-theme-dark-elevation-colors, $z-value)
+        );
+        @include rmd-theme(background-color, background);
+      }
+    }
+  }
+}
+
 /// This mixin can be used to apply the light theme by updating **every** color
 /// theme variable across all react-md packages.
 ///

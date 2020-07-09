@@ -116,8 +116,14 @@ $rmd-chip-solid-light-disabled-background-color: $rmd-grey-100 !default;
 /// theme.
 ///
 /// @require $rmd-grey-900
+/// @require $rmd-theme-dark-elevation
+/// @require $rmd-theme-dark-elevation-colors
 /// @type Color
-$rmd-chip-solid-dark-background-color: $rmd-grey-900 !default;
+$rmd-chip-solid-dark-background-color: if(
+  $rmd-theme-dark-elevation,
+  map-get($rmd-theme-dark-elevation-colors, 12),
+  $rmd-grey-900
+) !default;
 
 /// The text color to use for "solid" themed chips when using the dark theme.
 ///
@@ -191,9 +197,15 @@ $rmd-chip-outline-light-color: if(
 /// The background color to use for "outlined" themed chips when using the dark
 /// theme.
 ///
+/// @require $rmd-theme-dark-elevation
+/// @require $rmd-theme-dark-elevation-colors
 /// @require $rmd-theme-dark-surface
 /// @type Color
-$rmd-chip-outline-dark-background-color: $rmd-theme-dark-surface !default;
+$rmd-chip-outline-dark-background-color: if(
+  $rmd-theme-dark-elevation,
+  map-get($rmd-theme-dark-elevation-colors, 8),
+  $rmd-theme-dark-surface
+) !default;
 
 /// The text color to use for "outlined" themed chips when using the dark theme.
 ///

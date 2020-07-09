@@ -185,10 +185,15 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toast",
       description:
         "Generates the styles for a toast and should probably only be used internally.\n",
-      source: "packages/alert/src/_mixins.scss#L63-L150",
+      source: "packages/alert/src/_mixins.scss#L63-L151",
       usedBy: [{ name: "react-md-alert", type: "mixin", packageName: "alert" }],
       requires: [
         { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
+        {
+          name: "rmd-theme-dark-elevation",
+          type: "mixin",
+          packageName: "theme",
+        },
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
         { name: "rmd-alert-theme", type: "mixin", packageName: "alert" },
         { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
@@ -244,14 +249,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "alert",
       code: "@mixin rmd-toast { … }",
       sourceCode:
-        "@mixin rmd-toast {\n  @include rmd-elevation($rmd-toast-elevation);\n  @include rmd-typography(subtitle-2);\n  @include rmd-alert-theme(background-color);\n  @include rmd-alert-theme(color);\n\n  align-items: center;\n  border-radius: $rmd-toast-border-radius;\n  display: flex;\n  min-height: $rmd-toast-min-height;\n  min-width: $rmd-toast-min-width;\n  padding: 0 $rmd-toast-horizontal-padding;\n  pointer-events: auto;\n  transform-origin: center;\n\n  &--padded {\n    padding-bottom: $rmd-toast-vertical-padding;\n    padding-top: $rmd-toast-vertical-padding;\n  }\n\n  &--action {\n    @include rmd-utils-rtl-auto(\n      padding-right,\n      0,\n      $rmd-toast-horizontal-padding\n    );\n  }\n\n  &--two-lines {\n    min-height: $rmd-toast-two-line-min-height;\n  }\n\n  &--stacked {\n    flex-direction: column;\n    padding-bottom: 0;\n  }\n\n  &--enter {\n    @include rmd-transition(deceleration);\n\n    opacity: 0;\n    transform: scale(0);\n    transition: opacity $rmd-toast-enter-duration,\n      transform $rmd-toast-enter-duration;\n  }\n\n  &--enter-active {\n    opacity: 1;\n    transform: scale(1);\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    opacity: 1;\n    transform: scale(1);\n  }\n\n  &--exit-active {\n    opacity: 0;\n    transform: scale(0);\n    transition: opacity $rmd-toast-exit-duration,\n      transform $rmd-toast-exit-duration;\n  }\n\n  &__message {\n    @include rmd-utils-rtl-auto(margin-right, auto);\n\n    display: inline-flex;\n    flex: 1 1 auto;\n    flex-wrap: wrap;\n\n    &--action {\n      @include rmd-utils-rtl-auto(\n        padding-right,\n        $rmd-toast-horizontal-padding,\n        0\n      );\n    }\n\n    p {\n      margin: 0;\n      width: 100%;\n    }\n  }\n\n  &__action {\n    display: inline-flex;\n    flex-shrink: 0;\n    margin: 0 $rmd-toast-action-margin;\n\n    &--stacked {\n      align-self: flex-end;\n      margin-bottom: $rmd-toast-action-margin;\n      margin-top: $rmd-toast-stacked-action-margin-top;\n    }\n  }\n}\n",
+        "@mixin rmd-toast {\n  @include rmd-elevation($rmd-toast-elevation);\n  @include rmd-theme-dark-elevation($rmd-toast-elevation);\n  @include rmd-typography(subtitle-2);\n  @include rmd-alert-theme(background-color);\n  @include rmd-alert-theme(color);\n\n  align-items: center;\n  border-radius: $rmd-toast-border-radius;\n  display: flex;\n  min-height: $rmd-toast-min-height;\n  min-width: $rmd-toast-min-width;\n  padding: 0 $rmd-toast-horizontal-padding;\n  pointer-events: auto;\n  transform-origin: center;\n\n  &--padded {\n    padding-bottom: $rmd-toast-vertical-padding;\n    padding-top: $rmd-toast-vertical-padding;\n  }\n\n  &--action {\n    @include rmd-utils-rtl-auto(\n      padding-right,\n      0,\n      $rmd-toast-horizontal-padding\n    );\n  }\n\n  &--two-lines {\n    min-height: $rmd-toast-two-line-min-height;\n  }\n\n  &--stacked {\n    flex-direction: column;\n    padding-bottom: 0;\n  }\n\n  &--enter {\n    @include rmd-transition(deceleration);\n\n    opacity: 0;\n    transform: scale(0);\n    transition: opacity $rmd-toast-enter-duration,\n      transform $rmd-toast-enter-duration;\n  }\n\n  &--enter-active {\n    opacity: 1;\n    transform: scale(1);\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    opacity: 1;\n    transform: scale(1);\n  }\n\n  &--exit-active {\n    opacity: 0;\n    transform: scale(0);\n    transition: opacity $rmd-toast-exit-duration,\n      transform $rmd-toast-exit-duration;\n  }\n\n  &__message {\n    @include rmd-utils-rtl-auto(margin-right, auto);\n\n    display: inline-flex;\n    flex: 1 1 auto;\n    flex-wrap: wrap;\n\n    &--action {\n      @include rmd-utils-rtl-auto(\n        padding-right,\n        $rmd-toast-horizontal-padding,\n        0\n      );\n    }\n\n    p {\n      margin: 0;\n      width: 100%;\n    }\n  }\n\n  &__action {\n    display: inline-flex;\n    flex-shrink: 0;\n    margin: 0 $rmd-toast-action-margin;\n\n    &--stacked {\n      align-self: flex-end;\n      margin-bottom: $rmd-toast-action-margin;\n      margin-top: $rmd-toast-stacked-action-margin-top;\n    }\n  }\n}\n",
       type: "mixin",
     },
     "react-md-alert": {
       name: "react-md-alert",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/alert/src/_mixins.scss#L154-L164",
+      source: "packages/alert/src/_mixins.scss#L155-L165",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

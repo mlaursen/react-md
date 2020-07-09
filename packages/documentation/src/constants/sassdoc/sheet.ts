@@ -199,10 +199,15 @@ const sassdoc: PackageSassDoc = {
     "rmd-sheet": {
       name: "rmd-sheet",
       description: "Creates the styles for a sheet component\n",
-      source: "packages/sheet/src/_mixins.scss#L70-L147",
+      source: "packages/sheet/src/_mixins.scss#L70-L150",
       usedBy: [{ name: "react-md-sheet", type: "mixin", packageName: "sheet" }],
       requires: [
         { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
+        {
+          name: "rmd-theme-dark-elevation",
+          type: "mixin",
+          packageName: "theme",
+        },
         { name: "rmd-utils-scroll", type: "mixin", packageName: "utils" },
         { name: "rmd-sheet-positions", type: "mixin", packageName: "sheet" },
         { name: "rmd-sheet-theme", type: "mixin", packageName: "sheet" },
@@ -249,14 +254,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "sheet",
       code: "@mixin rmd-sheet { … }",
       sourceCode:
-        "@mixin rmd-sheet {\n  @include rmd-elevation($rmd-sheet-elevation);\n  @include rmd-utils-scroll;\n  @include rmd-sheet-positions;\n  @include rmd-sheet-theme(max-height);\n  @include rmd-sheet-theme(height);\n  @include rmd-sheet-theme(width);\n\n  position: fixed;\n  z-index: $rmd-sheet-z-index;\n\n  &--raised {\n    @include rmd-elevation($rmd-sheet-raised-elevation);\n    z-index: $rmd-sheet-raised-z-index;\n  }\n\n  &--horizontal {\n    bottom: 0;\n    top: 0;\n  }\n\n  &--touch-width {\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(touch-width)\n    );\n  }\n\n  &--static-width {\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(static-width)\n    );\n  }\n\n  &--media-width {\n    @include rmd-utils-tablet-media {\n      @include rmd-sheet-theme-update-var(\n        width,\n        rmd-sheet-theme-var(static-width)\n      );\n    }\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(touch-width)\n    );\n  }\n\n  &--vertical {\n    left: 0;\n    right: 0;\n  }\n\n  &--viewport-height {\n    @include rmd-sheet-theme-update-var(max-height, $rmd-sheet-max-height);\n  }\n\n  &--touchable-height {\n    @include rmd-sheet-theme-update-var(\n      max-height,\n      rmd-sheet-theme-var(touchable-max-height)\n    );\n  }\n\n  &--recommended-height {\n    max-height: $rmd-sheet-recommended-max-height;\n    min-height: $rmd-sheet-recommended-min-height;\n  }\n\n  &--offscreen {\n    @include rmd-sheet-theme(transform, transform-offscreen);\n  }\n\n  &--hidden {\n    box-shadow: none;\n  }\n\n  &--visible {\n    transform: translate3d(0, 0, 0);\n  }\n\n  &--enter {\n    @include rmd-transition(deceleration);\n\n    transition: transform $rmd-sheet-enter-duration;\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    transition: transform $rmd-sheet-enter-duration;\n  }\n}\n",
+        "@mixin rmd-sheet {\n  @include rmd-elevation($rmd-sheet-elevation);\n  @include rmd-theme-dark-elevation($rmd-sheet-elevation);\n  @include rmd-utils-scroll;\n  @include rmd-sheet-positions;\n  @include rmd-sheet-theme(max-height);\n  @include rmd-sheet-theme(height);\n  @include rmd-sheet-theme(width);\n\n  position: fixed;\n  z-index: $rmd-sheet-z-index;\n\n  &--raised {\n    @include rmd-elevation($rmd-sheet-raised-elevation);\n    @include rmd-theme-dark-elevation($rmd-sheet-elevation);\n\n    z-index: $rmd-sheet-raised-z-index;\n  }\n\n  &--horizontal {\n    bottom: 0;\n    top: 0;\n  }\n\n  &--touch-width {\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(touch-width)\n    );\n  }\n\n  &--static-width {\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(static-width)\n    );\n  }\n\n  &--media-width {\n    @include rmd-utils-tablet-media {\n      @include rmd-sheet-theme-update-var(\n        width,\n        rmd-sheet-theme-var(static-width)\n      );\n    }\n    @include rmd-sheet-theme-update-var(\n      width,\n      rmd-sheet-theme-var(touch-width)\n    );\n  }\n\n  &--vertical {\n    left: 0;\n    right: 0;\n  }\n\n  &--viewport-height {\n    @include rmd-sheet-theme-update-var(max-height, $rmd-sheet-max-height);\n  }\n\n  &--touchable-height {\n    @include rmd-sheet-theme-update-var(\n      max-height,\n      rmd-sheet-theme-var(touchable-max-height)\n    );\n  }\n\n  &--recommended-height {\n    max-height: $rmd-sheet-recommended-max-height;\n    min-height: $rmd-sheet-recommended-min-height;\n  }\n\n  &--offscreen {\n    @include rmd-sheet-theme(transform, transform-offscreen);\n  }\n\n  &--hidden {\n    box-shadow: none;\n  }\n\n  &--visible {\n    transform: translate3d(0, 0, 0);\n  }\n\n  &--enter {\n    @include rmd-transition(deceleration);\n\n    transition: transform $rmd-sheet-enter-duration;\n  }\n\n  &--exit {\n    @include rmd-transition(acceleration);\n\n    transition: transform $rmd-sheet-enter-duration;\n  }\n}\n",
       type: "mixin",
     },
     "react-md-sheet": {
       name: "react-md-sheet",
       description:
         "Creates all the styles for the sheet package as well as the root css variable theme.\n",
-      source: "packages/sheet/src/_mixins.scss#L151-L161",
+      source: "packages/sheet/src/_mixins.scss#L154-L164",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

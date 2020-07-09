@@ -1,7 +1,11 @@
+$rmd-theme-dark-elevation: true;
+
 @import '~@react-md/elevation/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
 
 .container {
   @include rmd-elevation(6);
+  @include rmd-theme-dark-elevation(6, true);
 
   height: 25rem;
   overflow: hidden;

@@ -23,6 +23,7 @@ const demos = [
     name: "Simple Usage",
     description: simpleUsage,
     children: <SimpleUsage />,
+    disableCard: true,
   },
   {
     name: "Different Sizes",

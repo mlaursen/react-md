@@ -41,6 +41,7 @@
   @include rmd-utils-hide-focus-outline;
   @include rmd-utils-scroll;
   @include rmd-elevation($rmd-menu-elevation);
+  @include rmd-theme-dark-elevation($rmd-menu-elevation);
   @include rmd-menu-theme(background-color);
   @include rmd-menu-theme(color);
   @include rmd-menu-theme(min-width);
