@@ -1,6 +1,6 @@
 {
   "name": "react-md",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "This is the full react-md library bundled together for convenience.",
   "scripts": {
     "umd": "rollup -c",
@@ -54,7 +54,7 @@
     "@react-md/expansion-panel": "^2.0.2",
     "@react-md/form": "^2.0.3",
     "@react-md/icon": "^2.0.2",
-    "@react-md/layout": "^2.0.2",
+    "@react-md/layout": "^2.0.4",
     "@react-md/link": "^2.0.2",
     "@react-md/list": "^2.0.2",
     "@react-md/material-icons": "^2.0.2",
