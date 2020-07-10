@@ -2,7 +2,6 @@ import React, { FC, useEffect, useState } from "react";
 import { getParameters } from "codesandbox/lib/api/define";
 
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
-import { RMD_VERSION } from "constants/github";
 
 const CODE_SANDBOX_DEFINE_API =
   "https://codesandbox.io/api/v1/sandboxes/define";
@@ -26,7 +25,7 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
         (files, [fileName, data]) => {
           let { content } = data;
           if (typeof content === "string") {
-            content = content.replace(/{{RMD_VERSION}}/g, RMD_VERSION);
+            content = content.replace(/{{RMD_VERSION}}/g, "latest");
           } else if (fileName === "package.json") {
             /* eslint-disable @typescript-eslint/no-explicit-any */
             // the IFiles type is incorrect since it doesn't include the type for package.json
@@ -38,7 +37,7 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
             const updated = Object.entries(dependencies).reduce(
               (json, [key, value]) => ({
                 ...json,
-                [key]: value.replace(/{{RMD_VERSION}}/g, RMD_VERSION),
+                [key]: value.replace(/{{RMD_VERSION}}/g, "latest"),
               }),
               {}
             );
