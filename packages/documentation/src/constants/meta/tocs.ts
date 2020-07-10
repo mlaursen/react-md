@@ -1690,11 +1690,23 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#204-2020-07-10",
+      title: "2.0.4 (2020-07-10)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
