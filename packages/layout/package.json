@@ -47,6 +47,7 @@
     "@react-md/app-bar": "^2.0.2",
     "@react-md/dialog": "^2.0.2",
     "@react-md/divider": "^2.0.2",
+    "@react-md/form": "^2.0.3",
     "@react-md/icon": "^2.0.2",
     "@react-md/link": "^2.0.2",
     "@react-md/list": "^2.0.2",
