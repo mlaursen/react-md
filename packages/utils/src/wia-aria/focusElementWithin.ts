@@ -1,4 +1,5 @@
 import getFocusableElements from "./getFocusableElements";
+import scrollIntoView from "../scrollIntoView";
 
 export type Focus = "first" | "last" | string;
 
@@ -45,4 +46,7 @@ export default function focusElementWithin(
   }
 
   el.focus({ preventScroll });
+  if (!preventScroll && container !== document) {
+    scrollIntoView(container as HTMLElement, el);
+  }
 }
