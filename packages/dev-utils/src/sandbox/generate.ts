@@ -259,7 +259,8 @@ export default async function generate({
           const name = demoName.replace(".tsx", "");
           content = content
             .replace(`${name}: FC`, "Demo: FC")
-            .replace(`default ${name};`, "default Demo;");
+            .replace(`default ${name};`, "default Demo;")
+            .replace(`<${name} />`, "<Demo />");
         }
 
         return {
