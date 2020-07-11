@@ -120,6 +120,11 @@ export interface FormattedItem {
    * output as well to help show what the example does.
    */
   examples?: CompiledExample[];
+
+  /**
+   * An optional version that the variable, mixin, or function was added.
+   */
+  since?: string;
 }
 
 /**

@@ -53,6 +53,7 @@
 /// This mixin should normally be used with the `rmd-elevation` mixin to change
 /// the background color based on the current elevation in dark themes.
 ///
+/// @since 2.1.0
 /// @param {Number} z-value - This should be a number between 0 and 24
 /// representing the current elevation.
 /// @param {Boolean} css-modules [false] - Boolean if this is being used within

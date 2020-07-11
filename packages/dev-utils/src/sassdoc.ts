@@ -190,6 +190,7 @@ function formatItem(
     example,
     usedBy,
     require,
+    since,
   } = item;
 
   let examples: CompiledExample[] | undefined;
@@ -226,6 +227,7 @@ function formatItem(
       line.start,
       line.end
     ),
+    since: since?.[0]?.version,
     links,
     see: getReferenceLinks(see, references),
     usedBy: getReferenceLinks(usedBy, references),
@@ -405,8 +407,11 @@ ${sassdocTypes}${customContent}`,
   await writeFile(join(documentationSrc, "utils", "sassdoc.ts"), contents);
 }
 
-export default async function sassdoc(): Promise<void> {
-  await copyStyles();
+export default async function sassdoc(copy: boolean): Promise<void> {
+  if (copy) {
+    await copyStyles();
+  }
+
   await createSassdocUtil();
 
   const sassdocs = await getSassdoc();

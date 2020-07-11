@@ -1,10 +1,12 @@
 import React, { FC } from "react";
+import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 import { Markdown } from "components/Markdown";
 import GithubLink from "components/GithubLink";
+import Link from "components/Link";
 import Heading from "components/Heading";
-import { GITHUB_FILE_URL } from "constants/github";
+import { GITHUB_FILE_URL, GITHUB_URL } from "constants/github";
 import {
   FormattedSassDocItem,
   FormattedVariableItem,
@@ -44,6 +46,7 @@ const SassDocItem: FC<FormattedSassDocItem> = (props) => {
     usedBy,
     links,
     see,
+    since,
     requires,
   } = props as FormattedVariableItem &
     FormattedMixinItem &
@@ -58,6 +61,12 @@ const SassDocItem: FC<FormattedSassDocItem> = (props) => {
       <Heading id={id} level={3} margin="top">
         {name}
       </Heading>
+      {since && (
+        <Text margin="none" type="body-2" color="secondary">
+          Since{" "}
+          <Link href={`${GITHUB_URL}/releases/tag/v${since}`}>v{since}</Link>
+        </Text>
+      )}
       <div className={styles.row}>
         <Code>{type}</Code>
         <GithubLink

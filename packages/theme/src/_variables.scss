@@ -159,6 +159,7 @@ $rmd-theme-dark-surface: $rmd-grey-800 !default;
 /// If this is set to `prefers-color-scheme`, the dark elevation styles will
 /// only be applied when the `@media (prefers-color-scheme: dark)`.
 ///
+/// @since 2.1.0
 /// @type String
 $rmd-theme-dark-class: '.dark-theme' !default;
 
@@ -421,6 +422,7 @@ $rmd-theme-icon-on-dark-color: rmd-theme-text-color(icon, dark) !default;
 /// to contain a color for each elevation in the `@react-md/elevation` package
 /// (0 - 24).
 ///
+/// @since 2.1.0
 /// @type Map
 $rmd-theme-dark-elevation-colors: (
   0: $rmd-theme-dark-background,

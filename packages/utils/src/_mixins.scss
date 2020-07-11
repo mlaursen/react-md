@@ -319,6 +319,7 @@
 /// from a css module file. This basically prefixes the react-md class with
 /// `:global` and suffixes with `:local &`.
 ///
+/// @since 2.1.0
 /// @param {String} class-name - The class name that should be optionally
 /// prefixed with `:global` when the `$css-modules` parameter is `true`.
 /// @param {Boolean} css-modules [false] - Boolean if the class name should be

@@ -313,7 +313,7 @@ export interface ItemSince {
   /**
    * The description for the version.
    */
-  description: string;
+  description?: string;
 }
 
 /**
@@ -539,6 +539,12 @@ export interface BaseItem {
    * on mixins and functions,
    */
   throw?: ItemThrow;
+
+  /**
+   * An optional @since annotation that has a version number and an optional
+   * description.
+   */
+  since?: ItemSince[];
 }
 
 /**
@@ -722,6 +728,11 @@ export interface FormattedItem {
    * output as well to help show what the example does.
    */
   examples?: CompiledExample[];
+
+  /**
+   * An optional version that the variable, mixin, or function was added.
+   */
+  since?: string;
 }
 
 /**

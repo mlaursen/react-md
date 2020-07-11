@@ -294,6 +294,8 @@ export interface AutoCompleteProps
    * Any optional children to display before the matched results in the
    * autocomplete's menu. This should normally be for any presentational data or
    * things that should not be searchable.
+   *
+   * @since 2.1.0
    */
   beforeResultsChildren?: ReactNode;
 
@@ -301,6 +303,8 @@ export interface AutoCompleteProps
    * Any optional children to display after the matched results in the
    * autocomplete's menu. This should normally be for any presentational data or
    * things that should not be searchable.
+   *
+   * @since 2.1.0
    */
   afterResultsChildren?: ReactNode;
 }
