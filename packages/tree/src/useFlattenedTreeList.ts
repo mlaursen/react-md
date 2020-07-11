@@ -142,9 +142,12 @@ export default function useFlattenedTreeList({
     return flattenedItems.reduce<ItemCollection>(
       (collection, item) => {
         const { parentId, itemId } = item;
-        const isVisible =
-          parentId === rootId ||
-          (parentId !== null && expandedIds.includes(parentId));
+        let isVisible = parentId === rootId;
+        if (parentId !== null && expandedIds.includes(parentId)) {
+          // need to also make sure that the parent is visible
+          isVisible =
+            (collection.itemRefs[parentId]?.visibleIndex ?? -1) !== -1;
+        }
 
         collection.itemRefs[itemId] = {
           id: item.id,
