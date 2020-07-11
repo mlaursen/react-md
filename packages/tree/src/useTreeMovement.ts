@@ -289,13 +289,34 @@ export default function useTreeMovement({
             new Set([...expandedIds, ...expectedExpandedIds])
           );
           if (nextIds.length !== expandedIds.length) {
-            const index = flattenedItems.findIndex(
-              ({ itemId }) => itemId === item.itemId
-            );
-
             onMultiItemExpansion(nextIds);
-            if (index !== -1) {
-              setFocusedIndex(index);
+
+            // since new items will be rendered, need to also update the focused
+            // index so the currently active item is still the "focused" item
+            //
+            // TODO: Look into a much better way to handle this sort of stuff..
+            // This still doesn't correctly scroll the active element into view.
+            // I should probably move all the scroll behavior into a useEffect
+            // for whenever the focusedIndex changes.
+            let visibleCount = 0;
+            const lookup: Record<TreeItemId, boolean> = {};
+            for (let i = 0; i < flattenedItems.length; i += 1) {
+              const item = flattenedItems[i];
+              let isVisible = item.parentId === rootId;
+              if (item.parentId !== null && nextIds.includes(item.parentId)) {
+                isVisible = !!lookup[item.parentId];
+              }
+
+              lookup[item.itemId] = isVisible;
+
+              if (itemId === item.itemId) {
+                setFocusedIndex(visibleCount);
+                return;
+              }
+
+              if (isVisible) {
+                visibleCount += 1;
+              }
             }
           }
         }
