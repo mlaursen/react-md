@@ -771,7 +771,8 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-optional-css-modules",
       description:
         "This mixin should mostally be used internally within react-md so that react-md mixins that use a `rmd-` prefixed class work correctly if included from a css module file. This basically prefixes the react-md class with `:global` and suffixes with `:local &`.",
-      source: "packages/utils/src/_mixins.scss#L329-L336",
+      source: "packages/utils/src/_mixins.scss#L330-L337",
+      since: "2.1.0",
       usedBy: [
         {
           name: "rmd-theme-dark-elevation",
@@ -819,7 +820,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-touch-only",
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app on a touch device.",
-      source: "packages/utils/src/_mixins.scss#L362-L366",
+      source: "packages/utils/src/_mixins.scss#L363-L367",
       requires: [
         {
           name: "rmd-utils-optional-css-modules",
@@ -864,7 +865,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-keyboard-only",
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app with a keyboard.",
-      source: "packages/utils/src/_mixins.scss#L392-L396",
+      source: "packages/utils/src/_mixins.scss#L393-L397",
       requires: [
         {
           name: "rmd-utils-optional-css-modules",
@@ -909,7 +910,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-mouse-only",
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app with a mouse.",
-      source: "packages/utils/src/_mixins.scss#L422-L426",
+      source: "packages/utils/src/_mixins.scss#L423-L427",
       requires: [
         {
           name: "rmd-utils-optional-css-modules",
@@ -954,7 +955,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid",
       description:
         "Generates a new grid based on the provided padding, margin, and columns.",
-      source: "packages/utils/src/_mixins.scss#L449-L486",
+      source: "packages/utils/src/_mixins.scss#L450-L487",
       usedBy: [
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
       ],
@@ -1021,7 +1022,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-full",
       description:
         "This mixin is just a nice way to quickly make a cell span the entire width of the grid.\n\nNote: if you set the number of columns for phone or tablet to `1`, you'll need to also wrap this in the `@include rmd-utils-tablet-media` or `@include rmd-utils-desktop-media` mixins respectively.\n",
-      source: "packages/utils/src/_mixins.scss#L494-L496",
+      source: "packages/utils/src/_mixins.scss#L495-L497",
       requires: [
         {
           name: "rmd-grid-columns-var",
@@ -1044,7 +1045,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-size",
       description:
         "A mixin that allows you to override the size of a cell within the `Grid` component manually.  This is useful if you want to specify sizing without using the `GridCell` component wrapper.",
-      source: "packages/utils/src/_mixins.scss#L513-L540",
+      source: "packages/utils/src/_mixins.scss#L514-L541",
       usedBy: [{ name: "rmd-grid-cell", type: "mixin", packageName: "utils" }],
       packageName: "utils",
       code:
@@ -1086,7 +1087,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell",
       description:
         'Creates the styles for all the cell column spans and "fixes" for smaller media types if the media types doesn\'t support the same number of columns.\n',
-      source: "packages/utils/src/_mixins.scss#L545-L551",
+      source: "packages/utils/src/_mixins.scss#L546-L552",
       usedBy: [
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
       ],
@@ -1108,7 +1109,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell-size",
       description:
         "A simple mixin that will allow you to add the current grid list cell size to any property.",
-      source: "packages/utils/src/_mixins.scss#L564-L575",
+      source: "packages/utils/src/_mixins.scss#L565-L576",
       usedBy: [
         { name: "rmd-grid-list-cell", type: "mixin", packageName: "utils" },
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
@@ -1157,7 +1158,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell",
       description:
         "Adds the current grid list cell's size to any element if you don't want to use the `GridListCell` component for sizing. This will **always** apply the `margin` and `width`, but the `height` can be opted-out if desired.",
-      source: "packages/utils/src/_mixins.scss#L589-L600",
+      source: "packages/utils/src/_mixins.scss#L590-L601",
       usedBy: [
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
       ],
@@ -1206,7 +1207,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-grid-list": {
       name: "rmd-grid-list",
       description: "Creates the styles for the `GridList` component\n",
-      source: "packages/utils/src/_mixins.scss#L604-L610",
+      source: "packages/utils/src/_mixins.scss#L605-L611",
       usedBy: [
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
       ],
@@ -1220,7 +1221,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-utils-grid",
       description:
         "Generates all the styles for the grid systems in react-md.\n",
-      source: "packages/utils/src/_mixins.scss#L614-L638",
+      source: "packages/utils/src/_mixins.scss#L615-L639",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         { name: "rmd-grid", type: "mixin", packageName: "utils" },
@@ -1243,7 +1244,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-base",
       description:
         "This is a small utility function that helps set up your react-md app.\n\nThis will:\n- update the `box-sizing` to be `border-box` (helpful for calculation positions and sizing)\n- remove the margin and padding from the `html` and `body`\n- apply the base background color and text colors to the `html` tag if the `@react-md/theme` package\n  has been correctly included\n- apply the base typography to the `html` element if the `@react-md/typography` package\n  has been correctly included\n",
-      source: "packages/utils/src/_mixins.scss#L649-L693",
+      source: "packages/utils/src/_mixins.scss#L650-L694",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
@@ -1263,7 +1264,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-dense",
       description:
         "This mixin will attempt to apply all the available dense theme mixins that have been imported. This should normally be used within a `:root` selector and a media query.",
-      source: "packages/utils/src/_mixins.scss#L705-L729",
+      source: "packages/utils/src/_mixins.scss#L706-L730",
       requires: [
         {
           name: "rmd-app-bar-dense-theme",
@@ -1304,7 +1305,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-utils",
       description:
         "This mixin will include the styles for all packages that have been imported in your scss files. If there are missing styles, you need to make sure to correctly import that package before calling this function.\n",
-      source: "packages/utils/src/_mixins.scss#L735-L861",
+      source: "packages/utils/src/_mixins.scss#L736-L862",
       requires: [
         { name: "rmd-utils-base", type: "mixin", packageName: "utils" },
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },

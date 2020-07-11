@@ -80,7 +80,8 @@ createCommand("sassdoc")
   .description(
     "Creates the sassdoc for the documentation site in all scoped packages."
   )
-  .action(() => sassdoc());
+  .option("--no-copy", "")
+  .action(({ copy = true }) => sassdoc(copy));
 
 createCommand("variables")
   .description("Creates the scssVariables file in all scoped packages.")

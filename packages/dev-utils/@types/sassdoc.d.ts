@@ -328,7 +328,7 @@ declare module "sassdoc" {
     /**
      * The description for the version.
      */
-    description: string;
+    description?: string;
   }
 
   /**
@@ -554,6 +554,12 @@ declare module "sassdoc" {
      * on mixins and functions,
      */
     throw?: ItemThrow;
+
+    /**
+     * An optional @since annotation that has a version number and an optional
+     * description.
+     */
+    since?: ItemSince[];
   }
 
   /**
