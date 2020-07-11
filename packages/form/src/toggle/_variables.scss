@@ -45,7 +45,11 @@ $rmd-switch-track-width: 2.25rem !default;
 ///
 /// @require $rmd-black-base
 /// @type Color
-$rmd-switch-track-background-color: rgba($rmd-black-base, 0.38) !default;
+$rmd-switch-track-background-color: if(
+  $rmd-theme-dark-elevation,
+  map-get($rmd-theme-dark-elevation-colors, 24),
+  rgba($rmd-black-base, 0.38)
+) !default;
 
 /// The border radius to apply to the switch's track. This is the element that the ball
 /// animates left and right on.
