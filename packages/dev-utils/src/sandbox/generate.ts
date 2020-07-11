@@ -41,9 +41,7 @@ function toDependencyJson(dependencies: string[]): Record<string, string> {
   return filtered.reduce(
     (json, dependency) => ({
       ...json,
-      [dependency]: dependency.startsWith("@react-md")
-        ? "{{RMD_VERSION}}"
-        : "latest",
+      [dependency]: "latest",
     }),
     {}
   );

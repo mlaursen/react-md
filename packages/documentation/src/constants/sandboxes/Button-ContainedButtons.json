@@ -21,12 +21,12 @@
       "description": "Example from https://react-md.dev/packages/button/demos#contained-buttons",
       "main": "src/index.tsx",
       "dependencies": {
-        "@react-md/button": "{{RMD_VERSION}}",
-        "@react-md/layout": "{{RMD_VERSION}}",
-        "@react-md/states": "{{RMD_VERSION}}",
-        "@react-md/theme": "{{RMD_VERSION}}",
-        "@react-md/typography": "{{RMD_VERSION}}",
-        "@react-md/utils": "{{RMD_VERSION}}",
+        "@react-md/button": "latest",
+        "@react-md/layout": "latest",
+        "@react-md/states": "latest",
+        "@react-md/theme": "latest",
+        "@react-md/typography": "latest",
+        "@react-md/utils": "latest",
         "classnames": "latest",
         "react": "latest",
         "react-dom": "latest"
