@@ -238,7 +238,12 @@ export default function useTreeMovement({
           if (!expandedIds.includes(itemId)) {
             onItemExpansion(itemId, true);
           } else {
-            setFocusedIndex(focusedIndex + 1);
+            const nextIndex = focusedIndex + 1;
+            const nextItem =
+              itemIdRefs[visibleItems[nextIndex]?.itemId]?.ref.current;
+
+            setFocusedIndex(nextIndex);
+            scrollIntoView(event.currentTarget, nextItem);
           }
           break;
         case "ArrowLeft":
@@ -248,7 +253,11 @@ export default function useTreeMovement({
             const parentIndex = visibleItems.findIndex(
               (item) => item.itemId === parentId
             );
+            const parentItem =
+              itemIdRefs[visibleItems[parentIndex]?.itemId]?.ref.current;
+
             setFocusedIndex(parentIndex);
+            scrollIntoView(event.currentTarget, parentItem);
           }
           break;
         case "a": {
