@@ -27,7 +27,7 @@ const ThemeUsage: FC<ThemeUsageProps> = ({
   accent,
   theme,
 }) => {
-  const cssName = `dist/react-md.${toCSSName(primary)}-${toCSSName(
+  const cssName = `dist/css/react-md.${toCSSName(primary)}-${toCSSName(
     secondary
   )}-${accent}-${theme}.min.css`;
   return (
