@@ -5,7 +5,11 @@
   "description": "The mono-repo for react-md",
   "main": "index.js",
   "scripts": {
-    "release": "dev-utils prepublish && lerna publish",
+    "pre-publish": "dev-utils prepublish",
+    "lerna-version": "lerna version --no-push",
+    "lerna-publish": "lerna publish from-git",
+    "publish-complete": "git push --follow-tags --no-verify origin master",
+    "release": "npm-run-all pre-publish lerna-version lerna-publish publish-complete",
     "dev-utils": "dev-utils",
     "sandbox": "yarn workspace documentation sandbox",
     "start": "yarn workspace documentation start-dev",
