@@ -26,7 +26,7 @@ $rmd-theme-dark-elevation: true;
 @for $i from 0 through 24 {
   .elevation#{$i} {
     @include rmd-elevation($i);
-    @include rmd-theme-dark-elevation($i);
+    @include rmd-theme-dark-elevation($i, true);
   }
 }
 

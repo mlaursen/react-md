@@ -52,7 +52,7 @@
     "isBinary": false
   },
   "src/AllElevations.module.scss": {
-    "content": "$rmd-theme-dark-elevation: true;\n\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/list/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n\n.container {\n  @include rmd-list-unstyled;\n\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n\n.example {\n  @include rmd-theme(background-color, background);\n\n  display: inline-flex;\n  height: 10rem;\n  margin: 1rem;\n  position: relative;\n  width: 18rem;\n}\n\n@for $i from 0 through 24 {\n  .elevation#{$i} {\n    @include rmd-elevation($i);\n    @include rmd-theme-dark-elevation($i);\n  }\n}\n\n.code {\n  margin: auto;\n}\n",
+    "content": "$rmd-theme-dark-elevation: true;\n\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/list/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n\n.container {\n  @include rmd-list-unstyled;\n\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n\n.example {\n  @include rmd-theme(background-color, background);\n\n  display: inline-flex;\n  height: 10rem;\n  margin: 1rem;\n  position: relative;\n  width: 18rem;\n}\n\n@for $i from 0 through 24 {\n  .elevation#{$i} {\n    @include rmd-elevation($i);\n    @include rmd-theme-dark-elevation($i, true);\n  }\n}\n\n.code {\n  margin: auto;\n}\n",
     "isBinary": false
   }
 }
