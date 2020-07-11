@@ -11,3 +11,7 @@ how the elevation looks depending on background color.
 
 > This package is used internally for many of the other packages that create
 > "temporary" material such as menus and sheets.
+
+> Note: If the dark theme is enabled for the documentation site, this demo is a
+> great example of the "raising dark mode elevation" feature that can be enabled
+> by setting `$rmd-theme-dark-elevation: true;`.
