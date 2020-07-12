@@ -44,6 +44,8 @@ $rmd-switch-track-width: 2.25rem !default;
 /// left and right on.
 ///
 /// @require $rmd-black-base
+/// @require $rmd-theme-dark-elevation
+/// @require $rmd-theme-dark-elevation-colors
 /// @type Color
 $rmd-switch-track-background-color: if(
   $rmd-theme-dark-elevation,

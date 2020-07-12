@@ -141,6 +141,8 @@ $rmd-theme-light-background: $rmd-grey-50 !default;
 $rmd-theme-light-surface: $rmd-white-base !default;
 
 /// The dark theme's background color.
+///
+/// @require $rmd-theme-dark-elevation
 /// @type Color
 $rmd-theme-dark-background: if($rmd-theme-dark-elevation, #121212, #303030) !default;
 
@@ -423,6 +425,7 @@ $rmd-theme-icon-on-dark-color: rmd-theme-text-color(icon, dark) !default;
 /// (0 - 24).
 ///
 /// @since 2.1.0
+/// @require $rmd-theme-dark-background
 /// @type Map
 $rmd-theme-dark-elevation-colors: (
   0: $rmd-theme-dark-background,
