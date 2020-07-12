@@ -6,6 +6,7 @@ import express from "express";
 import helmet from "helmet";
 import hpp from "hpp";
 import cookieParser from "cookie-parser";
+import morgan from "morgan";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const dev = process.env.NODE_ENV !== "production";
@@ -19,6 +20,9 @@ nextApp.prepare().then(() => {
   const app = express();
   app.use(helmet());
   app.use(hpp());
+  if (!dev) {
+    app.use(morgan("combined"));
+  }
   app.use(express.static(PUBLIC, { maxAge: CACHE_DURATION }));
 
   app.get("*", cookieParser(), (req, res) => {
