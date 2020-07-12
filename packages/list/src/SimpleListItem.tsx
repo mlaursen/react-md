@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/role-supports-aria-props */
 import React, { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
@@ -36,6 +37,8 @@ const SimpleListItem = forwardRef<HTMLLIElement, SimpleListItemProps>(
       height: propHeight = "auto",
       threeLines = false,
       clickable = false,
+      onClick,
+      disabled = false,
       ...props
     },
     ref
@@ -48,19 +51,25 @@ const SimpleListItem = forwardRef<HTMLLIElement, SimpleListItemProps>(
       rightAddonType,
       secondaryText,
     });
+    const { "aria-disabled": ariaDisabled } = props;
+    const isDisabled =
+      disabled || ariaDisabled === "true" || ariaDisabled === true;
 
     return (
       <li
         {...props}
+        aria-disabled={isDisabled || undefined}
         ref={ref}
         className={cn(
           block({
             [height]: height !== "auto" && height !== "normal",
             "three-lines": threeLines,
             clickable,
+            disabled: isDisabled,
           }),
           className
         )}
+        onClick={isDisabled ? undefined : onClick}
       >
         <ListItemChildren
           textClassName={textClassName}
@@ -126,6 +135,7 @@ if (process.env.NODE_ENV !== "production") {
       rightAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
       forceAddonWrap: PropTypes.bool,
       children: PropTypes.node,
+      onClick: PropTypes.func,
     };
   } catch (e) {}
 }
