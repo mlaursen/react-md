@@ -2093,9 +2093,19 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-background-color",
       description:
         "The background color for a switch's track. This is the element that the ball animates left and right on.",
-      source: "packages/form/src/toggle/_variables.scss#L48-L52",
+      source: "packages/form/src/toggle/_variables.scss#L50-L54",
       requires: [
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
+        {
+          name: "rmd-theme-dark-elevation",
+          type: "variable",
+          packageName: "theme",
+        },
+        {
+          name: "rmd-theme-dark-elevation-colors",
+          type: "variable",
+          packageName: "theme",
+        },
       ],
       packageName: "form",
       type: "Color",
@@ -2108,7 +2118,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-border-radius",
       description:
         "The border radius to apply to the switch's track. This is the element that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L57",
+      source: "packages/form/src/toggle/_variables.scss#L59",
       usedBy: [{ name: "rmd-switch", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2118,7 +2128,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-size": {
       name: "rmd-switch-ball-size",
       description: "The size of the switch's ball.\n",
-      source: "packages/form/src/toggle/_variables.scss#L61",
+      source: "packages/form/src/toggle/_variables.scss#L63",
       usedBy: [
         { name: "rmd-switch", type: "mixin", packageName: "form" },
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
@@ -2132,7 +2142,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-border-radius": {
       name: "rmd-switch-ball-border-radius",
       description: "The border radius for the switch's ball.\n",
-      source: "packages/form/src/toggle/_variables.scss#L65",
+      source: "packages/form/src/toggle/_variables.scss#L67",
       usedBy: [{ name: "rmd-switch-ball", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2143,7 +2153,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-ball-offset",
       description:
         "The amount of offset that should be applied to the ball relative to its track. This is really used so the ball can overlap the track a bit to look a bit nicer.\n",
-      source: "packages/form/src/toggle/_variables.scss#L70",
+      source: "packages/form/src/toggle/_variables.scss#L72",
       usedBy: [
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
         { name: "rmd-switch-ball", type: "mixin", packageName: "form" },
@@ -2157,7 +2167,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-container-vertical-padding",
       description:
         "The vertical padding for the switch container. This should generally be large enough so that the ball does not overlap any other elements.\n",
-      source: "packages/form/src/toggle/_variables.scss#L75",
+      source: "packages/form/src/toggle/_variables.scss#L77",
       usedBy: [
         { name: "rmd-switch-container", type: "mixin", packageName: "form" },
       ],
@@ -2170,7 +2180,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-container-horizontal-padding",
       description:
         "The horizontal padding for the switch container. This should generally be large enough so that the ball does not overlap the label or other elements.",
-      source: "packages/form/src/toggle/_variables.scss#L81",
+      source: "packages/form/src/toggle/_variables.scss#L83",
       usedBy: [
         { name: "rmd-switch-container", type: "mixin", packageName: "form" },
       ],
@@ -2184,7 +2194,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-ball-disabled-color",
       description:
         "The color to use for the switch's ball when it is toggled on and disabled.",
-      source: "packages/form/src/toggle/_variables.scss#L88-L94",
+      source: "packages/form/src/toggle/_variables.scss#L90-L96",
       usedBy: [
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
       ],
@@ -2207,7 +2217,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-width",
       description:
         "The width of the circular progress bar. This will make the progress bar more prominent than the normal circular progress.\n",
-      source: "packages/form/src/toggle/_variables.scss#L99",
+      source: "packages/form/src/toggle/_variables.scss#L101",
       usedBy: [{ name: "rmd-switch", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2218,7 +2228,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-background-color",
       description:
         "The background color to use for the switch's ball while the the switch is loading.",
-      source: "packages/form/src/toggle/_variables.scss#L105",
+      source: "packages/form/src/toggle/_variables.scss#L107",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-white-base", type: "variable", packageName: "theme" },
@@ -2233,7 +2243,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-padding",
       description:
         "The amount of padding to apply to the async switch's progress bar. This will make it so there is some space between the switch's ball and the progress bar.\n",
-      source: "packages/form/src/toggle/_variables.scss#L110",
+      source: "packages/form/src/toggle/_variables.scss#L112",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",

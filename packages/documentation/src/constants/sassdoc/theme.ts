@@ -696,7 +696,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-text-color",
       description:
         'This function is used to auto-generate "reasonable" defaults for the text colors based on a the background it is on. This will basically check if the provided color is considered light or dark, and choose a value from either the dark theme text colors or the light theme text colors so that it is still legible.\n\nNOTE: This is not perfect since it only handles the min-contrast ration of 3:1 by default so you still might need to define your own overrides.',
-      source: "packages/theme/src/_variables.scss#L318-L326",
+      source: "packages/theme/src/_variables.scss#L320-L328",
       requires: [
         {
           name: "rmd-theme-contrast-tone",
@@ -4393,8 +4393,18 @@ const sassdoc: PackageSassDoc = {
           packageName: "chip",
         },
         {
+          name: "rmd-switch-track-background-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
           name: "rmd-theme-dark-elevation",
           type: "mixin",
+          packageName: "theme",
+        },
+        {
+          name: "rmd-theme-dark-background",
+          type: "variable",
           packageName: "theme",
         },
       ],
@@ -4661,9 +4671,23 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-theme-dark-background": {
       name: "rmd-theme-dark-background",
-      description: "The dark theme's background color.\n",
-      source: "packages/theme/src/_variables.scss#L145",
-      usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
+      description: "The dark theme's background color.",
+      source: "packages/theme/src/_variables.scss#L147",
+      usedBy: [
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
+        {
+          name: "rmd-theme-dark-elevation-colors",
+          type: "variable",
+          packageName: "theme",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-theme-dark-elevation",
+          type: "variable",
+          packageName: "theme",
+        },
+      ],
       packageName: "theme",
       type: "Color",
       value: "if($rmd-theme-dark-elevation, #121212, #303030)",
@@ -4674,7 +4698,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-surface",
       description:
         "The dark theme's surface color.\n\nNote: If the `$rmd-theme-dark-elevation` variable is set to `true`, this value will not really be used.\n",
-      source: "packages/theme/src/_variables.scss#L152",
+      source: "packages/theme/src/_variables.scss#L154",
       usedBy: [
         {
           name: "rmd-chip-outline-dark-background-color",
@@ -4693,7 +4717,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-class",
       description:
         "The class name that gets applied to the root `<html>` element if your app switches between dark and light themes. This is really only used for the changing the background color based on elevation when the app is in dark mode and the `$rmd-theme-dark-elevation` boolean is enabled.\n\nIf this is set to `prefers-color-scheme`, the dark elevation styles will only be applied when the `@media (prefers-color-scheme: dark)`.",
-      source: "packages/theme/src/_variables.scss#L164",
+      source: "packages/theme/src/_variables.scss#L166",
       since: "2.1.0",
       usedBy: [
         {
@@ -4710,7 +4734,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-background": {
       name: "rmd-theme-background",
       description: "The theme's background color.\n",
-      source: "packages/theme/src/_variables.scss#L168-L172",
+      source: "packages/theme/src/_variables.scss#L170-L174",
       usedBy: [
         {
           name: "rmd-divider-background-color",
@@ -4729,7 +4753,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-surface",
       description:
         "The theme's surface background color. This is the background color that will be used for any temporary 'material' (or surface)\n\nEx: Dialogs, Lists\n",
-      source: "packages/theme/src/_variables.scss#L179-L183",
+      source: "packages/theme/src/_variables.scss#L181-L185",
       usedBy: [
         {
           name: "rmd-card-secondary-color",
@@ -4748,7 +4772,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-on-surface",
       description:
         "The color to use when text should be displayed on a surface or temporary material. The default behavior is to test if the surface color's contrast tone. If the color is considered 'dark', `$rd-white-base` will be used.\nOtherwise `$rmd-black-base` will be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).\n",
-      source: "packages/theme/src/_variables.scss#L193-L197",
+      source: "packages/theme/src/_variables.scss#L195-L199",
       packageName: "theme",
       type: "Color",
       value:
@@ -4760,7 +4784,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-primary-text-color",
       description:
         "The default light theme's primary text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.\n",
-      source: "packages/theme/src/_variables.scss#L202-L206",
+      source: "packages/theme/src/_variables.scss#L204-L208",
       packageName: "theme",
       type: "Color",
       value:
@@ -4772,7 +4796,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-secondary-text-color",
       description:
         "The default light theme's secondary text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.\n",
-      source: "packages/theme/src/_variables.scss#L211-L215",
+      source: "packages/theme/src/_variables.scss#L213-L217",
       packageName: "theme",
       type: "Color",
       value:
@@ -4784,7 +4808,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-hint-text-color",
       description:
         "The default light theme's hint text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.\n",
-      source: "packages/theme/src/_variables.scss#L220-L224",
+      source: "packages/theme/src/_variables.scss#L222-L226",
       packageName: "theme",
       type: "Color",
       value:
@@ -4796,7 +4820,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-disabled-text-color",
       description:
         "The default light theme's disabled text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.\n",
-      source: "packages/theme/src/_variables.scss#L229-L233",
+      source: "packages/theme/src/_variables.scss#L231-L235",
       packageName: "theme",
       type: "Color",
       value:
@@ -4808,7 +4832,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-icon-color",
       description:
         "The default light theme's icon text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.\n",
-      source: "packages/theme/src/_variables.scss#L238-L242",
+      source: "packages/theme/src/_variables.scss#L240-L244",
       packageName: "theme",
       type: "Color",
       value:
@@ -4820,7 +4844,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-primary-text-color",
       description:
         "The default dark theme's primary text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.\n",
-      source: "packages/theme/src/_variables.scss#L247",
+      source: "packages/theme/src/_variables.scss#L249",
       packageName: "theme",
       type: "Color",
       value: "darken($rmd-white-base, 15%)",
@@ -4831,7 +4855,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-secondary-text-color",
       description:
         "The default dark theme's secondary text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.\n",
-      source: "packages/theme/src/_variables.scss#L252",
+      source: "packages/theme/src/_variables.scss#L254",
       packageName: "theme",
       type: "Color",
       value: "darken($rmd-white-base, 30%)",
@@ -4842,7 +4866,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-hint-text-color",
       description:
         "The default dark theme's hint text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.\n",
-      source: "packages/theme/src/_variables.scss#L257",
+      source: "packages/theme/src/_variables.scss#L259",
       packageName: "theme",
       type: "Color",
       value: "darken($rmd-white-base, 50%)",
@@ -4853,7 +4877,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-disabled-text-color",
       description:
         "The default dark theme's disabled text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.\n",
-      source: "packages/theme/src/_variables.scss#L262",
+      source: "packages/theme/src/_variables.scss#L264",
       packageName: "theme",
       type: "Color",
       value: "darken($rmd-white-base, 50%)",
@@ -4864,7 +4888,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-icon-color",
       description:
         "The default dark theme's icon text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.\n",
-      source: "packages/theme/src/_variables.scss#L267",
+      source: "packages/theme/src/_variables.scss#L269",
       packageName: "theme",
       type: "Color",
       value: "darken($rmd-white-base, 30%)",
@@ -4875,7 +4899,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-text-colors",
       description:
         "A Map of all the light theme text colors for quick loopups.\n",
-      source: "packages/theme/src/_variables.scss#L271-L277",
+      source: "packages/theme/src/_variables.scss#L273-L279",
       usedBy: [
         {
           name: "rmd-theme-text-color",
@@ -4895,7 +4919,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-text-colors",
       description:
         "A Map of all the light theme text colors for quick loopups.\n",
-      source: "packages/theme/src/_variables.scss#L281-L287",
+      source: "packages/theme/src/_variables.scss#L283-L289",
       usedBy: [
         {
           name: "rmd-theme-text-color",
@@ -4915,7 +4939,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-primary-text-on-background-color",
       description:
         'The primary text color to use on the background "surface". This is not related to the `$rmd-theme-primary` variable.\n',
-      source: "packages/theme/src/_variables.scss#L332-L335",
+      source: "packages/theme/src/_variables.scss#L334-L337",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -4933,7 +4957,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-secondary-text-on-background-color",
       description:
         'The secondary text color to use on the background "surface". This is not related to the `$rmd-theme-secondary` variable.\n',
-      source: "packages/theme/src/_variables.scss#L341-L344",
+      source: "packages/theme/src/_variables.scss#L343-L346",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -4950,7 +4974,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-hint-text-on-background-color": {
       name: "rmd-theme-hint-text-on-background-color",
       description: 'The hint text color to use on the background "surface".\n',
-      source: "packages/theme/src/_variables.scss#L349-L352",
+      source: "packages/theme/src/_variables.scss#L351-L354",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -4968,7 +4992,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-disabled-text-on-background-color",
       description:
         'The disabled text color to use on the background "surface".\n',
-      source: "packages/theme/src/_variables.scss#L357-L360",
+      source: "packages/theme/src/_variables.scss#L359-L362",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -4985,7 +5009,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-icon-on-background-color": {
       name: "rmd-theme-icon-on-background-color",
       description: 'The icon color to use on the background "surface".\n',
-      source: "packages/theme/src/_variables.scss#L365",
+      source: "packages/theme/src/_variables.scss#L367",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5003,7 +5027,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-primary-text-on-light-color",
       description:
         "The primary text color to use on the light colored surface. This is not related to the `$rmd-theme-primary` variable.\n",
-      source: "packages/theme/src/_variables.scss#L371",
+      source: "packages/theme/src/_variables.scss#L373",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5024,7 +5048,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-secondary-text-on-light-color",
       description:
         "The secondary text color to use on the light colored surface. This is not related to the `$rmd-theme-secondary` variable.\n",
-      source: "packages/theme/src/_variables.scss#L377",
+      source: "packages/theme/src/_variables.scss#L379",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5044,7 +5068,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-hint-text-on-light-color": {
       name: "rmd-theme-hint-text-on-light-color",
       description: "The hint text color to use on the light colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L382",
+      source: "packages/theme/src/_variables.scss#L384",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5065,7 +5089,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-disabled-text-on-light-color",
       description:
         "The disabled text color to use on the light colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L387",
+      source: "packages/theme/src/_variables.scss#L389",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5085,7 +5109,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-icon-on-light-color": {
       name: "rmd-theme-icon-on-light-color",
       description: "The icon color to use on the light colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L392",
+      source: "packages/theme/src/_variables.scss#L394",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5106,7 +5130,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-primary-text-on-dark-color",
       description:
         "The primary text color to use on the dark colored surface. This is not related to the `$rmd-theme-primary` variable.\n",
-      source: "packages/theme/src/_variables.scss#L398",
+      source: "packages/theme/src/_variables.scss#L400",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5125,7 +5149,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-secondary-text-on-dark-color",
       description:
         "The secondary text color to use on the dark colored surface. This is not related to the `$rmd-theme-secondary` variable.\n",
-      source: "packages/theme/src/_variables.scss#L404",
+      source: "packages/theme/src/_variables.scss#L406",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5143,7 +5167,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-hint-text-on-dark-color": {
       name: "rmd-theme-hint-text-on-dark-color",
       description: "The hint text color to use on the dark colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L409",
+      source: "packages/theme/src/_variables.scss#L411",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5162,7 +5186,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-disabled-text-on-dark-color",
       description:
         "The disabled text color to use on the dark colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L414",
+      source: "packages/theme/src/_variables.scss#L416",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5180,7 +5204,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-icon-on-dark-color": {
       name: "rmd-theme-icon-on-dark-color",
       description: "The icon color to use on the dark colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L419",
+      source: "packages/theme/src/_variables.scss#L421",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5199,7 +5223,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-elevation-colors",
       description:
         "A map containing all the available dark theme elevation colors. This needs to contain a color for each elevation in the `@react-md/elevation` package\n(0 - 24).",
-      source: "packages/theme/src/_variables.scss#L427-L453",
+      source: "packages/theme/src/_variables.scss#L430-L456",
       since: "2.1.0",
       usedBy: [
         {
@@ -5213,8 +5237,20 @@ const sassdoc: PackageSassDoc = {
           packageName: "chip",
         },
         {
+          name: "rmd-switch-track-background-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
           name: "rmd-theme-dark-elevation",
           type: "mixin",
+          packageName: "theme",
+        },
+      ],
+      requires: [
+        {
+          name: "rmd-theme-dark-background",
+          type: "variable",
           packageName: "theme",
         },
       ],
@@ -5230,7 +5266,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-values",
       description:
         "A Map of all the theme values that can be used throughout the app. This is mainly created so that the specific `rmd-theme--NAME` classes can be created, but also for the `rmd-theme` function to get a specific color within your theme.\n",
-      source: "packages/theme/src/_variables.scss#L460-L493",
+      source: "packages/theme/src/_variables.scss#L463-L496",
       usedBy: [
         { name: "rmd-theme", type: "function", packageName: "theme" },
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
