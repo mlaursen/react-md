@@ -1,6 +1,6 @@
 {
   "name": "@react-md/material-icons",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "This package is just a simple wrapper for using material icons within react-md as either font icons or svg icons.",
   "scripts": {
     "clean": "dev-utils clean bin",
@@ -47,7 +47,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/icon": "^2.0.2"
+    "@react-md/icon": "^2.1.0"
   },
   "devDependencies": {
     "@types/download": "^6.2.4",
