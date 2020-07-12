@@ -432,6 +432,18 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
@@ -512,11 +524,23 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -600,6 +624,18 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#203-2020-07-07",
       title: "2.0.3 (2020-07-07)",
     },
@@ -659,6 +695,14 @@ const tocs: TOCRecord = {
   "/packages/avatar/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -735,6 +779,14 @@ const tocs: TOCRecord = {
   "/packages/badge/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -819,6 +871,14 @@ const tocs: TOCRecord = {
   "/packages/button/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -954,6 +1014,18 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
@@ -1031,6 +1103,18 @@ const tocs: TOCRecord = {
   "/packages/chip/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -1119,6 +1203,18 @@ const tocs: TOCRecord = {
   "/packages/dialog/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -1238,6 +1334,14 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
@@ -1318,6 +1422,14 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
@@ -1391,6 +1503,14 @@ const tocs: TOCRecord = {
   "/packages/expansion-panel/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -1471,6 +1591,18 @@ const tocs: TOCRecord = {
   "/packages/form/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -1606,11 +1738,23 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -1690,6 +1834,14 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#204-2020-07-10",
       title: "2.0.4 (2020-07-10)",
     },
@@ -1698,7 +1850,7 @@ const tocs: TOCRecord = {
       title: "Bug Fixes",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -1767,6 +1919,14 @@ const tocs: TOCRecord = {
   "/packages/link/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -1846,11 +2006,23 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -1930,6 +2102,14 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
@@ -1981,6 +2161,14 @@ const tocs: TOCRecord = {
   "/packages/media/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -2057,6 +2245,18 @@ const tocs: TOCRecord = {
   "/packages/menu/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -2165,6 +2365,14 @@ const tocs: TOCRecord = {
   "/packages/overlay/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -2298,6 +2506,14 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
@@ -2382,6 +2598,18 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
@@ -2459,6 +2687,14 @@ const tocs: TOCRecord = {
   "/packages/states/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -2551,6 +2787,14 @@ const tocs: TOCRecord = {
   "/packages/table/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -2658,6 +2902,14 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
@@ -2746,11 +2998,27 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -2831,6 +3099,14 @@ const tocs: TOCRecord = {
   "/packages/tooltip/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -2930,6 +3206,14 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
@@ -3018,11 +3302,23 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -3075,6 +3371,14 @@ const tocs: TOCRecord = {
   "/packages/typography/changelog": [
     {
       anchor: "#change-log",
+      title: "Change Log",
+    },
+    {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#change-log-1",
       title: "Change Log",
     },
     {
@@ -3154,11 +3458,27 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#210-2020-07-12",
+      title: "2.1.0 (2020-07-12)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#202-2020-06-30",
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {

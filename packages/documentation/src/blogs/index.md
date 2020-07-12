@@ -1,3 +1,34 @@
+Title: react-md 2.1.0
+
+Date: 07/11/2020
+
+Read More: #880
+
+Summary:<!-- no-bullets -->
+
+This release added a new and improved dark mode that can be used by enabling a
+new `$rmd-theme-dark-mode-elevation` variable.
+
+##### Bug Fixes<!-- no-margin -->
+
+- `AppBar` text color now defaults to
+  `rmd-theme-var(text-primary-on-background)` (2c3ea5e)
+- Booleans in dist/scssVariables (f6d43a3)
+- ListItem disabled states (7b37292)
+- Scroll active element into view while focusing (a9a0902)
+- Tree focused index after expanding all with asterisk (8547629)
+- Tree keyboard movement for child items that are expanded (fadddc7)
+- Tree scrolling elements into view (eef48dc)
+
+##### Features<!-- no-margin -->
+
+- Added new mixin for optional css-modules (28ba828)
+- Exported the `useAutoComplete` hook (cac5cd1)
+- Improved Dark Mode using Raising Elevation (547877c), closes #860
+- Render non-searchable items in AutoComplete (e7a82ac)
+
+---
+
 Title: react-md 2.0.4
 
 Date: 07/10/2020
