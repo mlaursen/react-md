@@ -153,8 +153,10 @@
     @include rmd-states-surface;
   }
 
-  &[aria-disabled] {
+  &--disabled {
     @include rmd-theme(color, text-disabled-on-background);
+
+    pointer-events: none;
   }
 
   &--link {
