@@ -52,7 +52,7 @@
   "devDependencies": {
     "@types/download": "^6.2.4",
     "@types/unzipper": "^0.10.3",
-    "commander": "^5.1.0",
+    "commander": "^6.0.0",
     "download": "^8.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -39,17 +39,14 @@ const To: FC = () => {
     [chips]
   );
 
-  const onAutoComplete = useCallback<AutoCompleteHandler>(
-    (result) => {
-      const item = result.result as typeof data[0];
-      const contact = contacts.find(({ name }) => item.label === name);
-      if (!contact) {
-        throw new Error();
-      }
-      setChips((prevChips) => [...prevChips, contact]);
-    },
-    [data]
-  );
+  const onAutoComplete = useCallback<AutoCompleteHandler>((result) => {
+    const item = result.result as typeof data[0];
+    const contact = contacts.find(({ name }) => item.label === name);
+    if (!contact) {
+      throw new Error();
+    }
+    setChips((prevChips) => [...prevChips, contact]);
+  }, []);
 
   const emailsRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
