@@ -1,3 +1,16 @@
+Title: react-md 2.1.1
+
+Date: 07/21/2020
+
+Summary:<!-- no-bullets -->
+
+##### Bug Fixes<!-- no-margin -->
+
+- **theme:** Fixed `rmd-theme-get-swatch` to loop over all `rmd-theme-colors`
+  instead of the primaries only (353de23), closes #884
+
+---
+
 Title: react-md 2.1.0
 
 Date: 07/11/2020
