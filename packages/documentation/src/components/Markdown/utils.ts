@@ -220,7 +220,7 @@ export const linkToCustomizingTheme: Transformer = (md) =>
  */
 export const linkToGithubIssues: Transformer = (md) =>
   md.replace(
-    /(: )?(#)(\d+)(?=\r?\n| (?!!))/g,
+    /(: )?(#)(\d+)(?=\r?\n| (?!!)|$)/g,
     (match, invalid, _hash, ticket) => {
       if (invalid) {
         return match;
