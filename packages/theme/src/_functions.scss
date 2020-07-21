@@ -84,7 +84,7 @@
   } @else {
     $index: 1;
     $found: false;
-    @while not $found and $index < length($rmd-theme-primary-suffixes) {
+    @while not $found and $index < length($rmd-theme-colors) {
       $suffix: nth($rmd-theme-colors, $index);
       $suffix-index: str-index($current-color-name, $suffix);
       @if $suffix-index {
