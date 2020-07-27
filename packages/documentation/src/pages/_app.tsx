@@ -157,6 +157,12 @@ export default class App extends NextApp<AppProps> {
         <GoogleFont font="Roboto:400,500,700" />
         <GoogleFont font="Source Code Pro" />
         <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+          <meta name="theme-color" content="#000000" />
+          <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
           <title>{pageTitle}</title>
         </Head>
         <Theme defaultTheme={defaultTheme}>

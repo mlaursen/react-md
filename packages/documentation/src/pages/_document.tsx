@@ -41,14 +41,7 @@ export default class MyDocument extends Document<MyDocumentProps> {
     const { theme } = this.props;
     return (
       <html lang="en" dir="ltr" className={`${theme}-theme`}>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-          <meta name="theme-color" content="#000000" />
-          <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        </Head>
+        <Head />
         <body>
           <Main />
           <script dangerouslySetInnerHTML={{ __html: PRISM_MANUAL_MODE }} />
