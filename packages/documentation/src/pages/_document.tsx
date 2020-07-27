@@ -16,6 +16,9 @@ interface MyDocumentProps {
   theme: ThemeMode;
 }
 
+const PRISM_MANUAL_MODE =
+  "window.Prism=window.Prism||{};window.Prism.manual=true";
+
 export default class MyDocument extends Document<MyDocumentProps> {
   static async getInitialProps(
     ctx: DocumentContext
@@ -48,11 +51,9 @@ export default class MyDocument extends Document<MyDocumentProps> {
         </Head>
         <body>
           <Main />
+          <script dangerouslySetInnerHTML={{ __html: PRISM_MANUAL_MODE }} />
           <NextScript />
           <Analytics />
-          <script
-            dangerouslySetInnerHTML={{ __html: "window.Prism={manual:true}" }}
-          />
         </body>
       </html>
     );
