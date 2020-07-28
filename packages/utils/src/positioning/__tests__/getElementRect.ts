@@ -1,6 +1,6 @@
 import getElementRect from "../getElementRect";
 
-const createElement = () => {
+const createTestElement = () => {
   const element = document.createElement("span");
   element.setAttribute("role", "tooltip");
   element.id = "element-id";
@@ -14,7 +14,7 @@ const createElement = () => {
 
 describe("getElementRect", () => {
   it("should do a deep clone of the element so that the attributes can be modified without messing up the original ", () => {
-    const { element, cloned, cloneNode } = createElement();
+    const { element, cloned, cloneNode } = createTestElement();
     getElementRect(element);
 
     expect(cloneNode).toBeCalledWith(true);
@@ -38,7 +38,7 @@ describe("getElementRect", () => {
 
   it("should try to add the cloned node to the parent element or fallback to the document.body if there isn't a parent element and then remove the cloned child from the DOM", () => {
     const parent = document.createElement("div");
-    let { element, cloned } = createElement();
+    let { element, cloned } = createTestElement();
     parent.appendChild(element);
 
     const parentAppendChild = jest.spyOn(parent, "appendChild");
@@ -54,7 +54,7 @@ describe("getElementRect", () => {
 
     parentAppendChild.mockClear();
     parentRemoveChild.mockClear();
-    ({ element, cloned } = createElement());
+    ({ element, cloned } = createTestElement());
     getElementRect(element);
     expect(bodyAppendChild).toBeCalledWith(cloned);
     expect(bodyRemoveChild).toBeCalledWith(cloned);
