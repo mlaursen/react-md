@@ -42,6 +42,9 @@ Create an accessible React application with the
 
 ## Creating a new project
 
+> Check out the [examples folder](./examples) to see completed examples with
+> different build tools such as [Next.js], [Gatsby], and [create-react-app].
+
 First use [create-react-app] to create your project:
 
 ```sh
@@ -202,5 +205,7 @@ Please read the [contributing guidelines](./.github/CONTRIBUTING.md) if you
 would like to contribute.
 
 [typescript]: https://www.typescriptlang.org/
+[next.js]: https://nextjs.org/
+[gatsby]: https://www.gatsbyjs.org
 [create-react-app]:
   https://facebook.github.io/create-react-app/docs/getting-started

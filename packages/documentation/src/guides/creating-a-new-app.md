@@ -8,7 +8,7 @@ continuing are:
 - [yarn] or [npm]
 - experience in React
 
-> You can also checkout the
+> You can also check out the
 > [GitHub examples folder]({{GITHUB_FILE_URL}}/examples) to see completed
 > examples and other build tools such as [Next.js](https://nextjs.org/).
 
