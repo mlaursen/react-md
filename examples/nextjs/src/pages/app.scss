@@ -5,5 +5,7 @@
 @import 'react-md/dist/styles';
 
 @media (prefers-color-scheme: dark) {
-  @include rmd-theme-dark;
+  :root {
+    @include rmd-theme-dark;
+  }
 }
