@@ -21,3 +21,7 @@ coverage
 # Others
 .DS_STORE
 *.log
+
+# Don't want to include the lock files for these examples
+# since they can be downloaded and reused
+examples/*/*.lock
