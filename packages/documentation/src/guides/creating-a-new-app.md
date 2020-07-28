@@ -8,6 +8,10 @@ continuing are:
 - [yarn] or [npm]
 - experience in React
 
+> You can also checkout the
+> [GitHub examples folder]({{GITHUB_FILE_URL}}/examples) to see completed
+> examples and other build tools such as [Next.js](https://nextjs.org/).
+
 ## Bootstrapping a new Project
 
 To get started, let's use `create-react-app` to bootstrap our new project:
