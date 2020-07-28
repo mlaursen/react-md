@@ -96,7 +96,7 @@ be at the root of the navigation tree.
 ```ts
 import { ReactNode } from "react";
 import { LayoutNavigationItem, LayoutNavigationTree } from "@react-md/layout";
-import { HomeSVGIcon, TVSVGIcon } from "@react-md/material-icons";
+import { HomeSVGIcon, TvSVGIcon } from "@react-md/material-icons";
 
 /**
  * Note: The `parentId` **must** be defaulted to `null` for the navigation tree
@@ -121,7 +121,7 @@ function createRoute(
 
 const navItems: LayoutNavigationTree = {
   "/": createRoute("/", "Home", <HomeSVGIcon />),
-  "/route-1": createRoute("/route-1", "Home", <TVSVGIcon />),
+  "/route-1": createRoute("/route-1", "Route 1", <TvSVGIcon />),
 };
 
 export default navItems;
