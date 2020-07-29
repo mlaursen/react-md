@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import {
   Layout as RMDLayout,
   Configuration,
+  ConfigurableIcons,
   useLayoutNavigation,
   ArrowDropDownSVGIcon,
   CheckBoxSVGIcon,
@@ -21,7 +22,7 @@ import {
 import LinkUnstyled from "components/LinkUnstyled";
 import navItems from "./navItems";
 
-const icons = {
+const icons: ConfigurableIcons = {
   back: <KeyboardArrowLeftSVGIcon />,
   checkbox: <CheckBoxSVGIcon />,
   dropdown: <ArrowDropDownSVGIcon />,
@@ -41,7 +42,8 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps): ReactElement {
-  const router = useRouter();
+  const { pathname } = useRouter();
+
   return (
     <Configuration icons={icons}>
       <RMDLayout
@@ -49,7 +51,7 @@ export default function Layout({ children }: LayoutProps): ReactElement {
         landscapeTabletLayout="temporary"
         desktopLayout="temporary"
         largeDesktopLayout="temporary"
-        treeProps={useLayoutNavigation(navItems, router.pathname, LinkUnstyled)}
+        treeProps={useLayoutNavigation(navItems, pathname, LinkUnstyled)}
       >
         {children}
       </RMDLayout>
