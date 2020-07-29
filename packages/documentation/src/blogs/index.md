@@ -5,7 +5,7 @@ Date: 07/28/2020
 Summary:
 
 The GitHub repo has been updated to now include an
-[examples folder]({{GITHUB_FILE_URL}}/examples) to show how you can use
+[examples folder]({{GITHUB_URL}}/tree/master/examples) to show how you can use
 `react-md` along with other build tools such as
 [Create React App](https://create-react-app.dev/),
 [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org), and others.
