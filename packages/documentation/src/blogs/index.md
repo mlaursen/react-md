@@ -1,3 +1,46 @@
+Title: Added Examples Folder
+
+Date: 07/28/2020
+
+Summary:
+
+The GitHub repo has been updated to now include an
+[examples folder]({{GITHUB_FILE_URL}}/examples) to show how you can use
+`react-md` along with other build tools such as
+[Create React App](https://create-react-app.dev/),
+[Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org), and others.
+These examples can be used to spin up boilerplate projects by following the
+following steps:
+
+First download the specific example:
+
+```sh
+# replace EXAMPLE_NAME with the specific example you want to use
+curl https://codeload.github.com/mlaursen/react-md/tar.gz/master | tar -xz --strip=2 react-md-master/examples/EXAMPLE_NAME
+cd EXAMPLE_NAME
+```
+
+Next, install any dependencies:
+
+```sh
+npm install
+# or with yarn
+yarn
+```
+
+Next, initialize the git repository and add the first commit:
+
+```sh
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+Finally, follow any instructions in the `README.md` about how to run the
+specific example.
+
+---
+
 Title: react-md 2.1.1
 
 Date: 07/21/2020
