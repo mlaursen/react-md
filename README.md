@@ -209,5 +209,4 @@ would like to contribute.
 [typescript]: https://www.typescriptlang.org/
 [next.js]: https://nextjs.org/
 [gatsby]: https://www.gatsbyjs.org
-[create-react-app]:
-  https://facebook.github.io/create-react-app/docs/getting-started
+[create-react-app]: https://facebook.github.io/create-react-app
