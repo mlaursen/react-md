@@ -8,7 +8,7 @@
   },
   "scripts": {
     "clean": "rimraf bin dist",
-    "executable": "if [[ ! -x \"bin/cli.js\" ]]; then chmod +x bin/cli.js; fi",
+    "executable": "node executable.js",
     "compile": "tsc",
     "build": "npm-run-all compile executable",
     "watcher": "chokidar \"bin/cli.js\" -c \"npm run executable\"",
