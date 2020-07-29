@@ -5,7 +5,7 @@ export default function LinkUnstyled({ to, children, ...props }) {
   if (typeof to === "string" && to.startsWith("http")) {
     // external links
     return (
-      <a {...props} to={to} rel="noopener noreferrer">
+      <a {...props} href={to} rel="noopener noreferrer">
         {children}
       </a>
     )
