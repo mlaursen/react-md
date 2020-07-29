@@ -26,6 +26,10 @@ export default async function rmdReadme(): Promise<void> {
     .join("\n");
 
   const markdown = rootReadme
+    .replace(
+      "(./examples)",
+      "(https://github.com/mlaursen/react-md/tree/master/examples)"
+    )
     .replace(REPLACE_TOKEN, replacement)
     .replace("#packages", packages);
 
