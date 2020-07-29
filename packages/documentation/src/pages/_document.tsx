@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { ReactElement } from "react";
 import Document, {
+  Html,
   Head,
   Main,
   NextScript,
@@ -40,7 +41,7 @@ export default class MyDocument extends Document<MyDocumentProps> {
   public render(): ReactElement {
     const { theme } = this.props;
     return (
-      <html lang="en" dir="ltr" className={`${theme}-theme`}>
+      <Html lang="en" dir="ltr" className={`${theme}-theme`}>
         <Head />
         <body>
           <Main />
@@ -48,7 +49,7 @@ export default class MyDocument extends Document<MyDocumentProps> {
           <NextScript />
           <Analytics />
         </body>
-      </html>
+      </Html>
     );
   }
 }
