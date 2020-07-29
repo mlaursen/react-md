@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Layout as RMDLayout,
   Configuration,
@@ -16,9 +16,9 @@ import {
   RemoveRedEyeSVGIcon,
   ArrowUpwardSVGIcon,
   CheckSVGIcon,
-} from "react-md";
+} from 'react-md';
 
-import navItems from "./navItems";
+import navItems from './navItems';
 
 const icons = {
   back: <KeyboardArrowLeftSVGIcon />,

@@ -1,7 +1,7 @@
 printWidth: 80
 trailingComma: es5
 overrides:
-  - files: "*.js"
+  - files: "*.{js,jsx}"
     options:
       singleQuote: true
   - files: "*.scss"

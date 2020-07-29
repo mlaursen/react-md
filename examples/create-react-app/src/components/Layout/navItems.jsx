@@ -1,5 +1,5 @@
-import React from "react";
-import { HomeSVGIcon, TvSVGIcon } from "react-md";
+import React from 'react';
+import { HomeSVGIcon, TvSVGIcon } from 'react-md';
 
 /**
  * Note: The `parentId` **must** be defaulted to `null` for the navigation tree
@@ -18,8 +18,8 @@ function createRoute(pathname, children, leftAddon, parentId = null) {
 }
 
 const navItems = {
-  "/": createRoute("/", "Home", <HomeSVGIcon />),
-  "/route-1": createRoute("/route-1", "Route 1", <TvSVGIcon />),
+  '/': createRoute('/', 'Home', <HomeSVGIcon />),
+  '/route-1': createRoute('/route-1', 'Route 1', <TvSVGIcon />),
 };
 
 export default navItems;

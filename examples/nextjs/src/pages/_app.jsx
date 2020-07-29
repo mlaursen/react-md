@@ -1,9 +1,9 @@
-import React from "react";
-import Head from "next/head";
+import React from 'react';
+import Head from 'next/head';
 
-import Layout from "components/Layout";
+import Layout from 'components/Layout';
 
-import "./app.scss";
+import './app.scss';
 
 export default function App({ Component, pageProps }) {
   return (

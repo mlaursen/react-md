@@ -30,9 +30,10 @@
     "lint-styles": "sass-lint -c .sass-lint.yml -v",
     "lint": "npm-run-all lint-scripts lint-styles typecheck",
     "test": "jest",
+    "format-examples": "prettier --write \"examples/*/src/**/*.{js,jsx,ts,tsx,scss}\"",
     "format-root": "prettier --write \"*.{js,ts,md}\" \"{.github,testSetup}/*\"",
     "format-pkgs": "prettier --write \"packages/*/{src,components,constants,hooks,pages,scripts,server,utils}/**/*.{ts,tsx,scss,js,jsx,md}\"",
-    "format": "npm-run-all format-root format-pkgs",
+    "format": "npm-run-all format-root format-pkgs format-examples",
     "clean": "dev-utils clean",
     "clean-dev-utils": "yarn workspace @react-md/dev-utils clean",
     "clean-all": "npm-run-all clean clean-dev-utils",
@@ -102,7 +103,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,md}": [
+    "**/*.{js,jsx,md}": [
       "prettier --write"
     ],
     "{.github,testSetup}/*": [

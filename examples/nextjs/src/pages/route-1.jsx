@@ -1,5 +1,5 @@
-import React from "react";
-import { TextContainer, Text } from "react-md";
+import React from 'react';
+import { TextContainer, Text } from 'react-md';
 
 export default function Route1() {
   return (

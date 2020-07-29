@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, TextContainer } from "react-md";
+import React from 'react';
+import { Text, TextContainer } from 'react-md';
 
 export default function index() {
   return (

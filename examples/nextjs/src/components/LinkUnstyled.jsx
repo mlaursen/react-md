@@ -1,5 +1,5 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
 export default function LinkUnstyled({
   as,
@@ -10,7 +10,7 @@ export default function LinkUnstyled({
   children,
   ...props
 }) {
-  if (typeof href === "string" && href.startsWith("http")) {
+  if (typeof href === 'string' && href.startsWith('http')) {
     // external links
     return (
       <a {...props} href={href} rel="noopener noreferrer">

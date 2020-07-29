@@ -1,5 +1,5 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React from 'react';
+import { useRouter } from 'next/router';
 import {
   Layout as RMDLayout,
   Configuration,
@@ -16,10 +16,10 @@ import {
   RemoveRedEyeSVGIcon,
   ArrowUpwardSVGIcon,
   CheckSVGIcon,
-} from "react-md";
+} from 'react-md';
 
-import LinkUnstyled from "components/LinkUnstyled";
-import navItems from "./navItems";
+import LinkUnstyled from 'components/LinkUnstyled';
+import navItems from './navItems';
 
 const icons = {
   back: <KeyboardArrowLeftSVGIcon />,
