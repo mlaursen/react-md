@@ -5705,10 +5705,10 @@ cssnano-preset-default@^4.0.7:
     postcss-svgo "^4.0.2"
     postcss-unique-selectors "^4.0.1"
 
-cssnano-preset-simple@1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/cssnano-preset-simple/-/cssnano-preset-simple-1.1.4.tgz#7b287a31df786348565d02342df71af8f758ac82"
-  integrity sha512-EYKDo65W+AxMViUijv/hvhbEnxUjmu3V7omcH1MatPOwjRLrAgVArUOE8wTUyc1ePFEtvV8oCT4/QSRJDorm/A==
+cssnano-preset-simple@1.1.1, cssnano-preset-simple@1.1.4:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/cssnano-preset-simple/-/cssnano-preset-simple-1.1.1.tgz#9cbf7208e9743f57c17719545ca9e5263601b9fa"
+  integrity sha512-Hs8sUuzepCyA4dA1/bj6RLFjo4L3OgX1VZV3nkQ2siFrEMTrpD+NCNS3AbjMf5N/srmbLWHX9RMtbJP4j6+BwQ==
   dependencies:
     postcss "^7.0.32"
 

@@ -115,5 +115,8 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "resolutions": {
+    "cssnano-preset-simple": "1.1.1"
+  }
 }
