@@ -10,20 +10,34 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  build_node_matrix:
+    name: Build Using Node Matrix
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
-
+        node-version: [10.x, 12.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2.1.1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: yarn
+    - run: yarn setup
+    - run: yarn dev-utils doc-index
+    - run: yarn lint
+    - run: yarn test -i
+
+  build_node_14:
+    # only want to use codecov for node 14
+    name: Build Using Node 14
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 14
+      uses: actions/setup-node@v2.1.1
+      with:
+        node-version: 14
     - run: yarn
     - run: yarn setup
     - run: yarn dev-utils doc-index
