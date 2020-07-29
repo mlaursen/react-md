@@ -26,6 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn
     - run: yarn setup
+    - run: yarn dev-utils doc-index
     - run: yarn lint
     - run: yarn test -i --coverage
     - run: npm install codecov -g
