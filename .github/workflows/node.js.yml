@@ -16,8 +16,23 @@ jobs:
     strategy:
       matrix:
         node-version: [10.x, 12.x]
+
     steps:
     - uses: actions/checkout@v2
+
+    - name: Get yarn cache directory
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ matrix.node-version }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2.1.1
       with:
@@ -34,6 +49,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
+    - name: Get yarn cache directory
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-14
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
     - name: Use Node.js 14
       uses: actions/setup-node@v2.1.1
       with:
