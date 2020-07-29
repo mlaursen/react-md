@@ -2,7 +2,7 @@ Title: react-md 2.1.1
 
 Date: 07/21/2020
 
-Summary:<!-- no-bullets -->
+Summary:
 
 ##### Bug Fixes<!-- no-margin -->
 
@@ -17,7 +17,7 @@ Date: 07/11/2020
 
 Read More: #880
 
-Summary:<!-- no-bullets -->
+Summary:
 
 This release added a new and improved dark mode that can be used by enabling a
 new `$rmd-theme-dark-mode-elevation` variable.
@@ -46,7 +46,7 @@ Title: react-md 2.0.4
 
 Date: 07/10/2020
 
-Summary:<!-- no-bullets -->
+Summary:
 
 This is a very small release that just fixed adding #form as a dependency to
 #layout (e83b296)
@@ -57,7 +57,7 @@ Title: react-md 2.0.3
 
 Date: 07/07/2020
 
-Summary:<!-- no-bullets -->
+Summary:
 
 This release fixed a few styling issues for the #form package and correctly
 passing the `disabled` prop to the `TextField`'s `<input>` element:
@@ -74,7 +74,7 @@ Date: 06/30/2020
 
 Read More: #877
 
-Summary:<!-- no-bullets -->
+Summary:
 
 This release focused on fixing bundle sizes with webpack as well as increasing
 build performance with the `sideEffects` field for each `package.json`. For more
@@ -96,7 +96,7 @@ Title: react-md 2.0.1
 
 Date: 06/17/2020
 
-Summary:<!-- no-bullets -->
+Summary:
 
 This is _technically_ a breaking change for the UMD bundle since this splits the
 material-icon component wrappers into separate bundles to minimize the library's
@@ -126,7 +126,7 @@ Date: 06/15/2020
 
 Read More: v2-release
 
-Summary:
+Summary:<!-- bullets -->
 
 The v2 release is a complete re-write of react-md to address the majority of
 problems encountered while using v1. Unfortunately, this took a **lot** longer
