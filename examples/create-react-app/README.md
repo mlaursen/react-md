@@ -1,4 +1,4 @@
-# create-react-app
+# ReactMD and Create React App Example
 
 This project was bootstrapped with
 [Create React App](https://github.com/facebook/create-react-app) using
@@ -39,6 +39,14 @@ npm run dev
 # or
 yarn
 yarn dev
+```
+
+Finally, initialize the git repo and create your first commit:
+
+```sh
+git init
+git add .
+git commit -m "Initial commit"
 ```
 
 ## Learn More

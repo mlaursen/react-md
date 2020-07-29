@@ -1,4 +1,4 @@
-# nextjs-typescript
+# ReactMD, Next.js, and Typescript Example
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with
 [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
@@ -41,6 +41,14 @@ npm run dev
 # or
 yarn
 yarn dev
+```
+
+Finally, initialize the git repo and create your first commit:
+
+```sh
+git init
+git add .
+git commit -m "Initial commit"
 ```
 
 ## Learn More

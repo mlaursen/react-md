@@ -1,4 +1,4 @@
-# gatsby
+# ReactMD and Gatsby Example
 
 This is a [Gatsby](https://www.gatsbyjs.org/) project using
 [react-md](https://react-md.dev) as the component library.
@@ -37,6 +37,14 @@ npm run develop
 # or
 yarn
 yarn develop
+```
+
+Finally, initialize the git repo and create your first commit:
+
+```sh
+git init
+git add .
+git commit -m "Initial commit"
 ```
 
 ## Learn More
