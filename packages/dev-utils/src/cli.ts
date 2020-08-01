@@ -133,10 +133,16 @@ createCommand("libsize")
     "--no-themes",
     "Updates the command to no longer rebuild all the default themes."
   )
+  .option(
+    "--commit",
+    "Updates the command to commit any libsize changes to the base README.md and the about page in the documentation site"
+  )
   .description(
     "Prints the gzipped size for the entire library based on the UMD bundle and the min/max prebuilt CSS themes."
   )
-  .action(({ umd = true, themes = true }) => libsize(umd, themes));
+  .action(({ umd = true, themes = true, commit = false }) =>
+    libsize(umd, themes, commit)
+  );
 
 createCommand("themes")
   .description(
