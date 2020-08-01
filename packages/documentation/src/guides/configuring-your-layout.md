@@ -265,7 +265,7 @@ import navItems from "./navItems";
 
 import App from "./App";
 
-export default (): ReactElement => {
+export default function MyLayout(): ReactElement {
   const { pathname } = useLocation();
 
   return (
@@ -277,7 +277,7 @@ export default (): ReactElement => {
       <App />
     </Layout>
   );
-};
+}
 ```
 
 Finally, update the main `src/index.tsx` file to use the customized `Layout` in
@@ -343,7 +343,7 @@ cross fade transition on route changes with the `useCrossFade` hook.
 
  import App from "./App";
 
- export default (): ReactElement => {
+ export default function MyLayout(): ReactElement {
    const { pathname } = useLocation();
 +  const [_rendered, transitionProps, dispatch] = useCrossFade();
 +
@@ -406,7 +406,7 @@ If you prefer using `useEffect`, here's an example of this pattern instead.
 
  import App from "./App";
 
- export default (): ReactElement => {
+ export default function MyLayout(): ReactElement {
    const { pathname } = useLocation();
    const [_rendered, transitionProps, dispatch] = useCrossFade();
    const { ref: mainRef, className: mainClassName } = transitionProps;

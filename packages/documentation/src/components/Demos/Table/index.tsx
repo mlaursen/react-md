@@ -73,6 +73,6 @@ const demos = [
   },
 ].map((demo) => ({ disableCard: true, ...demo }));
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="table" description={README} />
-);
+export default function Table(): ReactElement {
+  return <DemoPage demos={demos} packageName="table" description={README} />;
+}

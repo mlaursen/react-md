@@ -146,9 +146,11 @@ const App: FC = () => {
   );
 };
 
-export default () => (
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
+export default function MyApp() {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+}
 ```

@@ -29,6 +29,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="overlay" />
-);
+export default function Overlay(): ReactElement {
+  return <DemoPage demos={demos} packageName="overlay" />;
+}

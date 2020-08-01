@@ -36,6 +36,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="progress" />
-);
+export default function Progress(): ReactElement {
+  return <DemoPage demos={demos} packageName="progress" />;
+}

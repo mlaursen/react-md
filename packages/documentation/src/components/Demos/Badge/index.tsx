@@ -41,8 +41,10 @@ const demos = [
 // demos will be wrapped with the IconProvider just in-case people inspect the DOM
 // to view the generated HTML. I want the demos to reflect the default behavior
 // instead of the documentation overrides for SVG icons
-export default (): ReactElement => (
-  <IconProvider>
-    <DemoPage demos={demos} packageName="badge" fonts={["Material Icons"]} />
-  </IconProvider>
-);
+export default function Badge(): ReactElement {
+  return (
+    <IconProvider>
+      <DemoPage demos={demos} packageName="badge" fonts={["Material Icons"]} />
+    </IconProvider>
+  );
+}

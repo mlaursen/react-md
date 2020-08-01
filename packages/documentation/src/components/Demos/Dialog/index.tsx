@@ -53,6 +53,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="dialog" />
-);
+export default function Dialog(): ReactElement {
+  return <DemoPage demos={demos} packageName="dialog" />;
+}

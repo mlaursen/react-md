@@ -31,6 +31,8 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="autocomplete" description={README} />
-);
+export default function AutoComplete(): ReactElement {
+  return (
+    <DemoPage demos={demos} packageName="autocomplete" description={README} />
+  );
+}

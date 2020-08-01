@@ -64,11 +64,13 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage
-    demos={demos}
-    packageName="button"
-    description={description}
-    fonts={["Material Icons"]}
-  />
-);
+export default function Button(): ReactElement {
+  return (
+    <DemoPage
+      demos={demos}
+      packageName="button"
+      description={description}
+      fonts={["Material Icons"]}
+    />
+  );
+}

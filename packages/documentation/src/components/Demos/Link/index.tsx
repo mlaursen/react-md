@@ -45,6 +45,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="link" />
-);
+export default function Link(): ReactElement {
+  return <DemoPage demos={demos} packageName="link" />;
+}

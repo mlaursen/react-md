@@ -4,4 +4,6 @@ import { MarkdownPage } from "components/Markdown";
 
 import readme from "./README.md";
 
-export default (): ReactElement => <MarkdownPage>{readme}</MarkdownPage>;
+export default function About(): ReactElement {
+  return <MarkdownPage>{readme}</MarkdownPage>;
+}

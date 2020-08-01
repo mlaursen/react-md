@@ -4,4 +4,6 @@ import { MarkdownPage } from "components/Markdown";
 
 import readme from "./OverridingDefaults.md";
 
-export default (): ReactElement => <MarkdownPage>{readme}</MarkdownPage>;
+export default function OverridingDefaults(): ReactElement {
+  return <MarkdownPage>{readme}</MarkdownPage>;
+}

@@ -47,14 +47,16 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage
-    demos={demos}
-    packageName="app-bar"
-    className={styles.container}
-    fullPageFAB
-    phoneFullPage
-    disableFullPageAppBar
-    disableFullPageContent
-  />
-);
+export default function AppBar(): ReactElement {
+  return (
+    <DemoPage
+      demos={demos}
+      packageName="app-bar"
+      className={styles.container}
+      fullPageFAB
+      phoneFullPage
+      disableFullPageAppBar
+      disableFullPageContent
+    />
+  );
+}

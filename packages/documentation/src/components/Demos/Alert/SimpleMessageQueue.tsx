@@ -110,8 +110,10 @@ const SimpleMessageQueue: FC = () => {
   );
 };
 
-export default (): ReactElement => (
-  <MessageQueue id="simple-message-queue">
-    <SimpleMessageQueue />
-  </MessageQueue>
-);
+export default function SimpleMessageQueueContainer(): ReactElement {
+  return (
+    <MessageQueue id="simple-message-queue">
+      <SimpleMessageQueue />
+    </MessageQueue>
+  );
+}

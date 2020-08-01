@@ -13,6 +13,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="theme" />
-);
+export default function Theme(): ReactElement {
+  return <DemoPage demos={demos} packageName="theme" />;
+}

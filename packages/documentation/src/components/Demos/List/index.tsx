@@ -37,6 +37,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="list" />
-);
+export default function List(): ReactElement {
+  return <DemoPage demos={demos} packageName="list" />;
+}

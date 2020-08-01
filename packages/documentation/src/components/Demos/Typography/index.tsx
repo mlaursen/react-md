@@ -23,6 +23,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="typography" />
-);
+export default function Typography(): ReactElement {
+  return <DemoPage demos={demos} packageName="typography" />;
+}

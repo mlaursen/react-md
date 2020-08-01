@@ -29,6 +29,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="divider" />
-);
+export default function Divider(): ReactElement {
+  return <DemoPage demos={demos} packageName="divider" />;
+}

@@ -21,10 +21,12 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage
-    demos={demos}
-    packageName="material-icons"
-    fonts={["Material Icons"]}
-  />
-);
+export default function MaterialIcons(): ReactElement {
+  return (
+    <DemoPage
+      demos={demos}
+      packageName="material-icons"
+      fonts={["Material Icons"]}
+    />
+  );
+}

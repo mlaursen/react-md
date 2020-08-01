@@ -29,6 +29,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="sheet" />
-);
+export default function Sheet(): ReactElement {
+  return <DemoPage demos={demos} packageName="sheet" />;
+}

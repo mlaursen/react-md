@@ -37,6 +37,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="states" />
-);
+export default function States(): ReactElement {
+  return <DemoPage demos={demos} packageName="states" />;
+}

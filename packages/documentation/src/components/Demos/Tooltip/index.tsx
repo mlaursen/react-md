@@ -74,6 +74,6 @@ const demos = [
   ),
 }));
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="tooltip" />
-);
+export default function Tooltip(): ReactElement {
+  return <DemoPage demos={demos} packageName="tooltip" />;
+}

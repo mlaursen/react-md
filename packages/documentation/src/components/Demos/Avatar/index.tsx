@@ -21,6 +21,8 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="avatar" fonts={["Material Icons"]} />
-);
+export default function Avatar(): ReactElement {
+  return (
+    <DemoPage demos={demos} packageName="avatar" fonts={["Material Icons"]} />
+  );
+}

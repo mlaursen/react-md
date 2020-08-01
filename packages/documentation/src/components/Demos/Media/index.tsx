@@ -29,6 +29,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="media" />
-);
+export default function Media(): ReactElement {
+  return <DemoPage demos={demos} packageName="media" />;
+}

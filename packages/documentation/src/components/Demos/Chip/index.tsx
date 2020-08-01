@@ -44,6 +44,8 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="chip" fonts={["Material Icons"]} />
-);
+export default function Chip(): ReactElement {
+  return (
+    <DemoPage demos={demos} packageName="chip" fonts={["Material Icons"]} />
+  );
+}

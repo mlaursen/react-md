@@ -108,8 +108,10 @@ const UpdatingMessagePriority: FC = () => {
   );
 };
 
-export default (): ReactElement => (
-  <MessageQueue<ExampleMessage> id="updating-message-priority">
-    <UpdatingMessagePriority />
-  </MessageQueue>
-);
+export default function UpdatingMessagePriorityContainer(): ReactElement {
+  return (
+    <MessageQueue<ExampleMessage> id="updating-message-priority">
+      <UpdatingMessagePriority />
+    </MessageQueue>
+  );
+}

@@ -50,6 +50,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} description={README} packageName="tabs" />
-);
+export default function Tabs(): ReactElement {
+  return <DemoPage demos={demos} description={README} packageName="tabs" />;
+}

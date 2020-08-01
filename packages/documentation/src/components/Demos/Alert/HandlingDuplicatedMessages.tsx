@@ -102,7 +102,7 @@ const HandlingDuplicatedMessages: FC<Props> = ({
   );
 };
 
-export default (): ReactElement => {
+export default function DuplicatedMessages(): ReactElement {
   const [duplicates, onDuplicateChange] = useChoice<DuplicateBehavior>("allow");
 
   return (
@@ -113,4 +113,4 @@ export default (): ReactElement => {
       />
     </MessageQueue>
   );
-};
+}

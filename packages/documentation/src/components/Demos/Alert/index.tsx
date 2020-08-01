@@ -30,6 +30,8 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="alert" description={description} />
-);
+export default function Alert(): ReactElement {
+  return (
+    <DemoPage demos={demos} packageName="alert" description={description} />
+  );
+}

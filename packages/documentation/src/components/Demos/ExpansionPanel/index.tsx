@@ -29,6 +29,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="expansion-panel" />
-);
+export default function ExpansionPanel(): ReactElement {
+  return <DemoPage demos={demos} packageName="expansion-panel" />;
+}

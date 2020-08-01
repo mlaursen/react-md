@@ -29,10 +29,12 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage
-    demos={demos}
-    packageName="icon"
-    fonts={["Material Icons", "Font Awesome"]}
-  />
-);
+export default function Icon(): ReactElement {
+  return (
+    <DemoPage
+      demos={demos}
+      packageName="icon"
+      fonts={["Material Icons", "Font Awesome"]}
+    />
+  );
+}

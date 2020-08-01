@@ -64,6 +64,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="transition" />
-);
+export default function Transition(): ReactElement {
+  return <DemoPage demos={demos} packageName="transition" />;
+}

@@ -21,6 +21,6 @@ const demos = [
   },
 ];
 
-export default (): ReactElement => (
-  <DemoPage demos={demos} packageName="elevation" />
-);
+export default function Elevation(): ReactElement {
+  return <DemoPage demos={demos} packageName="elevation" />;
+}
