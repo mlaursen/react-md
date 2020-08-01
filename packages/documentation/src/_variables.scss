@@ -7,8 +7,6 @@ $rmd-utils-auto-dense: true;
 
 @import '~@react-md/theme/dist/variables';
 
-$code-light-theme-bg: $rmd-grey-200;
-$code-dark-theme-bg: map-get($rmd-theme-dark-elevation-colors, 4);
 $solarized-base-03: #002b36;
 $solarized-base-02: #073642;
 $solarized-base-01: #586e75;

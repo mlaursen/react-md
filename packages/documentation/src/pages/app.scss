@@ -4,7 +4,7 @@
 
 // sass-lint:disable no-duplicate-properties
 :root {
-  #{--code-bg}: #{$code-light-theme-bg};
+  #{--code-color}: #{$rmd-pink-400};
   #{--sass-bg}: #{$rmd-grey-200};
   #{--sass-border}: #{$rmd-grey-400};
 }
@@ -12,7 +12,7 @@
 .dark-theme {
   @include rmd-theme-dark;
 
-  #{--code-bg}: #{$code-dark-theme-bg};
+  #{--code-color}: #{$rmd-pink-400};
   #{--sass-bg}: #{rgba($rmd-black-base, 0.42)};
   #{--sass-border}: #{rgba($rmd-black-base, 0.87)};
 }
@@ -130,11 +130,6 @@
 
   font-family: 'Source Code Pro', Consolas, Monaco, monospace;
 
-  &::selection,
-  *::selection {
-    background-color: $solarized-base-02;
-  }
-
   &--block {
     background-color: $solarized-base-03;
     color: $solarized-base-1;
@@ -145,6 +140,11 @@
     overflow: auto;
     padding: 1em;
 
+    &::selection,
+    *::selection {
+      background-color: $solarized-base-02;
+    }
+
     // to help with the collapse transition on expandable code, update it so
     // that only the vertical overflow is hidden.
     &.rmd-collapse--no-overflow {
@@ -153,10 +153,12 @@
   }
 
   &--inline {
-    background-color: var(--code-bg);
-    border-radius: 0.25rem;
-    font-size: 0.9em;
-    padding: 0.1em 0.4em;
+    &::before,
+    &::after {
+      content: '\`';
+    }
+
+    color: var(--code-color);
     white-space: pre-wrap;
   }
 
