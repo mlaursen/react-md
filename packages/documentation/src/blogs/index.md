@@ -1,3 +1,21 @@
+Title: react-md 2.1.2
+
+Date: 08/01/2020
+
+Summary:
+
+This release was mostly internal changes and documentation updates including a
+new [Writing Tests guide](/guides/writing-tests), but also fixed the `Layout`
+component to allow for the `useCrossFade` hook to transition the `<main>`
+content on `pathname` changes.
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/transition:** useCSSTransition now correctly forwards refs
+  (36f832f)
+
+---
+
 Title: Added Examples Folder
 
 Date: 07/28/2020
