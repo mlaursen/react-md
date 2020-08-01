@@ -1,6 +1,6 @@
 {
   "name": "@react-md/tree",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A package for creating an accessible tree component following the tree role.",
   "scripts": {
     "build": "dev-utils build",
@@ -40,10 +40,10 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/icon": "^2.1.1",
-    "@react-md/list": "^2.1.1",
-    "@react-md/theme": "^2.1.1",
-    "@react-md/transition": "^2.1.1",
+    "@react-md/icon": "^2.1.2",
+    "@react-md/list": "^2.1.2",
+    "@react-md/theme": "^2.1.2",
+    "@react-md/transition": "^2.1.2",
     "@react-md/utils": "^2.1.0",
     "classnames": "^2.2.6"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@react-md/dev-utils",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Common build utilities for react-md. Contains helpers for building, watching, testing, etc",
   "private": true,
   "bin": {

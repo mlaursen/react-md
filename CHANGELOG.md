@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/mlaursen/react-md/compare/v2.1.1...v2.1.2) (2020-08-01)
+
+### Bug Fixes
+
+- **transition:** useCSSTransition now correctly forwards refs
+  ([36f832f](https://github.com/mlaursen/react-md/commit/36f832f82ada222f337d413a7044d055d5a57d58))
+
+### Reverts
+
+- Revert "chore(deps-dev): bump eslint-plugin-react from 7.20.3 to 7.20.4
+  (#893)"
+  ([4db7c31](https://github.com/mlaursen/react-md/commit/4db7c317b707e21ac5b170c1eca20c82c8e9b47f)),
+  closes [#893](https://github.com/mlaursen/react-md/issues/893)
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.1](https://github.com/mlaursen/react-md/compare/v2.1.0...v2.1.1) (2020-07-21)
 
 ### Bug Fixes
