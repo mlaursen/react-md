@@ -5,7 +5,7 @@ This is a [Gatsby](https://www.gatsbyjs.org/) project using
 
 ## What's Included
 
-This example will setup an example Gatsby + react-md app that has the following
+This example will setup an example Gatsby + ReactMD app that has the following
 features:
 
 - [\_variables.scss](./src/styles/_variables.scss) to override the default

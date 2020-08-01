@@ -6,7 +6,7 @@ using [react-md](https://react-md.dev) as the component library.
 
 ## What's Included
 
-This example will setup an example Next.js + react-md app that has the following
+This example will setup an example Next.js + ReactMD app that has the following
 features:
 
 - [jsconfig.json](./jsconfig.json) to allow absolute imports instead of relative

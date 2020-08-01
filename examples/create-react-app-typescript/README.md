@@ -6,8 +6,8 @@ This project was bootstrapped with
 
 ## What's Included
 
-This example will setup an example Next.js + react-md app that has the following
-features:
+This example will setup an example Create React App + ReactMD app that has the
+following features:
 
 - [tsconfig.json](./tsconfig.json) to allow absolute imports instead of relative
   imports from the `"src"` directory
