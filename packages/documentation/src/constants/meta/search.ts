@@ -141,6 +141,14 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/guides/working-with-v1",
   },
   {
+    title: "Writing Tests",
+    summary:
+      "Testing with react-md should not much more difficult than any other component testing you are used to for the majority of your tests. The only times you might encounter errors are when you use components that rely one one of the configuration providers and determining the current app size. Since I am the most familiar with jest as the test runner and react-testing-library as the test renderer, this guide will be targeted towards these two libraries",
+    type: "guide",
+    pageUrl: "/guides/[id]",
+    pathname: "/guides/writing-tests",
+  },
+  {
     title: "Alert Changelog",
     summary:
       "All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines.",

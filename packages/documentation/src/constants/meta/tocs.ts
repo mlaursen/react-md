@@ -426,6 +426,24 @@ const tocs: TOCRecord = {
       title: "The Pain Points",
     },
   ],
+  "/guides/writing-tests": [
+    {
+      anchor: "#writing-tests",
+      title: "Writing Tests",
+    },
+    {
+      anchor: "#initializing-windowmatchmedia",
+      title: "Initializing window.matchMedia",
+    },
+    {
+      anchor: "#testing-different-app-sizes",
+      title: "Testing different app sizes",
+    },
+    {
+      anchor: "#adding-a-configuration-wrapper",
+      title: "Adding a Configuration Wrapper",
+    },
+  ],
   "/packages/alert/changelog": [
     {
       anchor: "#change-log",

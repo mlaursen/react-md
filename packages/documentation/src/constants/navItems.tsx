@@ -96,6 +96,10 @@ const routes: NavItem[] = [
         children: "Advanced Installation",
       },
       {
+        href: "/writing-tests",
+        children: "Writing Tests",
+      },
+      {
         href: "/working-with-v1",
         children: "Working with v1",
       },
