@@ -9,7 +9,7 @@ continuing are:
 - experience in React
 
 > You can also check out the
-> [GitHub examples folder]({{GITHUB_FILE_URL}}/examples) to see completed
+> [GitHub examples folder]({{GITHUB_URL}}/tree/master/examples) to see completed
 > examples and other build tools such as [Next.js](https://nextjs.org/).
 
 ## Bootstrapping a new Project
