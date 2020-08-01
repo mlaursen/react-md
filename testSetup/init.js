@@ -1,4 +1,4 @@
-require('@testing-library/jest-dom');
+require('@testing-library/jest-dom/extend-expect');
 const {
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
