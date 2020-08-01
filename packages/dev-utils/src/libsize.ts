@@ -170,6 +170,53 @@ function updateLibsize(filePath: string, message: string): void {
   writeFileSync(filePath, updated);
 }
 
+const getSize = (size: string): string =>
+  size.split(" ").reverse().slice(0, 2).reverse().join(" ");
+
+function updateOtherPros(umd: string[], css: string[]): void {
+  const umdSize = getSize(umd[0]);
+  const minCssSize = getSize(css[0]);
+  const maxCssSize = getSize(css[1]);
+  const filePath = join(
+    documentationRoot,
+    src,
+    "components",
+    "Home",
+    "LibraryInfo",
+    "OtherPros.tsx"
+  );
+
+  const content = `/* this file is automatically updated by \`yarn dev-utils libsize\` and should not be updated manually */
+import React, { ReactElement } from "react";
+
+import TableCellList from "./TableCellList";
+
+export default function OtherPros(): ReactElement {
+  return (
+    <TableCellList>
+      <li>
+        A fairly small library size (gzipped):
+        <ul>
+          <li>
+            Production UMD Bundle:
+            <br />
+            <b>${umdSize}</b>
+          </li>
+          <li>
+            Default Production CSS Bundles:
+            <br />
+            <b>${minCssSize}</b> - <b>${maxCssSize}</b>
+          </li>
+        </ul>
+      </li>
+    </TableCellList>
+  );
+}
+`;
+
+  writeFileSync(filePath, format(content, "typescript"));
+}
+
 export default async function libsize(
   umd: boolean = true,
   themes: boolean = true,
@@ -197,6 +244,7 @@ ${list(css)}
     join(documentationRoot, src, "components", "About", "README.md"),
     message
   );
+  updateOtherPros(umds, css);
 
   if (!commit || !git("diff README.md")) {
     return;
