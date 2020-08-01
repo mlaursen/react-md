@@ -89,11 +89,15 @@ conditionally apply the dark theme.
 @import "~react-md/dist/react-md";
 
 @media (prefers-color-scheme: dark) {
-  @include rmd-theme-dark;
+  :root {
+    @include rmd-theme-dark;
+  }
 }
 
 @media (prefers-color-scheme: light) {
-  @include rmd-theme-light;
+  :root {
+    @include rmd-theme-light;
+  }
 }
 
 .dark-theme {
