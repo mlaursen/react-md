@@ -45,10 +45,6 @@
   p:last-child {
     margin-bottom: 0;
   }
-
-  code {
-    @include rmd-theme(color, text-primary-on-background);
-  }
 }
 
 .heading {
