@@ -110,8 +110,10 @@ export default function useCSSTransition<
   onExited,
   className,
   classNames: propClassNames,
+  ref: propRef,
 }: CSSTransitionOptions<E>): CSSTransitionReturnValue<E> {
   const { rendered, stage, ref, appearing, dispatch } = useTransition<E>({
+    ref: propRef,
     appear,
     repaint: true,
     timeout,
