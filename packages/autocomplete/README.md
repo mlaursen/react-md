@@ -7,7 +7,7 @@ to a backend API that handles additional filtering or sorting.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/alert
+$ npm install --save @react-md/autocomplete
 ```
 
 <!-- DOCS_REMOVE -->
