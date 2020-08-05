@@ -1,16 +1,7 @@
 # @react-md/table
 
 Create simple tables or complex data tables and grids using the provided
-low-level components. You can also try using the `DataTable` renderer which will
-extract some of the boilerplate out of the way for you.
-
-Tables can also have optional fixed headers or footers using one of the
-following methods:
-
-- full page layout (using mixin/styles to position and two tables with
-  `role="presentation"`)
-- anywhere in the page using a `useFixedColumns` hook that will apply
-  `transform(0, y)` when the parent component is scrolled.
+low-level components.
 
 ## Installation
 
