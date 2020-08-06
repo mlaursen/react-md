@@ -21,6 +21,14 @@ import { DemoProps } from "./types";
 import styles from "./Demo.module.scss";
 import phoneStyles from "../Phone/Phone.module.scss";
 
+const getFileName = (title: string, demoName: string): string => {
+  const name = demoName.replace(" and ", "And").replace(/[ -()]/g, "");
+  const fileName = `${GITHUB_DEMO_URL}/${title}/${name}`;
+  const suffix = fileName.endsWith(".tsx") ? "" : ".tsx";
+
+  return `${fileName}${suffix}`;
+};
+
 const Demo: FC<DemoProps> = ({
   id,
   name,
@@ -39,14 +47,7 @@ const Demo: FC<DemoProps> = ({
   disableFullPageContent = false,
 }) => {
   const title = toTitle(packageName, "");
-  let fileName = `${GITHUB_DEMO_URL}/${title}/${name.replace(
-    / |-|\(|\)/g,
-    ""
-  )}`;
-
-  if (!fileName.endsWith(".tsx")) {
-    fileName = `${fileName}.tsx`;
-  }
+  const fileName = getFileName(title, name);
 
   const { isPhone, isTablet, isDesktop } = useAppSize();
   let dialogDisabled = !fullPage;
