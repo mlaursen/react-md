@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
 import React, { FC, useCallback } from "react";
+import { Link } from "@react-md/link";
 
-import Link from "components/Link";
 import { TOCAnchor } from "constants/meta/types";
 
 import styles from "./List.module.scss";
