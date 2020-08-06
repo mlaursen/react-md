@@ -18,7 +18,9 @@ const PUBLIC = path.join(process.cwd(), "public");
 
 nextApp.prepare().then(() => {
   const app = express();
-  app.use(helmet());
+  if (!dev) {
+    app.use(helmet());
+  }
   app.use(hpp());
   if (!dev) {
     app.use(morgan("combined"));
