@@ -1840,7 +1840,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Table Installation",
     summary:
-      "Create simple tables or complex data tables and grids using the provided low-level components. You can also try using the DataTable renderer which will extract some of the boilerplate out of the way for you.",
+      "Create simple tables or complex data tables and grids using the provided low-level components.",
     type: "guide",
     pageUrl: "/packages/[id]/installation",
     pathname: "/packages/table/installation",
