@@ -946,28 +946,43 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toggle-hidden",
       description:
         "Creates the styles for a form input that should be hidden from view. This should normally be applied to checkbox or radio input types.\n",
-      source: "packages/form/src/toggle/_mixins.scss#L78-L91",
+      source: "packages/form/src/toggle/_mixins.scss#L78-L97",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-input-hidden", type: "mixin", packageName: "form" },
+        {
+          name: "rmd-toggle-active-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-toggle-inactive-color",
+          type: "variable",
+          packageName: "form",
+        },
       ],
       packageName: "form",
       code: "@mixin rmd-toggle-hidden { … }",
       sourceCode:
-        "@mixin rmd-toggle-hidden {\n  @include rmd-input-hidden;\n\n  &:checked + .rmd-toggle__icon::before {\n    opacity: 0;\n  }\n\n  &:checked + .rmd-toggle__icon--indeterminate {\n    &::before,\n    &::after {\n      opacity: 1;\n    }\n  }\n}\n",
+        "@mixin rmd-toggle-hidden {\n  @include rmd-input-hidden;\n\n  @if $rmd-toggle-active-color != $rmd-toggle-inactive-color {\n    &:checked + .rmd-toggle__icon {\n      color: $rmd-toggle-active-color;\n    }\n  }\n\n  &:checked + .rmd-toggle__icon::before {\n    opacity: 0;\n  }\n\n  &:checked + .rmd-toggle__icon--indeterminate {\n    &::before,\n    &::after {\n      opacity: 1;\n    }\n  }\n}\n",
       type: "mixin",
     },
     "rmd-toggle-icon": {
       name: "rmd-toggle-icon",
       description:
         "Creates the styles for the checkbox and radio input types' icon\n",
-      source: "packages/form/src/toggle/_mixins.scss#L95-L161",
+      source: "packages/form/src/toggle/_mixins.scss#L101-L167",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
-        { name: "rmd-form-theme", type: "mixin", packageName: "form" },
         { name: "rmd-transition", type: "mixin", packageName: "transition" },
+        { name: "rmd-form-theme", type: "mixin", packageName: "form" },
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
+        {
+          name: "rmd-toggle-inactive-color",
+          type: "variable",
+          packageName: "form",
+        },
         {
           name: "rmd-transition-standard-time",
           type: "variable",
@@ -982,14 +997,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       code: "@mixin rmd-toggle-icon { … }",
       sourceCode:
-        '@mixin rmd-toggle-icon {\n  @include rmd-icon-theme(height, size);\n  @include rmd-icon-theme(width, size);\n  @include rmd-form-theme(color, active-color);\n\n  .rmd-icon {\n    color: inherit;\n    fill: currentColor;\n    height: inherit;\n    width: inherit;\n  }\n\n  align-items: center;\n  display: inline-flex;\n  justify-content: center;\n  pointer-events: none;\n  position: absolute;\n\n  &--overlay {\n    &::before {\n      @include rmd-transition(standard);\n      @include rmd-form-theme(bottom, toggle-inset);\n      @include rmd-form-theme(left, toggle-inset);\n      @include rmd-form-theme(right, toggle-inset);\n      @include rmd-form-theme(top, toggle-inset);\n      @include rmd-theme(background-color, background);\n\n      content: "";\n      opacity: 1;\n      position: absolute;\n      transition: opacity $rmd-transition-standard-time;\n      z-index: 1;\n    }\n  }\n\n  &--indeterminate::after {\n    @include rmd-transition(standard);\n    @include rmd-form-theme(background-color, active-color);\n    @include rmd-form-theme(left, toggle-inset);\n    @include rmd-form-theme(right, toggle-inset);\n    @include rmd-form-theme(height, indeterminate-height);\n\n    content: "";\n    opacity: 0;\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n    transition: opacity $rmd-transition-standard-time;\n    z-index: 2;\n  }\n\n  &--circle::before {\n    border-radius: $rmd-toggle-border-radius;\n  }\n\n  &--disabled {\n    @include rmd-theme(color, text-disabled-on-background);\n  }\n\n  &--dense {\n    @include rmd-form-theme(bottom, toggle-dense-inset);\n    @include rmd-form-theme(left, toggle-dense-inset);\n    @include rmd-form-theme(right, toggle-dense-inset);\n    @include rmd-form-theme(top, toggle-dense-inset);\n    @include rmd-form-theme(height, indeterminate-dense-height);\n  }\n}\n',
+        '@mixin rmd-toggle-icon {\n  @include rmd-icon-theme(height, size);\n  @include rmd-icon-theme(width, size);\n\n  .rmd-icon {\n    color: inherit;\n    fill: currentColor;\n    height: inherit;\n    width: inherit;\n  }\n\n  align-items: center;\n  color: $rmd-toggle-inactive-color;\n  display: inline-flex;\n  justify-content: center;\n  pointer-events: none;\n  position: absolute;\n\n  &--overlay {\n    &::before {\n      @include rmd-transition(standard);\n      @include rmd-form-theme(bottom, toggle-inset);\n      @include rmd-form-theme(left, toggle-inset);\n      @include rmd-form-theme(right, toggle-inset);\n      @include rmd-form-theme(top, toggle-inset);\n      @include rmd-theme(background-color, background);\n\n      content: "";\n      opacity: 1;\n      position: absolute;\n      transition: opacity $rmd-transition-standard-time;\n      z-index: 1;\n    }\n  }\n\n  &--indeterminate::after {\n    @include rmd-transition(standard);\n    @include rmd-form-theme(background-color, active-color);\n    @include rmd-form-theme(left, toggle-inset);\n    @include rmd-form-theme(right, toggle-inset);\n    @include rmd-form-theme(height, indeterminate-height);\n\n    content: "";\n    opacity: 0;\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n    transition: opacity $rmd-transition-standard-time;\n    z-index: 2;\n  }\n\n  &--circle::before {\n    border-radius: $rmd-toggle-border-radius;\n  }\n\n  &--disabled {\n    @include rmd-theme(color, text-disabled-on-background);\n  }\n\n  &--dense {\n    @include rmd-form-theme(bottom, toggle-dense-inset);\n    @include rmd-form-theme(left, toggle-dense-inset);\n    @include rmd-form-theme(right, toggle-dense-inset);\n    @include rmd-form-theme(top, toggle-dense-inset);\n    @include rmd-form-theme(height, indeterminate-dense-height);\n  }\n}\n',
       type: "mixin",
     },
     "rmd-toggle-dense-theme": {
       name: "rmd-toggle-dense-theme",
       description:
         "Updates the checkbox and radio components to have a dense theme by updating the toggle-inset css variable to be the dense version. This should generally be used within media queries.\n",
-      source: "packages/form/src/toggle/_mixins.scss#L166-L172",
+      source: "packages/form/src/toggle/_mixins.scss#L172-L178",
       usedBy: [
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
       ],
@@ -1010,7 +1025,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch": {
       name: "rmd-switch",
       description: "Creates the styles for the switch component\n",
-      source: "packages/form/src/toggle/_mixins.scss#L176-L196",
+      source: "packages/form/src/toggle/_mixins.scss#L182-L202",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-transition", type: "mixin", packageName: "transition" },
@@ -1062,7 +1077,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-input": {
       name: "rmd-switch-input",
       description: "\n",
-      source: "packages/form/src/toggle/_mixins.scss#L200-L247",
+      source: "packages/form/src/toggle/_mixins.scss#L206-L253",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-input-hidden", type: "mixin", packageName: "form" },
@@ -1103,7 +1118,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball": {
       name: "rmd-switch-ball",
       description: "",
-      source: "packages/form/src/toggle/_mixins.scss#L250-L295",
+      source: "packages/form/src/toggle/_mixins.scss#L256-L301",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -1160,7 +1175,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-container": {
       name: "rmd-switch-container",
       description: "",
-      source: "packages/form/src/toggle/_mixins.scss#L298-L300",
+      source: "packages/form/src/toggle/_mixins.scss#L304-L306",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -1184,7 +1199,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-toggle",
       description:
         "Creates all the styles for the toggle components in the form package.\n",
-      source: "packages/form/src/toggle/_mixins.scss#L304-L343",
+      source: "packages/form/src/toggle/_mixins.scss#L310-L349",
       usedBy: [{ name: "react-md-form", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-toggle-container", type: "mixin", packageName: "form" },
@@ -2044,11 +2059,68 @@ const sassdoc: PackageSassDoc = {
       value: "0.25rem",
       overridable: true,
     },
+    "rmd-toggle-inactive-color": {
+      name: "rmd-toggle-inactive-color",
+      description:
+        "The color to use for the checkbox and radio components while unchecked. If you want to be able to dynamically configure the active color, you can set this to a custom css variable string.",
+      source: "packages/form/src/toggle/_variables.scss#L44",
+      since: "2.2.0",
+      usedBy: [
+        { name: "rmd-toggle-hidden", type: "mixin", packageName: "form" },
+        { name: "rmd-toggle-icon", type: "mixin", packageName: "form" },
+      ],
+      requires: [
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
+      ],
+      packageName: "form",
+      examples: [
+        {
+          code:
+            "$rmd-toggle-inactive-color: --toggle-inactive;\n$rmd-toggle-active-color: --toggle-active;\n\n:root {\n  --toggle-active: #{rmd-theme-var(secondary)};\n  --toggle-inactive: #{rmd-theme-var(text-secondary-on-background)};\n}\n\n.overriding {\n  --toggle-active: #{$rmd-orange-700};\n  --toggle-inactive: #{$rmd-orange-a-100};\n}\n",
+          compiled:
+            ":root {\n  --toggle-active: var(--rmd-theme-secondary, #f50057);\n  --toggle-inactive: var(--rmd-theme-text-secondary-on-background, #757575);\n}\n\n.overriding {\n  --toggle-active: #f57c00;\n  --toggle-inactive: #ffd180;\n}\n",
+          type: "scss",
+          description: "As a Custom CSS Variable",
+        },
+      ],
+      type: "Color|String",
+      value: "rmd-theme-var(text-secondary-on-background)",
+      compiled: "var(--rmd-theme-text-secondary-on-background, #757575)",
+      overridable: true,
+    },
+    "rmd-toggle-active-color": {
+      name: "rmd-toggle-active-color",
+      description:
+        "The color to use for the checkbox and radio components while checked. If you want to be able to dynamically configure the active color, you can set this to a custom css variable string.",
+      source: "packages/form/src/toggle/_variables.scss#L67",
+      since: "2.2.0",
+      usedBy: [
+        { name: "rmd-toggle-hidden", type: "mixin", packageName: "form" },
+      ],
+      requires: [
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
+      ],
+      packageName: "form",
+      examples: [
+        {
+          code:
+            "$rmd-toggle-inactive-color: --toggle-inactive;\n$rmd-toggle-active-color: --toggle-active;\n\n:root {\n  --toggle-active: #{rmd-theme-var(secondary)};\n  --toggle-inactive: #{rmd-theme-var(text-secondary-on-background)};\n}\n\n.overriding {\n  --toggle-active: #{$rmd-orange-700};\n  --toggle-inactive: #{$rmd-orange-a-100};\n}\n",
+          compiled:
+            ":root {\n  --toggle-active: var(--rmd-theme-secondary, #f50057);\n  --toggle-inactive: var(--rmd-theme-text-secondary-on-background, #757575);\n}\n\n.overriding {\n  --toggle-active: #f57c00;\n  --toggle-inactive: #ffd180;\n}\n",
+          type: "scss",
+          description: "As a Custom CSS Variable",
+        },
+      ],
+      type: "Color|String",
+      value: "rmd-theme-var(secondary)",
+      compiled: "var(--rmd-theme-secondary, #f50057)",
+      overridable: true,
+    },
     "rmd-checkbox-indeterminate-height": {
       name: "rmd-checkbox-indeterminate-height",
       description:
         "The height for the indeterminate checkbox's state line that covers the icon.\n",
-      source: "packages/form/src/toggle/_variables.scss#L26",
+      source: "packages/form/src/toggle/_variables.scss#L72",
       packageName: "form",
       type: "Number",
       value: "0.15rem",
@@ -2058,7 +2130,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-checkbox-indeterminate-dense-height",
       description:
         "The height for the indeterminate checkbox's state line that covers the icon when the dense spec is enabled.\n",
-      source: "packages/form/src/toggle/_variables.scss#L31",
+      source: "packages/form/src/toggle/_variables.scss#L77",
       packageName: "form",
       type: "Number",
       value: "0.125rem",
@@ -2068,7 +2140,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-height",
       description:
         "The height for a switch's track. The track is the background that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L36",
+      source: "packages/form/src/toggle/_variables.scss#L82",
       usedBy: [
         { name: "rmd-switch", type: "mixin", packageName: "form" },
         { name: "rmd-switch-ball", type: "mixin", packageName: "form" },
@@ -2082,7 +2154,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-width",
       description:
         "The width for a switch's track. The track is the background that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L41",
+      source: "packages/form/src/toggle/_variables.scss#L87",
       usedBy: [{ name: "rmd-switch", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2093,7 +2165,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-background-color",
       description:
         "The background color for a switch's track. This is the element that the ball animates left and right on.",
-      source: "packages/form/src/toggle/_variables.scss#L50-L54",
+      source: "packages/form/src/toggle/_variables.scss#L96-L100",
       requires: [
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
         {
@@ -2118,7 +2190,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-border-radius",
       description:
         "The border radius to apply to the switch's track. This is the element that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L59",
+      source: "packages/form/src/toggle/_variables.scss#L105",
       usedBy: [{ name: "rmd-switch", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2128,7 +2200,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-size": {
       name: "rmd-switch-ball-size",
       description: "The size of the switch's ball.\n",
-      source: "packages/form/src/toggle/_variables.scss#L63",
+      source: "packages/form/src/toggle/_variables.scss#L109",
       usedBy: [
         { name: "rmd-switch", type: "mixin", packageName: "form" },
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
@@ -2142,7 +2214,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-border-radius": {
       name: "rmd-switch-ball-border-radius",
       description: "The border radius for the switch's ball.\n",
-      source: "packages/form/src/toggle/_variables.scss#L67",
+      source: "packages/form/src/toggle/_variables.scss#L113",
       usedBy: [{ name: "rmd-switch-ball", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2153,7 +2225,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-ball-offset",
       description:
         "The amount of offset that should be applied to the ball relative to its track. This is really used so the ball can overlap the track a bit to look a bit nicer.\n",
-      source: "packages/form/src/toggle/_variables.scss#L72",
+      source: "packages/form/src/toggle/_variables.scss#L118",
       usedBy: [
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
         { name: "rmd-switch-ball", type: "mixin", packageName: "form" },
@@ -2167,7 +2239,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-container-vertical-padding",
       description:
         "The vertical padding for the switch container. This should generally be large enough so that the ball does not overlap any other elements.\n",
-      source: "packages/form/src/toggle/_variables.scss#L77",
+      source: "packages/form/src/toggle/_variables.scss#L123",
       usedBy: [
         { name: "rmd-switch-container", type: "mixin", packageName: "form" },
       ],
@@ -2180,7 +2252,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-container-horizontal-padding",
       description:
         "The horizontal padding for the switch container. This should generally be large enough so that the ball does not overlap the label or other elements.",
-      source: "packages/form/src/toggle/_variables.scss#L83",
+      source: "packages/form/src/toggle/_variables.scss#L129",
       usedBy: [
         { name: "rmd-switch-container", type: "mixin", packageName: "form" },
       ],
@@ -2194,7 +2266,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-ball-disabled-color",
       description:
         "The color to use for the switch's ball when it is toggled on and disabled.",
-      source: "packages/form/src/toggle/_variables.scss#L90-L96",
+      source: "packages/form/src/toggle/_variables.scss#L136-L142",
       usedBy: [
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
       ],
@@ -2217,7 +2289,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-width",
       description:
         "The width of the circular progress bar. This will make the progress bar more prominent than the normal circular progress.\n",
-      source: "packages/form/src/toggle/_variables.scss#L101",
+      source: "packages/form/src/toggle/_variables.scss#L147",
       usedBy: [{ name: "rmd-switch", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2228,7 +2300,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-background-color",
       description:
         "The background color to use for the switch's ball while the the switch is loading.",
-      source: "packages/form/src/toggle/_variables.scss#L107",
+      source: "packages/form/src/toggle/_variables.scss#L153",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-white-base", type: "variable", packageName: "theme" },
@@ -2243,7 +2315,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-padding",
       description:
         "The amount of padding to apply to the async switch's progress bar. This will make it so there is some space between the switch's ball and the progress bar.\n",
-      source: "packages/form/src/toggle/_variables.scss#L112",
+      source: "packages/form/src/toggle/_variables.scss#L158",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
