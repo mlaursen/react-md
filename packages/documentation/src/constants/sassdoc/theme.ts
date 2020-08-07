@@ -432,6 +432,16 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "form",
         },
+        {
+          name: "rmd-toggle-inactive-color",
+          type: "variable",
+          packageName: "form",
+        },
+        {
+          name: "rmd-toggle-active-color",
+          type: "variable",
+          packageName: "form",
+        },
         { name: "rmd-icon-color", type: "variable", packageName: "icon" },
         { name: "rmd-link-skip-styles", type: "variable", packageName: "link" },
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
@@ -514,6 +524,11 @@ const sassdoc: PackageSassDoc = {
           packageName: "theme",
         },
         { name: "rmd-tooltip-theme", type: "function", packageName: "tooltip" },
+        {
+          name: "rmd-transition-theme",
+          type: "function",
+          packageName: "transition",
+        },
         { name: "rmd-tree-theme", type: "function", packageName: "tree" },
         {
           name: "rmd-typography-theme",
@@ -631,6 +646,11 @@ const sassdoc: PackageSassDoc = {
           name: "rmd-tooltip-theme-var",
           type: "function",
           packageName: "tooltip",
+        },
+        {
+          name: "rmd-transition-theme-var",
+          type: "function",
+          packageName: "transition",
         },
         { name: "rmd-tree-theme-var", type: "function", packageName: "tree" },
         {

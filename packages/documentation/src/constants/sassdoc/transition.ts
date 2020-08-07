@@ -2,7 +2,72 @@
 import { PackageSassDoc } from "utils/sassdoc";
 
 const sassdoc: PackageSassDoc = {
-  functions: {},
+  functions: {
+    "rmd-transition-theme": {
+      name: "rmd-transition-theme",
+      description:
+        "This function is used to quickly get one of the transition's theme values.\nThis is really just for the `rmd-transition-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
+      source: "packages/transition/src/_functions.scss#L16-L18",
+      requires: [
+        {
+          name: "rmd-theme-get-var-value",
+          type: "function",
+          packageName: "theme",
+        },
+      ],
+      packageName: "transition",
+      code: "@function rmd-transition-theme($style) { … }",
+      sourceCode:
+        "@function rmd-transition-theme($style) {\n  @return rmd-theme-get-var-value(\n    $theme-style,\n    $rmd-transition-theme-values,\n    transition\n  );\n}\n",
+      type: "function",
+      parameters: [
+        {
+          type: "String",
+          name: "style",
+          description:
+            "One of the `$rmd-transition-theme-values` map keys to get a value for.",
+        },
+      ],
+      returns: {
+        type: "Color|String|Number",
+        description: "one of the transition's theme values.",
+      },
+    },
+    "rmd-transition-theme-var": {
+      name: "rmd-transition-theme-var",
+      description:
+        "This function is used to get one of the transition's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-transition-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
+      source: "packages/transition/src/_functions.scss#L33-L35",
+      requires: [
+        { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
+      ],
+      packageName: "transition",
+      code:
+        "@function rmd-transition-theme-var($theme-style, $fallback: null) { … }",
+      sourceCode:
+        "@function rmd-transition-theme-var($theme-style, $fallback: null) {\n  @return rmd-theme-get-var(\n    $theme-style,\n    $rmd-transition-theme-values,\n    transition,\n    $fallback\n  );\n}\n",
+      type: "function",
+      parameters: [
+        {
+          type: "String",
+          name: "theme-style",
+          description:
+            "One of the `$rmd-transition-theme-values` map keys to set a value for.",
+        },
+        {
+          type: "Color|String|Number",
+          name: "fallback",
+          default: "null",
+          description:
+            "An optional fallback color to apply. This is set to `null` by default and not used since the link's theme variables should always exist.",
+        },
+      ],
+      returns: {
+        type: "String",
+        description: "one of the transition's theme values as a css variable.",
+      },
+    },
+  },
   mixins: {
     "rmd-transition": {
       name: "rmd-transition",
