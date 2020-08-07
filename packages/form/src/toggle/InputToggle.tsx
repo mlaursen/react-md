@@ -65,6 +65,37 @@ export interface InputToggleProps
   toggleClassName?: string;
 
   /**
+   * An optional `style` to provide to the invisible `<input>` element that is
+   * used to toggle the checked state. This prop is only available since the
+   * `style` prop is passed to the container element, but you probably shouldn't
+   * really style this element anyways.
+   *
+   * @since 2.2.0
+   */
+  inputStyle?: CSSProperties;
+
+  /**
+   * An optional `className` to provide to the invisible `<input>` element that
+   * is used to toggle the checked state. This prop does not have many uses and
+   * is really just provided since the `className` is passed to the container
+   * element instead of the `<input>`. However, this can be used to update the
+   * icon styles if needed using the `:checked` state:
+   *
+   * ```scss
+   * .custom-toggle-icon {
+   *   // styles
+   * }
+   *
+   * .custom-input:checked + .custom-toggle-icon {
+   *   // custom checked styles
+   * }
+   * ```
+   *
+   * @since 2.2.0
+   */
+  inputClassName?: string;
+
+  /**
    * Boolean if the icon's overlay should be disabled. The way the Checkbox and
    * Radio input elements work is by applying different opacity to the
    * `::before` and `::after` pseudo selectors and animating it. If you want to
@@ -148,6 +179,8 @@ const InputToggle = forwardRef<HTMLInputElement, Props>(function InputToggle(
     iconClassName,
     toggleStyle,
     toggleClassName: propToggleClassName,
+    inputStyle,
+    inputClassName,
     icon,
     onFocus: propOnFocus,
     onBlur: propOnBlur,
@@ -224,10 +257,11 @@ const InputToggle = forwardRef<HTMLInputElement, Props>(function InputToggle(
           {...props}
           {...handlers}
           ref={ref}
+          style={inputStyle}
           disabled={disabled}
           onFocus={onFocus}
           onBlur={onBlur}
-          className={block("input")}
+          className={cn(block("input"), inputClassName)}
         />
         <span
           style={iconStyle}
