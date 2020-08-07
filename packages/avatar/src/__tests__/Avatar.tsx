@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import { render } from "@testing-library/react";
 
 import Avatar from "../Avatar";
@@ -88,5 +88,51 @@ describe("Avatar", () => {
 
     rerender(<Avatar color="red" src="https://example.com" />);
     expect(container).toMatchSnapshot();
+  });
+
+  it("should pass the referrerPolicy to the img element when the src prop was provided", () => {
+    const { getByAltText, rerender } = render(
+      <Avatar referrerPolicy="no-referrer">A</Avatar>
+    );
+
+    expect(() => getByAltText("")).toThrow();
+
+    rerender(<Avatar referrerPolicy="no-referrer" src="https://example.com" />);
+    const img = getByAltText("");
+    expect(img).toHaveAttribute("referrerpolicy", "no-referrer");
+  });
+
+  it("should render an img element if the imgProps are provided", () => {
+    const imgProps = { src: "https://example.com" };
+    const { getByAltText } = render(<Avatar imgProps={imgProps} />);
+
+    expect(getByAltText("")).not.toBeNull();
+  });
+
+  it('should correctly merge the imgProps with the "src", "alt", and "referrerPolicy" props', () => {
+    const props = {
+      src: "https://example.com",
+      alt: "",
+      referrerPolicy: "no-referrer" as const,
+      imgProps: {
+        alt: "An Image",
+        className: "custom",
+        referrerPolicy: "origin" as const,
+      },
+    };
+
+    const { getByAltText } = render(<Avatar {...props} />);
+    const img = getByAltText("An Image");
+
+    expect(img).toHaveAttribute("src", props.src);
+    expect(img.className).toContain("custom");
+    expect(img).toHaveAttribute("referrerpolicy", "origin");
+  });
+
+  it("should allow for a ref to be passed to the img element with the imgProps", () => {
+    const ref = createRef<HTMLImageElement>();
+    render(<Avatar src="https://example.com" imgProps={{ ref }} />);
+
+    expect(ref.current).toBeInstanceOf(HTMLImageElement);
   });
 });

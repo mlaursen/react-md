@@ -1,6 +1,8 @@
-import React, { forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ImgHTMLAttributes } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/utils";
+import { bem, PropsWithRef } from "@react-md/utils";
+
+type ImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
 
 export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   /**
@@ -22,6 +24,29 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   alt?: string;
 
   /**
+   * An optional `referrerPolicy` to provide to the `<img>` element if the `src`
+   * or `imgProps` props are provided.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-referrerpolicy
+   *
+   * @since 2.2.0
+   */
+  referrerPolicy?: ImgAttributes["referrerPolicy"];
+
+  /**
+   * An optional object of image props and ref that can be used to create an
+   * image within the `Avatar`. This can be useful to add a custom `style`
+   * or`className` to the `<img>` element if that additional customization is
+   * needed.
+   *
+   * Note: The values in this object will override the `src`, `alt`, and
+   * `referrerPolicy` root level avatar props if they exist on this object.
+   *
+   * @since 2.2.0
+   */
+  imgProps?: PropsWithRef<ImgAttributes, HTMLImageElement>;
+
+  /**
    * An optional color to apply to the avatar. This will apply a className of
    * `rmd-avatar--${color}`, so only the keys from the `$rmd-avatar-colors` Map
    * are supported by default. It is recommended to create custom colors using
@@ -40,12 +65,29 @@ const block = bem("rmd-avatar");
  * avatar more unique.
  */
 const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
-  { className, children, src, alt = "", color = "", ...props },
+  {
+    className,
+    children,
+    src,
+    alt = "",
+    color = "",
+    imgProps,
+    referrerPolicy,
+    ...props
+  },
   ref
 ) {
   let img;
-  if (src) {
-    img = <img src={src} alt={alt} className={block("image")} />;
+  if (src || imgProps) {
+    img = (
+      <img
+        src={src}
+        alt={alt}
+        referrerPolicy={referrerPolicy}
+        {...imgProps}
+        className={cn(block("image"), imgProps?.className)}
+      />
+    );
   }
 
   return (
@@ -70,6 +112,10 @@ if (process.env.NODE_ENV !== "production") {
       color: PropTypes.string,
       className: PropTypes.string,
       children: PropTypes.node,
+      // Note: The MDN website has a lot more values, but this is what Typescript
+      // says is valid at the time of writing this
+      referrerPolicy: PropTypes.oneOf(["no-referrer", "origin", "unsafe-url"]),
+      imgProps: PropTypes.object,
     };
   } catch (e) {}
 }
