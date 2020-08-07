@@ -18,9 +18,13 @@ const PUBLIC = path.join(process.cwd(), "public");
 
 nextApp.prepare().then(() => {
   const app = express();
-  if (!dev) {
-    app.use(helmet());
-  }
+  app.use(
+    helmet({
+      // TODO: Figure out how to implement this correctly
+      // with Next.js
+      contentSecurityPolicy: false,
+    })
+  );
   app.use(hpp());
   if (!dev) {
     app.use(morgan("combined"));
