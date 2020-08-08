@@ -49,6 +49,15 @@ export interface ButtonProps
   floatingProps?: PropsWithRef<FABProps, HTMLSpanElement>;
 }
 
+/**
+ * The `Button` component is a simple wrapper for the `<button>` element that
+ * defaults the `type` attribute to `"button"` so that it does not automatically
+ * submit forms by default. It also supports multiple themes, rendering as an
+ * icon button, or even as a floating action button.
+ *
+ * The default theme will be a clear text button unless the `floating` prop has
+ * been provided where it will render as an icon button by default instead.
+ */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     type = "button",

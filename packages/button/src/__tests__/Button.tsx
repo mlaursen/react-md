@@ -68,4 +68,34 @@ describe("Button", () => {
       unmount();
     });
   });
+
+  it("should default to type=button to prevent form submits for most buttons", () => {
+    const { getByText, rerender } = render(<Button>Text</Button>);
+
+    const button = getByText("Text");
+    expect(button).toHaveAttribute("type", "button");
+
+    rerender(<Button type="submit">Text</Button>);
+    expect(button).toHaveAttribute("type", "submit");
+
+    rerender(<Button type="button">Text</Button>);
+    expect(button).toHaveAttribute("type", "button");
+  });
+
+  it("should default to an icon button using the secondary and contained theme if the floating prop is provided", () => {
+    const { getByRole, rerender } = render(
+      <Button floating="top-left">Text</Button>
+    );
+    const button = getByRole("button");
+    expect(button.className).toContain("rmd-button--contained");
+    expect(button.className).toContain("rmd-button--secondary");
+
+    rerender(
+      <Button floating="top-left" theme="primary">
+        Text
+      </Button>
+    );
+    expect(button.className).toContain("rmd-button--contained");
+    expect(button.className).toContain("rmd-button--primary");
+  });
 });
