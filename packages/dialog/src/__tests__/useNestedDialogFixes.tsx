@@ -80,4 +80,49 @@ describe("useNestedDialogFixes", () => {
       disableEscapeClose: false,
     });
   });
+
+  it("should warn in a non-prod environment if trying to add multiple dialogs with the same id", () => {
+    const { NODE_ENV } = process.env;
+    process.env.NODE_ENV = "production";
+    const warn = jest.spyOn(console, "warn");
+    // hide warnings
+    warn.mockImplementation(() => {});
+    const Dialog: FC = () => {
+      useNestedDialogFixes({
+        id: "dialog-id",
+        visible: true,
+        disabled: false,
+        disableEscapeClose: false,
+      });
+
+      return null;
+    };
+    const Test: FC = () => {
+      return (
+        <NestedDialogContextProvider>
+          <Dialog />
+          <Dialog />
+        </NestedDialogContextProvider>
+      );
+    };
+
+    const { unmount } = render(<Test />);
+    unmount();
+    expect(warn).not.toBeCalled();
+
+    process.env.NODE_ENV = NODE_ENV;
+    render(<Test />);
+    expect(warn).toBeCalledTimes(3);
+    expect(warn).toBeCalledWith(
+      "Tried to add a duplicate dialog id to the `NestedDialogContext`."
+    );
+    expect(warn).toBeCalledWith(
+      "This means that you have two dialogs with the same id: `dialog-id`."
+    );
+    expect(warn).toBeCalledWith(
+      "This should be fixed before moving to production since this will break accessibility and is technically invalid."
+    );
+
+    warn.mockRestore();
+  });
 });
