@@ -224,6 +224,17 @@ describe("usePanels", () => {
     expect(panel3.getAttribute("aria-expanded")).toBe(null);
   });
 
+  it("should allow the defaultExpandedIndex to be a list of indexes", () => {
+    const defaultExpandedIndex = [0, 4, 3];
+    render(<Test defaultExpandedIndex={defaultExpandedIndex} count={5} />);
+
+    expect(getById("panel-1")).toHaveAttribute("aria-expanded", "true");
+    expect(getById("panel-2")).not.toHaveAttribute("aria-expanded");
+    expect(getById("panel-3")).not.toHaveAttribute("aria-expanded");
+    expect(getById("panel-4")).toHaveAttribute("aria-expanded", "true");
+    expect(getById("panel-5")).toHaveAttribute("aria-expanded", "true");
+  });
+
   it("should default to expanding the first panel if the defaultExpandedIndex is omitted when the preventAllClosed option is enabled", () => {
     render(<Test preventAllClosed />);
 
@@ -259,6 +270,34 @@ describe("usePanels", () => {
     expect(panel2.getAttribute("aria-expanded")).toBe("true");
     expect(panel3.getAttribute("aria-disabled")).toBe(null);
     expect(panel3.getAttribute("aria-expanded")).toBe(null);
+  });
+
+  it("should prevent the last panel from being closed when preventAllClosed and multiple are enabled", () => {
+    render(<Test preventAllClosed multiple defaultExpandedIndex={0} />);
+
+    const panel1 = getById("panel-1");
+    const panel2 = getById("panel-2");
+    const panel3 = getById("panel-3");
+
+    expect(panel1).toHaveAttribute("aria-expanded", "true");
+    expect(panel2).not.toHaveAttribute("aria-expanded");
+    expect(panel3).not.toHaveAttribute("aria-expanded");
+
+    fireEvent.click(panel1);
+    expect(panel1).toHaveAttribute("aria-expanded", "true");
+    expect(panel2).not.toHaveAttribute("aria-expanded");
+    expect(panel3).not.toHaveAttribute("aria-expanded");
+
+    fireEvent.click(panel2);
+    expect(panel1).toHaveAttribute("aria-expanded", "true");
+    expect(panel2).toHaveAttribute("aria-expanded", "true");
+    expect(panel3).not.toHaveAttribute("aria-expanded");
+
+    fireEvent.click(panel1);
+    fireEvent.click(panel2);
+    expect(panel1).not.toHaveAttribute("aria-expanded");
+    expect(panel2).toHaveAttribute("aria-expanded", "true");
+    expect(panel3).not.toHaveAttribute("aria-expanded");
   });
 
   it("should enable the margin-top styles when the panel is not the first panel and the previous panel or itself is expanded and expand when clicked", () => {
@@ -364,5 +403,29 @@ describe("usePanels", () => {
     panel2.focus();
     fireEvent.keyDown(panel2, { key: "End" });
     expect(document.activeElement).toBe(panel3);
+  });
+
+  it("should not trigger the focus behavior if any of the meta keys are being pressed or a non-movement key is pressed", () => {
+    render(<Test />);
+    const panel1 = getById("panel-1");
+
+    panel1.focus();
+    fireEvent.keyDown(panel1, { key: "Alt" });
+    expect(document.activeElement).toBe(panel1);
+
+    fireEvent.keyDown(panel1, { key: "ArrowDown", altKey: true });
+    expect(document.activeElement).toBe(panel1);
+
+    fireEvent.keyDown(panel1, { key: "ArrowDown", shiftKey: true });
+    expect(document.activeElement).toBe(panel1);
+
+    fireEvent.keyDown(panel1, { key: "ArrowDown", metaKey: true });
+    expect(document.activeElement).toBe(panel1);
+
+    fireEvent.keyDown(panel1, { key: "ArrowDown", ctrlKey: true });
+    expect(document.activeElement).toBe(panel1);
+
+    fireEvent.keyDown(panel1, { key: "A" });
+    expect(document.activeElement).toBe(panel1);
   });
 });
