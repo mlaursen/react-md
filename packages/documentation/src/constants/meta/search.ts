@@ -889,7 +889,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "ExpansionPanel Installation",
     summary:
-      "Dividers group and separate content within lists and page layouts. The divider is a thin rule, lightweight yet sufficient to distinguish content visually and spatially.",
+      'Expansion panels are used to create disclosure widgets that show additional information once the component has been toggled to an "open" state. In other words, expansion panels are a styled version of a details element.',
     type: "guide",
     pageUrl: "/packages/[id]/installation",
     pathname: "/packages/expansion-panel/installation",

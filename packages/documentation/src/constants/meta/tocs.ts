@@ -3785,6 +3785,10 @@ const tocs: TOCRecord = {
       title: "Mixins",
       anchor: "#transition-mixins",
     },
+    {
+      title: "Functions",
+      anchor: "#transition-functions",
+    },
   ],
   "/packages/tree/changelog": [
     {
