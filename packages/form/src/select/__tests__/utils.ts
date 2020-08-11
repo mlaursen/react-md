@@ -1,5 +1,5 @@
 import { createElement } from "react";
-import { getOptionId, getOptionLabel } from "../utils";
+import { getOptionId, getOptionLabel, getDisplayLabel } from "../utils";
 
 describe("getOptionId", () => {
   it("should return the correct id starting from 1 instead of 0", () => {
@@ -33,5 +33,39 @@ describe("getOptionLabel", () => {
     expect(getOptionLabel({ children, value: "A" }, "label")).toBe(children);
 
     expect(getOptionLabel({ value: "A" }, "label")).toBe(null);
+  });
+});
+
+describe("getDisplayLabel", () => {
+  it("should return null if there is no option", () => {
+    expect(getDisplayLabel(null, "label", true)).toBe(null);
+    expect(getDisplayLabel(null, "label", false)).toBe(null);
+    expect(getDisplayLabel("", "label", true)).toBe(null);
+    expect(getDisplayLabel("", "label", false)).toBe(null);
+  });
+
+  it("should return the label if the includeLeft option is false or the option is not an object", () => {
+    expect(getDisplayLabel(0, "label", true)).toBe(0);
+    expect(getDisplayLabel(0, "label", false)).toBe(0);
+    expect(getDisplayLabel("0", "label", true)).toBe("0");
+    expect(getDisplayLabel("0", "label", false)).toBe("0");
+    expect(getDisplayLabel("Hello", "label", true)).toBe("Hello");
+    expect(getDisplayLabel("Hello", "label", false)).toBe("Hello");
+  });
+
+  it("should return the TextIconSpacing component when includeLeft is enabled and the option is an prop object", () => {
+    const option = {
+      leftAddon: "Addon",
+      label: "Some Words",
+    };
+
+    const result = getDisplayLabel(option, "label", true);
+    expect(result).toMatchInlineSnapshot(`
+      <TextIconSpacing
+        icon="Addon"
+      >
+        Some Words
+      </TextIconSpacing>
+    `);
   });
 });

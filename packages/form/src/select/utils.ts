@@ -107,7 +107,7 @@ export function getDisplayLabel(
   labelKey: string,
   includeLeft: boolean
 ): ReactNode {
-  if (!option) {
+  if (!option && option !== 0) {
     return null;
   }
 
