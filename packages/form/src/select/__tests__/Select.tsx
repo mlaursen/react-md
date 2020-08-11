@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React, { useState } from "react";
 import { render, fireEvent } from "@testing-library/react";
 
@@ -143,5 +144,94 @@ describe("Select", () => {
 
     fireEvent.keyDown(select, { key: "ArrowUp" });
     expect(getListbox).toThrow();
+  });
+
+  it("should correctly call the onKeyDown prop", () => {
+    const onKeyDown = jest.fn();
+    const { rerender } = render(<Select {...PROPS} onKeyDown={onKeyDown} />);
+    const select = getSelect();
+
+    fireEvent.keyDown(select, { key: "Tab" });
+    expect(onKeyDown).toBeCalledTimes(1);
+
+    rerender(<Select {...PROPS} onKeyDown={onKeyDown} disabled />);
+    fireEvent.keyDown(select, { key: "Tab" });
+    expect(onKeyDown).toBeCalledTimes(1);
+  });
+
+  it("should correctly call the onClick prop", () => {
+    const onClick = jest.fn();
+    const { rerender } = render(<Select {...PROPS} onClick={onClick} />);
+    const select = getSelect();
+
+    fireEvent.click(select);
+    expect(onClick).toBeCalledTimes(1);
+
+    rerender(<Select {...PROPS} onClick={onClick} disabled />);
+    fireEvent.click(select);
+    expect(onClick).toBeCalledTimes(1);
+  });
+
+  it("should try to polyfill the form submit behavior when the Enter key is pressed", () => {
+    const error = jest.spyOn(console, "error");
+    // hide jsdom "Not implemented" error
+    error.mockImplementation(() => {});
+    const onSubmit = jest.fn();
+    const { rerender } = render(
+      <form onSubmit={onSubmit}>
+        <Select {...PROPS} />
+        <button type="submit">Submit</button>
+      </form>
+    );
+
+    let select = getSelect();
+    select.focus();
+    fireEvent.keyDown(select, { key: "Enter" });
+    expect(onSubmit).toBeCalledTimes(1);
+    onSubmit.mockReset();
+
+    rerender(
+      <>
+        <form id="my-form" onSubmit={onSubmit}>
+          <Select {...PROPS} />
+        </form>
+        <button type="reset" form="my-form">
+          Reset
+        </button>
+        <button type="submit" form="my-form">
+          Submit
+        </button>
+      </>
+    );
+
+    select = getSelect();
+    select.focus();
+    fireEvent.keyDown(select, { key: "Enter" });
+    expect(onSubmit).toBeCalledTimes(1);
+    onSubmit.mockReset();
+
+    rerender(
+      <form id="my-form" onSubmit={onSubmit}>
+        <Select {...PROPS} />
+      </form>
+    );
+    select = getSelect();
+    select.focus();
+    fireEvent.keyDown(select, { key: "Enter" });
+    // can't submit if there is no submit button
+    expect(onSubmit).not.toBeCalled();
+  });
+
+  it("should refocus the select element when the listbox is closed", () => {
+    render(<Select {...PROPS} />);
+
+    const select = getSelect();
+    fireEvent.focus(select);
+    fireEvent.click(select);
+
+    const listbox = getListbox();
+    expect(document.activeElement).toBe(listbox);
+    fireEvent.keyDown(listbox, { key: "Escape" });
+    expect(document.activeElement).toBe(select);
   });
 });

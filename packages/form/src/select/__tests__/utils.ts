@@ -59,13 +59,28 @@ describe("getDisplayLabel", () => {
       label: "Some Words",
     };
 
-    const result = getDisplayLabel(option, "label", true);
-    expect(result).toMatchInlineSnapshot(`
+    const display1 = getDisplayLabel(option, "label", true);
+    expect(display1).toMatchInlineSnapshot(`
       <TextIconSpacing
         icon="Addon"
       >
         Some Words
       </TextIconSpacing>
     `);
+
+    const option2 = {
+      leftAddon: createElement("span"),
+      label: "Some Words",
+    };
+    const display2 = getDisplayLabel(option2, "label", true);
+    expect(display2).toMatchInlineSnapshot(
+      `
+      <TextIconSpacing
+        icon={<span />}
+      >
+        Some Words
+      </TextIconSpacing>
+    `
+    );
   });
 });

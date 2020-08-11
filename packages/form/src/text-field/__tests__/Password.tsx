@@ -112,4 +112,13 @@ describe("Password", () => {
     expect(() => getById("password-icon")).toThrow();
     expect(() => getById("text-icon")).not.toThrow();
   });
+
+  it("should correctly call the onVisibilityClick callback", () => {
+    const onVisibilityClick = jest.fn();
+    render(<Password id="password" onVisibilityClick={onVisibilityClick} />);
+
+    const toggle = getById("password-password-toggle");
+    fireEvent.click(toggle);
+    expect(onVisibilityClick).toBeCalledTimes(1);
+  });
 });

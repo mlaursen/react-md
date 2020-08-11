@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 import Listbox from "../Listbox";
 import { getOptionId } from "../utils";
@@ -234,5 +234,70 @@ describe("Listbox", () => {
 
     expect(option1.getAttribute("aria-selected")).toBe(null);
     expect(option2.getAttribute("aria-selected")).toBe("true");
+  });
+
+  it("should not change values when the readOnly prop is enabled", () => {
+    const { getByText, getByTestId } = render(<Listbox {...PROPS} readOnly />);
+
+    const listbox = getByTestId("listbox");
+    const option1 = getByText("Option 1");
+    const option2 = getByText("Option 2");
+    expect(option1).not.toHaveAttribute("aria-selected");
+    expect(option2).not.toHaveAttribute("aria-selected");
+
+    listbox.focus();
+    fireEvent.keyDown(listbox, { key: "ArrowDown" });
+    expect(option1).not.toHaveAttribute("aria-selected");
+    expect(option2).not.toHaveAttribute("aria-selected");
+
+    fireEvent.click(option1);
+    expect(option1).not.toHaveAttribute("aria-selected");
+  });
+
+  it("should correctly call the onKeyDown prop", () => {
+    const onKeyDown = jest.fn();
+    const { getByTestId } = render(
+      <Listbox {...PROPS} onKeyDown={onKeyDown} />
+    );
+
+    const listbox = getByTestId("listbox");
+    fireEvent.keyDown(listbox, { key: "ArrowDown" });
+    expect(onKeyDown).toBeCalledTimes(1);
+  });
+
+  it("should correctly call the onFocus prop", () => {
+    const onFocus = jest.fn();
+    const { getByTestId } = render(<Listbox {...PROPS} onFocus={onFocus} />);
+
+    const listbox = getByTestId("listbox");
+    listbox.focus();
+    expect(onFocus).toBeCalledTimes(1);
+  });
+
+  it("should throw a warning in a non-production NODE_ENV if there is a non-searchable value", () => {
+    const { NODE_ENV } = process.env;
+    process.env.NODE_ENV = "production";
+    const warn = jest.spyOn(console, "warn");
+    // hide warnings
+    warn.mockImplementation(() => {});
+
+    const options = [{ l: "This is something" }];
+    const props = { ...PROPS, options };
+    const { unmount } = render(<Listbox {...props} />);
+    unmount();
+    expect(warn).not.toBeCalled();
+
+    process.env.NODE_ENV = NODE_ENV;
+    render(<Listbox {...props} />);
+
+    expect(warn).toBeCalledWith(
+      `A listbox with an id of "${PROPS.id}" has an option that does not have a searchable label string. ` +
+        "Users will be unable to use the typeahead feature in the Listbox component until this is fixed. " +
+        "To fix this warning, you can use the `labelKey` prop on the `Listbox`/`Select` component to point " +
+        "to a string on the following option:",
+      options[0]
+    );
+
+    warn.mockRestore();
   });
 });
