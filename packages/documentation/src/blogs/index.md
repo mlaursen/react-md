@@ -9,7 +9,7 @@ Summary:
 - **@react-md/form:** `Listbox` render `0` as a valid display value
   ([d02b7a9](https://github.com/mlaursen/react-md/commit/d02b7a9042786e4d4c4a46d286b62e6d80afc621))
 
-### Features<!-- no-margin -->
+##### Features<!-- no-margin -->
 
 - **@react-md/avatar:** Added ability to pass props to `<img>` (11848ee), closes
   #908
