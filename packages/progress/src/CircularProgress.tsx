@@ -105,7 +105,7 @@ const CircularProgress = forwardRef<HTMLSpanElement, CircularProgressProps>(
     ref
   ) {
     const progress = getProgress(min, max, value);
-    const svgStyle = useMemo(() => {
+    const svgStyle = useMemo<CSSProperties | undefined>(() => {
       if (typeof progress !== "number") {
         return propSvgStyle;
       }
@@ -119,7 +119,6 @@ const CircularProgress = forwardRef<HTMLSpanElement, CircularProgressProps>(
       return {
         ...propSvgStyle,
         WebkitTransform: transform,
-        MozTransform: transform,
         transform,
       };
     }, [progress, maxRotation, propSvgStyle]);
