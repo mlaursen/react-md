@@ -450,11 +450,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -462,7 +470,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -474,7 +482,7 @@ const tocs: TOCRecord = {
       title: "Features",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -558,11 +566,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -570,7 +586,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -582,7 +598,7 @@ const tocs: TOCRecord = {
       title: "Bug Fixes",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -674,11 +690,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -686,7 +710,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -698,7 +722,7 @@ const tocs: TOCRecord = {
       title: "Features",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -764,11 +788,23 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -776,7 +812,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -784,7 +820,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -864,11 +900,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -876,7 +920,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -884,7 +928,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -972,11 +1016,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -984,7 +1036,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -992,7 +1044,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -1352,11 +1404,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -1364,7 +1424,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -1376,7 +1436,7 @@ const tocs: TOCRecord = {
       title: "Features",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -1700,11 +1760,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -1712,7 +1780,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -1720,7 +1788,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -1804,11 +1872,27 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -1816,7 +1900,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -1824,11 +1908,11 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -1836,7 +1920,7 @@ const tocs: TOCRecord = {
       title: "2.0.3 (2020-07-07)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -1844,7 +1928,7 @@ const tocs: TOCRecord = {
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes-1",
+      anchor: "#bug-fixes-2",
       title: "Bug Fixes",
     },
     {
@@ -2076,11 +2160,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -2088,7 +2180,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -2096,7 +2188,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -2108,7 +2200,7 @@ const tocs: TOCRecord = {
       title: "Bug Fixes",
     },
     {
-      anchor: "#change-log-4",
+      anchor: "#change-log-5",
       title: "Change Log",
     },
     {
@@ -2280,11 +2372,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -2292,7 +2392,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -2304,7 +2404,7 @@ const tocs: TOCRecord = {
       title: "Bug Fixes",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -2570,11 +2670,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -2582,7 +2690,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -2594,7 +2702,7 @@ const tocs: TOCRecord = {
       title: "Features",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -2860,11 +2968,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -2872,7 +2988,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -2880,7 +2996,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -2968,11 +3084,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -2980,7 +3104,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -2992,7 +3116,7 @@ const tocs: TOCRecord = {
       title: "Features",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -3192,11 +3316,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -3204,7 +3336,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -3212,7 +3344,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {
@@ -3796,11 +3928,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#220-2020-08-11",
+      title: "2.2.0 (2020-08-11)",
+    },
+    {
+      anchor: "#change-log-1",
+      title: "Change Log",
+    },
+    {
       anchor: "#212-2020-08-01",
       title: "2.1.2 (2020-08-01)",
     },
     {
-      anchor: "#change-log-1",
+      anchor: "#change-log-2",
       title: "Change Log",
     },
     {
@@ -3808,7 +3948,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#change-log-2",
+      anchor: "#change-log-3",
       title: "Change Log",
     },
     {
@@ -3820,7 +3960,7 @@ const tocs: TOCRecord = {
       title: "Bug Fixes",
     },
     {
-      anchor: "#change-log-3",
+      anchor: "#change-log-4",
       title: "Change Log",
     },
     {

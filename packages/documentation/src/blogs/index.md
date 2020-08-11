@@ -1,3 +1,34 @@
+Title: react-md 2.2.0
+
+Date: 08/11/2020
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** `Listbox` render `0` as a valid display value
+  ([d02b7a9](https://github.com/mlaursen/react-md/commit/d02b7a9042786e4d4c4a46d286b62e6d80afc621))
+
+### Features<!-- no-margin -->
+
+- **@react-md/avatar:** Added ability to pass props to `<img>` (11848ee), closes
+  #908
+- **@react-md/form:** Added props to style `Checkbox` and `Radio` input element
+  (b6d2318)
+- **@react-md/form:** Updated toggle inactive and active colors to be
+  configurable (49319e6)
+
+Note: The `Checkbox` and `Radio` components have updated their default inactive
+color to be the `rmd-theme-var(text-secondary-on-background)` instead of
+`rmd-theme-var(secondary)` to better match the v1 styles.
+
+See
+[\$rmd-toggle-inactive-color](/packages/form/sassdoc#form-variable-rmd-toggle-inactive-color)
+and
+[\$rmd-toggle-active-color](/packages/form/sassdoc#form-variable-rmd-toggle-active-color).
+
+---
+
 Title: react-md 2.1.2
 
 Date: 08/01/2020
