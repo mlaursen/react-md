@@ -31,3 +31,19 @@ exports[`SVGIcon should render correctly 2`] = `
   </svg>
 </div>
 `;
+
+exports[`SVGIcon should support the use prop 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--svg"
+    focusable="false"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <use
+      xlink:href="#some-sprite"
+    />
+  </svg>
+</div>
+`;

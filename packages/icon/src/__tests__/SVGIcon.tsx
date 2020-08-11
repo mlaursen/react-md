@@ -29,4 +29,11 @@ describe("SVGIcon", () => {
     );
     expect(container).toMatchSnapshot();
   });
+
+  it("should support the use prop", () => {
+    const { container } = render(<SVGIcon use="#some-sprite" />);
+    expect(container).toMatchSnapshot();
+
+    expect(container.querySelector("use")).not.toBeNull();
+  });
 });
