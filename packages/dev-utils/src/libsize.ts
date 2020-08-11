@@ -250,6 +250,8 @@ ${list(css)}
     return;
   }
 
-  git("add README.md packages/documentation/src/components/About/README.md");
+  git(
+    "add README.md packages/documentation/src/components/About/README.md packages/documentation/src/components/Home/LibraryInfo/OtherPros.tsx"
+  );
   git('commit -m "chore(libsize): Updated library size"');
 }
