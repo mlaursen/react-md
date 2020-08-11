@@ -1,6 +1,7 @@
 import React from "react";
 import { Link as ReachLink } from "@reach/router";
 import { Link as ReactRouterLink, StaticRouter } from "react-router-dom";
+import { render } from "@testing-library/react";
 import renderer from "react-test-renderer";
 
 import Link from "../Link";
@@ -55,5 +56,23 @@ describe("Link", () => {
         .create(<ReachLink to="/direct-url">Direct url</ReachLink>)
         .toJSON()
     ).toMatchSnapshot();
+  });
+
+  it("should automatically add noopener noreferrer when the target is blank and there is no rel prop", () => {
+    const props = {
+      href: "https://example.com",
+      target: "_blank",
+      children: "Link",
+    };
+    const { getByText, rerender } = render(<Link {...props} />);
+
+    const link = getByText("Link");
+    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+
+    rerender(<Link {...props} rel="noopener" />);
+    expect(link).toHaveAttribute("rel", "noopener");
+
+    rerender(<Link {...props} preventMaliciousTarget={false} />);
+    expect(link).not.toHaveAttribute("rel");
   });
 });
