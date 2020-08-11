@@ -1,6 +1,6 @@
 {
   "name": "@react-md/avatar",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "This package is used to avatars which are used to symbolize people or objects.",
   "scripts": {
     "build": "dev-utils build",

@@ -1,6 +1,6 @@
 {
   "name": "@react-md/autocomplete",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "",
   "scripts": {
     "build": "dev-utils build",
@@ -42,8 +42,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/form": "^2.1.2",
-    "@react-md/list": "^2.1.2",
+    "@react-md/form": "^2.2.0",
+    "@react-md/list": "^2.2.0",
     "@react-md/portal": "^2.0.2",
     "@react-md/states": "^2.1.2",
     "@react-md/theme": "^2.1.2",

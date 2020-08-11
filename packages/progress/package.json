@@ -1,6 +1,6 @@
 {
   "name": "@react-md/progress",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Create horizontal, vertical, and circular progress indicators",
   "scripts": {
     "build": "dev-utils build",

@@ -1,6 +1,6 @@
 {
   "name": "@react-md/list",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "This package is used to create lists with the material design specs.",
   "scripts": {
     "build": "dev-utils build",
@@ -42,7 +42,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/avatar": "^2.1.2",
+    "@react-md/avatar": "^2.2.0",
     "@react-md/divider": "^2.1.2",
     "@react-md/icon": "^2.1.2",
     "@react-md/states": "^2.1.2",
