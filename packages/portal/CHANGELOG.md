@@ -39,6 +39,9 @@ packages though, but it is still exported and documented for external use.
   - `component`
   - `lastChild`
   - `renderNode` (see API changes below)
+- no longer supports `visible`, `onOpen`, and `onClose` props since you'll
+  normally want to handle enter/exit transitions with the @react-md/transition
+  package instead
 
 ### New API and Props
 
@@ -48,13 +51,14 @@ portals by using the `into` or `intoId` props instead of using the `renderNode`
 
 If both the `into` and `intoId` props are undefined, a portal will be created
 into the main `document.body` which is kind of how the API worked before when
-you did not specify a `renderNode`.
+you did not specify a `renderNode`. If the `into` or `intoId` props result in
+the container being `null`, the `Portal`'s `children` will not be rendered.
 
-The `into` and `intoId` props will be evaluated each time the portal's
-visibility is set to `true`, so it is possible to change the portal's location
-each time to create temporary nodes in your app as needed. This also means that
-if you are removing elements from your page, you need to ensure that there is a
-valid DOM element to be rendered into at the time the portal is visible.
+The portal's `container` element will be evaluated once the component mounts as
+well as each time the `into` or `intoId` props are no longer shallow equal. This
+means that if you use an arrow function for the `into` prop, you _might_ want to
+use the `useCallback` hook from react instead otherwise it'll re-evaluate each
+time this component renders.
 
 #### Using the `intoId` prop
 
@@ -65,7 +69,7 @@ page by id.
 const App = () => {
   <div>
     <div id="portal-div" />
-    <Portal intoId="portal-div" visible>
+    <Portal intoId="portal-div">
       <h3>This is a portaled h3 tag!</h3>
     </Portal>
   </div>;
@@ -75,17 +79,12 @@ const App = () => {
 #### Using the `into` prop
 
 The `into` prop can either be a `string`, `function`, an `HTMLElement`, or
-`null`. When the value is `null`, the portal will not be able to render even
-when the visible prop is enabled. Once it is changed to one of the other values,
-the portal will finally be created and visible. This is really just helpful if
-you need to do some async work or dynamically create the node beforehand to
-create your portal's node.
-
-If the `into` prop is a string, the portal will be created into the result of
-`document.querySelector` so you can do some fancy element selecting if you need.
+`null`. If the `into` prop is a string, the portal will be created into the
+result of `document.querySelector` so you can do some fancy element selecting if
+you need.
 
 ```tsx
-const App = () => {
+const App = () => (
   <div>
     <ul id="some-list">
       <li class="custom-class">Item 1</li>
@@ -94,25 +93,31 @@ const App = () => {
       <li class="custom-class">Item 4</li>
       <li class="custom-class">Item 5</li>
     </ul>
-    <Portal into="#some-list .custom-class:nth-child(3)" visible>
+    <Portal into="#some-list .custom-class:nth-child(3)">
       <h3>This is a portaled h3 tag!</h3>
     </Portal>
-  </div>;
-};
+  </div>
+);
 ```
 
-If the `into` prop is a function, that function **must** return a valid
-`HTMLElement` once it is called otherwise an error will be logged in the
-console.
+If the `into` prop is a `function`, it should return an `HTMLElement` or `null`.
 
 ```tsx
 const App = () => {
-  <div>
-    <div id="portal-div" />
-    <Portal into={() => document.getElementById("portal-div")} visible>
-      <h3>This is a portaled h3 tag!</h3>
-    </Portal>
-  </div>;
+  // Note: this function will be called each time the Portal (and App) component
+  // is rendered, so if this function is expensive to compute, you should
+  // instead use `useCallback`:
+  // const into = useCallback(() => { /* expensive calculation here */ }, []);
+  const into = () => document.getElementById("portal-div");
+
+  return (
+    <div>
+      <div id="portal-div" />
+      <Portal into={into}>
+        <h3>This is a portaled h3 tag!</h3>
+      </Portal>
+    </div>
+  );
 };
 ```
 
@@ -122,24 +127,19 @@ just useful if you would like to use React refs or cache the portal's node
 yourself in your lifecycle methods or some other way.
 
 ```tsx
-class App extends React.Component {
-  private ref = React.createRef<HTMLDivElement>();
+const App = () => {
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  public componentDidMount() {
-    window.setTimeout(() => {
-      this.setState({ visible: true });
-    }, 1000);
-  }
-
-  public render() {
-    return (
-      <div>
-        <div id={this.ref} />
-        <Portal into={this.ref.current} visible={this.state.visible}>
-          <h3>This is a portaled h3 tag!</h3>
-        </Portal>
-      </div>
-    );
-  }
-}
+  return (
+    <>
+      <div ref={ref} />
+      <Portal into={this.ref.current}>
+        <h3>This is a portalled h3 tag!</h3>
+      </Portal>
+    </>
+  );
+};
 ```
+
+> Note: The `into` prop can be strongly typed for Typescript users with the
+> `PortalInto` type.
