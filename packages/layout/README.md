@@ -132,10 +132,13 @@ const Route3: FC = () => <Text>Third Route</Text>;
 
 const App: FC = () => {
   const { pathname } = useLocation();
-  const navigation = useLayoutNavigation(navItems, pathname, Link);
 
   return (
-    <Layout appBarTitle="Example Title" treeProps={navigation}>
+    <Layout
+      title="Example Title"
+      navHeaderTitle="Example Nav Title"
+      treeProps={useLayoutNavigation(navItems, pathname, Link)}
+    >
       <Switch>
         <Route path="/route-1" component={Route1} />
         <Route path="/route-2" component={Route2} />
