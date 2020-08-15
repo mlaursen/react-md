@@ -9,9 +9,9 @@ All notable changes to this project will be documented in this file. See
 
 - **LICENSE:** Removed the time range from license since it was incorrect
   ([50c9021](https://github.com/mlaursen/react-md/commit/50c9021cedc0d642758b9fd541bb6c93d2fe1786))
-- Added sideEffects field to package.json
+- Added `sideEffects` field to `package.json`
   ([31820b9](https://github.com/mlaursen/react-md/commit/31820b9b43705e5849664500a17b6849eb6dc2a9))
-- sideEffects formatting
+- `sideEffects` formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
 ## v2.0.1
@@ -40,8 +40,8 @@ packages though, but it is still exported and documented for external use.
   - `lastChild`
   - `renderNode` (see API changes below)
 - no longer supports `visible`, `onOpen`, and `onClose` props since you'll
-  normally want to handle enter/exit transitions with the @react-md/transition
-  package instead
+  normally want to handle enter/exit transitions with the
+  [@react-md/transition](../transition) package instead
 
 ### New API and Props
 

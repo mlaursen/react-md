@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
-- Booleans in dist/scssVariables
+- Booleans in `dist/scssVariables`
   ([f6d43a3](https://github.com/mlaursen/react-md/commit/f6d43a31a13647e0b92c256975652913fb8bb34e))
 - Scroll active element into view while focusing
   ([a9a0902](https://github.com/mlaursen/react-md/commit/a9a090268f8aecb8b7478dc3fb6c06eec346c62a))
@@ -17,20 +17,15 @@ All notable changes to this project will be documented in this file. See
 - Added new mixin for optional css-modules
   ([28ba828](https://github.com/mlaursen/react-md/commit/28ba8281489ddfa794a61749cb32817a9bd64311))
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [2.0.2](https://github.com/mlaursen/react-md/compare/v2.0.1...v2.0.2) (2020-06-30)
 
 ### Bug Fixes
 
 - **LICENSE:** Removed the time range from license since it was incorrect
   ([50c9021](https://github.com/mlaursen/react-md/commit/50c9021cedc0d642758b9fd541bb6c93d2fe1786))
-- Added sideEffects field to package.json
+- Added `sideEffects` field to `package.json`
   ([31820b9](https://github.com/mlaursen/react-md/commit/31820b9b43705e5849664500a17b6849eb6dc2a9))
-- sideEffects formatting
+- `sideEffects` formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
 ## v2.0.1

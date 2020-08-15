@@ -12,33 +12,20 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- **form:** Added props to style Checkbox and Radio input element
+- [@react-md/form](../form): Added props to style `Checkbox` and `Radio` input
+  element
   ([b6d2318](https://github.com/mlaursen/react-md/commit/b6d23186b7355bacc198d5187d50c10a7186f4ca))
-- **form:** Updated toggle inactive and active colors to be configurable
+- [@react-md/form](../form): Updated toggle inactive and active colors to be
+  configurable
   ([49319e6](https://github.com/mlaursen/react-md/commit/49319e65e7bf29380469b567b893a3cc775b2720))
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.1.2](https://github.com/mlaursen/react-md/compare/v2.1.1...v2.1.2) (2020-08-01)
 
-**Note:** Version bump only for package @react-md/form
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+**Note:** Version bump only for package [@react-md/form](../form)
 
 ## [2.1.1](https://github.com/mlaursen/react-md/compare/v2.1.0...v2.1.1) (2020-07-21)
 
-**Note:** Version bump only for package @react-md/form
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+**Note:** Version bump only for package [@react-md/form](../form)
 
 # [2.1.0](https://github.com/mlaursen/react-md/compare/v2.0.4...v2.1.0) (2020-07-12)
 
@@ -48,20 +35,15 @@ All notable changes to this project will be documented in this file. See
   ([547877c](https://github.com/mlaursen/react-md/commit/547877c51217a544fdaad9c77e2469a45f30336e)),
   closes [#860](https://github.com/mlaursen/react-md/issues/860)
 
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
 ## [2.0.3](https://github.com/mlaursen/react-md/compare/v2.0.2...v2.0.3) (2020-07-07)
 
 ### Bug Fixes
 
-- **form:** Select disabled styling
+- [@react-md/form](../form): `Select` disabled styling
   ([d79d007](https://github.com/mlaursen/react-md/commit/d79d0079307ccc735ebac0730d1d45aabe1419bd))
-- **form:** TextArea disabled styles
+- [@react-md/form](../form): `TextArea` disabled styles
   ([ef118bf](https://github.com/mlaursen/react-md/commit/ef118bf325e68e9ae8c988f9f93a1e19e1468084))
-- **form:** TextField and Select disabled behavior
+- [@react-md/form](../form): `TextField` and `Select` disabled behavior
   ([e8f2c57](https://github.com/mlaursen/react-md/commit/e8f2c579a1ee502674bfddbcc10713d4b50d7cc4))
 
 ## [2.0.2](https://github.com/mlaursen/react-md/compare/v2.0.1...v2.0.2) (2020-06-30)
@@ -70,9 +52,9 @@ All notable changes to this project will be documented in this file. See
 
 - **LICENSE:** Removed the time range from license since it was incorrect
   ([50c9021](https://github.com/mlaursen/react-md/commit/50c9021cedc0d642758b9fd541bb6c93d2fe1786))
-- Added sideEffects field to package.json
+- Added `sideEffects` field to `package.json`
   ([31820b9](https://github.com/mlaursen/react-md/commit/31820b9b43705e5849664500a17b6849eb6dc2a9))
-- sideEffects formatting
+- `sideEffects` formatting
   ([78a7b6b](https://github.com/mlaursen/react-md/commit/78a7b6b0e40c7daefb749835670705f21bd21720))
 
 ## v2.0.1
