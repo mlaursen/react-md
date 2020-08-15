@@ -9,6 +9,7 @@ import clean from "./clean";
 import configs from "./configs";
 import { DEBUG, SILENT } from "./constants";
 import docPackages from "./docPackages";
+import fixChangelogs from "./fixChangelogs";
 import indexer from "./indexer";
 import libsize from "./libsize";
 import prepublish from "./prepublish";
@@ -185,5 +186,11 @@ createCommand("clean")
 createCommand("configs").action(() => configs());
 createCommand("changelogs").action(() => changelogs());
 createCommand("rmd-readme").action(() => rmdReadme());
+createCommand("fix-changelogs")
+  .option(
+    "--ammend",
+    "Ammend the previous commit to include these changes. This should really only be used during the release process."
+  )
+  .action(({ ammend = false }) => fixChangelogs(ammend));
 
 commander.parse(process.argv);

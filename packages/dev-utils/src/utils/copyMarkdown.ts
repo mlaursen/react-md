@@ -4,6 +4,7 @@ import { join, sep } from "path";
 
 import writeFile from "./writeFile";
 import format from "./format";
+import getPackages from "./getPackages";
 
 const githubUrl = "https://github.com/mlaursen/react-md";
 const masterUrl = `${githubUrl}/tree/master`;
@@ -47,9 +48,12 @@ function updateRelativePaths(markdown: string, filePath: string): string {
   // ../../../path/to/file
   return markdown.replace(
     /]\(((\.\/|(\.\.\/)+)[A-z0-9/.-]+)\)/g,
-    (_, relativePath) => {
-      const githubPath = join(prefix, relativePath);
+    (match, relativePath) => {
+      if (new RegExp(`(${getPackages().join("|")})[)]`).test(match)) {
+        return `](/packages/transition/installation)`;
+      }
 
+      const githubPath = join(prefix, relativePath);
       return `]({{GITHUB_FILE_URL}}/${githubPath.replace(SEP_REGEXP, "/")})`;
     }
   );
