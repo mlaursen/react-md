@@ -67,4 +67,23 @@ describe("Tree", () => {
     const tree = getByRole("tree");
     expect(tree.firstElementChild).not.toBeNull();
   });
+
+  it("should pass the tree item's className and liClassName attributes by default", () => {
+    const data = {
+      "item-1": {
+        parentId: null,
+        itemId: "item-1",
+        name: "Item 1",
+        className: "item-1-class-name",
+        liClassName: "item-1-li-class-name",
+      },
+    };
+
+    const { container, getByRole } = render(<Tree {...PROPS} data={data} />);
+    expect(container).toMatchSnapshot();
+
+    const item = getByRole("treeitem");
+    expect(item.className).toContain("item-1-li-class-name");
+    expect(item.children[0].className).toContain("item-1-class-name");
+  });
 });

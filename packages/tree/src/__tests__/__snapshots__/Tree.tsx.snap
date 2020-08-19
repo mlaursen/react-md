@@ -169,3 +169,38 @@ exports[`Tree should be able to use a rootId that is not null 1`] = `
   </ul>
 </div>
 `;
+
+exports[`Tree should pass the tree item's className and liClassName attributes by default 1`] = `
+<div>
+  <ul
+    aria-activedescendant=""
+    class="rmd-list rmd-tree"
+    id="tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-setsize="1"
+      class="rmd-tree-item item-1-li-class-name"
+      id="tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable item-1-class-name"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;

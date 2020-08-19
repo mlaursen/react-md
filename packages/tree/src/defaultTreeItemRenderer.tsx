@@ -74,6 +74,8 @@ export default function defaultTreeItemRenderer(
   let isLink: boolean | undefined;
   let readOnly: boolean | undefined;
   let disabled: boolean | undefined;
+  let className: string | undefined;
+  let liClassName: string | undefined;
   if (typeof treeItem.isLink === "boolean") {
     ({ isLink } = treeItem);
   }
@@ -84,6 +86,14 @@ export default function defaultTreeItemRenderer(
 
   if (typeof treeItem.disabled === "boolean") {
     ({ disabled } = treeItem);
+  }
+
+  if (typeof treeItem.className === "string") {
+    ({ className } = treeItem);
+  }
+
+  if (typeof treeItem.liClassName === "string") {
+    ({ liClassName } = treeItem);
   }
 
   const overrides = getItemProps({
@@ -125,6 +135,8 @@ export default function defaultTreeItemRenderer(
       rightAddonPosition={rightAddonPosition}
       expanderLeft={expanderLeft}
       expanderIcon={expanderIcon}
+      className={className}
+      liClassName={liClassName}
       {...overrides}
     >
       {children}
