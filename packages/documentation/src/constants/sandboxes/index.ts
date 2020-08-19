@@ -294,6 +294,7 @@ const sandboxes: Sandboxes = {
   Utils: {
     AppSizeListenerExample: () =>
       resolve(import("./Utils-AppSizeListenerExample.json")),
+    GridListSize: () => resolve(import("./Utils-GridListSize.json")),
     MaterialGridExample: () =>
       resolve(import("./Utils-MaterialGridExample.json")),
     MediaQueryComponents: () =>

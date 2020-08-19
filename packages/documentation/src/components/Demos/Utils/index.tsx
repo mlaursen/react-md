@@ -20,6 +20,9 @@ import materialGridExample from "./MaterialGridExample.md";
 import SimpleGridList from "./SimpleGridList";
 import simpleGridList from "./SimpleGridList.md";
 
+import GridListSize from "./GridListSize";
+import gridListSize from "./GridListSize.md";
+
 const demos = [
   {
     name: "App Size Listener Example",
@@ -50,6 +53,11 @@ const demos = [
     name: "Simple Grid List",
     description: simpleGridList,
     children: <SimpleGridList />,
+  },
+  {
+    name: "Grid List Size",
+    description: gridListSize,
+    children: <GridListSize />,
   },
 ];
 
