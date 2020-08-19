@@ -14,6 +14,7 @@ import bem from "../bem";
 import useResizeObserver from "../sizing/useResizeObserver";
 import GridListCell from "./GridListCell";
 import getScrollbarSize from "./scrollbarSize";
+import { GridListSizeProvider, GridListSize } from "./context";
 
 /**
  * This is the css variable that is used store the current size of each cell.
@@ -24,18 +25,6 @@ export const CELL_SIZE_VAR = "--rmd-cell-size";
  * This is the css variable that is used store the current margin of each cell.
  */
 export const CELL_MARGIN_VAR = "--rmd-cell-margin";
-
-export interface GridListSize {
-  /**
-   * The current number of columns in the `GridList`.
-   */
-  columns: number;
-
-  /**
-   * The current width of each cell within the grid.
-   */
-  cellWidth: number;
-}
 
 /**
  * The children render function that will be provided the current grid list size
@@ -230,14 +219,16 @@ const GridList = forwardRef<HTMLDivElement, GridListProps>(function GridList(
   }
 
   return (
-    <div
-      {...props}
-      ref={refHandler}
-      style={mergedStyle}
-      className={cn(block(), className)}
-    >
-      {content}
-    </div>
+    <GridListSizeProvider value={gridSize}>
+      <div
+        {...props}
+        ref={refHandler}
+        style={mergedStyle}
+        className={cn(block(), className)}
+      >
+        {content}
+      </div>
+    </GridListSizeProvider>
   );
 });
 

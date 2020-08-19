@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 import GridList from "../GridList";
+import { useGridListSize } from "../context";
 
 let getBoundingClientRect: jest.SpyInstance<DOMRect, []>;
 beforeAll(() => {
@@ -111,5 +112,45 @@ describe("GridList", () => {
       </GridList>
     );
     expect(container).toMatchSnapshot();
+  });
+
+  it("should allow for the current cellWidth to be accessed with the useGridListSize hook", () => {
+    const Child = () => {
+      const size = useGridListSize();
+
+      return <div data-testid="child">{JSON.stringify(size)}</div>;
+    };
+
+    const { getByTestId } = render(
+      <GridList>
+        <Child />
+      </GridList>
+    );
+    const child = getByTestId("child");
+    expect(child).toMatchInlineSnapshot(`
+      <div
+        data-testid="child"
+      >
+        {"cellWidth":140.57142857142858,"columns":7}
+      </div>
+    `);
+  });
+
+  it("should provide -1 if the useGridListSize hook is used without a parent GridList component", () => {
+    const Child = () => {
+      const size = useGridListSize();
+
+      return <div data-testid="child">{JSON.stringify(size)}</div>;
+    };
+
+    const { getByTestId } = render(<Child />);
+    const child = getByTestId("child");
+    expect(child).toMatchInlineSnapshot(`
+      <div
+        data-testid="child"
+      >
+        {"columns":-1,"cellWidth":-1}
+      </div>
+    `);
   });
 });
