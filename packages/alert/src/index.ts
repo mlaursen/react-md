@@ -8,3 +8,4 @@ export { default as MessageQueue } from "./MessageQueue";
 export * from "./MessageQueue";
 
 export * from "./MessageQueueContext";
+export * from "./constants";

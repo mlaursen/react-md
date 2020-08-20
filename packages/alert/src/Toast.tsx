@@ -4,6 +4,8 @@ import CSSTransition from "react-transition-group/CSSTransition";
 import { OverridableCSSTransitionProps } from "@react-md/transition";
 import { bem } from "@react-md/utils";
 
+import { DEFAULT_TOAST_CLASSNAMES, DEFAULT_TOAST_TIMEOUT } from "./constants";
+
 export interface ToastProps
   extends HTMLAttributes<HTMLDivElement>,
     Omit<OverridableCSSTransitionProps, "mountOnEnter" | "unmountOnExit"> {
@@ -33,16 +35,6 @@ export interface ToastProps
 }
 
 const block = bem("rmd-toast");
-const DEFAULT_TOAST_CLASSNAMES = {
-  appear: "rmd-toast--enter",
-  appearActive: "rmd-toast--enter-active",
-  enter: "rmd-toast--enter",
-  enterActive: "rmd-toast--enter-active",
-  enterDone: "",
-  exit: "rmd-toast--exit",
-  exitActive: "rmd-toast--exit-active",
-  exitDone: "",
-};
 
 /**
  * This is a very low-level component that can be used to animate a new toast in
@@ -62,7 +54,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
     onExit,
     onExiting,
     onExited,
-    timeout = 150,
+    timeout = DEFAULT_TOAST_TIMEOUT,
     classNames = DEFAULT_TOAST_CLASSNAMES,
     action = null,
     stacked = false,
