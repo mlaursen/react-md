@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+// disabled the no-non-null-assertions since the refs are guarenteed to not be
+// null by the time of running and this will eventually be re-written once I
+// updated the `@react-md/transition` package for the new `nodeRef` API
 import React, { FC, useCallback, useRef, useState } from "react";
 import CSSTransition, {
   CSSTransitionClassNames,
@@ -76,6 +80,7 @@ const CLASSNAMES: CSSTransitionClassNames = {
 const FixedPositioningExample: FC = () => {
   const [visible, show, hide] = useToggle(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const divRef = useRef<HTMLDivElement>(null);
   const [disableSwapping, handleSwapCange] = useChecked(false);
   const [transformOrigin, handleOriginChange] = useChecked(false);
   const [hideOnScroll, handleScrollChange] = useChecked(true);
@@ -208,16 +213,22 @@ const FixedPositioningExample: FC = () => {
       />
       <CSSTransition
         in={visible}
+        nodeRef={divRef}
         mountOnEnter
         unmountOnExit
         classNames={CLASSNAMES}
         timeout={{ enter: 200, exit: 150 }}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExited={onExited}
+        onEnter={(isAppearing) => onEnter(divRef.current!, isAppearing)}
+        onEntering={(isAppearing) => onEntering(divRef.current!, isAppearing)}
+        onEntered={(isAppearing) => onEntered(divRef.current!, isAppearing)}
+        onExited={() => onExited(divRef.current!)}
       >
-        <div id="fixed-position-div" style={style} className={styles.div}>
+        <div
+          id="fixed-position-div"
+          ref={divRef}
+          style={style}
+          className={styles.div}
+        >
           <Text>This is some amazing text in a fixed element!</Text>
         </div>
       </CSSTransition>

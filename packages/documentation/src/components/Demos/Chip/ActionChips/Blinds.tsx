@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useRef } from "react";
 import cn from "classnames";
 import CSSTransition, {
   CSSTransitionClassNames,
@@ -19,6 +19,7 @@ const CLASSNAMES: CSSTransitionClassNames = {
 };
 
 const Blinds: FC<BlindsProps> = ({ visible }) => {
+  const ref = useRef<HTMLDivElement | null>(null);
   const [exited, setExited] = useState(true);
   if (visible && exited) {
     setExited(false);
@@ -31,13 +32,14 @@ const Blinds: FC<BlindsProps> = ({ visible }) => {
   return (
     <CSSTransition
       in={isVisible}
+      nodeRef={ref}
       mountOnEnter
       unmountOnExit
       timeout={1500}
       classNames={CLASSNAMES}
     >
       {(state) => (
-        <div className={styles.blinds}>
+        <div ref={ref} className={styles.blinds}>
           {Array.from({ length: 11 }, (_, i) => (
             <Blind
               key={i}
