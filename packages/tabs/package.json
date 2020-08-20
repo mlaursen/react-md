@@ -49,7 +49,7 @@
     "@react-md/typography": "^2.1.2",
     "@react-md/utils": "^2.1.0",
     "classnames": "^2.2.6",
-    "react-transition-group": "^4.3.0"
+    "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
     "react": "^16.13.1",
