@@ -3765,6 +3765,10 @@ const tocs: TOCRecord = {
       anchor: "#simple-grid-list",
       title: "Simple Grid List",
     },
+    {
+      anchor: "#grid-list-size",
+      title: "Grid List Size",
+    },
   ],
   "/packages/utils/installation": [
     {

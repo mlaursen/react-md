@@ -2310,6 +2310,14 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/utils/demos#simple-grid-list-title",
   },
   {
+    title: "Utils Demo - Grid List Size",
+    summary:
+      'The current number of columns and the size of each column can be retrieved either with the useGridListSize hook or using the "children render function" pattern. If you want to use the children render function pattern, a quick example is:',
+    type: "demo",
+    pageUrl: "/packages/utils/demos#grid-list-size-title",
+    pathname: "/packages/utils/demos#grid-list-size-title",
+  },
+  {
     title: "Utils Installation",
     summary:
       "This package is for providing reusable accessibility hooks, components, and utilities, a base css reset and other utility mixins, as well as general layout and app size components and hooks. This package will be used by every other scoped package within react-md, and has an extremely useful mixin for only generating styles for packages that have been installed.",
