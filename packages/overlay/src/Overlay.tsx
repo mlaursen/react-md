@@ -1,15 +1,18 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import CSSTransition, {
-  CSSTransitionClassNames,
-} from "react-transition-group/CSSTransition";
+import CSSTransition from "react-transition-group/CSSTransition";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
 import { OverridableCSSTransitionProps } from "@react-md/transition";
 import { bem } from "@react-md/utils";
+
+import {
+  DEFAULT_OVERLAY_TIMEOUT,
+  DEFAULT_OVERLAY_CLASSNAMES,
+} from "./constants";
 
 export interface OverlayProps
   extends OverridableCSSTransitionProps,
@@ -46,12 +49,6 @@ export interface OverlayProps
 
 const block = bem("rmd-overlay");
 
-const DEFAULT_OVERLAY_CLASSNAMES: CSSTransitionClassNames = {
-  appearActive: "rmd-overlay--active",
-  enterActive: "rmd-overlay--active",
-  enterDone: "rmd-overlay--active",
-};
-
 /**
  * The `Overlay` component is a simple component used to render a full page
  * overlay in the page with an enter and exit animation. If there are overflow
@@ -64,7 +61,8 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay(
     visible,
     hidden = false,
     clickable = true,
-    timeout = 150,
+    timeout = DEFAULT_OVERLAY_TIMEOUT,
+    classNames = DEFAULT_OVERLAY_CLASSNAMES,
     children,
     mountOnEnter = true,
     unmountOnExit = true,
@@ -78,7 +76,6 @@ const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay(
     portal,
     portalInto,
     portalIntoId,
-    classNames = DEFAULT_OVERLAY_CLASSNAMES,
     tabIndex = -1,
     ...props
   },
