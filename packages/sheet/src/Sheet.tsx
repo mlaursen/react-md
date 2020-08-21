@@ -1,11 +1,11 @@
 import React, { forwardRef, useRef, useState, useCallback } from "react";
 import cn from "classnames";
-import { Dialog, DialogProps } from "@react-md/dialog";
+import { Dialog, BaseDialogProps } from "@react-md/dialog";
 import { bem, LabelRequiredForA11y } from "@react-md/utils";
 import { DEFAULT_SHEET_TIMEOUT, DEFAULT_SHEET_CLASSNAMES } from "./constants";
 
 type AllowedDialogProps = Omit<
-  DialogProps,
+  BaseDialogProps,
   "role" | "type" | "modal" | "forceContainer"
 >;
 
@@ -13,7 +13,7 @@ export type SheetPosition = "top" | "right" | "bottom" | "left";
 export type SheetHorizontalSize = "none" | "media" | "touch" | "static";
 export type SheetVerticalSize = "none" | "touch" | "recommended";
 
-export interface SheetProps extends AllowedDialogProps {
+export interface BaseSheetProps extends AllowedDialogProps {
   /**
    * The role that the sheet should be rendered as. You'll normally want to keep
    * this as the default of `"dialog"` unless you are implementing a mobile
@@ -60,7 +60,7 @@ export interface SheetProps extends AllowedDialogProps {
   verticalSize?: SheetVerticalSize;
 }
 
-type StrictProps = LabelRequiredForA11y<SheetProps>;
+export type SheetProps = LabelRequiredForA11y<BaseSheetProps>;
 
 const block = bem("rmd-sheet");
 
@@ -69,7 +69,7 @@ const block = bem("rmd-sheet");
  * to the edges of the viewport instead of centered or full page. This component
  * is great for rendering a navigation tree or menus on mobile devices.
  */
-const Sheet = forwardRef<HTMLDivElement, StrictProps>(function Sheet(
+const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
   {
     className,
     children,

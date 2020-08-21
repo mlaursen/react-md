@@ -7,12 +7,12 @@ import {
   OptionalFixedPositionOptions,
   useFixedPositioning,
 } from "@react-md/transition";
-import { LabelRequiredForA11y, TOP_INNER_RIGHT_ANCHOR } from "@react-md/utils";
+import { TOP_INNER_RIGHT_ANCHOR, LabelRequiredForA11y } from "@react-md/utils";
 
-import Dialog, { DialogProps } from "./Dialog";
+import Dialog, { BaseDialogProps } from "./Dialog";
 
-export interface FixedDialogProps
-  extends Omit<DialogProps, "type">,
+export interface BaseFixedDialogProps
+  extends Omit<BaseDialogProps, "type">,
     Pick<OptionalFixedPositionOptions, "anchor"> {
   /**
    * The element the dialog should be fixed to. This can either be:
@@ -35,7 +35,7 @@ export interface FixedDialogProps
   getOptions?: GetFixedPositionOptions;
 }
 
-type StrictProps = LabelRequiredForA11y<FixedDialogProps>;
+export type FixedDialogProps = LabelRequiredForA11y<BaseFixedDialogProps>;
 
 const DEFAULT_CLASSNAMES: CSSTransitionClassNames = {
   appear: "rmd-dialog--fixed-enter",
@@ -51,7 +51,7 @@ const DEFAULT_CLASSNAMES: CSSTransitionClassNames = {
  * be fix itself to another element. Another term for this component might be a
  * "Pop out Dialog".
  */
-const FixedDialog = forwardRef<HTMLDivElement, StrictProps>(
+const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
   function FixedDialog(
     {
       fixedTo,

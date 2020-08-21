@@ -25,7 +25,7 @@ export type MenuPositionOptions = Omit<
   "container" | "element" | "anchor"
 >;
 
-export interface MenuProps
+export interface BaseMenuProps
   extends HTMLAttributes<HTMLDivElement>,
     OverridableCSSTransitionProps,
     RenderConditionalPortalProps {
@@ -136,7 +136,7 @@ export interface MenuProps
   disableControlClickOkay?: boolean;
 }
 
-type StrictProps = LabelRequiredForA11y<MenuProps>;
+export type MenuProps = LabelRequiredForA11y<BaseMenuProps>;
 
 const block = bem("rmd-menu");
 
@@ -145,7 +145,7 @@ const block = bem("rmd-menu");
  * out based on the `visible` prop as well as handle keyboard focus, closing
  * when needed, etc.
  */
-const Menu = forwardRef<HTMLDivElement, StrictProps>(function Menu(
+const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
   {
     role = "menu",
     tabIndex = -1,

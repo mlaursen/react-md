@@ -23,7 +23,7 @@ import {
 
 import useNestedDialogFixes from "./useNestedDialogFixes";
 
-export interface DialogProps
+export interface BaseDialogProps
   extends OverridableCSSTransitionProps,
     RenderConditionalPortalProps,
     FocusContainerOptionsProps,
@@ -188,7 +188,7 @@ export interface DialogProps
   component?: "div" | "nav";
 }
 
-type StrictProps = LabelRequiredForA11y<DialogProps>;
+export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
 
 // used to disable the overlay click-to-close functionality when the `modal` prop is enabled.
 const noop = (): void => {};
@@ -206,7 +206,7 @@ const DEFAULT_DIALOG_TIMEOUT = {
   exit: 150,
 };
 
-const Dialog = forwardRef<HTMLDivElement, StrictProps>(function Dialog(
+const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
   {
     component = "div",
     tabIndex = -1,

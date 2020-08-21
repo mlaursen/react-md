@@ -25,17 +25,27 @@ export type ClassNameCloneableChild<T = {}> = ReactElement<
  * This type allows you to require at least one of the provided keys. This is
  * super helpful for things like `aria-label` or `aria-labelledby` when it's
  * required for a11y.
+ *
+ * @see https://stackoverflow.com/questions/40510611/typescript-interface-require-one-of-two-properties-to-exist/49725198#49725198
  */
 export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<
   T,
   Exclude<keyof T, Keys>
 > &
-  { [K in Keys]-?: Required<Pick<T, K>> }[Keys];
+  {
+    [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>;
+  }[Keys];
 
-interface LabelA11y {
+export interface LabelA11y {
   "aria-label"?: string;
   "aria-labelledby"?: string;
 }
 
-export type LabelRequiredForA11y<T extends LabelA11y> = T &
-  RequireAtLeastOne<T, "aria-label" | "aria-labelledby">;
+/**
+ * A small accessibility helper to ensure that either `aria-label` or
+ * `aria-labelledby` have been provided to a component.
+ */
+export type LabelRequiredForA11y<Props extends LabelA11y> = RequireAtLeastOne<
+  Props,
+  keyof LabelA11y
+>;

@@ -12,7 +12,7 @@ import {
   MenuRenderer,
 } from "@react-md/menu";
 import { Sheet, SheetProps } from "@react-md/sheet";
-import { LabelRequiredForA11y, useAppSize } from "@react-md/utils";
+import { useAppSize } from "@react-md/utils";
 
 import styles from "./MobileActionSheet.module.scss";
 
@@ -23,10 +23,7 @@ const items = [
   { leftAddon: <DeleteSVGIcon />, children: "Delete collection" },
 ];
 
-const MenuSheet: FC<LabelRequiredForA11y<SheetProps>> = ({
-  children,
-  ...props
-}) => {
+const MenuSheet: FC<SheetProps> = ({ children, ...props }) => {
   const { onRequestClose } = props;
   const handleClick = useCallback(
     (event: React.MouseEvent) => {
