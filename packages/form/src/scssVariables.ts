@@ -93,6 +93,9 @@ export default {
   "rmd-toggle-border-radius": "50%",
   "rmd-toggle-inset": "0.3125rem",
   "rmd-toggle-dense-inset": "0.25rem",
+  "rmd-toggle-inactive-color":
+    "var(--rmd-theme-text-secondary-on-background, #757575)",
+  "rmd-toggle-active-color": "var(--rmd-theme-secondary, #f50057)",
   "rmd-checkbox-indeterminate-height": "0.15rem",
   "rmd-checkbox-indeterminate-dense-height": "0.125rem",
   "rmd-switch-track-height": "1rem",
