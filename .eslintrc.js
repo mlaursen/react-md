@@ -38,6 +38,9 @@ module.exports = {
     // I don't know how to get this to work with peerDependencies
     'import/no-extraneous-dependencies': 0,
 
+    // going to try this going forward since I normally want to do export * from "./file"
+    'import/prefer-default-export': 0,
+
     // This doesn't play well with hooks and it doesn't mean much with Typescript to me
     'consistent-return': 0,
 
