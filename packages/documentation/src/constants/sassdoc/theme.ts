@@ -524,11 +524,6 @@ const sassdoc: PackageSassDoc = {
           packageName: "theme",
         },
         { name: "rmd-tooltip-theme", type: "function", packageName: "tooltip" },
-        {
-          name: "rmd-transition-theme",
-          type: "function",
-          packageName: "transition",
-        },
         { name: "rmd-tree-theme", type: "function", packageName: "tree" },
         {
           name: "rmd-typography-theme",
@@ -646,11 +641,6 @@ const sassdoc: PackageSassDoc = {
           name: "rmd-tooltip-theme-var",
           type: "function",
           packageName: "tooltip",
-        },
-        {
-          name: "rmd-transition-theme-var",
-          type: "function",
-          packageName: "transition",
         },
         { name: "rmd-tree-theme-var", type: "function", packageName: "tree" },
         {
