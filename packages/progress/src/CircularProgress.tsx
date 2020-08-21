@@ -5,9 +5,8 @@ import React, {
   useMemo,
 } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/utils";
+import { bem, getPercentage } from "@react-md/utils";
 
-import getProgress from "./getProgress";
 import { ProgressProps } from "./types";
 
 export interface CircularProgressProps
@@ -112,7 +111,11 @@ const CircularProgress = forwardRef<HTMLSpanElement, CircularProgressProps>(
     },
     ref
   ) {
-    const progress = getProgress(min, max, value);
+    let progress: number | undefined;
+    if (typeof value === "number") {
+      progress = getPercentage(min, max, value);
+    }
+
     const svgStyle = useMemo<CSSProperties | undefined>(() => {
       if (typeof progress !== "number") {
         return propSvgStyle;

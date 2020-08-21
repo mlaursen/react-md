@@ -5,9 +5,8 @@ import React, {
   useMemo,
 } from "react";
 import cn from "classnames";
-import { bem } from "@react-md/utils";
+import { bem, getPercentage } from "@react-md/utils";
 
-import getProgress from "./getProgress";
 import { ProgressProps } from "./types";
 
 export interface LinearProgressProps
@@ -80,7 +79,10 @@ const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
       };
     }, [propStyle, vertical, verticalHeight]);
 
-    const progress = getProgress(min, max, value);
+    let progress: number | undefined;
+    if (typeof value === "number") {
+      progress = getPercentage(min, max, value);
+    }
     const barStyle = useMemo(() => {
       if (typeof progress !== "number") {
         return propBarStyle;

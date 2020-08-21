@@ -17,6 +17,7 @@ export { default as unitToNumber } from "./unitToNumber";
 export { default as applyRef } from "./applyRef";
 export { default as throttle } from "./throttle";
 export { default as loop } from "./loop";
+export * from "./getPercentage";
 
 export { default as useToggle } from "./useToggle";
 export { default as useInterval } from "./useInterval";
