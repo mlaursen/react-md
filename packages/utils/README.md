@@ -38,7 +38,7 @@ Export hooks:
 ## Installation
 
 ```sh
-$ npm install --save @react-md/utils
+npm install --save @react-md/utils
 ```
 
 ## Usage

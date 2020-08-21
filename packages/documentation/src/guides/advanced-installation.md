@@ -162,13 +162,13 @@ here's a quick version.
 First, install `node-sass` if you haven't already:
 
 ```sh
-$ npm install --save-dev node-sass
+npm install --save-dev node-sass
 ```
 
 Or with `yarn`:
 
 ```sh
-$ yarn add --dev node-sass
+yarn add --dev node-sass
 ```
 
 Next, create a new `src/react-md.scss` file that will import the `react-md`
@@ -207,13 +207,13 @@ Next, create a new script in your `package.json` to compile the base styles:
 Run the new `styles` script to generate your `src/index.css` file:
 
 ```sh
-$ npm run styles
+npm run styles
 ```
 
 Or with `yarn`:
 
 ```sh
-$ yarn styles
+yarn styles
 ```
 
 Finally, update the `src/index.js` to include the newly created `react-md.css`
@@ -248,11 +248,11 @@ for self-hosting the Roboto font.
 First, download the Roboto font zip and extract into a `roboto` directory:
 
 ```sh
-$ mkdir roboto
-$ cd roboto
-$ unzip ../Roboto.zip
-$ cd ..
-$ tree roboto
+mkdir roboto
+cd roboto
+unzip ../Roboto.zip
+cd ..
+tree roboto
 roboto
 ├── LICENSE.txt
 ├── Roboto-Black.ttf
@@ -274,9 +274,9 @@ roboto
 Next, move the fonts into your app's `public` directory:
 
 ```sh
-$ cd /path/to/my/app
-$ mkdir public/fonts
-$ mv ~/Downloads/roboto public/fonts/roboto
+cd /path/to/my/app
+mkdir public/fonts
+mv ~/Downloads/roboto public/fonts/roboto
 ```
 
 Next, include the font with the weights by using the
@@ -306,9 +306,9 @@ is to copy it into your `src` directory. From there, update the mixin to
 reference the fonts locally:
 
 ```sh
-$ cd /path/to/my/app
-$ mkdir src/fonts
-$ mv ~/Downloads/roboto src/fonts/roboto
+cd /path/to/my/app
+mkdir src/fonts
+mv ~/Downloads/roboto src/fonts/roboto
 ```
 
 ```scss

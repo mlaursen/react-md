@@ -6,20 +6,20 @@ guidelines.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/card
+npm install --save @react-md/card
 ```
 
 It is also recommended to install the following packages as they work
 hand-in-hand with this package:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/icon \
-    @react-md/media \
-    @react-md/avatar \
-    @react-md/button \
-    @react-md/transition
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/icon \
+  @react-md/media \
+  @react-md/avatar \
+  @react-md/button \
+  @react-md/transition
 ```
 
 <!-- DOCS_REMOVE -->

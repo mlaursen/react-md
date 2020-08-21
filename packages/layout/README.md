@@ -9,25 +9,25 @@ the navigation tree will be toggleable in a sliding sheet on mobile.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/layout
+npm install --save @react-md/layout
 ```
 
 Since this package is more for general layout and configuration of components,
 it is highlight recommended to install the following packages as well:
 
 ```sh
-$ npm install --save @react-md/app-bar \
-    @react-md/button \
-    @react-md/dialog \
-    @react-md/icon \
-    @react-md/list \
-    @react-md/sheet \
-    @react-md/states \
-    @react-md/theme \
-    @react-md/tooltip \
-    @react-md/transition \
-    @react-md/typography \
-    @react-md/utils
+npm install --save @react-md/app-bar \
+  @react-md/button \
+  @react-md/dialog \
+  @react-md/icon \
+  @react-md/list \
+  @react-md/sheet \
+  @react-md/states \
+  @react-md/theme \
+  @react-md/tooltip \
+  @react-md/transition \
+  @react-md/typography \
+  @react-md/utils
 ```
 
 <!-- DOCS_REMOVE -->

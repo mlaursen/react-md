@@ -187,13 +187,13 @@ routing library into the mix for a true SPA experience. Start by adding
 [react-router](https://github.com/ReactTraining/react-router) to your project:
 
 ```sh
-$ npm install --save react-router-dom
+npm install --save react-router-dom
 ```
 
 Or with `yarn`:
 
 ```sh
-$ yarn add react-router-dom
+yarn add react-router-dom
 ```
 
 Next, let's wrap the app in the `BrowserRouter` and add the `Link` option to the

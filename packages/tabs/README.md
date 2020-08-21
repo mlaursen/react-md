@@ -6,16 +6,16 @@ between different views.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/tabs
+npm install --save @react-md/tabs
 ```
 
 It is also recommended to install the following packages as they work
 hand-in-hand with this package:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/utils
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/utils
 ```
 
 <!-- DOCS_REMOVE -->

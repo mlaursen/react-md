@@ -11,19 +11,19 @@ borders. Sheets are great for:
 ## Installation
 
 ```sh
-$ npm install --save @react-md/sheet
+npm install --save @react-md/sheet
 ```
 
 It is also recommended to install these other packages as they work hand-in-hand
 with this package:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/list \
-    @react-md/dialog \
-    @react-md/icon \
-    @react-md/material-icons
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/list \
+  @react-md/dialog \
+  @react-md/icon \
+  @react-md/material-icons
 ```
 
 <!-- DOCS_REMOVE -->

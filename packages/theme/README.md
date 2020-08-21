@@ -11,7 +11,7 @@ variables, functions, and mixins or by using the pre-compiled bundles hosted on
 [https://unpkg.com](https://unpkg.com).
 
 ```sh
-$ npm install --save @react-md/theme
+npm install --save @react-md/theme
 ```
 
 <!-- DOCS_REMOVE -->

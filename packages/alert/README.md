@@ -7,16 +7,16 @@ hook to push alerts into the queue.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/alert
+npm install --save @react-md/alert
 ```
 
 It is generally recommended to also install the following packages since they
 work hand-in-hand with this package:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/button
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/button
 ```
 
 <!-- DOCS_REMOVE -->

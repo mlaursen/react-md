@@ -8,13 +8,13 @@ convenience package for exporting all the functionality from a single entry
 point.
 
 ```sh
-$ npm install --save react-md
+npm install --save react-md
 ```
 
 or with `yarn`:
 
 ```sh
-$ yarn add react-md
+yarn add react-md
 ```
 
 For convenience, here is a list of all the included react-md scoped packages and

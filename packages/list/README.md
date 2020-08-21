@@ -6,19 +6,19 @@ images placed with the text.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/list
+npm install --save @react-md/list
 ```
 
 It is also recommended to install the following packages as they normally work
 together well with lists:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/divider \
-    @react-md/avatar \
-    @react-md/icon \
-    @react-md/media
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/divider \
+  @react-md/avatar \
+  @react-md/icon \
+  @react-md/media
 ```
 
 <!-- DOCS_REMOVE -->

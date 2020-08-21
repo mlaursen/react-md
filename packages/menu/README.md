@@ -20,19 +20,19 @@ additional behavior:
 ## Installation
 
 ```sh
-$ npm install --save @react-md/menu
+npm install --save @react-md/menu
 ```
 
 You will also need to install the following packages for their styles:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/icon \
-    @react-md/list \
-    @react-md/button \
-    @react-md/states \
-    @react-md/utils
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/icon \
+  @react-md/list \
+  @react-md/button \
+  @react-md/states \
+  @react-md/utils
 ```
 
 <!-- DOCS_REMOVE -->

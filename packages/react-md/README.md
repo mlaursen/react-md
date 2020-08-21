@@ -38,13 +38,13 @@ convenience package for exporting all the functionality from a single entry
 point.
 
 ```sh
-$ npm install --save react-md
+npm install --save react-md
 ```
 
 or with `yarn`:
 
 ```sh
-$ yarn add react-md
+yarn add react-md
 ```
 
 For convenience, here is a list of all the included react-md scoped packages and
@@ -106,9 +106,9 @@ a link to their demo documentation page:
 First use [create-react-app] to create your project:
 
 ```sh
-$ npx create-react-app my-app
-$ cd my-app
-$ npm start
+npx create-react-app my-app
+cd my-app
+npm start
 ```
 
 > npx comes with npm 5.2+ and higher, if you have an older version you will need
@@ -117,8 +117,8 @@ $ npm start
 Or with `yarn`:
 
 ```sh
-$ yarn create react-app my-app
-$ cd my-app
+yarn create react-app my-app
+cd my-app
 ```
 
 > NOTE: You can also add the `--typescript` flag to bootstrap a react-app with
@@ -127,7 +127,7 @@ $ cd my-app
 Next, install `react-md` and `node-sass`:
 
 ```sh
-$ npm install --save react-md node-sass
+npm install --save react-md node-sass
 ```
 
 Next, create a `src/App.scss` file to include all the `react-md` styles and
@@ -244,7 +244,7 @@ pre-built css themes and a UMD bundle. If you are interested in seeing what an
 estimated size for this library, check out the results below:
 
 ```sh
-$ yarn dev-utils libsize
+yarn dev-utils libsize
 
 The gzipped UMD bundle sizes are:
  - dist/umd/react-md.production.min.js 86.49 KB

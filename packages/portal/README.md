@@ -7,7 +7,7 @@ majority of `react-md` packages, this package does not export any styles.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/portal
+npm install --save @react-md/portal
 ```
 
 <!-- DOCS_REMOVE -->

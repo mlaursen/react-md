@@ -8,18 +8,18 @@ and reasonable defaults.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/tree
+npm install --save @react-md/tree
 ```
 
 It is also recommended to install these other packages as they work hand-in-hand
 with this package:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/icon \
-    @react-md/material-icons \
-    @react-md/list
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/icon \
+  @react-md/material-icons \
+  @react-md/list
 ```
 
 <!-- DOCS_REMOVE -->

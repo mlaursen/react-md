@@ -17,7 +17,7 @@ pre-built css themes and a UMD bundle. If you are interested in seeing what an
 estimated size for this library, check out the results below:
 
 ```sh
-$ yarn dev-utils libsize
+yarn dev-utils libsize
 
 The gizipped UMD bundle sizes are:
  - dist/umd/react-md.production.min.js 86.91 KB

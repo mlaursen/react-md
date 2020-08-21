@@ -9,15 +9,15 @@ amazing keyboard focus only effect going on.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/states
+npm install --save @react-md/states
 ```
 
 It is also recommended to install the following packages:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/utils
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/utils
 ```
 
 <!-- DOCS_REMOVE -->

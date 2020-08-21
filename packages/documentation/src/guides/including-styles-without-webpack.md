@@ -15,7 +15,7 @@ get a great error:
 ```
 
 ```sh
-$ npx node-sass src/styles.scss src/styles.css
+npx node-sass src/styles.scss src/styles.css
 {
   "status": 1,
   "file": "<<REDACTED>>/src/styles.scss",
@@ -45,7 +45,7 @@ the `dist/scss` folder instead of just `dist`:
 When we try to compile again, we'll actually get another similar error:
 
 ```sh
-$ npx node-sass src/styles.scss src/styles.css
+npx node-sass src/styles.scss src/styles.css
 {
   "status": 1,
   "file": "<<REDACTED>>/src/styles.scss",
@@ -62,7 +62,7 @@ these styles. So let's try it one more time by using the
 [include-path](https://github.com/sass/node-sass#command-line-interface) option:
 
 ```sh
-$ npx node-sass --include-path=node_modules src/styles.scss src/styles.css
+npx node-sass --include-path=node_modules src/styles.scss src/styles.css
 Rendering Complete, saving .css file...
 Wrote CSS to <<REDACTED>>/src/styles.css
 ```

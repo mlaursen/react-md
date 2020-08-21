@@ -7,13 +7,13 @@ creating animating rotating icons and separating text from an icon.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/icon
+npm install --save @react-md/icon
 ```
 
 It is also recommended to install the other packages if you have not done so:
 
 ```sh
-$ npm install --save @react-md/theme @react-md/typography
+npm install --save @react-md/theme @react-md/typography
 ```
 
 ## Pre-made material icons

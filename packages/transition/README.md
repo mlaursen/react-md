@@ -31,15 +31,15 @@ are triggered. The code below will help explain this part a bit more.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/transition
+npm install --save @react-md/transition
 ```
 
 It is also recommended to install the following packages as they work
 hand-in-hand with this package:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/utils
+npm install --save @react-md/theme \
+  @react-md/utils
 ```
 
 <!-- DOCS_REMOVE -->

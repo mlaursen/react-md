@@ -6,16 +6,16 @@ such as dialogs or drawers.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/overlay
+npm install --save @react-md/overlay
 ```
 
 Since this package isn't that helpful on its own, it is also recommended to
 install the following packages:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/button \
-    @react-md/typography
+npm install --save @react-md/theme \
+  @react-md/button \
+  @react-md/typography
 ```
 
 <!-- DOCS_REMOVE -->

@@ -6,16 +6,16 @@ indicators that can either be deterministic or indeterministic.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/progress
+npm install --save @react-md/progress
 ```
 
 It is also recommended to install the following packages for updating the
 progress theme or transitions:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/transition \
-    @react-md/utils
+npm install --save @react-md/theme \
+  @react-md/transition \
+  @react-md/utils
 ```
 
 <!-- DOCS_REMOVE -->

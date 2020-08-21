@@ -8,7 +8,7 @@ styles.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/elevation
+npm install --save @react-md/elevation
 ```
 
 <!-- DOCS_REMOVE -->

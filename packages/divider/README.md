@@ -7,17 +7,17 @@ spatially.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/divider
+npm install --save @react-md/divider
 ```
 
 This package is not super helpful on its own, so it is recommended to also
 install the following packages:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/list \
-    @react-md/icon
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/list \
+  @react-md/icon
 ```
 
 <!-- DOCS_REMOVE -->

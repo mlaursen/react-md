@@ -9,17 +9,17 @@ sections of your app.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/app-bar
+npm install --save @react-md/app-bar
 ```
 
 It is generally recommended to also install the following packages since they
 work hand-in-hand with this package:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/button \
-    @react-md/icon
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/button \
+  @react-md/icon
 ```
 
 <!-- DOCS_REMOVE -->

@@ -19,17 +19,17 @@ The main accessibility features and other features for dialogs are:
 ## Installation
 
 ```sh
-$ npm install --save @react-md/dialog
+npm install --save @react-md/dialog
 ```
 
 This package also goes great with the following packages:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/utils \
-    @react-md/typography \
-    @react-md/button \
-    @react-md/app-bar
+npm install --save @react-md/theme \
+  @react-md/utils \
+  @react-md/typography \
+  @react-md/button \
+  @react-md/app-bar
 ```
 
 <!-- DOCS_REMOVE -->

@@ -13,15 +13,15 @@ instead.
 First, let's install `react-md` and `node-sass`:
 
 ```sh
-$ npm install --save react-md
-$ npm install --save-dev node-sass
+npm install --save react-md
+npm install --save-dev node-sass
 ```
 
 Or if you prefer [yarn]:
 
 ```sh
-$ yarn add react-md
-$ yarn add --dev node-sass
+yarn add react-md
+yarn add --dev node-sass
 ```
 
 > Since `react-md` requires [hook support], you'll also need to ensure that

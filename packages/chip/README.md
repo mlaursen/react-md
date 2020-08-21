@@ -7,7 +7,7 @@ other inline elements.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/chip
+npm install --save @react-md/chip
 ```
 
 <!-- DOCS_REMOVE -->

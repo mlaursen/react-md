@@ -6,17 +6,17 @@ Different theme colors can also be applied for icons or text.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/avatar
+npm install --save @react-md/avatar
 ```
 
 It is generally recommended to also install the following packages since they
 work hand-in-hand with this package:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/list \
-    @react-md/icon
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/list \
+  @react-md/icon
 ```
 
 <!-- DOCS_REMOVE -->

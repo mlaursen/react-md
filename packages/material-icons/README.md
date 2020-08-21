@@ -9,7 +9,7 @@ maintainers of material icons for the work they have put in.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/material-icons @react-md/icon
+npm install --save @react-md/material-icons @react-md/icon
 ```
 
 <!-- DOCS_REMOVE -->

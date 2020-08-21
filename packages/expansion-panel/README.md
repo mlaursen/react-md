@@ -12,17 +12,17 @@ An expansion panel can be rendered standalone or within a group with the
 ## Installation
 
 ```sh
-$ npm install --save @react-md/expansion-panel
+npm install --save @react-md/expansion-panel
 ```
 
 This package is not super helpful on its own, so it is recommended to also
 install the following packages:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/list \
-    @react-md/icon
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/list \
+  @react-md/icon
 ```
 
 <!-- DOCS_REMOVE -->

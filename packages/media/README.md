@@ -7,7 +7,7 @@ theme.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/media
+npm install --save @react-md/media
 ```
 
 <!-- DOCS_REMOVE -->

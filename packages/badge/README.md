@@ -7,15 +7,15 @@ notifications.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/badge
+npm install --save @react-md/badge
 ```
 
 If you would also like dynamic themes and general typography, it is recommended
 to also install:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography
+npm install --save @react-md/theme \
+  @react-md/typography
 ```
 
 <!-- DOCS_REMOVE -->

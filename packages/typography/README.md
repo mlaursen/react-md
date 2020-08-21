@@ -13,7 +13,7 @@ readers only.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/typography
+npm install --save @react-md/typography
 ```
 
 <!-- DOCS_REMOVE -->

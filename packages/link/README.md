@@ -13,13 +13,13 @@ main content of the page.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/link
+npm install --save @react-md/link
 ```
 
 It is also recommended to install the following packages to the full experience.
 
 ```sh
-$ npm install --save @react-md/theme @react-md/typography
+npm install --save @react-md/theme @react-md/typography
 ```
 
 <!-- DOCS_REMOVE -->

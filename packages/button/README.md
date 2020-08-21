@@ -13,16 +13,16 @@ button theme to _any_ component by generating the required `className` prop.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/button
+npm install --save @react-md/button
 ```
 
 If you would also like dynamic themes and icon support, it is recommended to
 also install:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
-    @react-md/icon
+npm install --save @react-md/theme \
+  @react-md/typography \
+  @react-md/icon
 ```
 
 <!-- DOCS_REMOVE -->

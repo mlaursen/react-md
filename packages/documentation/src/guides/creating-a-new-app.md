@@ -17,41 +17,41 @@ continuing are:
 To get started, let's use `create-react-app` to bootstrap our new project:
 
 ```sh
-$ npx create-react-app my-app
+npx create-react-app my-app
 ```
 
 Or with `yarn`:
 
 ```sh
-$ yarn create react-app my-app
+yarn create react-app my-app
 ```
 
 Once the command has completed, `cd` into the `my-app` directory and install
 `react-md` and `node-sass`:
 
 ```sh
-$ npm install --save react-md
-$ npm install --save-dev node-sass
+npm install --save react-md
+npm install --save-dev node-sass
 ```
 
 Or with `yarn`:
 
 ```sh
-$ yarn add react-md
-$ yarn add --dev node-sass
+yarn add react-md
+yarn add --dev node-sass
 ```
 
 Now that we've initialized our project, we can go ahead and start up the app
 with the `start` command:
 
 ```sh
-$ npm run start
+npm run start
 ```
 
 Or with `yarn`:
 
 ```sh
-$ yarn start
+yarn start
 ```
 
 Once the app starts, you should see a page like this:

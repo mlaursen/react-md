@@ -68,14 +68,14 @@ This package also exports the following helper components and hooks:
 ## Installation
 
 ```sh
-$ npm install --save @react-md/form
+npm install --save @react-md/form
 ```
 
 It is also recommended to install the other packages if you have not done so:
 
 ```sh
-$ npm install --save @react-md/theme \
-    @react-md/typography \
+npm install --save @react-md/theme \
+  @react-md/typography \
 ```
 
 <!-- DOCS_REMOVE -->

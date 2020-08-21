@@ -6,15 +6,15 @@ low-level components.
 ## Installation
 
 ```sh
-$ npm install --save @react-md/table
+npm install --save @react-md/table
 ```
 
 To get the most out of this package, it is also recommended to install:
 
 ```sh
-$ npm install --save @react-md/utils \
-    @react-md/states \
-    @react-md/typography
+npm install --save @react-md/utils \
+  @react-md/states \
+  @react-md/typography
 ```
 
 <!-- DOCS_REMOVE -->
