@@ -75,6 +75,8 @@ const sandboxes: Sandboxes = {
     WithTooltips: () => resolve(import("./Badge-WithTooltips.json")),
   },
   Button: {
+    ButtonWithCircularProgress: () =>
+      resolve(import("./Button-ButtonWithCircularProgress.json")),
     ContainedButtons: () => resolve(import("./Button-ContainedButtons.json")),
     CustomButtonTheme: () => resolve(import("./Button-CustomButtonTheme.json")),
     FloatingActionButtons: () =>

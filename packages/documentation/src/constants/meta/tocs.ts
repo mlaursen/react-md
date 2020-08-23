@@ -1038,6 +1038,10 @@ const tocs: TOCRecord = {
       title: "Floating Action Buttons",
     },
     {
+      anchor: "#button-with-circular-progress",
+      title: "Button with Circular Progress",
+    },
+    {
       anchor: "#custom-button-theme",
       title: "Custom Button Theme",
     },
@@ -3504,10 +3508,6 @@ const tocs: TOCRecord = {
     {
       title: "Mixins",
       anchor: "#transition-mixins",
-    },
-    {
-      title: "Functions",
-      anchor: "#transition-functions",
     },
   ],
   "/packages/tree/changelog": [
