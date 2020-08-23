@@ -78,6 +78,13 @@ export interface CircularProgressProps
    * margins.
    */
   centered?: boolean;
+
+  /**
+   * Boolean if the smaller size should be used instead.
+   *
+   * @since 2.3.0
+   */
+  small?: boolean;
 }
 
 const block = bem("rmd-circular-progress");
@@ -100,6 +107,7 @@ const CircularProgress = forwardRef<HTMLSpanElement, CircularProgressProps>(
       animate = true,
       centered = true,
       maxRotation = 360 * 1.75,
+      small = false,
       ...props
     },
     ref
@@ -144,7 +152,7 @@ const CircularProgress = forwardRef<HTMLSpanElement, CircularProgressProps>(
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={value}
-        className={cn(block({ centered }), className)}
+        className={cn(block({ centered, small }), className)}
       >
         <svg
           style={svgStyle}
@@ -198,6 +206,7 @@ if (process.env.NODE_ENV !== "production") {
       centered: PropTypes.bool,
       maxRotation: PropTypes.number,
       dashoffset: PropTypes.number,
+      small: PropTypes.bool,
       viewBox: PropTypes.string,
     };
   } catch (e) {}

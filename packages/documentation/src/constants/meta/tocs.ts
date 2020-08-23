@@ -2730,6 +2730,10 @@ const tocs: TOCRecord = {
       title: "Simple Determinate Examples",
     },
     {
+      anchor: "#small-circular-progress",
+      title: "Small Circular Progress",
+    },
+    {
       anchor: "#with-suspense",
       title: "With Suspense",
     },

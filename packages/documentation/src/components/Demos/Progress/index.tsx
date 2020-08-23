@@ -8,6 +8,9 @@ import simpleIndeterminateExamples from "./SimpleIndeterminateExamples.md";
 import SimpleDeterminateExamples from "./SimpleDeterminateExamples";
 import simpleDeterminateExamples from "./SimpleDeterminateExamples.md";
 
+import SmallCircularProgress from "./SmallCircularProgress";
+import smallCircularProgress from "./SmallCircularProgress.md";
+
 import { WithSuspense, withSuspense } from "./WithSuspense";
 
 import WithinButtons from "./WithinButtons";
@@ -23,6 +26,11 @@ const demos = [
     name: "Simple Determinate Examples",
     description: simpleDeterminateExamples,
     children: <SimpleDeterminateExamples />,
+  },
+  {
+    name: "Small Circular Progress",
+    description: smallCircularProgress,
+    children: <SmallCircularProgress />,
   },
   {
     name: "With Suspense",

@@ -1614,6 +1614,14 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/progress/demos#simple-determinate-examples-title",
   },
   {
+    title: "Progress Demo - Small Circular Progress",
+    summary:
+      "The CircularProgress also supports a small state which defaults to the same size as icons from the @react-md/icon package.",
+    type: "demo",
+    pageUrl: "/packages/progress/demos#small-circular-progress-title",
+    pathname: "/packages/progress/demos#small-circular-progress-title",
+  },
+  {
     title: "Progress Demo - With Suspense",
     summary:
       "You can also use the progress components with the React.Suspense component as a fallback value while waiting for lazy-loaded child components are resolved.",
