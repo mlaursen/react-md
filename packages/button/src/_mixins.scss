@@ -120,6 +120,9 @@
   }
   @include rmd-button-base;
   @include rmd-states-surface;
+  @if $rmd-button-circular-progress-size != null and mixin-exists(rmd-progress-theme-update-var) {
+    @include rmd-progress-theme-update-var(circular-size, $rmd-button-circular-progress-size);
+  }
 
   &--text {
     @include rmd-button-text;

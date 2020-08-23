@@ -148,6 +148,7 @@ const sassdoc: PackageSassDoc = {
         "Updates one of the progress's theme variables with the new value for the section of your app.",
       source: "packages/progress/src/_mixins.scss#L32-L34",
       usedBy: [
+        { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-switch", type: "mixin", packageName: "form" },
       ],
