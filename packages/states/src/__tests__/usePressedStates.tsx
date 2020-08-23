@@ -3,23 +3,15 @@ import { renderHook } from "@testing-library/react-hooks";
 import { fireEvent, render } from "@testing-library/react";
 
 import usePressedStates from "../usePressedStates";
+import { MergableRippleHandlerNames } from "../ripples/types";
 
 interface Props
-  extends Pick<
-    HTMLAttributes<HTMLButtonElement>,
-    | "onKeyDown"
-    | "onKeyUp"
-    | "onMouseDown"
-    | "onMouseUp"
-    | "onMouseLeave"
-    | "onTouchStart"
-    | "onTouchMove"
-    | "onTouchEnd"
-  > {
+  extends Pick<HTMLAttributes<HTMLButtonElement>, MergableRippleHandlerNames> {
   pressedRef?: { current: boolean | null };
   disableSpacebarClick?: boolean;
 }
 const Test: FC<Props> = ({
+  onClick,
   onKeyDown,
   onKeyUp,
   onMouseDown,
@@ -33,6 +25,7 @@ const Test: FC<Props> = ({
 }) => {
   const { pressed, handlers } = usePressedStates({
     handlers: {
+      onClick,
       onKeyDown,
       onKeyUp,
       onMouseDown,
@@ -74,7 +67,29 @@ describe("usePressedStates", () => {
     });
   });
 
+  it("should include the `onClick` in the handlers result if it was passed as an option even though the functionality is not updated", () => {
+    const onClick = jest.fn();
+    const { result } = renderHook(() =>
+      usePressedStates({ handlers: { onClick } })
+    );
+    expect(result.current).toEqual({
+      pressed: false,
+      handlers: {
+        onClick,
+        onTouchStart: expect.any(Function),
+        onTouchMove: expect.any(Function),
+        onTouchEnd: expect.any(Function),
+        onMouseDown: expect.any(Function),
+        onMouseUp: expect.any(Function),
+        onMouseLeave: expect.any(Function),
+        onKeyDown: expect.any(Function),
+        onKeyUp: expect.any(Function),
+      },
+    });
+  });
+
   it("should trigger the provided event handlers as normal", () => {
+    const onClick = jest.fn();
     const onKeyDown = jest.fn();
     const onKeyUp = jest.fn();
     const onMouseDown = jest.fn();
@@ -86,6 +101,7 @@ describe("usePressedStates", () => {
 
     const { getByText } = render(
       <Test
+        onClick={onClick}
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
         onMouseDown={onMouseDown}
@@ -102,6 +118,7 @@ describe("usePressedStates", () => {
     fireEvent.keyUp(button);
     fireEvent.mouseDown(button);
     fireEvent.mouseUp(button);
+    fireEvent.click(button);
     fireEvent.mouseLeave(button);
     fireEvent.touchStart(button);
     fireEvent.touchMove(button);
@@ -111,6 +128,7 @@ describe("usePressedStates", () => {
     expect(onKeyUp).toBeCalledTimes(1);
     expect(onMouseDown).toBeCalledTimes(1);
     expect(onMouseUp).toBeCalledTimes(1);
+    expect(onClick).toBeCalledTimes(1);
     expect(onMouseLeave).toBeCalledTimes(1);
     expect(onTouchStart).toBeCalledTimes(1);
     expect(onTouchMove).toBeCalledTimes(1);
