@@ -16,7 +16,8 @@ export type ButtonTheme =
   | "primary"
   | "secondary"
   | "warning"
-  | "error";
+  | "error"
+  | "disabled";
 
 /**
  * One of the valid material design "themed" button types that can be used. This
@@ -78,14 +79,15 @@ const block = bem("rmd-button");
  * button theme className.
  * @return a string of class names to create an element with a button theme.
  */
-export default function buttonThemeClassNames(props: ButtonThemeProps): string {
-  const {
-    theme = "clear",
-    themeType = "flat",
-    buttonType = "text",
-    disabled,
-    className,
-  } = props;
+export default function buttonThemeClassNames({
+  theme: propTheme = "clear",
+  themeType = "flat",
+  buttonType = "text",
+  disabled: propDisabled = false,
+  className,
+}: ButtonThemeProps): string {
+  const theme = propTheme === "disabled" ? "clear" : propTheme;
+  const disabled = propDisabled || propTheme === "disabled";
   const text = buttonType === "text";
   const icon = buttonType === "icon";
   const outline = themeType === "outline";
