@@ -147,6 +147,7 @@ export default function usePressedStates<E extends HTMLElement = HTMLElement>({
   return {
     pressed,
     handlers: {
+      onClick: handlers.onClick,
       onKeyDown: handleKeyDown,
       onKeyUp: handleKeyUp,
       onMouseDown: handleMouseDown,

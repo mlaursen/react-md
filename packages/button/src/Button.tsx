@@ -95,6 +95,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       ? propEnablePressedAndRipple
       : themeType === "contained";
   const propHandlers = {
+    onClick,
     onKeyUp,
     onKeyDown,
     onMouseUp,
@@ -132,7 +133,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
         aria-disabled={isDisabledTheme || undefined}
         {...props}
         {...(isDisabledTheme ? undefined : handlers)}
-        onClick={isDisabledTheme ? undefined : onClick}
         ref={ref}
         type={type}
         className={className}

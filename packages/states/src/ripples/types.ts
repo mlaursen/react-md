@@ -26,8 +26,7 @@ export interface RippleState {
 }
 export type RipplesState = RippleState[];
 
-export type MergableRippleHandlers<E extends HTMLElement = HTMLElement> = Pick<
-  HTMLAttributes<E>,
+export type MergableRippleHandlerNames =
   | "onKeyDown"
   | "onKeyUp"
   | "onMouseDown"
@@ -36,7 +35,10 @@ export type MergableRippleHandlers<E extends HTMLElement = HTMLElement> = Pick<
   | "onClick"
   | "onTouchStart"
   | "onTouchMove"
-  | "onTouchEnd"
+  | "onTouchEnd";
+export type MergableRippleHandlers<E extends HTMLElement = HTMLElement> = Pick<
+  HTMLAttributes<E>,
+  MergableRippleHandlerNames
 >;
 
 export interface RipplesOptions<E extends HTMLElement = HTMLElement> {
