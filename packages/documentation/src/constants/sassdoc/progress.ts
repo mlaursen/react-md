@@ -151,6 +151,11 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-switch", type: "mixin", packageName: "form" },
+        {
+          name: "rmd-circular-progress",
+          type: "mixin",
+          packageName: "progress",
+        },
       ],
       requires: [
         {
@@ -347,16 +352,26 @@ const sassdoc: PackageSassDoc = {
     "rmd-circular-progress": {
       name: "rmd-circular-progress",
       description: "",
-      source: "packages/progress/src/_mixins.scss#L221-L283",
+      source: "packages/progress/src/_mixins.scss#L221-L289",
       usedBy: [
         { name: "react-md-progress", type: "mixin", packageName: "progress" },
       ],
       requires: [
         { name: "rmd-progress-theme", type: "mixin", packageName: "progress" },
+        {
+          name: "rmd-progress-theme-update-var",
+          type: "mixin",
+          packageName: "progress",
+        },
         { name: "rmd-transition", type: "mixin", packageName: "transition" },
         {
           name: "rmd-progress-animation",
           type: "mixin",
+          packageName: "progress",
+        },
+        {
+          name: "rmd-circular-progress-small-size",
+          type: "variable",
           packageName: "progress",
         },
         {
@@ -383,13 +398,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "progress",
       code: "@mixin rmd-circular-progress { … }",
       sourceCode:
-        "@mixin rmd-circular-progress {\n  .rmd-circular-progress {\n    @include rmd-progress-theme(height, circular-size);\n    @include rmd-progress-theme(width, circular-size);\n\n    // add border radius and overflow-hidden so that different stroke-widths\n    // are still circular. For some reason it isn't always the case.\n    align-items: center;\n    border-radius: 50%;\n    display: inline-flex;\n    justify-content: center;\n    overflow: hidden;\n\n    &--centered {\n      display: flex;\n      margin-left: auto;\n      margin-right: auto;\n    }\n\n    &__svg {\n      height: inherit;\n      width: inherit;\n\n      &--animate {\n        @include rmd-transition(standard);\n\n        transition: transform 0.1s;\n      }\n\n      &--indeterminate {\n        animation: rmd-progress-rotate\n          $rmd-circular-progress-transition-duration linear infinite;\n      }\n    }\n\n    &__circle {\n      @include rmd-progress-theme(stroke, color);\n      @include rmd-progress-theme(stroke-width, circular-width);\n\n      fill: none;\n      stroke-dasharray: $rmd-circular-progress-dasharray;\n      stroke-linecap: round;\n\n      &--animate {\n        @include rmd-transition(standard);\n\n        transition: stroke-dashoffset 0.1s;\n      }\n\n      &--indeterminate {\n        animation: rmd-circular-progress-size\n          $rmd-circular-progress-transition-duration ease-in-out infinite;\n      }\n    }\n\n    @keyframes rmd-progress-rotate {\n      @include rmd-progress-animation($rmd-circular-progress-rotate-styles);\n    }\n\n    @keyframes rmd-circular-progress-size {\n      @include rmd-progress-animation($rmd-circular-progress-dash-styles);\n    }\n  }\n}\n",
+        "@mixin rmd-circular-progress {\n  .rmd-circular-progress {\n    @include rmd-progress-theme(height, circular-size);\n    @include rmd-progress-theme(width, circular-size);\n\n    // add border radius and overflow-hidden so that different stroke-widths\n    // are still circular. For some reason it isn't always the case.\n    align-items: center;\n    border-radius: 50%;\n    display: inline-flex;\n    justify-content: center;\n    overflow: hidden;\n\n    &--centered {\n      display: flex;\n      margin-left: auto;\n      margin-right: auto;\n    }\n\n    @if $rmd-circular-progress-small-size != null {\n      &--small {\n        @include rmd-progress-theme-update-var(\n          circular-size,\n          $rmd-circular-progress-small-size\n        );\n      }\n    }\n\n    &__svg {\n      height: inherit;\n      width: inherit;\n\n      &--animate {\n        @include rmd-transition(standard);\n\n        transition: transform 0.1s;\n      }\n\n      &--indeterminate {\n        animation: rmd-progress-rotate\n          $rmd-circular-progress-transition-duration linear infinite;\n      }\n    }\n\n    &__circle {\n      @include rmd-progress-theme(stroke, color);\n      @include rmd-progress-theme(stroke-width, circular-width);\n\n      fill: none;\n      stroke-dasharray: $rmd-circular-progress-dasharray;\n      stroke-linecap: round;\n\n      &--animate {\n        @include rmd-transition(standard);\n\n        transition: stroke-dashoffset 0.1s;\n      }\n\n      &--indeterminate {\n        animation: rmd-circular-progress-size\n          $rmd-circular-progress-transition-duration ease-in-out infinite;\n      }\n    }\n  }\n\n  @keyframes rmd-progress-rotate {\n    @include rmd-progress-animation($rmd-circular-progress-rotate-styles);\n  }\n\n  @keyframes rmd-circular-progress-size {\n    @include rmd-progress-animation($rmd-circular-progress-dash-styles);\n  }\n}\n",
       type: "mixin",
     },
     "react-md-progress": {
       name: "react-md-progress",
       description: "Creates all the styles for the progress package.\n",
-      source: "packages/progress/src/_mixins.scss#L286-L296",
+      source: "packages/progress/src/_mixins.scss#L292-L302",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {
@@ -652,11 +667,29 @@ const sassdoc: PackageSassDoc = {
       value: "3rem",
       overridable: true,
     },
+    "rmd-circular-progress-small-size": {
+      name: "rmd-circular-progress-small-size",
+      description:
+        "The size for a small circular progress svg. This is really the same size as the `$rmd-icon-size` so it could be used instead if the `@react-md/icon` package has also been installed.",
+      source: "packages/progress/src/_variables.scss#L217",
+      since: "2.3.0",
+      usedBy: [
+        {
+          name: "rmd-circular-progress",
+          type: "mixin",
+          packageName: "progress",
+        },
+      ],
+      packageName: "progress",
+      type: "String|Number",
+      value: "1.5rem",
+      overridable: true,
+    },
     "rmd-circular-progress-stroke-width": {
       name: "rmd-circular-progress-stroke-width",
       description:
         "The stroke width for the circular svg. I wouldn't change this value unless you also update the `viewbox` for the `CircularProgress` component.\n",
-      source: "packages/progress/src/_variables.scss#L214",
+      source: "packages/progress/src/_variables.scss#L222",
       packageName: "progress",
       type: "Number",
       value: "6",
@@ -666,7 +699,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-circular-progress-dasharray",
       description:
         "The dasharray fro the circular svg. I don't really know how this works so good luck changing it to something else. If this value is changed, you'll aslo need to update the `dasharray` prop for the `CircularProgress` component.\n",
-      source: "packages/progress/src/_variables.scss#L221",
+      source: "packages/progress/src/_variables.scss#L229",
       usedBy: [
         {
           name: "rmd-circular-progress",
@@ -683,7 +716,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-circular-progress-transition-duration",
       description:
         "The entire transition duration for the circular progress. This is really the full time for the change in the `stroke-dashoffset` as the default rotation will rotate `720deg` over this time.\n",
-      source: "packages/progress/src/_variables.scss#L227",
+      source: "packages/progress/src/_variables.scss#L235",
       usedBy: [
         {
           name: "rmd-circular-progress",
@@ -700,7 +733,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-circular-progress-start-offset",
       description:
         "The starting dashoffset for the ciruclar progress animation. This will be used for the `0%` and `100%` values in the animation keyframes by default.\n",
-      source: "packages/progress/src/_variables.scss#L232",
+      source: "packages/progress/src/_variables.scss#L240",
       packageName: "progress",
       type: "Number",
       value: "$rmd-circular-progress-dasharray",
@@ -711,7 +744,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-circular-progress-end-offset",
       description:
         "The ending dashoffset for the ciruclar progress animation. This will be used for the `50%` value in the animation keyframes by default.\n",
-      source: "packages/progress/src/_variables.scss#L237",
+      source: "packages/progress/src/_variables.scss#L245",
       packageName: "progress",
       type: "Number",
       value: "$rmd-circular-progress-dasharray / 4",
@@ -722,7 +755,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-circular-progress-rotate-styles",
       description:
         "The circular progress styles to apply for the rotation transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
-      source: "packages/progress/src/_variables.scss#L243-L256",
+      source: "packages/progress/src/_variables.scss#L251-L264",
       usedBy: [
         {
           name: "rmd-circular-progress",
@@ -740,7 +773,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-circular-progress-dash-styles",
       description:
         "The circular progress styles to apply for the dashoffset transition. Each key in this map will be set immediately at the root of the `keyframes` and then each child map will be considered a map of property: value.\n",
-      source: "packages/progress/src/_variables.scss#L262-L272",
+      source: "packages/progress/src/_variables.scss#L270-L280",
       usedBy: [
         {
           name: "rmd-circular-progress",
@@ -760,7 +793,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-progress-theme-values",
       description:
         'A Map of all the "themeable" parts of the progress package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/progress/src/_variables.scss#L278-L284",
+      source: "packages/progress/src/_variables.scss#L286-L292",
       usedBy: [
         {
           name: "rmd-progress-theme",

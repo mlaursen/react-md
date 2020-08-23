@@ -237,6 +237,12 @@
       margin-right: auto;
     }
 
+    @if $rmd-circular-progress-small-size != null {
+      &--small {
+        @include rmd-progress-theme-update-var(circular-size, $rmd-circular-progress-small-size);
+      }
+    }
+
     &__svg {
       height: inherit;
       width: inherit;
@@ -271,14 +277,14 @@
           infinite;
       }
     }
+  }
 
-    @keyframes rmd-progress-rotate {
-      @include rmd-progress-animation($rmd-circular-progress-rotate-styles);
-    }
+  @keyframes rmd-progress-rotate {
+    @include rmd-progress-animation($rmd-circular-progress-rotate-styles);
+  }
 
-    @keyframes rmd-circular-progress-size {
-      @include rmd-progress-animation($rmd-circular-progress-dash-styles);
-    }
+  @keyframes rmd-circular-progress-size {
+    @include rmd-progress-animation($rmd-circular-progress-dash-styles);
   }
 }
 

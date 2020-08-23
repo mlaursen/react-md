@@ -214,6 +214,8 @@ const sandboxes: Sandboxes = {
       resolve(import("./Progress-SimpleDeterminateExamples.json")),
     SimpleIndeterminateExamples: () =>
       resolve(import("./Progress-SimpleIndeterminateExamples.json")),
+    SmallCircularProgress: () =>
+      resolve(import("./Progress-SmallCircularProgress.json")),
     WithinButtons: () => resolve(import("./Progress-WithinButtons.json")),
     WithSuspense: () => resolve(import("./Progress-WithSuspense.json")),
   },

@@ -29,4 +29,21 @@ describe("CircularProgress", () => {
     expect(progress.style.transform).toContain(style.transform);
     expect(progress).toMatchSnapshot();
   });
+
+  it("should support a small variant", () => {
+    const { getByRole, rerender } = render(
+      <CircularProgress id="small=pgoress" small />
+    );
+    const progress = getByRole("progressbar");
+
+    expect(progress.className).toContain("rmd-circular-progress--small");
+    expect(progress).toMatchSnapshot();
+
+    rerender(
+      <CircularProgress id="small-circular-progress" small centered={false} />
+    );
+
+    expect(progress.className).toContain("rmd-circular-progress--small");
+    expect(progress).toMatchSnapshot();
+  });
 });
