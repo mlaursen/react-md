@@ -76,6 +76,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     rippleClassName,
     rippleContainerClassName,
     enablePressedAndRipple: propEnablePressedAndRipple,
+    disablePressedFallback,
+    onClick,
+    onKeyUp,
+    onKeyDown,
+    onMouseUp,
+    onMouseDown,
+    onMouseLeave,
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
     ...props
   },
   ref
@@ -84,9 +94,20 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     typeof propEnablePressedAndRipple === "boolean"
       ? propEnablePressedAndRipple
       : themeType === "contained";
+  const propHandlers = {
+    onKeyUp,
+    onKeyDown,
+    onMouseUp,
+    onMouseDown,
+    onMouseLeave,
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+  };
 
+  const isDisabledTheme = theme === "disabled";
   const { ripples, className, handlers } = useInteractionStates({
-    handlers: props,
+    handlers: propHandlers,
     className: buttonThemeClassNames({
       theme,
       themeType,
@@ -94,9 +115,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       disabled,
       className: propClassName,
     }),
-    disabled,
+    disabled: disabled || isDisabledTheme,
     disableRipple,
     disableProgrammaticRipple,
+    disablePressedFallback,
     rippleTimeout,
     rippleClassNames,
     rippleClassName,
@@ -107,8 +129,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   return (
     <FAB position={floating} {...floatingProps}>
       <button
+        aria-disabled={isDisabledTheme || undefined}
         {...props}
-        {...handlers}
+        {...(isDisabledTheme ? undefined : handlers)}
+        onClick={isDisabledTheme ? undefined : onClick}
         ref={ref}
         type={type}
         className={className}
@@ -134,6 +158,7 @@ if (process.env.NODE_ENV !== "production") {
         "secondary",
         "warning",
         "error",
+        "disabled",
       ]),
       themeType: PropTypes.oneOf(["flat", "outline", "contained"]),
       buttonType: PropTypes.oneOf(["text", "icon"]),
@@ -141,6 +166,7 @@ if (process.env.NODE_ENV !== "production") {
       children: PropTypes.node,
       disableRipple: PropTypes.bool,
       disableProgrammaticRipple: PropTypes.bool,
+      disablePressedFallback: PropTypes.bool,
       rippleTimeout: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.shape({
@@ -172,6 +198,15 @@ if (process.env.NODE_ENV !== "production") {
         "bottom-right",
       ]),
       floatingProps: PropTypes.object,
+      onClick: PropTypes.func,
+      onKeyUp: PropTypes.func,
+      onKeyDown: PropTypes.func,
+      onMouseUp: PropTypes.func,
+      onMouseDown: PropTypes.func,
+      onMouseLeave: PropTypes.func,
+      onTouchStart: PropTypes.func,
+      onTouchMove: PropTypes.func,
+      onTouchEnd: PropTypes.func,
     };
   } catch (e) {}
 }

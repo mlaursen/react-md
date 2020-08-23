@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import Button from "../Button";
 import {
@@ -16,6 +16,7 @@ const themes: ButtonTheme[] = [
   "secondary",
   "warning",
   "error",
+  "disabled",
 ];
 const themeTypes: ButtonThemeType[] = ["flat", "contained", "outline"];
 const buttonTypes: ButtonType[] = ["text", "icon"];
@@ -97,5 +98,111 @@ describe("Button", () => {
     );
     expect(button.className).toContain("rmd-button--contained");
     expect(button.className).toContain("rmd-button--primary");
+  });
+
+  it("should correctly pass the event handlers down and fire them as expected", () => {
+    const onClick = jest.fn();
+    const onKeyUp = jest.fn();
+    const onKeyDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchMove = jest.fn();
+    const onTouchEnd = jest.fn();
+    const handlers = {
+      onClick,
+      onKeyUp,
+      onKeyDown,
+      onMouseUp,
+      onMouseDown,
+      onMouseLeave,
+      onTouchStart,
+      onTouchMove,
+      onTouchEnd,
+    };
+
+    const { getByRole } = render(
+      <Button
+        {...handlers}
+        disableRipple
+        disablePressedFallback
+        enablePressedAndRipple={false}
+      >
+        Button
+      </Button>
+    );
+    const button = getByRole("button");
+
+    fireEvent.keyDown(button);
+    fireEvent.keyUp(button);
+    fireEvent.mouseDown(button);
+    fireEvent.mouseUp(button);
+    fireEvent.mouseLeave(button);
+    fireEvent.click(button);
+    fireEvent.touchStart(button);
+    fireEvent.touchMove(button);
+    fireEvent.touchEnd(button);
+
+    expect(onClick).toBeCalled();
+    expect(onKeyUp).toBeCalled();
+    expect(onKeyDown).toBeCalled();
+    expect(onMouseUp).toBeCalled();
+    expect(onMouseDown).toBeCalled();
+    expect(onMouseLeave).toBeCalled();
+    expect(onTouchStart).toBeCalled();
+    expect(onTouchMove).toBeCalled();
+    expect(onTouchEnd).toBeCalled();
+  });
+
+  it("should not allow for any of the interaction state handlers to be called while the theme is disabled", () => {
+    const onClick = jest.fn();
+    const onKeyUp = jest.fn();
+    const onKeyDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchMove = jest.fn();
+    const onTouchEnd = jest.fn();
+    const handlers = {
+      onClick,
+      onKeyUp,
+      onKeyDown,
+      onMouseUp,
+      onMouseDown,
+      onMouseLeave,
+      onTouchStart,
+      onTouchMove,
+      onTouchEnd,
+    };
+
+    const { getByRole } = render(
+      <Button {...handlers} theme="disabled">
+        Button
+      </Button>
+    );
+    const button = getByRole("button");
+
+    fireEvent.keyDown(button);
+    fireEvent.keyUp(button);
+    fireEvent.mouseDown(button);
+    fireEvent.mouseUp(button);
+    fireEvent.click(button);
+    fireEvent.mouseLeave(button);
+    fireEvent.touchStart(button);
+    fireEvent.touchMove(button);
+    fireEvent.touchEnd(button);
+
+    expect(onClick).not.toBeCalled();
+    expect(onKeyUp).not.toBeCalled();
+    expect(onKeyDown).not.toBeCalled();
+    expect(onMouseUp).not.toBeCalled();
+    expect(onMouseDown).not.toBeCalled();
+    expect(onMouseLeave).not.toBeCalled();
+    expect(onTouchStart).not.toBeCalled();
+    expect(onTouchMove).not.toBeCalled();
+    expect(onTouchEnd).not.toBeCalled();
+    expect(button).toHaveAttribute("aria-disabled", "true");
   });
 });
