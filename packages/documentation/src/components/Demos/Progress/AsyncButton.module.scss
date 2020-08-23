@@ -1,8 +1,11 @@
 @import '~@react-md/button/dist/mixins';
+@import '~@react-md/card/dist/variables';
 @import '~@react-md/icon/dist/mixins';
 @import '~@react-md/progress/dist/mixins';
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
+
+$rmd-theme-dark-elevation: true;
 
 .button {
   @include rmd-progress-theme-update-var(circular-size, rmd-icon-theme-var(size));
@@ -13,11 +16,6 @@
   overflow: hidden;
 }
 
-.loading {
-  @include rmd-button-theme-update-var(color, rmd-theme-var(text-disabled-on-background));
-  @include rmd-button-theme-update-var(outline, rmd-theme-var(text-disabled-on-background));
-}
-
 .overlay {
   // you'll really want this to be the `background` value or whatever the current
   // background is instead. You'll probably also want to add additional styles for
@@ -25,6 +23,7 @@
   // an "unstyled" button when disabled
   @include rmd-theme(background-color, surface);
   @include rmd-utils-full-screen(absolute);
+  @include rmd-theme-dark-elevation($rmd-card-elevation, true);
 
   align-items: center;
   border-radius: inherit;

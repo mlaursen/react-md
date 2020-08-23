@@ -21,6 +21,9 @@ import textButtonsWithIcons from "./TextButtonsWithIcons.md";
 import FloatingActionButtons from "./FloatingActionButtons";
 import floatingActionButtons from "./FloatingActionButtons.md";
 
+import ButtonWithCircularProgress from "./ButtonWithCircularProgress";
+import buttonWithCircularProgress from "./ButtonWithCircularProgress.md";
+
 import CustomButtonTheme from "./CustomButtonTheme";
 import customButtonTheme from "./CustomButtonTheme.md";
 
@@ -56,6 +59,11 @@ const demos = [
     disableCard: true,
     emulated: { fabOffset: true },
     children: <FloatingActionButtons />,
+  },
+  {
+    name: "Button with Circular Progress",
+    description: buttonWithCircularProgress,
+    children: <ButtonWithCircularProgress />,
   },
   {
     name: "Custom Button Theme",

@@ -501,6 +501,14 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/button/demos#floating-action-buttons-title",
   },
   {
+    title: "Button Demo - Button with Circular Progress",
+    summary:
+      "If you have the @react-md/progress package installed, the Button component will automatically update the size of any child CircularProgress to be the same size as an icon. Since you'll normally want to prevent the button from being interactable while displaying a loading spinner, you can set the button's theme to \"disabled\" which will make the button look and behave as if it was disabled without actually enabling the disabled attribute so that it is still keyboard focusable.",
+    type: "demo",
+    pageUrl: "/packages/button/demos#button-with-circular-progress-title",
+    pathname: "/packages/button/demos#button-with-circular-progress-title",
+  },
+  {
     title: "Button Demo - Custom Button Theme",
     summary:
       "Since it might not be desired to have the same material design theme for your app, it is possible to update the base button theme by updating the different button SCSS variables before importing and including the button styles. If you have not done so, please read the pretty good write up in the theme documentation for all the detailed theming information. It's also recommended to read the states documentation to read about disable the ripple effect or custom interaction states as well.",

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
@@ -21,23 +21,13 @@ export interface AsyncButtonProps extends ButtonProps {
     | "icon-after";
 }
 
-type DefaultProps = Required<Pick<AsyncButtonProps, "loading">>;
-type WithDefaultProps = AsyncButtonProps & DefaultProps;
-
-// this is used while the loading state is enabled to "disable" the button.
-// If we disable the entire button, keyboard focus is lost which is not desired.
-const noop = (): void => {};
-
-const AsyncButton: FC<AsyncButtonProps> = (providedProps) => {
-  const {
-    id,
-    loading,
-    asyncType,
-    onClick,
-    ...props
-  } = providedProps as WithDefaultProps;
-  const { themeType } = props;
-
+export default function AsyncButton({
+  id,
+  loading = false,
+  asyncType,
+  onClick,
+  ...props
+}: AsyncButtonProps): ReactElement {
   const progressId = `${id}-progress`;
   const linear = asyncType === "linear-overlay";
   let children: ReactNode = null;
@@ -87,21 +77,12 @@ const AsyncButton: FC<AsyncButtonProps> = (providedProps) => {
     <Button
       {...props}
       id={id}
-      className={cn(styles.button, { [styles.loading]: loading })}
+      className={styles.button}
       {...getProgressA11y(progressId, loading)}
-      theme={loading ? "clear" : "primary"}
-      onClick={loading ? noop : onClick}
-      themeType={loading && themeType === "contained" ? "flat" : themeType}
+      theme={loading ? "disabled" : "primary"}
+      onClick={onClick}
     >
       {children}
     </Button>
   );
-};
-
-const defaultProps: DefaultProps = {
-  loading: false,
-};
-
-AsyncButton.defaultProps = defaultProps;
-
-export default AsyncButton;
+}
