@@ -48,6 +48,9 @@ import simpleHelpAndErrorMessages from "./SimpleHelpAndErrorMessages.md";
 import ExampleForm from "./ExampleForm";
 import exampleForm from "./ExampleForm.md";
 
+import WithReactHookForm from "./WithReactHookForm";
+import withReactHookForm from "./WithReactHookForm.md";
+
 const demos = [
   {
     name: "Text Field Example",
@@ -118,6 +121,11 @@ const demos = [
     name: "Example Form",
     description: exampleForm,
     children: <ExampleForm />,
+  },
+  {
+    name: "With React Hook Form",
+    description: withReactHookForm,
+    children: <WithReactHookForm />,
   },
 ];
 

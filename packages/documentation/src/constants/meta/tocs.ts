@@ -1829,6 +1829,10 @@ const tocs: TOCRecord = {
       anchor: "#example-form",
       title: "Example Form",
     },
+    {
+      anchor: "#with-react-hook-form",
+      title: "With React Hook Form",
+    },
   ],
   "/packages/form/installation": [
     {

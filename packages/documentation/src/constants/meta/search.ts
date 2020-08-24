@@ -1039,6 +1039,14 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/packages/form/demos#example-form-title",
   },
   {
+    title: "Form Demo - With React Hook Form",
+    summary:
+      "react-md does not come with any form validation so you'll want to choose your favorite form library instead. This example will show how you can use react-hook-form along with react-md to create a simple form with error states, some validation, and the ability to reset the form.",
+    type: "demo",
+    pageUrl: "/packages/form/demos#with-react-hook-form-title",
+    pathname: "/packages/form/demos#with-react-hook-form-title",
+  },
+  {
     title: "Form Installation",
     summary:
       "Create material design form elements with a lot of customization. This package exports the following form components:",

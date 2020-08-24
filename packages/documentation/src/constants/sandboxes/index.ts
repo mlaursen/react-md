@@ -147,6 +147,7 @@ const sandboxes: Sandboxes = {
     TextAreaExample: () => resolve(import("./Form-TextAreaExample.json")),
     TextFieldExample: () => resolve(import("./Form-TextFieldExample.json")),
     TextFieldTypes: () => resolve(import("./Form-TextFieldTypes.json")),
+    WithReactHookForm: () => resolve(import("./Form-WithReactHookForm.json")),
   },
   Icon: {
     IconSpacing: () => resolve(import("./Icon-IconSpacing.json")),
