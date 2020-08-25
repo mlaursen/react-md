@@ -19,6 +19,7 @@ export default {
   "rmd-button-contained-pressed-elevation": 4,
   "rmd-button-floating-z-index": 30,
   "rmd-button-floating-margin": "1.5rem",
+  "rmd-button-circular-progress-size": "var(--rmd-icon-size, 1.5rem)",
   "rmd-button-floating-positions": {
     tl: { left: "1.5rem", top: "1.5rem" },
     tr: { right: "1.5rem", top: "1.5rem" },

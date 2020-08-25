@@ -48,6 +48,7 @@ export default {
     "100%": { bottom: "-8%", top: "107%" },
   },
   "rmd-circular-progress-size": "3rem",
+  "rmd-circular-progress-small-size": "1.5rem",
   "rmd-circular-progress-stroke-width": 6,
   "rmd-circular-progress-dasharray": 187,
   "rmd-circular-progress-transition-duration": "2.4s",
