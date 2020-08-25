@@ -2,7 +2,6 @@
 
 [![npm](https://img.shields.io/npm/v/react-md)](https://www.npmjs.com/package/react-md)
 [![downloads](https://img.shields.io/npm/dw/react-md)](https://www.npmjs.com/package/react-md)
-[![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
 [![Join the Chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com)
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
 
