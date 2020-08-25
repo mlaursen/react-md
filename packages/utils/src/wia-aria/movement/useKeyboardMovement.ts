@@ -34,7 +34,8 @@ export interface BaseKeyboardMovementOptions<
   D = unknown,
   CE extends HTMLElement = HTMLElement,
   IE extends HTMLElement = HTMLElement
-> extends Omit<BaseKeyboardSearchOptions<D, CE>, "onChange">, MovementConfig {
+> extends Omit<BaseKeyboardSearchOptions<D, CE>, "onChange">,
+    MovementConfig {
   /**
    * Boolean if the event should trigger `event.stopPropagation()` when the
    * custom keyboard movement is triggered. This should generally be kept as

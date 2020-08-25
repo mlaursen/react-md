@@ -14,7 +14,8 @@ import { LayoutNavigationItem, LayoutNavigationTree } from "./types";
 
 export interface LayoutNavigationState<
   T extends BaseTreeItem = LayoutNavigationItem
-> extends TreeItemSelection, TreeItemExpansion {
+> extends TreeItemSelection,
+    TreeItemExpansion {
   /**
    * The navigation items to use that will be passed to the `Tree` component
    * from `@react-md/tree`

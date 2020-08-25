@@ -65,7 +65,8 @@ import {
  */
 export interface FlattenedLayoutComponentConfiguration<
   T extends BaseTreeItem = LayoutNavigationItem
-> extends LayoutWithTitle, LayoutWithNavToggle {
+> extends LayoutWithTitle,
+    LayoutWithNavToggle {
   /**
    * A custom implementation for the main `AppBar` within the `Layout` that will
    * be used instead of the default `LayoutAppBar` if it is not `undefined`.
