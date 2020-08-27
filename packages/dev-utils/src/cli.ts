@@ -89,10 +89,11 @@ createCommand("variables")
   .action(() => createScssVariables());
 
 createCommand("readmes")
+  .option("--clean", "Removes all the existing readmes before copying them")
   .description(
     "Copies all the readmes from the scoped packages into the documentation site. It also handles adding or removing content from the readmes with special comment tokens."
   )
-  .action(() => readmes());
+  .action(({ clean = false }) => readmes(clean));
 
 createCommand("sandbox [components...]")
   .description(
@@ -184,7 +185,9 @@ createCommand("clean")
   .action(() => clean(true));
 
 createCommand("configs").action(() => configs());
-createCommand("changelogs").action(() => changelogs());
+createCommand("changelogs")
+  .option("--clean", "Removes all the existing readmes before copying them")
+  .action(({ clean = false }) => changelogs(clean));
 createCommand("rmd-readme").action(() => rmdReadme());
 createCommand("fix-changelogs")
   .option(

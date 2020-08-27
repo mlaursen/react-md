@@ -10,8 +10,8 @@ import copyChangelogs from "../changelogs";
 import glob from "../utils/glob";
 
 export default async function indexer(): Promise<void> {
-  await readmes();
-  await copyChangelogs();
+  await readmes(true);
+  await copyChangelogs(true);
   await copySharedToDocs();
   log.info();
 

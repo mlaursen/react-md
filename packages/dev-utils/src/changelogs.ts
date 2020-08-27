@@ -1,4 +1,4 @@
-import { ensureDir } from "fs-extra";
+import { ensureDir, remove } from "fs-extra";
 import log from "loglevel";
 import { join, sep } from "path";
 
@@ -8,7 +8,9 @@ import glob from "./utils/glob";
 
 const documentationChangelogs = join(documentationRoot, src, "changelogs");
 
-export default async function changelogs(): Promise<void> {
+export default async function changelogs(
+  clean: boolean = false
+): Promise<void> {
   log.info("Finding and copying changelogs...");
   const changelogs = await glob(
     "!(dev-utils|documentation|react-md)/CHANGELOG.md",
@@ -16,6 +18,10 @@ export default async function changelogs(): Promise<void> {
       cwd: packagesRoot,
     }
   );
+
+  if (clean) {
+    await remove(documentationChangelogs);
+  }
 
   await ensureDir(documentationChangelogs);
   await Promise.all(
