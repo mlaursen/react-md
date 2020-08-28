@@ -21,6 +21,10 @@ export function nearest(
   // have to calculate the number of allowed decimal places since decimal
   // precision gets weird:
   // 0.28 * 100 === 28.000000000000004
-  const decimals = range % steps;
+  const step = range / steps;
+  const decimals = Number.isInteger(step)
+    ? range % steps
+    : step.toString().split(".")[1].length;
+
   return parseFloat((zeroToOne * range + min).toFixed(decimals));
 }
