@@ -72,5 +72,4 @@ jobs:
     - run: yarn dev-utils doc-index
     - run: yarn lint
     - run: yarn test -i --coverage
-    - run: npm install codecov -g
-    - run: codecov
+    - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
