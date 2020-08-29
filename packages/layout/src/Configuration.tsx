@@ -22,7 +22,10 @@ import {
   DEFAULT_PHONE_MAX_WIDTH,
   DEFAULT_TABLET_MAX_WIDTH,
   DEFAULT_TABLET_MIN_WIDTH,
+  DEFAULT_DIR,
+  Dir,
   InteractionModeListener,
+  WritingDirection,
 } from "@react-md/utils";
 
 export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
@@ -65,6 +68,15 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
    * An object of any overrides for the `FormThemeProvider`.
    */
   formTheme?: FormThemeOptions;
+
+  /**
+   * The current writing direction for your app. This defaults to `"ltr"` but
+   * should be changed to `"rtl"` if using a language that is read from right to
+   * left.
+   *
+   * @since 2.3.0
+   */
+  defaultDir?: WritingDirection;
 }
 
 /**
@@ -76,6 +88,7 @@ const Configuration: FC<ConfigurationProps> = ({
   children,
   icons,
   formTheme,
+  defaultDir = DEFAULT_DIR,
   phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
   tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH,
   tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH,
@@ -90,36 +103,38 @@ const Configuration: FC<ConfigurationProps> = ({
   tooltipDefaultDelay = DEFAULT_TOOLTIP_DELAY,
   tooltipDelayTimeout = DEFAULT_TOOLTIP_DELAY,
 }) => (
-  <AppSizeListener
-    defaultSize={defaultSize}
-    onChange={onAppResize}
-    phoneMaxWidth={phoneMaxWidth}
-    tabletMinWidth={tabletMinWidth}
-    tabletMaxWidth={tabletMaxWidth}
-    desktopMinWidth={desktopMinWidth}
-    desktopLargeMinWidth={desktopLargeMinWidth}
-  >
-    <NestedDialogContextProvider>
-      <InteractionModeListener>
-        <StatesConfig
-          disableRipple={disableRipple}
-          disableProgrammaticRipple={disableProgrammaticRipple}
-          rippleTimeout={rippleTimeout}
-          rippleClassNames={rippleClassNames}
-        >
-          <TooltipHoverModeConfig
-            enabled={!disableTooltipHoverMode}
-            defaultDelay={tooltipDefaultDelay}
-            delayTimeout={tooltipDelayTimeout}
+  <Dir defaultDir={defaultDir}>
+    <AppSizeListener
+      defaultSize={defaultSize}
+      onChange={onAppResize}
+      phoneMaxWidth={phoneMaxWidth}
+      tabletMinWidth={tabletMinWidth}
+      tabletMaxWidth={tabletMaxWidth}
+      desktopMinWidth={desktopMinWidth}
+      desktopLargeMinWidth={desktopLargeMinWidth}
+    >
+      <NestedDialogContextProvider>
+        <InteractionModeListener>
+          <StatesConfig
+            disableRipple={disableRipple}
+            disableProgrammaticRipple={disableProgrammaticRipple}
+            rippleTimeout={rippleTimeout}
+            rippleClassNames={rippleClassNames}
           >
-            <IconProvider {...icons}>
-              <FormThemeProvider {...formTheme}>{children}</FormThemeProvider>
-            </IconProvider>
-          </TooltipHoverModeConfig>
-        </StatesConfig>
-      </InteractionModeListener>
-    </NestedDialogContextProvider>
-  </AppSizeListener>
+            <TooltipHoverModeConfig
+              enabled={!disableTooltipHoverMode}
+              defaultDelay={tooltipDefaultDelay}
+              delayTimeout={tooltipDelayTimeout}
+            >
+              <IconProvider {...icons}>
+                <FormThemeProvider {...formTheme}>{children}</FormThemeProvider>
+              </IconProvider>
+            </TooltipHoverModeConfig>
+          </StatesConfig>
+        </InteractionModeListener>
+      </NestedDialogContextProvider>
+    </AppSizeListener>
+  </Dir>
 );
 
 if (process.env.NODE_ENV !== "production") {
@@ -181,6 +196,10 @@ if (process.env.NODE_ENV !== "production") {
         theme: PropTypes.oneOf(["none", "underline", "outline", "filled"]),
         underlineDirection: PropTypes.oneOf(["left", "center", "right"]),
       }),
+      defaultDir: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.oneOf(["ltr", "rtl"]),
+      ]),
     };
   } catch (e) {}
 }

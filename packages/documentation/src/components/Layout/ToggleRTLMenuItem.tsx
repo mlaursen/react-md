@@ -4,15 +4,16 @@ import {
   FormatAlignRightSVGIcon,
 } from "@react-md/material-icons";
 import { MenuItem } from "@react-md/menu";
-import useRTLToggle from "./useRTLToggle";
+import { useDir } from "@react-md/utils";
 
 const ToggleRTLMenuItem: FC = () => {
-  const { isRTL, toggleRTL } = useRTLToggle();
+  const { dir, toggleDir } = useDir();
+  const isRTL = dir === "rtl";
 
   return (
     <MenuItem
       id="toggle-rtl"
-      onClick={toggleRTL}
+      onClick={toggleDir}
       leftAddon={
         isRTL ? <FormatAlignRightSVGIcon /> : <FormatAlignLeftSVGIcon />
       }

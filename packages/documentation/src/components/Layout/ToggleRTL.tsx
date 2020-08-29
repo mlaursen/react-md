@@ -5,16 +5,17 @@ import {
   FormatAlignRightSVGIcon,
 } from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
-import useRTLToggle from "./useRTLToggle";
+import { useDir } from "@react-md/utils";
 
 const ToggleRTL: FC = () => {
-  const { isRTL, toggleRTL } = useRTLToggle();
+  const { dir, toggleDir } = useDir();
+  const isRTL = dir === "rtl";
 
   return (
     <Tooltipped id="toggle-rtl" tooltip="Toggle right to left">
       <AppBarAction
         last
-        onClick={toggleRTL}
+        onClick={toggleDir}
         aria-label="Right to left layout"
         aria-pressed={isRTL}
       >

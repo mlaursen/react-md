@@ -7,6 +7,8 @@ export * from "./sizing";
 export * from "./positioning";
 export * from "./wia-aria";
 
+export * from "./Dir";
+
 export { default as bem } from "./bem";
 export { default as omit } from "./omit";
 export { default as defaults } from "./defaults";
