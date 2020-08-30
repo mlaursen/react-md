@@ -1,7 +1,7 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, HTMLAttributes } from "react";
 import { render as renderer, RenderOptions } from "@testing-library/react";
 
-import Grid from "../Grid";
+import Grid, { GRID_COLUMNS_VAR } from "../Grid";
 import GridCell from "../GridCell";
 import AppSizeListener from "../../sizing/AppSizeListener";
 
@@ -52,6 +52,45 @@ describe("Grid", () => {
         largeDesktopColumns={4}
       />
     );
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should be able to wrap each child in the GridCell component when the clone prop is enabled", () => {
+    const { container, getByTestId } = render(
+      <Grid clone>
+        {false && <span data-testid="span" />}
+        {true && <div data-testid="div" />}
+        <section data-testid="section" />
+      </Grid>
+    );
+
+    expect(() => getByTestId("span")).toThrow();
+    expect(getByTestId("div").className).toContain("rmd-grid__cell");
+    expect(getByTestId("section").className).toContain("rmd-grid__cell");
+    expect(container).toMatchSnapshot();
+  });
+
+  it("should be able to clone the style and classname into the child element ignoring all other props", () => {
+    const MyCustomComponent = ({
+      style,
+      className,
+    }: HTMLAttributes<HTMLSpanElement>) => {
+      return (
+        <span style={style} className={className} data-testid="span">
+          Content
+        </span>
+      );
+    };
+
+    const { container, getByTestId } = render(
+      <Grid cloneStyles columns={3}>
+        <MyCustomComponent />
+      </Grid>
+    );
+
+    const span = getByTestId("span");
+    expect(span.className).toContain("rmd-grid");
+    expect(span.style.getPropertyValue(GRID_COLUMNS_VAR)).toBe("3");
     expect(container).toMatchSnapshot();
   });
 });

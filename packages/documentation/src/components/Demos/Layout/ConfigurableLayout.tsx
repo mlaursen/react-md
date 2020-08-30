@@ -71,8 +71,8 @@ const ConfigurableLayout: FC = () => {
       // documentation site's Layout component
       mainProps={{ component: "div" }}
     >
-      <Form>
-        <Grid clone columns={2} desktopColumns={4}>
+      <Grid cloneStyles columns={2} desktopColumns={4}>
+        <Form>
           <Select
             id="phone-layout-type"
             label="Phone Layout"
@@ -128,8 +128,8 @@ const ConfigurableLayout: FC = () => {
               }
             }}
           />
-        </Grid>
-      </Form>
+        </Form>
+      </Grid>
     </Layout>
   );
 };

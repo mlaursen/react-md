@@ -1,4 +1,10 @@
-import React, { Children, forwardRef, HTMLAttributes } from "react";
+import React, {
+  Children,
+  forwardRef,
+  HTMLAttributes,
+  cloneElement,
+  isValidElement,
+} from "react";
 import cn from "classnames";
 
 import bem from "../bem";
@@ -24,6 +30,18 @@ export const GRID_COLUMNS_VAR = "--rmd-grid-cols";
 export const GRID_GUTTER_VAR = "--rmd-grid-gutter";
 
 export interface GridProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Boolean if the `children` should have the grid `style` and `className`
+   * props cloned using `React.cloneElement`. This is useful if you just want to
+   * use the grid styles without the additional wrapper `<div>`.
+   *
+   * Note: if this prop is provided, all of the `HTMLAttributes` props will be
+   * ignored as well as the `clone` and `wrapOnly` props.
+   *
+   * @since 2.3.0
+   */
+  cloneStyles?: boolean;
+
   /**
    * Boolean if the `children` should be updated to be wrapped in the `GridCell`
    * component and clone the `className` into each child automatically. This is
@@ -122,6 +140,7 @@ const Grid = forwardRef<HTMLDivElement, GridProps>(function Grid(
     className,
     children,
     clone = false,
+    cloneStyles = false,
     wrapOnly = false,
     columns,
     phoneColumns,
@@ -151,6 +170,16 @@ const Grid = forwardRef<HTMLDivElement, GridProps>(function Grid(
       columns,
     [GRID_GUTTER_VAR]: gutter,
   };
+  const mergedClassName = cn(block({ "no-padding": padding === 0 }), className);
+
+  if (cloneStyles && isValidElement(children)) {
+    const child = Children.only(children);
+
+    return cloneElement(child, {
+      style: { ...mergedStyle, ...child.props.style },
+      className: cn(mergedClassName, child.props.className),
+    });
+  }
 
   let content = children;
   if (clone || wrapOnly) {
@@ -161,12 +190,7 @@ const Grid = forwardRef<HTMLDivElement, GridProps>(function Grid(
   }
 
   return (
-    <div
-      {...props}
-      ref={ref}
-      style={mergedStyle}
-      className={cn(block({ "no-padding": padding === 0 }), className)}
-    >
+    <div {...props} ref={ref} style={mergedStyle} className={mergedClassName}>
       {content}
     </div>
   );
@@ -180,6 +204,7 @@ if (process.env.NODE_ENV !== "production") {
       style: PropTypes.object,
       className: PropTypes.string,
       clone: PropTypes.bool,
+      cloneStyles: PropTypes.bool,
       wrapOnly: PropTypes.bool,
       columns: PropTypes.number,
       phoneColumns: PropTypes.number,
