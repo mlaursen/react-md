@@ -198,9 +198,13 @@
 }
 
 /// Creates all the styles for an unstyled button.
-@mixin rmd-button-unstyled {
+///
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within
+/// CSS Modules which will update the selector to work correctly by wrapping
+/// different parts with `:global` and `:local`.
+@mixin rmd-button-unstyled($css-modules: false) {
   @include rmd-button-reset;
-  @include rmd-states-focus-shadow($create-pseudo: true);
+  @include rmd-states-focus-shadow($create-pseudo: true, $css-modules: $css-modules);
 
   display: inline-flex;
   position: relative;

@@ -775,6 +775,11 @@ const sassdoc: PackageSassDoc = {
       since: "2.1.0",
       usedBy: [
         {
+          name: "rmd-states-pressed-styles",
+          type: "mixin",
+          packageName: "states",
+        },
+        {
           name: "rmd-theme-dark-elevation",
           type: "mixin",
           packageName: "theme",
@@ -821,6 +826,14 @@ const sassdoc: PackageSassDoc = {
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app on a touch device.",
       source: "packages/utils/src/_mixins.scss#L363-L367",
+      usedBy: [
+        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
+        {
+          name: "rmd-states-surface-selected",
+          type: "mixin",
+          packageName: "states",
+        },
+      ],
       requires: [
         {
           name: "rmd-utils-optional-css-modules",
@@ -866,6 +879,14 @@ const sassdoc: PackageSassDoc = {
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app with a keyboard.",
       source: "packages/utils/src/_mixins.scss#L393-L397",
+      usedBy: [
+        {
+          name: "rmd-states-focus-shadow",
+          type: "mixin",
+          packageName: "states",
+        },
+        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
+      ],
       requires: [
         {
           name: "rmd-utils-optional-css-modules",

@@ -236,13 +236,23 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-pressed-styles": {
       name: "rmd-states-pressed-styles",
       description:
-        "A simple mixin that allows you to add custom pressed state styles to an element.\n",
-      source: "packages/states/src/_mixins.scss#L52-L56",
+        "A simple mixin that allows you to add custom pressed state styles to an element.",
+      source: "packages/states/src/_mixins.scss#L56-L63",
+      usedBy: [
+        { name: "rmd-states-surface", type: "mixin", packageName: "states" },
+      ],
+      requires: [
+        {
+          name: "rmd-utils-optional-css-modules",
+          type: "mixin",
+          packageName: "utils",
+        },
+      ],
       packageName: "states",
       code:
-        "@mixin rmd-states-pressed-styles($pressed-class-name: $rmd-states-pressed-class-name) { … }",
+        "@mixin rmd-states-pressed-styles($pressed-class-name: $rmd-states-pressed-class-name, $css-modules: false) { … }",
       sourceCode:
-        "@mixin rmd-states-pressed-styles(\n  $pressed-class-name: $rmd-states-pressed-class-name\n) {\n  &#{$pressed-class-name} {\n    @content;\n  }\n}\n",
+        '@mixin rmd-states-pressed-styles(\n  $pressed-class-name: $rmd-states-pressed-class-name,\n  $css-modules: false\n) {\n  @include rmd-utils-optional-css-modules(\n    "&#{$pressed-class-name}",\n    $css-modules\n  ) {\n    @content;\n  }\n}\n',
       type: "mixin",
       parameters: [
         {
@@ -252,13 +262,20 @@ const sassdoc: PackageSassDoc = {
           description:
             "The class name to use to indicate that the element is currently being pressed.",
         },
+        {
+          type: "Boolean",
+          name: "css-modules",
+          default: "false",
+          description:
+            "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",
+        },
       ],
     },
     "rmd-states-focus-shadow": {
       name: "rmd-states-focus-shadow",
       description:
         "This mixin will add the focus shadow color to your current element only during keyboard focus events. Your element must also have included the `rmd-states-surface-base` mixin for this to work.\n\nNote: If you used the `rmd-states-surface` mixin, this functionality will be included by default. In addition this only works for non-inline elements due to how positioning works for them. You'll either need to update it to be `display: inline-block` or fallbac to the `outline-style`s.",
-      source: "packages/states/src/_mixins.scss#L100-L118",
+      source: "packages/states/src/_mixins.scss#L110-L133",
       usedBy: [
         { name: "rmd-button-unstyled", type: "mixin", packageName: "button" },
         { name: "react-md-file-input", type: "mixin", packageName: "form" },
@@ -268,6 +285,11 @@ const sassdoc: PackageSassDoc = {
       requires: [
         {
           name: "rmd-utils-pseudo-element",
+          type: "mixin",
+          packageName: "utils",
+        },
+        {
+          name: "rmd-utils-keyboard-only",
           type: "mixin",
           packageName: "utils",
         },
@@ -298,9 +320,9 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       code:
-        "@mixin rmd-states-focus-shadow($focus-selector: '&:focus', $create-pseudo: false, $after: false) { … }",
+        "@mixin rmd-states-focus-shadow($focus-selector: '&:focus', $create-pseudo: false, $after: false, $css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-states-focus-shadow(\n  $focus-selector: "&:focus",\n  $create-pseudo: false,\n  $after: false\n) {\n  $pseudo-selector: if($after, "&::after", "&::before");\n\n  @if $create-pseudo {\n    #{$pseudo-selector} {\n      @include rmd-utils-pseudo-element;\n    }\n  }\n\n  @if $rmd-states-use-focus-shadow {\n    @include rmd-utils-keyboard-only {\n      #{$focus-selector} {\n        #{$pseudo-selector} {\n          @include rmd-states-theme(box-shadow, focus-shadow);\n        }\n      }\n    }\n  }\n}\n',
+        '@mixin rmd-states-focus-shadow(\n  $focus-selector: "&:focus",\n  $create-pseudo: false,\n  $after: false,\n  $css-modules: false\n) {\n  $pseudo-selector: if($after, "&::after", "&::before");\n\n  @if $create-pseudo {\n    #{$pseudo-selector} {\n      @include rmd-utils-pseudo-element;\n    }\n  }\n\n  @if $rmd-states-use-focus-shadow {\n    @include rmd-utils-keyboard-only($css-modules) {\n      #{$focus-selector} {\n        #{$pseudo-selector} {\n          @include rmd-states-theme(box-shadow, focus-shadow);\n        }\n      }\n    }\n  }\n}\n',
       type: "mixin",
       parameters: [
         {
@@ -324,13 +346,20 @@ const sassdoc: PackageSassDoc = {
           description:
             "Boolean if the `::after` pseudo element should be used instead of the `::before`.",
         },
+        {
+          type: "Boolean",
+          name: "css-modules",
+          default: "false",
+          description:
+            "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",
+        },
       ],
     },
     "rmd-states-surface": {
       name: "rmd-states-surface",
       description:
         'This is the main interaction states creator. It will apply all the styles to an element so that it will:\n- gain the pointer cursor when it is not disabled (also works for\n  aria-disabled)\n- create a `::before` element for transitioning between the different\n  interaction states\n- apply the hover opacity when not disabled **and for non-touch devices**\n  (see more below)\n- apply the focused opacity after a **keyboard** focus event (see more\n  below)\n- apply the pressed opacity if not using the ripple effect (see more below)\n\n###### Hover Opacity\n\nThis requires the usage of a `COMPONENT_TO_MAKE` to work correctly. If `COMPONENT_TO_MAKE` is not used in your application, the hover effect will be applied on mobile devices after touch events. This is because a touch event still goes through the mouse events and applies the hover state after being touched.\n\n###### Focused Opacity\n\nThis requires the usage of the `KeyboardTracker` component to work correctly. If the `KeyboardTracker` is not used in your application and not near the root of the React render tree, you most likely will not have any focus states. This is actually one of the "biggest" features of react-md until the `:focus-visible` css selector has gained traction and browser support.\n\n###### Pressed Opacity\n\nIf you are using the ripple effect for pressed states, this will be ignored as a ripple element will be created instead to show the pressed state. When the ripple effect is disabled, pressing an element will just trigger a background opacity change like the over interaction states.',
-      source: "packages/states/src/_mixins.scss#L164-L214",
+      source: "packages/states/src/_mixins.scss#L182-L237",
       usedBy: [
         { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
@@ -365,6 +394,17 @@ const sassdoc: PackageSassDoc = {
           packageName: "states",
         },
         {
+          name: "rmd-utils-keyboard-only",
+          type: "mixin",
+          packageName: "utils",
+        },
+        { name: "rmd-utils-touch-only", type: "mixin", packageName: "utils" },
+        {
+          name: "rmd-states-pressed-styles",
+          type: "mixin",
+          packageName: "states",
+        },
+        {
           name: "rmd-states-theme-var",
           type: "function",
           packageName: "states",
@@ -382,9 +422,9 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "states",
       code:
-        "@mixin rmd-states-surface($focus-selector: '&:focus', $clickable: true, $no-focus-state: false) { … }",
+        "@mixin rmd-states-surface($focus-selector: '&:focus', $clickable: true, $no-focus-state: false, $css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-states-surface(\n  $focus-selector: "&:focus",\n  $clickable: true,\n  $no-focus-state: false\n) {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-states-focus-shadow($focus-selector);\n\n  &::before {\n    @include rmd-states-surface-base;\n  }\n\n  &:disabled,\n  &[aria-disabled="true"] {\n    @include rmd-states-theme-update-var(hover-color, transparent);\n  }\n\n  @if $clickable {\n    &:not(:disabled):not([aria-disabled="true"]):hover {\n      cursor: pointer;\n    }\n  }\n\n  &:hover {\n    @include rmd-states-theme-update-var(\n      background-color,\n      rmd-states-theme-var(hover-color)\n    );\n  }\n\n  @if $rmd-states-use-focus-background and not $no-focus-state {\n    @include rmd-utils-keyboard-only {\n      #{$focus-selector} {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(focus-color)\n        );\n\n        &:hover {\n          @include rmd-states-theme-update-var(\n            background-color,\n            rmd-states-theme-var(hover-color)\n          );\n        }\n      }\n    }\n  }\n\n  @include rmd-utils-touch-only {\n    &:focus,\n    &:hover {\n      @include rmd-states-theme-update-var(background-color, transparent);\n    }\n  }\n\n  @if $rmd-states-use-pressed-states-fallback {\n    @include rmd-states-pressed-styles {\n      @include rmd-states-theme-update-var(\n        background-color,\n        rmd-states-theme-var(pressed-color)\n      );\n      @include rmd-utils-keyboard-only {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(pressed-color)\n        );\n      }\n    }\n  }\n}\n',
+        '@mixin rmd-states-surface(\n  $focus-selector: "&:focus",\n  $clickable: true,\n  $no-focus-state: false,\n  $css-modules: false\n) {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-states-focus-shadow($focus-selector, $css-modules: $css-modules);\n\n  &::before {\n    @include rmd-states-surface-base;\n  }\n\n  &:disabled,\n  &[aria-disabled="true"] {\n    @include rmd-states-theme-update-var(hover-color, transparent);\n  }\n\n  @if $clickable {\n    &:not(:disabled):not([aria-disabled="true"]):hover {\n      cursor: pointer;\n    }\n  }\n\n  &:hover {\n    @include rmd-states-theme-update-var(\n      background-color,\n      rmd-states-theme-var(hover-color)\n    );\n  }\n\n  @if $rmd-states-use-focus-background and not $no-focus-state {\n    @include rmd-utils-keyboard-only($css-modules) {\n      #{$focus-selector} {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(focus-color)\n        );\n\n        &:hover {\n          @include rmd-states-theme-update-var(\n            background-color,\n            rmd-states-theme-var(hover-color)\n          );\n        }\n      }\n    }\n  }\n\n  @include rmd-utils-touch-only($css-modules) {\n    &:focus,\n    &:hover {\n      @include rmd-states-theme-update-var(background-color, transparent);\n    }\n  }\n\n  @if $rmd-states-use-pressed-states-fallback {\n    @include rmd-states-pressed-styles($css-modules) {\n      @include rmd-states-theme-update-var(\n        background-color,\n        rmd-states-theme-var(pressed-color)\n      );\n      @include rmd-utils-keyboard-only($css-modules) {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(pressed-color)\n        );\n      }\n    }\n  }\n}\n',
       type: "mixin",
       parameters: [
         {
@@ -408,13 +448,20 @@ const sassdoc: PackageSassDoc = {
           description:
             "Boolean if the keyboard focus background color change should be disabled.",
         },
+        {
+          type: "Boolean",
+          name: "css-modules",
+          default: "false",
+          description:
+            "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",
+        },
       ],
     },
     "rmd-states-surface-selected": {
       name: "rmd-states-surface-selected",
       description:
         "This is a mixin that should be used along with the `rmd-states-surface` mixin if you'd also like to be able to add a selected state to an element.\nThis really just adds another opacity background change when the element is considered selected. This is not apart of the main surface mixin since selection states are a bit less used and it might be better to do different styles than just a background change to show selection.",
-      source: "packages/states/src/_mixins.scss#L226-L243",
+      source: "packages/states/src/_mixins.scss#L252-L269",
       usedBy: [
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-tree-item", type: "mixin", packageName: "tree" },
@@ -425,6 +472,7 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "states",
         },
+        { name: "rmd-utils-touch-only", type: "mixin", packageName: "utils" },
         {
           name: "rmd-states-theme-var",
           type: "function",
@@ -433,9 +481,9 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "states",
       code:
-        "@mixin rmd-states-surface-selected($selector: '&--selected') { … }",
+        "@mixin rmd-states-surface-selected($selector: '&--selected', $css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-states-surface-selected($selector: "&--selected") {\n  #{$selector} {\n    @include rmd-states-theme-update-var(\n      background-color,\n      rmd-states-theme-var(selected-color)\n    );\n\n    // since the base states disables the additional hover and focus states in touch mode,\n    // they have to be re-enabled for the selected state or else the background color won\'t\n    // appear until the user blurs the selected item.\n    @include rmd-utils-touch-only {\n      &:hover,\n      &:focus {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(selected-color)\n        );\n      }\n    }\n  }\n}\n',
+        '@mixin rmd-states-surface-selected(\n  $selector: "&--selected",\n  $css-modules: false\n) {\n  #{$selector} {\n    @include rmd-states-theme-update-var(\n      background-color,\n      rmd-states-theme-var(selected-color)\n    );\n\n    // since the base states disables the additional hover and focus states in touch mode,\n    // they have to be re-enabled for the selected state or else the background color won\'t\n    // appear until the user blurs the selected item.\n    @include rmd-utils-touch-only($css-modules) {\n      &:hover,\n      &:focus {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(selected-color)\n        );\n      }\n    }\n  }\n}\n',
       type: "mixin",
       parameters: [
         {
@@ -445,12 +493,19 @@ const sassdoc: PackageSassDoc = {
           description:
             "The selector to use when a surface is considered selected. The selected state will be applied when this class is active.",
         },
+        {
+          type: "Boolean",
+          name: "css-modules",
+          default: "false",
+          description:
+            "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",
+        },
       ],
     },
     "rmd-states-ripple-container": {
       name: "rmd-states-ripple-container",
       description: "",
-      source: "packages/states/src/_mixins.scss#L246-L256",
+      source: "packages/states/src/_mixins.scss#L272-L282",
       usedBy: [
         { name: "react-md-states", type: "mixin", packageName: "states" },
       ],
@@ -463,7 +518,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-ripple": {
       name: "rmd-states-ripple",
       description: "",
-      source: "packages/states/src/_mixins.scss#L259-L278",
+      source: "packages/states/src/_mixins.scss#L285-L304",
       usedBy: [
         { name: "react-md-states", type: "mixin", packageName: "states" },
       ],
@@ -500,7 +555,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-states",
       description:
         "Creates all the root styles for the states package as well as the themeable css variables and their default values.\n",
-      source: "packages/states/src/_mixins.scss#L282-L295",
+      source: "packages/states/src/_mixins.scss#L308-L321",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

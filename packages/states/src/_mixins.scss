@@ -47,10 +47,17 @@
 
 /// A simple mixin that allows you to add custom pressed state styles to an
 /// element.
+///
 /// @param {String} pressed-class-name [$rmd-states-pressed-class-name] - The
 /// class name to use to indicate that the element is currently being pressed.
-@mixin rmd-states-pressed-styles($pressed-class-name: $rmd-states-pressed-class-name) {
-  &#{$pressed-class-name} {
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within
+/// CSS Modules which will update the selector to work correctly by wrapping
+/// different parts with `:global` and `:local`.
+@mixin rmd-states-pressed-styles(
+  $pressed-class-name: $rmd-states-pressed-class-name,
+  $css-modules: false
+) {
+  @include rmd-utils-optional-css-modules('&#{$pressed-class-name}', $css-modules) {
     @content;
   }
 }
@@ -97,7 +104,15 @@
 /// `rmd-states-surface-base` mixin.
 /// @param {Boolean} after [false] - Boolean if the `::after` pseudo element
 /// should be used instead of the `::before`.
-@mixin rmd-states-focus-shadow($focus-selector: '&:focus', $create-pseudo: false, $after: false) {
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within
+/// CSS Modules which will update the selector to work correctly by wrapping
+/// different parts with `:global` and `:local`.
+@mixin rmd-states-focus-shadow(
+  $focus-selector: '&:focus',
+  $create-pseudo: false,
+  $after: false,
+  $css-modules: false
+) {
   $pseudo-selector: if($after, '&::after', '&::before');
 
   @if $create-pseudo {
@@ -107,7 +122,7 @@
   }
 
   @if $rmd-states-use-focus-shadow {
-    @include rmd-utils-keyboard-only {
+    @include rmd-utils-keyboard-only($css-modules) {
       #{$focus-selector} {
         #{$pseudo-selector} {
           @include rmd-states-theme(box-shadow, focus-shadow);
@@ -161,9 +176,17 @@
 /// gain the pointer cursor when hovered.
 /// @param {Boolean} no-focus-state [false] - Boolean if the keyboard focus
 /// background color change should be disabled.
-@mixin rmd-states-surface($focus-selector: '&:focus', $clickable: true, $no-focus-state: false) {
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within
+/// CSS Modules which will update the selector to work correctly by wrapping
+/// different parts with `:global` and `:local`.
+@mixin rmd-states-surface(
+  $focus-selector: '&:focus',
+  $clickable: true,
+  $no-focus-state: false,
+  $css-modules: false
+) {
   @include rmd-utils-hide-focus-outline;
-  @include rmd-states-focus-shadow($focus-selector);
+  @include rmd-states-focus-shadow($focus-selector, $css-modules: $css-modules);
 
   &::before {
     @include rmd-states-surface-base;
@@ -185,7 +208,7 @@
   }
 
   @if $rmd-states-use-focus-background and not $no-focus-state {
-    @include rmd-utils-keyboard-only {
+    @include rmd-utils-keyboard-only($css-modules) {
       #{$focus-selector} {
         @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
 
@@ -196,7 +219,7 @@
     }
   }
 
-  @include rmd-utils-touch-only {
+  @include rmd-utils-touch-only($css-modules) {
     &:focus,
     &:hover {
       @include rmd-states-theme-update-var(background-color, transparent);
@@ -204,9 +227,9 @@
   }
 
   @if $rmd-states-use-pressed-states-fallback {
-    @include rmd-states-pressed-styles {
+    @include rmd-states-pressed-styles($css-modules) {
       @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(pressed-color));
-      @include rmd-utils-keyboard-only {
+      @include rmd-utils-keyboard-only($css-modules) {
         @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(pressed-color));
       }
     }
@@ -223,14 +246,17 @@
 /// @param {String} selector ['&--selected'] - The selector to use when a
 /// surface is considered selected. The selected state will be applied when this
 /// class is active.
-@mixin rmd-states-surface-selected($selector: '&--selected') {
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within
+/// CSS Modules which will update the selector to work correctly by wrapping
+/// different parts with `:global` and `:local`.
+@mixin rmd-states-surface-selected($selector: '&--selected', $css-modules: false) {
   #{$selector} {
     @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(selected-color));
 
     // since the base states disables the additional hover and focus states in touch mode,
     // they have to be re-enabled for the selected state or else the background color won't
     // appear until the user blurs the selected item.
-    @include rmd-utils-touch-only {
+    @include rmd-utils-touch-only($css-modules) {
       &:hover,
       &:focus {
         @include rmd-states-theme-update-var(

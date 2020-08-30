@@ -51,7 +51,7 @@
     "isBinary": false
   },
   "src/CustomComponent.module.scss": {
-    "content": "@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n\n.button {\n  @include rmd-button-unstyled;\n  @include rmd-typography(button);\n  @include rmd-theme(background-color, primary);\n  @include rmd-theme(color, on-primary);\n  @include rmd-states-surface;\n\n  position: relative;\n}\n",
+    "content": "@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n\n.button {\n  @include rmd-button-unstyled(true);\n  @include rmd-typography(button);\n  @include rmd-theme(background-color, primary);\n  @include rmd-theme(color, on-primary);\n  @include rmd-states-surface($css-modules: true);\n\n  position: relative;\n}\n",
     "isBinary": false
   }
 }

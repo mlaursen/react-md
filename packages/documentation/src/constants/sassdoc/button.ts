@@ -384,8 +384,8 @@ const sassdoc: PackageSassDoc = {
     },
     "rmd-button-unstyled": {
       name: "rmd-button-unstyled",
-      description: "Creates all the styles for an unstyled button.\n",
-      source: "packages/button/src/_mixins.scss#L201-L211",
+      description: "Creates all the styles for an unstyled button.",
+      source: "packages/button/src/_mixins.scss#L205-L215",
       usedBy: [
         { name: "react-md-button", type: "mixin", packageName: "button" },
       ],
@@ -398,15 +398,24 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       packageName: "button",
-      code: "@mixin rmd-button-unstyled { … }",
+      code: "@mixin rmd-button-unstyled($css-modules: false) { … }",
       sourceCode:
-        "@mixin rmd-button-unstyled {\n  @include rmd-button-reset;\n  @include rmd-states-focus-shadow($create-pseudo: true);\n\n  display: inline-flex;\n  position: relative;\n\n  &:not(:disabled):hover {\n    cursor: pointer;\n  }\n}\n",
+        "@mixin rmd-button-unstyled($css-modules: false) {\n  @include rmd-button-reset;\n  @include rmd-states-focus-shadow(\n    $create-pseudo: true,\n    $css-modules: $css-modules\n  );\n\n  display: inline-flex;\n  position: relative;\n\n  &:not(:disabled):hover {\n    cursor: pointer;\n  }\n}\n",
       type: "mixin",
+      parameters: [
+        {
+          type: "Boolean",
+          name: "css-modules",
+          default: "false",
+          description:
+            "Boolean if this is being used within CSS Modules which will update the selector to work correctly by wrapping different parts with `:global` and `:local`.",
+        },
+      ],
     },
     "rmd-button-floating-positions": {
       name: "rmd-button-floating-positions",
       description: "Creates the styles for all the floating button positions.",
-      source: "packages/button/src/_mixins.scss#L217-L229",
+      source: "packages/button/src/_mixins.scss#L221-L233",
       usedBy: [{ name: "rmd-fab", type: "mixin", packageName: "button" }],
       requires: [
         { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
@@ -431,7 +440,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-fab",
       description:
         "Creates the styles for the floating action button container. `FAB`\n",
-      source: "packages/button/src/_mixins.scss#L232-L237",
+      source: "packages/button/src/_mixins.scss#L236-L241",
       usedBy: [
         { name: "react-md-button", type: "mixin", packageName: "button" },
       ],
@@ -457,7 +466,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-button",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/button/src/_mixins.scss#L241-L257",
+      source: "packages/button/src/_mixins.scss#L245-L261",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

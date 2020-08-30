@@ -4,11 +4,11 @@
 @import '~@react-md/typography/dist/mixins';
 
 .button {
-  @include rmd-button-unstyled;
+  @include rmd-button-unstyled(true);
   @include rmd-typography(button);
   @include rmd-theme(background-color, primary);
   @include rmd-theme(color, on-primary);
-  @include rmd-states-surface;
+  @include rmd-states-surface($css-modules: true);
 
   position: relative;
 }
