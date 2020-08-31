@@ -1,12 +1,5 @@
-import {
-  useEffect,
-  useReducer,
-  useRef,
-  Dispatch,
-  useCallback,
-  RefCallback,
-} from "react";
-import { applyRef } from "@react-md/utils";
+import { Dispatch, RefCallback, useEffect, useReducer, useRef } from "react";
+import { useEnsuredRef } from "@react-md/utils";
 
 import { TransitionOptions } from "./types";
 import {
@@ -152,7 +145,7 @@ export default function useTransition<E extends HTMLElement = HTMLDivElement>({
   onExit,
   onExiting,
   onExited,
-  ref,
+  ref: propRef,
 }: TransitionOptions<E>): TransitionReturnValue<E> {
   const [{ stage, rendered, appearing }, dispatch] = useReducer(
     reducer,
@@ -182,7 +175,7 @@ export default function useTransition<E extends HTMLElement = HTMLDivElement>({
   });
 
   const timeout = getTimeout(propTimeout, appear);
-  const nodeRef = useRef<E | null>(null);
+  const [nodeRef, refHandler] = useEnsuredRef(propRef);
 
   const disableEnterExitTransition = useRef(!appear || !transitionIn);
 
@@ -316,6 +309,7 @@ export default function useTransition<E extends HTMLElement = HTMLDivElement>({
       window.clearTimeout(dispatchTimeout);
     };
   }, [
+    nodeRef,
     appearing,
     repaint,
     stage,
@@ -324,14 +318,6 @@ export default function useTransition<E extends HTMLElement = HTMLDivElement>({
     timeout.enter,
     timeout.exit,
   ]);
-
-  const refHandler = useCallback(
-    (instance: E | null) => {
-      applyRef(instance, ref);
-      nodeRef.current = instance;
-    },
-    [ref]
-  );
 
   return {
     ref: refHandler,

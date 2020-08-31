@@ -3,11 +3,9 @@ import React, {
   forwardRef,
   HTMLAttributes,
   ReactElement,
-  useCallback,
-  useRef,
 } from "react";
 
-import applyRef from "../applyRef";
+import { useEnsuredRef } from "../useEnsuredRef";
 import useFocusOnMount from "./useFocusOnMount";
 import usePreviousFocus, { FocusFallback } from "./usePreviousFocus";
 import useTabFocusWrap from "./useTabFocusWrap";
@@ -114,14 +112,7 @@ const FocusContainer = forwardRef<HTMLDivElement, FocusContainerProps>(
     },
     forwardedRef
   ): ReactElement {
-    const ref = useRef<HTMLElement | null>(null);
-    const refHandler = useCallback(
-      (instance: HTMLElement | null) => {
-        applyRef(instance, forwardedRef);
-        ref.current = instance;
-      },
-      [forwardedRef]
-    );
+    const [ref, refHandler] = useEnsuredRef(forwardedRef);
 
     usePreviousFocus(disableFocusOnUnmount, unmountFocusFallback);
     useFocusOnMount(

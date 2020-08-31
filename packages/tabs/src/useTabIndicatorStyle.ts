@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { applyRef, ItemRefList, useResizeObserver } from "@react-md/utils";
+import { ItemRefList, useEnsuredRef, useResizeObserver } from "@react-md/utils";
 
 interface Options {
   style: React.CSSProperties | undefined;
@@ -52,7 +52,7 @@ const getActiveTab = (
  */
 export default function useTabIndicatorStyle({
   style,
-  ref,
+  ref: propRef,
   align,
   itemRefs,
   totalTabs,
@@ -96,16 +96,9 @@ export default function useTabIndicatorStyle({
     // will be incorrect for that.
   }, [activeIndex, itemRefs, updateCSSVars, align]);
 
-  const tabsRef = useRef<HTMLDivElement | null>(null);
-  const mergedRef = useCallback(
-    (instance: HTMLDivElement | null) => {
-      applyRef(instance, ref);
-      tabsRef.current = instance;
-    },
-    [ref]
-  );
+  const [ref, refHandler] = useEnsuredRef(propRef);
   useResizeObserver({
-    target: tabsRef,
+    target: ref,
     onResize() {
       // whenever the tabs container element is resized, it _probably_ means
       // that the tabs will be resized or moved. this means the indicator will
@@ -128,5 +121,5 @@ export default function useTabIndicatorStyle({
     style,
     cssVars,
   ]);
-  return [mergedStyle, mergedRef, tabsRef];
+  return [mergedStyle, refHandler, ref];
 }

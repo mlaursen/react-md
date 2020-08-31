@@ -6,11 +6,10 @@ import React, {
   Ref,
   TextareaHTMLAttributes,
   useCallback,
-  useRef,
   useState,
 } from "react";
 import cn from "classnames";
-import { applyRef, bem, useResizeObserver } from "@react-md/utils";
+import { bem, useEnsuredRef, useResizeObserver } from "@react-md/utils";
 
 import FloatingLabel from "../label/FloatingLabel";
 import useFocusState from "../useFocusState";
@@ -240,14 +239,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       },
     });
 
-    const areaRef = useRef<HTMLTextAreaElement | null>(null);
-    const refHandler = useCallback(
-      (instance: HTMLTextAreaElement | null) => {
-        applyRef(instance, forwardedRef);
-        areaRef.current = instance;
-      },
-      [forwardedRef]
-    );
+    const [ref, refHandler] = useEnsuredRef(forwardedRef);
 
     // the container element adds some padding so that the content can scroll and
     // not be covered by the floating label. unfortunately, this means that the entire
@@ -255,11 +247,11 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     // functionality back.
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLDivElement>) => {
-        if (areaRef.current && event.target === event.currentTarget) {
-          areaRef.current.focus();
+        if (ref.current && event.target === event.currentTarget) {
+          ref.current.focus();
         }
       },
-      []
+      [ref]
     );
 
     const area = (

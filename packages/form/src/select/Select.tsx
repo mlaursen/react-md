@@ -5,19 +5,18 @@ import React, {
   ReactNode,
   useCallback,
   useMemo,
-  useRef,
 } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import { useFixedPositioning } from "@react-md/transition";
 import {
-  applyRef,
   bem,
   BELOW_CENTER_ANCHOR,
   DEFAULT_GET_ITEM_VALUE,
   PositionAnchor,
   PositionWidth,
   useCloseOnOutsideClick,
+  useEnsuredRef,
   useToggle,
 } from "@react-md/utils";
 
@@ -299,18 +298,11 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
     [onKeyDown, show]
   );
 
-  const selectRef = useRef<HTMLDivElement | null>(null);
-  const ref = useCallback(
-    (instance: HTMLDivElement | null) => {
-      applyRef(instance, forwardedRef);
-      selectRef.current = instance;
-    },
-    [forwardedRef]
-  );
+  const [ref, refHandler] = useEnsuredRef(forwardedRef);
 
   useCloseOnOutsideClick({
     enabled: visible,
-    element: selectRef.current,
+    element: ref.current,
     onOutsideClick: hide,
   });
 
@@ -321,7 +313,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
     onEntered,
     onExited,
   } = useFixedPositioning({
-    fixedTo: () => selectRef.current,
+    fixedTo: () => ref.current,
     anchor,
     onScroll: closeOnScroll ? hide : undefined,
     onResize: closeOnResize ? hide : undefined,
@@ -350,10 +342,10 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
 
   const handleKeyboardClose = useCallback(() => {
     hide();
-    if (selectRef.current) {
-      selectRef.current.focus();
+    if (ref.current) {
+      ref.current.focus();
     }
-  }, [hide]);
+  }, [hide, ref]);
 
   const labelId = `${id}-label`;
   const valueId = `${id}-value`;
@@ -366,7 +358,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
         {...props}
         aria-haspopup="listbox"
         aria-disabled={disabled || undefined}
-        ref={ref}
+        ref={refHandler}
         role="button"
         tabIndex={disabled ? undefined : 0}
         label={!!label}

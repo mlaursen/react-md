@@ -15,12 +15,12 @@ import {
 import { ListElement } from "@react-md/list";
 import { TransitionHooks, useFixedPositioning } from "@react-md/transition";
 import {
-  applyRef,
   ItemRefList,
   MovementPresets,
   scrollIntoView,
   useActiveDescendantMovement,
   useCloseOnOutsideClick,
+  useEnsuredRef,
   useIsUserInteractionMode,
   useToggle,
 } from "@react-md/utils";
@@ -129,14 +129,7 @@ export default function useAutoComplete({
   isListAutocomplete,
   isInlineAutocomplete,
 }: AutoCompleteOptions): AutoCompleteReturnValue {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const ref = useCallback(
-    (instance: HTMLInputElement | null) => {
-      applyRef(instance, forwardedRef);
-      inputRef.current = instance;
-    },
-    [forwardedRef]
-  );
+  const [ref, refHandler] = useEnsuredRef(forwardedRef);
 
   const filter = getFilterFunction(filterFn);
   const [
@@ -190,7 +183,7 @@ export default function useAutoComplete({
       if (isInlineAutocomplete && filtered.length && !isBackspace) {
         nextMatch = getResultValue(filtered[0], valueKey);
 
-        const input = inputRef.current;
+        const input = ref.current;
         if (input && !isBackspace) {
           input.value = nextMatch;
           input.setSelectionRange(nextValue.length, nextMatch.length);
@@ -200,6 +193,7 @@ export default function useAutoComplete({
       setState({ value: nextValue, match: nextMatch, filteredData: filtered });
     },
     [
+      ref,
       data,
       filter,
       filterOnNoValue,
@@ -420,7 +414,7 @@ export default function useAutoComplete({
 
   useCloseOnOutsideClick({
     enabled: visible,
-    element: inputRef.current,
+    element: ref.current,
     onOutsideClick: hide,
   });
 
@@ -432,7 +426,7 @@ export default function useAutoComplete({
     onExited,
     updateStyle,
   } = useFixedPositioning({
-    fixedTo: () => inputRef.current,
+    fixedTo: () => ref.current,
     anchor,
     onScroll(_event, { visible }) {
       if (closeOnScroll || !visible) {
@@ -481,7 +475,7 @@ export default function useAutoComplete({
   }, [visible, filteredData]);
 
   return {
-    ref,
+    ref: refHandler,
     value,
     match,
     visible,

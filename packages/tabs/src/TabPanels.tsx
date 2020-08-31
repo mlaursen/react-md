@@ -10,7 +10,7 @@ import React, {
   useState,
 } from "react";
 import cn from "classnames";
-import { applyRef, bem } from "@react-md/utils";
+import { bem, useEnsuredRef } from "@react-md/utils";
 
 import PanelGroup from "./PanelGroup";
 import { useTabs } from "./TabsManager";
@@ -92,14 +92,7 @@ const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(function TabPanels(
     setState(({ incrementing }) => ({ incrementing, previous: activeIndex }));
   }, [activeIndex]);
 
-  const ref = useRef<HTMLDivElement | null>(null);
-  const mergedRef = useCallback(
-    (instance: HTMLDivElement | null) => {
-      applyRef(instance, forwardedRef);
-      ref.current = instance;
-    },
-    [forwardedRef]
-  );
+  const [ref, refHandler] = useEnsuredRef(forwardedRef);
 
   useEffect(() => {
     if (!ref.current || disableScrollFix) {
@@ -115,7 +108,7 @@ const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(function TabPanels(
   return (
     <div
       {...props}
-      ref={mergedRef}
+      ref={refHandler}
       className={cn(
         block({
           "slide-left": incrementing && !persistent,

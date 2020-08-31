@@ -1,11 +1,5 @@
-import {
-  HTMLAttributes,
-  MutableRefObject,
-  Ref,
-  useCallback,
-  useRef,
-} from "react";
-import { useCloseOnOutsideClick, applyRef } from "@react-md/utils";
+import { HTMLAttributes, MutableRefObject, Ref } from "react";
+import { useCloseOnOutsideClick, useEnsuredRef } from "@react-md/utils";
 
 import useMenuClick from "./useMenuClick";
 import useMenuKeyDown from "./useMenuKeyDown";
@@ -94,7 +88,7 @@ interface ReturnValue
  * - conditionally close the menu if the page is scrolled while visible.
  */
 export default function useMenu({
-  ref,
+  ref: propRef,
   visible,
   controlId,
   horizontal = false,
@@ -105,17 +99,10 @@ export default function useMenu({
   onRequestClose,
   disableControlClickOkay = false,
 }: MenuOptions): ReturnValue {
-  const menu = useRef<HTMLDivElement | null>(null);
-  const refHandler = useCallback(
-    (instance: HTMLDivElement | null) => {
-      applyRef(instance, ref);
-      menu.current = instance;
-    },
-    [ref]
-  );
+  const [ref, refHandler] = useEnsuredRef(propRef);
 
   useCloseOnOutsideClick({
-    element: menu,
+    element: ref,
     enabled: visible,
     onOutsideClick(element, target, contains) {
       if (!element || !target) {
@@ -129,8 +116,8 @@ export default function useMenu({
       // Safari. If we didn't need to portal, this line could be removed as the
       // `menu.current` would contain the child menu and not close.
       const expanded =
-        menu.current &&
-        menu.current.querySelector('[aria-expanded="true"]') &&
+        ref.current &&
+        ref.current.querySelector('[aria-expanded="true"]') &&
         target.closest('[role="menu"]');
 
       if (
@@ -144,7 +131,7 @@ export default function useMenu({
 
   const onClick = useMenuClick({ onClick: propOnClick, onRequestClose });
   const onKeyDown = useMenuKeyDown({
-    menu: menu.current,
+    menu: ref.current,
     onKeyDown: propOnKeyDown,
     onRequestClose,
     portalled,
@@ -154,7 +141,7 @@ export default function useMenu({
 
   return {
     ref: refHandler,
-    menuRef: menu,
+    menuRef: ref,
     onClick,
     onKeyDown,
   };

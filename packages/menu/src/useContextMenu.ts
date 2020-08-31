@@ -4,17 +4,16 @@ import {
   SetStateAction,
   useCallback,
   useEffect,
-  useRef,
   useState,
 } from "react";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { SCALE_Y_CLASSNAMES } from "@react-md/transition";
 import {
-  applyRef,
   containsElement,
   InitialCoords,
   PositionAnchor,
   TOP_INNER_LEFT_ANCHOR,
+  useEnsuredRef,
 } from "@react-md/utils";
 import { MenuProps } from "./Menu";
 
@@ -119,7 +118,7 @@ export default function useContextMenu<CE extends HTMLElement>({
     [disableDeselect]
   );
 
-  const menuRef = useRef<HTMLDivElement | null>(null);
+  const [ref, refHandler] = useEnsuredRef(propRef);
   useEffect(() => {
     if (!visible) {
       return;
@@ -127,7 +126,7 @@ export default function useContextMenu<CE extends HTMLElement>({
 
     const hide = (event: MouseEvent): void => {
       const target = event.target as HTMLElement | null;
-      if (!containsElement(menuRef, target)) {
+      if (!containsElement(ref, target)) {
         onRequestClose();
       }
     };
@@ -136,19 +135,11 @@ export default function useContextMenu<CE extends HTMLElement>({
     return () => {
       window.removeEventListener("contextmenu", hide, true);
     };
-  }, [onRequestClose, visible]);
-
-  const ref = useCallback(
-    (instance: HTMLDivElement | null) => {
-      applyRef(instance, propRef);
-      menuRef.current = instance;
-    },
-    [propRef]
-  );
+  }, [onRequestClose, visible, ref]);
 
   const menuProps: ProvidedContextMenuProps = {
     id,
-    ref,
+    ref: refHandler,
     anchor,
     visible,
     classNames,
