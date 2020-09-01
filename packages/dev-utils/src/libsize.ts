@@ -152,7 +152,7 @@ async function cssSize(): Promise<string[]> {
   return sizes;
 }
 
-const LIBSIZE_TOKEN = "$ yarn dev-utils libsize\n\n";
+const LIBSIZE_TOKEN = "yarn dev-utils libsize\n\n";
 
 function updateLibsize(filePath: string, message: string): void {
   const readme = readFileSync(filePath, "utf8");
