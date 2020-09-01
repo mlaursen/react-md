@@ -29,9 +29,9 @@ export default function ResizeObserverExample(): ReactElement {
     ({
       height,
       width,
-      element: _element,
-      scrollHeight: _scrollHeight,
-      scrollWidth: _scrollWidth,
+      /* element, */
+      /* scrollHeight, */
+      /* scrollWidth, */
     }) => {
       setState((prevState) => ({
         ...prevState,
