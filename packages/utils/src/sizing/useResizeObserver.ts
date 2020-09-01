@@ -306,7 +306,7 @@ export function useResizeObserver<E extends HTMLElement>(
     return () => {
       unsubscribe(target, onResize, disableHeight, disableWidth);
     };
-  }, [disableHeight, disableWidth, onResize, ref.current]);
+  }, [disableHeight, disableWidth, onResize]);
 
   return [ref, refHandler];
 }
