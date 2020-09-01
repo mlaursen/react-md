@@ -11,5 +11,4 @@ export { default as GridListCell } from "./GridListCell";
 export * from "./GridListCell";
 
 export { default as scrollbarSize } from "./scrollbarSize";
-
-export { useGridListSize, GridListSize } from "./context";
+export * from "./useGridList";

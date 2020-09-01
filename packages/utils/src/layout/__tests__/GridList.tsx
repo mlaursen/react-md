@@ -1,11 +1,82 @@
+/* eslint-disable no-underscore-dangle */
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, act } from "@testing-library/react";
+import ResizeObserverPolyfill from "resize-observer-polyfill";
+import { mocked } from "ts-jest/utils";
 
 import GridList from "../GridList";
-import { useGridListSize } from "../context";
+import { useGridListSize } from "../useGridList";
 
+jest.mock("resize-observer-polyfill");
+
+const ResizeObserverMock = mocked(ResizeObserverPolyfill);
+
+interface DOMRectReadOnly {
+  readonly x: number;
+  readonly y: number;
+  readonly width: number;
+  readonly height: number;
+  readonly top: number;
+  readonly right: number;
+  readonly bottom: number;
+  readonly left: number;
+}
+
+const DEFAULT_DOM_RECT: DOMRectReadOnly = {
+  x: 100,
+  y: 100,
+  bottom: 2000,
+  top: 100,
+  left: 100,
+  right: 2000,
+  height: 100,
+  width: 1000,
+};
+
+class MockedObserver implements ResizeObserver {
+  public _callback: ResizeObserverCallback;
+
+  public _elements: Element[];
+
+  public constructor(callback: ResizeObserverCallback) {
+    this._elements = [];
+    this._callback = callback;
+  }
+
+  public observe(target: Element): void {
+    this._elements.push(target);
+  }
+
+  public unobserve(target: Element): void {
+    this._elements = this._elements.filter((el) => el !== target);
+  }
+
+  public disconnect(): void {
+    this._elements = [];
+  }
+
+  public trigger(contentRect: Partial<DOMRectReadOnly> = DEFAULT_DOM_RECT) {
+    this._callback(
+      this._elements.map((target) => ({
+        target,
+        contentRect: {
+          ...DEFAULT_DOM_RECT,
+          ...contentRect,
+        },
+      })),
+      this
+    );
+  }
+}
+
+let observer: MockedObserver | undefined;
 let getBoundingClientRect: jest.SpyInstance<DOMRect, []>;
 beforeAll(() => {
+  ResizeObserverMock.mockImplementation((callback) => {
+    observer = new MockedObserver(callback);
+    return observer;
+  });
+
   getBoundingClientRect = jest.spyOn(
     HTMLElement.prototype,
     "getBoundingClientRect"
@@ -14,23 +85,32 @@ beforeAll(() => {
   // this mock doesn't really matter other than the `width` value. just have to
   // provide all the rest for Typescript
   getBoundingClientRect.mockImplementation(() => ({
-    x: 100,
-    y: 100,
-    bottom: 2000,
-    top: 100,
-    left: 100,
-    right: 2000,
-    height: 100,
-    width: 1000,
+    ...DEFAULT_DOM_RECT,
     toJSON: () => "",
   }));
 });
 
+beforeEach(() => {
+  observer?.disconnect();
+});
+
 afterAll(() => {
+  ResizeObserverMock.mockRestore();
+
   if (getBoundingClientRect) {
     getBoundingClientRect.mockRestore();
   }
 });
+
+function trigger(width: number = DEFAULT_DOM_RECT.width): void {
+  act(() => {
+    if (!observer) {
+      throw new Error();
+    }
+
+    observer.trigger({ width });
+  });
+}
 
 describe("GridList", () => {
   // NOTE: jsdom currently does not support rendering custom css properties (css variables)
@@ -43,8 +123,12 @@ describe("GridList", () => {
 
     const containerWidth = 1000 - 16;
 
-    expect(children).toBeCalledTimes(2);
+    expect(children).toBeCalledTimes(1);
     expect(children).toBeCalledWith({ cellWidth: 150, columns: -1 });
+
+    trigger(containerWidth);
+
+    expect(children).toBeCalledTimes(2);
     expect(children).toBeCalledWith({
       columns: 7,
       cellWidth: containerWidth / Math.ceil(containerWidth / 150),
@@ -52,12 +136,15 @@ describe("GridList", () => {
     children.mockClear();
 
     rerender(<GridList maxCellSize={400}>{children}</GridList>);
-    expect(children).toBeCalledTimes(2);
+    expect(children).toBeCalledTimes(1);
     // first render then it recalculates
     expect(children).toBeCalledWith({
       columns: 7,
       cellWidth: containerWidth / Math.ceil(containerWidth / 150),
     });
+
+    trigger(containerWidth);
+
     expect(children).toBeCalledWith({
       columns: 3,
       cellWidth: containerWidth / Math.ceil(containerWidth / 400),
@@ -71,8 +158,11 @@ describe("GridList", () => {
     ));
 
     render(<GridList maxCellSize={400}>{children}</GridList>);
-    expect(children).toBeCalledTimes(2);
+    expect(children).toBeCalledTimes(1);
     expect(children).toBeCalledWith({ columns: -1, cellWidth: 400 });
+
+    trigger(containerWidth);
+    expect(children).toBeCalledTimes(2);
     expect(children).toBeCalledWith({
       columns: 3,
       cellWidth: containerWidth / Math.ceil(containerWidth / 400),
@@ -87,6 +177,7 @@ describe("GridList", () => {
         )}
       </GridList>
     );
+    trigger();
 
     expect(container).toMatchSnapshot();
 
@@ -97,6 +188,7 @@ describe("GridList", () => {
         )}
       </GridList>
     );
+    trigger();
     expect(container).toMatchSnapshot();
 
     rerender(
@@ -104,6 +196,7 @@ describe("GridList", () => {
         <div>This is some content!</div>
       </GridList>
     );
+    trigger();
     expect(container).toMatchSnapshot();
 
     rerender(
@@ -111,6 +204,7 @@ describe("GridList", () => {
         <div>This is some content!</div>
       </GridList>
     );
+    trigger();
     expect(container).toMatchSnapshot();
   });
 
@@ -126,6 +220,7 @@ describe("GridList", () => {
         <Child />
       </GridList>
     );
+    trigger();
     const child = getByTestId("child");
     expect(child).toMatchInlineSnapshot(`
       <div
