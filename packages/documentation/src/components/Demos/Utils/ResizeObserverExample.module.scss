@@ -8,30 +8,14 @@ $rmd-theme-dark-elevation: true;
   @include rmd-elevation(4);
   @include rmd-theme-dark-elevation(4, true);
 
+  margin-top: 1rem;
   overflow: hidden;
   transition-duration: 1s;
   transition-property: max-height, max-width;
 }
 
-.button {
-  margin-bottom: 1rem;
-}
-
 .table {
+  border-collapse: separate;
   // make it grow to fit the entire max-height
   padding-bottom: 100%;
-  width: 100%;
-}
-
-.th {
-  @include rmd-typography(subtitle-2);
-  @include rmd-theme(color, text-secondary-on-background);
-
-  height: 2.5rem;
-  padding-left: 1rem;
-  padding-right: 1.5rem;
-}
-
-.td {
-  width: 100%;
 }

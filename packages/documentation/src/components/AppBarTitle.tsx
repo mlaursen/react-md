@@ -1,4 +1,11 @@
-import React, { FC, useRef, useState, ReactNode, useMemo } from "react";
+import React, {
+  FC,
+  useRef,
+  useState,
+  ReactNode,
+  useMemo,
+  useCallback,
+} from "react";
 import {
   AppBarTitle as RMDAppBarTitle,
   AppBarTitleProps,
@@ -24,21 +31,21 @@ const AppBarTitle: FC<AppBarTitleProps> = ({
 }) => {
   const [tooltip, setTooltip] = useState<ReactNode>(null);
   const ref = useRef<HTMLHeadingElement | null>(null);
-  useResizeObserver({
-    disableHeight: true,
-    onResize() {
-      if (!ref.current) {
-        return;
-      }
+  const updateTooltip = useCallback(() => {
+    if (!ref.current) {
+      return;
+    }
 
-      const isTruncated = ref.current.offsetWidth < ref.current.scrollWidth;
-      if (isTruncated && !tooltip) {
-        setTooltip(children);
-      } else if (!isTruncated && tooltip) {
-        setTooltip(null);
-      }
-    },
-    target: ref,
+    const isTruncated = ref.current.offsetWidth < ref.current.scrollWidth;
+    if (isTruncated && !tooltip) {
+      setTooltip(children);
+    } else if (!isTruncated && tooltip) {
+      setTooltip(null);
+    }
+  }, [tooltip, ref, children]);
+  const [, refHandler] = useResizeObserver(updateTooltip, {
+    ref,
+    disableHeight: true,
   });
 
   const id = useMemo(() => {
@@ -51,7 +58,11 @@ const AppBarTitle: FC<AppBarTitleProps> = ({
 
   return (
     <Tooltipped id={id} tooltip={tooltip}>
-      <RMDAppBarTitle {...props} ref={ref} tabIndex={tooltip ? 0 : undefined}>
+      <RMDAppBarTitle
+        {...props}
+        ref={refHandler}
+        tabIndex={tooltip ? 0 : undefined}
+      >
         {children}
       </RMDAppBarTitle>
     </Tooltipped>

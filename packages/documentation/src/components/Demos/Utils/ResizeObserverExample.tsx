@@ -1,138 +1,122 @@
-import React, {
-  CSSProperties,
-  FC,
-  MutableRefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { Button } from "@react-md/button";
-import {
-  OnResizeObserverChange,
-  ResizeObserver,
-  useToggle,
-} from "@react-md/utils";
+import { Table, TableBody, TableCell, TableRow } from "@react-md/table";
+import { OnResizeObserverChange, useResizeObserver } from "@react-md/utils";
 
 import { randomInt } from "utils/random";
 
 import styles from "./ResizeObserverExample.module.scss";
 
-const DEFAULT_HEIGHT = 100;
+const DEFAULT_HEIGHT = 110;
 const DEFAULT_WIDTH = 150;
 
-interface Size {
-  height: number;
-  width: number;
-  onResize: OnResizeObserverChange;
-}
-
-/**
- * This hook is used to handle the resize events from the `ResizeObserver`. This will update the
- * table values with the current `height` and `width` while the new sizes are animating.
- */
-function useSize(): Size {
-  const [size, setSize] = useState({
+export default function ResizeObserverExample(): ReactElement {
+  const [state, setState] = useState({
+    enabled: false,
     height: DEFAULT_HEIGHT,
     width: DEFAULT_WIDTH,
-  });
-
-  const onResize: OnResizeObserverChange = (event) => {
-    const { height, width } = event;
-    setSize({ height, width });
-  };
-
-  const { height, width } = size;
-  return {
-    height,
-    width,
-    onResize,
-  };
-}
-
-interface RandomStyleReturnValue {
-  style: CSSProperties;
-  containerRef: MutableRefObject<HTMLDivElement | null>;
-}
-
-/**
- * This hook will create a random style for the container element so that
- * the `maxHeight` and `maxWidth` can be animated. It'll stop and start
- * when the `enabled` value is toggled.
- */
-function useRandomStyle(enabled: boolean): RandomStyleReturnValue {
-  const [style, setStyle] = useState({
     maxHeight: DEFAULT_HEIGHT,
     maxWidth: DEFAULT_WIDTH,
   });
+  const { enabled, height, width, maxHeight, maxWidth } = state;
 
-  const timeout = useRef<number | undefined>();
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  /**
+   * The resize event handler _should_ probably be wrapped with `useCallback` if
+   * your resize event handler causes a lot of re-renders since each time the
+   * resize handler changes, the resize observer will be re-initiated.
+   */
+  const handleResize = useCallback<OnResizeObserverChange>(
+    ({
+      height,
+      width,
+      element: _element,
+      scrollHeight: _scrollHeight,
+      scrollWidth: _scrollWidth,
+    }) => {
+      setState((prevState) => ({
+        ...prevState,
+        height,
+        width,
+      }));
+    },
+    []
+  );
+  const [ref, refHandler] = useResizeObserver(handleResize, {
+    // an optional ref that will be merged with the `refHandler` if you need to
+    // merge multiple refs together
+    /* ref: anotherRef, */
+    // boolean if the `handleResize` should not be called if only the height has
+    // changed
+    /* disableHeight: true, */
+    // boolean if the `handleResize` should not be called if only the width has
+    // changed
+    /* disableWidth: true, */
+  });
+
   useEffect(() => {
     if (!enabled) {
       return;
     }
 
+    let timeout: number | undefined;
     const randomize = (): void => {
       const maxHeight = randomInt({ min: 100, max: 500 });
       const maxWidth = randomInt({
         min: 150,
-        max: containerRef.current ? containerRef.current.offsetWidth : 300,
+        max: ref.current?.offsetWidth ?? 300,
       });
+      setState((prevState) => ({
+        ...prevState,
+        maxHeight,
+        maxWidth,
+      }));
 
-      setStyle({ maxHeight, maxWidth });
-      timeout.current = window.setTimeout(
+      timeout = window.setTimeout(
         randomize,
-        randomInt({ min: 2, max: 8 }) * 1000
+        randomInt({ min: 2, max: 5 }) * 1000
       );
     };
 
     randomize();
 
     return () => {
-      window.clearTimeout(timeout.current);
+      window.clearTimeout(timeout);
     };
-  }, [enabled]);
-
-  return { style, containerRef };
-}
-
-const SimpleExample: FC = () => {
-  const [enabled, , , toggle] = useToggle(false);
-  const { style, containerRef } = useRandomStyle(enabled);
-  const { height, width, onResize } = useSize();
+  }, [enabled, ref]);
 
   return (
     <>
       <Button
-        id="start-resizing"
-        onClick={toggle}
+        onClick={() => {
+          setState((prevState) => ({
+            ...prevState,
+            enabled: !prevState.enabled,
+          }));
+        }}
         theme="primary"
         themeType="contained"
         className={styles.button}
       >
         {enabled ? "Stop" : "Start"}
       </Button>
-      <div ref={containerRef} className={styles.container} style={style}>
-        <ResizeObserver onResize={onResize} />
-        <table className={styles.table}>
-          <tbody>
-            <tr>
-              <th scope="row" className={styles.th}>
-                height:
-              </th>
-              <td className={styles.td}>{height}</td>
-            </tr>
-            <tr>
-              <th scope="row" className={styles.th}>
-                width:
-              </th>
-              <td className={styles.td}>{width}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div
+        style={{ maxHeight, maxWidth }}
+        ref={refHandler}
+        className={styles.container}
+      >
+        <Table className={styles.table} fullWidth>
+          <TableBody>
+            <TableRow>
+              <TableCell header>Height:</TableCell>
+              <TableCell grow>{height}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell header>Width:</TableCell>
+              <TableCell grow>{width}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </div>
     </>
   );
-};
-
-export default SimpleExample;
+}
