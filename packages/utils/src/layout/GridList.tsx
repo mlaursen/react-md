@@ -11,7 +11,7 @@ import cn from "classnames";
 
 import applyRef from "../applyRef";
 import bem from "../bem";
-import useResizeObserver from "../sizing/useResizeObserver";
+import { useResizeObserver } from "../sizing/useResizeObserver";
 import GridListCell from "./GridListCell";
 import getScrollbarSize from "./scrollbarSize";
 import { GridListSizeProvider, GridListSize } from "./context";

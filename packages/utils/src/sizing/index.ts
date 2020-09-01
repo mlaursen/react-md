@@ -16,8 +16,5 @@ export { default as useOrientation } from "./useOrientation";
 export { default as useWidthMediaQuery } from "./useWidthMediaQuery";
 export { default as useAppSize } from "./useAppSize";
 export { AppSize, AppSizeOptions, DEFAULT_APP_SIZE } from "./useAppSizeMedia";
-export {
-  default as useResizeObserver,
-  ObservedResizeEventHandler,
-} from "./useResizeObserver";
+export * from "./useResizeObserver";
 export { default as useResizeListener } from "./useResizeListener";

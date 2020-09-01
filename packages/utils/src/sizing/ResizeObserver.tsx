@@ -1,9 +1,7 @@
 import React, { ElementType, ReactElement, useCallback, useState } from "react";
 
-import useResizeObserver, {
-  ObservedResizeEventHandler,
-  ResizeObserverTarget,
-} from "./useResizeObserver";
+import { useResizeObserver, OnResizeObserverChange } from "./useResizeObserver";
+import { ResizeObserverTarget } from "./useResizeObserverV1";
 
 export interface ResizeObserverProps {
   /**
@@ -51,13 +49,16 @@ export interface ResizeObserverProps {
    * the next height, width, scrollHeight, scrollWidth, and the element that is
    * being observed.
    */
-  onResize: ObservedResizeEventHandler;
+  onResize: OnResizeObserverChange;
 }
 
 /**
  * The resize observer is used to track the size changes for a single element in
- * a page.  This is a bit different than a normal `ResizeListener` since it does
+ * a page. This is a bit different than a normal `ResizeListener` since it does
  * not rely on entire page size changes.
+ *
+ * @deprecated 2.3.0 You should really use the `useResizeObserver` hook instead
+ * since it offers a lot more flexibility and functionality than this component.
  */
 function ResizeObserver({
   disableHeight = false,

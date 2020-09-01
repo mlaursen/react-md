@@ -2,7 +2,7 @@ import {
   getResizeObserverTarget,
   isHeightChange,
   isWidthChange,
-} from "../useResizeObserver";
+} from "../useResizeObserverV1";
 
 describe("getResizeObserverTarget", () => {
   it("should return null if the target is null", () => {
