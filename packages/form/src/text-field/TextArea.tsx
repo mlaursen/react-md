@@ -7,6 +7,7 @@ import React, {
   TextareaHTMLAttributes,
   useCallback,
   useState,
+  useRef,
 } from "react";
 import cn from "classnames";
 import { bem, useEnsuredRef, useResizeObserver } from "@react-md/utils";
@@ -168,9 +169,10 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       setHeight(undefined);
     }
 
-    const [mask, setMask] = useState<HTMLTextAreaElement | null>(null);
+    const maskRef = useRef<HTMLTextAreaElement | null>(null);
     const [scrollable, setScrollable] = useState(false);
-    const updateHeight = (): void => {
+    const updateHeight = useCallback(() => {
+      const mask = maskRef.current;
       if (!mask) {
         return;
       }
@@ -195,19 +197,20 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       if (height !== nextHeight) {
         setHeight(nextHeight);
       }
-    };
+    }, [height, maxRows, scrollable]);
 
     // the window can be resized while there is text inside the textarea so need to
     // recalculate the height when the width changes as well.
-    useResizeObserver({
+    const [, maskRefHandler] = useResizeObserver(updateHeight, {
+      ref: maskRef,
       disableHeight: true,
-      target: mask,
-      onResize: updateHeight,
     });
+
     const [valued, onChange] = useValuedState<HTMLTextAreaElement>({
       value,
       defaultValue,
       onChange: (event) => {
+        const mask = maskRef.current;
         if (propOnChange) {
           propOnChange(event);
         }
@@ -286,7 +289,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             aria-hidden
             defaultValue={value || defaultValue}
             id={`${id}-mask`}
-            ref={setMask}
+            ref={maskRefHandler}
             readOnly
             rows={rows}
             tabIndex={-1}
