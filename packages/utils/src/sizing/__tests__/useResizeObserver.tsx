@@ -93,6 +93,8 @@ describe("useResizeObserver", () => {
   });
 
   it("should use the v1 behavior if the first arg is an object", () => {
+    const warn = jest.spyOn(console, "warn");
+    warn.mockImplementation(() => {});
     const onResize = jest.fn();
     const Test = () => {
       const ref = useRef<HTMLDivElement | null>(null);
@@ -113,6 +115,8 @@ describe("useResizeObserver", () => {
     expect(unobserve).toBeCalledWith(div);
     expect(unobserve).toBeCalledTimes(1);
     expect(disconnect).toBeCalledTimes(1);
+
+    warn.mockRestore();
   });
 
   it("should use the ref API if the first argument is a function", () => {

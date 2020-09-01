@@ -149,6 +149,15 @@ export interface UseResizeObserverV1Options<
 }
 
 /**
+ * @private
+ * @internal
+ */
+export const warnedOnce = {
+  hook: false,
+  comp: false,
+};
+
+/**
  * A hook that is used to trigger esize events when a target element is resized
  * via CSS or other changes.
  *
@@ -161,6 +170,27 @@ export default function useResizeObserverV1<E extends HTMLElement>({
   onResize,
   target,
 }: UseResizeObserverV1Options<E>): void {
+  if (process.env.NODE_ENV !== "production") {
+    const stack = new Error().stack ?? "";
+    const isComp = stack.includes("at ResizeObserver ");
+    const key = (isComp ? "comp" : "hook") as keyof typeof warnedOnce;
+    if (!warnedOnce[key]) {
+      warnedOnce[key] = true;
+      let message: string;
+      if (isComp) {
+        message = `The \`ResizeObserver\` component has been deprecated in favor of the new \`useResizeObserver\` hook using the \`ref\` API.`;
+      } else {
+        message = `The \`useResizeObserver\` hook has deprecated the ability to use an object containing a \`target\` and \`onResize\` callback.`;
+        message = `${message} Switch to the new \`ref\` API by setting the \`onResize\` callback as the first argument.`;
+      }
+
+      // eslint-disable-next-line no-console
+      console.warn(
+        `${message} Please see https://github.com/mlaursen/react-md/pull/940 for more details.`
+      );
+    }
+  }
+
   useEffect(() => {
     if (disableHeight && disableWidth) {
       return;
