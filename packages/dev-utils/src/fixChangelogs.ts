@@ -79,7 +79,7 @@ const transforms: readonly Transformer[] = [
 const transform = (changelog: string, isRoot: boolean): string =>
   transforms.reduce((updated, fn) => fn(updated, isRoot), changelog);
 
-export default async function fixChangelogs(ammend: boolean): Promise<void> {
+export default async function fixChangelogs(amend: boolean): Promise<void> {
   log.info("Finding and formatting changelogs...");
   const packagesChangelogs = await glob("packages/*/CHANGELOG.md");
   const changelogPaths = ["CHANGELOG.md", ...packagesChangelogs];
@@ -95,7 +95,7 @@ export default async function fixChangelogs(ammend: boolean): Promise<void> {
 
   await indexer();
 
-  if (ammend) {
+  if (amend) {
     git(
       "add CHANGELOG.md packages/*/CHANGELOG.md packages/documentation/src/constants/meta"
     );

@@ -191,9 +191,9 @@ createCommand("changelogs")
 createCommand("rmd-readme").action(() => rmdReadme());
 createCommand("fix-changelogs")
   .option(
-    "--ammend",
-    "Ammend the previous commit to include these changes. This should really only be used during the release process."
+    "--amend",
+    "Amend the previous commit to include these changes. This should really only be used during the release process."
   )
-  .action(({ ammend = false }) => fixChangelogs(ammend));
+  .action(({ amend = false }) => fixChangelogs(amend));
 
 commander.parse(process.argv);

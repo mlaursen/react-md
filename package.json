@@ -7,7 +7,7 @@
   "scripts": {
     "pre-publish": "dev-utils prepublish",
     "lerna-version": "npx lerna version --no-push --yes",
-    "fix-changelogs": "dev-utils fix-changelogs",
+    "fix-changelogs": "dev-utils fix-changelogs --amend",
     "lerna-publish": "npx lerna publish from-git --yes",
     "publish-complete": "git push --follow-tags --no-verify origin master",
     "release": "npm-run-all pre-publish lerna-version fix-changelogs lerna-publish publish-complete",
