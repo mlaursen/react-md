@@ -7,6 +7,9 @@ import useResizeObserverV1, {
   UseResizeObserverV1Options,
 } from "./useResizeObserverV1";
 
+/**
+ * @since 2.3.0
+ */
 export interface UseResizeObserverOptions<E extends HTMLElement> {
   /**
    * An optional ref to merge with the returned ref handler function
@@ -26,6 +29,9 @@ export interface UseResizeObserverOptions<E extends HTMLElement> {
   disableWidth?: boolean;
 }
 
+/**
+ * @since 2.3.0
+ */
 export interface ResizeObserverElementSize {
   /**
    * The height for the element that was changed.
@@ -48,6 +54,9 @@ export interface ResizeObserverElementSize {
   scrollWidth: number;
 }
 
+/**
+ * @since 2.3.0
+ */
 export interface ResizeObserverElementData<E extends HTMLElement = HTMLElement>
   extends ResizeObserverElementSize {
   /**
@@ -59,6 +68,7 @@ export interface ResizeObserverElementData<E extends HTMLElement = HTMLElement>
 /**
  * The callback that is triggered each time an element's size change has been
  * observered.
+ * @since 2.3.0
  */
 export type OnResizeObserverChange<E extends HTMLElement = HTMLElement> = (
   resizeData: ResizeObserverElementData<E>
@@ -80,7 +90,7 @@ interface ResizeObserverSubscription<E extends HTMLElement> {
  * @private
  * @internal
  */
-export function isHeightChange(
+function isHeightChange(
   prevSize: ResizeObserverElementSize | undefined,
   nextSize: ResizeObserverElementSize
 ): boolean {
@@ -95,7 +105,7 @@ export function isHeightChange(
  * @private
  * @internal
  */
-export function isWidthChange(
+function isWidthChange(
   prevSize: ResizeObserverElementSize | undefined,
   nextSize: ResizeObserverElementSize
 ): boolean {

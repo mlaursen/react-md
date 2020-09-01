@@ -22,7 +22,14 @@ export const CELL_SIZE_VAR = "--rmd-cell-size";
  */
 export const CELL_MARGIN_VAR = "--rmd-cell-margin";
 
+/**
+ * @since 2.3.0
+ */
 export const DEFAULT_GRID_LIST_MAX_CELL_SIZE = 150;
+
+/**
+ * @since 2.3.0
+ */
 export const DEFAULT_GRID_LIST_PADDING = 16;
 
 export interface GridListSize {
@@ -42,6 +49,9 @@ const context = createContext<GridListSize>({
   cellWidth: -1,
 });
 
+/**
+ * @since 2.3.0
+ */
 export const { Provider: GridListSizeProvider } = context;
 
 if (process.env.NODE_ENV !== "production") {
@@ -58,6 +68,9 @@ export function useGridListSize(): GridListSize {
   return useContext(context);
 }
 
+/**
+ * @since 2.3.0
+ */
 export interface UseGridListOptions {
   /**
    * An optional style object to merge with the grid custom css properties
@@ -115,7 +128,7 @@ export interface UseGridListOptions {
   containerPadding?: number;
 }
 
-interface ProvidedGridListProps<E extends HTMLElement> {
+export interface ProvidedGridListProps<E extends HTMLElement> {
   ref: RefCallback<E | null>;
   style: CSSProperties;
   className: string;
@@ -126,7 +139,7 @@ type CSSProperties = React.CSSProperties & {
   [CELL_MARGIN_VAR]?: string;
 };
 
-type UseGridListReturnValue<E extends HTMLElement> = readonly [
+export type UseGridListReturnValue<E extends HTMLElement> = readonly [
   ProvidedGridListProps<E>,
   GridListSize
 ];
@@ -162,6 +175,8 @@ type UseGridListReturnValue<E extends HTMLElement> = readonly [
  *   </GridListSizeProvider>
  * );
  * ```
+ *
+ * @since 2.3.0
  */
 export function useGridList<E extends HTMLElement>({
   ref: propRef,
