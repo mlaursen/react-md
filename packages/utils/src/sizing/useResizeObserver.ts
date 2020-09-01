@@ -1,8 +1,7 @@
-import { Ref, useCallback, useRef } from "react";
+import { Ref } from "react";
 import ResizeObserverPolyfill from "resize-observer-polyfill";
 
-import applyRef from "../applyRef";
-import { EnsuredRefs } from "../useEnsuredRef";
+import { EnsuredRefs, useEnsuredRef } from "../useEnsuredRef";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 import useResizeObserverV1, {
   UseResizeObserverV1Options,
@@ -284,14 +283,7 @@ export function useResizeObserver<E extends HTMLElement>(
   const onResize = arg1;
   const { ref: propRef, disableHeight = false, disableWidth = false } = arg2;
 
-  const ref = useRef<E | null>(null);
-  const refHandler = useCallback(
-    (instance: E | null) => {
-      applyRef(instance, propRef);
-      ref.current = instance;
-    },
-    [propRef]
-  );
+  const [ref, refHandler] = useEnsuredRef<E>(propRef);
 
   useIsomorphicLayoutEffect(() => {
     const target = ref.current;
