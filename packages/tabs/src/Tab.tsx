@@ -5,8 +5,9 @@ import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { bem } from "@react-md/utils";
+import { bem, useResizeObserver } from "@react-md/utils";
 import { TabConfig } from "./types";
+import { useUpdateIndicatorStyles } from "./useTabIndicatorStyle";
 
 export interface TabProps
   extends TabConfig,
@@ -64,7 +65,7 @@ const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
     enablePressedAndRipple,
     ...props
   },
-  ref
+  propRef
 ) {
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
@@ -78,12 +79,19 @@ const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
     rippleContainerClassName,
     enablePressedAndRipple,
   });
+  // TODO: Look into removing this resize observer. This is only required if
+  // someone manually updates the width of the tab (dev utils) or if the width
+  // was not changed due to the tabs container element resizing (iffy)
+  const updateIndicatorStyles = useUpdateIndicatorStyles();
+  const [, refHandler] = useResizeObserver(updateIndicatorStyles, {
+    ref: propRef,
+  });
 
   return (
     <button
       {...props}
       {...handlers}
-      ref={ref}
+      ref={active ? refHandler : propRef}
       aria-selected={active}
       aria-controls={panelId}
       type="button"

@@ -6,8 +6,10 @@ import {
   useMemo,
   useRef,
   useState,
+  createContext,
+  useContext,
 } from "react";
-import { ItemRefList, useEnsuredRef, useResizeObserver } from "@react-md/utils";
+import { ItemRefList, useResizeObserver } from "@react-md/utils";
 
 interface Options {
   style: React.CSSProperties | undefined;
@@ -27,12 +29,14 @@ interface CSSVariables {
 }
 
 type CSSProperties = React.CSSProperties & CSSVariables;
+type UpdateIndicatorStyles = () => void;
 
 type MergedTabRef = (instance: HTMLDivElement | null) => void;
 type ReturnValue = [
   CSSProperties,
   MergedTabRef,
-  MutableRefObject<HTMLDivElement | null>
+  MutableRefObject<HTMLDivElement | null>,
+  UpdateIndicatorStyles
 ];
 
 const getActiveTab = (
@@ -41,6 +45,29 @@ const getActiveTab = (
 ): HTMLElement | null => {
   return (itemRefs[activeIndex] && itemRefs[activeIndex].current) || null;
 };
+
+/**
+ * @since 2.3.0
+ * @private
+ * @internal
+ */
+const context = createContext<UpdateIndicatorStyles>(() => {});
+
+/**
+ * @since 2.3.0
+ * @private
+ * @internal
+ */
+export const { Provider: UpdateIndicatorStylesProvider } = context;
+
+/**
+ * @since 2.3.0
+ * @private
+ * @internal
+ */
+export function useUpdateIndicatorStyles(): UpdateIndicatorStyles {
+  return useContext(context);
+}
 
 /**
  * This hook will merge the provided style object along with the required css
@@ -96,30 +123,20 @@ export default function useTabIndicatorStyle({
     // will be incorrect for that.
   }, [activeIndex, itemRefs, updateCSSVars, align]);
 
-  const [ref, refHandler] = useEnsuredRef(propRef);
-  useResizeObserver({
-    target: ref,
-    onResize() {
-      // whenever the tabs container element is resized, it _probably_ means
-      // that the tabs will be resized or moved. this means the indicator will
-      // be in the wrong place so we need to fix it here.
-      updateCSSVars(itemRefs, activeIndex);
-    },
-  });
+  const updateStyles = useCallback(() => {
+    updateCSSVars(itemRefs, activeIndex);
+  }, [itemRefs, activeIndex, updateCSSVars]);
 
-  // TODO: Look into removing this resize observer. This is only required if
-  // someone manually updates the width of the tab (dev utils) or if the width
-  // was not changed due to the tabs container element resizing (iffy)
-  useResizeObserver({
-    target: () => getActiveTab(itemRefs, activeIndex),
-    onResize() {
-      updateCSSVars(itemRefs, activeIndex);
-    },
+  // whenever the tabs container element is resized, it _probably_ means
+  // that the tabs will be resized or moved. this means the indicator will
+  // be in the wrong place so we need to fix it here.
+  const [tabsRef, tabsRefHandler] = useResizeObserver(updateStyles, {
+    ref: propRef,
   });
 
   const mergedStyle = useMemo(() => ({ ...style, ...cssVars }), [
     style,
     cssVars,
   ]);
-  return [mergedStyle, refHandler, ref];
+  return [mergedStyle, tabsRefHandler, tabsRef, updateStyles];
 }

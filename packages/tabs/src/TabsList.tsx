@@ -13,7 +13,9 @@ import cn from "classnames";
 import { applyRef, bem, useIsUserInteractionMode } from "@react-md/utils";
 
 import { TabsConfig } from "./types";
-import useTabIndicatorStyle from "./useTabIndicatorStyle";
+import useTabIndicatorStyle, {
+  UpdateIndicatorStylesProvider,
+} from "./useTabIndicatorStyle";
 import useTabsMovement from "./useTabsMovement";
 
 export interface TabsListProps
@@ -78,7 +80,12 @@ const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsList(
     onActiveIndexChange,
     automatic,
   });
-  const [mergedStyle, ref, tabsRef] = useTabIndicatorStyle({
+  const [
+    mergedStyle,
+    tabsRefHandler,
+    tabsRef,
+    updateIndicatorStyles,
+  ] = useTabIndicatorStyle({
     style,
     ref: forwardedRef,
     align,
@@ -113,41 +120,43 @@ const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsList(
   }, [activeIndex]);
 
   return (
-    <div
-      {...props}
-      aria-orientation={orientation}
-      style={mergedStyle}
-      role="tablist"
-      className={cn(
-        block({
-          [align]: true,
-          padded,
-          vertical: !horizontal,
-          animate: !disableTransition && (!automatic || !isKeyboard),
-        }),
-        className
-      )}
-      ref={ref}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-    >
-      {Children.map(tabs, (child, i) => {
-        if (!isValidElement(child)) {
-          return child;
-        }
+    <UpdateIndicatorStylesProvider value={updateIndicatorStyles}>
+      <div
+        {...props}
+        aria-orientation={orientation}
+        style={mergedStyle}
+        role="tablist"
+        className={cn(
+          block({
+            [align]: true,
+            padded,
+            vertical: !horizontal,
+            animate: !disableTransition && (!automatic || !isKeyboard),
+          }),
+          className
+        )}
+        ref={tabsRefHandler}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+      >
+        {Children.map(tabs, (child, i) => {
+          if (!isValidElement(child)) {
+            return child;
+          }
 
-        const tab = Children.only(child);
-        let ref: Ref<HTMLElement> = itemRefs[i];
-        if (tab.props.ref) {
-          ref = (instance: HTMLElement | null) => {
-            itemRefs[i].current = instance;
-            applyRef(instance, tab.props.ref);
-          };
-        }
+          const tab = Children.only(child);
+          let ref: Ref<HTMLElement> = itemRefs[i];
+          if (tab.props.ref) {
+            ref = (instance: HTMLElement | null) => {
+              itemRefs[i].current = instance;
+              applyRef(instance, tab.props.ref);
+            };
+          }
 
-        return cloneElement(tab, { ref });
-      })}
-    </div>
+          return cloneElement(tab, { ref });
+        })}
+      </div>
+    </UpdateIndicatorStylesProvider>
   );
 });
 
