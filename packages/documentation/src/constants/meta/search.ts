@@ -2312,7 +2312,7 @@ const metadata: ReadonlyArray<RouteMetadata> = [
   {
     title: "Utils Demo - Resize Observer Example",
     summary:
-      "The ResizeObserver is useful when you want to watch a specific element resizing when it can't be handled just by an entire page resize listener.",
+      "The useResizeObserver hook is useful when you want to watch a specific element resize when it can't be handled just by an entire page resize listener. The ResizeObserver is useful when you want to watch a specific element resizing when it can't be handled just by an entire page resize listener. This hook returns an ordered list containing a ref object containing the current element if you need access to that element and a refHandler that should be passed to the target element.",
     type: "demo",
     pageUrl: "/packages/utils/demos#resize-observer-example-title",
     pathname: "/packages/utils/demos#resize-observer-example-title",
