@@ -3,13 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.3.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.0) (2020-09-01)
+## [2.2.2](https://github.com/mlaursen/react-md/compare/v2.2.1...v2.2.2) (2020-09-02)
 
-### Features
+**Note:** Version bump only for package [@react-md/overlay](../overlay)
 
-- [@react-md/overlay](../overlay): created and exported the default timeout and
-  classnames
-  ([48cd9d5](https://github.com/mlaursen/react-md/commit/48cd9d584342d2050ce154755ca7927cd9f90a72))
+## [2.2.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.2.1) (2020-09-02)
+
+**Note:** Version bump only for package [@react-md/overlay](../overlay)
 
 ## [2.1.2](https://github.com/mlaursen/react-md/compare/v2.1.1...v2.1.2) (2020-08-01)
 

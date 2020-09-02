@@ -3,13 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.3.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.0) (2020-09-01)
+## [2.2.2](https://github.com/mlaursen/react-md/compare/v2.2.1...v2.2.2) (2020-09-02)
 
-### Features
+**Note:** Version bump only for package [@react-md/layout](../layout)
 
-- [@react-md/utils](../utils): added `Dir` component to help determine current
-  writing direction
-  ([a929e04](https://github.com/mlaursen/react-md/commit/a929e04b20bf41c3bff109714d9cf850bac99eb3))
+## [2.2.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.2.1) (2020-09-02)
+
+**Note:** Version bump only for package [@react-md/layout](../layout)
 
 # [2.2.0](https://github.com/mlaursen/react-md/compare/v2.1.2...v2.2.0) (2020-08-11)
 
