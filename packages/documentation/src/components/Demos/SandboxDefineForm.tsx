@@ -3,6 +3,7 @@ import { getParameters } from "codesandbox/lib/api/define";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
 import { RMD_VERSION } from "constants/github";
+import useTheme from "components/Theme/useTheme";
 
 const CODE_SANDBOX_DEFINE_API =
   "https://codesandbox.io/api/v1/sandboxes/define";
@@ -17,6 +18,7 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
   getSandbox,
 }) => {
   const [parameters, setParameters] = useState("");
+  const { theme } = useTheme();
 
   useEffect(() => {
     let cancelled = false;
@@ -26,7 +28,9 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
         (files, [fileName, data]) => {
           let { content } = data;
           if (typeof content === "string") {
-            content = content.replace(/{{RMD_VERSION}}/g, RMD_VERSION);
+            content = content
+              .replace(/{{RMD_VERSION}}/g, RMD_VERSION)
+              .replace(/{{THEME}}/g, theme);
           }
 
           files[fileName] = { ...data, content };

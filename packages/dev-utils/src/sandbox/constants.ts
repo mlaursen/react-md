@@ -56,7 +56,7 @@ render(<App />, document.getElementById("root"));
 `;
 
 export const DEMO_INDEX_HTML = `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="{{THEME}}-theme">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -68,9 +68,10 @@ export const DEMO_INDEX_HTML = `<!DOCTYPE html>
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro"
     />
+    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the \`src/styles.scss\` in the \`src/index.tsx\` instead to create custom themes --!>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/react-md@{{RMD_VERSION}}/dist/css/react-md.teal-pink-200-light.min.css"
+      href="https://unpkg.com/react-md@{{RMD_VERSION}}/dist/css/react-md.teal-pink-200-{{THEME}}.min.css"
     />
     <title>{{DEMO_TITLE}}</title>
   </head>

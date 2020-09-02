@@ -8,6 +8,7 @@ import { RMD_VERSION } from "constants/github";
 import FileNotFound from "./FileNotFound";
 
 import styles from "./CodePreview.module.scss";
+import { useTheme } from "components/Theme";
 
 export interface CodePreviewProps {
   fileName: string;
@@ -22,6 +23,8 @@ const CodePreview: FC<CodePreviewProps> = ({
   offset,
   onFileChange,
 }) => {
+  const { theme } = useTheme();
+
   let content = "";
   let language = "markdown";
   if (sandbox && sandbox[fileName]) {
@@ -34,6 +37,10 @@ const CodePreview: FC<CodePreviewProps> = ({
     ({ content } = sandbox[fileName]);
     if (typeof content !== "string") {
       content = `${JSON.stringify(content, null, 2)}\n`;
+    } else {
+      content = content
+        .replace(/{{RMD_VERSION}}/g, RMD_VERSION)
+        .replace(/{{THEME}}/g, theme);
     }
   }
 
@@ -67,7 +74,7 @@ const CodePreview: FC<CodePreviewProps> = ({
       // the page
       tabIndex={0}
     >
-      {content.replace(/{{RMD_VERSION}}/g, RMD_VERSION)}
+      {content}
     </CodeBlock>
   );
 };
