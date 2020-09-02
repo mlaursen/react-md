@@ -197,8 +197,8 @@ The gizipped UMD bundle sizes are:
  - dist/umd/react-md-with-svg-icons.production.min.js 176.43 KB
 
 The min and max gzipped CSS bundle sizes are:
- - dist/css/react-md.grey-deep_orange-200-light.min.css 15.4 KB
- - dist/css/react-md.indigo-blue-400-dark.min.css 15.46 KB
+ - dist/css/react-md.grey-deep_orange-200-light.min.css 15.41 KB
+ - dist/css/react-md.indigo-deep_purple-200-dark.min.css 15.46 KB
 ```
 
 ## Contributing
