@@ -3,12 +3,12 @@ import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
 import { CodeBlock } from "components/Code";
+import { useTheme } from "components/Theme";
 import { RMD_VERSION } from "constants/github";
 
 import FileNotFound from "./FileNotFound";
 
 import styles from "./CodePreview.module.scss";
-import { useTheme } from "components/Theme";
 
 export interface CodePreviewProps {
   fileName: string;
