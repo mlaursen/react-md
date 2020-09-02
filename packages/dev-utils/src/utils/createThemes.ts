@@ -20,7 +20,6 @@ const cssDist = join(packagesRoot, "react-md", dist, "css");
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let variables: any = {};
 let colors: string[] = [];
-let weights: number[] = [];
 let secondaries: string[] = [];
 
 const tones = ["light", "dark"];
@@ -47,9 +46,7 @@ function getThemes(): string[] {
 
       primary = toCSSColor(primary);
       secondary = toCSSColor(secondary);
-      return weights.flatMap((weight) =>
-        tones.map((theme) => `${primary}-${secondary}-${weight}-${theme}`)
-      );
+      return tones.map((theme) => `${primary}-${secondary}-200-${theme}`);
     })
   );
 }
@@ -123,7 +120,6 @@ export default async function createThemes(): Promise<void> {
     .default;
 
   colors = variables["rmd-theme-colors"] as string[];
-  weights = variables["rmd-theme-accent-suffixes"] as number[];
   secondaries = colors.slice(0, colors.indexOf("brown"));
 
   const [firstLight, firstDark, ...themes] = getThemes();
