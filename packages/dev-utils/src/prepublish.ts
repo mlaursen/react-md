@@ -25,5 +25,5 @@ export default async function prepublish(init: boolean): Promise<void> {
     return;
   }
 
-  await libsize(true, true, true);
+  await libsize(true, true, false, true);
 }
