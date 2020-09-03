@@ -12,7 +12,7 @@ import format from "./utils/format";
 import glob from "./utils/glob";
 import list from "./utils/list";
 import writeFile from "./utils/writeFile";
-import git from "./utils/git";
+import git, { uncommittedFiles } from "./utils/git";
 
 const cwd = join(packagesRoot, "react-md");
 
@@ -112,18 +112,20 @@ async function umdSize(): Promise<string[]> {
 }
 
 async function cssSize(): Promise<string[]> {
-  let css = await glob("dist/css/*.min.css", { cwd });
+  let css = await glob("themes/*.min.css", { cwd: projectRoot });
   if (!css.length) {
     log.info("No compiled css files found...");
     log.info("Creating...");
     log.info();
     await createLoggedThemes();
-    css = await glob("dist/css/*.min.css", { cwd });
+    css = await glob("themes/*.min.css", { cwd: projectRoot });
   }
 
   const { min, max } = css.reduce(
     (result, cssPath) => {
-      const size = gzipSize.sync(readFileSync(join(cwd, cssPath), "utf8"));
+      const size = gzipSize.sync(
+        readFileSync(join(projectRoot, cssPath), "utf8")
+      );
       const update = { name: cssPath, size };
       if (size > result.max.size) {
         result.max = update;
@@ -220,7 +222,8 @@ export default function OtherPros(): ReactElement {
 export default async function libsize(
   umd: boolean = true,
   themes: boolean = true,
-  commit: boolean = false
+  commit: boolean = false,
+  stageChanges: boolean = false
 ): Promise<void> {
   if (umd) {
     await createUmd();
@@ -246,12 +249,14 @@ ${list(css)}
   );
   updateOtherPros(umds, css);
 
-  if (!commit || !git("diff README.md")) {
+  if ((!stageChanges && !commit) || !uncommittedFiles()) {
     return;
   }
 
   git(
     "add README.md packages/documentation/src/components/About/README.md packages/documentation/src/components/Home/LibraryInfo/OtherPros.tsx"
   );
-  git('commit -m "chore(libsize): Updated library size"');
+  if (commit) {
+    git('commit -m "chore(libsize): Updated library size"');
+  }
 }

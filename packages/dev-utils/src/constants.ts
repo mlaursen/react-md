@@ -6,6 +6,7 @@ export const projectRoot = execSync("git rev-parse --show-toplevel")
   .trim();
 export const packagesRoot = join(projectRoot, "packages");
 export const documentationRoot = join(packagesRoot, "documentation");
+export const themesDist = join(projectRoot, "themes");
 
 export const isRoot = process.cwd() === projectRoot;
 

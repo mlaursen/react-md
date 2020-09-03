@@ -1,5 +1,5 @@
 import cssnano from "cssnano";
-import { ensureDir, writeFileSync } from "fs-extra";
+import { ensureDir, writeFileSync, remove } from "fs-extra";
 import log from "loglevel";
 import { renderSync } from "node-sass";
 import { join } from "path";
@@ -9,17 +9,16 @@ import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import postcssPresetEnv from "postcss-preset-env";
 import sorting from "postcss-sorting";
 
-import { dist, packagesRoot, tempStylesDir } from "../constants";
+import { packagesRoot, tempStylesDir, themesDist } from "../constants";
 import copyStyles from "./copyStyles";
 import list from "./list";
 import moveToTempStyles, { cleanTempStyles } from "./moveToTempStyles";
 import writeFile from "./writeFile";
 
-const cssDist = join(packagesRoot, "react-md", dist, "css");
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let variables: any = {};
 let colors: string[] = [];
+let weights: number[] = [];
 let secondaries: string[] = [];
 
 const tones = ["light", "dark"];
@@ -38,16 +37,24 @@ function getThemeVariables(theme: string): [string, string, string, string] {
 }
 
 function getThemes(): string[] {
-  return colors.flatMap((primary) =>
-    secondaries.flatMap((secondary) => {
-      if (primary === secondary) {
-        return [];
-      }
+  return (
+    colors
+      .flatMap((primary) =>
+        secondaries.flatMap((secondary) => {
+          if (primary === secondary) {
+            return [];
+          }
 
-      primary = toCSSColor(primary);
-      secondary = toCSSColor(secondary);
-      return tones.map((theme) => `${primary}-${secondary}-200-${theme}`);
-    })
+          primary = toCSSColor(primary);
+          secondary = toCSSColor(secondary);
+          return weights.flatMap((weight) =>
+            tones.map((theme) => `${primary}-${secondary}-${weight}-${theme}`)
+          );
+        })
+      )
+      // sorting is really a hack to fix replacing colors correctly since `red` is
+      // an error color so might regex replace incorrectly
+      .sort()
   );
 }
 
@@ -80,7 +87,7 @@ $rmd-theme-light: ${tone === "light"};
 @import 'react-md/dist/scss/styles';
 `;
 
-  const outFile = join(cssDist, `react-md.${theme}.min.css`);
+  const outFile = join(themesDist, `react-md.${theme}.min.css`);
   const unmodifiedCSS = renderSync({
     data,
     outFile,
@@ -107,7 +114,8 @@ $rmd-theme-light: ${tone === "light"};
 
 export default async function createThemes(): Promise<void> {
   await copyStyles();
-  await ensureDir(cssDist);
+  await remove(themesDist);
+  await ensureDir(themesDist);
   await moveToTempStyles(true);
 
   // Due to the prepublish build steps, the scssVariables file might be deleted
@@ -120,6 +128,7 @@ export default async function createThemes(): Promise<void> {
     .default;
 
   colors = variables["rmd-theme-colors"] as string[];
+  weights = variables["rmd-theme-accent-suffixes"] as number[];
   secondaries = colors.slice(0, colors.indexOf("brown"));
 
   const [firstLight, firstDark, ...themes] = getThemes();
@@ -161,7 +170,7 @@ export default async function createThemes(): Promise<void> {
       throw new Error("No theme changes.");
     }
 
-    writeFileSync(join(cssDist, `react-md.${theme}.min.css`), contents);
+    writeFileSync(join(themesDist, `react-md.${theme}.min.css`), contents);
   });
   log.debug();
 

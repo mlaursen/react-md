@@ -25,3 +25,6 @@ coverage
 # Don't want to include the lock files for these examples
 # since they can be downloaded and reused
 examples/*/*.lock
+
+# the pre-compiled themes should not be added other than for tags
+/themes

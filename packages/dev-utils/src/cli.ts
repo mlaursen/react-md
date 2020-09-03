@@ -14,6 +14,7 @@ import indexer from "./indexer";
 import libsize from "./libsize";
 import prepublish from "./prepublish";
 import readmes from "./readmes";
+import release, { toReleaseType, RELEASE_TYPES } from "./release";
 import rmdReadme from "./rmdReadme";
 import sandbox from "./sandbox";
 import sassdoc from "./sassdoc";
@@ -81,7 +82,10 @@ createCommand("sassdoc")
   .description(
     "Creates the sassdoc for the documentation site in all scoped packages."
   )
-  .option("--no-copy", "")
+  .option(
+    "--no-copy",
+    "Updates the command to no longer copy the scss files into all the dists."
+  )
   .action(({ copy = true }) => sassdoc(copy));
 
 createCommand("variables")
@@ -139,11 +143,15 @@ createCommand("libsize")
     "--commit",
     "Updates the command to commit any libsize changes to the base README.md and the about page in the documentation site"
   )
+  .option(
+    "--stage",
+    "Updates the command to stage any libsize changes instead of committing."
+  )
   .description(
     "Prints the gzipped size for the entire library based on the UMD bundle and the min/max prebuilt CSS themes."
   )
-  .action(({ umd = true, themes = true, commit = false }) =>
-    libsize(umd, themes, commit)
+  .action(({ umd = true, themes = true, commit = false, stage = false }) =>
+    libsize(umd, themes, commit, stage)
   );
 
 createCommand("themes")
@@ -194,6 +202,20 @@ createCommand("fix-changelogs")
     "--amend",
     "Amend the previous commit to include these changes. This should really only be used during the release process."
   )
-  .action(({ amend = false }) => fixChangelogs(amend));
+  .option("--stage", "Boolean if the changes should only be staged")
+  .action(({ amend = false, stage = false }) => fixChangelogs(amend, stage));
+createCommand("release")
+  .option(
+    "-t, --type <type>",
+    `The release type. This should be one of: [ ${RELEASE_TYPES.join(", ")} ]`,
+    toReleaseType
+  )
+  .option(
+    "-b, --blog",
+    "Updates the command to wait for the blog to be written before triggering the release. " +
+      "This will default to `true` when the release type is not one of the `pre*` types."
+  )
+  .description("Triggers a release for react-md")
+  .action(({ type = "", blog = undefined }) => release(type, blog));
 
 commander.parse(process.argv);

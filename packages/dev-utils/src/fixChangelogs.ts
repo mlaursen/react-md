@@ -1,11 +1,9 @@
 import { readFile, writeFile } from "fs-extra";
 import log from "loglevel";
-import { join } from "path";
 
-import { projectRoot } from "./constants";
 import indexer from "./indexer";
 import getPackages from "./utils/getPackages";
-import git from "./utils/git";
+import git, { uncommittedFiles, ammendCommit } from "./utils/git";
 import glob from "./utils/glob";
 
 type Transformer = (changelog: string, isRoot: boolean) => string;
@@ -84,7 +82,10 @@ const transform = (changelog: string, isRoot: boolean): string =>
 const CHANGELOG_FILES =
   "CHANGELOG.md packages/*/CHANGELOG.md packages/documentation/src/constants/meta";
 
-export default async function fixChangelogs(amend: boolean): Promise<void> {
+export default async function fixChangelogs(
+  amend: boolean,
+  stage: boolean = false
+): Promise<void> {
   log.info("Finding and formatting changelogs...");
   const packagesChangelogs = await glob("packages/*/CHANGELOG.md");
   const changelogPaths = ["CHANGELOG.md", ...packagesChangelogs];
@@ -100,15 +101,11 @@ export default async function fixChangelogs(amend: boolean): Promise<void> {
 
   await indexer();
 
-  if (amend && git(`diff ${CHANGELOG_FILES}`)) {
+  if (uncommittedFiles() && (amend || stage)) {
     git(`add ${CHANGELOG_FILES}`);
-    git("commit --amend --no-edit");
 
-    const { version } = await import(join(projectRoot, "lerna.json"));
-    const isTagged = !!git(`tag --list 'v${version}'`);
-    if (isTagged) {
-      git(`tag -d v${version}`);
-      git(`tag v${version} -a "v${version}"`);
+    if (amend) {
+      ammendCommit();
     }
   }
 }

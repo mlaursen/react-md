@@ -36,6 +36,7 @@
     "postcss-sorting": "^5.0.1",
     "prettier": "^2.1.0",
     "pretty-ms": "^7.0.0",
+    "prompts": "^2.3.2",
     "rimraf": "^3.0.2",
     "sassdoc": "^2.7.2",
     "typescript": "^3.9.7"
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@types/cssnano": "^4.0.0",
     "@types/he": "^1.1.1",
+    "@types/prompts": "^2.0.8",
     "chokidar-cli": "^2.1.0"
   }
 }
