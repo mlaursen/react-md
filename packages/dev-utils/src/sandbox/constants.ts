@@ -71,7 +71,7 @@ export const DEMO_INDEX_HTML = `<!DOCTYPE html>
     <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the \`src/styles.scss\` in the \`src/index.tsx\` instead to create custom themes --!>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/react-md@{{RMD_VERSION}}/dist/css/react-md.teal-pink-200-{{THEME}}.min.css"
+      href="https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css"
     />
     <title>{{DEMO_TITLE}}</title>
   </head>
