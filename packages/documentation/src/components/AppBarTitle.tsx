@@ -1,10 +1,9 @@
 import React, {
-  FC,
+  ReactElement,
+  ReactNode,
+  useCallback,
   useRef,
   useState,
-  ReactNode,
-  useMemo,
-  useCallback,
 } from "react";
 import {
   AppBarTitle as RMDAppBarTitle,
@@ -12,9 +11,8 @@ import {
 } from "@react-md/app-bar";
 import { Tooltipped } from "@react-md/tooltip";
 import { useResizeObserver } from "@react-md/utils";
-import createIdGenerator from "utils/createIdGenerator";
 
-const hackyIds = createIdGenerator("dynamic-tooltips");
+import { useId } from "./IdProvider";
 
 /**
  * This component is a wrapper for the AppBarTitle component from @react-md/app-bar
@@ -24,11 +22,11 @@ const hackyIds = createIdGenerator("dynamic-tooltips");
  * This is pretty hacky right so it isn't part of the main lib yet, but a better
  * sultion to "auto tooltip" things might be added one day.
  */
-const AppBarTitle: FC<AppBarTitleProps> = ({
-  id: propId,
+export default function AppBarTitle({
+  id,
   children,
   ...props
-}) => {
+}: AppBarTitleProps): ReactElement {
   const [tooltip, setTooltip] = useState<ReactNode>(null);
   const ref = useRef<HTMLHeadingElement | null>(null);
   const updateTooltip = useCallback(() => {
@@ -48,16 +46,8 @@ const AppBarTitle: FC<AppBarTitleProps> = ({
     disableHeight: true,
   });
 
-  const id = useMemo(() => {
-    if (propId) {
-      return propId;
-    }
-
-    return hackyIds();
-  }, [propId]);
-
   return (
-    <Tooltipped id={id} tooltip={tooltip}>
+    <Tooltipped id={useId(id)} tooltip={tooltip}>
       <RMDAppBarTitle
         {...props}
         ref={refHandler}
@@ -67,6 +57,4 @@ const AppBarTitle: FC<AppBarTitleProps> = ({
       </RMDAppBarTitle>
     </Tooltipped>
   );
-};
-
-export default AppBarTitle;
+}

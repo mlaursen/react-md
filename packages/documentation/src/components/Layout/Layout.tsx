@@ -25,6 +25,7 @@ import { AppSizeListenerProps } from "@react-md/utils";
 import LinkUnstyled from "components/LinkUnstyled";
 import TableOfContents from "components/TableOfContents";
 import { TOCVisibilityProvider } from "components/TableOfContents/VisibilityContext";
+import { IdProvider } from "components/IdProvider";
 import navItems from "constants/navItems";
 
 import Actions from "./Actions";
@@ -87,25 +88,27 @@ const Layout: FC<LayoutProps> = ({
   return (
     <Configuration defaultSize={defaultSize} icons={icons}>
       <TOCVisibilityProvider pathname={pathname}>
-        <RMDLayout
-          appBarProps={{
-            fixedElevation: elevated,
-            children: <Actions />,
-          }}
-          title={title.replace("react-md@v2 - ", "")}
-          mainProps={transitionProps}
-          treeProps={useLayoutNavigation(
-            navItems,
-            // I don't add each blog to the navigation tree, but still want to
-            // show that a blog is being viewed
-            pathname.replace(/^\/blog.*$/, "/blog"),
-            LinkUnstyled
-          )}
-          navHeaderProps={{ children: <NavHeaderTitle /> }}
-        >
-          <TableOfContents pathname={pathname} />
-          <Provider value={setElevated}>{children}</Provider>
-        </RMDLayout>
+        <IdProvider>
+          <RMDLayout
+            appBarProps={{
+              fixedElevation: elevated,
+              children: <Actions />,
+            }}
+            title={title.replace("react-md@v2 - ", "")}
+            mainProps={transitionProps}
+            treeProps={useLayoutNavigation(
+              navItems,
+              // I don't add each blog to the navigation tree, but still want to
+              // show that a blog is being viewed
+              pathname.replace(/^\/blog.*$/, "/blog"),
+              LinkUnstyled
+            )}
+            navHeaderProps={{ children: <NavHeaderTitle /> }}
+          >
+            <TableOfContents pathname={pathname} />
+            <Provider value={setElevated}>{children}</Provider>
+          </RMDLayout>
+        </IdProvider>
       </TOCVisibilityProvider>
     </Configuration>
   );
