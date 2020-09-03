@@ -62,9 +62,6 @@ export default async function release(
   git("add -f themes");
   await replaceTag();
 
-  git("rm -rf themes");
-  ammendCommit();
-
   if (blog) {
     const { blogged } = await prompts({
       type: "confirm",
@@ -85,9 +82,13 @@ export default async function release(
 
   let distTag = "";
   if (type.startsWith("pre")) {
-    distTag = " --dist-tag=next";
+    distTag = " --dist-tag next";
   }
-  run(`npx lerna publish from-git${distTag} --yes`);
+  run(`npx lerna publish from-package${distTag} --yes`);
 
-  git("push --follow-tags --no-verify origin master");
+  git("rm -rf themes");
+  ammendCommit();
+
+  git("push origin master");
+  git("push --tags");
 }
