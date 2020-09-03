@@ -54,7 +54,6 @@ From there, it would be good to go through some of the guides:
 [material-ui]: https://material-ui.com
 [sass]: https://sass-lang.com
 [css variables]: https://caniuse.com/#feat=css-variables
-[contributing guide]: /guides/contributing
 [installation]: /guides/installation
 [creating a new app]: /guides/creating-a-new-app
 [customizing your theme]: /guides/customizing-your-theme

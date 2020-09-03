@@ -88,50 +88,6 @@ To use the UMD bundle, choose either the font or svg icon bundle and a new
 Check out the #material-icons package for more information about the separate
 icon components.
 
-## Using the CDN hosted pre-compiled themes
-
-The base `react-md` package also pre-compiles a few different themes for you
-with all the features enabled which are also available through [unpkg.com]. Each
-theme will follow the naming pattern of:
-
-- `react-md.{PRIMARY}-{SECONDARY}-{SECONDARY_WEIGHT}-{LIGHT|DARK}.min.css`
-
-So a few examples are:
-
-- `react-md.indigo-pink-200-dark.min.css`
-- `react-md.indigo-pink-200-light.min.css`
-- `react-md.light_blue-deep_orange-200-light.min.css`
-- `react-md.light_blue-deep_orange-700-dark.min.css`
-- `react-md.purple-pink-200-dark.min.css`
-- `react-md.purple-pink-200-light.min.css`
-- `react-md.teal-pink-200-dark.min.css`
-- `react-md.teal-pink-200-light.min.css`
-
-Once again, you can use these `.css` files by updating your `index.html` to
-include a new `<link>` tag in the `<header>`:
-
-```diff
-     <meta
-       name="description"
-       content="Web site created using create-react-app"
-     />
-     <link rel="apple-touch-icon" href="logo192.png" />
-     <!--
-       manifest.json provides metadata used when your web app is installed on a
-       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-     -->
-     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-+    <link rel="stylesheet" href="https://unpkg.com/react-md@{{RMD_VERSION}}/dist/css/react-md/teal-pink-200-light.min.css" />
-```
-
-> Note the `@{{RMD_VERSION}}` in the pathname. You'll want to change this to be
-> the specific version of `react-md` you are using otherwise you'll always get
-> the latest version which might cause your app to break.
-
-If you want to see which themes are available, you can use the browse feature
-from unpkg.com to see all the `.css` files:
-https://unpkg.com/browse/react-md@{{RMD_VERSION}}/dist/css/
-
 ## Pre-compiling the base react-md styles for quicker builds
 
 The initial build for `react-md` styles can take awhile since it does a lot
@@ -139,20 +95,8 @@ behind the scenes to validate the different colors, contrast ratios, and other
 things to prevent errors. Since you won't really be changing the `react-md`
 styles much once you've defined your theme or other custom overrides, you can
 speed up this process by just pre-building the base `react-md` CSS file. If you
-are using all the default "feature flags" within `react-md`, you can use the CDN
-hosted pre-compiled theme for this OR if you want to ensure everything works
-locally, you can import the `.css` file from the `react-md` `dist` folder:
-
-```diff
-+import 'react-md/dist/css/react-md/teal-pink-200-light.min.css';
- import React from 'react';
- import { render } from 'react-dom';
- import App from './App';
-
- render(<App />, document.getElementById('root'));
-```
-
-> See the naming conventions above for choosing your default theme.
+are using all the default "feature flags" within `react-md`, you can use one of
+the [CDN hosted pre-compiled themes](/guides/cdn-links#pre-compiled-themes).
 
 If you have changed more than just the color variables and the light/dark theme
 toggle, you'll need to manually compile the base `react-md` styles yourself. The

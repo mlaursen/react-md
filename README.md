@@ -38,8 +38,7 @@ Create an accessible React application with the
 - Out of the box dark theme mode support
 - Out of the box left-to-right and right-to-left language support
 - UMD Bundles and pre-compiled css available on https://unpkg.com (see more
-  information
-  [here](https://react-md.dev/guides/advanced-installation#using-the-cdn-hosted-pre-compiled-themes))
+  information [here](https://react-md.dev/guides/cdn-links))
 - Written and maintained in [Typescript]
 
 ## Creating a new project

@@ -132,6 +132,7 @@ export function getMarkdownForRoute(route: string): string | null {
 export function getTitleForRoute(route: string): string {
   const [name, pkgName] = route.split("/").reverse();
   const title = toTitle(name)
+    .replace("Cdn", "CDN")
     .replace("V1", "v1")
     .replace("Api", "API")
     .replace("Sassdoc", "SassDoc");

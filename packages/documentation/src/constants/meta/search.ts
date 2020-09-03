@@ -70,6 +70,14 @@ const metadata: ReadonlyArray<RouteMetadata> = [
     pathname: "/guides/advanced-installation",
   },
   {
+    title: "CDN Links",
+    summary:
+      "ReactMD is available over a CDN. Add one of the following to your app:",
+    type: "guide",
+    pageUrl: "/guides/[id]",
+    pathname: "/guides/cdn-links",
+  },
+  {
     title: "Configuring Your Layout",
     summary:
       "If you couldn't tell already, there are a lot of features and configuration within react-md that require initializing React Context Providers. Since it can be annoying to have to import all of these providers manually and initialize them, the @react-md/layout package provides a nice Configuration component that will initialize all of these for you with reasonable defaults that can be overridden.",

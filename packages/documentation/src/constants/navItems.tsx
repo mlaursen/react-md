@@ -76,6 +76,10 @@ const routes: NavItem[] = [
         children: "Creating a New App",
       },
       {
+        href: "/cdn-links",
+        children: "CDN Links",
+      },
+      {
         href: "/configuring-your-layout",
         children: "Configuring Your Layout",
       },

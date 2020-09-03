@@ -188,10 +188,6 @@ const tocs: TOCRecord = {
       title: "react-md + Material Icons UMD Bundle",
     },
     {
-      anchor: "#using-the-cdn-hosted-pre-compiled-themes",
-      title: "Using the CDN hosted pre-compiled themes",
-    },
-    {
       anchor: "#pre-compiling-the-base-react-md-styles-for-quicker-builds",
       title: "Pre-compiling the base react-md styles for quicker builds",
     },
@@ -210,6 +206,16 @@ const tocs: TOCRecord = {
     {
       anchor: "#switching-to-svg-icons",
       title: "Switching to SVG Icons",
+    },
+  ],
+  "/guides/cdn-links": [
+    {
+      anchor: "#cdn-links",
+      title: "CDN Links",
+    },
+    {
+      anchor: "#pre-compiled-themes",
+      title: "Pre-compiled Themes",
     },
   ],
   "/guides/configuring-your-layout": [
