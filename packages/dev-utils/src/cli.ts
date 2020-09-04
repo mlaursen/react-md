@@ -215,7 +215,11 @@ createCommand("release")
     "Updates the command to wait for the blog to be written before triggering the release. " +
       "This will default to `true` when the release type is not one of the `pre*` types."
   )
+  .option(
+    "--yes",
+    "Passes `--yes` to the `lerna version` and `lerna publish` commands"
+  )
   .description("Triggers a release for react-md")
-  .action(({ type = "", blog = undefined }) => release(type, blog));
+  .action(({ type = "", blog = undefined, yes }) => release(type, blog, yes));
 
 commander.parse(process.argv);

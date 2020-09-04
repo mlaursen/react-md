@@ -6,6 +6,7 @@ import { projectRoot } from "./constants";
 import fixChangelogs from "./fixChangelogs";
 import prepublish from "./prepublish";
 import git, { replaceTag, uncommittedFiles, ammendCommit } from "./utils/git";
+import getLernaVersion from "./utils/getLernaVersion";
 
 export type ReleaseType =
   | "major"
@@ -43,14 +44,25 @@ const run = (command: string): void => {
   });
 };
 
+async function rollback(): Promise<never> {
+  const version = await getLernaVersion();
+  git(`reset HEAD^`);
+  git(`tag -d v${version}`);
+  git("checkout .");
+
+  return process.exit(1);
+}
+
 export default async function release(
   type: ReleaseType = "",
-  blog: boolean = !type.startsWith("pre")
+  blog: boolean = !type.startsWith("pre"),
+  autoYes: boolean = false
 ): Promise<void> {
+  const yes = autoYes ? " --yes" : "";
   // first, update the version since I'll be ammending this commit and tag with
   // libsize changes, prettier changelogs, and adding the themes specifically
   // for the tag only
-  run(`npx lerna version ${type} --no-push --yes`);
+  run(`npx lerna version ${type} --no-push${yes}`);
   await fixChangelogs(false, true);
 
   // run a clean build to create all the dists
@@ -84,7 +96,19 @@ export default async function release(
   if (type.startsWith("pre")) {
     distTag = " --dist-tag next";
   }
-  run(`npx lerna publish from-package${distTag} --yes`);
+  run(`npx lerna publish from-package${distTag}${yes}`);
+
+  const { complete } = await prompts({
+    type: "confirm",
+    name: "complete",
+    message: "Was the release successful?",
+    initial: false,
+  });
+
+  if (!complete) {
+    await rollback();
+    return;
+  }
 
   git("rm -rf themes");
   ammendCommit();

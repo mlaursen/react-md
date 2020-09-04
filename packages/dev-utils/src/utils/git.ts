@@ -1,11 +1,11 @@
 import { execSync } from "child_process";
 import log from "loglevel";
-import { join } from "path";
 
 import { projectRoot } from "../constants";
+import getLernaVersion from "./getLernaVersion";
 
 export default function git(command: string): string {
-  log.debug(`git ${command}`);
+  log.info(`git ${command}`);
   return execSync(`git ${command}`, {
     cwd: projectRoot,
     stdio: "pipe",
@@ -25,7 +25,7 @@ export function ammendCommit(): void {
 export async function replaceTag(): Promise<void> {
   ammendCommit();
 
-  const { version } = await import(join(projectRoot, "lerna.json"));
+  const version = await getLernaVersion();
   const isTagged = !!git(`tag --list 'v${version}'`);
   if (isTagged) {
     git(`tag -d v${version}`);
