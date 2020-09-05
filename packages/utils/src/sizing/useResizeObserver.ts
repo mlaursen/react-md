@@ -170,8 +170,8 @@ function init(): void {
         scrollWidth,
       };
 
-      for (let j = 0; j < subscriptions.length; j += 1) {
-        const subscription = subscriptions[j];
+      for (let j = 0; j < currentSubscriptions.length; j += 1) {
+        const subscription = currentSubscriptions[j];
         const { handler, prevSize, disableHeight, disableWidth } = subscription;
         const isNewHeight = isHeightChange(prevSize, nextSize);
         const isNewWidth = isWidthChange(prevSize, nextSize);

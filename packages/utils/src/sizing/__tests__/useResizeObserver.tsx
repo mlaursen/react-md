@@ -1,12 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useRef } from "react";
 import ResizeObserverPolyfill from "resize-observer-polyfill";
-import { render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import { mocked } from "ts-jest/utils";
 
 import {
   useResizeObserver,
   ResizeObserverElementData,
+  OnResizeObserverChange,
 } from "../useResizeObserver";
 
 jest.mock("resize-observer-polyfill");
@@ -64,10 +65,26 @@ class MockedObserver implements ResizeObserver {
   }
 
   public trigger(contentRect: DOMRectReadOnly = DEFAULT_DOM_RECT) {
-    this._callback(
-      this._elements.map((target) => ({ target, contentRect })),
-      this
-    );
+    act(() => {
+      this._callback(
+        this._elements.map((target) => ({ target, contentRect })),
+        this
+      );
+    });
+  }
+
+  public triggerTarget(
+    element: HTMLElement,
+    contentRect: DOMRectReadOnly = DEFAULT_DOM_RECT
+  ) {
+    act(() => {
+      const target = this._elements.find((el) => element === el);
+      if (!target) {
+        throw new Error("Unable to find triggerable element");
+      }
+
+      this._callback([{ target, contentRect }], this);
+    });
   }
 }
 
@@ -284,6 +301,82 @@ describe("useResizeObserver", () => {
       right: 0,
     });
     expect(onResize).toBeCalledTimes(1);
+
+    unmount();
+  });
+
+  it("should only trigger the resize handler for the element that has changed when multiple observers are added", () => {
+    const onResize1 = jest.fn();
+    const onResize2 = jest.fn();
+    const onResize3 = jest.fn();
+
+    interface DemoProps {
+      onResize: OnResizeObserverChange<HTMLDivElement>;
+      index: 1 | 2 | 3;
+    }
+
+    const Demo = ({ onResize, index }: DemoProps) => {
+      const [, refHandler] = useResizeObserver<HTMLDivElement>(onResize);
+
+      return <div ref={refHandler} data-testid={`div-${index}`} />;
+    };
+
+    const Test = () => (
+      <>
+        <Demo index={1} onResize={onResize1} />
+        <Demo index={2} onResize={onResize2} />
+        <Demo index={3} onResize={onResize3} />
+      </>
+    );
+
+    const { getByTestId, unmount } = render(<Test />);
+    if (!observer) {
+      throw new Error();
+    }
+    const div1 = getByTestId("div-1");
+    const div2 = getByTestId("div-2");
+    const div3 = getByTestId("div-3");
+
+    const expected1: ResizeObserverElementData = {
+      element: div1,
+      height: 0,
+      width: 0,
+      scrollHeight: 0,
+      scrollWidth: 0,
+    };
+    const expected2: ResizeObserverElementData = {
+      element: div2,
+      height: 0,
+      width: 0,
+      scrollHeight: 0,
+      scrollWidth: 0,
+    };
+    const expected3: ResizeObserverElementData = {
+      element: div3,
+      height: 0,
+      width: 0,
+      scrollHeight: 0,
+      scrollWidth: 0,
+    };
+
+    expect(onResize1).not.toBeCalled();
+    expect(onResize2).not.toBeCalled();
+    expect(onResize3).not.toBeCalled();
+
+    observer.triggerTarget(div1);
+    expect(onResize1).toBeCalledWith(expected1);
+    expect(onResize2).not.toBeCalled();
+    expect(onResize3).not.toBeCalled();
+
+    observer.triggerTarget(div2);
+    expect(onResize1).toBeCalledTimes(1);
+    expect(onResize2).toBeCalledWith(expected2);
+    expect(onResize3).not.toBeCalled();
+
+    observer.triggerTarget(div3);
+    expect(onResize1).toBeCalledTimes(1);
+    expect(onResize2).toBeCalledTimes(1);
+    expect(onResize3).toBeCalledWith(expected3);
 
     unmount();
   });
