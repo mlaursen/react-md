@@ -31,7 +31,11 @@ interface NextWebVitalsMetrics {
 }
 
 export function reportWebVitals(metrics: NextWebVitalsMetrics): void {
-  if (process.env.NODE_ENV !== "production") {
+  if (
+    process.env.NODE_ENV !== "production" &&
+    typeof window !== "undefined" &&
+    window.location.search.includes("?vitals")
+  ) {
     // eslint-disable-next-line no-console
     console.debug(metrics);
   } else if (typeof window.gtag === "function") {
