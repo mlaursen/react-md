@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.2](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.2) (2020-09-05)
+
+### Features
+
+- [@react-md/alert](../alert): created and exported the default timeout and
+  classnames
+  ([32bacc9](https://github.com/mlaursen/react-md/commit/32bacc9000ea7c9633e437ce6eabb27606c7d7f0))
+
 # [2.3.0-alpha.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.1) (2020-09-03)
 
 ### Features

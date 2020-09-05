@@ -1,6 +1,6 @@
 {
   "name": "@react-md/app-bar",
-  "version": "2.3.0-alpha.1",
+  "version": "2.3.0-alpha.2",
   "description": "This small package implments the AppBar spec in material design.",
   "scripts": {
     "build": "dev-utils build",
@@ -40,12 +40,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/button": "^2.3.0-alpha.1",
-    "@react-md/elevation": "^2.3.0-alpha.1",
-    "@react-md/icon": "^2.3.0-alpha.1",
-    "@react-md/theme": "^2.3.0-alpha.1",
-    "@react-md/typography": "^2.3.0-alpha.1",
-    "@react-md/utils": "^2.3.0-alpha.1",
+    "@react-md/button": "^2.3.0-alpha.2",
+    "@react-md/elevation": "^2.3.0-alpha.2",
+    "@react-md/icon": "^2.3.0-alpha.2",
+    "@react-md/theme": "^2.3.0-alpha.2",
+    "@react-md/typography": "^2.3.0-alpha.2",
+    "@react-md/utils": "^2.3.0-alpha.2",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
