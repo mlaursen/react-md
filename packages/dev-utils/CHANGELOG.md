@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.2](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.2) (2020-09-05)
+
+### Features
+
+- **themes:** updated sandboxes to use new CDN for pre-compiled themes
+  ([e83f47e](https://github.com/mlaursen/react-md/commit/e83f47edb7401a81af6e3669745815cb85f565a8))
+
 # [2.3.0-alpha.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.1) (2020-09-03)
 
 ### Features

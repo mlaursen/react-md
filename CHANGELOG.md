@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.2](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.2) (2020-09-05)
+
+### Bug Fixes
+
+- [@react-md/form](./packages/form): added missing scss variables
+  ([ec8d675](https://github.com/mlaursen/react-md/commit/ec8d675c5436e92245ea0a8d07b35345ad30794c))
+- [@react-md/states](./packages/states): fixed usedPressStates to pass onClick
+  like other state hooks
+  ([82cd676](https://github.com/mlaursen/react-md/commit/82cd67695c2ecd6e9a710d5fbfce97ae4dfeda80))
+
+### Features
+
+- **a11y:** improved `LabelRequiredForA11y` type definition
+  ([b7aa4fa](https://github.com/mlaursen/react-md/commit/b7aa4fadb7b4f1a23fba4008e42d2f4a4bd47c07))
+- [@react-md/alert](./packages/alert): created and exported the default timeout
+  and classnames
+  ([32bacc9](https://github.com/mlaursen/react-md/commit/32bacc9000ea7c9633e437ce6eabb27606c7d7f0))
+- [@react-md/button](./packages/button): added built-in support for rendering
+  `CircularProgress`
+  ([c6c616b](https://github.com/mlaursen/react-md/commit/c6c616b72866cc1533b7f83c4d9f031354319dfc))
+- [@react-md/button](./packages/button): added support for disabled theme
+  without disabling button
+  ([6a647e2](https://github.com/mlaursen/react-md/commit/6a647e23831c7b3c97eb12baa47dfd5dd074271a))
+- [@react-md/form](./packages/form): updated `TextArea` to use the new
+  useResizeObserver API
+  ([2c2dd27](https://github.com/mlaursen/react-md/commit/2c2dd27576aeeecb2baba12ef616af45197037db))
+- **grid:** added hook to access grid list size
+  ([a448816](https://github.com/mlaursen/react-md/commit/a44881602de57447e9cb5ba720f5f2c031936863))
+- **grid:** added new `cloneStyles` prop so grid styles can be applied to any
+  child
+  ([ca913e7](https://github.com/mlaursen/react-md/commit/ca913e75926a6d665c6aeed56faa292d201a5287))
+- [@react-md/overlay](./packages/overlay): created and exported the default
+  timeout and classnames
+  ([48cd9d5](https://github.com/mlaursen/react-md/commit/48cd9d584342d2050ce154755ca7927cd9f90a72))
+- [@react-md/progress](./packages/progress): added a `small` state to the
+  `CircularProgress`
+  ([6884a3a](https://github.com/mlaursen/react-md/commit/6884a3ab762216313330dfb01f386c87a5cd5b88))
+- [@react-md/tabs](./packages/tabs): updated tabs to use the new resize observer
+  API
+  ([052b3f2](https://github.com/mlaursen/react-md/commit/052b3f25db47077c53091bd1fb63f3e0b56a7fee))
+- **themes:** updated sandboxes to use new CDN for pre-compiled themes
+  ([e83f47e](https://github.com/mlaursen/react-md/commit/e83f47edb7401a81af6e3669745815cb85f565a8))
+- [@react-md/tree](./packages/tree): updated defaultTreeItemRenderer for class
+  names
+  ([3c61f3c](https://github.com/mlaursen/react-md/commit/3c61f3cd77764e32de6e093bc61813a6b9e45c6f)),
+  closes [#920](https://github.com/mlaursen/react-md/issues/920)
+- [@react-md/utils](./packages/utils): added `Dir` component to help determine
+  current writing direction
+  ([a929e04](https://github.com/mlaursen/react-md/commit/a929e04b20bf41c3bff109714d9cf850bac99eb3))
+- [@react-md/utils](./packages/utils): added `useGridList` hook
+  ([56ecc19](https://github.com/mlaursen/react-md/commit/56ecc19d748e3c63b6d27180ceedb385364fba43))
+- [@react-md/utils](./packages/utils): added useIsomorphicLayoutEffect from
+  react-redux
+  ([deacf1c](https://github.com/mlaursen/react-md/commit/deacf1c01f62adebbfbfbb3f0d5709cdab0cc537))
+- [@react-md/utils](./packages/utils): created a new useResizeObserver
+  implementation
+  ([dc3f4df](https://github.com/mlaursen/react-md/commit/dc3f4df744e4357c21e527986f4b762351345dfe))
+- [@react-md/utils](./packages/utils): more verbose useAppSize usage error
+  message
+  ([2c81982](https://github.com/mlaursen/react-md/commit/2c81982c6aef1a28c774b5b8263b141a44ab0949))
+
 # [2.3.0-alpha.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.1) (2020-09-03)
 
 ### Bug Fixes
