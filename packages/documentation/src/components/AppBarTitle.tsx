@@ -1,10 +1,4 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement, ReactNode, useCallback, useState } from "react";
 import {
   AppBarTitle as RMDAppBarTitle,
   AppBarTitleProps,
@@ -28,21 +22,23 @@ export default function AppBarTitle({
   ...props
 }: AppBarTitleProps): ReactElement {
   const [tooltip, setTooltip] = useState<ReactNode>(null);
-  const ref = useRef<HTMLHeadingElement | null>(null);
-  const updateTooltip = useCallback(() => {
-    if (!ref.current) {
-      return;
-    }
-
-    const isTruncated = ref.current.offsetWidth < ref.current.scrollWidth;
-    if (isTruncated && !tooltip) {
-      setTooltip(children);
-    } else if (!isTruncated && tooltip) {
-      setTooltip(null);
-    }
-  }, [tooltip, ref, children]);
+  const updateTooltip = useCallback(
+    ({ width, scrollWidth }) => {
+      // the `width` is a `DOMRectReadOnly` object which allows for fractional
+      // values while `scrollWidth` is always `Math.ceil` so to be able to
+      // compare correctly, need to also `Math.ceil` the width or use
+      // `target.offsetWidth`
+      const offsetWidth = Math.ceil(width);
+      const isTruncated = offsetWidth < scrollWidth;
+      if (isTruncated && !tooltip) {
+        setTooltip(children);
+      } else if (!isTruncated && tooltip) {
+        setTooltip(null);
+      }
+    },
+    [tooltip, children]
+  );
   const [, refHandler] = useResizeObserver(updateTooltip, {
-    ref,
     disableHeight: true,
   });
 
