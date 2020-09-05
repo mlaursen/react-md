@@ -11,17 +11,6 @@ jest.mock("resize-observer-polyfill");
 
 const ResizeObserverMock = mocked(ResizeObserverPolyfill);
 
-interface DOMRectReadOnly {
-  readonly x: number;
-  readonly y: number;
-  readonly width: number;
-  readonly height: number;
-  readonly top: number;
-  readonly right: number;
-  readonly bottom: number;
-  readonly left: number;
-}
-
 const DEFAULT_DOM_RECT: DOMRectReadOnly = {
   x: 100,
   y: 100,
@@ -31,6 +20,7 @@ const DEFAULT_DOM_RECT: DOMRectReadOnly = {
   right: 2000,
   height: 100,
   width: 1000,
+  toJSON: () => "",
 };
 
 class MockedObserver implements ResizeObserver {
@@ -55,17 +45,18 @@ class MockedObserver implements ResizeObserver {
     this._elements = [];
   }
 
-  public trigger(contentRect: Partial<DOMRectReadOnly> = DEFAULT_DOM_RECT) {
-    this._callback(
-      this._elements.map((target) => ({
-        target,
-        contentRect: {
-          ...DEFAULT_DOM_RECT,
-          ...contentRect,
-        },
-      })),
-      this
-    );
+  public trigger(rect: Partial<DOMRectReadOnly> = {}) {
+    const contentRect: DOMRectReadOnly = {
+      ...rect,
+      ...DEFAULT_DOM_RECT,
+    };
+
+    act(() => {
+      this._callback(
+        this._elements.map((target) => ({ target, contentRect })),
+        this
+      );
+    });
   }
 }
 

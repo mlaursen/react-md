@@ -17,17 +17,6 @@ const observe = jest.fn();
 const unobserve = jest.fn();
 const disconnect = jest.fn();
 
-interface DOMRectReadOnly {
-  readonly x: number;
-  readonly y: number;
-  readonly width: number;
-  readonly height: number;
-  readonly top: number;
-  readonly right: number;
-  readonly bottom: number;
-  readonly left: number;
-}
-
 const DEFAULT_DOM_RECT: DOMRectReadOnly = {
   x: 0,
   y: 0,
@@ -37,6 +26,7 @@ const DEFAULT_DOM_RECT: DOMRectReadOnly = {
   left: 0,
   top: 0,
   right: 0,
+  toJSON: () => "",
 };
 
 class MockedObserver implements ResizeObserver {
@@ -64,7 +54,12 @@ class MockedObserver implements ResizeObserver {
     this._elements = [];
   }
 
-  public trigger(contentRect: DOMRectReadOnly = DEFAULT_DOM_RECT) {
+  public trigger(rect: Partial<DOMRectReadOnly> = {}) {
+    const contentRect: DOMRectReadOnly = {
+      ...rect,
+      ...DEFAULT_DOM_RECT,
+    };
+
     act(() => {
       this._callback(
         this._elements.map((target) => ({ target, contentRect })),
@@ -248,16 +243,7 @@ describe("useResizeObserver", () => {
     });
     expect(onResize).toBeCalledTimes(1);
 
-    observer.trigger({
-      x: 0,
-      y: 0,
-      height: 100,
-      width: 0,
-      bottom: 0,
-      left: 0,
-      top: 0,
-      right: 0,
-    });
+    observer.trigger({ height: 100 });
     expect(onResize).toBeCalledTimes(1);
 
     unmount();
@@ -290,16 +276,7 @@ describe("useResizeObserver", () => {
     });
     expect(onResize).toBeCalledTimes(1);
 
-    observer.trigger({
-      x: 0,
-      y: 0,
-      height: 0,
-      width: 1000,
-      bottom: 0,
-      left: 0,
-      top: 0,
-      right: 0,
-    });
+    observer.trigger({ width: 1000 });
     expect(onResize).toBeCalledTimes(1);
 
     unmount();
