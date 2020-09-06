@@ -456,11 +456,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -468,7 +476,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -496,7 +504,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-3",
       title: "Features",
     },
     {
@@ -578,6 +586,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -704,6 +716,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
@@ -800,6 +816,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -912,6 +932,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -1030,8 +1054,8 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
-      anchor: "#230-alpha2-2020-09-05",
-      title: "2.3.0-alpha.2 (2020-09-05)",
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#bug-fixes",
@@ -1042,8 +1066,8 @@ const tocs: TOCRecord = {
       title: "Features",
     },
     {
-      anchor: "#230-alpha1-2020-09-03",
-      title: "2.3.0-alpha.1 (2020-09-03)",
+      anchor: "#230-alpha2-2020-09-05",
+      title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
       anchor: "#bug-fixes-1",
@@ -1051,6 +1075,18 @@ const tocs: TOCRecord = {
     },
     {
       anchor: "#features-1",
+      title: "Features",
+    },
+    {
+      anchor: "#230-alpha1-2020-09-03",
+      title: "2.3.0-alpha.1 (2020-09-03)",
+    },
+    {
+      anchor: "#bug-fixes-2",
+      title: "Bug Fixes",
+    },
+    {
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -1082,7 +1118,7 @@ const tocs: TOCRecord = {
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes-2",
+      anchor: "#bug-fixes-3",
       title: "Bug Fixes",
     },
     {
@@ -1214,6 +1250,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
@@ -1324,6 +1364,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -1446,11 +1490,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -1458,7 +1510,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -1486,7 +1538,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-3",
       title: "Features",
     },
     {
@@ -1606,6 +1658,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
@@ -1714,6 +1770,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
@@ -1816,6 +1876,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -1930,8 +1994,8 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
-      anchor: "#230-alpha2-2020-09-05",
-      title: "2.3.0-alpha.2 (2020-09-05)",
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#bug-fixes",
@@ -1942,8 +2006,8 @@ const tocs: TOCRecord = {
       title: "Features",
     },
     {
-      anchor: "#230-alpha1-2020-09-03",
-      title: "2.3.0-alpha.1 (2020-09-03)",
+      anchor: "#230-alpha2-2020-09-05",
+      title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
       anchor: "#bug-fixes-1",
@@ -1951,6 +2015,18 @@ const tocs: TOCRecord = {
     },
     {
       anchor: "#features-1",
+      title: "Features",
+    },
+    {
+      anchor: "#230-alpha1-2020-09-03",
+      title: "2.3.0-alpha.1 (2020-09-03)",
+    },
+    {
+      anchor: "#bug-fixes-2",
+      title: "Bug Fixes",
+    },
+    {
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -1966,11 +2042,11 @@ const tocs: TOCRecord = {
       title: "2.2.0 (2020-08-11)",
     },
     {
-      anchor: "#bug-fixes-2",
+      anchor: "#bug-fixes-3",
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-3",
       title: "Features",
     },
     {
@@ -1986,7 +2062,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-3",
+      anchor: "#features-4",
       title: "Features",
     },
     {
@@ -1994,7 +2070,7 @@ const tocs: TOCRecord = {
       title: "2.0.3 (2020-07-07)",
     },
     {
-      anchor: "#bug-fixes-3",
+      anchor: "#bug-fixes-4",
       title: "Bug Fixes",
     },
     {
@@ -2002,7 +2078,7 @@ const tocs: TOCRecord = {
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes-4",
+      anchor: "#bug-fixes-5",
       title: "Bug Fixes",
     },
     {
@@ -2126,6 +2202,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
@@ -2242,11 +2322,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -2254,7 +2342,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -2356,6 +2444,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -2460,6 +2552,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -2582,6 +2678,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
@@ -2662,6 +2762,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -2768,11 +2872,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -2780,7 +2892,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -2808,7 +2920,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-3",
       title: "Features",
     },
     {
@@ -2920,11 +3032,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -2932,7 +3052,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -3094,11 +3214,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -3106,7 +3234,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -3222,11 +3350,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -3234,7 +3370,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -3262,7 +3398,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-3",
       title: "Features",
     },
     {
@@ -3346,11 +3482,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -3358,7 +3502,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#bug-fixes-1",
+      anchor: "#bug-fixes-2",
       title: "Bug Fixes",
     },
     {
@@ -3386,7 +3530,7 @@ const tocs: TOCRecord = {
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes-2",
+      anchor: "#bug-fixes-3",
       title: "Bug Fixes",
     },
     {
@@ -3472,6 +3616,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -3610,11 +3758,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -3622,7 +3778,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -3732,6 +3888,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -3862,6 +4022,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
@@ -3986,6 +4150,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
@@ -4106,11 +4274,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -4118,7 +4294,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -4208,6 +4384,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
     },
     {
       anchor: "#230-alpha2-2020-09-05",
@@ -4314,11 +4494,19 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#230-alpha3-2020-09-06",
+      title: "2.3.0-alpha.3 (2020-09-06)",
+    },
+    {
+      anchor: "#features",
+      title: "Features",
+    },
+    {
       anchor: "#230-alpha2-2020-09-05",
       title: "2.3.0-alpha.2 (2020-09-05)",
     },
     {
-      anchor: "#features",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -4326,7 +4514,7 @@ const tocs: TOCRecord = {
       title: "2.3.0-alpha.1 (2020-09-03)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -4346,7 +4534,7 @@ const tocs: TOCRecord = {
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-3",
       title: "Features",
     },
     {

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.3](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.3) (2020-09-06)
+
+### Features
+
+- [@react-md/tabs](../tabs): updated tabs to use the new resize observer API
+  ([052b3f2](https://github.com/mlaursen/react-md/commit/052b3f25db47077c53091bd1fb63f3e0b56a7fee))
+
 # [2.3.0-alpha.2](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.2) (2020-09-05)
 
 ### Features

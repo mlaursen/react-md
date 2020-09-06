@@ -1,6 +1,6 @@
 {
   "name": "@react-md/sheet",
-  "version": "2.3.0-alpha.2",
+  "version": "2.3.0-alpha.3",
   "description": "A package for making temporary sheets of material (normally for navigation or details).",
   "scripts": {
     "build": "dev-utils build",
@@ -41,12 +41,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/dialog": "^2.3.0-alpha.2",
-    "@react-md/elevation": "^2.3.0-alpha.2",
-    "@react-md/overlay": "^2.3.0-alpha.2",
-    "@react-md/theme": "^2.3.0-alpha.2",
-    "@react-md/transition": "^2.3.0-alpha.2",
-    "@react-md/utils": "^2.3.0-alpha.2",
+    "@react-md/dialog": "^2.3.0-alpha.3",
+    "@react-md/elevation": "^2.3.0-alpha.3",
+    "@react-md/overlay": "^2.3.0-alpha.3",
+    "@react-md/theme": "^2.3.0-alpha.3",
+    "@react-md/transition": "^2.3.0-alpha.3",
+    "@react-md/utils": "^2.3.0-alpha.3",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
