@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-alpha.3](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.3) (2020-09-06)
+
+### Bug Fixes
+
+- [@react-md/states](../states): fixed usedPressStates to pass onClick like
+  other state hooks
+  ([82cd676](https://github.com/mlaursen/react-md/commit/82cd67695c2ecd6e9a710d5fbfce97ae4dfeda80))
+
+### Features
+
+- [@react-md/button](../button): added built-in support for rendering
+  `CircularProgress`
+  ([c6c616b](https://github.com/mlaursen/react-md/commit/c6c616b72866cc1533b7f83c4d9f031354319dfc))
+- [@react-md/button](../button): added support for disabled theme without
+  disabling button
+  ([6a647e2](https://github.com/mlaursen/react-md/commit/6a647e23831c7b3c97eb12baa47dfd5dd074271a))
+
 # [2.3.0-alpha.2](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.2) (2020-09-05)
 
 ### Bug Fixes
