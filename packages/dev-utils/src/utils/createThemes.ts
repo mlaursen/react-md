@@ -37,24 +37,20 @@ function getThemeVariables(theme: string): [string, string, string, string] {
 }
 
 function getThemes(): string[] {
-  return (
-    colors
-      .flatMap((primary) =>
-        secondaries.flatMap((secondary) => {
-          if (primary === secondary) {
-            return [];
-          }
+  // sorting is really a hack to fix replacing colors correctly since `red` is
+  // an error color so might regex replace incorrectly
+  return colors.sort().flatMap((primary) =>
+    secondaries.flatMap((secondary) => {
+      if (primary === secondary) {
+        return [];
+      }
 
-          primary = toCSSColor(primary);
-          secondary = toCSSColor(secondary);
-          return weights.flatMap((weight) =>
-            tones.map((theme) => `${primary}-${secondary}-${weight}-${theme}`)
-          );
-        })
-      )
-      // sorting is really a hack to fix replacing colors correctly since `red` is
-      // an error color so might regex replace incorrectly
-      .sort()
+      primary = toCSSColor(primary);
+      secondary = toCSSColor(secondary);
+      return weights.flatMap((weight) =>
+        tones.map((theme) => `${primary}-${secondary}-${weight}-${theme}`)
+      );
+    })
   );
 }
 
