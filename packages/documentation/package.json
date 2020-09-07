@@ -6,7 +6,6 @@
   "scripts": {
     "prebuild": "dev-utils doc-index",
     "dev": "nodemon",
-    "sandbox": "dev-utils sandbox",
     "build": "npm-run-all build-client build-server",
     "build-server": "tsc -p tsconfig.server.json",
     "build-client": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",

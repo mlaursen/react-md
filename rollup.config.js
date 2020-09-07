@@ -3,6 +3,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
+const rmdPkg = 'packages/react-md';
+const prefix = `${rmdPkg}/dist/umd`;
+
 function createConfig(type) {
   const globals = {
     react: 'React',
@@ -22,17 +25,17 @@ function createConfig(type) {
   }
 
   return {
-    input: `src/${type}.ts`,
+    input: `${rmdPkg}/src/${type}.ts`,
     output: [
       {
-        file: `dist/umd/react-md${fileNameSuffix}.development.js`,
+        file: `${prefix}/react-md${fileNameSuffix}.development.js`,
         name: 'ReactMD',
         format: 'umd',
         globals,
         sourcemap: true,
       },
       {
-        file: `dist/umd/react-md${fileNameSuffix}.production.min.js`,
+        file: `${prefix}/react-md${fileNameSuffix}.production.min.js`,
         name: 'ReactMD',
         format: 'umd',
         globals,
