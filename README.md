@@ -33,7 +33,7 @@ If you change these variables before the `react-md-everything` mixin is included
 application will be styled with your new theme.
 
 ```scss
-@import '~react-md/src/scss/react-md';
+@import "~react-md/src/scss/react-md";
 
 $md-primary-color: $md-teal-500;
 $md-secondary-color: $md-lime-a-400;
@@ -68,7 +68,7 @@ If you would like some default link styles, you can copy/paste the following blo
   }
 
   &:hover {
-    color: get-color('text', $md-light-theme);
+    color: get-color("text", $md-light-theme);
     text-decoration: underline;
   }
 }
@@ -86,7 +86,7 @@ Please see the list of [examples](examples/) for how you can get a project start
   <head>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/react-md@1.16.1/dist/react-md.deep_purple-pink.min.css"
+      href="https://unpkg.com/react-md@1.17.0/dist/react-md.deep_purple-pink.min.css"
     />
     <link
       rel="stylesheet"
@@ -98,7 +98,7 @@ Please see the list of [examples](examples/) for how you can get a project start
     <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
     <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
     <script>
-    <script src="https://unpkg.com/react-md@1.16.1/dist/react-md.min.js"></script>
+    <script src="https://unpkg.com/react-md@1.17.0/dist/react-md.min.js"></script>
       var MyAwesomeComponent = React.createClass({
         render: function() {
           return React.createElement(ReactMD.Button, {

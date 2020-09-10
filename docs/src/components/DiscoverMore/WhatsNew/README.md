@@ -1,3 +1,11 @@
+## September 2020
+
+### v1.17.0 Release
+
+##### Changelog
+
+- Added `componentRef` and `containerRef` props to `FocusContainer` ([@gamtiq] - [pull-947])
+
 ## March 2020
 
 ### Migrating to new Domain
