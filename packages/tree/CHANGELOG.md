@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0) (2020-09-10)
+
+### Features
+
+- [@react-md/tree](../tree): updated defaultTreeItemRenderer for class names
+  ([3c61f3c](https://github.com/mlaursen/react-md/commit/3c61f3cd77764e32de6e093bc61813a6b9e45c6f)),
+  closes [#920](https://github.com/mlaursen/react-md/issues/920)
+
 ## [2.2.2](https://github.com/mlaursen/react-md/compare/v2.2.1...v2.2.2) (2020-09-02)
 
 **Note:** Version bump only for package [@react-md/tree](../tree)

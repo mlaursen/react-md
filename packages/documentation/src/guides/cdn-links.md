@@ -91,7 +91,7 @@ a new `<link>` tag:
 ```html
 <link
   crossorigin
-  ref="stylesheet"
+  rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-dark.min.css"
 />
 ```
