@@ -1,3 +1,99 @@
+Title: react-md 2.3.0
+
+Date: 09/10/2020
+
+Summary:
+
+This release is kind of a breaking change since the base `react-md` package no
+longer has a `dist/css` folder for all the pre-compiled themes due to CDNs and
+package managers rejecting this package for being too big. All the pre-compiled
+themes will now be available through [jsDelivr](https://cdn.jsdelivr.net)
+instead. Check out the [CDN Links](/guides/cdn-links) for more info.
+
+This release also changed the `ResizeObserver` to use a subscription model to
+slightly increase performance when multiple `ResizeObserver`s are used on a
+single page as well as fix some errors related to the
+`ResizeObserver loop has been exceeded`. The `useResizeObserver` has been
+updated to use the new API which requires `ref`s, but is still backwards
+compatible. Due to this change, the `ResizeObserver` component has been
+**deprecated** in favor of the `useResizeObserver` hook implementation.
+
+Otherwise, there were a few new features added to the #button, #progress, and
+#tree packages that you can reference below.
+
+##### Documentation<!-- no-margin -->
+
+- created a new example for the `@react-md/form` package to show how to use
+  [react-hook-form](https://react-hook-form.com/) with `react-md` for form
+  validation. Check out the new example
+  [here](/packages/form/demos#with-react-hook-form).
+- updated sandboxes to use new CDN for pre-compiled themes (e83f47e)
+- added a simple umd example to show
+  [CDN usage]({{GITHUB_FILE_URL}}/examples/umd) (ed6b62e)
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** added missing scss variables (ec8d675)
+- **@react-md/states:** fixed `usePressedStates` to pass `onClick` like other
+  state hooks (82cd676)
+
+##### Features<!-- no-margin -->
+
+- **@react-md/alert:** created and exported the default timeout and classnames
+  (32bacc9)
+- **@react-md/button:** added built-in support for rendering `CircularProgress`
+  (c6c616b)
+- **@react-md/button:** added support for disabled theme without disabling
+  button (6a647e2)
+- **@react-md/form:** updated `TextArea` to use the new `useResizeObserver` API
+  (2c2dd27)
+- **@react-md/overlay:** created and exported the default timeout and classnames
+  (48cd9d5)
+- **@react-md/progress:** added a `small` state to the `CircularProgress`
+  (6884a3a)
+- **@react-md/tabs:** updated tabs to use the new resize observer API (052b3f2)
+- **@react-md/tree:** updated `defaultTreeItemRenderer` for class names
+  (3c61f3c), closes #920
+- **@react-md/utils:** improved `LabelRequiredForA11y` type definition (b7aa4fa)
+- **@react-md/utils:** added `Dir` component to help determine current writing
+  direction (a929e04)
+- **@react-md/utils:** added `useGridList` hook (56ecc19)
+- **@react-md/utils:** added `useIsomorphicLayoutEffect` from `react-redux`
+  (deacf1c)
+- **@react-md/utils:** created a new `useResizeObserver` implementation
+  (dc3f4df)
+- **@react-md/utils:** more verbose `useAppSize` usage error message (2c81982)
+- **@react-md/utils:** added hook to access grid list size (a448816)
+- **@react-md/utils:** added new `cloneStyles` prop so grid styles can be
+  applied to any child (ca913e7)
+
+---
+
+Title: react-md 2.2.2
+
+Date: 09/02/2020
+
+Summary:
+
+This release was a re-publish of `v2.2.0` attempting to fix a publishing error.
+Unfortunately, the base `react-md` package had to drop support for the
+pre-compiled themes and now need use [jsDelivr](https://cdn.jsdelivr.net)
+instead.
+
+Check out the new [CDN Links](/guides/cdn-links) for more info.
+
+---
+
+Title: react-md 2.2.1
+
+Date: 09/02/2020
+
+Summary:
+
+This release was just a re-publish of `v2.2.0` to try fixing a publishing error.
+
+---
+
 Title: react-md 2.2.0
 
 Date: 08/11/2020
