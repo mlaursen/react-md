@@ -28,6 +28,7 @@ Otherwise, there were a few new features added to the #button, #progress, and
   validation. Check out the new example
   [here](/packages/form/demos#with-react-hook-form).
 - updated sandboxes to use new CDN for pre-compiled themes (e83f47e)
+- added documentation about using [CDN Links](/guides/cdn-links)
 - added a simple umd example to show
   [CDN usage]({{GITHUB_FILE_URL}}/examples/umd) (ed6b62e)
 
