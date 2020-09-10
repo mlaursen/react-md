@@ -3,27 +3,6 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.3.0-alpha.3](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.3) (2020-09-06)
-
-### Features
-
-- **a11y:** improved `LabelRequiredForA11y` type definition
-  ([b7aa4fa](https://github.com/mlaursen/react-md/commit/b7aa4fadb7b4f1a23fba4008e42d2f4a4bd47c07))
-
-# [2.3.0-alpha.2](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.2) (2020-09-05)
-
-### Features
-
-- **a11y:** improved `LabelRequiredForA11y` type definition
-  ([b7aa4fa](https://github.com/mlaursen/react-md/commit/b7aa4fadb7b4f1a23fba4008e42d2f4a4bd47c07))
-
-# [2.3.0-alpha.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.1) (2020-09-03)
-
-### Features
-
-- **a11y:** improved `LabelRequiredForA11y` type definition
-  ([b7aa4fa](https://github.com/mlaursen/react-md/commit/b7aa4fadb7b4f1a23fba4008e42d2f4a4bd47c07))
-
 ## [2.2.2](https://github.com/mlaursen/react-md/compare/v2.2.1...v2.2.2) (2020-09-02)
 
 **Note:** Version bump only for package [@react-md/dialog](../dialog)

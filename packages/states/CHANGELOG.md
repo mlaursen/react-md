@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.3.0-alpha.3](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.3) (2020-09-06)
-
-### Bug Fixes
-
-- [@react-md/states](../states): fixed usedPressStates to pass onClick like
-  other state hooks
-  ([82cd676](https://github.com/mlaursen/react-md/commit/82cd67695c2ecd6e9a710d5fbfce97ae4dfeda80))
-
-# [2.3.0-alpha.2](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.2) (2020-09-05)
-
-### Bug Fixes
-
-- [@react-md/states](../states): fixed usedPressStates to pass onClick like
-  other state hooks
-  ([82cd676](https://github.com/mlaursen/react-md/commit/82cd67695c2ecd6e9a710d5fbfce97ae4dfeda80))
-
-# [2.3.0-alpha.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0-alpha.1) (2020-09-03)
-
-### Bug Fixes
-
-- [@react-md/states](../states): fixed usedPressStates to pass onClick like
-  other state hooks
-  ([82cd676](https://github.com/mlaursen/react-md/commit/82cd67695c2ecd6e9a710d5fbfce97ae4dfeda80))
-
 ## [2.2.2](https://github.com/mlaursen/react-md/compare/v2.2.1...v2.2.2) (2020-09-02)
 
 **Note:** Version bump only for package [@react-md/states](../states)
