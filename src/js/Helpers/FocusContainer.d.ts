@@ -6,6 +6,8 @@ export interface FocusContainerProps extends Props {
   [key: string]: any;
 
   component?: React.ReactType;
+  componentRef?: React.Ref<any>;
+  containerRef?: React.Ref<any>;
   children?: React.ReactNode;
   initialFocus?: string;
   focusOnMount?: boolean;
@@ -13,5 +15,9 @@ export interface FocusContainerProps extends Props {
   containFocus?: boolean;
 }
 
-declare const FocusContainer: React.ComponentClass<FocusContainerProps>;
+interface FocusContainerComponent extends React.ComponentClass<FocusContainerProps> {
+  getContainer(): React.ReactElement<any>;
+}
+
+declare const FocusContainer: FocusContainerComponent;
 export default FocusContainer;

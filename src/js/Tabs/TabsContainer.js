@@ -7,6 +7,7 @@ import SwipeableViews from 'react-swipeable-views';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import between from '../utils/PropTypes/between';
+import setRef from '../utils/ref';
 import ResizeObserver from '../Helpers/ResizeObserver';
 import Paper from '../Papers/Paper';
 import TabPanel from './TabPanel';
@@ -286,16 +287,8 @@ export default class TabsContainer extends PureComponent {
   };
 
   _setContainer = (container) => {
-    const { componentRef } = this.props;
     this._container = findDOMNode(container);
-    if (componentRef) {
-      const refType = typeof componentRef;
-      if (refType === 'function') {
-        componentRef(this._container);
-      } else if (refType === 'object') {
-        componentRef.current = this._container;
-      }
-    }
+    setRef(this.props.componentRef, this._container);
   };
 
   _setTabs = (tabs) => {

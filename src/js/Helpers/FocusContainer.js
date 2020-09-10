@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 
 import isValidFocusKeypress from '../utils/EventUtils/isValidFocusKeypress';
+import setRef from '../utils/ref';
 
 const BASE_FOCUSABLE_ELEMENTS = '[href],[tabindex]:not([tabindex="-1"]),input:not([disabled]):not([type="hidden"])';
 const FOCUSABLE_QUERY = ['button', 'textarea', 'select']
@@ -26,6 +27,27 @@ export default class FocusContainer extends PureComponent {
       PropTypes.func,
       PropTypes.object,
     ]).isRequired,
+
+    /**
+     * An optional ref to get reference to the rendered component.
+     * Just like other refs, this will provide null when it unmounts.
+     */
+    componentRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+    ]),
+
+    /**
+     * An optional ref to get reference to the top-most element of the rendered container.
+     * Just like other refs, this will provide null when it unmounts.
+     *
+     * This is helpful if you'd like access the DOM node for a parent Component without needing to use
+     * `ReactDOM.findDOMNode`.
+     */
+    containerRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+    ]),
 
     /**
      * An optional style to apply.
@@ -105,6 +127,15 @@ export default class FocusContainer extends PureComponent {
     }
   }
 
+  /**
+   * Return reference to the top-most DOM node of the rendered container.
+   *
+   * @return {Element|null|undefined} Reference to the top-most DOM node of the rendered container.
+   */
+  getContainer() {
+    return this._container;
+  }
+
   _enableFocusTrap = () => {
     window.addEventListener('keydown', this._handleKeyDown, true);
   };
@@ -151,14 +182,18 @@ export default class FocusContainer extends PureComponent {
    * if the `focusOnMount` prop is `true`.
    */
   _containFocus = (containerRef) => {
+    const { props } = this;
+    setRef(props.componentRef, containerRef);
     if (containerRef === null) {
       this._container = null;
       this._disableFocusTrap();
+      setRef(props.containerRef, null);
       return;
     }
 
-    const { focusOnMount, containFocus } = this.props;
+    const { focusOnMount, containFocus } = props;
     this._container = findDOMNode(containerRef);
+    setRef(props.containerRef, this._container);
     this._focusables = [].slice.call(this._container.querySelectorAll(FOCUSABLE_QUERY));
 
     if (focusOnMount) {
