@@ -96,8 +96,8 @@ a new `<link>` tag:
 />
 ```
 
-Replace any of the theme colors in the `href` for your specific themeand replace
-`{{RMD_VERSION}}` for a specific version of ReactMD.
+Replace any of the theme colors in the `href` for your specific theme and
+replace `{{RMD_VERSION}}` for a specific version of ReactMD.
 
 > The pre-compiled themes used to be published with the base `react-md` package,
 > but the tarball ended up being too large so package managers and other CDNs
