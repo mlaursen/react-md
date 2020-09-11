@@ -4,7 +4,7 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { SPACE } from '../constants/keyCodes';
+import { ENTER, SPACE } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import themeColors from '../utils/themeColors';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
@@ -153,7 +153,7 @@ export default class SelectionControl extends PureComponent {
     ]))),
 
     /**
-     * Boolean if the `Radio` is disabled.
+     * Boolean if the `SelectionControl` is disabled.
      */
     disabled: PropTypes.bool,
 
@@ -208,6 +208,11 @@ export default class SelectionControl extends PureComponent {
      * Boolean if the `SelectionControl` should be displayed inline instead of a block.
      */
     inline: PropTypes.bool,
+
+    /**
+     * Whether the `change` event should be triggered for `SelectionControl` on pressing of `Enter` key.
+     */
+    changeOnEnter: PropTypes.bool,
 
     /**
      * The icon to use for a checked `checkbox` selection control.
@@ -343,12 +348,13 @@ export default class SelectionControl extends PureComponent {
   };
 
   _handleKeyDown = (e) => {
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
+    const { props } = this;
+    if (props.onKeyDown) {
+      props.onKeyDown(e);
     }
 
     const key = e.which || e.keyCode;
-    if (key === SPACE) {
+    if (key === SPACE || (key === ENTER && props.changeOnEnter)) {
       this._input.click();
     }
   }

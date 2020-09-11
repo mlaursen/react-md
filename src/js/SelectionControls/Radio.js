@@ -88,6 +88,11 @@ export default class Radio extends PureComponent {
     inline: PropTypes.bool,
 
     /**
+     * Whether the `change` event should be triggered for `Radio` on pressing of `Enter` key.
+     */
+    changeOnEnter: PropTypes.bool,
+
+    /**
      * The icon to display when the radio is checked/selected.
      */
     checkedIcon: PropTypes.node.isRequired,
