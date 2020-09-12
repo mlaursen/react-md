@@ -4,7 +4,7 @@
 @import '~@react-md/utils/dist/mixins';
 
 .code {
-  @include rmd-states-focus-shadow;
+  @include rmd-states-focus-shadow($css-modules: true);
   @include rmd-utils-hide-focus-outline;
 
   flex-grow: 1;
