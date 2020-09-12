@@ -1,19 +1,15 @@
 {
   "public/index.html": {
-    "content": "<!DOCTYPE html>\n<html lang=\"en\" class=\"{{THEME}}-theme\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the `src/styles.scss` in the `src/index.tsx` instead to create custom themes --!>\n    <link\n      rel=\"stylesheet\"\n      href=\"https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css\"\n    />\n    <title>List Example - Three Line Examples</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
-    "isBinary": false
+    "content": "<!DOCTYPE html>\n<html lang=\"en\" class=\"{{THEME}}-theme\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the `src/styles.scss` in the `src/index.tsx` instead to create custom themes --!>\n    <link\n      rel=\"stylesheet\"\n      href=\"https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css\"\n    />\n    <title>List Example - Three Line Examples</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
-    "isBinary": false
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\n// the styles are actually loaded as the pre-compiled themes in the index.html\n// to speed up sandbox compilation. If you want to update the theme, you'll need\n// to uncomment this line and remove the `<link>` tag in the `index.html`\n// import \"./styles.scss\"\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n"
   },
   "src/styles.scss": {
-    "content": "@import \"variables\";\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/list/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
-    "isBinary": false
+    "content": "@import \"variables\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/list/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n\n@include react-md-utils;\n"
   },
   "src/_variables.scss": {
-    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
-    "isBinary": false
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n"
   },
   "package.json": {
     "content": {
@@ -45,19 +41,15 @@
       "scripts": {
         "start": "react-scripts start"
       }
-    },
-    "isBinary": false
+    }
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { List, ListItem } from \"@react-md/list\";\nimport { StarSVGIcon } from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\n\nconst inbox = [\n  {\n    from: \"Ali Connors\",\n    subject: \"Bunch this weekend?\",\n    message:\n      \"I'll be in your neighborhood sometime this week. Would you like to try brunch this weekend?\",\n  },\n  {\n    from: \"Ali Connors\",\n    subject: \"Summer BBQ\",\n    message: \"Wish I could come, but I'm out of town this weekend.\",\n  },\n  {\n    from: \"Scott Stirling\",\n    subject: \"See your video? You're a legend!\",\n    message:\n      \"I still can't believe it happened... I'm not sure if my face will ever recover.\",\n  },\n];\n\nconst Demo: FC = () => (\n  <Container>\n    <List>\n      {inbox.map(({ subject, message }, i) => (\n        <ListItem\n          id={`three-line-item-${i}`}\n          key={i}\n          leftAddon={\n            <img src={`https://picsum.photos/40?image=100${i}`} alt=\"\" />\n          }\n          leftAddonType=\"media\"\n          rightAddon={<StarSVGIcon />}\n          rightAddonPosition=\"top\"\n          secondaryText={message}\n          threeLines\n        >\n          {subject}\n        </ListItem>\n      ))}\n    </List>\n  </Container>\n);\n\nexport default Demo;\n",
-    "isBinary": false
-  },
-  "src/Container.module.scss": {
-    "content": "$rmd-theme-dark-elevation: true;\n\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n.container {\n  @include rmd-utils-optional-css-modules(\".rmd-list\", true, false) {\n    @include rmd-theme-dark-elevation(6, true);\n  }\n\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  :global .rmd-list {\n    @include rmd-elevation(4);\n\n    margin: 1rem;\n    max-width: 20rem;\n    width: 100%;\n  }\n}\n",
-    "isBinary": false
+    "content": "import React, { FC } from \"react\";\nimport { List, ListItem } from \"@react-md/list\";\nimport { StarSVGIcon } from \"@react-md/material-icons\";\n\nimport Container from \"./Container\";\n\nconst inbox = [\n  {\n    from: \"Ali Connors\",\n    subject: \"Bunch this weekend?\",\n    message:\n      \"I'll be in your neighborhood sometime this week. Would you like to try brunch this weekend?\",\n  },\n  {\n    from: \"Ali Connors\",\n    subject: \"Summer BBQ\",\n    message: \"Wish I could come, but I'm out of town this weekend.\",\n  },\n  {\n    from: \"Scott Stirling\",\n    subject: \"See your video? You're a legend!\",\n    message:\n      \"I still can't believe it happened... I'm not sure if my face will ever recover.\",\n  },\n];\n\nconst Demo: FC = () => (\n  <Container>\n    <List>\n      {inbox.map(({ subject, message }, i) => (\n        <ListItem\n          id={`three-line-item-${i}`}\n          key={i}\n          leftAddon={\n            <img src={`https://picsum.photos/40?image=100${i}`} alt=\"\" />\n          }\n          leftAddonType=\"media\"\n          rightAddon={<StarSVGIcon />}\n          rightAddonPosition=\"top\"\n          secondaryText={message}\n          threeLines\n        >\n          {subject}\n        </ListItem>\n      ))}\n    </List>\n  </Container>\n);\n\nexport default Demo;\n"
   },
   "src/Container.tsx": {
-    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(styles.container, className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n",
-    "isBinary": false
+    "content": "import React, { FC, HTMLAttributes } from \"react\";\nimport cn from \"classnames\";\n\nimport styles from \"./Container.module.scss\";\n\nconst Container: FC<HTMLAttributes<HTMLDivElement>> = ({\n  className,\n  children,\n  ...props\n}) => (\n  <div {...props} className={cn(styles.container, className)}>\n    {children}\n  </div>\n);\n\nexport default Container;\n"
+  },
+  "src/Container.module.scss": {
+    "content": "$rmd-theme-dark-elevation: true;\n\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n.container {\n  @include rmd-utils-optional-css-modules(\".rmd-list\", true, false) {\n    @include rmd-theme-dark-elevation(6, true);\n  }\n\n  align-items: flex-start;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-around;\n\n  :global .rmd-list {\n    @include rmd-elevation(4);\n\n    margin: 1rem;\n    max-width: 20rem;\n    width: 100%;\n  }\n}\n"
   }
 }

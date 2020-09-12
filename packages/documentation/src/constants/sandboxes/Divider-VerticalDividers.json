@@ -1,19 +1,15 @@
 {
   "public/index.html": {
-    "content": "<!DOCTYPE html>\n<html lang=\"en\" class=\"{{THEME}}-theme\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the `src/styles.scss` in the `src/index.tsx` instead to create custom themes --!>\n    <link\n      rel=\"stylesheet\"\n      href=\"https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css\"\n    />\n    <title>Divider Example - Vertical Dividers</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n",
-    "isBinary": false
+    "content": "<!DOCTYPE html>\n<html lang=\"en\" class=\"{{THEME}}-theme\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the `src/styles.scss` in the `src/index.tsx` instead to create custom themes --!>\n    <link\n      rel=\"stylesheet\"\n      href=\"https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css\"\n    />\n    <title>Divider Example - Vertical Dividers</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
   },
   "src/index.tsx": {
-    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n",
-    "isBinary": false
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\n// the styles are actually loaded as the pre-compiled themes in the index.html\n// to speed up sandbox compilation. If you want to update the theme, you'll need\n// to uncomment this line and remove the `<link>` tag in the `index.html`\n// import \"./styles.scss\"\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n"
   },
   "src/styles.scss": {
-    "content": "@import \"variables\";\n@import \"~@react-md/app-bar/dist/mixins\";\n@import \"~@react-md/divider/dist/mixins\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n\n@include react-md-utils;\n",
-    "isBinary": false
+    "content": "@import \"variables\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/app-bar/dist/mixins\";\n@import \"~@react-md/divider/dist/mixins\";\n\n@include react-md-utils;\n"
   },
   "src/_variables.scss": {
-    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n",
-    "isBinary": false
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n"
   },
   "package.json": {
     "content": {
@@ -43,15 +39,12 @@
       "scripts": {
         "start": "react-scripts start"
       }
-    },
-    "isBinary": false
+    }
   },
   "src/Demo.tsx": {
-    "content": "import React, { FC } from \"react\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport { VerticalDivider } from \"@react-md/divider\";\nimport { Text } from \"@react-md/typography\";\n\nimport styles from \"./VerticalDividers.module.scss\";\n\nconst Demo: FC = () => (\n  <AppBar theme=\"default\">\n    <img\n      src=\"https://picsum.photos/80/48?image=815\"\n      alt=\"Logo\"\n      className={styles.logo}\n    />\n    <VerticalDivider />\n    <Text type=\"headline-5\">Company Name</Text>\n    <VerticalDivider maxHeight={0.6} />\n  </AppBar>\n);\n\nexport default Demo;\n",
-    "isBinary": false
+    "content": "import React, { FC } from \"react\";\nimport { AppBar } from \"@react-md/app-bar\";\nimport { VerticalDivider } from \"@react-md/divider\";\nimport { Text } from \"@react-md/typography\";\n\nimport styles from \"./VerticalDividers.module.scss\";\n\nconst Demo: FC = () => (\n  <AppBar theme=\"default\">\n    <img\n      src=\"https://picsum.photos/80/48?image=815\"\n      alt=\"Logo\"\n      className={styles.logo}\n    />\n    <VerticalDivider />\n    <Text type=\"headline-5\">Company Name</Text>\n    <VerticalDivider maxHeight={0.6} />\n  </AppBar>\n);\n\nexport default Demo;\n"
   },
   "src/VerticalDividers.module.scss": {
-    "content": "@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/app-bar/dist/mixins\";\n\n.logo {\n  @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-lr-margin, 0);\n}\n",
-    "isBinary": false
+    "content": "@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/app-bar/dist/mixins\";\n\n.logo {\n  @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-lr-margin, 0);\n}\n"
   }
 }
