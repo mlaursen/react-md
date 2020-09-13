@@ -47,12 +47,10 @@ $rmd-theme-primary: $rmd-purple-500 !default;
 /// can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px
 /// bold) and 4.5:1 for normal text).
+///
 /// @type Color
-$rmd-theme-on-primary: if(
-  rmd-theme-contrast-tone($rmd-theme-primary) == 'light',
-  $rmd-black-base,
-  $rmd-white-base
-) !default;
+/// @require rmd-theme-best-contrast-color
+$rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
 
 /// The secondary theme color to use for your app. This is normally one of the
 /// material design colors with an accent suffix (`-a-100` or `-a-200` or
@@ -67,12 +65,10 @@ $rmd-theme-secondary: $rmd-pink-a-400 !default;
 /// can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px
 /// bold) and 4.5:1 for normal text).
+///
 /// @type Color
-$rmd-theme-on-secondary: if(
-  rmd-theme-contrast-tone($rmd-theme-secondary) == 'light',
-  $rmd-black-base,
-  $rmd-white-base
-) !default;
+/// @require rmd-theme-best-contrast-color
+$rmd-theme-on-secondary: rmd-theme-best-contrast-color($rmd-theme-secondary) !default;
 
 /// The warning theme color to use for your app. This isn't used by anything
 /// internally within react-md at this time, but it might be helpful to have
@@ -87,12 +83,10 @@ $rmd-theme-warning: $rmd-deep-orange-a-200 !default;
 /// can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px
 /// bold) and 4.5:1 for normal text).
+///
 /// @type Color
-$rmd-theme-on-warning: if(
-  rmd-theme-contrast-tone($rmd-theme-warning) == 'light',
-  $rmd-black-base,
-  $rmd-white-base
-) !default;
+/// @require rmd-theme-best-contrast-color
+$rmd-theme-on-warning: rmd-theme-best-contrast-color($rmd-theme-warning) !default;
 
 /// The error theme color to use for your app.
 /// @type Color
@@ -105,12 +99,10 @@ $rmd-theme-error: $rmd-red-500 !default;
 /// can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px
 /// bold) and 4.5:1 for normal text).
+///
 /// @type Color
-$rmd-theme-on-error: if(
-  rmd-theme-contrast-tone($rmd-theme-error) == 'light',
-  $rmd-black-base,
-  $rmd-white-base
-);
+/// @require rmd-theme-best-contrast-color
+$rmd-theme-on-error: rmd-theme-best-contrast-color($rmd-theme-error) !default;
 
 /// The success theme color to use for your app. This isn't used by anything
 /// internally within react-md at this time, but it might be helpful to have
@@ -125,12 +117,10 @@ $rmd-theme-success: $rmd-green-a-700 !default;
 /// can change this to be any color. Just make sure that it meets the contrast
 /// accessibility requirements (3.1:1 ratio for large (18px regular or 14px
 /// bold) and 4.5:1 for normal text).
+///
 /// @type Color
-$rmd-theme-on-success: if(
-  rmd-theme-contrast-tone($rmd-theme-success) == 'light',
-  $rmd-black-base,
-  $rmd-white-base
-) !default;
+/// @require rmd-theme-best-contrast-color
+$rmd-theme-on-success: rmd-theme-best-contrast-color($rmd-theme-success) !default;
 
 /// The light theme's background color.
 /// @type Color

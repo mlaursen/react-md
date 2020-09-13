@@ -14,6 +14,53 @@
 /// @type Number
 $rmd-theme-default-contrast-ratio: 3 !default;
 
+/// Boolean if the newer contrast ration defaults should be used. This basically
+/// will try to choose colors with a higher aspect ratio for all the default
+/// color variables in react md.
+///
+/// @example scss - Better Contrast Enabled
+///   $rmd-theme-better-contrast-colors: true;
+///   $rmd-theme-primary: $rmd-teal-500;
+///   $rmd-theme-secondary: $rmd-pink-a-200;
+///   // OVERRIDE_VARIABLES
+///
+///   // these are the rmd-defaults
+///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
+///   // $rmd-theme-on-secondary: rmd-theme-best-contrast-color($rmd-theme-secondary) !default;
+///
+///   .output {
+///     --p: #{$rmd-theme-primary};
+///     --s: #{$rmd-theme-secondary};
+///
+///     // since black has a ~5.3 color ratio as compared to white with ~3.6
+///     --op: #{$rmd-theme-on-primary};
+///     --os: #{$rmd-theme-on-secondary};
+///   }
+///
+/// @example scss - Better Contrast Disabled
+///   $rmd-theme-better-contrast-colors: false;
+///   $rmd-theme-primary: $rmd-teal-500;
+///   $rmd-theme-secondary: $rmd-pink-a-200;
+///   // OVERRIDE_VARIABLES
+///
+///   // these are the rmd-defaults
+///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
+///   // $rmd-theme-on-secondary: rmd-theme-best-contrast-color($rmd-theme-secondary) !default;
+///
+///   .output {
+///     --p: #{$rmd-theme-primary};
+///     --s: #{$rmd-theme-secondary};
+///
+///     // white has a ~3.6 color ratio so it _is_ contrast compliant with the
+///     // minimal contrast ratios even though black would be ~5.6
+///     --op: #{$rmd-theme-on-primary};
+///     --os: #{$rmd-theme-on-secondary};
+///   }
+///
+/// @since 2.4.0
+/// @type Boolean
+$rmd-theme-better-contrast-colors: true !default;
+
 /// Precomputed linear color channel values, for use in contrast calculations.
 /// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 ///
@@ -164,4 +211,76 @@ $rmd-theme-linear-channel-values: (
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
 @function rmd-theme-contrast-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) {
   @return if(rmd-theme-tone($color) == 'dark', 'light', 'dark');
+}
+
+/// Compares a color to a provided light and dark color. If the
+/// `$rmd-theme-better-contrast-colors` variable is `true`, the color with the
+/// bigger contrast ratio will be chosen. If the variable is `false`, the light
+/// color will be returned when it meets the minimum contrast ratio and fallback
+/// to the dark color.
+///
+/// @example scss - Better Contrast Enabled
+///   $rmd-theme-better-contrast-colors: true;
+///   $rmd-theme-primary: $rmd-teal-500;
+///   $rmd-theme-secondary: $rmd-pink-a-200;
+///   // OVERRIDE_VARIABLES
+///
+///   // these are the rmd-defaults
+///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
+///   // $rmd-theme-on-secondary: rmd-theme-best-contrast-color($rmd-theme-secondary) !default;
+///
+///   .output {
+///     --p: #{$rmd-theme-primary};
+///     --s: #{$rmd-theme-secondary};
+///
+///     // this should be `#000` once compiled since `#000` has a 5.3 contrast
+///     // ratio compared to teal while `#fff` has a 3.6 contrast ratio.
+///     --op: #{$rmd-theme-on-primary};
+///     --os: #{$rmd-theme-on-secondary};
+///   }
+///
+/// @example scss - Better Contrast Disabled
+///   $rmd-theme-better-contrast-colors: false;
+///   $rmd-theme-primary: $rmd-teal-500;
+///   $rmd-theme-secondary: $rmd-pink-a-200;
+///   // OVERRIDE_VARIABLES
+///
+///   // these are the rmd-defaults
+///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
+///   // $rmd-theme-on-secondary: rmd-theme-best-contrast-color($rmd-theme-secondary) !default;
+///
+///   .output {
+///     --p: #{$rmd-theme-primary};
+///     --s: #{$rmd-theme-secondary};
+///
+///     // this should be `#fff` once compiled since the light color (`#fff`)
+///     // is checked first and meets the minimum contrast ratio requirements
+///     // at `3.6`
+///     --op: #{$rmd-theme-on-primary};
+///     --os: #{$rmd-theme-on-secondary};
+///   }
+///
+/// @param {Color} color - The color to check against
+/// @param {Color} light-color [$rmd-white-base] - A light color to try to use
+/// @param {Color} dark-color [$rmd-white-base] - A dark color to try to use
+/// @param {Boolean} enabled [$rmd-theme-better-contrast-colors] - Boolean if
+/// the new/better contrast ratios should be used. When this is false, it will
+/// return the lighter color as long as it meets the minimum contrast ratio even
+/// if the darker color would have a greater contrast ratio.
+/// @since 2.4.0
+/// @returns {Color}
+@function rmd-theme-best-contrast-color(
+  $color,
+  $light-color: $rmd-white-base,
+  $dark-color: $rmd-black-base,
+  $enabled: $rmd-theme-better-contrast-colors
+) {
+  @if not $enabled {
+    @return if(rmd-theme-tone($color) == light, $rmd-black-base, $rmd-white-base);
+  }
+
+  $light-contrast: rmd-theme-contrast($color, $light-color);
+  $dark-contrast: rmd-theme-contrast($color, $dark-color);
+
+  @return if($light-contrast > $dark-contrast, $light-color, $dark-color);
 }

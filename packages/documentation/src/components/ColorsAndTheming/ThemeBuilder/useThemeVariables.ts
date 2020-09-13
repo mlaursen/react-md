@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { HexString, isContrastCompliant } from "@react-md/utils";
+import { HexString, getContrastRatio } from "@react-md/utils";
 
 import {
   DEFAULT_PRIMARY_COLOR,
@@ -10,6 +10,13 @@ type CSSVariableValue = string | number | null;
 interface CSSVariable {
   name: string;
   value: CSSVariableValue;
+}
+
+function isBestColorWhite(color: HexString): boolean {
+  const lightRatio = getContrastRatio(color, "#fff");
+  const darkRatio = getContrastRatio(color, "#000");
+
+  return lightRatio > darkRatio;
 }
 
 export default function useThemeVariables(
@@ -36,7 +43,7 @@ export default function useThemeVariables(
     ];
 
     if (primaryColor) {
-      if (!isContrastCompliant(primaryColor, "#000")) {
+      if (isBestColorWhite(primaryColor)) {
         variables.push({
           name: "--rmd-theme-on-primary",
           value: "#fff",
@@ -45,7 +52,7 @@ export default function useThemeVariables(
     }
 
     if (secondaryColor) {
-      if (!isContrastCompliant(secondaryColor, "#000")) {
+      if (isBestColorWhite(secondaryColor)) {
         variables.push({
           name: "--rmd-theme-on-secondary",
           value: "#fff",
