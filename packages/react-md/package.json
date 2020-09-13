@@ -3,9 +3,7 @@
   "version": "2.3.1",
   "description": "This is the full react-md library bundled together for convenience.",
   "scripts": {
-    "umd": "rollup -c",
-    "build": "dev-utils build",
-    "clean": "dev-utils clean"
+    "umd": "rollup -c"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",

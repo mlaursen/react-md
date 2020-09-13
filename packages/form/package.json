@@ -2,11 +2,6 @@
   "name": "@react-md/form",
   "version": "2.3.1",
   "description": "This package is for creating all the different form input types.",
-  "scripts": {
-    "build": "dev-utils build",
-    "clean": "dev-utils clean",
-    "test": "dev-utils test"
-  },
   "main": "./lib/index.js",
   "module": "./es/index.js",
   "types": "./types/index.d.ts",
