@@ -1,5 +1,12 @@
 ## September 2020
 
+### v1.18.0 Release
+
+##### Changelog
+
+- Updated the `SelectionControl` to support toggling the `checked` state with
+  the `Enter` key ([@gamtiq] - [pull-949])
+
 ### v1.17.0 Release
 
 ##### Changelog
