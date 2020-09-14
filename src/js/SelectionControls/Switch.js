@@ -82,6 +82,11 @@ export default class Switch extends PureComponent {
      */
     checked: controlled(PropTypes.bool, 'onChange', 'defaultChecked'),
 
+    /**
+     * Whether the `change` event should be triggered for `Switch` on pressing of `Enter` key.
+     */
+    changeOnEnter: PropTypes.bool,
+
     defaultToggled: deprecated(PropTypes.bool, 'Use the `defaultChecked` prop instead'),
     toggled: deprecated(PropTypes.bool, 'Use the `checked` prop instead'),
   };

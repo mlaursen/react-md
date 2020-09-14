@@ -94,6 +94,11 @@ export default class Checkbox extends PureComponent {
     inline: PropTypes.bool,
 
     /**
+     * Whether the `change` event should be triggered for `Checkbox` on pressing of `Enter` key.
+     */
+    changeOnEnter: PropTypes.bool,
+
+    /**
      * The icon to display when the checkbox is checked.
      */
     checkedIcon: PropTypes.node,

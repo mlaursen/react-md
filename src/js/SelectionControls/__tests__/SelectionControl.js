@@ -8,7 +8,7 @@ import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';
 import SelectionControl from '../SelectionControl';
 import SwitchTrack from '../SwitchTrack';
 import SwitchThumb from '../SwitchThumb';
-import { SPACE } from '../../constants/keyCodes';
+import { ENTER, SPACE } from '../../constants/keyCodes';
 
 jest.mock('../../Inks/InkContainer'); // can't calc left warning
 
@@ -18,6 +18,35 @@ const PROPS = {
   type: 'checkbox',
   label: 'Label',
 };
+
+function checkKeyHandling(props, keyCode) {
+  const onChange = jest.fn();
+  const control = mount(<SelectionControl {...props} onChange={onChange} />);
+
+  // While testing, the input.click() doesn't do anything, so mock it in here
+  let input = control.find('input').instance();
+  input.click = () => onChange();
+
+  let toggle = control.find(AccessibleFakeInkedButton);
+  toggle.simulate('keyDown', { which: keyCode, keyCode });
+
+  expect(onChange.mock.calls.length).toBe(1);
+
+  control.setProps({ type: 'radio' });
+  input = control.find('input').instance();
+  input.click = () => onChange();
+  toggle = control.find(AccessibleFakeInkedButton);
+  toggle.simulate('keyDown', { which: keyCode, keyCode });
+  expect(onChange.mock.calls.length).toBe(2);
+
+  control.setProps({ type: 'switch' });
+  input = control.find('input').instance();
+  input.click = () => onChange();
+
+  toggle = control.find(SwitchThumb);
+  toggle.simulate('keyDown', { which: keyCode, keyCode });
+  expect(onChange.mock.calls.length).toBe(3);
+}
 
 describe('SelectionControl', () => {
   it('should correctly apply styles and className', () => {
@@ -91,32 +120,11 @@ describe('SelectionControl', () => {
   });
 
   it('should correctly trigger the change event when the spacebar key is pressed while focusing the toggle by clicking the input', () => {
-    const onChange = jest.fn();
-    const control = mount(<SelectionControl {...PROPS} onChange={onChange} />);
+    checkKeyHandling(PROPS, SPACE);
+  });
 
-    // While testing, the input.click() doesn't do anything, so mock it in here
-    let input = control.find('input').instance();
-    input.click = () => onChange();
-
-    let toggle = control.find(AccessibleFakeInkedButton);
-    toggle.simulate('keyDown', { which: SPACE, keyCode: SPACE });
-
-    expect(onChange.mock.calls.length).toBe(1);
-
-    control.setProps({ type: 'radio' });
-    input = control.find('input').instance();
-    input.click = () => onChange();
-    toggle = control.find(AccessibleFakeInkedButton);
-    toggle.simulate('keyDown', { which: SPACE, keyCode: SPACE });
-    expect(onChange.mock.calls.length).toBe(2);
-
-    control.setProps({ type: 'switch' });
-    input = control.find('input').instance();
-    input.click = () => onChange();
-
-    toggle = control.find(SwitchThumb);
-    toggle.simulate('keyDown', { which: SPACE, keyCode: SPACE });
-    expect(onChange.mock.calls.length).toBe(3);
+  it('should correctly trigger the change event when the enter key is pressed while focusing the toggle by clicking the input', () => {
+    checkKeyHandling({ ...PROPS, changeOnEnter: true }, ENTER);
   });
 
   it('should call the onChange prop with the correct values', () => {

@@ -18,6 +18,7 @@ export interface BaseSelectionControlProps extends ControlProps {
   checked?: boolean;
   defaultChecked?: boolean;
   inline?: boolean;
+  changeOnEnter?: boolean;
   'aria-label'?: string;
   'aria-labelledby'?: IdPropType;
   className?: ClassNameType;
