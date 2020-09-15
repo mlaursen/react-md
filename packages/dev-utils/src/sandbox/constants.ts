@@ -63,7 +63,7 @@ export const DEMO_INDEX_HTML = `<!DOCTYPE html>
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro"
     />
-    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the \`src/styles.scss\` in the \`src/index.tsx\` instead to create custom themes --!>
+    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the \`src/styles.scss\` in the \`src/index.tsx\` instead to create custom themes -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css"
