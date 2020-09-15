@@ -46,19 +46,7 @@ $rmd-theme-secondary: $rmd-${secondary}-a-${accent};
 @include react-md-utils;
 \`\`\`
 
-##### Pre-compiled Usage<!-- no-margin-bottom -->
-
-\`\`\`diff
-+import "react-md/${cssName}";
- import React from "react";
- import { render } from "react-dom";
-
- import App from "./App";
-
- render(<App />, document.getElementById("root"));
-\`\`\`
-
-##### CDN Usage (unpkg.com)<!-- no-margin-bottom -->
+##### CDN Usage ([jsDelivr](https://www.jsdelivr.com/))<!-- no-margin-bottom -->
 
 \`\`\`diff
      <meta
@@ -71,7 +59,11 @@ $rmd-theme-secondary: $rmd-${secondary}-a-${accent};
        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
      -->
      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-+    <link rel="stylesheet" href="https://unpkg.com/react-md@{{RMD_VERSION}}/${cssName}" />
++    <link
++      crossorigin
++      rel="stylesheet"
++      href="https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/${cssName}"
++    />
 \`\`\`
         `}
       </Markdown>

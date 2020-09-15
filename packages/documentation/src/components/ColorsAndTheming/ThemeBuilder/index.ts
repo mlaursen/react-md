@@ -1,3 +1,1 @@
-import ThemeBuilder from "./ThemeBuilder";
-
-export default ThemeBuilder;
+export { default } from "./ThemeBuilder";
