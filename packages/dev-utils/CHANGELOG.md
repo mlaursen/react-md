@@ -5,10 +5,7 @@ All notable changes to this project will be documented in this file. See
 
 ## [2.3.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.1) (2020-09-15)
 
-### Features
-
-- **themes:** updated sandboxes to use new CDN for pre-compiled themes
-  ([e83f47e](https://github.com/mlaursen/react-md/commit/e83f47edb7401a81af6e3669745815cb85f565a8))
+**Note:** Version bump only for package [@react-md/dev-utils](../dev-utils)
 
 # [2.3.0](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0) (2020-09-10)
 

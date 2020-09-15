@@ -5,26 +5,7 @@ All notable changes to this project will be documented in this file. See
 
 ## [2.3.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.1) (2020-09-15)
 
-### Features
-
-- **a11y:** improved `LabelRequiredForA11y` type definition
-  ([b7aa4fa](https://github.com/mlaursen/react-md/commit/b7aa4fadb7b4f1a23fba4008e42d2f4a4bd47c07))
-- **grid:** added hook to access grid list size
-  ([a448816](https://github.com/mlaursen/react-md/commit/a44881602de57447e9cb5ba720f5f2c031936863))
-- **grid:** added new `cloneStyles` prop so grid styles can be applied to any
-  child
-  ([ca913e7](https://github.com/mlaursen/react-md/commit/ca913e75926a6d665c6aeed56faa292d201a5287))
-- [@react-md/utils](../utils): added `Dir` component to help determine current
-  writing direction
-  ([a929e04](https://github.com/mlaursen/react-md/commit/a929e04b20bf41c3bff109714d9cf850bac99eb3))
-- [@react-md/utils](../utils): added `useGridList` hook
-  ([56ecc19](https://github.com/mlaursen/react-md/commit/56ecc19d748e3c63b6d27180ceedb385364fba43))
-- [@react-md/utils](../utils): added useIsomorphicLayoutEffect from react-redux
-  ([deacf1c](https://github.com/mlaursen/react-md/commit/deacf1c01f62adebbfbfbb3f0d5709cdab0cc537))
-- [@react-md/utils](../utils): created a new useResizeObserver implementation
-  ([dc3f4df](https://github.com/mlaursen/react-md/commit/dc3f4df744e4357c21e527986f4b762351345dfe))
-- [@react-md/utils](../utils): more verbose useAppSize usage error message
-  ([2c81982](https://github.com/mlaursen/react-md/commit/2c81982c6aef1a28c774b5b8263b141a44ab0949))
+**Note:** Version bump only for package [@react-md/utils](../utils)
 
 # [2.3.0](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.0) (2020-09-10)
 
