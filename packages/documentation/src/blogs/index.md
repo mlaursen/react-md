@@ -1,3 +1,16 @@
+Title: react-md 2.3.1
+
+Date: 09/14/2020
+
+Summary:
+
+I released `v1.18.0` today but didn't realize that npm uses `--tag` while
+`lerna` uses `--dist-tag` so `v1.18.0` was released under `latest` instead of
+`previous`. This release is only to ensure that `v2` is set to `latest` and has
+no other changes.
+
+---
+
 Title: react-md 2.3.0
 
 Date: 09/10/2020
