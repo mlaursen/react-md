@@ -1,12 +1,11 @@
 import { readFileSync } from "fs";
 import { join } from "path";
-import { documentationRoot, src } from "../constants";
-import { TOCAnchor } from "./types";
-import { toTitle } from "../utils/titles";
 
-export default function parseSassDocAnchors(
-  packageName: string
-): readonly TOCAnchor[] {
+import { documentationRoot, src } from "../constants";
+import { toTitle } from "../utils";
+import { TOCAnchor } from "./types";
+
+export function parseSassDocAnchors(packageName: string): readonly TOCAnchor[] {
   const sassdocPath = join(
     documentationRoot,
     src,

@@ -1,4 +1,4 @@
-import { readFile } from "fs-extra";
+import { writeFile } from "fs-extra";
 import { omit } from "lodash";
 import log from "loglevel";
 import { renderSync } from "node-sass";
@@ -9,38 +9,133 @@ import {
   FunctionItem,
   Item,
   ItemReference,
+  ItemRequire,
   MixinItem,
   VariableItem,
-  ItemRequire,
 } from "sassdoc";
 
 import { nonWebpackDist, packagesRoot, src, tempStylesDir } from "./constants";
 import {
   CompiledExample,
+  format,
   FormattedFunctionItem,
   FormattedItem,
   FormattedItemLink,
   FormattedMixinItem,
   FormattedVariableItem,
+  getCompiledValue,
+  getPackages,
+  getSassdoc,
   isFunctionItem,
   isMixinItem,
+  isPrimitive,
   isPublic,
   isVariableItem,
   ItemReferenceLink,
+  PackageSassDoc,
   PackageSassDocMap,
   ParameterizedItem,
-} from "./sassdoc-custom";
-import copyStyles from "./utils/copyStyles";
-import format from "./utils/format";
-import getCompiledScssVariable, {
-  CompiledScssValue,
-  CompiledScssVariable,
-  isPrimitive,
-} from "./utils/getCompiledScssVariable";
-import getPackages from "./utils/getPackages";
-import getSassdoc from "./utils/getSassdoc";
-import { cleanTempStyles } from "./utils/moveToTempStyles";
-import writeFile from "./utils/writeFile";
+  ValuedVariable,
+  VariableValue,
+} from "./utils";
+
+export interface FullItemReferenceLink extends ItemReferenceLink {
+  private: boolean;
+}
+
+const NO_COMPILE_TOKEN = "<!-- no-compile -->";
+const OVERRIDE_VARIABLES_TOKEN = "// OVERRIDE_VARIABLES";
+const isCompileable = (value: string): boolean =>
+  /\$?rmd|if\(/.test(value) && !/^--rmd/.test(value);
+
+const isNestedList = (value: VariableValue): value is ValuedVariable[] =>
+  Array.isArray(value) && typeof value[0] === "object";
+
+function getPackageName(item: Item): string {
+  const [packageName] = item.group;
+
+  return packageName.replace(/(form).+/, "$1");
+}
+
+function createReferenceLink(item: Item): FullItemReferenceLink {
+  const { name, type } = item.context;
+
+  return {
+    name,
+    type,
+    packageName: getPackageName(item),
+    private: !isPublic(item),
+  };
+}
+
+/**
+ * Updates the decription text to remove the trailing newlines as well as
+ * replace all inline newlines with spaces
+ */
+function formatDescription(description: string | undefined = ""): string {
+  return description
+    .replace(NO_COMPILE_TOKEN, "")
+    .replace(/\r?\n\r?\n$/, "")
+    .replace(/([A-z0-9])\r?\n([A-z0-9])/g, "$1 $2");
+}
+
+function getCompiledValueString(value: VariableValue): string {
+  if (value === null || isPrimitive(value)) {
+    return `${value}`;
+  }
+
+  if (!isNestedList(value)) {
+    const prefix = "export default ";
+    return format(`${prefix}${JSON.stringify(value)}`).substring(prefix.length);
+  }
+
+  const mapValues = value
+    .map(({ name, value }) => `${name}: ${getCompiledValueString(value)}`)
+    .join(",\n");
+
+  const prefix = "$compiled-to: ";
+  const code = `${prefix}(${mapValues})`;
+  return format(code, "scss")
+    .replace(/;\r?\n$/, "")
+    .substring(prefix.length);
+}
+
+function compileExampleCode(code: string): string {
+  const i = code.indexOf(OVERRIDE_VARIABLES_TOKEN);
+  let prefix = "";
+  if (i !== -1) {
+    prefix = `@import '@react-md/theme/${nonWebpackDist}/color-palette';
+${code.substring(0, i)}
+`;
+    code = code.substring(i + OVERRIDE_VARIABLES_TOKEN.length);
+  }
+
+  const imports = getPackages("scss")
+    .map((p) => `@import '@react-md/${p}/${nonWebpackDist}/mixins';`)
+    .join("\n");
+
+  const data = `${prefix}${imports}
+@import '@react-md/icon/${nonWebpackDist}/material-icons';
+
+${code}
+`;
+
+  try {
+    return format(
+      renderSync({
+        data,
+        includePaths: [tempStylesDir],
+      }).css.toString(),
+      "css"
+    );
+  } catch (e) {
+    log.error("Unable to compile an example with the following code:");
+    log.error(code);
+    log.error();
+    log.error(e.message);
+    process.exit(1);
+  }
+}
 
 function getGithubUrl(path: string, start?: number, end?: number): string {
   let line = "";
@@ -83,68 +178,6 @@ function removeUncompilableCode(code: string): string {
 
   return code;
 }
-
-function compileExampleCode(code: string): string {
-  const imports = getPackages("scss")
-    .map((p) => `@import '@react-md/${p}/${nonWebpackDist}/mixins';`)
-    .join("\n");
-  const data = `${imports}
-@import '@react-md/icon/${nonWebpackDist}/material-icons';
-
-${code}
-`;
-
-  try {
-    return format(
-      renderSync({
-        data,
-        includePaths: [tempStylesDir],
-      }).css.toString(),
-      "css"
-    );
-  } catch (e) {
-    log.error("Unable to compile an example with the following code:");
-    log.error(code);
-    log.error();
-    log.error(e.message);
-    process.exit(1);
-  }
-}
-
-const NO_COMPILE_TOKEN = "<!-- no-compile -->";
-
-/**
- * Updates the decription text to remove the trailing newlines as well as
- * replace all inline newlines with spaces
- */
-function formatDescription(description: string | undefined = ""): string {
-  return description
-    .replace(NO_COMPILE_TOKEN, "")
-    .replace(/\r?\n\r?\n$/, "")
-    .replace(/([A-z0-9])\r?\n([A-z0-9])/g, "$1 $2");
-}
-
-export interface FullItemReferenceLink extends ItemReferenceLink {
-  private: boolean;
-}
-
-function getPackageName(item: Item): string {
-  const [packageName] = item.group;
-
-  return packageName.replace(/(form).+/, "$1");
-}
-
-function createReferenceLink(item: Item): FullItemReferenceLink {
-  const { name, type } = item.context;
-
-  return {
-    name,
-    type,
-    packageName: getPackageName(item),
-    private: !isPublic(item),
-  };
-}
-
 const isItemRequire = (
   item: ItemReference | ItemRequire
 ): item is ItemRequire => typeof (item as ItemRequire).name === "string";
@@ -206,7 +239,10 @@ function formatItem(
       }
 
       return {
-        code: format(exampleCode, getFormatParser(type)),
+        code: format(
+          exampleCode.replace(OVERRIDE_VARIABLES_TOKEN, ""),
+          getFormatParser(type)
+        ),
         compiled,
         type,
         description: formatDescription(description),
@@ -240,45 +276,20 @@ function formatItem(
   };
 }
 
-const isCompileable = (value: string): boolean =>
-  /\$?rmd|if\(/.test(value) && !/^--rmd/.test(value);
-
-const isNestedList = (
-  value: CompiledScssValue
-): value is CompiledScssVariable[] =>
-  Array.isArray(value) && typeof value[0] === "object";
-
-function getCompiledValue(value: CompiledScssValue): string {
-  if (value === null || isPrimitive(value)) {
-    return `${value}`;
-  }
-
-  if (!isNestedList(value)) {
-    const prefix = "export default ";
-    return format(`${prefix}${JSON.stringify(value)}`).substring(prefix.length);
-  }
-
-  const mapValues = value
-    .map(({ name, value }) => `${name}: ${getCompiledValue(value)}`)
-    .join(",\n");
-
-  const prefix = "$compiled-to: ";
-  const code = `${prefix}(${mapValues})`;
-  return format(code, "scss")
-    .replace(/;\r?\n$/, "")
-    .substring(prefix.length);
-}
-
 function formatVariableItem(
   variable: VariableItem,
   references: FullItemReferenceLink[]
 ): FormattedVariableItem {
   const { value, scope } = variable.context;
   const { type } = variable;
+  if (!type) {
+    log.error(`${variable.context.name} does not have a \`type\` set.`);
+    process.exit(1);
+  }
 
   let compiled: string | undefined;
   if (isCompileable(value)) {
-    compiled = getCompiledValue(getCompiledScssVariable(variable).value);
+    compiled = getCompiledValueString(getCompiledValue(variable).value);
 
     if (compiled === value) {
       log.error(
@@ -364,73 +375,41 @@ function formatMixinItem(
   };
 }
 
-const devUtilsRoot = join(packagesRoot, "dev-utils");
-const devUtilsSrc = join(devUtilsRoot, src);
-const documentationSrc = join(packagesRoot, "documentation", src);
-const documentationSassdoc = join(documentationSrc, "constants", "sassdoc");
-
-/**
- * This creates a custom utils/sassdoc.ts file within the documentation site
- * that is a combination of the sassdoc.d.ts and the sassdoc-custom.ts within
- * this package. It's kind of hacky, but I was getting errors when trying to
- * reuse these definitions in the documentation site.
- */
-export async function createSassdocUtil(): Promise<void> {
-  const sassdocDef = await readFile(
-    join(devUtilsRoot, "@types", "sassdoc.d.ts"),
-    "utf8"
-  );
-  const customDef = await readFile(
-    join(devUtilsSrc, "sassdoc-custom.ts"),
-    "utf8"
-  );
-
-  const sassdocLines = sassdocDef.split(/\r?\n/);
-  const sassdocStart = sassdocLines.findIndex((line) =>
-    line.startsWith("declare module")
-  );
-  const sassdocEnd = sassdocLines.findIndex((line) =>
-    line.startsWith("  export interface ParseOptions")
-  );
-  const sassdocTypes = sassdocLines
-    .slice(sassdocStart + 1, sassdocEnd)
-    .join("\n");
-
-  const customLines = customDef.split(/\r?\n/);
-  const customStart = customLines.findIndex((line) =>
-    line.startsWith('export * from "sassdoc')
-  );
-  const customContent = customLines.slice(customStart + 1).join("\n");
-
-  const contents = format(
-    `/** this is a generated file from \`yarn dev-utils sassdoc\` and should not be manually updated */
-${sassdocTypes}${customContent}`,
-    "typescript"
-  );
-  await writeFile(join(documentationSrc, "utils", "sassdoc.ts"), contents);
-}
-
-export default async function sassdoc(copy: boolean): Promise<void> {
-  if (copy) {
-    await copyStyles();
+function getPackageRecord(
+  lookup: PackageSassDocMap,
+  packageName: string
+): PackageSassDoc {
+  if (!lookup[packageName]) {
+    lookup[packageName] = {
+      functions: {},
+      mixins: {},
+      variables: {},
+    };
   }
 
-  await createSassdocUtil();
+  const record = lookup[packageName];
+  if (!record) {
+    throw new Error();
+  }
 
+  return record;
+}
+
+export async function sassdoc(): Promise<void> {
+  const documentationSassdoc = join(
+    packagesRoot,
+    "documentation",
+    src,
+    "constants",
+    "sassdoc"
+  );
   const sassdocs = await getSassdoc();
   const references = sassdocs.map((item) => createReferenceLink(item));
   const lookup: PackageSassDocMap = {};
+
   sassdocs.forEach((item) => {
     const packageName = getPackageName(item);
-    if (!lookup[packageName]) {
-      lookup[packageName] = {
-        functions: {},
-        mixins: {},
-        variables: {},
-      };
-    }
-
-    const packageDoc = lookup[packageName];
+    const packageDoc = getPackageRecord(lookup, packageName);
     if (isVariableItem(item)) {
       const variable = formatVariableItem(item, references);
       const { name } = variable;
@@ -481,6 +460,4 @@ export default sassdoc;
       );
     })
   );
-
-  await cleanTempStyles();
 }

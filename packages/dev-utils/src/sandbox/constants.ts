@@ -1,48 +1,43 @@
 import { join } from "path";
 
-import { src } from "../constants";
+import { documentationRoot, src } from "../constants";
 
-export const DEMOS_FOLDER = join(src, "components", "Demos");
-export const SANDBOXES_PATH = join(src, "constants", "sandboxes");
+export const DEMOS_FOLDER = join(documentationRoot, src, "components", "Demos");
+export const SANDBOXES_PATH = join(
+  documentationRoot,
+  src,
+  "constants",
+  "sandboxes"
+);
 
-/**
- * These packages will always be required for a sandbox since they are the base
- * recommended packages or because they are used to setup the "base" styles.
- */
-export const ALWAYS_REQUIRED_DEPENDENCIES = [
+export const DEPENDENCIES = [
   "@react-md/layout",
   "@react-md/states",
   "@react-md/theme",
   "@react-md/typography",
   "@react-md/utils",
+  "react",
+  "react-dom",
 ];
 
-/**
- * Dev dependencies that will be required for each sandbox.
- */
-export const ALWAYS_REQUIRED_DEV_DEPENDENCIES = [
-  "react-scripts",
-  "node-sass",
-  "typescript",
+export const DEV_DEPENDENCIES = [
+  "@types/jest",
   "@types/node",
   "@types/react",
   "@types/react-dom",
-  "@types/jest",
-];
-
-/**
- * A list of packages tht do not generate styles or do not have any styles.
- * This list is used to make sure that the @include react-md-NAME is not added
- * to the base index.scss for this list.
- */
-export const NON_STYLEABLE_RMD_PACKAGES = [
-  "@react-md/material-icons",
-  "@react-md/portal",
+  "node-sass",
+  "react-scripts",
+  "typescript",
 ];
 
 export const DEMO_INDEX = `import React from "react";
 import { render } from "react-dom";
 import { Configuration } from "@react-md/layout";
+
+// the styles are actually loaded as the pre-compiled themes in the index.html
+// to speed up sandbox compilation. If you want to update the theme, you'll need
+// to uncomment this line and remove the \`<link>\` tag in the \`index.html\`
+// import "./styles.scss"
 
 import Demo from "./Demo";
 
@@ -68,7 +63,7 @@ export const DEMO_INDEX_HTML = `<!DOCTYPE html>
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro"
     />
-    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the \`src/styles.scss\` in the \`src/index.tsx\` instead to create custom themes --!>
+    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the \`src/styles.scss\` in the \`src/index.tsx\` instead to create custom themes -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css"
@@ -82,38 +77,14 @@ export const DEMO_INDEX_HTML = `<!DOCTYPE html>
 </html>
 `;
 
-export const DEMO_TS_CONFIG = `{
-  "compileroptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowjs": true,
-    "skiplibcheck": true,
-    "esmoduleinterop": true,
-    "allowsyntheticdefaultimports": true,
-    "strict": true,
-    "forceconsistentcasinginfilenames": true,
-    "module": "esnext",
-    "moduleresolution": "node",
-    "resolvejsonmodule": true,
-    "isolatedmodules": true,
-    "noemit": true,
-    "jsx": "preserve"
-  },
-  "include": [
-    "src"
-  ]
-}
-`;
-
 export const VARIABLES_SCSS_FILE = `@import "~@react-md/theme/dist/color-palette";
 
 $rmd-theme-light: true;
 $rmd-theme-primary: $rmd-teal-500;
 $rmd-theme-secondary: $rmd-pink-a-200;
+`;
+
+export const PHONE_INDEX_FILE = `export { default } from "./Phone";
 `;
 
 export const SANDBOXES_FILE = `/** this is a generated file from \`dev-utils sandbox\` */
@@ -128,7 +99,4 @@ export type Sandboxes = Record<PackageName, Record<string, GetSandbox>>;
 const sandboxes: Sandboxes = {{SANDBOXES_JSON}};
 
 export default sandboxes;
-`;
-
-export const PHONE_INDEX_FILE = `export { default } from "./Phone";
 `;

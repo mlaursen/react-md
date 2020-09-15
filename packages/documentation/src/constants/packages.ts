@@ -1,4 +1,7 @@
-/** this file is generated from `yarn dev-utils doc-packages` and should not be updated manually */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
 
 export const PACKAGE_NAMES = [
   "alert",

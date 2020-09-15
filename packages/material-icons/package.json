@@ -3,13 +3,11 @@
   "version": "2.3.1",
   "description": "This package is just a simple wrapper for using material icons within react-md as either font icons or svg icons.",
   "scripts": {
-    "clean": "dev-utils clean bin",
     "executable": "chmod +x bin/cli.js",
     "compile": "tsc -p tsconfig.cli.json",
     "build-cli": "npm-run-all compile executable",
     "watcher": "chokidar \"bin/cli.js\" -c \"npm run executable\"",
-    "watch": "npm-run-all -p \"compile -- -w\" watcher",
-    "build": "dev-utils build"
+    "watch": "npm-run-all -p \"compile -- -w\" watcher"
   },
   "main": "./lib/index.js",
   "module": "./es/index.js",

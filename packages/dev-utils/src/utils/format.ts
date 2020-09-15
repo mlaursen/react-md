@@ -1,36 +1,40 @@
-import prettier, { Options, resolveConfig, BuiltInParserName } from "prettier";
-import { join } from "path";
-import { packagesRoot } from "../constants";
+import log from "loglevel";
+import prettier, { BuiltInParserName } from "prettier";
 
-let prettierConfig: Options;
-function getOptions(parser?: BuiltInParserName): Options {
-  if (prettierConfig !== null) {
-    prettierConfig = resolveConfig.sync(
-      join(packagesRoot, "button", "src", "index.ts")
-    );
+function getParser(
+  code: string,
+  parser: BuiltInParserName | undefined,
+  filePath: string | undefined
+): BuiltInParserName | undefined {
+  if (typeof parser === "string") {
+    return parser;
   }
 
-  if (!parser && prettierConfig.parser) {
-    return prettierConfig;
+  if (typeof filePath === "string") {
+    return undefined;
   }
 
-  return {
-    ...prettierConfig,
-    parser: parser || "babel",
-  };
+  if (code.startsWith("{") || code.startsWith("[")) {
+    return "json";
+  }
+
+  if (/^(@import|\.[a-z])/m.test(code) || /^\s+@(mixin|include)/.test(code)) {
+    return "scss";
+  }
+
+  return "typescript";
 }
 
-/**
- * Formats any code provided with prettier.
- *
- * @param code The code to format
- * @param filePath A filepath to use to resolve prettier config.
- * @param parser An optional parser to apply when the file being formatted
- * is not typescript or javascript.
- */
-export default function format(
+export function format(
   code: string,
-  parser?: BuiltInParserName
+  parser?: BuiltInParserName,
+  filepath?: string
 ): string {
-  return prettier.format(code, getOptions(parser));
+  const resolvedParser = getParser(code, parser, filepath);
+  try {
+    return prettier.format(code, { parser: resolvedParser, filepath });
+  } catch (e) {
+    log.error(e);
+    process.exit(1);
+  }
 }

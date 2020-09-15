@@ -3,25 +3,21 @@
 import commander from "commander";
 import loglevel from "loglevel";
 
-import build from "./build";
-import changelogs from "./changelogs";
-import clean from "./clean";
-import configs from "./configs";
-import { DEBUG, SILENT } from "./constants";
-import docPackages from "./docPackages";
-import fixChangelogs from "./fixChangelogs";
-import indexer from "./indexer";
-import libsize from "./libsize";
-import prepublish from "./prepublish";
-import readmes from "./readmes";
-import release, { toReleaseType, RELEASE_TYPES } from "./release";
-import rmdReadme from "./rmdReadme";
-import sandbox from "./sandbox";
-import sassdoc from "./sassdoc";
-import createScssVariables from "./scssVariables";
-import copyStyles from "./utils/copyStyles";
-import createThemes from "./utils/createThemes";
-import watch from "./watch";
+import { changelogs } from "./changelogs";
+import { clean } from "./clean";
+import { configs } from "./configs";
+import { CLEAN, DEBUG, SILENT } from "./constants";
+import { indexer } from "./indexer";
+import { libsize } from "./libsize";
+import { release, RELEASE_TYPES, toReleaseType } from "./release";
+import { sandbox } from "./sandbox";
+import { sassdoc } from "./sassdoc";
+import { shared } from "./shared";
+import { themes } from "./themes";
+import { umd } from "./umd";
+import { copyStyles } from "./utils";
+import { variables } from "./variables";
+import { watch } from "./watch";
 
 const argv = process.argv.slice(2);
 
@@ -33,48 +29,32 @@ if (argv.includes(DEBUG)) {
   loglevel.setLevel("info");
 }
 
-const createCommand = (command: string): commander.Command =>
-  commander
+const createCommand = (
+  command: string,
+  cleanable: boolean = false
+): commander.Command => {
+  const instance = commander
     .command(command)
     .option(DEBUG, "Enables the verbose logging to help debug errors.")
     .option(SILENT, "Disables all logging.");
 
-createCommand("build")
-  .description(
-    "Compiles all the typescript files in each package that contains components or scssVariables. " +
-      "When run from the root, all packages will be built in dependency order with lerna."
-  )
-  .option("-w, --watch", "Runs type build in watch mode.")
-  .option(
-    "--cjs",
-    "Updates the watch command to also include the CommonJS bundles."
-  )
-  .option(
-    "--scoped-only",
-    "Only build the scoped packages to ignore the base `react-md` package."
-  )
-  .action(
-    ({ scopedOnly = false, silent = false, watch = false, cjs = false }) => {
-      build(scopedOnly, silent, watch, cjs);
-    }
-  );
+  if (cleanable) {
+    return instance.option(
+      CLEAN,
+      "Removes the existing files before executing."
+    );
+  }
 
-createCommand("prepublish")
-  .description(
-    "Runs all the required scripts before publishing the packages with lerna. " +
-      "Also used for first-time clones to setup all builds in a single command."
-  )
-  .option(
-    "--init",
-    "Updates the scripts so that only the typescript files are compiled and " +
-      "the scss files are copied to the dist. This is normally used for " +
-      "first-time clones."
-  )
-  .action(({ init = false }) => prepublish(init));
+  return instance;
+};
+
+createCommand("clean")
+  .description("Cleans all the distributables for all publishable packages.")
+  .action(() => clean());
 
 createCommand("styles")
   .description(
-    "Copies all the SCSS files into the dist folder as well as creating non-webpack export version."
+    "Copies all the SCSS files into the dist folder as well as creating non-webpack specific versions."
   )
   .action(() => copyStyles());
 
@@ -82,128 +62,34 @@ createCommand("sassdoc")
   .description(
     "Creates the sassdoc for the documentation site in all scoped packages."
   )
-  .option(
-    "--no-copy",
-    "Updates the command to no longer copy the scss files into all the dists."
-  )
-  .action(({ copy = true }) => sassdoc(copy));
+  .action(() => sassdoc());
 
 createCommand("variables")
-  .description("Creates the scssVariables file in all scoped packages.")
-  .action(() => createScssVariables());
+  .description("Creates the `src/scssVariables` file in all scoped packages.")
+  .action(() => variables());
 
-createCommand("readmes")
-  .option("--clean", "Removes all the existing readmes before copying them")
-  .description(
-    "Copies all the readmes from the scoped packages into the documentation site. It also handles adding or removing content from the readmes with special comment tokens."
-  )
-  .action(({ clean = false }) => readmes(clean));
+createCommand("changelogs")
+  .description("Updates the changelogs to be a bit prettier.")
+  .action(() => changelogs());
 
-createCommand("sandbox [components...]")
+createCommand("configs")
   .description(
-    "Creates all the `Sandbox.json` files within the documentation package " +
-      "so that dynamic code sandboxes and inline code can be used."
+    "Re-generates all the `tsconfig.*` files for the Typescript project references."
   )
-  .option(
-    "--clean",
-    "Removes all the sandbox files before creating the sandboxes."
-  )
-  .option(
-    "--clean-only",
-    "Removes all the sandbox files without creating new ones."
-  )
-  .option(
-    "--lookups-only",
-    "Only updates the sandbox index file in the documentation package for sandbox lookups."
-  )
-  .option("--staged", "Only creates sandboxes for staged demo files.")
-  .action(
-    (
-      components: string[],
-      {
-        lookupsOnly = false,
-        empty = false,
-        clean = false,
-        cleanOnly = false,
-        staged = false,
-      }
-    ) => sandbox({ lookupsOnly, components, empty, clean, cleanOnly, staged })
-  );
+  .action(() => configs());
 
-createCommand("libsize")
-  .option(
-    "--no-umd",
-    "Update the command to no longer rebuild the umd bunle automatically."
-  )
-  .option(
-    "--no-themes",
-    "Updates the command to no longer rebuild all the default themes."
-  )
-  .option(
-    "--commit",
-    "Updates the command to commit any libsize changes to the base README.md and the about page in the documentation site"
-  )
-  .option(
-    "--stage",
-    "Updates the command to stage any libsize changes instead of committing."
-  )
+createCommand("copy-shared", true)
   .description(
-    "Prints the gzipped size for the entire library based on the UMD bundle and the min/max prebuilt CSS themes."
+    "Copies all the shared markdown files and utils throughout the repo into the documentation folder."
   )
-  .action(({ umd = true, themes = true, commit = false, stage = false }) =>
-    libsize(umd, themes, commit, stage)
-  );
-
-createCommand("themes")
-  .description(
-    "Create all the pre-compiled themes in the base react-md package."
-  )
-  .action(() => createThemes());
-
-createCommand("watch")
-  .description(
-    "Dynamically starts tsc watchers for each package once a file has been changed " +
-      "in that package."
-  )
-  .option(
-    "--cjs",
-    "Also starts up a commonjs watcher for each package. This is not enabled by " +
-      "default since the next server doesn't have hot-reloading for shared packages " +
-      "right now so the server would have to be restarted anyways for the changes to " +
-      " be in effect."
-  )
-  .action(({ cjs = false }) => watch(cjs));
-
-createCommand("doc-packages")
-  .description(
-    "Updates the `src/constants/packages.ts` file in the documentation package."
-  )
-  .action(() => docPackages());
+  .action(({ clean = false }) => shared(clean));
 
 createCommand("doc-index")
   .description(
-    "Indexes all the metadata for the documentation site so that it can be searched."
+    "Indexes (terribly) metadata throughout react-md for the documentation site."
   )
   .action(() => indexer());
 
-createCommand("clean")
-  .description(
-    "Cleans the current package or all the packages if run from the root level."
-  )
-  .action(() => clean(true));
-
-createCommand("configs").action(() => configs());
-createCommand("changelogs")
-  .option("--clean", "Removes all the existing readmes before copying them")
-  .action(({ clean = false }) => changelogs(clean));
-createCommand("rmd-readme").action(() => rmdReadme());
-createCommand("fix-changelogs")
-  .option(
-    "--amend",
-    "Amend the previous commit to include these changes. This should really only be used during the release process."
-  )
-  .option("--stage", "Boolean if the changes should only be staged")
-  .action(({ amend = false, stage = false }) => fixChangelogs(amend, stage));
 createCommand("release")
   .option(
     "-t, --type <type>",
@@ -219,7 +105,78 @@ createCommand("release")
     "--yes",
     "Passes `--yes` to the `lerna version` and `lerna publish` commands"
   )
-  .description("Triggers a release for react-md")
-  .action(({ type = "", blog = undefined, yes }) => release(type, blog, yes));
+  .description("Goes through the steps of releasing a new version of react-md.")
+  .action(({ yes = false, blog = undefined, type = "" }) =>
+    release(type, blog, yes)
+  );
+
+createCommand("sandbox", true)
+  .option(
+    "-p, --pattern [pattern]",
+    "An optional glob pattern to use. This should be quoted if using asterisks"
+  )
+  .option("-d, --demo [demo]", "An optional demo pattern regex string filter.")
+  .description("Creates the `*-Sandbox.json` files in the documentation site.")
+  .action(({ pattern = "*", demo = "", clean = false }) =>
+    sandbox(pattern, demo, clean)
+  );
+
+createCommand("libsize")
+  .option(
+    "--no-umd",
+    "Boolean if the UMD bundles should be ignored in the output."
+  )
+  .option(
+    "--force-umd",
+    "Force recompiles the umd bundles since the bundles are only built if none can be found."
+  )
+  .option(
+    "--no-themes",
+    "Boolean if the CSS bundles should be ignored in the output."
+  )
+  .option(
+    "--force-themes",
+    "Force recompiles the pre-compiled themes since these themes are only created if none can be found."
+  )
+  .option(
+    "--stage-changes",
+    "Boolean if any changes to the documentation pages due to libsize changes should be added to the git index."
+  )
+  .description(
+    "Prints the gzpped size for the entire library based on the UMD bundles and the pre-compiled themes."
+  )
+  .action(
+    ({
+      umd = true,
+      forceUmd = false,
+      themes = true,
+      forceThemes = false,
+      stageChanges = false,
+    }) => libsize({ umd, forceUmd, themes, forceThemes, stageChanges })
+  );
+
+createCommand("themes")
+  .description(
+    "Creates all the pre-compiled css themes in the root `/themes` folder. " +
+      "This really shouldn't be run other than during the release script since`" +
+      "the `/themes` folder is ignored by git until a release is tagged."
+  )
+  .action(() => themes());
+
+createCommand("umd")
+  .description(
+    "Compiles the UMD bundles for `react-md`. This really shouldn't be used as it's handled by the `release` script automatically."
+  )
+  .action(() => umd());
+
+createCommand("watch")
+  .option(
+    "--cjs",
+    "Spin up a commonjs tsc watcher as well instead of only the ejs watcher."
+  )
+  .description(
+    "A custom watch script that handles copying all changed scss files as well as starting tsc watchers."
+  )
+  .action(({ cjs = false }) => watch(cjs));
 
 commander.parse(process.argv);

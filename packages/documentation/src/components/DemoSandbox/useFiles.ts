@@ -2,7 +2,20 @@ import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useMemo } from "react";
 import { TreeData, TreeItemIds } from "@react-md/tree";
 
+export type FileType =
+  | "css"
+  | "scss"
+  | "ts"
+  | "js"
+  | "jsx"
+  | "json"
+  | "md"
+  | "folder"
+  | "html"
+  | "txt";
+
 export interface FileTreeData extends TreeItemIds {
+  type: FileType;
   children: string;
   content?: string;
 }
@@ -22,11 +35,13 @@ const BASE_TREE: FileTree = {
     parentId: null,
     itemId: "public",
     children: "public",
+    type: "folder",
   },
   src: {
     parentId: null,
     itemId: "src",
     children: "src",
+    type: "folder",
   },
 };
 
@@ -52,8 +67,29 @@ function addParentFolders(filePath: string, tree: FileTree): void {
         children: parentId
           ? currentPath.replace(`${parentId}/`, "")
           : currentPath,
+        type: "folder",
       };
     }
+  }
+}
+
+function getType(fileName: string): FileType {
+  const extension = fileName.substring(fileName.lastIndexOf(".") + 1);
+  switch (extension) {
+    case "ts":
+    case "js":
+    case "jsx":
+    case "md":
+    case "txt":
+    case "css":
+    case "scss":
+    case "html":
+    case "json":
+      return extension;
+    case "tsx":
+      return "ts";
+    default:
+      return "folder";
   }
 }
 
@@ -87,6 +123,7 @@ export default function useFiles(sandbox: IFiles): TreeData<FileTreeData> {
             parentId,
             children: fileName,
             content,
+            type: getType(fileName),
           };
 
           return tree;

@@ -1,19 +1,14 @@
+import { writeFile } from "fs-extra";
 import { join } from "path";
-import log from "loglevel";
-import { documentationRoot, src, BANNER } from "../constants";
-import readmes from "../readmes";
-import writeFile from "../utils/writeFile";
-import generate from "./generate";
-import { copySharedToDocs, getRoutes } from "./utils";
-import format from "../utils/format";
-import copyChangelogs from "../changelogs";
-import glob from "../utils/glob";
 
-export default async function indexer(): Promise<void> {
-  await readmes(true);
-  await copyChangelogs(true);
-  await copySharedToDocs();
-  log.info();
+import { COPY_BANNER, documentationRoot, src } from "../constants";
+import { shared } from "../shared";
+import { format, glob } from "../utils";
+import { generate } from "./generate";
+import { getRoutes } from "./getRoutes";
+
+export async function indexer(): Promise<void> {
+  await shared(true);
 
   const guidesFolder = join(documentationRoot, src, "guides");
   const guides = await glob("*.md", { cwd: guidesFolder });
@@ -28,10 +23,9 @@ export default async function indexer(): Promise<void> {
     blogs,
   });
   const { tocs, metadata } = await generate(routes);
-
   const meta = join(documentationRoot, src, "constants", "meta");
   const tocsPath = join(meta, "tocs.ts");
-  const tocsContents = format(`${BANNER}import { TOCRecord } from "./types";
+  const tocsContents = format(`${COPY_BANNER}import { TOCRecord } from "./types";
 
 const tocs: TOCRecord = ${JSON.stringify(tocs, null, 2)};
 
@@ -39,7 +33,7 @@ export default tocs`);
   await writeFile(tocsPath, tocsContents);
 
   const searchPath = join(meta, "search.ts");
-  const searchContents = format(`${BANNER}import { RouteMetadata } from "./types";
+  const searchContents = format(`${COPY_BANNER}import { RouteMetadata } from "./types";
 
 const metadata: ReadonlyArray<RouteMetadata> = ${JSON.stringify(
     metadata,

@@ -2,10 +2,6 @@
   "name": "@react-md/autocomplete",
   "version": "2.3.1",
   "description": "",
-  "scripts": {
-    "build": "dev-utils build",
-    "clean": "dev-utils clean"
-  },
   "main": "./lib/index.js",
   "module": "./es/index.js",
   "types": "./types/index.d.ts",

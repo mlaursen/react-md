@@ -4,8 +4,8 @@ import log from "loglevel";
 import { join } from "path";
 
 import { documentationRoot, src } from "../constants";
-import { toId, toTitle } from "../utils/titles";
-import parseMarkdown from "./parseMarkdown";
+import { toId, toTitle } from "../utils";
+import { parseMarkdown } from "./parseMarkdown";
 import { DemoMetadata, TOCAnchor } from "./types";
 
 interface MarkdownResult {
@@ -19,7 +19,7 @@ interface ReduceResult {
   demos: DemoMetadata[];
 }
 
-export default function parseDemoIndex(demoRoute: string): MarkdownResult {
+export function parseDemoIndex(demoRoute: string): MarkdownResult {
   const [, pkgName] = demoRoute.split("/").reverse();
   const demoFolder = join(
     documentationRoot,

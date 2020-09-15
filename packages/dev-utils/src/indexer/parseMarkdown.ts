@@ -1,7 +1,8 @@
-import marked from "marked";
 import { decode } from "he";
+import marked from "marked";
+
+import { getPackages } from "../utils";
 import { TOCAnchor } from "./types";
-import getPackages from "../utils/getPackages";
 
 interface MarkdownResult {
   anchors: readonly TOCAnchor[];
@@ -12,7 +13,7 @@ const noop = (): string => "";
 const identity = (s: string): string => s;
 const whitespace = "(?=\r?\n| |[^/])";
 
-export default function parseMarkdown(markdown: string): MarkdownResult {
+export function parseMarkdown(markdown: string): MarkdownResult {
   const joinedNames = getPackages().join("|");
   const anchors: TOCAnchor[] = [];
   const renderer = new marked.Renderer({ gfm: true, sanitize: false });

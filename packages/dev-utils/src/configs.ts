@@ -1,21 +1,15 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-await-in-loop */
-import { remove } from "fs-extra";
+import { writeJson as fsWriteJson } from "fs-extra";
 import { merge } from "lodash";
 import { join } from "path";
 
-import { packagesRoot } from "./constants";
-import format from "./utils/format";
-import getPackageJson from "./utils/getPackageJson";
-import getPackages, {
+import {
+  JSONObject,
   NO_SCRIPT_PACKAGES,
   NO_STYLES_PACKAGES,
-} from "./utils/getPackages";
-import glob from "./utils/glob";
-import { JSONObject } from "./utils/json";
-import writeFile from "./utils/writeFile";
-
-type TSConfigType = "ejs" | "cjs" | "var";
+  packagesRoot,
+  TSConfigType,
+} from "./constants";
+import { clean, getDependencies, getPackages, glob } from "./utils";
 
 const BASE_ESJ_CONFIG = {
   extends: "../../tsconfig.base.json",
@@ -78,8 +72,8 @@ function createTSConfig(
   });
 }
 
-function writeJson(path: string, json: JSONObject): Promise<void> {
-  return writeFile(path, format(JSON.stringify(json), "json"));
+async function writeJson(filePath: string, json: JSONObject): Promise<void> {
+  return fsWriteJson(filePath, json, { spaces: 2 });
 }
 
 async function writeRoot(type: TSConfigType): Promise<void> {
@@ -94,19 +88,18 @@ async function writeRoot(type: TSConfigType): Promise<void> {
   return writeJson(`tsconfig.${type}.json`, { files: [], references });
 }
 
-export default async function configs(): Promise<void> {
+export async function configs(): Promise<void> {
   const packages = getPackages(true);
   const existingConfigs = await glob(
-    `packages/+(${packages.join("|")})/tsconfig.+(ejs|cjs|var).json`
+    `packages/!(dev-utils|documentation)/tsconfig.@(ejs|cjs|var).json`
   );
-  await Promise.all(existingConfigs.map((path) => remove(path)));
+  await clean(existingConfigs);
 
   await Promise.all(
-    packages.flatMap((name) => {
-      const packageJson = getPackageJson(name);
-
-      const dependencies = Object.keys(packageJson.dependencies || {}).filter(
-        (key) => key.startsWith("@react-md") && !NO_SCRIPT_PACKAGES.test(key)
+    packages.flatMap(async (name) => {
+      const dependencies = await getDependencies(name);
+      const rmdTsDependencies = dependencies.filter(
+        (name) => name.startsWith("@react-md") && !NO_SCRIPT_PACKAGES.test(name)
       );
 
       const path = join(packagesRoot, name);
@@ -117,8 +110,8 @@ export default async function configs(): Promise<void> {
       }
 
       if (!NO_SCRIPT_PACKAGES.test(name)) {
-        const ejsConfig = createTSConfig("ejs", dependencies);
-        const cjsConfig = createTSConfig("cjs", dependencies);
+        const ejsConfig = createTSConfig("ejs", rmdTsDependencies);
+        const cjsConfig = createTSConfig("cjs", rmdTsDependencies);
         promises.push(
           writeJson(join(path, "tsconfig.ejs.json"), ejsConfig),
           writeJson(join(path, "tsconfig.cjs.json"), cjsConfig)
@@ -128,6 +121,5 @@ export default async function configs(): Promise<void> {
       return promises;
     })
   );
-
   await Promise.all([writeRoot("ejs"), writeRoot("cjs"), writeRoot("var")]);
 }

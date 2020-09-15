@@ -1,85 +1,37 @@
-import { execSync } from "child_process";
 import filesize from "filesize";
 import { readFileSync, writeFileSync } from "fs";
-import { remove } from "fs-extra";
 import gzipSize from "gzip-size";
 import log from "loglevel";
-import { join, sep } from "path";
+import { join } from "path";
 
-import { packagesRoot, projectRoot, documentationRoot, src } from "./constants";
-import createThemes from "./utils/createThemes";
-import format from "./utils/format";
-import glob from "./utils/glob";
-import list from "./utils/list";
-import writeFile from "./utils/writeFile";
-import git, { uncommittedFiles } from "./utils/git";
+import { documentationRoot, packagesRoot, projectRoot, src } from "./constants";
+import { themes } from "./themes";
+import { umd as createUmd } from "./umd";
+import { format, git, glob, list, uncommittedFiles } from "./utils";
 
 const cwd = join(packagesRoot, "react-md");
+const SIZE_REGEXP = /^ - .+$/gm;
+const LIBSIZE_TOKEN = "yarn dev-utils libsize\n\n";
+const ROOT_README_PATH = join(projectRoot, "README.md");
+const ABOUT_README_PATH = join(
+  documentationRoot,
+  src,
+  "components",
+  "About",
+  "README.md"
+);
 
-const MATERIAL_ICONS_REGEXP = /^.+material-icons.+$/gm;
-
-const createIconBundle = (
-  fileNames: readonly string[],
-  indexFile: string
-): string => {
-  const exports = `export {
-${fileNames
-  .map((name) => name.substring(name.indexOf(sep)).replace(/\..+$/, ""))
-  .join(", ")}
-} from "@react-md/material-icons"`;
-
-  return format(
-    indexFile.replace(MATERIAL_ICONS_REGEXP, exports),
-    "typescript"
-  );
-};
-
-/**
- * Create three entry points for the bundles:
- * - base react-md library (as `ReactMD`)
- * - only SVG icon components from material-icons (as `ReactMDIconSVG`)
- * - only Font icon components from material-icons as (`ReactMDIconFont`)
- *
- * 99% of the time, you don't want to import both svg and font icons into one
- * app so this helps separate this out.
- */
-async function createUmd(): Promise<void> {
-  log.info("Creating the UMD bundles...");
-  const cwd = join(packagesRoot, "material-icons", "src");
-  const svgs = await glob("*SVGIcon.tsx", { cwd });
-  const fonts = await glob("*FontIcon.tsx", { cwd });
-  const reactMDSrc = join(packagesRoot, "react-md", "src");
-  const mainBundlePath = join(reactMDSrc, "rollup.ts");
-  const svgBundlePath = join(reactMDSrc, "svg.ts");
-  const fontBundlePath = join(reactMDSrc, "font.ts");
-
-  const indexFile = readFileSync(join(reactMDSrc, "index.ts"), "utf8");
-  const withoutIcons = format(indexFile.replace(MATERIAL_ICONS_REGEXP, ""));
-  await writeFile(mainBundlePath, withoutIcons);
-  await writeFile(svgBundlePath, createIconBundle(svgs, indexFile));
-  await writeFile(fontBundlePath, createIconBundle(fonts, indexFile));
-
-  execSync("yarn workspace react-md umd --silent", { stdio: "inherit" });
-  await Promise.all(
-    [mainBundlePath, svgBundlePath, fontBundlePath].map((filePath) =>
-      remove(filePath)
-    )
-  );
-  log.info();
+interface Options {
+  umd?: boolean;
+  forceUmd?: boolean;
+  themes?: boolean;
+  forceThemes?: boolean;
+  stageChanges?: boolean;
 }
 
-async function createLoggedThemes(): Promise<void> {
-  log.info("Creating all the pre-compiled themes...");
-  await createThemes();
-  log.info();
-}
-
-async function umdSize(): Promise<string[]> {
+async function umdSizes(force: boolean): Promise<readonly string[]> {
   let umd = await glob("dist/umd/*.min.js", { cwd });
-  if (!umd.length) {
-    log.info("No umd bundles found...");
-    log.info("Creating...");
-    log.info();
+  if (force || !umd.length) {
     await createUmd();
     umd = await glob("dist/umd/*.min.js", { cwd });
   }
@@ -97,27 +49,18 @@ async function umdSize(): Promise<string[]> {
     return a.localeCompare(b);
   });
 
-  const sizes = umd.map(
+  return umd.map(
     (name) =>
       `${name} ${filesize(
         gzipSize.sync(readFileSync(join(cwd, name), "utf8"))
       )}`
   );
-
-  log.info("The gzipped UMD bundle sizes are:");
-  log.info(list(sizes));
-  log.info();
-
-  return sizes;
 }
 
-async function cssSize(): Promise<string[]> {
+async function cssSize(force: boolean): Promise<readonly string[]> {
   let css = await glob("themes/*.min.css", { cwd: projectRoot });
-  if (!css.length) {
-    log.info("No compiled css files found...");
-    log.info("Creating...");
-    log.info();
-    await createLoggedThemes();
+  if (force || !css.length) {
+    await themes();
     css = await glob("themes/*.min.css", { cwd: projectRoot });
   }
 
@@ -143,18 +86,81 @@ async function cssSize(): Promise<string[]> {
     }
   );
 
-  const sizes = [
+  return [
     `${min.name} ${filesize(min.size)}`,
     `${max.name} ${filesize(max.size)}`,
   ];
-  log.info("The min and max gzipped CSS bundle sizes are:");
-  log.info(list(sizes));
-  log.info();
-
-  return sizes;
 }
 
-const LIBSIZE_TOKEN = "yarn dev-utils libsize\n\n";
+function getPreviousLibsize(filePath: string): string {
+  const readme = readFileSync(filePath, "utf8");
+  const startIndex = readme.indexOf(LIBSIZE_TOKEN);
+  if (startIndex === -1) {
+    throw new Error(`Unable to find \`${LIBSIZE_TOKEN}\` in \`${filePath}\``);
+  }
+  const content = readme.substring(startIndex);
+  const contentEndIndex = content.indexOf("```");
+  return content.substring(0, contentEndIndex);
+}
+
+interface Size {
+  size: number;
+  unit: string;
+}
+
+function getSizes(message: string): readonly Size[] {
+  const sizes = message.match(SIZE_REGEXP);
+  if (!sizes) {
+    log.error("No sizes found...");
+    process.exit(1);
+  }
+
+  return sizes.map((line) => {
+    const [unit, size] = line.split(" ").reverse();
+
+    return {
+      size: parseFloat(size),
+      unit,
+    };
+  });
+}
+
+function logPercentChanged(message: string, umd: boolean, css: boolean): void {
+  const previous = getSizes(getPreviousLibsize(ROOT_README_PATH));
+  const current = getSizes(message);
+  const start = umd ? 0 : 3;
+  const end = previous.length - (css ? 0 : 2);
+
+  let i = 0;
+  const updated = message
+    .split(/\r?\n/)
+    .map((line) => {
+      if (!line.startsWith(" - ") || i > end) {
+        return line;
+      }
+
+      if (i < start) {
+        i += 1;
+        return line;
+      }
+
+      const prevSize = previous[i].size;
+      const currSize = current[i].size;
+      const changedKB = (currSize - prevSize) * 100;
+      const token = `${currSize} ${current[i].unit}`;
+      const change = `${changedKB > 0 ? "+" : "-"} ${filesize(changedKB)}`;
+      i += 1;
+
+      if (changedKB !== 0) {
+        return line.replace(token, `${token} (${change})`);
+      }
+
+      return line;
+    })
+    .join("\n");
+
+  log.info(updated);
+}
 
 function updateLibsize(filePath: string, message: string): void {
   const readme = readFileSync(filePath, "utf8");
@@ -219,44 +225,56 @@ export default function OtherPros(): ReactElement {
   writeFileSync(filePath, format(content, "typescript"));
 }
 
-export default async function libsize(
-  umd: boolean = true,
-  themes: boolean = true,
-  commit: boolean = false,
-  stageChanges: boolean = false
-): Promise<void> {
+export async function libsize({
+  umd = true,
+  forceUmd = false,
+  themes = true,
+  forceThemes = false,
+  stageChanges = false,
+}: Options): Promise<void> {
+  umd = umd || forceUmd;
+  themes = themes || forceThemes;
+  if (!umd && !themes) {
+    log.error(
+      "Both `umd` and `themes` were set to `false` so no sizes can be determined."
+    );
+    process.exit(1);
+  }
+
+  const css: string[] = [];
+  const umds: string[] = [];
   if (umd) {
-    await createUmd();
+    umds.push(...(await umdSizes(forceUmd)));
   }
 
   if (themes) {
-    await createLoggedThemes();
+    css.push(...(await cssSize(forceThemes)));
   }
 
-  const umds = await umdSize();
-  const css = await cssSize();
-  const message = `${LIBSIZE_TOKEN}The gizipped UMD bundle sizes are:
+  let message = LIBSIZE_TOKEN;
+  if (umds.length) {
+    message = `${message}The gizipped UMD bundle sizes are:
 ${list(umds)}
+`;
+  }
 
-The min and max gzipped CSS bundle sizes are:
+  if (css.length) {
+    const space = umds.length ? "\n" : "";
+    message = `${message}${space}The min and max gzipped CSS bundle sizes are:
 ${list(css)}
 `;
-
-  updateLibsize(join(projectRoot, "README.md"), message);
-  updateLibsize(
-    join(documentationRoot, src, "components", "About", "README.md"),
-    message
-  );
-  updateOtherPros(umds, css);
-
-  if ((!stageChanges && !commit) || !uncommittedFiles()) {
-    return;
   }
 
-  git(
-    "add README.md packages/documentation/src/components/About/README.md packages/documentation/src/components/Home/LibraryInfo/OtherPros.tsx"
-  );
-  if (commit) {
-    git('commit -m "chore(libsize): Updated library size"');
+  logPercentChanged(message, !!umds.length, !!css.length);
+
+  if (stageChanges && umds.length && !css.length) {
+    log.info("Updating documentation files with libsize...");
+    updateLibsize(ROOT_README_PATH, message);
+    updateLibsize(ABOUT_README_PATH, message);
+    updateOtherPros(umds, css);
+
+    if (uncommittedFiles()) {
+      git("add -u");
+    }
   }
 }

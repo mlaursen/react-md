@@ -11,7 +11,7 @@ import autoPositioningTooltips from "./AutoPositioningTooltips.md";
 
 import DenseTooltips from "./DenseTooltips";
 import denseTooltips from "./DenseTooltips.md";
-import DenseTooltipsWrapper from "./DenseTooltipsWrapper"; // SANDBOX_IGNORE
+import DenseTooltipsWrapper /* SANDBOX_IGNORE */ from "./DenseTooltipsWrapper";
 
 import LargeTooltips from "./LargeTooltips";
 import largeTooltips from "./LargeTooltips.md";

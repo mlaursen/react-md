@@ -16,9 +16,7 @@
     }
   },
   "include": [
-    "packages/*/src/**/*"
-  ],
-  "exclude": [
-    "packages/dev-utils"
+    "packages/*/src/**/*",
+    "packages/dev-utils/@types"
   ]
 }

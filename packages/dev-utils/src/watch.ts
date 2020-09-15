@@ -6,10 +6,13 @@ import { sep } from "path";
 import { sys } from "typescript";
 
 import { dist, src } from "./constants";
-import getPackages from "./utils/getPackages";
-import list from "./utils/list";
+import { getPackages, list } from "./utils";
 
-export default function watch(cjs: boolean): void {
+/**
+ * Creates a custom dev watcher for copying styles into dists correctly
+ * as well as spinning up tsc watchers.
+ */
+export function watch(cjs: boolean): void {
   const packages = getPackages().filter((name) => name !== "material-icons");
   const sources = packages.map((name) => `packages/${name}/${src}/**/*.scss`);
 
