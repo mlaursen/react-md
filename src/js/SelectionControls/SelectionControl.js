@@ -397,6 +397,7 @@ export default class SelectionControl extends PureComponent {
       checked: propChildren,
       onChange,
       tooltip,
+      changeOnEnter,
       checkedCheckboxIcon,
       uncheckedCheckboxIcon,
       checkedRadioIcon,

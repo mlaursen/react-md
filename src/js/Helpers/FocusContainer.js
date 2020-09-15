@@ -231,6 +231,8 @@ export default class FocusContainer extends PureComponent {
     const {
       component: Component,
       /* eslint-disable no-unused-vars */
+      componentRef,
+      containerRef,
       initialFocus,
       focusOnMount,
       containFocus,
