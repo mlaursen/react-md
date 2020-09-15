@@ -1,10 +1,11 @@
-import { join } from "path";
-import { shared } from "../shared";
-import { documentationRoot, src, COPY_BANNER } from "../constants";
-import { glob, format } from "../utils";
-import { getRoutes } from "./getRoutes";
-import { generate } from "./generate";
 import { writeFile } from "fs-extra";
+import { join } from "path";
+
+import { COPY_BANNER, documentationRoot, src } from "../constants";
+import { shared } from "../shared";
+import { format, glob } from "../utils";
+import { generate } from "./generate";
+import { getRoutes } from "./getRoutes";
 
 export async function indexer(): Promise<void> {
   await shared(true);

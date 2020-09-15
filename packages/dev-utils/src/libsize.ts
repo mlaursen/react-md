@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync } from "fs";
 import gzipSize from "gzip-size";
 import log from "loglevel";
 import { join } from "path";
+
 import { documentationRoot, packagesRoot, projectRoot, src } from "./constants";
 import { themes } from "./themes";
 import { umd as createUmd } from "./umd";

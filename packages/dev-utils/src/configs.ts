@@ -1,6 +1,7 @@
 import { writeJson as fsWriteJson } from "fs-extra";
 import { merge } from "lodash";
 import { join } from "path";
+
 import {
   JSONObject,
   NO_SCRIPT_PACKAGES,

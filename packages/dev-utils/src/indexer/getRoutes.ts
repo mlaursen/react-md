@@ -1,6 +1,7 @@
 import { join, sep } from "path";
+
 import { documentationRoot, src } from "../constants";
-import { glob, getPackages } from "../utils";
+import { getPackages, glob } from "../utils";
 
 interface GetRoutesOptions {
   guides: readonly string[];

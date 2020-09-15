@@ -1,10 +1,11 @@
+import { execSync } from "child_process";
 import { readFileSync } from "fs";
 import { writeFile } from "fs-extra";
 import log from "loglevel";
 import { join, sep } from "path";
+
 import { packagesRoot } from "./constants";
-import { format, glob, clean } from "./utils";
-import { execSync } from "child_process";
+import { clean, format, glob } from "./utils";
 
 const MATERIAL_ICONS_REGEXP = /^.+material-icons.+$/gm;
 

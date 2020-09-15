@@ -5,7 +5,6 @@ import { ImportDeclaration, Project } from "ts-morph";
 
 import { JSONObject } from "../constants";
 import { format, toTitle } from "../utils";
-
 import { getAliases } from "./aliases";
 import {
   DEMO_INDEX,

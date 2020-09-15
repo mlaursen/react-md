@@ -268,7 +268,8 @@ $rmd-theme-linear-channel-values: (
 /// return the lighter color as long as it meets the minimum contrast ratio even
 /// if the darker color would have a greater contrast ratio.
 /// @since 2.4.0
-/// @returns {Color}
+/// @returns {Color} Either the `$light-color` or `$dark-color` depending on
+/// contrast ratios.
 @function rmd-theme-best-contrast-color(
   $color,
   $light-color: $rmd-white-base,

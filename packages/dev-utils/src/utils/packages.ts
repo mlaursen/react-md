@@ -1,14 +1,15 @@
 import { lstatSync, readdirSync, readJson } from "fs-extra";
 import log from "loglevel";
 import { join } from "path";
+
 import {
+  NO_SCRIPT_PACKAGES,
+  NO_STYLES_PACKAGES,
+  PackageJson,
   packagesRoot,
+  PackageType,
   projectRoot,
   VersionedDependency,
-  PackageJson,
-  PackageType,
-  NO_STYLES_PACKAGES,
-  NO_SCRIPT_PACKAGES,
 } from "../constants";
 
 let versionsCacheLoaded = false;

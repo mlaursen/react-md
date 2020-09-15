@@ -1,7 +1,8 @@
 import { readFile, writeFile } from "fs-extra";
 import log from "loglevel";
-import { getPackages, glob } from "./utils";
+
 import { indexer } from "./indexer";
+import { getPackages, glob } from "./utils";
 
 type Transformer = (changelog: string, isRoot: boolean) => string;
 

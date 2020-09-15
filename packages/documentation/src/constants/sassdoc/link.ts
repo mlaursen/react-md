@@ -264,7 +264,7 @@ const sassdoc: PackageSassDoc = {
       value:
         "(\n  color: rmd-theme-var(on-primary),\n  left: 50%,\n  padding: 0.25rem 1rem,\n  top: 0.25rem,\n  transform: translateX(-50%),\n)",
       compiled:
-        "(\n  color: var(--rmd-theme-on-primary, #000),\n  left: 50%,\n  padding: 0.25rem 1rem,\n  top: 0.25rem,\n  transform: translateX(-50%),\n)",
+        "(\n  color: var(--rmd-theme-on-primary, #fff),\n  left: 50%,\n  padding: 0.25rem 1rem,\n  top: 0.25rem,\n  transform: translateX(-50%),\n)",
       overridable: true,
     },
     "rmd-link-skip-active-styles": {

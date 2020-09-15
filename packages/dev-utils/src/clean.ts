@@ -1,4 +1,4 @@
-import { es, lib, dist } from "./constants";
+import { dist, es, lib } from "./constants";
 import { clean as remove, glob } from "./utils";
 
 export async function clean(): Promise<void> {

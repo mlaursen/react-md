@@ -1,41 +1,42 @@
 import { writeFile } from "fs-extra";
+import { omit } from "lodash";
 import log from "loglevel";
 import { renderSync } from "node-sass";
 import { join } from "path";
 import { BuiltInParserName } from "prettier";
 import {
   ExampleType,
+  FunctionItem,
   Item,
-  VariableItem,
   ItemReference,
   ItemRequire,
-  FunctionItem,
   MixinItem,
+  VariableItem,
 } from "sassdoc";
-import { omit } from "lodash";
+
 import { nonWebpackDist, packagesRoot, src, tempStylesDir } from "./constants";
 import {
   CompiledExample,
   format,
+  FormattedFunctionItem,
   FormattedItem,
   FormattedItemLink,
+  FormattedMixinItem,
   FormattedVariableItem,
   getCompiledValue,
   getPackages,
   getSassdoc,
+  isFunctionItem,
+  isMixinItem,
   isPrimitive,
   isPublic,
+  isVariableItem,
   ItemReferenceLink,
   PackageSassDoc,
   PackageSassDocMap,
+  ParameterizedItem,
   ValuedVariable,
   VariableValue,
-  isVariableItem,
-  isFunctionItem,
-  FormattedFunctionItem,
-  FormattedMixinItem,
-  ParameterizedItem,
-  isMixinItem,
 } from "./utils";
 
 export interface FullItemReferenceLink extends ItemReferenceLink {

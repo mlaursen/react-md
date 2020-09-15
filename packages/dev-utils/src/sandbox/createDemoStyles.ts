@@ -1,6 +1,6 @@
-import { ReferencedDependencies } from "./getAllDependencies";
-import { getPackages, format } from "../utils";
 import { dist } from "../constants";
+import { format, getPackages } from "../utils";
+import { ReferencedDependencies } from "./getAllDependencies";
 
 export function createDemoStyles(dependenies: ReferencedDependencies): string {
   const styleableRmdPackages = getPackages("scss").map(
