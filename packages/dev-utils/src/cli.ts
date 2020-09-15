@@ -85,7 +85,9 @@ createCommand("copy-shared", true)
   .action(({ clean = false }) => shared(clean));
 
 createCommand("doc-index")
-  .description("")
+  .description(
+    "Indexes (terribly) metadata throughout react-md for the documentation site."
+  )
   .action(() => indexer());
 
 createCommand("release")

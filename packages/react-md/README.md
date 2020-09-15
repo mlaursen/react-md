@@ -2,7 +2,6 @@
 
 [![npm](https://img.shields.io/npm/v/react-md)](https://www.npmjs.com/package/react-md)
 [![downloads](https://img.shields.io/npm/dw/react-md)](https://www.npmjs.com/package/react-md)
-[![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
 [![Join the Chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com)
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
 
@@ -94,8 +93,7 @@ a link to their demo documentation page:
 - Out of the box dark theme mode support
 - Out of the box left-to-right and right-to-left language support
 - UMD Bundles and pre-compiled css available on https://unpkg.com (see more
-  information
-  [here](https://react-md.dev/guides/advanced-installation#using-the-cdn-hosted-pre-compiled-themes))
+  information [here](https://react-md.dev/guides/cdn-links))
 - Written and maintained in [Typescript]
 
 ## Creating a new project
@@ -246,15 +244,14 @@ estimated size for this library, check out the results below:
 ```sh
 yarn dev-utils libsize
 
-The gzipped UMD bundle sizes are:
- - dist/umd/react-md.production.min.js 86.49 KB
- - dist/umd/react-md-with-font-icons.production.min.js 196.05 KB
- - dist/umd/react-md-with-svg-icons.production.min.js 196.03 KB
-
+The gizipped UMD bundle sizes are:
+ - dist/umd/react-md.production.min.js 89.09 KB
+ - dist/umd/react-md-with-font-icons.production.min.js 112.94 KB
+ - dist/umd/react-md-with-svg-icons.production.min.js 178.71 KB
 
 The min and max gzipped CSS bundle sizes are:
- - dist/css/react-md.grey-deep_orange-200-light.min.css 15.65 KB
- - dist/css/react-md.indigo-blue-400-dark.min.css 15.71 KB
+ - themes/react-md.red-deep_orange-200-light.min.css 15.81 KB
+ - themes/react-md.deep_purple-blue-400-dark.min.css 15.87 KB
 ```
 
 ## Contributing

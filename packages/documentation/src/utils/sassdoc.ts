@@ -1,4 +1,8 @@
-/** this is a generated file from `yarn dev-utils sassdoc` and should not be manually updated */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 /**
  * The `@access` annotation. Defaults to "public".
  *
