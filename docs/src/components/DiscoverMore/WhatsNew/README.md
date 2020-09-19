@@ -1,5 +1,11 @@
 ## September 2020
 
+### v1.18.1 Release
+
+##### Changelog
+
+- Fixed React warnings about `containerRef`, `componentRef`, and `changeOnEnter` ([@gamtiq] - [pull-956])
+
 ### v1.18.0 Release
 
 ##### Changelog
