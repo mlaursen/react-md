@@ -16,13 +16,14 @@ import {
 import { useIsUserInteractionMode } from "@react-md/utils";
 
 import FileSVGIcon from "icons/FileSVGIcon";
-import CssIcon from "./icons/CssIcon";
-import HtmlIcon from "./icons/HtmlIcon";
-import JsIcon from "./icons/JsIcon";
-import JsonIcon from "./icons/JsonIcon";
-import JsxIcon from "./icons/JsxIcon";
-import ScssIcon from "./icons/ScssIcon";
-import TsIcon from "./icons/TsIcon";
+import CssIcon from "icons/CssIcon";
+import HtmlIcon from "icons/HtmlIcon";
+import JsIcon from "icons/JsIcon";
+import JsonIcon from "icons/JsonIcon";
+import JsxIcon from "icons/JsxIcon";
+import ScssIcon from "icons/ScssIcon";
+import TsIcon from "icons/TsIcon";
+
 import { FileTreeData } from "./useFiles";
 
 import styles from "./SandboxFileTree.module.scss";
