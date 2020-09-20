@@ -32,9 +32,11 @@ export async function sandbox(
   const sandboxes = await glob(join(SANDBOXES_PATH, "**/*.json"));
   const packages = new Set<string>();
   const lookups = sandboxes.reduce<Lookups>((lookups, pathname) => {
-    const [pkg, fileName] = pathname
+    const [pkg, demoName, js] = pathname
       .substring(pathname.lastIndexOf("/") + 1)
       .split("-");
+
+    const fileName = `${demoName}${js ? `-${js}` : ""}`;
 
     packages.add(`"${pkg}"`);
     lookups[pkg] = lookups[pkg] || {};

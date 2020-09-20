@@ -17,6 +17,38 @@ function toDependencyJson(
   );
 }
 
+const SIMPLE_AT_TYPES = [
+  "classnames",
+  "qs",
+  "react-router",
+  "react-router-dom",
+  "react-transition-group",
+  "react-virtualized",
+];
+
+function getTypesPackage(packageName: string): string | null {
+  if (SIMPLE_AT_TYPES.includes(packageName)) {
+    return `@types/${packageName}`;
+  }
+
+  return null;
+}
+
+function toDevDependencyJson(
+  dependencies: readonly string[],
+  devDependencies: readonly string[]
+): Record<string, string> {
+  const deps = [...devDependencies];
+  dependencies.forEach((depName) => {
+    const types = getTypesPackage(depName);
+    if (types) {
+      deps.push(types);
+    }
+  });
+
+  return toDependencyJson(deps);
+}
+
 export function createPackageJson(
   demoTitle: string,
   fullDemoTitle: string,
@@ -32,7 +64,7 @@ export function createPackageJson(
     )}/demos#${toId(demoTitle)}`,
     main: "src/index.tsx",
     dependencies: toDependencyJson(allDeps),
-    devDependencies: toDependencyJson(DEV_DEPENDENCIES),
+    devDependencies: toDevDependencyJson(allDeps, DEV_DEPENDENCIES),
     scripts: {
       start: "react-scripts start",
     },

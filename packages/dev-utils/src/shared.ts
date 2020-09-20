@@ -12,7 +12,13 @@ import {
   src,
 } from "./constants";
 import { markdown } from "./markdown";
-import { copyFilesWithBanner, format, getPackages, list } from "./utils";
+import {
+  copyFilesWithBanner,
+  format,
+  getPackages,
+  list,
+  getAllVersions,
+} from "./utils";
 
 const REPLACE_TOKEN = "<!-- rmd-readme-replace -->";
 
@@ -149,6 +155,28 @@ async function sharedSassdoc(): Promise<void> {
   await writeFile(join(documentationSrc, "utils", "sassdoc.ts"), contents);
 }
 
+async function createVerions(): Promise<void> {
+  const versions = await getAllVersions();
+
+  const json = Array.from(versions.entries()).reduce<Record<string, string>>(
+    (json, [name, value]) => {
+      json[name] = value;
+      return json;
+    },
+    {}
+  );
+
+  const filePath = join(documentationRoot, "src", "constants", "versions.ts");
+  const stringified = JSON.stringify(json, null, 2);
+  const contents = format(
+    `${COPY_BANNER}
+
+export const versions: Record<string, string> = ${stringified}`
+  );
+
+  await writeFile(filePath, contents);
+}
+
 /**
  * Copies shared code from the dev-utils package to the documentation site.
  */
@@ -159,5 +187,6 @@ export async function shared(clean: boolean = false): Promise<void> {
     rmdReadme(),
     sharedSassdoc(),
     allPackages(),
+    createVerions(),
   ]);
 }

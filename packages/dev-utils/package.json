@@ -15,6 +15,8 @@
     "watch": "npm-run-all -p \"compile -w\" watcher"
   },
   "dependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-typescript": "^7.11.0",
     "chokidar": "^3.4.2",
     "commander": "^6.0.0",
     "cpx": "^1.5.0",
