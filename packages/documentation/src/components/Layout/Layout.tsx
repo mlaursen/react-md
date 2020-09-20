@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { ConfiguredIcons } from "@react-md/icon";
 import {
   Configuration,
@@ -7,7 +7,9 @@ import {
 } from "@react-md/layout";
 import {
   ArrowDropDownSVGIcon,
+  ArrowUpwardSVGIcon,
   CheckBoxSVGIcon,
+  CheckSVGIcon,
   FileDownloadSVGIcon,
   KeyboardArrowDownSVGIcon,
   KeyboardArrowLeftSVGIcon,
@@ -16,26 +18,29 @@ import {
   NotificationsSVGIcon,
   RadioButtonCheckedSVGIcon,
   RemoveRedEyeSVGIcon,
-  ArrowUpwardSVGIcon,
-  CheckSVGIcon,
 } from "@react-md/material-icons";
 import { ENTER, useCrossFade } from "@react-md/transition";
 import { AppSizeListenerProps } from "@react-md/utils";
 
+import {
+  CodePreference,
+  CodePreferenceProvider,
+} from "components/CodePreference";
+import { IdProvider } from "components/IdProvider";
 import LinkUnstyled from "components/LinkUnstyled";
 import TableOfContents from "components/TableOfContents";
 import { TOCVisibilityProvider } from "components/TableOfContents/VisibilityContext";
-import { IdProvider } from "components/IdProvider";
 import navItems from "constants/navItems";
 
 import Actions from "./Actions";
-import NavHeaderTitle from "./NavHeaderTitle";
 import { Provider } from "./fixedAppBarContext";
+import NavHeaderTitle from "./NavHeaderTitle";
 
 export interface LayoutProps
   extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
   title: string;
   pathname: string;
+  defaultPreference: CodePreference;
 }
 
 const icons: ConfiguredIcons = {
@@ -58,6 +63,7 @@ const Layout: FC<LayoutProps> = ({
   title,
   pathname,
   defaultSize,
+  defaultPreference,
 }) => {
   const [elevated, setElevated] = useState(pathname !== "/");
   const rendered = useRef(false);
@@ -89,25 +95,27 @@ const Layout: FC<LayoutProps> = ({
     <Configuration defaultSize={defaultSize} icons={icons}>
       <TOCVisibilityProvider pathname={pathname}>
         <IdProvider>
-          <RMDLayout
-            appBarProps={{
-              fixedElevation: elevated,
-              children: <Actions />,
-            }}
-            title={title.replace("react-md@v2 - ", "")}
-            mainProps={transitionProps}
-            treeProps={useLayoutNavigation(
-              navItems,
-              // I don't add each blog to the navigation tree, but still want to
-              // show that a blog is being viewed
-              pathname.replace(/^\/blog.*$/, "/blog"),
-              LinkUnstyled
-            )}
-            navHeaderProps={{ children: <NavHeaderTitle /> }}
-          >
-            <TableOfContents pathname={pathname} />
-            <Provider value={setElevated}>{children}</Provider>
-          </RMDLayout>
+          <CodePreferenceProvider defaultPreference={defaultPreference}>
+            <RMDLayout
+              appBarProps={{
+                fixedElevation: elevated,
+                children: <Actions />,
+              }}
+              title={title.replace("react-md@v2 - ", "")}
+              mainProps={transitionProps}
+              treeProps={useLayoutNavigation(
+                navItems,
+                // I don't add each blog to the navigation tree, but still want to
+                // show that a blog is being viewed
+                pathname.replace(/^\/blog.*$/, "/blog"),
+                LinkUnstyled
+              )}
+              navHeaderProps={{ children: <NavHeaderTitle /> }}
+            >
+              <TableOfContents pathname={pathname} />
+              <Provider value={setElevated}>{children}</Provider>
+            </RMDLayout>
+          </CodePreferenceProvider>
         </IdProvider>
       </TOCVisibilityProvider>
     </Configuration>

@@ -1,35 +1,43 @@
-import React, { FC } from "react";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import React, { ReactElement } from "react";
 import { Portal } from "@react-md/portal";
 import { useToggle } from "@react-md/utils";
 
 import AppBarAction from "components/AppBarAction";
+import { useJs } from "components/CodePreference";
 import CodeSandboxSVGIcon from "icons/CodeSandboxSVGIcon";
 
 import SandboxDefineForm from "./SandboxDefineForm";
 
 export interface SandboxProps {
   id: string;
-  getSandbox: null | (() => Promise<IFiles>);
+  demoName: string;
+  packageName: string;
 }
 
-const Sandbox: FC<SandboxProps> = ({ id, getSandbox }) => {
+export default function Sandbox({
+  id,
+  demoName,
+  packageName,
+}: SandboxProps): ReactElement {
   const [loading, enable, disable] = useToggle(false);
-  if (!getSandbox) {
-    return null;
-  }
+  const isJs = useJs();
+  const label = `Create ${isJs ? "Javascript" : "TypeScript"} Code Sandbox`;
 
   return (
     <>
       <Portal>
         {loading && (
-          <SandboxDefineForm getSandbox={getSandbox} onCreated={disable} />
+          <SandboxDefineForm
+            demoName={demoName}
+            packageName={packageName}
+            onCreated={disable}
+          />
         )}
       </Portal>
       <AppBarAction
         id={id}
-        aria-label="Code Sandbox"
-        tooltip="Open Code Sandbox"
+        aria-label={label}
+        tooltip={label}
         onClick={enable}
         disabled={loading}
       >
@@ -37,6 +45,4 @@ const Sandbox: FC<SandboxProps> = ({ id, getSandbox }) => {
       </AppBarAction>
     </>
   );
-};
-
-export default Sandbox;
+}

@@ -36,6 +36,9 @@ const SandboxList: FC = () => (
                 "-",
                 true
               ).toLowerCase()}/demos#${toId(name)}-title`;
+              if (name.endsWith("-js")) {
+                return null;
+              }
 
               return (
                 <Fragment key={name}>

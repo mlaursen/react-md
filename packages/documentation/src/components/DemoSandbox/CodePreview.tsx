@@ -3,14 +3,14 @@ import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
 import { CodeBlock } from "components/Code";
-import { useTheme } from "components/Theme";
-import { RMD_VERSION } from "constants/github";
 
+import { CircularProgress } from "@react-md/progress";
 import FileNotFound from "./FileNotFound";
 
 import styles from "./CodePreview.module.scss";
 
 export interface CodePreviewProps {
+  loading: boolean;
   fileName: string;
   sandbox: IFiles | null;
   offset: boolean;
@@ -21,10 +21,9 @@ const CodePreview: FC<CodePreviewProps> = ({
   fileName,
   sandbox,
   offset,
+  loading,
   onFileChange,
 }) => {
-  const { theme } = useTheme();
-
   let content = "";
   let language = "markdown";
   if (sandbox && sandbox[fileName]) {
@@ -37,10 +36,6 @@ const CodePreview: FC<CodePreviewProps> = ({
     ({ content } = sandbox[fileName]);
     if (typeof content !== "string") {
       content = `${JSON.stringify(content, null, 2)}\n`;
-    } else {
-      content = content
-        .replace(/{{RMD_VERSION}}/g, RMD_VERSION)
-        .replace(/{{THEME}}/g, theme);
     }
   }
 
@@ -50,6 +45,10 @@ const CodePreview: FC<CodePreviewProps> = ({
       code.current.scrollTop = 0;
     }
   }, [content]);
+
+  if (loading) {
+    return <CircularProgress id="loading-code" />;
+  }
 
   if (!content) {
     return (

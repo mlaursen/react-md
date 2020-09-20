@@ -1,12 +1,13 @@
 import React, { FC } from "react";
-import { AppBar, AppBarAction } from "@react-md/app-bar";
+import { AppBar } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
-import { MobileOnly } from "@react-md/utils";
+import { MobileOnly, useAppSize } from "@react-md/utils";
 
 import AppBarNav from "components/AppBarNav";
 import AppBarTitle from "components/AppBarTitle";
 
 import styles from "./SandboxNavigation.module.scss";
+import NavigationActions from "./NavigationActions";
 
 interface SandboxNavigationProps {
   name: string;
@@ -23,6 +24,9 @@ const SandboxNavigation: FC<SandboxNavigationProps> = ({
   onRequestFiles,
   onRequestClose,
 }) => {
+  const { isPhone, isTablet } = useAppSize();
+  const mobile = isPhone || isTablet;
+
   return (
     <AppBar height="prominent-dense" theme="default" className={styles.header}>
       <AppBar>
@@ -39,15 +43,9 @@ const SandboxNavigation: FC<SandboxNavigationProps> = ({
         <AppBarTitle id="sandbox-dialog-title" noWrap>
           {name}
         </AppBarTitle>
-        <AppBarAction
-          id="sandbox-dialog-close"
-          first
-          last
-          buttonType="text"
-          onClick={onRequestClose}
-        >
-          {from ? "Go Back" : "Close"}
-        </AppBarAction>
+        {!mobile && (
+          <NavigationActions from={from} onRequestClose={onRequestClose} />
+        )}
       </AppBar>
       <code className={styles.breadcrumbs}>
         {fileName.replace(/\//g, " / ")}

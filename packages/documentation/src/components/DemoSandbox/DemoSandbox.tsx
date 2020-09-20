@@ -2,12 +2,14 @@ import React, { FC, useCallback, useMemo } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useRouter } from "next/router";
 
+import { useJs } from "components/CodePreference";
 import NotFoundPage from "components/NotFoundPage";
+import { useTheme } from "components/Theme";
 import { parseSandbox, SandboxQuery } from "utils/routes";
 
 import SandboxList from "./SandboxList";
 import SandboxModal from "./SandboxModal";
-import useSandbox from "./useSandbox";
+import useSandbox from "./SandboxQuery";
 import useFiles from "./useFiles";
 
 interface DemoSandboxProps {
@@ -17,10 +19,14 @@ const EMPTY = {};
 
 const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
   const router = useRouter();
-  const { pkg, name, from, fileName } = parseSandbox(router.query);
+  const { theme } = useTheme();
+  const isJs = useJs();
+  const { pkg, name, from, fileName } = parseSandbox(router.query, isJs);
   const { sandbox, loading } = useSandbox(defaultSandbox, {
+    js: isJs,
     pkg,
     name,
+    theme,
     pathname: router.pathname,
   });
   const files = useFiles(sandbox || EMPTY);
@@ -80,6 +86,7 @@ const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
         fileName={fileName}
         from={from}
         files={files}
+        loading={loading}
         folders={folders}
         sandbox={sandbox}
         onFileChange={onFileChange}

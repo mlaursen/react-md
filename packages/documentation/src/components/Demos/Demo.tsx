@@ -5,7 +5,6 @@ import { Divider } from "@react-md/divider";
 import { useAppSize, useToggle } from "@react-md/utils";
 
 import { GITHUB_DEMO_URL } from "constants/github";
-import getSandbox from "utils/getSandbox";
 import { toTitle } from "utils/toTitle";
 
 import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
@@ -98,7 +97,7 @@ const Demo: FC<DemoProps> = ({
         </Markdown>
         <AppBar id={`${id}-preview-toolbar`} theme="clear">
           <CodePreview demoId={id} demoTitle={name} folder={title} />
-          <Sandbox id={`${id}-sandbox`} getSandbox={getSandbox(title, name)} />
+          <Sandbox id={`${id}-sandbox`} demoName={name} packageName={title} />
           <GithubDemoLink id={`${id}-github`} href={fileName} />
         </AppBar>
         <div

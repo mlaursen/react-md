@@ -44,7 +44,6 @@ export default function useThemeConfiguration(
         root.classList.add(`${localTheme}-theme`);
         Cookie.set("theme", localTheme);
         setTheme(localTheme);
-        return;
       }
 
       firstRender.current = false;

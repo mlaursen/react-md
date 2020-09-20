@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { useAppSize } from "@react-md/utils";
 
+import { CodePreferenceToggle } from "components/CodePreference";
+
 import ToggleTheme from "./ToggleTheme";
 import ToggleRTL from "./ToggleRTL";
 import ActionMenu from "./ActionMenu";
@@ -22,6 +24,7 @@ const Actions: FC = () => {
     <>
       <Search />
       <ToggleTheme />
+      <CodePreferenceToggle as="action" />
       <GithubLink />
       <ToggleRTL />
     </>

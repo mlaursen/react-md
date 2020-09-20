@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useToggle } from "@react-md/utils";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
-
 import { ThemeMode } from "components/Theme";
 import { getSandboxByQuery } from "utils/getSandbox";
 
@@ -12,7 +11,6 @@ interface SandboxQuery {
   theme: ThemeMode;
   pathname: string;
 }
-
 interface ReturnValue {
   sandbox: IFiles | null;
   loading: boolean;
@@ -24,8 +22,17 @@ export default function useSandbox(
 ): ReturnValue {
   const [sandbox, setSandbox] = useState(defaultSandbox);
   const [loading, startLoading, stopLoading] = useToggle(!sandbox);
+  const prevJs = useRef(js);
+  if (prevJs.current !== js) {
+    prevJs.current = js;
+    startLoading();
+  }
 
   useEffect(() => {
+    if (defaultSandbox && !loading) {
+      return;
+    }
+
     if (!pkg || !name || !pathname.startsWith("/sandbox")) {
       stopLoading();
       if (sandbox) {

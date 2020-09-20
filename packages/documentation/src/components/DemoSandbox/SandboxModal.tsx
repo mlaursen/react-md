@@ -18,6 +18,7 @@ interface SandboxModalProps {
   pkg: string;
   name: string;
   from: string;
+  loading: boolean;
   fileName: string;
   folders: readonly string[];
   sandbox: IFiles | null;
@@ -34,6 +35,7 @@ const SandboxModal: FC<SandboxModalProps> = ({
   sandbox,
   files,
   folders,
+  loading,
   onFileChange,
   onRequestClose,
 }) => {
@@ -91,16 +93,19 @@ const SandboxModal: FC<SandboxModalProps> = ({
         onRequestClose={onRequestClose}
       />
       <SandboxFileTree
+        from={from}
         files={files}
         folders={folders}
         fileName={fileName}
         inline={inline}
         visible={isTreeVisible}
+        hideTree={hideTree}
         onFileChange={onFileChange}
-        onRequestClose={hideTree}
+        onRequestClose={onRequestClose}
         disableTransition={inline && isDesktop}
       />
       <CodePreview
+        loading={loading}
         fileName={fileName}
         sandbox={sandbox}
         offset={inline && isTreeVisible}

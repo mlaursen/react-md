@@ -1,26 +1,28 @@
 import "./app.scss";
 import React, { ReactElement } from "react";
-import NextApp, { AppInitialProps, AppContext } from "next/app";
+import NextApp, { AppContext, AppInitialProps } from "next/app";
 import Head from "next/head";
 import Router from "next/router";
-import MobileDetect from "mobile-detect";
-import Cookie from "js-cookie";
 import {
+  AppSize,
   DEFAULT_APP_SIZE,
+  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+  DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
   DEFAULT_TABLET_MAX_WIDTH,
   DEFAULT_TABLET_MIN_WIDTH,
-  DEFAULT_DESKTOP_MIN_WIDTH,
-  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-  AppSize,
 } from "@react-md/utils";
-
-import { GA_CODE } from "constants/github";
-import Layout from "components/Layout";
+import MobileDetect from "mobile-detect";
 import GoogleFont from "components/GoogleFont";
-import Theme, { ThemeMode } from "components/Theme";
-import { toBreadcrumbPageTitle } from "utils/toTitle";
+import Layout from "components/Layout";
+import Theme, { getDefaultTheme, ThemeMode } from "components/Theme";
+import { GA_CODE } from "constants/github";
 import { qsToString } from "utils/routes";
+import { toBreadcrumbPageTitle } from "utils/toTitle";
+import {
+  CodePreference,
+  getDefaultCodePreference,
+} from "components/CodePreference";
 
 interface NextWebVitalsMetrics {
   id: string;
@@ -57,6 +59,7 @@ interface AppProps extends AppInitialProps {
   };
   defaultSize: AppSize;
   defaultTheme: ThemeMode;
+  defaultPreference: CodePreference;
 }
 
 export default class App extends NextApp<AppProps> {
@@ -70,7 +73,7 @@ export default class App extends NextApp<AppProps> {
     }
 
     let defaultSize;
-    let defaultTheme;
+    let defaultTheme: ThemeMode = "light";
     if (ctx && ctx.req) {
       const { req } = ctx;
       const md = new MobileDetect(req.headers["user-agent"] || "");
@@ -85,7 +88,7 @@ export default class App extends NextApp<AppProps> {
         isLargeDesktop,
         isLandscape: true,
       };
-      defaultTheme = req.cookies.theme || "light";
+      defaultTheme = getDefaultTheme(req.cookies);
     } else if (typeof window !== "undefined") {
       const matchesPhone = window.matchMedia(
         `screen and (max-width: ${DEFAULT_PHONE_MAX_WIDTH})`
@@ -110,13 +113,14 @@ export default class App extends NextApp<AppProps> {
         isLargeDesktop,
         isLandscape,
       };
-      defaultTheme = Cookie.get("theme");
+      defaultTheme = getDefaultTheme();
     }
 
     return {
       pageProps,
       defaultSize: defaultSize || DEFAULT_APP_SIZE,
-      defaultTheme: defaultTheme === "dark" ? "dark" : "light",
+      defaultTheme,
+      defaultPreference: getDefaultCodePreference(ctx?.req?.cookies),
     };
   }
 
@@ -151,7 +155,13 @@ export default class App extends NextApp<AppProps> {
   };
 
   public render(): ReactElement {
-    const { Component, pageProps, defaultSize, defaultTheme } = this.props;
+    const {
+      Component,
+      pageProps,
+      defaultSize,
+      defaultTheme,
+      defaultPreference,
+    } = this.props;
     const { statusCode } = pageProps;
     const pathname = this.getPathname();
     const pageTitle = toBreadcrumbPageTitle(pathname, statusCode);
@@ -172,6 +182,7 @@ export default class App extends NextApp<AppProps> {
         <Theme defaultTheme={defaultTheme}>
           <Layout
             defaultSize={defaultSize}
+            defaultPreference={defaultPreference}
             pathname={pathname}
             title={pageTitle}
           >
