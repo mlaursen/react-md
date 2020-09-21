@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useRef } from "react";
 import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import { CircularProgress } from "@react-md/progress";
 
 import { CodeBlock } from "components/Code";
 
-import { CircularProgress } from "@react-md/progress";
 import FileNotFound from "./FileNotFound";
 
 import styles from "./CodePreview.module.scss";

@@ -9,7 +9,7 @@ import { parseSandbox, SandboxQuery } from "utils/routes";
 
 import SandboxList from "./SandboxList";
 import SandboxModal from "./SandboxModal";
-import useSandbox from "./SandboxQuery";
+import useSandbox from "./useSandbox";
 import useFiles from "./useFiles";
 
 interface DemoSandboxProps {
