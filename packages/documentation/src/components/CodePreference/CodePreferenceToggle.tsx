@@ -27,10 +27,10 @@ export function CodePreferenceToggle({
   id = id ? `-${id}` : "";
   const { pref, toggle } = useCodePreference();
   const isJs = pref === "js";
+  const name = isJs ? "Javascript" : "TypeScript";
   const icon = isJs ? <JavascriptSVGIcon /> : <TypescriptSVGIcon />;
   if (as === "action") {
     const { onClick, ...props } = remaining as CodePreferenceActionProps;
-    const name = isJs ? "Javascript" : "TypeScript";
     const tooltip = `Use ${name} in code examples and generated sandboxes`;
     return (
       <AppBarAction
@@ -65,8 +65,8 @@ export function CodePreferenceToggle({
 
         toggle();
       }}
-    >
-      {`Using ${isJs ? "Javascript" : "TypeScript"} in code examples`}
-    </MenuItem>
+      primaryText="Preferred Codinging Language"
+      secondaryText={`Current language: ${name}`}
+    />
   );
 }
