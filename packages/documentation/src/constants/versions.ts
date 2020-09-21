@@ -36,6 +36,7 @@ export const versions: Record<string, string> = {
   "eslint-plugin-react": "7.20.3",
   "eslint-plugin-react-hooks": "4.0.8",
   husky: "4.2.5",
+  "identity-obj-proxy": "3.0.0",
   jest: "26.4.2",
   lerna: "3.22.1",
   "lint-staged": "10.2.13",

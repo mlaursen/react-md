@@ -12,7 +12,7 @@ interface SandboxProps {
 }
 
 const Sandbox: NextFC<SandboxProps> = ({ sandbox }) => (
-  <DemoSandbox sandbox={sandbox} />
+  <DemoSandbox key={`${!!sandbox}`} sandbox={sandbox} />
 );
 
 Sandbox.getInitialProps = async ({ query, req }): Promise<SandboxProps> => {
