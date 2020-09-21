@@ -1,0 +1,54 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\" class=\"{{THEME}}-theme\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the `src/styles.scss` in the `src/index.tsx` instead to create custom themes -->\n    <link\n      rel=\"stylesheet\"\n      href=\"https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css\"\n    />\n    <title>Utils Example - Resize Observer Example</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
+  },
+  "src/index.jsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\n// the styles are actually loaded as the pre-compiled themes in the index.html\n// to speed up sandbox compilation. If you want to update the theme, you'll need\n// to uncomment this line and remove the `<link>` tag in the `index.html`\n// import \"./styles.scss\"\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n"
+  },
+  "src/styles.scss": {
+    "content": "@import \"variables\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/table/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n\n@include react-md-utils;\n"
+  },
+  "src/_variables.scss": {
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n"
+  },
+  "package.json": {
+    "content": {
+      "title": "Utils Example - Resize Observer Example",
+      "description": "Example from https://react-md.dev/packages/utils/demos#resize-observer-example",
+      "main": "src/index.jsx",
+      "dependencies": {
+        "@react-md/button": "latest",
+        "@react-md/elevation": "latest",
+        "@react-md/layout": "latest",
+        "@react-md/states": "latest",
+        "@react-md/table": "latest",
+        "@react-md/theme": "latest",
+        "@react-md/typography": "latest",
+        "@react-md/utils": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    }
+  },
+  "src/Demo.jsx": {
+    "content": "import React, { useCallback, useEffect, useState } from \"react\";\nimport { Button } from \"@react-md/button\";\nimport { Table, TableBody, TableCell, TableRow } from \"@react-md/table\";\nimport { useResizeObserver } from \"@react-md/utils\";\n\nimport { randomInt } from \"./random\";\n\nimport styles from \"./ResizeObserverExample.module.scss\";\n\nconst DEFAULT_HEIGHT = 110;\nconst DEFAULT_WIDTH = 150;\n\nexport default function ResizeObserverExample() {\n  const [state, setState] = useState({\n    enabled: false,\n    height: DEFAULT_HEIGHT,\n    width: DEFAULT_WIDTH,\n    maxHeight: DEFAULT_HEIGHT,\n    maxWidth: DEFAULT_WIDTH,\n  });\n\n  const { enabled, height, width, maxHeight, maxWidth } = state;\n\n  /**\n   * The resize event handler _should_ probably be wrapped with `useCallback` if\n   * your resize event handler causes a lot of re-renders since each time the\n   * resize handler changes, the resize observer will be re-initiated.\n   */\n  const handleResize = useCallback(({ height, width }) => {\n    /* element, */\n    /* scrollHeight, */\n    /* scrollWidth, */\n    setState((prevState) => ({\n      ...prevState,\n      height,\n      width,\n    }));\n  }, []);\n\n  const [ref, refHandler] = useResizeObserver(handleResize, {\n    // an optional ref that will be merged with the `refHandler` if you need to\n    // merge multiple refs together\n    /* ref: anotherRef, */\n    // boolean if the `handleResize` should not be called if only the height has\n    // changed\n    /* disableHeight: true, */\n    // boolean if the `handleResize` should not be called if only the width has\n    // changed\n    /* disableWidth: true, */\n  });\n\n  useEffect(() => {\n    if (!enabled) {\n      return;\n    }\n\n    let timeout;\n    const randomize = () => {\n      const maxHeight = randomInt({ min: 100, max: 500 });\n      const maxWidth = randomInt({\n        min: 150,\n        max: ref.current?.offsetWidth ?? 300,\n      });\n\n      setState((prevState) => ({\n        ...prevState,\n        maxHeight,\n        maxWidth,\n      }));\n\n      timeout = window.setTimeout(\n        randomize,\n        randomInt({ min: 2, max: 5 }) * 1000\n      );\n    };\n\n    randomize();\n\n    return () => {\n      window.clearTimeout(timeout);\n    };\n  }, [enabled, ref]);\n\n  return (\n    <>\n      <Button\n        onClick={() => {\n          setState((prevState) => ({\n            ...prevState,\n            enabled: !prevState.enabled,\n          }));\n        }}\n        theme=\"primary\"\n        themeType=\"contained\"\n        className={styles.button}\n      >\n        {enabled ? \"Stop\" : \"Start\"}\n      </Button>\n      <div\n        style={{ maxHeight, maxWidth }}\n        ref={refHandler}\n        className={styles.container}\n      >\n        <Table className={styles.table} fullWidth>\n          <TableBody>\n            <TableRow>\n              <TableCell header>Height:</TableCell>\n              <TableCell grow>{height}</TableCell>\n            </TableRow>\n            <TableRow>\n              <TableCell header>Width:</TableCell>\n              <TableCell grow>{width}</TableCell>\n            </TableRow>\n          </TableBody>\n        </Table>\n      </div>\n    </>\n  );\n}\n"
+  },
+  "src/random.js": {
+    "content": "/* eslint-disable import/prefer-default-export */\n\n/**\n * Generates a random integer between a min and max value. Defaults\n * to 0-10.\n */\nexport function randomInt({ min = 0, max = 10 } = {}) {\n  return Math.floor(Math.random() * max) + min;\n}\n"
+  },
+  "src/ResizeObserverExample.module.scss": {
+    "content": "$rmd-theme-dark-elevation: true;\n\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n\n.container {\n  @include rmd-elevation(4);\n  @include rmd-theme-dark-elevation(4, true);\n\n  margin-top: 1rem;\n  overflow: hidden;\n  transition-duration: 1s;\n  transition-property: max-height, max-width;\n}\n\n.table {\n  border-collapse: separate;\n  // make it grow to fit the entire max-height\n  padding-bottom: 100%;\n}\n"
+  }
+}

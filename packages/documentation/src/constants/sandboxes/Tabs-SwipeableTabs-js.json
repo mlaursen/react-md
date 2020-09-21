@@ -1,0 +1,53 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\" class=\"{{THEME}}-theme\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the `src/styles.scss` in the `src/index.tsx` instead to create custom themes -->\n    <link\n      rel=\"stylesheet\"\n      href=\"https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css\"\n    />\n    <title>Tabs Example - Swipeable Tabs</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
+  },
+  "src/index.jsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\n// the styles are actually loaded as the pre-compiled themes in the index.html\n// to speed up sandbox compilation. If you want to update the theme, you'll need\n// to uncomment this line and remove the `<link>` tag in the `index.html`\n// import \"./styles.scss\"\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n"
+  },
+  "src/styles.scss": {
+    "content": "@import \"variables\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/tabs/dist/mixins\";\n\n@include react-md-utils;\n"
+  },
+  "src/_variables.scss": {
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n"
+  },
+  "package.json": {
+    "content": {
+      "title": "Tabs Example - Swipeable Tabs",
+      "description": "Example from https://react-md.dev/packages/tabs/demos#swipeable-tabs",
+      "main": "src/index.jsx",
+      "dependencies": {
+        "@react-md/layout": "latest",
+        "@react-md/states": "latest",
+        "@react-md/tabs": "latest",
+        "@react-md/theme": "latest",
+        "@react-md/typography": "latest",
+        "@react-md/utils": "latest",
+        "react": "latest",
+        "react-dom": "latest",
+        "react-swipeable": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    }
+  },
+  "src/Demo.jsx": {
+    "content": "import React from \"react\";\nimport { TabPanels, Tabs, TabsManager } from \"@react-md/tabs\";\n\nimport SwipeablePanel from \"./SwipeablePanel\";\nimport useSwipeableIndexes from \"./useSwipeableIndexes\";\n\nconst tabs = [\"Tab One\", \"Tab Two\", \"Tab Three\", \"Tab Four\"];\n\nconst Demo = () => {\n  const {\n    activeIndex,\n    distance,\n    handlers,\n    swiping,\n    onActiveIndexChange,\n  } = useSwipeableIndexes(tabs.length - 1);\n\n  return (\n    <TabsManager\n      tabs={tabs}\n      tabsId=\"swipeable-tabs\"\n      activeIndex={activeIndex}\n      onActiveIndexChange={onActiveIndexChange}\n    >\n      <Tabs />\n      <TabPanels persistent {...handlers} disableTransition={swiping}>\n        {tabs.map((_, i) => (\n          <SwipeablePanel\n            key={i}\n            index={i}\n            distance={distance}\n            activeIndex={activeIndex}\n            swiping={swiping}\n          />\n        ))}\n      </TabPanels>\n    </TabsManager>\n  );\n};\n\nexport default Demo;\n"
+  },
+  "src/SwipeableTabs/SwipeablePanel.jsx": {
+    "content": "import React from \"react\";\nimport { TabPanel } from \"@react-md/tabs\";\nimport { Text } from \"@react-md/typography\";\n\nfunction isStyleable(index, activeIndex, distance) {\n  if (!distance) {\n    return false;\n  }\n\n  const incrementor = distance.startsWith(\"-\") ? -1 : 1;\n\n  return index === activeIndex || index + incrementor === activeIndex;\n}\n\nconst SwipeablePanel = ({\n  index,\n  activeIndex,\n  distance,\n  swiping,\n  ...props\n}) => {\n  let style;\n  if (swiping && isStyleable(index, activeIndex, distance)) {\n    const transform = `translateX(${distance})`;\n    style = { transform, WebkitTransform: transform };\n  }\n\n  return (\n    <TabPanel {...props} style={style} hidden={index !== activeIndex && !style}>\n      <Text type=\"headline-4\">{`Content ${index + 1}`}</Text>\n    </TabPanel>\n  );\n};\n\nexport default SwipeablePanel;\n"
+  },
+  "src/SwipeableTabs/useSwipeableIndexes.js": {
+    "content": "import { useCallback, useReducer } from \"react\";\nimport { useSwipeable } from \"react-swipeable\";\n\nconst CHANGE = \"CHANGE\";\nconst MOVE = \"MOVE\";\nconst JUMP = \"JUMP\";\n\n/**\n * This does a shallow compare of the state objects and only returns the nextState\n * when one of the values are different. This prevents unneeded re-renders since\n * different state objects will always be shallow-different.\n */\nconst update = (state, nextState) => {\n  if (Object.keys(state).some((key) => state[key] !== nextState[key])) {\n    return nextState;\n  }\n\n  return state;\n};\n\n/**\n * This is called whenever a swipe has been completed to update the active\n * index to the next slide.\n *\n * You'll probably want to update this to only update the slide if a specific\n * relative distance has been exceeded. Right now it'll be fired even if it's\n * only 10px.\n */\nfunction jump(state, data, tabs) {\n  const { activeIndex, swiping } = state;\n  const incrementor = data.dir === \"Left\" ? 1 : -1;\n  const nextIndex = Math.max(0, Math.min(tabs, activeIndex + incrementor));\n\n  return update(state, {\n    swiping,\n    distance: \"\",\n    activeIndex: nextIndex,\n  });\n}\n\n/**\n * This is fired whenever the user is swiping the panels and is used to update\n * the distance string used in a `transform: translateX(${diustance})` style.\n *\n * This should eventually be updated to ensure that the distance is \"normalized\"\n * based on the panel width, but it's too much work for an example demo.\n */\nfunction move(state, data, tabs) {\n  let { deltaX } = data;\n  if (state.activeIndex === 0) {\n    deltaX = Math.max(-30, deltaX);\n  } else if (state.activeIndex === tabs) {\n    deltaX = Math.min(30, deltaX);\n  }\n\n  const distance = `${-deltaX}px`;\n\n  return update(state, {\n    ...state,\n    distance,\n    swiping: true,\n  });\n}\n\nfunction reducer(state, action) {\n  switch (action.type) {\n    case CHANGE:\n      return update(state, {\n        activeIndex: action.activeIndex,\n        distance: \"\",\n        swiping: false,\n      });\n\n    case JUMP:\n      return jump(state, action.data, action.tabs);\n    case MOVE:\n      return move(state, action.data, action.tabs);\n    default:\n      return state;\n  }\n}\n\nexport default function useSwipeableIndexes(tabs) {\n  const [state, dispatch] = useReducer(reducer, {\n    activeIndex: 0,\n    distance: \"\",\n    swiping: false,\n  });\n\n  const move = useCallback(\n    (data) => {\n      const sel = window.getSelection();\n      if (sel) {\n        sel.removeAllRanges();\n      }\n      dispatch({ type: MOVE, data, tabs });\n    },\n    [tabs]\n  );\n\n  const jump = useCallback(\n    (data) => {\n      dispatch({ type: JUMP, data, tabs });\n    },\n    [tabs]\n  );\n\n  const change = useCallback((activeIndex) => {\n    dispatch({ type: CHANGE, activeIndex });\n  }, []);\n\n  const handlers = useSwipeable({\n    // this is just for demo purposes, and you probably don't want mouse sliding.\n    trackMouse: true,\n    onSwiping: move,\n    onSwipedLeft: jump,\n    onSwipedRight: jump,\n  });\n\n  return {\n    ...state,\n    handlers,\n    onActiveIndexChange: change,\n  };\n}\n"
+  }
+}

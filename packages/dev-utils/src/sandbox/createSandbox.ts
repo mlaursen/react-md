@@ -2,6 +2,7 @@ import { writeJsonSync } from "fs-extra";
 import log from "loglevel";
 import { join, sep } from "path";
 import { ImportDeclaration, Project } from "ts-morph";
+import { transform } from "@babel/core";
 
 import { JSONObject } from "../constants";
 import { format, toTitle } from "../utils";
@@ -62,6 +63,61 @@ function transformFileContents(
   }
 
   return format(transformed);
+}
+
+function createJsxSandbox(
+  tsxFiles: Record<string, JSONObject>,
+  sandboxPath: string
+): void {
+  const files: Record<string, JSONObject> = {};
+  Object.entries(tsxFiles).forEach(([fileName, data]) => {
+    if (!/\.tsx?$/.test(fileName)) {
+      if (fileName === "package.json") {
+        if (
+          data.content &&
+          typeof data.content === "object" &&
+          !Array.isArray(data.content) &&
+          typeof data.content.main === "string"
+        ) {
+          data.content.main = "src/index.jsx";
+        }
+      }
+      files[fileName] = data;
+      return;
+    }
+
+    if (typeof data.content !== "string") {
+      log.error("Invalid file?");
+      log.error(fileName);
+      log.error(data);
+      log.error(new Error().stack);
+      process.exit(1);
+    }
+
+    const result = transform(data.content, {
+      retainLines: true,
+      plugins: [
+        [
+          "@babel/plugin-transform-typescript",
+          {
+            isTSX: fileName.endsWith(".tsx"),
+          },
+        ],
+      ],
+    });
+
+    if (!result || !result.code) {
+      log.error(`Unable to transform ${fileName}`);
+      log.error(data.content);
+      log.error(new Error().stack);
+      process.exit(1);
+    }
+
+    const code = result.code.replace(/(>|,)\r?\n+/g, "$1\n");
+    const formatted = format(code, "babel");
+    files[fileName.replace(/\.t(sx?)/, ".j$1")] = { content: formatted };
+  });
+  writeJsonSync(sandboxPath.replace(".json", "-js.json"), files, { spaces: 2 });
 }
 
 export function createSandbox(
@@ -131,4 +187,5 @@ export function createSandbox(
   log.debug(`Creating sandbox for ${demoName}`);
   const sandboxPath = join(SANDBOXES_PATH, `${packageName}-${demoName}.json`);
   writeJsonSync(sandboxPath, files, { spaces: 2 });
+  createJsxSandbox(files, sandboxPath);
 }

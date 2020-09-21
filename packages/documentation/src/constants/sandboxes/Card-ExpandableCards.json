@@ -35,6 +35,7 @@
         "react-dom": "latest"
       },
       "devDependencies": {
+        "@types/classnames": "latest",
         "@types/jest": "latest",
         "@types/node": "latest",
         "@types/react": "latest",

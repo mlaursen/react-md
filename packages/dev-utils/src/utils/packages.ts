@@ -9,19 +9,13 @@ import {
   packagesRoot,
   PackageType,
   projectRoot,
-  VersionedDependency,
 } from "../constants";
 
-let versionsCacheLoaded = false;
 let packages: string[];
 let scssPackages: string[];
 let typescriptPackages: string[];
 const VERSIONS = new Map<string, string>();
 const DEPENDENCIES = new Map<string, readonly string[]>();
-const VERSIONED_DEPENDENCIES = new Map<
-  string,
-  readonly VersionedDependency[]
->();
 
 async function getPackageJson(packageName: string): Promise<PackageJson> {
   let prefix = join(packagesRoot, packageName);
@@ -54,73 +48,34 @@ export async function getDependencies(
   return deps;
 }
 
-export async function getVersionedDependencies(
+const withoutCarot = (v: string): string => v.replace(/\^|~/, "");
+
+export async function loadDependenciesOf(
   packageName: string,
   dev: boolean = false
-): Promise<readonly VersionedDependency[]> {
-  if (VERSIONED_DEPENDENCIES.has(packageName)) {
-    const deps = VERSIONED_DEPENDENCIES.get(packageName);
-    if (deps !== undefined) {
-      return deps;
+): Promise<void> {
+  const packageJson = await getPackageJson(packageName);
+  const key = dev ? "devDependencies" : "dependencies";
+  const deps = packageJson[key] || {};
+  Object.entries(deps).forEach(([name, version]) => {
+    version = withoutCarot(version);
+    const existing = VERSIONS.get(name);
+    if (VERSIONS.has(name) && existing !== version) {
+      log.warn(
+        `${name} already has a verion set to ${existing} but tried to set as ${version}`
+      );
     }
-  }
-
-  const deps = await getDependencies(packageName, dev);
-  const versioned = await Promise.all(
-    deps.map(async (name) => {
-      // eslint-disable-next-line no-use-before-define
-      const version = await getVersion(name);
-      return { name, version };
-    })
-  );
-
-  VERSIONED_DEPENDENCIES.set(packageName, versioned);
-  return versioned;
+    VERSIONS.set(name, version);
+  });
 }
 
-async function loadCache(): Promise<void> {
-  const rootDeps = await getVersionedDependencies("root", false);
-  const rootDevDeps = await getVersionedDependencies("root", true);
-  const docDeps = await getVersionedDependencies("documentation", false);
-  const docDevDeps = await getVersionedDependencies("documentation", true);
-  [...rootDeps, ...rootDevDeps, ...docDeps, ...docDevDeps].forEach(
-    ({ name, version }) => {
-      if (VERSIONS.has(name)) {
-        if (VERSIONS.get(name) !== version) {
-          log.error("Different versions?", name, version, VERSIONS.get(name));
-        }
+export async function getAllVersions(): Promise<typeof VERSIONS> {
+  await loadDependenciesOf("root", false);
+  await loadDependenciesOf("root", true);
+  await loadDependenciesOf("documentation", false);
+  await loadDependenciesOf("documentation", true);
 
-        return;
-      }
-
-      VERSIONS.set(name, version);
-    }
-  );
-
-  versionsCacheLoaded = true;
-}
-
-/**
- * Gets the version for one of the packages.
- */
-export async function getVersion(packageName: string): Promise<string> {
-  if (VERSIONS.has(packageName)) {
-    const value = VERSIONS.get(packageName);
-    if (value !== undefined) {
-      return value;
-    }
-  }
-
-  if (!versionsCacheLoaded) {
-    await loadCache();
-  }
-
-  const value = VERSIONS.get(packageName);
-  if (value === undefined) {
-    throw new Error(`${packageName} does not have a valid version`);
-  }
-
-  return value;
+  return VERSIONS;
 }
 
 /**

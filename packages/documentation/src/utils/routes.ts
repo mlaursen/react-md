@@ -22,6 +22,8 @@ export const qsToInt = (q: QueryParam, fallback: number = 0): number => {
   return Number.isNaN(asNumber) ? fallback : asNumber;
 };
 
+export const qsToBoolean = (q: QueryParam): boolean => typeof q !== "undefined";
+
 export function getCompletePathname(
   pathname: string,
   query: ParsedUrlQuery
@@ -38,14 +40,25 @@ export interface SandboxParams {
   from: string;
   fileName: string;
 }
-export type SandboxQuery = Partial<SandboxParams>;
 
-export function parseSandbox(query?: SandboxQuery): SandboxParams {
+interface SandboxQueryParams {
+  pkg: string;
+  name: string;
+  from: string;
+  fileName: string;
+}
+
+export type SandboxQuery = Partial<SandboxQueryParams>;
+
+export function parseSandbox(query: SandboxQuery, js: boolean): SandboxParams {
   query = query || {};
   const pkg = qsToString(query.pkg);
   const name = qsToString(query.name);
   const from = qsToString(query.from);
-  const fileName = qsToString(query.fileName) || "src/Demo.tsx";
+  let fileName = qsToString(query.fileName) || "src/Demo.tsx";
+  if (js) {
+    fileName = fileName.replace(/\.t(sx?)$/, ".j$1");
+  }
 
   return {
     pkg,

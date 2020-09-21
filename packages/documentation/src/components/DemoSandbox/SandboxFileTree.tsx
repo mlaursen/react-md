@@ -1,5 +1,6 @@
 import React, { ElementType, FC, useMemo } from "react";
 import cn from "classnames";
+import { AppBar } from "@react-md/app-bar";
 import {
   FolderOpenSVGIcon,
   FolderSVGIcon,
@@ -13,28 +14,32 @@ import {
   TreeData,
   useTreeItemExpansion,
 } from "@react-md/tree";
-import { useIsUserInteractionMode } from "@react-md/utils";
+import { MobileOnly, useIsUserInteractionMode } from "@react-md/utils";
 
+import CssIcon from "icons/CssIcon";
 import FileSVGIcon from "icons/FileSVGIcon";
-import CssIcon from "./icons/CssIcon";
-import HtmlIcon from "./icons/HtmlIcon";
-import JsIcon from "./icons/JsIcon";
-import JsonIcon from "./icons/JsonIcon";
-import JsxIcon from "./icons/JsxIcon";
-import ScssIcon from "./icons/ScssIcon";
-import TsIcon from "./icons/TsIcon";
+import HtmlIcon from "icons/HtmlIcon";
+import JsIcon from "icons/JsIcon";
+import JsonIcon from "icons/JsonIcon";
+import JsxIcon from "icons/JsxIcon";
+import ScssIcon from "icons/ScssIcon";
+import TsIcon from "icons/TsIcon";
+
+import NavigationActions from "./NavigationActions";
 import { FileTreeData } from "./useFiles";
 
 import styles from "./SandboxFileTree.module.scss";
 
 export interface SandboxFileTreeProps {
+  from: string;
   fileName: string;
   inline: boolean;
   visible: boolean;
   folders: readonly string[];
   files: TreeData<FileTreeData>;
   onFileChange: (fileName: string) => void;
-  onRequestClose: () => void;
+  hideTree(): void;
+  onRequestClose(): void;
   disableTransition: boolean;
 }
 
@@ -78,11 +83,13 @@ const getItemProps: GetItemProps<FileTreeData> = (item) => {
 };
 
 const SandboxFileTree: FC<SandboxFileTreeProps> = ({
+  from,
   inline,
   visible,
   fileName,
   files,
   folders,
+  hideTree,
   onFileChange,
   onRequestClose,
   disableTransition,
@@ -109,7 +116,7 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
       id="code-previewer-file-sheet"
       aria-label="Files sheet"
       visible={visible}
-      onRequestClose={onRequestClose}
+      onRequestClose={hideTree}
       position="left"
       overlay={!inline}
       portal={false}
@@ -122,6 +129,11 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
       disableTransition={disableTransition}
       disableTabFocusWrap={isKeyboard}
     >
+      <MobileOnly>
+        <AppBar theme="default">
+          <NavigationActions from={from} onRequestClose={onRequestClose} />
+        </AppBar>
+      </MobileOnly>
       <Tree
         id="code-previewer-files"
         className={styles.tree}

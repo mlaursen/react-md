@@ -17,11 +17,13 @@ module.exports = {
     },
   },
   setupFilesAfterEnv: ['<rootDir>/testSetup/init.js'],
-  moduleNameMapper: {
-    '\\.scss$': '<rootDir>/testSetup/styleMock.js',
+  transform: {
     '\\.svg$': '<rootDir>/testSetup/inlineSvgTransformer.js',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/testSetup/fileTransformer.js',
+  },
+  moduleNameMapper: {
+    '\\.scss$': 'identity-obj-proxy',
     '^constants/(.*)$': `${docsSrc}/constants/$1`,
     '^components/(.*)$': `${docsSrc}/components/$1`,
     '^hooks/(.*)$': `${docsSrc}/hooks/$1`,

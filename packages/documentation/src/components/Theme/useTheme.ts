@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import Cookie from "js-cookie";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 
 import { PrimaryColor, SecondaryColor, ColorAccent, ThemeMode } from "./colors";
@@ -24,6 +25,24 @@ export const ThemeContext = createContext<Theme>({
   accent: DEFAULT_ACCENT,
   theme: DEFAULT_THEME,
 });
+
+export function getDefaultTheme(
+  cookies?: Record<string, string | undefined>
+): ThemeMode {
+  if (cookies) {
+    return cookies.theme === "dark" ? "dark" : "light";
+  }
+
+  if (typeof localStorage !== "undefined") {
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme === "dark" || localTheme === "light") {
+      return localTheme;
+    }
+  }
+
+  const cookieTheme = Cookie.get("theme");
+  return cookieTheme === "dark" ? "dark" : "light";
+}
 
 export default function useTheme(): Theme {
   return useContext(ThemeContext);

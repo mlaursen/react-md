@@ -4,6 +4,8 @@ import { MoreVertSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu } from "@react-md/menu";
 import { unitToNumber } from "@react-md/utils";
 
+import { CodePreferenceToggle } from "components/CodePreference";
+
 import ToggleThemeMenuItem from "./ToggleThemeMenuItem";
 import ToggleRTLMenuItem from "./ToggleRTLMenuItem";
 import GithubLinkMenuItem from "./GithubLinkMenuItem";
@@ -21,6 +23,7 @@ const ActionMenu: FC = () => {
     () => [
       <ToggleThemeMenuItem />,
       <ToggleRTLMenuItem />,
+      <CodePreferenceToggle as="menuitem" />,
       <Version1MenuItem />,
       <GithubLinkMenuItem />,
       <TableOfContentsMenuItem />,

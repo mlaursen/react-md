@@ -1,0 +1,49 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\" class=\"{{THEME}}-theme\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the `src/styles.scss` in the `src/index.tsx` instead to create custom themes -->\n    <link\n      rel=\"stylesheet\"\n      href=\"https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css\"\n    />\n    <title>Layout Example - Configurable Layout</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
+  },
+  "src/index.jsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\n// the styles are actually loaded as the pre-compiled themes in the index.html\n// to speed up sandbox compilation. If you want to update the theme, you'll need\n// to uncomment this line and remove the `<link>` tag in the `index.html`\n// import \"./styles.scss\"\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n"
+  },
+  "src/styles.scss": {
+    "content": "@import \"variables\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/form/dist/mixins\";\n\n@include react-md-utils;\n"
+  },
+  "src/_variables.scss": {
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n"
+  },
+  "package.json": {
+    "content": {
+      "title": "Layout Example - Configurable Layout",
+      "description": "Example from https://react-md.dev/packages/layout/demos#configurable-layout",
+      "main": "src/index.jsx",
+      "dependencies": {
+        "@react-md/form": "latest",
+        "@react-md/layout": "latest",
+        "@react-md/states": "latest",
+        "@react-md/theme": "latest",
+        "@react-md/typography": "latest",
+        "@react-md/utils": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    }
+  },
+  "src/Demo.jsx": {
+    "content": "import React, { useState } from \"react\";\nimport { Form, Select } from \"@react-md/form\";\nimport {\n  DEFAULT_DESKTOP_LAYOUT,\n  DEFAULT_LANDSCAPE_TABLET_LAYOUT,\n  DEFAULT_PHONE_LAYOUT,\n  Layout,\n} from \"@react-md/layout\";\nimport { Text } from \"@react-md/typography\";\nimport { Grid } from \"@react-md/utils\";\n\nimport CloseButton from \"./CloseButton\";\n\nconst PHONE_LAYOUTS = [\"temporary\"];\nconst TABLET_LAYOUTS = [...PHONE_LAYOUTS, \"toggleable\"];\n\nconst WIDE_LAYOUTS = [...TABLET_LAYOUTS, \"clipped\", \"floating\", \"full-height\"];\n\nconst Demo = () => {\n  const [phoneLayout, setPhoneLayout] = useState(DEFAULT_PHONE_LAYOUT);\n\n  const [tabletLayout, setTabletLayout] = useState(\n    DEFAULT_LANDSCAPE_TABLET_LAYOUT\n  );\n\n  const [landscapeTabletLayout, setLandscapeTabletLayout] = useState(\n    DEFAULT_LANDSCAPE_TABLET_LAYOUT\n  );\n  const [desktopLayout, setDesktopLayout] = useState(DEFAULT_DESKTOP_LAYOUT);\n\n  const [largeDesktopLayout, setLargeDesktopLayout] = useState(\n    DEFAULT_DESKTOP_LAYOUT\n  );\n\n  return (\n    <Layout\n      id=\"configurable-layout\"\n      title=\"Configurable Layout Title\"\n      navHeaderTitle=\"Another Title\"\n      phoneLayout={phoneLayout}\n      tabletLayout={tabletLayout}\n      landscapeTabletLayout={landscapeTabletLayout}\n      desktopLayout={desktopLayout}\n      navProps={{\n        children: (\n          <>\n            <CloseButton />\n            <Text style={{ padding: \"1rem\" }}>\n              Here is some amazing content that should normally be a navigation\n              tree. You can actually still display a navigation tree along with\n              any custom content you want by using the{\" \"}\n              <code>navProps.children</code>\n            </Text>\n          </>\n        ),\n      }}\n      // this is only required since I already have a main element due to the\n      // documentation site's Layout component\n      mainProps={{ component: \"div\" }}\n    >\n      <Grid cloneStyles columns={2} desktopColumns={4}>\n        <Form>\n          <Select\n            id=\"phone-layout-type\"\n            label=\"Phone Layout\"\n            value={phoneLayout}\n            options={PHONE_LAYOUTS}\n            onChange={(nextValue) => {\n              if (PHONE_LAYOUTS.includes(nextValue)) {\n                setPhoneLayout(nextValue);\n              }\n            }}\n          />\n          <Select\n            id=\"tablet-layout-type\"\n            label=\"Tablet Layout\"\n            value={tabletLayout}\n            options={TABLET_LAYOUTS}\n            onChange={(nextValue) => {\n              if (TABLET_LAYOUTS.includes(nextValue)) {\n                setTabletLayout(nextValue);\n              }\n            }}\n          />\n          <Select\n            id=\"landscape-tablet-layout-type\"\n            label=\"Landscape Tablet Layout\"\n            value={landscapeTabletLayout}\n            options={TABLET_LAYOUTS}\n            onChange={(nextValue) => {\n              if (TABLET_LAYOUTS.includes(nextValue)) {\n                setLandscapeTabletLayout(nextValue);\n              }\n            }}\n          />\n          <Select\n            id=\"desktop-layout-type\"\n            label=\"Desktop Layout\"\n            value={desktopLayout}\n            options={WIDE_LAYOUTS}\n            onChange={(nextValue) => {\n              if (WIDE_LAYOUTS.includes(nextValue)) {\n                setDesktopLayout(nextValue);\n              }\n            }}\n          />\n          <Select\n            id=\"large-desktop-layout-type\"\n            label=\"Large Desktop Layout\"\n            value={largeDesktopLayout}\n            options={WIDE_LAYOUTS}\n            onChange={(nextValue) => {\n              if (WIDE_LAYOUTS.includes(nextValue)) {\n                setLargeDesktopLayout(nextValue);\n              }\n            }}\n          />\n        </Form>\n      </Grid>\n    </Layout>\n  );\n};\n\nexport default Demo;\n"
+  },
+  "src/CloseButton.jsx": {
+    "content": "import React from \"react\";\nimport {\n  useLayoutConfig,\n  isPersistentLayout,\n  LayoutCloseNavigationButton,\n} from \"@react-md/layout\";\n\nconst CloseButton = () => {\n  const { layout } = useLayoutConfig();\n\n  // the default behavior for this button is only to be rendered for toggleable\n  // layouts, but want something focusable for temporary in these demos\n  return (\n    <LayoutCloseNavigationButton\n      buttonType=\"text\"\n      rendered={!isPersistentLayout(layout)}\n    >\n      Close\n    </LayoutCloseNavigationButton>\n  );\n};\n\nexport default CloseButton;\n"
+  }
+}

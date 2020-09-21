@@ -1,44 +1,37 @@
 import React, { FC, useEffect, useState } from "react";
 import { getParameters } from "codesandbox/lib/api/define";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
 
-import { RMD_VERSION } from "constants/github";
 import useTheme from "components/Theme/useTheme";
+import getSandbox from "utils/getSandbox";
+import { useJs } from "components/CodePreference";
 
 const CODE_SANDBOX_DEFINE_API =
   "https://codesandbox.io/api/v1/sandboxes/define";
 
 export interface SandboxDefineFormProps {
+  demoName: string;
+  packageName: string;
   onCreated: () => void;
-  getSandbox: () => Promise<IFiles>;
 }
 
 const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
+  demoName,
+  packageName,
   onCreated,
-  getSandbox,
 }) => {
   const [parameters, setParameters] = useState("");
   const { theme } = useTheme();
+  const isJs = useJs();
 
   useEffect(() => {
+    const getter = getSandbox(packageName, demoName, theme, isJs);
+    if (!getter) {
+      return;
+    }
+
     let cancelled = false;
     (async function load(): Promise<void> {
-      const sandbox = await getSandbox();
-      const files = Object.entries(sandbox).reduce<IFiles>(
-        (files, [fileName, data]) => {
-          let { content } = data;
-          if (typeof content === "string") {
-            content = content
-              .replace(/{{RMD_VERSION}}/g, RMD_VERSION)
-              .replace(/{{THEME}}/g, theme);
-          }
-
-          files[fileName] = { ...data, content };
-
-          return files;
-        },
-        {}
-      );
+      const files = await getter();
       if (!cancelled) {
         setParameters(getParameters({ files }));
       }

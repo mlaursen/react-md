@@ -1,0 +1,50 @@
+{
+  "public/index.html": {
+    "content": "<!DOCTYPE html>\n<html lang=\"en\" class=\"{{THEME}}-theme\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"\n    />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <link\n      rel=\"stylesheet\"\n      href=\"https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,500,700|Source+Code+Pro\"\n    />\n    <!-- the styles are loaded through the CDN to speed up codesandbox demos. You'll normally want to import the `src/styles.scss` in the `src/index.tsx` instead to create custom themes -->\n    <link\n      rel=\"stylesheet\"\n      href=\"https://cdn.jsdelivr.net/gh/mlaursen/react-md@{{RMD_VERSION}}/themes/react-md.teal-pink-200-{{THEME}}.min.css\"\n    />\n    <title>Alert Example - Handling Duplicated Messages</title>\n  </head>\n  <body>\n    <noscript>You need to enable JavaScript to run this app.</noscript>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
+  },
+  "src/index.jsx": {
+    "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\n// the styles are actually loaded as the pre-compiled themes in the index.html\n// to speed up sandbox compilation. If you want to update the theme, you'll need\n// to uncomment this line and remove the `<link>` tag in the `index.html`\n// import \"./styles.scss\"\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n"
+  },
+  "src/styles.scss": {
+    "content": "@import \"variables\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/alert/dist/mixins\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/divider/dist/mixins\";\n@import \"~@react-md/form/dist/mixins\";\n\n@include react-md-utils;\n"
+  },
+  "src/_variables.scss": {
+    "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n"
+  },
+  "package.json": {
+    "content": {
+      "title": "Alert Example - Handling Duplicated Messages",
+      "description": "Example from https://react-md.dev/packages/alert/demos#handling-duplicated-messages",
+      "main": "src/index.jsx",
+      "dependencies": {
+        "@react-md/alert": "latest",
+        "@react-md/button": "latest",
+        "@react-md/divider": "latest",
+        "@react-md/form": "latest",
+        "@react-md/layout": "latest",
+        "@react-md/material-icons": "latest",
+        "@react-md/states": "latest",
+        "@react-md/theme": "latest",
+        "@react-md/typography": "latest",
+        "@react-md/utils": "latest",
+        "react": "latest",
+        "react-dom": "latest"
+      },
+      "devDependencies": {
+        "@types/jest": "latest",
+        "@types/node": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "node-sass": "latest",
+        "react-scripts": "latest",
+        "typescript": "latest"
+      },
+      "scripts": {
+        "start": "react-scripts start"
+      }
+    }
+  },
+  "src/Demo.jsx": {
+    "content": "import React from \"react\";\nimport { MessageQueue, useAddMessage } from \"@react-md/alert\";\nimport { Button } from \"@react-md/button\";\nimport { Divider } from \"@react-md/divider\";\nimport { Fieldset, Form, NativeSelect, Radio, useChoice } from \"@react-md/form\";\nimport { ArrowDropDownSVGIcon } from \"@react-md/material-icons\";\n\nconst ONLINE = \"ONLINE\";\nconst OFFLINE = \"OFFLINE\";\nconst SOMETHING_HAPPENED = \"SOMETHING_HAPPENED\";\n\nconst MESSAGES = {\n  [ONLINE]: {\n    messageId: ONLINE,\n    children: \"Internet connection restored.\",\n  },\n  [OFFLINE]: {\n    messageId: OFFLINE,\n    children: \"Internet connection lost.\",\n  },\n  [SOMETHING_HAPPENED]: {\n    messageId: SOMETHING_HAPPENED,\n    children: \"Something happened...\",\n  },\n};\n\nconst Demo = ({ duplicates, onDuplicateChange }) => {\n  const addMessage = useAddMessage();\n  const [key, handleKeyChange] = useChoice(ONLINE);\n  return (\n    <Form onSubmit={() => addMessage(MESSAGES[key])}>\n      <Fieldset\n        legend={\n          <>\n            <code>MessageQueue</code>\n            {\" duplicate behavior\"}\n          </>\n        }\n      >\n        <Radio\n          id=\"mq-duplicates-1\"\n          name=\"duplicates\"\n          value=\"allow\"\n          label=\"Allow\"\n          checked={duplicates === \"allow\"}\n          onChange={onDuplicateChange}\n        />\n        <Radio\n          id=\"mq-duplicates-2\"\n          name=\"duplicates\"\n          value=\"prevent\"\n          label=\"Prevent\"\n          checked={duplicates === \"prevent\"}\n          onChange={onDuplicateChange}\n        />\n        <Radio\n          id=\"mq-duplicates-3\"\n          name=\"duplicates\"\n          value=\"restart\"\n          label=\"Restart\"\n          checked={duplicates === \"restart\"}\n          onChange={onDuplicateChange}\n        />\n      </Fieldset>\n      <NativeSelect\n        id=\"mq-duplicates-message\"\n        icon={<ArrowDropDownSVGIcon />}\n        label=\"Message\"\n        inline\n        style={{ margin: \"1rem 0\" }}\n        value={key}\n        onChange={handleKeyChange}\n      >\n        {Object.keys(MESSAGES).map((key) => (\n          <option key={key} value={key}>\n            {MESSAGES[key].children}\n          </option>\n        ))}\n      </NativeSelect>\n      <Divider />\n      <Button id=\"mq-duplicates-submit\" type=\"submit\" theme=\"primary\">\n        Add Message\n      </Button>\n    </Form>\n  );\n};\n\nexport default function DuplicatedMessages() {\n  const [duplicates, onDuplicateChange] = useChoice(\"allow\");\n\n  return (\n    <MessageQueue id=\"duplicate-message-queue\" duplicates={duplicates}>\n      <Demo duplicates={duplicates} onDuplicateChange={onDuplicateChange} />\n    </MessageQueue>\n  );\n}\n"
+  }
+}
