@@ -32,7 +32,12 @@ export function format(
 ): string {
   const resolvedParser = getParser(code, parser, filepath);
   try {
-    return prettier.format(code, { parser: resolvedParser, filepath });
+    return prettier.format(code, {
+      filepath,
+      parser: resolvedParser,
+      proseWrap: resolvedParser === "markdown" ? "always" : undefined,
+      singleQuote: resolvedParser === "scss" || resolvedParser === "babel",
+    });
   } catch (e) {
     log.error(e);
     process.exit(1);
