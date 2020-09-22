@@ -6,9 +6,9 @@ import { unitToNumber } from "@react-md/utils";
 
 import { CodePreferenceToggle } from "components/CodePreference";
 
-import ToggleThemeMenuItem from "./ToggleThemeMenuItem";
-import ToggleRTLMenuItem from "./ToggleRTLMenuItem";
-import GithubLinkMenuItem from "./GithubLinkMenuItem";
+import ToggleTheme from "./ToggleTheme";
+import ToggleRTL from "./ToggleRTL";
+import GithubLink from "./GithubLink";
 import TableOfContentsMenuItem from "./TableOfContentsMenuItem";
 import Version1MenuItem from "./Version1MenuItem";
 
@@ -21,11 +21,11 @@ const options = {
 const ActionMenu: FC = () => {
   const items = useMemo(
     () => [
-      <ToggleThemeMenuItem />,
-      <ToggleRTLMenuItem />,
+      <ToggleTheme as="menuitem" />,
+      <ToggleRTL as="menuitem" />,
       <CodePreferenceToggle as="menuitem" />,
       <Version1MenuItem />,
-      <GithubLinkMenuItem />,
+      <GithubLink as="menuitem" />,
       <TableOfContentsMenuItem />,
     ],
     []

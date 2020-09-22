@@ -23,10 +23,10 @@ const Actions: FC = () => {
   return (
     <>
       <Search />
-      <ToggleTheme />
+      <ToggleTheme as="action" />
       <CodePreferenceToggle as="action" />
-      <GithubLink />
-      <ToggleRTL />
+      <GithubLink as="action" />
+      <ToggleRTL as="action" />
     </>
   );
 };

@@ -1,7 +1,8 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { AppBarAction } from "@react-md/app-bar";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
+import { MenuItem } from "@react-md/menu";
 import { Tooltipped } from "@react-md/tooltip";
 import { useIsUserInteractionMode, useToggle } from "@react-md/utils";
 
@@ -11,18 +12,40 @@ import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
 
 import styles from "./ToggleTheme.module.scss";
 
-const ToggleTheme: FC = () => {
+export interface ToggleThemeProps {
+  as: "action" | "menuitem";
+}
+
+export default function ToggleTheme({ as }: ToggleThemeProps): ReactElement {
+  const [toggled, enable, disable] = useToggle(false);
   const { theme } = useTheme();
   const { toggleTheme } = useThemeActions();
   const isLight = theme === "light";
 
-  const [toggled, enable, disable] = useToggle(false);
   let icon = <LightbulbOutlineSVGIcon />;
   if (toggled !== isLight) {
-    icon = <LightbulbSVGIcon />;
+    icon = (
+      <LightbulbSVGIcon
+        className={cn({
+          [styles.on]: as === "menuitem",
+        })}
+      />
+    );
   }
 
   const isMouseMode = useIsUserInteractionMode("mouse");
+  if (as === "menuitem") {
+    return (
+      <MenuItem
+        id="toggle-theme"
+        onClick={toggleTheme}
+        leftAddon={icon}
+        secondaryText={`Current theme: ${theme}`}
+      >
+        Toggle Light/Dark Theme
+      </MenuItem>
+    );
+  }
 
   return (
     <Tooltipped id="toggle-theme" tooltip="Toggle Light/Dark Theme">
@@ -42,6 +65,4 @@ const ToggleTheme: FC = () => {
       </AppBarAction>
     </Tooltipped>
   );
-};
-
-export default ToggleTheme;
+}
