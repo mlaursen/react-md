@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-theme-var",
       description:
         "This function is used to get one of the icon's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-icon-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/icon/src/_functions.scss#L32-L34",
+      source: "packages/icon/src/_functions.scss#L32-L39",
       usedBy: [
         {
           name: "rmd-text-field-container",
@@ -97,7 +97,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-material-icons-font-face",
       description:
         "Creates the font face for material icons. This takes either a font url prefix string or a map of urls for each required font file. If you are using create-react-app, you **must** use the Map version so the fonts can be correctly included by the build process.",
-      source: "packages/icon/src/_material-icons.scss#L35-L87",
+      source: "packages/icon/src/_material-icons.scss#L35-L92",
       usedBy: [
         {
           name: "rmd-icon-host-material-icons",
@@ -124,7 +124,7 @@ const sassdoc: PackageSassDoc = {
         },
         {
           code:
-            '$local-font-url: "/fonts/material-icons";\n@include rmd-icon-material-icons-font-face($local-font-url);\n',
+            "$local-font-url: '/fonts/material-icons';\n@include rmd-icon-material-icons-font-face($local-font-url);\n",
           compiled:
             '@font-face {\n  font-family: "Material Icons";\n  font-style: normal;\n  src: local("Material Icons"), local("MaterialIcons-Regular"),\n    url("/MaterialIcons-Regular.woff2") format("woff2"),\n    url("/MaterialIcons-Regular.woff") format("woff")\n      url("/MaterialIcons-Regular.ttf") format("truetype");\n}\n',
           type: "scss",
@@ -134,7 +134,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-icon-material-icons-font-face($font-url-or-map: '/fonts/material-icons', $old-ie-support: false) { … }",
       sourceCode:
-        '@mixin rmd-icon-material-icons-font-face(\n  $font-url-or-map: "/fonts/material-icons",\n  $old-ie-support: false\n) {\n  $font-family: "Material Icons";\n  $font-name: "MaterialIcons-Regular";\n\n  $font-url: "";\n  $font-map: null;\n  @if type-of($font-url-or-map) == "string" {\n    $font-url: if(char-at($font-url) != "/", $font-url + "/", $font-url) +\n      $font-name;\n  } @else {\n    $font-map: $font-url-or-map;\n    $required-keys: woff2 woff truetype;\n    @if $old-ie-support {\n      $required-keys: #{$required-keys} eot;\n    }\n\n    @each $key in $required-keys {\n      @if not map-has-key($font-map, $key) {\n        @error \'It is required to include all of \\\'#{$required-keys}\\\' in your font url map, but one or more was missing! Privded keys: #{map-keys($font-map)}.\';\n      }\n    }\n  }\n\n  @font-face {\n    font-family: $font-family;\n    font-style: normal;\n    font-weight: map-get($rmd-typography-font-weights, normal);\n\n    @if $old-ie-support {\n      @if $font-map == null {\n        src: url($font-url + ".eot");\n      } @else {\n        src: #{map-get($font-map, eot)};\n      }\n    }\n\n    @if $font-map == null {\n      src: local($font-family), local($font-name),\n        url($font-url + ".woff2") format("woff2"),\n        url($font-url + ".woff")\n          format("woff")\n          url($font-url + ".ttf")\n          format("truetype");\n    } @else {\n      $woff2: map-get($font-url-or-map, woff2);\n      $woff: map-get($font-url-or-map, woff);\n      $truetype: map-get($font-url-or-map, truetype);\n\n      $src: local($font-family), local($font-name);\n      $src: "local(#{$font-family}), local(#{$font-name}), #{$woff2} format(\'woff2\'), #{$woff} format(\'woff\'), #{$truetype} format(\'truetype\')";\n\n      src: #{$src};\n    }\n  }\n}\n',
+        "@mixin rmd-icon-material-icons-font-face(\n  $font-url-or-map: '/fonts/material-icons',\n  $old-ie-support: false\n) {\n  $font-family: 'Material Icons';\n  $font-name: 'MaterialIcons-Regular';\n\n  $font-url: '';\n  $font-map: null;\n  @if type-of($font-url-or-map) == 'string' {\n    $font-url: if(char-at($font-url) != '/', $font-url + '/', $font-url) +\n      $font-name;\n  } @else {\n    $font-map: $font-url-or-map;\n    $required-keys: woff2 woff truetype;\n    @if $old-ie-support {\n      $required-keys: #{$required-keys} eot;\n    }\n\n    @each $key in $required-keys {\n      @if not map-has-key($font-map, $key) {\n        @error 'It is required to include all of \\'#{$required-keys}\\' in your font url map, but one or more was missing! Privded keys: #{map-keys($font-map)}.';\n      }\n    }\n  }\n\n  @font-face {\n    font-family: $font-family;\n    font-style: normal;\n    font-weight: map-get($rmd-typography-font-weights, normal);\n\n    @if $old-ie-support {\n      @if $font-map == null {\n        src: url($font-url + '.eot');\n      } @else {\n        src: #{map-get($font-map, eot)};\n      }\n    }\n\n    @if $font-map == null {\n      src: local($font-family), local($font-name),\n        url($font-url + '.woff2') format('woff2'),\n        url($font-url + '.woff')\n          format('woff')\n          url($font-url + '.ttf')\n          format('truetype');\n    } @else {\n      $woff2: map-get($font-url-or-map, woff2);\n      $woff: map-get($font-url-or-map, woff);\n      $truetype: map-get($font-url-or-map, truetype);\n\n      $src: local($font-family), local($font-name);\n      $src: \"local(#{$font-family}), local(#{$font-name}), #{$woff2} format('woff2'), #{$woff} format('woff'), #{$truetype} format('truetype')\";\n\n      src: #{$src};\n    }\n  }\n}\n",
       throws: ["It is required to include all of \\"],
       type: "mixin",
       parameters: [
@@ -158,7 +158,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-material-icons-class",
       description:
         "Creates the material-icons css class if hosting material icons locally instead of using the Google fonts service. By default, this will not include the font-size size you _should_ be using the `FontIcon` component from react-md which adds the correct font-size.",
-      source: "packages/icon/src/_material-icons.scss#L96-L122",
+      source: "packages/icon/src/_material-icons.scss#L101-L127",
       usedBy: [
         {
           name: "rmd-icon-host-material-icons",
@@ -173,7 +173,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-icon-material-icons-class($include-font-size: false) { … }",
       sourceCode:
-        '@mixin rmd-icon-material-icons-class($include-font-size: false) {\n  .material-icons {\n    // sass-lint:disable-block property-sort-order,no-vendor-prefixes\n    @if $include-font-size {\n      @include rmd-icon-theme(font-size, size);\n    }\n\n    direction: ltr;\n    display: inline-block;\n    font-family: "Material Icons";\n    // Support for IE.\n    font-feature-settings: "liga";\n    // Support for Firefox.\n    -moz-osx-font-smoothing: grayscale;\n    // Support for all WebKit browsers.\n    -webkit-font-smoothing: antialiased;\n    font-style: normal;\n    font-weight: normal;\n    letter-spacing: normal;\n    line-height: 1;\n    // Support for Safari and Chrome.\n    text-rendering: optimizeLegibility;\n    text-transform: none;\n    white-space: nowrap;\n    word-wrap: normal;\n  }\n}\n',
+        "@mixin rmd-icon-material-icons-class($include-font-size: false) {\n  .material-icons {\n    // sass-lint:disable-block property-sort-order,no-vendor-prefixes\n    @if $include-font-size {\n      @include rmd-icon-theme(font-size, size);\n    }\n\n    direction: ltr;\n    display: inline-block;\n    font-family: 'Material Icons';\n    // Support for IE.\n    font-feature-settings: 'liga';\n    // Support for Firefox.\n    -moz-osx-font-smoothing: grayscale;\n    // Support for all WebKit browsers.\n    -webkit-font-smoothing: antialiased;\n    font-style: normal;\n    font-weight: normal;\n    letter-spacing: normal;\n    line-height: 1;\n    // Support for Safari and Chrome.\n    text-rendering: optimizeLegibility;\n    text-transform: none;\n    white-space: nowrap;\n    word-wrap: normal;\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -189,7 +189,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-host-material-icons",
       description:
         "Creates both the font face and css class for material icons when hosting the fonts locally instead of using the Google fonts service.  This takes either a font url prefix string or a map of urls for each required font file. If you are using create-react-app, you **must** use the Map version so the fonts can be correctly included by the build process.",
-      source: "packages/icon/src/_material-icons.scss#L167-L174",
+      source: "packages/icon/src/_material-icons.scss#L172-L179",
       requires: [
         {
           name: "rmd-icon-material-icons-font-face",
@@ -206,7 +206,7 @@ const sassdoc: PackageSassDoc = {
       examples: [
         {
           code:
-            '$local-font-url: "/fonts/material-icons";\n@include rmd-icon-material-icons-font-face($local-font-url);\n',
+            "$local-font-url: '/fonts/material-icons';\n@include rmd-icon-material-icons-font-face($local-font-url);\n",
           compiled:
             '@font-face {\n  font-family: "Material Icons";\n  font-style: normal;\n  src: local("Material Icons"), local("MaterialIcons-Regular"),\n    url("/MaterialIcons-Regular.woff2") format("woff2"),\n    url("/MaterialIcons-Regular.woff") format("woff")\n      url("/MaterialIcons-Regular.ttf") format("truetype");\n}\n',
           type: "scss",
@@ -214,7 +214,7 @@ const sassdoc: PackageSassDoc = {
         },
         {
           code:
-            '// This example will assume that the material icons font has been\n// downloaded and copied into the `public/fonts/material-icons` folder\n// The fonts will not be bundled with your normal build process and just\n// will be static assets.\n\n// The next 2 lines are equivalent\n@include rmd-icon-material-icons-font-face;\n@include rmd-icon-material-icons-font-face("/fonts/material-icons");\n\n@include rmd-typography-host-google-font("Source Code Pro");\n',
+            "// This example will assume that the material icons font has been\n// downloaded and copied into the `public/fonts/material-icons` folder\n// The fonts will not be bundled with your normal build process and just\n// will be static assets.\n\n// The next 2 lines are equivalent\n@include rmd-icon-material-icons-font-face;\n@include rmd-icon-material-icons-font-face('/fonts/material-icons');\n\n@include rmd-typography-host-google-font('Source Code Pro');\n",
           compiled:
             '@font-face {\n  font-family: "Material Icons";\n  font-style: normal;\n  src: local("Material Icons"), local("MaterialIcons-Regular"),\n    url("/MaterialIcons-Regular.woff2") format("woff2"),\n    url("/MaterialIcons-Regular.woff") format("woff")\n      url("/MaterialIcons-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Material Icons";\n  font-style: normal;\n  src: local("Material Icons"), local("MaterialIcons-Regular"),\n    url("/MaterialIcons-Regular.woff2") format("woff2"),\n    url("/MaterialIcons-Regular.woff") format("woff")\n      url("/MaterialIcons-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Source Code Pro";\n  font-style: normal;\n  font-weight: light;\n  src: local(Source Code Pro), local(SourceCodePro-Light),\n    url("/fonts/source-code-pro/SourceCodePro-Light.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Source Code Pro";\n  font-style: normal;\n  font-weight: regular;\n  src: local(Source Code Pro), local(SourceCodePro-Regular),\n    url("/fonts/source-code-pro/SourceCodePro-Regular.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Source Code Pro";\n  font-style: normal;\n  font-weight: medium;\n  src: local(Source Code Pro), local(SourceCodePro-Medium),\n    url("/fonts/source-code-pro/SourceCodePro-Medium.ttf") format("truetype");\n}\n\n@font-face {\n  font-family: "Source Code Pro";\n  font-style: normal;\n  font-weight: bold;\n  src: local(Source Code Pro), local(SourceCodePro-Bold),\n    url("/fonts/source-code-pro/SourceCodePro-Bold.ttf") format("truetype");\n}\n',
           type: "scss",
@@ -222,7 +222,7 @@ const sassdoc: PackageSassDoc = {
         },
         {
           code:
-            '// Since it might be useful to include the font in the normal build\n// process to hash and prefix the urls as needed, you can also use\n// relative paths instead of absolute paths.\n// This example will assume you are working within a `src/fonts.scss` file\n// and have copied material-icons into a `src/fonts/material-icons` directory\n\n// Note the `~./`. This will resolve this import to the `src` directory\n// within create-react-app\n@include rmd-icon-material-icons-font-face("~./fonts/material-icons");\n',
+            "// Since it might be useful to include the font in the normal build\n// process to hash and prefix the urls as needed, you can also use\n// relative paths instead of absolute paths.\n// This example will assume you are working within a `src/fonts.scss` file\n// and have copied material-icons into a `src/fonts/material-icons` directory\n\n// Note the `~./`. This will resolve this import to the `src` directory\n// within create-react-app\n@include rmd-icon-material-icons-font-face('~./fonts/material-icons');\n",
           compiled:
             '@font-face {\n  font-family: "Material Icons";\n  font-style: normal;\n  src: local("Material Icons"), local("MaterialIcons-Regular"),\n    url("/MaterialIcons-Regular.woff2") format("woff2"),\n    url("/MaterialIcons-Regular.woff") format("woff")\n      url("/MaterialIcons-Regular.ttf") format("truetype");\n}\n',
           type: "scss",
@@ -232,7 +232,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-icon-host-material-icons($font-url-or-map: '/fonts/material-icons', $include-font-size: false, $old-ie-support: false) { … }",
       sourceCode:
-        '@mixin rmd-icon-host-material-icons(\n  $font-url-or-map: "/fonts/material-icons",\n  $include-font-size: false,\n  $old-ie-support: false\n) {\n  @include rmd-icon-material-icons-font-face($font-url-or-map, $old-ie-support);\n  @include rmd-icon-material-icons-class($include-font-size);\n}\n',
+        "@mixin rmd-icon-host-material-icons(\n  $font-url-or-map: '/fonts/material-icons',\n  $include-font-size: false,\n  $old-ie-support: false\n) {\n  @include rmd-icon-material-icons-font-face($font-url-or-map, $old-ie-support);\n  @include rmd-icon-material-icons-class($include-font-size);\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -262,7 +262,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-theme",
       description:
         "Creates the styles for one of the icon's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/icon/src/_mixins.scss#L21-L23",
+      source: "packages/icon/src/_mixins.scss#L21-L28",
       usedBy: [
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-native-select", type: "mixin", packageName: "form" },
@@ -323,7 +323,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-theme-update-var",
       description:
         "Updates one of the icon's theme variables with the new value for the section of your app.",
-      source: "packages/icon/src/_mixins.scss#L42-L44",
+      source: "packages/icon/src/_mixins.scss#L47-L54",
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
@@ -399,7 +399,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-base",
       description:
         "Creates the base styles for icons. This should be combined with the `rmd-icon-font` or `rmd-icon-svg` mixins to get the full styles.\n",
-      source: "packages/icon/src/_mixins.scss#L48-L53",
+      source: "packages/icon/src/_mixins.scss#L58-L63",
       usedBy: [{ name: "rmd-icon", type: "mixin", packageName: "icon" }],
       packageName: "icon",
       code: "@mixin rmd-icon-base { … }",
@@ -410,7 +410,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-icon-font": {
       name: "rmd-icon-font",
       description: "Creates the base styles for a font icon.",
-      source: "packages/icon/src/_mixins.scss#L62-L67",
+      source: "packages/icon/src/_mixins.scss#L72-L77",
       usedBy: [{ name: "rmd-icon", type: "mixin", packageName: "icon" }],
       requires: [
         { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
@@ -434,7 +434,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-icon-dense-theme": {
       name: "rmd-icon-dense-theme",
       description: "A simple mixin to create the dense theme for an icon.\n",
-      source: "packages/icon/src/_mixins.scss#L70-L72",
+      source: "packages/icon/src/_mixins.scss#L80-L82",
       usedBy: [
         { name: "rmd-icon", type: "mixin", packageName: "icon" },
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
@@ -456,7 +456,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-icon-svg": {
       name: "rmd-icon-svg",
       description: "Creates the base styles for an svg icon.",
-      source: "packages/icon/src/_mixins.scss#L81-L85",
+      source: "packages/icon/src/_mixins.scss#L91-L95",
       usedBy: [{ name: "rmd-icon", type: "mixin", packageName: "icon" }],
       requires: [
         { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
@@ -481,7 +481,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-text-spacing",
       description:
         "Creates the styles that should be applied to an icon that is placed before or after text by applying the spacing to the provided `$property` value.\nThis will automatically be swapped when the language changes to right-to-left.",
-      source: "packages/icon/src/_mixins.scss#L96-L102",
+      source: "packages/icon/src/_mixins.scss#L106-L115",
       usedBy: [
         {
           name: "rmd-icon-spaced-with-text",
@@ -496,7 +496,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text, $property: margin-left) { … }",
       sourceCode:
-        '@mixin rmd-icon-text-spacing(\n  $spacing: $rmd-icon-spacing-with-text,\n  $property: margin-left\n) {\n  @if $property == "margin-left" or $property == "margin-right" {\n    @include rmd-utils-rtl-auto($property, $spacing, 0);\n  } @else {\n    #{$property}: $spacing;\n  }\n}\n',
+        "@mixin rmd-icon-text-spacing(\n  $spacing: $rmd-icon-spacing-with-text,\n  $property: margin-left\n) {\n  @if $property == 'margin-left' or $property == 'margin-right' {\n    @include rmd-utils-rtl-auto($property, $spacing, 0);\n  } @else {\n    #{$property}: $spacing;\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -518,7 +518,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-spaced-with-text",
       description:
         "A mixin to create the styles to space an icon before or after text with the provided selectors and spacing.",
-      source: "packages/icon/src/_mixins.scss#L127-L157",
+      source: "packages/icon/src/_mixins.scss#L140-L182",
       usedBy: [{ name: "rmd-icon", type: "mixin", packageName: "icon" }],
       requires: [
         { name: "rmd-icon-text-spacing", type: "mixin", packageName: "icon" },
@@ -528,7 +528,7 @@ const sassdoc: PackageSassDoc = {
       examples: [
         {
           code:
-            '// create a component so that it uses the :first-child and :last-child css\n// selectors instead of class names that must be applied.\n.my-wrapper {\n  @include rmd-icon-spaced-with-text("&:first-child", "&:last-child");\n}\n',
+            "// create a component so that it uses the :first-child and :last-child css\n// selectors instead of class names that must be applied.\n.my-wrapper {\n  @include rmd-icon-spaced-with-text('&:first-child', '&:last-child');\n}\n",
           compiled:
             '.my-wrapper:first-child {\n  margin-right: var(--rmd-icon-text-spacing, 0.5rem);\n}\n[dir="rtl"] .my-wrapper:first-child {\n  margin-right: 0;\n  margin-left: var(--rmd-icon-text-spacing, 0.5rem);\n}\n\n.my-wrapper:last-child {\n  margin-left: var(--rmd-icon-text-spacing, 0.5rem);\n}\n[dir="rtl"] .my-wrapper:last-child {\n  margin-left: 0;\n  margin-right: var(--rmd-icon-text-spacing, 0.5rem);\n}\n\n.my-wrapper--above {\n  margin-bottom: var(--rmd-icon-text-spacing, 0.5rem);\n}\n\n.my-wrapper--below {\n  margin-top: var(--rmd-icon-text-spacing, 0.5rem);\n}\n',
           type: "scss",
@@ -538,7 +538,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-icon-spaced-with-text($before-selector: '&--before', $after-selector: '&--after', $above-selector: '&--above', $below-selector: '&--after', $spacing: $rmd-icon-spacing-with-text) { … }",
       sourceCode:
-        '@mixin rmd-icon-spaced-with-text(\n  $before-selector: "&--before",\n  $after-selector: "&--after",\n  $above-selector: "&--above",\n  $below-selector: "&--after",\n  $spacing: $rmd-icon-spacing-with-text\n) {\n  @if $before-selector != null {\n    #{$before-selector} {\n      @include rmd-icon-text-spacing(\n        rmd-icon-theme-var(text-spacing),\n        margin-right\n      );\n    }\n  }\n\n  @if $after-selector != null {\n    #{$after-selector} {\n      @include rmd-icon-text-spacing(\n        rmd-icon-theme-var(text-spacing),\n        margin-left\n      );\n    }\n  }\n\n  @if $above-selector != null {\n    #{$above-selector} {\n      @include rmd-icon-text-spacing(\n        rmd-icon-theme-var(text-spacing),\n        margin-bottom\n      );\n    }\n  }\n\n  @if $below-selector != null {\n    #{$below-selector} {\n      @include rmd-icon-text-spacing(\n        rmd-icon-theme-var(text-spacing),\n        margin-top\n      );\n    }\n  }\n}\n',
+        "@mixin rmd-icon-spaced-with-text(\n  $before-selector: '&--before',\n  $after-selector: '&--after',\n  $above-selector: '&--above',\n  $below-selector: '&--after',\n  $spacing: $rmd-icon-spacing-with-text\n) {\n  @if $before-selector != null {\n    #{$before-selector} {\n      @include rmd-icon-text-spacing(\n        rmd-icon-theme-var(text-spacing),\n        margin-right\n      );\n    }\n  }\n\n  @if $after-selector != null {\n    #{$after-selector} {\n      @include rmd-icon-text-spacing(\n        rmd-icon-theme-var(text-spacing),\n        margin-left\n      );\n    }\n  }\n\n  @if $above-selector != null {\n    #{$above-selector} {\n      @include rmd-icon-text-spacing(\n        rmd-icon-theme-var(text-spacing),\n        margin-bottom\n      );\n    }\n  }\n\n  @if $below-selector != null {\n    #{$below-selector} {\n      @include rmd-icon-text-spacing(\n        rmd-icon-theme-var(text-spacing),\n        margin-top\n      );\n    }\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -581,7 +581,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-rotator",
       description:
         "Creates the styles for the `IconRotator` component. These styles are extremely simple and basically apply different rotate transforms based on a class name.\n",
-      source: "packages/icon/src/_mixins.scss#L162-L174",
+      source: "packages/icon/src/_mixins.scss#L187-L199",
       usedBy: [{ name: "react-md-icon", type: "mixin", packageName: "icon" }],
       requires: [
         { name: "rmd-icon-theme", type: "mixin", packageName: "icon" },
@@ -600,7 +600,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-icon": {
       name: "rmd-icon",
       description: "Creates all the styles for the icon components.\n",
-      source: "packages/icon/src/_mixins.scss#L177-L227",
+      source: "packages/icon/src/_mixins.scss#L202-L252",
       usedBy: [{ name: "react-md-icon", type: "mixin", packageName: "icon" }],
       requires: [
         { name: "rmd-icon-base", type: "mixin", packageName: "icon" },
@@ -645,7 +645,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-icon-spacing",
       description:
         "Creates the styles for when the `TextIconSpacing` component needs to wrap the content in a `<span>`. It's really used to force vertical center alignment.\n",
-      source: "packages/icon/src/_mixins.scss#L232-L237",
+      source: "packages/icon/src/_mixins.scss#L257-L262",
       usedBy: [{ name: "react-md-icon", type: "mixin", packageName: "icon" }],
       packageName: "icon",
       code: "@mixin rmd-icon-spacing { … }",
@@ -657,7 +657,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-icon",
       description:
         "Creates the styles for icons within react-md. This requires either the `rmd-icon-use-font-icons` or `rmd-icon-use-svg-icons` variables to be enabled to generate any styles.\n",
-      source: "packages/icon/src/_mixins.scss#L242-L252",
+      source: "packages/icon/src/_mixins.scss#L267-L277",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-expansion-panel-theme",
       description:
         "This function is used to quickly get one of the expansion-panel's theme values. This is really just for the `rmd-expansion-panel-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
-      source: "packages/expansion-panel/src/_functions.scss#L16-L18",
+      source: "packages/expansion-panel/src/_functions.scss#L16-L22",
       requires: [
         {
           name: "rmd-theme-get-var-value",
@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-expansion-panel-theme-var",
       description:
         "This function is used to get one of the expansion-panel's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-expansion-panel-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/expansion-panel/src/_functions.scss#L35-L42",
+      source: "packages/expansion-panel/src/_functions.scss#L39-L46",
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
@@ -84,7 +84,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-expansion-panel-theme",
       description:
         "Creates the styles for one of the expansion-panel's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/expansion-panel/src/_mixins.scss#L22-L29",
+      source: "packages/expansion-panel/src/_mixins.scss#L22-L33",
       usedBy: [
         {
           name: "rmd-expansion-panel",
@@ -136,7 +136,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-expansion-panel-theme-update-var",
       description:
         "Updates one of the expansion-panel's theme variables with the new value for the section of your app.",
-      source: "packages/expansion-panel/src/_mixins.scss#L37-L44",
+      source: "packages/expansion-panel/src/_mixins.scss#L41-L48",
       requires: [
         {
           name: "rmd-theme-update-rmd-var",
@@ -173,7 +173,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-expansion-panel",
       description:
         "Creates the styles for the expansion panel and all the child elements.\n",
-      source: "packages/expansion-panel/src/_mixins.scss#L48-L78",
+      source: "packages/expansion-panel/src/_mixins.scss#L52-L82",
       usedBy: [
         {
           name: "react-md-expansion-panel",
@@ -199,7 +199,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-expansion-panel",
       description:
         "Creates all the styles for the expansion-panel package as well as the root css variable theme.\n",
-      source: "packages/expansion-panel/src/_mixins.scss#L82-L88",
+      source: "packages/expansion-panel/src/_mixins.scss#L86-L95",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

@@ -25,7 +25,12 @@
 /// retrieving the default value from the `rmd-card-theme-values` map when
 /// `null`.
 @mixin rmd-card-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-card-theme-values, card);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-card-theme-values,
+    card
+  );
 }
 
 /// Updates one of the card's theme variables with the new value for the section
@@ -35,15 +40,29 @@
 /// should be one of the `$rmd-card-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-card-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-card-theme-values, card);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-card-theme-values,
+    card
+  );
 }
 
 /// Creates all the styles for the `Card` component only. You'll need to use
 /// this within a selector.
 @mixin rmd-card {
-  @include rmd-theme-update-var(background, rmd-card-theme-var(background-color));
-  @include rmd-theme-update-var(text-primary-on-background, rmd-card-theme-var(color));
-  @include rmd-theme-update-var(text-secondary-on-background, rmd-card-theme-var(secondary-color));
+  @include rmd-theme-update-var(
+    background,
+    rmd-card-theme-var(background-color)
+  );
+  @include rmd-theme-update-var(
+    text-primary-on-background,
+    rmd-card-theme-var(color)
+  );
+  @include rmd-theme-update-var(
+    text-secondary-on-background,
+    rmd-card-theme-var(secondary-color)
+  );
   @include rmd-utils-mouse-only {
     &--raiseable {
       // Note: Only worthwhile with the `--shadowed` class
@@ -110,7 +129,12 @@
   margin-top: 0;
 
   &--small {
-    @include rmd-typography-value(subtitle-1, line-height, font-size, letter-spacing);
+    @include rmd-typography-value(
+      subtitle-1,
+      line-height,
+      font-size,
+      letter-spacing
+    );
   }
 }
 

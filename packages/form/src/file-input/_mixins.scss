@@ -11,11 +11,17 @@
     @include rmd-states-focus-shadow('&:focus + .rmd-file-input-label');
     @include rmd-utils-keyboard-only {
       &:focus + .rmd-file-input-label {
-        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
+        @include rmd-states-theme-update-var(
+          background-color,
+          rmd-states-theme-var(focus-color)
+        );
       }
 
       &:hover {
-        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
+        @include rmd-states-theme-update-var(
+          background-color,
+          rmd-states-theme-var(hover-color)
+        );
       }
     }
 

@@ -7,7 +7,11 @@
   // "dense" theme
   // NOTE: If you are not using CSS modules, you do not need to use the
   // `$selector-prefix`
-  @include rmd-tree-depths($selector-prefix: ':global ', $max: 2, $base-padding: 2rem);
+  @include rmd-tree-depths(
+    $selector-prefix: ':global ',
+    $max: 2,
+    $base-padding: 2rem
+  );
   @include rmd-utils-tablet-media {
     display: inline-block;
     width: 15rem;

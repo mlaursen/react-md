@@ -13,7 +13,11 @@
 /// to get a value for.
 /// @return {Color|String|Number} one of the states's theme values.
 @function rmd-states-theme($theme-style) {
-  @return rmd-theme-get-var-value($theme-style, $rmd-states-theme-values, states);
+  @return rmd-theme-get-var-value(
+    $theme-style,
+    $rmd-states-theme-values,
+    states
+  );
 }
 
 /// This function is used to get one of the states's theme variables as a CSS
@@ -30,5 +34,10 @@
 /// variables should always exist.
 /// @return {String} one of the states's theme values as a css variable.
 @function rmd-states-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-states-theme-values, states, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-states-theme-values,
+    states,
+    $fallback
+  );
 }

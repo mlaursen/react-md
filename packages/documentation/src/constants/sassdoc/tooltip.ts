@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-theme",
       description:
         "This function is used to quickly get one of the tooltip's theme values. This is really just for the `rmd-tooltip-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
-      source: "packages/tooltip/src/_functions.scss#L16-L18",
+      source: "packages/tooltip/src/_functions.scss#L16-L22",
       requires: [
         {
           name: "rmd-theme-get-var-value",
@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-theme-var",
       description:
         "This function is used to get one of the tooltip's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-tooltip-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/tooltip/src/_functions.scss#L33-L35",
+      source: "packages/tooltip/src/_functions.scss#L37-L44",
       usedBy: [
         {
           name: "rmd-tooltip-dense-theme",
@@ -89,7 +89,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-position-to-property",
       description:
         "A small util that will rename the `above` and `below` positions of the tooltip to `top` and `bottom` to be used for applying styles.",
-      source: "packages/tooltip/src/_functions.scss#L43-L53",
+      source: "packages/tooltip/src/_functions.scss#L52-L66",
       requires: [
         { name: "rmd-utils-validate", type: "function", packageName: "utils" },
         {
@@ -101,7 +101,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "tooltip",
       code: "@function rmd-tooltip-position-to-property($position) { … }",
       sourceCode:
-        '@function rmd-tooltip-position-to-property($position) {\n  $position: rmd-utils-validate(\n    $rmd-tooltip-position-values,\n    $position,\n    "tooltip position"\n  );\n\n  @if $position == "below" {\n    @return "bottom";\n  } @else if $position == "above" {\n    @return "top";\n  }\n\n  @return $position;\n}\n',
+        "@function rmd-tooltip-position-to-property($position) {\n  $position: rmd-utils-validate(\n    $rmd-tooltip-position-values,\n    $position,\n    'tooltip position'\n  );\n\n  @if $position == 'below' {\n    @return 'bottom';\n  } @else if $position == 'above' {\n    @return 'top';\n  }\n\n  @return $position;\n}\n",
       type: "function",
       parameters: [
         {
@@ -119,7 +119,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-inverse-position",
       description:
         "A small util for inversing the position. This is just used for generating the default styles.",
-      source: "packages/tooltip/src/_functions.scss#L61-L73",
+      source: "packages/tooltip/src/_functions.scss#L74-L90",
       requires: [
         { name: "rmd-utils-validate", type: "function", packageName: "utils" },
         {
@@ -131,7 +131,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "tooltip",
       code: "@function rmd-tooltip-inverse-position($position) { … }",
       sourceCode:
-        '@function rmd-tooltip-inverse-position($position) {\n  $position: rmd-utils-validate(\n    $rmd-tooltip-position-values,\n    $position,\n    "tooltip position"\n  );\n\n  @if $position == "left" {\n    @return "right";\n  } @else if $position == "right" {\n    @return "left";\n  } @else if $position == "below" {\n    @return "above";\n  }\n\n  @return "below";\n}\n',
+        "@function rmd-tooltip-inverse-position($position) {\n  $position: rmd-utils-validate(\n    $rmd-tooltip-position-values,\n    $position,\n    'tooltip position'\n  );\n\n  @if $position == 'left' {\n    @return 'right';\n  } @else if $position == 'right' {\n    @return 'left';\n  } @else if $position == 'below' {\n    @return 'above';\n  }\n\n  @return 'below';\n}\n",
       type: "function",
       parameters: [
         {
@@ -148,7 +148,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-theme",
       description:
         "Creates the styles for one of the tooltip's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/tooltip/src/_mixins.scss#L22-L24",
+      source: "packages/tooltip/src/_mixins.scss#L22-L29",
       usedBy: [
         { name: "rmd-tooltip-base", type: "mixin", packageName: "tooltip" },
         {
@@ -201,7 +201,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip-theme-update-var",
       description:
         "Updates one of the tooltip's theme variables with the new value for the section of your app.",
-      source: "packages/tooltip/src/_mixins.scss#L32-L34",
+      source: "packages/tooltip/src/_mixins.scss#L37-L44",
       usedBy: [
         {
           name: "rmd-tooltip-dense-theme",
@@ -243,7 +243,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-base": {
       name: "rmd-tooltip-base",
       description: "Creates the base styles for a tooltip.\n",
-      source: "packages/tooltip/src/_mixins.scss#L37-L59",
+      source: "packages/tooltip/src/_mixins.scss#L47-L69",
       usedBy: [{ name: "rmd-tooltip", type: "mixin", packageName: "tooltip" }],
       requires: [
         {
@@ -272,7 +272,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-line-wrap": {
       name: "rmd-tooltip-line-wrap",
       description: "Creates the base styles to allow line-wrapping tooltips.\n",
-      source: "packages/tooltip/src/_mixins.scss#L62-L67",
+      source: "packages/tooltip/src/_mixins.scss#L72-L77",
       usedBy: [{ name: "rmd-tooltip", type: "mixin", packageName: "tooltip" }],
       requires: [
         { name: "rmd-tooltip-theme", type: "mixin", packageName: "tooltip" },
@@ -286,7 +286,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tooltip-dense-theme": {
       name: "rmd-tooltip-dense-theme",
       description: "Creates the dense tooltip style overrides.\n",
-      source: "packages/tooltip/src/_mixins.scss#L70-L83",
+      source: "packages/tooltip/src/_mixins.scss#L80-L105",
       usedBy: [
         { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
@@ -313,7 +313,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tooltip",
       description:
         "Creates all the styles for a tooltip element. This should be used within a css class.\n",
-      source: "packages/tooltip/src/_mixins.scss#L87-L134",
+      source: "packages/tooltip/src/_mixins.scss#L109-L161",
       usedBy: [
         { name: "react-md-tooltip", type: "mixin", packageName: "tooltip" },
       ],
@@ -361,7 +361,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-tooltip",
       description:
         "Creates all the styles and theme for the tooltip package.\n",
-      source: "packages/tooltip/src/_mixins.scss#L137-L143",
+      source: "packages/tooltip/src/_mixins.scss#L164-L170",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

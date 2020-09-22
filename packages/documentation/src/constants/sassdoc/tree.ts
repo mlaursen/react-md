@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-theme-var",
       description:
         "This function is used to get one of the tree's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-tree-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/tree/src/_functions.scss#L32-L34",
+      source: "packages/tree/src/_functions.scss#L32-L39",
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
@@ -82,7 +82,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-theme",
       description:
         "Creates the styles for one of the tree's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/tree/src/_mixins.scss#L23-L25",
+      source: "packages/tree/src/_mixins.scss#L23-L30",
       requires: [
         {
           name: "rmd-theme-apply-rmd-var",
@@ -127,7 +127,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-theme-update-var",
       description:
         "Updates one of the tree's theme variables with the new value for the section of your app.",
-      source: "packages/tree/src/_mixins.scss#L33-L35",
+      source: "packages/tree/src/_mixins.scss#L38-L45",
       requires: [
         {
           name: "rmd-theme-update-rmd-var",
@@ -163,7 +163,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-depths",
       description:
         "Creates the styles for all the depths from the provided min and max values for a tree.",
-      source: "packages/tree/src/_mixins.scss#L61-L82",
+      source: "packages/tree/src/_mixins.scss#L71-L97",
       usedBy: [{ name: "rmd-tree", type: "mixin", packageName: "tree" }],
       requires: [
         { name: "rmd-tree-item-at-depth", type: "mixin", packageName: "tree" },
@@ -180,7 +180,7 @@ const sassdoc: PackageSassDoc = {
         },
         {
           code:
-            '.tree {\n  @include rmd-tree-depths(\n    $selector-prefix: ":global ",\n    $max: 2,\n    $base-padding: 2rem\n  );\n}\n',
+            ".tree {\n  @include rmd-tree-depths(\n    $selector-prefix: ':global ',\n    $max: 2,\n    $base-padding: 2rem\n  );\n}\n",
           compiled:
             '.tree :global [aria-level="2"].rmd-tree-item__content,\n.tree :global [aria-level="2"] > .rmd-tree-item__content {\n  padding-left: 2rem;\n}\n[dir="rtl"] .tree :global [aria-level="2"].rmd-tree-item__content,\n[dir="rtl"] .tree :global [aria-level="2"] > .rmd-tree-item__content {\n  padding-left: 1rem;\n  padding-right: 2rem;\n}\n',
           type: "scss",
@@ -190,7 +190,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-tree-depths($selector-prefix: '', $min: 1, $max: $rmd-tree-max-depth, $incrementor: $rmd-tree-item-padding-incrementor, $base: $rmd-tree-item-padding-base) { … }",
       sourceCode:
-        "@mixin rmd-tree-depths(\n  $selector-prefix: \"\",\n  $min: 1,\n  $max: $rmd-tree-max-depth,\n  $incrementor: $rmd-tree-item-padding-incrementor,\n  $base: $rmd-tree-item-padding-base\n) {\n  @if $min < 1 {\n    @error 'Invalid min value: \\'#{$min}\\'! The min must be a number greater than 0.';\n  }\n\n  @if $max < $min {\n    @error 'Invalid max value: \\'#{$max}\\'! The max must be a number greater than the min value: \\'#{$min}\\'';\n  }\n\n  $index: $min;\n  @while $index < $max {\n    @include rmd-tree-item-at-depth(\n      $index,\n      $selector-prefix,\n      $incrementor,\n      $base-padding\n    );\n\n    $index: $index + 1;\n  }\n}\n",
+        "@mixin rmd-tree-depths(\n  $selector-prefix: '',\n  $min: 1,\n  $max: $rmd-tree-max-depth,\n  $incrementor: $rmd-tree-item-padding-incrementor,\n  $base: $rmd-tree-item-padding-base\n) {\n  @if $min < 1 {\n    @error 'Invalid min value: \\'#{$min}\\'! The min must be a number greater than 0.';\n  }\n\n  @if $max < $min {\n    @error 'Invalid max value: \\'#{$max}\\'! The max must be a number greater than the min value: \\'#{$min}\\'';\n  }\n\n  $index: $min;\n  @while $index < $max {\n    @include rmd-tree-item-at-depth(\n      $index,\n      $selector-prefix,\n      $incrementor,\n      $base-padding\n    );\n\n    $index: $index + 1;\n  }\n}\n",
       throws: ["Invalid min value: \\", "Invalid max value: \\"],
       type: "mixin",
       parameters: [
@@ -234,7 +234,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-item-at-depth",
       description:
         "Creates styles to add additional padding to tree items based on depth. This will only work if you correctly apply the `aria-level` attributes to the list items.\n\nThe formula used for creating padding is:\n```scss\n$padding: (($depth - 1) * $incrementor) + $base;\n```",
-      source: "packages/tree/src/_mixins.scss#L101-L113",
+      source: "packages/tree/src/_mixins.scss#L116-L132",
       usedBy: [{ name: "rmd-tree-depths", type: "mixin", packageName: "tree" }],
       requires: [
         { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
@@ -248,7 +248,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-tree-item-at-depth($depth, $selector-prefix: '', $incrementor: $rmd-tree-item-padding-incrementor, $base: $rmd-tree-item-padding-base) { … }",
       sourceCode:
-        '@mixin rmd-tree-item-at-depth(\n  $depth,\n  $selector-prefix: "",\n  $incrementor: $rmd-tree-item-padding-incrementor,\n  $base: $rmd-tree-item-padding-base\n) {\n  $selector: \'#{$selector-prefix}[aria-level="#{$depth + 1}"].rmd-tree-item__content, #{$selector-prefix}[aria-level="#{$depth + 1}"] > .rmd-tree-item__content\';\n  $padding: (($depth - 1) * $incrementor) + $base;\n\n  #{$selector} {\n    @include rmd-utils-rtl-auto(\n      padding-left,\n      $padding,\n      $rmd-list-item-horizontal-padding\n    );\n  }\n}\n',
+        "@mixin rmd-tree-item-at-depth(\n  $depth,\n  $selector-prefix: '',\n  $incrementor: $rmd-tree-item-padding-incrementor,\n  $base: $rmd-tree-item-padding-base\n) {\n  $selector: '#{$selector-prefix}[aria-level=\"#{$depth + 1}\"].rmd-tree-item__content, #{$selector-prefix}[aria-level=\"#{$depth + 1}\"] > .rmd-tree-item__content';\n  $padding: (($depth - 1) * $incrementor) + $base;\n\n  #{$selector} {\n    @include rmd-utils-rtl-auto(\n      padding-left,\n      $padding,\n      $rmd-list-item-horizontal-padding\n    );\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -282,7 +282,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree": {
       name: "rmd-tree",
       description: "Creates all the styles for a tree.\n",
-      source: "packages/tree/src/_mixins.scss#L116-L123",
+      source: "packages/tree/src/_mixins.scss#L135-L142",
       usedBy: [{ name: "react-md-tree", type: "mixin", packageName: "tree" }],
       requires: [
         { name: "rmd-tree-depths", type: "mixin", packageName: "tree" },
@@ -303,7 +303,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tree-item",
       description:
         "Creates the styles for a tree item. This really requires the `@react-md/list` styles to be created beforehand since these styles just prevent the outline when focused to work with the `@react-md/states` package.",
-      source: "packages/tree/src/_mixins.scss#L134-L150",
+      source: "packages/tree/src/_mixins.scss#L153-L171",
       usedBy: [{ name: "react-md-tree", type: "mixin", packageName: "tree" }],
       requires: [
         {
@@ -351,7 +351,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tree-group": {
       name: "rmd-tree-group",
       description: "Creates the styles for the tree group.",
-      source: "packages/tree/src/_mixins.scss#L158-L167",
+      source: "packages/tree/src/_mixins.scss#L179-L188",
       usedBy: [{ name: "react-md-tree", type: "mixin", packageName: "tree" }],
       packageName: "tree",
       examples: [
@@ -371,7 +371,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-tree": {
       name: "react-md-tree",
       description: "Creates all the styles for a tree\n",
-      source: "packages/tree/src/_mixins.scss#L170-L188",
+      source: "packages/tree/src/_mixins.scss#L191-L209",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

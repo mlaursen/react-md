@@ -24,7 +24,12 @@
 /// retrieving the default value from the `rmd-tabs-theme-values` map when
 /// `null`.
 @mixin rmd-tabs-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-tabs-theme-values, tabs);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-tabs-theme-values,
+    tabs
+  );
 }
 
 /// Updates one of the tabs's theme variables with the new value for the section
@@ -34,7 +39,12 @@
 /// should be one of the `$rmd-tabs-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-tabs-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-tabs-theme-values, tabs);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-tabs-theme-values,
+    tabs
+  );
 }
 
 /// @access private
@@ -69,12 +79,17 @@
   }
 
   &--animate::after {
-    transition: transform $rmd-transition-standard-time, max-width $rmd-transition-standard-time;
+    transition: transform $rmd-transition-standard-time,
+      max-width $rmd-transition-standard-time;
   }
 
   @each $position in $rmd-tabs-positions {
     &--#{$position} {
-      $justify: if($position == center, $position, if($position == left, flex-start, flex-end));
+      $justify: if(
+        $position == center,
+        $position,
+        if($position == left, flex-start, flex-end)
+      );
 
       justify-content: $justify;
     }

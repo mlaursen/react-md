@@ -170,7 +170,10 @@
 /// the toggle-inset css variable to be the dense version. This should generally
 /// be used within media queries.
 @mixin rmd-toggle-dense-theme {
-  @include rmd-form-theme-update-var(toggle-inset, rmd-form-theme-var(toggle-dense-inset));
+  @include rmd-form-theme-update-var(
+    toggle-inset,
+    rmd-form-theme-var(toggle-dense-inset)
+  );
   @include rmd-form-theme-update-var(
     indeterminate-height,
     rmd-form-theme-var(indeterminate-dense-height)
@@ -190,14 +193,23 @@
   width: $rmd-switch-track-width;
 
   &--disabled {
-    @include rmd-form-theme-update-var(track-background-color, rmd-form-theme-var(disabled-color));
+    @include rmd-form-theme-update-var(
+      track-background-color,
+      rmd-form-theme-var(disabled-color)
+    );
   }
 
   &--async {
     // make the progress bar a bit more prominent
-    @include rmd-progress-theme-update-var(circular-width, $rmd-switch-progress-width);
+    @include rmd-progress-theme-update-var(
+      circular-width,
+      $rmd-switch-progress-width
+    );
     // shrink the progress bar to be the same size as the switch's ball
-    @include rmd-progress-theme-update-var(circular-size, $rmd-switch-ball-size);
+    @include rmd-progress-theme-update-var(
+      circular-size,
+      $rmd-switch-ball-size
+    );
   }
 }
 
@@ -219,11 +231,17 @@
 
   @include rmd-utils-keyboard-only {
     &:focus + .rmd-switch__ball {
-      @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
+      @include rmd-states-theme-update-var(
+        background-color,
+        rmd-states-theme-var(focus-color)
+      );
     }
 
     &:focus:hover + .rmd-switch__ball {
-      @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
+      @include rmd-states-theme-update-var(
+        background-color,
+        rmd-states-theme-var(hover-color)
+      );
     }
   }
 
@@ -279,7 +297,10 @@
   }
 
   &:hover {
-    @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
+    @include rmd-states-theme-update-var(
+      background-color,
+      rmd-states-theme-var(hover-color)
+    );
 
     cursor: pointer;
   }
@@ -302,7 +323,8 @@
 
 /// @access private
 @mixin rmd-switch-container {
-  padding: $rmd-switch-container-vertical-padding $rmd-switch-container-horizontal-padding;
+  padding: $rmd-switch-container-vertical-padding
+    $rmd-switch-container-horizontal-padding;
 }
 
 /// Creates all the styles for the toggle components in the form package.

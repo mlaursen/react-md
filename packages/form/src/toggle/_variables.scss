@@ -41,7 +41,9 @@ $rmd-toggle-dense-inset: 0.25rem !default;
 /// @type Color|String
 /// @require rmd-theme-var
 /// @since 2.2.0
-$rmd-toggle-inactive-color: rmd-theme-var(text-secondary-on-background) !default;
+$rmd-toggle-inactive-color: rmd-theme-var(
+  text-secondary-on-background
+) !default;
 
 /// The color to use for the checkbox and radio components while checked. If you
 /// want to be able to dynamically configure the active color, you can set this

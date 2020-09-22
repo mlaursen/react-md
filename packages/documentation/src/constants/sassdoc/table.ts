@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-theme-var",
       description:
         "This function is used to get one of the table's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-table-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/table/src/_functions.scss#L32-L34",
+      source: "packages/table/src/_functions.scss#L32-L39",
       usedBy: [{ name: "rmd-table", type: "mixin", packageName: "table" }],
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
@@ -84,7 +84,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-theme",
       description:
         "Creates the styles for one of the table's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/table/src/_mixins.scss#L24-L26",
+      source: "packages/table/src/_mixins.scss#L24-L31",
       usedBy: [
         {
           name: "rmd-table-cell-vertical-alignments",
@@ -138,7 +138,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-theme-update-var",
       description:
         "Updates one of the table's theme variables with the new value for the section of your app.",
-      source: "packages/table/src/_mixins.scss#L34-L36",
+      source: "packages/table/src/_mixins.scss#L39-L46",
       usedBy: [
         { name: "rmd-table", type: "mixin", packageName: "table" },
         { name: "rmd-thead", type: "mixin", packageName: "table" },
@@ -178,7 +178,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-table": {
       name: "rmd-table",
       description: "Creates the base styles for the `<table>` element.\n",
-      source: "packages/table/src/_mixins.scss#L40-L51",
+      source: "packages/table/src/_mixins.scss#L50-L64",
       usedBy: [{ name: "react-md-table", type: "mixin", packageName: "table" }],
       requires: [
         {
@@ -197,7 +197,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-thead": {
       name: "rmd-thead",
       description: "",
-      source: "packages/table/src/_mixins.scss#L54-L65",
+      source: "packages/table/src/_mixins.scss#L67-L84",
       usedBy: [{ name: "react-md-table", type: "mixin", packageName: "table" }],
       requires: [
         {
@@ -235,7 +235,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-table-cell-horizontal-alignments": {
       name: "rmd-table-cell-horizontal-alignments",
       description: "",
-      source: "packages/table/src/_mixins.scss#L68-L82",
+      source: "packages/table/src/_mixins.scss#L87-L101",
       usedBy: [{ name: "rmd-table-cell", type: "mixin", packageName: "table" }],
       requires: [
         {
@@ -253,7 +253,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-table-cell-vertical-alignments": {
       name: "rmd-table-cell-vertical-alignments",
       description: "",
-      source: "packages/table/src/_mixins.scss#L85-L98",
+      source: "packages/table/src/_mixins.scss#L104-L117",
       usedBy: [{ name: "rmd-table-cell", type: "mixin", packageName: "table" }],
       requires: [
         { name: "rmd-table-theme", type: "mixin", packageName: "table" },
@@ -273,7 +273,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-cell",
       description:
         "Creates all the styles for the `<th>` and `<td>` elements.\n",
-      source: "packages/table/src/_mixins.scss#L102-L224",
+      source: "packages/table/src/_mixins.scss#L121-L254",
       usedBy: [{ name: "react-md-table", type: "mixin", packageName: "table" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -334,14 +334,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "table",
       code: "@mixin rmd-table-cell { … }",
       sourceCode:
-        '@mixin rmd-table-cell {\n  @include rmd-typography(body-2);\n  @include rmd-table-theme(color, cell-color);\n  @include rmd-table-theme(height, cell-height);\n  @include rmd-table-theme(padding-left, cell-h-padding);\n  @include rmd-table-theme(padding-right, cell-h-padding);\n  @include rmd-table-cell-vertical-alignments;\n\n  &--header {\n    @if $rmd-table-cell-color != $rmd-table-header-cell-color {\n      @include rmd-table-theme-update-var(\n        cell-color,\n        $rmd-table-header-cell-color\n      );\n    }\n    @include rmd-typography-value(\n      subtitle-2,\n      font-weight,\n      letter-spacing,\n      line-height\n    );\n    @include rmd-utils-rtl {\n      text-align: right;\n    }\n\n    text-align: left;\n  }\n\n  // want this to come after the header since the "default" should be\n  // `text-align: left` but browser have `<th>` defaulted to `text-align:\n  // center`. If this is included before the `--header` state, it won\'t be\n  // applied\n  @include rmd-table-cell-horizontal-alignments;\n\n  &--grow {\n    width: 100%;\n  }\n\n  &--no-wrap {\n    @include rmd-typography-text-overflow-ellipsis;\n  }\n\n  &--no-padding {\n    padding: 0;\n  }\n\n  &--checkbox {\n    @include rmd-table-theme-update-var(\n      cell-h-padding,\n      $rmd-table-checkbox-padding\n    );\n  }\n\n  &--sticky {\n    // need to set a background color so the other rows/cells can be scrolled\n    // underneath.\n    @include rmd-theme(background-color, background);\n    @include rmd-utils-mouse-only {\n      &::after {\n        @include rmd-transition(standard);\n\n        transition: background-color $rmd-transition-standard-time;\n      }\n    }\n\n    // see the `::after` selector for info about border and background color,\n    // but this _should_ inherit the border from the `<tr>` only when the\n    // `--bordered` class is also enabled\n    border: inherit;\n    position: sticky;\n    will-change: transform;\n    z-index: $rmd-table-cell-sticky-z-index;\n\n    &::after {\n      // ok. fun stuff. if position sticky is set on a table that has\n      // `border-collapse: collapse`, borders will not visible on these cells.\n      // to re-enable the borders (and hover color), we can create a full-sized\n      // `::after` pseudo element that will gain the border and background-color\n      // when hovered. this probably isn\'t the best solution, but it works for\n      // these use-cases.\n      @include rmd-utils-full-screen(absolute);\n\n      // the border should inherit the parent border... which is inherited from\n      // the `<tr>` only when the `--bordered` class has been enabled.. Woo!...\n      border: inherit;\n      content: "";\n      pointer-events: none;\n    }\n  }\n\n  &--sticky-header {\n    @include rmd-table-theme(top, sticky-header);\n  }\n\n  &--sticky-cell {\n    @include rmd-utils-rtl {\n      @include rmd-table-theme(right, sticky-cell);\n\n      left: auto;\n    }\n    @include rmd-table-theme(left, sticky-cell);\n  }\n\n  &--sticky-above {\n    // need to increase by one more so it can cover other sticky cells\n    z-index: $rmd-table-cell-sticky-z-index + 1;\n  }\n\n  &--sticky-footer {\n    @include rmd-table-theme(bottom, sticky-footer);\n  }\n\n  &--padded {\n    @include rmd-table-theme(padding-bottom, cell-v-padding);\n    @include rmd-table-theme(padding-top, cell-v-padding);\n  }\n\n  &--no-padding {\n    // this is used with the `__size` to make a parent element\n    // (usually clickable) be the full size and height of the cell\n    padding: 0;\n  }\n\n  &__child {\n    @include rmd-table-theme(padding-left, cell-h-padding);\n    @include rmd-table-theme(padding-right, cell-h-padding);\n\n    align-items: center;\n    color: inherit;\n    font: inherit;\n    height: 100%;\n    width: 100%;\n  }\n}\n',
+        "@mixin rmd-table-cell {\n  @include rmd-typography(body-2);\n  @include rmd-table-theme(color, cell-color);\n  @include rmd-table-theme(height, cell-height);\n  @include rmd-table-theme(padding-left, cell-h-padding);\n  @include rmd-table-theme(padding-right, cell-h-padding);\n  @include rmd-table-cell-vertical-alignments;\n\n  &--header {\n    @if $rmd-table-cell-color != $rmd-table-header-cell-color {\n      @include rmd-table-theme-update-var(\n        cell-color,\n        $rmd-table-header-cell-color\n      );\n    }\n    @include rmd-typography-value(\n      subtitle-2,\n      font-weight,\n      letter-spacing,\n      line-height\n    );\n    @include rmd-utils-rtl {\n      text-align: right;\n    }\n\n    text-align: left;\n  }\n\n  // want this to come after the header since the \"default\" should be\n  // `text-align: left` but browser have `<th>` defaulted to `text-align:\n  // center`. If this is included before the `--header` state, it won't be\n  // applied\n  @include rmd-table-cell-horizontal-alignments;\n\n  &--grow {\n    width: 100%;\n  }\n\n  &--no-wrap {\n    @include rmd-typography-text-overflow-ellipsis;\n  }\n\n  &--no-padding {\n    padding: 0;\n  }\n\n  &--checkbox {\n    @include rmd-table-theme-update-var(\n      cell-h-padding,\n      $rmd-table-checkbox-padding\n    );\n  }\n\n  &--sticky {\n    // need to set a background color so the other rows/cells can be scrolled\n    // underneath.\n    @include rmd-theme(background-color, background);\n    @include rmd-utils-mouse-only {\n      &::after {\n        @include rmd-transition(standard);\n\n        transition: background-color $rmd-transition-standard-time;\n      }\n    }\n\n    // see the `::after` selector for info about border and background color,\n    // but this _should_ inherit the border from the `<tr>` only when the\n    // `--bordered` class is also enabled\n    border: inherit;\n    position: sticky;\n    will-change: transform;\n    z-index: $rmd-table-cell-sticky-z-index;\n\n    &::after {\n      // ok. fun stuff. if position sticky is set on a table that has\n      // `border-collapse: collapse`, borders will not visible on these cells.\n      // to re-enable the borders (and hover color), we can create a full-sized\n      // `::after` pseudo element that will gain the border and background-color\n      // when hovered. this probably isn't the best solution, but it works for\n      // these use-cases.\n      @include rmd-utils-full-screen(absolute);\n\n      // the border should inherit the parent border... which is inherited from\n      // the `<tr>` only when the `--bordered` class has been enabled.. Woo!...\n      border: inherit;\n      content: '';\n      pointer-events: none;\n    }\n  }\n\n  &--sticky-header {\n    @include rmd-table-theme(top, sticky-header);\n  }\n\n  &--sticky-cell {\n    @include rmd-utils-rtl {\n      @include rmd-table-theme(right, sticky-cell);\n\n      left: auto;\n    }\n    @include rmd-table-theme(left, sticky-cell);\n  }\n\n  &--sticky-above {\n    // need to increase by one more so it can cover other sticky cells\n    z-index: $rmd-table-cell-sticky-z-index + 1;\n  }\n\n  &--sticky-footer {\n    @include rmd-table-theme(bottom, sticky-footer);\n  }\n\n  &--padded {\n    @include rmd-table-theme(padding-bottom, cell-v-padding);\n    @include rmd-table-theme(padding-top, cell-v-padding);\n  }\n\n  &--no-padding {\n    // this is used with the `__size` to make a parent element\n    // (usually clickable) be the full size and height of the cell\n    padding: 0;\n  }\n\n  &__child {\n    @include rmd-table-theme(padding-left, cell-h-padding);\n    @include rmd-table-theme(padding-right, cell-h-padding);\n\n    align-items: center;\n    color: inherit;\n    font: inherit;\n    height: 100%;\n    width: 100%;\n  }\n}\n",
       type: "mixin",
     },
     "rmd-table-row": {
       name: "rmd-table-row",
       description:
         "Creates the styles for the `<tr>` element.\n\nNote: The base class actually has no styles.\n",
-      source: "packages/table/src/_mixins.scss#L230-L269",
+      source: "packages/table/src/_mixins.scss#L260-L299",
       usedBy: [{ name: "react-md-table", type: "mixin", packageName: "table" }],
       requires: [
         { name: "rmd-table-theme", type: "mixin", packageName: "table" },
@@ -361,7 +361,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-table": {
       name: "react-md-table",
       description: "Creates all the styles for the table package.\n",
-      source: "packages/table/src/_mixins.scss#L272-L298",
+      source: "packages/table/src/_mixins.scss#L302-L328",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

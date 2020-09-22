@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-elevation",
       description:
         "Returns a box shadow string for the current material design elevation. This is useful if you want to merge material design elevation with custom box shadow values as well.",
-      source: "packages/elevation/src/_functions.scss#L29-L50",
+      source: "packages/elevation/src/_functions.scss#L29-L64",
       usedBy: [
         { name: "rmd-elevation", type: "mixin", packageName: "elevation" },
         {
@@ -70,7 +70,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@function rmd-elevation($z-value, $color: $rmd-elevation-color, $opacity-boost: 0) { … }",
       sourceCode:
-        '@function rmd-elevation(\n  $z-value,\n  $color: $rmd-elevation-color,\n  $opacity-boost: 0\n) {\n  @if type-of($z-value) != "number" or not unitless($z-value) {\n    @error "$z-value must be a unitless number, but received \'#{$z-value}\'";\n  }\n\n  @if $z-value < 0 or $z-value > 24 {\n    @error "$z-value must be between 0 and 24, but received \'#{$z-value}\'";\n  }\n\n  $color: rmd-theme($color);\n  $shadow-1-value: map-get($rmd-elevation-shadow-1-map, $z-value);\n  $shadow-1-color: rgba(\n    $color,\n    $rmd-elevation-shadow-1-opacity + $opacity-boost\n  );\n\n  $shadow-2-value: map-get($rmd-elevation-shadow-2-map, $z-value);\n  $shadow-2-color: rgba(\n    $color,\n    $rmd-elevation-shadow-2-opacity + $opacity-boost\n  );\n\n  $shadow-3-value: map-get($rmd-elevation-shadow-3-map, $z-value);\n  $shadow-3-color: rgba(\n    $color,\n    $rmd-elevation-shadow-3-opacity + $opacity-boost\n  );\n\n  @return #{"#{$shadow-1-value} #{$shadow-1-color}"},\n    #{"#{$shadow-2-value} #{$shadow-2-color}"},\n    #{"#{$shadow-3-value} #{$shadow-3-color}"};\n}\n',
+        "@function rmd-elevation(\n  $z-value,\n  $color: $rmd-elevation-color,\n  $opacity-boost: 0\n) {\n  @if type-of($z-value) != 'number' or not unitless($z-value) {\n    @error \"$z-value must be a unitless number, but received '#{$z-value}'\";\n  }\n\n  @if $z-value < 0 or $z-value > 24 {\n    @error \"$z-value must be between 0 and 24, but received '#{$z-value}'\";\n  }\n\n  $color: rmd-theme($color);\n  $shadow-1-value: map-get($rmd-elevation-shadow-1-map, $z-value);\n  $shadow-1-color: rgba(\n    $color,\n    $rmd-elevation-shadow-1-opacity + $opacity-boost\n  );\n\n  $shadow-2-value: map-get($rmd-elevation-shadow-2-map, $z-value);\n  $shadow-2-color: rgba(\n    $color,\n    $rmd-elevation-shadow-2-opacity + $opacity-boost\n  );\n\n  $shadow-3-value: map-get($rmd-elevation-shadow-3-map, $z-value);\n  $shadow-3-color: rgba(\n    $color,\n    $rmd-elevation-shadow-3-opacity + $opacity-boost\n  );\n\n  @return #{'#{$shadow-1-value} #{$shadow-1-color}'},\n    #{'#{$shadow-2-value} #{$shadow-2-color}'},\n    #{'#{$shadow-3-value} #{$shadow-3-color}'};\n}\n",
       throws: [
         "$z-value must be a unitless number, but received ",
         "$z-value must be between 0 and 24, but received ",
@@ -106,7 +106,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-elevation": {
       name: "rmd-elevation",
       description: "Create the box shadow based on a z-value.",
-      source: "packages/elevation/src/_mixins.scss#L27-L29",
+      source: "packages/elevation/src/_mixins.scss#L27-L33",
       usedBy: [
         { name: "rmd-toast", type: "mixin", packageName: "alert" },
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
@@ -161,7 +161,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-elevation-transition",
       description:
         "This mixin is used to create performant box-shadow transitions between different elevations. What this does behind the scenes is update the element to have `position: relative` along with a pseudo `::before` or `::after` tag that has the new box shadow with an initial opacity set to 0. When the `$active-selectors` class or state is applied to the element, the pseudo element's opacity will be updated to 1 and it'll animate in. This is really just because it is more performant to animate opacity instead of box-shadow itself.",
-      source: "packages/elevation/src/_mixins.scss#L56-L79",
+      source: "packages/elevation/src/_mixins.scss#L60-L87",
       usedBy: [
         { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },

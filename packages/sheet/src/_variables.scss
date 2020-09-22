@@ -78,7 +78,9 @@ $rmd-sheet-max-height: 100% !default;
 /// close the sheet without selecting one of the actions.
 ///
 /// @type Number
-$rmd-sheet-touchable-max-height: calc(100% - #{$rmd-sheet-touch-margin}) !default;
+$rmd-sheet-touchable-max-height: calc(
+  100% - #{$rmd-sheet-touch-margin}
+) !default;
 
 /// The "recommended" min-height from the material design spec for bottom
 /// sheets.

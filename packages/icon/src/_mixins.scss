@@ -19,7 +19,12 @@
 /// retrieving the default value from the `rmd-icon-theme-values` map when
 /// `null`.
 @mixin rmd-icon-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-icon-theme-values, icon);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-icon-theme-values,
+    icon
+  );
 }
 
 /// Updates one of the icon's theme variables with the new value for the section
@@ -40,7 +45,12 @@
 /// should be one of the `$rmd-icon-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-icon-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-icon-theme-values, icon);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-icon-theme-values,
+    icon
+  );
 }
 
 /// Creates the base styles for icons. This should be combined with the
@@ -93,7 +103,10 @@
 /// to apply.
 /// @param {String} property [margin-left] - The property that should be used
 /// for applying the spacing
-@mixin rmd-icon-text-spacing($spacing: $rmd-icon-spacing-with-text, $property: margin-left) {
+@mixin rmd-icon-text-spacing(
+  $spacing: $rmd-icon-spacing-with-text,
+  $property: margin-left
+) {
   @if $property == 'margin-left' or $property == 'margin-right' {
     @include rmd-utils-rtl-auto($property, $spacing, 0);
   } @else {
@@ -133,25 +146,37 @@
 ) {
   @if $before-selector != null {
     #{$before-selector} {
-      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-right);
+      @include rmd-icon-text-spacing(
+        rmd-icon-theme-var(text-spacing),
+        margin-right
+      );
     }
   }
 
   @if $after-selector != null {
     #{$after-selector} {
-      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-left);
+      @include rmd-icon-text-spacing(
+        rmd-icon-theme-var(text-spacing),
+        margin-left
+      );
     }
   }
 
   @if $above-selector != null {
     #{$above-selector} {
-      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-bottom);
+      @include rmd-icon-text-spacing(
+        rmd-icon-theme-var(text-spacing),
+        margin-bottom
+      );
     }
   }
 
   @if $below-selector != null {
     #{$below-selector} {
-      @include rmd-icon-text-spacing(rmd-icon-theme-var(text-spacing), margin-top);
+      @include rmd-icon-text-spacing(
+        rmd-icon-theme-var(text-spacing),
+        margin-top
+      );
     }
   }
 }

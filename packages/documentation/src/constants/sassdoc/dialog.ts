@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-theme",
       description:
         "This function is used to quickly get one of the dialog's theme values. This is really just for the `rmd-dialog-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
-      source: "packages/dialog/src/_functions.scss#L15-L17",
+      source: "packages/dialog/src/_functions.scss#L15-L21",
       requires: [
         {
           name: "rmd-theme-get-var-value",
@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-theme-var",
       description:
         "This function is used to get one of the dialog's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-dialog-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/dialog/src/_functions.scss#L32-L34",
+      source: "packages/dialog/src/_functions.scss#L36-L43",
       usedBy: [
         { name: "rmd-dialog-container", type: "mixin", packageName: "dialog" },
       ],
@@ -86,7 +86,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-theme",
       description:
         "Creates the styles for one of the dialog's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/dialog/src/_mixins.scss#L25-L27",
+      source: "packages/dialog/src/_mixins.scss#L25-L32",
       usedBy: [
         { name: "rmd-dialog", type: "mixin", packageName: "dialog" },
         { name: "rmd-dialog-header", type: "mixin", packageName: "dialog" },
@@ -139,7 +139,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-theme-update-var",
       description:
         "Updates one of the dialog's theme variables with the new value for the section of your app.",
-      source: "packages/dialog/src/_mixins.scss#L35-L37",
+      source: "packages/dialog/src/_mixins.scss#L40-L47",
       requires: [
         {
           name: "rmd-theme-update-rmd-var",
@@ -174,7 +174,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-dialog": {
       name: "rmd-dialog",
       description: "Creates the styles for the base dialog element.\n",
-      source: "packages/dialog/src/_mixins.scss#L41-L122",
+      source: "packages/dialog/src/_mixins.scss#L51-L137",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -232,7 +232,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-dialog-header": {
       name: "rmd-dialog-header",
       description: "Creates the styles for the `DialogHeader` component.\n",
-      source: "packages/dialog/src/_mixins.scss#L126-L133",
+      source: "packages/dialog/src/_mixins.scss#L141-L148",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -249,7 +249,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-title",
       description:
         "Creates the minimal required styles for the `DialogTitle` component.\n",
-      source: "packages/dialog/src/_mixins.scss#L137-L141",
+      source: "packages/dialog/src/_mixins.scss#L152-L156",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -266,7 +266,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-content",
       description:
         "Creates the styles for the `DialogContent` component. It is set up so that it will grow to fill the remaining space within the `Dialog` and the `DialogHeader` and `DialogFooter` components will be fixed to the top and bottom edges respectively. It will also include scrolling by default.\n",
-      source: "packages/dialog/src/_mixins.scss#L148-L156",
+      source: "packages/dialog/src/_mixins.scss#L163-L171",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -284,7 +284,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-footer",
       description:
         "Creates the styles for the `DialogFooter` component. It has styles built-in to position the actions in different locations.\n",
-      source: "packages/dialog/src/_mixins.scss#L161-L185",
+      source: "packages/dialog/src/_mixins.scss#L176-L200",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -301,7 +301,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-container",
       description:
         "When the dialog is not set to be full page, the dialog gets wrapped in this container component so that it can be centered within the page using flexbox.\n\nIn the past versions, I did some old-school centering logic with `left`,\n`top`, and `transform`, but unfortunately this adds text blur in some browsers and made the transitions harder to customize since you would always need to apply the transforms at each stage of the transition. Using a flexbox approach fixes this.\n",
-      source: "packages/dialog/src/_mixins.scss#L197-L206",
+      source: "packages/dialog/src/_mixins.scss#L212-L222",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -324,7 +324,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-dialog-overlay",
       description:
         "Creates the styles for the dialog's overlay. This really requires the base styles and component from the overlay package and adds a few changes to help with nested dialogs.\n",
-      source: "packages/dialog/src/_mixins.scss#L212-L216",
+      source: "packages/dialog/src/_mixins.scss#L228-L232",
       usedBy: [
         { name: "react-md-dialog", type: "mixin", packageName: "dialog" },
       ],
@@ -340,7 +340,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-dialog": {
       name: "react-md-dialog",
       description: "Creates all the styles for the dialog package.\n",
-      source: "packages/dialog/src/_mixins.scss#L219-L249",
+      source: "packages/dialog/src/_mixins.scss#L235-L265",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

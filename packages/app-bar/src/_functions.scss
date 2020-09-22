@@ -13,7 +13,11 @@
 /// keys to get a value for.
 /// @return {Color|String|Number} one of the app-bar's theme values.
 @function rmd-app-bar-theme($theme-style) {
-  @return rmd-theme-get-var-value($theme-style, $rmd-app-bar-theme-values, app-bar);
+  @return rmd-theme-get-var-value(
+    $theme-style,
+    $rmd-app-bar-theme-values,
+    app-bar
+  );
 }
 
 /// This function is used to get one of the app-bar's theme variables as a CSS
@@ -30,5 +34,10 @@
 /// variables should always exist.
 /// @return {String} one of the app-bar's theme values as a css variable.
 @function rmd-app-bar-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-app-bar-theme-values, app-bar, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-app-bar-theme-values,
+    app-bar,
+    $fallback
+  );
 }

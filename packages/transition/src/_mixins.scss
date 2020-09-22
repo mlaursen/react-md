@@ -100,7 +100,11 @@
   $shadow-target: if($before, '&::before', '&::after');
 
   #{$shadow-target} {
-    @include rmd-transition-pseudo-shadow($end-shadow, $duration, $pseudo-z-index);
+    @include rmd-transition-pseudo-shadow(
+      $end-shadow,
+      $duration,
+      $pseudo-z-index
+    );
   }
 
   // remove the leading '&'

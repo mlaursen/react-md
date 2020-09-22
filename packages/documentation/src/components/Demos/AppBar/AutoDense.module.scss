@@ -3,7 +3,10 @@
 
 .container {
   @include rmd-utils-desktop-media {
-    @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
+    @include rmd-app-bar-theme-update-var(
+      height,
+      rmd-app-bar-theme-var(dense-height)
+    );
 
     .prominent {
       @include rmd-app-bar-theme-update-var(

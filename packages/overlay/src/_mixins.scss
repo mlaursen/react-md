@@ -20,7 +20,12 @@
 /// retrieving the default value from the `rmd-overlay-theme-values` map when
 /// `null`.
 @mixin rmd-overlay-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-overlay-theme-values, overlay);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-overlay-theme-values,
+    overlay
+  );
 }
 
 /// Updates one of the overlay's theme variables with the new value for the
@@ -30,7 +35,12 @@
 /// should be one of the `$rmd-overlay-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-overlay-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-overlay-theme-values, overlay);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-overlay-theme-values,
+    overlay
+  );
 }
 
 /// Creates the styles for the overlay component.

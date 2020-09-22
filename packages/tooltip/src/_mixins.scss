@@ -20,7 +20,12 @@
 /// retrieving the default value from the `rmd-tooltip-theme-values` map when
 /// `null`.
 @mixin rmd-tooltip-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-tooltip-theme-values, tooltip);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-tooltip-theme-values,
+    tooltip
+  );
 }
 
 /// Updates one of the tooltip's theme variables with the new value for the
@@ -30,7 +35,12 @@
 /// should be one of the `$rmd-tooltip-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-tooltip-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-tooltip-theme-values, tooltip);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-tooltip-theme-values,
+    tooltip
+  );
 }
 
 /// Creates the base styles for a tooltip.
@@ -68,9 +78,18 @@
 
 /// Creates the dense tooltip style overrides.
 @mixin rmd-tooltip-dense-theme {
-  @include rmd-tooltip-theme-update-var(font-size, rmd-tooltip-theme-var(dense-font-size));
-  @include rmd-tooltip-theme-update-var(line-height, rmd-tooltip-theme-var(dense-line-height));
-  @include rmd-tooltip-theme-update-var(min-height, rmd-tooltip-theme-var(dense-min-height));
+  @include rmd-tooltip-theme-update-var(
+    font-size,
+    rmd-tooltip-theme-var(dense-font-size)
+  );
+  @include rmd-tooltip-theme-update-var(
+    line-height,
+    rmd-tooltip-theme-var(dense-line-height)
+  );
+  @include rmd-tooltip-theme-update-var(
+    min-height,
+    rmd-tooltip-theme-var(dense-min-height)
+  );
   @include rmd-tooltip-theme-update-var(
     horizontal-padding,
     rmd-tooltip-theme-var(dense-horizontal-padding)
@@ -79,7 +98,10 @@
     vertical-padding,
     rmd-tooltip-theme-var(dense-vertical-padding)
   );
-  @include rmd-tooltip-theme-update-var(spacing, rmd-tooltip-theme-var(dense-spacing));
+  @include rmd-tooltip-theme-update-var(
+    spacing,
+    rmd-tooltip-theme-var(dense-spacing)
+  );
 }
 
 /// Creates all the styles for a tooltip element. This should be used within a
@@ -96,7 +118,9 @@
   }
 
   &--above {
-    transform: translateY(rmd-utils-negate-var(rmd-tooltip-theme-var(transition-distance)));
+    transform: translateY(
+      rmd-utils-negate-var(rmd-tooltip-theme-var(transition-distance))
+    );
   }
 
   &--below {
@@ -104,7 +128,9 @@
   }
 
   &--left {
-    transform: translateX(rmd-utils-negate-var(rmd-tooltip-theme-var(transition-distance)));
+    transform: translateX(
+      rmd-utils-negate-var(rmd-tooltip-theme-var(transition-distance))
+    );
   }
 
   &--right {
@@ -119,7 +145,8 @@
   &--enter {
     @include rmd-transition(deceleration);
 
-    transition: opacity $rmd-tooltip-enter-duration, transform $rmd-tooltip-enter-duration * 2;
+    transition: opacity $rmd-tooltip-enter-duration,
+      transform $rmd-tooltip-enter-duration * 2;
   }
 
   &--exit {

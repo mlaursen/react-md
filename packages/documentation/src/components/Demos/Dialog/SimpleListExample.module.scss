@@ -2,7 +2,10 @@
 @import '~@react-md/dialog/dist/variables';
 
 .list {
-  @include rmd-list-theme-update-var(item-horizontal-padding, $rmd-dialog-header-padding);
+  @include rmd-list-theme-update-var(
+    item-horizontal-padding,
+    $rmd-dialog-header-padding
+  );
 
   padding-top: 0;
 }

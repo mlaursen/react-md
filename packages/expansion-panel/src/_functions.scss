@@ -14,7 +14,11 @@
 /// map keys to get a value for.
 /// @return {Color|String|Number} one of the expansion-panel's theme values.
 @function rmd-expansion-panel-theme($theme-style) {
-  @return rmd-theme-get-var-value($theme-style, $rmd-expansion-panel-theme-values, expansion-panel);
+  @return rmd-theme-get-var-value(
+    $theme-style,
+    $rmd-expansion-panel-theme-values,
+    expansion-panel
+  );
 }
 
 /// This function is used to get one of the expansion-panel's theme variables as

@@ -29,5 +29,10 @@
 /// variables should always exist.
 /// @return {String} one of the card's theme values as a css variable.
 @function rmd-card-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-card-theme-values, card, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-card-theme-values,
+    card,
+    $fallback
+  );
 }

@@ -47,7 +47,8 @@ $rmd-app-bar-keyline: 1rem !default;
 /// @require $rmd-icon-size
 /// @require $rmd-button-icon-size
 /// @type Number
-$rmd-app-bar-nav-margin: $rmd-app-bar-keyline - (($rmd-button-icon-size - $rmd-icon-size) / 2);
+$rmd-app-bar-nav-margin: $rmd-app-bar-keyline -
+  (($rmd-button-icon-size - $rmd-icon-size) / 2);
 
 /// The keyline for the `AppBarTitle` to use when used with the `AppBarNav` or
 /// the `offset` prop is enabled.
@@ -59,8 +60,8 @@ $rmd-app-bar-title-keyline: 4.5rem !default;
 ///
 /// @require $rmd-button-icon-size
 /// @type Number
-$rmd-app-bar-title-nav-margin: $rmd-app-bar-title-keyline - $rmd-app-bar-nav-margin -
-  $rmd-button-icon-size;
+$rmd-app-bar-title-nav-margin: $rmd-app-bar-title-keyline -
+  $rmd-app-bar-nav-margin - $rmd-button-icon-size;
 
 /// The amount of margin to apply to the first and last element within the app
 /// bar (per row basis). This will automatically be applied if using the
@@ -173,8 +174,10 @@ $rmd-app-bar-theme-values: (
   secondary: $rmd-app-bar-secondary-background-color,
   on-secondary: $rmd-app-bar-secondary-color,
   default-background-color: $rmd-app-bar-default-background-color,
-  default-light-background-color: $rmd-app-bar-default-light-theme-background-color,
-  default-dark-background-color: $rmd-app-bar-default-dark-theme-background-color,
+  default-light-background-color:
+    $rmd-app-bar-default-light-theme-background-color,
+  default-dark-background-color:
+    $rmd-app-bar-default-dark-theme-background-color,
   default-color: $rmd-app-bar-default-color,
   default-light-color: $rmd-app-bar-default-light-theme-color,
   default-dark-color: $rmd-app-bar-default-dark-theme-color,

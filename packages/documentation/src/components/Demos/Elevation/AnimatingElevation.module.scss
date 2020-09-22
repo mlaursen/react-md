@@ -28,10 +28,20 @@
   $end-shadow: rmd-elevation(8), $focus-box-shadow;
 
   // create a shadow using the :;before pseudo element for the focus effect
-  @include rmd-transition-shadow-transition($start-shadow, $end-shadow, '&:focus');
+  @include rmd-transition-shadow-transition(
+    $start-shadow,
+    $end-shadow,
+    '&:focus'
+  );
 
   // create a shadow using the ::after pseudo element for the hover effect. They can't
   // be done on the same one as the hover effect has a different box shadow value
   // than the focus effect and would override the focus shadow.
-  @include rmd-elevation-transition(none, 8, '&:not(:focus):hover', false, 0.5s);
+  @include rmd-elevation-transition(
+    none,
+    8,
+    '&:not(:focus):hover',
+    false,
+    0.5s
+  );
 }

@@ -35,8 +35,9 @@
 /// enabled to generate any styles.
 @mixin react-md-form {
   $omit: (
-    addon-top label-left-offset label-top-offset label-active-background-color label-active-padding
-      text-offset text-padding-left text-padding-right text-padding-top
+    addon-top label-left-offset label-top-offset label-active-background-color
+      label-active-padding text-offset text-padding-left text-padding-right
+      text-padding-top
   );
   @include rmd-theme-create-root-theme($rmd-form-theme-values, form, $omit);
 

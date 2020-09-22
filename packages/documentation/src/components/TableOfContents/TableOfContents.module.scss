@@ -60,7 +60,8 @@ $toc-z-index: 9;
 
   opacity: 1;
   transform: scale(1);
-  transition: opacity $rmd-dialog-enter-duration, transform $rmd-dialog-enter-duration;
+  transition: opacity $rmd-dialog-enter-duration,
+    transform $rmd-dialog-enter-duration;
 }
 
 .exit {
@@ -73,7 +74,8 @@ $toc-z-index: 9;
 
   opacity: 0;
   transform: scale(0);
-  transition: opacity $rmd-dialog-leave-duration, transform $rmd-dialog-leave-duration;
+  transition: opacity $rmd-dialog-leave-duration,
+    transform $rmd-dialog-leave-duration;
 }
 
 .header {

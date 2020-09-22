@@ -165,7 +165,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "media",
       code: "@mixin rmd-media-overlay-position($position) { … }",
       sourceCode:
-        '@mixin rmd-media-overlay-position($position) {\n  $position: rmd-utils-validate(\n    $rmd-media-overlay-positions,\n    $position,\n    "rmd-media-overlay-positions"\n  );\n\n  @if $position == left or $position == right or $position == center {\n    bottom: 0;\n    top: 0;\n    width: $rmd-media-overlay-horizontal-width;\n\n    @if $position == left {\n      left: 0;\n    } @else if $position == right {\n      right: 0;\n    } @else if $position == center {\n      left: 50%;\n      transform: translateX(-50%);\n    }\n  } @else if $position == top or $position == bottom or $position == middle {\n    left: 0;\n    right: 0;\n\n    @if $position == top {\n      top: 0;\n    } @else if $position == bottom {\n      bottom: 0;\n    } @else if $position == middle {\n      top: 50%;\n      transform: translateY(-50%);\n    }\n  } @else if $position == absolute-center {\n    left: 50%;\n    top: 50%;\n    transform: translateX(-50%) translateY(-50%);\n  }\n}\n',
+        "@mixin rmd-media-overlay-position($position) {\n  $position: rmd-utils-validate(\n    $rmd-media-overlay-positions,\n    $position,\n    'rmd-media-overlay-positions'\n  );\n\n  @if $position == left or $position == right or $position == center {\n    bottom: 0;\n    top: 0;\n    width: $rmd-media-overlay-horizontal-width;\n\n    @if $position == left {\n      left: 0;\n    } @else if $position == right {\n      right: 0;\n    } @else if $position == center {\n      left: 50%;\n      transform: translateX(-50%);\n    }\n  } @else if $position == top or $position == bottom or $position == middle {\n    left: 0;\n    right: 0;\n\n    @if $position == top {\n      top: 0;\n    } @else if $position == bottom {\n      bottom: 0;\n    } @else if $position == middle {\n      top: 50%;\n      transform: translateY(-50%);\n    }\n  } @else if $position == absolute-center {\n    left: 50%;\n    top: 50%;\n    transform: translateX(-50%) translateY(-50%);\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -179,7 +179,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-media-overlay",
       description:
         "Creates the media overlay styles. All this really does is update the theme background and text colors based on the provided background color for the overlay element.",
-      source: "packages/media/src/_mixins.scss#L153-L178",
+      source: "packages/media/src/_mixins.scss#L153-L188",
       usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       requires: [
         { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
@@ -206,7 +206,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-media-overlay($background-color: $rmd-media-overlay-background-color, $color: null) { … }",
       sourceCode:
-        '@mixin rmd-media-overlay(\n  $background-color: $rmd-media-overlay-background-color,\n  $color: null\n) {\n  @if $color == null {\n    $light: rmd-theme-tone($background-color) == "light";\n    $color: rmd-theme-var(\n      if($light, text-primary-on-light, text-primary-on-dark)\n    );\n    $secondary-color: rmd-theme-var(\n      if($light, text-secondary-on-light, text-secondary-on-dark)\n    );\n\n    @include rmd-theme-update-var(\n      text-secondary-on-background,\n      $secondary-color\n    );\n  }\n\n  @include rmd-theme-update-var(background, $background-color);\n  @include rmd-theme-update-var(text-primary-on-background, $color);\n  @include rmd-theme(background-color, background);\n  @include rmd-theme(color, text-primary-on-background);\n\n  padding: $rmd-media-overlay-padding;\n  position: absolute;\n  z-index: 1;\n\n  @if $rmd-media-overlay-positions != null {\n    @each $position in $rmd-media-overlay-positions {\n      &--#{$position} {\n        @include rmd-media-overlay-position($position);\n      }\n    }\n  }\n}\n',
+        "@mixin rmd-media-overlay(\n  $background-color: $rmd-media-overlay-background-color,\n  $color: null\n) {\n  @if $color == null {\n    $light: rmd-theme-tone($background-color) == 'light';\n    $color: rmd-theme-var(\n      if($light, text-primary-on-light, text-primary-on-dark)\n    );\n    $secondary-color: rmd-theme-var(\n      if($light, text-secondary-on-light, text-secondary-on-dark)\n    );\n\n    @include rmd-theme-update-var(\n      text-secondary-on-background,\n      $secondary-color\n    );\n  }\n\n  @include rmd-theme-update-var(background, $background-color);\n  @include rmd-theme-update-var(text-primary-on-background, $color);\n  @include rmd-theme(background-color, background);\n  @include rmd-theme(color, text-primary-on-background);\n\n  padding: $rmd-media-overlay-padding;\n  position: absolute;\n  z-index: 1;\n\n  @if $rmd-media-overlay-positions != null {\n    @each $position in $rmd-media-overlay-positions {\n      &--#{$position} {\n        @include rmd-media-overlay-position($position);\n      }\n    }\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -228,7 +228,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-media-container",
       description:
         "Creates the styles for a responsive media container. This probably won't be used by users of this library.\n",
-      source: "packages/media/src/_mixins.scss#L182-L210",
+      source: "packages/media/src/_mixins.scss#L192-L220",
       usedBy: [{ name: "react-md-media", type: "mixin", packageName: "media" }],
       requires: [
         {
@@ -263,7 +263,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-media": {
       name: "react-md-media",
       description: "Creates all the styles for the media package.\n",
-      source: "packages/media/src/_mixins.scss#L213-L225",
+      source: "packages/media/src/_mixins.scss#L223-L235",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         { name: "rmd-media-container", type: "mixin", packageName: "media" },
@@ -364,7 +364,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-media-overlay-positions",
       description:
         "The positions for the media overlay. This can be set to an empty list or null if you'd like to save a few bytes by not generating the styles for some positions.\n",
-      source: "packages/media/src/_variables.scss#L54",
+      source: "packages/media/src/_variables.scss#L54-L56",
       usedBy: [
         {
           name: "rmd-media-overlay-position",
@@ -375,7 +375,7 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "media",
       type: "List",
-      value: "(top right bottom left middle center absolute-center)",
+      value: "(\n  top right bottom left middle center absolute-center\n)",
       overridable: true,
     },
   },

@@ -4,7 +4,10 @@
 @import '~@react-md/overlay/dist/mixins';
 
 .overlay {
-  @include rmd-overlay-theme-update-var(background-color, rgba($rmd-blue-500, 0.42));
+  @include rmd-overlay-theme-update-var(
+    background-color,
+    rgba($rmd-blue-500, 0.42)
+  );
 
   align-items: center;
   display: flex;

@@ -27,7 +27,11 @@ $rmd-avatar-background-color: $rmd-grey-700 !default;
 /// @require $rmd-white-base
 /// @type Color
 $rmd-avatar-border-color: rgba(
-  if(rmd-theme-tone($rmd-theme-background) == light, $rmd-black-base, $rmd-white-base),
+  if(
+    rmd-theme-tone($rmd-theme-background) == light,
+    $rmd-black-base,
+    $rmd-white-base
+  ),
   0.12
 ) !default;
 

@@ -8,7 +8,10 @@
 $rmd-theme-dark-elevation: true;
 
 .button {
-  @include rmd-progress-theme-update-var(circular-size, rmd-icon-theme-var(size));
+  @include rmd-progress-theme-update-var(
+    circular-size,
+    rmd-icon-theme-var(size)
+  );
 
   // just to make the demos look a bit nicer
   margin: 1rem;

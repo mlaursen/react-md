@@ -14,7 +14,11 @@
 /// keys to get a value for.
 /// @return {Color|String|Number} one of the tooltip's theme values.
 @function rmd-tooltip-theme($theme-style) {
-  @return rmd-theme-get-var-value($theme-style, $rmd-tooltip-theme-values, tooltip);
+  @return rmd-theme-get-var-value(
+    $theme-style,
+    $rmd-tooltip-theme-values,
+    tooltip
+  );
 }
 
 /// This function is used to get one of the tooltip's theme variables as a CSS
@@ -31,7 +35,12 @@
 /// variables should always exist.
 /// @return {String} one of the tooltip's theme values as a css variable.
 @function rmd-tooltip-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-tooltip-theme-values, tooltip, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-tooltip-theme-values,
+    tooltip,
+    $fallback
+  );
 }
 
 /// A small util that will rename the `above` and `below` positions of the
@@ -41,7 +50,11 @@
 /// @param {String} position - the position to change.
 /// @return {String} the position as a valid style name.
 @function rmd-tooltip-position-to-property($position) {
-  $position: rmd-utils-validate($rmd-tooltip-position-values, $position, 'tooltip position');
+  $position: rmd-utils-validate(
+    $rmd-tooltip-position-values,
+    $position,
+    'tooltip position'
+  );
 
   @if $position == 'below' {
     @return 'bottom';
@@ -59,7 +72,11 @@
 /// @param {String} position - One of the `$rmd-tooltip-position-values` strings
 /// @return {String} the position inversed.
 @function rmd-tooltip-inverse-position($position) {
-  $position: rmd-utils-validate($rmd-tooltip-position-values, $position, 'tooltip position');
+  $position: rmd-utils-validate(
+    $rmd-tooltip-position-values,
+    $position,
+    'tooltip position'
+  );
 
   @if $position == 'left' {
     @return 'right';

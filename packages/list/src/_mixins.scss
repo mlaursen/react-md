@@ -26,7 +26,12 @@
 /// retrieving the default value from the `rmd-list-theme-values` map when
 /// `null`.
 @mixin rmd-list-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-list-theme-values, list);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-list-theme-values,
+    list
+  );
 }
 
 /// Updates one of the list's theme variables with the new value for the section
@@ -36,7 +41,12 @@
 /// should be one of the `$rmd-list-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-list-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-list-theme-values, list);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-list-theme-values,
+    list
+  );
 }
 
 /// A "general" use mixin that will remove the default browser styles for a list
@@ -57,8 +67,14 @@
 ///     @include rmd-list-dense-theme;
 ///   }
 @mixin rmd-list-dense-theme {
-  @include rmd-list-theme-update-var(font-size, rmd-list-theme-var(dense-font-size));
-  @include rmd-list-theme-update-var(vertical-padding, rmd-list-theme-var(dense-vertical-padding));
+  @include rmd-list-theme-update-var(
+    font-size,
+    rmd-list-theme-var(dense-font-size)
+  );
+  @include rmd-list-theme-update-var(
+    vertical-padding,
+    rmd-list-theme-var(dense-vertical-padding)
+  );
   @include rmd-list-theme-update-var(
     horizontal-padding,
     rmd-list-theme-var(dense-horizontal-padding)
@@ -68,17 +84,22 @@
 /// Creates the styles for a list in react-md.
 @mixin rmd-list {
   @include rmd-typography(subtitle-1);
-  @include rmd-divider-theme-update-var(inset, rmd-list-theme-var(text-keyline));
+  @include rmd-divider-theme-update-var(
+    inset,
+    rmd-list-theme-var(text-keyline)
+  );
   @include rmd-list-unstyled(null);
   @include rmd-list-theme(font-size);
 
   line-height: $rmd-list-line-height;
-  padding: rmd-list-theme-var(vertical-padding) rmd-list-theme-var(horizontal-padding);
+  padding: rmd-list-theme-var(vertical-padding)
+    rmd-list-theme-var(horizontal-padding);
 
   &--horizontal {
     display: flex;
     flex-wrap: nowrap;
-    padding: rmd-list-theme-var(horizontal-padding) rmd-list-theme-var(vertical-padding);
+    padding: rmd-list-theme-var(horizontal-padding)
+      rmd-list-theme-var(vertical-padding);
   }
 
   &--dense {
@@ -93,7 +114,8 @@
 
   align-items: center;
   display: flex;
-  padding: rmd-list-theme-var(item-vertical-padding) rmd-list-theme-var(item-horizontal-padding);
+  padding: rmd-list-theme-var(item-vertical-padding)
+    rmd-list-theme-var(item-horizontal-padding);
   position: relative;
 }
 
@@ -104,7 +126,10 @@
 ///     @include rmd-list-item-dense-theme;
 ///   }
 @mixin rmd-list-item-dense-theme {
-  @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(dense-item-height));
+  @include rmd-list-theme-update-var(
+    item-height,
+    rmd-list-theme-var(dense-item-height)
+  );
   @include rmd-list-theme-update-var(
     item-medium-height,
     rmd-list-theme-var(dense-item-medium-height)
@@ -140,8 +165,13 @@
 ///
 /// @param {String|Number} subtract - The amount that should be subracted
 @mixin rmd-list-item-addon-spacing($subtract) {
-  $to-keyline: #{rmd-list-theme-var(text-keyline)} - #{rmd-list-theme-var(item-horizontal-padding)};
-  @include rmd-icon-theme-update-var(text-spacing, calc(#{$to-keyline} - #{$subtract}));
+  $to-keyline: #{rmd-list-theme-var(text-keyline)} - #{rmd-list-theme-var(
+      item-horizontal-padding
+    )};
+  @include rmd-icon-theme-update-var(
+    text-spacing,
+    calc(#{$to-keyline} - #{$subtract})
+  );
 }
 
 /// Creates all the styles for a list item.
@@ -165,19 +195,31 @@
   }
 
   &--medium {
-    @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-medium-height));
+    @include rmd-list-theme-update-var(
+      item-height,
+      rmd-list-theme-var(item-medium-height)
+    );
   }
 
   &--large {
-    @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-large-height));
+    @include rmd-list-theme-update-var(
+      item-height,
+      rmd-list-theme-var(item-large-height)
+    );
   }
 
   &--extra-large {
-    @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-extra-large-height));
+    @include rmd-list-theme-update-var(
+      item-height,
+      rmd-list-theme-var(item-extra-large-height)
+    );
   }
 
   &--three-lines {
-    @include rmd-list-theme-update-var(item-height, rmd-list-theme-var(item-three-line-height));
+    @include rmd-list-theme-update-var(
+      item-height,
+      rmd-list-theme-var(item-three-line-height)
+    );
 
     .rmd-list-item__text--secondary {
       @include rmd-typography-line-clamp;
@@ -231,12 +273,18 @@
     }
 
     &--media {
-      @include rmd-icon-theme-update-var(text-spacing, rmd-list-theme-var(media-spacing));
+      @include rmd-icon-theme-update-var(
+        text-spacing,
+        rmd-list-theme-var(media-spacing)
+      );
       @include rmd-list-theme(width, media-size);
     }
 
     &--media-large {
-      @include rmd-list-theme-update-var(media-size, rmd-list-theme-var(media-large-size));
+      @include rmd-list-theme-update-var(
+        media-size,
+        rmd-list-theme-var(media-large-size)
+      );
     }
   }
 }

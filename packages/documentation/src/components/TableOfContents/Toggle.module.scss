@@ -14,7 +14,9 @@ $toc-z-index: 9;
   @include rmd-utils-rtl-auto(right, $margin);
 
   position: fixed;
-  top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin + $size-difference});
+  top: calc(
+    #{rmd-app-bar-theme-var(height)} + #{$page-margin + $size-difference}
+  );
   z-index: $toc-z-index + 1;
 
   &[disabled] {

@@ -30,5 +30,10 @@
 /// variables should always exist.
 /// @return {String} one of the link's theme values as a css variable.
 @function rmd-list-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-list-theme-values, list, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-list-theme-values,
+    list,
+    $fallback
+  );
 }

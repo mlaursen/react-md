@@ -27,7 +27,12 @@
 /// retrieving the default value from the `rmd-button-theme-values` map when
 /// `null`.
 @mixin rmd-button-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-button-theme-values, button);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-button-theme-values,
+    button
+  );
 }
 
 /// Updates one of the button's theme variables with the new value for the
@@ -37,7 +42,12 @@
 /// should be one of the `$rmd-button-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-button-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-button-theme-values, button);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-button-theme-values,
+    button
+  );
 }
 
 /// A simple mixin to remove most of the styles for a button and reset them
@@ -95,7 +105,8 @@
   @include rmd-button-theme(min-height, text-height);
   @include rmd-button-theme(min-width, text-min-width);
 
-  padding: rmd-button-theme-var(text-vertical-padding) rmd-button-theme-var(text-horizontal-padding);
+  padding: rmd-button-theme-var(text-vertical-padding)
+    rmd-button-theme-var(text-horizontal-padding);
 }
 
 /// Creates the base styles for an icon button.
@@ -120,8 +131,14 @@
   }
   @include rmd-button-base;
   @include rmd-states-surface;
-  @if $rmd-button-circular-progress-size != null and mixin-exists(rmd-progress-theme-update-var) {
-    @include rmd-progress-theme-update-var(circular-size, $rmd-button-circular-progress-size);
+  @if $rmd-button-circular-progress-size !=
+    null and
+    mixin-exists(rmd-progress-theme-update-var)
+  {
+    @include rmd-progress-theme-update-var(
+      circular-size,
+      $rmd-button-circular-progress-size
+    );
   }
 
   &--text {
@@ -138,7 +155,10 @@
   }
 
   &--contained {
-    @include rmd-button-theme-update-var(background-color, rmd-theme-var(surface));
+    @include rmd-button-theme-update-var(
+      background-color,
+      rmd-theme-var(surface)
+    );
     @include rmd-elevation-transition(
       $rmd-button-contained-resting-elevation,
       $rmd-button-contained-pressed-elevation,
@@ -152,12 +172,21 @@
   }
 
   &--disabled {
-    @include rmd-button-theme-update-var(color, rmd-theme-var(text-disabled-on-background));
-    @include rmd-button-theme-update-var(outline, rmd-theme-var(text-disabled-on-background));
+    @include rmd-button-theme-update-var(
+      color,
+      rmd-theme-var(text-disabled-on-background)
+    );
+    @include rmd-button-theme-update-var(
+      outline,
+      rmd-theme-var(text-disabled-on-background)
+    );
   }
 
   &--primary {
-    @include rmd-button-theme-update-var(background-color, rmd-theme-var(primary));
+    @include rmd-button-theme-update-var(
+      background-color,
+      rmd-theme-var(primary)
+    );
     @include rmd-button-theme-update-var(color, rmd-theme-var(on-primary));
   }
 
@@ -167,7 +196,10 @@
   }
 
   &--secondary {
-    @include rmd-button-theme-update-var(background-color, rmd-theme-var(secondary));
+    @include rmd-button-theme-update-var(
+      background-color,
+      rmd-theme-var(secondary)
+    );
     @include rmd-button-theme-update-var(color, rmd-theme-var(on-secondary));
   }
 
@@ -177,7 +209,10 @@
   }
 
   &--warning {
-    @include rmd-button-theme-update-var(background-color, rmd-theme-var(warning));
+    @include rmd-button-theme-update-var(
+      background-color,
+      rmd-theme-var(warning)
+    );
     @include rmd-button-theme-update-var(color, rmd-theme-var(on-warning));
   }
 
@@ -187,7 +222,10 @@
   }
 
   &--error {
-    @include rmd-button-theme-update-var(background-color, rmd-theme-var(error));
+    @include rmd-button-theme-update-var(
+      background-color,
+      rmd-theme-var(error)
+    );
     @include rmd-button-theme-update-var(color, rmd-theme-var(on-error));
   }
 
@@ -204,7 +242,10 @@
 /// different parts with `:global` and `:local`.
 @mixin rmd-button-unstyled($css-modules: false) {
   @include rmd-button-reset;
-  @include rmd-states-focus-shadow($create-pseudo: true, $css-modules: $css-modules);
+  @include rmd-states-focus-shadow(
+    $create-pseudo: true,
+    $css-modules: $css-modules
+  );
 
   display: inline-flex;
   position: relative;

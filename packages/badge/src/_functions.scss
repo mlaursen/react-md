@@ -30,5 +30,10 @@
 /// variables should always exist.
 /// @return {String} one of the badge's theme values as a css variable.
 @function rmd-badge-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-badge-theme-values, badge, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-badge-theme-values,
+    badge,
+    $fallback
+  );
 }

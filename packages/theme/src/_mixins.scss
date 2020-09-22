@@ -27,7 +27,12 @@
 /// @param {String} theme-style - The type of theme style to use. This should be
 /// one of the `$rmd-theme-values` or a literal color value.
 @mixin rmd-theme($property, $theme-style) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-theme-values, theme);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-theme-values,
+    theme
+  );
 }
 
 /// This is an extremely simple mixin that will allow you to quickly set or
@@ -47,7 +52,12 @@
 /// should be one of the keys of `$rmd-theme-values` map.
 /// @param {Color} value - The updated color value to apply.
 @mixin rmd-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-theme-values, theme);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-theme-values,
+    theme
+  );
 }
 
 /// This mixin should normally be used with the `rmd-elevation` mixin to change
@@ -72,7 +82,10 @@
         }
       }
     } @else {
-      @include rmd-utils-optional-css-modules($rmd-theme-dark-class, $css-modules) {
+      @include rmd-utils-optional-css-modules(
+        $rmd-theme-dark-class,
+        $css-modules
+      ) {
         @include rmd-theme-update-var(
           background,
           map-get($rmd-theme-dark-elevation-colors, $z-value)
@@ -92,29 +105,47 @@
   @include rmd-theme-update-var(background, $rmd-theme-light-background);
   @include rmd-theme-update-var(surface, $rmd-theme-light-surface);
   @include rmd-theme-update-var(on-surface, $rmd-black-base);
-  @include rmd-theme-update-var(text-primary-on-background, $rmd-theme-primary-text-on-light-color);
+  @include rmd-theme-update-var(
+    text-primary-on-background,
+    $rmd-theme-primary-text-on-light-color
+  );
   @include rmd-theme-update-var(
     text-secondary-on-background,
     $rmd-theme-secondary-text-on-light-color
   );
-  @include rmd-theme-update-var(text-hint-on-background, $rmd-theme-hint-text-on-light-color);
+  @include rmd-theme-update-var(
+    text-hint-on-background,
+    $rmd-theme-hint-text-on-light-color
+  );
   @include rmd-theme-update-var(
     text-disabled-on-background,
     $rmd-theme-disabled-text-on-light-color
   );
-  @include rmd-theme-update-var(text-icon-on-background, $rmd-theme-icon-on-light-color);
+  @include rmd-theme-update-var(
+    text-icon-on-background,
+    $rmd-theme-icon-on-light-color
+  );
 
   @if mixin-exists(rmd-app-bar-theme-update-var) {
     @include rmd-app-bar-theme-update-var(
       default-background-color,
       $rmd-app-bar-default-light-theme-background-color
     );
-    @include rmd-app-bar-theme-update-var(default-color, $rmd-app-bar-default-light-theme-color);
+    @include rmd-app-bar-theme-update-var(
+      default-color,
+      $rmd-app-bar-default-light-theme-color
+    );
   }
 
   @if mixin-exists(rmd-card-theme-update-var) {
-    @include rmd-card-theme-update-var(color, $rmd-theme-primary-text-on-light-color);
-    @include rmd-card-theme-update-var(secondary-color, $rmd-theme-secondary-text-on-light-color);
+    @include rmd-card-theme-update-var(
+      color,
+      $rmd-theme-primary-text-on-light-color
+    );
+    @include rmd-card-theme-update-var(
+      secondary-color,
+      $rmd-theme-secondary-text-on-light-color
+    );
   }
 
   @if mixin-exists(rmd-chip-theme-update-var) {
@@ -122,7 +153,10 @@
       solid-background-color,
       $rmd-chip-solid-light-background-color
     );
-    @include rmd-chip-theme-update-var(solid-color, $rmd-chip-solid-light-color);
+    @include rmd-chip-theme-update-var(
+      solid-color,
+      $rmd-chip-solid-light-color
+    );
     @include rmd-chip-theme-update-var(
       solid-disabled,
       $rmd-chip-solid-light-disabled-background-color
@@ -131,15 +165,24 @@
       outline-background-color,
       $rmd-chip-outline-light-background-color
     );
-    @include rmd-chip-theme-update-var(outline-color, $rmd-chip-outline-light-color);
+    @include rmd-chip-theme-update-var(
+      outline-color,
+      $rmd-chip-outline-light-color
+    );
   }
 
   @if mixin-exists(rmd-divider-theme-update-var) {
-    @include rmd-divider-theme-update-var(background-color, $rmd-divider-background-color-on-light);
+    @include rmd-divider-theme-update-var(
+      background-color,
+      $rmd-divider-background-color-on-light
+    );
   }
 
   @if mixin-exists(rmd-form-theme-update-var) {
-    @include rmd-form-theme-update-var(text-border-color, $rmd-text-field-light-border-color);
+    @include rmd-form-theme-update-var(
+      text-border-color,
+      $rmd-text-field-light-border-color
+    );
     @include rmd-form-theme-update-var(
       text-border-hover-color,
       $rmd-text-field-light-border-hover-color
@@ -151,10 +194,22 @@
   }
 
   @if mixin-exists(rmd-states-theme-update-var) {
-    @include rmd-states-theme-update-var(hover-color, $rmd-states-light-theme-hover-color);
-    @include rmd-states-theme-update-var(focus-color, $rmd-states-light-theme-focus-color);
-    @include rmd-states-theme-update-var(pressed-color, $rmd-states-light-theme-pressed-color);
-    @include rmd-states-theme-update-var(selected-color, $rmd-states-light-theme-selected-color);
+    @include rmd-states-theme-update-var(
+      hover-color,
+      $rmd-states-light-theme-hover-color
+    );
+    @include rmd-states-theme-update-var(
+      focus-color,
+      $rmd-states-light-theme-focus-color
+    );
+    @include rmd-states-theme-update-var(
+      pressed-color,
+      $rmd-states-light-theme-pressed-color
+    );
+    @include rmd-states-theme-update-var(
+      selected-color,
+      $rmd-states-light-theme-selected-color
+    );
     @include rmd-states-theme-update-var(
       ripple-background-color,
       $rmd-states-light-theme-ripple-background-color
@@ -163,7 +218,10 @@
 
   @if mixin-exists(rmd-tabs-theme-update-var) {
     @include rmd-tabs-theme-update-var(active, $rmd-black-base);
-    @include rmd-tabs-theme-update-var(inactive, $rmd-theme-secondary-text-on-light-color);
+    @include rmd-tabs-theme-update-var(
+      inactive,
+      $rmd-theme-secondary-text-on-light-color
+    );
   }
 }
 
@@ -186,29 +244,47 @@
   @include rmd-theme-update-var(background, $rmd-theme-dark-background);
   @include rmd-theme-update-var(surface, $rmd-theme-dark-surface);
   @include rmd-theme-update-var(on-surface, $rmd-white-base);
-  @include rmd-theme-update-var(text-primary-on-background, $rmd-theme-primary-text-on-dark-color);
+  @include rmd-theme-update-var(
+    text-primary-on-background,
+    $rmd-theme-primary-text-on-dark-color
+  );
   @include rmd-theme-update-var(
     text-secondary-on-background,
     $rmd-theme-secondary-text-on-dark-color
   );
-  @include rmd-theme-update-var(text-hint-on-background, $rmd-theme-hint-text-on-dark-color);
+  @include rmd-theme-update-var(
+    text-hint-on-background,
+    $rmd-theme-hint-text-on-dark-color
+  );
   @include rmd-theme-update-var(
     text-disabled-on-background,
     $rmd-theme-disabled-text-on-dark-color
   );
-  @include rmd-theme-update-var(text-icon-on-background, $rmd-theme-icon-on-dark-color);
+  @include rmd-theme-update-var(
+    text-icon-on-background,
+    $rmd-theme-icon-on-dark-color
+  );
 
   @if mixin-exists(rmd-app-bar-theme-update-var) {
     @include rmd-app-bar-theme-update-var(
       default-background-color,
       $rmd-app-bar-default-dark-theme-background-color
     );
-    @include rmd-app-bar-theme-update-var(default-color, $rmd-app-bar-default-dark-theme-color);
+    @include rmd-app-bar-theme-update-var(
+      default-color,
+      $rmd-app-bar-default-dark-theme-color
+    );
   }
 
   @if mixin-exists(rmd-card-theme-update-var) {
-    @include rmd-card-theme-update-var(color, $rmd-theme-primary-text-on-dark-color);
-    @include rmd-card-theme-update-var(secondary-color, $rmd-theme-secondary-text-on-dark-color);
+    @include rmd-card-theme-update-var(
+      color,
+      $rmd-theme-primary-text-on-dark-color
+    );
+    @include rmd-card-theme-update-var(
+      secondary-color,
+      $rmd-theme-secondary-text-on-dark-color
+    );
   }
 
   @if mixin-exists(rmd-chip-theme-update-var) {
@@ -225,15 +301,24 @@
       outline-background-color,
       $rmd-chip-outline-dark-background-color
     );
-    @include rmd-chip-theme-update-var(outline-color, $rmd-chip-outline-dark-color);
+    @include rmd-chip-theme-update-var(
+      outline-color,
+      $rmd-chip-outline-dark-color
+    );
   }
 
   @if mixin-exists(rmd-divider-theme-update-var) {
-    @include rmd-divider-theme-update-var(background-color, $rmd-divider-background-color-on-dark);
+    @include rmd-divider-theme-update-var(
+      background-color,
+      $rmd-divider-background-color-on-dark
+    );
   }
 
   @if mixin-exists(rmd-form-theme-update-var) {
-    @include rmd-form-theme-update-var(text-border-color, $rmd-text-field-dark-border-color);
+    @include rmd-form-theme-update-var(
+      text-border-color,
+      $rmd-text-field-dark-border-color
+    );
     @include rmd-form-theme-update-var(
       text-border-hover-color,
       $rmd-text-field-dark-border-hover-color
@@ -245,10 +330,22 @@
   }
 
   @if mixin-exists(rmd-states-theme-update-var) {
-    @include rmd-states-theme-update-var(hover-color, $rmd-states-dark-theme-hover-color);
-    @include rmd-states-theme-update-var(focus-color, $rmd-states-dark-theme-focus-color);
-    @include rmd-states-theme-update-var(pressed-color, $rmd-states-dark-theme-pressed-color);
-    @include rmd-states-theme-update-var(selected-color, $rmd-states-dark-theme-selected-color);
+    @include rmd-states-theme-update-var(
+      hover-color,
+      $rmd-states-dark-theme-hover-color
+    );
+    @include rmd-states-theme-update-var(
+      focus-color,
+      $rmd-states-dark-theme-focus-color
+    );
+    @include rmd-states-theme-update-var(
+      pressed-color,
+      $rmd-states-dark-theme-pressed-color
+    );
+    @include rmd-states-theme-update-var(
+      selected-color,
+      $rmd-states-dark-theme-selected-color
+    );
     @include rmd-states-theme-update-var(
       ripple-background-color,
       $rmd-states-dark-theme-ripple-background-color
@@ -257,7 +354,10 @@
 
   @if mixin-exists(rmd-tabs-theme-update-var) {
     @include rmd-tabs-theme-update-var(active, $rmd-white-base);
-    @include rmd-tabs-theme-update-var(inactive, $rmd-theme-secondary-text-on-dark-color);
+    @include rmd-tabs-theme-update-var(
+      inactive,
+      $rmd-theme-secondary-text-on-dark-color
+    );
   }
 }
 

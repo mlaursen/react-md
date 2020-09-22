@@ -22,7 +22,12 @@
 /// retrieving the default value from the `rmd-states-theme-values` map when
 /// `null`.
 @mixin rmd-states-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-states-theme-values, states);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-states-theme-values,
+    states
+  );
 }
 
 /// Updates one of the states's theme variables with the new value for the
@@ -32,7 +37,12 @@
 /// should be one of the `$rmd-states-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-states-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-states-theme-values, states);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-states-theme-values,
+    states
+  );
 }
 
 /// Generates all the base styles for an interaction "surface". This should
@@ -57,7 +67,10 @@
   $pressed-class-name: $rmd-states-pressed-class-name,
   $css-modules: false
 ) {
-  @include rmd-utils-optional-css-modules('&#{$pressed-class-name}', $css-modules) {
+  @include rmd-utils-optional-css-modules(
+    '&#{$pressed-class-name}',
+    $css-modules
+  ) {
     @content;
   }
 }
@@ -204,16 +217,25 @@
   }
 
   &:hover {
-    @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
+    @include rmd-states-theme-update-var(
+      background-color,
+      rmd-states-theme-var(hover-color)
+    );
   }
 
   @if $rmd-states-use-focus-background and not $no-focus-state {
     @include rmd-utils-keyboard-only($css-modules) {
       #{$focus-selector} {
-        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(focus-color));
+        @include rmd-states-theme-update-var(
+          background-color,
+          rmd-states-theme-var(focus-color)
+        );
 
         &:hover {
-          @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(hover-color));
+          @include rmd-states-theme-update-var(
+            background-color,
+            rmd-states-theme-var(hover-color)
+          );
         }
       }
     }
@@ -228,9 +250,15 @@
 
   @if $rmd-states-use-pressed-states-fallback {
     @include rmd-states-pressed-styles($css-modules) {
-      @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(pressed-color));
+      @include rmd-states-theme-update-var(
+        background-color,
+        rmd-states-theme-var(pressed-color)
+      );
       @include rmd-utils-keyboard-only($css-modules) {
-        @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(pressed-color));
+        @include rmd-states-theme-update-var(
+          background-color,
+          rmd-states-theme-var(pressed-color)
+        );
       }
     }
   }
@@ -249,9 +277,15 @@
 /// @param {Boolean} css-modules [false] - Boolean if this is being used within
 /// CSS Modules which will update the selector to work correctly by wrapping
 /// different parts with `:global` and `:local`.
-@mixin rmd-states-surface-selected($selector: '&--selected', $css-modules: false) {
+@mixin rmd-states-surface-selected(
+  $selector: '&--selected',
+  $css-modules: false
+) {
   #{$selector} {
-    @include rmd-states-theme-update-var(background-color, rmd-states-theme-var(selected-color));
+    @include rmd-states-theme-update-var(
+      background-color,
+      rmd-states-theme-var(selected-color)
+    );
 
     // since the base states disables the additional hover and focus states in touch mode,
     // they have to be re-enabled for the selected state or else the background color won't
@@ -290,7 +324,8 @@
   transform: scale(0);
 
   &--animating {
-    transition: transform $rmd-states-ripple-transform-duration $rmd-transition-deceleration,
+    transition: transform $rmd-states-ripple-transform-duration
+        $rmd-transition-deceleration,
       opacity $rmd-states-ripple-opacity-duration $rmd-transition-acceleration;
   }
 
@@ -307,7 +342,11 @@
 /// css variables and their default values.
 @mixin react-md-states {
   $ignored: background-color hover-color focus-color selected-color;
-  @include rmd-theme-create-root-theme($rmd-states-theme-values, states, $ignored);
+  @include rmd-theme-create-root-theme(
+    $rmd-states-theme-values,
+    states,
+    $ignored
+  );
 
   @if $rmd-states-use-ripple {
     .rmd-ripple-container {

@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-theme-var",
       description:
         "This function is used to get one of the form's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-form-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/form/src/_functions.scss#L32-L34",
+      source: "packages/form/src/_functions.scss#L32-L39",
       usedBy: [
         { name: "rmd-floating-label", type: "mixin", packageName: "form" },
         {
@@ -99,7 +99,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-theme",
       description:
         "Creates the styles for one of the form's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/form/src/_functions.scss#L47-L49",
+      source: "packages/form/src/_functions.scss#L52-L59",
       usedBy: [
         { name: "rmd-label", type: "mixin", packageName: "form" },
         { name: "rmd-floating-label", type: "mixin", packageName: "form" },
@@ -166,7 +166,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-theme-update-var",
       description:
         "Updates one of the form's theme variables with the new value for the section of your app.",
-      source: "packages/form/src/_functions.scss#L57-L59",
+      source: "packages/form/src/_functions.scss#L67-L74",
       usedBy: [
         { name: "rmd-floating-label", type: "mixin", packageName: "form" },
         {
@@ -236,7 +236,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-form",
       description:
         "Creates the styles for forms within react-md. This requires either the `rmd-form-use-font-forms` or `rmd-form-use-svg-forms` variables to be enabled to generate any styles.\n",
-      source: "packages/form/src/_mixins.scss#L36-L54",
+      source: "packages/form/src/_mixins.scss#L36-L55",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {
@@ -265,7 +265,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-file-input": {
       name: "react-md-file-input",
       description: "",
-      source: "packages/form/src/file-input/_mixins.scss#L9-L29",
+      source: "packages/form/src/file-input/_mixins.scss#L9-L35",
       usedBy: [{ name: "react-md-form", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -287,7 +287,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       code: "@mixin react-md-file-input { … }",
       sourceCode:
-        '@mixin react-md-file-input {\n  .rmd-file-input {\n    @include rmd-states-focus-shadow("&:focus + .rmd-file-input-label");\n    @include rmd-utils-keyboard-only {\n      &:focus + .rmd-file-input-label {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(focus-color)\n        );\n      }\n\n      &:hover {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(hover-color)\n        );\n      }\n    }\n\n    height: 0.1px;\n    opacity: 0;\n    overflow: hidden;\n    position: absolute;\n    width: 0.1px;\n    z-index: -1;\n  }\n}\n',
+        "@mixin react-md-file-input {\n  .rmd-file-input {\n    @include rmd-states-focus-shadow('&:focus + .rmd-file-input-label');\n    @include rmd-utils-keyboard-only {\n      &:focus + .rmd-file-input-label {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(focus-color)\n        );\n      }\n\n      &:hover {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(hover-color)\n        );\n      }\n    }\n\n    height: 0.1px;\n    opacity: 0;\n    overflow: hidden;\n    position: absolute;\n    width: 0.1px;\n    z-index: -1;\n  }\n}\n",
       type: "mixin",
     },
     "rmd-label": {
@@ -316,7 +316,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-floating-label": {
       name: "rmd-floating-label",
       description: "",
-      source: "packages/form/src/label/_mixins.scss#L36-L82",
+      source: "packages/form/src/label/_mixins.scss#L36-L91",
       usedBy: [{ name: "react-md-label", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -347,7 +347,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-label": {
       name: "react-md-label",
       description: "",
-      source: "packages/form/src/label/_mixins.scss#L85-L93",
+      source: "packages/form/src/label/_mixins.scss#L94-L102",
       usedBy: [{ name: "react-md-form", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-label", type: "mixin", packageName: "form" },
@@ -362,7 +362,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-native-select-container": {
       name: "rmd-native-select-container",
       description: "",
-      source: "packages/form/src/select/_mixins.scss#L16-L29",
+      source: "packages/form/src/select/_mixins.scss#L16-L31",
       usedBy: [{ name: "react-md-select", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-form-theme", type: "mixin", packageName: "form" },
@@ -392,7 +392,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-native-select": {
       name: "rmd-native-select",
       description: "",
-      source: "packages/form/src/select/_mixins.scss#L32-L75",
+      source: "packages/form/src/select/_mixins.scss#L34-L77",
       usedBy: [{ name: "react-md-select", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-text-field", type: "mixin", packageName: "form" },
@@ -414,7 +414,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-select": {
       name: "rmd-select",
       description: "",
-      source: "packages/form/src/select/_mixins.scss#L78-L112",
+      source: "packages/form/src/select/_mixins.scss#L80-L114",
       usedBy: [{ name: "react-md-select", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -446,7 +446,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-listbox": {
       name: "rmd-listbox",
       description: "",
-      source: "packages/form/src/select/_mixins.scss#L115-L127",
+      source: "packages/form/src/select/_mixins.scss#L117-L129",
       usedBy: [{ name: "react-md-select", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -478,7 +478,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-option": {
       name: "rmd-option",
       description: "",
-      source: "packages/form/src/select/_mixins.scss#L130-L153",
+      source: "packages/form/src/select/_mixins.scss#L132-L155",
       usedBy: [{ name: "react-md-select", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -522,7 +522,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-select": {
       name: "react-md-select",
       description: "",
-      source: "packages/form/src/select/_mixins.scss#L156-L176",
+      source: "packages/form/src/select/_mixins.scss#L158-L178",
       usedBy: [{ name: "react-md-form", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -544,7 +544,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-container": {
       name: "rmd-text-field-container",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L15-L194",
+      source: "packages/form/src/text-field/_mixins.scss#L15-L248",
       usedBy: [
         { name: "react-md-text-field", type: "mixin", packageName: "form" },
       ],
@@ -639,14 +639,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       code: "@mixin rmd-text-field-container { … }",
       sourceCode:
-        '@mixin rmd-text-field-container {\n  @include rmd-transition(standard);\n  @include rmd-form-theme(height, text-height);\n\n  align-items: center;\n  display: flex;\n  position: relative;\n  transition: border-color $rmd-transition-standard-time;\n\n  &--hoverable:hover {\n    @include rmd-form-theme(border-color, text-border-hover-color);\n  }\n\n  &--inline {\n    display: inline-flex;\n  }\n\n  &--label {\n    @include rmd-form-theme-update-var(\n      text-height,\n      rmd-form-theme-var(text-label-height)\n    );\n  }\n\n  &--error {\n    @include rmd-icon-theme-update-var(color, rmd-form-theme-var(error-color));\n    @include rmd-form-theme-update-var(\n      text-active-color,\n      rmd-form-theme-var(error-color)\n    );\n    @include rmd-form-theme-update-var(\n      text-border-color,\n      rmd-form-theme-var(error-color)\n    );\n    @include rmd-form-theme-update-var(\n      text-border-hover-color,\n      rmd-form-theme-var(error-hover-color)\n    );\n  }\n\n  &--disabled {\n    @include rmd-icon-theme-update-var(\n      color,\n      rmd-form-theme-var(disabled-color)\n    );\n  }\n\n  &--underline {\n    @if $rmd-text-field-underline-padding {\n      @include rmd-form-theme-update-var(\n        text-padding-left,\n        $rmd-text-field-underline-padding\n      );\n      @include rmd-form-theme-update-var(\n        text-padding-right,\n        $rmd-text-field-underline-padding\n      );\n    }\n    @include rmd-form-theme(border-color, text-border-color);\n\n    border-bottom-style: solid;\n    border-bottom-width: $rmd-text-field-border-width;\n\n    &::after {\n      @include rmd-transition(standard);\n      @include rmd-form-theme(background-color, text-active-color);\n\n      bottom: -$rmd-text-field-border-width;\n      content: "";\n      height: $rmd-text-field-border-width-active;\n      left: 0;\n      position: absolute;\n      right: 0;\n      transform: scale(0);\n      transition: transform $rmd-transition-standard-time;\n      z-index: 1;\n    }\n  }\n\n  &--underline-labelled {\n    @include rmd-form-theme-update-var(\n      text-padding-top,\n      $rmd-text-field-underline-label-padding-top\n    );\n    @include rmd-form-theme-update-var(\n      addon-margin-top,\n      $rmd-text-field-addon-margin\n    );\n  }\n\n  &--filled {\n    @include rmd-form-theme-update-var(\n      text-padding-left,\n      $rmd-text-field-filled-padding\n    );\n    @include rmd-form-theme-update-var(\n      text-padding-right,\n      $rmd-text-field-filled-padding\n    );\n    @include rmd-form-theme-update-var(\n      label-left-offset,\n      $rmd-text-field-filled-padding\n    );\n    @include rmd-form-theme(background-color, text-filled-color);\n    @include rmd-states-surface($clickable: false);\n\n    border-top-left-radius: $rmd-text-field-filled-border-radius;\n    border-top-right-radius: $rmd-text-field-filled-border-radius;\n  }\n\n  &--underline-left::after {\n    transform-origin: left;\n  }\n\n  &--underline-center::after {\n    transform-origin: center;\n  }\n\n  &--underline-right::after {\n    transform-origin: right;\n  }\n\n  &--underline-active::after {\n    transform: scale(1);\n  }\n\n  &--underline-left-addon {\n    $calc-string: "#{rmd-icon-theme-var(size)} + #{$rmd-text-field-underline-label-left-offset * 2}";\n    @if $rmd-text-field-underline-padding {\n      $calc-string: "#{$calc-string} + #{$rmd-text-field-underline-padding}";\n    }\n\n    @include rmd-form-theme-update-var(\n      text-padding-left,\n      calc(#{$calc-string})\n    );\n    @include rmd-form-theme-update-var(\n      label-left-offset,\n      $rmd-text-field-underline-label-left-offset\n    );\n  }\n\n  &--underline-right-addon {\n    $calc-string: "#{rmd-icon-theme-var(size)} + #{$rmd-text-field-underline-label-left-offset * 2}";\n    @if $rmd-text-field-underline-padding {\n      $calc-string: "#{$calc-string} + #{$rmd-text-field-underline-padding}";\n    }\n\n    @include rmd-form-theme-update-var(\n      text-padding-right,\n      calc(#{$calc-string})\n    );\n  }\n\n  &--outline {\n    @include rmd-form-theme-update-var(\n      text-padding-left,\n      $rmd-text-field-outline-padding\n    );\n    @include rmd-form-theme-update-var(\n      text-padding-right,\n      $rmd-text-field-outline-padding\n    );\n    @include rmd-form-theme-update-var(\n      label-left-offset,\n      $rmd-text-field-outline-padding - $rmd-label-floating-padding\n    );\n    @include rmd-form-theme-update-var(label-top-offset, -50%);\n    @include rmd-form-theme-update-var(\n      label-active-padding,\n      0 $rmd-label-floating-padding\n    );\n    @include rmd-form-theme-update-var(\n      label-active-background-color,\n      rmd-theme-var(background)\n    );\n    @include rmd-form-theme(border-color, text-border-color);\n\n    border-radius: $rmd-text-field-border-radius;\n    border-style: solid;\n    border-width: $rmd-text-field-border-width;\n\n    &::after {\n      @include rmd-transition(standard);\n      @include rmd-utils-pseudo-element;\n\n      box-shadow: 0 0 0 $rmd-text-field-border-width-active\n        rmd-form-theme-var(text-active-color);\n      opacity: 0;\n      transition: opacity $rmd-transition-standard-time;\n    }\n  }\n\n  &--outline-active::after {\n    opacity: 1;\n  }\n\n  &--outline-left {\n    $outline-offset: calc(\n      #{rmd-icon-theme-var(size)} + #{$rmd-text-field-outline-padding + $rmd-text-field-addon-margin}\n    );\n\n    @include rmd-form-theme-update-var(text-padding-left, $outline-offset);\n  }\n\n  &--outline-right {\n    $outline-offset: calc(\n      #{rmd-icon-theme-var(size)} + #{$rmd-text-field-addon-margin * 2}\n    );\n\n    @include rmd-form-theme-update-var(text-padding-right, $outline-offset);\n  }\n\n  &--dense {\n    @include rmd-form-theme-update-var(\n      text-height,\n      rmd-form-theme-var(text-placeholder-dense-height)\n    );\n  }\n\n  &--dense-label {\n    @include rmd-form-theme-update-var(\n      text-height,\n      rmd-form-theme-var(text-label-dense-height)\n    );\n  }\n\n  &--dense-placeholder {\n    @include rmd-form-theme-update-var(\n      text-padding-top,\n      $rmd-text-field-underline-dense-padding-top\n    );\n  }\n}\n',
+        "@mixin rmd-text-field-container {\n  @include rmd-transition(standard);\n  @include rmd-form-theme(height, text-height);\n\n  align-items: center;\n  display: flex;\n  position: relative;\n  transition: border-color $rmd-transition-standard-time;\n\n  &--hoverable:hover {\n    @include rmd-form-theme(border-color, text-border-hover-color);\n  }\n\n  &--inline {\n    display: inline-flex;\n  }\n\n  &--label {\n    @include rmd-form-theme-update-var(\n      text-height,\n      rmd-form-theme-var(text-label-height)\n    );\n  }\n\n  &--error {\n    @include rmd-icon-theme-update-var(color, rmd-form-theme-var(error-color));\n    @include rmd-form-theme-update-var(\n      text-active-color,\n      rmd-form-theme-var(error-color)\n    );\n    @include rmd-form-theme-update-var(\n      text-border-color,\n      rmd-form-theme-var(error-color)\n    );\n    @include rmd-form-theme-update-var(\n      text-border-hover-color,\n      rmd-form-theme-var(error-hover-color)\n    );\n  }\n\n  &--disabled {\n    @include rmd-icon-theme-update-var(\n      color,\n      rmd-form-theme-var(disabled-color)\n    );\n  }\n\n  &--underline {\n    @if $rmd-text-field-underline-padding {\n      @include rmd-form-theme-update-var(\n        text-padding-left,\n        $rmd-text-field-underline-padding\n      );\n      @include rmd-form-theme-update-var(\n        text-padding-right,\n        $rmd-text-field-underline-padding\n      );\n    }\n    @include rmd-form-theme(border-color, text-border-color);\n\n    border-bottom-style: solid;\n    border-bottom-width: $rmd-text-field-border-width;\n\n    &::after {\n      @include rmd-transition(standard);\n      @include rmd-form-theme(background-color, text-active-color);\n\n      bottom: -$rmd-text-field-border-width;\n      content: '';\n      height: $rmd-text-field-border-width-active;\n      left: 0;\n      position: absolute;\n      right: 0;\n      transform: scale(0);\n      transition: transform $rmd-transition-standard-time;\n      z-index: 1;\n    }\n  }\n\n  &--underline-labelled {\n    @include rmd-form-theme-update-var(\n      text-padding-top,\n      $rmd-text-field-underline-label-padding-top\n    );\n    @include rmd-form-theme-update-var(\n      addon-margin-top,\n      $rmd-text-field-addon-margin\n    );\n  }\n\n  &--filled {\n    @include rmd-form-theme-update-var(\n      text-padding-left,\n      $rmd-text-field-filled-padding\n    );\n    @include rmd-form-theme-update-var(\n      text-padding-right,\n      $rmd-text-field-filled-padding\n    );\n    @include rmd-form-theme-update-var(\n      label-left-offset,\n      $rmd-text-field-filled-padding\n    );\n    @include rmd-form-theme(background-color, text-filled-color);\n    @include rmd-states-surface($clickable: false);\n\n    border-top-left-radius: $rmd-text-field-filled-border-radius;\n    border-top-right-radius: $rmd-text-field-filled-border-radius;\n  }\n\n  &--underline-left::after {\n    transform-origin: left;\n  }\n\n  &--underline-center::after {\n    transform-origin: center;\n  }\n\n  &--underline-right::after {\n    transform-origin: right;\n  }\n\n  &--underline-active::after {\n    transform: scale(1);\n  }\n\n  &--underline-left-addon {\n    $calc-string: '#{rmd-icon-theme-var(size)} + #{$rmd-text-field-underline-label-left-offset * 2}';\n    @if $rmd-text-field-underline-padding {\n      $calc-string: '#{$calc-string} + #{$rmd-text-field-underline-padding}';\n    }\n\n    @include rmd-form-theme-update-var(\n      text-padding-left,\n      calc(#{$calc-string})\n    );\n    @include rmd-form-theme-update-var(\n      label-left-offset,\n      $rmd-text-field-underline-label-left-offset\n    );\n  }\n\n  &--underline-right-addon {\n    $calc-string: '#{rmd-icon-theme-var(size)} + #{$rmd-text-field-underline-label-left-offset * 2}';\n    @if $rmd-text-field-underline-padding {\n      $calc-string: '#{$calc-string} + #{$rmd-text-field-underline-padding}';\n    }\n\n    @include rmd-form-theme-update-var(\n      text-padding-right,\n      calc(#{$calc-string})\n    );\n  }\n\n  &--outline {\n    @include rmd-form-theme-update-var(\n      text-padding-left,\n      $rmd-text-field-outline-padding\n    );\n    @include rmd-form-theme-update-var(\n      text-padding-right,\n      $rmd-text-field-outline-padding\n    );\n    @include rmd-form-theme-update-var(\n      label-left-offset,\n      $rmd-text-field-outline-padding - $rmd-label-floating-padding\n    );\n    @include rmd-form-theme-update-var(label-top-offset, -50%);\n    @include rmd-form-theme-update-var(\n      label-active-padding,\n      0 $rmd-label-floating-padding\n    );\n    @include rmd-form-theme-update-var(\n      label-active-background-color,\n      rmd-theme-var(background)\n    );\n    @include rmd-form-theme(border-color, text-border-color);\n\n    border-radius: $rmd-text-field-border-radius;\n    border-style: solid;\n    border-width: $rmd-text-field-border-width;\n\n    &::after {\n      @include rmd-transition(standard);\n      @include rmd-utils-pseudo-element;\n\n      box-shadow: 0 0 0 $rmd-text-field-border-width-active\n        rmd-form-theme-var(text-active-color);\n      opacity: 0;\n      transition: opacity $rmd-transition-standard-time;\n    }\n  }\n\n  &--outline-active::after {\n    opacity: 1;\n  }\n\n  &--outline-left {\n    $outline-offset: calc(\n      #{rmd-icon-theme-var(size)} + #{$rmd-text-field-outline-padding + $rmd-text-field-addon-margin}\n    );\n\n    @include rmd-form-theme-update-var(text-padding-left, $outline-offset);\n  }\n\n  &--outline-right {\n    $outline-offset: calc(\n      #{rmd-icon-theme-var(size)} + #{$rmd-text-field-addon-margin * 2}\n    );\n\n    @include rmd-form-theme-update-var(text-padding-right, $outline-offset);\n  }\n\n  &--dense {\n    @include rmd-form-theme-update-var(\n      text-height,\n      rmd-form-theme-var(text-placeholder-dense-height)\n    );\n  }\n\n  &--dense-label {\n    @include rmd-form-theme-update-var(\n      text-height,\n      rmd-form-theme-var(text-label-dense-height)\n    );\n  }\n\n  &--dense-placeholder {\n    @include rmd-form-theme-update-var(\n      text-padding-top,\n      $rmd-text-field-underline-dense-padding-top\n    );\n  }\n}\n",
       type: "mixin",
     },
     "rmd-text-field-placeholder": {
       name: "rmd-text-field-placeholder",
       description:
         "A simple mixin that applies placeholder styles to an input/textarea element.\n",
-      source: "packages/form/src/text-field/_mixins.scss#L197-L217",
+      source: "packages/form/src/text-field/_mixins.scss#L251-L271",
       packageName: "form",
       code: "@mixin rmd-text-field-placeholder { … }",
       sourceCode:
@@ -657,7 +657,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-text-field-base",
       description:
         "Creates the base styles for a text field so that it gains the correct typography and a few different colors based on its state.\n",
-      source: "packages/form/src/text-field/_mixins.scss#L221-L268",
+      source: "packages/form/src/text-field/_mixins.scss#L275-L322",
       usedBy: [
         { name: "rmd-text-field", type: "mixin", packageName: "form" },
         { name: "rmd-textarea", type: "mixin", packageName: "form" },
@@ -685,7 +685,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field": {
       name: "rmd-text-field",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L271-L283",
+      source: "packages/form/src/text-field/_mixins.scss#L325-L337",
       usedBy: [
         { name: "rmd-native-select", type: "mixin", packageName: "form" },
         { name: "react-md-text-field", type: "mixin", packageName: "form" },
@@ -703,7 +703,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-text-field-addon": {
       name: "rmd-text-field-addon",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L286-L305",
+      source: "packages/form/src/text-field/_mixins.scss#L340-L359",
       usedBy: [
         { name: "react-md-text-field", type: "mixin", packageName: "form" },
       ],
@@ -727,7 +727,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-textarea-container": {
       name: "rmd-textarea-container",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L308-L340",
+      source: "packages/form/src/text-field/_mixins.scss#L362-L396",
       usedBy: [
         { name: "react-md-text-field", type: "mixin", packageName: "form" },
       ],
@@ -759,7 +759,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-textarea": {
       name: "rmd-textarea",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L343-L386",
+      source: "packages/form/src/text-field/_mixins.scss#L399-L442",
       usedBy: [
         { name: "react-md-text-field", type: "mixin", packageName: "form" },
       ],
@@ -777,7 +777,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-password": {
       name: "rmd-password",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L389-L407",
+      source: "packages/form/src/text-field/_mixins.scss#L445-L466",
       usedBy: [
         { name: "react-md-text-field", type: "mixin", packageName: "form" },
       ],
@@ -803,7 +803,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-form-message": {
       name: "rmd-form-message",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L410-L450",
+      source: "packages/form/src/text-field/_mixins.scss#L469-L512",
       usedBy: [
         { name: "react-md-text-field", type: "mixin", packageName: "form" },
       ],
@@ -862,7 +862,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-text-field": {
       name: "react-md-text-field",
       description: "",
-      source: "packages/form/src/text-field/_mixins.scss#L453-L481",
+      source: "packages/form/src/text-field/_mixins.scss#L515-L543",
       usedBy: [{ name: "react-md-form", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -917,7 +917,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       code: "@mixin rmd-toggle { … }",
       sourceCode:
-        '@mixin rmd-toggle {\n  @include rmd-button-theme(height, icon-size);\n  @include rmd-button-theme(width, icon-size);\n  @include rmd-states-surface("&--focused");\n\n  align-items: center;\n  border-radius: $rmd-toggle-border-radius;\n  display: inline-flex;\n  flex-shrink: 0;\n  justify-content: center;\n  position: relative;\n\n  &--disabled {\n    @include rmd-states-theme-update-var(hover-color, tranparent);\n  }\n}\n',
+        "@mixin rmd-toggle {\n  @include rmd-button-theme(height, icon-size);\n  @include rmd-button-theme(width, icon-size);\n  @include rmd-states-surface('&--focused');\n\n  align-items: center;\n  border-radius: $rmd-toggle-border-radius;\n  display: inline-flex;\n  flex-shrink: 0;\n  justify-content: center;\n  position: relative;\n\n  &--disabled {\n    @include rmd-states-theme-update-var(hover-color, tranparent);\n  }\n}\n",
       type: "mixin",
     },
     "rmd-input-hidden": {
@@ -997,14 +997,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       code: "@mixin rmd-toggle-icon { … }",
       sourceCode:
-        '@mixin rmd-toggle-icon {\n  @include rmd-icon-theme(height, size);\n  @include rmd-icon-theme(width, size);\n\n  .rmd-icon {\n    color: inherit;\n    fill: currentColor;\n    height: inherit;\n    width: inherit;\n  }\n\n  align-items: center;\n  color: $rmd-toggle-inactive-color;\n  display: inline-flex;\n  justify-content: center;\n  pointer-events: none;\n  position: absolute;\n\n  &--overlay {\n    &::before {\n      @include rmd-transition(standard);\n      @include rmd-form-theme(bottom, toggle-inset);\n      @include rmd-form-theme(left, toggle-inset);\n      @include rmd-form-theme(right, toggle-inset);\n      @include rmd-form-theme(top, toggle-inset);\n      @include rmd-theme(background-color, background);\n\n      content: "";\n      opacity: 1;\n      position: absolute;\n      transition: opacity $rmd-transition-standard-time;\n      z-index: 1;\n    }\n  }\n\n  &--indeterminate::after {\n    @include rmd-transition(standard);\n    @include rmd-form-theme(background-color, active-color);\n    @include rmd-form-theme(left, toggle-inset);\n    @include rmd-form-theme(right, toggle-inset);\n    @include rmd-form-theme(height, indeterminate-height);\n\n    content: "";\n    opacity: 0;\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n    transition: opacity $rmd-transition-standard-time;\n    z-index: 2;\n  }\n\n  &--circle::before {\n    border-radius: $rmd-toggle-border-radius;\n  }\n\n  &--disabled {\n    @include rmd-theme(color, text-disabled-on-background);\n  }\n\n  &--dense {\n    @include rmd-form-theme(bottom, toggle-dense-inset);\n    @include rmd-form-theme(left, toggle-dense-inset);\n    @include rmd-form-theme(right, toggle-dense-inset);\n    @include rmd-form-theme(top, toggle-dense-inset);\n    @include rmd-form-theme(height, indeterminate-dense-height);\n  }\n}\n',
+        "@mixin rmd-toggle-icon {\n  @include rmd-icon-theme(height, size);\n  @include rmd-icon-theme(width, size);\n\n  .rmd-icon {\n    color: inherit;\n    fill: currentColor;\n    height: inherit;\n    width: inherit;\n  }\n\n  align-items: center;\n  color: $rmd-toggle-inactive-color;\n  display: inline-flex;\n  justify-content: center;\n  pointer-events: none;\n  position: absolute;\n\n  &--overlay {\n    &::before {\n      @include rmd-transition(standard);\n      @include rmd-form-theme(bottom, toggle-inset);\n      @include rmd-form-theme(left, toggle-inset);\n      @include rmd-form-theme(right, toggle-inset);\n      @include rmd-form-theme(top, toggle-inset);\n      @include rmd-theme(background-color, background);\n\n      content: '';\n      opacity: 1;\n      position: absolute;\n      transition: opacity $rmd-transition-standard-time;\n      z-index: 1;\n    }\n  }\n\n  &--indeterminate::after {\n    @include rmd-transition(standard);\n    @include rmd-form-theme(background-color, active-color);\n    @include rmd-form-theme(left, toggle-inset);\n    @include rmd-form-theme(right, toggle-inset);\n    @include rmd-form-theme(height, indeterminate-height);\n\n    content: '';\n    opacity: 0;\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n    transition: opacity $rmd-transition-standard-time;\n    z-index: 2;\n  }\n\n  &--circle::before {\n    border-radius: $rmd-toggle-border-radius;\n  }\n\n  &--disabled {\n    @include rmd-theme(color, text-disabled-on-background);\n  }\n\n  &--dense {\n    @include rmd-form-theme(bottom, toggle-dense-inset);\n    @include rmd-form-theme(left, toggle-dense-inset);\n    @include rmd-form-theme(right, toggle-dense-inset);\n    @include rmd-form-theme(top, toggle-dense-inset);\n    @include rmd-form-theme(height, indeterminate-dense-height);\n  }\n}\n",
       type: "mixin",
     },
     "rmd-toggle-dense-theme": {
       name: "rmd-toggle-dense-theme",
       description:
         "Updates the checkbox and radio components to have a dense theme by updating the toggle-inset css variable to be the dense version. This should generally be used within media queries.\n",
-      source: "packages/form/src/toggle/_mixins.scss#L172-L178",
+      source: "packages/form/src/toggle/_mixins.scss#L172-L181",
       usedBy: [
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
       ],
@@ -1025,7 +1025,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch": {
       name: "rmd-switch",
       description: "Creates the styles for the switch component\n",
-      source: "packages/form/src/toggle/_mixins.scss#L182-L202",
+      source: "packages/form/src/toggle/_mixins.scss#L185-L214",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-transition", type: "mixin", packageName: "transition" },
@@ -1077,7 +1077,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-input": {
       name: "rmd-switch-input",
       description: "\n",
-      source: "packages/form/src/toggle/_mixins.scss#L206-L253",
+      source: "packages/form/src/toggle/_mixins.scss#L218-L271",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-input-hidden", type: "mixin", packageName: "form" },
@@ -1112,13 +1112,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       code: "@mixin rmd-switch-input { … }",
       sourceCode:
-        '@mixin rmd-switch-input {\n  @include rmd-input-hidden;\n  @include rmd-states-focus-shadow("&:focus + .rmd-switch__ball");\n\n  &:disabled + .rmd-switch__ball {\n    @include rmd-states-theme-update-var(hover-color, transparent);\n\n    cursor: auto;\n\n    &::after {\n      @include rmd-form-theme(background-color, disabled-color);\n    }\n  }\n\n  @include rmd-utils-keyboard-only {\n    &:focus + .rmd-switch__ball {\n      @include rmd-states-theme-update-var(\n        background-color,\n        rmd-states-theme-var(focus-color)\n      );\n    }\n\n    &:focus:hover + .rmd-switch__ball {\n      @include rmd-states-theme-update-var(\n        background-color,\n        rmd-states-theme-var(hover-color)\n      );\n    }\n  }\n\n  @include rmd-utils-touch-only {\n    &:focus + .rmd-switch__ball,\n    &:hover + .rmd-switch__ball {\n      @include rmd-states-theme-update-var(background-color, transparent);\n    }\n  }\n\n  &:checked + .rmd-switch__ball {\n    $offset: $rmd-switch-ball-size + $rmd-switch-ball-offset;\n\n    @include rmd-utils-rtl {\n      transform: translateX(-$offset);\n    }\n    transform: translateX($offset);\n\n    &::after {\n      @include rmd-form-theme(background-color, active-color);\n    }\n  }\n\n  &:checked:disabled + .rmd-switch__ball::after {\n    background-color: $rmd-switch-ball-disabled-color;\n  }\n}\n',
+        "@mixin rmd-switch-input {\n  @include rmd-input-hidden;\n  @include rmd-states-focus-shadow('&:focus + .rmd-switch__ball');\n\n  &:disabled + .rmd-switch__ball {\n    @include rmd-states-theme-update-var(hover-color, transparent);\n\n    cursor: auto;\n\n    &::after {\n      @include rmd-form-theme(background-color, disabled-color);\n    }\n  }\n\n  @include rmd-utils-keyboard-only {\n    &:focus + .rmd-switch__ball {\n      @include rmd-states-theme-update-var(\n        background-color,\n        rmd-states-theme-var(focus-color)\n      );\n    }\n\n    &:focus:hover + .rmd-switch__ball {\n      @include rmd-states-theme-update-var(\n        background-color,\n        rmd-states-theme-var(hover-color)\n      );\n    }\n  }\n\n  @include rmd-utils-touch-only {\n    &:focus + .rmd-switch__ball,\n    &:hover + .rmd-switch__ball {\n      @include rmd-states-theme-update-var(background-color, transparent);\n    }\n  }\n\n  &:checked + .rmd-switch__ball {\n    $offset: $rmd-switch-ball-size + $rmd-switch-ball-offset;\n\n    @include rmd-utils-rtl {\n      transform: translateX(-$offset);\n    }\n    transform: translateX($offset);\n\n    &::after {\n      @include rmd-form-theme(background-color, active-color);\n    }\n  }\n\n  &:checked:disabled + .rmd-switch__ball::after {\n    background-color: $rmd-switch-ball-disabled-color;\n  }\n}\n",
       type: "mixin",
     },
     "rmd-switch-ball": {
       name: "rmd-switch-ball",
       description: "",
-      source: "packages/form/src/toggle/_mixins.scss#L256-L301",
+      source: "packages/form/src/toggle/_mixins.scss#L274-L322",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -1169,13 +1169,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "form",
       code: "@mixin rmd-switch-ball { … }",
       sourceCode:
-        '@mixin rmd-switch-ball {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-transition(standard);\n  @include rmd-utils-rtl {\n    left: auto;\n    right: calc(-50% + #{$rmd-switch-ball-offset});\n  }\n\n  align-items: center;\n  border-radius: $rmd-switch-ball-border-radius;\n  display: flex;\n  height: $rmd-switch-ball-size * 2;\n  justify-content: center;\n  left: calc(-50% + #{$rmd-switch-ball-offset});\n  position: absolute;\n  top: calc(-50% - #{$rmd-switch-ball-size - $rmd-switch-track-height});\n  transition-duration: $rmd-transition-standard-time;\n  transition-property: background-color, transform;\n  width: $rmd-switch-ball-size * 2;\n  z-index: 1;\n\n  &::before {\n    @include rmd-states-surface-base;\n  }\n\n  &:hover {\n    @include rmd-states-theme-update-var(\n      background-color,\n      rmd-states-theme-var(hover-color)\n    );\n\n    cursor: pointer;\n  }\n\n  &::after {\n    @include rmd-elevation(1);\n\n    background-color: darken($rmd-white-base, 5%);\n    border-radius: inherit;\n    content: "";\n    height: $rmd-switch-ball-size;\n    left: 25%;\n    pointer-events: none;\n    position: absolute;\n    top: 25%;\n    width: $rmd-switch-ball-size;\n    z-index: 1;\n  }\n}\n',
+        "@mixin rmd-switch-ball {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-transition(standard);\n  @include rmd-utils-rtl {\n    left: auto;\n    right: calc(-50% + #{$rmd-switch-ball-offset});\n  }\n\n  align-items: center;\n  border-radius: $rmd-switch-ball-border-radius;\n  display: flex;\n  height: $rmd-switch-ball-size * 2;\n  justify-content: center;\n  left: calc(-50% + #{$rmd-switch-ball-offset});\n  position: absolute;\n  top: calc(-50% - #{$rmd-switch-ball-size - $rmd-switch-track-height});\n  transition-duration: $rmd-transition-standard-time;\n  transition-property: background-color, transform;\n  width: $rmd-switch-ball-size * 2;\n  z-index: 1;\n\n  &::before {\n    @include rmd-states-surface-base;\n  }\n\n  &:hover {\n    @include rmd-states-theme-update-var(\n      background-color,\n      rmd-states-theme-var(hover-color)\n    );\n\n    cursor: pointer;\n  }\n\n  &::after {\n    @include rmd-elevation(1);\n\n    background-color: darken($rmd-white-base, 5%);\n    border-radius: inherit;\n    content: '';\n    height: $rmd-switch-ball-size;\n    left: 25%;\n    pointer-events: none;\n    position: absolute;\n    top: 25%;\n    width: $rmd-switch-ball-size;\n    z-index: 1;\n  }\n}\n",
       type: "mixin",
     },
     "rmd-switch-container": {
       name: "rmd-switch-container",
       description: "",
-      source: "packages/form/src/toggle/_mixins.scss#L304-L306",
+      source: "packages/form/src/toggle/_mixins.scss#L325-L328",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         {
@@ -1199,7 +1199,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-toggle",
       description:
         "Creates all the styles for the toggle components in the form package.\n",
-      source: "packages/form/src/toggle/_mixins.scss#L310-L349",
+      source: "packages/form/src/toggle/_mixins.scss#L332-L371",
       usedBy: [{ name: "react-md-form", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-toggle-container", type: "mixin", packageName: "form" },
@@ -1292,13 +1292,13 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-placeholder-color",
       description:
         "The default color to use for placeholder text within text fields.",
-      source: "packages/form/src/_variables.scss#L51",
+      source: "packages/form/src/_variables.scss#L51-L53",
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
       ],
       packageName: "form",
       type: "Color",
-      value: "rmd-theme-var(text-secondary-on-background)",
+      value: "rmd-theme-var(\n  text-secondary-on-background\n)",
       compiled: "var(--rmd-theme-text-secondary-on-background, #757575)",
       overridable: true,
     },
@@ -1306,7 +1306,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-form-theme-values",
       description:
         'A Map of all the "themeable" parts of the form package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/form/src/_variables.scss#L59-L91",
+      source: "packages/form/src/_variables.scss#L61-L93",
       usedBy: [
         { name: "rmd-form-theme", type: "function", packageName: "form" },
         { name: "rmd-form-theme-var", type: "function", packageName: "form" },
@@ -2063,7 +2063,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toggle-inactive-color",
       description:
         "The color to use for the checkbox and radio components while unchecked. If you want to be able to dynamically configure the active color, you can set this to a custom css variable string.",
-      source: "packages/form/src/toggle/_variables.scss#L44",
+      source: "packages/form/src/toggle/_variables.scss#L44-L46",
       since: "2.2.0",
       usedBy: [
         { name: "rmd-toggle-hidden", type: "mixin", packageName: "form" },
@@ -2084,7 +2084,7 @@ const sassdoc: PackageSassDoc = {
         },
       ],
       type: "Color|String",
-      value: "rmd-theme-var(text-secondary-on-background)",
+      value: "rmd-theme-var(\n  text-secondary-on-background\n)",
       compiled: "var(--rmd-theme-text-secondary-on-background, #757575)",
       overridable: true,
     },
@@ -2092,7 +2092,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-toggle-active-color",
       description:
         "The color to use for the checkbox and radio components while checked. If you want to be able to dynamically configure the active color, you can set this to a custom css variable string.",
-      source: "packages/form/src/toggle/_variables.scss#L67",
+      source: "packages/form/src/toggle/_variables.scss#L69",
       since: "2.2.0",
       usedBy: [
         { name: "rmd-toggle-hidden", type: "mixin", packageName: "form" },
@@ -2120,7 +2120,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-checkbox-indeterminate-height",
       description:
         "The height for the indeterminate checkbox's state line that covers the icon.\n",
-      source: "packages/form/src/toggle/_variables.scss#L72",
+      source: "packages/form/src/toggle/_variables.scss#L74",
       packageName: "form",
       type: "Number",
       value: "0.15rem",
@@ -2130,7 +2130,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-checkbox-indeterminate-dense-height",
       description:
         "The height for the indeterminate checkbox's state line that covers the icon when the dense spec is enabled.\n",
-      source: "packages/form/src/toggle/_variables.scss#L77",
+      source: "packages/form/src/toggle/_variables.scss#L79",
       packageName: "form",
       type: "Number",
       value: "0.125rem",
@@ -2140,7 +2140,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-height",
       description:
         "The height for a switch's track. The track is the background that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L82",
+      source: "packages/form/src/toggle/_variables.scss#L84",
       usedBy: [
         { name: "rmd-switch", type: "mixin", packageName: "form" },
         { name: "rmd-switch-ball", type: "mixin", packageName: "form" },
@@ -2154,7 +2154,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-width",
       description:
         "The width for a switch's track. The track is the background that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L87",
+      source: "packages/form/src/toggle/_variables.scss#L89",
       usedBy: [{ name: "rmd-switch", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2165,7 +2165,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-background-color",
       description:
         "The background color for a switch's track. This is the element that the ball animates left and right on.",
-      source: "packages/form/src/toggle/_variables.scss#L96-L100",
+      source: "packages/form/src/toggle/_variables.scss#L98-L102",
       requires: [
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
         {
@@ -2190,7 +2190,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-track-border-radius",
       description:
         "The border radius to apply to the switch's track. This is the element that the ball animates left and right on.\n",
-      source: "packages/form/src/toggle/_variables.scss#L105",
+      source: "packages/form/src/toggle/_variables.scss#L107",
       usedBy: [{ name: "rmd-switch", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2200,7 +2200,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-size": {
       name: "rmd-switch-ball-size",
       description: "The size of the switch's ball.\n",
-      source: "packages/form/src/toggle/_variables.scss#L109",
+      source: "packages/form/src/toggle/_variables.scss#L111",
       usedBy: [
         { name: "rmd-switch", type: "mixin", packageName: "form" },
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
@@ -2214,7 +2214,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-switch-ball-border-radius": {
       name: "rmd-switch-ball-border-radius",
       description: "The border radius for the switch's ball.\n",
-      source: "packages/form/src/toggle/_variables.scss#L113",
+      source: "packages/form/src/toggle/_variables.scss#L115",
       usedBy: [{ name: "rmd-switch-ball", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2225,7 +2225,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-ball-offset",
       description:
         "The amount of offset that should be applied to the ball relative to its track. This is really used so the ball can overlap the track a bit to look a bit nicer.\n",
-      source: "packages/form/src/toggle/_variables.scss#L118",
+      source: "packages/form/src/toggle/_variables.scss#L120",
       usedBy: [
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
         { name: "rmd-switch-ball", type: "mixin", packageName: "form" },
@@ -2239,7 +2239,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-container-vertical-padding",
       description:
         "The vertical padding for the switch container. This should generally be large enough so that the ball does not overlap any other elements.\n",
-      source: "packages/form/src/toggle/_variables.scss#L123",
+      source: "packages/form/src/toggle/_variables.scss#L125",
       usedBy: [
         { name: "rmd-switch-container", type: "mixin", packageName: "form" },
       ],
@@ -2252,7 +2252,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-container-horizontal-padding",
       description:
         "The horizontal padding for the switch container. This should generally be large enough so that the ball does not overlap the label or other elements.",
-      source: "packages/form/src/toggle/_variables.scss#L129",
+      source: "packages/form/src/toggle/_variables.scss#L131",
       usedBy: [
         { name: "rmd-switch-container", type: "mixin", packageName: "form" },
       ],
@@ -2266,7 +2266,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-ball-disabled-color",
       description:
         "The color to use for the switch's ball when it is toggled on and disabled.",
-      source: "packages/form/src/toggle/_variables.scss#L136-L142",
+      source: "packages/form/src/toggle/_variables.scss#L138-L144",
       usedBy: [
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
       ],
@@ -2289,7 +2289,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-width",
       description:
         "The width of the circular progress bar. This will make the progress bar more prominent than the normal circular progress.\n",
-      source: "packages/form/src/toggle/_variables.scss#L147",
+      source: "packages/form/src/toggle/_variables.scss#L149",
       usedBy: [{ name: "rmd-switch", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",
@@ -2300,7 +2300,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-background-color",
       description:
         "The background color to use for the switch's ball while the the switch is loading.",
-      source: "packages/form/src/toggle/_variables.scss#L153",
+      source: "packages/form/src/toggle/_variables.scss#L155",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       requires: [
         { name: "rmd-white-base", type: "variable", packageName: "theme" },
@@ -2315,7 +2315,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-switch-progress-padding",
       description:
         "The amount of padding to apply to the async switch's progress bar. This will make it so there is some space between the switch's ball and the progress bar.\n",
-      source: "packages/form/src/toggle/_variables.scss#L158",
+      source: "packages/form/src/toggle/_variables.scss#L160",
       usedBy: [{ name: "react-md-toggle", type: "mixin", packageName: "form" }],
       packageName: "form",
       type: "Number",

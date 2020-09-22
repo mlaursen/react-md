@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-theme-var",
       description:
         "This function is used to get one of the card's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-card-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/card/src/_functions.scss#L31-L33",
+      source: "packages/card/src/_functions.scss#L31-L38",
       usedBy: [{ name: "rmd-card", type: "mixin", packageName: "card" }],
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
@@ -83,7 +83,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-theme",
       description:
         "Creates the styles for one of the card's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/card/src/_mixins.scss#L27-L29",
+      source: "packages/card/src/_mixins.scss#L27-L34",
       requires: [
         {
           name: "rmd-theme-apply-rmd-var",
@@ -128,7 +128,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-theme-update-var",
       description:
         "Updates one of the card's theme variables with the new value for the section of your app.",
-      source: "packages/card/src/_mixins.scss#L37-L39",
+      source: "packages/card/src/_mixins.scss#L42-L49",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
@@ -168,7 +168,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card",
       description:
         "Creates all the styles for the `Card` component only. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L43-L80",
+      source: "packages/card/src/_mixins.scss#L53-L99",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
@@ -215,14 +215,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "card",
       code: "@mixin rmd-card { … }",
       sourceCode:
-        '@mixin rmd-card {\n  @include rmd-theme-update-var(\n    background,\n    rmd-card-theme-var(background-color)\n  );\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    rmd-card-theme-var(color)\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    rmd-card-theme-var(secondary-color)\n  );\n  @include rmd-utils-mouse-only {\n    &--raiseable {\n      // Note: Only worthwhile with the `--shadowed` class\n      @include rmd-elevation-transition(\n        $rmd-card-base-elevation,\n        $rmd-card-raised-elevation,\n        "&:hover"\n      );\n    }\n  }\n  @include rmd-theme(background-color, surface);\n  @include rmd-theme(color, text-primary-on-background);\n\n  border-radius: $rmd-card-border-radius;\n  display: inline-block;\n\n  &--shadowed {\n    @include rmd-elevation($rmd-card-elevation);\n    @include rmd-theme-dark-elevation($rmd-card-elevation);\n  }\n\n  &--bordered {\n    border: $rmd-card-border-width solid $rmd-card-border-color;\n  }\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n\n  &--no-wrap {\n    @include rmd-typography-text-overflow-ellipsis;\n  }\n}\n',
+        "@mixin rmd-card {\n  @include rmd-theme-update-var(\n    background,\n    rmd-card-theme-var(background-color)\n  );\n  @include rmd-theme-update-var(\n    text-primary-on-background,\n    rmd-card-theme-var(color)\n  );\n  @include rmd-theme-update-var(\n    text-secondary-on-background,\n    rmd-card-theme-var(secondary-color)\n  );\n  @include rmd-utils-mouse-only {\n    &--raiseable {\n      // Note: Only worthwhile with the `--shadowed` class\n      @include rmd-elevation-transition(\n        $rmd-card-base-elevation,\n        $rmd-card-raised-elevation,\n        '&:hover'\n      );\n    }\n  }\n  @include rmd-theme(background-color, surface);\n  @include rmd-theme(color, text-primary-on-background);\n\n  border-radius: $rmd-card-border-radius;\n  display: inline-block;\n\n  &--shadowed {\n    @include rmd-elevation($rmd-card-elevation);\n    @include rmd-theme-dark-elevation($rmd-card-elevation);\n  }\n\n  &--bordered {\n    border: $rmd-card-border-width solid $rmd-card-border-color;\n  }\n\n  &--full-width {\n    display: block;\n    width: 100%;\n  }\n\n  &--no-wrap {\n    @include rmd-typography-text-overflow-ellipsis;\n  }\n}\n",
       type: "mixin",
     },
     "rmd-card-header": {
       name: "rmd-card-header",
       description:
         "Creates all the styles for the `CardHeader` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L84-L102",
+      source: "packages/card/src/_mixins.scss#L103-L121",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         {
@@ -256,7 +256,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-title",
       description:
         "Creates all the styles for the `CardTitle` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L106-L115",
+      source: "packages/card/src/_mixins.scss#L125-L139",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -276,7 +276,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-subtitle",
       description:
         "Creates all the styles for the `CardSubtitle` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L119-L128",
+      source: "packages/card/src/_mixins.scss#L143-L152",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -292,7 +292,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-content",
       description:
         "Creates all the styles for the `CardContent` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L132-L152",
+      source: "packages/card/src/_mixins.scss#L156-L176",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
@@ -317,7 +317,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-card-actions",
       description:
         "Creates all the styles for the `CardActions` component. You'll need to use this within a selector.\n",
-      source: "packages/card/src/_mixins.scss#L156-L169",
+      source: "packages/card/src/_mixins.scss#L180-L193",
       usedBy: [{ name: "react-md-card", type: "mixin", packageName: "card" }],
       requires: [
         {
@@ -335,7 +335,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-card": {
       name: "react-md-card",
       description: "Creates all the styles for the @react-md/card package.\n",
-      source: "packages/card/src/_mixins.scss#L172-L207",
+      source: "packages/card/src/_mixins.scss#L196-L231",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

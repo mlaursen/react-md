@@ -327,7 +327,11 @@
 /// @param {Boolean} parent-selector [true] - Boolean if the selector should end
 /// with the parent selector ` & ` so that the `$class-name` is a parent of the
 /// current class.
-@mixin rmd-utils-optional-css-modules($class-name, $css-modules: false, $parent-selector: true) {
+@mixin rmd-utils-optional-css-modules(
+  $class-name,
+  $css-modules: false,
+  $parent-selector: true
+) {
   $selector: if($css-modules, ':global #{$class-name} :local', $class-name);
   $selector: if($parent-selector, '#{$selector} &', $selector);
 
@@ -391,7 +395,10 @@
 /// CSS Modules which will update the selector to work correctly by wrapping
 /// different parts with `:global` and `:local`.
 @mixin rmd-utils-keyboard-only($css-modules: false) {
-  @include rmd-utils-optional-css-modules('.rmd-utils--keyboard', $css-modules) {
+  @include rmd-utils-optional-css-modules(
+    '.rmd-utils--keyboard',
+    $css-modules
+  ) {
     @content;
   }
 }
@@ -476,7 +483,10 @@
   display: grid;
   grid-column-gap: var(#{$rmd-grid-gutter-var}, #{$gutter});
   grid-row-gap: var(#{$rmd-grid-gutter-var}, #{$gutter});
-  grid-template-columns: repeat(var(#{$rmd-grid-columns-var}, #{$phone-columns}), 1fr);
+  grid-template-columns: repeat(
+    var(#{$rmd-grid-columns-var}, #{$phone-columns}),
+    1fr
+  );
   padding: $padding;
 
   > * {
@@ -569,7 +579,9 @@
 ) {
   $size: var(#{$rmd-grid-cell-size-var}, #{$max-size});
   @if $margin and $margin > 0 {
-    $size: calc(#{$size} - calc(var(#{$rmd-grid-cell-margin-var}, #{$margin}) * 2));
+    $size: calc(
+      #{$size} - calc(var(#{$rmd-grid-cell-margin-var}, #{$margin}) * 2)
+    );
   }
 
   #{$property}: $size;

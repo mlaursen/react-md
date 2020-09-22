@@ -150,13 +150,23 @@
 /// @param {Color} color [null] - An optional color to use for the overlay. If
 /// this is `null`, it will determine the contrast tone of the background color
 /// and use either the light or dark theme variables instead.
-@mixin rmd-media-overlay($background-color: $rmd-media-overlay-background-color, $color: null) {
+@mixin rmd-media-overlay(
+  $background-color: $rmd-media-overlay-background-color,
+  $color: null
+) {
   @if $color == null {
     $light: rmd-theme-tone($background-color) == 'light';
-    $color: rmd-theme-var(if($light, text-primary-on-light, text-primary-on-dark));
-    $secondary-color: rmd-theme-var(if($light, text-secondary-on-light, text-secondary-on-dark));
+    $color: rmd-theme-var(
+      if($light, text-primary-on-light, text-primary-on-dark)
+    );
+    $secondary-color: rmd-theme-var(
+      if($light, text-secondary-on-light, text-secondary-on-dark)
+    );
 
-    @include rmd-theme-update-var(text-secondary-on-background, $secondary-color);
+    @include rmd-theme-update-var(
+      text-secondary-on-background,
+      $secondary-color
+    );
   }
 
   @include rmd-theme-update-var(background, $background-color);

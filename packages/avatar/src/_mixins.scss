@@ -19,7 +19,12 @@
 /// retrieving the default value from the `rmd-avatar-theme-values` map when
 /// `null`.
 @mixin rmd-avatar-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-avatar-theme-values, avatar);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-avatar-theme-values,
+    avatar
+  );
 }
 
 /// Updates one of the avatar's theme variables with the new value for the
@@ -29,7 +34,12 @@
 /// should be one of the `$rmd-avatar-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-avatar-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-avatar-theme-values, avatar);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-avatar-theme-values,
+    avatar
+  );
 }
 
 /// A mixin for updating the avatar's theme colors.

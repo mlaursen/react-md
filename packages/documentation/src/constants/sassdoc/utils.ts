@@ -6,7 +6,7 @@ const sassdoc: PackageSassDoc = {
     "str-replace": {
       name: "str-replace",
       description: "Replace `$search` with `$replace` in `$string`",
-      source: "packages/utils/src/_functions.scss#L16-L25",
+      source: "packages/utils/src/_functions.scss#L16-L29",
       links: [
         {
           name: "Source from CSS Tricks",
@@ -41,7 +41,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-validate",
       description:
         "This function is used to validate a list or map to make sure they contain the provided key or value. This should mostly really only be internal use.",
-      source: "packages/utils/src/_functions.scss#L39-L58",
+      source: "packages/utils/src/_functions.scss#L43-L62",
       usedBy: [
         { name: "rmd-app-bar-offset", type: "mixin", packageName: "app-bar" },
         {
@@ -144,7 +144,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-swap-position",
       description:
         "A utility function that can swap the position of different css styles. This is useful for RTL switching.\n",
-      source: "packages/utils/src/_functions.scss#L65-L87",
+      source: "packages/utils/src/_functions.scss#L69-L95",
       usedBy: [
         { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
         {
@@ -170,7 +170,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "utils",
       code: "@function rmd-utils-swap-position($style) { … }",
       sourceCode:
-        '@function rmd-utils-swap-position($style) {\n  $prefix: "";\n  $position: $style;\n  @each $valid-prefix in $rmd-utils-swappable-position-prefixes {\n    @if str-index($style, "#{$valid-prefix}-") {\n      $prefix: "#{$valid-prefix}-";\n      $position: str-replace($style, $prefix, "");\n    }\n  }\n\n  $current: rmd-utils-validate(\n    $rmd-utils-swappable-positions,\n    $position,\n    "swappable position"\n  );\n\n  $next-position: bottom;\n  @if $position == left {\n    $next-position: right;\n  } @else if $position == right {\n    $next-position: left;\n  } @else if $position == bottom {\n    $next-position: top;\n  }\n\n  @return "#{$prefix}#{$next-position}";\n}\n',
+        "@function rmd-utils-swap-position($style) {\n  $prefix: '';\n  $position: $style;\n  @each $valid-prefix in $rmd-utils-swappable-position-prefixes {\n    @if str-index($style, '#{$valid-prefix}-') {\n      $prefix: '#{$valid-prefix}-';\n      $position: str-replace($style, $prefix, '');\n    }\n  }\n\n  $current: rmd-utils-validate(\n    $rmd-utils-swappable-positions,\n    $position,\n    'swappable position'\n  );\n\n  $next-position: bottom;\n  @if $position == left {\n    $next-position: right;\n  } @else if $position == right {\n    $next-position: left;\n  } @else if $position == bottom {\n    $next-position: top;\n  }\n\n  @return '#{$prefix}#{$next-position}';\n}\n",
       type: "function",
       parameters: [
         {
@@ -189,7 +189,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-negate-var",
       description:
         "This function can be used to negate the value of a css variable. It just really wraps the variable with `calc(-1 * #{$variable})`.",
-      source: "packages/utils/src/_functions.scss#L94-L96",
+      source: "packages/utils/src/_functions.scss#L102-L104",
       usedBy: [
         { name: "rmd-floating-label", type: "mixin", packageName: "form" },
         { name: "rmd-tooltip", type: "mixin", packageName: "tooltip" },
@@ -271,7 +271,7 @@ const sassdoc: PackageSassDoc = {
       ],
       code: "@mixin rmd-utils-rtl { … }",
       sourceCode:
-        '@mixin rmd-utils-rtl {\n  @if $rmd-utils-enable-rtl {\n    [dir="rtl"] & {\n      @content;\n    }\n  }\n}\n',
+        "@mixin rmd-utils-rtl {\n  @if $rmd-utils-enable-rtl {\n    [dir='rtl'] & {\n      @content;\n    }\n  }\n}\n",
       type: "mixin",
     },
     "rmd-utils-rtl-auto": {
@@ -324,7 +324,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-utils-rtl-auto($property, $value, $swapped-value: null) { … }",
       sourceCode:
-        '@mixin rmd-utils-rtl-auto($property, $value, $swapped-value: null) {\n  $inversed-property: rmd-utils-swap-position($property);\n\n  @include rmd-utils-rtl {\n    @if $swapped-value == null {\n      $swapped-value: auto;\n\n      @each $prefix in $rmd-utils-swappable-position-prefixes {\n        @if str-index($property, "#{$prefix}-") {\n          $swapped-value: 0;\n        }\n      }\n    }\n\n    #{$property}: #{$swapped-value};\n    #{$inversed-property}: #{$value};\n    @content;\n  }\n\n  #{$property}: #{$value};\n}\n',
+        "@mixin rmd-utils-rtl-auto($property, $value, $swapped-value: null) {\n  $inversed-property: rmd-utils-swap-position($property);\n\n  @include rmd-utils-rtl {\n    @if $swapped-value == null {\n      $swapped-value: auto;\n\n      @each $prefix in $rmd-utils-swappable-position-prefixes {\n        @if str-index($property, '#{$prefix}-') {\n          $swapped-value: 0;\n        }\n      }\n    }\n\n    #{$property}: #{$swapped-value};\n    #{$inversed-property}: #{$value};\n    @content;\n  }\n\n  #{$property}: #{$value};\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -438,7 +438,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-utils-scroll($position: null, $type: auto, $enable-momentum: $rmd-utils-ios-scroll-momentum) { … }",
       sourceCode:
-        '@mixin rmd-utils-scroll(\n  $position: null,\n  $type: auto,\n  $enable-momentum: $rmd-utils-ios-scroll-momentum\n) {\n  $style: overflow;\n  @if $position == "x" or $position == "y" {\n    $style: #{$style}-#{$position};\n  }\n\n  #{$style}: $type;\n\n  @if $enable-momentum {\n    // sass-lint:disable no-vendor-prefixes\n    -webkit-overflow-scrolling: touch;\n  }\n}\n',
+        "@mixin rmd-utils-scroll(\n  $position: null,\n  $type: auto,\n  $enable-momentum: $rmd-utils-ios-scroll-momentum\n) {\n  $style: overflow;\n  @if $position == 'x' or $position == 'y' {\n    $style: #{$style}-#{$position};\n  }\n\n  #{$style}: $type;\n\n  @if $enable-momentum {\n    // sass-lint:disable no-vendor-prefixes\n    -webkit-overflow-scrolling: touch;\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -570,7 +570,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-utils-pseudo-element($z-index: 0, $position: absolute) { … }",
       sourceCode:
-        '@mixin rmd-utils-pseudo-element($z-index: 0, $position: absolute) {\n  @include rmd-utils-full-screen($position);\n\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: $z-index;\n}\n',
+        "@mixin rmd-utils-pseudo-element($z-index: 0, $position: absolute) {\n  @include rmd-utils-full-screen($position);\n\n  border-radius: inherit;\n  content: '';\n  pointer-events: none;\n  z-index: $z-index;\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -640,7 +640,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-utils-sr-only($focusable: false, $focus-suffix: '&--focusable') { … }",
       sourceCode:
-        '@mixin rmd-utils-sr-only($focusable: false, $focus-suffix: "&--focusable") {\n  border: 0;\n  clip: rect(1px, 1px, 1px, 1px);\n  clip-path: inset(50%);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  white-space: nowrap;\n  width: 1px;\n\n  @if $focusable {\n    @if not $focus-suffix {\n      @include rmd-utils-sr-only-focusable;\n    } @else {\n      #{$focus-suffix} {\n        @include rmd-utils-sr-only-focusable;\n      }\n    }\n  }\n}\n',
+        "@mixin rmd-utils-sr-only($focusable: false, $focus-suffix: '&--focusable') {\n  border: 0;\n  clip: rect(1px, 1px, 1px, 1px);\n  clip-path: inset(50%);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  white-space: nowrap;\n  width: 1px;\n\n  @if $focusable {\n    @if not $focus-suffix {\n      @include rmd-utils-sr-only-focusable;\n    } @else {\n      #{$focus-suffix} {\n        @include rmd-utils-sr-only-focusable;\n      }\n    }\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -771,7 +771,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-optional-css-modules",
       description:
         "This mixin should mostally be used internally within react-md so that react-md mixins that use a `rmd-` prefixed class work correctly if included from a css module file. This basically prefixes the react-md class with `:global` and suffixes with `:local &`.",
-      source: "packages/utils/src/_mixins.scss#L330-L337",
+      source: "packages/utils/src/_mixins.scss#L330-L341",
       since: "2.1.0",
       usedBy: [
         {
@@ -796,7 +796,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-utils-optional-css-modules($class-name, $css-modules: false, $parent-selector: true) { … }",
       sourceCode:
-        '@mixin rmd-utils-optional-css-modules(\n  $class-name,\n  $css-modules: false,\n  $parent-selector: true\n) {\n  $selector: if($css-modules, ":global #{$class-name} :local", $class-name);\n  $selector: if($parent-selector, "#{$selector} &", $selector);\n\n  #{$selector} {\n    @content;\n  }\n}\n',
+        "@mixin rmd-utils-optional-css-modules(\n  $class-name,\n  $css-modules: false,\n  $parent-selector: true\n) {\n  $selector: if($css-modules, ':global #{$class-name} :local', $class-name);\n  $selector: if($parent-selector, '#{$selector} &', $selector);\n\n  #{$selector} {\n    @content;\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -825,7 +825,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-touch-only",
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app on a touch device.",
-      source: "packages/utils/src/_mixins.scss#L363-L367",
+      source: "packages/utils/src/_mixins.scss#L367-L371",
       usedBy: [
         { name: "rmd-states-surface", type: "mixin", packageName: "states" },
         {
@@ -862,7 +862,7 @@ const sassdoc: PackageSassDoc = {
       ],
       code: "@mixin rmd-utils-touch-only($css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-utils-touch-only($css-modules: false) {\n  @include rmd-utils-optional-css-modules(".rmd-utils--touch", $css-modules) {\n    @content;\n  }\n}\n',
+        "@mixin rmd-utils-touch-only($css-modules: false) {\n  @include rmd-utils-optional-css-modules('.rmd-utils--touch', $css-modules) {\n    @content;\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -878,7 +878,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-keyboard-only",
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app with a keyboard.",
-      source: "packages/utils/src/_mixins.scss#L393-L397",
+      source: "packages/utils/src/_mixins.scss#L397-L404",
       usedBy: [
         {
           name: "rmd-states-focus-shadow",
@@ -915,7 +915,7 @@ const sassdoc: PackageSassDoc = {
       ],
       code: "@mixin rmd-utils-keyboard-only($css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-utils-keyboard-only($css-modules: false) {\n  @include rmd-utils-optional-css-modules(\n    ".rmd-utils--keyboard",\n    $css-modules\n  ) {\n    @content;\n  }\n}\n',
+        "@mixin rmd-utils-keyboard-only($css-modules: false) {\n  @include rmd-utils-optional-css-modules(\n    '.rmd-utils--keyboard',\n    $css-modules\n  ) {\n    @content;\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -931,7 +931,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-mouse-only",
       description:
         "This mixin allows you to add styles to an element only when the user is interacting with your app with a mouse.",
-      source: "packages/utils/src/_mixins.scss#L423-L427",
+      source: "packages/utils/src/_mixins.scss#L430-L434",
       requires: [
         {
           name: "rmd-utils-optional-css-modules",
@@ -960,7 +960,7 @@ const sassdoc: PackageSassDoc = {
       ],
       code: "@mixin rmd-utils-mouse-only($css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-utils-mouse-only($css-modules: false) {\n  @include rmd-utils-optional-css-modules(".rmd-utils--mouse", $css-modules) {\n    @content;\n  }\n}\n',
+        "@mixin rmd-utils-mouse-only($css-modules: false) {\n  @include rmd-utils-optional-css-modules('.rmd-utils--mouse', $css-modules) {\n    @content;\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -976,7 +976,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid",
       description:
         "Generates a new grid based on the provided padding, margin, and columns.",
-      source: "packages/utils/src/_mixins.scss#L450-L487",
+      source: "packages/utils/src/_mixins.scss#L457-L497",
       usedBy: [
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
       ],
@@ -1043,7 +1043,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-full",
       description:
         "This mixin is just a nice way to quickly make a cell span the entire width of the grid.\n\nNote: if you set the number of columns for phone or tablet to `1`, you'll need to also wrap this in the `@include rmd-utils-tablet-media` or `@include rmd-utils-desktop-media` mixins respectively.\n",
-      source: "packages/utils/src/_mixins.scss#L495-L497",
+      source: "packages/utils/src/_mixins.scss#L505-L507",
       requires: [
         {
           name: "rmd-grid-columns-var",
@@ -1066,7 +1066,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell-size",
       description:
         "A mixin that allows you to override the size of a cell within the `Grid` component manually.  This is useful if you want to specify sizing without using the `GridCell` component wrapper.",
-      source: "packages/utils/src/_mixins.scss#L514-L541",
+      source: "packages/utils/src/_mixins.scss#L524-L551",
       usedBy: [{ name: "rmd-grid-cell", type: "mixin", packageName: "utils" }],
       packageName: "utils",
       code:
@@ -1108,7 +1108,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-cell",
       description:
         'Creates the styles for all the cell column spans and "fixes" for smaller media types if the media types doesn\'t support the same number of columns.\n',
-      source: "packages/utils/src/_mixins.scss#L546-L552",
+      source: "packages/utils/src/_mixins.scss#L556-L562",
       usedBy: [
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
       ],
@@ -1130,7 +1130,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell-size",
       description:
         "A simple mixin that will allow you to add the current grid list cell size to any property.",
-      source: "packages/utils/src/_mixins.scss#L565-L576",
+      source: "packages/utils/src/_mixins.scss#L575-L588",
       usedBy: [
         { name: "rmd-grid-list-cell", type: "mixin", packageName: "utils" },
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
@@ -1179,7 +1179,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell",
       description:
         "Adds the current grid list cell's size to any element if you don't want to use the `GridListCell` component for sizing. This will **always** apply the `margin` and `width`, but the `height` can be opted-out if desired.",
-      source: "packages/utils/src/_mixins.scss#L590-L601",
+      source: "packages/utils/src/_mixins.scss#L602-L613",
       usedBy: [
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
       ],
@@ -1228,7 +1228,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-grid-list": {
       name: "rmd-grid-list",
       description: "Creates the styles for the `GridList` component\n",
-      source: "packages/utils/src/_mixins.scss#L605-L611",
+      source: "packages/utils/src/_mixins.scss#L617-L623",
       usedBy: [
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
       ],
@@ -1242,7 +1242,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-utils-grid",
       description:
         "Generates all the styles for the grid systems in react-md.\n",
-      source: "packages/utils/src/_mixins.scss#L615-L639",
+      source: "packages/utils/src/_mixins.scss#L627-L651",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         { name: "rmd-grid", type: "mixin", packageName: "utils" },
@@ -1265,7 +1265,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-base",
       description:
         "This is a small utility function that helps set up your react-md app.\n\nThis will:\n- update the `box-sizing` to be `border-box` (helpful for calculation positions and sizing)\n- remove the margin and padding from the `html` and `body`\n- apply the base background color and text colors to the `html` tag if the `@react-md/theme` package\n  has been correctly included\n- apply the base typography to the `html` element if the `@react-md/typography` package\n  has been correctly included\n",
-      source: "packages/utils/src/_mixins.scss#L650-L694",
+      source: "packages/utils/src/_mixins.scss#L662-L706",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
@@ -1285,7 +1285,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-utils-dense",
       description:
         "This mixin will attempt to apply all the available dense theme mixins that have been imported. This should normally be used within a `:root` selector and a media query.",
-      source: "packages/utils/src/_mixins.scss#L706-L730",
+      source: "packages/utils/src/_mixins.scss#L718-L742",
       requires: [
         {
           name: "rmd-app-bar-dense-theme",
@@ -1326,7 +1326,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-utils",
       description:
         "This mixin will include the styles for all packages that have been imported in your scss files. If there are missing styles, you need to make sure to correctly import that package before calling this function.\n",
-      source: "packages/utils/src/_mixins.scss#L736-L862",
+      source: "packages/utils/src/_mixins.scss#L748-L874",
       requires: [
         { name: "rmd-utils-base", type: "mixin", packageName: "utils" },
         { name: "react-md-utils-grid", type: "mixin", packageName: "utils" },
@@ -1716,10 +1716,10 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-desktop-columns",
       description:
         "The default number of columns to render on desktop screens in the `Grid` component.\n",
-      source: "packages/utils/src/_variables.scss#L127",
+      source: "packages/utils/src/_variables.scss#L127-L131",
       packageName: "utils",
       type: "Number",
-      value: "if($rmd-grid-columns, $rmd-grid-columns, 12)",
+      value: "if(\n  $rmd-grid-columns,\n  $rmd-grid-columns,\n  12\n)",
       compiled: "12",
       overridable: true,
     },
@@ -1727,7 +1727,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-large-desktop-columns",
       description:
         "The default number of columns to render on large desktop screens in the `Grid` component.\n",
-      source: "packages/utils/src/_variables.scss#L132",
+      source: "packages/utils/src/_variables.scss#L136",
       usedBy: [{ name: "rmd-grid-cell", type: "mixin", packageName: "utils" }],
       packageName: "utils",
       type: "Number",
@@ -1739,7 +1739,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-padding",
       description:
         "The default amount of padding to apply to the `GridList` component.\n",
-      source: "packages/utils/src/_variables.scss#L136",
+      source: "packages/utils/src/_variables.scss#L140",
       packageName: "utils",
       type: "Number",
       value: "0.5rem",
@@ -1749,7 +1749,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell-margin",
       description:
         "The default amount of margin to apply to each cell within the `GridList` component.\n",
-      source: "packages/utils/src/_variables.scss#L141",
+      source: "packages/utils/src/_variables.scss#L145",
       packageName: "utils",
       type: "Number",
       value: "0.5rem",
@@ -1759,7 +1759,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-grid-list-cell-max-size",
       description:
         "The default max size that each cell can be within the `GridList` component.\n",
-      source: "packages/utils/src/_variables.scss#L145",
+      source: "packages/utils/src/_variables.scss#L149",
       packageName: "utils",
       type: "Number",
       value: "9.375rem",

@@ -19,7 +19,12 @@
 /// retrieving the default value from the `rmd-divider-theme-values` map when
 /// `null`.
 @mixin rmd-divider-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-divider-theme-values, divider);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-divider-theme-values,
+    divider
+  );
 }
 
 /// Updates one of the divider's theme variables with the new value for the
@@ -29,7 +34,12 @@
 /// should be one of the `$rmd-divider-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-divider-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-divider-theme-values, divider);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-divider-theme-values,
+    divider
+  );
 }
 
 /// This mixin allows you to add a custom border to any element if you don't
@@ -76,7 +86,9 @@
       margin-left: auto;
     }
 
-    width: calc(#{rmd-divider-theme-var(max-size)} - #{rmd-divider-theme-var(inset)});
+    width: calc(
+      #{rmd-divider-theme-var(max-size)} - #{rmd-divider-theme-var(inset)}
+    );
   }
 }
 

@@ -23,7 +23,12 @@
 /// retrieving the default value from the `rmd-dialog-theme-values` map when
 /// `null`.
 @mixin rmd-dialog-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-dialog-theme-values, dialog);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-dialog-theme-values,
+    dialog
+  );
 }
 
 /// Updates one of the dialog's theme variables with the new value for the
@@ -33,7 +38,12 @@
 /// should be one of the `$rmd-dialog-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-dialog-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-dialog-theme-values, dialog);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-dialog-theme-values,
+    dialog
+  );
 }
 
 /// Creates the styles for the base dialog element.
@@ -46,7 +56,10 @@
   @include rmd-theme(color, text-primary-on-background);
   @include rmd-utils-hide-focus-outline;
   @if mixin-exists(rmd-app-bar-theme-update-var) {
-    @include rmd-app-bar-theme-update-var(color, rmd-theme-var(text-primary-on-background));
+    @include rmd-app-bar-theme-update-var(
+      color,
+      rmd-theme-var(text-primary-on-background)
+    );
   }
 
   display: flex;
@@ -84,7 +97,8 @@
 
     opacity: 1;
     transform: translateY(0);
-    transition: transform $rmd-dialog-leave-duration, opacity $rmd-dialog-leave-duration;
+    transition: transform $rmd-dialog-leave-duration,
+      opacity $rmd-dialog-leave-duration;
   }
 
   &--exit-active {
@@ -112,7 +126,8 @@
 
     opacity: 1;
     transform: scale(1);
-    transition: transform $rmd-dialog-leave-duration, opacity $rmd-dialog-leave-duration;
+    transition: transform $rmd-dialog-leave-duration,
+      opacity $rmd-dialog-leave-duration;
   }
 
   &--fixed-exit-active {
@@ -201,7 +216,8 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin: rmd-dialog-theme-var(vertical-margin) rmd-dialog-theme-var(horizontal-margin);
+  margin: rmd-dialog-theme-var(vertical-margin)
+    rmd-dialog-theme-var(horizontal-margin);
   pointer-events: none;
 }
 

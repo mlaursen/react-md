@@ -23,7 +23,9 @@
 
   &--padded {
     padding-top: calc(
-      #{$rmd-select-native-multiple-padding} + #{rmd-form-theme-var(text-padding-top)}
+      #{$rmd-select-native-multiple-padding} + #{rmd-form-theme-var(
+          text-padding-top
+        )}
     );
   }
 }

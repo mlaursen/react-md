@@ -21,7 +21,12 @@
 /// retrieving the default value from the `rmd-badge-theme-values` map when
 /// `null`.
 @mixin rmd-badge-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-badge-theme-values, badge);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-badge-theme-values,
+    badge
+  );
 }
 
 /// Updates one of the badge's theme variables with the new value for the
@@ -31,7 +36,12 @@
 /// should be one of the `$rmd-badge-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-badge-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-badge-theme-values, badge);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-badge-theme-values,
+    badge
+  );
 }
 
 /// Creates the minimal styles for a badge container.

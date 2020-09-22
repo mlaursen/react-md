@@ -55,7 +55,11 @@ $rmd-toast-background-color: if(
 ///
 /// @require $rmd-theme-light
 /// @type Color
-$rmd-toast-color: if($rmd-theme-light, $rmd-toast-light-color, $rmd-toast-dark-color) !default;
+$rmd-toast-color: if(
+  $rmd-theme-light,
+  $rmd-toast-light-color,
+  $rmd-toast-dark-color
+) !default;
 
 /// The minimum height for a single line toast.
 /// @type Number

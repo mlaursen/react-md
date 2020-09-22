@@ -27,7 +27,12 @@
 /// retrieving the default value from the `rmd-layout-theme-values` map when
 /// `null`.
 @mixin rmd-layout-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-layout-theme-values, layout);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-layout-theme-values,
+    layout
+  );
 }
 
 /// Updates one of the layout's theme variables with the new value for the section
@@ -37,7 +42,12 @@
 /// should be one of the `$rmd-layout-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-layout-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-layout-theme-values, layout);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-layout-theme-values,
+    layout
+  );
 }
 
 /// Creates all the styles for the layout package.
@@ -86,7 +96,9 @@
 
   .rmd-layout-title {
     &--offset {
-      $margin: calc(#{rmd-sheet-theme-var(static-width)} + #{$rmd-app-bar-keyline});
+      $margin: calc(
+        #{rmd-sheet-theme-var(static-width)} + #{$rmd-app-bar-keyline}
+      );
 
       @include rmd-utils-rtl-auto(margin-left, $margin);
     }
@@ -96,9 +108,15 @@
     &--offset {
       $nav-size: rmd-layout-theme-var(nav-width);
       $icon-size: rmd-button-theme-var(icon-size);
-      $distance: calc(#{$rmd-app-bar-title-nav-margin} + #{$nav-size} - #{$icon-size});
+      $distance: calc(
+        #{$rmd-app-bar-title-nav-margin} + #{$nav-size} - #{$icon-size}
+      );
 
-      @include rmd-utils-rtl-auto(margin-right, $distance, $rmd-app-bar-lr-margin);
+      @include rmd-utils-rtl-auto(
+        margin-right,
+        $distance,
+        $rmd-app-bar-lr-margin
+      );
     }
   }
 
@@ -114,7 +132,11 @@
     @include rmd-utils-hide-focus-outline;
 
     @include rmd-utils-keyboard-only {
-      @include rmd-transition-shadow-transition(none, $rmd-layout-main-focus-shadow, '&:focus');
+      @include rmd-transition-shadow-transition(
+        none,
+        $rmd-layout-main-focus-shadow,
+        '&:focus'
+      );
 
       &::before {
         // need to inherit the margin based for the offsets

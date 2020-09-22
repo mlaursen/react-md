@@ -60,11 +60,17 @@ $rmd-states-dark-theme-background-color: $rmd-black-base !default;
 
 /// The hover color to use for light themed backgrounds.
 /// @type Color
-$rmd-states-light-theme-hover-color: rgba($rmd-states-light-theme-background-color, 0.08) !default;
+$rmd-states-light-theme-hover-color: rgba(
+  $rmd-states-light-theme-background-color,
+  0.08
+) !default;
 
 /// The keyboard focus color to use for light themed backgrounds.
 /// @type Color
-$rmd-states-light-theme-focus-color: rgba($rmd-states-light-theme-background-color, 0.24) !default;
+$rmd-states-light-theme-focus-color: rgba(
+  $rmd-states-light-theme-background-color,
+  0.24
+) !default;
 
 /// The pressed color to use for light themed backgrounds.
 /// @type Color
@@ -82,29 +88,47 @@ $rmd-states-light-theme-selected-color: rgba(
 
 /// The hover color to use for dark themed backgrounds.
 /// @type Color
-$rmd-states-dark-theme-hover-color: rgba($rmd-states-dark-theme-background-color, 0.04) !default;
+$rmd-states-dark-theme-hover-color: rgba(
+  $rmd-states-dark-theme-background-color,
+  0.04
+) !default;
 
 /// The keyboard focus color to use for dark themed backgrounds.
 /// @type Color
-$rmd-states-dark-theme-focus-color: rgba($rmd-states-dark-theme-background-color, 0.12) !default;
+$rmd-states-dark-theme-focus-color: rgba(
+  $rmd-states-dark-theme-background-color,
+  0.12
+) !default;
 
 /// The pressed color to use for dark themed backgrounds.
 /// @type Color
-$rmd-states-dark-theme-pressed-color: rgba($rmd-states-dark-theme-background-color, 0.16) !default;
+$rmd-states-dark-theme-pressed-color: rgba(
+  $rmd-states-dark-theme-background-color,
+  0.16
+) !default;
 
 /// The selected color to use for dark themed backgrounds.
 /// @type Color
-$rmd-states-dark-theme-selected-color: rgba($rmd-states-dark-theme-background-color, 0.12) !default;
+$rmd-states-dark-theme-selected-color: rgba(
+  $rmd-states-dark-theme-background-color,
+  0.12
+) !default;
 
 /// The base background color to use for the ripple effect in a light themed
 /// application.
 /// @type Color
-$rmd-states-light-theme-ripple-background-color: rgba($rmd-black-base, 0.08) !default;
+$rmd-states-light-theme-ripple-background-color: rgba(
+  $rmd-black-base,
+  0.08
+) !default;
 
 /// The base background color to use for the ripple effect in a dark themed
 /// application.
 /// @type Color
-$rmd-states-dark-theme-ripple-background-color: rgba($rmd-black-base, 0.08) !default;
+$rmd-states-dark-theme-ripple-background-color: rgba(
+  $rmd-black-base,
+  0.08
+) !default;
 
 /// The background color to use for the different states. The default behavior
 /// is to use a base color and apply different opacities depending on the
@@ -178,7 +202,8 @@ $rmd-states-focus-shadow-color: $rmd-blue-500 !default;
 /// `$rmd-states-use-focus-shadow` variable is enabled.
 ///
 /// @type String
-$rmd-states-focus-shadow: inset 0 0 0 $rmd-states-focus-shadow-width $rmd-states-focus-shadow-color !default;
+$rmd-states-focus-shadow: inset 0 0 0 $rmd-states-focus-shadow-width
+  $rmd-states-focus-shadow-color !default;
 
 /// The base background color for the ripple effect.
 ///

@@ -51,4 +51,6 @@ $rmd-media-overlay-horizontal-width: 30% !default;
 /// null if you'd like to save a few bytes by not generating the styles for some
 /// positions.
 /// @type List
-$rmd-media-overlay-positions: (top right bottom left middle center absolute-center) !default;
+$rmd-media-overlay-positions: (
+  top right bottom left middle center absolute-center
+) !default;

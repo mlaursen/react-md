@@ -124,7 +124,11 @@ $rmd-grid-tablet-columns: if($rmd-grid-columns, $rmd-grid-columns, 8) !default;
 /// The default number of columns to render on desktop screens in the `Grid`
 /// component.
 /// @type Number
-$rmd-grid-desktop-columns: if($rmd-grid-columns, $rmd-grid-columns, 12) !default;
+$rmd-grid-desktop-columns: if(
+  $rmd-grid-columns,
+  $rmd-grid-columns,
+  12
+) !default;
 
 /// The default number of columns to render on large desktop screens in the
 /// `Grid` component.

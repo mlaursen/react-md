@@ -13,7 +13,9 @@
   @include rmd-utils-phone-media {
     @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-title-keyline);
 
-    max-width: calc(100% - #{$rmd-app-bar-title-keyline + $rmd-app-bar-keyline});
+    max-width: calc(
+      100% - #{$rmd-app-bar-title-keyline + $rmd-app-bar-keyline}
+    );
   }
   @include rmd-theme(color, text-secondary-on-dark);
   @include rmd-typography(subtitle-2);

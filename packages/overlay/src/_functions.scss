@@ -13,7 +13,11 @@
 /// get a value for.
 /// @return {Color|String|Number} one of the overlay's theme values.
 @function rmd-overlay-theme($theme-style) {
-  @return rmd-theme-get-var-value($theme-style, $rmd-overlay-theme-values, overlay);
+  @return rmd-theme-get-var-value(
+    $theme-style,
+    $rmd-overlay-theme-values,
+    overlay
+  );
 }
 
 /// This function is used to get one of the overlay's theme variables as a CSS
@@ -30,5 +34,10 @@
 /// variables should always exist.
 /// @return {String} one of the overlay's theme values as a css variable.
 @function rmd-overlay-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-overlay-theme-values, overlay, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-overlay-theme-values,
+    overlay,
+    $fallback
+  );
 }

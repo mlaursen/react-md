@@ -48,7 +48,9 @@ $rmd-form-disabled-color: rmd-theme-var(text-disabled-on-background) !default;
 ///
 /// @require rmd-theme-var
 /// @type Color
-$rmd-form-placeholder-color: rmd-theme-var(text-secondary-on-background) !default;
+$rmd-form-placeholder-color: rmd-theme-var(
+  text-secondary-on-background
+) !default;
 
 // sass-lint:disable zero-unit
 

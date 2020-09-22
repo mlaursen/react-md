@@ -15,7 +15,11 @@
 /// keys to get a value for.
 /// @return {Color|String|Number} one of the typography's theme values.
 @function rmd-typography-theme($theme-style) {
-  @return rmd-theme-get-var-value($theme-style, $rmd-typography-theme-values, typography);
+  @return rmd-theme-get-var-value(
+    $theme-style,
+    $rmd-typography-theme-values,
+    typography
+  );
 }
 
 /// This function is used to get one of the typography's theme variables as a
@@ -32,7 +36,12 @@
 /// variables should always exist.
 /// @return {String} one of the typography's theme values as a css variable.
 @function rmd-typography-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-typography-theme-values, typography, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-typography-theme-values,
+    typography,
+    $fallback
+  );
 }
 
 /// Gets the Google font suffix for the provided font weight.
@@ -67,5 +76,9 @@
 @function rmd-typography-value($style, $property) {
   $style-props: rmd-utils-validate($rmd-typography-styles, $style, typography);
 
-  @return rmd-utils-validate($style-props, $property, 'typography #{$style} property');
+  @return rmd-utils-validate(
+    $style-props,
+    $property,
+    'typography #{$style} property'
+  );
 }

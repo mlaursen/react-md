@@ -7,6 +7,9 @@
 
   :global .light-theme :local & {
     @include rmd-theme-dark;
-    @include rmd-button-theme-update-var(color, rmd-app-bar-theme-var(default-color));
+    @include rmd-button-theme-update-var(
+      color,
+      rmd-app-bar-theme-var(default-color)
+    );
   }
 }

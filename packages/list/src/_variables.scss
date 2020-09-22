@@ -174,7 +174,8 @@ $rmd-list-theme-values: (
   item-three-line-height: $rmd-list-item-three-line-height,
   item-vertical-padding: $rmd-list-item-vertical-padding,
   item-horizontal-padding: $rmd-list-item-horizontal-padding,
-  item-secondary-three-line-height: $rmd-list-item-secondary-text-three-line-max-height,
+  item-secondary-three-line-height:
+    $rmd-list-item-secondary-text-three-line-max-height,
   dense-font-size: $rmd-list-dense-font-size,
   dense-vertical-padding: $rmd-list-dense-vertical-padding,
   dense-horizontal-padding: $rmd-list-dense-horizontal-padding,
@@ -183,7 +184,8 @@ $rmd-list-theme-values: (
   dense-item-large-height: $rmd-list-item-dense-large-height,
   dense-item-extra-large-height: $rmd-list-item-dense-extra-large-height,
   dense-item-three-line-height: $rmd-list-item-dense-three-line-height,
-  dense-item-secondary-three-line-height: $rmd-list-item-dense-secondary-text-three-line-max-height,
+  dense-item-secondary-three-line-height:
+    $rmd-list-item-dense-secondary-text-three-line-max-height,
   media-size: $rmd-list-item-media-size,
   media-spacing: $rmd-list-item-media-spacing,
   media-large-size: $rmd-list-item-media-large-size,

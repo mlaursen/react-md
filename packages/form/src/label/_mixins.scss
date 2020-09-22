@@ -34,7 +34,10 @@
 
 /// @access private
 @mixin rmd-floating-label {
-  @include rmd-form-theme-update-var(active-color, rmd-form-theme-var(text-active-color));
+  @include rmd-form-theme-update-var(
+    active-color,
+    rmd-form-theme-var(text-active-color)
+  );
   @include rmd-utils-rtl {
     left: auto;
     right: 0;
@@ -49,12 +52,18 @@
   left: 0;
   position: absolute;
   top: 0;
-  transform: translate(rmd-form-theme-var(text-padding-left), rmd-form-theme-var(floating-top));
+  transform: translate(
+    rmd-form-theme-var(text-padding-left),
+    rmd-form-theme-var(floating-top)
+  );
   transition-property: $transitions;
   will-change: $transitions;
 
   &--dense {
-    @include rmd-form-theme-update-var(floating-top, rmd-form-theme-var(floating-dense-top));
+    @include rmd-form-theme-update-var(
+      floating-top,
+      rmd-form-theme-var(floating-dense-top)
+    );
   }
 
   &--active {

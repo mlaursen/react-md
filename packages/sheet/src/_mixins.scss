@@ -21,7 +21,12 @@
 /// retrieving the default value from the `rmd-sheet-theme-values` map when
 /// `null`.
 @mixin rmd-sheet-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-sheet-theme-values, sheet);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-sheet-theme-values,
+    sheet
+  );
 }
 
 /// Updates one of the sheet's theme variables with the new value for the
@@ -31,7 +36,12 @@
 /// should be one of the `$rmd-sheet-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-sheet-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-sheet-theme-values, sheet);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-sheet-theme-values,
+    sheet
+  );
 }
 
 /// Creates the different positioning styles for all the sheet positions.
@@ -39,25 +49,47 @@
 @mixin rmd-sheet-positions {
   @if $rmd-sheet-enabled-positions {
     @each $position in $rmd-sheet-enabled-positions {
-      $position: rmd-utils-validate($rmd-sheet-positions, $position, 'sheet position');
+      $position: rmd-utils-validate(
+        $rmd-sheet-positions,
+        $position,
+        'sheet position'
+      );
 
       &--#{$position} {
         @if $position == left {
           @include rmd-utils-rtl-auto(left, 0) {
-            @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(100%, 0, 0));
+            @include rmd-sheet-theme-update-var(
+              transform-offscreen,
+              translate3d(100%, 0, 0)
+            );
           }
-          @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(-100%, 0, 0));
+          @include rmd-sheet-theme-update-var(
+            transform-offscreen,
+            translate3d(-100%, 0, 0)
+          );
         } @else if $position == right {
           @include rmd-utils-rtl-auto(right, 0) {
-            @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(-100%, 0, 0));
+            @include rmd-sheet-theme-update-var(
+              transform-offscreen,
+              translate3d(-100%, 0, 0)
+            );
           }
-          @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(100%, 0, 0));
+          @include rmd-sheet-theme-update-var(
+            transform-offscreen,
+            translate3d(100%, 0, 0)
+          );
         } @else if $position == top {
-          @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(0, -100%, 0));
+          @include rmd-sheet-theme-update-var(
+            transform-offscreen,
+            translate3d(0, -100%, 0)
+          );
 
           top: 0;
         } @else if $position == bottom {
-          @include rmd-sheet-theme-update-var(transform-offscreen, translate3d(0, 100%, 0));
+          @include rmd-sheet-theme-update-var(
+            transform-offscreen,
+            translate3d(0, 100%, 0)
+          );
 
           bottom: 0;
         }
@@ -92,18 +124,30 @@
   }
 
   &--touch-width {
-    @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(touch-width));
+    @include rmd-sheet-theme-update-var(
+      width,
+      rmd-sheet-theme-var(touch-width)
+    );
   }
 
   &--static-width {
-    @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(static-width));
+    @include rmd-sheet-theme-update-var(
+      width,
+      rmd-sheet-theme-var(static-width)
+    );
   }
 
   &--media-width {
     @include rmd-utils-tablet-media {
-      @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(static-width));
+      @include rmd-sheet-theme-update-var(
+        width,
+        rmd-sheet-theme-var(static-width)
+      );
     }
-    @include rmd-sheet-theme-update-var(width, rmd-sheet-theme-var(touch-width));
+    @include rmd-sheet-theme-update-var(
+      width,
+      rmd-sheet-theme-var(touch-width)
+    );
   }
 
   &--vertical {
@@ -116,7 +160,10 @@
   }
 
   &--touchable-height {
-    @include rmd-sheet-theme-update-var(max-height, rmd-sheet-theme-var(touchable-max-height));
+    @include rmd-sheet-theme-update-var(
+      max-height,
+      rmd-sheet-theme-var(touchable-max-height)
+    );
   }
 
   &--recommended-height {

@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-theme-var",
       description:
         "This function is used to get one of the link's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-link-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/link/src/_functions.scss#L32-L34",
+      source: "packages/link/src/_functions.scss#L32-L39",
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
@@ -82,7 +82,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-theme",
       description:
         "Creates the styles for one of the link's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/link/src/_mixins.scss#L23-L25",
+      source: "packages/link/src/_mixins.scss#L23-L30",
       requires: [
         {
           name: "rmd-theme-apply-rmd-var",
@@ -128,7 +128,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-link-theme-update-var",
       description:
         "Updates one of the link's theme variables with the new value for the section of your app.",
-      source: "packages/link/src/_mixins.scss#L33-L35",
+      source: "packages/link/src/_mixins.scss#L38-L45",
       requires: [
         {
           name: "rmd-theme-update-rmd-var",
@@ -163,7 +163,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-link": {
       name: "react-md-link",
       description: "Creates the styles for links within react-md.\n",
-      source: "packages/link/src/_mixins.scss#L90-L100",
+      source: "packages/link/src/_mixins.scss#L106-L116",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

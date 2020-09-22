@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-badge-theme-var",
       description:
         "This function is used to get one of the badge's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-badge-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/badge/src/_functions.scss#L32-L34",
+      source: "packages/badge/src/_functions.scss#L32-L39",
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
@@ -83,7 +83,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-badge-theme",
       description:
         "Creates the styles for one of the badge's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/badge/src/_mixins.scss#L23-L25",
+      source: "packages/badge/src/_mixins.scss#L23-L30",
       usedBy: [{ name: "rmd-badge", type: "mixin", packageName: "badge" }],
       requires: [
         {
@@ -129,7 +129,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-badge-theme-update-var",
       description:
         "Updates one of the badge's theme variables with the new value for the section of your app.",
-      source: "packages/badge/src/_mixins.scss#L33-L35",
+      source: "packages/badge/src/_mixins.scss#L38-L45",
       requires: [
         {
           name: "rmd-theme-update-rmd-var",
@@ -164,7 +164,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-badge-container": {
       name: "rmd-badge-container",
       description: "Creates the minimal styles for a badge container.\n",
-      source: "packages/badge/src/_mixins.scss#L39-L42",
+      source: "packages/badge/src/_mixins.scss#L49-L52",
       usedBy: [{ name: "react-md-badge", type: "mixin", packageName: "badge" }],
       packageName: "badge",
       code: "@mixin rmd-badge-container { … }",
@@ -175,7 +175,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-badge": {
       name: "rmd-badge",
       description: "Creates all the styles for the badge component.\n",
-      source: "packages/badge/src/_mixins.scss#L45-L79",
+      source: "packages/badge/src/_mixins.scss#L55-L89",
       usedBy: [{ name: "react-md-badge", type: "mixin", packageName: "badge" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -192,7 +192,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-badge",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/badge/src/_mixins.scss#L83-L93",
+      source: "packages/badge/src/_mixins.scss#L93-L103",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

@@ -22,7 +22,12 @@
 /// retrieving the default value from the `rmd-app-bar-theme-values` map when
 /// `null`.
 @mixin rmd-app-bar-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-app-bar-theme-values, app-bar);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-app-bar-theme-values,
+    app-bar
+  );
 }
 
 /// Updates one of the app-bar's theme variables with the new value for the
@@ -32,7 +37,12 @@
 /// should be one of the `$rmd-app-bar-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-app-bar-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-app-bar-theme-values, app-bar);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-app-bar-theme-values,
+    app-bar
+  );
 }
 
 /// Creates the styles for the `AppBar` component when it is fixed to the top or
@@ -66,7 +76,10 @@
 ///
 @mixin rmd-app-bar-fixed {
   &--fixed {
-    @include rmd-theme-update-var(surface, rmd-app-bar-theme-var(background-color));
+    @include rmd-theme-update-var(
+      surface,
+      rmd-app-bar-theme-var(background-color)
+    );
 
     left: 0;
     position: fixed;
@@ -121,13 +134,25 @@
   @include rmd-app-bar-theme(color);
 
   &--primary {
-    @include rmd-app-bar-theme-update-var(background-color, rmd-app-bar-theme-var(primary));
-    @include rmd-app-bar-theme-update-var(color, rmd-app-bar-theme-var(on-primary));
+    @include rmd-app-bar-theme-update-var(
+      background-color,
+      rmd-app-bar-theme-var(primary)
+    );
+    @include rmd-app-bar-theme-update-var(
+      color,
+      rmd-app-bar-theme-var(on-primary)
+    );
   }
 
   &--secondary {
-    @include rmd-app-bar-theme-update-var(background-color, rmd-app-bar-theme-var(secondary));
-    @include rmd-app-bar-theme-update-var(color, rmd-app-bar-theme-var(on-secondary));
+    @include rmd-app-bar-theme-update-var(
+      background-color,
+      rmd-app-bar-theme-var(secondary)
+    );
+    @include rmd-app-bar-theme-update-var(
+      color,
+      rmd-app-bar-theme-var(on-secondary)
+    );
   }
 
   &--default {
@@ -135,7 +160,10 @@
       background-color,
       rmd-app-bar-theme-var(default-background-color)
     );
-    @include rmd-app-bar-theme-update-var(color, rmd-app-bar-theme-var(default-color));
+    @include rmd-app-bar-theme-update-var(
+      color,
+      rmd-app-bar-theme-var(default-color)
+    );
   }
 }
 
@@ -256,8 +284,14 @@
 /// should be one of: `height`, `dense-height`, `prominent-height`,
 /// `prominent-dense-height`
 @mixin rmd-app-bar-offset($property: padding-top, $height-type: height) {
-  $valid-propertys: (padding-top padding-bottom margin-top margin-bottom top bottom);
-  $property: rmd-utils-validate($valid-propertys, $property, 'app bar offset property');
+  $valid-propertys: (
+    padding-top padding-bottom margin-top margin-bottom top bottom
+  );
+  $property: rmd-utils-validate(
+    $valid-propertys,
+    $property,
+    'app bar offset property'
+  );
 
   @include rmd-app-bar-theme($property, $height-type);
 }
@@ -290,7 +324,10 @@
 /// This mixin allows you to quickly apply the dense theme for app bars. This
 /// should normally be used within a media query.
 @mixin rmd-app-bar-dense-theme {
-  @include rmd-app-bar-theme-update-var(height, rmd-app-bar-theme-var(dense-height));
+  @include rmd-app-bar-theme-update-var(
+    height,
+    rmd-app-bar-theme-var(dense-height)
+  );
   @include rmd-app-bar-theme-update-var(
     prominent-height,
     rmd-app-bar-theme-var(prominent-dense-height)

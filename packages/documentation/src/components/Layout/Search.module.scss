@@ -6,7 +6,10 @@
 
 .container {
   @include rmd-utils-rtl-auto(margin-left, auto);
-  @include rmd-form-theme-update-var(text-filled-color, rgba($rmd-black-base, 0.15));
+  @include rmd-form-theme-update-var(
+    text-filled-color,
+    rgba($rmd-black-base, 0.15)
+  );
   @include rmd-icon-theme-update-var(color, rmd-theme-var(on-primary));
   @include rmd-utils-phone-media {
     max-width: 2.5rem;
@@ -24,7 +27,8 @@
 }
 
 .expanded {
-  max-width: 30rem - $rmd-list-item-media-large-size - $rmd-option-horizontal-padding;
+  max-width: 30rem - $rmd-list-item-media-large-size -
+    $rmd-option-horizontal-padding;
 }
 
 @include rmd-utils-phone-media {

@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tabs-theme-var",
       description:
         "This function is used to get one of the tabs's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-tabs-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/tabs/src/_functions.scss#L32-L34",
+      source: "packages/tabs/src/_functions.scss#L32-L39",
       usedBy: [{ name: "rmd-tab", type: "mixin", packageName: "tabs" }],
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
@@ -83,7 +83,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tabs-theme",
       description:
         "Creates the styles for one of the tabs's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/tabs/src/_mixins.scss#L26-L28",
+      source: "packages/tabs/src/_mixins.scss#L26-L33",
       usedBy: [
         { name: "rmd-tabs", type: "mixin", packageName: "tabs" },
         { name: "rmd-tab", type: "mixin", packageName: "tabs" },
@@ -132,7 +132,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-tabs-theme-update-var",
       description:
         "Updates one of the tabs's theme variables with the new value for the section of your app.",
-      source: "packages/tabs/src/_mixins.scss#L36-L38",
+      source: "packages/tabs/src/_mixins.scss#L41-L48",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
@@ -171,7 +171,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tabs": {
       name: "rmd-tabs",
       description: "",
-      source: "packages/tabs/src/_mixins.scss#L41-L86",
+      source: "packages/tabs/src/_mixins.scss#L51-L101",
       usedBy: [{ name: "react-md-tabs", type: "mixin", packageName: "tabs" }],
       requires: [
         {
@@ -209,13 +209,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "tabs",
       code: "@mixin rmd-tabs { … }",
       sourceCode:
-        '@mixin rmd-tabs {\n  // I can use the -webkit-scrolbar and scrollbar-width stuff due to my limited\n  // browser support. Yay!  The scrollbars will be hidden, but still scrollable.\n  // For non-MacOS users, you can still get the normal scroll behavior by\n  // holding shift+scroll or use keyboard movement.\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-utils-scroll(x);\n  @include rmd-utils-hide-scrollbar;\n\n  display: flex;\n  flex-wrap: nowrap;\n  position: relative;\n  width: 100%;\n\n  &::after {\n    @include rmd-transition(deceleration);\n    @include rmd-tabs-theme(background-color, indicator-color);\n\n    bottom: 0;\n    content: "";\n    height: $rmd-tab-active-indicator-height;\n    left: 0;\n    max-width: var(--rmd-tab-width, $rmd-tab-min-width);\n    pointer-events: none;\n    position: absolute;\n    transform: translateX(var(--rmd-tab-offset, 0));\n    width: 100%;\n    z-index: 1;\n  }\n\n  &--animate::after {\n    transition: transform $rmd-transition-standard-time,\n      max-width $rmd-transition-standard-time;\n  }\n\n  @each $position in $rmd-tabs-positions {\n    &--#{$position} {\n      $justify: if(\n        $position == center,\n        $position,\n        if($position == left, flex-start, flex-end)\n      );\n\n      justify-content: $justify;\n    }\n  }\n\n  &--padded {\n    @include rmd-utils-rtl-auto(padding-left, $rmd-tabs-scrollable-padding);\n  }\n}\n',
+        "@mixin rmd-tabs {\n  // I can use the -webkit-scrolbar and scrollbar-width stuff due to my limited\n  // browser support. Yay!  The scrollbars will be hidden, but still scrollable.\n  // For non-MacOS users, you can still get the normal scroll behavior by\n  // holding shift+scroll or use keyboard movement.\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-utils-scroll(x);\n  @include rmd-utils-hide-scrollbar;\n\n  display: flex;\n  flex-wrap: nowrap;\n  position: relative;\n  width: 100%;\n\n  &::after {\n    @include rmd-transition(deceleration);\n    @include rmd-tabs-theme(background-color, indicator-color);\n\n    bottom: 0;\n    content: '';\n    height: $rmd-tab-active-indicator-height;\n    left: 0;\n    max-width: var(--rmd-tab-width, $rmd-tab-min-width);\n    pointer-events: none;\n    position: absolute;\n    transform: translateX(var(--rmd-tab-offset, 0));\n    width: 100%;\n    z-index: 1;\n  }\n\n  &--animate::after {\n    transition: transform $rmd-transition-standard-time,\n      max-width $rmd-transition-standard-time;\n  }\n\n  @each $position in $rmd-tabs-positions {\n    &--#{$position} {\n      $justify: if(\n        $position == center,\n        $position,\n        if($position == left, flex-start, flex-end)\n      );\n\n      justify-content: $justify;\n    }\n  }\n\n  &--padded {\n    @include rmd-utils-rtl-auto(padding-left, $rmd-tabs-scrollable-padding);\n  }\n}\n",
       type: "mixin",
     },
     "rmd-tab": {
       name: "rmd-tab",
       description: "",
-      source: "packages/tabs/src/_mixins.scss#L89-L127",
+      source: "packages/tabs/src/_mixins.scss#L104-L142",
       usedBy: [{ name: "react-md-tabs", type: "mixin", packageName: "tabs" }],
       requires: [
         { name: "rmd-states-surface", type: "mixin", packageName: "states" },
@@ -271,7 +271,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tab-panels": {
       name: "rmd-tab-panels",
       description: "",
-      source: "packages/tabs/src/_mixins.scss#L130-L213",
+      source: "packages/tabs/src/_mixins.scss#L145-L228",
       usedBy: [{ name: "react-md-tabs", type: "mixin", packageName: "tabs" }],
       requires: [
         { name: "rmd-utils-scroll", type: "mixin", packageName: "utils" },
@@ -285,7 +285,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-tab-panel": {
       name: "rmd-tab-panel",
       description: "",
-      source: "packages/tabs/src/_mixins.scss#L216-L243",
+      source: "packages/tabs/src/_mixins.scss#L231-L258",
       usedBy: [{ name: "react-md-tabs", type: "mixin", packageName: "tabs" }],
       requires: [
         { name: "rmd-transition", type: "mixin", packageName: "transition" },
@@ -305,7 +305,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-tabs",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/tabs/src/_mixins.scss#L247-L265",
+      source: "packages/tabs/src/_mixins.scss#L262-L280",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

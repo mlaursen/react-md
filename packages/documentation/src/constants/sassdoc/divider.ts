@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-divider-theme",
       description:
         "This function is used to quickly get one of the divider's theme values. This is really just for the `rmd-divider-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
-      source: "packages/divider/src/_functions.scss#L15-L17",
+      source: "packages/divider/src/_functions.scss#L15-L21",
       requires: [
         {
           name: "rmd-theme-get-var-value",
@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-divider-theme-var",
       description:
         "This function is used to get one of the divider's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-divider-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/divider/src/_functions.scss#L32-L34",
+      source: "packages/divider/src/_functions.scss#L36-L43",
       usedBy: [
         {
           name: "rmd-card-border-color",
@@ -91,7 +91,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-divider-theme",
       description:
         "Creates the styles for one of the divider's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/divider/src/_mixins.scss#L21-L23",
+      source: "packages/divider/src/_mixins.scss#L21-L28",
       usedBy: [
         { name: "rmd-divider-border", type: "mixin", packageName: "divider" },
         { name: "rmd-divider", type: "mixin", packageName: "divider" },
@@ -140,7 +140,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-divider-theme-update-var",
       description:
         "Updates one of the divider's theme variables with the new value for the section of your app.",
-      source: "packages/divider/src/_mixins.scss#L31-L33",
+      source: "packages/divider/src/_mixins.scss#L36-L43",
       usedBy: [
         { name: "rmd-list", type: "mixin", packageName: "list" },
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
@@ -181,7 +181,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-divider-border",
       description:
         "This mixin allows you to add a custom border to any element if you don't want to add an extra element within your page for a divider.",
-      source: "packages/divider/src/_mixins.scss#L40-L46",
+      source: "packages/divider/src/_mixins.scss#L50-L56",
       usedBy: [
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
         { name: "rmd-table-row", type: "mixin", packageName: "table" },
@@ -192,7 +192,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "divider",
       code: "@mixin rmd-divider-border($position) { … }",
       sourceCode:
-        '@mixin rmd-divider-border($position) {\n  @include rmd-divider-theme(border-color, background-color);\n  @include rmd-divider-theme(border-width, size);\n  @include rmd-divider-theme("border-#{$position}-width", size);\n\n  border-#{$position}-style: solid;\n}\n',
+        "@mixin rmd-divider-border($position) {\n  @include rmd-divider-theme(border-color, background-color);\n  @include rmd-divider-theme(border-width, size);\n  @include rmd-divider-theme('border-#{$position}-width', size);\n\n  border-#{$position}-style: solid;\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -207,7 +207,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-divider",
       description:
         "Creates all the styles for a divider for a class name selector. This probably won't be used externally.\n",
-      source: "packages/divider/src/_mixins.scss#L50-L81",
+      source: "packages/divider/src/_mixins.scss#L60-L93",
       usedBy: [
         { name: "react-md-divider", type: "mixin", packageName: "divider" },
       ],
@@ -229,7 +229,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-divider",
       description:
         "Creates all the styles for the divider package as well as the root css variable theme.\n",
-      source: "packages/divider/src/_mixins.scss#L85-L91",
+      source: "packages/divider/src/_mixins.scss#L97-L103",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

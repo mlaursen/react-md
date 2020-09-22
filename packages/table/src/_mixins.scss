@@ -22,7 +22,12 @@
 /// retrieving the default value from the `rmd-table-theme-values` map when
 /// `null`.
 @mixin rmd-table-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-table-theme-values, table);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-table-theme-values,
+    table
+  );
 }
 
 /// Updates one of the table's theme variables with the new value for the
@@ -32,7 +37,12 @@
 /// should be one of the `$rmd-table-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-table-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-table-theme-values, table);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-table-theme-values,
+    table
+  );
 }
 
 /// Creates the base styles for the `<table>` element.
@@ -42,7 +52,10 @@
   max-width: 100%;
 
   &--dense {
-    @include rmd-table-theme-update-var(cell-height, rmd-table-theme-var(cell-dense-height));
+    @include rmd-table-theme-update-var(
+      cell-height,
+      rmd-table-theme-var(cell-dense-height)
+    );
   }
 
   &--full-width {
@@ -53,13 +66,19 @@
 /// @access private
 @mixin rmd-thead {
   @if $rmd-table-cell-height != $rmd-table-header-cell-height {
-    @include rmd-table-theme-update-var(cell-height, $rmd-table-header-cell-height);
+    @include rmd-table-theme-update-var(
+      cell-height,
+      $rmd-table-header-cell-height
+    );
   }
 
   @if $rmd-table-cell-dense-height != $rmd-table-header-cell-dense-height {
     // TODO: Look into a better way to do this since it makes overrides more difficult.
     .rmd-table--dense & {
-      @include rmd-table-theme-update-var(cell-height, $rmd-table-header-cell-dense-height);
+      @include rmd-table-theme-update-var(
+        cell-height,
+        $rmd-table-header-cell-dense-height
+      );
     }
   }
 }
@@ -109,9 +128,17 @@
 
   &--header {
     @if $rmd-table-cell-color != $rmd-table-header-cell-color {
-      @include rmd-table-theme-update-var(cell-color, $rmd-table-header-cell-color);
+      @include rmd-table-theme-update-var(
+        cell-color,
+        $rmd-table-header-cell-color
+      );
     }
-    @include rmd-typography-value(subtitle-2, font-weight, letter-spacing, line-height);
+    @include rmd-typography-value(
+      subtitle-2,
+      font-weight,
+      letter-spacing,
+      line-height
+    );
     @include rmd-utils-rtl {
       text-align: right;
     }
@@ -138,7 +165,10 @@
   }
 
   &--checkbox {
-    @include rmd-table-theme-update-var(cell-h-padding, $rmd-table-checkbox-padding);
+    @include rmd-table-theme-update-var(
+      cell-h-padding,
+      $rmd-table-checkbox-padding
+    );
   }
 
   &--sticky {

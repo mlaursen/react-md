@@ -6,7 +6,9 @@
 }
 
 .sticky {
-  $checkbox-offset: calc(#{rmd-button-theme-var(icon-size)} + #{$rmd-table-checkbox-padding * 2});
+  $checkbox-offset: calc(
+    #{rmd-button-theme-var(icon-size)} + #{$rmd-table-checkbox-padding * 2}
+  );
 
   // if you don't need auto-RTL support, you could just set the `left` value
   // instead of using the mixin and updating the css variable

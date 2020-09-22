@@ -71,7 +71,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "transition",
       code: "@mixin rmd-transition($type, $animation) { … }",
       sourceCode:
-        '@mixin rmd-transition($type, $animation) {\n  $function: rmd-utils-validate($rmd-transitions, $type, "transition");\n\n  @if $animation {\n    animation-timing-function: $function;\n  } @else {\n    transition-timing-function: $function;\n  }\n}\n',
+        "@mixin rmd-transition($type, $animation) {\n  $function: rmd-utils-validate($rmd-transitions, $type, 'transition');\n\n  @if $animation {\n    animation-timing-function: $function;\n  } @else {\n    transition-timing-function: $function;\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -163,7 +163,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-transition-shadow-transition",
       description:
         "A mixin that allows you to animate box shadow performantly.",
-      source: "packages/transition/src/_mixins.scss#L90-L123",
+      source: "packages/transition/src/_mixins.scss#L90-L127",
       usedBy: [
         {
           name: "rmd-elevation-transition",
@@ -187,7 +187,7 @@ const sassdoc: PackageSassDoc = {
       examples: [
         {
           code:
-            '@import "@react-md/theme/dist/scss/color-palette";\n\n.my-class {\n  $start-shadow: inset 0 0 1px $rmd-blue-500;\n  $end-shadow: inset 0 0 4px $rmd-blue-500;\n\n  @include rmd-transition-shadow-transition(\n    $start-shadow,\n    $end-shadow,\n    ("&:focus" "&:hover")\n  );\n}\n',
+            "@import '@react-md/theme/dist/scss/color-palette';\n\n.my-class {\n  $start-shadow: inset 0 0 1px $rmd-blue-500;\n  $end-shadow: inset 0 0 4px $rmd-blue-500;\n\n  @include rmd-transition-shadow-transition(\n    $start-shadow,\n    $end-shadow,\n    ('&:focus' '&:hover')\n  );\n}\n",
           compiled:
             '.my-class {\n  box-shadow: inset 0 0 1px #2196f3;\n  position: relative;\n}\n.my-class::before {\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: 0;\n  box-shadow: inset 0 0 4px #2196f3;\n  opacity: 0;\n  transition: opacity 0.15s;\n}\n.my-class:focus::before,\n.my-class:hover::before {\n  opacity: 1;\n}\n',
           type: "scss",
@@ -195,7 +195,7 @@ const sassdoc: PackageSassDoc = {
         },
         {
           code:
-            '@import "@react-md/elevation/dist/scss/functions";\n@import "@react-md/theme/dist/scss/color-palette";\n\n.my-class {\n  $start-shadow: rmd-elevation(2);\n  $end-shadow: rmd-elevation(4), inset 0 0 4px $rmd-blue-500;\n\n  @include rmd-transition-shadow-transition(\n    $start-shadow,\n    $end-shadow,\n    "&:focus"\n  );\n}\n',
+            "@import '@react-md/elevation/dist/scss/functions';\n@import '@react-md/theme/dist/scss/color-palette';\n\n.my-class {\n  $start-shadow: rmd-elevation(2);\n  $end-shadow: rmd-elevation(4), inset 0 0 4px $rmd-blue-500;\n\n  @include rmd-transition-shadow-transition(\n    $start-shadow,\n    $end-shadow,\n    '&:focus'\n  );\n}\n",
           compiled:
             '.my-class {\n  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),\n    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);\n  position: relative;\n}\n.my-class::before {\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  bottom: 0;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  border-radius: inherit;\n  content: "";\n  pointer-events: none;\n  z-index: 0;\n  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),\n    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12),\n    inset 0 0 4px #2196f3;\n  opacity: 0;\n  transition: opacity 0.15s;\n}\n.my-class:focus::before {\n  opacity: 1;\n}\n',
           type: "scss",
@@ -205,7 +205,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-transition-shadow-transition($start-shadow, $end-shadow, $active-selectors, $before: true, $duration: $rmd-transition-standard-time, $pseudo-z-index: 0) { … }",
       sourceCode:
-        '@mixin rmd-transition-shadow-transition(\n  $start-shadow,\n  $end-shadow,\n  $active-selectors,\n  $before: true,\n  $duration: $rmd-transition-standard-time,\n  $pseudo-z-index: 0\n) {\n  @include rmd-transition-parent-shadow($start-shadow);\n\n  $shadow-target: if($before, "&::before", "&::after");\n\n  #{$shadow-target} {\n    @include rmd-transition-pseudo-shadow(\n      $end-shadow,\n      $duration,\n      $pseudo-z-index\n    );\n  }\n\n  // remove the leading \'&\'\n  $suffix: str-slice($shadow-target, 2);\n  $active-string: "";\n  @if type-of($active-selectors) == string {\n    $active-string: $active-selectors + $suffix;\n  } @else if type-of($active-selectors) == list {\n    @for $i from 1 to length($active-selectors) + 1 {\n      $selector: nth($active-selectors, $i);\n\n      $prefix: $active-string + if($i > 1, ", ", "");\n      $active-string: $prefix + $selector + $suffix;\n    }\n  }\n\n  #{$active-string} {\n    opacity: 1;\n  }\n}\n',
+        "@mixin rmd-transition-shadow-transition(\n  $start-shadow,\n  $end-shadow,\n  $active-selectors,\n  $before: true,\n  $duration: $rmd-transition-standard-time,\n  $pseudo-z-index: 0\n) {\n  @include rmd-transition-parent-shadow($start-shadow);\n\n  $shadow-target: if($before, '&::before', '&::after');\n\n  #{$shadow-target} {\n    @include rmd-transition-pseudo-shadow(\n      $end-shadow,\n      $duration,\n      $pseudo-z-index\n    );\n  }\n\n  // remove the leading '&'\n  $suffix: str-slice($shadow-target, 2);\n  $active-string: '';\n  @if type-of($active-selectors) == string {\n    $active-string: $active-selectors + $suffix;\n  } @else if type-of($active-selectors) == list {\n    @for $i from 1 to length($active-selectors) + 1 {\n      $selector: nth($active-selectors, $i);\n\n      $prefix: $active-string + if($i > 1, ', ', '');\n      $active-string: $prefix + $selector + $suffix;\n    }\n  }\n\n  #{$active-string} {\n    opacity: 1;\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -250,7 +250,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-collapse",
       description:
         "Creates the styles for the Collapse component within react-md\n",
-      source: "packages/transition/src/_mixins.scss#L126-L143",
+      source: "packages/transition/src/_mixins.scss#L130-L147",
       usedBy: [
         {
           name: "react-md-transition",
@@ -281,7 +281,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-cross-fade",
       description:
         "Creates the cross fade animation styles. This animation is usually used when loading in new parts of a page or page transitions as there is no exit animation by default.\n",
-      source: "packages/transition/src/_mixins.scss#L148-L162",
+      source: "packages/transition/src/_mixins.scss#L152-L166",
       usedBy: [
         {
           name: "react-md-transition",
@@ -311,7 +311,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-transition-classes": {
       name: "rmd-transition-classes",
       description: "",
-      source: "packages/transition/src/_mixins.scss#L165-L225",
+      source: "packages/transition/src/_mixins.scss#L169-L229",
       usedBy: [
         {
           name: "react-md-transition",
@@ -352,7 +352,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-transition",
       description:
         "Creates the transition theme css variables as well as the styles for components in the transition package.\n",
-      source: "packages/transition/src/_mixins.scss#L229-L233",
+      source: "packages/transition/src/_mixins.scss#L233-L237",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         { name: "rmd-collapse", type: "mixin", packageName: "transition" },

@@ -20,7 +20,12 @@
 /// retrieving the default value from the `rmd-progress-theme-values` map when
 /// `null`.
 @mixin rmd-progress-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-progress-theme-values, progress);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-progress-theme-values,
+    progress
+  );
 }
 
 /// Updates one of the progress's theme variables with the new value for the
@@ -30,7 +35,12 @@
 /// should be one of the `$rmd-progress-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-progress-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-progress-theme-values, progress);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-progress-theme-values,
+    progress
+  );
 }
 
 /// Creates the styles for the progress animation
@@ -89,7 +99,8 @@
   &--animate {
     @include rmd-transition(sharp);
 
-    transition: width $rmd-transition-standard-time, height $rmd-transition-standard-time;
+    transition: width $rmd-transition-standard-time,
+      height $rmd-transition-standard-time;
   }
 
   &--indeterminate {
@@ -209,11 +220,15 @@
   }
 
   @keyframes rmd-progress-bar-vertical-reverse {
-    @include rmd-progress-animation($rmd-linear-progress-vertical-reverse-styles);
+    @include rmd-progress-animation(
+      $rmd-linear-progress-vertical-reverse-styles
+    );
   }
 
   @keyframes rmd-progress-bar-vertical-reverse-short {
-    @include rmd-progress-animation($rmd-linear-progress-vertical-reverse-short-styles);
+    @include rmd-progress-animation(
+      $rmd-linear-progress-vertical-reverse-short-styles
+    );
   }
 }
 
@@ -239,7 +254,10 @@
 
     @if $rmd-circular-progress-small-size != null {
       &--small {
-        @include rmd-progress-theme-update-var(circular-size, $rmd-circular-progress-small-size);
+        @include rmd-progress-theme-update-var(
+          circular-size,
+          $rmd-circular-progress-small-size
+        );
       }
     }
 
@@ -254,7 +272,8 @@
       }
 
       &--indeterminate {
-        animation: rmd-progress-rotate $rmd-circular-progress-transition-duration linear infinite;
+        animation: rmd-progress-rotate
+          $rmd-circular-progress-transition-duration linear infinite;
       }
     }
 
@@ -273,8 +292,8 @@
       }
 
       &--indeterminate {
-        animation: rmd-circular-progress-size $rmd-circular-progress-transition-duration ease-in-out
-          infinite;
+        animation: rmd-circular-progress-size
+          $rmd-circular-progress-transition-duration ease-in-out infinite;
       }
     }
   }

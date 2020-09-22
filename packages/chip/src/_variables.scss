@@ -142,7 +142,10 @@ $rmd-chip-solid-dark-color: if(
 ///
 /// @require $rmd-grey-900
 /// @type Color
-$rmd-chip-solid-dark-disabled-background-color: lighten($rmd-grey-900, 2%) !default;
+$rmd-chip-solid-dark-disabled-background-color: lighten(
+  $rmd-grey-900,
+  2%
+) !default;
 
 /// The background color to use for "solid" themed chips.
 ///

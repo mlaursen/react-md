@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-theme",
       description:
         "This function is used to quickly get one of the avatar's theme values. This is really just for the `rmd-avatar-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
-      source: "packages/avatar/src/_functions.scss#L15-L17",
+      source: "packages/avatar/src/_functions.scss#L15-L21",
       requires: [
         {
           name: "rmd-theme-get-var-value",
@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-theme-var",
       description:
         "This function is used to get one of the avatar's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-avatar-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/avatar/src/_functions.scss#L32-L34",
+      source: "packages/avatar/src/_functions.scss#L36-L43",
       usedBy: [{ name: "rmd-list-item", type: "mixin", packageName: "list" }],
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
@@ -84,7 +84,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-theme",
       description:
         "Creates the styles for one of the avatar's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/avatar/src/_mixins.scss#L21-L23",
+      source: "packages/avatar/src/_mixins.scss#L21-L28",
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
       ],
@@ -132,7 +132,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-theme-update-var",
       description:
         "Updates one of the avatar's theme variables with the new value for the section of your app.",
-      source: "packages/avatar/src/_mixins.scss#L31-L33",
+      source: "packages/avatar/src/_mixins.scss#L36-L43",
       usedBy: [
         { name: "rmd-avatar-color", type: "mixin", packageName: "avatar" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
@@ -171,7 +171,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-avatar-color": {
       name: "rmd-avatar-color",
       description: "A mixin for updating the avatar's theme colors.",
-      source: "packages/avatar/src/_mixins.scss#L48-L51",
+      source: "packages/avatar/src/_mixins.scss#L58-L61",
       usedBy: [
         { name: "rmd-avatar-colors", type: "mixin", packageName: "avatar" },
       ],
@@ -214,7 +214,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-colors",
       description:
         "A mixin for creating the avatar color suffix class names from a color map.\nIt is not recommended to use this mixin for creating additional colors.\nInstead use the `rmd-avatar-color` mixin with custom class names instead.",
-      source: "packages/avatar/src/_mixins.scss#L59-L71",
+      source: "packages/avatar/src/_mixins.scss#L69-L81",
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
       ],
@@ -224,7 +224,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "avatar",
       code: "@mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) { … }",
       sourceCode:
-        '@mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) {\n  @each $color-name, $values in $color-map {\n    @if length($values) != 2 {\n      @error \'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. "#{$values}"\';\n    }\n\n    $class-name: "rmd-avatar--" + $color-name;\n\n    .#{$class-name} {\n      @include rmd-avatar-color(nth($values, 1), nth($values, 2));\n    }\n  }\n}\n',
+        "@mixin rmd-avatar-colors($color-map: $rmd-avatar-colors) {\n  @each $color-name, $values in $color-map {\n    @if length($values) != 2 {\n      @error 'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. \"#{$values}\"';\n    }\n\n    $class-name: 'rmd-avatar--' + $color-name;\n\n    .#{$class-name} {\n      @include rmd-avatar-color(nth($values, 1), nth($values, 2));\n    }\n  }\n}\n",
       throws: [
         "Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. ",
       ],
@@ -243,7 +243,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-avatar",
       description:
         "Creates all the styles for the avatar package as well as the root css variable theme.\n",
-      source: "packages/avatar/src/_mixins.scss#L75-L104",
+      source: "packages/avatar/src/_mixins.scss#L85-L114",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {
@@ -316,7 +316,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-avatar-border-color": {
       name: "rmd-avatar-border-color",
       description: "The border color to apply to the avatar.",
-      source: "packages/avatar/src/_variables.scss#L29-L32",
+      source: "packages/avatar/src/_variables.scss#L29-L36",
       requires: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
@@ -325,14 +325,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "avatar",
       type: "Color",
       value:
-        "rgba(\n  if(rmd-theme-tone($rmd-theme-background) == light, $rmd-black-base, $rmd-white-base),\n  0.12\n)",
+        "rgba(\n  if(\n    rmd-theme-tone($rmd-theme-background) == light,\n    $rmd-black-base,\n    $rmd-white-base\n  ),\n  0.12\n)",
       compiled: "rgba(0, 0, 0, 0.12)",
       overridable: true,
     },
     "rmd-avatar-border-radius": {
       name: "rmd-avatar-border-radius",
       description: "The border-radius for the avatar.\n",
-      source: "packages/avatar/src/_variables.scss#L36",
+      source: "packages/avatar/src/_variables.scss#L40",
       packageName: "avatar",
       type: "Number",
       value: "50%",
@@ -341,7 +341,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-avatar-size": {
       name: "rmd-avatar-size",
       description: "The size for the avatar.\n",
-      source: "packages/avatar/src/_variables.scss#L40",
+      source: "packages/avatar/src/_variables.scss#L44",
       packageName: "avatar",
       type: "Number",
       value: "2.5rem",
@@ -351,7 +351,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-font-size",
       description:
         "The font size to apply to avatars. This is used when the avatar is a letter.\n",
-      source: "packages/avatar/src/_variables.scss#L44",
+      source: "packages/avatar/src/_variables.scss#L48",
       packageName: "avatar",
       type: "Number",
       value: "1.5rem",
@@ -361,7 +361,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-line-height",
       description:
         "The line height to use for avatars. This is really only useful when the avatar is a letter.",
-      source: "packages/avatar/src/_variables.scss#L51",
+      source: "packages/avatar/src/_variables.scss#L55",
       usedBy: [
         { name: "react-md-avatar", type: "mixin", packageName: "avatar" },
       ],
@@ -382,7 +382,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-colors",
       description:
         "A Map of all the available colors for the avatar. This map can be updated with new values if the defaults are not to your liking, but it is recommended to create your own themes instead.",
-      source: "packages/avatar/src/_variables.scss#L90-L110",
+      source: "packages/avatar/src/_variables.scss#L94-L114",
       requires: [
         { name: "rmd-amber-400", type: "variable", packageName: "theme" },
         { name: "rmd-blue-grey-50", type: "variable", packageName: "theme" },
@@ -433,7 +433,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-avatar-theme-values",
       description:
         'A Map of all the "themeable" parts of the avatar package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/avatar/src/_variables.scss#L116-L123",
+      source: "packages/avatar/src/_variables.scss#L120-L127",
       usedBy: [
         { name: "rmd-avatar-theme", type: "function", packageName: "avatar" },
         {

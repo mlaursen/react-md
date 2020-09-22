@@ -19,7 +19,11 @@
 /// the css variable isn't set somehow. This will default to automatically
 /// retrieving the default value from the `rmd-typography-theme-values` map when
 /// `null`.
-@mixin rmd-typography-theme($property, $theme-style: $property, $fallback: null) {
+@mixin rmd-typography-theme(
+  $property,
+  $theme-style: $property,
+  $fallback: null
+) {
   @include rmd-theme-apply-rmd-var(
     $property,
     $theme-style,
@@ -35,7 +39,12 @@
 /// This should be one of the `$rmd-typography-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-typography-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-typography-theme-values, typography);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-typography-theme-values,
+    typography
+  );
 }
 
 /// Applies each property value from the `$rmd-typography-styles` map that
@@ -226,7 +235,10 @@
 
 /// Creates all the typography styles from the react-md typography variables.
 @mixin react-md-typography {
-  @include rmd-theme-create-root-theme($rmd-typography-theme-values, typography);
+  @include rmd-theme-create-root-theme(
+    $rmd-typography-theme-values,
+    typography
+  );
 
   .rmd-typography {
     @include rmd-typography-base;
@@ -262,7 +274,8 @@
     }
 
     @each $decoration in $rmd-typography-decorations {
-      $suffix: $decoration + if($decoration == overline, 'overline-decoration', '');
+      $suffix: $decoration +
+        if($decoration == overline, 'overline-decoration', '');
 
       &--#{$suffix} {
         text-decoration: $decoration;
@@ -430,13 +443,25 @@
   $font-url-prefix-or-url-map: null
 ) {
   @each $weight in $weights {
-    @if type-of($font-url-prefix-or-url-map) == 'string' or $font-url-prefix-or-url-map == null {
-      @include rmd-typography-google-font-face($font-name, $weight, $font-url-prefix-or-url-map);
+    @if type-of($font-url-prefix-or-url-map) ==
+      'string' or
+      $font-url-prefix-or-url-map ==
+      null
+    {
+      @include rmd-typography-google-font-face(
+        $font-name,
+        $weight,
+        $font-url-prefix-or-url-map
+      );
     } @else {
       @include rmd-typography-google-font-face(
         $font-name,
         $weight,
-        rmd-utils-validate($font-url-prefix-or-url-map, $weight, 'Google font weight')
+        rmd-utils-validate(
+          $font-url-prefix-or-url-map,
+          $weight,
+          'Google font weight'
+        )
       );
     }
   }

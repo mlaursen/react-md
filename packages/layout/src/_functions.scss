@@ -13,7 +13,11 @@
 /// to get a value for.
 /// @return {Color|String|Number} one of the layout's theme values.
 @function rmd-layout-theme($theme-style) {
-  @return rmd-theme-get-var-value($theme-style, $rmd-layout-theme-values, layout);
+  @return rmd-theme-get-var-value(
+    $theme-style,
+    $rmd-layout-theme-values,
+    layout
+  );
 }
 
 /// This function is used to get one of the layout's theme variables as a CSS
@@ -30,5 +34,10 @@
 /// variables should always exist.
 /// @return {String} one of the link's theme values as a css variable.
 @function rmd-layout-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-layout-theme-values, layout, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-layout-theme-values,
+    layout,
+    $fallback
+  );
 }

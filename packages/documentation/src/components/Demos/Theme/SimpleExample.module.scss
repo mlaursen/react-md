@@ -7,7 +7,10 @@ $rmd-theme-secondary: $rmd-pink-a-200;
 
 .container {
   @include rmd-theme-update-var(background, $rmd-white-base);
-  @include rmd-theme-update-var(text-primary-on-background, rgba($rmd-black-base, 0.87));
+  @include rmd-theme-update-var(
+    text-primary-on-background,
+    rgba($rmd-black-base, 0.87)
+  );
   @include rmd-theme-update-var(primary, $rmd-blue-grey-500);
   @include rmd-theme-update-var(on-primary, $rmd-white-base);
   @include rmd-theme-update-var(secondary, $rmd-orange-a-200);

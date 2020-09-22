@@ -24,7 +24,12 @@
 /// retrieving the default value from the `rmd-chip-theme-values` map when
 /// `null`.
 @mixin rmd-chip-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-chip-theme-values, chip);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-chip-theme-values,
+    chip
+  );
 }
 
 /// Updates one of the chip's theme variables with the new value for the section
@@ -34,13 +39,20 @@
 /// should be one of the `$rmd-chip-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-chip-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-chip-theme-values, chip);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-chip-theme-values,
+    chip
+  );
 }
 
 /// Creates all the styles for the chip button
 @mixin rmd-chip {
   @include rmd-utils-hide-focus-outline;
-  @include rmd-states-surface($no-focus-state: $rmd-chip-disable-focus-background-color);
+  @include rmd-states-surface(
+    $no-focus-state: $rmd-chip-disable-focus-background-color
+  );
   @include rmd-states-surface-selected;
   @include rmd-typography(body-2);
   @include rmd-chip-theme(height);
@@ -53,8 +65,14 @@
     @include rmd-avatar-theme-update-var(size, $rmd-chip-avatar-size);
   }
   @if mixin-exists(rmd-progress-theme-update-var) {
-    @include rmd-progress-theme-update-var(circular-size, $rmd-chip-progress-size);
-    @include rmd-progress-theme-update-var(circular-width, $rmd-chip-progress-width);
+    @include rmd-progress-theme-update-var(
+      circular-size,
+      $rmd-chip-progress-size
+    );
+    @include rmd-progress-theme-update-var(
+      circular-width,
+      $rmd-chip-progress-width
+    );
   }
 
   align-items: center;

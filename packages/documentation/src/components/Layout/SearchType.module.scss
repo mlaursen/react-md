@@ -8,7 +8,11 @@
     @include rmd-divider-theme(width, size);
     @include rmd-utils-rtl-auto(
       left,
-      calc(#{rmd-list-theme-var(item-horizontal-padding)} + #{rmd-list-theme-var(media-size)})
+      calc(
+        #{rmd-list-theme-var(item-horizontal-padding)} + #{rmd-list-theme-var(
+            media-size
+          )}
+      )
     );
 
     bottom: 10%;

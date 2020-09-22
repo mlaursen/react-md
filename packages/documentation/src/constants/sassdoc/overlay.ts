@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-overlay-theme",
       description:
         "This function is used to quickly get one of the overlay's theme values. This is really just for the `rmd-overlay-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
-      source: "packages/overlay/src/_functions.scss#L15-L17",
+      source: "packages/overlay/src/_functions.scss#L15-L21",
       requires: [
         {
           name: "rmd-theme-get-var-value",
@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-overlay-theme-var",
       description:
         "This function is used to get one of the overlay's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-overlay-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/overlay/src/_functions.scss#L32-L34",
+      source: "packages/overlay/src/_functions.scss#L36-L43",
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
@@ -83,7 +83,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-overlay-theme",
       description:
         "Creates the styles for one of the overlay's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/overlay/src/_mixins.scss#L22-L24",
+      source: "packages/overlay/src/_mixins.scss#L22-L29",
       usedBy: [{ name: "rmd-overlay", type: "mixin", packageName: "overlay" }],
       requires: [
         {
@@ -129,7 +129,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-overlay-theme-update-var",
       description:
         "Updates one of the overlay's theme variables with the new value for the section of your app.",
-      source: "packages/overlay/src/_mixins.scss#L32-L34",
+      source: "packages/overlay/src/_mixins.scss#L37-L44",
       requires: [
         {
           name: "rmd-theme-update-rmd-var",
@@ -164,7 +164,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-overlay": {
       name: "rmd-overlay",
       description: "Creates the styles for the overlay component.\n",
-      source: "packages/overlay/src/_mixins.scss#L37-L59",
+      source: "packages/overlay/src/_mixins.scss#L47-L69",
       usedBy: [
         { name: "react-md-overlay", type: "mixin", packageName: "overlay" },
       ],
@@ -193,7 +193,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-overlay",
       description:
         "Creates the styles for overlays within react-md and also creates all the theme css variables for overlays.\n",
-      source: "packages/overlay/src/_mixins.scss#L63-L69",
+      source: "packages/overlay/src/_mixins.scss#L73-L79",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

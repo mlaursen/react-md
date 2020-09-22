@@ -26,7 +26,11 @@
 /// @param {Number} opacity-boost [0] - The amount to boost the default opacity
 /// levels for the three box-shadows applied.
 /// @return {String} the box shadow string for the current elevation.
-@function rmd-elevation($z-value, $color: $rmd-elevation-color, $opacity-boost: 0) {
+@function rmd-elevation(
+  $z-value,
+  $color: $rmd-elevation-color,
+  $opacity-boost: 0
+) {
   @if type-of($z-value) != 'number' or not unitless($z-value) {
     @error "$z-value must be a unitless number, but received '#{$z-value}'";
   }
@@ -37,14 +41,24 @@
 
   $color: rmd-theme($color);
   $shadow-1-value: map-get($rmd-elevation-shadow-1-map, $z-value);
-  $shadow-1-color: rgba($color, $rmd-elevation-shadow-1-opacity + $opacity-boost);
+  $shadow-1-color: rgba(
+    $color,
+    $rmd-elevation-shadow-1-opacity + $opacity-boost
+  );
 
   $shadow-2-value: map-get($rmd-elevation-shadow-2-map, $z-value);
-  $shadow-2-color: rgba($color, $rmd-elevation-shadow-2-opacity + $opacity-boost);
+  $shadow-2-color: rgba(
+    $color,
+    $rmd-elevation-shadow-2-opacity + $opacity-boost
+  );
 
   $shadow-3-value: map-get($rmd-elevation-shadow-3-map, $z-value);
-  $shadow-3-color: rgba($color, $rmd-elevation-shadow-3-opacity + $opacity-boost);
+  $shadow-3-color: rgba(
+    $color,
+    $rmd-elevation-shadow-3-opacity + $opacity-boost
+  );
 
-  @return #{'#{$shadow-1-value} #{$shadow-1-color}'}, #{'#{$shadow-2-value} #{$shadow-2-color}'},
+  @return #{'#{$shadow-1-value} #{$shadow-1-color}'},
+    #{'#{$shadow-2-value} #{$shadow-2-color}'},
     #{'#{$shadow-3-value} #{$shadow-3-color}'};
 }

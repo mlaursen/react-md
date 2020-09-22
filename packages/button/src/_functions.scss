@@ -13,7 +13,11 @@
 /// to get a value for.
 /// @return {Color|String|Number} one of the button's theme values.
 @function rmd-button-theme($theme-style) {
-  @return rmd-theme-get-var-value($theme-style, $rmd-button-theme-values, button);
+  @return rmd-theme-get-var-value(
+    $theme-style,
+    $rmd-button-theme-values,
+    button
+  );
 }
 
 /// This function is used to get one of the button's theme variables as a CSS
@@ -30,5 +34,10 @@
 /// variables should always exist.
 /// @return {String} one of the button's theme values as a css variable.
 @function rmd-button-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-button-theme-values, button, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-button-theme-values,
+    button,
+    $fallback
+  );
 }

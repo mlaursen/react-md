@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-menu-theme-var",
       description:
         "This function is used to get one of the menu's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-menu-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/menu/src/_functions.scss#L32-L34",
+      source: "packages/menu/src/_functions.scss#L32-L39",
       usedBy: [{ name: "react-md-menu", type: "mixin", packageName: "menu" }],
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
@@ -83,7 +83,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-menu-theme",
       description:
         "Creates the styles for one of the menu's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/menu/src/_mixins.scss#L25-L27",
+      source: "packages/menu/src/_mixins.scss#L25-L32",
       usedBy: [{ name: "rmd-menu", type: "mixin", packageName: "menu" }],
       requires: [
         {
@@ -129,7 +129,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-menu-theme-update-var",
       description:
         "Updates one of the menu's theme variables with the new value for the section of your app.",
-      source: "packages/menu/src/_mixins.scss#L35-L37",
+      source: "packages/menu/src/_mixins.scss#L40-L47",
       requires: [
         {
           name: "rmd-theme-update-rmd-var",
@@ -164,7 +164,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-menu": {
       name: "rmd-menu",
       description: "",
-      source: "packages/menu/src/_mixins.scss#L40-L54",
+      source: "packages/menu/src/_mixins.scss#L50-L64",
       usedBy: [{ name: "react-md-menu", type: "mixin", packageName: "menu" }],
       requires: [
         {
@@ -191,7 +191,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-menu": {
       name: "react-md-menu",
       description: "Creates all the styles for the @react-md/menu package.\n",
-      source: "packages/menu/src/_mixins.scss#L57-L67",
+      source: "packages/menu/src/_mixins.scss#L67-L80",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

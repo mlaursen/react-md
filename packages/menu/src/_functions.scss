@@ -30,5 +30,10 @@
 /// variables should always exist.
 /// @return {String} one of the menu's theme values as a css variable.
 @function rmd-menu-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-menu-theme-values, menu, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-menu-theme-values,
+    menu,
+    $fallback
+  );
 }

@@ -30,13 +30,22 @@
   }
 
   &--label {
-    @include rmd-form-theme-update-var(text-height, rmd-form-theme-var(text-label-height));
+    @include rmd-form-theme-update-var(
+      text-height,
+      rmd-form-theme-var(text-label-height)
+    );
   }
 
   &--error {
     @include rmd-icon-theme-update-var(color, rmd-form-theme-var(error-color));
-    @include rmd-form-theme-update-var(text-active-color, rmd-form-theme-var(error-color));
-    @include rmd-form-theme-update-var(text-border-color, rmd-form-theme-var(error-color));
+    @include rmd-form-theme-update-var(
+      text-active-color,
+      rmd-form-theme-var(error-color)
+    );
+    @include rmd-form-theme-update-var(
+      text-border-color,
+      rmd-form-theme-var(error-color)
+    );
     @include rmd-form-theme-update-var(
       text-border-hover-color,
       rmd-form-theme-var(error-hover-color)
@@ -44,13 +53,22 @@
   }
 
   &--disabled {
-    @include rmd-icon-theme-update-var(color, rmd-form-theme-var(disabled-color));
+    @include rmd-icon-theme-update-var(
+      color,
+      rmd-form-theme-var(disabled-color)
+    );
   }
 
   &--underline {
     @if $rmd-text-field-underline-padding {
-      @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-underline-padding);
-      @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-underline-padding);
+      @include rmd-form-theme-update-var(
+        text-padding-left,
+        $rmd-text-field-underline-padding
+      );
+      @include rmd-form-theme-update-var(
+        text-padding-right,
+        $rmd-text-field-underline-padding
+      );
     }
     @include rmd-form-theme(border-color, text-border-color);
 
@@ -78,13 +96,25 @@
       text-padding-top,
       $rmd-text-field-underline-label-padding-top
     );
-    @include rmd-form-theme-update-var(addon-margin-top, $rmd-text-field-addon-margin);
+    @include rmd-form-theme-update-var(
+      addon-margin-top,
+      $rmd-text-field-addon-margin
+    );
   }
 
   &--filled {
-    @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-filled-padding);
-    @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-filled-padding);
-    @include rmd-form-theme-update-var(label-left-offset, $rmd-text-field-filled-padding);
+    @include rmd-form-theme-update-var(
+      text-padding-left,
+      $rmd-text-field-filled-padding
+    );
+    @include rmd-form-theme-update-var(
+      text-padding-right,
+      $rmd-text-field-filled-padding
+    );
+    @include rmd-form-theme-update-var(
+      label-left-offset,
+      $rmd-text-field-filled-padding
+    );
     @include rmd-form-theme(background-color, text-filled-color);
     @include rmd-states-surface($clickable: false);
 
@@ -114,7 +144,10 @@
       $calc-string: '#{$calc-string} + #{$rmd-text-field-underline-padding}';
     }
 
-    @include rmd-form-theme-update-var(text-padding-left, calc(#{$calc-string}));
+    @include rmd-form-theme-update-var(
+      text-padding-left,
+      calc(#{$calc-string})
+    );
     @include rmd-form-theme-update-var(
       label-left-offset,
       $rmd-text-field-underline-label-left-offset
@@ -127,19 +160,34 @@
       $calc-string: '#{$calc-string} + #{$rmd-text-field-underline-padding}';
     }
 
-    @include rmd-form-theme-update-var(text-padding-right, calc(#{$calc-string}));
+    @include rmd-form-theme-update-var(
+      text-padding-right,
+      calc(#{$calc-string})
+    );
   }
 
   &--outline {
-    @include rmd-form-theme-update-var(text-padding-left, $rmd-text-field-outline-padding);
-    @include rmd-form-theme-update-var(text-padding-right, $rmd-text-field-outline-padding);
+    @include rmd-form-theme-update-var(
+      text-padding-left,
+      $rmd-text-field-outline-padding
+    );
+    @include rmd-form-theme-update-var(
+      text-padding-right,
+      $rmd-text-field-outline-padding
+    );
     @include rmd-form-theme-update-var(
       label-left-offset,
       $rmd-text-field-outline-padding - $rmd-label-floating-padding
     );
     @include rmd-form-theme-update-var(label-top-offset, -50%);
-    @include rmd-form-theme-update-var(label-active-padding, 0 $rmd-label-floating-padding);
-    @include rmd-form-theme-update-var(label-active-background-color, rmd-theme-var(background));
+    @include rmd-form-theme-update-var(
+      label-active-padding,
+      0 $rmd-label-floating-padding
+    );
+    @include rmd-form-theme-update-var(
+      label-active-background-color,
+      rmd-theme-var(background)
+    );
     @include rmd-form-theme(border-color, text-border-color);
 
     border-radius: $rmd-text-field-border-radius;
@@ -150,7 +198,8 @@
       @include rmd-transition(standard);
       @include rmd-utils-pseudo-element;
 
-      box-shadow: 0 0 0 $rmd-text-field-border-width-active rmd-form-theme-var(text-active-color);
+      box-shadow: 0 0 0 $rmd-text-field-border-width-active
+        rmd-form-theme-var(text-active-color);
       opacity: 0;
       transition: opacity $rmd-transition-standard-time;
     }
@@ -169,7 +218,9 @@
   }
 
   &--outline-right {
-    $outline-offset: calc(#{rmd-icon-theme-var(size)} + #{$rmd-text-field-addon-margin * 2});
+    $outline-offset: calc(
+      #{rmd-icon-theme-var(size)} + #{$rmd-text-field-addon-margin * 2}
+    );
 
     @include rmd-form-theme-update-var(text-padding-right, $outline-offset);
   }
@@ -182,7 +233,10 @@
   }
 
   &--dense-label {
-    @include rmd-form-theme-update-var(text-height, rmd-form-theme-var(text-label-dense-height));
+    @include rmd-form-theme-update-var(
+      text-height,
+      rmd-form-theme-var(text-label-dense-height)
+    );
   }
 
   &--dense-placeholder {
@@ -311,7 +365,9 @@
   height: auto;
   max-width: 100%;
   padding-top: calc(
-    #{rmd-form-theme-var(text-padding-top)} + #{rmd-form-theme-var(textarea-padding)}
+    #{rmd-form-theme-var(text-padding-top)} + #{rmd-form-theme-var(
+        textarea-padding
+      )}
   );
 
   &--animate {
@@ -395,7 +451,10 @@
 
   &__input {
     &--offset {
-      @include rmd-utils-rtl-auto(margin-right, rmd-button-theme-var(icon-size));
+      @include rmd-utils-rtl-auto(
+        margin-right,
+        rmd-button-theme-var(icon-size)
+      );
     }
   }
 
@@ -442,7 +501,10 @@
 
   &__counter {
     @include rmd-utils-rtl-auto(margin-left, auto);
-    @include rmd-utils-rtl-auto(padding-left, $rmd-form-message-counter-spacing);
+    @include rmd-utils-rtl-auto(
+      padding-left,
+      $rmd-form-message-counter-spacing
+    );
 
     flex-shrink: 0;
     white-space: nowrap;

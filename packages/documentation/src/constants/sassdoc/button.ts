@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-theme",
       description:
         "This function is used to quickly get one of the button's theme values. This is really just for the `rmd-button-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
-      source: "packages/button/src/_functions.scss#L15-L17",
+      source: "packages/button/src/_functions.scss#L15-L21",
       requires: [
         {
           name: "rmd-theme-get-var-value",
@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-theme-var",
       description:
         "This function is used to get one of the button's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-button-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/button/src/_functions.scss#L32-L34",
+      source: "packages/button/src/_functions.scss#L36-L43",
       usedBy: [
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
         { name: "rmd-button", type: "mixin", packageName: "button" },
@@ -89,7 +89,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-theme",
       description:
         "Creates the styles for one of the button's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/button/src/_mixins.scss#L29-L31",
+      source: "packages/button/src/_mixins.scss#L29-L36",
       usedBy: [
         { name: "rmd-button-base", type: "mixin", packageName: "button" },
         { name: "rmd-button-text", type: "mixin", packageName: "button" },
@@ -140,7 +140,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-theme-update-var",
       description:
         "Updates one of the button's theme variables with the new value for the section of your app.",
-      source: "packages/button/src/_mixins.scss#L39-L41",
+      source: "packages/button/src/_mixins.scss#L44-L51",
       usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       requires: [
         {
@@ -177,7 +177,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button-reset",
       description:
         "A simple mixin to remove most of the styles for a button and reset them to be clear.\n\nNOTE: An reset button removed the `outline-style` so you *must* add a custom focus behavior with either ripples or something else for keyboard users.",
-      source: "packages/button/src/_mixins.scss#L57-L62",
+      source: "packages/button/src/_mixins.scss#L67-L72",
       usedBy: [
         { name: "rmd-button-unstyled", type: "mixin", packageName: "button" },
       ],
@@ -207,7 +207,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-base": {
       name: "rmd-button-base",
       description: "The base styles for a button.",
-      source: "packages/button/src/_mixins.scss#L70-L80",
+      source: "packages/button/src/_mixins.scss#L80-L90",
       usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       requires: [
         {
@@ -235,7 +235,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-text": {
       name: "rmd-button-text",
       description: "Creates the base styles for a text button.\n",
-      source: "packages/button/src/_mixins.scss#L83-L99",
+      source: "packages/button/src/_mixins.scss#L93-L110",
       usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -275,7 +275,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-icon": {
       name: "rmd-button-icon",
       description: "Creates the base styles for an icon button.\n",
-      source: "packages/button/src/_mixins.scss#L102-L112",
+      source: "packages/button/src/_mixins.scss#L113-L123",
       usedBy: [{ name: "rmd-button", type: "mixin", packageName: "button" }],
       requires: [
         {
@@ -300,7 +300,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-button",
       description:
         "Creates all the styles for a button. This should be used within a class or selector.\n",
-      source: "packages/button/src/_mixins.scss#L117-L198",
+      source: "packages/button/src/_mixins.scss#L128-L236",
       usedBy: [
         { name: "react-md-button", type: "mixin", packageName: "button" },
       ],
@@ -379,13 +379,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "button",
       code: "@mixin rmd-button { … }",
       sourceCode:
-        '@mixin rmd-button {\n  @if $rmd-button-text-icon-inherit-color {\n    @include rmd-icon-theme-update-var(color, currentColor);\n  }\n  @include rmd-button-base;\n  @include rmd-states-surface;\n  @if $rmd-button-circular-progress-size !=\n    null and\n    mixin-exists(rmd-progress-theme-update-var)\n  {\n    @include rmd-progress-theme-update-var(\n      circular-size,\n      $rmd-button-circular-progress-size\n    );\n  }\n\n  &--text {\n    @include rmd-button-text;\n  }\n\n  &--icon {\n    @include rmd-button-icon;\n  }\n\n  &--outline {\n    box-shadow: $rmd-button-box-shadow rmd-button-theme-var(outline-width)\n      rmd-button-theme-var(outline);\n  }\n\n  &--contained {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(surface)\n    );\n    @include rmd-elevation-transition(\n      $rmd-button-contained-resting-elevation,\n      $rmd-button-contained-pressed-elevation,\n      "&#{$rmd-states-pressed-class-name}",\n      false,\n      $rmd-button-contained-elevation-transition-time\n    );\n    // don\'t want the normal pressed colors to appear since we have an elevation\n    // change instead\n    @include rmd-states-theme-update-var(background-color, transparent);\n  }\n\n  &--disabled {\n    @include rmd-button-theme-update-var(\n      color,\n      rmd-theme-var(text-disabled-on-background)\n    );\n    @include rmd-button-theme-update-var(\n      outline,\n      rmd-theme-var(text-disabled-on-background)\n    );\n  }\n\n  &--primary {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(primary)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-primary));\n  }\n\n  &--text-primary {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(primary));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(primary));\n  }\n\n  &--secondary {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(secondary)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-secondary));\n  }\n\n  &--text-secondary {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(secondary));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(secondary));\n  }\n\n  &--warning {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(warning)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-warning));\n  }\n\n  &--text-warning {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(warning));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(warning));\n  }\n\n  &--error {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(error)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-error));\n  }\n\n  &--text-error {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(error));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(error));\n  }\n}\n',
+        "@mixin rmd-button {\n  @if $rmd-button-text-icon-inherit-color {\n    @include rmd-icon-theme-update-var(color, currentColor);\n  }\n  @include rmd-button-base;\n  @include rmd-states-surface;\n  @if $rmd-button-circular-progress-size !=\n    null and\n    mixin-exists(rmd-progress-theme-update-var)\n  {\n    @include rmd-progress-theme-update-var(\n      circular-size,\n      $rmd-button-circular-progress-size\n    );\n  }\n\n  &--text {\n    @include rmd-button-text;\n  }\n\n  &--icon {\n    @include rmd-button-icon;\n  }\n\n  &--outline {\n    box-shadow: $rmd-button-box-shadow rmd-button-theme-var(outline-width)\n      rmd-button-theme-var(outline);\n  }\n\n  &--contained {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(surface)\n    );\n    @include rmd-elevation-transition(\n      $rmd-button-contained-resting-elevation,\n      $rmd-button-contained-pressed-elevation,\n      '&#{$rmd-states-pressed-class-name}',\n      false,\n      $rmd-button-contained-elevation-transition-time\n    );\n    // don't want the normal pressed colors to appear since we have an elevation\n    // change instead\n    @include rmd-states-theme-update-var(background-color, transparent);\n  }\n\n  &--disabled {\n    @include rmd-button-theme-update-var(\n      color,\n      rmd-theme-var(text-disabled-on-background)\n    );\n    @include rmd-button-theme-update-var(\n      outline,\n      rmd-theme-var(text-disabled-on-background)\n    );\n  }\n\n  &--primary {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(primary)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-primary));\n  }\n\n  &--text-primary {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(primary));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(primary));\n  }\n\n  &--secondary {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(secondary)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-secondary));\n  }\n\n  &--text-secondary {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(secondary));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(secondary));\n  }\n\n  &--warning {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(warning)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-warning));\n  }\n\n  &--text-warning {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(warning));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(warning));\n  }\n\n  &--error {\n    @include rmd-button-theme-update-var(\n      background-color,\n      rmd-theme-var(error)\n    );\n    @include rmd-button-theme-update-var(color, rmd-theme-var(on-error));\n  }\n\n  &--text-error {\n    @include rmd-button-theme-update-var(color, rmd-theme-var(error));\n    @include rmd-button-theme-update-var(outline, rmd-theme-var(error));\n  }\n}\n",
       type: "mixin",
     },
     "rmd-button-unstyled": {
       name: "rmd-button-unstyled",
       description: "Creates all the styles for an unstyled button.",
-      source: "packages/button/src/_mixins.scss#L205-L215",
+      source: "packages/button/src/_mixins.scss#L243-L256",
       usedBy: [
         { name: "react-md-button", type: "mixin", packageName: "button" },
       ],
@@ -415,7 +415,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-button-floating-positions": {
       name: "rmd-button-floating-positions",
       description: "Creates the styles for all the floating button positions.",
-      source: "packages/button/src/_mixins.scss#L221-L233",
+      source: "packages/button/src/_mixins.scss#L262-L274",
       usedBy: [{ name: "rmd-fab", type: "mixin", packageName: "button" }],
       requires: [
         { name: "rmd-utils-rtl-auto", type: "mixin", packageName: "utils" },
@@ -440,7 +440,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-fab",
       description:
         "Creates the styles for the floating action button container. `FAB`\n",
-      source: "packages/button/src/_mixins.scss#L236-L241",
+      source: "packages/button/src/_mixins.scss#L277-L282",
       usedBy: [
         { name: "react-md-button", type: "mixin", packageName: "button" },
       ],
@@ -466,7 +466,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-button",
       description:
         "Creates all the styles for this package as well as defining all the theme CSS variables.\n",
-      source: "packages/button/src/_mixins.scss#L245-L261",
+      source: "packages/button/src/_mixins.scss#L286-L302",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {
@@ -733,19 +733,19 @@ const sassdoc: PackageSassDoc = {
       examples: [
         {
           code:
-            '@import "@react-md/button/dist/scss/mixins";\n@import "@react-md/progress/dist/scss/mixins";\n@import "@react-md/utils/dist/scss/mixins";\n\n// can also manually set it to a different value if desired:\n// $rmd-button-circular-progress-size: 1.5rem;\n\n// or @include react-md-button;\n@include react-md-utils;\n',
+            "@import '@react-md/button/dist/scss/mixins';\n@import '@react-md/progress/dist/scss/mixins';\n@import '@react-md/utils/dist/scss/mixins';\n\n// can also manually set it to a different value if desired:\n// $rmd-button-circular-progress-size: 1.5rem;\n\n// or @include react-md-button;\n@include react-md-utils;\n",
           type: "scss",
           description: "Includes `CircularProgress` size",
         },
         {
           code:
-            '// bad example since `@react-md/progress` was not imported\n@import "@react-md/button/dist/scss/mixins";\n@import "@react-md/utils/dist/scss/mixins";\n\n// or @include react-md-button;\n@include react-md-utils;\n',
+            "// bad example since `@react-md/progress` was not imported\n@import '@react-md/button/dist/scss/mixins';\n@import '@react-md/utils/dist/scss/mixins';\n\n// or @include react-md-button;\n@include react-md-utils;\n",
           type: "scss",
           description: "Does not include `CircularProgress` size",
         },
         {
           code:
-            '@import "@react-md/button/dist/scss/mixins";\n@import "@react-md/progress/dist/scss/mixins";\n@import "@react-md/utils/dist/scss/mixins";\n\n// manually set it to `null` to prevent it from being added\n$rmd-button-circular-progress-size: null;\n\n// or @include react-md-button;\n@include react-md-utils;\n',
+            "@import '@react-md/button/dist/scss/mixins';\n@import '@react-md/progress/dist/scss/mixins';\n@import '@react-md/utils/dist/scss/mixins';\n\n// manually set it to `null` to prevent it from being added\n$rmd-button-circular-progress-size: null;\n\n// or @include react-md-button;\n@include react-md-utils;\n",
           type: "scss",
           description: "Opt-out of `CircularProgress` size",
         },

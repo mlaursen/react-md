@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-progress-theme",
       description:
         "This function is used to quickly get one of the progress's theme values.\nThis is really just for the `rmd-progress-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
-      source: "packages/progress/src/_functions.scss#L16-L18",
+      source: "packages/progress/src/_functions.scss#L16-L22",
       requires: [
         {
           name: "rmd-theme-get-var-value",
@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-progress-theme-var",
       description:
         "This function is used to get one of the progress's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-progress-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/progress/src/_functions.scss#L33-L35",
+      source: "packages/progress/src/_functions.scss#L37-L44",
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
@@ -83,7 +83,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-progress-theme",
       description:
         "Creates the styles for one of the progress's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/progress/src/_mixins.scss#L22-L24",
+      source: "packages/progress/src/_mixins.scss#L22-L29",
       usedBy: [
         {
           name: "rmd-linear-progress-bar-styles",
@@ -146,7 +146,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-progress-theme-update-var",
       description:
         "Updates one of the progress's theme variables with the new value for the section of your app.",
-      source: "packages/progress/src/_mixins.scss#L32-L34",
+      source: "packages/progress/src/_mixins.scss#L37-L44",
       usedBy: [
         { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
@@ -191,7 +191,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-progress-animation": {
       name: "rmd-progress-animation",
       description: "Creates the styles for the progress animation",
-      source: "packages/progress/src/_mixins.scss#L40-L48",
+      source: "packages/progress/src/_mixins.scss#L50-L58",
       usedBy: [
         { name: "rmd-linear-progress", type: "mixin", packageName: "progress" },
         {
@@ -223,7 +223,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-bar-styles": {
       name: "rmd-linear-progress-bar-styles",
       description: "",
-      source: "packages/progress/src/_mixins.scss#L51-L57",
+      source: "packages/progress/src/_mixins.scss#L61-L67",
       usedBy: [
         {
           name: "rmd-linear-progress-bar",
@@ -243,7 +243,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-linear-progress-bar": {
       name: "rmd-linear-progress-bar",
       description: "",
-      source: "packages/progress/src/_mixins.scss#L60-L161",
+      source: "packages/progress/src/_mixins.scss#L70-L172",
       usedBy: [
         { name: "rmd-linear-progress", type: "mixin", packageName: "progress" },
       ],
@@ -280,13 +280,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "progress",
       code: "@mixin rmd-linear-progress-bar { … }",
       sourceCode:
-        '@mixin rmd-linear-progress-bar {\n  &--horizontal {\n    @include rmd-utils-rtl-auto(left, 0);\n  }\n\n  &--horizontal-reverse {\n    @include rmd-utils-rtl-auto-group(\n      (\n        left: auto,\n        right: 0,\n      )\n    );\n  }\n\n  &--vertical {\n    bottom: 0;\n    left: 0;\n    right: 0;\n  }\n\n  &--vertical-reverse {\n    bottom: auto;\n    top: 0;\n  }\n\n  &--determinate {\n    @include rmd-linear-progress-bar-styles;\n  }\n\n  &--animate {\n    @include rmd-transition(sharp);\n\n    transition: width $rmd-transition-standard-time,\n      height $rmd-transition-standard-time;\n  }\n\n  &--indeterminate {\n    &::before,\n    &::after {\n      @include rmd-linear-progress-bar-styles;\n      @include rmd-transition(standard, true);\n      @include rmd-utils-rtl-auto-group(\n        (\n          left: 0,\n          right: 100%,\n        )\n      );\n\n      animation-duration: $rmd-linear-progress-transition-duration;\n      animation-iteration-count: infinite;\n      content: "";\n      will-change: left, right;\n    }\n\n    &::before {\n      animation-name: rmd-progress-bar;\n    }\n\n    &::after {\n      animation-delay: $rmd-linear-progress-short-animation-delay;\n      animation-name: rmd-progress-bar-short;\n    }\n  }\n\n  &--indeterminate-reverse {\n    &::before {\n      animation-name: rmd-progress-bar-reverse;\n    }\n\n    &::after {\n      animation-name: rmd-progress-bar-reverse-short;\n    }\n  }\n\n  &--indeterminate-vertical {\n    &::before,\n    &::after {\n      @include rmd-progress-theme(width, linear-size);\n\n      height: auto;\n      left: 0;\n      right: 0;\n    }\n\n    &::before {\n      animation-name: rmd-progress-bar-vertical;\n    }\n\n    &::after {\n      animation-name: rmd-progress-bar-vertical-short;\n    }\n  }\n\n  &--indeterminate-vertical-reverse {\n    &::before {\n      animation-name: rmd-progress-bar-vertical-reverse;\n    }\n\n    &::after {\n      animation-name: rmd-progress-bar-vertical-reverse-short;\n    }\n  }\n}\n',
+        "@mixin rmd-linear-progress-bar {\n  &--horizontal {\n    @include rmd-utils-rtl-auto(left, 0);\n  }\n\n  &--horizontal-reverse {\n    @include rmd-utils-rtl-auto-group(\n      (\n        left: auto,\n        right: 0,\n      )\n    );\n  }\n\n  &--vertical {\n    bottom: 0;\n    left: 0;\n    right: 0;\n  }\n\n  &--vertical-reverse {\n    bottom: auto;\n    top: 0;\n  }\n\n  &--determinate {\n    @include rmd-linear-progress-bar-styles;\n  }\n\n  &--animate {\n    @include rmd-transition(sharp);\n\n    transition: width $rmd-transition-standard-time,\n      height $rmd-transition-standard-time;\n  }\n\n  &--indeterminate {\n    &::before,\n    &::after {\n      @include rmd-linear-progress-bar-styles;\n      @include rmd-transition(standard, true);\n      @include rmd-utils-rtl-auto-group(\n        (\n          left: 0,\n          right: 100%,\n        )\n      );\n\n      animation-duration: $rmd-linear-progress-transition-duration;\n      animation-iteration-count: infinite;\n      content: '';\n      will-change: left, right;\n    }\n\n    &::before {\n      animation-name: rmd-progress-bar;\n    }\n\n    &::after {\n      animation-delay: $rmd-linear-progress-short-animation-delay;\n      animation-name: rmd-progress-bar-short;\n    }\n  }\n\n  &--indeterminate-reverse {\n    &::before {\n      animation-name: rmd-progress-bar-reverse;\n    }\n\n    &::after {\n      animation-name: rmd-progress-bar-reverse-short;\n    }\n  }\n\n  &--indeterminate-vertical {\n    &::before,\n    &::after {\n      @include rmd-progress-theme(width, linear-size);\n\n      height: auto;\n      left: 0;\n      right: 0;\n    }\n\n    &::before {\n      animation-name: rmd-progress-bar-vertical;\n    }\n\n    &::after {\n      animation-name: rmd-progress-bar-vertical-short;\n    }\n  }\n\n  &--indeterminate-vertical-reverse {\n    &::before {\n      animation-name: rmd-progress-bar-vertical-reverse;\n    }\n\n    &::after {\n      animation-name: rmd-progress-bar-vertical-reverse-short;\n    }\n  }\n}\n",
       type: "mixin",
     },
     "rmd-linear-progress": {
       name: "rmd-linear-progress",
       description: "Creates the styles for the linear progress bar.\n",
-      source: "packages/progress/src/_mixins.scss#L165-L218",
+      source: "packages/progress/src/_mixins.scss#L176-L233",
       usedBy: [
         { name: "react-md-progress", type: "mixin", packageName: "progress" },
       ],
@@ -352,7 +352,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-circular-progress": {
       name: "rmd-circular-progress",
       description: "",
-      source: "packages/progress/src/_mixins.scss#L221-L289",
+      source: "packages/progress/src/_mixins.scss#L236-L308",
       usedBy: [
         { name: "react-md-progress", type: "mixin", packageName: "progress" },
       ],
@@ -404,7 +404,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-progress": {
       name: "react-md-progress",
       description: "Creates all the styles for the progress package.\n",
-      source: "packages/progress/src/_mixins.scss#L292-L302",
+      source: "packages/progress/src/_mixins.scss#L311-L321",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {

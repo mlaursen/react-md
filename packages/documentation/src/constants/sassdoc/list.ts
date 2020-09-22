@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-theme-var",
       description:
         "This function is used to get one of the list's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-list-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/list/src/_functions.scss#L32-L34",
+      source: "packages/list/src/_functions.scss#L32-L39",
       usedBy: [
         { name: "rmd-list-dense-theme", type: "mixin", packageName: "list" },
         { name: "rmd-list", type: "mixin", packageName: "list" },
@@ -98,7 +98,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-theme",
       description:
         "Creates the styles for one of the list's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/list/src/_mixins.scss#L28-L30",
+      source: "packages/list/src/_mixins.scss#L28-L35",
       usedBy: [
         { name: "rmd-list", type: "mixin", packageName: "list" },
         { name: "rmd-list-item-base", type: "mixin", packageName: "list" },
@@ -149,7 +149,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-theme-update-var",
       description:
         "Updates one of the list's theme variables with the new value for the section of your app.",
-      source: "packages/list/src/_mixins.scss#L38-L40",
+      source: "packages/list/src/_mixins.scss#L43-L50",
       usedBy: [
         { name: "rmd-option", type: "mixin", packageName: "form" },
         { name: "rmd-list-dense-theme", type: "mixin", packageName: "list" },
@@ -195,7 +195,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-unstyled",
       description:
         'A "general" use mixin that will remove the default browser styles for a list and apply the optionally provided margin and padding instead.',
-      source: "packages/list/src/_mixins.scss#L47-L51",
+      source: "packages/list/src/_mixins.scss#L57-L61",
       usedBy: [{ name: "rmd-list", type: "mixin", packageName: "list" }],
       packageName: "list",
       code: "@mixin rmd-list-unstyled($padding: 0, $margin: 0) { … }",
@@ -221,7 +221,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-dense-theme",
       description:
         "Updates all the css variables for the list package to use a dense spec.",
-      source: "packages/list/src/_mixins.scss#L59-L66",
+      source: "packages/list/src/_mixins.scss#L69-L82",
       usedBy: [
         { name: "rmd-list", type: "mixin", packageName: "list" },
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
@@ -252,7 +252,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-list": {
       name: "rmd-list",
       description: "Creates the styles for a list in react-md.\n",
-      source: "packages/list/src/_mixins.scss#L69-L87",
+      source: "packages/list/src/_mixins.scss#L85-L108",
       usedBy: [{ name: "react-md-list", type: "mixin", packageName: "list" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -277,7 +277,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-base",
       description:
         "The base styles required for a `ListItem`. This propbably won't be used externally.\n",
-      source: "packages/list/src/_mixins.scss#L91-L98",
+      source: "packages/list/src/_mixins.scss#L112-L120",
       usedBy: [
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
         { name: "rmd-list-subheader", type: "mixin", packageName: "list" },
@@ -296,7 +296,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-dense-theme",
       description:
         "Updates all the list item css variables to apply to dense theme.",
-      source: "packages/list/src/_mixins.scss#L106-L128",
+      source: "packages/list/src/_mixins.scss#L128-L153",
       usedBy: [
         { name: "rmd-list-item", type: "mixin", packageName: "list" },
         { name: "rmd-utils-dense", type: "mixin", packageName: "utils" },
@@ -328,7 +328,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-addon-spacing",
       description:
         "Updates the spacing for a list item addon by updated the `text-spacing` from the `@react-md/icon` package and doing some calculations with the current `text-keyline` within the list.\n\nThis propably shouldn't be used externally.",
-      source: "packages/list/src/_mixins.scss#L142-L145",
+      source: "packages/list/src/_mixins.scss#L167-L175",
       usedBy: [{ name: "rmd-list-item", type: "mixin", packageName: "list" }],
       requires: [
         {
@@ -364,7 +364,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-list-item": {
       name: "rmd-list-item",
       description: "Creates all the styles for a list item.\n",
-      source: "packages/list/src/_mixins.scss#L148-L242",
+      source: "packages/list/src/_mixins.scss#L178-L290",
       usedBy: [
         { name: "react-md-list", type: "mixin", packageName: "list" },
         { name: "rmd-tree-item", type: "mixin", packageName: "tree" },
@@ -431,7 +431,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-list-subheader": {
       name: "rmd-list-subheader",
       description: "Creates the styles for a subheader within a list.\n",
-      source: "packages/list/src/_mixins.scss#L245-L257",
+      source: "packages/list/src/_mixins.scss#L293-L305",
       usedBy: [{ name: "react-md-list", type: "mixin", packageName: "list" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -448,7 +448,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-list": {
       name: "react-md-list",
       description: "Creats all the styles for the list package.\n",
-      source: "packages/list/src/_mixins.scss#L260-L274",
+      source: "packages/list/src/_mixins.scss#L308-L322",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {
@@ -798,7 +798,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-theme-values",
       description:
         'A Map of all the "themeable" parts of the list package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/list/src/_variables.scss#L165-L190",
+      source: "packages/list/src/_variables.scss#L165-L192",
       usedBy: [
         { name: "rmd-list-theme", type: "function", packageName: "list" },
         { name: "rmd-list-theme-var", type: "function", packageName: "list" },
@@ -813,7 +813,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "list",
       type: "Map",
       value:
-        "(\n  vertical-padding: $rmd-list-vertical-padding,\n  horizontal-padding: $rmd-list-horizontal-padding,\n  font-size: $rmd-list-font-size,\n  text-keyline: $rmd-list-item-text-keyline,\n  item-height: $rmd-list-item-height,\n  item-medium-height: $rmd-list-item-medium-height,\n  item-large-height: $rmd-list-item-large-height,\n  item-extra-large-height: $rmd-list-item-extra-large-height,\n  item-three-line-height: $rmd-list-item-three-line-height,\n  item-vertical-padding: $rmd-list-item-vertical-padding,\n  item-horizontal-padding: $rmd-list-item-horizontal-padding,\n  item-secondary-three-line-height: $rmd-list-item-secondary-text-three-line-max-height,\n  dense-font-size: $rmd-list-dense-font-size,\n  dense-vertical-padding: $rmd-list-dense-vertical-padding,\n  dense-horizontal-padding: $rmd-list-dense-horizontal-padding,\n  dense-item-height: $rmd-list-item-dense-height,\n  dense-item-medium-height: $rmd-list-item-dense-medium-height,\n  dense-item-large-height: $rmd-list-item-dense-large-height,\n  dense-item-extra-large-height: $rmd-list-item-dense-extra-large-height,\n  dense-item-three-line-height: $rmd-list-item-dense-three-line-height,\n  dense-item-secondary-three-line-height: $rmd-list-item-dense-secondary-text-three-line-max-height,\n  media-size: $rmd-list-item-media-size,\n  media-spacing: $rmd-list-item-media-spacing,\n  media-large-size: $rmd-list-item-media-large-size,\n)",
+        "(\n  vertical-padding: $rmd-list-vertical-padding,\n  horizontal-padding: $rmd-list-horizontal-padding,\n  font-size: $rmd-list-font-size,\n  text-keyline: $rmd-list-item-text-keyline,\n  item-height: $rmd-list-item-height,\n  item-medium-height: $rmd-list-item-medium-height,\n  item-large-height: $rmd-list-item-large-height,\n  item-extra-large-height: $rmd-list-item-extra-large-height,\n  item-three-line-height: $rmd-list-item-three-line-height,\n  item-vertical-padding: $rmd-list-item-vertical-padding,\n  item-horizontal-padding: $rmd-list-item-horizontal-padding,\n  item-secondary-three-line-height:\n    $rmd-list-item-secondary-text-three-line-max-height,\n  dense-font-size: $rmd-list-dense-font-size,\n  dense-vertical-padding: $rmd-list-dense-vertical-padding,\n  dense-horizontal-padding: $rmd-list-dense-horizontal-padding,\n  dense-item-height: $rmd-list-item-dense-height,\n  dense-item-medium-height: $rmd-list-item-dense-medium-height,\n  dense-item-large-height: $rmd-list-item-dense-large-height,\n  dense-item-extra-large-height: $rmd-list-item-dense-extra-large-height,\n  dense-item-three-line-height: $rmd-list-item-dense-three-line-height,\n  dense-item-secondary-three-line-height:\n    $rmd-list-item-dense-secondary-text-three-line-max-height,\n  media-size: $rmd-list-item-media-size,\n  media-spacing: $rmd-list-item-media-spacing,\n  media-large-size: $rmd-list-item-media-large-size,\n)",
       compiled:
         "(\n  vertical-padding: 0.5rem,\n  horizontal-padding: 0,\n  font-size: 1rem,\n  text-keyline: 4.5rem,\n  item-height: 3rem,\n  item-medium-height: 3.5rem,\n  item-large-height: 4rem,\n  item-extra-large-height: 4.5rem,\n  item-three-line-height: 5.5rem,\n  item-vertical-padding: 0.5rem,\n  item-horizontal-padding: 1rem,\n  item-secondary-three-line-height: 3rem,\n  dense-font-size: 0.8125rem,\n  dense-vertical-padding: 0.25rem,\n  dense-horizontal-padding: 0,\n  dense-item-height: 2.5rem,\n  dense-item-medium-height: 3rem,\n  dense-item-large-height: 3.5rem,\n  dense-item-extra-large-height: 4rem,\n  dense-item-three-line-height: 5rem,\n  dense-item-secondary-three-line-height: 2.25rem,\n  media-size: 3.5rem,\n  media-spacing: 1rem,\n  media-large-size: 6.25rem,\n)",
       overridable: true,

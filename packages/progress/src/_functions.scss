@@ -14,7 +14,11 @@
 /// keys to get a value for.
 /// @return {Color|String|Number} one of the progress's theme values.
 @function rmd-progress-theme($theme-style) {
-  @return rmd-theme-get-var-value($theme-style, $rmd-progress-theme-values, progress);
+  @return rmd-theme-get-var-value(
+    $theme-style,
+    $rmd-progress-theme-values,
+    progress
+  );
 }
 
 /// This function is used to get one of the progress's theme variables as a CSS
@@ -31,5 +35,10 @@
 /// variables should always exist.
 /// @return {String} one of the progress's theme values as a css variable.
 @function rmd-progress-theme-var($theme-style, $fallback: null) {
-  @return rmd-theme-get-var($theme-style, $rmd-progress-theme-values, progress, $fallback);
+  @return rmd-theme-get-var(
+    $theme-style,
+    $rmd-progress-theme-values,
+    progress,
+    $fallback
+  );
 }

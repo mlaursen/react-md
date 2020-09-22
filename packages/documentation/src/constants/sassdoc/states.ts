@@ -7,7 +7,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-theme",
       description:
         "This function is used to quickly get one of the states's theme values. This is really just for the `rmd-states-theme` mixin to provide some validation that a correct style key is used, but might be useful in other cases.",
-      source: "packages/states/src/_functions.scss#L15-L17",
+      source: "packages/states/src/_functions.scss#L15-L21",
       requires: [
         {
           name: "rmd-theme-get-var-value",
@@ -42,7 +42,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-theme-var",
       description:
         "This function is used to get one of the states's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-states-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
-      source: "packages/states/src/_functions.scss#L32-L34",
+      source: "packages/states/src/_functions.scss#L36-L43",
       usedBy: [
         { name: "react-md-file-input", type: "mixin", packageName: "form" },
         { name: "rmd-switch-input", type: "mixin", packageName: "form" },
@@ -99,7 +99,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-theme",
       description:
         "Creates the styles for one of the states's theme values. This is mostly going to be an internal helper mixin util.",
-      source: "packages/states/src/_mixins.scss#L24-L26",
+      source: "packages/states/src/_mixins.scss#L24-L31",
       usedBy: [
         {
           name: "rmd-states-surface-base",
@@ -157,7 +157,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-theme-update-var",
       description:
         "Updates one of the states's theme variables with the new value for the section of your app.",
-      source: "packages/states/src/_mixins.scss#L34-L36",
+      source: "packages/states/src/_mixins.scss#L39-L46",
       usedBy: [
         { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "react-md-file-input", type: "mixin", packageName: "form" },
@@ -208,7 +208,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-surface-base",
       description:
         'Generates all the base styles for an interaction "surface". This should normally be applied to a `::before` or `::after` pseudo element.\n',
-      source: "packages/states/src/_mixins.scss#L40-L46",
+      source: "packages/states/src/_mixins.scss#L50-L56",
       usedBy: [
         { name: "rmd-switch-ball", type: "mixin", packageName: "form" },
         { name: "rmd-states-surface", type: "mixin", packageName: "states" },
@@ -237,7 +237,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-pressed-styles",
       description:
         "A simple mixin that allows you to add custom pressed state styles to an element.",
-      source: "packages/states/src/_mixins.scss#L56-L63",
+      source: "packages/states/src/_mixins.scss#L66-L76",
       usedBy: [
         { name: "rmd-states-surface", type: "mixin", packageName: "states" },
       ],
@@ -252,7 +252,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-states-pressed-styles($pressed-class-name: $rmd-states-pressed-class-name, $css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-states-pressed-styles(\n  $pressed-class-name: $rmd-states-pressed-class-name,\n  $css-modules: false\n) {\n  @include rmd-utils-optional-css-modules(\n    "&#{$pressed-class-name}",\n    $css-modules\n  ) {\n    @content;\n  }\n}\n',
+        "@mixin rmd-states-pressed-styles(\n  $pressed-class-name: $rmd-states-pressed-class-name,\n  $css-modules: false\n) {\n  @include rmd-utils-optional-css-modules(\n    '&#{$pressed-class-name}',\n    $css-modules\n  ) {\n    @content;\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -275,7 +275,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-focus-shadow",
       description:
         "This mixin will add the focus shadow color to your current element only during keyboard focus events. Your element must also have included the `rmd-states-surface-base` mixin for this to work.\n\nNote: If you used the `rmd-states-surface` mixin, this functionality will be included by default. In addition this only works for non-inline elements due to how positioning works for them. You'll either need to update it to be `display: inline-block` or fallbac to the `outline-style`s.",
-      source: "packages/states/src/_mixins.scss#L110-L133",
+      source: "packages/states/src/_mixins.scss#L123-L146",
       usedBy: [
         { name: "rmd-button-unstyled", type: "mixin", packageName: "button" },
         { name: "react-md-file-input", type: "mixin", packageName: "form" },
@@ -322,7 +322,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-states-focus-shadow($focus-selector: '&:focus', $create-pseudo: false, $after: false, $css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-states-focus-shadow(\n  $focus-selector: "&:focus",\n  $create-pseudo: false,\n  $after: false,\n  $css-modules: false\n) {\n  $pseudo-selector: if($after, "&::after", "&::before");\n\n  @if $create-pseudo {\n    #{$pseudo-selector} {\n      @include rmd-utils-pseudo-element;\n    }\n  }\n\n  @if $rmd-states-use-focus-shadow {\n    @include rmd-utils-keyboard-only($css-modules) {\n      #{$focus-selector} {\n        #{$pseudo-selector} {\n          @include rmd-states-theme(box-shadow, focus-shadow);\n        }\n      }\n    }\n  }\n}\n',
+        "@mixin rmd-states-focus-shadow(\n  $focus-selector: '&:focus',\n  $create-pseudo: false,\n  $after: false,\n  $css-modules: false\n) {\n  $pseudo-selector: if($after, '&::after', '&::before');\n\n  @if $create-pseudo {\n    #{$pseudo-selector} {\n      @include rmd-utils-pseudo-element;\n    }\n  }\n\n  @if $rmd-states-use-focus-shadow {\n    @include rmd-utils-keyboard-only($css-modules) {\n      #{$focus-selector} {\n        #{$pseudo-selector} {\n          @include rmd-states-theme(box-shadow, focus-shadow);\n        }\n      }\n    }\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -359,7 +359,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-surface",
       description:
         'This is the main interaction states creator. It will apply all the styles to an element so that it will:\n- gain the pointer cursor when it is not disabled (also works for\n  aria-disabled)\n- create a `::before` element for transitioning between the different\n  interaction states\n- apply the hover opacity when not disabled **and for non-touch devices**\n  (see more below)\n- apply the focused opacity after a **keyboard** focus event (see more\n  below)\n- apply the pressed opacity if not using the ripple effect (see more below)\n\n###### Hover Opacity\n\nThis requires the usage of a `COMPONENT_TO_MAKE` to work correctly. If `COMPONENT_TO_MAKE` is not used in your application, the hover effect will be applied on mobile devices after touch events. This is because a touch event still goes through the mouse events and applies the hover state after being touched.\n\n###### Focused Opacity\n\nThis requires the usage of the `KeyboardTracker` component to work correctly. If the `KeyboardTracker` is not used in your application and not near the root of the React render tree, you most likely will not have any focus states. This is actually one of the "biggest" features of react-md until the `:focus-visible` css selector has gained traction and browser support.\n\n###### Pressed Opacity\n\nIf you are using the ripple effect for pressed states, this will be ignored as a ripple element will be created instead to show the pressed state. When the ripple effect is disabled, pressing an element will just trigger a background opacity change like the over interaction states.',
-      source: "packages/states/src/_mixins.scss#L182-L237",
+      source: "packages/states/src/_mixins.scss#L195-L265",
       usedBy: [
         { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
@@ -424,7 +424,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-states-surface($focus-selector: '&:focus', $clickable: true, $no-focus-state: false, $css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-states-surface(\n  $focus-selector: "&:focus",\n  $clickable: true,\n  $no-focus-state: false,\n  $css-modules: false\n) {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-states-focus-shadow($focus-selector, $css-modules: $css-modules);\n\n  &::before {\n    @include rmd-states-surface-base;\n  }\n\n  &:disabled,\n  &[aria-disabled="true"] {\n    @include rmd-states-theme-update-var(hover-color, transparent);\n  }\n\n  @if $clickable {\n    &:not(:disabled):not([aria-disabled="true"]):hover {\n      cursor: pointer;\n    }\n  }\n\n  &:hover {\n    @include rmd-states-theme-update-var(\n      background-color,\n      rmd-states-theme-var(hover-color)\n    );\n  }\n\n  @if $rmd-states-use-focus-background and not $no-focus-state {\n    @include rmd-utils-keyboard-only($css-modules) {\n      #{$focus-selector} {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(focus-color)\n        );\n\n        &:hover {\n          @include rmd-states-theme-update-var(\n            background-color,\n            rmd-states-theme-var(hover-color)\n          );\n        }\n      }\n    }\n  }\n\n  @include rmd-utils-touch-only($css-modules) {\n    &:focus,\n    &:hover {\n      @include rmd-states-theme-update-var(background-color, transparent);\n    }\n  }\n\n  @if $rmd-states-use-pressed-states-fallback {\n    @include rmd-states-pressed-styles($css-modules) {\n      @include rmd-states-theme-update-var(\n        background-color,\n        rmd-states-theme-var(pressed-color)\n      );\n      @include rmd-utils-keyboard-only($css-modules) {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(pressed-color)\n        );\n      }\n    }\n  }\n}\n',
+        "@mixin rmd-states-surface(\n  $focus-selector: '&:focus',\n  $clickable: true,\n  $no-focus-state: false,\n  $css-modules: false\n) {\n  @include rmd-utils-hide-focus-outline;\n  @include rmd-states-focus-shadow($focus-selector, $css-modules: $css-modules);\n\n  &::before {\n    @include rmd-states-surface-base;\n  }\n\n  &:disabled,\n  &[aria-disabled='true'] {\n    @include rmd-states-theme-update-var(hover-color, transparent);\n  }\n\n  @if $clickable {\n    &:not(:disabled):not([aria-disabled='true']):hover {\n      cursor: pointer;\n    }\n  }\n\n  &:hover {\n    @include rmd-states-theme-update-var(\n      background-color,\n      rmd-states-theme-var(hover-color)\n    );\n  }\n\n  @if $rmd-states-use-focus-background and not $no-focus-state {\n    @include rmd-utils-keyboard-only($css-modules) {\n      #{$focus-selector} {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(focus-color)\n        );\n\n        &:hover {\n          @include rmd-states-theme-update-var(\n            background-color,\n            rmd-states-theme-var(hover-color)\n          );\n        }\n      }\n    }\n  }\n\n  @include rmd-utils-touch-only($css-modules) {\n    &:focus,\n    &:hover {\n      @include rmd-states-theme-update-var(background-color, transparent);\n    }\n  }\n\n  @if $rmd-states-use-pressed-states-fallback {\n    @include rmd-states-pressed-styles($css-modules) {\n      @include rmd-states-theme-update-var(\n        background-color,\n        rmd-states-theme-var(pressed-color)\n      );\n      @include rmd-utils-keyboard-only($css-modules) {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(pressed-color)\n        );\n      }\n    }\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -461,7 +461,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-surface-selected",
       description:
         "This is a mixin that should be used along with the `rmd-states-surface` mixin if you'd also like to be able to add a selected state to an element.\nThis really just adds another opacity background change when the element is considered selected. This is not apart of the main surface mixin since selection states are a bit less used and it might be better to do different styles than just a background change to show selection.",
-      source: "packages/states/src/_mixins.scss#L252-L269",
+      source: "packages/states/src/_mixins.scss#L280-L303",
       usedBy: [
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
         { name: "rmd-tree-item", type: "mixin", packageName: "tree" },
@@ -483,7 +483,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-states-surface-selected($selector: '&--selected', $css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-states-surface-selected(\n  $selector: "&--selected",\n  $css-modules: false\n) {\n  #{$selector} {\n    @include rmd-states-theme-update-var(\n      background-color,\n      rmd-states-theme-var(selected-color)\n    );\n\n    // since the base states disables the additional hover and focus states in touch mode,\n    // they have to be re-enabled for the selected state or else the background color won\'t\n    // appear until the user blurs the selected item.\n    @include rmd-utils-touch-only($css-modules) {\n      &:hover,\n      &:focus {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(selected-color)\n        );\n      }\n    }\n  }\n}\n',
+        "@mixin rmd-states-surface-selected(\n  $selector: '&--selected',\n  $css-modules: false\n) {\n  #{$selector} {\n    @include rmd-states-theme-update-var(\n      background-color,\n      rmd-states-theme-var(selected-color)\n    );\n\n    // since the base states disables the additional hover and focus states in touch mode,\n    // they have to be re-enabled for the selected state or else the background color won't\n    // appear until the user blurs the selected item.\n    @include rmd-utils-touch-only($css-modules) {\n      &:hover,\n      &:focus {\n        @include rmd-states-theme-update-var(\n          background-color,\n          rmd-states-theme-var(selected-color)\n        );\n      }\n    }\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -505,7 +505,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-ripple-container": {
       name: "rmd-states-ripple-container",
       description: "",
-      source: "packages/states/src/_mixins.scss#L272-L282",
+      source: "packages/states/src/_mixins.scss#L306-L316",
       usedBy: [
         { name: "react-md-states", type: "mixin", packageName: "states" },
       ],
@@ -518,7 +518,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-ripple": {
       name: "rmd-states-ripple",
       description: "",
-      source: "packages/states/src/_mixins.scss#L285-L304",
+      source: "packages/states/src/_mixins.scss#L319-L339",
       usedBy: [
         { name: "react-md-states", type: "mixin", packageName: "states" },
       ],
@@ -555,7 +555,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-states",
       description:
         "Creates all the root styles for the states package as well as the themeable css variables and their default values.\n",
-      source: "packages/states/src/_mixins.scss#L308-L321",
+      source: "packages/states/src/_mixins.scss#L343-L360",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {
@@ -680,13 +680,13 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-light-theme-hover-color": {
       name: "rmd-states-light-theme-hover-color",
       description: "The hover color to use for light themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L63",
+      source: "packages/states/src/_variables.scss#L63-L66",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
       packageName: "states",
       type: "Color",
-      value: "rgba($rmd-states-light-theme-background-color, 0.08)",
+      value: "rgba(\n  $rmd-states-light-theme-background-color,\n  0.08\n)",
       compiled: "rgba(0, 0, 0, 0.08)",
       overridable: true,
     },
@@ -694,20 +694,20 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-light-theme-focus-color",
       description:
         "The keyboard focus color to use for light themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L67",
+      source: "packages/states/src/_variables.scss#L70-L73",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
       packageName: "states",
       type: "Color",
-      value: "rgba($rmd-states-light-theme-background-color, 0.24)",
+      value: "rgba(\n  $rmd-states-light-theme-background-color,\n  0.24\n)",
       compiled: "rgba(0, 0, 0, 0.24)",
       overridable: true,
     },
     "rmd-states-light-theme-pressed-color": {
       name: "rmd-states-light-theme-pressed-color",
       description: "The pressed color to use for light themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L71-L74",
+      source: "packages/states/src/_variables.scss#L77-L80",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -720,7 +720,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-light-theme-selected-color": {
       name: "rmd-states-light-theme-selected-color",
       description: "The selected color to use for light themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L78-L81",
+      source: "packages/states/src/_variables.scss#L84-L87",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -733,11 +733,11 @@ const sassdoc: PackageSassDoc = {
     "rmd-states-dark-theme-hover-color": {
       name: "rmd-states-dark-theme-hover-color",
       description: "The hover color to use for dark themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L85",
+      source: "packages/states/src/_variables.scss#L91-L94",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "states",
       type: "Color",
-      value: "rgba($rmd-states-dark-theme-background-color, 0.04)",
+      value: "rgba(\n  $rmd-states-dark-theme-background-color,\n  0.04\n)",
       compiled: "rgba(0, 0, 0, 0.04)",
       overridable: true,
     },
@@ -745,33 +745,33 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-dark-theme-focus-color",
       description:
         "The keyboard focus color to use for dark themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L89",
+      source: "packages/states/src/_variables.scss#L98-L101",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "states",
       type: "Color",
-      value: "rgba($rmd-states-dark-theme-background-color, 0.12)",
+      value: "rgba(\n  $rmd-states-dark-theme-background-color,\n  0.12\n)",
       compiled: "rgba(0, 0, 0, 0.12)",
       overridable: true,
     },
     "rmd-states-dark-theme-pressed-color": {
       name: "rmd-states-dark-theme-pressed-color",
       description: "The pressed color to use for dark themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L93",
+      source: "packages/states/src/_variables.scss#L105-L108",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "states",
       type: "Color",
-      value: "rgba($rmd-states-dark-theme-background-color, 0.16)",
+      value: "rgba(\n  $rmd-states-dark-theme-background-color,\n  0.16\n)",
       compiled: "rgba(0, 0, 0, 0.16)",
       overridable: true,
     },
     "rmd-states-dark-theme-selected-color": {
       name: "rmd-states-dark-theme-selected-color",
       description: "The selected color to use for dark themed backgrounds.\n",
-      source: "packages/states/src/_variables.scss#L97",
+      source: "packages/states/src/_variables.scss#L112-L115",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "states",
       type: "Color",
-      value: "rgba($rmd-states-dark-theme-background-color, 0.12)",
+      value: "rgba(\n  $rmd-states-dark-theme-background-color,\n  0.12\n)",
       compiled: "rgba(0, 0, 0, 0.12)",
       overridable: true,
     },
@@ -779,13 +779,13 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-light-theme-ripple-background-color",
       description:
         "The base background color to use for the ripple effect in a light themed application.\n",
-      source: "packages/states/src/_variables.scss#L102",
+      source: "packages/states/src/_variables.scss#L120-L123",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
       packageName: "states",
       type: "Color",
-      value: "rgba($rmd-black-base, 0.08)",
+      value: "rgba(\n  $rmd-black-base,\n  0.08\n)",
       compiled: "rgba(0, 0, 0, 0.08)",
       overridable: true,
     },
@@ -793,11 +793,11 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-dark-theme-ripple-background-color",
       description:
         "The base background color to use for the ripple effect in a dark themed application.\n",
-      source: "packages/states/src/_variables.scss#L107",
+      source: "packages/states/src/_variables.scss#L128-L131",
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "states",
       type: "Color",
-      value: "rgba($rmd-black-base, 0.08)",
+      value: "rgba(\n  $rmd-black-base,\n  0.08\n)",
       compiled: "rgba(0, 0, 0, 0.08)",
       overridable: true,
     },
@@ -805,7 +805,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-background-color",
       description:
         "The background color to use for the different states. The default behavior is to use a base color and apply different opacities depending on the interaction with the element.",
-      source: "packages/states/src/_variables.scss#L115-L119",
+      source: "packages/states/src/_variables.scss#L139-L143",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -820,7 +820,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-hover-color",
       description:
         "The default hover color to use. This will be determined based on the current theme type of light or dark.",
-      source: "packages/states/src/_variables.scss#L126-L130",
+      source: "packages/states/src/_variables.scss#L150-L154",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -835,7 +835,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-focus-color",
       description:
         "The default focus color to use. This will be determined based on the current theme type of light or dark.",
-      source: "packages/states/src/_variables.scss#L137-L141",
+      source: "packages/states/src/_variables.scss#L161-L165",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -850,7 +850,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-pressed-color",
       description:
         "The default pressed color to use. This will be determined based on the current theme type of light or dark.",
-      source: "packages/states/src/_variables.scss#L148-L152",
+      source: "packages/states/src/_variables.scss#L172-L176",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -865,7 +865,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-selected-color",
       description:
         "The default selected color to use. This will be determined based on the current theme type of light or dark.",
-      source: "packages/states/src/_variables.scss#L159-L163",
+      source: "packages/states/src/_variables.scss#L183-L187",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -880,7 +880,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-focus-shadow-width",
       description:
         "The keyboard focus shadow width to use when the `$rmd-states-use-focus-shadow` variable is enabled.\n",
-      source: "packages/states/src/_variables.scss#L168",
+      source: "packages/states/src/_variables.scss#L192",
       packageName: "states",
       type: "Number",
       value: "0.125rem",
@@ -890,7 +890,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-focus-shadow-color",
       description:
         "The keyboard focus shadow color to use when the `$rmd-states-use-focus-shadow` variable is enabled.",
-      source: "packages/states/src/_variables.scss#L175",
+      source: "packages/states/src/_variables.scss#L199",
       usedBy: [
         {
           name: "rmd-text-field-active-color",
@@ -911,7 +911,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-focus-shadow",
       description:
         "The box-shadow to use when the user keyboard-focuses an element and the `$rmd-states-use-focus-shadow` variable is enabled.",
-      source: "packages/states/src/_variables.scss#L181",
+      source: "packages/states/src/_variables.scss#L205-L206",
       usedBy: [
         {
           name: "rmd-layout-main-focus-shadow",
@@ -922,14 +922,14 @@ const sassdoc: PackageSassDoc = {
       packageName: "states",
       type: "String",
       value:
-        "inset 0 0 0 $rmd-states-focus-shadow-width $rmd-states-focus-shadow-color",
+        "inset 0 0 0 $rmd-states-focus-shadow-width\n  $rmd-states-focus-shadow-color",
       compiled: "inset 0 0 0 0.125rem #2196f3",
       overridable: true,
     },
     "rmd-states-ripple-background-color": {
       name: "rmd-states-ripple-background-color",
       description: "The base background color for the ripple effect.",
-      source: "packages/states/src/_variables.scss#L187-L191",
+      source: "packages/states/src/_variables.scss#L212-L216",
       requires: [
         { name: "rmd-theme-light", type: "variable", packageName: "theme" },
       ],
@@ -944,7 +944,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-ripple-transform-duration",
       description:
         "The transition duration for the ripple transformation animation. This is the expanding circle animation that overlaps a bit with the fade out animation.\n",
-      source: "packages/states/src/_variables.scss#L196",
+      source: "packages/states/src/_variables.scss#L221",
       usedBy: [
         { name: "rmd-states-ripple", type: "mixin", packageName: "states" },
       ],
@@ -957,7 +957,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-ripple-opacity-duration",
       description:
         "The transition duration for the ripple opacity animation. This will be triggered when the ripple starts its exit animation.\n",
-      source: "packages/states/src/_variables.scss#L201",
+      source: "packages/states/src/_variables.scss#L226",
       usedBy: [
         { name: "rmd-states-ripple", type: "mixin", packageName: "states" },
       ],
@@ -970,7 +970,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-pressed-class-name",
       description:
         "The class name to use when using the pressed interaction fallback\n",
-      source: "packages/states/src/_variables.scss#L205",
+      source: "packages/states/src/_variables.scss#L230",
       usedBy: [
         { name: "rmd-button", type: "mixin", packageName: "button" },
         { name: "rmd-chip", type: "mixin", packageName: "chip" },
@@ -985,7 +985,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-states-theme-values",
       description:
         'A Map of all the "themeable" parts of the states package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/states/src/_variables.scss#L211-L229",
+      source: "packages/states/src/_variables.scss#L236-L254",
       usedBy: [
         { name: "rmd-states-theme", type: "function", packageName: "states" },
         {

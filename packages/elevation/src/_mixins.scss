@@ -24,7 +24,11 @@
 /// box-shadow.
 /// @param {Number} opacity-boost [0] - The amount to boost the default opacity
 /// levels for the three box-shadows applied.
-@mixin rmd-elevation($z-value, $color: $rmd-elevation-color, $opacity-boost: 0) {
+@mixin rmd-elevation(
+  $z-value,
+  $color: $rmd-elevation-color,
+  $opacity-boost: 0
+) {
   box-shadow: rmd-elevation($z-value, $color, $opacity-boost);
 }
 
@@ -67,7 +71,11 @@
     none,
     rmd-elevation($start, $color, $opacity-boost)
   );
-  $end-shadow: if($end == none or $end == 0, none, rmd-elevation($end, $color, $opacity-boost));
+  $end-shadow: if(
+    $end == none or $end == 0,
+    none,
+    rmd-elevation($end, $color, $opacity-boost)
+  );
 
   @include rmd-transition-shadow-transition(
     $start-shadow,

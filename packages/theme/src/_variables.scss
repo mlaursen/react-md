@@ -50,7 +50,9 @@ $rmd-theme-primary: $rmd-purple-500 !default;
 ///
 /// @type Color
 /// @require rmd-theme-best-contrast-color
-$rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
+$rmd-theme-on-primary: rmd-theme-best-contrast-color(
+  $rmd-theme-primary
+) !default;
 
 /// The secondary theme color to use for your app. This is normally one of the
 /// material design colors with an accent suffix (`-a-100` or `-a-200` or
@@ -68,7 +70,9 @@ $rmd-theme-secondary: $rmd-pink-a-400 !default;
 ///
 /// @type Color
 /// @require rmd-theme-best-contrast-color
-$rmd-theme-on-secondary: rmd-theme-best-contrast-color($rmd-theme-secondary) !default;
+$rmd-theme-on-secondary: rmd-theme-best-contrast-color(
+  $rmd-theme-secondary
+) !default;
 
 /// The warning theme color to use for your app. This isn't used by anything
 /// internally within react-md at this time, but it might be helpful to have
@@ -86,7 +90,9 @@ $rmd-theme-warning: $rmd-deep-orange-a-200 !default;
 ///
 /// @type Color
 /// @require rmd-theme-best-contrast-color
-$rmd-theme-on-warning: rmd-theme-best-contrast-color($rmd-theme-warning) !default;
+$rmd-theme-on-warning: rmd-theme-best-contrast-color(
+  $rmd-theme-warning
+) !default;
 
 /// The error theme color to use for your app.
 /// @type Color
@@ -120,7 +126,9 @@ $rmd-theme-success: $rmd-green-a-700 !default;
 ///
 /// @type Color
 /// @require rmd-theme-best-contrast-color
-$rmd-theme-on-success: rmd-theme-best-contrast-color($rmd-theme-success) !default;
+$rmd-theme-on-success: rmd-theme-best-contrast-color(
+  $rmd-theme-success
+) !default;
 
 /// The light theme's background color.
 /// @type Color
@@ -134,7 +142,11 @@ $rmd-theme-light-surface: $rmd-white-base !default;
 ///
 /// @require $rmd-theme-dark-elevation
 /// @type Color
-$rmd-theme-dark-background: if($rmd-theme-dark-elevation, #121212, #303030) !default;
+$rmd-theme-dark-background: if(
+  $rmd-theme-dark-elevation,
+  #121212,
+  #303030
+) !default;
 
 /// The dark theme's surface color.
 ///
@@ -354,19 +366,28 @@ $rmd-theme-disabled-text-on-background-color: rmd-theme-text-color(
 /// The icon color to use on the background "surface".
 /// @type Color
 /// @see rmd-theme-text-color
-$rmd-theme-icon-on-background-color: rmd-theme-text-color(icon, $rmd-theme-background) !default;
+$rmd-theme-icon-on-background-color: rmd-theme-text-color(
+  icon,
+  $rmd-theme-background
+) !default;
 
 /// The primary text color to use on the light colored surface. This is not
 /// related to the `$rmd-theme-primary` variable.
 /// @type Color
 /// @see rmd-theme-text-color
-$rmd-theme-primary-text-on-light-color: rmd-theme-text-color(primary, light) !default;
+$rmd-theme-primary-text-on-light-color: rmd-theme-text-color(
+  primary,
+  light
+) !default;
 
 /// The secondary text color to use on the light colored surface. This is not
 /// related to the `$rmd-theme-secondary` variable.
 /// @type Color
 /// @see rmd-theme-text-color
-$rmd-theme-secondary-text-on-light-color: rmd-theme-text-color(secondary, light) !default;
+$rmd-theme-secondary-text-on-light-color: rmd-theme-text-color(
+  secondary,
+  light
+) !default;
 
 /// The hint text color to use on the light colored surface.
 /// @type Color
@@ -376,7 +397,10 @@ $rmd-theme-hint-text-on-light-color: rmd-theme-text-color(hint, light) !default;
 /// The disabled text color to use on the light colored surface.
 /// @type Color
 /// @see rmd-theme-text-color
-$rmd-theme-disabled-text-on-light-color: rmd-theme-text-color(disabled, light) !default;
+$rmd-theme-disabled-text-on-light-color: rmd-theme-text-color(
+  disabled,
+  light
+) !default;
 
 /// The icon color to use on the light colored surface.
 /// @type Color
@@ -387,13 +411,19 @@ $rmd-theme-icon-on-light-color: rmd-theme-text-color(icon, light) !default;
 /// related to the `$rmd-theme-primary` variable.
 /// @type Color
 /// @see rmd-theme-text-color
-$rmd-theme-primary-text-on-dark-color: rmd-theme-text-color(primary, dark) !default;
+$rmd-theme-primary-text-on-dark-color: rmd-theme-text-color(
+  primary,
+  dark
+) !default;
 
 /// The secondary text color to use on the dark colored surface. This is not
 /// related to the `$rmd-theme-secondary` variable.
 /// @type Color
 /// @see rmd-theme-text-color
-$rmd-theme-secondary-text-on-dark-color: rmd-theme-text-color(secondary, dark) !default;
+$rmd-theme-secondary-text-on-dark-color: rmd-theme-text-color(
+  secondary,
+  dark
+) !default;
 
 /// The hint text color to use on the dark colored surface.
 /// @type Color
@@ -403,7 +433,10 @@ $rmd-theme-hint-text-on-dark-color: rmd-theme-text-color(hint, dark) !default;
 /// The disabled text color to use on the dark colored surface.
 /// @type Color
 /// @see rmd-theme-text-color
-$rmd-theme-disabled-text-on-dark-color: rmd-theme-text-color(disabled, dark) !default;
+$rmd-theme-disabled-text-on-dark-color: rmd-theme-text-color(
+  disabled,
+  dark
+) !default;
 
 /// The icon color to use on the dark colored surface.
 /// @type Color

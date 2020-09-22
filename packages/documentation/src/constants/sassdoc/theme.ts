@@ -6,7 +6,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-luminance": {
       name: "rmd-theme-luminance",
       description: "Calculate the luminance for a color.",
-      source: "packages/theme/src/_color-a11y.scss#L151-L160",
+      source: "packages/theme/src/_color-a11y.scss#L170-L180",
       links: [
         {
           name: "",
@@ -39,7 +39,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-contrast": {
       name: "rmd-theme-contrast",
       description: "Gets the contrast between two colors.",
-      source: "packages/theme/src/_color-a11y.scss#L169-L174",
+      source: "packages/theme/src/_color-a11y.scss#L189-L195",
       usedBy: [
         { name: "rmd-theme-tone", type: "function", packageName: "theme" },
         {
@@ -75,7 +75,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-tone",
       description:
         "Determines if a provided color is considered light or dark.",
-      source: "packages/theme/src/_color-a11y.scss#L185-L198",
+      source: "packages/theme/src/_color-a11y.scss#L206-L222",
       links: [
         {
           name: "",
@@ -170,7 +170,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@function rmd-theme-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) { … }",
       sourceCode:
-        '@function rmd-theme-tone(\n  $color,\n  $min-contrast: $rmd-theme-default-contrast-ratio\n) {\n  @if $color == "dark" or $color == "light" {\n    @return $color;\n  }\n\n  $light-contrast: rmd-theme-contrast($color, $rmd-white-base);\n  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, 0.87));\n\n  @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {\n    @return "light";\n  } @else {\n    @return "dark";\n  }\n}\n',
+        "@function rmd-theme-tone(\n  $color,\n  $min-contrast: $rmd-theme-default-contrast-ratio\n) {\n  @if $color == 'dark' or $color == 'light' {\n    @return $color;\n  }\n\n  $light-contrast: rmd-theme-contrast($color, $rmd-white-base);\n  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, 0.87));\n\n  @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {\n    @return 'light';\n  } @else {\n    @return 'dark';\n  }\n}\n",
       type: "function",
       parameters: [
         { type: "Color", name: "color", description: "The color to test." },
@@ -192,7 +192,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-contrast-tone",
       description:
         "Determines if the provided color should have a light or dark contrast using the luminance algorithm to maintain a required contrast ratio for accessibility.",
-      source: "packages/theme/src/_color-a11y.scss#L212-L214",
+      source: "packages/theme/src/_color-a11y.scss#L236-L241",
       links: [
         {
           name: "",
@@ -213,7 +213,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@function rmd-theme-contrast-tone($color, $min-contrast: $rmd-theme-default-contrast-ratio) { … }",
       sourceCode:
-        '@function rmd-theme-contrast-tone(\n  $color,\n  $min-contrast: $rmd-theme-default-contrast-ratio\n) {\n  @return if(rmd-theme-tone($color) == "dark", "light", "dark");\n}\n',
+        "@function rmd-theme-contrast-tone(\n  $color,\n  $min-contrast: $rmd-theme-default-contrast-ratio\n) {\n  @return if(rmd-theme-tone($color) == 'dark', 'light', 'dark');\n}\n",
       type: "function",
       parameters: [
         { type: "Color", name: "color", description: "The color to test." },
@@ -235,7 +235,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-best-contrast-color",
       description:
         "Compares a color to a provided light and dark color. If the `$rmd-theme-better-contrast-colors` variable is `true`, the color with the bigger contrast ratio will be chosen. If the variable is `false`, the light color will be returned when it meets the minimum contrast ratio and fallback to the dark color.",
-      source: "packages/theme/src/_color-a11y.scss#L273-L287",
+      source: "packages/theme/src/_color-a11y.scss#L300-L318",
       since: "2.4.0",
       usedBy: [
         {
@@ -326,7 +326,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-get-swatch",
       description:
         "A theme utility function to convert a material design color to the same color but with a different swatch. If your app is not using material design colors, this utility function is useless but you will need to define fallback colors so compliation does not fail.",
-      source: "packages/theme/src/_functions.scss#L50-L106",
+      source: "packages/theme/src/_functions.scss#L50-L113",
       usedBy: [
         {
           name: "rmd-chip-themed-background-color",
@@ -386,7 +386,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@function rmd-theme-get-swatch($color, $swatch, $accent: false, $fallback-color: null, $fallback-name: null) { … }",
       sourceCode:
-        '@function rmd-theme-get-swatch(\n  $color,\n  $swatch,\n  $accent: false,\n  $fallback-color: null,\n  $fallback-name: null\n) {\n  $current-color-index: index(map-values($rmd-theme-color-map), $color);\n\n  @if not $current-color-index or $current-color-index < 1 {\n    @if $fallback-color == null {\n      $fallback: if(\n        $fallback-name,\n        "the \'$#{$fallback-name}\' variable",\n        "a fallback color"\n      );\n\n      $error-msg: "Invalid material design color: \'#{$color}\'. If this was intentional because your app does " +\n        "not use material design colors, set #{$fallback} instead to get a correct color for the provided swatch: " +\n        "#{$swatch}.";\n      @error $error-msg;\n    } @else if type-of($fallback-color) != "color" {\n      @error "Invalid fallback color: \'#{$fallback-color}\'. This must be a valid color.";\n    }\n\n    @return $fallback-color;\n  }\n\n  $suffixes: rmd-utils-validate(\n    if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes),\n    $swatch,\n    "material design color swatch"\n  );\n\n  $current-color-name: nth(\n    map-keys($rmd-theme-color-map),\n    $current-color-index\n  );\n  $accent-index: str-index($current-color-name, "-a-");\n  @if $accent-index {\n    $current-color-name: str-slice($current-color-name, 1, $accent-index - 1);\n  } @else {\n    $index: 1;\n    $found: false;\n    @while not $found and $index < length($rmd-theme-colors) {\n      $suffix: nth($rmd-theme-colors, $index);\n      $suffix-index: str-index($current-color-name, $suffix);\n      @if $suffix-index {\n        $found: true;\n        $current-color-name: str-slice(\n          $current-color-name,\n          1,\n          $suffix-index - 1 + str-length($suffix)\n        );\n      }\n\n      $index: $index + 1;\n    }\n  }\n\n  $color-name: "#{$current-color-name}#{if($accent, "-a", "")}-#{$swatch}";\n\n  @return map-get($rmd-theme-color-map, $color-name);\n}\n',
+        "@function rmd-theme-get-swatch(\n  $color,\n  $swatch,\n  $accent: false,\n  $fallback-color: null,\n  $fallback-name: null\n) {\n  $current-color-index: index(map-values($rmd-theme-color-map), $color);\n\n  @if not $current-color-index or $current-color-index < 1 {\n    @if $fallback-color == null {\n      $fallback: if(\n        $fallback-name,\n        \"the '$#{$fallback-name}' variable\",\n        'a fallback color'\n      );\n\n      $error-msg: \"Invalid material design color: '#{$color}'. If this was intentional because your app does \" +\n        'not use material design colors, set #{$fallback} instead to get a correct color for the provided swatch: ' +\n        '#{$swatch}.';\n      @error $error-msg;\n    } @else if type-of($fallback-color) != 'color' {\n      @error \"Invalid fallback color: '#{$fallback-color}'. This must be a valid color.\";\n    }\n\n    @return $fallback-color;\n  }\n\n  $suffixes: rmd-utils-validate(\n    if($accent, $rmd-theme-accent-suffixes, $rmd-theme-primary-suffixes),\n    $swatch,\n    'material design color swatch'\n  );\n\n  $current-color-name: nth(\n    map-keys($rmd-theme-color-map),\n    $current-color-index\n  );\n  $accent-index: str-index($current-color-name, '-a-');\n  @if $accent-index {\n    $current-color-name: str-slice($current-color-name, 1, $accent-index - 1);\n  } @else {\n    $index: 1;\n    $found: false;\n    @while not $found and $index < length($rmd-theme-colors) {\n      $suffix: nth($rmd-theme-colors, $index);\n      $suffix-index: str-index($current-color-name, $suffix);\n      @if $suffix-index {\n        $found: true;\n        $current-color-name: str-slice(\n          $current-color-name,\n          1,\n          $suffix-index - 1 + str-length($suffix)\n        );\n      }\n\n      $index: $index + 1;\n    }\n  }\n\n  $color-name: '#{$current-color-name}#{if($accent, '-a', '')}-#{$swatch}';\n\n  @return map-get($rmd-theme-color-map, $color-name);\n}\n",
       throws: ["Invalid fallback color: "],
       type: "function",
       parameters: [
@@ -434,7 +434,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme",
       description:
         "A small utility function to get a color from the current theme. This is normally used along with the `rmd-theme-var` function so that both css variables and a fallback can be applied. If the provided style prop is a color or 'currentColor', the provided style prop will be returned instead.\n\nYou are _most_ likely looking for the `rmd-theme` mixin and not the functions instead.",
-      source: "packages/theme/src/_functions.scss#L119-L121",
+      source: "packages/theme/src/_functions.scss#L126-L128",
       usedBy: [
         { name: "rmd-elevation", type: "function", packageName: "elevation" },
         { name: "rmd-tab-active-color", type: "variable", packageName: "tabs" },
@@ -476,7 +476,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-var",
       description:
         "A small utility function to get a color from the current theme as a css variable. This is normally used along with the `rmd-theme` function so that both css variables and a fallback can be applied.\n\nYou are _most_ likely looking for the `rmd-theme` mixin and not the functions instead.",
-      source: "packages/theme/src/_functions.scss#L133-L135",
+      source: "packages/theme/src/_functions.scss#L140-L147",
       usedBy: [
         {
           name: "rmd-app-bar-primary-background-color",
@@ -585,7 +585,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-get-var-value": {
       name: "rmd-theme-get-var-value",
       description: "",
-      source: "packages/theme/src/_helpers.scss#L16-L22",
+      source: "packages/theme/src/_helpers.scss#L16-L26",
       usedBy: [
         { name: "rmd-alert-theme", type: "function", packageName: "alert" },
         { name: "rmd-app-bar-theme", type: "function", packageName: "app-bar" },
@@ -639,7 +639,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@function rmd-theme-get-var-value($theme-name, $theme-map, $theme-group) { … }",
       sourceCode:
-        '@function rmd-theme-get-var-value($theme-name, $theme-map, $theme-group) {\n  @if type-of($theme-name) == "color" or $theme-name == "currentColor" {\n    @return $theme-name;\n  }\n\n  @return rmd-utils-validate(\n    $theme-map,\n    $theme-name,\n    "#{$theme-group} property"\n  );\n}\n',
+        "@function rmd-theme-get-var-value($theme-name, $theme-map, $theme-group) {\n  @if type-of($theme-name) == 'color' or $theme-name == 'currentColor' {\n    @return $theme-name;\n  }\n\n  @return rmd-utils-validate(\n    $theme-map,\n    $theme-name,\n    '#{$theme-group} property'\n  );\n}\n",
       type: "function",
       parameters: [
         {
@@ -668,7 +668,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-get-var",
       description:
         "This function is used behind the scenes of react-md to help get css variables from different packages with some built in validation. This is generally used to create the helper function within each package to get the css var string.",
-      source: "packages/theme/src/_helpers.scss#L54-L63",
+      source: "packages/theme/src/_helpers.scss#L58-L76",
       usedBy: [
         { name: "rmd-alert-theme-var", type: "function", packageName: "alert" },
         {
@@ -807,7 +807,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-text-color",
       description:
         'This function is used to auto-generate "reasonable" defaults for the text colors based on a the background it is on. This will basically check if the provided color is considered light or dark, and choose a value from either the dark theme text colors or the light theme text colors so that it is still legible.\n\nNOTE: This is not perfect since it only handles the min-contrast ration of 3:1 by default so you still might need to define your own overrides.',
-      source: "packages/theme/src/_variables.scss#L310-L318",
+      source: "packages/theme/src/_variables.scss#L322-L330",
       requires: [
         {
           name: "rmd-theme-contrast-tone",
@@ -838,7 +838,7 @@ const sassdoc: PackageSassDoc = {
       ],
       code: "@function rmd-theme-text-color($style, $color) { … }",
       sourceCode:
-        '@function rmd-theme-text-color($style, $color) {\n  $contrast-tone: rmd-theme-contrast-tone($color);\n\n  @if $contrast-tone == "light" {\n    @return map-get($rmd-theme-dark-text-colors, $style);\n  } @else {\n    @return map-get($rmd-theme-light-text-colors, $style);\n  }\n}\n',
+        "@function rmd-theme-text-color($style, $color) {\n  $contrast-tone: rmd-theme-contrast-tone($color);\n\n  @if $contrast-tone == 'light' {\n    @return map-get($rmd-theme-dark-text-colors, $style);\n  } @else {\n    @return map-get($rmd-theme-light-text-colors, $style);\n  }\n}\n",
       type: "function",
       parameters: [
         {
@@ -865,7 +865,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-apply-rmd-var": {
       name: "rmd-theme-apply-rmd-var",
       description: "\n",
-      source: "packages/theme/src/_helpers.scss#L67-L74",
+      source: "packages/theme/src/_helpers.scss#L80-L102",
       usedBy: [
         { name: "rmd-alert-theme", type: "mixin", packageName: "alert" },
         { name: "rmd-app-bar-theme", type: "mixin", packageName: "app-bar" },
@@ -924,7 +924,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-update-rmd-var": {
       name: "rmd-theme-update-rmd-var",
       description: "\n",
-      source: "packages/theme/src/_helpers.scss#L78-L82",
+      source: "packages/theme/src/_helpers.scss#L106-L114",
       usedBy: [
         {
           name: "rmd-alert-theme-update-var",
@@ -1064,13 +1064,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "theme",
       code: "@mixin rmd-theme-update-rmd-var { … }",
       sourceCode:
-        '@mixin rmd-theme-update-rmd-var {\n  $validated: rmd-utils-validate(\n    $theme-map,\n    $theme-name,\n    "#{$theme-name} property"\n  );\n\n  #{--rmd-#{$theme-group}-#{$theme-name}}: $value;\n}\n',
+        "@mixin rmd-theme-update-rmd-var {\n  $validated: rmd-utils-validate(\n    $theme-map,\n    $theme-name,\n    '#{$theme-name} property'\n  );\n\n  #{--rmd-#{$theme-group}-#{$theme-name}}: $value;\n}\n",
       type: "mixin",
     },
     "rmd-theme-create-root-theme": {
       name: "rmd-theme-create-root-theme",
       description: "\n",
-      source: "packages/theme/src/_helpers.scss#L86-L94",
+      source: "packages/theme/src/_helpers.scss#L118-L134",
       usedBy: [
         { name: "react-md-alert", type: "mixin", packageName: "alert" },
         { name: "react-md-app-bar", type: "mixin", packageName: "app-bar" },
@@ -1122,7 +1122,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme": {
       name: "rmd-theme",
       description: "Applies one of theme values to the provided property.",
-      source: "packages/theme/src/_mixins.scss#L29-L31",
+      source: "packages/theme/src/_mixins.scss#L29-L36",
       usedBy: [
         { name: "rmd-badge", type: "mixin", packageName: "badge" },
         { name: "rmd-card", type: "mixin", packageName: "card" },
@@ -1194,7 +1194,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-update-var",
       description:
         "This is an extremely simple mixin that will allow you to quickly set or update the value of a theme css variable with the new provided value.",
-      source: "packages/theme/src/_mixins.scss#L49-L51",
+      source: "packages/theme/src/_mixins.scss#L54-L61",
       usedBy: [
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
         { name: "rmd-card", type: "mixin", packageName: "card" },
@@ -1249,7 +1249,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-elevation",
       description:
         "This mixin should normally be used with the `rmd-elevation` mixin to change the background color based on the current elevation in dark themes.",
-      source: "packages/theme/src/_mixins.scss#L62-L84",
+      source: "packages/theme/src/_mixins.scss#L72-L97",
       since: "2.1.0",
       usedBy: [
         { name: "rmd-toast", type: "mixin", packageName: "alert" },
@@ -1287,7 +1287,7 @@ const sassdoc: PackageSassDoc = {
       code:
         "@mixin rmd-theme-dark-elevation($z-value, $css-modules: false) { … }",
       sourceCode:
-        '@mixin rmd-theme-dark-elevation($z-value, $css-modules: false) {\n  @if $rmd-theme-dark-elevation {\n    @if $rmd-theme-dark-class == "prefers-color-scheme" {\n      @media (prefers-color-scheme: dark) {\n        & {\n          @include rmd-theme-update-var(\n            background,\n            map-get($rmd-theme-dark-elevation-colors, $z-value)\n          );\n          @include rmd-theme(background-color, background);\n        }\n      }\n    } @else {\n      @include rmd-utils-optional-css-modules(\n        $rmd-theme-dark-class,\n        $css-modules\n      ) {\n        @include rmd-theme-update-var(\n          background,\n          map-get($rmd-theme-dark-elevation-colors, $z-value)\n        );\n        @include rmd-theme(background-color, background);\n      }\n    }\n  }\n}\n',
+        "@mixin rmd-theme-dark-elevation($z-value, $css-modules: false) {\n  @if $rmd-theme-dark-elevation {\n    @if $rmd-theme-dark-class == 'prefers-color-scheme' {\n      @media (prefers-color-scheme: dark) {\n        & {\n          @include rmd-theme-update-var(\n            background,\n            map-get($rmd-theme-dark-elevation-colors, $z-value)\n          );\n          @include rmd-theme(background-color, background);\n        }\n      }\n    } @else {\n      @include rmd-utils-optional-css-modules(\n        $rmd-theme-dark-class,\n        $css-modules\n      ) {\n        @include rmd-theme-update-var(\n          background,\n          map-get($rmd-theme-dark-elevation-colors, $z-value)\n        );\n        @include rmd-theme(background-color, background);\n      }\n    }\n  }\n}\n",
       type: "mixin",
       parameters: [
         {
@@ -1309,7 +1309,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light",
       description:
         "This mixin can be used to apply the light theme by updating **every** color theme variable across all react-md packages.\n\nNote: You'll still need to ensure that all the package's mixins were imported to get this to work.\n",
-      source: "packages/theme/src/_mixins.scss#L91-L168",
+      source: "packages/theme/src/_mixins.scss#L104-L226",
       requires: [
         { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
         {
@@ -1474,7 +1474,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark",
       description:
         "This mixin can be used to apply the dark theme by updating **every** color theme variable across all react-md packages.\n\nThis is really great to use within a media query for browsers that now support the `prefers-color-scheme` so that if the user has the dark theme enabled, they'll automatically gain the dark theme while using your app as well.\n\nNote: You'll still need to ensure that all the package's mixins were imported to get this to work.",
-      source: "packages/theme/src/_mixins.scss#L185-L262",
+      source: "packages/theme/src/_mixins.scss#L243-L362",
       requires: [
         { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
         {
@@ -1649,7 +1649,7 @@ const sassdoc: PackageSassDoc = {
       name: "react-md-theme",
       description:
         "Creates all the styles for a theme in react-md. This will start by creating CSS Variables for each theme variable and then create class names for each variable.",
-      source: "packages/theme/src/_mixins.scss#L273-L275",
+      source: "packages/theme/src/_mixins.scss#L373-L375",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {
@@ -1726,14 +1726,14 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-linear-channel-values",
       description:
         "Precomputed linear color channel values, for use in contrast calculations.\nSee https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests\n\nAlgorithm:\n\n```\n  for c in 0 to 255:\n  f(c) {\n    c = c / 255;\n    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);\n  }\n```\n\nThis lookup table is needed since there is no `pow` in SCSS/Sass. You _can_ make your own, but it is recommended to pass the computed values from a\n'more complete' layer (like node) as a lookup table to speed up compilation time.",
-      source: "packages/theme/src/_color-a11y.scss#L84-L143",
+      source: "packages/theme/src/_color-a11y.scss#L84-L162",
       usedBy: [
         { name: "rmd-theme-luminance", type: "function", packageName: "theme" },
       ],
       packageName: "theme",
       type: "List",
       value:
-        "(\n  0 0.0003035269835488375 0.000607053967097675 0.0009105809506465125 0.00121410793419535\n    0.0015176349177441874 0.001821161901293025 0.0021246888848418626 0.0024282158683907\n    0.0027317428519395373 0.003035269835488375 0.003346535763899161 0.003676507324047436\n    0.004024717018496307 0.004391442037410293 0.004776953480693729 0.005181516702338386\n    0.005605391624202723 0.006048833022857054 0.006512090792594475 0.006995410187265387\n    0.007499032043226175 0.008023192985384994 0.008568125618069307 0.009134058702220787\n    0.00972121732023785 0.010329823029626936 0.010960094006488246 0.011612245179743885\n    0.012286488356915872 0.012983032342173012 0.013702083047289686 0.014443843596092545\n    0.01520851442291271 0.01599629336550963 0.016807375752887384 0.017641954488384078\n    0.018500220128379697 0.019382360956935723 0.0202885630566524 0.021219010376003555\n    0.022173884793387385 0.02315336617811041 0.024157632448504756 0.02518685962736163\n    0.026241221894849898 0.027320891639074894 0.028426039504420793 0.0295568344378088\n    0.030713443732993635 0.03189603307301153 0.033104766570885055 0.03433980680868217\n    0.03560131487502034 0.03688945040110004 0.0382043715953465 0.03954623527673284\n    0.04091519690685319 0.042311410620809675 0.043735029256973465 0.04518620438567554\n    0.046665086336880095 0.04817182422688942 0.04970656598412723 0.05126945837404324\n    0.052860647023180246 0.05448027644244237 0.05612849004960009 0.05780543019106723\n    0.0595112381629812 0.06124605423161761 0.06301001765316767 0.06480326669290577\n    0.06662593864377289 0.06847816984440017 0.07036009569659588 0.07227185068231748\n    0.07421356838014963 0.07618538148130785 0.07818742180518633 0.08021982031446832\n    0.0822827071298148 0.08437621154414882 0.08650046203654976 0.08865558628577294\n    0.09084171118340768 0.09305896284668745 0.0953074666309647 0.09758734714186246\n    0.09989872824711389 0.10224173308810132 0.10461648409110419 0.10702310297826761\n    0.10946171077829933 0.1119324278369056 0.11443537382697373 0.11697066775851084\n    0.11953842798834562 0.12213877222960187 0.12477181756095049 0.12743768043564743\n    0.1301364766903643 0.13286832155381798 0.13563332965520566 0.13843161503245183\n    0.14126329114027164 0.14412847085805777 0.14702726649759498 0.14995978981060856\n    0.15292615199615017 0.1559264637078274 0.1589608350608804 0.162029375639111 0.1651321945016676\n    0.16826940018969075 0.1714411007328226 0.17464740365558504 0.17788841598362912\n    0.18116424424986022 0.184474994500441 0.18782077230067787 0.19120168274079138 0.1946178304415758\n    0.19806931955994886 0.20155625379439707 0.20507873639031693 0.20863687014525575\n    0.21223075741405523 0.21586050011389926 0.2195261997292692 0.2232279573168085\n    0.22696587351009836 0.23074004852434915 0.23455058216100522 0.238397573812271\n    0.24228112246555486 0.24620132670783548 0.25015828472995344 0.25415209433082675\n    0.2581828529215958 0.26225065752969623 0.26635560480286247 0.2704977910130658\n    0.27467731206038465 0.2788942634768104 0.2831487404299921 0.2874408377269175 0.29177064981753587\n    0.2961382707983211 0.3005437944157765 0.3049873140698863 0.30946892281750854 0.31398871337571754\n    0.31854677812509186 0.32314320911295075 0.3277780980565422 0.33245153634617935\n    0.33716361504833037 0.3419144249086609 0.3467040563550296 0.35153259950043936 0.3564001441459435\n    0.3613067797835095 0.3662525955988395 0.3712376804741491 0.3762621229909065 0.38132601143253014\n    0.386429433787049 0.39157247774972326 0.39675523072562685 0.4019777798321958 0.4072402119017367\n    0.41254261348390375 0.4178850708481375 0.4232676699860717 0.4286904966139066 0.43415363617474895\n    0.4396571738409188 0.44520119451622786 0.45078578283822346 0.45641102318040466\n    0.4620769996544071 0.467783796112159 0.47353149614800955 0.4793201831008268 0.4851499400560704\n    0.4910208498478356 0.4969329950608704 0.5028864580325687 0.5088813208549338 0.5149176653765214\n    0.5209955732043543 0.5271151257058131 0.5332764040105052 0.5394794890121072 0.5457244613701866\n    0.5520114015120001 0.5583403896342679 0.5647115057049292 0.5711248294648731 0.5775804404296506\n    0.5840784178911641 0.5906188409193369 0.5972017883637634 0.6038273388553378 0.6104955708078648\n    0.6172065624196511 0.6239603916750761 0.6307571363461468 0.6375968739940326 0.6444796819705821\n    0.6514056374198242 0.6583748172794485 0.665387298282272 0.6724431569576875 0.6795424696330938\n    0.6866853124353135 0.6938717612919899 0.7011018919329731 0.7083757798916868 0.7156935005064807\n    0.7230551289219693 0.7304607400903537 0.7379104087727308 0.7454042095403874 0.7529422167760779\n    0.7605245046752924 0.768151147247507 0.7758222183174236 0.7835377915261935 0.7912979403326302\n    0.799102738014409 0.8069522576692516 0.8148465722161012 0.8227857543962835 0.8307698767746546\n    0.83879901174074 0.846873231509858 0.8549926081242338 0.8631572134541023 0.8713671191987972\n    0.8796223968878317 0.8879231178819663 0.8962693533742664 0.9046611743911496 0.9130986517934192\n    0.9215818562772946 0.9301108583754237 0.938685728457888 0.9473065367331999 0.9559733532492861\n    0.9646862478944651 0.9734452903984125 0.9822505503331171 0.9911020971138298 1\n)",
+        "(\n  0 0.0003035269835488375 0.000607053967097675 0.0009105809506465125\n    0.00121410793419535 0.0015176349177441874 0.001821161901293025\n    0.0021246888848418626 0.0024282158683907 0.0027317428519395373\n    0.003035269835488375 0.003346535763899161 0.003676507324047436\n    0.004024717018496307 0.004391442037410293 0.004776953480693729\n    0.005181516702338386 0.005605391624202723 0.006048833022857054\n    0.006512090792594475 0.006995410187265387 0.007499032043226175\n    0.008023192985384994 0.008568125618069307 0.009134058702220787\n    0.00972121732023785 0.010329823029626936 0.010960094006488246\n    0.011612245179743885 0.012286488356915872 0.012983032342173012\n    0.013702083047289686 0.014443843596092545 0.01520851442291271\n    0.01599629336550963 0.016807375752887384 0.017641954488384078\n    0.018500220128379697 0.019382360956935723 0.0202885630566524\n    0.021219010376003555 0.022173884793387385 0.02315336617811041\n    0.024157632448504756 0.02518685962736163 0.026241221894849898\n    0.027320891639074894 0.028426039504420793 0.0295568344378088\n    0.030713443732993635 0.03189603307301153 0.033104766570885055\n    0.03433980680868217 0.03560131487502034 0.03688945040110004\n    0.0382043715953465 0.03954623527673284 0.04091519690685319\n    0.042311410620809675 0.043735029256973465 0.04518620438567554\n    0.046665086336880095 0.04817182422688942 0.04970656598412723\n    0.05126945837404324 0.052860647023180246 0.05448027644244237\n    0.05612849004960009 0.05780543019106723 0.0595112381629812\n    0.06124605423161761 0.06301001765316767 0.06480326669290577\n    0.06662593864377289 0.06847816984440017 0.07036009569659588\n    0.07227185068231748 0.07421356838014963 0.07618538148130785\n    0.07818742180518633 0.08021982031446832 0.0822827071298148\n    0.08437621154414882 0.08650046203654976 0.08865558628577294\n    0.09084171118340768 0.09305896284668745 0.0953074666309647\n    0.09758734714186246 0.09989872824711389 0.10224173308810132\n    0.10461648409110419 0.10702310297826761 0.10946171077829933\n    0.1119324278369056 0.11443537382697373 0.11697066775851084\n    0.11953842798834562 0.12213877222960187 0.12477181756095049\n    0.12743768043564743 0.1301364766903643 0.13286832155381798\n    0.13563332965520566 0.13843161503245183 0.14126329114027164\n    0.14412847085805777 0.14702726649759498 0.14995978981060856\n    0.15292615199615017 0.1559264637078274 0.1589608350608804 0.162029375639111\n    0.1651321945016676 0.16826940018969075 0.1714411007328226\n    0.17464740365558504 0.17788841598362912 0.18116424424986022\n    0.184474994500441 0.18782077230067787 0.19120168274079138 0.1946178304415758\n    0.19806931955994886 0.20155625379439707 0.20507873639031693\n    0.20863687014525575 0.21223075741405523 0.21586050011389926\n    0.2195261997292692 0.2232279573168085 0.22696587351009836\n    0.23074004852434915 0.23455058216100522 0.238397573812271\n    0.24228112246555486 0.24620132670783548 0.25015828472995344\n    0.25415209433082675 0.2581828529215958 0.26225065752969623\n    0.26635560480286247 0.2704977910130658 0.27467731206038465\n    0.2788942634768104 0.2831487404299921 0.2874408377269175 0.29177064981753587\n    0.2961382707983211 0.3005437944157765 0.3049873140698863 0.30946892281750854\n    0.31398871337571754 0.31854677812509186 0.32314320911295075\n    0.3277780980565422 0.33245153634617935 0.33716361504833037\n    0.3419144249086609 0.3467040563550296 0.35153259950043936 0.3564001441459435\n    0.3613067797835095 0.3662525955988395 0.3712376804741491 0.3762621229909065\n    0.38132601143253014 0.386429433787049 0.39157247774972326\n    0.39675523072562685 0.4019777798321958 0.4072402119017367\n    0.41254261348390375 0.4178850708481375 0.4232676699860717 0.4286904966139066\n    0.43415363617474895 0.4396571738409188 0.44520119451622786\n    0.45078578283822346 0.45641102318040466 0.4620769996544071 0.467783796112159\n    0.47353149614800955 0.4793201831008268 0.4851499400560704 0.4910208498478356\n    0.4969329950608704 0.5028864580325687 0.5088813208549338 0.5149176653765214\n    0.5209955732043543 0.5271151257058131 0.5332764040105052 0.5394794890121072\n    0.5457244613701866 0.5520114015120001 0.5583403896342679 0.5647115057049292\n    0.5711248294648731 0.5775804404296506 0.5840784178911641 0.5906188409193369\n    0.5972017883637634 0.6038273388553378 0.6104955708078648 0.6172065624196511\n    0.6239603916750761 0.6307571363461468 0.6375968739940326 0.6444796819705821\n    0.6514056374198242 0.6583748172794485 0.665387298282272 0.6724431569576875\n    0.6795424696330938 0.6866853124353135 0.6938717612919899 0.7011018919329731\n    0.7083757798916868 0.7156935005064807 0.7230551289219693 0.7304607400903537\n    0.7379104087727308 0.7454042095403874 0.7529422167760779 0.7605245046752924\n    0.768151147247507 0.7758222183174236 0.7835377915261935 0.7912979403326302\n    0.799102738014409 0.8069522576692516 0.8148465722161012 0.8227857543962835\n    0.8307698767746546 0.83879901174074 0.846873231509858 0.8549926081242338\n    0.8631572134541023 0.8713671191987972 0.8796223968878317 0.8879231178819663\n    0.8962693533742664 0.9046611743911496 0.9130986517934192 0.9215818562772946\n    0.9301108583754237 0.938685728457888 0.9473065367331999 0.9559733532492861\n    0.9646862478944651 0.9734452903984125 0.9822505503331171 0.9911020971138298\n    1\n)",
       overridable: false,
     },
     "rmd-red-50": {
@@ -4484,7 +4484,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-colors",
       description:
         "A list of all the available colors within material design. This is really just created for the `rmd-theme-get-swatch` mixin, but might be useful since it also gets added to the scssVariables export.\n",
-      source: "packages/theme/src/_color-palette.scss#L1057-L1060",
+      source: "packages/theme/src/_color-palette.scss#L1057-L1061",
       usedBy: [
         {
           name: "rmd-theme-get-swatch",
@@ -4495,7 +4495,7 @@ const sassdoc: PackageSassDoc = {
       packageName: "theme",
       type: "List",
       value:
-        "(\n  'red' 'pink' 'purple' 'deep-purple' 'indigo' 'blue' 'light-blue' 'cyan' 'teal' 'green'\n    'light-green' 'lime' 'yellow' 'amber' 'orange' 'deep-orange' 'brown' 'grey' 'blue-grey'\n)",
+        "(\n  'red' 'pink' 'purple' 'deep-purple' 'indigo' 'blue' 'light-blue' 'cyan' 'teal'\n    'green' 'light-green' 'lime' 'yellow' 'amber' 'orange' 'deep-orange' 'brown'\n    'grey' 'blue-grey'\n)",
       overridable: false,
     },
     "rmd-theme-no-css-variables-fallback": {
@@ -4679,7 +4679,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-on-primary",
       description:
         "The color to use when text should be displayed on the primary theme color.\nThe default behavior is to test the primary color's contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).",
-      source: "packages/theme/src/_variables.scss#L53",
+      source: "packages/theme/src/_variables.scss#L53-L55",
       requires: [
         {
           name: "rmd-theme-best-contrast-color",
@@ -4689,7 +4689,7 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-best-contrast-color($rmd-theme-primary)",
+      value: "rmd-theme-best-contrast-color(\n  $rmd-theme-primary\n)",
       compiled: "#fff",
       overridable: true,
     },
@@ -4697,7 +4697,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-secondary",
       description:
         "The secondary theme color to use for your app. This is normally one of the material design colors with an accent suffix (`-a-100` or `-a-200` or `-a-400` or `-a-700`, but it can really be any color.\n",
-      source: "packages/theme/src/_variables.scss#L59",
+      source: "packages/theme/src/_variables.scss#L61",
       usedBy: [
         {
           name: "rmd-switch-ball-disabled-color",
@@ -4715,7 +4715,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-on-secondary",
       description:
         "The color to use when text should be displayed on the secondary theme color.\nThe default behavior is to test the secondary color's contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).",
-      source: "packages/theme/src/_variables.scss#L71",
+      source: "packages/theme/src/_variables.scss#L73-L75",
       requires: [
         {
           name: "rmd-theme-best-contrast-color",
@@ -4725,7 +4725,7 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-best-contrast-color($rmd-theme-secondary)",
+      value: "rmd-theme-best-contrast-color(\n  $rmd-theme-secondary\n)",
       compiled: "#000",
       overridable: true,
     },
@@ -4733,7 +4733,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-warning",
       description:
         "The warning theme color to use for your app. This isn't used by anything internally within react-md at this time, but it might be helpful to have this variable defined as more things get developed.\n",
-      source: "packages/theme/src/_variables.scss#L77",
+      source: "packages/theme/src/_variables.scss#L81",
       packageName: "theme",
       type: "Color",
       value: "$rmd-deep-orange-a-200",
@@ -4744,7 +4744,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-on-warning",
       description:
         "The color to use when text should be displayed on the warning theme color.\nThe default behavior is to test the warning color's contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).",
-      source: "packages/theme/src/_variables.scss#L89",
+      source: "packages/theme/src/_variables.scss#L93-L95",
       requires: [
         {
           name: "rmd-theme-best-contrast-color",
@@ -4754,14 +4754,14 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-best-contrast-color($rmd-theme-warning)",
+      value: "rmd-theme-best-contrast-color(\n  $rmd-theme-warning\n)",
       compiled: "#000",
       overridable: true,
     },
     "rmd-theme-error": {
       name: "rmd-theme-error",
       description: "The error theme color to use for your app.\n",
-      source: "packages/theme/src/_variables.scss#L93",
+      source: "packages/theme/src/_variables.scss#L99",
       usedBy: [
         { name: "rmd-form-error-color", type: "variable", packageName: "form" },
       ],
@@ -4775,7 +4775,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-on-error",
       description:
         "The color to use when text should be displayed on the warning theme color.\nThe default behavior is to test the error color's contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).",
-      source: "packages/theme/src/_variables.scss#L105",
+      source: "packages/theme/src/_variables.scss#L111",
       requires: [
         {
           name: "rmd-theme-best-contrast-color",
@@ -4793,7 +4793,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-success",
       description:
         "The success theme color to use for your app. This isn't used by anything internally within react-md at this time, but it might be helpful to have this variable defined as more things get developed.\n",
-      source: "packages/theme/src/_variables.scss#L111",
+      source: "packages/theme/src/_variables.scss#L117",
       packageName: "theme",
       type: "Color",
       value: "$rmd-green-a-700",
@@ -4804,7 +4804,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-on-success",
       description:
         "The color to use when text should be displayed on the warning theme color.\nThe default behavior is to test the success color's contrast tone. If the color is considered 'dark', `$rmd-white-base` will be used. Otherwise `$rmd-black-base` will be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).",
-      source: "packages/theme/src/_variables.scss#L123",
+      source: "packages/theme/src/_variables.scss#L129-L131",
       requires: [
         {
           name: "rmd-theme-best-contrast-color",
@@ -4814,14 +4814,14 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-best-contrast-color($rmd-theme-success)",
+      value: "rmd-theme-best-contrast-color(\n  $rmd-theme-success\n)",
       compiled: "#000",
       overridable: true,
     },
     "rmd-theme-light-background": {
       name: "rmd-theme-light-background",
       description: "The light theme's background color.\n",
-      source: "packages/theme/src/_variables.scss#L127",
+      source: "packages/theme/src/_variables.scss#L135",
       usedBy: [
         { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
       ],
@@ -4834,7 +4834,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-light-surface": {
       name: "rmd-theme-light-surface",
       description: "The light theme's surface color.\n",
-      source: "packages/theme/src/_variables.scss#L131",
+      source: "packages/theme/src/_variables.scss#L139",
       usedBy: [
         {
           name: "rmd-chip-outline-light-background-color",
@@ -4852,7 +4852,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-dark-background": {
       name: "rmd-theme-dark-background",
       description: "The dark theme's background color.",
-      source: "packages/theme/src/_variables.scss#L137",
+      source: "packages/theme/src/_variables.scss#L145-L149",
       usedBy: [
         { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
         {
@@ -4870,7 +4870,7 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "if($rmd-theme-dark-elevation, #121212, #303030)",
+      value: "if(\n  $rmd-theme-dark-elevation,\n  #121212,\n  #303030\n)",
       compiled: "#303030",
       overridable: true,
     },
@@ -4878,7 +4878,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-surface",
       description:
         "The dark theme's surface color.\n\nNote: If the `$rmd-theme-dark-elevation` variable is set to `true`, this value will not really be used.\n",
-      source: "packages/theme/src/_variables.scss#L144",
+      source: "packages/theme/src/_variables.scss#L156",
       usedBy: [
         {
           name: "rmd-chip-outline-dark-background-color",
@@ -4897,7 +4897,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-class",
       description:
         "The class name that gets applied to the root `<html>` element if your app switches between dark and light themes. This is really only used for the changing the background color based on elevation when the app is in dark mode and the `$rmd-theme-dark-elevation` boolean is enabled.\n\nIf this is set to `prefers-color-scheme`, the dark elevation styles will only be applied when the `@media (prefers-color-scheme: dark)`.",
-      source: "packages/theme/src/_variables.scss#L156",
+      source: "packages/theme/src/_variables.scss#L168",
       since: "2.1.0",
       usedBy: [
         {
@@ -4914,7 +4914,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-background": {
       name: "rmd-theme-background",
       description: "The theme's background color.\n",
-      source: "packages/theme/src/_variables.scss#L160-L164",
+      source: "packages/theme/src/_variables.scss#L172-L176",
       usedBy: [
         {
           name: "rmd-divider-background-color",
@@ -4933,7 +4933,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-surface",
       description:
         "The theme's surface background color. This is the background color that will be used for any temporary 'material' (or surface)\n\nEx: Dialogs, Lists\n",
-      source: "packages/theme/src/_variables.scss#L171-L175",
+      source: "packages/theme/src/_variables.scss#L183-L187",
       usedBy: [
         {
           name: "rmd-card-secondary-color",
@@ -4952,7 +4952,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-on-surface",
       description:
         "The color to use when text should be displayed on a surface or temporary material. The default behavior is to test if the surface color's contrast tone. If the color is considered 'dark', `$rd-white-base` will be used.\nOtherwise `$rmd-black-base` will be used. If this isn't sufficient for your app, you can change this to be any color. Just make sure that it meets the contrast accessibility requirements (3.1:1 ratio for large (18px regular or 14px bold) and 4.5:1 for normal text).\n",
-      source: "packages/theme/src/_variables.scss#L185-L189",
+      source: "packages/theme/src/_variables.scss#L197-L201",
       packageName: "theme",
       type: "Color",
       value:
@@ -4964,7 +4964,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-primary-text-color",
       description:
         "The default light theme's primary text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.\n",
-      source: "packages/theme/src/_variables.scss#L194-L198",
+      source: "packages/theme/src/_variables.scss#L206-L210",
       packageName: "theme",
       type: "Color",
       value:
@@ -4976,7 +4976,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-secondary-text-color",
       description:
         "The default light theme's secondary text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.\n",
-      source: "packages/theme/src/_variables.scss#L203-L207",
+      source: "packages/theme/src/_variables.scss#L215-L219",
       packageName: "theme",
       type: "Color",
       value:
@@ -4988,7 +4988,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-hint-text-color",
       description:
         "The default light theme's hint text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.\n",
-      source: "packages/theme/src/_variables.scss#L212-L216",
+      source: "packages/theme/src/_variables.scss#L224-L228",
       packageName: "theme",
       type: "Color",
       value:
@@ -5000,7 +5000,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-disabled-text-color",
       description:
         "The default light theme's disabled text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.\n",
-      source: "packages/theme/src/_variables.scss#L221-L225",
+      source: "packages/theme/src/_variables.scss#L233-L237",
       packageName: "theme",
       type: "Color",
       value:
@@ -5012,7 +5012,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-icon-color",
       description:
         "The default light theme's icon text color. This default value changes between the result of `rgba` or `lighten` with `$rmd-black-base`.\n",
-      source: "packages/theme/src/_variables.scss#L230-L234",
+      source: "packages/theme/src/_variables.scss#L242-L246",
       packageName: "theme",
       type: "Color",
       value:
@@ -5024,7 +5024,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-primary-text-color",
       description:
         "The default dark theme's primary text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.\n",
-      source: "packages/theme/src/_variables.scss#L239",
+      source: "packages/theme/src/_variables.scss#L251",
       packageName: "theme",
       type: "Color",
       value: "darken($rmd-white-base, 15%)",
@@ -5035,7 +5035,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-secondary-text-color",
       description:
         "The default dark theme's secondary text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.\n",
-      source: "packages/theme/src/_variables.scss#L244",
+      source: "packages/theme/src/_variables.scss#L256",
       packageName: "theme",
       type: "Color",
       value: "darken($rmd-white-base, 30%)",
@@ -5046,7 +5046,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-hint-text-color",
       description:
         "The default dark theme's hint text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.\n",
-      source: "packages/theme/src/_variables.scss#L249",
+      source: "packages/theme/src/_variables.scss#L261",
       packageName: "theme",
       type: "Color",
       value: "darken($rmd-white-base, 50%)",
@@ -5057,7 +5057,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-disabled-text-color",
       description:
         "The default dark theme's disabled text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.\n",
-      source: "packages/theme/src/_variables.scss#L254",
+      source: "packages/theme/src/_variables.scss#L266",
       packageName: "theme",
       type: "Color",
       value: "darken($rmd-white-base, 50%)",
@@ -5068,7 +5068,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-icon-color",
       description:
         "The default dark theme's icon text color. This default value changes between the result of `rgba` or `darken` with `$rmd-white-base`.\n",
-      source: "packages/theme/src/_variables.scss#L259",
+      source: "packages/theme/src/_variables.scss#L271",
       packageName: "theme",
       type: "Color",
       value: "darken($rmd-white-base, 30%)",
@@ -5079,7 +5079,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-light-text-colors",
       description:
         "A Map of all the light theme text colors for quick loopups.\n",
-      source: "packages/theme/src/_variables.scss#L263-L269",
+      source: "packages/theme/src/_variables.scss#L275-L281",
       usedBy: [
         {
           name: "rmd-theme-text-color",
@@ -5099,7 +5099,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-text-colors",
       description:
         "A Map of all the light theme text colors for quick loopups.\n",
-      source: "packages/theme/src/_variables.scss#L273-L279",
+      source: "packages/theme/src/_variables.scss#L285-L291",
       usedBy: [
         {
           name: "rmd-theme-text-color",
@@ -5119,7 +5119,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-primary-text-on-background-color",
       description:
         'The primary text color to use on the background "surface". This is not related to the `$rmd-theme-primary` variable.\n',
-      source: "packages/theme/src/_variables.scss#L324-L327",
+      source: "packages/theme/src/_variables.scss#L336-L339",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5137,7 +5137,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-secondary-text-on-background-color",
       description:
         'The secondary text color to use on the background "surface". This is not related to the `$rmd-theme-secondary` variable.\n',
-      source: "packages/theme/src/_variables.scss#L333-L336",
+      source: "packages/theme/src/_variables.scss#L345-L348",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5154,7 +5154,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-hint-text-on-background-color": {
       name: "rmd-theme-hint-text-on-background-color",
       description: 'The hint text color to use on the background "surface".\n',
-      source: "packages/theme/src/_variables.scss#L341-L344",
+      source: "packages/theme/src/_variables.scss#L353-L356",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5172,7 +5172,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-disabled-text-on-background-color",
       description:
         'The disabled text color to use on the background "surface".\n',
-      source: "packages/theme/src/_variables.scss#L349-L352",
+      source: "packages/theme/src/_variables.scss#L361-L364",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5189,7 +5189,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-theme-icon-on-background-color": {
       name: "rmd-theme-icon-on-background-color",
       description: 'The icon color to use on the background "surface".\n',
-      source: "packages/theme/src/_variables.scss#L357",
+      source: "packages/theme/src/_variables.scss#L369-L372",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5199,7 +5199,7 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-text-color(icon, $rmd-theme-background)",
+      value: "rmd-theme-text-color(\n  icon,\n  $rmd-theme-background\n)",
       compiled: "#757575",
       overridable: true,
     },
@@ -5207,7 +5207,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-primary-text-on-light-color",
       description:
         "The primary text color to use on the light colored surface. This is not related to the `$rmd-theme-primary` variable.\n",
-      source: "packages/theme/src/_variables.scss#L363",
+      source: "packages/theme/src/_variables.scss#L378-L381",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5220,7 +5220,7 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-text-color(primary, light)",
+      value: "rmd-theme-text-color(\n  primary,\n  light\n)",
       compiled: "#212121",
       overridable: true,
     },
@@ -5228,7 +5228,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-secondary-text-on-light-color",
       description:
         "The secondary text color to use on the light colored surface. This is not related to the `$rmd-theme-secondary` variable.\n",
-      source: "packages/theme/src/_variables.scss#L369",
+      source: "packages/theme/src/_variables.scss#L387-L390",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5241,14 +5241,14 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-text-color(secondary, light)",
+      value: "rmd-theme-text-color(\n  secondary,\n  light\n)",
       compiled: "#757575",
       overridable: true,
     },
     "rmd-theme-hint-text-on-light-color": {
       name: "rmd-theme-hint-text-on-light-color",
       description: "The hint text color to use on the light colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L374",
+      source: "packages/theme/src/_variables.scss#L395",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5269,7 +5269,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-disabled-text-on-light-color",
       description:
         "The disabled text color to use on the light colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L379",
+      source: "packages/theme/src/_variables.scss#L400-L403",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5282,14 +5282,14 @@ const sassdoc: PackageSassDoc = {
       ],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-text-color(disabled, light)",
+      value: "rmd-theme-text-color(\n  disabled,\n  light\n)",
       compiled: "#9e9e9e",
       overridable: true,
     },
     "rmd-theme-icon-on-light-color": {
       name: "rmd-theme-icon-on-light-color",
       description: "The icon color to use on the light colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L384",
+      source: "packages/theme/src/_variables.scss#L408",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5310,7 +5310,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-primary-text-on-dark-color",
       description:
         "The primary text color to use on the dark colored surface. This is not related to the `$rmd-theme-primary` variable.\n",
-      source: "packages/theme/src/_variables.scss#L390",
+      source: "packages/theme/src/_variables.scss#L414-L417",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5321,7 +5321,7 @@ const sassdoc: PackageSassDoc = {
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-text-color(primary, dark)",
+      value: "rmd-theme-text-color(\n  primary,\n  dark\n)",
       compiled: "#d9d9d9",
       overridable: true,
     },
@@ -5329,7 +5329,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-secondary-text-on-dark-color",
       description:
         "The secondary text color to use on the dark colored surface. This is not related to the `$rmd-theme-secondary` variable.\n",
-      source: "packages/theme/src/_variables.scss#L396",
+      source: "packages/theme/src/_variables.scss#L423-L426",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5340,14 +5340,14 @@ const sassdoc: PackageSassDoc = {
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-text-color(secondary, dark)",
+      value: "rmd-theme-text-color(\n  secondary,\n  dark\n)",
       compiled: "#b3b3b3",
       overridable: true,
     },
     "rmd-theme-hint-text-on-dark-color": {
       name: "rmd-theme-hint-text-on-dark-color",
       description: "The hint text color to use on the dark colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L401",
+      source: "packages/theme/src/_variables.scss#L431",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5366,7 +5366,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-disabled-text-on-dark-color",
       description:
         "The disabled text color to use on the dark colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L406",
+      source: "packages/theme/src/_variables.scss#L436-L439",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5377,14 +5377,14 @@ const sassdoc: PackageSassDoc = {
       usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
       packageName: "theme",
       type: "Color",
-      value: "rmd-theme-text-color(disabled, dark)",
+      value: "rmd-theme-text-color(\n  disabled,\n  dark\n)",
       compiled: "gray",
       overridable: true,
     },
     "rmd-theme-icon-on-dark-color": {
       name: "rmd-theme-icon-on-dark-color",
       description: "The icon color to use on the dark colored surface.\n",
-      source: "packages/theme/src/_variables.scss#L411",
+      source: "packages/theme/src/_variables.scss#L444",
       see: [
         {
           name: "rmd-theme-text-color",
@@ -5403,7 +5403,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-dark-elevation-colors",
       description:
         "A map containing all the available dark theme elevation colors. This needs to contain a color for each elevation in the `@react-md/elevation` package\n(0 - 24).",
-      source: "packages/theme/src/_variables.scss#L420-L446",
+      source: "packages/theme/src/_variables.scss#L453-L479",
       since: "2.1.0",
       usedBy: [
         {
@@ -5446,7 +5446,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-theme-values",
       description:
         "A Map of all the theme values that can be used throughout the app. This is mainly created so that the specific `rmd-theme--NAME` classes can be created, but also for the `rmd-theme` function to get a specific color within your theme.\n",
-      source: "packages/theme/src/_variables.scss#L453-L486",
+      source: "packages/theme/src/_variables.scss#L486-L519",
       usedBy: [
         { name: "rmd-theme", type: "function", packageName: "theme" },
         { name: "rmd-theme-var", type: "function", packageName: "theme" },

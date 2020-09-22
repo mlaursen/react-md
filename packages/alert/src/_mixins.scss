@@ -22,7 +22,12 @@
 /// retrieving the default value from the `rmd-alert-theme-values` map when
 /// `null`.
 @mixin rmd-alert-theme($property, $theme-style: $property, $fallback: null) {
-  @include rmd-theme-apply-rmd-var($property, $theme-style, $rmd-alert-theme-values, alert);
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-alert-theme-values,
+    alert
+  );
 }
 
 /// Updates one of the alert's theme variables with the new value for the
@@ -32,7 +37,12 @@
 /// should be one of the `$rmd-alert-theme-values` keys.
 /// @param {Color|String|Number} value - The new value to use.
 @mixin rmd-alert-theme-update-var($theme-style, $value) {
-  @include rmd-theme-update-rmd-var($value, $theme-style, $rmd-alert-theme-values, alert);
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-alert-theme-values,
+    alert
+  );
 }
 
 /// Generates the styles for a snackbar and should probably only be used
@@ -82,7 +92,11 @@
   }
 
   &--action {
-    @include rmd-utils-rtl-auto(padding-right, 0, $rmd-toast-horizontal-padding);
+    @include rmd-utils-rtl-auto(
+      padding-right,
+      0,
+      $rmd-toast-horizontal-padding
+    );
   }
 
   &--two-lines {
@@ -99,7 +113,8 @@
 
     opacity: 0;
     transform: scale(0);
-    transition: opacity $rmd-toast-enter-duration, transform $rmd-toast-enter-duration;
+    transition: opacity $rmd-toast-enter-duration,
+      transform $rmd-toast-enter-duration;
   }
 
   &--enter-active {
@@ -117,7 +132,8 @@
   &--exit-active {
     opacity: 0;
     transform: scale(0);
-    transition: opacity $rmd-toast-exit-duration, transform $rmd-toast-exit-duration;
+    transition: opacity $rmd-toast-exit-duration,
+      transform $rmd-toast-exit-duration;
   }
 
   &__message {
@@ -128,7 +144,11 @@
     flex-wrap: wrap;
 
     &--action {
-      @include rmd-utils-rtl-auto(padding-right, $rmd-toast-horizontal-padding, 0);
+      @include rmd-utils-rtl-auto(
+        padding-right,
+        $rmd-toast-horizontal-padding,
+        0
+      );
     }
 
     p {
