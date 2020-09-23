@@ -13,6 +13,8 @@ const rmdVersion = isProduction
   ? require('../../lerna.json').version
   : 'latest';
 
+const gaCode = process.env.GA_CODE || (isProduction ? 'UA-76079335-2' : '');
+
 const withCustomConfig = (nextConfig = {}) => ({
   ...nextConfig,
   poweredByHeader: false,
@@ -26,6 +28,7 @@ const withCustomConfig = (nextConfig = {}) => ({
     config.plugins.push(
       new webpack.DefinePlugin({
         'process.env': {
+          GA_CODE: JSON.stringify(gaCode),
           COMMIT_SHA: JSON.stringify(commitHash),
           RMD_VERSION: JSON.stringify(rmdVersion),
         },

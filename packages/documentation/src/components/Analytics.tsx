@@ -14,7 +14,7 @@ gtag('config', '${GA_CODE}');`,
 };
 
 export default function Analytics(): ReactElement | null {
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== "production" && !process.env.GA_CODE) {
     return null;
   }
 
