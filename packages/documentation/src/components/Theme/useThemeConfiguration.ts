@@ -1,16 +1,16 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Cookie from "js-cookie";
+import { EventName, sendAnalyticsEvent } from "utils/analytics";
 
-import { PrimaryColor, SecondaryColor, ColorAccent, ThemeMode } from "./colors";
+import { ColorAccent, PrimaryColor, SecondaryColor, ThemeMode } from "./colors";
+import styles from "./styles.module.scss";
 import {
-  Theme,
+  DEFAULT_ACCENT,
   DEFAULT_PRIMARY,
   DEFAULT_SECONDARY,
-  DEFAULT_ACCENT,
+  Theme,
 } from "./useTheme";
 import { ThemeActions } from "./useThemeActions";
-
-import styles from "./styles.module.scss";
 
 export type ThemeConfiguration = Theme & ThemeActions;
 
@@ -50,6 +50,10 @@ export default function useThemeConfiguration(
       return;
     }
 
+    sendAnalyticsEvent({
+      name: EventName.ThemeChange,
+      mode: theme,
+    });
     Cookie.set("theme", theme);
     localStorage.setItem("theme", theme);
     root.classList.add(styles.transition);

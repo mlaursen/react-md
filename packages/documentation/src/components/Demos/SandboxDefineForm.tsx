@@ -1,9 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { getParameters } from "codesandbox/lib/api/define";
 
+import { useCodePreference } from "components/CodePreference";
 import useTheme from "components/Theme/useTheme";
+import { EventName, sendAnalyticsEvent } from "utils/analytics";
 import getSandbox from "utils/getSandbox";
-import { useJs } from "components/CodePreference";
 
 const CODE_SANDBOX_DEFINE_API =
   "https://codesandbox.io/api/v1/sandboxes/define";
@@ -21,7 +22,8 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
 }) => {
   const [parameters, setParameters] = useState("");
   const { theme } = useTheme();
-  const isJs = useJs();
+  const { pref } = useCodePreference();
+  const isJs = pref === "js";
 
   useEffect(() => {
     const getter = getSandbox(packageName, demoName, theme, isJs);
@@ -60,6 +62,12 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
         }
 
         form.submit();
+        sendAnalyticsEvent({
+          name: EventName.CreateSandbox,
+          demoName,
+          packageName,
+          lang: pref,
+        });
         onCreated();
       }}
     >

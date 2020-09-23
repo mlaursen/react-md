@@ -1,14 +1,16 @@
 import React, {
-  useState,
-  useMemo,
   createContext,
-  useContext,
   ReactElement,
   ReactNode,
-  useRef,
+  useContext,
   useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from "react";
 import Cookie from "js-cookie";
+
+import { EventName, sendAnalyticsEvent } from "utils/analytics";
 
 export const CODE_PREFERENCE = "codePref";
 
@@ -79,7 +81,9 @@ export function CodePreferenceProvider({
   const value = useMemo(
     () => ({
       pref,
-      toggle: () => setPref((prev) => (prev === "js" ? "ts" : "js")),
+      toggle() {
+        setPref((prev) => (prev === "js" ? "ts" : "js"));
+      },
     }),
     [pref]
   );
@@ -97,6 +101,10 @@ export function CodePreferenceProvider({
       return;
     }
 
+    sendAnalyticsEvent({
+      name: EventName.CodePreference,
+      lang: pref,
+    });
     Cookie.set(CODE_PREFERENCE, pref);
     localStorage.setItem(CODE_PREFERENCE, pref);
   }, [pref]);
