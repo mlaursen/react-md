@@ -67,8 +67,8 @@ const getEventParams = (event: AnalyticsEvent): Gtag.EventParams => {
       category = "code";
       break;
     case EventName.CodePreference:
-      label = event.lang;
-      category = event.name;
+      label = getLanguageName(event.lang);
+      category = "code";
       break;
     case EventName.ThemeChange:
       label = `Changing to ${event.mode} mode`;
