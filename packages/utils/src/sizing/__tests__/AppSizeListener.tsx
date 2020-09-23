@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import AppSizeListener from "../AppSizeListener";
+import { AppSizeListener } from "../AppSizeListener";
 import { DEFAULT_DESKTOP_MIN_WIDTH } from "../constants";
 
 const onchange = jest.fn();

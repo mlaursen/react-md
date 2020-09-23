@@ -1,12 +1,12 @@
 import React, { ReactElement } from "react";
 import {
+  fireEvent,
   render as testRenderer,
   RenderResult,
-  fireEvent,
 } from "@testing-library/react";
 
-import Menu from "../Menu";
-import DropdownMenuItem from "../DropdownMenuItem";
+import { DropdownMenuItem } from "../DropdownMenuItem";
+import { Menu } from "../Menu";
 
 const PROPS = {
   id: "menu",

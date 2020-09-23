@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import HighlightedResult from "../HighlightedResult";
+import { HighlightedResult } from "../HighlightedResult";
 
 const PROPS = {
   id: "result",

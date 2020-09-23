@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(
+export const SpeakerGroupFont = forwardRef<HTMLElement, FontIconProps>(
   function SpeakerGroupFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -1,12 +1,12 @@
 import React, { ReactElement } from "react";
+import { InteractionModeListener } from "@react-md/utils";
 import {
-  render as baseRender,
   act,
+  render as baseRender,
   RenderOptions,
 } from "@testing-library/react";
-import { InteractionModeListener } from "@react-md/utils";
 
-import LayoutMain from "../LayoutMain";
+import { LayoutMain } from "../LayoutMain";
 
 const render = (ui: ReactElement, options?: RenderOptions) =>
   baseRender(ui, {

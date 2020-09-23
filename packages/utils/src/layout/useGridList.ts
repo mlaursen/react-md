@@ -10,7 +10,7 @@ import cn from "classnames";
 import { useResizeObserver } from "../sizing/useResizeObserver";
 import { PropsWithRef } from "../types";
 import { useEnsuredRef } from "../useEnsuredRef";
-import getScrollbarSize from "./scrollbarSize";
+import { scrollbarSize } from "./scrollbarSize";
 
 /**
  * This is the css variable that is used store the current size of each cell.
@@ -209,7 +209,7 @@ export function useGridList<E extends HTMLElement>({
     // just need to see if there is a scrollbar visible and subtract that width.
     // don't need decimal precision here since both values will be rounded
     if (target.offsetHeight < target.scrollHeight) {
-      width -= getScrollbarSize("width");
+      width -= scrollbarSize("width");
     }
 
     const columns = Math.ceil(width / maxCellSize);

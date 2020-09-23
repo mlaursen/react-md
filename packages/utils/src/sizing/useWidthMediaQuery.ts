@@ -1,6 +1,7 @@
 import { useMemo } from "react";
+
 import { QuerySize } from "./constants";
-import useMediaQuery from "./useMediaQuery";
+import { useMediaQuery } from "./useMediaQuery";
 
 /**
  * This is a small helper that will create a media query block based on the
@@ -37,7 +38,7 @@ type WidthMediaQuerys =
  * @param max An optional max value to use
  * @return a boolean if the current media query is a match.
  */
-export default function useWidthMediaQuery({
+export function useWidthMediaQuery({
   min,
   max,
 }: WidthMediaQuery & WidthMediaQuerys): boolean {

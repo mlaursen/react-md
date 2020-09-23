@@ -11,7 +11,7 @@ export interface PanelGroupProps {
 /**
  * @private
  */
-export default function PanelGroup({
+export function PanelGroup({
   persistent,
   disableTransition,
   children,

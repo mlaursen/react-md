@@ -1,4 +1,4 @@
-import useResizeListener, { ResizeListenerOptions } from "./useResizeListener";
+import { ResizeListenerOptions, useResizeListener } from "./useResizeListener";
 
 export type ResizeListenerProps = Omit<ResizeListenerOptions, "enabled">;
 
@@ -10,7 +10,7 @@ export type ResizeListenerProps = Omit<ResizeListenerOptions, "enabled">;
  * for specific element resize events, check out the `ResizeObserver` component
  * instead.
  */
-function ResizeListener({
+export function ResizeListener({
   onResize,
   options,
   immediate = typeof window !== "undefined",
@@ -30,5 +30,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ResizeListener;

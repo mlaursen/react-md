@@ -6,10 +6,11 @@ import {
 } from "@react-md/states";
 import { PropsWithRef } from "@react-md/utils";
 
-import buttonThemeClassNames, {
+import {
+  buttonThemeClassNames,
   ButtonThemeProps,
 } from "./buttonThemeClassNames";
-import FAB, { FABPosition, FABProps } from "./FAB";
+import { FAB, FABPosition, FABProps } from "./FAB";
 
 /**
  * This interface includes all the props that the `Button` component accepts so
@@ -58,92 +59,94 @@ export interface ButtonProps
  * The default theme will be a clear text button unless the `floating` prop has
  * been provided where it will render as an icon button by default instead.
  */
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  {
-    type = "button",
-    disabled = false,
-    floating = null,
-    floatingProps,
-    theme = floating ? "secondary" : "clear",
-    themeType = floating ? "contained" : "flat",
-    buttonType = floating ? "icon" : "text",
-    className: propClassName,
-    children,
-    disableRipple,
-    disableProgrammaticRipple,
-    rippleTimeout,
-    rippleClassNames,
-    rippleClassName,
-    rippleContainerClassName,
-    enablePressedAndRipple: propEnablePressedAndRipple,
-    disablePressedFallback,
-    onClick,
-    onKeyUp,
-    onKeyDown,
-    onMouseUp,
-    onMouseDown,
-    onMouseLeave,
-    onTouchStart,
-    onTouchMove,
-    onTouchEnd,
-    ...props
-  },
-  ref
-) {
-  const enablePressedAndRipple =
-    typeof propEnablePressedAndRipple === "boolean"
-      ? propEnablePressedAndRipple
-      : themeType === "contained";
-  const propHandlers = {
-    onClick,
-    onKeyUp,
-    onKeyDown,
-    onMouseUp,
-    onMouseDown,
-    onMouseLeave,
-    onTouchStart,
-    onTouchMove,
-    onTouchEnd,
-  };
-
-  const isDisabledTheme = theme === "disabled";
-  const { ripples, className, handlers } = useInteractionStates({
-    handlers: propHandlers,
-    className: buttonThemeClassNames({
-      theme,
-      themeType,
-      buttonType,
-      disabled,
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(
+    {
+      type = "button",
+      disabled = false,
+      floating = null,
+      floatingProps,
+      theme = floating ? "secondary" : "clear",
+      themeType = floating ? "contained" : "flat",
+      buttonType = floating ? "icon" : "text",
       className: propClassName,
-    }),
-    disabled: disabled || isDisabledTheme,
-    disableRipple,
-    disableProgrammaticRipple,
-    disablePressedFallback,
-    rippleTimeout,
-    rippleClassNames,
-    rippleClassName,
-    rippleContainerClassName,
-    enablePressedAndRipple,
-  });
+      children,
+      disableRipple,
+      disableProgrammaticRipple,
+      rippleTimeout,
+      rippleClassNames,
+      rippleClassName,
+      rippleContainerClassName,
+      enablePressedAndRipple: propEnablePressedAndRipple,
+      disablePressedFallback,
+      onClick,
+      onKeyUp,
+      onKeyDown,
+      onMouseUp,
+      onMouseDown,
+      onMouseLeave,
+      onTouchStart,
+      onTouchMove,
+      onTouchEnd,
+      ...props
+    },
+    ref
+  ) {
+    const enablePressedAndRipple =
+      typeof propEnablePressedAndRipple === "boolean"
+        ? propEnablePressedAndRipple
+        : themeType === "contained";
+    const propHandlers = {
+      onClick,
+      onKeyUp,
+      onKeyDown,
+      onMouseUp,
+      onMouseDown,
+      onMouseLeave,
+      onTouchStart,
+      onTouchMove,
+      onTouchEnd,
+    };
 
-  return (
-    <FAB position={floating} {...floatingProps}>
-      <button
-        aria-disabled={isDisabledTheme || undefined}
-        {...props}
-        {...(isDisabledTheme ? undefined : handlers)}
-        ref={ref}
-        type={type}
-        className={className}
-        disabled={disabled}
-      >
-        {children}
-        {ripples}
-      </button>
-    </FAB>
-  );
-});
+    const isDisabledTheme = theme === "disabled";
+    const { ripples, className, handlers } = useInteractionStates({
+      handlers: propHandlers,
+      className: buttonThemeClassNames({
+        theme,
+        themeType,
+        buttonType,
+        disabled,
+        className: propClassName,
+      }),
+      disabled: disabled || isDisabledTheme,
+      disableRipple,
+      disableProgrammaticRipple,
+      disablePressedFallback,
+      rippleTimeout,
+      rippleClassNames,
+      rippleClassName,
+      rippleContainerClassName,
+      enablePressedAndRipple,
+    });
+
+    return (
+      <FAB position={floating} {...floatingProps}>
+        <button
+          aria-disabled={isDisabledTheme || undefined}
+          {...props}
+          {...(isDisabledTheme ? undefined : handlers)}
+          ref={ref}
+          type={type}
+          className={className}
+          disabled={disabled}
+        >
+          {children}
+          {ripples}
+        </button>
+      </FAB>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -210,5 +213,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Button;

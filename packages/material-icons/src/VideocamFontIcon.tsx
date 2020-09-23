@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function VideocamFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      videocam
-    </FontIcon>
-  );
-});
+export const VideocamFont = forwardRef<HTMLElement, FontIconProps>(
+  function VideocamFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        videocam
+      </FontIcon>
+    );
+  }
+);

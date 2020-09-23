@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import CardSubtitle from "../CardSubtitle";
+import { CardSubtitle } from "../CardSubtitle";
 
 describe("CardSubtitle", () => {
   it("should render correctly", () => {

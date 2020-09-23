@@ -1,4 +1,4 @@
-import { TAB_FOCUSABLE, PROGRAMATICALLY_FOCUSABLE } from "./constants";
+import { PROGRAMATICALLY_FOCUSABLE, TAB_FOCUSABLE } from "./constants";
 
 /**
  * A simple util that will find all the tab focusable elements within a
@@ -12,7 +12,7 @@ import { TAB_FOCUSABLE, PROGRAMATICALLY_FOCUSABLE } from "./constants";
  * included instead of only tab focusable.
  * @return A list of HTMLElements that are focusable within the container.
  */
-export default function getFocusableElements(
+export function getFocusableElements(
   container: HTMLElement | Document,
   programatic: boolean = false
 ): HTMLElement[] {

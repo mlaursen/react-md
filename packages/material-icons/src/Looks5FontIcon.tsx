@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function Looks5FontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      looks_5
-    </FontIcon>
-  );
-});
+export const Looks5Font = forwardRef<HTMLElement, FontIconProps>(
+  function Looks5FontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        looks_5
+      </FontIcon>
+    );
+  }
+);

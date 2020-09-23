@@ -17,7 +17,7 @@ export type PortalInto =
  * @param intoId An id for an element to portal into
  * @return the portal container element or null
  */
-export default function getContainer(
+export function getContainer(
   into?: PortalInto | undefined,
   intoId?: string | undefined
 ): HTMLElement | null {

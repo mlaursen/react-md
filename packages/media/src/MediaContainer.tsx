@@ -40,7 +40,7 @@ const block = bem("rmd-media-container");
  * ratio for these elements with both the `height` and `width` props are
  * provided.
  */
-const MediaContainer = forwardRef<
+export const MediaContainer = forwardRef<
   HTMLDivElement,
   MediaContainerProps | MediaContainerWithAspectRatioProps
 >(function MediaContainer(
@@ -91,5 +91,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default MediaContainer;

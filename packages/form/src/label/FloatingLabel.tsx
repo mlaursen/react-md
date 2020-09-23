@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import Label, { LabelProps } from "./Label";
+import { Label, LabelProps } from "./Label";
 
 export interface FloatingLabelProps extends LabelProps {
   /**
@@ -27,7 +27,7 @@ const block = bem("rmd-floating-label");
  * This is an extension of the `Label` component that is used with text fields
  * and textareas to float above the input area.
  */
-const FloatingLabel = forwardRef<HTMLLabelElement, FloatingLabelProps>(
+export const FloatingLabel = forwardRef<HTMLLabelElement, FloatingLabelProps>(
   function FloatingLabel(
     {
       className,
@@ -76,5 +76,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default FloatingLabel;

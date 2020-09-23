@@ -1,4 +1,4 @@
-import extractTextContent from "../extractTextContent";
+import { extractTextContent } from "../extractTextContent";
 
 describe("extractTextContent", () => {
   it('should return a "node" that is a string unmodified', () => {

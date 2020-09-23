@@ -24,7 +24,7 @@ export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
  * styles. It is a simple wrapper for a `<div>` that updates the props to
  * require the `children` and `onKeyDown` props.
  */
-const ExpansionList = forwardRef<HTMLDivElement, ExpansionListProps>(
+export const ExpansionList = forwardRef<HTMLDivElement, ExpansionListProps>(
   function ExpansionList({ children, ...props }, ref) {
     return (
       <div {...props} ref={ref}>
@@ -45,5 +45,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ExpansionList;

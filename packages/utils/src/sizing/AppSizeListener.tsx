@@ -14,10 +14,11 @@ import {
   DEFAULT_TABLET_MIN_WIDTH,
 } from "./constants";
 import { AppSizeContext } from "./useAppSize";
-import useAppSizeMedia, {
+import {
   AppSize,
   AppSizeOptions,
   DEFAULT_APP_SIZE,
+  useAppSizeMedia,
 } from "./useAppSizeMedia";
 
 export interface AppSizeListenerProps extends AppSizeOptions {
@@ -35,7 +36,7 @@ export interface AppSizeListenerProps extends AppSizeOptions {
  * This component should be mounted near the top of your app as it will keep
  * track of the current app size based on the provided breakpoint widths.
  */
-function AppSizeListener({
+export function AppSizeListener({
   children,
   onChange,
   phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
@@ -118,5 +119,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default AppSizeListener;

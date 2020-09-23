@@ -16,7 +16,7 @@ const error = (part?: keyof DefinedTimeout): never => {
 /**
  * @private
  */
-export default function getTimeout(
+export function getTimeout(
   timeout: TransitionTimeout,
   appear: boolean
 ): DefinedTimeout {

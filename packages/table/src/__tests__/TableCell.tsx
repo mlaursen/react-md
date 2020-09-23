@@ -1,11 +1,11 @@
 import React, { ReactElement } from "react";
 import { render, RenderResult } from "@testing-library/react";
 
-import TableCell from "../TableCell";
-import TableRow from "../TableRow";
-import Table from "../Table";
-import TableHeader from "../TableHeader";
-import TableBody from "../TableBody";
+import { TableCell } from "../TableCell";
+import { TableRow } from "../TableRow";
+import { Table } from "../Table";
+import { TableHeader } from "../TableHeader";
+import { TableBody } from "../TableBody";
 
 const renderHeader = (children: ReactElement): RenderResult =>
   render(children, {

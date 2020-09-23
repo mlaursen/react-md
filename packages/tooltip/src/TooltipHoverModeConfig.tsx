@@ -20,7 +20,7 @@ interface TooltipHoverModeConfigProps {
  * functionality in that once a tooltip has become visible by hover, all other
  * tooltips will become visible immediately until 3 seconds have passed.
  */
-function TooltipHoverModeConfig({
+export function TooltipHoverModeConfig({
   defaultDelay = DEFAULT_TOOLTIP_DELAY,
   delayTimeout = DEFAULT_TOOLTIP_DELAY,
   enabled = true,
@@ -62,5 +62,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TooltipHoverModeConfig;

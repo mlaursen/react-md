@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function ViewWeekFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      view_week
-    </FontIcon>
-  );
-});
+export const ViewWeekFont = forwardRef<HTMLElement, FontIconProps>(
+  function ViewWeekFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        view_week
+      </FontIcon>
+    );
+  }
+);

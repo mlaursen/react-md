@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import NativeSelect from "../NativeSelect";
+import { NativeSelect } from "../NativeSelect";
 
 const options = Array.from({ length: 3 }, (_, i) => `Option ${i + 1}`);
 const PROPS = {

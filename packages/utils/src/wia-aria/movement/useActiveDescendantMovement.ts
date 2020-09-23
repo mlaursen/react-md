@@ -1,13 +1,14 @@
-import { useState, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-import scrollIntoView from "../../scrollIntoView";
-import useKeyboardMovement, {
+import { scrollIntoView } from "../../scrollIntoView";
+import { DEFAULT_GET_ITEM_VALUE, DEFAULT_VALUE_KEY } from "../../search/utils";
+import {
   BaseKeyboardMovementOptions,
-  MovementHandler,
   ItemRefList,
+  MovementHandler,
+  useKeyboardMovement,
 } from "./useKeyboardMovement";
 import { getItemId } from "./utils";
-import { DEFAULT_GET_ITEM_VALUE, DEFAULT_VALUE_KEY } from "../../search/utils";
 
 export type ActiveDescendantId = string;
 
@@ -101,7 +102,7 @@ interface ActiveDescendantOptions<
  * @typeparam IE The HTMLElement type of each item within the container element
  * that can be focusable.
  */
-export default function useActiveDescendantMovement<
+export function useActiveDescendantMovement<
   D = unknown,
   CE extends HTMLElement = HTMLElement,
   IE extends HTMLElement = HTMLElement

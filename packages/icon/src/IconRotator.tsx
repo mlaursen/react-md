@@ -55,7 +55,7 @@ const block = bem("rmd-icon-rotator");
  * The `IconRotator` is a simple component that is used to rotate an icon from a
  * one degrees to another.
  */
-const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
+export const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
   function IconRotator(
     {
       style,
@@ -98,5 +98,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default IconRotator;

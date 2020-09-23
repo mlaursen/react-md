@@ -64,7 +64,7 @@ const block = bem("rmd-avatar");
  * the avatar is not an image, different themes can be applied to make the
  * avatar more unique.
  */
-const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
+export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
   {
     className,
     children,
@@ -119,5 +119,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Avatar;

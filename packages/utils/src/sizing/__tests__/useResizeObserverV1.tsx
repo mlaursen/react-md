@@ -1,13 +1,14 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import useResizeObserver, {
+import { ResizeObserver } from "../ResizeObserver";
+import {
   getResizeObserverTarget,
   isHeightChange,
   isWidthChange,
+  useResizeObserverV1,
   warnedOnce,
 } from "../useResizeObserverV1";
-import ResizeObserver from "../ResizeObserver";
 
 describe("getResizeObserverTarget", () => {
   it("should return null if the target is null", () => {
@@ -216,7 +217,7 @@ describe("useResizeObserver", () => {
     warn.mockImplementation(() => {});
 
     const Test = () => {
-      useResizeObserver({
+      useResizeObserverV1({
         target: null,
         onResize: jest.fn(),
       });
@@ -249,7 +250,7 @@ describe("useResizeObserver", () => {
     warn.mockImplementation(() => {});
 
     const Test = () => {
-      useResizeObserver({
+      useResizeObserverV1({
         target: null,
         onResize: jest.fn(),
       });

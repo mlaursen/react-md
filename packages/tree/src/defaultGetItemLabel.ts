@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 import { UnknownTreeItem } from "./types";
 
 /**
@@ -6,7 +7,7 @@ import { UnknownTreeItem } from "./types";
  *
  * @private
  */
-export default function defaultGetItemLabel(
+export function defaultGetItemLabel(
   item: UnknownTreeItem,
   labelKey: string
 ): ReactNode {

@@ -1,4 +1,4 @@
-import getClassNames from "../getClassNames";
+import { getClassNames } from "../getClassNames";
 
 const DISABLED_TIMEOUT = {
   appear: 0,

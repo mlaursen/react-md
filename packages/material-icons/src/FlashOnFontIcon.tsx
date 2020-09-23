@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function FlashOnFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      flash_on
-    </FontIcon>
-  );
-});
+export const FlashOnFont = forwardRef<HTMLElement, FontIconProps>(
+  function FlashOnFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        flash_on
+      </FontIcon>
+    );
+  }
+);

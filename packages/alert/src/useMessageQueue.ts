@@ -11,7 +11,7 @@ import {
   ResetQueue,
   ToastMessage,
 } from "./MessageQueueContext";
-import useWindowBlurPause from "./useWindowBlurPause";
+import { useWindowBlurPause } from "./useWindowBlurPause";
 
 export const ADD_MESSAGE = "ADD_MESSAGE";
 export const POP_MESSAGE = "POP_MESSAGE";
@@ -176,7 +176,7 @@ export interface MessageQueueResult<M extends Message = ToastMessage>
  *
  * @private
  */
-export default function useMessageQueue<M extends Message = ToastMessage>({
+export function useMessageQueue<M extends Message = ToastMessage>({
   timeout = DEFAULT_MESSAGE_QUEUE_TIMEOUT,
   duplicates = "allow",
   defaultQueue = [],

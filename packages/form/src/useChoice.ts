@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useCallback, useState } from "react";
 
 type InputElement = HTMLInputElement | HTMLSelectElement;
 type ChangeEventHandler<E extends InputElement> = React.ChangeEventHandler<E>;
@@ -20,7 +20,7 @@ type SetValue<T extends DefaultValue> = Dispatch<SetStateAction<T>>;
  * @return a list containing the current value, a change event handler, and then
  * a manual value setter.
  */
-export default function useChoice<
+export function useChoice<
   T extends DefaultValue = DefaultValue,
   E extends InputElement = InputElement
 >(

@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function SortFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      sort
-    </FontIcon>
-  );
-});
+export const SortFont = forwardRef<HTMLElement, FontIconProps>(
+  function SortFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        sort
+      </FontIcon>
+    );
+  }
+);

@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function NoSimFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      no_sim
-    </FontIcon>
-  );
-});
+export const NoSimFont = forwardRef<HTMLElement, FontIconProps>(
+  function NoSimFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        no_sim
+      </FontIcon>
+    );
+  }
+);

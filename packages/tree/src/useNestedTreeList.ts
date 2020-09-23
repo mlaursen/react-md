@@ -66,7 +66,7 @@ export function buildTree<T extends BaseTreeItem>(
  * there's a different unique identifier for the "root level" items, that can be
  * used instead.
  */
-export default function useNestedTreeList<T extends BaseTreeItem>(
+export function useNestedTreeList<T extends BaseTreeItem>(
   tree: TreeData<T>,
   sort?: TreeItemSorter<T>,
   rootId: null | TreeItemId = null

@@ -74,7 +74,7 @@ export interface StatesConfigProps extends Partial<StatesConfigContextType> {
  * - disabling or enabling the ripple effects
  * - disabling or enabling the fix for color pollution
  */
-function StatesConfig({
+export function StatesConfig({
   rippleTimeout = DEFAULT_RIPPLE_TIMEOUT,
   rippleClassNames = DEFAULT_RIPPLE_CLASSNAMES,
   disableRipple = false,
@@ -126,5 +126,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default StatesConfig;

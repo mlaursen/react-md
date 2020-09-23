@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 
-import useVisibility from "../useVisibility";
+import { useVisibility } from "../useVisibility";
 
 describe("useVisibility", () => {
   it("should default to the correct state", () => {

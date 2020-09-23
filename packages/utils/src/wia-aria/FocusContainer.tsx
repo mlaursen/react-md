@@ -6,9 +6,9 @@ import React, {
 } from "react";
 
 import { useEnsuredRef } from "../useEnsuredRef";
-import useFocusOnMount from "./useFocusOnMount";
-import usePreviousFocus, { FocusFallback } from "./usePreviousFocus";
-import useTabFocusWrap from "./useTabFocusWrap";
+import { useFocusOnMount } from "./useFocusOnMount";
+import { FocusFallback, usePreviousFocus } from "./usePreviousFocus";
+import { useTabFocusWrap } from "./useTabFocusWrap";
 
 export interface FocusContainerOptionsProps {
   /**
@@ -95,7 +95,7 @@ export interface FocusContainerProps
  * The `FocusContainer` is a wrapper for a few of the accessibility hooks to
  * maintain focus within an element.
  */
-const FocusContainer = forwardRef<HTMLDivElement, FocusContainerProps>(
+export const FocusContainer = forwardRef<HTMLDivElement, FocusContainerProps>(
   function FocusContainer(
     {
       children,
@@ -165,5 +165,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default FocusContainer;

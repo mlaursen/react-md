@@ -1,4 +1,4 @@
-import getFocusableElements from "../getFocusableElements";
+import { getFocusableElements } from "../getFocusableElements";
 import { TAB_FOCUSABLE } from "../constants";
 
 describe("getFocusableElements", () => {

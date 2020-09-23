@@ -5,8 +5,8 @@ import { ListElement, ListItemChildren } from "@react-md/list";
 import { useInteractionStates } from "@react-md/states";
 import { bem } from "@react-md/utils";
 
-import TreeGroup from "./TreeGroup";
-import TreeItemExpanderIcon from "./TreeItemExpanderIcon";
+import { TreeGroup } from "./TreeGroup";
+import { TreeItemExpanderIcon } from "./TreeItemExpanderIcon";
 import { TreeItemProps, TreeItemWithContentComponentProps } from "./types";
 
 const block = bem("rmd-tree-item");
@@ -16,7 +16,7 @@ const block = bem("rmd-tree-item");
  * should almost always be used from the `itemRenderer` prop from the `Tree`
  * component as it provides a lot of the required a11y props for you.
  */
-const TreeItem = forwardRef<
+export const TreeItem = forwardRef<
   HTMLLIElement,
   TreeItemProps | TreeItemWithContentComponentProps
 >(function TreeItem(
@@ -228,5 +228,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TreeItem;

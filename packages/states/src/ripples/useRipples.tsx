@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
 
 import { useRippleTransition } from "./reducer";
-import RippleContainer from "./RippleContainer";
-import { RipplesOptions, MergableRippleHandlers } from "./types";
-import useRippleHandlers from "./useRippleHandlers";
+import { RippleContainer } from "./RippleContainer";
+import { MergableRippleHandlers, RipplesOptions } from "./types";
+import { useRippleHandlers } from "./useRippleHandlers";
 
 interface ReturnValue<E extends HTMLElement> {
   handlers: MergableRippleHandlers<E>;
@@ -15,7 +15,7 @@ interface ReturnValue<E extends HTMLElement> {
  * and an object of event handlers to apply to an element to trigger
  * the ripple effects.
  */
-export default function useRipples<E extends HTMLElement = HTMLElement>({
+export function useRipples<E extends HTMLElement = HTMLElement>({
   rippleTimeout,
   rippleClassNames,
   rippleContainerClassName,

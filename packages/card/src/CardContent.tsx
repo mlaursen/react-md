@@ -38,7 +38,7 @@ const block = bem("rmd-card");
  * The main content for the `Card`. This adds some additional padding and removes
  * margin from `<p>` tags by default.
  */
-const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
+export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   function CardContent(
     {
       disablePadding = false,
@@ -85,5 +85,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default CardContent;

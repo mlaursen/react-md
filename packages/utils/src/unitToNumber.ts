@@ -10,7 +10,7 @@ export interface UnitToNumberOptions {
  * @param element The element to use to use for calculating `em`
  * @return the unit as a number
  */
-export default function unitToNumber(
+export function unitToNumber(
   unit: string | number,
   options: UnitToNumberOptions = {}
 ): number {

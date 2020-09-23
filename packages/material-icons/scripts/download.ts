@@ -1,8 +1,8 @@
-import fs from "fs-extra";
-import path from "path";
+import AdmZip from "adm-zip";
 import { execSync } from "child_process";
 import Download from "download";
-import unzipper from "unzipper";
+import { ensureDir, remove } from "fs-extra";
+import { join } from "path";
 
 import { tempDownloadDir } from "./constants";
 import { list } from "./utils";
@@ -25,36 +25,25 @@ function getVersion(version: string): string {
   return version;
 }
 
-function extract(fileName: string): Promise<void> {
-  return new Promise((resolve) => {
-    console.log(
-      `Unzipping to ${path.join(
-        tempDownloadDir,
-        fileName.replace(/\.zip$/, "")
-      )}`
-    );
-    fs.createReadStream(path.join(tempDownloadDir, fileName))
-      .pipe(unzipper.Extract({ path: tempDownloadDir }))
-      .on("close", () => {
-        console.log("Done.");
-        resolve();
-      });
-  });
-}
-
 async function downloadSource(version: string): Promise<void> {
   console.log(`Removing ${tempDownloadDir}`);
-  await fs.remove(tempDownloadDir);
-  await fs.ensureDir(tempDownloadDir);
+  await remove(tempDownloadDir);
+  await ensureDir(tempDownloadDir);
 
-  const fileName = `material-design-icons-${version}.zip`;
   const downloadUrl = `https://github.com/google/material-design-icons/archive/${version}.zip`;
   console.log(`Downloading: ${downloadUrl}`);
   await Download(downloadUrl, tempDownloadDir);
-  await extract(fileName);
 }
 
-export default async function download(version: string): Promise<void> {
+export async function download(version: string): Promise<void> {
   version = getVersion(version);
+  const fileName = `material-design-icons-${version}.zip`;
   await downloadSource(version);
+  const zipPath = join(tempDownloadDir, fileName);
+  const unzippedPath = zipPath.replace(/\.zip$/, "");
+  console.log(`Unzipping to ${unzippedPath}`);
+
+  const zip = new AdmZip(zipPath);
+  zip.extractAllTo(unzippedPath);
+  console.log("Done!");
 }

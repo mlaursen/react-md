@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Fieldset from "../Fieldset";
+import { Fieldset } from "../Fieldset";
 
 describe("Fieldset", () => {
   it("should render correctly", () => {

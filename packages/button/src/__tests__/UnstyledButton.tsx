@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import UnstyledButton from "../UnstyledButton";
+import { UnstyledButton } from "../UnstyledButton";
 
 describe("UnstyledButton", () => {
   it("should render correctly", () => {

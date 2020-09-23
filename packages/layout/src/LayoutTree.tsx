@@ -1,8 +1,8 @@
-import React, { forwardRef, useEffect, useRef, CSSProperties } from "react";
+import React, { CSSProperties, forwardRef, useEffect, useRef } from "react";
 import cn from "classnames";
 import { BaseTreeItem, Tree, TreeData, TreeProps } from "@react-md/tree";
 
-import defaultNavigationItemRenderer from "./defaultNavigationItemRenderer";
+import { defaultNavigationItemRenderer } from "./defaultNavigationItemRenderer";
 import { useLayoutConfig } from "./LayoutProvider";
 import { LayoutNavigationItem } from "./types";
 import { isTemporaryLayout } from "./utils";
@@ -62,7 +62,7 @@ export interface LayoutTreeProps<T extends BaseTreeItem = LayoutNavigationItem>
  * Renders the navigation tree for the Layout component that adds some
  * reasonable defaults to work with navigation items.
  */
-const LayoutTree = forwardRef<HTMLUListElement, LayoutTreeProps>(
+export const LayoutTree = forwardRef<HTMLUListElement, LayoutTreeProps>(
   function LayoutTree(
     {
       id: propId,
@@ -151,5 +151,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (error) {}
 }
-
-export default LayoutTree;

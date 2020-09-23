@@ -15,6 +15,7 @@ import {
   TOP_INNER_LEFT_ANCHOR,
   useEnsuredRef,
 } from "@react-md/utils";
+
 import { MenuProps } from "./Menu";
 
 type ProvidedPropNames =
@@ -85,7 +86,7 @@ interface Options {
   disableDeselect?: boolean;
 }
 
-export default function useContextMenu<CE extends HTMLElement>({
+export function useContextMenu<CE extends HTMLElement>({
   id = DEFAULT_CONTEXT_MENU_ID,
   ref: propRef,
   anchor = TOP_INNER_LEFT_ANCHOR,

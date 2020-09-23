@@ -33,7 +33,7 @@ export type FocusFallback =
  * @param previousElement An optional previous element to focus. If this is
  * omitted, the `document.activeElement` will be used instead.
  */
-export default function usePreviousFocus(
+export function usePreviousFocus(
   disabled: boolean,
   fallback: FocusFallback = undefined,
   previousElement: HTMLElement | null = null

@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import TextFieldContainer from "../TextFieldContainer";
+import { TextFieldContainer } from "../TextFieldContainer";
 
 describe("TextFieldContainer", () => {
   describe("theming", () => {

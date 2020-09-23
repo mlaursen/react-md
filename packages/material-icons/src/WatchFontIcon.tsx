@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function WatchFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      watch
-    </FontIcon>
-  );
-});
+export const WatchFont = forwardRef<HTMLElement, FontIconProps>(
+  function WatchFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        watch
+      </FontIcon>
+    );
+  }
+);

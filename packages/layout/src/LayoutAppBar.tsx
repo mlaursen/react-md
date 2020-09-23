@@ -1,8 +1,8 @@
 import React, { forwardRef } from "react";
 import { AppBar, AppBarProps } from "@react-md/app-bar";
 
-import LayoutAppBarTitle from "./LayoutAppBarTitle";
-import LayoutNavToggle, { LayoutWithNavToggle } from "./LayoutNavToggle";
+import { LayoutAppBarTitle } from "./LayoutAppBarTitle";
+import { LayoutNavToggle, LayoutWithNavToggle } from "./LayoutNavToggle";
 import { useLayoutConfig } from "./LayoutProvider";
 import { LayoutWithTitle } from "./types";
 
@@ -24,7 +24,7 @@ export interface LayoutAppBarProps
  * will conditionally render the default `LayoutNavToggle` button and
  * `AppBarTitle` depending on specific props that were provided.
  */
-const LayoutAppBar = forwardRef<HTMLDivElement, LayoutAppBarProps>(
+export const LayoutAppBar = forwardRef<HTMLDivElement, LayoutAppBarProps>(
   function LayoutAppBar(
     {
       children,
@@ -80,5 +80,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (error) {}
 }
-
-export default LayoutAppBar;

@@ -16,7 +16,7 @@ const block = bem("rmd-card");
  * This component is generally used to hold the main actions for the `Card`.
  * It's a good place to add additional buttons or expansion toggles.
  */
-const CardActions = forwardRef<HTMLDivElement, CardActionsProps>(
+export const CardActions = forwardRef<HTMLDivElement, CardActionsProps>(
   function CardActions({ className, align = "end", children, ...props }, ref) {
     return (
       <div
@@ -46,5 +46,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default CardActions;

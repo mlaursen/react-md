@@ -1,16 +1,16 @@
 import React, {
+  CSSProperties,
   forwardRef,
+  MouseEventHandler,
   ReactNode,
   Ref,
-  MouseEventHandler,
-  CSSProperties,
 } from "react";
 import cn from "classnames";
-import { Card, CardProps, CardContent, CardContentProps } from "@react-md/card";
+import { Card, CardContent, CardContentProps, CardProps } from "@react-md/card";
 import { Collapse } from "@react-md/transition";
 import { bem } from "@react-md/utils";
 
-import ExpansionPanelHeader from "./ExpansionPanelHeader";
+import { ExpansionPanelHeader } from "./ExpansionPanelHeader";
 
 type ConfigurableCardContentProps = Pick<
   CardContentProps,
@@ -122,7 +122,7 @@ const block = bem("rmd-expansion-panel");
  * The expansion panel renders a header element (that is just a button) and
  * dynamically shows content once expanded.
  */
-const ExpansionPanel = forwardRef<HTMLDivElement, ExpansionPanelProps>(
+export const ExpansionPanel = forwardRef<HTMLDivElement, ExpansionPanelProps>(
   function ExpansionPanel(
     {
       className,
@@ -230,5 +230,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ExpansionPanel;

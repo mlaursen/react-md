@@ -1,14 +1,14 @@
 import {
-  getLeftCoord,
-  getInnerLeftCoord,
-  getCenterXCoord,
-  getInnerRightCoord,
-  getRightCoord,
   getAboveCoord,
-  getTopCoord,
-  getCenterYCoord,
-  getBottomCoord,
   getBelowCoord,
+  getBottomCoord,
+  getCenterXCoord,
+  getCenterYCoord,
+  getInnerLeftCoord,
+  getInnerRightCoord,
+  getLeftCoord,
+  getRightCoord,
+  getTopCoord,
 } from "../getCoord";
 
 const containerRect1: ClientRect = {

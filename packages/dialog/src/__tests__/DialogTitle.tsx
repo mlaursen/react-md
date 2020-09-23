@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { create } from "react-test-renderer";
 
-import DialogTitle from "../DialogTitle";
+import { DialogTitle } from "../DialogTitle";
 
 describe("DialogTitle", () => {
   it("should render correctly", () => {

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(
+export const ViewQuiltFont = forwardRef<HTMLElement, FontIconProps>(
   function ViewQuiltFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

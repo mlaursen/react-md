@@ -1,17 +1,17 @@
 import {
-  FixConfig,
-  createAnchoredLeft,
-  createAnchoredInnerLeft,
   createAnchoredCenter,
+  createAnchoredInnerLeft,
   createAnchoredInnerRight,
+  createAnchoredLeft,
   createAnchoredRight,
   createEqualWidth,
+  FixConfig,
 } from "../createHorizontalPosition";
 import {
-  getLeftCoord,
-  getInnerLeftCoord,
   getCenterXCoord,
+  getInnerLeftCoord,
   getInnerRightCoord,
+  getLeftCoord,
   getRightCoord,
 } from "../getCoord";
 import { HorizontalPosition } from "../types";

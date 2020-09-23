@@ -12,7 +12,7 @@ import { LayoutNavigationItem } from "./types";
  * `@react-md/tree` package that adds in some support for also rendering
  * dividers and subheader elements.
  */
-const defaultNavigationItemRenderer: TreeItemRenderer<LayoutNavigationItem> = (
+export const defaultNavigationItemRenderer: TreeItemRenderer<LayoutNavigationItem> = (
   itemProps,
   item,
   treeProps
@@ -33,5 +33,3 @@ const defaultNavigationItemRenderer: TreeItemRenderer<LayoutNavigationItem> = (
 
   return defaultTreeItemRenderer(itemProps, item, treeProps);
 };
-
-export default defaultNavigationItemRenderer;

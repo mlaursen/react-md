@@ -6,7 +6,7 @@
  * @param query The query string to convert into a "fuzzy" regular expression
  * @return The "fuzzy" regular expression that can be used to determine matches.
  */
-export default function getFuzzyRegExp(query: string): RegExp {
+export function getFuzzyRegExp(query: string): RegExp {
   return new RegExp(
     `${query}`
       .split("")

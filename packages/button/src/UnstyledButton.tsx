@@ -15,20 +15,21 @@ export type UnstyledButtonProps = Omit<
  * The unstyled button is a really simple button element that resets the default
  * browser button styles into a clear clickable element.
  */
-const UnstyledButton = forwardRef<HTMLButtonElement, UnstyledButtonProps>(
-  function UnstyledButton({ className, children, ...props }, ref) {
-    return (
-      <button
-        {...props}
-        type="button"
-        ref={ref}
-        className={cn("rmd-button-unstyled", className)}
-      >
-        {children}
-      </button>
-    );
-  }
-);
+export const UnstyledButton = forwardRef<
+  HTMLButtonElement,
+  UnstyledButtonProps
+>(function UnstyledButton({ className, children, ...props }, ref) {
+  return (
+    <button
+      {...props}
+      type="button"
+      ref={ref}
+      className={cn("rmd-button-unstyled", className)}
+    >
+      {children}
+    </button>
+  );
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -41,5 +42,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default UnstyledButton;

@@ -25,35 +25,37 @@ export interface SnackbarProps
 
 const block = bem("rmd-snackbar");
 
-const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(function Snackbar(
-  {
-    className,
-    children,
-    portal = false,
-    portalInto,
-    portalIntoId,
-    position = "bottom",
-    ...props
-  },
-  ref
-) {
-  return (
-    <ConditionalPortal
-      portal={portal}
-      portalInto={portalInto}
-      portalIntoId={portalIntoId}
-    >
-      <div
-        {...props}
-        role="status"
-        ref={ref}
-        className={cn(block({ [position]: true }), className)}
+export const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(
+  function Snackbar(
+    {
+      className,
+      children,
+      portal = false,
+      portalInto,
+      portalIntoId,
+      position = "bottom",
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <ConditionalPortal
+        portal={portal}
+        portalInto={portalInto}
+        portalIntoId={portalIntoId}
       >
-        {children}
-      </div>
-    </ConditionalPortal>
-  );
-});
+        <div
+          {...props}
+          role="status"
+          ref={ref}
+          className={cn(block({ [position]: true }), className)}
+        >
+          {children}
+        </div>
+      </ConditionalPortal>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -70,5 +72,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Snackbar;

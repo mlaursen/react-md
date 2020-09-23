@@ -43,7 +43,7 @@ const block = bem("rmd-label");
  * The `Label` component should be used alongside any form elements but is
  * already built in to the majority of the `react-md` components by default.
  */
-const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
+export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
   {
     htmlFor,
     className,
@@ -94,5 +94,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Label;

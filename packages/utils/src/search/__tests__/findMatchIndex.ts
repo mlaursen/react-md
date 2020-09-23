@@ -1,4 +1,4 @@
-import findMatchIndex, { findMatchInRange } from "../findMatchIndex";
+import { findMatchIndex, findMatchInRange } from "../findMatchIndex";
 
 const lorem = [
   "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",

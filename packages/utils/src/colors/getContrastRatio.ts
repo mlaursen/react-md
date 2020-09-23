@@ -1,4 +1,4 @@
-import getLuminance from "./getLuminance";
+import { getLuminance } from "./getLuminance";
 import { HexString } from "./hexToRGB";
 
 /**
@@ -11,7 +11,7 @@ import { HexString } from "./hexToRGB";
  * value.
  * @return the contrast ratio between the background and foreground colors.
  */
-export default function getContrastRatio(
+export function getContrastRatio(
   background: HexString,
   foreground: HexString
 ): number {

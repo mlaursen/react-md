@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
-import useKeyboardMovement, {
+import { useEffect, useState } from "react";
+
+import {
   BaseKeyboardMovementOptions,
   KeyboardMovementProviders,
+  useKeyboardMovement,
 } from "./useKeyboardMovement";
 
 interface KeyboardFocusOptions<
@@ -33,7 +35,7 @@ interface KeyboardFocusOptions<
  * @typeparam IE The HTMLElement type of each item within the container element
  * that can be focusable.
  */
-export default function useFocusMovement<
+export function useFocusMovement<
   D = unknown,
   CE extends HTMLElement = HTMLElement,
   IE extends HTMLElement = HTMLElement

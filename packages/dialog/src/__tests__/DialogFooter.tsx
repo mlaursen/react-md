@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { create } from "react-test-renderer";
 
-import DialogFooter, { DialogFooterProps } from "../DialogFooter";
+import { DialogFooter, DialogFooterProps } from "../DialogFooter";
 
 const aligns: DialogFooterProps["align"][] = [
   "none",

@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-import getContainer from "../getContainer";
+import { getContainer } from "../getContainer";
 
 describe("getContainer", () => {
   it("should return null for non-browser environments", () => {

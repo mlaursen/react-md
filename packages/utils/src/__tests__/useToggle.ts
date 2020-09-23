@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 
-import useToggle from "../useToggle";
+import { useToggle } from "../useToggle";
 
 describe("useToggle", () => {
   it("should default the visibility to the provided defaulttoggled value", () => {

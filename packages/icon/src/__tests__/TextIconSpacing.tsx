@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import TextIconSpacing from "../TextIconSpacing";
+import { TextIconSpacing } from "../TextIconSpacing";
 
 describe("TextIconSpacing", () => {
   it("should be able to render without any children or icon even though it's worthless", () => {

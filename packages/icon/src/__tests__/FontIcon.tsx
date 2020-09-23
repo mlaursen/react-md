@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import FontIcon from "../FontIcon";
+import { FontIcon } from "../FontIcon";
 
 describe("FontIcon", () => {
   it("should render as an <i> element", () => {

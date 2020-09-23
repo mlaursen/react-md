@@ -1,11 +1,10 @@
+import { IncrementMovementKey, JumpMovementKey, KeyConfig } from "../types";
 import {
   getItemId,
   getKeyboardConfig,
   getStringifiedKeyConfig,
   transformKeys,
 } from "../utils";
-
-import { IncrementMovementKey, JumpMovementKey, KeyConfig } from "../types";
 
 describe("getItemId", () => {
   it("should return a list with the base id concatenated with the index + 1 since DOM nodes should normally start at 1 instead of 0", () => {

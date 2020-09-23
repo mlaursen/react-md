@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
 import { render } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react-hooks";
 import { mocked } from "ts-jest/utils";
 
-import useInterval from "../useInterval";
+import { useInterval } from "../useInterval";
 
 jest.useFakeTimers();
 const setInterval = mocked(window.setInterval);

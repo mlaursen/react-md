@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import CardHeader from "../CardHeader";
+import { CardHeader } from "../CardHeader";
 
 describe("CardHeader", () => {
   it("should render correctly", () => {

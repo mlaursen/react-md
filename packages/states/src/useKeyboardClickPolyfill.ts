@@ -32,9 +32,7 @@ interface Options<E extends HTMLElement> {
  * This small utility function will create an onKeyDown handler that allows the
  * user to "click" an element with the keyboard via Enter or Space.
  */
-export default function useKeyboardClickPolyfill<
-  E extends HTMLElement = HTMLElement
->({
+export function useKeyboardClickPolyfill<E extends HTMLElement = HTMLElement>({
   onKeyDown,
   disabled = false,
   disableEnterClick = false,

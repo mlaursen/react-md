@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export default forwardRef<SVGSVGElement, SVGIconProps>(function StopSVGIcon(
-  props,
-  ref
-) {
-  return (
-    <SVGIcon {...props} ref={ref}>
-      <path d="M6 6h12v12H6z" />
-    </SVGIcon>
-  );
-});
+export const StopSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+  function StopSVGIcon(props, ref) {
+    return (
+      <SVGIcon {...props} ref={ref}>
+        <path d="M6 6h12v12H6z" />
+      </SVGIcon>
+    );
+  }
+);

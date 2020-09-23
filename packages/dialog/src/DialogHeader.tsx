@@ -12,7 +12,7 @@ const block = bem("rmd-dialog");
  * "fixed" to the top of the dialog while the content scrolls. It also applies
  * some minimal padding.
  */
-const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
+export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
   function DialogHeader({ children, className, ...props }, ref) {
     return (
       <header {...props} ref={ref} className={cn(block("header"), className)}>
@@ -32,5 +32,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default DialogHeader;

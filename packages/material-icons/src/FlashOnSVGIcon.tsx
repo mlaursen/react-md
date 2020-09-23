@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export default forwardRef<SVGSVGElement, SVGIconProps>(function FlashOnSVGIcon(
-  props,
-  ref
-) {
-  return (
-    <SVGIcon {...props} ref={ref}>
-      <path d="M7 2v11h3v9l7-12h-4l4-8z" />
-    </SVGIcon>
-  );
-});
+export const FlashOnSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+  function FlashOnSVGIcon(props, ref) {
+    return (
+      <SVGIcon {...props} ref={ref}>
+        <path d="M7 2v11h3v9l7-12h-4l4-8z" />
+      </SVGIcon>
+    );
+  }
+);

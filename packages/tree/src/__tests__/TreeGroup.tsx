@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import TreeGroup from "../TreeGroup";
+import { TreeGroup } from "../TreeGroup";
 
 describe("TreeGroup", () => {
   it("should render correctly", () => {

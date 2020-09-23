@@ -1,18 +1,18 @@
 import {
-  TransitionStage,
   ENTER,
-  ENTERING,
   ENTERED,
+  ENTERING,
   EXIT,
-  EXITING,
   EXITED,
+  EXITING,
+  TransitionStage,
 } from "./constants";
 
 /**
  *
  * @private
  */
-export default function getNextStage(stage: TransitionStage): TransitionStage {
+export function getNextStage(stage: TransitionStage): TransitionStage {
   switch (stage) {
     case ENTER:
       return ENTERING;

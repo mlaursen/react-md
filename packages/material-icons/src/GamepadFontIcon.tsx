@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function GamepadFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      gamepad
-    </FontIcon>
-  );
-});
+export const GamepadFont = forwardRef<HTMLElement, FontIconProps>(
+  function GamepadFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        gamepad
+      </FontIcon>
+    );
+  }
+);

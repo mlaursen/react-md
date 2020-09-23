@@ -8,7 +8,7 @@
  * `'-'` to generate the full id.
  * @private
  */
-export default function getTreeItemId(
+export function getTreeItemId(
   treeId: string,
   index: number,
   parentIndexes: readonly number[] = []

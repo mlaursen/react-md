@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(
+export const TabUnselectedFont = forwardRef<HTMLElement, FontIconProps>(
   function TabUnselectedFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

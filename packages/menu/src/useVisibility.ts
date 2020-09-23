@@ -29,7 +29,7 @@ interface ReturnValue {
  *
  * @private
  */
-export default function useVisibility({
+export function useVisibility({
   defaultVisible = false,
   defaultFocus: defaultFocusValue = "first",
   onVisibilityChange,

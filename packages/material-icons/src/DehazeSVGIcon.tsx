@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export default forwardRef<SVGSVGElement, SVGIconProps>(function DehazeSVGIcon(
-  props,
-  ref
-) {
-  return (
-    <SVGIcon {...props} ref={ref}>
-      <path d="M2 15.5v2h20v-2H2zm0-5v2h20v-2H2zm0-5v2h20v-2H2z" />
-    </SVGIcon>
-  );
-});
+export const DehazeSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+  function DehazeSVGIcon(props, ref) {
+    return (
+      <SVGIcon {...props} ref={ref}>
+        <path d="M2 15.5v2h20v-2H2zm0-5v2h20v-2H2zm0-5v2h20v-2H2z" />
+      </SVGIcon>
+    );
+  }
+);

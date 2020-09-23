@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function HttpsFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      https
-    </FontIcon>
-  );
-});
+export const HttpsFont = forwardRef<HTMLElement, FontIconProps>(
+  function HttpsFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        https
+      </FontIcon>
+    );
+  }
+);

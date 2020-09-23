@@ -1,8 +1,8 @@
 import React from "react";
 import { render, waitFor } from "@testing-library/react";
 
-import Dialog from "../Dialog";
-import DialogContent from "../DialogContent";
+import { Dialog } from "../Dialog";
+import { DialogContent } from "../DialogContent";
 
 describe("Dialog", () => {
   it("should render correctly (with snapshots)", () => {

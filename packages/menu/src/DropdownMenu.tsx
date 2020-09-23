@@ -2,16 +2,18 @@ import React, { forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 
-import defaultMenuItemRenderer, {
+import {
+  defaultMenuItemRenderer,
   MenuItemRenderer,
   ValidMenuItem,
 } from "./defaultMenuItemRenderer";
-import defaultMenuRenderer, {
+import {
+  defaultMenuRenderer,
   MenuPositionProps,
   MenuRenderer,
 } from "./defaultMenuRenderer";
-import MenuButton, { MenuButtonProps } from "./MenuButton";
-import useButtonVisibility from "./useButtonVisibility";
+import { MenuButton, MenuButtonProps } from "./MenuButton";
+import { useButtonVisibility } from "./useButtonVisibility";
 
 export interface BaseDropdownMenuProps
   extends MenuPositionProps,
@@ -71,7 +73,7 @@ export interface DropdownMenuProps
   extends Omit<MenuButtonProps, "id" | "visible" | "aria-haspopup">,
     BaseDropdownMenuProps {}
 
-const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
+export const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
   function DropdownMenu(
     {
       onClick: propOnClick,
@@ -219,5 +221,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default DropdownMenu;

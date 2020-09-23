@@ -1,9 +1,9 @@
-import createHorizontalPosition from "./createHorizontalPosition";
-import createVerticalPosition from "./createVerticalPosition";
-import findSizingContainer from "./findSizingContainer";
-import getElementRect from "./getElementRect";
-import getTransformOrigin from "./getTransformOrigin";
-import getViewportSize from "./getViewportSize";
+import { createHorizontalPosition } from "./createHorizontalPosition";
+import { createVerticalPosition } from "./createVerticalPosition";
+import { findSizingContainer } from "./findSizingContainer";
+import { getElementRect } from "./getElementRect";
+import { getTransformOrigin } from "./getTransformOrigin";
+import { getViewportSize } from "./getViewportSize";
 import { FixedPosition, FixedPositionOptions } from "./types";
 
 /**
@@ -37,7 +37,7 @@ import { FixedPosition, FixedPositionOptions } from "./types";
  * try to swap only to a `right` style instead of left to see if that fixes it,
  * otherwise keep both the `left` and `right` styles.
  */
-export default function getFixedPosition({
+export function getFixedPosition({
   container,
   element,
   anchor: propAnchor = {},

@@ -36,7 +36,7 @@ const block = bem("rmd-list");
  * should be used with the `ListItem`, `ListItemLink`, and `SimpleListItem`
  * components.
  */
-const List = forwardRef<ListElement, ListProps>(function List(
+export const List = forwardRef<ListElement, ListProps>(function List(
   {
     role = "none",
     dense = false,
@@ -76,5 +76,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default List;

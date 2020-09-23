@@ -1,7 +1,7 @@
 import React from "react";
 import { render, waitFor } from "@testing-library/react";
 
-import Sheet from "../Sheet";
+import { Sheet } from "../Sheet";
 
 const PROPS = {
   id: "sheet",

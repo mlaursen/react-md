@@ -1,5 +1,6 @@
 import { MutableRefObject, useEffect } from "react";
-import containsElement from "./containsElement";
+
+import { containsElement } from "./containsElement";
 
 /**
  * Gets the HTMLElement or null from a provided RefObject or HTMLElement/null
@@ -68,7 +69,7 @@ export interface CloseOnOutsideClickOptions<E extends HTMLElement> {
  *
  * @typeparam E The type of element
  */
-export default function useCloseOnOutsideClick<E extends HTMLElement>({
+export function useCloseOnOutsideClick<E extends HTMLElement>({
   enabled,
   element,
   onOutsideClick,

@@ -217,7 +217,7 @@ const block = bem("rmd-typography");
  * NOTE: if the `component` prop is not `null`, this logic will be ignored and
  * the provided `component` will be used instead.
  */
-const Text = forwardRef<TextElement, TextProps>(function Text(
+export const Text = forwardRef<TextElement, TextProps>(function Text(
   {
     className: propClassName,
     children,
@@ -314,5 +314,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Text;

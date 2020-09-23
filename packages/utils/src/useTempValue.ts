@@ -20,7 +20,7 @@ type ReturnValue<T> = [CurrentValueRef<T>, SetValue<T>, ResetValue];
  * @param resetTime The amount of time before the value is reset back to the
  * default value
  */
-export default function useTempValue<T>(
+export function useTempValue<T>(
   defaultValue: T,
   resetTime: number = 500
 ): ReturnValue<T> {

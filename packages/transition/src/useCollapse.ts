@@ -1,21 +1,21 @@
-import { CSSProperties, useState, useMemo } from "react";
+import { CSSProperties, useMemo, useState } from "react";
 import cn from "classnames";
 
 import {
+  COLLAPSE_TIMEOUT,
   DEFAULT_COLLAPSE_MIN_HEIGHT,
   DEFAULT_COLLAPSE_MIN_PADDING_BOTTOM,
   DEFAULT_COLLAPSE_MIN_PADDING_TOP,
-  COLLAPSE_TIMEOUT,
+  ENTER,
   ENTERING,
+  EXIT,
   EXITED,
   EXITING,
-  ENTER,
-  EXIT,
 } from "./constants";
-import getElementSizing from "./getElementSizing";
-import getTimeout from "./getTimeout";
+import { getElementSizing } from "./getElementSizing";
+import { getTimeout } from "./getTimeout";
 import { CollapseOptions, CollapseTransitionProvidedProps } from "./types";
-import useTransition from "./useTransition";
+import { useTransition } from "./useTransition";
 
 type Rendered = boolean;
 type ReturnValue<E extends HTMLElement> = [
@@ -65,7 +65,7 @@ type ReturnValue<E extends HTMLElement> = [
  * rendered in the DOM followed by an object of props to pass to the collapsible
  * element to handle the transition.
  */
-export default function useCollapse<E extends HTMLElement = HTMLDivElement>(
+export function useCollapse<E extends HTMLElement = HTMLDivElement>(
   collapsed: boolean,
   {
     className,

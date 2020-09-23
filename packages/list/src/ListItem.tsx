@@ -4,9 +4,9 @@ import {
   useInteractionStates,
 } from "@react-md/states";
 
-import getListItemHeight, { SimpleListItemProps } from "./getListItemHeight";
-import ListItemChildren from "./ListItemChildren";
-import SimpleListItem from "./SimpleListItem";
+import { getListItemHeight, SimpleListItemProps } from "./getListItemHeight";
+import { ListItemChildren } from "./ListItemChildren";
+import { SimpleListItem } from "./SimpleListItem";
 
 export interface ListItemProps
   extends SimpleListItemProps,
@@ -21,93 +21,95 @@ export interface ListItemProps
  * The `ListItem` creates a clickable and focusable `<li>` within a `List` that
  * can optionally render addons to the left and right of the `children` or text.
  */
-const ListItem = forwardRef<HTMLLIElement, ListItemProps>(function ListItem(
-  {
-    className: propClassName,
-    textClassName,
-    secondaryTextClassName,
-    textChildren = true,
-    primaryText,
-    secondaryText,
-    children,
-    leftAddon,
-    leftAddonType = "icon",
-    leftAddonPosition = "middle",
-    rightAddon,
-    rightAddonType = "icon",
-    rightAddonPosition = "middle",
-    forceAddonWrap,
-    height: propHeight = "auto",
-    disableSpacebarClick = false,
-    disableRipple = false,
-    disableProgrammaticRipple = false,
-    disablePressedFallback = false,
-    rippleTimeout,
-    rippleClassNames,
-    rippleClassName,
-    rippleContainerClassName,
-    role = "button",
-    tabIndex = 0,
-    ...props
-  },
-  ref
-) {
-  const { disabled } = props;
+export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
+  function ListItem(
+    {
+      className: propClassName,
+      textClassName,
+      secondaryTextClassName,
+      textChildren = true,
+      primaryText,
+      secondaryText,
+      children,
+      leftAddon,
+      leftAddonType = "icon",
+      leftAddonPosition = "middle",
+      rightAddon,
+      rightAddonType = "icon",
+      rightAddonPosition = "middle",
+      forceAddonWrap,
+      height: propHeight = "auto",
+      disableSpacebarClick = false,
+      disableRipple = false,
+      disableProgrammaticRipple = false,
+      disablePressedFallback = false,
+      rippleTimeout,
+      rippleClassNames,
+      rippleClassName,
+      rippleContainerClassName,
+      role = "button",
+      tabIndex = 0,
+      ...props
+    },
+    ref
+  ) {
+    const { disabled } = props;
 
-  const { ripples, className, handlers } = useInteractionStates({
-    className: propClassName,
-    handlers: props,
-    disabled,
-    disableRipple,
-    disableProgrammaticRipple,
-    rippleTimeout,
-    rippleClassNames,
-    rippleClassName,
-    rippleContainerClassName,
-    disableSpacebarClick,
-    disablePressedFallback,
-  });
+    const { ripples, className, handlers } = useInteractionStates({
+      className: propClassName,
+      handlers: props,
+      disabled,
+      disableRipple,
+      disableProgrammaticRipple,
+      rippleTimeout,
+      rippleClassNames,
+      rippleClassName,
+      rippleContainerClassName,
+      disableSpacebarClick,
+      disablePressedFallback,
+    });
 
-  const height = getListItemHeight({
-    height: propHeight,
-    leftAddon,
-    leftAddonType,
-    rightAddon,
-    rightAddonType,
-    secondaryText,
-  });
+    const height = getListItemHeight({
+      height: propHeight,
+      leftAddon,
+      leftAddonType,
+      rightAddon,
+      rightAddonType,
+      secondaryText,
+    });
 
-  return (
-    <SimpleListItem
-      {...props}
-      {...handlers}
-      ref={ref}
-      tabIndex={tabIndex}
-      role={role}
-      className={className}
-      clickable
-      height={height}
-    >
-      <ListItemChildren
-        textClassName={textClassName}
-        secondaryTextClassName={secondaryTextClassName}
-        textChildren={textChildren}
-        primaryText={primaryText}
-        secondaryText={secondaryText}
-        leftAddon={leftAddon}
-        leftAddonType={leftAddonType}
-        leftAddonPosition={leftAddonPosition}
-        rightAddon={rightAddon}
-        rightAddonType={rightAddonType}
-        rightAddonPosition={rightAddonPosition}
-        forceAddonWrap={forceAddonWrap}
+    return (
+      <SimpleListItem
+        {...props}
+        {...handlers}
+        ref={ref}
+        tabIndex={tabIndex}
+        role={role}
+        className={className}
+        clickable
+        height={height}
       >
-        {children}
-      </ListItemChildren>
-      {ripples}
-    </SimpleListItem>
-  );
-});
+        <ListItemChildren
+          textClassName={textClassName}
+          secondaryTextClassName={secondaryTextClassName}
+          textChildren={textChildren}
+          primaryText={primaryText}
+          secondaryText={secondaryText}
+          leftAddon={leftAddon}
+          leftAddonType={leftAddonType}
+          leftAddonPosition={leftAddonPosition}
+          rightAddon={rightAddon}
+          rightAddonType={rightAddonType}
+          rightAddonPosition={rightAddonPosition}
+          forceAddonWrap={forceAddonWrap}
+        >
+          {children}
+        </ListItemChildren>
+        {ripples}
+      </SimpleListItem>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -179,5 +181,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ListItem;

@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import AppBarTitle from "../AppBarTitle";
+import { AppBarTitle } from "../AppBarTitle";
 
 describe("AppBarTitle", () => {
   it("should render as an h6", () => {

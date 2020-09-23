@@ -1,13 +1,13 @@
-import { VerticalPosition, FixedPositionOptions } from "./types";
 import {
-  YCoordConfig,
   getAboveCoord,
   getBelowCoord,
-  getTopCoord,
   getBottomCoord,
   getCenterYCoord,
+  getTopCoord,
+  YCoordConfig,
 } from "./getCoord";
-import getViewportSize from "./getViewportSize";
+import { getViewportSize } from "./getViewportSize";
+import { FixedPositionOptions, VerticalPosition } from "./types";
 
 /**
  * @private
@@ -265,7 +265,7 @@ export function createAnchoredBelow(config: FixConfig): YPosition {
  *
  * @private
  */
-export default function createVerticalPosition({
+export function createVerticalPosition({
   y,
   vh,
   vhMargin,

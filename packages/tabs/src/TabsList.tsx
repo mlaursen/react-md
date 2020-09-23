@@ -13,10 +13,11 @@ import cn from "classnames";
 import { applyRef, bem, useIsUserInteractionMode } from "@react-md/utils";
 
 import { TabsConfig } from "./types";
-import useTabIndicatorStyle, {
+import {
   UpdateIndicatorStylesProvider,
+  useTabIndicatorStyle,
 } from "./useTabIndicatorStyle";
-import useTabsMovement from "./useTabsMovement";
+import { useTabsMovement } from "./useTabsMovement";
 
 export interface TabsListProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -52,113 +53,115 @@ const block = bem("rmd-tabs");
  * This should probably not be used outside of this package unless a custom
  * implementation is desired.
  */
-const TabsList = forwardRef<HTMLDivElement, TabsListProps>(function TabsList(
-  {
-    style,
-    className,
-    onClick,
-    onKeyDown,
-    children,
-    activeIndex,
-    align = "left",
-    automatic = false,
-    padded = false,
-    orientation = "horizontal",
-    onActiveIndexChange,
-    disableTransition = false,
-    ...props
-  },
-  forwardedRef
-) {
-  const horizontal = orientation === "horizontal";
-  const { tabs, itemRefs, handleClick, handleKeyDown } = useTabsMovement({
-    onClick,
-    onKeyDown,
-    children,
-    horizontal,
-    activeIndex,
-    onActiveIndexChange,
-    automatic,
-  });
-  const [
-    mergedStyle,
-    tabsRefHandler,
-    tabsRef,
-    updateIndicatorStyles,
-  ] = useTabIndicatorStyle({
-    style,
-    ref: forwardedRef,
-    align,
-    itemRefs,
-    totalTabs: tabs.length,
-    activeIndex,
-  });
-  const isKeyboard = useIsUserInteractionMode("keyboard");
+export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
+  function TabsList(
+    {
+      style,
+      className,
+      onClick,
+      onKeyDown,
+      children,
+      activeIndex,
+      align = "left",
+      automatic = false,
+      padded = false,
+      orientation = "horizontal",
+      onActiveIndexChange,
+      disableTransition = false,
+      ...props
+    },
+    forwardedRef
+  ) {
+    const horizontal = orientation === "horizontal";
+    const { tabs, itemRefs, handleClick, handleKeyDown } = useTabsMovement({
+      onClick,
+      onKeyDown,
+      children,
+      horizontal,
+      activeIndex,
+      onActiveIndexChange,
+      automatic,
+    });
+    const [
+      mergedStyle,
+      tabsRefHandler,
+      tabsRef,
+      updateIndicatorStyles,
+    ] = useTabIndicatorStyle({
+      style,
+      ref: forwardedRef,
+      align,
+      itemRefs,
+      totalTabs: tabs.length,
+      activeIndex,
+    });
+    const isKeyboard = useIsUserInteractionMode("keyboard");
 
-  const prevActiveIndex = useRef(activeIndex);
-  useEffect(() => {
-    const tabs = tabsRef.current;
-    const tabRef = itemRefs[activeIndex] && itemRefs[activeIndex].current;
-    const incrementing = prevActiveIndex.current < activeIndex;
-    prevActiveIndex.current = activeIndex;
-    if (!tabs || !tabRef) {
-      return;
-    }
+    const prevActiveIndex = useRef(activeIndex);
+    useEffect(() => {
+      const tabs = tabsRef.current;
+      const tabRef = itemRefs[activeIndex] && itemRefs[activeIndex].current;
+      const incrementing = prevActiveIndex.current < activeIndex;
+      prevActiveIndex.current = activeIndex;
+      if (!tabs || !tabRef) {
+        return;
+      }
 
-    const currentX = tabs.scrollLeft + tabs.offsetWidth;
-    const tabLeft = tabRef.offsetLeft;
-    const tabWidth = tabRef.offsetWidth;
-    if (incrementing && currentX < tabLeft + tabWidth) {
-      tabs.scrollLeft = tabLeft - tabWidth;
-    } else if (!incrementing && tabs.scrollLeft > tabLeft) {
-      tabs.scrollLeft = tabLeft;
-    }
+      const currentX = tabs.scrollLeft + tabs.offsetWidth;
+      const tabLeft = tabRef.offsetLeft;
+      const tabWidth = tabRef.offsetWidth;
+      if (incrementing && currentX < tabLeft + tabWidth) {
+        tabs.scrollLeft = tabLeft - tabWidth;
+      } else if (!incrementing && tabs.scrollLeft > tabLeft) {
+        tabs.scrollLeft = tabLeft;
+      }
 
-    // don't want this to trigger on itemRefs or tabsRef changes since those
-    // have a chance of updating each render.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex]);
+      // don't want this to trigger on itemRefs or tabsRef changes since those
+      // have a chance of updating each render.
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeIndex]);
 
-  return (
-    <UpdateIndicatorStylesProvider value={updateIndicatorStyles}>
-      <div
-        {...props}
-        aria-orientation={orientation}
-        style={mergedStyle}
-        role="tablist"
-        className={cn(
-          block({
-            [align]: true,
-            padded,
-            vertical: !horizontal,
-            animate: !disableTransition && (!automatic || !isKeyboard),
-          }),
-          className
-        )}
-        ref={tabsRefHandler}
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
-      >
-        {Children.map(tabs, (child, i) => {
-          if (!isValidElement(child)) {
-            return child;
-          }
+    return (
+      <UpdateIndicatorStylesProvider value={updateIndicatorStyles}>
+        <div
+          {...props}
+          aria-orientation={orientation}
+          style={mergedStyle}
+          role="tablist"
+          className={cn(
+            block({
+              [align]: true,
+              padded,
+              vertical: !horizontal,
+              animate: !disableTransition && (!automatic || !isKeyboard),
+            }),
+            className
+          )}
+          ref={tabsRefHandler}
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
+        >
+          {Children.map(tabs, (child, i) => {
+            if (!isValidElement(child)) {
+              return child;
+            }
 
-          const tab = Children.only(child);
-          let ref: Ref<HTMLElement> = itemRefs[i];
-          if (tab.props.ref) {
-            ref = (instance: HTMLElement | null) => {
-              itemRefs[i].current = instance;
-              applyRef(instance, tab.props.ref);
-            };
-          }
+            const tab = Children.only(child);
+            let ref: Ref<HTMLElement> = itemRefs[i];
+            if (tab.props.ref) {
+              ref = (instance: HTMLElement | null) => {
+                itemRefs[i].current = instance;
+                applyRef(instance, tab.props.ref);
+              };
+            }
 
-          return cloneElement(tab, { ref });
-        })}
-      </div>
-    </UpdateIndicatorStylesProvider>
-  );
-});
+            return cloneElement(tab, { ref });
+          })}
+        </div>
+      </UpdateIndicatorStylesProvider>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -180,5 +183,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TabsList;

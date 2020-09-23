@@ -16,7 +16,7 @@ const block = bem("rmd-text-field-addon");
  * This component is used to add an an icon before or after the text field with
  * correct styling.
  */
-const TextFieldAddon = forwardRef<HTMLSpanElement, TextFieldAddonProps>(
+export const TextFieldAddon = forwardRef<HTMLSpanElement, TextFieldAddonProps>(
   function TextFieldAddon(
     { children, className, presentational = true, ...props },
     ref
@@ -48,5 +48,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TextFieldAddon;

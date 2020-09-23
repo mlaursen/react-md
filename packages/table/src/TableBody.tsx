@@ -1,5 +1,6 @@
 import React, { forwardRef, HTMLAttributes, useMemo } from "react";
 import cn from "classnames";
+
 import { TableConfig, TableConfigProvider, useTableConfig } from "./config";
 
 export interface TableBodyProps
@@ -10,7 +11,7 @@ export interface TableBodyProps
  * Creates a `<tbody>` element that also allows for overriding all the child
  * `TableCell` components with additional styling behavior.
  */
-const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
+export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
   function TableBody(
     {
       className,
@@ -79,5 +80,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TableBody;

@@ -1,5 +1,5 @@
 import { MutableRefObject } from "react";
-import { usePreviousFocus, useFocusOnMount } from "@react-md/utils";
+import { useFocusOnMount, usePreviousFocus } from "@react-md/utils";
 
 export interface MenuEventsProps {
   menuRef: MutableRefObject<HTMLDivElement | null>;
@@ -13,7 +13,7 @@ export interface MenuEventsProps {
  * unmount.
  * @private
  */
-export default function MenuEvents({
+export function MenuEvents({
   menuRef,
   cancelled,
   defaultFocus,

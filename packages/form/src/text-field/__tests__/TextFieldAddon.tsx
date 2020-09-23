@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import TextFieldAddon from "../TextFieldAddon";
+import { TextFieldAddon } from "../TextFieldAddon";
 
 describe("TextFieldAddon", () => {
   it("should render as null when there are no children", () => {

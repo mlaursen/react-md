@@ -164,7 +164,7 @@ export const warnedOnce = {
  * @param options The resize observer options.
  * @deprecated 2.3.0 Use the new ref API instead
  */
-export default function useResizeObserverV1<E extends HTMLElement>({
+export function useResizeObserverV1<E extends HTMLElement>({
   disableHeight = false,
   disableWidth = false,
   onResize,

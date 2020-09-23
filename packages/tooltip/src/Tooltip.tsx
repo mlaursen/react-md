@@ -115,61 +115,63 @@ const block = bem("rmd-tooltip");
  * will need to manually add all the event listeners and triggers to change the
  * `visible` prop.
  */
-const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(function Tooltip(
-  {
-    className,
-    classNames = DEFAULT_TOOLTIP_CLASSNAMES,
-    visible,
-    timeout = DEFAULT_TOOLTIP_TIMEOUT,
-    dense = false,
-    lineWrap = true,
-    position = "below",
-    children,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    mountOnEnter = true,
-    unmountOnExit = true,
-    ...props
-  },
-  ref
-) {
-  return (
-    <CSSTransition
-      classNames={classNames}
-      in={visible}
-      timeout={timeout}
-      onEnter={onEnter}
-      onEntering={onEntering}
-      onEntered={onEntered}
-      onExit={onExit}
-      onExiting={onExiting}
-      onExited={onExited}
-      mountOnEnter={mountOnEnter}
-      unmountOnExit={unmountOnExit}
-    >
-      <span
-        {...props}
-        ref={ref}
-        role="tooltip"
-        className={cn(
-          block({
-            dense,
-            "line-wrap": lineWrap,
-            "dense-line-wrap": dense && lineWrap,
-            [position]: true,
-          }),
-          className
-        )}
+export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
+  function Tooltip(
+    {
+      className,
+      classNames = DEFAULT_TOOLTIP_CLASSNAMES,
+      visible,
+      timeout = DEFAULT_TOOLTIP_TIMEOUT,
+      dense = false,
+      lineWrap = true,
+      position = "below",
+      children,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      mountOnEnter = true,
+      unmountOnExit = true,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <CSSTransition
+        classNames={classNames}
+        in={visible}
+        timeout={timeout}
+        onEnter={onEnter}
+        onEntering={onEntering}
+        onEntered={onEntered}
+        onExit={onExit}
+        onExiting={onExiting}
+        onExited={onExited}
+        mountOnEnter={mountOnEnter}
+        unmountOnExit={unmountOnExit}
       >
-        {children}
-      </span>
-    </CSSTransition>
-  );
-});
+        <span
+          {...props}
+          ref={ref}
+          role="tooltip"
+          className={cn(
+            block({
+              dense,
+              "line-wrap": lineWrap,
+              "dense-line-wrap": dense && lineWrap,
+              [position]: true,
+            }),
+            className
+          )}
+        >
+          {children}
+        </span>
+      </CSSTransition>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -215,5 +217,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Tooltip;

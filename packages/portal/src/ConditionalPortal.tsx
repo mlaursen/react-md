@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 
 import { PortalInto } from "./getContainer";
-import Portal from "./Portal";
+import { Portal } from "./Portal";
 
 /**
  * If any of these props are defined on a component, the component will render
@@ -36,7 +36,7 @@ export interface ConditionalPortalProps extends RenderConditionalPortalProps {
  * to conditionally render the children within a portal or not based on general
  * portal config props.
  */
-export default function ConditionalPortal({
+export function ConditionalPortal({
   portal,
   portalInto,
   portalIntoId,

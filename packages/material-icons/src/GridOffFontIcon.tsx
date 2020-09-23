@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function GridOffFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      grid_off
-    </FontIcon>
-  );
-});
+export const GridOffFont = forwardRef<HTMLElement, FontIconProps>(
+  function GridOffFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        grid_off
+      </FontIcon>
+    );
+  }
+);

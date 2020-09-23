@@ -29,21 +29,32 @@ export interface DividerProps extends HTMLAttributes<DividerElement> {
 
 const block = bem("rmd-divider");
 
-const Divider = forwardRef<DividerElement, DividerProps>(function Divider(
-  { inset = false, vertical = false, role = "separator", className, ...props },
-  ref
-) {
-  const Component = (vertical ? "div" : "hr") as ElementType;
+export const Divider = forwardRef<DividerElement, DividerProps>(
+  function Divider(
+    {
+      inset = false,
+      vertical = false,
+      role = "separator",
+      className,
+      ...props
+    },
+    ref
+  ) {
+    const Component = (vertical ? "div" : "hr") as ElementType;
 
-  return (
-    <Component
-      {...props}
-      ref={ref}
-      role={role}
-      className={cn(block({ inset: !vertical && inset, vertical }), className)}
-    />
-  );
-});
+    return (
+      <Component
+        {...props}
+        ref={ref}
+        role={role}
+        className={cn(
+          block({ inset: !vertical && inset, vertical }),
+          className
+        )}
+      />
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -57,5 +68,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Divider;

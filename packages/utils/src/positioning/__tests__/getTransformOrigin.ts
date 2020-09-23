@@ -1,4 +1,4 @@
-import getTransformOrigin from "../getTransformOrigin";
+import { getTransformOrigin } from "../getTransformOrigin";
 
 const TOP_LEFT = "0 0";
 const TOP_CENTER = "50% 0";

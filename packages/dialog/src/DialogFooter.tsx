@@ -19,7 +19,7 @@ export interface DialogFooterProps extends HTMLAttributes<HTMLDivElement> {
 
 const block = bem("rmd-dialog");
 
-const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
+export const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
   function DialogFooter({ children, className, align = "end", ...props }, ref) {
     return (
       <footer
@@ -57,5 +57,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default DialogFooter;

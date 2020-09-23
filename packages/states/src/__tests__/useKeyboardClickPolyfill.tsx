@@ -1,8 +1,8 @@
 import React, { FC, Ref } from "react";
-import { renderHook } from "@testing-library/react-hooks";
 import { fireEvent, render } from "@testing-library/react";
+import { renderHook } from "@testing-library/react-hooks";
 
-import useKeyboardClickPolyfill from "../useKeyboardClickPolyfill";
+import { useKeyboardClickPolyfill } from "../useKeyboardClickPolyfill";
 
 interface Props {
   disabled?: boolean;

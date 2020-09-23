@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Chip from "../Chip";
+import { Chip } from "../Chip";
 
 const getIcon = () => document.querySelector(".rmd-chip__selected-icon");
 

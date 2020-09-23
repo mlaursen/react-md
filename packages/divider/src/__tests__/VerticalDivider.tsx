@@ -1,8 +1,8 @@
 import React from "react";
+import { act, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
-import { render, act } from "@testing-library/react";
 
-import VerticalDivider, { useVerticalDividerHeight } from "../VerticalDivider";
+import { useVerticalDividerHeight, VerticalDivider } from "../VerticalDivider";
 
 describe("VerticalDivider", () => {
   it("should render as a div with the vertical divider class names", () => {

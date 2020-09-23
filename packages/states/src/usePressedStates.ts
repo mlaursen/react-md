@@ -26,7 +26,7 @@ interface ReturnValue<E extends HTMLElement> {
  * NOTE: Unlike the ripple effect, this pressed states will not be triggered
  * from a programmatic click event.
  */
-export default function usePressedStates<E extends HTMLElement = HTMLElement>({
+export function usePressedStates<E extends HTMLElement = HTMLElement>({
   handlers = {},
   disableSpacebarClick = false,
 }: PressedStatesOptions<E> = {}): ReturnValue<E> {

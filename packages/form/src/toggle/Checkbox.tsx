@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
 
-import InputToggle, { InputToggleProps } from "./InputToggle";
+import { InputToggle, InputToggleProps } from "./InputToggle";
 
 export interface CheckboxProps extends InputToggleProps {
   /**
@@ -23,22 +23,21 @@ export interface CheckboxProps extends InputToggleProps {
  * The `Checkbox` component is just a wrapper for the `InputToggle` that
  * defaults to reasonable defaults for a checkbox input.
  */
-const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
-  { icon: propIcon, indeterminate = false, ...props },
-  ref
-) {
-  const icon = useIcon("checkbox", propIcon);
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  function Checkbox({ icon: propIcon, indeterminate = false, ...props }, ref) {
+    const icon = useIcon("checkbox", propIcon);
 
-  return (
-    <InputToggle
-      {...props}
-      icon={icon}
-      ref={ref}
-      type="checkbox"
-      indeterminate={indeterminate}
-    />
-  );
-});
+    return (
+      <InputToggle
+        {...props}
+        icon={icon}
+        ref={ref}
+        type="checkbox"
+        indeterminate={indeterminate}
+      />
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -50,5 +49,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Checkbox;

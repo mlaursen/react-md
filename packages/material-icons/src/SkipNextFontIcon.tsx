@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function SkipNextFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      skip_next
-    </FontIcon>
-  );
-});
+export const SkipNextFont = forwardRef<HTMLElement, FontIconProps>(
+  function SkipNextFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        skip_next
+      </FontIcon>
+    );
+  }
+);

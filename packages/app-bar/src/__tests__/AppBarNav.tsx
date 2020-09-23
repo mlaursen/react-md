@@ -1,8 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import AppBarNav from "../AppBarNav";
-import AppBar from "../AppBar";
+import { AppBarNav } from "../AppBarNav";
+import { AppBar } from "../AppBar";
 
 describe("AppBarNav", () => {
   it("should default to rendering as a clear icon button", () => {

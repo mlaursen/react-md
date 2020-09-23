@@ -1,5 +1,6 @@
 import { createElement } from "react";
-import { getOptionId, getOptionLabel, getDisplayLabel } from "../utils";
+
+import { getDisplayLabel, getOptionId, getOptionLabel } from "../utils";
 
 describe("getOptionId", () => {
   it("should return the correct id starting from 1 instead of 0", () => {

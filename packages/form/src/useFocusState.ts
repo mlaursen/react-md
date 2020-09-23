@@ -1,4 +1,4 @@
-import { useCallback, HTMLAttributes } from "react";
+import { HTMLAttributes, useCallback } from "react";
 import { useToggle } from "@react-md/utils";
 
 type FocusElement =
@@ -15,7 +15,7 @@ type Options = Pick<HTMLAttributes<FocusElement>, "onBlur" | "onFocus">;
 /**
  * @private
  */
-export default function useFocusState({
+export function useFocusState({
   onFocus,
   onBlur,
 }: Options): [boolean, FocusEventHandler, BlurEventHandler] {

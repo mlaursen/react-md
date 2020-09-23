@@ -13,7 +13,7 @@ const removeWhitespace = (s: string): string => s.replace(/\s/g, "");
  * checked for font icons which _might_ be a slight performance boost if you are
  * guarenteed to not use font icons
  */
-export default function extractTextContent(
+export function extractTextContent(
   stringOrElement: HTMLElement | string,
   fontIconQuerySelector: string = ".rmd-icon--font"
 ): string {

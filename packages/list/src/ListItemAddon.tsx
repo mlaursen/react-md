@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from "react";
+import cn from "classnames";
 import { TextIconSpacing, TextIconSpacingProps } from "@react-md/icon";
 import { bem } from "@react-md/utils";
-import cn from "classnames";
 
 export type ListItemAddonPosition = "top" | "middle" | "bottom";
 export type ListItemAddonType = "icon" | "avatar" | "media" | "large-media";
@@ -42,7 +42,7 @@ const base = bem("rmd-list-item");
  * The `ListItemAddon` is used to create an addon to the left or right of the
  * text/children of a `ListItem`.
  */
-export default function ListItemAddon({
+export function ListItemAddon({
   className,
   children,
   addon,

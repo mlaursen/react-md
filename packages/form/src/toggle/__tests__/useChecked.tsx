@@ -1,7 +1,7 @@
-import React, { Dispatch, SetStateAction, MutableRefObject, FC } from "react";
-import { render, fireEvent, act } from "@testing-library/react";
+import React, { Dispatch, FC, MutableRefObject, SetStateAction } from "react";
+import { act, fireEvent, render } from "@testing-library/react";
 
-import useChecked from "../useChecked";
+import { useChecked } from "../useChecked";
 
 type SetChecked = Dispatch<SetStateAction<boolean>>;
 const result: MutableRefObject<SetChecked | undefined> = { current: undefined };

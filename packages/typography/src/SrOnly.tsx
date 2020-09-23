@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import Text, { TextElement, TextProps } from "./Text";
+import { Text, TextElement, TextProps } from "./Text";
 
 export interface SrOnlyProps extends TextProps {
   /**
@@ -20,7 +20,7 @@ const block = bem("rmd-sr-only");
  * If you enable the `focusable` prop, the text will become visible to all users
  * while focused.
  */
-const SrOnly = forwardRef<TextElement, SrOnlyProps>(function SrOnly(
+export const SrOnly = forwardRef<TextElement, SrOnlyProps>(function SrOnly(
   {
     className,
     children,
@@ -66,5 +66,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default SrOnly;

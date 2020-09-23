@@ -11,7 +11,7 @@
  * @param minmax Boolean if the loop functionality should be replaced with
  * min-max behavior instead of allowing looping
  */
-export default function loop(
+export function loop(
   x: number,
   max: number,
   increment: boolean,

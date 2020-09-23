@@ -10,7 +10,7 @@ import { PositionAnchor } from "./types";
  * @return the transform origin string
  * @private
  */
-export default function getTransformOrigin(anchor: PositionAnchor): string {
+export function getTransformOrigin(anchor: PositionAnchor): string {
   let x = "0";
   switch (anchor.x) {
     case "right":

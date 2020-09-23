@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 
-import Listbox from "../Listbox";
+import { Listbox } from "../Listbox";
 import { getOptionId } from "../utils";
 
 const options = Array.from({ length: 10 }, (_, i) => `Option ${i + 1}`);

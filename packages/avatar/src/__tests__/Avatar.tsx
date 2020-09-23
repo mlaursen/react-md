@@ -1,7 +1,7 @@
 import React, { createRef } from "react";
 import { render } from "@testing-library/react";
 
-import Avatar from "../Avatar";
+import { Avatar } from "../Avatar";
 
 describe("Avatar", () => {
   it("should render as a span by default", () => {

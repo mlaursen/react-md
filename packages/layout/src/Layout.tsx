@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactNode, ReactElement } from "react";
 import { SkipToMainContent, SkipToMainContentProps } from "@react-md/link";
 import { BaseTreeItem } from "@react-md/tree";
 import { PropsWithRef } from "@react-md/utils";
@@ -9,11 +9,11 @@ import {
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
 } from "./constants";
-import LayoutAppBar, { LayoutAppBarProps } from "./LayoutAppBar";
-import LayoutMain, { LayoutMainProps } from "./LayoutMain";
-import LayoutNavigation, { LayoutNavigationProps } from "./LayoutNavigation";
+import { LayoutAppBar, LayoutAppBarProps } from "./LayoutAppBar";
+import { LayoutMain, LayoutMainProps } from "./LayoutMain";
+import { LayoutNavigation, LayoutNavigationProps } from "./LayoutNavigation";
 import { LayoutWithNavToggle } from "./LayoutNavToggle";
-import LayoutProvider from "./LayoutProvider";
+import { LayoutProvider } from "./LayoutProvider";
 import { LayoutTreeProps } from "./LayoutTree";
 import {
   LayoutConfiguration,
@@ -254,7 +254,7 @@ export interface LayoutProps<T extends BaseTreeItem = LayoutNavigationItem>
  * `AppSizeContext` for automatically updating the layout based on media
  * queries.
  */
-const Layout: FC<LayoutProps> = ({
+export function Layout({
   id = "layout",
   appBar: propAppBar,
   appBarProps,
@@ -281,7 +281,7 @@ const Layout: FC<LayoutProps> = ({
   closeNav,
   closeNavProps,
   treeProps,
-}) => {
+}: LayoutProps): ReactElement {
   const fixedAppBar = appBarProps?.fixed ?? typeof propAppBar === "undefined";
   const mainId = mainProps?.id || `${id}-main`;
 
@@ -333,7 +333,7 @@ const Layout: FC<LayoutProps> = ({
       </LayoutMain>
     </LayoutProvider>
   );
-};
+}
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -382,5 +382,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (error) {}
 }
-
-export default Layout;

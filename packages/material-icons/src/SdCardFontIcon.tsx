@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function SdCardFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      sd_card
-    </FontIcon>
-  );
-});
+export const SdCardFont = forwardRef<HTMLElement, FontIconProps>(
+  function SdCardFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        sd_card
+      </FontIcon>
+    );
+  }
+);

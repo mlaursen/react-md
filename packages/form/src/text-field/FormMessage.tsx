@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, forwardRef, CSSProperties } from "react";
+import React, { CSSProperties, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -117,7 +117,7 @@ export interface FormMessageWithCounterProps
  * This component can also be used to create form-level validation messages by
  * setting the `role` prop to `"alert"`.
  */
-const FormMessage = forwardRef<
+export const FormMessage = forwardRef<
   HTMLDivElement,
   FormMessageProps & Partial<FormMessageCounterProps>
 >(function FormMessage(
@@ -219,5 +219,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default FormMessage;

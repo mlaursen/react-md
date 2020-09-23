@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function MouseFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      mouse
-    </FontIcon>
-  );
-});
+export const MouseFont = forwardRef<HTMLElement, FontIconProps>(
+  function MouseFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        mouse
+      </FontIcon>
+    );
+  }
+);

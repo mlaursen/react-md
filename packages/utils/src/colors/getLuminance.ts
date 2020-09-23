@@ -1,4 +1,4 @@
-import hexToRGB, { HexString } from "./hexToRGB";
+import { HexString, hexToRGB } from "./hexToRGB";
 
 const RED_MULTIPLIER = 0.2126;
 const GREEN_MULTIPLIER = 0.7152;
@@ -28,7 +28,7 @@ function get8BitColor(color: number): number {
  * @see https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
  * @private
  */
-export default function getLuminance(color: HexString): number {
+export function getLuminance(color: HexString): number {
   const [r, g, b] = hexToRGB(color);
 
   const red = get8BitColor(r) * RED_MULTIPLIER;

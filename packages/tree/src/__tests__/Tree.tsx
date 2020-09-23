@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Tree from "../Tree";
+import { Tree } from "../Tree";
 
 const PROPS = {
   id: "tree",

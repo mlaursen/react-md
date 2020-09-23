@@ -3,7 +3,8 @@ import ResizeObserverPolyfill from "resize-observer-polyfill";
 
 import { EnsuredRefs, useEnsuredRef } from "../useEnsuredRef";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
-import useResizeObserverV1, {
+import {
+  useResizeObserverV1,
   UseResizeObserverV1Options,
 } from "./useResizeObserverV1";
 

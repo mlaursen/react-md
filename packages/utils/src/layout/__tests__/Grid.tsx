@@ -1,9 +1,9 @@
-import React, { ReactElement, HTMLAttributes } from "react";
+import React, { HTMLAttributes, ReactElement } from "react";
 import { render as renderer, RenderOptions } from "@testing-library/react";
 
-import Grid, { GRID_COLUMNS_VAR } from "../Grid";
-import GridCell from "../GridCell";
-import AppSizeListener from "../../sizing/AppSizeListener";
+import { AppSizeListener } from "../../sizing/AppSizeListener";
+import { Grid, GRID_COLUMNS_VAR } from "../Grid";
+import { GridCell } from "../GridCell";
 
 const render = (
   children: ReactElement,

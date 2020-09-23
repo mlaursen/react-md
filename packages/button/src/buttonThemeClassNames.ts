@@ -79,7 +79,7 @@ const block = bem("rmd-button");
  * button theme className.
  * @return a string of class names to create an element with a button theme.
  */
-export default function buttonThemeClassNames({
+export function buttonThemeClassNames({
   theme: propTheme = "clear",
   themeType = "flat",
   buttonType = "text",

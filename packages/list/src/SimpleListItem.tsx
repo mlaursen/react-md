@@ -3,8 +3,8 @@ import React, { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import getListItemHeight, { SimpleListItemProps } from "./getListItemHeight";
-import ListItemChildren from "./ListItemChildren";
+import { getListItemHeight, SimpleListItemProps } from "./getListItemHeight";
+import { ListItemChildren } from "./ListItemChildren";
 
 const block = bem("rmd-list-item");
 
@@ -17,7 +17,7 @@ const block = bem("rmd-list-item");
  * `ListItemChildren` component instead if you want the "addon" styling/behavior
  * since screen readers read `li` items within lists differently.
  */
-const SimpleListItem = forwardRef<HTMLLIElement, SimpleListItemProps>(
+export const SimpleListItem = forwardRef<HTMLLIElement, SimpleListItemProps>(
   function SimpleListItem(
     {
       className,
@@ -139,5 +139,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default SimpleListItem;

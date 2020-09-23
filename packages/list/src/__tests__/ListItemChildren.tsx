@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import ListItemChildren from "../ListItemChildren";
+import { ListItemChildren } from "../ListItemChildren";
 
 describe("ListItemChildren", () => {
   it("should render correctly", () => {

@@ -46,54 +46,56 @@ const DEFAULT_TABPANEL_CLASSNAMES: CSSTransitionClassNames = {
  * `TabPanels` component along with the `TransitionGroup` from
  * `react-transition-group` to work as expected.
  */
-const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>(function TabPanel(
-  {
-    className,
-    in: transitionIn,
-    appear,
-    enter,
-    exit,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    timeout = 150,
-    classNames = DEFAULT_TABPANEL_CLASSNAMES,
-    children,
-    hidden,
-    ...props
-  },
-  ref
-) {
-  return (
-    <CSSTransition
-      in={transitionIn && !hidden}
-      appear={appear}
-      enter={enter}
-      exit={exit}
-      onEnter={onEnter}
-      onEntering={onEntering}
-      onEntered={onEntered}
-      onExit={onExit}
-      onExiting={onExiting}
-      onExited={onExited}
-      timeout={timeout}
-      classNames={classNames}
-    >
-      <div
-        {...props}
-        ref={ref}
-        role="tabpanel"
-        hidden={hidden}
-        className={cn(block(), className)}
+export const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>(
+  function TabPanel(
+    {
+      className,
+      in: transitionIn,
+      appear,
+      enter,
+      exit,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      timeout = 150,
+      classNames = DEFAULT_TABPANEL_CLASSNAMES,
+      children,
+      hidden,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <CSSTransition
+        in={transitionIn && !hidden}
+        appear={appear}
+        enter={enter}
+        exit={exit}
+        onEnter={onEnter}
+        onEntering={onEntering}
+        onEntered={onEntered}
+        onExit={onExit}
+        onExiting={onExiting}
+        onExited={onExited}
+        timeout={timeout}
+        classNames={classNames}
       >
-        {children}
-      </div>
-    </CSSTransition>
-  );
-});
+        <div
+          {...props}
+          ref={ref}
+          role="tabpanel"
+          hidden={hidden}
+          className={cn(block(), className)}
+        >
+          {children}
+        </div>
+      </CSSTransition>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -136,5 +138,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TabPanel;

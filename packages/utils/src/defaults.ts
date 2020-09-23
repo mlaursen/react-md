@@ -12,7 +12,7 @@ type Rec = Record<string, unknown>;
  * @return a new object with both the values of the optional and required
  * objects but use the optional values if they were defined.
  */
-export default function defaults<O extends {}, R extends {}>(
+export function defaults<O extends {}, R extends {}>(
   optional: O,
   required: R
 ): O & R {

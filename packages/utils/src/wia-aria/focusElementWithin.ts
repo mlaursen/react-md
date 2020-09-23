@@ -1,5 +1,5 @@
-import getFocusableElements from "./getFocusableElements";
-import scrollIntoView from "../scrollIntoView";
+import { scrollIntoView } from "../scrollIntoView";
+import { getFocusableElements } from "./getFocusableElements";
 
 export type Focus = "first" | "last" | string;
 
@@ -18,7 +18,7 @@ export type Focus = "first" | "last" | string;
  * @param progamatic Boolean if programatically focusable elements should be
  * included as well.
  */
-export default function focusElementWithin(
+export function focusElementWithin(
   container: HTMLElement | Document,
   focus: Focus,
   programatic: boolean = false,

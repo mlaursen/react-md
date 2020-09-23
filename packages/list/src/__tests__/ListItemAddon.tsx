@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import ListItemAddon, { ListItemAddonProps } from "../ListItemAddon";
+import { ListItemAddon, ListItemAddonProps } from "../ListItemAddon";
 
 describe("ListItemAddon", () => {
   it("should only render the children if the addon prop is null or false", () => {

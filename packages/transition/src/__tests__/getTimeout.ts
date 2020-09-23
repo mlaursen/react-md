@@ -1,4 +1,4 @@
-import getTimeout from "../getTimeout";
+import { getTimeout } from "../getTimeout";
 
 describe("getTimeout", () => {
   describe("number timeout", () => {

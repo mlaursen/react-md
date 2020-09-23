@@ -1,8 +1,9 @@
 import React, { forwardRef } from "react";
 import { Button, ButtonProps } from "@react-md/button";
 
-import useActionClassName, {
+import {
   AppBarActionClassNameProps,
+  useActionClassName,
 } from "./useActionClassName";
 
 export interface AppBarActionProps
@@ -16,7 +17,7 @@ export interface AppBarActionProps
  * either before or after this button when the `first` or `last` props are
  * provided.
  */
-const AppBarAction = forwardRef<HTMLButtonElement, AppBarActionProps>(
+export const AppBarAction = forwardRef<HTMLButtonElement, AppBarActionProps>(
   function AppBarAction(
     {
       className,
@@ -73,5 +74,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default AppBarAction;

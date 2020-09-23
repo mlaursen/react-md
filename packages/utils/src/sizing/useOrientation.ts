@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * An extremely simple "pollyfill" for the `window.screen.orientation` just for
@@ -26,7 +26,7 @@ export const getOrientationType = (): OrientationType => {
  * mount.
  * @return the orientation type value.
  */
-export default function useOrientation(
+export function useOrientation(
   defaultValue?: OrientationType
 ): OrientationType {
   const [value, setValue] = useState<OrientationType>(() => {

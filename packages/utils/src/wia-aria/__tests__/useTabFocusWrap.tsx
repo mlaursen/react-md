@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
-import useTabFocusWrap from "../useTabFocusWrap";
+import { useTabFocusWrap } from "../useTabFocusWrap";
 
 interface Props {
   disabled?: boolean;

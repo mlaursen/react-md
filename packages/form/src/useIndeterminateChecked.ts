@@ -126,7 +126,7 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  * checked values, and a general `setCheckboxValues` function from `useState` if
  * the list of values can be changed from external sources as well.
  */
-export default function useIndeterminateChecked<T extends string>(
+export function useIndeterminateChecked<T extends string>(
   values: T[],
   defaultCheckedValues: T[] | (() => T[]) = [],
   onChange?: (checkedValues: T[]) => void

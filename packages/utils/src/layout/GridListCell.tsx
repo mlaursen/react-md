@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import cn from "classnames";
 
-import bem from "../bem";
+import { bem } from "../bem";
 
 export interface GridListCellProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -26,7 +26,7 @@ export interface GridListCellProps extends HTMLAttributes<HTMLDivElement> {
 
 const block = bem("rmd-grid-list");
 
-const GridListCell = forwardRef<HTMLDivElement, GridListCellProps>(
+export const GridListCell = forwardRef<HTMLDivElement, GridListCellProps>(
   function GridListCell(
     { className, children, square = false, clone = false, ...props },
     ref
@@ -59,5 +59,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default GridListCell;

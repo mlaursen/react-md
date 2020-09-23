@@ -8,8 +8,8 @@ import {
   DEFAULT_TABLET_MIN_WIDTH,
   QuerySize,
 } from "./constants";
-import useWidthMediaQuery from "./useWidthMediaQuery";
-import useOrientation from "./useOrientation";
+import { useOrientation } from "./useOrientation";
+import { useWidthMediaQuery } from "./useWidthMediaQuery";
 
 /**
  * The current size for your application. This should work both server side and
@@ -107,7 +107,7 @@ export interface AppSizeOptions {
  *
  * @private
  */
-export default function useAppSizeMedia({
+export function useAppSizeMedia({
   phoneMaxWidth = DEFAULT_PHONE_MAX_WIDTH,
   tabletMinWidth = DEFAULT_TABLET_MIN_WIDTH,
   tabletMaxWidth = DEFAULT_TABLET_MAX_WIDTH,

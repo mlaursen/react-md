@@ -1,4 +1,4 @@
-import containsElement from "../containsElement";
+import { containsElement } from "../containsElement";
 
 describe("containsElement", () => {
   it("should return false if either the element or target are null", () => {

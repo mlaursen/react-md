@@ -1,4 +1,4 @@
-import { BaseTreeItem, UnknownTreeItem, TreeData, TreeItemId } from "./types";
+import { BaseTreeItem, TreeData, TreeItemId, UnknownTreeItem } from "./types";
 
 /**
  * This will get all the items from the provided itemId up to the root of the
@@ -10,7 +10,7 @@ import { BaseTreeItem, UnknownTreeItem, TreeData, TreeItemId } from "./types";
  * @return an ordered list of the current item followed by all the direct
  * parents of that item.
  */
-export default function getItemsFrom<T extends BaseTreeItem = UnknownTreeItem>(
+export function getItemsFrom<T extends BaseTreeItem = UnknownTreeItem>(
   data: TreeData<T>,
   itemId: TreeItemId | null
 ): readonly T[] {

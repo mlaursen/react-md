@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export default forwardRef<SVGSVGElement, SVGIconProps>(
+export const StayPrimaryPortraitSVG = forwardRef<SVGSVGElement, SVGIconProps>(
   function StayPrimaryPortraitSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

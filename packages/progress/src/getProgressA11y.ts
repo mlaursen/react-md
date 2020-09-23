@@ -10,7 +10,7 @@ export interface ProgressA11y {
  * @param progressId The id for the progress bar
  * @param progressing Boolean if the progress bar is visible and progressing
  */
-export default function getProgressA11y(
+export function getProgressA11y(
   progressId: string,
   progressing: boolean
 ): ProgressA11y | undefined {

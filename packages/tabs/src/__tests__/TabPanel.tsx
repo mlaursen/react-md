@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import TabPanel from "../TabPanel";
+import { TabPanel } from "../TabPanel";
 
 describe("TabPanel", () => {
   it("should render correctly", () => {

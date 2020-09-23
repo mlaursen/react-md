@@ -12,9 +12,7 @@ interface CollapseSizing {
  *
  * @private
  */
-export default function getElementSizing(
-  element: HTMLElement | null
-): CollapseSizing {
+export function getElementSizing(element: HTMLElement | null): CollapseSizing {
   let maxHeight;
   let paddingTop;
   let paddingBottom;

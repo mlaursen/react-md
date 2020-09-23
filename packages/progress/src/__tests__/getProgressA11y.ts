@@ -1,4 +1,4 @@
-import getProgressA11y from "../getProgressA11y";
+import { getProgressA11y } from "../getProgressA11y";
 
 describe("getProgressA11y", () => {
   it("should return undefined if the progressing arg is false", () => {

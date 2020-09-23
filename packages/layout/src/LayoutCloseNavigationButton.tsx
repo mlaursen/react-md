@@ -17,7 +17,7 @@ export interface LayoutCloseNavigationButtonProps extends AppBarActionProps {
  * The `LayoutCloseNavigationButton` is used to close the navigation panel for
  * toggleable layouts.
  */
-const LayoutCloseNavigationButton = forwardRef<
+export const LayoutCloseNavigationButton = forwardRef<
   HTMLButtonElement,
   LayoutCloseNavigationButtonProps
 >(function LayoutCloseNavigationButton(
@@ -88,5 +88,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (error) {}
 }
-
-export default LayoutCloseNavigationButton;

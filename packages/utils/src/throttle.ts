@@ -35,7 +35,7 @@ export type ThrottledFunction<F extends ThrottleableFunction> = (
  * @return a throttled version of the function that'll return the last computed
  * value if it was called again during the "wait" period.
  */
-export default function throttle<F extends ThrottleableFunction>(
+export function throttle<F extends ThrottleableFunction>(
   fn: F,
   wait: number
 ): ThrottledFunction<F> {

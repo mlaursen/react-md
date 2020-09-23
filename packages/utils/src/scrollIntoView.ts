@@ -1,4 +1,4 @@
-import findSizingContainer from "./positioning/findSizingContainer";
+import { findSizingContainer } from "./positioning/findSizingContainer";
 
 /**
  * Attempts to scroll an element into view within another container element if
@@ -9,7 +9,7 @@ import findSizingContainer from "./positioning/findSizingContainer";
  * @param element The element that should be visible within the container
  * element's scroll area.
  */
-export default function scrollIntoView(
+export function scrollIntoView(
   container: HTMLElement | null,
   element: HTMLElement | null
 ): void {

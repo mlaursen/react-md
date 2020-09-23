@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function AddAlarmFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      add_alarm
-    </FontIcon>
-  );
-});
+export const AddAlarmFont = forwardRef<HTMLElement, FontIconProps>(
+  function AddAlarmFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        add_alarm
+      </FontIcon>
+    );
+  }
+);

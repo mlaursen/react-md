@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-import getContainer, { PortalInto } from "./getContainer";
+import { getContainer, PortalInto } from "./getContainer";
 
 export interface PortalProps {
   /**
@@ -34,7 +34,7 @@ export interface PortalProps {
  * rendering as well as a "nice" way to choose specific portal targets or just
  * falling back to the `document.body`.
  */
-export default function Portal({
+export function Portal({
   into,
   intoId,
   children,

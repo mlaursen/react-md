@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(
+export const VolumeOffFont = forwardRef<HTMLElement, FontIconProps>(
   function VolumeOffFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

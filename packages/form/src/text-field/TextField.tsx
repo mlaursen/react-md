@@ -10,12 +10,13 @@ import cn from "classnames";
 import { bem } from "@react-md/utils";
 
 import { useFormTheme } from "../FormThemeProvider";
-import FloatingLabel from "../label/FloatingLabel";
-import useFocusState from "../useFocusState";
-import TextFieldContainer, {
+import { FloatingLabel } from "../label/FloatingLabel";
+import { useFocusState } from "../useFocusState";
+import {
+  TextFieldContainer,
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
-import useValuedState from "./useValuedState";
+import { useValuedState } from "./useValuedState";
 
 /**
  * These are all the "supported" input types for react-md so that they at least
@@ -128,7 +129,7 @@ const SPECIAL_TYPES: SupportedInputTypes[] = [
  * some nice default themes. It can also be used to render other text input
  * types with _some_ support.
  */
-const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   function TextField(
     {
       style,
@@ -277,5 +278,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TextField;

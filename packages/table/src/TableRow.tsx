@@ -26,7 +26,7 @@ const block = bem("rmd-tr");
  * Creates a `<tr>` element with some general styles that are inherited from the
  * base table configuration.
  */
-const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
+export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
   function TableRow(
     {
       className,
@@ -79,5 +79,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TableRow;

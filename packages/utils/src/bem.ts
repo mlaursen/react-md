@@ -29,7 +29,7 @@ type BEMResult = (
  * @param base The base class to use
  * @return a function to call that generates the full class name
  */
-export default function bem(base: Block): BEMResult {
+export function bem(base: Block): BEMResult {
   if (process.env.NODE_ENV !== "production") {
     if (!base) {
       throw new Error(

@@ -1,4 +1,4 @@
-import getNextStage from "../getNextStage";
+import { getNextStage } from "../getNextStage";
 import { EXITED, EXITING, EXIT, ENTERED, ENTERING, ENTER } from "../constants";
 
 describe("getNextStage", () => {

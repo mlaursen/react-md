@@ -93,7 +93,7 @@ export interface AutoCompleteReturnValue {
  *
  * @private
  */
-export default function useAutoComplete({
+export function useAutoComplete({
   suggestionsId,
   data,
   propValue,

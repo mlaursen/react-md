@@ -88,106 +88,107 @@ export interface CircularProgressProps
 
 const block = bem("rmd-circular-progress");
 
-const CircularProgress = forwardRef<HTMLSpanElement, CircularProgressProps>(
-  function CircularProgress(
-    {
-      className,
-      svgStyle: propSvgStyle,
-      svgClassName,
-      circleStyle: propCircleStyle,
-      circleClassName,
-      value,
-      min = 0,
-      max = 100,
-      radius = 30,
-      center = 33,
-      viewBox = "0 0 66 66",
-      dashoffset = 187,
-      animate = true,
-      centered = true,
-      maxRotation = 360 * 1.75,
-      small = false,
-      ...props
-    },
-    ref
-  ) {
-    let progress: number | undefined;
-    if (typeof value === "number") {
-      progress = getPercentage(min, max, value);
+export const CircularProgress = forwardRef<
+  HTMLSpanElement,
+  CircularProgressProps
+>(function CircularProgress(
+  {
+    className,
+    svgStyle: propSvgStyle,
+    svgClassName,
+    circleStyle: propCircleStyle,
+    circleClassName,
+    value,
+    min = 0,
+    max = 100,
+    radius = 30,
+    center = 33,
+    viewBox = "0 0 66 66",
+    dashoffset = 187,
+    animate = true,
+    centered = true,
+    maxRotation = 360 * 1.75,
+    small = false,
+    ...props
+  },
+  ref
+) {
+  let progress: number | undefined;
+  if (typeof value === "number") {
+    progress = getPercentage(min, max, value);
+  }
+
+  const svgStyle = useMemo<CSSProperties | undefined>(() => {
+    if (typeof progress !== "number") {
+      return propSvgStyle;
     }
 
-    const svgStyle = useMemo<CSSProperties | undefined>(() => {
-      if (typeof progress !== "number") {
-        return propSvgStyle;
-      }
+    let transform = propSvgStyle && propSvgStyle.transform;
+    if (maxRotation > 0) {
+      const rotate = `rotate(${maxRotation * progress}deg)`;
+      transform = `${rotate}${transform ? ` ${transform}` : ""}`;
+    }
 
-      let transform = propSvgStyle && propSvgStyle.transform;
-      if (maxRotation > 0) {
-        const rotate = `rotate(${maxRotation * progress}deg)`;
-        transform = `${rotate}${transform ? ` ${transform}` : ""}`;
-      }
+    return {
+      ...propSvgStyle,
+      WebkitTransform: transform,
+      transform,
+    };
+  }, [progress, maxRotation, propSvgStyle]);
 
-      return {
-        ...propSvgStyle,
-        WebkitTransform: transform,
-        transform,
-      };
-    }, [progress, maxRotation, propSvgStyle]);
+  const circleStyle = useMemo(() => {
+    if (typeof progress !== "number") {
+      return propCircleStyle;
+    }
 
-    const circleStyle = useMemo(() => {
-      if (typeof progress !== "number") {
-        return propCircleStyle;
-      }
+    return {
+      ...propCircleStyle,
+      strokeDashoffset: dashoffset - dashoffset * progress,
+    };
+  }, [progress, propCircleStyle, dashoffset]);
 
-      return {
-        ...propCircleStyle,
-        strokeDashoffset: dashoffset - dashoffset * progress,
-      };
-    }, [progress, propCircleStyle, dashoffset]);
-
-    const determinate = typeof progress === "number";
-    const indeterminate = !determinate;
-    return (
-      <span
-        {...props}
-        ref={ref}
-        role="progressbar"
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-valuenow={value}
-        className={cn(block({ centered, small }), className)}
+  const determinate = typeof progress === "number";
+  const indeterminate = !determinate;
+  return (
+    <span
+      {...props}
+      ref={ref}
+      role="progressbar"
+      aria-valuemin={min}
+      aria-valuemax={max}
+      aria-valuenow={value}
+      className={cn(block({ centered, small }), className)}
+    >
+      <svg
+        style={svgStyle}
+        className={cn(
+          block("svg", {
+            animate: animate && determinate,
+            determinate,
+            indeterminate,
+          }),
+          svgClassName
+        )}
+        viewBox={viewBox}
       >
-        <svg
-          style={svgStyle}
+        <circle
+          style={circleStyle}
           className={cn(
-            block("svg", {
+            block("circle", {
               animate: animate && determinate,
               determinate,
               indeterminate,
             }),
-            svgClassName
+            circleClassName
           )}
-          viewBox={viewBox}
-        >
-          <circle
-            style={circleStyle}
-            className={cn(
-              block("circle", {
-                animate: animate && determinate,
-                determinate,
-                indeterminate,
-              }),
-              circleClassName
-            )}
-            r={radius}
-            cx={center}
-            cy={center}
-          />
-        </svg>
-      </span>
-    );
-  }
-);
+          r={radius}
+          cx={center}
+          cy={center}
+        />
+      </svg>
+    </span>
+  );
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -214,5 +215,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default CircularProgress;

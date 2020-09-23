@@ -16,7 +16,7 @@ function applyCoords(coord: number | undefined): string {
  * @return either a DOMRect or ClientRect for the element
  * @private
  */
-export default function getElementRect(
+export function getElementRect(
   element: HTMLElement,
   coords: Coords = {}
 ): DOMRect | ClientRect {

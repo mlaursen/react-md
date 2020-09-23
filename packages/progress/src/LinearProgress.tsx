@@ -50,7 +50,7 @@ export interface LinearProgressProps
 
 const block = bem("rmd-linear-progress");
 
-const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
+export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
   function LinearProgress(
     {
       style: propStyle,
@@ -162,5 +162,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default LinearProgress;

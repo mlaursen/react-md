@@ -1,7 +1,7 @@
 import { HTMLAttributes, useCallback } from "react";
 import { useRefCache } from "@react-md/utils";
 
-import useVisibility, { FocusType, VisibilityOptions } from "./useVisibility";
+import { FocusType, useVisibility, VisibilityOptions } from "./useVisibility";
 
 export interface ItemVisibilityOptions extends VisibilityOptions {
   horizontal?: boolean;
@@ -16,7 +16,7 @@ interface ReturnValue
   hide: () => void;
 }
 
-export default function useItemVisibility({
+export function useItemVisibility({
   horizontal = false,
   onClick: propOnClick,
   onKeyDown: propOnKeyDown,

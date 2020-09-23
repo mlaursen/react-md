@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { forwardRef, HTMLAttributes, useState, useRef } from "react";
+import React, { forwardRef, HTMLAttributes, useRef, useState } from "react";
 import cn from "classnames";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import {
@@ -9,16 +9,16 @@ import {
 } from "@react-md/transition";
 import {
   bem,
+  CENTER_CENTER_ANCHOR,
   FixedPositionOptions,
   LabelRequiredForA11y,
-  CENTER_CENTER_ANCHOR,
   PositionAnchor,
   TOP_INNER_RIGHT_ANCHOR,
 } from "@react-md/utils";
 
-import MenuEvents from "./MenuEvents";
+import { MenuEvents } from "./MenuEvents";
 import { OrientationProvider } from "./Orientation";
-import useMenu from "./useMenu";
+import { useMenu } from "./useMenu";
 
 export type MenuPositionOptions = Omit<
   FixedPositionOptions,
@@ -145,7 +145,7 @@ const block = bem("rmd-menu");
  * out based on the `visible` prop as well as handle keyboard focus, closing
  * when needed, etc.
  */
-const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
+export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
   {
     role = "menu",
     tabIndex = -1,
@@ -368,5 +368,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Menu;

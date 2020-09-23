@@ -1,9 +1,9 @@
+import { defaults } from "../defaults";
 import {
+  DEFAULT_SEARCH_OPTIONS,
   getSearchString,
   SearchOptions,
-  DEFAULT_SEARCH_OPTIONS,
 } from "./utils";
-import defaults from "../defaults";
 
 /**
  * This is a simple `array.find` implementation that will work for any
@@ -15,7 +15,7 @@ import defaults from "../defaults";
  * @param options The additional search options available.
  * @return the found item in the searchable list or null
  */
-export default function findIgnoreCase<T = unknown>(
+export function findIgnoreCase<T = unknown>(
   query: string,
   searchable: readonly T[],
   options: SearchOptions<T> = {}

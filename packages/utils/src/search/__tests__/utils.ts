@@ -1,4 +1,4 @@
-import { getSearchString, getItemValue } from "../utils";
+import { getItemValue, getSearchString } from "../utils";
 
 describe("getSearchString", () => {
   it("should default to just returning the value unmodified", () => {

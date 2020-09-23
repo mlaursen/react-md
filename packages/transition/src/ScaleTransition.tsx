@@ -45,7 +45,7 @@ export interface ScaleTransitionProps
  * prop which will update the transition to use `transform: scaleY(0)` to
  * `transform: scaleY(1)` instead.
  */
-export default function ScaleTransition({
+export function ScaleTransition({
   visible,
   children,
   classNames: propClassNames,

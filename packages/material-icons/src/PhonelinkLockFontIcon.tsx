@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(
+export const PhonelinkLockFont = forwardRef<HTMLElement, FontIconProps>(
   function PhonelinkLockFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

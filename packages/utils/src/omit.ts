@@ -10,7 +10,7 @@ type R = Record<string, unknown>;
  * @param omitKeys The keys to remove.
  * @return a new object without the specified keys
  */
-export default function omit<T extends object, K extends keyof T>(
+export function omit<T extends object, K extends keyof T>(
   object: T,
   omitKeys: K[] | string[]
 ): Omit<T, K> {

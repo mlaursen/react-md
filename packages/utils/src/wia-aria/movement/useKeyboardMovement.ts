@@ -1,16 +1,16 @@
 import { MutableRefObject, useCallback, useMemo } from "react";
-
-import loop from "../../loop";
-import useKeyboardSearch, {
+import { loop } from "../../loop";
+import {
   BaseKeyboardSearchOptions,
   SearchData,
+  useKeyboardSearch,
 } from "../../search/useKeyboardSearch";
 import { DEFAULT_GET_ITEM_VALUE, DEFAULT_VALUE_KEY } from "../../search/utils";
 import { MovementConfig } from "./types";
 import {
-  transformKeys,
   getKeyboardConfig,
   getStringifiedKeyConfig,
+  transformKeys,
 } from "./utils";
 
 export type MovementHandler<E extends HTMLElement> = React.KeyboardEventHandler<
@@ -139,7 +139,7 @@ export type KeyboardMovementProviders<
  * @typeparam IE The HTMLElement type of each item within the container element
  * that can be focusable.
  */
-export default function useKeyboardMovement<
+export function useKeyboardMovement<
   D = unknown,
   CE extends HTMLElement = HTMLElement,
   IE extends HTMLElement = HTMLElement

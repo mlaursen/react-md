@@ -1,7 +1,7 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { NestedDialogContextProvider } from "@react-md/dialog";
+import { FormThemeOptions, FormThemeProvider } from "@react-md/form";
 import { ConfigurableIcons, IconProvider } from "@react-md/icon";
-import { FormThemeProvider, FormThemeOptions } from "@react-md/form";
 import {
   DEFAULT_RIPPLE_CLASSNAMES,
   DEFAULT_RIPPLE_TIMEOUT,
@@ -9,8 +9,8 @@ import {
   StatesConfigProps,
 } from "@react-md/states";
 import {
-  TooltipHoverModeConfig,
   DEFAULT_TOOLTIP_DELAY,
+  TooltipHoverModeConfig,
 } from "@react-md/tooltip";
 import {
   AppSizeListener,
@@ -19,10 +19,10 @@ import {
   DEFAULT_APP_SIZE,
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
+  DEFAULT_DIR,
   DEFAULT_PHONE_MAX_WIDTH,
   DEFAULT_TABLET_MAX_WIDTH,
   DEFAULT_TABLET_MIN_WIDTH,
-  DEFAULT_DIR,
   Dir,
   InteractionModeListener,
   WritingDirection,
@@ -76,14 +76,14 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
    *
    * @since 2.3.0
    */
-  defaultDir?: WritingDirection;
+  defaultDir?: WritingDirection | (() => WritingDirection);
 }
 
 /**
  * This component allows you to quickly configure different functionality within
  * `react-md` in one place with reasonable defaults.
  */
-const Configuration: FC<ConfigurationProps> = ({
+export function Configuration({
   onAppResize,
   children,
   icons,
@@ -102,40 +102,44 @@ const Configuration: FC<ConfigurationProps> = ({
   disableTooltipHoverMode = false,
   tooltipDefaultDelay = DEFAULT_TOOLTIP_DELAY,
   tooltipDelayTimeout = DEFAULT_TOOLTIP_DELAY,
-}) => (
-  <Dir defaultDir={defaultDir}>
-    <AppSizeListener
-      defaultSize={defaultSize}
-      onChange={onAppResize}
-      phoneMaxWidth={phoneMaxWidth}
-      tabletMinWidth={tabletMinWidth}
-      tabletMaxWidth={tabletMaxWidth}
-      desktopMinWidth={desktopMinWidth}
-      desktopLargeMinWidth={desktopLargeMinWidth}
-    >
-      <NestedDialogContextProvider>
-        <InteractionModeListener>
-          <StatesConfig
-            disableRipple={disableRipple}
-            disableProgrammaticRipple={disableProgrammaticRipple}
-            rippleTimeout={rippleTimeout}
-            rippleClassNames={rippleClassNames}
-          >
-            <TooltipHoverModeConfig
-              enabled={!disableTooltipHoverMode}
-              defaultDelay={tooltipDefaultDelay}
-              delayTimeout={tooltipDelayTimeout}
+}: ConfigurationProps): ReactElement {
+  return (
+    <Dir defaultDir={defaultDir}>
+      <AppSizeListener
+        defaultSize={defaultSize}
+        onChange={onAppResize}
+        phoneMaxWidth={phoneMaxWidth}
+        tabletMinWidth={tabletMinWidth}
+        tabletMaxWidth={tabletMaxWidth}
+        desktopMinWidth={desktopMinWidth}
+        desktopLargeMinWidth={desktopLargeMinWidth}
+      >
+        <NestedDialogContextProvider>
+          <InteractionModeListener>
+            <StatesConfig
+              disableRipple={disableRipple}
+              disableProgrammaticRipple={disableProgrammaticRipple}
+              rippleTimeout={rippleTimeout}
+              rippleClassNames={rippleClassNames}
             >
-              <IconProvider {...icons}>
-                <FormThemeProvider {...formTheme}>{children}</FormThemeProvider>
-              </IconProvider>
-            </TooltipHoverModeConfig>
-          </StatesConfig>
-        </InteractionModeListener>
-      </NestedDialogContextProvider>
-    </AppSizeListener>
-  </Dir>
-);
+              <TooltipHoverModeConfig
+                enabled={!disableTooltipHoverMode}
+                defaultDelay={tooltipDefaultDelay}
+                delayTimeout={tooltipDelayTimeout}
+              >
+                <IconProvider {...icons}>
+                  <FormThemeProvider {...formTheme}>
+                    {children}
+                  </FormThemeProvider>
+                </IconProvider>
+              </TooltipHoverModeConfig>
+            </StatesConfig>
+          </InteractionModeListener>
+        </NestedDialogContextProvider>
+      </AppSizeListener>
+    </Dir>
+  );
+}
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -203,5 +207,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Configuration;

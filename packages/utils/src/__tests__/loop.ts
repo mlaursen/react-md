@@ -1,4 +1,4 @@
-import loop from "../loop";
+import { loop } from "../loop";
 
 describe("loop", () => {
   it("should increase the number by 1 when the number is less than or equal to the max number", () => {

@@ -2,7 +2,7 @@ import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import isEmpty from "./isEmpty";
+import { isEmpty } from "./isEmpty";
 
 export type BadgeTheme = "primary" | "secondary" | "default" | "clear";
 
@@ -39,7 +39,7 @@ const block = bem("rmd-badge");
  * relative to another element with the `BadgeContainer` component. However, it
  * can be used by itself to display any subpplementary content if needed.
  */
-const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
+export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
   {
     className,
     theme = "default",
@@ -77,5 +77,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Badge;

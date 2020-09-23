@@ -1,4 +1,4 @@
-import caseInsensitiveFilter from "../caseInsensitiveFilter";
+import { caseInsensitiveFilter } from "../caseInsensitiveFilter";
 
 const FRUITS = ["Apple", "Banana", "Mango", "Orange"];
 

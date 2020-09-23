@@ -42,7 +42,7 @@ const getElement = (thing: CheckableThing): CheckableElement => {
  * container and child are valid HTMLElements (not null).
  * @private
  */
-export default function containsElement(
+export function containsElement(
   container: CheckableThing,
   child: CheckableThing
 ): boolean {

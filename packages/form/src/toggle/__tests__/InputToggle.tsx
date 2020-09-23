@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import InputToggle from "../InputToggle";
+import { InputToggle } from "../InputToggle";
 
 describe("InputToggle", () => {
   it("should render correctly", () => {

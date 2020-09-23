@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function WhatshotFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      whatshot
-    </FontIcon>
-  );
-});
+export const WhatshotFont = forwardRef<HTMLElement, FontIconProps>(
+  function WhatshotFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        whatshot
+      </FontIcon>
+    );
+  }
+);

@@ -1,4 +1,4 @@
-import hexToRGB from "../hexToRGB";
+import { hexToRGB } from "../hexToRGB";
 
 describe("hexToRGB", () => {
   it("should return an ordered list containing the r, g, b values ignoring case and allowing shorthand", () => {

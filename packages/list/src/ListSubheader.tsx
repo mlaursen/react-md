@@ -17,7 +17,7 @@ const block = bem("rmd-list-subheader");
  * typography styles. It also supports an `inset` variant that adds some spacing
  * to the left of the text to align with other `ListItem` that have left addons.
  */
-const ListSubheader = forwardRef<HTMLLIElement, ListSubheaderProps>(
+export const ListSubheader = forwardRef<HTMLLIElement, ListSubheaderProps>(
   function ListSubheader({ className, inset = false, ...props }, ref) {
     return (
       <li {...props} ref={ref} className={cn(block({ inset }), className)} />
@@ -36,5 +36,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ListSubheader;

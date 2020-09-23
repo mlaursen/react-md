@@ -24,7 +24,7 @@ const block = bem("rmd-toggle-container");
  * additional styles. This is mostly an internal component so I'm not
  * sure useful it will be though.
  */
-const ToggleContainer = forwardRef<HTMLDivElement, ToggleContainerProps>(
+export const ToggleContainer = forwardRef<HTMLDivElement, ToggleContainerProps>(
   function ToggleContainer(
     { className, inline = false, stacked = false, children, ...props },
     ref
@@ -53,5 +53,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ToggleContainer;

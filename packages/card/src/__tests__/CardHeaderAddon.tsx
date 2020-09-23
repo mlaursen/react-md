@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import CardHeaderAddon from "../CardHeaderAddon";
+import { CardHeaderAddon } from "../CardHeaderAddon";
 
 describe("CardHeaderAddon", () => {
   it("should render as null if there are no children", () => {

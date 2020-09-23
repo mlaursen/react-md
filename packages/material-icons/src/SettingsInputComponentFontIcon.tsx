@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(
-  function SettingsInputComponentFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        settings_input_component
-      </FontIcon>
-    );
-  }
-);
+export const SettingsInputComponentFont = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function SettingsInputComponentFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      settings_input_component
+    </FontIcon>
+  );
+});

@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function DiscFullFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      disc_full
-    </FontIcon>
-  );
-});
+export const DiscFullFont = forwardRef<HTMLElement, FontIconProps>(
+  function DiscFullFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        disc_full
+      </FontIcon>
+    );
+  }
+);

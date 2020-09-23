@@ -29,7 +29,7 @@ import React, { forwardRef } from "react";
 
 import { ${iconType}Icon, ${iconType}IconProps } from "@react-md/icon";
 
-export default forwardRef<${element}, ${iconType}IconProps>(function ${componentName}${iconType}Icon(props, ref) {
+export const ${componentName}${iconType} = forwardRef<${element}, ${iconType}IconProps>(function ${componentName}${iconType}Icon(props, ref) {
   return <${iconType}Icon {...props} ref={ref}>${children}</${iconType}Icon>;
 });
 `,
@@ -71,7 +71,7 @@ async function parseSVGFileAndCreateComponents(
 async function createIndexFile(components: string[]): Promise<void> {
   const contents = `// This is a generated file from running the "createIcons" script. This file should not be updated manually.
 ${components.reduce(
-  (s, c) => `${s ? `${s}\n` : ""}export { default as ${c} } from "./${c}";`,
+  (s, c) => `${s ? `${s}\n` : ""}export * from "./${c}";`,
   ""
 )}
 `;
@@ -79,7 +79,7 @@ ${components.reduce(
   return fs.outputFile(path.join(srcDir, "index.ts"), contents);
 }
 
-export default async function create(): Promise<void> {
+export async function create(): Promise<void> {
   const svgFiles = await glob("svgs/*.svg");
 
   await fs.remove(srcDir);

@@ -5,7 +5,7 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 
-import AutoComplete from "../AutoComplete";
+import { AutoComplete } from "../AutoComplete";
 import { AutoCompleteProps } from "../types";
 import states from "../../../documentation/src/constants/states";
 

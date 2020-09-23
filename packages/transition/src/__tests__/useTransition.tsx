@@ -1,9 +1,9 @@
-import React, { MutableRefObject, FC, Ref, createRef } from "react";
-import { render, act } from "@testing-library/react";
+import React, { createRef, FC, MutableRefObject, Ref } from "react";
+import { act, render } from "@testing-library/react";
 
-import useTransition, { TransitionReturnValue } from "../useTransition";
-import { EXITED, ENTERED, ENTERING, EXITING } from "../constants";
+import { ENTERED, ENTERING, EXITED, EXITING } from "../constants";
 import { TransitionOptions } from "../types";
+import { TransitionReturnValue, useTransition } from "../useTransition";
 
 type TestResult = MutableRefObject<TransitionReturnValue<HTMLDivElement>>;
 

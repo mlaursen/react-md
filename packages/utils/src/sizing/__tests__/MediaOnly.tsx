@@ -1,9 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import { MobileOnly, PhoneOnly, TabletOnly, DesktopOnly } from "../MediaOnly";
-import AppSizeListener from "../AppSizeListener";
+import { AppSizeListener } from "../AppSizeListener";
 import { DEFAULT_DESKTOP_MIN_WIDTH } from "../constants";
+import { DesktopOnly, MobileOnly, PhoneOnly, TabletOnly } from "../MediaOnly";
 
 const onchange = jest.fn();
 const addListener = jest.fn();

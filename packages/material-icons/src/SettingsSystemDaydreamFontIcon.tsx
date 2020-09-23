@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(
-  function SettingsSystemDaydreamFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        settings_system_daydream
-      </FontIcon>
-    );
-  }
-);
+export const SettingsSystemDaydreamFont = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function SettingsSystemDaydreamFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      settings_system_daydream
+    </FontIcon>
+  );
+});

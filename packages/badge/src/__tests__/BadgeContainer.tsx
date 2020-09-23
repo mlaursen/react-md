@@ -2,8 +2,8 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { Button } from "@react-md/button";
 
-import BadgeContainer from "../BadgeContainer";
-import Badge from "../Badge";
+import { BadgeContainer } from "../BadgeContainer";
+import { Badge } from "../Badge";
 
 describe("BadgeContainer", () => {
   it("should render correctly", () => {

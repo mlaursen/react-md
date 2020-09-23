@@ -1,15 +1,15 @@
 import React, {
   Children,
+  cloneElement,
   forwardRef,
   HTMLAttributes,
-  cloneElement,
   isValidElement,
 } from "react";
 import cn from "classnames";
 
-import bem from "../bem";
-import useAppSize from "../sizing/useAppSize";
-import GridCell from "./GridCell";
+import { bem } from "../bem";
+import { useAppSize } from "../sizing/useAppSize";
+import { GridCell } from "./GridCell";
 
 /**
  * This CSS Variable allows you to override the number of columns that should be
@@ -134,7 +134,7 @@ const block = bem("rmd-grid");
  * Note: This component relies on the `AppSizeListener` as a parent component to
  * work and will throw an error if it does not exist as a parent.
  */
-const Grid = forwardRef<HTMLDivElement, GridProps>(function Grid(
+export const Grid = forwardRef<HTMLDivElement, GridProps>(function Grid(
   {
     style,
     className,
@@ -218,5 +218,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Grid;

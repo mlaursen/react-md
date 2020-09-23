@@ -2,13 +2,13 @@ import { Children, cloneElement, ReactElement } from "react";
 import cn from "classnames";
 
 import {
+  COLLAPSE_TIMEOUT,
   DEFAULT_COLLAPSE_MIN_HEIGHT,
   DEFAULT_COLLAPSE_MIN_PADDING_BOTTOM,
   DEFAULT_COLLAPSE_MIN_PADDING_TOP,
-  COLLAPSE_TIMEOUT,
 } from "./constants";
 import { CollapseOptions } from "./types";
-import useCollapse from "./useCollapse";
+import { useCollapse } from "./useCollapse";
 
 export interface CollapseProps extends CollapseOptions<HTMLElement> {
   /**
@@ -39,7 +39,7 @@ export interface CollapseProps extends CollapseOptions<HTMLElement> {
  * `padding-top`, and `padding-bottom` is much less performant than `transform`
  * transition since it forces DOM repaints.
  */
-export default function Collapse({
+export function Collapse({
   children,
   collapsed,
   className,

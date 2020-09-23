@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 import { render } from "@testing-library/react";
 
-import Text, { TextTypes } from "../Text";
+import { Text, TextTypes } from "../Text";
 
 describe("Text", () => {
   it("should render corrrrectly based on the type prop", () => {

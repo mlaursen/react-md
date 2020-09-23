@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import useToggle from "../useToggle";
+import { useToggle } from "../useToggle";
 
 /**
  * A small hook for checking if the app is currently being interacted with by a
@@ -9,7 +9,7 @@ import useToggle from "../useToggle";
  * @return true if the app is in keyboard mode
  * @private
  */
-export default function useKeyboardDetection(): boolean {
+export function useKeyboardDetection(): boolean {
   const [enabled, enable, disable] = useToggle(false);
 
   useEffect(() => {

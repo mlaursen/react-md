@@ -1,4 +1,4 @@
-import isContrastCompliant from "../isContrastCompliant";
+import { isContrastCompliant } from "../isContrastCompliant";
 
 describe("isContrastCompliant", () => {
   it("should always return true for white and black colors ignoring order", () => {

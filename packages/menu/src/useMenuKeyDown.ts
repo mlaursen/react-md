@@ -1,9 +1,9 @@
-import { useState, useMemo, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
-  useKeyboardMovement,
-  MovementPresets,
-  getFocusableElements,
   extractTextContent,
+  getFocusableElements,
+  MovementPresets,
+  useKeyboardMovement,
 } from "@react-md/utils";
 
 interface MenuKeyDownOptions {
@@ -21,7 +21,7 @@ interface MenuKeyDownOptions {
  * addition, it'll automatically swap to the left and right arrow keys if the
  * menu is displayed horizontally.
  */
-export default function useMenuKeyDown({
+export function useMenuKeyDown({
   menu,
   onKeyDown,
   onRequestClose,

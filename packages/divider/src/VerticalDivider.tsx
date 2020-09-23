@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { applyRef } from "@react-md/utils";
 
-import Divider from "./Divider";
+import { Divider } from "./Divider";
 
 export interface VerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -73,7 +73,7 @@ export function useVerticalDividerHeight(
  * the issue that the height would be set to `auto` (which computes to 0 most of
  * the time) when it is not set on a parent element.
  */
-const VerticalDivider = forwardRef<HTMLDivElement, VerticalDividerProps>(
+export const VerticalDivider = forwardRef<HTMLDivElement, VerticalDividerProps>(
   function VerticalDivider({ style, maxHeight = 1, ...props }, forwardedRef) {
     const { ref, height } = useVerticalDividerHeight(maxHeight, forwardedRef);
     return (
@@ -108,5 +108,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default VerticalDivider;

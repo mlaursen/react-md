@@ -1,7 +1,6 @@
 import React, {
   Children,
   cloneElement,
-  FC,
   isValidElement,
   ReactElement,
   ReactNode,
@@ -79,7 +78,7 @@ export interface TextIconSpacingProps {
   stacked?: boolean;
 }
 
-const TextIconSpacing: FC<TextIconSpacingProps> = ({
+export function TextIconSpacing({
   className,
   icon: propIcon,
   children = null,
@@ -90,7 +89,7 @@ const TextIconSpacing: FC<TextIconSpacingProps> = ({
   afterClassName = "rmd-icon--after",
   aboveClassName = "rmd-icon--above",
   belowClassName = "rmd-icon--below",
-}) => {
+}: TextIconSpacingProps): ReactElement {
   if (!propIcon) {
     return <>{children}</>;
   }
@@ -130,8 +129,8 @@ const TextIconSpacing: FC<TextIconSpacingProps> = ({
     );
   }
 
-  return content as ReactElement;
-};
+  return <>{content}</>;
+}
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -155,5 +154,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TextIconSpacing;

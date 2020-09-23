@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function HealingFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      healing
-    </FontIcon>
-  );
-});
+export const HealingFont = forwardRef<HTMLElement, FontIconProps>(
+  function HealingFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        healing
+      </FontIcon>
+    );
+  }
+);

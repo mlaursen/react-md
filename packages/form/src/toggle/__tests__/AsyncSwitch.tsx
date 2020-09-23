@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 
-import AsyncSwitch from "../AsyncSwitch";
+import { AsyncSwitch } from "../AsyncSwitch";
 
 const getLabel = (container: HTMLElement) => {
   const el = container.querySelector("label");

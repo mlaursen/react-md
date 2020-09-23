@@ -22,7 +22,7 @@ export interface CardSubtitleProps extends HTMLAttributes<HTMLHeadingElement> {
  * A subtitle for the `Card`. This is usually used with the `CardHeader`
  * component after the `CardTitle`.
  */
-const CardSubtitle = forwardRef<HTMLHeadingElement, CardSubtitleProps>(
+export const CardSubtitle = forwardRef<HTMLHeadingElement, CardSubtitleProps>(
   function CardSubtitle(
     {
       className,
@@ -65,5 +65,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default CardSubtitle;

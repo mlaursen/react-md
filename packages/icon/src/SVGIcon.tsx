@@ -68,7 +68,7 @@ const block = bem("rmd-icon");
  * The `SVGIcon` component is used to render inline SVG icons or SVG icons in a
  * sprite map as an icon.
  */
-const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
+export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
   {
     "aria-hidden": ariaHidden = true,
     focusable = "false",
@@ -120,5 +120,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default SVGIcon;

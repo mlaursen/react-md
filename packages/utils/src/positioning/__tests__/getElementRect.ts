@@ -1,4 +1,4 @@
-import getElementRect from "../getElementRect";
+import { getElementRect } from "../getElementRect";
 
 const createTestElement = () => {
   const element = document.createElement("span");

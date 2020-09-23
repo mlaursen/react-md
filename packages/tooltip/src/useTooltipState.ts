@@ -14,8 +14,9 @@ import {
   useMouseState,
   useTouchState,
 } from "./useHandlers";
-import usePosition from "./usePosition";
-import useVisiblityChange, {
+import { usePosition } from "./usePosition";
+import {
+  useVisiblityChange,
   VisibilityChangeOptions,
 } from "./useVisibilityChange";
 
@@ -132,7 +133,7 @@ export interface TooltipStateOptions
  * "guessed" based on the current viewport height and the position of the
  * container element within the viewport.
  */
-export default function useTooltipState({
+export function useTooltipState({
   position: propPosition,
   defaultPosition,
   positionThreshold = DEFAULT_TOOLTIP_THRESHOLD,

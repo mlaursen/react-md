@@ -46,7 +46,7 @@ export function findMatchInRange(
  * search
  * @private
  */
-export default function findMatchIndex(
+export function findMatchIndex(
   value: string,
   values: readonly string[],
   startIndex: number,

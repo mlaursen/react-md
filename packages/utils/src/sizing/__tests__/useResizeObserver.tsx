@@ -1,13 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useRef } from "react";
-import ResizeObserverPolyfill from "resize-observer-polyfill";
 import { act, render } from "@testing-library/react";
+import ResizeObserverPolyfill from "resize-observer-polyfill";
 import { mocked } from "ts-jest/utils";
 
 import {
-  useResizeObserver,
-  ResizeObserverElementData,
   OnResizeObserverChange,
+  ResizeObserverElementData,
+  useResizeObserver,
 } from "../useResizeObserver";
 
 jest.mock("resize-observer-polyfill");

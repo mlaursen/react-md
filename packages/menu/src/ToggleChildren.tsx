@@ -12,7 +12,7 @@ export interface ToggleChildrenProps {
 
 const block = bem("rmd-menu-icon");
 
-function ToggleChildren({
+export function ToggleChildren({
   dropdownIcon,
   disableDropdownIcon,
   children,
@@ -35,5 +35,3 @@ function ToggleChildren({
     </TextIconSpacing>
   );
 }
-
-export default ToggleChildren;

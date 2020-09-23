@@ -1,4 +1,4 @@
-import React, { ElementType, forwardRef, AnchorHTMLAttributes } from "react";
+import React, { AnchorHTMLAttributes, ElementType, forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -86,7 +86,7 @@ const block = bem("rmd-link");
  * `react-router` or `reach-router` by providing the `Link` as the
  * `linkComponent` prop.
  */
-const Link = forwardRef<
+export const Link = forwardRef<
   HTMLAnchorElement | ElementType,
   LinkProps | LinkWithComponentProps
 >(function Link(
@@ -142,5 +142,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Link;

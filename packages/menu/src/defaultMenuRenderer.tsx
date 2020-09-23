@@ -4,7 +4,7 @@ import { RenderConditionalPortalProps } from "@react-md/portal";
 import { LabelRequiredForA11y } from "@react-md/utils";
 
 import { ValidMenuItem } from "./defaultMenuItemRenderer";
-import Menu, { MenuProps } from "./Menu";
+import { Menu, MenuProps } from "./Menu";
 
 export type MenuPositionProps = Pick<
   MenuProps,
@@ -59,7 +59,7 @@ export type MenuRenderer = (
  * The default menu renderer that will just render the `Menu` component along
  * with a `List` by passing all props down to the main `Menu` component.
  */
-export default function defaultMenuRenderer({
+export function defaultMenuRenderer({
   horizontal,
   children,
   ...props

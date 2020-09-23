@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import BadgedButton from "../BadgedButton";
+import { BadgedButton } from "../BadgedButton";
 
 describe("BadgedButton", () => {
   it("should render correctly", () => {

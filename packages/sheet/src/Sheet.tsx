@@ -1,8 +1,9 @@
-import React, { forwardRef, useRef, useState, useCallback } from "react";
+import React, { forwardRef, useCallback, useRef, useState } from "react";
 import cn from "classnames";
-import { Dialog, BaseDialogProps } from "@react-md/dialog";
+import { BaseDialogProps, Dialog } from "@react-md/dialog";
 import { bem, LabelRequiredForA11y } from "@react-md/utils";
-import { DEFAULT_SHEET_TIMEOUT, DEFAULT_SHEET_CLASSNAMES } from "./constants";
+
+import { DEFAULT_SHEET_CLASSNAMES, DEFAULT_SHEET_TIMEOUT } from "./constants";
 
 type AllowedDialogProps = Omit<
   BaseDialogProps,
@@ -69,7 +70,7 @@ const block = bem("rmd-sheet");
  * to the edges of the viewport instead of centered or full page. This component
  * is great for rendering a navigation tree or menus on mobile devices.
  */
-const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
+export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
   {
     className,
     children,
@@ -255,5 +256,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Sheet;

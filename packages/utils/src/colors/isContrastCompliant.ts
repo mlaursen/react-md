@@ -1,4 +1,4 @@
-import getContrastRatio from "./getContrastRatio";
+import { getContrastRatio } from "./getContrastRatio";
 import { HexString } from "./hexToRGB";
 
 /**
@@ -38,7 +38,7 @@ export const AAA_CONTRAST_RATIO = 7;
  * @return true if there is enough contrast between the foreground and
  * background colors for the provided compliance level.
  */
-export default function isContrastCompliant(
+export function isContrastCompliant(
   background: HexString,
   foreground: HexString,
   compliance: ContrastRatioCompliance | number = "normal"

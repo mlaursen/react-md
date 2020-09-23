@@ -1,12 +1,12 @@
 import React, {
   createContext,
-  FC,
   ReactNode,
   useCallback,
   useContext,
   useMemo,
   useState,
   useRef,
+  ReactElement,
 } from "react";
 import { useAppSize } from "@react-md/utils";
 
@@ -97,7 +97,7 @@ export interface LayoutProviderProps extends LayoutConfiguration {
  * `LayLayoutContext` so that a custom layout implementation can be used along
  * with the `useLayoutConfig()` hook and the multiple `Layout` components.
  */
-const LayoutProvider: FC<LayoutProviderProps> = ({
+export function LayoutProvider({
   baseId,
   phoneLayout = DEFAULT_PHONE_LAYOUT,
   tabletLayout = DEFAULT_TABLET_LAYOUT,
@@ -105,7 +105,7 @@ const LayoutProvider: FC<LayoutProviderProps> = ({
   desktopLayout = DEFAULT_DESKTOP_LAYOUT,
   largeDesktopLayout,
   children,
-}) => {
+}: LayoutProviderProps): ReactElement {
   const appSize = useAppSize();
   const layout = getLayoutType({
     appSize,
@@ -150,7 +150,7 @@ const LayoutProvider: FC<LayoutProviderProps> = ({
   );
 
   return <Provider value={value}>{children}</Provider>;
-};
+}
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -177,5 +177,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (error) {}
 }
-
-export default LayoutProvider;

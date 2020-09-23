@@ -1,9 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import MenuItemSeparator from "../MenuItemSeparator";
-import Menu from "../Menu";
-import MenuItem from "../MenuItem";
+import { Menu } from "../Menu";
+import { MenuItem } from "../MenuItem";
+import { MenuItemSeparator } from "../MenuItemSeparator";
 
 describe("MenuItemSeparator", () => {
   it("should render correctly", () => {

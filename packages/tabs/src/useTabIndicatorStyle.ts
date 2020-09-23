@@ -1,13 +1,13 @@
 import {
+  createContext,
   MutableRefObject,
   Ref,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
-  createContext,
-  useContext,
 } from "react";
 import { ItemRefList, useResizeObserver } from "@react-md/utils";
 
@@ -77,7 +77,7 @@ export function useUpdateIndicatorStyles(): UpdateIndicatorStyles {
  *
  * @private
  */
-export default function useTabIndicatorStyle({
+export function useTabIndicatorStyle({
   style,
   ref: propRef,
   align,

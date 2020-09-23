@@ -1,4 +1,4 @@
-import getViewportSize from "../getViewportSize";
+import { getViewportSize } from "../getViewportSize";
 
 describe("getViewportSize", () => {
   it("should return the correct size based on the direction parameter", () => {

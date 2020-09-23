@@ -2,8 +2,8 @@ import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import TextFieldAddon from "./TextFieldAddon";
-import { useFormTheme, FormThemeOptions } from "../FormThemeProvider";
+import { FormThemeOptions, useFormTheme } from "../FormThemeProvider";
+import { TextFieldAddon } from "./TextFieldAddon";
 
 export interface TextFieldContainerOptions extends FormThemeOptions {
   /**
@@ -79,83 +79,84 @@ const block = bem("rmd-text-field-container");
  * This is a container component that is used to structure the text field with
  * different parts and themes.
  */
-const TextFieldContainer = forwardRef<HTMLDivElement, TextFieldContainerProps>(
-  function TextFieldContainer(
-    {
-      className,
-      children,
-      inline = false,
-      theme: propTheme,
-      error = false,
-      active,
-      label,
-      dense = false,
-      disabled = false,
-      isLeftAddon = true,
-      isRightAddon = true,
-      leftChildren,
-      rightChildren,
-      underlineDirection: propUnderlineDirection,
-      ...props
-    },
-    ref
-  ) {
-    const { theme, underlineDirection } = useFormTheme({
-      theme: propTheme,
-      underlineDirection: propUnderlineDirection,
-    });
+export const TextFieldContainer = forwardRef<
+  HTMLDivElement,
+  TextFieldContainerProps
+>(function TextFieldContainer(
+  {
+    className,
+    children,
+    inline = false,
+    theme: propTheme,
+    error = false,
+    active,
+    label,
+    dense = false,
+    disabled = false,
+    isLeftAddon = true,
+    isRightAddon = true,
+    leftChildren,
+    rightChildren,
+    underlineDirection: propUnderlineDirection,
+    ...props
+  },
+  ref
+) {
+  const { theme, underlineDirection } = useFormTheme({
+    theme: propTheme,
+    underlineDirection: propUnderlineDirection,
+  });
 
-    const underline = theme === "underline";
-    const outline = theme === "outline";
-    const filled = theme === "filled";
-    const isUnderlined = underline || filled;
-    const isOutlineActive = outline && active;
+  const underline = theme === "underline";
+  const outline = theme === "outline";
+  const filled = theme === "filled";
+  const isUnderlined = underline || filled;
+  const isOutlineActive = outline && active;
 
-    return (
-      <div
-        {...props}
-        ref={ref}
-        className={cn(
-          block({
-            error,
-            inline,
-            filled,
-            outline,
-            disabled,
-            hoverable: !disabled && !isOutlineActive,
-            label: label && !dense,
-            dense: !label && dense,
-            "dense-label": dense && label,
-            "dense-placeholder": dense && isUnderlined && !label,
-            "outline-active": isOutlineActive,
-            "outline-error": outline && error,
-            "outline-left": outline && leftChildren,
-            "outline-right": outline && rightChildren,
-            underline: isUnderlined,
-            "underline-labelled": label && isUnderlined,
-            "underline-active": isUnderlined && active,
-            [`underline-${underlineDirection}`]: isUnderlined,
-            "underline-left-addon": isUnderlined && leftChildren,
-            "underline-right-addon": isUnderlined && rightChildren,
-          }),
-          className
-        )}
-      >
-        {isLeftAddon ? (
-          <TextFieldAddon>{leftChildren}</TextFieldAddon>
-        ) : (
-          leftChildren
-        )}
-        {children}
-        {isRightAddon ? (
-          <TextFieldAddon>{rightChildren}</TextFieldAddon>
-        ) : (
-          rightChildren
-        )}
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={cn(
+        block({
+          error,
+          inline,
+          filled,
+          outline,
+          disabled,
+          hoverable: !disabled && !isOutlineActive,
+          label: label && !dense,
+          dense: !label && dense,
+          "dense-label": dense && label,
+          "dense-placeholder": dense && isUnderlined && !label,
+          "outline-active": isOutlineActive,
+          "outline-error": outline && error,
+          "outline-left": outline && leftChildren,
+          "outline-right": outline && rightChildren,
+          underline: isUnderlined,
+          "underline-labelled": label && isUnderlined,
+          "underline-active": isUnderlined && active,
+          [`underline-${underlineDirection}`]: isUnderlined,
+          "underline-left-addon": isUnderlined && leftChildren,
+          "underline-right-addon": isUnderlined && rightChildren,
+        }),
+        className
+      )}
+    >
+      {isLeftAddon ? (
+        <TextFieldAddon>{leftChildren}</TextFieldAddon>
+      ) : (
+        leftChildren
+      )}
+      {children}
+      {isRightAddon ? (
+        <TextFieldAddon>{rightChildren}</TextFieldAddon>
+      ) : (
+        rightChildren
+      )}
+    </div>
+  );
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -179,5 +180,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TextFieldContainer;

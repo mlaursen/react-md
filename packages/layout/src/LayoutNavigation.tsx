@@ -5,11 +5,12 @@ import { BaseTreeItem } from "@react-md/tree";
 import { bem, PropsWithRef } from "@react-md/utils";
 
 import { LayoutCloseNavigationButtonProps } from "./LayoutCloseNavigationButton";
-import LayoutNavigationHeader, {
+import {
+  LayoutNavigationHeader,
   LayoutNavigationHeaderProps,
 } from "./LayoutNavigationHeader";
 import { useLayoutConfig } from "./LayoutProvider";
-import LayoutTree, { LayoutTreeProps } from "./LayoutTree";
+import { LayoutTree, LayoutTreeProps } from "./LayoutTree";
 import { LayoutNavigationItem } from "./types";
 import {
   isPersistentLayout,
@@ -93,78 +94,79 @@ const styles = bem("rmd-layout-navigation");
  * The container for the main navigation within the `Layout` that renders
  * differently depending on the current layout type.
  */
-const LayoutNavigation = forwardRef<HTMLDivElement, LayoutNavigationProps>(
-  function LayoutNavigation(
-    {
-      id: propId,
-      "aria-label": ariaLabel = "Navigation",
-      "aria-labelledby": ariaLabelledby,
-      className,
-      children,
-      header: propHeader,
-      headerProps,
-      headerTitle,
-      headerTitleProps,
-      closeNav,
-      closeNavProps,
-      treeProps,
-      ...props
-    },
-    ref
-  ) {
-    const { baseId, layout, visible, hideNav } = useLayoutConfig();
-    const id = propId || `${baseId}-nav-container`;
+export const LayoutNavigation = forwardRef<
+  HTMLDivElement,
+  LayoutNavigationProps
+>(function LayoutNavigation(
+  {
+    id: propId,
+    "aria-label": ariaLabel = "Navigation",
+    "aria-labelledby": ariaLabelledby,
+    className,
+    children,
+    header: propHeader,
+    headerProps,
+    headerTitle,
+    headerTitleProps,
+    closeNav,
+    closeNavProps,
+    treeProps,
+    ...props
+  },
+  ref
+) {
+  const { baseId, layout, visible, hideNav } = useLayoutConfig();
+  const id = propId || `${baseId}-nav-container`;
 
-    const isTemporary = isTemporaryLayout(layout);
-    const isPersistent = isPersistentLayout(layout);
-    const isToggleable = isToggleableLayout(layout);
-    const floating = layout === "floating";
+  const isTemporary = isTemporaryLayout(layout);
+  const isPersistent = isPersistentLayout(layout);
+  const isToggleable = isToggleableLayout(layout);
+  const floating = layout === "floating";
 
-    let header = propHeader;
-    if (typeof header === "undefined") {
-      header = (
-        <LayoutNavigationHeader
-          closeNav={closeNav}
-          closeNavProps={closeNavProps}
-          title={headerTitle}
-          titleProps={headerTitleProps}
-          {...headerProps}
-        />
-      );
-    }
-
-    return (
-      <Sheet
-        {...props}
-        key={layout}
-        id={id}
-        ref={ref}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledby}
-        role={!isPersistent ? "dialog" : "none"}
-        visible={visible}
-        onRequestClose={hideNav}
-        // do not want to portal for the other types so that logical tab order
-        // is preserved
-        portal={isTemporary}
-        overlay={isTemporary}
-        disableScrollLock={!isTemporary}
-        disableTabFocusWrap={isToggleable}
-        className={cn(
-          styles({
-            floating,
-            "header-offset": layout === "clipped" || floating,
-          }),
-          className
-        )}
-      >
-        {header}
-        {treeProps && <LayoutTree {...treeProps} />}
-        {children}
-      </Sheet>
+  let header = propHeader;
+  if (typeof header === "undefined") {
+    header = (
+      <LayoutNavigationHeader
+        closeNav={closeNav}
+        closeNavProps={closeNavProps}
+        title={headerTitle}
+        titleProps={headerTitleProps}
+        {...headerProps}
+      />
     );
   }
-);
+
+  return (
+    <Sheet
+      {...props}
+      key={layout}
+      id={id}
+      ref={ref}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledby}
+      role={!isPersistent ? "dialog" : "none"}
+      visible={visible}
+      onRequestClose={hideNav}
+      // do not want to portal for the other types so that logical tab order
+      // is preserved
+      portal={isTemporary}
+      overlay={isTemporary}
+      disableScrollLock={!isTemporary}
+      disableTabFocusWrap={isToggleable}
+      className={cn(
+        styles({
+          floating,
+          "header-offset": layout === "clipped" || floating,
+        }),
+        className
+      )}
+    >
+      {header}
+      {treeProps && <LayoutTree {...treeProps} />}
+      {children}
+    </Sheet>
+  );
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -186,5 +188,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (error) {}
 }
-
-export default LayoutNavigation;

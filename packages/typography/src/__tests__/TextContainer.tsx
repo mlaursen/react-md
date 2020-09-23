@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 import { render } from "@testing-library/react";
 
-import TextContainer from "../TextContainer";
+import { TextContainer } from "../TextContainer";
 
 describe("TextContainer", () => {
   it("should render as a div by default", () => {

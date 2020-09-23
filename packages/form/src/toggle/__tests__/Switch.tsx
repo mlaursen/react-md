@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Switch from "../Switch";
+import { Switch } from "../Switch";
 
 describe("Switch", () => {
   it("should render correctly with and without a label", () => {

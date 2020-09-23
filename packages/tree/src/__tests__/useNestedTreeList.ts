@@ -1,5 +1,5 @@
+import { BaseTreeItem, TreeData } from "../types";
 import { buildTree } from "../useNestedTreeList";
-import { TreeData, BaseTreeItem } from "../types";
 
 interface TestTreeItem extends BaseTreeItem {
   children: string;

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import useRefCache from "./useRefCache";
-import useToggle from "./useToggle";
+
+import { useRefCache } from "./useRefCache";
+import { useToggle } from "./useToggle";
 
 type Running = boolean;
 type StartInterval = () => void;
@@ -18,7 +19,7 @@ type ReturnValue = [Running, StartInterval, StopInterval];
  * @return a list containing a boolean if the interval is running, function to
  * start the interval, and a function to stop the interval.
  */
-export default function useInterval(
+export function useInterval(
   callback: (stop: () => void) => void,
   delay: number,
   defaultRunning: boolean = false

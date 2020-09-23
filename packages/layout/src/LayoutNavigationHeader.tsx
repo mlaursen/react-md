@@ -3,7 +3,8 @@ import cn from "classnames";
 import { AppBar, AppBarProps, AppBarTitle } from "@react-md/app-bar";
 import { bem, PropsWithRef } from "@react-md/utils";
 
-import LayoutCloseNavigationButton, {
+import {
+  LayoutCloseNavigationButton,
   LayoutCloseNavigationButtonProps,
 } from "./LayoutCloseNavigationButton";
 import { useLayoutConfig } from "./LayoutProvider";
@@ -53,7 +54,7 @@ const styles = bem("rmd-layout-nav-header");
  * The default implementation for the `AppBar` within the `LayoutNavigation`
  * that allows for rendering a title along with the `LayoutCloseNavigationButton`.
  */
-const LayoutNavigationHeader = forwardRef<
+export const LayoutNavigationHeader = forwardRef<
   HTMLDivElement,
   LayoutNavigationHeaderProps
 >(function LayoutNavigationHeader(
@@ -115,5 +116,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (error) {}
 }
-
-export default LayoutNavigationHeader;

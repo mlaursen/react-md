@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { render, fireEvent } from "@testing-library/react";
 
-import usePanels, { UsePanelsOptions } from "../usePanels";
-import ExpansionList from "../ExpansionList";
-import ExpansionPanel from "../ExpansionPanel";
+import { usePanels, UsePanelsOptions } from "../usePanels";
+import { ExpansionList } from "../ExpansionList";
+import { ExpansionPanel } from "../ExpansionPanel";
 
 const Test: FC<Partial<UsePanelsOptions>> = ({
   idPrefix = "panel",

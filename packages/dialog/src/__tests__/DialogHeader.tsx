@@ -2,8 +2,8 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { create } from "react-test-renderer";
 
-import DialogHeader from "../DialogHeader";
-import DialogTitle from "../DialogTitle";
+import { DialogHeader } from "../DialogHeader";
+import { DialogTitle } from "../DialogTitle";
 
 describe("DialogHeader", () => {
   it("should render correctly", () => {

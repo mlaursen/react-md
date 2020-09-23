@@ -22,7 +22,7 @@ export interface MenuItemLinkProps extends ListItemLinkProps {
 export type MenuItemLinkWithComponentProps = MenuItemLinkProps &
   ListItemLinkWithComponentProps;
 
-const MenuItemLink = forwardRef<
+export const MenuItemLink = forwardRef<
   HTMLAnchorElement,
   MenuItemLinkProps | MenuItemLinkWithComponentProps
 >(function MenuItemLink(
@@ -43,6 +43,7 @@ const MenuItemLink = forwardRef<
     </li>
   );
 });
+
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
@@ -55,5 +56,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default MenuItemLink;

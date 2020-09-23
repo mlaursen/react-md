@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, act } from "@testing-library/react";
 
-import Tooltipped from "../Tooltipped";
+import { Tooltipped } from "../Tooltipped";
 
 jest.useFakeTimers();
 

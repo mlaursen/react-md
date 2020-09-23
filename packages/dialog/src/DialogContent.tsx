@@ -20,7 +20,7 @@ const block = bem("rmd-dialog");
  * and/or `DialogFooter` since it is set up so only the content will scroll
  * while the header and footer will be "fixed".
  */
-const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
+export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   function DialogContent(
     { children, className, disablePadding = false, ...props },
     ref
@@ -53,5 +53,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default DialogContent;

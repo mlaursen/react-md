@@ -7,9 +7,9 @@ import {
   OptionalFixedPositionOptions,
   useFixedPositioning,
 } from "@react-md/transition";
-import { TOP_INNER_RIGHT_ANCHOR, LabelRequiredForA11y } from "@react-md/utils";
+import { LabelRequiredForA11y, TOP_INNER_RIGHT_ANCHOR } from "@react-md/utils";
 
-import Dialog, { BaseDialogProps } from "./Dialog";
+import { BaseDialogProps, Dialog } from "./Dialog";
 
 export interface BaseFixedDialogProps
   extends Omit<BaseDialogProps, "type">,
@@ -51,7 +51,7 @@ const DEFAULT_CLASSNAMES: CSSTransitionClassNames = {
  * be fix itself to another element. Another term for this component might be a
  * "Pop out Dialog".
  */
-const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
+export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
   function FixedDialog(
     {
       fixedTo,
@@ -166,5 +166,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default FixedDialog;

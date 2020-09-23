@@ -107,7 +107,7 @@ const block = bem("rmd-app-bar");
  * converted by the app bar. You can also use any of the exposed mixins to add
  * these offsets as well.
  */
-const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
+export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
   {
     className,
     children,
@@ -194,5 +194,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default AppBar;

@@ -1,4 +1,4 @@
-import findSizingContainer from "../findSizingContainer";
+import { findSizingContainer } from "../findSizingContainer";
 
 describe("findSizingContainer", () => {
   it("should return null if no element was provided", () => {

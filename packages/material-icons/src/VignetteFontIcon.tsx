@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function VignetteFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      vignette
-    </FontIcon>
-  );
-});
+export const VignetteFont = forwardRef<HTMLElement, FontIconProps>(
+  function VignetteFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        vignette
+      </FontIcon>
+    );
+  }
+);

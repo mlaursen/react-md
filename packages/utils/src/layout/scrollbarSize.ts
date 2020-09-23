@@ -39,7 +39,7 @@ export const reset = (): void => {
  * this is false, the "cached" value will be returned immediately instead
  * @return the current scrollbar width or -1 if running this on the server
  */
-export default function scrollbarSize(
+export function scrollbarSize(
   type: SizingType = "width",
   forced: boolean = false
 ): number {

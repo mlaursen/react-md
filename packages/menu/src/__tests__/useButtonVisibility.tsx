@@ -2,9 +2,10 @@ import React, { FC, MutableRefObject } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
-import MenuButton, { MenuButtonProps } from "../MenuButton";
-import useButtonVisibility, {
+import { MenuButton, MenuButtonProps } from "../MenuButton";
+import {
   ButtonVisibilityOptions,
+  useButtonVisibility,
 } from "../useButtonVisibility";
 import { VisibilityState } from "../useVisibility";
 

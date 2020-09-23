@@ -1,3 +1,4 @@
+import { Message, ToastMessage } from "../MessageQueueContext";
 import {
   addMessage,
   AddMessageAction,
@@ -9,7 +10,6 @@ import {
   resetQueue,
   RESET_QUEUE,
 } from "../useMessageQueue";
-import { Message, ToastMessage } from "../MessageQueueContext";
 
 const EMPTY_MESSAGE: Message = {};
 const NORMAL_MESSAGE: Message = {

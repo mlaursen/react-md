@@ -10,7 +10,7 @@ const block = bem("rmd-dialog");
  * This component adds some base styles to an `<h2>` element for a title within
  * a `Dialog`.
  */
-const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
+export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
   function DialogTitle({ children, className, ...props }, ref) {
     return (
       <h2 {...props} ref={ref} className={cn(block("title"), className)}>
@@ -30,5 +30,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default DialogTitle;

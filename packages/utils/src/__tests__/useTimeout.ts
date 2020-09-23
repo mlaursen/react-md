@@ -1,7 +1,7 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 import { mocked } from "ts-jest/utils";
 
-import useTimeout from "../useTimeout";
+import { useTimeout } from "../useTimeout";
 
 jest.useFakeTimers();
 

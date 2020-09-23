@@ -1,5 +1,6 @@
 import { renderHook } from "@testing-library/react-hooks";
-import useOrientation, { getOrientationType } from "../useOrientation";
+
+import { getOrientationType, useOrientation } from "../useOrientation";
 
 const ORIENTATION_MOCK: ScreenOrientation = {
   angle: 0,

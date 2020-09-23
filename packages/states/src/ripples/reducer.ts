@@ -1,5 +1,6 @@
 import { Reducer, useCallback, useReducer } from "react";
 import { useRefCache } from "@react-md/utils";
+
 import { RippleEvent, RipplesState, RippleState } from "./types";
 import { createRippleState, getType, isBubbled, isRippleable } from "./utils";
 

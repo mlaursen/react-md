@@ -11,7 +11,7 @@ type ReturnValue<T extends string> = [T, (nextValue: string) => void];
  * @return an ordered list containing the current value followed by the dispatch
  * function to update the state.
  */
-export default function useSelectState<T extends string>(
+export function useSelectState<T extends string>(
   defaultValue: DefaultValue<T>
 ): ReturnValue<T> {
   const [value, setValue] = useState<T>(defaultValue);

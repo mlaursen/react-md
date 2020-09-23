@@ -74,104 +74,105 @@ export interface LayoutWithNavToggle {
  * to provide an accessible `aria-label` for screen readers and change to a
  * toggle button for toggleable layouts.
  */
-const LayoutNavToggle = forwardRef<HTMLButtonElement, LayoutNavToggleProps>(
-  function LayoutNavToggle(
-    {
-      "aria-label": propAriaLabel,
-      "aria-pressed": propAriaPressed,
-      children: propChildren,
-      className: propClassName,
-      buttonType = "icon",
-      onClick,
-      offset: propOffset,
-      rendered,
-      tabIndex: propTabIndex,
-      timeout = DEFAULT_SHEET_TIMEOUT,
-      classNames = DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES,
-      ...props
-    },
-    forwardedRef
-  ) {
-    const icon = useIcon("menu");
-    const { baseId, layout, showNav, hideNav, visible } = useLayoutConfig();
-    const isToggleable = isToggleableLayout(layout);
-    const isTemporary = isTemporaryLayout(layout);
+export const LayoutNavToggle = forwardRef<
+  HTMLButtonElement,
+  LayoutNavToggleProps
+>(function LayoutNavToggle(
+  {
+    "aria-label": propAriaLabel,
+    "aria-pressed": propAriaPressed,
+    children: propChildren,
+    className: propClassName,
+    buttonType = "icon",
+    onClick,
+    offset: propOffset,
+    rendered,
+    tabIndex: propTabIndex,
+    timeout = DEFAULT_SHEET_TIMEOUT,
+    classNames = DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES,
+    ...props
+  },
+  forwardedRef
+) {
+  const icon = useIcon("menu");
+  const { baseId, layout, showNav, hideNav, visible } = useLayoutConfig();
+  const isToggleable = isToggleableLayout(layout);
+  const isTemporary = isTemporaryLayout(layout);
 
-    let isRendered = rendered;
-    if (typeof isRendered === "undefined") {
-      isRendered = isTemporary || isToggleable;
-    }
-
-    let offset = propOffset;
-    if (typeof offset === "undefined") {
-      offset = isToggleable && visible;
-    }
-
-    const [, { ref, className }] = useCSSTransition<HTMLButtonElement>({
-      ref: forwardedRef,
-      transitionIn: offset,
-      temporary: false,
-      className: propClassName,
-      timeout,
-      classNames,
-    });
-
-    if (!isRendered) {
-      return null;
-    }
-
-    let children = propChildren;
-    if (buttonType === "icon" && typeof children === "undefined") {
-      children = icon;
-    }
-
-    let tabIndex = propTabIndex;
-    if (typeof tabIndex === "undefined" && visible && isToggleable) {
-      // set to -1 so it isn't tab focusable but is still programmatically
-      // focusable for temporary navigation drawers to re-focus once closed
-      tabIndex = -1;
-    }
-
-    let ariaPressed = propAriaPressed;
-    if (typeof ariaPressed === "undefined" && isToggleable) {
-      ariaPressed = visible;
-    }
-
-    let ariaLabel = propAriaLabel;
-    if (
-      typeof ariaLabel === "undefined" &&
-      typeof props["aria-labelledby"] === "undefined"
-    ) {
-      ariaLabel = isToggleable ? "Navigation" : "Show Navigation";
-    }
-
-    return (
-      <AppBarNav
-        id={`${baseId}-nav-toggle`}
-        {...props}
-        aria-label={ariaLabel}
-        aria-pressed={ariaPressed}
-        ref={ref}
-        onClick={(event) => {
-          if (onClick) {
-            onClick(event);
-          }
-
-          if (!visible) {
-            showNav();
-          } else {
-            hideNav();
-          }
-        }}
-        buttonType={buttonType}
-        tabIndex={tabIndex}
-        className={cn("rmd-layout-nav-toggle", className)}
-      >
-        {children}
-      </AppBarNav>
-    );
+  let isRendered = rendered;
+  if (typeof isRendered === "undefined") {
+    isRendered = isTemporary || isToggleable;
   }
-);
+
+  let offset = propOffset;
+  if (typeof offset === "undefined") {
+    offset = isToggleable && visible;
+  }
+
+  const [, { ref, className }] = useCSSTransition<HTMLButtonElement>({
+    ref: forwardedRef,
+    transitionIn: offset,
+    temporary: false,
+    className: propClassName,
+    timeout,
+    classNames,
+  });
+
+  if (!isRendered) {
+    return null;
+  }
+
+  let children = propChildren;
+  if (buttonType === "icon" && typeof children === "undefined") {
+    children = icon;
+  }
+
+  let tabIndex = propTabIndex;
+  if (typeof tabIndex === "undefined" && visible && isToggleable) {
+    // set to -1 so it isn't tab focusable but is still programmatically
+    // focusable for temporary navigation drawers to re-focus once closed
+    tabIndex = -1;
+  }
+
+  let ariaPressed = propAriaPressed;
+  if (typeof ariaPressed === "undefined" && isToggleable) {
+    ariaPressed = visible;
+  }
+
+  let ariaLabel = propAriaLabel;
+  if (
+    typeof ariaLabel === "undefined" &&
+    typeof props["aria-labelledby"] === "undefined"
+  ) {
+    ariaLabel = isToggleable ? "Navigation" : "Show Navigation";
+  }
+
+  return (
+    <AppBarNav
+      id={`${baseId}-nav-toggle`}
+      {...props}
+      aria-label={ariaLabel}
+      aria-pressed={ariaPressed}
+      ref={ref}
+      onClick={(event) => {
+        if (onClick) {
+          onClick(event);
+        }
+
+        if (!visible) {
+          showNav();
+        } else {
+          hideNav();
+        }
+      }}
+      buttonType={buttonType}
+      tabIndex={tabIndex}
+      className={cn("rmd-layout-nav-toggle", className)}
+    >
+      {children}
+    </AppBarNav>
+  );
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -212,5 +213,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (error) {}
 }
-
-export default LayoutNavToggle;

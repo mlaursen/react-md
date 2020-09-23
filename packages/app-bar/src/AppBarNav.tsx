@@ -21,7 +21,7 @@ const block = bem("rmd-app-bar");
  * This component is generally really only used when you want to have a
  * temporary navigation element like a hamburger menu.
  */
-const AppBarNav = forwardRef<HTMLButtonElement, AppBarNavProps>(
+export const AppBarNav = forwardRef<HTMLButtonElement, AppBarNavProps>(
   function AppBarNav(
     {
       className,
@@ -53,5 +53,3 @@ const AppBarNav = forwardRef<HTMLButtonElement, AppBarNavProps>(
     );
   }
 );
-
-export default AppBarNav;

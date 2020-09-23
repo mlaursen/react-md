@@ -1,9 +1,10 @@
-import React, { ReactElement, ReactNode, ElementType } from "react";
-import TreeItem from "./TreeItem";
+import React, { ElementType, ReactElement, ReactNode } from "react";
+
+import { TreeItem } from "./TreeItem";
 import {
+  BaseTreeItem,
   ProvidedTreeItemProps,
   ProvidedTreeProps,
-  BaseTreeItem,
   UnknownTreeItem,
 } from "./types";
 
@@ -45,7 +46,7 @@ function isElementType(
  * `getItemLabel`, and `getItemProps` can be used to render the TreeItem itself.
  * @return a `TreeItem` or a custom `ReactElement`
  */
-export default function defaultTreeItemRenderer(
+export function defaultTreeItemRenderer(
   itemProps: ProvidedTreeItemProps,
   item: BaseTreeItem & { visibleIndex: number },
   treeProps: ProvidedTreeProps

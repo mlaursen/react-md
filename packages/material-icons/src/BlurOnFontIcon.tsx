@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function BlurOnFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      blur_on
-    </FontIcon>
-  );
-});
+export const BlurOnFont = forwardRef<HTMLElement, FontIconProps>(
+  function BlurOnFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        blur_on
+      </FontIcon>
+    );
+  }
+);

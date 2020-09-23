@@ -35,7 +35,7 @@ interface ReturnValue {
 /**
  * @private
  */
-export default function useTabsMovement({
+export function useTabsMovement({
   onClick,
   onKeyDown,
   children,

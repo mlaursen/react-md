@@ -1,12 +1,12 @@
-import React, { ElementType, forwardRef, AnchorHTMLAttributes } from "react";
+import React, { AnchorHTMLAttributes, ElementType, forwardRef } from "react";
 import cn from "classnames";
 import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
 
-import getListItemHeight, { SimpleListItemProps } from "./getListItemHeight";
-import ListItemChildren, { ListItemChildrenProps } from "./ListItemChildren";
+import { getListItemHeight, SimpleListItemProps } from "./getListItemHeight";
+import { ListItemChildren, ListItemChildrenProps } from "./ListItemChildren";
 
 export interface ListItemLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -39,7 +39,7 @@ export interface ListItemLinkWithComponentProps extends ListItemLinkProps {
  * that has the main `ListItem` styles. It will probably be better to just use
  * the `ListItemChildren` within your `Link` component instead.
  */
-const ListItemLink = forwardRef<
+export const ListItemLink = forwardRef<
   HTMLAnchorElement | ElementType,
   ListItemLinkProps | ListItemLinkWithComponentProps
 >(function ListItemLink(
@@ -131,8 +131,6 @@ const ListItemLink = forwardRef<
 });
 
 if (process.env.NODE_ENV !== "production") {
-  ListItemLink.displayName = "ListItemLink";
-
   try {
     const PropTypes = require("prop-types");
 
@@ -206,5 +204,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ListItemLink;

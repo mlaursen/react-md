@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react";
+
 import { ListItemChildrenProps } from "./ListItemChildren";
 
 export type ListItemHeight =
@@ -62,7 +63,7 @@ export interface SimpleListItemProps
  *
  * @private
  */
-export default function getListItemHeight({
+export function getListItemHeight({
   height = "auto",
   leftAddon,
   leftAddonType = "icon",

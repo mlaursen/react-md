@@ -1,5 +1,6 @@
 import React from "react";
-import isEmpty from "../isEmpty";
+
+import { isEmpty } from "../isEmpty";
 
 describe("isEmpty", () => {
   it('should return true whent he disableNullOnZero is false and the children is 0, "0", or null', () => {

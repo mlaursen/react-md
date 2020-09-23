@@ -1,4 +1,4 @@
-import fuzzyFilter from "../fuzzyFilter";
+import { fuzzyFilter } from "../fuzzyFilter";
 
 describe("fuzzyFilter", () => {
   it("should return the list if it is empty or there is no query string", () => {

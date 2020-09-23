@@ -1,6 +1,6 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react-hooks";
 
-import useTreeItemSelection from "../useTreeItemSelection";
+import { useTreeItemSelection } from "../useTreeItemSelection";
 
 describe("useTreeItemSelection", () => {
   it("should default to the provided selectedIds list", () => {

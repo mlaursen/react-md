@@ -3,7 +3,7 @@ import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
-import CardHeaderAddon from "./CardHeaderAddon";
+import { CardHeaderAddon } from "./CardHeaderAddon";
 
 export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -49,7 +49,7 @@ const block = bem("rmd-card");
  * components. There is also additional functionality built in to render items
  * before or after the main children with some additional spacing.
  */
-const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
+export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   function CardHeader(
     {
       align = "center",
@@ -104,5 +104,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default CardHeader;

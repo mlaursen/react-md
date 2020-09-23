@@ -1,6 +1,6 @@
 import { CROSS_FADE_CLASSNAMES, CROSS_FADE_TIMEOUT } from "./constants";
 import { CSSTransitionOptions } from "./types";
-import useCSSTransition, { CSSTransitionReturnValue } from "./useCSSTransition";
+import { CSSTransitionReturnValue, useCSSTransition } from "./useCSSTransition";
 
 export interface CrossFadeOptions<E extends HTMLElement>
   extends Omit<
@@ -57,7 +57,7 @@ export interface CrossFadeOptions<E extends HTMLElement>
  * for triggering the transition manually (should not be used much), and the
  * current transition stage.
  */
-export default function useCrossFade<E extends HTMLElement = HTMLDivElement>({
+export function useCrossFade<E extends HTMLElement = HTMLDivElement>({
   appear = false,
   temporary = false,
   transitionIn = true,

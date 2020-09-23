@@ -29,7 +29,7 @@ const block = bem("rmd-card");
  * card parts. It adds some general styles and elevation to help show
  * prominence.
  */
-const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
+export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   {
     className,
     children,
@@ -72,5 +72,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Card;

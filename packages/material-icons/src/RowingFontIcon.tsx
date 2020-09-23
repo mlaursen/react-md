@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function RowingFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      rowing
-    </FontIcon>
-  );
-});
+export const RowingFont = forwardRef<HTMLElement, FontIconProps>(
+  function RowingFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        rowing
+      </FontIcon>
+    );
+  }
+);

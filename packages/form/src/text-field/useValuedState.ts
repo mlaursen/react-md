@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useToggle, useRefCache } from "@react-md/utils";
+import { useRefCache, useToggle } from "@react-md/utils";
 
 type TextElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 type Value = string | number | (string | number)[];
@@ -17,7 +17,7 @@ interface Options<T extends TextElement> {
  *
  * @private
  */
-export default function useValuedState<T extends TextElement>({
+export function useValuedState<T extends TextElement>({
   onChange,
   value,
   defaultValue,

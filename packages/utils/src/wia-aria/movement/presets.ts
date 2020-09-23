@@ -1,4 +1,4 @@
-import { MovementConfig, IncrementMovementKey, JumpMovementKey } from "./types";
+import { IncrementMovementKey, JumpMovementKey, MovementConfig } from "./types";
 
 /**
  * A keyboard movement configuration preset for handling vertical menu

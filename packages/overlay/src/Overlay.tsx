@@ -55,77 +55,79 @@ const block = bem("rmd-overlay");
  * issues or you need to portal the overlay to a different area within your app,
  * you should use the `OverlayPortal` component instead.
  */
-const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function Overlay(
-  {
-    className,
-    visible,
-    hidden = false,
-    clickable = true,
-    timeout = DEFAULT_OVERLAY_TIMEOUT,
-    classNames = DEFAULT_OVERLAY_CLASSNAMES,
-    children,
-    mountOnEnter = true,
-    unmountOnExit = true,
-    onRequestClose,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    portal,
-    portalInto,
-    portalIntoId,
-    tabIndex = -1,
-    ...props
-  },
-  ref
-) {
-  return (
-    <ConditionalPortal
-      portal={portal}
-      portalInto={portalInto}
-      portalIntoId={portalIntoId}
-    >
-      <CSSTransition
-        appear
-        in={visible}
-        classNames={hidden ? "" : classNames}
-        timeout={hidden ? 0 : timeout}
-        mountOnEnter={mountOnEnter}
-        unmountOnExit={unmountOnExit}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExiting={onExiting}
-        onExited={onExited}
+export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
+  function Overlay(
+    {
+      className,
+      visible,
+      hidden = false,
+      clickable = true,
+      timeout = DEFAULT_OVERLAY_TIMEOUT,
+      classNames = DEFAULT_OVERLAY_CLASSNAMES,
+      children,
+      mountOnEnter = true,
+      unmountOnExit = true,
+      onRequestClose,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      portal,
+      portalInto,
+      portalIntoId,
+      tabIndex = -1,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <ConditionalPortal
+        portal={portal}
+        portalInto={portalInto}
+        portalIntoId={portalIntoId}
       >
-        {(state) => (
-          <span
-            {...props}
-            ref={ref}
-            className={cn(
-              block({
-                // have to manually set the active state here since react-transition-group doesn't
-                // clone in the transition `classNames` and if the overlay re-renders while the
-                // animation has finished, the active className will disappear
-                active: !hidden && state === "entered",
-                visible,
-                clickable,
-              }),
-              className
-            )}
-            onClick={onRequestClose}
-            tabIndex={tabIndex}
-          >
-            {children}
-          </span>
-        )}
-      </CSSTransition>
-    </ConditionalPortal>
-  );
-});
+        <CSSTransition
+          appear
+          in={visible}
+          classNames={hidden ? "" : classNames}
+          timeout={hidden ? 0 : timeout}
+          mountOnEnter={mountOnEnter}
+          unmountOnExit={unmountOnExit}
+          onEnter={onEnter}
+          onEntering={onEntering}
+          onEntered={onEntered}
+          onExit={onExit}
+          onExiting={onExiting}
+          onExited={onExited}
+        >
+          {(state) => (
+            <span
+              {...props}
+              ref={ref}
+              className={cn(
+                block({
+                  // have to manually set the active state here since react-transition-group doesn't
+                  // clone in the transition `classNames` and if the overlay re-renders while the
+                  // animation has finished, the active className will disappear
+                  active: !hidden && state === "entered",
+                  visible,
+                  clickable,
+                }),
+                className
+              )}
+              onClick={onRequestClose}
+              tabIndex={tabIndex}
+            >
+              {children}
+            </span>
+          )}
+        </CSSTransition>
+      </ConditionalPortal>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -177,5 +179,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Overlay;

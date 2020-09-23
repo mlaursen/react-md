@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+
 import { AppSize, DEFAULT_APP_SIZE } from "./useAppSizeMedia";
 
 /**
@@ -16,7 +17,7 @@ export const AppSizeContext = createContext<
  *
  * @return the current AppSize
  */
-export default function useAppSize(): AppSize {
+export function useAppSize(): AppSize {
   const { __initialized, ...context } = useContext(AppSizeContext);
   if (!__initialized) {
     throw new Error(

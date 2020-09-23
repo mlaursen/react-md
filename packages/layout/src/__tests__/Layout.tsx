@@ -11,7 +11,7 @@ import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
 } from "@react-md/utils";
 
-import Layout, { LayoutProps } from "../Layout";
+import { Layout, LayoutProps } from "../Layout";
 
 const render = (ui: ReactElement, options?: RenderOptions) =>
   baseRender(ui, {

@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import ToggleContainer from "../ToggleContainer";
+import { ToggleContainer } from "../ToggleContainer";
 
 describe("ToggleContainer", () => {
   it("should render correctly", () => {

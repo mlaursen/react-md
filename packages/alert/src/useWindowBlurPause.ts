@@ -19,7 +19,7 @@ interface Options {
  *
  * @private
  */
-export default function useWindowBlurPause({
+export function useWindowBlurPause({
   startTimer,
   stopTimer,
   visible,

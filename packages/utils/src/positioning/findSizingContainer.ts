@@ -13,7 +13,7 @@
  * @throws This error will be thrown if using the `data-query-selector` and the query
  * selector does not return an element on the page.
  */
-export default function findSizingContainer(
+export function findSizingContainer(
   el: HTMLElement | null
 ): HTMLElement | null {
   if (!el) {

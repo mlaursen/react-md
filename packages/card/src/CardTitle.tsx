@@ -25,7 +25,7 @@ const block = bem("rmd-card");
  * along with the `CardSubtitle` component within the `CardHeader` for a main
  * title and a subtitle.
  */
-const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
+export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   function CardTitle(
     { className, children, small = false, noWrap = false, ...props },
     ref
@@ -60,5 +60,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default CardTitle;

@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function TerrainFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      terrain
-    </FontIcon>
-  );
-});
+export const TerrainFont = forwardRef<HTMLElement, FontIconProps>(
+  function TerrainFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        terrain
+      </FontIcon>
+    );
+  }
+);

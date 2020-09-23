@@ -1,4 +1,4 @@
-import getListItemHeight from "../getListItemHeight";
+import { getListItemHeight } from "../getListItemHeight";
 
 describe("getListItemHeight", () => {
   it('should return "normal" if no addons are provided when the height is omitted or set to "auto"', () => {

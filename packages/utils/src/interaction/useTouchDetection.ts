@@ -1,5 +1,6 @@
-import { useState, useRef, useCallback, useEffect } from "react";
-import useRefCache from "../useRefCache";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+import { useRefCache } from "../useRefCache";
 
 export const DEFAULT_TOUCH_TIMEOUT = 1200;
 
@@ -19,7 +20,7 @@ export const DEFAULT_TOUCH_TIMEOUT = 1200;
  * @return true if the app is in touch mode.
  * @private
  */
-export default function useTouchDetection(
+export function useTouchDetection(
   touchTimeout: number = DEFAULT_TOUCH_TIMEOUT
 ): boolean {
   const [lastTouchTime, setTouchTime] = useState(0);

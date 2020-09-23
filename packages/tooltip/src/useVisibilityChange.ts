@@ -26,7 +26,7 @@ export interface VisibilityChangeOptions {
  *
  * @private
  */
-export default function useVisiblityChange({
+export function useVisiblityChange({
   onShow,
   onHide,
   visible,

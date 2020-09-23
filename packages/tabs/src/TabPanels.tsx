@@ -12,7 +12,7 @@ import React, {
 import cn from "classnames";
 import { bem, useEnsuredRef } from "@react-md/utils";
 
-import PanelGroup from "./PanelGroup";
+import { PanelGroup } from "./PanelGroup";
 import { useTabs } from "./TabsManager";
 
 export interface TabPanelsProps extends HTMLAttributes<HTMLDivElement> {
@@ -48,123 +48,128 @@ const block = bem("rmd-tab-panels");
  * `activeIndex`. This is why the children for this component can only be
  * `TabPanel` and should not be conditional.
  */
-const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(function TabPanels(
-  {
-    className,
-    children,
-    disableScrollFix = false,
-    disableTransition = false,
-    persistent = false,
-    ...props
-  },
-  forwardedRef
-) {
-  const { tabsId, tabs, activeIndex } = useTabs();
-  const prevIndex = useRef(activeIndex);
-  const [{ previous, incrementing }, setState] = useState({
-    previous: activeIndex,
-    incrementing: true,
-  });
+export const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(
+  function TabPanels(
+    {
+      className,
+      children,
+      disableScrollFix = false,
+      disableTransition = false,
+      persistent = false,
+      ...props
+    },
+    forwardedRef
+  ) {
+    const { tabsId, tabs, activeIndex } = useTabs();
+    const prevIndex = useRef(activeIndex);
+    const [{ previous, incrementing }, setState] = useState({
+      previous: activeIndex,
+      incrementing: true,
+    });
 
-  // have to set these in refs since changing these might cause mounting
-  // and unmounting in the Transition group component :/ they should only
-  // be re-evaluated when the activeIndex changes.
-  const transitionable = useRef(!persistent && !disableTransition);
-  const animimatable = useRef(persistent && !disableTransition);
-  if (prevIndex.current !== activeIndex) {
-    prevIndex.current = activeIndex;
-    transitionable.current = !persistent && !disableTransition;
-    animimatable.current = persistent && !disableTransition;
-  }
-
-  useEffect(() => {
-    setState(({ previous }) => ({
-      incrementing: previous < activeIndex,
-      previous: disableTransition ? activeIndex : previous,
-    }));
-
-    // this is for only updating the incrementing state and should not be fired
-    // again if the disableTransition prop is changed
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex]);
-
-  const onEntered = useCallback(() => {
-    setState(({ incrementing }) => ({ incrementing, previous: activeIndex }));
-  }, [activeIndex]);
-
-  const [ref, refHandler] = useEnsuredRef(forwardedRef);
-
-  useEffect(() => {
-    if (!ref.current || disableScrollFix) {
-      return;
+    // have to set these in refs since changing these might cause mounting
+    // and unmounting in the Transition group component :/ they should only
+    // be re-evaluated when the activeIndex changes.
+    const transitionable = useRef(!persistent && !disableTransition);
+    const animimatable = useRef(persistent && !disableTransition);
+    if (prevIndex.current !== activeIndex) {
+      prevIndex.current = activeIndex;
+      transitionable.current = !persistent && !disableTransition;
+      animimatable.current = persistent && !disableTransition;
     }
 
-    ref.current.scrollTop = 0;
-    // don't want it to be triggered if only the disableScrollFix prop has changed
-    // since it might be independent from active indexes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex]);
+    useEffect(() => {
+      setState(({ previous }) => ({
+        incrementing: previous < activeIndex,
+        previous: disableTransition ? activeIndex : previous,
+      }));
 
-  return (
-    <div
-      {...props}
-      ref={refHandler}
-      className={cn(
-        block({
-          "slide-left": incrementing && !persistent,
-          "slide-left-persistent": incrementing && persistent,
-          "slide-right": !incrementing,
-        }),
-        className
-      )}
-    >
-      <PanelGroup persistent={persistent} disableTransition={disableTransition}>
-        {Children.map(children, (child, index) => {
-          if (!persistent && index !== activeIndex) {
-            return null;
-          }
+      // this is for only updating the incrementing state and should not be fired
+      // again if the disableTransition prop is changed
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeIndex]);
 
-          if (!isValidElement(child)) {
-            return child;
-          }
+    const onEntered = useCallback(() => {
+      setState(({ incrementing }) => ({ incrementing, previous: activeIndex }));
+    }, [activeIndex]);
 
-          const panel = Children.only(child);
-          let labelledBy = panel.props["aria-labelledby"];
-          if (!labelledBy && !panel.props["aria-label"] && tabs[index]) {
-            // generally guaranteed to be defined by this point since the TabsManager
-            // will add ids if missing.
-            labelledBy = tabs[index].id;
-          }
+    const [ref, refHandler] = useEnsuredRef(forwardedRef);
 
-          let key = panel.key || undefined;
-          if (index === activeIndex && transitionable.current) {
-            key = `${activeIndex}`;
-          }
+    useEffect(() => {
+      if (!ref.current || disableScrollFix) {
+        return;
+      }
 
-          let { in: animateIn } = panel.props;
-          if (animimatable.current) {
-            // when the persistent flag is in, I have too handle the TransitionGroup
-            // `in` behavior manually based on activeIndex
-            animateIn = index === activeIndex;
-          }
+      ref.current.scrollTop = 0;
+      // don't want it to be triggered if only the disableScrollFix prop has changed
+      // since it might be independent from active indexes
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeIndex]);
 
-          let hidden = index !== activeIndex;
-          if (persistent) {
-            hidden = hidden && index !== previous;
-          }
-          return cloneElement(child, {
-            key,
-            in: animateIn,
-            id: `${tabsId}-panel-${index + 1}`,
-            "aria-labelledby": labelledBy,
-            hidden,
-            onEntered: disableTransition ? undefined : onEntered,
-          });
-        })}
-      </PanelGroup>
-    </div>
-  );
-});
+    return (
+      <div
+        {...props}
+        ref={refHandler}
+        className={cn(
+          block({
+            "slide-left": incrementing && !persistent,
+            "slide-left-persistent": incrementing && persistent,
+            "slide-right": !incrementing,
+          }),
+          className
+        )}
+      >
+        <PanelGroup
+          persistent={persistent}
+          disableTransition={disableTransition}
+        >
+          {Children.map(children, (child, index) => {
+            if (!persistent && index !== activeIndex) {
+              return null;
+            }
+
+            if (!isValidElement(child)) {
+              return child;
+            }
+
+            const panel = Children.only(child);
+            let labelledBy = panel.props["aria-labelledby"];
+            if (!labelledBy && !panel.props["aria-label"] && tabs[index]) {
+              // generally guaranteed to be defined by this point since the TabsManager
+              // will add ids if missing.
+              labelledBy = tabs[index].id;
+            }
+
+            let key = panel.key || undefined;
+            if (index === activeIndex && transitionable.current) {
+              key = `${activeIndex}`;
+            }
+
+            let { in: animateIn } = panel.props;
+            if (animimatable.current) {
+              // when the persistent flag is in, I have too handle the TransitionGroup
+              // `in` behavior manually based on activeIndex
+              animateIn = index === activeIndex;
+            }
+
+            let hidden = index !== activeIndex;
+            if (persistent) {
+              hidden = hidden && index !== previous;
+            }
+            return cloneElement(child, {
+              key,
+              in: animateIn,
+              id: `${tabsId}-panel-${index + 1}`,
+              "aria-labelledby": labelledBy,
+              hidden,
+              onEntered: disableTransition ? undefined : onEntered,
+            });
+          })}
+        </PanelGroup>
+      </div>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -179,5 +184,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TabPanels;

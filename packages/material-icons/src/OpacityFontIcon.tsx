@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function OpacityFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      opacity
-    </FontIcon>
-  );
-});
+export const OpacityFont = forwardRef<HTMLElement, FontIconProps>(
+  function OpacityFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        opacity
+      </FontIcon>
+    );
+  }
+);

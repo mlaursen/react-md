@@ -1,4 +1,4 @@
-import getChildItems from "../getChildItems";
+import { getChildItems } from "../getChildItems";
 
 const item1 = {
   itemId: "item-id-1",

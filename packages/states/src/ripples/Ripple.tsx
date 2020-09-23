@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import React, { FC, useCallback } from "react";
+import React, { ReactElement, useCallback } from "react";
 import cn from "classnames";
 import CSSTransition, {
   CSSTransitionClassNames,
@@ -19,15 +18,14 @@ export interface RippleProps {
   ripple: RippleState;
 }
 
-const Ripple: FC<RippleProps> = (props) => {
-  const {
-    className,
-    classNames: propClassNames,
-    timeout: propTimeout,
-    ripple,
-    entered,
-    exited,
-  } = props;
+export function Ripple({
+  className,
+  classNames: propClassNames,
+  timeout: propTimeout,
+  ripple,
+  entered,
+  exited,
+}: RippleProps): ReactElement {
   const { exiting, style } = ripple;
 
   let timeout = propTimeout;
@@ -69,6 +67,4 @@ const Ripple: FC<RippleProps> = (props) => {
       <span style={style} className={cn("rmd-ripple", className)} />
     </CSSTransition>
   );
-};
-
-export default Ripple;
+}

@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(
-  function TransferWithinAStationFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        transfer_within_a_station
-      </FontIcon>
-    );
-  }
-);
+export const TransferWithinAStationFont = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function TransferWithinAStationFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      transfer_within_a_station
+    </FontIcon>
+  );
+});

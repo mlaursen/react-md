@@ -20,9 +20,9 @@ import {
 } from "@react-md/utils";
 
 import { DEFAULT_TOOLTIP_DELAY, DEFAULT_TOOLTIP_THRESHOLD } from "./constants";
-import Tooltip, { TooltipProps } from "./Tooltip";
+import { Tooltip, TooltipProps } from "./Tooltip";
 import { MergableHandlers } from "./useHandlers";
-import useTooltipState, { TooltipStateOptions } from "./useTooltipState";
+import { TooltipStateOptions, useTooltipState } from "./useTooltipState";
 
 interface TooltippedProvidedProps extends MergableHandlers {
   id: string;
@@ -166,7 +166,7 @@ export interface TooltippedProps
  * element by cloning the required event handlers and accessibility props into
  * the child with `React.cloneChild`.
  */
-function Tooltipped({
+export function Tooltipped({
   id,
   children,
   tooltip: tooltipChildren,
@@ -379,5 +379,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Tooltipped;

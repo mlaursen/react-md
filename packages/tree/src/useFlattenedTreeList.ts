@@ -1,8 +1,8 @@
-import { useMemo, MutableRefObject } from "react";
+import { MutableRefObject, useMemo } from "react";
 
+import { getTreeItemId } from "./getTreeItemId";
+import { ExpandedIds, TreeItemId, TreeProps, UnknownTreeItem } from "./types";
 import { NestedTreeItem } from "./useNestedTreeList";
-import { TreeItemId, UnknownTreeItem, TreeProps, ExpandedIds } from "./types";
-import getTreeItemId from "./getTreeItemId";
 
 export interface SearchableTreeItem {
   /**
@@ -111,7 +111,7 @@ type ReturnValue = [SearchableTreeItem[], MetadataRecord, SearchableTreeItem[]];
  *
  * @private
  */
-export default function useFlattenedTreeList({
+export function useFlattenedTreeList({
   id,
   items,
   rootId,

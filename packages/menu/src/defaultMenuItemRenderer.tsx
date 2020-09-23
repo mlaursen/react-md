@@ -1,15 +1,15 @@
 import React, { cloneElement, isValidElement, ReactNode } from "react";
 
-import MenuItem, { MenuItemProps } from "./MenuItem";
-import MenuItemLink, { MenuItemLinkWithComponentProps } from "./MenuItemLink";
-import MenuItemSeparator, { MenuItemSeparatorProps } from "./MenuItemSeparator";
+import { MenuItem, MenuItemProps } from "./MenuItem";
+import { MenuItemLink, MenuItemLinkWithComponentProps } from "./MenuItemLink";
+import { MenuItemSeparator, MenuItemSeparatorProps } from "./MenuItemSeparator";
 
 export type ValidMenuItem =
   | ReactNode
   | MenuItemProps
   | (MenuItemSeparatorProps & { role: "separator" });
 
-export default function defaultMenuItemRenderer(
+export function defaultMenuItemRenderer(
   item: ValidMenuItem,
   key: string
 ): ReactNode {

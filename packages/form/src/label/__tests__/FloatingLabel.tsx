@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import FloatingLabel from "../FloatingLabel";
+import { FloatingLabel } from "../FloatingLabel";
 
 describe("FloatingLabel", () => {
   it("should render correctly", () => {

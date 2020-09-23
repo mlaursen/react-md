@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import TreeItemExpanderIcon from "../TreeItemExpanderIcon";
+import { TreeItemExpanderIcon } from "../TreeItemExpanderIcon";
 
 describe("TreeItemExpanderIcon", () => {
   it("should render correctly", () => {

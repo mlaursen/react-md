@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 
-import useTempValue from "../useTempValue";
+import { useTempValue } from "../useTempValue";
 
 jest.useFakeTimers();
 

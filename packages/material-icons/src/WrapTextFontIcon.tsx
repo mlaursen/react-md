@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function WrapTextFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      wrap_text
-    </FontIcon>
-  );
-});
+export const WrapTextFont = forwardRef<HTMLElement, FontIconProps>(
+  function WrapTextFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        wrap_text
+      </FontIcon>
+    );
+  }
+);

@@ -11,7 +11,7 @@ const block = bem("rmd-badge-container");
  * This is a really simple component that will just allow you to position a
  * badge relative to another component.
  */
-const BadgeContainer = forwardRef<HTMLSpanElement, BadgeContainerProps>(
+export const BadgeContainer = forwardRef<HTMLSpanElement, BadgeContainerProps>(
   function BadgeContainer(
     { className, children, ...props }: BadgeContainerProps,
     ref?: Ref<HTMLSpanElement>
@@ -23,5 +23,3 @@ const BadgeContainer = forwardRef<HTMLSpanElement, BadgeContainerProps>(
     );
   }
 );
-
-export default BadgeContainer;

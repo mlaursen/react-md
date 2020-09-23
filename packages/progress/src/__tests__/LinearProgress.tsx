@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import LinearProgress from "../LinearProgress";
+import { LinearProgress } from "../LinearProgress";
 
 describe("LinearProgress", () => {
   it("should render correctly", () => {

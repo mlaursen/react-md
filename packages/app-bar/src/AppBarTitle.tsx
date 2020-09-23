@@ -27,7 +27,7 @@ const block = bem("rmd-app-bar");
  * not using the `AppBarNav` component, you can enable the `keyline` prop to
  * ensure that your title aligns with the keyline of your navigation element.
  */
-const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
+export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
   function AppBarTitle(
     {
       noWrap = true,
@@ -71,5 +71,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default AppBarTitle;

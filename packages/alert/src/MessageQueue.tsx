@@ -10,8 +10,8 @@ import {
   ToastMessage,
 } from "./MessageQueueContext";
 import { SnackbarProps } from "./Snackbar";
-import SnackbarQueue, { ActionEventHandler } from "./SnackbarQueue";
-import useMessageQueue, { MessageQueueOptions } from "./useMessageQueue";
+import { ActionEventHandler, SnackbarQueue } from "./SnackbarQueue";
+import { MessageQueueOptions, useMessageQueue } from "./useMessageQueue";
 
 export interface MessageQueueProps<M extends ToastMessage>
   extends MessageQueueOptions<M>,
@@ -35,7 +35,7 @@ export interface MessageQueueProps<M extends ToastMessage>
  * This component is used to be able to create a queue of messages with the `Snackbar` and
  * `Toast` components with a _fairly_ decent API out of the box.
  */
-function MessageQueue<M extends ToastMessage = ToastMessage>({
+export function MessageQueue<M extends ToastMessage = ToastMessage>({
   timeout = 5000,
   duplicates = "allow",
   defaultQueue = [],
@@ -91,5 +91,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default MessageQueue;

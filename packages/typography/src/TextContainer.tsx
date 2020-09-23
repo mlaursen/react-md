@@ -66,7 +66,7 @@ export interface TextContainerProps extends HTMLAttributes<HTMLDivElement> {
   clone?: boolean;
 }
 
-const TextContainer = forwardRef<
+export const TextContainer = forwardRef<
   HTMLDivElement | ElementType,
   TextContainerProps
 >(function TextContainer(
@@ -119,5 +119,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TextContainer;

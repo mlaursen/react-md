@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-import focusElementWithin, { Focus } from "./focusElementWithin";
-import getInstance, { RefOrInstance } from "./getInstance";
+import { Focus, focusElementWithin } from "./focusElementWithin";
+import { getInstance, RefOrInstance } from "./getInstance";
 
 /**
  * This hook is used to focus an element once a component has mounted. To help
@@ -26,7 +26,7 @@ import getInstance, { RefOrInstance } from "./getInstance";
  * included instead of only tab focusable.
  * @param disabled Boolean if the focus behavior should be disabled.
  */
-export default function useFocusOnMount(
+export function useFocusOnMount(
   refOrInstance: RefOrInstance,
   defaultFocus: Focus,
   preventScroll: boolean = false,

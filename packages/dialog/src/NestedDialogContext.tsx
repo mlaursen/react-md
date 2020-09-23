@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, {
   createContext,
-  FC,
+  ReactElement,
+  ReactNode,
   useCallback,
   useContext,
   useMemo,
@@ -26,6 +27,10 @@ if (process.env.NODE_ENV !== "production") {
 
 const { Provider } = context;
 
+export interface NestedDialogContextProviderProps {
+  children: ReactNode;
+}
+
 /**
  * This component is used to help with handling nested dialogs by:
  * - preventing all dialogs to be closed when the escape key is pressed
@@ -34,7 +39,9 @@ const { Provider } = context;
  * This should be added to the root of your app if you would like to enable this
  * feature.
  */
-export const NestedDialogContextProvider: FC = ({ children }) => {
+export function NestedDialogContextProvider({
+  children,
+}: NestedDialogContextProviderProps): ReactElement {
   const [stack, setStack] = useState<string[]>([]);
   const add = useCallback((dialogId: string) => {
     setStack((prevStack) => {
@@ -63,7 +70,7 @@ export const NestedDialogContextProvider: FC = ({ children }) => {
   const value = useMemo(() => ({ stack, add, remove }), [add, remove, stack]);
 
   return <Provider value={value}>{children}</Provider>;
-};
+}
 
 /**
  * Gets the current nested dialog context. This shouldn't really be used

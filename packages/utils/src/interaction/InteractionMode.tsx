@@ -5,8 +5,8 @@ import React, {
   useContext,
 } from "react";
 
-import useModeClassName from "./useModeClassName";
-import useModeDetection, { UserInteractionMode } from "./useModeDetection";
+import { useModeClassName } from "./useModeClassName";
+import { useModeDetection, UserInteractionMode } from "./useModeDetection";
 
 const InteractionMode = createContext<UserInteractionMode>("mouse");
 const ParentContext = createContext(false);

@@ -1,8 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import TabPanels from "../TabPanels";
-import TabPanel from "../TabPanel";
+import { TabPanel } from "../TabPanel";
+import { TabPanels } from "../TabPanels";
 import { TabsManager } from "../TabsManager";
 
 describe("TabPanels", () => {

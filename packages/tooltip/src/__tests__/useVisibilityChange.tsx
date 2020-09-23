@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { render } from "@testing-library/react";
 
-import useVisiblityChange from "../useVisibilityChange";
 import { TooltipInitiated } from "../useHandlers";
+import { useVisiblityChange } from "../useVisibilityChange";
 
 const onShow = jest.fn();
 const onHide = jest.fn();

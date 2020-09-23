@@ -19,7 +19,7 @@ interface PositionResult {
  * container element's location within the viewport. However, if the `position`
  * option/prop was provided, that value will always be used instead.
  */
-export default function usePosition({
+export function usePosition({
   position: determinedPosition,
   defaultPosition,
   threshold,

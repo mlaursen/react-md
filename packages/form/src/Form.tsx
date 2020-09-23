@@ -14,7 +14,7 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
  * do much styling or logic. All this form component will do is add basic flex
  * behavior and prevent the default form submit behavior.
  */
-const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
+export const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
   { children, disablePreventDefault = false, onSubmit, ...props },
   ref
 ) {
@@ -49,5 +49,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Form;

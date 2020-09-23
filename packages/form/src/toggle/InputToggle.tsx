@@ -11,9 +11,9 @@ import {
 } from "@react-md/states";
 import { bem } from "@react-md/utils";
 
-import Label from "../label/Label";
-import useFocusState from "../useFocusState";
-import ToggleContainer from "./ToggleContainer";
+import { Label } from "../label/Label";
+import { useFocusState } from "../useFocusState";
+import { ToggleContainer } from "./ToggleContainer";
 
 /**
  * The props for a checkbox or radio input element.
@@ -168,122 +168,121 @@ type CheckboxOrRadioProps = InputToggleProps & {
 
 const block = bem("rmd-toggle");
 
-const InputToggle = forwardRef<HTMLInputElement, Props>(function InputToggle(
-  allProps,
-  ref
-) {
-  const {
-    style,
-    className,
-    iconStyle,
-    iconClassName,
-    toggleStyle,
-    toggleClassName: propToggleClassName,
-    inputStyle,
-    inputClassName,
-    icon,
-    onFocus: propOnFocus,
-    onBlur: propOnBlur,
-    error = false,
-    inline = false,
-    stacked = false,
-    disabled = false,
-    label,
-    labelStyle,
-    labelClassName,
-    labelDisabled,
-    iconAfter = false,
-    disableIconOverlay = false,
-    disableRipple,
-    disableProgrammaticRipple,
-    rippleTimeout,
-    rippleClassNames,
-    children,
-    indeterminate,
-    ...props
-  } = allProps as CheckboxOrRadioProps;
+export const InputToggle = forwardRef<HTMLInputElement, Props>(
+  function InputToggle(allProps, ref) {
+    const {
+      style,
+      className,
+      iconStyle,
+      iconClassName,
+      toggleStyle,
+      toggleClassName: propToggleClassName,
+      inputStyle,
+      inputClassName,
+      icon,
+      onFocus: propOnFocus,
+      onBlur: propOnBlur,
+      error = false,
+      inline = false,
+      stacked = false,
+      disabled = false,
+      label,
+      labelStyle,
+      labelClassName,
+      labelDisabled,
+      iconAfter = false,
+      disableIconOverlay = false,
+      disableRipple,
+      disableProgrammaticRipple,
+      rippleTimeout,
+      rippleClassNames,
+      children,
+      indeterminate,
+      ...props
+    } = allProps as CheckboxOrRadioProps;
 
-  const { id, type } = props;
+    const { id, type } = props;
 
-  const {
-    ripples,
-    handlers,
-    className: toggleClassName,
-  } = useInteractionStates({
-    handlers: props,
-    disabled,
-    className: propToggleClassName,
-    disableRipple,
-    disableProgrammaticRipple,
-    rippleTimeout,
-    rippleClassNames,
-  });
-  const [focused, onFocus, onBlur] = useFocusState({
-    onFocus: propOnFocus,
-    onBlur: propOnBlur,
-  });
+    const {
+      ripples,
+      handlers,
+      className: toggleClassName,
+    } = useInteractionStates({
+      handlers: props,
+      disabled,
+      className: propToggleClassName,
+      disableRipple,
+      disableProgrammaticRipple,
+      rippleTimeout,
+      rippleClassNames,
+    });
+    const [focused, onFocus, onBlur] = useFocusState({
+      onFocus: propOnFocus,
+      onBlur: propOnBlur,
+    });
 
-  const labelEl = (
-    <Label
-      style={labelStyle}
-      className={labelClassName}
-      htmlFor={id}
-      error={error}
-      disabled={typeof labelDisabled === "boolean" ? labelDisabled : disabled}
-    >
-      {label}
-    </Label>
-  );
-
-  return (
-    <ToggleContainer
-      style={style}
-      className={className}
-      inline={inline}
-      stacked={stacked}
-    >
-      {iconAfter && labelEl}
-      <span
-        style={toggleStyle}
-        className={cn(
-          block({
-            focused,
-            disabled,
-          }),
-          toggleClassName
-        )}
+    const labelEl = (
+      <Label
+        style={labelStyle}
+        className={labelClassName}
+        htmlFor={id}
+        error={error}
+        disabled={typeof labelDisabled === "boolean" ? labelDisabled : disabled}
       >
-        <input
-          {...props}
-          {...handlers}
-          ref={ref}
-          style={inputStyle}
-          disabled={disabled}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          className={cn(block("input"), inputClassName)}
-        />
+        {label}
+      </Label>
+    );
+
+    return (
+      <ToggleContainer
+        style={style}
+        className={className}
+        inline={inline}
+        stacked={stacked}
+      >
+        {iconAfter && labelEl}
         <span
-          style={iconStyle}
+          style={toggleStyle}
           className={cn(
-            block("icon", {
-              circle: !disableIconOverlay && type === "radio",
+            block({
+              focused,
               disabled,
-              overlay: !disableIconOverlay,
-              indeterminate,
             }),
-            iconClassName
+            toggleClassName
           )}
         >
-          {icon}
+          <input
+            {...props}
+            {...handlers}
+            ref={ref}
+            style={inputStyle}
+            disabled={disabled}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            className={cn(block("input"), inputClassName)}
+          />
+          <span
+            style={iconStyle}
+            className={cn(
+              block("icon", {
+                circle: !disableIconOverlay && type === "radio",
+                disabled,
+                overlay: !disableIconOverlay,
+                indeterminate,
+              }),
+              iconClassName
+            )}
+          >
+            {icon}
+          </span>
+          {ripples}
+          {children}
         </span>
-        {ripples}
-        {children}
-      </span>
-      {!iconAfter && labelEl}
-    </ToggleContainer>
-  );
-});
+        {!iconAfter && labelEl}
+      </ToggleContainer>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -339,5 +338,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default InputToggle;

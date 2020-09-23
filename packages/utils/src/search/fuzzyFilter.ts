@@ -1,10 +1,9 @@
-import defaults from "../defaults";
-
-import getFuzzyRegExp from "./getFuzzyRegExp";
+import { defaults } from "../defaults";
+import { getFuzzyRegExp } from "./getFuzzyRegExp";
 import {
   DEFAULT_SEARCH_OPTIONS,
-  SearchOptions,
   getSearchString,
+  SearchOptions,
 } from "./utils";
 
 /**
@@ -19,7 +18,7 @@ import {
  * @return A filtered list of all the searchable items based on the query
  * string.
  */
-export default function fuzzyFilter<T = unknown>(
+export function fuzzyFilter<T = unknown>(
   query: string,
   searchable: readonly T[],
   options: SearchOptions<T> = {}

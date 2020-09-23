@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function SpaceBarFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      space_bar
-    </FontIcon>
-  );
-});
+export const SpaceBarFont = forwardRef<HTMLElement, FontIconProps>(
+  function SpaceBarFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        space_bar
+      </FontIcon>
+    );
+  }
+);

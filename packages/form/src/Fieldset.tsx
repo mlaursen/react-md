@@ -45,7 +45,7 @@ const block = bem("rmd-fieldset");
  * the default styles of a border, padding, and margin and having a screen-reader
  * visible only legend element for added accessibility.
  */
-const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
+export const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
   function Fieldset(
     {
       className,
@@ -95,5 +95,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Fieldset;

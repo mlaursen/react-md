@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
  * window is defined.
  * @return true if the media query is a match.
  */
-export default function useMediaQuery(
+export function useMediaQuery(
   query: string,
   defaultValue?: boolean,
   disabled: boolean = false,

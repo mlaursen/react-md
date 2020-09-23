@@ -2,36 +2,36 @@
 
 import commander from "commander";
 
-import download from "./download";
-import flatten from "./flatten";
-import create from "./create";
+import { download } from "./download";
+import { flatten } from "./flatten";
+import { create } from "./create";
+import { update } from "./update";
 
 commander
   .command("download [options...]")
-  .option("-v, --version [version]")
-  .action((_, program: { version?: string }) => {
-    download(typeof program.version === "string" ? program.version : "");
+  .description(
+    "Download all the svgs from the material icons github into a temp directory"
+  )
+  .option("-t, --tag [tag]")
+  .action((_, program: { tag?: string }) => {
+    download(typeof program.tag === "string" ? program.tag : "");
   });
 
-commander.command("flatten").action(() => {
-  flatten();
-});
+commander
+  .command("flatten")
+  .description(
+    "Requires the svgs to be downloaded from the `download` command and copies all the unique icons into the svgs directory"
+  )
+  .action(() => flatten());
 
-commander.command("create").action(() => {
-  create();
-});
+commander
+  .command("create")
+  .description("Creates all the icon component files")
+  .action(() => create());
+
+commander
+  .command("update")
+  .description("Runs all the commands at once in order.")
+  .action(() => update());
 
 commander.parse(process.argv);
-// commander
-//   .usage("<version> [options...]")
-//   .option("-d, --download-only [downloadOnly]")
-//   .option("-i, --icons-only [iconsOnly]")
-//   .option("-u, --update-only [updateOnly]")
-//   .option("-c, --clean [clean]")
-//   .option("--no-cleanup")
-//   .action((program: IOptions & any) => {
-//     const { version } = program;
-//     console.log("version:", version);
-//     console.log("program.args:", program.args);
-//   })
-//   .parse(process.argv);

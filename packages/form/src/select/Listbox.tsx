@@ -15,7 +15,7 @@ import {
   useActiveDescendantMovement,
 } from "@react-md/utils";
 
-import Option from "./Option";
+import { Option } from "./Option";
 import {
   defaultIsOptionDisabled,
   getOptionId as DEFAULT_GET_OPTION_ID,
@@ -181,7 +181,7 @@ let warned: Set<string> | undefined;
  * component, but I'm planning on adding support for an inline listbox at some
  * point.
  */
-const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
+export const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
   {
     className,
     visible = true,
@@ -519,5 +519,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Listbox;

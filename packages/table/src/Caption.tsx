@@ -8,7 +8,7 @@ export type CaptionProps = HTMLAttributes<HTMLTableCaptionElement>;
  * typography styles and probably doesn't have much real use if you don't use
  * captions.
  */
-const Caption = forwardRef<HTMLTableCaptionElement, CaptionProps>(
+export const Caption = forwardRef<HTMLTableCaptionElement, CaptionProps>(
   function Caption({ className, children, ...props }, ref) {
     return (
       <caption {...props} ref={ref} className={cn("rmd-caption", className)}>
@@ -28,5 +28,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Caption;

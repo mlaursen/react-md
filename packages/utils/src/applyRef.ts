@@ -1,4 +1,4 @@
-import { Ref, MutableRefObject } from "react";
+import { MutableRefObject, Ref } from "react";
 
 /**
  * A small utility function that allows me to apply a passed in ref along with
@@ -7,7 +7,7 @@ import { Ref, MutableRefObject } from "react";
  * @param instance The DOM Node instance
  * @param ref The prop ref
  */
-export default function applyRef<E>(instance: E | null, ref?: Ref<E>): void {
+export function applyRef<E>(instance: E | null, ref?: Ref<E>): void {
   if (!ref) {
     return;
   }

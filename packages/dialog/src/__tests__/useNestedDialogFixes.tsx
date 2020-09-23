@@ -2,8 +2,8 @@ import React, { FC, MutableRefObject } from "react";
 import { render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
-import useNestedDialogFixes from "../useNestedDialogFixes";
 import { NestedDialogContextProvider } from "../NestedDialogContext";
+import { useNestedDialogFixes } from "../useNestedDialogFixes";
 
 describe("useNestedDialogFixes", () => {
   it("should default to not disabling the overlay or the escape close functionality", () => {

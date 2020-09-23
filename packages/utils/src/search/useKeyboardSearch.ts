@@ -1,12 +1,16 @@
 import React, { useCallback, useMemo } from "react";
+
+import { useTempValue } from "../useTempValue";
+import {
+  findMatchIndex as DEFAULT_FIND_MATCH_INDEX,
+  FindMatchIndex,
+} from "./findMatchIndex";
 import {
   BaseSearchOptions,
-  DEFAULT_VALUE_KEY,
   DEFAULT_GET_ITEM_VALUE,
   DEFAULT_SEARCH_RESET_TIME,
+  DEFAULT_VALUE_KEY,
 } from "./utils";
-import DEFAULT_FIND_MATCH_INDEX, { FindMatchIndex } from "./findMatchIndex";
-import useTempValue from "../useTempValue";
 
 /**
  * The data that is provided to the `onChange` handler when searching. This will
@@ -107,7 +111,7 @@ type ReturnValue<
  * Adds the accessibility functionality to search a list of items as the user
  * types to trigger `aria-activedescendant` focus or manual DOM focus events.
  */
-export default function useKeyboardSearch<
+export function useKeyboardSearch<
   D = unknown,
   E extends HTMLElement = HTMLElement
 >({

@@ -1,4 +1,4 @@
-import getTimeoutDuration from "../getTimeoutDuration";
+import { getTimeoutDuration } from "../getTimeoutDuration";
 import {
   ENTERING,
   EXITING,

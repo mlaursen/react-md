@@ -1,7 +1,8 @@
 import { mocked } from "ts-jest/utils";
-import focusElementWithin from "../focusElementWithin";
-import getFocusableElements_ from "../getFocusableElements";
-import scrollIntoView_ from "../../scrollIntoView";
+
+import { scrollIntoView as scrollIntoView_ } from "../../scrollIntoView";
+import { focusElementWithin } from "../focusElementWithin";
+import { getFocusableElements as getFocusableElements_ } from "../getFocusableElements";
 
 jest.mock("../getFocusableElements");
 jest.mock("../../scrollIntoView");

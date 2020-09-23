@@ -1,19 +1,19 @@
 import React, {
   CSSProperties,
   forwardRef,
+  isValidElement,
+  MouseEvent,
+  MouseEventHandler,
   ReactNode,
   useCallback,
   useState,
-  MouseEventHandler,
-  MouseEvent,
-  isValidElement,
 } from "react";
 import cn from "classnames";
 import { Button } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
-import TextField, { TextFieldProps } from "./TextField";
+import { TextField, TextFieldProps } from "./TextField";
 
 export interface ConfigurableVisibilityIcon {
   /**
@@ -96,73 +96,75 @@ function isConfigurableIcon(
  * rendered for password inputs. There is built-in functionality to be able to
  * temporarily show the password's value by swapping the `type` to `"text"`.
  */
-const Password = forwardRef<HTMLInputElement, PasswordProps>(function Password(
-  {
-    className,
-    inputClassName,
-    visibilityIcon: propVisibilityIcon,
-    visibilityStyle,
-    visibilityClassName,
-    visibilityLabel = "Show password",
-    onVisibilityClick,
-    getVisibilityIcon,
-    disableVisibility = false,
-    ...props
-  },
-  ref
-) {
-  const { id } = props;
-  const [type, setType] = useState<"password" | "text">("password");
-  const toggle = useCallback(
-    (event: MouseEvent<HTMLButtonElement>) => {
-      if (onVisibilityClick) {
-        onVisibilityClick(event);
-      }
-
-      setType((prevType) => (prevType === "password" ? "text" : "password"));
+export const Password = forwardRef<HTMLInputElement, PasswordProps>(
+  function Password(
+    {
+      className,
+      inputClassName,
+      visibilityIcon: propVisibilityIcon,
+      visibilityStyle,
+      visibilityClassName,
+      visibilityLabel = "Show password",
+      onVisibilityClick,
+      getVisibilityIcon,
+      disableVisibility = false,
+      ...props
     },
-    [onVisibilityClick]
-  );
+    ref
+  ) {
+    const { id } = props;
+    const [type, setType] = useState<"password" | "text">("password");
+    const toggle = useCallback(
+      (event: MouseEvent<HTMLButtonElement>) => {
+        if (onVisibilityClick) {
+          onVisibilityClick(event);
+        }
 
-  const visible = type === "text";
-  let visibilityIcon = useIcon("password", propVisibilityIcon);
-  if (isConfigurableIcon(propVisibilityIcon)) {
-    visibilityIcon = visible
-      ? propVisibilityIcon.visible
-      : propVisibilityIcon.invisible;
+        setType((prevType) => (prevType === "password" ? "text" : "password"));
+      },
+      [onVisibilityClick]
+    );
+
+    const visible = type === "text";
+    let visibilityIcon = useIcon("password", propVisibilityIcon);
+    if (isConfigurableIcon(propVisibilityIcon)) {
+      visibilityIcon = visible
+        ? propVisibilityIcon.visible
+        : propVisibilityIcon.invisible;
+    }
+
+    return (
+      <TextField
+        {...props}
+        className={cn(block({ offset: !disableVisibility }), className)}
+        inputClassName={cn(
+          block("input", { offset: !disableVisibility }),
+          inputClassName
+        )}
+        ref={ref}
+        type={type}
+        isRightAddon={false}
+        rightChildren={
+          !disableVisibility && (
+            <Button
+              id={`${id}-password-toggle`}
+              aria-label={visibilityLabel}
+              aria-pressed={visible}
+              buttonType="icon"
+              onClick={toggle}
+              style={visibilityStyle}
+              className={cn(block("toggle"), visibilityClassName)}
+            >
+              {typeof getVisibilityIcon === "function"
+                ? getVisibilityIcon(type)
+                : visibilityIcon}
+            </Button>
+          )
+        }
+      />
+    );
   }
-
-  return (
-    <TextField
-      {...props}
-      className={cn(block({ offset: !disableVisibility }), className)}
-      inputClassName={cn(
-        block("input", { offset: !disableVisibility }),
-        inputClassName
-      )}
-      ref={ref}
-      type={type}
-      isRightAddon={false}
-      rightChildren={
-        !disableVisibility && (
-          <Button
-            id={`${id}-password-toggle`}
-            aria-label={visibilityLabel}
-            aria-pressed={visible}
-            buttonType="icon"
-            onClick={toggle}
-            style={visibilityStyle}
-            className={cn(block("toggle"), visibilityClassName)}
-          >
-            {typeof getVisibilityIcon === "function"
-              ? getVisibilityIcon(type)
-              : visibilityIcon}
-          </Button>
-        )
-      }
-    />
-  );
-});
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -188,5 +190,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Password;

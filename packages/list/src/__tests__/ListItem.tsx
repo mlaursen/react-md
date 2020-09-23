@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 
-import ListItem from "../ListItem";
+import { ListItem } from "../ListItem";
 
 describe("ListItem", () => {
   it("should render correctly", () => {

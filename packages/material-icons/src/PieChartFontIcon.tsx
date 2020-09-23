@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function PieChartFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      pie_chart
-    </FontIcon>
-  );
-});
+export const PieChartFont = forwardRef<HTMLElement, FontIconProps>(
+  function PieChartFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        pie_chart
+      </FontIcon>
+    );
+  }
+);

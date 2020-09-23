@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import MediaContainer from "../MediaContainer";
+import { MediaContainer } from "../MediaContainer";
 
 describe("MediaContainer", () => {
   it("should apply the correct class names", () => {

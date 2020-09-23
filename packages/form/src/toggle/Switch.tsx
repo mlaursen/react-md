@@ -8,8 +8,8 @@ import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
-import Label from "../label/Label";
-import ToggleContainer from "./ToggleContainer";
+import { Label } from "../label/Label";
+import { ToggleContainer } from "./ToggleContainer";
 
 export interface SwitchProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "readOnly"> {
@@ -99,7 +99,7 @@ export interface SwitchProps
 
 const block = bem("rmd-switch");
 
-const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
+export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   {
     style,
     className,
@@ -193,5 +193,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Switch;

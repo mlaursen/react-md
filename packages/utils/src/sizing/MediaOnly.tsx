@@ -1,6 +1,6 @@
 import { FC, ReactElement } from "react";
 
-import useAppSize from "./useAppSize";
+import { useAppSize } from "./useAppSize";
 
 export interface MediaOnlyProps {
   /**

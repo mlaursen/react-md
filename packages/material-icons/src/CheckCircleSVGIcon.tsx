@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export default forwardRef<SVGSVGElement, SVGIconProps>(
+export const CheckCircleSVG = forwardRef<SVGSVGElement, SVGIconProps>(
   function CheckCircleSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

@@ -1,14 +1,14 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
-import useChoice from "../useChoice";
+import { useChoice } from "../useChoice";
 
 interface Props {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   defaultValue: string | number | (() => string | number);
 }
 
-const Test: FC<Props> = ({ onChange, defaultValue }) => {
+function Test({ onChange, defaultValue }: Props): ReactElement {
   const [value, handleChange] = useChoice(defaultValue, onChange);
 
   return (
@@ -42,7 +42,7 @@ const Test: FC<Props> = ({ onChange, defaultValue }) => {
       />
     </>
   );
-};
+}
 
 describe("useChoice", () => {
   it("should check the radio with the specified default value by default", () => {

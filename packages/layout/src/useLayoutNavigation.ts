@@ -1,4 +1,4 @@
-import { useRef, ElementType } from "react";
+import { ElementType, useRef } from "react";
 import { Link } from "@react-md/link";
 import {
   BaseTreeItem,
@@ -70,7 +70,7 @@ const noop = (): void => {};
  * @return the required `Tree` selection and expansion state and handlers that
  * should be passed to the `Layout` component.
  */
-export default function useLayoutNavigation<
+export function useLayoutNavigation<
   T extends BaseTreeItem = LayoutNavigationItem
 >(
   navItems: LayoutNavigationTree<T>,

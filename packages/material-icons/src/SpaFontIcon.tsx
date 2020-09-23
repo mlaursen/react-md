@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function SpaFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      spa
-    </FontIcon>
-  );
-});
+export const SpaFont = forwardRef<HTMLElement, FontIconProps>(
+  function SpaFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        spa
+      </FontIcon>
+    );
+  }
+);

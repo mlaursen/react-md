@@ -1,4 +1,4 @@
-import getContainer from "../getContainer";
+import { getContainer } from "../getContainer";
 
 describe("getContainer", () => {
   it("should default to the document.body if the into and intoId props are not provided", () => {

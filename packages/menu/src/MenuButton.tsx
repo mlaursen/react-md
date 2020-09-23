@@ -8,7 +8,7 @@ import { Button, ButtonProps } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
-import ToggleChildren from "./ToggleChildren";
+import { ToggleChildren } from "./ToggleChildren";
 
 export interface MenuButtonProps
   extends ButtonProps,
@@ -59,7 +59,7 @@ const block = bem("rmd-menu-button");
  * - apply the required a11y prosp for a menu button
  * - dynamically add a dropdown icon after the button contents
  */
-const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
+export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
   function MenuButton(
     {
       "aria-haspopup": ariaHasPopup = "menu",
@@ -108,6 +108,7 @@ const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
+
     MenuButton.propTypes = {
       "aria-haspopup": PropTypes.oneOf(["menu", "true", true]),
       id: PropTypes.string.isRequired,
@@ -124,5 +125,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default MenuButton;

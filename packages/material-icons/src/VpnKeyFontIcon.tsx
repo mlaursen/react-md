@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function VpnKeyFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      vpn_key
-    </FontIcon>
-  );
-});
+export const VpnKeyFont = forwardRef<HTMLElement, FontIconProps>(
+  function VpnKeyFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        vpn_key
+      </FontIcon>
+    );
+  }
+);

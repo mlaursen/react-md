@@ -1,4 +1,4 @@
-import getInstance from "../getInstance";
+import { getInstance } from "../getInstance";
 
 const element1 = document.createElement("button");
 const element2 = document.createElement("div");

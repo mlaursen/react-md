@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function ModeEditFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      mode_edit
-    </FontIcon>
-  );
-});
+export const ModeEditFont = forwardRef<HTMLElement, FontIconProps>(
+  function ModeEditFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        mode_edit
+      </FontIcon>
+    );
+  }
+);

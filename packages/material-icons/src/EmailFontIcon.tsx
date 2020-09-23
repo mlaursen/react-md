@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function EmailFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      email
-    </FontIcon>
-  );
-});
+export const EmailFont = forwardRef<HTMLElement, FontIconProps>(
+  function EmailFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        email
+      </FontIcon>
+    );
+  }
+);

@@ -11,7 +11,7 @@ import { bem } from "@react-md/utils";
 import { TableCellConfig, useTableConfig } from "./config";
 import { useTableFooter } from "./footer";
 import { useSticky } from "./sticky";
-import TableCellContent, { SortOrder } from "./TableCellContent";
+import { SortOrder, TableCellContent } from "./TableCellContent";
 
 export type TableCellElement =
   | HTMLTableDataCellElement
@@ -124,7 +124,7 @@ const block = bem("rmd-table-cell");
  * it is invalid to have a `<th>` without any readable content for screen
  * readers.
  */
-const TableCell = forwardRef<TableCellElement, TableCellProps>(
+export const TableCell = forwardRef<TableCellElement, TableCellProps>(
   function TableCell(
     {
       "aria-sort": sortOrder,
@@ -264,5 +264,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TableCell;

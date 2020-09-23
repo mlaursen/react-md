@@ -1,7 +1,8 @@
 import { renderHook } from "@testing-library/react-hooks";
 
-import useTooltipState, {
+import {
   useOtherInteractionDisable,
+  useTooltipState,
 } from "../useTooltipState";
 
 describe("useOtherInteractionDisable", () => {

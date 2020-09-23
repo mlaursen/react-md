@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function GradientFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      gradient
-    </FontIcon>
-  );
-});
+export const GradientFont = forwardRef<HTMLElement, FontIconProps>(
+  function GradientFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        gradient
+      </FontIcon>
+    );
+  }
+);

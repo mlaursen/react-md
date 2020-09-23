@@ -20,7 +20,7 @@ interface Options<E extends HTMLElement> {
  * ripple effect is disabled, the provided event handlers will be
  * returned instead.
  */
-export default function useRippleHandlers<E extends HTMLElement>({
+export function useRippleHandlers<E extends HTMLElement>({
   create,
   release,
   cancel,

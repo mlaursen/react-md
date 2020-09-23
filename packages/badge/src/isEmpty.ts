@@ -5,7 +5,7 @@ import { ReactNode } from "react";
  *
  * @private
  */
-export default function isEmpty(
+export function isEmpty(
   children: ReactNode,
   disableNullOnZero: boolean
 ): boolean {

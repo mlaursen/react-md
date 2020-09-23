@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { TransitionTimeout } from "@react-md/transition";
 
-import Ripple from "./Ripple";
+import { Ripple } from "./Ripple";
 import { RipplesState, RippleState } from "./types";
 
 export interface RippleContainerProps {
@@ -17,7 +16,7 @@ export interface RippleContainerProps {
   classNames?: CSSTransitionClassNames;
 }
 
-const RippleContainer: FC<RippleContainerProps> = ({
+export function RippleContainer({
   ripples,
   className,
   rippleClassName,
@@ -25,20 +24,20 @@ const RippleContainer: FC<RippleContainerProps> = ({
   classNames,
   entered,
   exited,
-}) => (
-  <span className={cn("rmd-ripple-container", className)}>
-    {ripples.map((ripple) => (
-      <Ripple
-        key={ripple.startTime}
-        ripple={ripple}
-        className={rippleClassName}
-        entered={entered}
-        exited={exited}
-        timeout={timeout}
-        classNames={classNames}
-      />
-    ))}
-  </span>
-);
-
-export default RippleContainer;
+}: RippleContainerProps): ReactElement {
+  return (
+    <span className={cn("rmd-ripple-container", className)}>
+      {ripples.map((ripple) => (
+        <Ripple
+          key={ripple.startTime}
+          ripple={ripple}
+          className={rippleClassName}
+          entered={entered}
+          exited={exited}
+          timeout={timeout}
+          classNames={classNames}
+        />
+      ))}
+    </span>
+  );
+}

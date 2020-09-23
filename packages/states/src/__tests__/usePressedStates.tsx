@@ -1,9 +1,9 @@
-import React, { FC, HTMLAttributes, createRef } from "react";
-import { renderHook } from "@testing-library/react-hooks";
+import React, { createRef, FC, HTMLAttributes } from "react";
 import { fireEvent, render } from "@testing-library/react";
+import { renderHook } from "@testing-library/react-hooks";
 
-import usePressedStates from "../usePressedStates";
 import { MergableRippleHandlerNames } from "../ripples/types";
+import { usePressedStates } from "../usePressedStates";
 
 interface Props
   extends Pick<HTMLAttributes<HTMLButtonElement>, MergableRippleHandlerNames> {

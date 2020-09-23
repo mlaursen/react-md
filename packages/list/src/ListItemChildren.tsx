@@ -1,10 +1,11 @@
 import React, { ReactElement, ReactNode } from "react";
 
-import ListItemAddon, {
+import {
+  ListItemAddon,
   ListItemAddonPosition,
   ListItemAddonType,
 } from "./ListItemAddon";
-import ListItemText from "./ListItemText";
+import { ListItemText } from "./ListItemText";
 
 export interface ListItemChildrenProps {
   /**
@@ -113,7 +114,7 @@ export interface ListItemChildrenProps {
  * in a DOM node for styling. The parent component should normally have
  * `display: flex` for the styling to work.
  */
-export default function ListItemChildren({
+export function ListItemChildren({
   textClassName,
   secondaryTextClassName,
   textChildren,

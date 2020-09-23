@@ -50,7 +50,7 @@ const styles = bem("rmd-layout-main");
  * This is the `<main>` element for your app that has some built in styles to be
  * able to update based on the current layout types.
  */
-const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
+export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
   function LayoutMain(
     {
       className: propClassName,
@@ -156,5 +156,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (error) {}
 }
-
-export default LayoutMain;

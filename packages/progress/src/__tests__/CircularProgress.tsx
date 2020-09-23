@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import { render } from "@testing-library/react";
 
-import CircularProgress from "../CircularProgress";
+import { CircularProgress } from "../CircularProgress";
 
 describe("CircularProgress", () => {
   it("should render correctly", () => {

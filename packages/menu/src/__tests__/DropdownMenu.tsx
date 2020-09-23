@@ -1,8 +1,8 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
-import DropdownMenu from "../DropdownMenu";
-import MenuItem from "../MenuItem";
+import { DropdownMenu } from "../DropdownMenu";
+import { MenuItem } from "../MenuItem";
 
 const getById = (id: string) => {
   const el = document.getElementById(id);

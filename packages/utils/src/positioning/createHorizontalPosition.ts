@@ -244,7 +244,7 @@ export function createEqualWidth({
  * options.
  * @private
  */
-export default function createHorizontalPosition({
+export function createHorizontalPosition({
   x,
   vw,
   vwMargin,

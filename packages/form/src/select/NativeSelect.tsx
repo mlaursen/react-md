@@ -9,13 +9,14 @@ import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
-import FloatingLabel from "../label/FloatingLabel";
-import TextFieldContainer, {
+import { useFormTheme } from "../FormThemeProvider";
+import { FloatingLabel } from "../label/FloatingLabel";
+import {
+  TextFieldContainer,
   TextFieldContainerOptions,
 } from "../text-field/TextFieldContainer";
-import useValuedState from "../text-field/useValuedState";
-import useFocusState from "../useFocusState";
-import { useFormTheme } from "../FormThemeProvider";
+import { useValuedState } from "../text-field/useValuedState";
+import { useFocusState } from "../useFocusState";
 
 export interface NativeSelectProps
   extends SelectHTMLAttributes<HTMLSelectElement>,
@@ -100,7 +101,7 @@ const container = bem("rmd-native-select-container");
  * field theme styles. This component is great to use for native behavior and
  * full accessibility.
  */
-const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
+export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
   function NativeSelect(
     {
       style,
@@ -252,5 +253,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default NativeSelect;

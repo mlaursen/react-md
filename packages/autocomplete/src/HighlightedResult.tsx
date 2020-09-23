@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, ReactNode } from "react";
+import React, { CSSProperties, ReactElement, ReactNode } from "react";
 import cn from "classnames";
 
 export interface HighlightedResultProps {
@@ -52,7 +52,7 @@ export interface HighlightedResultProps {
  * The `HighlightedResult` component can be used to bold specific letters
  * within the `children` if the `children` is a string.
  */
-const HighlightedResult: FC<HighlightedResultProps> = ({
+export function HighlightedResult({
   id: propId,
   style,
   className,
@@ -61,7 +61,7 @@ const HighlightedResult: FC<HighlightedResultProps> = ({
   children,
   repeatable = false,
   index = 0,
-}) => {
+}: HighlightedResultProps): ReactElement {
   if (!enabled || !value || typeof children !== "string") {
     return <>{children}</>;
   }
@@ -101,11 +101,12 @@ const HighlightedResult: FC<HighlightedResultProps> = ({
       )}
     </>
   );
-};
+}
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
+
     HighlightedResult.propTypes = {
       id: PropTypes.string,
       index: PropTypes.number,
@@ -118,5 +119,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default HighlightedResult;

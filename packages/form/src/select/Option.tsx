@@ -23,7 +23,7 @@ const block = bem("rmd-option");
  * The Option component is a simple wrapper for the `SimpleListItem` that adds
  * some required a11y for behaving as the `option` role.
  */
-const Option = forwardRef<HTMLLIElement, OptionProps>(function Option(
+export const Option = forwardRef<HTMLLIElement, OptionProps>(function Option(
   {
     className,
     selected = false,
@@ -68,5 +68,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Option;

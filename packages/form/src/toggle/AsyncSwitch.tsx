@@ -2,7 +2,7 @@ import React, { CSSProperties, forwardRef } from "react";
 import cn from "classnames";
 import { CircularProgress, getProgressA11y } from "@react-md/progress";
 
-import Switch, { SwitchProps } from "./Switch";
+import { Switch, SwitchProps } from "./Switch";
 
 export interface AsyncSwitchProps extends SwitchProps {
   /**
@@ -34,7 +34,7 @@ const noop = (): void => {};
  * This component will create an async switch that will show a loading indicator
  * and prevent the switch from being toggled while the loading state is true.
  */
-const AsyncSwitch = forwardRef<HTMLInputElement, AsyncSwitchProps>(
+export const AsyncSwitch = forwardRef<HTMLInputElement, AsyncSwitchProps>(
   function AsyncSwitch(
     {
       id,
@@ -88,5 +88,3 @@ if (process.env.NODE_ENV === "production") {
     };
   } catch (e) {}
 }
-
-export default AsyncSwitch;

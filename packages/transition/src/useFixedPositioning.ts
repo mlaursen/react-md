@@ -117,7 +117,7 @@ interface ReturnValue extends Required<TransitionHooks> {
  *
  * > It is recommended to start the exit animation when that happens though.
  */
-export default function useFixedPositioning({
+export function useFixedPositioning({
   onEnter,
   onEntering,
   onEntered,

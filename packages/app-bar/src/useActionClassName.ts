@@ -34,7 +34,7 @@ export interface AppBarActionClassNameProps extends AppBarColorInherit {
  *
  * @private
  */
-export default function useActionClassName({
+export function useActionClassName({
   first,
   last,
   inheritColor,

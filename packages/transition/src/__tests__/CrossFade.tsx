@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { render, act } from "@testing-library/react";
 
-import CrossFade from "../CrossFade";
+import { CrossFade } from "../CrossFade";
 
 describe("CrossFade", () => {
   beforeAll(() => {

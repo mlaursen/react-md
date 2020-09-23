@@ -44,7 +44,7 @@ const block = bem("rmd-toast");
  * timer and the `onExited` callback to remove the current toast from your
  * queue.
  */
-const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
+export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
   {
     className,
     children,
@@ -142,5 +142,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Toast;

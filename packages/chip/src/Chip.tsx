@@ -1,10 +1,10 @@
 import React, {
-  forwardRef,
-  ReactNode,
   ButtonHTMLAttributes,
-  CSSProperties,
   cloneElement,
+  CSSProperties,
+  forwardRef,
   isValidElement,
+  ReactNode,
 } from "react";
 import cn from "classnames";
 import { TextIconSpacing, useIcon } from "@react-md/icon";
@@ -111,7 +111,7 @@ const block = bem("rmd-chip");
  * selectable with an inline icon. A chip also supports rendering icons, avatars,
  * or circular progress bars to the left and right of the children.
  */
-const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
+export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
   {
     "aria-pressed": ariaPressed,
     className: propClassName,
@@ -215,6 +215,7 @@ const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
+
     Chip.propTypes = {
       "aria-pressed": PropTypes.oneOfType([
         PropTypes.bool,
@@ -237,5 +238,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Chip;

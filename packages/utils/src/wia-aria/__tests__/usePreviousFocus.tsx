@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { render } from "@testing-library/react";
 
-import usePreviousFocus, { FocusFallback } from "../usePreviousFocus";
+import { FocusFallback, usePreviousFocus } from "../usePreviousFocus";
 
 const requestAnimationFrame = jest.spyOn(window, "requestAnimationFrame");
 beforeEach(() => {

@@ -1,5 +1,4 @@
-import defaults from "../defaults";
-
+import { defaults } from "../defaults";
 import {
   DEFAULT_SEARCH_OPTIONS,
   getSearchString,
@@ -25,7 +24,7 @@ export interface CaseInsensitiveOptions<T = unknown> extends SearchOptions<T> {
  * @return A filtered list of all the searchable items based on the query
  * string.
  */
-export default function caseInsensitiveFilter<T = unknown>(
+export function caseInsensitiveFilter<T = unknown>(
   query: string,
   searchable: readonly T[],
   options: CaseInsensitiveOptions<T> = {}

@@ -1,4 +1,4 @@
-import getLuminance from "../getLuminance";
+import { getLuminance } from "../getLuminance";
 
 describe("getLuminance", () => {
   it("should return 0 for black and 1 for white", () => {

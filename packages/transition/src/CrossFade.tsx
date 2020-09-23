@@ -9,7 +9,7 @@ import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 
 import { TransitionTimeout } from "./types";
-import useCrossFade, { CrossFadeOptions } from "./useCrossFade";
+import { CrossFadeOptions, useCrossFade } from "./useCrossFade";
 
 export interface CrossFadeProps
   extends CrossFadeOptions<HTMLDivElement>,
@@ -58,56 +58,58 @@ export interface CrossFadeProps
  * If you want more fine-grain control over the transition, it is recommended to
  * use the `useCrossFade` hook instead.
  */
-const CrossFade = forwardRef<HTMLDivElement, CrossFadeProps>(function CrossFade(
-  {
-    wrap = false,
-    appear = true,
-    temporary = false,
-    className: propClassName,
-    transitionIn = true,
-    children,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    ...props
-  },
-  forwardedRef
-) {
-  const [rendered, { ref, className }] = useCrossFade({
-    ref: forwardedRef,
-    appear,
-    className: propClassName,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    temporary,
-    transitionIn,
-  });
-
-  if (!rendered) {
-    return null;
-  }
-
-  if (!wrap && isValidElement(children)) {
-    const child = Children.only(children);
-    return cloneElement(child, {
-      ref,
-      className: cn(child.props.className, className),
+export const CrossFade = forwardRef<HTMLDivElement, CrossFadeProps>(
+  function CrossFade(
+    {
+      wrap = false,
+      appear = true,
+      temporary = false,
+      className: propClassName,
+      transitionIn = true,
+      children,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      ...props
+    },
+    forwardedRef
+  ) {
+    const [rendered, { ref, className }] = useCrossFade({
+      ref: forwardedRef,
+      appear,
+      className: propClassName,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      temporary,
+      transitionIn,
     });
-  }
 
-  return (
-    <div {...props} className={className} ref={ref}>
-      {children}
-    </div>
-  );
-});
+    if (!rendered) {
+      return null;
+    }
+
+    if (!wrap && isValidElement(children)) {
+      const child = Children.only(children);
+      return cloneElement(child, {
+        ref,
+        className: cn(child.props.className, className),
+      });
+    }
+
+    return (
+      <div {...props} className={className} ref={ref}>
+        {children}
+      </div>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -130,5 +132,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default CrossFade;

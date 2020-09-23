@@ -1,5 +1,6 @@
-import { useCallback, useState, Dispatch, SetStateAction } from "react";
-import useRefCache from "./useRefCache";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
+
+import { useRefCache } from "./useRefCache";
 
 type Enable = () => void;
 type Disable = () => void;
@@ -18,7 +19,7 @@ type ReturnValue = [boolean, Enable, Disable, Toggle, SetToggle];
  * @return an array containing the toggled state, an enable function, a disable
  * function, a toggle function, and then a manual set toggle function.
  */
-export default function useToggle(
+export function useToggle(
   defaultToggled: boolean | (() => boolean)
 ): ReturnValue {
   const [toggled, setToggled] = useState(defaultToggled);

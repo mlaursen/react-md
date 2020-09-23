@@ -13,7 +13,7 @@ type DefinedCSSTransitionClassNames = Required<CSSTransitionClassNames>;
  *
  * @private
  */
-export default function getClassNames(
+export function getClassNames(
   classNames: CSSTransitionClassNames | string,
   timeout: DefinedTimeout
 ): DefinedCSSTransitionClassNames {

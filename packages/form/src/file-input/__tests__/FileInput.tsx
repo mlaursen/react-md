@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import FileInput from "../FileInput";
+import { FileInput } from "../FileInput";
 
 describe("FileInput", () => {
   it("should render correctly", () => {

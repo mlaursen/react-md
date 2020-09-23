@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { render } from "@testing-library/react";
 
-import useFocusOnMount from "../useFocusOnMount";
+import { useFocusOnMount } from "../useFocusOnMount";
 
 const requestAnimationFrame = jest.spyOn(window, "requestAnimationFrame");
 const cancelAnimationFrame = jest.spyOn(window, "cancelAnimationFrame");

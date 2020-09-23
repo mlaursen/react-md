@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { UserInteractionMode } from "./useModeDetection";
 
 /**
@@ -7,7 +8,7 @@ import { UserInteractionMode } from "./useModeDetection";
  *
  * @private
  */
-export default function useModeClassName(mode: UserInteractionMode): void {
+export function useModeClassName(mode: UserInteractionMode): void {
   useEffect(() => {
     const className = `rmd-utils--${mode}`;
     document.body.classList.add(className);

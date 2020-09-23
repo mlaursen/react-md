@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { render, act } from "@testing-library/react";
 
-import useCSSTransition from "../useCSSTransition";
+import { useCSSTransition } from "../useCSSTransition";
 import { CSSTransitionOptions } from "../types";
 
 type TestProps = Omit<

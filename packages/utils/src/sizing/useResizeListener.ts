@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-import delegateEvent from "../events/delegateEvent";
-import useRefCache from "../useRefCache";
+import { delegateEvent } from "../events/delegateEvent";
+import { useRefCache } from "../useRefCache";
 
 export interface ResizeListenerOptions {
   /**
@@ -38,7 +38,7 @@ export interface ResizeListenerOptions {
  * specific element resize events, check out the `ResizeObserver` component or
  * `useReiszeObserver` hook instead.
  */
-export default function useResizeListener({
+export function useResizeListener({
   onResize,
   options,
   immediate,

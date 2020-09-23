@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import ExpansionPanelHeader from "../ExpansionPanelHeader";
+import { ExpansionPanelHeader } from "../ExpansionPanelHeader";
 
 describe("ExpansionPanelHeader", () => {
   it("should render correctly", () => {

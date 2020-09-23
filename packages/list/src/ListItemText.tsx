@@ -34,7 +34,7 @@ const block = bem("rmd-list-item");
  * This component us used to create the one to three lines of text within a
  * `ListItem` or `SimpleListItem`.
  */
-export default function ListItemText({
+export function ListItemText({
   className,
   secondaryTextClassName,
   secondaryText,

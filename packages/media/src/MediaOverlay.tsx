@@ -27,7 +27,7 @@ export interface MediaOverlayProps extends HTMLAttributes<HTMLDivElement> {
  * items within the `MediaContainer` component. You will need to apply most of
  * your own styles as this is really just used for positioning.
  */
-const MediaOverlay = forwardRef<HTMLDivElement, MediaOverlayProps>(
+export const MediaOverlay = forwardRef<HTMLDivElement, MediaOverlayProps>(
   function MediaOverlay(
     { className, children, position = "bottom", ...props },
     ref
@@ -50,6 +50,7 @@ const MediaOverlay = forwardRef<HTMLDivElement, MediaOverlayProps>(
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
+
     MediaOverlay.propTypes = {
       className: PropTypes.string,
       children: PropTypes.node,
@@ -65,5 +66,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default MediaOverlay;

@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
 
-import InputToggle, { InputToggleProps } from "./InputToggle";
+import { InputToggle, InputToggleProps } from "./InputToggle";
 
 export interface RadioProps extends InputToggleProps {
   /**
@@ -14,7 +14,7 @@ export interface RadioProps extends InputToggleProps {
  * The `Radio` component is just a wrapper for the `InputToggle` that
  * defaults to reasonable defaults for a radio input.
  */
-const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
+export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
   { icon: propIcon, ...props },
   ref
 ) {
@@ -39,5 +39,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Radio;

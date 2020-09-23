@@ -3,13 +3,13 @@ import cn from "classnames";
 import { Maybe } from "@react-md/utils";
 
 import { MergableRippleHandlers, RipplesOptions } from "./ripples/types";
-import useRipples from "./ripples/useRipples";
+import { useRipples } from "./ripples/useRipples";
 import {
   StatesConfigContextType,
   useStatesConfigContext,
 } from "./StatesConfig";
-import useKeyboardClickPolyfill from "./useKeyboardClickPolyfill";
-import usePressedStates from "./usePressedStates";
+import { useKeyboardClickPolyfill } from "./useKeyboardClickPolyfill";
+import { usePressedStates } from "./usePressedStates";
 
 export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
   extends Partial<StatesConfigContextType>,
@@ -93,9 +93,9 @@ interface ReturnValue<E extends HTMLElement> {
  * @typeparam E The element type for the component being wrapped. This is really
  * just used to "better type" the event handlers.
  */
-export default function useInteractionStates<
-  E extends HTMLElement = HTMLElement
->(options: InteractionStatesOptions<E> = {}): ReturnValue<E> {
+export function useInteractionStates<E extends HTMLElement = HTMLElement>(
+  options: InteractionStatesOptions<E> = {}
+): ReturnValue<E> {
   const {
     disabled,
     rippleClassName,

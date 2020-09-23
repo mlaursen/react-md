@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 /**
  * The supported types of alignments for the tabs.

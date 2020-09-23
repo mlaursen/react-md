@@ -13,50 +13,52 @@ export interface TreeGroupProps
  * behind the scenes to animate in-and-out of view and will fully unrender when
  * the `expanded` prop is `false`.
  */
-const TreeGroup = forwardRef<ListElement, TreeGroupProps>(function TreeGroup(
-  {
-    style,
-    className,
-    collapsed,
-    minHeight,
-    minPaddingBottom,
-    minPaddingTop,
-    timeout,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    children,
-    temporary,
-    ...props
-  },
-  ref
-) {
-  return (
-    <Collapse
-      style={style}
-      className={cn("rmd-tree-group", className)}
-      collapsed={collapsed}
-      minHeight={minHeight}
-      minPaddingBottom={minPaddingBottom}
-      minPaddingTop={minPaddingTop}
-      timeout={timeout}
-      onEnter={onEnter}
-      onEntering={onEntering}
-      onEntered={onEntered}
-      onExit={onExit}
-      onExiting={onExiting}
-      onExited={onExited}
-      temporary={temporary}
-    >
-      <List {...props} ref={ref} role="group">
-        {children}
-      </List>
-    </Collapse>
-  );
-});
+export const TreeGroup = forwardRef<ListElement, TreeGroupProps>(
+  function TreeGroup(
+    {
+      style,
+      className,
+      collapsed,
+      minHeight,
+      minPaddingBottom,
+      minPaddingTop,
+      timeout,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      children,
+      temporary,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <Collapse
+        style={style}
+        className={cn("rmd-tree-group", className)}
+        collapsed={collapsed}
+        minHeight={minHeight}
+        minPaddingBottom={minPaddingBottom}
+        minPaddingTop={minPaddingTop}
+        timeout={timeout}
+        onEnter={onEnter}
+        onEntering={onEntering}
+        onEntered={onEntered}
+        onExit={onExit}
+        onExiting={onExiting}
+        onExited={onExited}
+        temporary={temporary}
+      >
+        <List {...props} ref={ref} role="group">
+          {children}
+        </List>
+      </Collapse>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -91,5 +93,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TreeGroup;

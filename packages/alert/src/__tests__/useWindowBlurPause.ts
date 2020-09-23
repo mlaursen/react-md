@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react-hooks";
 
-import useWindowBlurPause from "../useWindowBlurPause";
+import { useWindowBlurPause } from "../useWindowBlurPause";
 
 const startTimer = jest.fn();
 const stopTimer = jest.fn();

@@ -6,6 +6,7 @@ import {
   useInteractionStates,
 } from "@react-md/states";
 import { bem, useResizeObserver } from "@react-md/utils";
+
 import { TabConfig } from "./types";
 import { useUpdateIndicatorStyles } from "./useTabIndicatorStyle";
 
@@ -44,7 +45,7 @@ const block = bem("rmd-tab");
  * The `Tab` is a low-level component that just renders an accessible tab widget
  * along with some general styles and an optional icon.
  */
-const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
+export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
   {
     className: propClassName,
     contentStyle,
@@ -159,5 +160,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Tab;

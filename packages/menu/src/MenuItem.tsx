@@ -21,22 +21,24 @@ export interface MenuItemProps extends ListItemProps {
   tabIndex?: number;
 }
 
-const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(function MenuItem(
-  { className, children, role = "menuitem", tabIndex = -1, ...props },
-  ref
-) {
-  return (
-    <ListItem
-      {...props}
-      ref={ref}
-      role={role}
-      tabIndex={tabIndex}
-      className={cn("rmd-menu-item", className)}
-    >
-      {children}
-    </ListItem>
-  );
-});
+export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(
+  function MenuItem(
+    { className, children, role = "menuitem", tabIndex = -1, ...props },
+    ref
+  ) {
+    return (
+      <ListItem
+        {...props}
+        ref={ref}
+        role={role}
+        tabIndex={tabIndex}
+        className={cn("rmd-menu-item", className)}
+      >
+        {children}
+      </ListItem>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -51,5 +53,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default MenuItem;

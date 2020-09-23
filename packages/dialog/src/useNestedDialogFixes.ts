@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from "react";
+
 import { useNestedDialogContext } from "./NestedDialogContext";
 
 interface Options {
@@ -24,7 +25,7 @@ interface ReturnValue {
  * the same time because the ids will get added from child -> parent instead of parent -> child.
  * This flow shouldn't really happen though so it isn't planned on being fixed.
  */
-export default function useNestedDialogFixes({
+export function useNestedDialogFixes({
   id,
   visible,
   disabled,

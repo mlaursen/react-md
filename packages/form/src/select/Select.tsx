@@ -10,8 +10,8 @@ import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import { useFixedPositioning } from "@react-md/transition";
 import {
-  bem,
   BELOW_CENTER_ANCHOR,
+  bem,
   DEFAULT_GET_ITEM_VALUE,
   PositionAnchor,
   PositionWidth,
@@ -20,19 +20,20 @@ import {
   useToggle,
 } from "@react-md/utils";
 
-import FloatingLabel from "../label/FloatingLabel";
-import TextFieldContainer, {
+import { useFormTheme } from "../FormThemeProvider";
+import { FloatingLabel } from "../label/FloatingLabel";
+import {
+  TextFieldContainer,
   TextFieldContainerOptions,
 } from "../text-field/TextFieldContainer";
-import useFocusState from "../useFocusState";
-import Listbox, { ListboxOptions } from "./Listbox";
+import { useFocusState } from "../useFocusState";
+import { Listbox, ListboxOptions } from "./Listbox";
 import {
   defaultIsOptionDisabled,
   getDisplayLabel as DEFAULT_GET_DISPLAY_LABEL,
   getOptionId as DEFAULT_GET_OPTION_ID,
   getOptionLabel as DEFAULT_GET_OPTION_LABEL,
 } from "./utils";
-import { useFormTheme } from "../FormThemeProvider";
 
 type FakeSelectAttributes = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -176,7 +177,7 @@ const block = bem("rmd-select");
  * sent along in forms. It is highly recommended to always provide a `name` prop
  * so this value is sent.
  */
-const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
+export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   {
     onBlur,
     onFocus,
@@ -444,6 +445,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
+
     Select.propTypes = {
       id: PropTypes.string.isRequired,
       style: PropTypes.object,
@@ -513,5 +515,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Select;

@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function LoupeFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      loupe
-    </FontIcon>
-  );
-});
+export const LoupeFont = forwardRef<HTMLElement, FontIconProps>(
+  function LoupeFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        loupe
+      </FontIcon>
+    );
+  }
+);

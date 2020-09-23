@@ -32,51 +32,52 @@ const block = bem("rmd-thead");
  * line-wrapping can be re-enabled if desired through the `hoverable` and
  * `disableNoWrap` props.
  */
-const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps>(
-  function TableHeader(
-    {
-      className,
-      hoverable = false,
-      lineWrap: propLineWrap,
-      children,
-      sticky = false,
-      ...props
-    },
-    ref
-  ) {
-    // update the table configuration with the custom overrides for the `<thead>`
-    const {
+export const TableHeader = forwardRef<
+  HTMLTableSectionElement,
+  TableHeaderProps
+>(function TableHeader(
+  {
+    className,
+    hoverable = false,
+    lineWrap: propLineWrap,
+    children,
+    sticky = false,
+    ...props
+  },
+  ref
+) {
+  // update the table configuration with the custom overrides for the `<thead>`
+  const {
+    hAlign,
+    vAlign,
+    lineWrap,
+    disableHover,
+    disableBorders,
+  } = useTableConfig({
+    lineWrap: propLineWrap,
+    disableHover: !hoverable,
+  });
+
+  const configuration = useMemo(
+    () => ({
+      header: true,
       hAlign,
       vAlign,
       lineWrap,
-      disableHover,
       disableBorders,
-    } = useTableConfig({
-      lineWrap: propLineWrap,
-      disableHover: !hoverable,
-    });
+      disableHover,
+    }),
+    [hAlign, vAlign, lineWrap, disableBorders, disableHover]
+  );
 
-    const configuration = useMemo(
-      () => ({
-        header: true,
-        hAlign,
-        vAlign,
-        lineWrap,
-        disableBorders,
-        disableHover,
-      }),
-      [hAlign, vAlign, lineWrap, disableBorders, disableHover]
-    );
-
-    return (
-      <TableConfigProvider value={configuration}>
-        <thead {...props} ref={ref} className={cn(block(), className)}>
-          <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
-        </thead>
-      </TableConfigProvider>
-    );
-  }
-);
+  return (
+    <TableConfigProvider value={configuration}>
+      <thead {...props} ref={ref} className={cn(block(), className)}>
+        <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
+      </thead>
+    </TableConfigProvider>
+  );
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -94,5 +95,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TableHeader;

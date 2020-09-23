@@ -19,30 +19,31 @@ export interface MenuItemSeparatorProps
   "aria-orientation"?: "horizontal" | "vertical";
 }
 
-const MenuItemSeparator = forwardRef<DividerElement, MenuItemSeparatorProps>(
-  function MenuItemSeparator(
-    { "aria-orientation": ariaOrientation, maxHeight, ...props },
-    ref
+export const MenuItemSeparator = forwardRef<
+  DividerElement,
+  MenuItemSeparatorProps
+>(function MenuItemSeparator(
+  { "aria-orientation": ariaOrientation, maxHeight, ...props },
+  ref
+) {
+  const menuOrientation = useOrientation();
+  if (
+    ariaOrientation === "vertical" ||
+    (!ariaOrientation && menuOrientation === "horizontal")
   ) {
-    const menuOrientation = useOrientation();
-    if (
-      ariaOrientation === "vertical" ||
-      (!ariaOrientation && menuOrientation === "horizontal")
-    ) {
-      return (
-        <VerticalDivider
-          {...props}
-          ref={ref}
-          aria-orientation="vertical"
-          maxHeight={maxHeight}
-          role="separator"
-        />
-      );
-    }
-
-    return <Divider {...props} ref={ref} role="separator" />;
+    return (
+      <VerticalDivider
+        {...props}
+        ref={ref}
+        aria-orientation="vertical"
+        maxHeight={maxHeight}
+        role="separator"
+      />
+    );
   }
-);
+
+  return <Divider {...props} ref={ref} role="separator" />;
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -55,5 +56,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default MenuItemSeparator;

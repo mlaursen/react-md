@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import MenuItemLink from "../MenuItemLink";
+import { MenuItemLink } from "../MenuItemLink";
 
 describe("MenuItemLink", () => {
   it("should render correctly", () => {

@@ -1,4 +1,4 @@
-import scrollbarSize, { reset } from "../scrollbarSize";
+import { reset, scrollbarSize } from "../scrollbarSize";
 
 beforeEach(reset);
 

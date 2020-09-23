@@ -56,7 +56,7 @@ const block = bem("rmd-expansion-panel");
  * Reminder: Since this is a `<button>`, only `inline` elements should be
  * rendered within (so use `<span>` instead of `<div>` for children).
  */
-const ExpansionPanelHeader = forwardRef<
+export const ExpansionPanelHeader = forwardRef<
   HTMLButtonElement,
   ExpansionPanelHeaderProps
 >(function ExpansionPanelHeader(
@@ -106,5 +106,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ExpansionPanelHeader;

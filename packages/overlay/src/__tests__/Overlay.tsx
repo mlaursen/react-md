@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 
-import Overlay from "../Overlay";
+import { Overlay } from "../Overlay";
 
 describe("Overlay", () => {
   it("should render correctly", () => {

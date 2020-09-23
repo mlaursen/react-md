@@ -56,7 +56,7 @@ const block = bem("rmd-file-input");
  * This component is a wrapper for the `<input type="file" />` that can be themed
  * like a button.
  */
-const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
+export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
   function FileInput(
     {
       style,
@@ -190,5 +190,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default FileInput;

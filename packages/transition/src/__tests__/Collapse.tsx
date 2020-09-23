@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Collapse from "../Collapse";
+import { Collapse } from "../Collapse";
 
 describe("Collapse", () => {
   describe("rendering", () => {

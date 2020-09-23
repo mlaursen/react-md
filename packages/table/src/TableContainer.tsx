@@ -9,7 +9,7 @@ export type TableContainerProps = HTMLAttributes<HTMLDivElement>;
  * don't want to use this component, you can just apply `overflow: auto` to a
  * parent element of the table.
  */
-const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
+export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
   function TableContainer({ className, children, ...props }, ref) {
     return (
       <div
@@ -33,5 +33,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TableContainer;

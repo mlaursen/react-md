@@ -1,5 +1,6 @@
 import { MutableRefObject, Ref, RefCallback, useCallback, useRef } from "react";
-import applyRef from "./applyRef";
+
+import { applyRef } from "./applyRef";
 
 /**
  * @since 2.3.0

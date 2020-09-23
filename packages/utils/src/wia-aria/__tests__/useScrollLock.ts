@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react-hooks";
 
-import useScrollLock, {
+import {
+  useScrollLock,
   disable,
   enable,
   DATA_RMD_NOSCROLL,

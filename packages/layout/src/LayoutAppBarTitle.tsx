@@ -14,28 +14,26 @@ const styles = bem("rmd-layout-title");
  * An extremely simple wrapper for the `AppBarTitle` that will automatically
  * apply an `id` and apply the correct margin for full-height layouts.
  */
-const LayoutAppBarTitle = forwardRef<HTMLDivElement, LayoutAppBarTitleProps>(
-  function LayoutAppBarTitle(
-    { id: propId, className, children, ...props },
-    ref
-  ) {
-    const { baseId, layout } = useLayoutConfig();
-    const id = propId ?? `${baseId}-title`;
-    return (
-      <AppBarTitle
-        {...props}
-        id={id}
-        ref={ref}
-        className={cn(
-          styles({ offset: isFullHeightLayout(layout) }),
-          className
-        )}
-      >
-        {children}
-      </AppBarTitle>
-    );
-  }
-);
+export const LayoutAppBarTitle = forwardRef<
+  HTMLDivElement,
+  LayoutAppBarTitleProps
+>(function LayoutAppBarTitle(
+  { id: propId, className, children, ...props },
+  ref
+) {
+  const { baseId, layout } = useLayoutConfig();
+  const id = propId ?? `${baseId}-title`;
+  return (
+    <AppBarTitle
+      {...props}
+      id={id}
+      ref={ref}
+      className={cn(styles({ offset: isFullHeightLayout(layout) }), className)}
+    >
+      {children}
+    </AppBarTitle>
+  );
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -48,5 +46,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (error) {}
 }
-
-export default LayoutAppBarTitle;

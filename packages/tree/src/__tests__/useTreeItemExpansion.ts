@@ -1,6 +1,6 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react-hooks";
 
-import useTreeItemExpansion from "../useTreeItemExpansion";
+import { useTreeItemExpansion } from "../useTreeItemExpansion";
 
 describe("useTreeItemExpansion", () => {
   it("should set the initial expandedIds to the provided default ids", () => {

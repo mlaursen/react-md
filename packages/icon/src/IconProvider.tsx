@@ -1,12 +1,12 @@
 import React, {
   createContext,
-  FC,
+  ReactElement,
   ReactNode,
   useContext,
   useMemo,
 } from "react";
 
-import FontIcon from "./FontIcon";
+import { FontIcon } from "./FontIcon";
 
 export interface ConfigurableIcons {
   /**
@@ -137,7 +137,7 @@ export interface IconProviderProps extends ConfigurableIcons {
  * `react-md` if you want to switch to SVG icons instead of the default font
  * icons.
  */
-const IconProvider: FC<IconProviderProps> = ({
+export function IconProvider({
   children,
   back = DEFAULT_ICONS.back,
   checkbox = DEFAULT_ICONS.checkbox,
@@ -151,7 +151,7 @@ const IconProvider: FC<IconProviderProps> = ({
   radio = DEFAULT_ICONS.radio,
   selected = DEFAULT_ICONS.selected,
   sort = DEFAULT_ICONS.sort,
-}) => {
+}: IconProviderProps): ReactElement {
   const value = useMemo(
     () => ({
       back,
@@ -184,7 +184,7 @@ const IconProvider: FC<IconProviderProps> = ({
   );
 
   return <Provider value={value}>{children}</Provider>;
-};
+}
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -207,5 +207,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default IconProvider;

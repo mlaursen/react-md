@@ -1,6 +1,6 @@
 import React, { ElementType, ReactElement, useCallback, useState } from "react";
 
-import { useResizeObserver, OnResizeObserverChange } from "./useResizeObserver";
+import { OnResizeObserverChange, useResizeObserver } from "./useResizeObserver";
 import { ResizeObserverTarget } from "./useResizeObserverV1";
 
 export interface ResizeObserverProps {
@@ -60,7 +60,7 @@ export interface ResizeObserverProps {
  * @deprecated 2.3.0 You should really use the `useResizeObserver` hook instead
  * since it offers a lot more flexibility and functionality than this component.
  */
-function ResizeObserver({
+export function ResizeObserver({
   disableHeight = false,
   disableWidth = false,
   className,
@@ -112,5 +112,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default ResizeObserver;

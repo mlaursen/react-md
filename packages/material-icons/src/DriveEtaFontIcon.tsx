@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function DriveEtaFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      drive_eta
-    </FontIcon>
-  );
-});
+export const DriveEtaFont = forwardRef<HTMLElement, FontIconProps>(
+  function DriveEtaFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        drive_eta
+      </FontIcon>
+    );
+  }
+);

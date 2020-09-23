@@ -27,7 +27,7 @@ const block = bem("rmd-table");
  * might be better to render a table in a different manner for mobile devices to
  * help display all the required data.
  */
-const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
+export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
   {
     className,
     children,
@@ -93,5 +93,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Table;

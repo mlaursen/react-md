@@ -33,7 +33,7 @@ const styles = bem("rmd-fab");
  * `position: relative` to work while changing into a floating action button
  * makes it `position: fixed`.
  */
-export default forwardRef<HTMLSpanElement, FABProps>(function FAB(
+export const FAB = forwardRef<HTMLSpanElement, FABProps>(function FAB(
   { position = null, children, className, ...props },
   ref
 ) {

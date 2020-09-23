@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function RssFeedFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      rss_feed
-    </FontIcon>
-  );
-});
+export const RssFeedFont = forwardRef<HTMLElement, FontIconProps>(
+  function RssFeedFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        rss_feed
+      </FontIcon>
+    );
+  }
+);

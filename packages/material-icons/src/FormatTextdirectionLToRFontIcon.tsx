@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(
-  function FormatTextdirectionLToRFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        format_textdirection_l_to_r
-      </FontIcon>
-    );
-  }
-);
+export const FormatTextdirectionLToRFont = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function FormatTextdirectionLToRFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      format_textdirection_l_to_r
+    </FontIcon>
+  );
+});

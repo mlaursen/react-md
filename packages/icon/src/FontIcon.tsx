@@ -44,39 +44,41 @@ const block = bem("rmd-icon");
  * with a perfect 1:1 scale (such as font awesome), it is recommended to use the
  * `forceSize` and `forceFontSize` props to fix the sizing issues.
  */
-const FontIcon = forwardRef<HTMLElement, FontIconProps>(function FontIcon(
-  {
-    className,
-    children,
-    "aria-hidden": ariaHidden = true,
-    dense = false,
-    iconClassName = "material-icons",
-    forceSize = false,
-    forceFontSize = false,
-    ...props
-  },
-  ref
-) {
-  return (
-    <i
-      {...props}
-      aria-hidden={ariaHidden}
-      ref={ref}
-      className={cn(
-        block({
-          font: true,
-          dense,
-          "forced-font": forceFontSize,
-          "forced-size": forceSize,
-        }),
-        iconClassName,
-        className
-      )}
-    >
-      {children}
-    </i>
-  );
-});
+export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
+  function FontIcon(
+    {
+      className,
+      children,
+      "aria-hidden": ariaHidden = true,
+      dense = false,
+      iconClassName = "material-icons",
+      forceSize = false,
+      forceFontSize = false,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <i
+        {...props}
+        aria-hidden={ariaHidden}
+        ref={ref}
+        className={cn(
+          block({
+            font: true,
+            dense,
+            "forced-font": forceFontSize,
+            "forced-size": forceSize,
+          }),
+          iconClassName,
+          className
+        )}
+      >
+        {children}
+      </i>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -96,5 +98,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default FontIcon;

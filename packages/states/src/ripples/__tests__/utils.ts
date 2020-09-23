@@ -1,9 +1,9 @@
 import {
-  isBubbled,
-  getType,
-  isRippleable,
-  getOrigin,
   createRippleState,
+  getOrigin,
+  getType,
+  isBubbled,
+  isRippleable,
 } from "../utils";
 
 describe("isBubbled", () => {

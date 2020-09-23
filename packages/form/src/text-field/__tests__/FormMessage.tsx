@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import FormMessage from "../FormMessage";
+import { FormMessage } from "../FormMessage";
 
 describe("FormMessage", () => {
   it("should render correctly", () => {

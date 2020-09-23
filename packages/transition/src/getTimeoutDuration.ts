@@ -1,4 +1,4 @@
-import { TransitionStage, ENTERING, EXITING } from "./constants";
+import { ENTERING, EXITING, TransitionStage } from "./constants";
 
 /**
  * Gets the `window.setTimeout` duration that should be used for a given stage.
@@ -6,7 +6,7 @@ import { TransitionStage, ENTERING, EXITING } from "./constants";
  *
  * @private
  */
-export default function getTimeoutDuration(
+export function getTimeoutDuration(
   stage: TransitionStage,
   appear: number,
   enter: number,

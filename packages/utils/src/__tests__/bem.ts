@@ -1,4 +1,4 @@
-import bem from "../bem";
+import { bem } from "../bem";
 
 describe("bem", () => {
   const block1 = bem("base");

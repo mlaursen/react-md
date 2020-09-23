@@ -1,4 +1,4 @@
-import { useRef, useEffect, MutableRefObject } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 
 /**
  * This hook allows you to provide anything that should be "cached" and puts it
@@ -11,7 +11,7 @@ import { useRef, useEffect, MutableRefObject } from "react";
  * @param cacheable The cacheable thing that gets updated after each render.
  * @return a mutable ref object containing the current cache.
  */
-export default function useRefCache<T>(cacheable: T): MutableRefObject<T> {
+export function useRefCache<T>(cacheable: T): MutableRefObject<T> {
   const ref = useRef(cacheable);
   useEffect(() => {
     ref.current = cacheable;

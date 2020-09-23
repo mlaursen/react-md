@@ -11,10 +11,10 @@ import {
   TransitionAction,
   TransitionStage,
 } from "./constants";
-import getClassNames from "./getClassNames";
-import getTimeout from "./getTimeout";
+import { getClassNames } from "./getClassNames";
+import { getTimeout } from "./getTimeout";
 import { CSSTransitionOptions, CSSTransitionProvidedProps } from "./types";
-import useTransition from "./useTransition";
+import { useTransition } from "./useTransition";
 
 type Rendered = boolean;
 
@@ -95,9 +95,7 @@ export type CSSTransitionReturnValue<E extends HTMLElement> = [
  * for triggering the transition manually (should not be used much), and the
  * current transition stage.
  */
-export default function useCSSTransition<
-  E extends HTMLElement = HTMLDivElement
->({
+export function useCSSTransition<E extends HTMLElement = HTMLDivElement>({
   appear = false,
   temporary = false,
   timeout,

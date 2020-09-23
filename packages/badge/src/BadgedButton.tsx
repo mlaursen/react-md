@@ -3,8 +3,8 @@ import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
 
-import Badge, { BadgeProps, BadgeTheme } from "./Badge";
-import isEmpty from "./isEmpty";
+import { Badge, BadgeProps, BadgeTheme } from "./Badge";
+import { isEmpty } from "./isEmpty";
 
 export interface BadgedButtonProps
   extends ButtonProps,
@@ -59,7 +59,7 @@ export interface BadgedButtonProps
  * adds some reasonable defaults for the most common use-case for badges:
  * notifications.
  */
-const BadgedButton = forwardRef<HTMLButtonElement, BadgedButtonProps>(
+export const BadgedButton = forwardRef<HTMLButtonElement, BadgedButtonProps>(
   function BadgedButton(
     {
       "aria-label": ariaLabel = "Notifications",
@@ -134,5 +134,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default BadgedButton;

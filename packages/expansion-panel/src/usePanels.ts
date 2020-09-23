@@ -173,7 +173,7 @@ const attemptFocus = (index: number, panels: PanelMemo[]): void => {
  * );
  * ```
  */
-export default function usePanels({
+export function usePanels({
   idPrefix,
   count,
   multiple = false,

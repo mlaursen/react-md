@@ -13,7 +13,7 @@ const VERBOSE_REGEX = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
  * @param hex The hex string to convert
  * @return an object containing the r, g, b values for the color.
  */
-export default function hexToRGB(hex: HexString): [RedBit, GreenBit, BlueBit] {
+export function hexToRGB(hex: HexString): [RedBit, GreenBit, BlueBit] {
   if (
     process.env.NODE_ENV !== "production" &&
     !SHORTHAND_REGEX.test(hex) &&

@@ -9,7 +9,7 @@ let warnedOnce = false;
  *
  * @private
  */
-export default function defaultGetItemValue(
+export function defaultGetItemValue(
   item: UnknownTreeItem,
   valueKey: string
 ): string {

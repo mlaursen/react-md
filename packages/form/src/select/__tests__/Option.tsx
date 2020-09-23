@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { FontIcon } from "@react-md/icon";
 
-import Option from "../Option";
+import { Option } from "../Option";
 
 describe("Option", () => {
   it("should render as an <li> with the correct attributes", () => {

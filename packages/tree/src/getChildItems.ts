@@ -1,4 +1,4 @@
-import { BaseTreeItem, UnknownTreeItem, TreeData, TreeItemId } from "./types";
+import { BaseTreeItem, TreeData, TreeItemId, UnknownTreeItem } from "./types";
 
 /**
  * Gets all the child items for a specific parent item id. If the `recursive`
@@ -14,7 +14,7 @@ import { BaseTreeItem, UnknownTreeItem, TreeData, TreeItemId } from "./types";
  * a item will appear before the next item at the same level. So you either need
  * to sort by `parentId` or something else if you want a specific order.
  */
-export default function getChildItems<T extends BaseTreeItem = UnknownTreeItem>(
+export function getChildItems<T extends BaseTreeItem = UnknownTreeItem>(
   data: TreeData<T> | readonly T[],
   parentId: TreeItemId | null,
   recursive: boolean = false

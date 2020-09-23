@@ -12,7 +12,7 @@ import { ExpandedIds, TreeItemExpansion, TreeItemId } from "./types";
  * @return An object containing props that can be passed to the `Tree` component
  * to handle the expansion state within the tree.
  */
-export default function useTreeItemExpansion(
+export function useTreeItemExpansion(
   defaultExpandedIds: ExpandedIds | (() => ExpandedIds)
 ): TreeItemExpansion {
   const [expandedIds, setExpandedIds] = useState(defaultExpandedIds);

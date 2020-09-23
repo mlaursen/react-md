@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
-import useRefCache from "./useRefCache";
-import useToggle from "./useToggle";
+
+import { useRefCache } from "./useRefCache";
+import { useToggle } from "./useToggle";
 
 type StartTimeout = () => void;
 type StopTimeout = () => void;
@@ -18,7 +19,7 @@ type ReturnValue = [StartTimeout, StopTimeout, RestartTimeout];
  * @return a list containing a function to start the timeout, a function to stop
  * the timeout, and a function to restart the timeout.
  */
-export default function useTimeout(
+export function useTimeout(
   cb: () => void,
   delay: number,
   defaultStarted: boolean | (() => boolean) = false

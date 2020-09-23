@@ -1,4 +1,4 @@
-import getTreeItemId from "../getTreeItemId";
+import { getTreeItemId } from "../getTreeItemId";
 
 describe("getTreeItemId", () => {
   it("should return the correct id when the parentIndexes are omitted or an empty list", () => {

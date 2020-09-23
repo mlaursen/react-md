@@ -10,9 +10,9 @@ import { List } from "@react-md/list";
 import { ScaleTransition } from "@react-md/transition";
 import { BELOW_CENTER_ANCHOR, bem, omit } from "@react-md/utils";
 
-import HighlightedResult from "./HighlightedResult";
+import { HighlightedResult } from "./HighlightedResult";
 import { AutoCompleteProps } from "./types";
-import useAutoComplete from "./useAutoComplete";
+import { useAutoComplete } from "./useAutoComplete";
 import {
   getResultId as DEFAULT_GET_RESULT_ID,
   getResultLabel as DEFAULT_GET_RESULT_LABEL,
@@ -33,7 +33,7 @@ const EMPTY_LIST: string[] = [];
  * An AutoComplete is an accessible combobox widget that allows for real-time
  * suggestions as the user types.
  */
-const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
+export const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
   function AutoComplete(
     {
       autoComplete = "list",
@@ -316,5 +316,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default AutoComplete;

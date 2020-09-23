@@ -4,7 +4,7 @@
  * @param direction Either the "height" or "width" string to get that dimension
  * @return the view width or view height.
  */
-export default function getViewportSize(direction: "height" | "width"): number {
+export function getViewportSize(direction: "height" | "width"): number {
   const de = document.documentElement || { clientHeight: 0, clientWidth: 0 };
 
   if (direction === "width") {

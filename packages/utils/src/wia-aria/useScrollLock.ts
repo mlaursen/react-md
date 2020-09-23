@@ -51,7 +51,7 @@ export function disable(element: HTMLElement): void {
  * @param selectorOrElement Either a query selector string, HTMLElement, or a
  * function that returns an HTMLElement to apply scroll locking to.
  */
-export default function useScrollLock(
+export function useScrollLock(
   enabled: boolean,
   selectorOrElement?: string | HTMLElement | (() => HTMLElement) | null
 ): void {

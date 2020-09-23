@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function PanoramaFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      panorama
-    </FontIcon>
-  );
-});
+export const PanoramaFont = forwardRef<HTMLElement, FontIconProps>(
+  function PanoramaFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        panorama
+      </FontIcon>
+    );
+  }
+);

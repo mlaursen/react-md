@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { FC, HTMLAttributes } from "react";
+import React, { HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -11,11 +11,11 @@ const block = bem("rmd-card");
  *
  * @private
  */
-const CardHeaderAddon: FC<HTMLAttributes<HTMLSpanElement>> = ({
+export function CardHeaderAddon({
   className,
   children,
   ...props
-}) => {
+}: HTMLAttributes<HTMLSpanElement>): ReactElement | null {
   if (!children) {
     return null;
   }
@@ -25,6 +25,4 @@ const CardHeaderAddon: FC<HTMLAttributes<HTMLSpanElement>> = ({
       {children}
     </span>
   );
-};
-
-export default CardHeaderAddon;
+}

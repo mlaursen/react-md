@@ -1,5 +1,5 @@
-import useTouchDetection from "./useTouchDetection";
-import useKeyboardDetection from "./useKeyboardDetection";
+import { useKeyboardDetection } from "./useKeyboardDetection";
+import { useTouchDetection } from "./useTouchDetection";
 
 /**
  * This is the current mode for how your user is interacting with your app. This
@@ -14,7 +14,7 @@ export type UserInteractionMode = "keyboard" | "mouse" | "touch";
  *
  * @private
  */
-export default function useModeDetection(): UserInteractionMode {
+export function useModeDetection(): UserInteractionMode {
   const touch = useTouchDetection();
   const keyboard = useKeyboardDetection();
 

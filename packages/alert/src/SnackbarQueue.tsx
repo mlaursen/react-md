@@ -1,9 +1,9 @@
 import React, {
+  forwardRef,
   isValidElement,
   ReactElement,
   ReactNode,
   Ref,
-  forwardRef,
 } from "react";
 import { Button, ButtonProps } from "@react-md/button";
 
@@ -12,8 +12,8 @@ import {
   useMessageQueueActions,
   useMessageVisibility,
 } from "./MessageQueueContext";
-import Snackbar, { SnackbarProps } from "./Snackbar";
-import Toast from "./Toast";
+import { Snackbar, SnackbarProps } from "./Snackbar";
+import { Toast } from "./Toast";
 
 export type ActionEventHandler<M extends ToastMessage> = (
   message: M,
@@ -49,7 +49,7 @@ function getId(
  *
  * @private
  */
-function SnackbarQueue<M extends ToastMessage = ToastMessage>(
+function SnackbarQueueT<M extends ToastMessage = ToastMessage>(
   { queue, onActionClick, ...props }: SnackbarQueueProps<M>,
   ref?: Ref<HTMLDivElement>
 ): ReactElement {
@@ -128,7 +128,8 @@ function SnackbarQueue<M extends ToastMessage = ToastMessage>(
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default forwardRef<HTMLDivElement, SnackbarQueueProps<any>>(
-  SnackbarQueue
-);
+export const SnackbarQueue = forwardRef<
+  HTMLDivElement,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  SnackbarQueueProps<any>
+>(SnackbarQueueT);

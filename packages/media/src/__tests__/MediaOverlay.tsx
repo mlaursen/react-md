@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import MediaOverlay from "../MediaOverlay";
+import { MediaOverlay } from "../MediaOverlay";
 
 describe("MediaOverlay", () => {
   it("should apply the correct class names", () => {

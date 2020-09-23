@@ -1,6 +1,6 @@
 import { useCallback, useRef } from "react";
 
-import getFocusableElements from "./getFocusableElements";
+import { getFocusableElements } from "./getFocusableElements";
 
 interface Options<E extends HTMLElement> {
   /**
@@ -31,7 +31,7 @@ interface Options<E extends HTMLElement> {
  * @return The kedown event handler to enforce focus wrapping or the onKeyDown
  * prop if this functionality is disabled.
  */
-export default function useTabFocusWrap<E extends HTMLElement>({
+export function useTabFocusWrap<E extends HTMLElement>({
   disabled = false,
   disableFocusCache = false,
   onKeyDown,

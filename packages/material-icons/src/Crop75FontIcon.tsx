@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function Crop75FontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      crop_7_5
-    </FontIcon>
-  );
-});
+export const Crop75Font = forwardRef<HTMLElement, FontIconProps>(
+  function Crop75FontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        crop_7_5
+      </FontIcon>
+    );
+  }
+);

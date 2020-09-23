@@ -1,13 +1,13 @@
 import React, { Children, forwardRef, HTMLAttributes, ReactNode } from "react";
 
-import GridListCell from "./GridListCell";
+import { GridListCell } from "./GridListCell";
 import {
   DEFAULT_GRID_LIST_MAX_CELL_SIZE,
   DEFAULT_GRID_LIST_PADDING,
-  useGridList,
-  UseGridListOptions,
   GridListSize,
   GridListSizeProvider,
+  useGridList,
+  UseGridListOptions,
 } from "./useGridList";
 
 /**
@@ -79,55 +79,57 @@ const isRenderFunction = (
  * displaying a list of images or thumbnails and allowing the user to see a full
  * screen preview once selected/clicked.
  */
-const GridList = forwardRef<HTMLDivElement, GridListProps>(function GridList(
-  {
-    style,
-    className,
-    children,
-    clone = false,
-    wrapOnly = false,
-    cellMargin,
-    defaultSize,
-    maxCellSize = DEFAULT_GRID_LIST_MAX_CELL_SIZE,
-    containerPadding = DEFAULT_GRID_LIST_PADDING,
-    disableHeightObserver = false,
-    disableWidthObserver = false,
-    ...props
-  },
-  forwardedRef
-) {
-  const [gridListProps, gridSize] = useGridList({
-    ref: forwardedRef,
-    style,
-    className,
-    cellMargin,
-    defaultSize,
-    maxCellSize,
-    containerPadding,
-    disableHeight: disableHeightObserver,
-    disableWidth: disableWidthObserver,
-  });
-
-  let content: ReactNode = null;
-  if (isRenderFunction(children)) {
-    content = children(gridSize);
-  } else if (clone || wrapOnly) {
-    content = Children.map(
+export const GridList = forwardRef<HTMLDivElement, GridListProps>(
+  function GridList(
+    {
+      style,
+      className,
       children,
-      (child) => child && <GridListCell clone={clone}>{child}</GridListCell>
-    );
-  } else {
-    content = children;
-  }
+      clone = false,
+      wrapOnly = false,
+      cellMargin,
+      defaultSize,
+      maxCellSize = DEFAULT_GRID_LIST_MAX_CELL_SIZE,
+      containerPadding = DEFAULT_GRID_LIST_PADDING,
+      disableHeightObserver = false,
+      disableWidthObserver = false,
+      ...props
+    },
+    forwardedRef
+  ) {
+    const [gridListProps, gridSize] = useGridList({
+      ref: forwardedRef,
+      style,
+      className,
+      cellMargin,
+      defaultSize,
+      maxCellSize,
+      containerPadding,
+      disableHeight: disableHeightObserver,
+      disableWidth: disableWidthObserver,
+    });
 
-  return (
-    <GridListSizeProvider value={gridSize}>
-      <div {...props} {...gridListProps}>
-        {content}
-      </div>
-    </GridListSizeProvider>
-  );
-});
+    let content: ReactNode = null;
+    if (isRenderFunction(children)) {
+      content = children(gridSize);
+    } else if (clone || wrapOnly) {
+      content = Children.map(
+        children,
+        (child) => child && <GridListCell clone={clone}>{child}</GridListCell>
+      );
+    } else {
+      content = children;
+    }
+
+    return (
+      <GridListSizeProvider value={gridSize}>
+        <div {...props} {...gridListProps}>
+          {content}
+        </div>
+      </GridListSizeProvider>
+    );
+  }
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -154,5 +156,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default GridList;

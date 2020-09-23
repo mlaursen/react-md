@@ -7,8 +7,8 @@ import React, {
 } from "react";
 import cn from "classnames";
 
-import bem from "../bem";
-import useAppSize from "../sizing/useAppSize";
+import { bem } from "../bem";
+import { useAppSize } from "../sizing/useAppSize";
 
 export interface GridCSSProperties {
   /**
@@ -99,79 +99,81 @@ export interface GridCellProps
 
 const block = bem("rmd-grid");
 
-const GridCell = forwardRef<HTMLDivElement, GridCellProps>(function GridCell(
-  {
-    style,
-    className,
-    clone,
-    children,
-    colSpan: propColSpan,
-    colStart: propColStart,
-    colEnd: propColEnd,
-    rowSpan: propRowSpan,
-    rowStart: propRowStart,
-    rowEnd: propRowEnd,
-    phone,
-    tablet,
-    desktop,
-    largeDesktop,
-    ...props
-  },
-  ref
-) {
-  const { isPhone, isTablet, isDesktop, isLargeDesktop } = useAppSize();
+export const GridCell = forwardRef<HTMLDivElement, GridCellProps>(
+  function GridCell(
+    {
+      style,
+      className,
+      clone,
+      children,
+      colSpan: propColSpan,
+      colStart: propColStart,
+      colEnd: propColEnd,
+      rowSpan: propRowSpan,
+      rowStart: propRowStart,
+      rowEnd: propRowEnd,
+      phone,
+      tablet,
+      desktop,
+      largeDesktop,
+      ...props
+    },
+    ref
+  ) {
+    const { isPhone, isTablet, isDesktop, isLargeDesktop } = useAppSize();
 
-  let colSpan = propColSpan;
-  let colStart = propColStart;
-  let colEnd = propColEnd;
-  let rowSpan = propRowSpan;
-  let rowStart = propRowStart;
-  let rowEnd = propRowEnd;
-  const media =
-    (isPhone && phone) ||
-    (isTablet && tablet) ||
-    (isDesktop && desktop) ||
-    (isLargeDesktop && largeDesktop);
+    let colSpan = propColSpan;
+    let colStart = propColStart;
+    let colEnd = propColEnd;
+    let rowSpan = propRowSpan;
+    let rowStart = propRowStart;
+    let rowEnd = propRowEnd;
+    const media =
+      (isPhone && phone) ||
+      (isTablet && tablet) ||
+      (isDesktop && desktop) ||
+      (isLargeDesktop && largeDesktop);
 
-  if (media) {
-    ({
-      rowSpan = propRowSpan,
-      rowStart = propRowStart,
-      rowEnd = propRowEnd,
-      colSpan = propColSpan,
-      colStart = propColStart,
-      colEnd = propColEnd,
-    } = media);
+    if (media) {
+      ({
+        rowSpan = propRowSpan,
+        rowStart = propRowStart,
+        rowEnd = propRowEnd,
+        colSpan = propColSpan,
+        colStart = propColStart,
+        colEnd = propColEnd,
+      } = media);
+    }
+
+    const cellStyle = {
+      gridColumnStart: colStart,
+      gridColumnEnd: colEnd,
+      gridRowStart: rowStart,
+      gridRowEnd: rowSpan ? `span ${rowSpan}` : rowEnd,
+      ...style,
+    };
+    const cellClassName = cn(
+      block("cell", {
+        [`${colSpan}`]: colSpan,
+      }),
+      className
+    );
+
+    if (clone && isValidElement(children)) {
+      const child = Children.only(children);
+      return cloneElement(child, {
+        style: { ...child.props.style, ...cellStyle },
+        className: cn(cellClassName, child.props.className),
+      });
+    }
+
+    return (
+      <div {...props} ref={ref} style={cellStyle} className={cellClassName}>
+        {children}
+      </div>
+    );
   }
-
-  const cellStyle = {
-    gridColumnStart: colStart,
-    gridColumnEnd: colEnd,
-    gridRowStart: rowStart,
-    gridRowEnd: rowSpan ? `span ${rowSpan}` : rowEnd,
-    ...style,
-  };
-  const cellClassName = cn(
-    block("cell", {
-      [`${colSpan}`]: colSpan,
-    }),
-    className
-  );
-
-  if (clone && isValidElement(children)) {
-    const child = Children.only(children);
-    return cloneElement(child, {
-      style: { ...child.props.style, ...cellStyle },
-      className: cn(cellClassName, child.props.className),
-    });
-  }
-
-  return (
-    <div {...props} ref={ref} style={cellStyle} className={cellClassName}>
-      {children}
-    </div>
-  );
-});
+);
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -204,5 +206,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default GridCell;

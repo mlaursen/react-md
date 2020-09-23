@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(
-  function AirlineSeatLegroomReducedFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        airline_seat_legroom_reduced
-      </FontIcon>
-    );
-  }
-);
+export const AirlineSeatLegroomReducedFont = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function AirlineSeatLegroomReducedFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      airline_seat_legroom_reduced
+    </FontIcon>
+  );
+});

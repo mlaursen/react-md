@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react-hooks";
 
-import usePosition from "../usePosition";
+import { usePosition } from "../usePosition";
 
 describe("usePosition", () => {
   it("should set the position to the defaultPosition unless the position option was applied", () => {

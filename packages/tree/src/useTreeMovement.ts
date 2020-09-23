@@ -8,17 +8,18 @@ import { ListElement } from "@react-md/list";
 import {
   JumpMovementKey,
   MovementPresets,
-  useActiveDescendantMovement,
   scrollIntoView,
+  useActiveDescendantMovement,
   useIsUserInteractionMode,
 } from "@react-md/utils";
 
 import { TreeItemId, TreeProps, UnknownTreeItem } from "./types";
-import useFlattenedTreeList, {
-  SearchableTreeItem,
+import {
   MetadataRecord,
+  SearchableTreeItem,
+  useFlattenedTreeList,
 } from "./useFlattenedTreeList";
-import useNestedTreeList, { NestedTreeItem } from "./useNestedTreeList";
+import { NestedTreeItem, useNestedTreeList } from "./useNestedTreeList";
 
 type Options = Pick<
   TreeProps<UnknownTreeItem>,
@@ -97,7 +98,7 @@ interface ReturnValue {
  *
  * @private
  */
-export default function useTreeMovement({
+export function useTreeMovement({
   id,
   data,
   rootId,

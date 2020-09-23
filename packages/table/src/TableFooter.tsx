@@ -31,53 +31,54 @@ const block = bem("rmd-foot");
  * and line-wrapping can be re-enabled if desired through the `hoverable` and
  * `disableNoWrap` props.
  */
-const TableFooter = forwardRef<HTMLTableSectionElement, TableFooterProps>(
-  function TableFooter(
-    {
-      className,
-      hoverable = false,
-      lineWrap: propLineWrap,
-      children,
-      sticky = false,
-      ...props
-    },
-    ref
-  ) {
-    // update the table configuration with the custom overrides for the `<tfoot>`
-    const {
+export const TableFooter = forwardRef<
+  HTMLTableSectionElement,
+  TableFooterProps
+>(function TableFooter(
+  {
+    className,
+    hoverable = false,
+    lineWrap: propLineWrap,
+    children,
+    sticky = false,
+    ...props
+  },
+  ref
+) {
+  // update the table configuration with the custom overrides for the `<tfoot>`
+  const {
+    hAlign,
+    vAlign,
+    lineWrap,
+    disableHover,
+    disableBorders,
+  } = useTableConfig({
+    lineWrap: propLineWrap,
+    disableHover: !hoverable,
+  });
+
+  const configuration = useMemo(
+    () => ({
+      header: false,
       hAlign,
       vAlign,
       lineWrap,
-      disableHover,
       disableBorders,
-    } = useTableConfig({
-      lineWrap: propLineWrap,
-      disableHover: !hoverable,
-    });
+      disableHover,
+    }),
+    [hAlign, vAlign, lineWrap, disableBorders, disableHover]
+  );
 
-    const configuration = useMemo(
-      () => ({
-        header: false,
-        hAlign,
-        vAlign,
-        lineWrap,
-        disableBorders,
-        disableHover,
-      }),
-      [hAlign, vAlign, lineWrap, disableBorders, disableHover]
-    );
-
-    return (
-      <TableConfigProvider value={configuration}>
-        <TableFooterProvider value>
-          <tfoot {...props} ref={ref} className={cn(block(), className)}>
-            <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
-          </tfoot>
-        </TableFooterProvider>
-      </TableConfigProvider>
-    );
-  }
-);
+  return (
+    <TableConfigProvider value={configuration}>
+      <TableFooterProvider value>
+        <tfoot {...props} ref={ref} className={cn(block(), className)}>
+          <StickyTableProvider value={sticky}>{children}</StickyTableProvider>
+        </tfoot>
+      </TableFooterProvider>
+    </TableConfigProvider>
+  );
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
@@ -95,5 +96,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TableFooter;

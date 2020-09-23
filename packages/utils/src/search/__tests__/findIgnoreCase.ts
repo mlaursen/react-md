@@ -1,4 +1,4 @@
-import findIgnoreCase from "../findIgnoreCase";
+import { findIgnoreCase } from "../findIgnoreCase";
 
 const FRUITS = ["Apple", "Banana", "Mango", "Orange"];
 

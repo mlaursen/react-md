@@ -9,12 +9,12 @@ import { useIcon } from "@react-md/icon";
 import { List, ListElement } from "@react-md/list";
 import { bem } from "@react-md/utils";
 
-import defaultGetItemLabel from "./defaultGetItemLabel";
-import defaultGetItemValue from "./defaultGetItemValue";
-import defaultTreeItemRenderer from "./defaultTreeItemRenderer";
+import { defaultGetItemLabel } from "./defaultGetItemLabel";
+import { defaultGetItemValue } from "./defaultGetItemValue";
+import { defaultTreeItemRenderer } from "./defaultTreeItemRenderer";
 import { TreeProps, UnknownTreeItem } from "./types";
 import { NestedTreeItem } from "./useNestedTreeList";
-import useTreeMovement from "./useTreeMovement";
+import { useTreeMovement } from "./useTreeMovement";
 
 const block = bem("rmd-tree");
 const defaultGetItemProps = (): undefined => undefined;
@@ -26,7 +26,7 @@ const defaultGetItemProps = (): undefined => undefined;
  * `useTreeItemSelection` and `useTreeItemExpansion` hooks for a great starting
  * point for this functionality.
  */
-const Tree = forwardRef<ListElement, TreeProps<any>>(function Tree( // eslint-disable-line @typescript-eslint/no-explicit-any
+export const Tree = forwardRef<ListElement, TreeProps<any>>(function Tree( // eslint-disable-line @typescript-eslint/no-explicit-any
   {
     id,
     className,
@@ -208,5 +208,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Tree;

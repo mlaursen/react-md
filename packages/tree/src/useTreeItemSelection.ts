@@ -13,7 +13,7 @@ import { SelectedIds, TreeItemId, TreeItemSelection } from "./types";
  * @return an object containing props that can be passed to the `Tree` component
  * to handle the selection state within the tree
  */
-export default function useTreeItemSelection(
+export function useTreeItemSelection(
   defaultSelectedIds: SelectedIds | (() => SelectedIds),
   multiSelect: boolean = false
 ): Required<TreeItemSelection> {

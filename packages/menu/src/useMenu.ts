@@ -1,8 +1,8 @@
 import { HTMLAttributes, MutableRefObject, Ref } from "react";
 import { useCloseOnOutsideClick, useEnsuredRef } from "@react-md/utils";
 
-import useMenuClick from "./useMenuClick";
-import useMenuKeyDown from "./useMenuKeyDown";
+import { useMenuClick } from "./useMenuClick";
+import { useMenuKeyDown } from "./useMenuKeyDown";
 
 export interface MenuOptions {
   /**
@@ -87,7 +87,7 @@ interface ReturnValue
  *   it'll lose focus)
  * - conditionally close the menu if the page is scrolled while visible.
  */
-export default function useMenu({
+export function useMenu({
   ref: propRef,
   visible,
   controlId,

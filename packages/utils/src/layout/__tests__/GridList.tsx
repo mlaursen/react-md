@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 import React from "react";
-import { render, act } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import ResizeObserverPolyfill from "resize-observer-polyfill";
 import { mocked } from "ts-jest/utils";
 
-import GridList from "../GridList";
+import { GridList } from "../GridList";
 import { useGridListSize } from "../useGridList";
 
 jest.mock("resize-observer-polyfill");

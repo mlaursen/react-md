@@ -21,7 +21,7 @@ import {
   useScrollLock,
 } from "@react-md/utils";
 
-import useNestedDialogFixes from "./useNestedDialogFixes";
+import { useNestedDialogFixes } from "./useNestedDialogFixes";
 
 export interface BaseDialogProps
   extends OverridableCSSTransitionProps,
@@ -206,7 +206,7 @@ const DEFAULT_DIALOG_TIMEOUT = {
   exit: 150,
 };
 
-const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
+export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
   {
     component = "div",
     tabIndex = -1,
@@ -445,5 +445,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default Dialog;

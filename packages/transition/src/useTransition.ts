@@ -1,21 +1,21 @@
 import { Dispatch, RefCallback, useEffect, useReducer, useRef } from "react";
 import { useEnsuredRef } from "@react-md/utils";
 
-import { TransitionOptions } from "./types";
 import {
-  TransitionStage,
   ENTER,
-  ENTERING,
   ENTERED,
+  ENTERING,
   EXIT,
-  EXITING,
   EXITED,
-  UNMOUNT,
+  EXITING,
   TransitionAction,
+  TransitionStage,
+  UNMOUNT,
 } from "./constants";
-import getNextStage from "./getNextStage";
-import getTimeout from "./getTimeout";
-import getTimeoutDuration from "./getTimeoutDuration";
+import { getNextStage } from "./getNextStage";
+import { getTimeout } from "./getTimeout";
+import { getTimeoutDuration } from "./getTimeoutDuration";
+import { TransitionOptions } from "./types";
 
 export interface TransitionState {
   /**
@@ -133,7 +133,7 @@ const getInitialState = (
  * @return An object describing the current transition stage and props that
  * should be passed to a component.
  */
-export default function useTransition<E extends HTMLElement = HTMLDivElement>({
+export function useTransition<E extends HTMLElement = HTMLDivElement>({
   appear = false,
   repaint = false,
   temporary = false,

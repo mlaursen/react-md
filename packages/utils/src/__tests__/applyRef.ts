@@ -1,6 +1,6 @@
 import { createRef } from "react";
 
-import applyRef from "../applyRef";
+import { applyRef } from "../applyRef";
 
 const instance = document.createElement("div");
 

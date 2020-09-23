@@ -1,9 +1,5 @@
-export { default as AutoComplete } from "./AutoComplete";
-
-export { default as HighlightedResult } from "./HighlightedResult";
+export * from "./AutoComplete";
 export * from "./HighlightedResult";
-
-export { default as useAutoComplete } from "./useAutoComplete";
 export * from "./useAutoComplete";
 
 export {

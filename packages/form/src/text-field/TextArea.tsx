@@ -6,19 +6,20 @@ import React, {
   Ref,
   TextareaHTMLAttributes,
   useCallback,
-  useState,
   useRef,
+  useState,
 } from "react";
 import cn from "classnames";
 import { bem, useEnsuredRef, useResizeObserver } from "@react-md/utils";
 
-import FloatingLabel from "../label/FloatingLabel";
-import useFocusState from "../useFocusState";
-import TextFieldContainer, {
+import { useFormTheme } from "../FormThemeProvider";
+import { FloatingLabel } from "../label/FloatingLabel";
+import { useFocusState } from "../useFocusState";
+import {
+  TextFieldContainer,
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
-import useValuedState from "./useValuedState";
-import { useFormTheme } from "../FormThemeProvider";
+import { useValuedState } from "./useValuedState";
 
 export type TextAreaResize =
   | "none"
@@ -121,7 +122,7 @@ const PADDING_VARIABLES =
 // this is the default of 1.5rem line-height in the styles
 const DEFAULT_LINE_HEIGHT = "24";
 
-const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(
     {
       style,
@@ -406,5 +407,3 @@ if (process.env.NODE_ENV !== "production") {
     };
   } catch (e) {}
 }
-
-export default TextArea;

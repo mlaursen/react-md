@@ -3,13 +3,12 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export default forwardRef<HTMLElement, FontIconProps>(function MicFontIcon(
-  props,
-  ref
-) {
-  return (
-    <FontIcon {...props} ref={ref}>
-      mic
-    </FontIcon>
-  );
-});
+export const MicFont = forwardRef<HTMLElement, FontIconProps>(
+  function MicFontIcon(props, ref) {
+    return (
+      <FontIcon {...props} ref={ref}>
+        mic
+      </FontIcon>
+    );
+  }
+);
