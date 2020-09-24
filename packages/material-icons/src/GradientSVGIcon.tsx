@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const GradientSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const GradientSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function GradientSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

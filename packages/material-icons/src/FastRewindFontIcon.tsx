@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FastRewindFont = forwardRef<HTMLElement, FontIconProps>(
+export const FastRewindFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function FastRewindFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

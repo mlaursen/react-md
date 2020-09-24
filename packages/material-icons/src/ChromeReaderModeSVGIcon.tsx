@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const ChromeReaderModeSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const ChromeReaderModeSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function ChromeReaderModeSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

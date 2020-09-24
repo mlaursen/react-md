@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const KeyboardArrowRightFont = forwardRef<HTMLElement, FontIconProps>(
-  function KeyboardArrowRightFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        keyboard_arrow_right
-      </FontIcon>
-    );
-  }
-);
+export const KeyboardArrowRightFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function KeyboardArrowRightFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      keyboard_arrow_right
+    </FontIcon>
+  );
+});

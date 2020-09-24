@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const KeyboardTabFont = forwardRef<HTMLElement, FontIconProps>(
+export const KeyboardTabFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function KeyboardTabFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

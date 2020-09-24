@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const ScreenLockLandscapeFont = forwardRef<HTMLElement, FontIconProps>(
-  function ScreenLockLandscapeFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        screen_lock_landscape
-      </FontIcon>
-    );
-  }
-);
+export const ScreenLockLandscapeFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function ScreenLockLandscapeFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      screen_lock_landscape
+    </FontIcon>
+  );
+});

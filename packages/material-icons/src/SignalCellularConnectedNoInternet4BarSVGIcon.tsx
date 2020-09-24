@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const SignalCellularConnectedNoInternet4BarSVG = forwardRef<
+export const SignalCellularConnectedNoInternet4BarSVGIcon = forwardRef<
   SVGSVGElement,
   SVGIconProps
 >(function SignalCellularConnectedNoInternet4BarSVGIcon(props, ref) {

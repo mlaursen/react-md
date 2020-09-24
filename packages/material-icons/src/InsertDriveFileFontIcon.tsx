@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const InsertDriveFileFont = forwardRef<HTMLElement, FontIconProps>(
+export const InsertDriveFileFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function InsertDriveFileFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

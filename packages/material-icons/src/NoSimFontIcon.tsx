@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const NoSimFont = forwardRef<HTMLElement, FontIconProps>(
+export const NoSimFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function NoSimFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

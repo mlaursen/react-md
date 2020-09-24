@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SubdirectoryArrowRightFont = forwardRef<
+export const SubdirectoryArrowRightFontIcon = forwardRef<
   HTMLElement,
   FontIconProps
 >(function SubdirectoryArrowRightFontIcon(props, ref) {

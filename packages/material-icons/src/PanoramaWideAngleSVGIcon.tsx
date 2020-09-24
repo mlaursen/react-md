@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const PanoramaWideAngleSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const PanoramaWideAngleSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function PanoramaWideAngleSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

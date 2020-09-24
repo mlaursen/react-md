@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SimCardFont = forwardRef<HTMLElement, FontIconProps>(
+export const SimCardFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function SimCardFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

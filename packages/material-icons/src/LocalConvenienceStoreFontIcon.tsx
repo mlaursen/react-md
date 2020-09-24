@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LocalConvenienceStoreFont = forwardRef<HTMLElement, FontIconProps>(
-  function LocalConvenienceStoreFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        local_convenience_store
-      </FontIcon>
-    );
-  }
-);
+export const LocalConvenienceStoreFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function LocalConvenienceStoreFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      local_convenience_store
+    </FontIcon>
+  );
+});

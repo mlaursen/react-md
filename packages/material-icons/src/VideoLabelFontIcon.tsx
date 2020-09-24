@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const VideoLabelFont = forwardRef<HTMLElement, FontIconProps>(
+export const VideoLabelFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function VideoLabelFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

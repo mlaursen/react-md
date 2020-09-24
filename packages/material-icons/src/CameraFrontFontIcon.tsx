@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const CameraFrontFont = forwardRef<HTMLElement, FontIconProps>(
+export const CameraFrontFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function CameraFrontFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

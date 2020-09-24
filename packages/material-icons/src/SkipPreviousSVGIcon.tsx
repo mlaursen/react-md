@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const SkipPreviousSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const SkipPreviousSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function SkipPreviousSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

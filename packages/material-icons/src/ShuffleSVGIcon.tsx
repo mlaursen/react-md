@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const ShuffleSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const ShuffleSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function ShuffleSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

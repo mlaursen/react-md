@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PermDataSettingFont = forwardRef<HTMLElement, FontIconProps>(
+export const PermDataSettingFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function PermDataSettingFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const SignalWifi4BarSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const SignalWifi4BarSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function SignalWifi4BarSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

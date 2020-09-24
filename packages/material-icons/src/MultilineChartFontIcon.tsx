@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const MultilineChartFont = forwardRef<HTMLElement, FontIconProps>(
+export const MultilineChartFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function MultilineChartFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

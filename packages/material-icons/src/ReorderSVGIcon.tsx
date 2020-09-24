@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const ReorderSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const ReorderSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function ReorderSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

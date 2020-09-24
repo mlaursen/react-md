@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const ChevronLeftSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const ChevronLeftSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function ChevronLeftSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

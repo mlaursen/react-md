@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FormatUnderlinedSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const FormatUnderlinedSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function FormatUnderlinedSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

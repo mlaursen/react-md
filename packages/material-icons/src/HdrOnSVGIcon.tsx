@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const HdrOnSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const HdrOnSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function HdrOnSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const AirplaySVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const AirplaySVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function AirplaySVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

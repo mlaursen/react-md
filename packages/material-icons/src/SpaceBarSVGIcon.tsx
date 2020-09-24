@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const SpaceBarSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const SpaceBarSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function SpaceBarSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

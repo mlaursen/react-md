@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const PauseSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const PauseSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function PauseSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

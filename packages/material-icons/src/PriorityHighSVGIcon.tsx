@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const PriorityHighSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const PriorityHighSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function PriorityHighSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

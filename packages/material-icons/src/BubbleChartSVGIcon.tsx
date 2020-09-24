@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const BubbleChartSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const BubbleChartSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function BubbleChartSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

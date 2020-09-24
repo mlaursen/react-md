@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const BrushSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const BrushSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function BrushSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

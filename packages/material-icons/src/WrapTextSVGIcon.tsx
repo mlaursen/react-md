@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const WrapTextSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const WrapTextSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function WrapTextSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

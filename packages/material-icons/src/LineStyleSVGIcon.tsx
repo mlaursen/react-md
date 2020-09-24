@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const LineStyleSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const LineStyleSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function LineStyleSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

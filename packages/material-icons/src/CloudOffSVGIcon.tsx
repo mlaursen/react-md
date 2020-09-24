@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const CloudOffSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const CloudOffSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function CloudOffSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

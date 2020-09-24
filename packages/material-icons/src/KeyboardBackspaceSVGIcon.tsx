@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const KeyboardBackspaceSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const KeyboardBackspaceSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function KeyboardBackspaceSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

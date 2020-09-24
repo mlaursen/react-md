@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LocationSearchingFont = forwardRef<HTMLElement, FontIconProps>(
+export const LocationSearchingFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function LocationSearchingFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

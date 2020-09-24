@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const PermCameraMicSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const PermCameraMicSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function PermCameraMicSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PieChartOutlinedFont = forwardRef<HTMLElement, FontIconProps>(
+export const PieChartOutlinedFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function PieChartOutlinedFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const WbAutoFont = forwardRef<HTMLElement, FontIconProps>(
+export const WbAutoFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function WbAutoFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PinDropFont = forwardRef<HTMLElement, FontIconProps>(
+export const PinDropFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function PinDropFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

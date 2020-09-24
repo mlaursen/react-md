@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FullscreenSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const FullscreenSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function FullscreenSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const NetworkWifiFont = forwardRef<HTMLElement, FontIconProps>(
+export const NetworkWifiFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function NetworkWifiFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

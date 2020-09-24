@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const BrightnessHighFont = forwardRef<HTMLElement, FontIconProps>(
+export const BrightnessHighFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function BrightnessHighFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

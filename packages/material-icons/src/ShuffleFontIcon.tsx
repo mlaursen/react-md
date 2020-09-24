@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const ShuffleFont = forwardRef<HTMLElement, FontIconProps>(
+export const ShuffleFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function ShuffleFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SettingsInputAntennaFont = forwardRef<HTMLElement, FontIconProps>(
-  function SettingsInputAntennaFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        settings_input_antenna
-      </FontIcon>
-    );
-  }
-);
+export const SettingsInputAntennaFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function SettingsInputAntennaFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      settings_input_antenna
+    </FontIcon>
+  );
+});

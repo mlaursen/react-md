@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const ViewStreamFont = forwardRef<HTMLElement, FontIconProps>(
+export const ViewStreamFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function ViewStreamFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const LocalPostOfficeSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const LocalPostOfficeSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function LocalPostOfficeSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

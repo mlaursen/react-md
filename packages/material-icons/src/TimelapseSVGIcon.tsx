@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const TimelapseSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const TimelapseSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function TimelapseSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

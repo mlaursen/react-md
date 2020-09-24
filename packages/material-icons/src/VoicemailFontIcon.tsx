@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const VoicemailFont = forwardRef<HTMLElement, FontIconProps>(
+export const VoicemailFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function VoicemailFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

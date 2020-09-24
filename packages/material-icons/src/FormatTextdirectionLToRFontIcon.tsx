@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FormatTextdirectionLToRFont = forwardRef<
+export const FormatTextdirectionLToRFontIcon = forwardRef<
   HTMLElement,
   FontIconProps
 >(function FormatTextdirectionLToRFontIcon(props, ref) {

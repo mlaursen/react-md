@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PhotoSizeSelectLargeFont = forwardRef<HTMLElement, FontIconProps>(
-  function PhotoSizeSelectLargeFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        photo_size_select_large
-      </FontIcon>
-    );
-  }
-);
+export const PhotoSizeSelectLargeFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function PhotoSizeSelectLargeFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      photo_size_select_large
+    </FontIcon>
+  );
+});

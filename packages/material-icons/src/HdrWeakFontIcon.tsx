@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const HdrWeakFont = forwardRef<HTMLElement, FontIconProps>(
+export const HdrWeakFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function HdrWeakFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

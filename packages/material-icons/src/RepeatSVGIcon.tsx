@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const RepeatSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const RepeatSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function RepeatSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

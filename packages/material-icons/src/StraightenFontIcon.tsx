@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const StraightenFont = forwardRef<HTMLElement, FontIconProps>(
+export const StraightenFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function StraightenFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

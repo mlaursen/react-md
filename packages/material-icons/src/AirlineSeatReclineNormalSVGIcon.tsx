@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const AirlineSeatReclineNormalSVG = forwardRef<
+export const AirlineSeatReclineNormalSVGIcon = forwardRef<
   SVGSVGElement,
   SVGIconProps
 >(function AirlineSeatReclineNormalSVGIcon(props, ref) {

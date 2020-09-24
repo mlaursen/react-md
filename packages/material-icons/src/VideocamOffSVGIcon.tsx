@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const VideocamOffSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const VideocamOffSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function VideocamOffSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SatelliteFont = forwardRef<HTMLElement, FontIconProps>(
+export const SatelliteFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function SatelliteFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

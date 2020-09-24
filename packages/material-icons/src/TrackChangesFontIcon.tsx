@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const TrackChangesFont = forwardRef<HTMLElement, FontIconProps>(
+export const TrackChangesFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function TrackChangesFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

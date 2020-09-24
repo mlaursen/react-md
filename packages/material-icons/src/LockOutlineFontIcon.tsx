@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LockOutlineFont = forwardRef<HTMLElement, FontIconProps>(
+export const LockOutlineFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function LockOutlineFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

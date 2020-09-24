@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const AirplanemodeInactiveFont = forwardRef<HTMLElement, FontIconProps>(
-  function AirplanemodeInactiveFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        airplanemode_inactive
-      </FontIcon>
-    );
-  }
-);
+export const AirplanemodeInactiveFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function AirplanemodeInactiveFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      airplanemode_inactive
+    </FontIcon>
+  );
+});

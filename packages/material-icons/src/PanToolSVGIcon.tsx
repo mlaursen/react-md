@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const PanToolSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const PanToolSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function PanToolSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

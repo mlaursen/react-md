@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const CallSplitFont = forwardRef<HTMLElement, FontIconProps>(
+export const CallSplitFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function CallSplitFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

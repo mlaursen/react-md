@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const BookmarkBorderSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const BookmarkBorderSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function BookmarkBorderSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

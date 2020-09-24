@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SubdirectoryArrowLeftFont = forwardRef<HTMLElement, FontIconProps>(
-  function SubdirectoryArrowLeftFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        subdirectory_arrow_left
-      </FontIcon>
-    );
-  }
-);
+export const SubdirectoryArrowLeftFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function SubdirectoryArrowLeftFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      subdirectory_arrow_left
+    </FontIcon>
+  );
+});

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const ArrowUpwardFont = forwardRef<HTMLElement, FontIconProps>(
+export const ArrowUpwardFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function ArrowUpwardFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

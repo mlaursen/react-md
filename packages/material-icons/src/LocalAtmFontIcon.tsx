@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LocalAtmFont = forwardRef<HTMLElement, FontIconProps>(
+export const LocalAtmFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function LocalAtmFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

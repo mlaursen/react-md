@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const EqualizerFont = forwardRef<HTMLElement, FontIconProps>(
+export const EqualizerFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function EqualizerFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

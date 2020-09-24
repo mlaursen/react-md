@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const StraightenSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const StraightenSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function StraightenSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

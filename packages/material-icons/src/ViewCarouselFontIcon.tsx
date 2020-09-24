@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const ViewCarouselFont = forwardRef<HTMLElement, FontIconProps>(
+export const ViewCarouselFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function ViewCarouselFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

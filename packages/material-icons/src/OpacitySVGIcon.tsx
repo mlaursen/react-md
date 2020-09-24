@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const OpacitySVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const OpacitySVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function OpacitySVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

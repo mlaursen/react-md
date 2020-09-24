@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SortFont = forwardRef<HTMLElement, FontIconProps>(
+export const SortFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function SortFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

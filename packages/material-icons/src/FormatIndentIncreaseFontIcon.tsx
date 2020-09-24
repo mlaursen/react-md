@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FormatIndentIncreaseFont = forwardRef<HTMLElement, FontIconProps>(
-  function FormatIndentIncreaseFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        format_indent_increase
-      </FontIcon>
-    );
-  }
-);
+export const FormatIndentIncreaseFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function FormatIndentIncreaseFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      format_indent_increase
+    </FontIcon>
+  );
+});

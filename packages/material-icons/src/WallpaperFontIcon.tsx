@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const WallpaperFont = forwardRef<HTMLElement, FontIconProps>(
+export const WallpaperFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function WallpaperFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

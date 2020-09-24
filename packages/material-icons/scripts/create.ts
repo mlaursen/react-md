@@ -29,7 +29,7 @@ import React, { forwardRef } from "react";
 
 import { ${iconType}Icon, ${iconType}IconProps } from "@react-md/icon";
 
-export const ${componentName}${iconType} = forwardRef<${element}, ${iconType}IconProps>(function ${componentName}${iconType}Icon(props, ref) {
+export const ${componentName}${iconType}Icon = forwardRef<${element}, ${iconType}IconProps>(function ${componentName}${iconType}Icon(props, ref) {
   return <${iconType}Icon {...props} ref={ref}>${children}</${iconType}Icon>;
 });
 `,

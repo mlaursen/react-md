@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FullscreenFont = forwardRef<HTMLElement, FontIconProps>(
+export const FullscreenFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function FullscreenFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

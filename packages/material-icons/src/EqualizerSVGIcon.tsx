@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const EqualizerSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const EqualizerSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function EqualizerSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

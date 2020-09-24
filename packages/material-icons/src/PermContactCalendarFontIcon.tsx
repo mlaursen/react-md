@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PermContactCalendarFont = forwardRef<HTMLElement, FontIconProps>(
-  function PermContactCalendarFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        perm_contact_calendar
-      </FontIcon>
-    );
-  }
-);
+export const PermContactCalendarFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function PermContactCalendarFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      perm_contact_calendar
+    </FontIcon>
+  );
+});

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const VolumeMuteSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const VolumeMuteSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function VolumeMuteSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

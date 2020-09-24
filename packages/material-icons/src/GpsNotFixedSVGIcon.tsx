@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const GpsNotFixedSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const GpsNotFixedSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function GpsNotFixedSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

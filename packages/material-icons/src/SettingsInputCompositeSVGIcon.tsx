@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const SettingsInputCompositeSVG = forwardRef<
+export const SettingsInputCompositeSVGIcon = forwardRef<
   SVGSVGElement,
   SVGIconProps
 >(function SettingsInputCompositeSVGIcon(props, ref) {

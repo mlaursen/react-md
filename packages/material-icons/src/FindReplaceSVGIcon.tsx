@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FindReplaceSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const FindReplaceSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function FindReplaceSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

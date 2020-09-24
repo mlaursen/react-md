@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const RemoveFromQueueFont = forwardRef<HTMLElement, FontIconProps>(
+export const RemoveFromQueueFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function RemoveFromQueueFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

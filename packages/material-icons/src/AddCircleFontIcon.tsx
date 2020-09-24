@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const AddCircleFont = forwardRef<HTMLElement, FontIconProps>(
+export const AddCircleFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function AddCircleFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

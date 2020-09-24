@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const AddToQueueFont = forwardRef<HTMLElement, FontIconProps>(
+export const AddToQueueFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function AddToQueueFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

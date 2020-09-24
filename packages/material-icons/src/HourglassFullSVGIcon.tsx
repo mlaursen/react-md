@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const HourglassFullSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const HourglassFullSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function HourglassFullSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

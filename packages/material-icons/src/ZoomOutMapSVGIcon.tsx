@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const ZoomOutMapSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const ZoomOutMapSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function ZoomOutMapSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

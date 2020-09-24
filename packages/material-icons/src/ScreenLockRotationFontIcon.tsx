@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const ScreenLockRotationFont = forwardRef<HTMLElement, FontIconProps>(
-  function ScreenLockRotationFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        screen_lock_rotation
-      </FontIcon>
-    );
-  }
-);
+export const ScreenLockRotationFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function ScreenLockRotationFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      screen_lock_rotation
+    </FontIcon>
+  );
+});

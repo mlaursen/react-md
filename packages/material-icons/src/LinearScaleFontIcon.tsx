@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LinearScaleFont = forwardRef<HTMLElement, FontIconProps>(
+export const LinearScaleFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function LinearScaleFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

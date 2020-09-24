@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SwapVerticalCircleFont = forwardRef<HTMLElement, FontIconProps>(
-  function SwapVerticalCircleFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        swap_vertical_circle
-      </FontIcon>
-    );
-  }
-);
+export const SwapVerticalCircleFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function SwapVerticalCircleFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      swap_vertical_circle
+    </FontIcon>
+  );
+});

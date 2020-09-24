@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SdStorageFont = forwardRef<HTMLElement, FontIconProps>(
+export const SdStorageFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function SdStorageFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

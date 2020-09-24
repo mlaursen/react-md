@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const RecordVoiceOverSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const RecordVoiceOverSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function RecordVoiceOverSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

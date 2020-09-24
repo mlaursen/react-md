@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FormatAlignRightSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const FormatAlignRightSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function FormatAlignRightSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

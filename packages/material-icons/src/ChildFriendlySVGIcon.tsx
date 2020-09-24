@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const ChildFriendlySVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const ChildFriendlySVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function ChildFriendlySVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

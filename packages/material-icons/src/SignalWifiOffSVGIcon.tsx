@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const SignalWifiOffSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const SignalWifiOffSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function SignalWifiOffSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

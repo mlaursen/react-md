@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LeakAddFont = forwardRef<HTMLElement, FontIconProps>(
+export const LeakAddFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function LeakAddFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

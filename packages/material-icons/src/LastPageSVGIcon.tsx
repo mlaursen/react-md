@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const LastPageSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const LastPageSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function LastPageSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

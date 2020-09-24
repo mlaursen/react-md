@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FiberSmartRecordFont = forwardRef<HTMLElement, FontIconProps>(
+export const FiberSmartRecordFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function FiberSmartRecordFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

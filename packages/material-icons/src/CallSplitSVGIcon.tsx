@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const CallSplitSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const CallSplitSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function CallSplitSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

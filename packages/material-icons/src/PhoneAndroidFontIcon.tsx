@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PhoneAndroidFont = forwardRef<HTMLElement, FontIconProps>(
+export const PhoneAndroidFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function PhoneAndroidFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const RoundedCornerSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const RoundedCornerSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function RoundedCornerSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

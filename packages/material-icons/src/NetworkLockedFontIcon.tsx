@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const NetworkLockedFont = forwardRef<HTMLElement, FontIconProps>(
+export const NetworkLockedFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function NetworkLockedFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

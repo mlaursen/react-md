@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const BubbleChartFont = forwardRef<HTMLElement, FontIconProps>(
+export const BubbleChartFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function BubbleChartFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const RadioButtonUncheckedFont = forwardRef<HTMLElement, FontIconProps>(
-  function RadioButtonUncheckedFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        radio_button_unchecked
-      </FontIcon>
-    );
-  }
-);
+export const RadioButtonUncheckedFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function RadioButtonUncheckedFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      radio_button_unchecked
+    </FontIcon>
+  );
+});

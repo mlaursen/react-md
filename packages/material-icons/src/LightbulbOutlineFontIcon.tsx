@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LightbulbOutlineFont = forwardRef<HTMLElement, FontIconProps>(
+export const LightbulbOutlineFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function LightbulbOutlineFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

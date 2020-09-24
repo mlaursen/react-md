@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const AddCircleOutlineSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const AddCircleOutlineSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function AddCircleOutlineSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

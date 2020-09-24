@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const CheckBoxOutlineBlankFont = forwardRef<HTMLElement, FontIconProps>(
-  function CheckBoxOutlineBlankFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        check_box_outline_blank
-      </FontIcon>
-    );
-  }
-);
+export const CheckBoxOutlineBlankFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function CheckBoxOutlineBlankFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      check_box_outline_blank
+    </FontIcon>
+  );
+});

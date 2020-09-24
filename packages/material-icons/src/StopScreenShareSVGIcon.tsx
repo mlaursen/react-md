@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const StopScreenShareSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const StopScreenShareSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function StopScreenShareSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

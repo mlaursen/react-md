@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const NearMeFont = forwardRef<HTMLElement, FontIconProps>(
+export const NearMeFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function NearMeFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

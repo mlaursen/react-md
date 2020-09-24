@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FormatLineSpacingSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const FormatLineSpacingSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function FormatLineSpacingSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

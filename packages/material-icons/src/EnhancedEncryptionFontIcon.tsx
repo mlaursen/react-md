@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const EnhancedEncryptionFont = forwardRef<HTMLElement, FontIconProps>(
-  function EnhancedEncryptionFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        enhanced_encryption
-      </FontIcon>
-    );
-  }
-);
+export const EnhancedEncryptionFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function EnhancedEncryptionFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      enhanced_encryption
+    </FontIcon>
+  );
+});

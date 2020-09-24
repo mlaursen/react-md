@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SignalCellularNoSimFont = forwardRef<HTMLElement, FontIconProps>(
-  function SignalCellularNoSimFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        signal_cellular_no_sim
-      </FontIcon>
-    );
-  }
-);
+export const SignalCellularNoSimFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function SignalCellularNoSimFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      signal_cellular_no_sim
+    </FontIcon>
+  );
+});

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SignalCellularConnectedNoInternet4BarFont = forwardRef<
+export const SignalCellularConnectedNoInternet4BarFontIcon = forwardRef<
   HTMLElement,
   FontIconProps
 >(function SignalCellularConnectedNoInternet4BarFontIcon(props, ref) {

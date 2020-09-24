@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const BatteryStdFont = forwardRef<HTMLElement, FontIconProps>(
+export const BatteryStdFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function BatteryStdFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

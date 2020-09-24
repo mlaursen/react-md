@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FindInPageSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const FindInPageSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function FindInPageSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

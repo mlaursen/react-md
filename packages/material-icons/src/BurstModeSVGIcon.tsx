@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const BurstModeSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const BurstModeSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function BurstModeSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

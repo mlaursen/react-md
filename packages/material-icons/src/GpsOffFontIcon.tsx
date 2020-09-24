@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const GpsOffFont = forwardRef<HTMLElement, FontIconProps>(
+export const GpsOffFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function GpsOffFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

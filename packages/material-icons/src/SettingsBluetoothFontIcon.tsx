@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SettingsBluetoothFont = forwardRef<HTMLElement, FontIconProps>(
+export const SettingsBluetoothFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function SettingsBluetoothFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

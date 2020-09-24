@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const DeleteForeverSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const DeleteForeverSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function DeleteForeverSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

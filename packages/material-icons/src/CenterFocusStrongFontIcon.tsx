@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const CenterFocusStrongFont = forwardRef<HTMLElement, FontIconProps>(
+export const CenterFocusStrongFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function CenterFocusStrongFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

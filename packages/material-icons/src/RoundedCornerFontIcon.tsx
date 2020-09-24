@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const RoundedCornerFont = forwardRef<HTMLElement, FontIconProps>(
+export const RoundedCornerFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function RoundedCornerFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

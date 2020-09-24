@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PhonelinkEraseFont = forwardRef<HTMLElement, FontIconProps>(
+export const PhonelinkEraseFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function PhonelinkEraseFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const TimerOffSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const TimerOffSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function TimerOffSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

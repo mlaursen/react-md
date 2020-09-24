@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const GridOffFont = forwardRef<HTMLElement, FontIconProps>(
+export const GridOffFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function GridOffFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

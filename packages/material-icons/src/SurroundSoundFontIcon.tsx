@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SurroundSoundFont = forwardRef<HTMLElement, FontIconProps>(
+export const SurroundSoundFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function SurroundSoundFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

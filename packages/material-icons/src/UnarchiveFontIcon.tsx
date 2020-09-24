@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const UnarchiveFont = forwardRef<HTMLElement, FontIconProps>(
+export const UnarchiveFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function UnarchiveFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

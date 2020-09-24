@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FormatStrikethroughFont = forwardRef<HTMLElement, FontIconProps>(
-  function FormatStrikethroughFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        format_strikethrough
-      </FontIcon>
-    );
-  }
-);
+export const FormatStrikethroughFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function FormatStrikethroughFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      format_strikethrough
+    </FontIcon>
+  );
+});

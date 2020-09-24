@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const AlbumFont = forwardRef<HTMLElement, FontIconProps>(
+export const AlbumFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function AlbumFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const DoNotDisturbAltFont = forwardRef<HTMLElement, FontIconProps>(
+export const DoNotDisturbAltFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function DoNotDisturbAltFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

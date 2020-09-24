@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FiberSmartRecordSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const FiberSmartRecordSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function FiberSmartRecordSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

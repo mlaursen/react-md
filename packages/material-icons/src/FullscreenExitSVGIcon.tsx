@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FullscreenExitSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const FullscreenExitSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function FullscreenExitSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

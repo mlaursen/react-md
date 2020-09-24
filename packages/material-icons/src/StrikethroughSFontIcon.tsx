@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const StrikethroughSFont = forwardRef<HTMLElement, FontIconProps>(
+export const StrikethroughSFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function StrikethroughSFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const AirplayFont = forwardRef<HTMLElement, FontIconProps>(
+export const AirplayFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function AirplayFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

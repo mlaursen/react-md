@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FormatListNumberedFont = forwardRef<HTMLElement, FontIconProps>(
-  function FormatListNumberedFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        format_list_numbered
-      </FontIcon>
-    );
-  }
-);
+export const FormatListNumberedFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function FormatListNumberedFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      format_list_numbered
+    </FontIcon>
+  );
+});

@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SettingsInputSvideoFont = forwardRef<HTMLElement, FontIconProps>(
-  function SettingsInputSvideoFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        settings_input_svideo
-      </FontIcon>
-    );
-  }
-);
+export const SettingsInputSvideoFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function SettingsInputSvideoFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      settings_input_svideo
+    </FontIcon>
+  );
+});

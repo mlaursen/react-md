@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const KeyboardArrowDownSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const KeyboardArrowDownSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function KeyboardArrowDownSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

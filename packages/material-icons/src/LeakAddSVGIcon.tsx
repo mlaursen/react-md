@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const LeakAddSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const LeakAddSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function LeakAddSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

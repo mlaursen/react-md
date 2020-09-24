@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const ChatBubbleOutlineFont = forwardRef<HTMLElement, FontIconProps>(
+export const ChatBubbleOutlineFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function ChatBubbleOutlineFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

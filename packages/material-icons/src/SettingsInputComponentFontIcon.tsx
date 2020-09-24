@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SettingsInputComponentFont = forwardRef<
+export const SettingsInputComponentFontIcon = forwardRef<
   HTMLElement,
   FontIconProps
 >(function SettingsInputComponentFontIcon(props, ref) {

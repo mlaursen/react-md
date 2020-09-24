@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const RemoveCircleOutlineFont = forwardRef<HTMLElement, FontIconProps>(
-  function RemoveCircleOutlineFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        remove_circle_outline
-      </FontIcon>
-    );
-  }
-);
+export const RemoveCircleOutlineFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function RemoveCircleOutlineFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      remove_circle_outline
+    </FontIcon>
+  );
+});

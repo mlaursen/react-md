@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const NetworkLockedSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const NetworkLockedSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function NetworkLockedSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

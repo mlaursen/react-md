@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const ChatBubbleOutlineSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const ChatBubbleOutlineSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function ChatBubbleOutlineSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

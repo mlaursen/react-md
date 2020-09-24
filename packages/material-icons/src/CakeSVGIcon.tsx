@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const CakeSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const CakeSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function CakeSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

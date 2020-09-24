@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const ColorLensFont = forwardRef<HTMLElement, FontIconProps>(
+export const ColorLensFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function ColorLensFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

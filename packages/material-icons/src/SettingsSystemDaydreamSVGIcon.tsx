@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const SettingsSystemDaydreamSVG = forwardRef<
+export const SettingsSystemDaydreamSVGIcon = forwardRef<
   SVGSVGElement,
   SVGIconProps
 >(function SettingsSystemDaydreamSVGIcon(props, ref) {

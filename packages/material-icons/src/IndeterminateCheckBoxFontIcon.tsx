@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const IndeterminateCheckBoxFont = forwardRef<HTMLElement, FontIconProps>(
-  function IndeterminateCheckBoxFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        indeterminate_check_box
-      </FontIcon>
-    );
-  }
-);
+export const IndeterminateCheckBoxFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function IndeterminateCheckBoxFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      indeterminate_check_box
+    </FontIcon>
+  );
+});

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PanoramaFishEyeFont = forwardRef<HTMLElement, FontIconProps>(
+export const PanoramaFishEyeFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function PanoramaFishEyeFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

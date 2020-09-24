@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const HourglassFullFont = forwardRef<HTMLElement, FontIconProps>(
+export const HourglassFullFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function HourglassFullFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

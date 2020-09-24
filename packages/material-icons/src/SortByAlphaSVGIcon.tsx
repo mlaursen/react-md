@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const SortByAlphaSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const SortByAlphaSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function SortByAlphaSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

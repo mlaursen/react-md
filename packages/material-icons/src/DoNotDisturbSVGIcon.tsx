@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const DoNotDisturbSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const DoNotDisturbSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function DoNotDisturbSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

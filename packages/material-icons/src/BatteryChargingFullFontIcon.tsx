@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const BatteryChargingFullFont = forwardRef<HTMLElement, FontIconProps>(
-  function BatteryChargingFullFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        battery_charging_full
-      </FontIcon>
-    );
-  }
-);
+export const BatteryChargingFullFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function BatteryChargingFullFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      battery_charging_full
+    </FontIcon>
+  );
+});

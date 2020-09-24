@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const HdrOffFont = forwardRef<HTMLElement, FontIconProps>(
+export const HdrOffFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function HdrOffFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

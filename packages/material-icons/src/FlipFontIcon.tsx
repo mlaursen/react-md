@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FlipFont = forwardRef<HTMLElement, FontIconProps>(
+export const FlipFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function FlipFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

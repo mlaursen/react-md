@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const CheckBoxSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const CheckBoxSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function CheckBoxSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

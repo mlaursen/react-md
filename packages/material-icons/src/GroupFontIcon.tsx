@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const GroupFont = forwardRef<HTMLElement, FontIconProps>(
+export const GroupFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function GroupFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FormatUnderlinedFont = forwardRef<HTMLElement, FontIconProps>(
+export const FormatUnderlinedFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function FormatUnderlinedFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

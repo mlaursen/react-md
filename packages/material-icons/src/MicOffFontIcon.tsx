@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const MicOffFont = forwardRef<HTMLElement, FontIconProps>(
+export const MicOffFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function MicOffFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

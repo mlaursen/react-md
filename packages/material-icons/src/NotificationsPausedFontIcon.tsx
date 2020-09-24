@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const NotificationsPausedFont = forwardRef<HTMLElement, FontIconProps>(
-  function NotificationsPausedFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        notifications_paused
-      </FontIcon>
-    );
-  }
-);
+export const NotificationsPausedFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function NotificationsPausedFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      notifications_paused
+    </FontIcon>
+  );
+});

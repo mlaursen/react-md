@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PictureAsPdfFont = forwardRef<HTMLElement, FontIconProps>(
+export const PictureAsPdfFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function PictureAsPdfFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

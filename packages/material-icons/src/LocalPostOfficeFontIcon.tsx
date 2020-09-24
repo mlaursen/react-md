@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LocalPostOfficeFont = forwardRef<HTMLElement, FontIconProps>(
+export const LocalPostOfficeFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function LocalPostOfficeFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

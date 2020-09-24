@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const NoEncryptionSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const NoEncryptionSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function NoEncryptionSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

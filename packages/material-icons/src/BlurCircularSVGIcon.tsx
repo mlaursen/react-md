@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const BlurCircularSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const BlurCircularSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function BlurCircularSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

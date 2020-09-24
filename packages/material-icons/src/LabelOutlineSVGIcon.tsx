@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const LabelOutlineSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const LabelOutlineSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function LabelOutlineSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

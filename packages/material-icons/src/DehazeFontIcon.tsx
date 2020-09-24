@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const DehazeFont = forwardRef<HTMLElement, FontIconProps>(
+export const DehazeFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function DehazeFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

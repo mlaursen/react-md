@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FingerprintFont = forwardRef<HTMLElement, FontIconProps>(
+export const FingerprintFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function FingerprintFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

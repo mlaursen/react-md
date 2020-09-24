@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const BluetoothDisabledSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const BluetoothDisabledSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function BluetoothDisabledSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

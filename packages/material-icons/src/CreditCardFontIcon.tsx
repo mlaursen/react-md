@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const CreditCardFont = forwardRef<HTMLElement, FontIconProps>(
+export const CreditCardFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function CreditCardFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

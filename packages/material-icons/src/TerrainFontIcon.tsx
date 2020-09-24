@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const TerrainFont = forwardRef<HTMLElement, FontIconProps>(
+export const TerrainFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function TerrainFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

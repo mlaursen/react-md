@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SettingsSystemDaydreamFont = forwardRef<
+export const SettingsSystemDaydreamFontIcon = forwardRef<
   HTMLElement,
   FontIconProps
 >(function SettingsSystemDaydreamFontIcon(props, ref) {

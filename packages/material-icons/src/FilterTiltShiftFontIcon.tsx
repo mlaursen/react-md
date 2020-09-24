@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FilterTiltShiftFont = forwardRef<HTMLElement, FontIconProps>(
+export const FilterTiltShiftFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function FilterTiltShiftFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

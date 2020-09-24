@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const PortableWifiOffSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const PortableWifiOffSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function PortableWifiOffSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

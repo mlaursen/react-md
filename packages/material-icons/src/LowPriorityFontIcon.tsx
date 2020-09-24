@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LowPriorityFont = forwardRef<HTMLElement, FontIconProps>(
+export const LowPriorityFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function LowPriorityFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PhonelinkOffFont = forwardRef<HTMLElement, FontIconProps>(
+export const PhonelinkOffFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function PhonelinkOffFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

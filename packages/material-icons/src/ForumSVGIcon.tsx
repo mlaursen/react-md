@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const ForumSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const ForumSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function ForumSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

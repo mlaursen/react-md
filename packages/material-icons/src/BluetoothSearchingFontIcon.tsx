@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const BluetoothSearchingFont = forwardRef<HTMLElement, FontIconProps>(
-  function BluetoothSearchingFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        bluetooth_searching
-      </FontIcon>
-    );
-  }
-);
+export const BluetoothSearchingFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function BluetoothSearchingFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      bluetooth_searching
+    </FontIcon>
+  );
+});

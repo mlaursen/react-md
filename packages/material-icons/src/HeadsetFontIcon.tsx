@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const HeadsetFont = forwardRef<HTMLElement, FontIconProps>(
+export const HeadsetFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function HeadsetFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SentimentSatisfiedFont = forwardRef<HTMLElement, FontIconProps>(
-  function SentimentSatisfiedFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        sentiment_satisfied
-      </FontIcon>
-    );
-  }
-);
+export const SentimentSatisfiedFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function SentimentSatisfiedFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      sentiment_satisfied
+    </FontIcon>
+  );
+});

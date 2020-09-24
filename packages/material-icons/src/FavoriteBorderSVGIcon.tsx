@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FavoriteBorderSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const FavoriteBorderSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function FavoriteBorderSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

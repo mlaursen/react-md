@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const SettingsOverscanSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const SettingsOverscanSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function SettingsOverscanSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

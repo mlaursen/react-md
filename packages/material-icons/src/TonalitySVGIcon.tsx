@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const TonalitySVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const TonalitySVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function TonalitySVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

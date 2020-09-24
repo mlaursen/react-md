@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const MultilineChartSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const MultilineChartSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function MultilineChartSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

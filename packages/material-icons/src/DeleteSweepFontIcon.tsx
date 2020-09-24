@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const DeleteSweepFont = forwardRef<HTMLElement, FontIconProps>(
+export const DeleteSweepFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function DeleteSweepFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

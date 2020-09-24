@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const BlurCircularFont = forwardRef<HTMLElement, FontIconProps>(
+export const BlurCircularFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function BlurCircularFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

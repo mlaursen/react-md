@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const AutorenewFont = forwardRef<HTMLElement, FontIconProps>(
+export const AutorenewFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function AutorenewFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

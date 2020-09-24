@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const PhoneBluetoothSpeakerFont = forwardRef<HTMLElement, FontIconProps>(
-  function PhoneBluetoothSpeakerFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        phone_bluetooth_speaker
-      </FontIcon>
-    );
-  }
-);
+export const PhoneBluetoothSpeakerFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function PhoneBluetoothSpeakerFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      phone_bluetooth_speaker
+    </FontIcon>
+  );
+});

@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LineWeightFont = forwardRef<HTMLElement, FontIconProps>(
+export const LineWeightFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function LineWeightFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

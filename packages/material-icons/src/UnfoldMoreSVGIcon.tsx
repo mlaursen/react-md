@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const UnfoldMoreSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const UnfoldMoreSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function UnfoldMoreSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

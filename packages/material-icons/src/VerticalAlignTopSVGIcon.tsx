@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const VerticalAlignTopSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const VerticalAlignTopSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function VerticalAlignTopSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

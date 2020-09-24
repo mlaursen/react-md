@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const NfcFont = forwardRef<HTMLElement, FontIconProps>(
+export const NfcFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function NfcFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

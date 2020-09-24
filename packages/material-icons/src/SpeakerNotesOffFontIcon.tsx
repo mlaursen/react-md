@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SpeakerNotesOffFont = forwardRef<HTMLElement, FontIconProps>(
+export const SpeakerNotesOffFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function SpeakerNotesOffFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

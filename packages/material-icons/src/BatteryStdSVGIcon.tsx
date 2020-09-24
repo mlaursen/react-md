@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const BatteryStdSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const BatteryStdSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function BatteryStdSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

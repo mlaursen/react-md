@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const UnfoldLessFont = forwardRef<HTMLElement, FontIconProps>(
+export const UnfoldLessFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function UnfoldLessFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

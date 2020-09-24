@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const RemoveShoppingCartFont = forwardRef<HTMLElement, FontIconProps>(
-  function RemoveShoppingCartFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        remove_shopping_cart
-      </FontIcon>
-    );
-  }
-);
+export const RemoveShoppingCartFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function RemoveShoppingCartFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      remove_shopping_cart
+    </FontIcon>
+  );
+});

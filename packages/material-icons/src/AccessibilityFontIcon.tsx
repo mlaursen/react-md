@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const AccessibilityFont = forwardRef<HTMLElement, FontIconProps>(
+export const AccessibilityFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function AccessibilityFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

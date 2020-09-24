@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SwitchVideoFont = forwardRef<HTMLElement, FontIconProps>(
+export const SwitchVideoFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function SwitchVideoFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

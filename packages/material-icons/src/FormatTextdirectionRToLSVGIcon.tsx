@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FormatTextdirectionRToLSVG = forwardRef<
+export const FormatTextdirectionRToLSVGIcon = forwardRef<
   SVGSVGElement,
   SVGIconProps
 >(function FormatTextdirectionRToLSVGIcon(props, ref) {

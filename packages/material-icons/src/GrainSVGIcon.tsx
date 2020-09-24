@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const GrainSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const GrainSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function GrainSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

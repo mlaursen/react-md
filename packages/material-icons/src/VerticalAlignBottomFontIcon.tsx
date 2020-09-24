@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const VerticalAlignBottomFont = forwardRef<HTMLElement, FontIconProps>(
-  function VerticalAlignBottomFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        vertical_align_bottom
-      </FontIcon>
-    );
-  }
-);
+export const VerticalAlignBottomFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function VerticalAlignBottomFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      vertical_align_bottom
+    </FontIcon>
+  );
+});

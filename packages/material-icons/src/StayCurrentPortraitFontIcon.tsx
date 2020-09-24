@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const StayCurrentPortraitFont = forwardRef<HTMLElement, FontIconProps>(
-  function StayCurrentPortraitFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        stay_current_portrait
-      </FontIcon>
-    );
-  }
-);
+export const StayCurrentPortraitFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function StayCurrentPortraitFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      stay_current_portrait
+    </FontIcon>
+  );
+});

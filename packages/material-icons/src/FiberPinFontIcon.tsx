@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FiberPinFont = forwardRef<HTMLElement, FontIconProps>(
+export const FiberPinFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function FiberPinFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

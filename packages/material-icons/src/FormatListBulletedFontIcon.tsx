@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const FormatListBulletedFont = forwardRef<HTMLElement, FontIconProps>(
-  function FormatListBulletedFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        format_list_bulleted
-      </FontIcon>
-    );
-  }
-);
+export const FormatListBulletedFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function FormatListBulletedFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      format_list_bulleted
+    </FontIcon>
+  );
+});

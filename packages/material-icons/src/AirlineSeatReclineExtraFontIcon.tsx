@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const AirlineSeatReclineExtraFont = forwardRef<
+export const AirlineSeatReclineExtraFontIcon = forwardRef<
   HTMLElement,
   FontIconProps
 >(function AirlineSeatReclineExtraFontIcon(props, ref) {

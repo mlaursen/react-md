@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const VignetteFont = forwardRef<HTMLElement, FontIconProps>(
+export const VignetteFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function VignetteFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

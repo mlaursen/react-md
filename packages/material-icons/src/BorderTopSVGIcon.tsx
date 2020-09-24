@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const BorderTopSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const BorderTopSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function BorderTopSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

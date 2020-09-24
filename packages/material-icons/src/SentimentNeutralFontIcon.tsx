@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const SentimentNeutralFont = forwardRef<HTMLElement, FontIconProps>(
+export const SentimentNeutralFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function SentimentNeutralFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

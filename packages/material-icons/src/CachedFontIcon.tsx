@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const CachedFont = forwardRef<HTMLElement, FontIconProps>(
+export const CachedFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function CachedFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>

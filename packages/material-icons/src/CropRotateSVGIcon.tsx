@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const CropRotateSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const CropRotateSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function CropRotateSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

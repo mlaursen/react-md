@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-export const FormatSizeSVG = forwardRef<SVGSVGElement, SVGIconProps>(
+export const FormatSizeSVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(
   function FormatSizeSVGIcon(props, ref) {
     return (
       <SVGIcon {...props} ref={ref}>

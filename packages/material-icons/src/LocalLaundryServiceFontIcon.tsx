@@ -3,12 +3,13 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const LocalLaundryServiceFont = forwardRef<HTMLElement, FontIconProps>(
-  function LocalLaundryServiceFontIcon(props, ref) {
-    return (
-      <FontIcon {...props} ref={ref}>
-        local_laundry_service
-      </FontIcon>
-    );
-  }
-);
+export const LocalLaundryServiceFontIcon = forwardRef<
+  HTMLElement,
+  FontIconProps
+>(function LocalLaundryServiceFontIcon(props, ref) {
+  return (
+    <FontIcon {...props} ref={ref}>
+      local_laundry_service
+    </FontIcon>
+  );
+});

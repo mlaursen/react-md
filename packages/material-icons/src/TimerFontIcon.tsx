@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 
 import { FontIcon, FontIconProps } from "@react-md/icon";
 
-export const TimerFont = forwardRef<HTMLElement, FontIconProps>(
+export const TimerFontIcon = forwardRef<HTMLElement, FontIconProps>(
   function TimerFontIcon(props, ref) {
     return (
       <FontIcon {...props} ref={ref}>
