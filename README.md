@@ -1,4 +1,4 @@
-# react-md [![license](https://img.shields.io/npm/l/react-md)](https://github.com/mlaursen/react-md/blob/master/LICENSE) [![codecov](https://codecov.io/gh/mlaursen/react-md/branch/master/graph/badge.svg)](https://codecov.io/gh/mlaursen/react-md) [![Actions Status](https://github.com/mlaursen/react-md/workflows/Build,%20Lint,%20and%20Test/badge.svg)](https://github.com/mlaursen/react-md/actions)
+# react-md [![license](https://img.shields.io/npm/l/react-md)](https://github.com/mlaursen/react-md/blob/master/LICENSE) [![codecov](https://codecov.io/gh/mlaursen/react-md/branch/master/graph/badge.svg)](https://codecov.io/gh/mlaursen/react-md) [![Actions Status](https://github.com/mlaursen/react-md/workflows/Build,%20Lint,%20and%20Test/badge.svg)](https://github.com/mlaursen/react-md/actions) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 [![npm](https://img.shields.io/npm/v/react-md)](https://www.npmjs.com/package/react-md)
 [![downloads](https://img.shields.io/npm/dw/react-md)](https://www.npmjs.com/package/react-md)

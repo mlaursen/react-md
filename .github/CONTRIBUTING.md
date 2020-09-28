@@ -87,9 +87,9 @@ If you just want to get quickly started and run the documentation server, you
 can run the following commands:
 
 ```sh
-$ yarn
-$ yarn setup
-$ yarn dev
+yarn
+yarn setup
+yarn dev
 ```
 
 This will install all the packages, run the build for the first time, and start
@@ -118,8 +118,8 @@ Next, you'll need to build the `dev-utils` package to be able to build each
 project and have some helpful utils available while developing `react-md`:
 
 ```sh
-$ yarn dev-utils
-$ yarn --force
+yarn dev-utils
+yarn --force
 ```
 
 > Note the `yarn --force`. This is unfortunately required since the `dev-utils`
@@ -133,20 +133,20 @@ run your first build. Unfortunately, this will take a bit of time the first time
 it is run (~5-10 min). Start the build with:
 
 ```sh
-$ yarn build
+yarn build
 ```
 
 Whew! We're getting there. Now that you have your initial build, you can start
 developing and start up the documentation server! You can start the server with:
 
 ```sh
-$ yarn start
+yarn start
 ```
 
 Or
 
 ```sh
-$ yarn dev
+yarn dev
 ```
 
 Using `yarn start` will only start up the documentation server while `yarn dev`
@@ -162,7 +162,7 @@ at http://localhost:3000 by default, but you can configure the port by setting
 the `PORT` environment variable:
 
 ```sh
-$ PORT=8080 yarn start
+PORT=8080 yarn start
 ```
 
 ### File Structure
@@ -253,8 +253,7 @@ React components.
 You can run tests at the root level to test all packages:
 
 ```sh
-mlaursen @ ~/code/react-md
-$ yarn test
+yarn test
 ```
 
 The test command also supports the `--watch` flag so you can continually run
@@ -272,14 +271,13 @@ editor supports these linters, errors should be caught in real-time while
 editing files. Otherwise, you can manually trigger the lint command with:
 
 ```sh
-mlaursen @ ~/code/react-md
-$ yarn lint
+yarn lint
 
 # or for typescript only
-$ yarn lint-ts
+yarn lint-ts
 
 # or for scss only
-$ yarn lint-styles
+yarn lint-styles
 ```
 
 ## Formatting
@@ -287,6 +285,12 @@ $ yarn lint-styles
 This project is currently formatted using [prettier], so it is recommended to
 add support in your IDE to automatically format as needed. Otherwise, all files
 will automatically be formatted pre-commit.
+
+## Commits
+
+This repository uses [conventional commits] with the [angular preset]. When
+committing, either use [commitizen] with `git cz` or `yarn cz` which will help
+you create a correct git commit message.
 
 ## Scripts
 
@@ -297,8 +301,8 @@ start up `tsc` watchers for each package when a file change is detected as well
 as re-distributing any changed scss files. If you want to see any additional
 useful dev utils and scripts, run:
 
-```bash
-$ yarn dev-utils --help
+```sh
+yarn dev-utils --help
 ```
 
 [lerna]: https://lernajs.io/
@@ -320,6 +324,10 @@ $ yarn dev-utils --help
 [eslint]: https://github.com/eslint/eslint
 [prettier]: https://github.com/prettier/prettier
 [sass-lint]: https://github.com/sasstools/sass-lint
+[commitizen]: https://github.com/commitizen/cz-cli
+[conventional commits]: https://www.conventionalcommits.org/en/
+[angular preset]:
+  https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines
 [demo source code]:
   https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/Demos/Demo.tsx
 [example demo file]:
