@@ -24,6 +24,7 @@ feel free to propose changes to this document in a pull request.
   - [What types of tests should be written?](#what-types-of-tests-should-be-written)
 - [Linting](#linting)
 - [Formatting](#formatting)
+- [Commits](#commits)
 - [Scripts](#scripts)
 
 <!-- tocstop -->
