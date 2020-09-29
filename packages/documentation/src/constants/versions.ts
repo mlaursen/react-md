@@ -27,6 +27,8 @@ export const versions: Record<string, string> = {
   "@typescript-eslint/parser": "3.10.1",
   "babel-eslint": "10.1.0",
   chokidar: "3.4.2",
+  commitizen: "4.2.1",
+  "cz-conventional-changelog": "3.3.0",
   eslint: "7.6.0",
   "eslint-config-airbnb": "18.2.0",
   "eslint-config-prettier": "6.11.0",

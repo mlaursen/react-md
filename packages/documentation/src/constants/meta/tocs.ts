@@ -306,6 +306,10 @@ const tocs: TOCRecord = {
       title: "Formatting",
     },
     {
+      anchor: "#commits",
+      title: "Commits",
+    },
+    {
       anchor: "#scripts",
       title: "Scripts",
     },
