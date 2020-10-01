@@ -32,6 +32,9 @@ module.exports = {
     // project
     'no-shadow': 0,
 
+    // doesn't work correctly with typescript code
+    'no-use-before-define': 0,
+
     // only time I do empty catch statements is for prop-type imports
     'no-empty': ['error', { allowEmptyCatch: true }],
 
@@ -138,41 +141,13 @@ module.exports = {
     },
     {
       files: ['**/__tests__/*'],
-      rules: {
-        'jest/consistent-test-it': ['error', { fn: 'it' }],
-        'jest/expect-expect': ['error', { assertFunctionNames: ['expect'] }],
-        'jest/lowercase-name': ['error', { ignore: ['describe'] }],
-        'jest/no-commented-out-tests': 'error',
-        'jest/no-duplicate-hooks': 'error',
-        'jest/no-export': 'error',
-        'jest/no-focused-tests': 'error',
-        'jest/no-identical-title': 'error',
-        'jest/no-jasmine-globals': 'error',
-        'jest/no-jest-import': 'error',
-        'jest/no-mocks-import': 'error',
-        'jest/no-standalone-expect': 'error',
-        'jest/no-test-callback': 'error',
-        'jest/no-test-prefixes': 'error',
-        'jest/no-try-expect': 'error',
-        'jest/valid-describe': 'error',
-        'jest/valid-expect-in-promise': 'error',
-        'jest/valid-expect': 'error',
-        'jest/prefer-spy-on': 'error',
-        'jest/no-truthy-falsy': 'error',
-      },
+      extends: ['plugin:jest/recommended'],
     },
     {
-      files: ['**/*.tsx', '**/_app.js'],
+      files: ['**/*.tsx'],
       rules: {
         // .tsx is .jsx extension
         'react/jsx-filename-extension': 0,
-      },
-    },
-    {
-      files: ['**/types.ts'],
-      rules: {
-        // some type definition files will only have one export, but shouldn't be default
-        'import/prefer-default-export': 0,
       },
     },
     {

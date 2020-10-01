@@ -13,7 +13,7 @@ const createTestElement = () => {
 };
 
 describe("getElementRect", () => {
-  it("should do a deep clone of the element so that the attributes can be modified without messing up the original ", () => {
+  it("should do a deep clone of the element so that the attributes can be modified without messing up the original", () => {
     const { element, cloned, cloneNode } = createTestElement();
     getElementRect(element);
 

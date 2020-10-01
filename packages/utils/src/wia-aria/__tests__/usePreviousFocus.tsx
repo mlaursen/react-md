@@ -56,6 +56,7 @@ const TestComponent: FC<TestComponentProps> = ({
   );
 };
 
+// eslint-disable-next-line jest/no-disabled-tests
 describe.skip("usePreviousFocus", () => {
   it("should attempt to focus the previous active element in the dom when the component unmounts", () => {
     const { rerender, queryByText } = render(

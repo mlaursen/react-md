@@ -348,7 +348,7 @@ describe("useTransition", () => {
     expect(result.current.stage).toBe(ENTERING);
 
     act(() => {
-      jest.runTimersToTime(150);
+      jest.advanceTimersByTime(150);
     });
     // should not restart the timer
     rerender(<Test {...props} transitionIn />);
@@ -366,7 +366,7 @@ describe("useTransition", () => {
     expect(result.current.stage).toBe(EXITING);
 
     act(() => {
-      jest.runTimersToTime(50);
+      jest.advanceTimersByTime(50);
     });
     expect(jest.getTimerCount()).toBe(1);
     expect(result.current.stage).toBe(EXITING);

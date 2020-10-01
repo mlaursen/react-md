@@ -549,7 +549,7 @@ describe("createEqualWidth", () => {
     });
   });
 
-  it("should set the minWidth to the container's width instead of right if the isMinWidth option is enabled ", () => {
+  it("should set the minWidth to the container's width instead of right if the isMinWidth option is enabled", () => {
     expect(createEqualWidth({ ...options1, isMinWidth: true })).toEqual({
       left: 300,
       minWidth: 400,

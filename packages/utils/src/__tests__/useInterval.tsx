@@ -98,10 +98,10 @@ describe("useInterval", () => {
 
     // pretend like there was a dom update before the timer finishes that re-renders the component
     // and the user had used an arrow function instead of a useCallback or equiv
-    jest.runTimersToTime(200);
+    jest.advanceTimersByTime(200);
     rerender(<Test cb={cb2} delay={300} defaultRunning />);
 
-    jest.runTimersToTime(400);
+    jest.advanceTimersByTime(400);
     expect(cb1).not.toBeCalled();
     expect(cb2).toBeCalled();
   });

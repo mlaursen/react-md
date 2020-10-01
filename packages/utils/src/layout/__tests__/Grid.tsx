@@ -27,7 +27,7 @@ describe("Grid", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should inline the padding style unless it is 0 ", () => {
+  it("should inline the padding style unless it is 0", () => {
     const props = { "data-testid": "grid" };
     const { getByTestId, rerender } = render(<Grid {...props} padding={12} />);
     const grid = getByTestId("grid");
