@@ -5,7 +5,7 @@ ReactDOM, and ReactMD.
 
 ## What's Included
 
-I super simple `index.html` file that:
+A super simple `index.html` file that:
 
 - loads the Material Icons and Roboto fonts
 - loads the `React`, `ReactDOM`, and `ReactMD` UMD bundles
@@ -17,8 +17,8 @@ I super simple `index.html` file that:
 First download the example (or just copy/paste the [index.html](./index.html)):
 
 ```bash
-curl https://codeload.github.com/mlaursen/react-md/tar.gz/master | tar -xz --strip=2 react-md-master/examples/nextjs
-cd nextjs
+curl https://codeload.github.com/mlaursen/react-md/tar.gz/master | tar -xz --strip=2 react-md-master/examples/umd
+cd umd
 ```
 
 Next, open the file by double clicking or running the following command in the
