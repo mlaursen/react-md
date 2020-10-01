@@ -5,8 +5,8 @@
 
 export const versions: Record<string, string> = {
   "@testing-library/jest-dom": "5.11.1",
-  "@testing-library/react": "10.4.9",
-  "@testing-library/react-hooks": "3.3.0",
+  "@testing-library/react": "11.0.4",
+  "@testing-library/react-hooks": "3.4.2",
   "@types/classnames": "2.2.9",
   "@types/fs-extra": "9.0.1",
   "@types/glob": "7.1.3",
@@ -48,7 +48,7 @@ export const versions: Record<string, string> = {
   "react-dom": "16.13.1",
   "react-test-renderer": "16.13.1",
   "sass-lint": "1.13.1",
-  "ts-jest": "26.1.3",
+  "ts-jest": "26.4.1",
   typescript: "3.9.7",
   "@react-md/alert": "2.3.1",
   "@react-md/app-bar": "2.3.1",
