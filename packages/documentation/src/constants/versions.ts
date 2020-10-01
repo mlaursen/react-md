@@ -49,7 +49,7 @@ export const versions: Record<string, string> = {
   "react-test-renderer": "16.13.1",
   "sass-lint": "1.13.1",
   "ts-jest": "26.4.1",
-  typescript: "3.9.7",
+  typescript: "4.0.3",
   "@react-md/alert": "2.3.1",
   "@react-md/app-bar": "2.3.1",
   "@react-md/autocomplete": "2.3.1",
