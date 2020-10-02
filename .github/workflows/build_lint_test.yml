@@ -34,7 +34,7 @@ jobs:
           ${{ runner.os }}-yarn-
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2.1.1
+      uses: actions/setup-node@v2.1.2
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn
@@ -64,7 +64,7 @@ jobs:
           ${{ runner.os }}-yarn-
 
     - name: Use Node.js 14
-      uses: actions/setup-node@v2.1.1
+      uses: actions/setup-node@v2.1.2
       with:
         node-version: 14
     - run: yarn
