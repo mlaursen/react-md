@@ -29,14 +29,14 @@ export function setTouchEvent(
    * Boolean if the event should be captured if the browser does not support
    * passive events.
    */
-  capture: boolean = false,
+  capture = false,
   /**
    * Any additional options to provide to the passive event.
    */
   options?: AddEventListenerOptions
 ): void {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  // @ts-expect-error
   el[`${add ? "add" : "remove"}EventListener`](
     `touch${eventType}`,
     callback,
@@ -64,7 +64,7 @@ export function addTouchEvent(
    * Boolean if the event should be captured if the browser does not support
    * passive events.
    */
-  capture: boolean = false,
+  capture = false,
   /**
    * Any additional options to provide to the passive event.
    */
@@ -90,7 +90,7 @@ export function removeTouchEvent(
    * Boolean if the event should be captured if the browser does not support
    * passive events.
    */
-  capture: boolean = false,
+  capture = false,
   /**
    * Any additional options to provide to the passive event.
    */

@@ -29,9 +29,9 @@ import { getInstance, RefOrInstance } from "./getInstance";
 export function useFocusOnMount(
   refOrInstance: RefOrInstance,
   defaultFocus: Focus,
-  preventScroll: boolean = false,
-  programatic: boolean = false,
-  disabled: boolean = false
+  preventScroll = false,
+  programatic = false,
+  disabled = false
 ): void {
   useEffect(() => {
     if (disabled) {

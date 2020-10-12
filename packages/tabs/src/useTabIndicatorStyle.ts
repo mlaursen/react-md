@@ -51,7 +51,9 @@ const getActiveTab = (
  * @private
  * @internal
  */
-const context = createContext<UpdateIndicatorStyles>(() => {});
+const context = createContext<UpdateIndicatorStyles>(() => {
+  // do nothing
+});
 
 /**
  * @since 2.3.0

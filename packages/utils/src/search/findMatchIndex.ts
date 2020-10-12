@@ -50,7 +50,7 @@ export function findMatchIndex(
   value: string,
   values: readonly string[],
   startIndex: number,
-  isSelfMatchable: boolean = true
+  isSelfMatchable = true
 ): number {
   let index = findMatchInRange(value, values, startIndex + 1, values.length);
   if (index === -1) {

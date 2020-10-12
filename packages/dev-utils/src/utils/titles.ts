@@ -12,11 +12,7 @@ import { upperFirst } from "lodash";
  * instead of hyphens.
  * @return A title-ized string.
  */
-export function toTitle(
-  s: string,
-  joinWith: string = " ",
-  capitals: boolean = false
-): string {
+export function toTitle(s: string, joinWith = " ", capitals = false): string {
   if (/autocomplete/i.test(s)) {
     return "AutoComplete";
   }

@@ -201,7 +201,7 @@ if (process.env.NODE_ENV !== "production") {
       children: PropTypes.node,
       theme: PropTypes.oneOf(["none", "underline", "filled", "outline"]),
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      // @ts-expect-error
       _counterValidator: (props, _propName, component) => {
         const { length, maxLength } = props;
         const lengthType = typeof length;

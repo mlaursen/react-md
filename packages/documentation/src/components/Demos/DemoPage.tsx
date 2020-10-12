@@ -54,6 +54,7 @@ const DemoPage: FC<DemoPageProps> = (props) => {
       ))}
       <DemoPageHeader packageName={packageName}>{description}</DemoPageHeader>
       {demos.map((demo, index) => (
+        // eslint-disable-next-line react/jsx-key
         <Demo {...getDemoProps(props, demo, index)} />
       ))}
     </div>

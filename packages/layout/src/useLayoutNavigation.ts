@@ -45,7 +45,9 @@ const getParentIds = (
  *
  * @private
  */
-const noop = (): void => {};
+const noop = (): void => {
+  // do nothing
+};
 
 /**
  * This is a pretty reasonable default implementation for having a navigation

@@ -24,7 +24,7 @@ import SearchType from "./SearchType";
 
 const Search: FC = () => {
   const [value, setValue] = useState("");
-  const [data, setData] = useState<ReadonlyArray<RouteMetadata>>([]);
+  const [data, setData] = useState<readonly RouteMetadata[]>([]);
   const router = useRouter();
 
   const unmounted = useRef(false);
@@ -35,7 +35,7 @@ const Search: FC = () => {
           const response = await fetch(`/api/search?q=${query}`);
           if (response.ok) {
             const json = await response.json();
-            const data = json as ReadonlyArray<RouteMetadata>;
+            const data = json as readonly RouteMetadata[];
             if (!unmounted.current) {
               setData(data);
             }

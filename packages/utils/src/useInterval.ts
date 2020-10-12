@@ -22,7 +22,7 @@ type ReturnValue = [Running, StartInterval, StopInterval];
 export function useInterval(
   callback: (stop: () => void) => void,
   delay: number,
-  defaultRunning: boolean = false
+  defaultRunning = false
 ): ReturnValue {
   const ref = useRefCache(callback);
 

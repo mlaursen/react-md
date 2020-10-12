@@ -43,7 +43,9 @@ export interface SandboxFileTreeProps {
   disableTransition: boolean;
 }
 
-const noop = (): void => {};
+const noop = (): void => {
+  // do nothing
+};
 const getItemProps: GetItemProps<FileTreeData> = (item) => {
   const { expanded, type } = item;
   let Icon: ElementType;

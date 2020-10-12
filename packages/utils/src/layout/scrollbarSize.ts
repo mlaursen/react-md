@@ -41,7 +41,7 @@ export const reset = (): void => {
  */
 export function scrollbarSize(
   type: SizingType = "width",
-  forced: boolean = false
+  forced = false
 ): number {
   /* istanbul ignore if */
   if (typeof window === "undefined") {

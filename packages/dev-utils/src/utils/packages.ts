@@ -31,7 +31,7 @@ async function getPackageJson(packageName: string): Promise<PackageJson> {
  */
 export async function getDependencies(
   packageName: string,
-  dev: boolean = false
+  dev = false
 ): Promise<readonly string[]> {
   if (DEPENDENCIES.has(packageName)) {
     const deps = DEPENDENCIES.get(packageName);
@@ -52,7 +52,7 @@ const withoutCarot = (v: string): string => v.replace(/\^|~/, "");
 
 export async function loadDependenciesOf(
   packageName: string,
-  dev: boolean = false
+  dev = false
 ): Promise<void> {
   const packageJson = await getPackageJson(packageName);
   const key = dev ? "devDependencies" : "dependencies";

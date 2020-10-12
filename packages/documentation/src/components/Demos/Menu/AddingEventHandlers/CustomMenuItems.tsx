@@ -1,3 +1,5 @@
+// keys aren't required for the dropdown menu items
+/* eslint-disable react/jsx-key */
 import React, { FC, useCallback, useState } from "react";
 import { AddSVGIcon, ShareSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu, MenuItem, MenuItemProps } from "@react-md/menu";

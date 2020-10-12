@@ -15,7 +15,7 @@ const removeWhitespace = (s: string): string => s.replace(/\s/g, "");
  */
 export function extractTextContent(
   stringOrElement: HTMLElement | string,
-  fontIconQuerySelector: string = ".rmd-icon--font"
+  fontIconQuerySelector = ".rmd-icon--font"
 ): string {
   if (typeof stringOrElement === "string") {
     return removeWhitespace(stringOrElement);

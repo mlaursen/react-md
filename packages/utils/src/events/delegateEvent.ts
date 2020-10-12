@@ -76,7 +76,7 @@ function createEventHandler<K extends keyof WindowEventMap>(
 function createDelegatedEventHandler(
   eventType: string,
   eventTarget: DelegatedEventTarget = window,
-  throttle: boolean = false,
+  throttle = false,
   options?: boolean | AddEventListenerOptions
 ): DelegatedEventHandler {
   const callbacks: EventListener[] = [];

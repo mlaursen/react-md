@@ -9,7 +9,7 @@ import { createSandboxes } from "./createSandboxes";
 type Lookups = Record<string, Record<string, string>>;
 
 export async function sandbox(
-  pattern: string = "*",
+  pattern = "*",
   demoPattern = "",
   cleanSandboxes = false
 ): Promise<void> {

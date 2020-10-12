@@ -15,7 +15,7 @@ export const qsToString = (q: QueryParam): string => {
   return q;
 };
 
-export const qsToInt = (q: QueryParam, fallback: number = 0): number => {
+export const qsToInt = (q: QueryParam, fallback = 0): number => {
   const value = qsToString(q);
   const asNumber = parseInt(value, 10);
 

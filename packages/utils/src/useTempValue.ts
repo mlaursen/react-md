@@ -22,7 +22,7 @@ type ReturnValue<T> = [CurrentValueRef<T>, SetValue<T>, ResetValue];
  */
 export function useTempValue<T>(
   defaultValue: T,
-  resetTime: number = 500
+  resetTime = 500
 ): ReturnValue<T> {
   const value = useRef(defaultValue);
   const timeout = useRef<number>();

@@ -21,8 +21,8 @@ export type Focus = "first" | "last" | string;
 export function focusElementWithin(
   container: HTMLElement | Document,
   focus: Focus,
-  programatic: boolean = false,
-  preventScroll: boolean = false,
+  programatic = false,
+  preventScroll = false,
   elements?: HTMLElement[]
 ): void {
   if (!elements || !elements.length) {

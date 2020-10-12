@@ -13,8 +13,8 @@
  */
 export function getSearchString(
   value: string,
-  lowercase: boolean = false,
-  trim: boolean = false,
+  lowercase = false,
+  trim = false,
   ignoreWhitespace = false
 ): string {
   if (lowercase) {

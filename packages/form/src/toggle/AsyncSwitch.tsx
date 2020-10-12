@@ -28,7 +28,9 @@ export interface AsyncSwitchProps extends SwitchProps {
 // this is used while the loading state is enabled to "disable" the switch
 // toggle. If we disable the entire switch, keyboard focus is lost which is not
 // desired.
-const noop = (): void => {};
+const noop = (): void => {
+  // do nothing
+};
 
 /**
  * This component will create an async switch that will show a loading indicator

@@ -9,7 +9,9 @@ interface PhoneContextType {
 export const PhoneContext = createContext<PhoneContextType>({
   id: "",
   title: "Example",
-  closePhone: () => {},
+  closePhone: () => {
+    // do nothing
+  },
 });
 
 export function usePhoneContext(): PhoneContextType {

@@ -31,7 +31,7 @@ if (argv.includes(DEBUG)) {
 
 const createCommand = (
   command: string,
-  cleanable: boolean = false
+  cleanable = false
 ): commander.Command => {
   const instance = commander
     .command(command)

@@ -24,7 +24,7 @@ export function getLanguage(language: string): string {
   }
 }
 
-export function highlightCode(code: string, lang: string = ""): string {
+export function highlightCode(code: string, lang = ""): string {
   const language = getLanguage(lang);
   try {
     return Prism.highlight(code, Prism.languages[language], language);

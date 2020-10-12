@@ -180,7 +180,7 @@ export const versions: Record<string, string> = ${stringified}`
 /**
  * Copies shared code from the dev-utils package to the documentation site.
  */
-export async function shared(clean: boolean = false): Promise<void> {
+export async function shared(clean = false): Promise<void> {
   await Promise.all([
     markdown(clean),
     sharedUtilsAndTypes(),

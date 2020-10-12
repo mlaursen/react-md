@@ -16,7 +16,7 @@ export type ReleaseType =
   | "prerelease"
   | "";
 
-export const RELEASE_TYPES: ReadonlyArray<ReleaseType> = [
+export const RELEASE_TYPES: readonly ReleaseType[] = [
   "major",
   "minor",
   "patch",
@@ -61,8 +61,8 @@ async function verify(): Promise<void> {
 
 export async function release(
   type: ReleaseType = "",
-  blog: boolean = !type.startsWith("pre"),
-  autoYes: boolean = false
+  blog = !type.startsWith("pre"),
+  autoYes = false
 ): Promise<void> {
   const yes = autoYes ? " --yes" : "";
 

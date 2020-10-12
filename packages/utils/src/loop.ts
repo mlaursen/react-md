@@ -15,7 +15,7 @@ export function loop(
   x: number,
   max: number,
   increment: boolean,
-  minmax: boolean = false
+  minmax = false
 ): number {
   let next = x + (increment ? 1 : -1);
   if (minmax) {

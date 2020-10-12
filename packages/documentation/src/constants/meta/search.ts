@@ -5,7 +5,7 @@
 
 import { RouteMetadata } from "./types";
 
-const metadata: ReadonlyArray<RouteMetadata> = [
+const metadata: readonly RouteMetadata[] = [
   {
     title: "About",
     summary:

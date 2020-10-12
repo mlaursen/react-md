@@ -1,5 +1,7 @@
 /* eslint-disable import/no-mutable-exports, getter-return */
-const noop = (): void => {};
+const noop = (): void => {
+  // do nothing
+};
 let isSupported = false;
 
 /**

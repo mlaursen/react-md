@@ -191,7 +191,9 @@ export interface BaseDialogProps
 export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
 
 // used to disable the overlay click-to-close functionality when the `modal` prop is enabled.
-const noop = (): void => {};
+const noop = (): void => {
+  // do nothing
+};
 const block = bem("rmd-dialog");
 const DEFAULT_DIALOG_CLASSNAMES = {
   appear: "rmd-dialog--enter",

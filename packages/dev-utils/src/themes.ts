@@ -104,7 +104,7 @@ $rmd-theme-light: ${theme === "light"};
 }
 
 function sanityCheck(
-  [light1, dark1]: ReadonlyArray<Theme>,
+  [light1, dark1]: readonly Theme[],
   lightCSS: string,
   darkCSS: string
 ): void {

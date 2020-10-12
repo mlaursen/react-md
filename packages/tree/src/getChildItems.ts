@@ -17,7 +17,7 @@ import { BaseTreeItem, TreeData, TreeItemId, UnknownTreeItem } from "./types";
 export function getChildItems<T extends BaseTreeItem = UnknownTreeItem>(
   data: TreeData<T> | readonly T[],
   parentId: TreeItemId | null,
-  recursive: boolean = false
+  recursive = false
 ): readonly T[] {
   const items = Array.isArray(data) ? data : Object.values(data);
 

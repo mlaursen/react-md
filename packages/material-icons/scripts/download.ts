@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import AdmZip from "adm-zip";
 import { execSync } from "child_process";
 import Download from "download";

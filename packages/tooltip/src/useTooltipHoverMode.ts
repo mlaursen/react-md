@@ -76,13 +76,17 @@ interface HoverModeActionsContext {
   startDisableTimer: () => void;
 }
 
+const noop = (): void => {
+  // do nothing
+};
+
 /**
  * Contains the actions to enable or start disabling the immediate mode for
  * tooltips.
  */
 export const HoverModeActions = createContext<HoverModeActionsContext>({
-  enable: () => {},
-  startDisableTimer: () => {},
+  enable: noop,
+  startDisableTimer: noop,
 });
 
 /**

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { ChangeEventHandler } from "react";
 import { useChecked, useChoice } from "@react-md/form";
 import {

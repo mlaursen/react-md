@@ -15,7 +15,7 @@ import { SelectedIds, TreeItemId, TreeItemSelection } from "./types";
  */
 export function useTreeItemSelection(
   defaultSelectedIds: SelectedIds | (() => SelectedIds),
-  multiSelect: boolean = false
+  multiSelect = false
 ): Required<TreeItemSelection> {
   const [selectedIds, setSelectedIds] = useState(defaultSelectedIds);
   const onItemSelect = useCallback(

@@ -49,7 +49,9 @@ export type InitializedTabsManagerContext = Required<TabsManagerContext>;
 const context = createContext<InitializedTabsManagerContext>({
   tabsId: "tabs",
   activeIndex: 0,
-  onActiveIndexChange: () => {},
+  onActiveIndexChange: () => {
+    // do nothing
+  },
   tabs: [],
 });
 

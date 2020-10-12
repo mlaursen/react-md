@@ -11,7 +11,7 @@ interface ReturnValue {
  * A reusable hook to handle the progress examples for both the linear and circular
  * progress bars with an incremental interval.
  */
-export default function useDownloadInterval(delay: number = 100): ReturnValue {
+export default function useDownloadInterval(delay = 100): ReturnValue {
   const [value, setValue] = useState(0);
   const [running, start] = useInterval((stop) => {
     const nextValue = Math.min(100, value + 1);

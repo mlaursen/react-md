@@ -15,10 +15,14 @@ interface NestedDialogContext {
   remove: (dialogId: string) => void;
 }
 
+const noop = (): void => {
+  // do nothing
+};
+
 const context = createContext<NestedDialogContext>({
   stack: [],
-  add: () => {},
-  remove: () => {},
+  add: noop,
+  remove: noop,
 });
 
 if (process.env.NODE_ENV !== "production") {

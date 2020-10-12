@@ -199,7 +199,7 @@ interface ReturnValue<E extends HTMLElement> {
  * as well as returning the current list of ripples.
  */
 export function useRippleTransition<E extends HTMLElement = HTMLElement>(
-  disableSpacebarClick: boolean = false
+  disableSpacebarClick = false
 ): ReturnValue<E> {
   const [state, dispatch] = useReducer<RippleStateReducer<E>>(reducer, []);
   const spacebarRef = useRefCache(disableSpacebarClick);
@@ -215,7 +215,7 @@ export function useRippleTransition<E extends HTMLElement = HTMLElement>(
   const entered = useCallback((ripple: RippleState) => {
     dispatch({ type: ENTERED, ripple });
   }, []);
-  const cancel = useCallback((ease: boolean = false) => {
+  const cancel = useCallback((ease = false) => {
     dispatch({ type: CANCEL, ease });
   }, []);
   const remove = useCallback((ripple: RippleState) => {

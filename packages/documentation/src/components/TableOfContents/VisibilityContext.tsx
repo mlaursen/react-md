@@ -25,10 +25,14 @@ interface TOCActionsContext {
   toggle: () => void;
 }
 
+const noop = (): void => {
+  // do nothing
+};
+
 const TOCActions = createContext<TOCActionsContext>({
-  show: () => {},
-  hide: () => {},
-  toggle: () => {},
+  show: noop,
+  hide: noop,
+  toggle: noop,
 });
 
 export const TOCVisibilityProvider: FC<{ pathname: string }> = ({

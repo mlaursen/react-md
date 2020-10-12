@@ -51,7 +51,7 @@ function parseValue(value: VariableValue): VariableValue {
   return value;
 }
 
-function matchParen(s: string, count: number = 0): string {
+function matchParen(s: string, count = 0): string {
   const match = s.match(/\(|\)/);
   if (!match || typeof match.index === "undefined") {
     return s;

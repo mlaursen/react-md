@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 export function useMediaQuery(
   query: string,
   defaultValue?: boolean,
-  disabled: boolean = false,
+  disabled = false,
   checkImmediately: boolean = typeof window !== "undefined"
 ): boolean {
   const [matches, setMatches] = useState(() => {

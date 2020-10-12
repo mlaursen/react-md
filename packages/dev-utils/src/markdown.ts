@@ -5,7 +5,7 @@ import { join } from "path";
 import { documentationRoot, packagesRoot, projectRoot, src } from "./constants";
 import { clean, copyMarkdown, getPackages } from "./utils";
 
-export async function markdown(shouldClean: boolean = false): Promise<void> {
+export async function markdown(shouldClean = false): Promise<void> {
   log.info("Finding and copying markdown files...");
 
   const readmeDest = join(documentationRoot, src, "readmes");

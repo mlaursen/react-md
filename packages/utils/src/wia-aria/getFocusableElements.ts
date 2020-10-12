@@ -14,7 +14,7 @@ import { PROGRAMATICALLY_FOCUSABLE, TAB_FOCUSABLE } from "./constants";
  */
 export function getFocusableElements(
   container: HTMLElement | Document,
-  programatic: boolean = false
+  programatic = false
 ): HTMLElement[] {
   return Array.from(
     container.querySelectorAll<HTMLElement>(

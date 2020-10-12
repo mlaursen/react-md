@@ -16,7 +16,9 @@ export interface ThemeActions {
   reset: ResetTheme;
 }
 
-const noop = (): void => {};
+const noop = (): void => {
+  // do nothing
+};
 export const ThemeActionsContext = createContext<ThemeActions>({
   setPrimary: noop,
   setSecondary: noop,

@@ -7,7 +7,9 @@ interface PositionOptions {
   threshold: number;
 }
 
-const NOOP = (): void => {};
+const NOOP = (): void => {
+  // do nothing
+};
 
 interface PositionResult {
   position: SimplePosition;
