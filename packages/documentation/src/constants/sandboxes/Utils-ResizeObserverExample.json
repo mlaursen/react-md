@@ -6,7 +6,7 @@
     "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\n// the styles are actually loaded as the pre-compiled themes in the index.html\n// to speed up sandbox compilation. If you want to update the theme, you'll need\n// to uncomment this line and remove the `<link>` tag in the `index.html`\n// import \"./styles.scss\"\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n"
   },
   "src/styles.scss": {
-    "content": "@import \"variables\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/table/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n\n@include react-md-utils;\n"
+    "content": "@import 'variables';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/table/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n\n@include react-md-utils;\n"
   },
   "src/_variables.scss": {
     "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n"
@@ -49,6 +49,6 @@
     "content": "/* eslint-disable import/prefer-default-export */\ninterface RandomInt {\n  min?: number;\n  max?: number;\n}\n\n/**\n * Generates a random integer between a min and max value. Defaults\n * to 0-10.\n */\nexport function randomInt({ min = 0, max = 10 }: RandomInt = {}): number {\n  return Math.floor(Math.random() * max) + min;\n}\n"
   },
   "src/ResizeObserverExample.module.scss": {
-    "content": "$rmd-theme-dark-elevation: true;\n\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n\n.container {\n  @include rmd-elevation(4);\n  @include rmd-theme-dark-elevation(4, true);\n\n  margin-top: 1rem;\n  overflow: hidden;\n  transition-duration: 1s;\n  transition-property: max-height, max-width;\n}\n\n.table {\n  border-collapse: separate;\n  // make it grow to fit the entire max-height\n  padding-bottom: 100%;\n}\n"
+    "content": "$rmd-theme-dark-elevation: true;\n\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n\n.container {\n  @include rmd-elevation(4);\n  @include rmd-theme-dark-elevation(4, true);\n\n  margin-top: 1rem;\n  overflow: hidden;\n  transition-duration: 1s;\n  transition-property: max-height, max-width;\n}\n\n.table {\n  border-collapse: separate;\n  // make it grow to fit the entire max-height\n  padding-bottom: 100%;\n}\n"
   }
 }

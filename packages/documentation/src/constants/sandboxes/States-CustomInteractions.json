@@ -6,7 +6,7 @@
     "content": "import React from \"react\";\nimport { render } from \"react-dom\";\nimport { Configuration } from \"@react-md/layout\";\n\n// the styles are actually loaded as the pre-compiled themes in the index.html\n// to speed up sandbox compilation. If you want to update the theme, you'll need\n// to uncomment this line and remove the `<link>` tag in the `index.html`\n// import \"./styles.scss\"\n\nimport Demo from \"./Demo\";\n\nconst App = () => (\n  <Configuration>\n    <Demo />\n  </Configuration>\n);\n\nrender(<App />, document.getElementById(\"root\"));\n"
   },
   "src/styles.scss": {
-    "content": "@import \"variables\";\n@import \"~@react-md/layout/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n@import \"~@react-md/theme/dist/mixins\";\n@import \"~@react-md/typography/dist/mixins\";\n@import \"~@react-md/utils/dist/mixins\";\n@import \"~@react-md/button/dist/mixins\";\n@import \"~@react-md/elevation/dist/mixins\";\n\n@include react-md-utils;\n"
+    "content": "@import 'variables';\n@import '~@react-md/layout/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n@import '~@react-md/theme/dist/mixins';\n@import '~@react-md/typography/dist/mixins';\n@import '~@react-md/utils/dist/mixins';\n@import '~@react-md/button/dist/mixins';\n@import '~@react-md/elevation/dist/mixins';\n\n@include react-md-utils;\n"
   },
   "src/_variables.scss": {
     "content": "@import \"~@react-md/theme/dist/color-palette\";\n\n$rmd-theme-light: true;\n$rmd-theme-primary: $rmd-teal-500;\n$rmd-theme-secondary: $rmd-pink-a-200;\n"
@@ -45,6 +45,6 @@
     "content": "import React, { FC } from \"react\";\nimport { Button } from \"@react-md/button\";\n\nimport styles from \"./CustomInteractions.module.scss\";\n\nconst Demo: FC = () => (\n  <Button\n    id=\"custom-state-button\"\n    enablePressedAndRipple\n    className={styles.button}\n  >\n    Button\n  </Button>\n);\n\nexport default Demo;\n"
   },
   "src/CustomInteractions.module.scss": {
-    "content": "@import \"~@react-md/elevation/dist/mixins\";\n@import \"~@react-md/states/dist/mixins\";\n\n.button {\n  @include rmd-elevation-transition(\n    8,\n    12,\n    \"&#{$rmd-states-pressed-class-name}\",\n    false\n  );\n  @include rmd-states-pressed-styles(true) {\n    // disable normal pressed states background color change since we want\n    // to use elevation as the interaction instead\n    @include rmd-states-theme-update-var(background-color, transparent);\n  }\n\n  margin: 1rem;\n}\n"
+    "content": "@import '~@react-md/elevation/dist/mixins';\n@import '~@react-md/states/dist/mixins';\n\n.button {\n  @include rmd-elevation-transition(\n    8,\n    12,\n    '&#{$rmd-states-pressed-class-name}',\n    false\n  );\n  @include rmd-states-pressed-styles(true) {\n    // disable normal pressed states background color change since we want\n    // to use elevation as the interaction instead\n    @include rmd-states-theme-update-var(background-color, transparent);\n  }\n\n  margin: 1rem;\n}\n"
   }
 }
