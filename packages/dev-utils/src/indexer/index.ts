@@ -35,11 +35,7 @@ export default tocs`);
   const searchPath = join(meta, "search.ts");
   const searchContents = format(`${COPY_BANNER}import { RouteMetadata } from "./types";
 
-const metadata: ReadonlyArray<RouteMetadata> = ${JSON.stringify(
-    metadata,
-    null,
-    2
-  )};
+const metadata: readonly RouteMetadata[] = ${JSON.stringify(metadata, null, 2)};
 
 export default metadata;
 `);

@@ -4,6 +4,7 @@
  */
 
 export const versions: Record<string, string> = {
+  "@mlaursen/eslint-config": "0.0.4",
   "@testing-library/jest-dom": "5.11.1",
   "@testing-library/react": "11.0.4",
   "@testing-library/react-hooks": "3.4.2",
@@ -22,21 +23,10 @@ export const versions: Record<string, string> = {
   "@types/react-router-dom": "5.1.5",
   "@types/react-test-renderer": "16.9.3",
   "@types/react-transition-group": "4.4.0",
-  "@types/webpack": "4.41.21",
-  "@typescript-eslint/eslint-plugin": "4.3.0",
-  "@typescript-eslint/parser": "4.3.0",
-  "babel-eslint": "10.1.0",
   chokidar: "3.4.2",
   commitizen: "4.2.1",
   "cz-conventional-changelog": "3.3.0",
   eslint: "7.10.0",
-  "eslint-config-airbnb": "18.2.0",
-  "eslint-config-prettier": "6.12.0",
-  "eslint-plugin-import": "2.22.1",
-  "eslint-plugin-jest": "24.0.2",
-  "eslint-plugin-jsx-a11y": "6.3.1",
-  "eslint-plugin-react": "7.21.2",
-  "eslint-plugin-react-hooks": "4.1.2",
   husky: "4.2.5",
   "identity-obj-proxy": "3.0.0",
   jest: "26.4.2",
@@ -123,5 +113,4 @@ export const versions: Record<string, string> = {
   nodemon: "2.0.4",
   "raw-loader": "4.0.1",
   "ts-node": "9.0.0",
-  webpack: "4.44.1",
 };
