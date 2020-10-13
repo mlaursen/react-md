@@ -29,7 +29,7 @@ Since this example is not within the Next.js repo, you will need to download
 this example manually instead of using `create-next-app`:
 
 ```sh
-curl https://codeload.github.com/mlaursen/react-md/tar.gz/master | tar -xz --strip=2 react-md-master/examples/nextjs-typescript
+curl https://codeload.github.com/mlaursen/react-md/tar.gz/main | tar -xz --strip=2 react-md-main/examples/nextjs-typescript
 cd nextjs-typescript
 ```
 

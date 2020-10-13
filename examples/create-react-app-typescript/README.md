@@ -27,7 +27,7 @@ Since this example is not a separate repo, this example will need to be manually
 downloaded instead of using `create-react-app`:
 
 ```bash
-curl https://codeload.github.com/mlaursen/react-md/tar.gz/master | tar -xz --strip=2 react-md-master/examples/create-react-app-typescript
+curl https://codeload.github.com/mlaursen/react-md/tar.gz/main | tar -xz --strip=2 react-md-main/examples/create-react-app-typescript
 cd create-react-app-typescript
 ```
 

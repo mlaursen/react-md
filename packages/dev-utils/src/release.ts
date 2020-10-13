@@ -105,6 +105,6 @@ export async function release(
   git("rm -rf themes");
   ammendCommit();
 
-  git("push origin master");
+  git("push origin main");
   git("push --tags");
 }

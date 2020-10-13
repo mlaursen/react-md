@@ -17,7 +17,7 @@ A super simple `index.html` file that:
 First download the example (or just copy/paste the [index.html](./index.html)):
 
 ```bash
-curl https://codeload.github.com/mlaursen/react-md/tar.gz/master | tar -xz --strip=2 react-md-master/examples/umd
+curl https://codeload.github.com/mlaursen/react-md/tar.gz/main | tar -xz --strip=2 react-md-main/examples/umd
 cd umd
 ```
 

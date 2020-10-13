@@ -166,5 +166,5 @@ const Example = () => (
   `$rmd-text-icon-spacing` variable
 
 [@react-md/app-bar]:
-  https://github.com/mlaursen/react-md/tree/master/packages/app-bar
-[@react-md/icon]: https://github.com/mlaursen/react-md/tree/master/packages/icon
+  https://github.com/mlaursen/react-md/tree/main/packages/app-bar
+[@react-md/icon]: https://github.com/mlaursen/react-md/tree/main/packages/icon

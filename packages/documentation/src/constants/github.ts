@@ -1,4 +1,4 @@
-export const { COMMIT_SHA = "master" } = process.env;
+export const { COMMIT_SHA = "main" } = process.env;
 export const { RMD_VERSION = "latest" } = process.env; // Ok.. it isn't really github, but don't know a better place for it
 export const { GA_CODE = "" } = process.env;
 

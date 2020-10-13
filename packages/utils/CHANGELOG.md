@@ -265,4 +265,4 @@ some components and hooks that might be useful externally.
 [resizeobserverapi]:
   https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver
 [@react-md/transition]:
-  https://github.com/mlaursen/react-md/tree/master/packages/transition
+  https://github.com/mlaursen/react-md/tree/main/packages/transition

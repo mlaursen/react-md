@@ -141,6 +141,5 @@ and the API has changed, but here are a few notable points:
   calculated with CSS variables
 
 [@react-md/transition]:
-  https://github.com/mlaursen/react-md/tree/master/packages/transition
-[@react-md/utils]:
-  https://github.com/mlaursen/react-md/tree/master/packages/utils
+  https://github.com/mlaursen/react-md/tree/main/packages/transition
+[@react-md/utils]: https://github.com/mlaursen/react-md/tree/main/packages/utils

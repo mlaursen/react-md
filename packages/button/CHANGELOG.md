@@ -279,6 +279,6 @@ const Example = () => (
 );
 ```
 
-[@react-md/icon]: https://github.com/mlaursen/react-md/tree/master/packages/icon
+[@react-md/icon]: https://github.com/mlaursen/react-md/tree/main/packages/icon
 [@react-md/material-icons]:
-  https://github.com/mlaursen/react-md/tree/master/packages/material-icons
+  https://github.com/mlaursen/react-md/tree/main/packages/material-icons

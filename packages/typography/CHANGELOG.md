@@ -182,6 +182,5 @@ variables that will be merged with the recommended values:
   based on device size
 - removed the `react-md-theme-typography` mixin
 
-[@react-md/icon]: https://github.com/mlaursen/react-md/tree/master/packages/icon
-[@react-md/utils]:
-  https://github.com/mlaursen/react-md/tree/master/packages/utils
+[@react-md/icon]: https://github.com/mlaursen/react-md/tree/main/packages/icon
+[@react-md/utils]: https://github.com/mlaursen/react-md/tree/main/packages/utils

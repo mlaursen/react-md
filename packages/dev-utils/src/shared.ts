@@ -81,7 +81,7 @@ async function rmdReadme(): Promise<void> {
   const readmeMarkdown = rootReadme
     .replace(
       "(./examples)",
-      "(https://github.com/mlaursen/react-md/tree/master/examples)"
+      "(https://github.com/mlaursen/react-md/tree/main/examples)"
     )
     .replace(REPLACE_TOKEN, REPLACEMENT)
     .replace("#packages", packageLinks);

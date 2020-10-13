@@ -23,6 +23,7 @@ export const versions: Record<string, string> = {
   "@types/react-router-dom": "5.1.5",
   "@types/react-test-renderer": "16.9.3",
   "@types/react-transition-group": "4.4.0",
+  "@types/webpack": "4.41.21",
   chokidar: "3.4.2",
   commitizen: "4.2.1",
   "cz-conventional-changelog": "3.3.0",
@@ -113,4 +114,5 @@ export const versions: Record<string, string> = {
   nodemon: "2.0.4",
   "raw-loader": "4.0.1",
   "ts-node": "9.0.0",
+  webpack: "4.44.1",
 };

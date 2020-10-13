@@ -148,5 +148,4 @@ longer really used for layout and app size.
 - removed `$md-drawer-desktop-left-max-width` since there is no difference when
   rendering at the left or right anymore
 
-[@react-md/utils]:
-  https://github.com/mlaursen/react-md/tree/master/packages/utils
+[@react-md/utils]: https://github.com/mlaursen/react-md/tree/main/packages/utils

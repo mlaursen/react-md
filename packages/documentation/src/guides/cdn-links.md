@@ -102,4 +102,4 @@ replace `{{RMD_VERSION}}` for a specific version of ReactMD.
 > The pre-compiled themes used to be published with the base `react-md` package,
 > but the tarball ended up being too large so package managers and other CDNs
 > rejected it. The themes are compiled and committed with each tagged version of
-> ReactMD, but removed before pushing the commit to `master`.
+> ReactMD, but removed before pushing the commit to `main`.

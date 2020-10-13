@@ -6,8 +6,8 @@ import { format } from "../format";
 import { getPackages } from "../packages";
 
 const githubUrl = "https://github.com/mlaursen/react-md";
-const masterUrl = `${githubUrl}/tree/master`;
-const masterRegExp = new RegExp(masterUrl, "g");
+const mainUrl = `${githubUrl}/tree/main`;
+const mainRegExp = new RegExp(mainUrl, "g");
 const githubRegExp = new RegExp(githubUrl, "g");
 
 const START_TOKEN = "<!-- DOCS_REMOVE -->";
@@ -68,7 +68,7 @@ export async function copyMarkdown(src: string, dest: string): Promise<void> {
   const markdown = await readFile(src, "utf8");
   const updated = transform(markdown, src)
     .replace(/(#+)(?= )/g, "$1#")
-    .replace(masterRegExp, "{{GITHUB_FILE_URL}}")
+    .replace(mainRegExp, "{{GITHUB_FILE_URL}}")
     .replace(githubRegExp, "{{GITHUB_URL}}");
 
   log.debug(`- ${src} -> ${dest}`);

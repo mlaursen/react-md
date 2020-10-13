@@ -145,5 +145,4 @@ correct props are added to the element being tooltipped.
 - `$md-tooltip-desktop-tb-padding` was removed since there is new line wrap
   functionality and variables
 
-[@react-md/utils]:
-  https://github.com/mlaursen/react-md/tree/master/packages/utils
+[@react-md/utils]: https://github.com/mlaursen/react-md/tree/main/packages/utils

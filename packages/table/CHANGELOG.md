@@ -196,6 +196,6 @@ v2, you'll have access to the following components:
   the new sticky cells API/styles
 
 [@react-md/divider]:
-  https://github.com/mlaursen/react-md/tree/master/packages/divider
+  https://github.com/mlaursen/react-md/tree/main/packages/divider
 [@react-md/tooltip]:
-  https://github.com/mlaursen/react-md/tree/master/packages/tooltip
+  https://github.com/mlaursen/react-md/tree/main/packages/tooltip

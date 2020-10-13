@@ -29,7 +29,7 @@ Since this example is not in a separate repo, the Gatsby CLI cannot be used to c
 based on example and will need to be downloaded manually:
 
 ```bash
-curl https://codeload.github.com/mlaursen/react-md/tar.gz/master | tar -xz --strip=2 react-md-master/examples/gatsby
+curl https://codeload.github.com/mlaursen/react-md/tar.gz/main | tar -xz --strip=2 react-md-main/examples/gatsby
 cd gatsby
 ```
 

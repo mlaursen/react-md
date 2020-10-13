@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const isProduction = process.env.NODE_ENV === 'production';
 const commitHash = isProduction
   ? execSync('git rev-parse HEAD').toString().trim()
-  : 'master';
+  : 'main';
 
 // Note: this _might_ cause problems for scoped packages since they
 // aren't always published together right now
