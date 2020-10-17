@@ -1,4 +1,8 @@
-/** this is an auto-generated file from @react-md/dev-utils */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 export default {
   "rmd-transition-sharp": "cubic-bezier(0.4, 0, 0.6, 1)",
   "rmd-transition-standard": "cubic-bezier(0.4, 0, 0.2, 1)",

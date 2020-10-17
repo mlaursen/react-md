@@ -1,4 +1,8 @@
-/** this is an auto-generated file from @react-md/dev-utils */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 export default {
   "rmd-expansion-panel-spacing": "1rem",
   "rmd-expansion-panel-header-padding": "1rem",

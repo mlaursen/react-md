@@ -1,5 +1,12 @@
-/** this is an auto-generated file from @react-md/dev-utils */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 export default {
+  "rmd-table-light-border-color": "#e0e0e0",
+  "rmd-table-dark-border-color": "#2f2f2f",
+  "rmd-table-border-color": "#e0e0e0",
   "rmd-table-cell-horizontal-padding": "1rem",
   "rmd-table-cell-vertical-padding": "0.375rem",
   "rmd-table-cell-sticky-position": 0,
@@ -21,6 +28,7 @@ export default {
   "rmd-table-footer-sticky-position": 0,
   "rmd-table-checkbox-padding": "0.5rem",
   "rmd-table-theme-values": {
+    "border-color": "#e0e0e0",
     "cell-color": "var(--rmd-theme-text-primary-on-background, #212121)",
     "cell-h-padding": "1rem",
     "cell-v-padding": "0.375rem",

@@ -1,4 +1,8 @@
-/** this is an auto-generated file from @react-md/dev-utils */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 export default {
   "rmd-tab-height": "3rem",
   "rmd-tab-stacked-height": "4.5rem",

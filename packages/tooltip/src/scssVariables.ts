@@ -1,4 +1,8 @@
-/** this is an auto-generated file from @react-md/dev-utils */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 export default {
   "rmd-tooltip-background-color": "#616161",
   "rmd-tooltip-color": "var(--rmd-theme-text-primary-on-dark, #d9d9d9)",

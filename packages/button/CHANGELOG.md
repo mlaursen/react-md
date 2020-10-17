@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.4.0) (2020-10-17)
+
+### Bug Fixes
+
+- **states:** fixed usedPressStates to pass onClick like other state hooks
+  ([82cd676](https://github.com/mlaursen/react-md/commit/82cd67695c2ecd6e9a710d5fbfce97ae4dfeda80))
+
+### Features
+
+- **button:** added built-in support for rendering `CircularProgress`
+  ([c6c616b](https://github.com/mlaursen/react-md/commit/c6c616b72866cc1533b7f83c4d9f031354319dfc))
+- **button:** added support for disabled theme without disabling button
+  ([6a647e2](https://github.com/mlaursen/react-md/commit/6a647e23831c7b3c97eb12baa47dfd5dd074271a))
+- **theme:** Better Contrast Colors by Default and dev-utils refactor
+  ([#955](https://github.com/mlaursen/react-md/issues/955))
+  ([519b128](https://github.com/mlaursen/react-md/commit/519b128522de944d55ff96a1e1125447665ed586))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.1) (2020-09-15)
 
 **Note:** Version bump only for package [@react-md/button](../button)

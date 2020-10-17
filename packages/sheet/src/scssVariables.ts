@@ -1,4 +1,8 @@
-/** this is an auto-generated file from @react-md/dev-utils */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 export default {
   "rmd-sheet-z-index": 5,
   "rmd-sheet-raised-z-index": 30,
@@ -11,7 +15,7 @@ export default {
   "rmd-sheet-touch-width": "calc(100vw - 3.5rem)",
   "rmd-sheet-static-width": "16rem",
   "rmd-sheet-max-height": "100%",
-  "rmd-sheet-touchable-max-height": "calc(100% - 3.5rem)",
+  "rmd-sheet-touchable-max-height": "calc( 100% - 3.5rem)",
   "rmd-sheet-recommended-min-height": "3.5rem",
   "rmd-sheet-recommended-max-height": "50%",
   "rmd-sheet-positions": ["top", "right", "bottom", "left"],
@@ -19,7 +23,7 @@ export default {
   "rmd-sheet-theme-values": {
     "touch-width": "calc(100vw - 3.5rem)",
     "static-width": "16rem",
-    "touchable-max-height": "calc(100% - 3.5rem)",
+    "touchable-max-height": "calc( 100% - 3.5rem)",
     "max-height": null,
     height: null,
     width: null,
