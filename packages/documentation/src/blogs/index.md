@@ -1,3 +1,31 @@
+Title: react-md 2.4.0
+
+Date: 10/17/2020
+
+Summary:
+
+This release implemented better default behavior to ensure that the "better"
+contrast ratio is chosen instead of choosing the first color that meets the
+minimal contrast ratio. This is enabled by default going forward, but can be
+disabled by setting `$rmd-theme-better-contrast-ratios: false`
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/table:** table border color uses hex values to fix chrome colSpan
+  rendering issue #982 (2138284)
+
+##### Features<!-- no-margin -->
+
+- **@react-md/theme:** Better Contrast Colors by Default and dev-utils refactor
+  #955 (519b128)
+
+##### Documentation<!-- no-margin -->
+
+- the documentation site now allows for code examples and sandboxes to
+  conditionally use JavaScript instead of TypeScript
+
+---
+
 Title: react-md 2.3.1
 
 Date: 09/14/2020

@@ -1,4 +1,8 @@
-/** this is an auto-generated file from @react-md/dev-utils */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 export default {
   "rmd-media-overlay-background-color": "rgba(0, 0, 0, 0.54)",
   "rmd-media-selectors": ["img", ">svg", "iframe", "video", "embed", "object"],

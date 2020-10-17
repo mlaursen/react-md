@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.4.0) (2020-10-17)
+
+### Bug Fixes
+
+- **form:** added missing scss variables
+  ([ec8d675](https://github.com/mlaursen/react-md/commit/ec8d675c5436e92245ea0a8d07b35345ad30794c))
+
+### Features
+
+- **form:** updated TextArea to use the new useResizeObserver API
+  ([2c2dd27](https://github.com/mlaursen/react-md/commit/2c2dd27576aeeecb2baba12ef616af45197037db))
+- **theme:** Better Contrast Colors by Default and dev-utils refactor
+  ([#955](https://github.com/mlaursen/react-md/issues/955))
+  ([519b128](https://github.com/mlaursen/react-md/commit/519b128522de944d55ff96a1e1125447665ed586))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.1) (2020-09-15)
 
 **Note:** Version bump only for package [@react-md/form](../form)

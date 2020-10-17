@@ -1,4 +1,8 @@
-/** this is an auto-generated file from @react-md/dev-utils */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 export default {
   "rmd-list-vertical-padding": "0.5rem",
   "rmd-list-dense-vertical-padding": "0.25rem",

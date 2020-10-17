@@ -1,4 +1,8 @@
-/** this is an auto-generated file from @react-md/dev-utils */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 export default {
   "rmd-card-background-color": "var(--rmd-theme-surface, #fff)",
   "rmd-card-color": "var(--rmd-theme-on-surface, #000)",

@@ -1,4 +1,8 @@
-/** this is an auto-generated file from @react-md/dev-utils */
+/**
+ * This file was generated from @react-md/dev-utils and should not be updated
+ * manually.
+ */
+
 export default {
   "rmd-typography-font-family": "Roboto, sans-serif",
   "rmd-typography-mobile-max-line-length": "17em",
