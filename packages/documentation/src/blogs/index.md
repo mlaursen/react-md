@@ -1,3 +1,14 @@
+Title: react-md 2.4.1
+
+Date: 10/17/2020
+
+Summary:
+
+Republished the v2.4.0 release to ensure that all 2300 themes are available
+through CDNs after upgrading my build script.
+
+---
+
 Title: react-md 2.4.0
 
 Date: 10/17/2020

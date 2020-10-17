@@ -1,6 +1,6 @@
 {
   "name": "@react-md/progress",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Create horizontal, vertical, and circular progress indicators",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -35,9 +35,9 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/theme": "^2.4.0",
-    "@react-md/transition": "^2.4.0",
-    "@react-md/utils": "^2.4.0",
+    "@react-md/theme": "^2.4.1",
+    "@react-md/transition": "^2.4.1",
+    "@react-md/utils": "^2.4.1",
     "classnames": "^2.2.6"
   },
   "devDependencies": {

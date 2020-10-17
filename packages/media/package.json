@@ -1,6 +1,6 @@
 {
   "name": "@react-md/media",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "This package is used for including responsive media (images, videos, etc) within your app.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -38,8 +38,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/theme": "^2.4.0",
-    "@react-md/utils": "^2.4.0",
+    "@react-md/theme": "^2.4.1",
+    "@react-md/utils": "^2.4.1",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
