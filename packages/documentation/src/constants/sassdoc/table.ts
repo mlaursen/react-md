@@ -43,7 +43,10 @@ const sassdoc: PackageSassDoc = {
       description:
         "This function is used to get one of the table's theme variables as a CSS Variable to be applied as a style attribute. By default, the CSS Variable will have a fallback of the current `$rmd-table-theme-values`\n\nThis function is used to create a CSS Variable declaration with an optional fallback value if the CSS Variable has not been declared somehow.",
       source: "packages/table/src/_functions.scss#L32-L39",
-      usedBy: [{ name: "rmd-table", type: "mixin", packageName: "table" }],
+      usedBy: [
+        { name: "rmd-table", type: "mixin", packageName: "table" },
+        { name: "rmd-table-row", type: "mixin", packageName: "table" },
+      ],
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
         {
@@ -143,6 +146,8 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-table", type: "mixin", packageName: "table" },
         { name: "rmd-thead", type: "mixin", packageName: "table" },
         { name: "rmd-table-cell", type: "mixin", packageName: "table" },
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-dark", type: "mixin", packageName: "theme" },
       ],
       requires: [
         {
@@ -341,11 +346,16 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-row",
       description:
         "Creates the styles for the `<tr>` element.\n\nNote: The base class actually has no styles.\n",
-      source: "packages/table/src/_mixins.scss#L260-L299",
+      source: "packages/table/src/_mixins.scss#L260-L300",
       usedBy: [{ name: "react-md-table", type: "mixin", packageName: "table" }],
       requires: [
         { name: "rmd-table-theme", type: "mixin", packageName: "table" },
-        { name: "rmd-divider-border", type: "mixin", packageName: "divider" },
+        {
+          name: "rmd-divider-theme-var",
+          type: "function",
+          packageName: "divider",
+        },
+        { name: "rmd-table-theme-var", type: "function", packageName: "table" },
         {
           name: "rmd-transition-standard-time",
           type: "variable",
@@ -355,13 +365,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "table",
       code: "@mixin rmd-table-row { … }",
       sourceCode:
-        "@mixin rmd-table-row {\n  &--selected {\n    @include rmd-table-theme(background-color, selected-color);\n\n    .rmd-table-cell--sticky-cell::after {\n      @include rmd-table-theme(background-color, selected-color);\n    }\n  }\n\n  &--clickable:hover {\n    cursor: pointer;\n  }\n\n  &--bordered {\n    @include rmd-divider-border(bottom);\n\n    // this is actually pretty nice since it'll also NOT create a border on the\n    // header row (which we want)\n    &:last-child {\n      border-bottom-width: 0;\n    }\n  }\n\n  &--hoverable {\n    @include rmd-utils-mouse-only {\n      @include rmd-transition(standard);\n\n      transition: background-color $rmd-transition-standard-time;\n\n      &:hover {\n        @include rmd-table-theme(background-color, hover-color);\n\n        // see the `.rmd-table-cell--sticky` selector for more info :/\n        .rmd-table-cell--sticky-cell::after {\n          @include rmd-table-theme(background-color, hover-color);\n        }\n      }\n    }\n  }\n}\n",
+        "@mixin rmd-table-row {\n  &--selected {\n    @include rmd-table-theme(background-color, selected-color);\n\n    .rmd-table-cell--sticky-cell::after {\n      @include rmd-table-theme(background-color, selected-color);\n    }\n  }\n\n  &--clickable:hover {\n    cursor: pointer;\n  }\n\n  &--bordered {\n    border-bottom: rmd-divider-theme-var(size) solid\n      rmd-table-theme-var(border-color);\n\n    // this is actually pretty nice since it'll also NOT create a border on the\n    // header row (which we want)\n    &:last-child {\n      border-bottom-width: 0;\n    }\n  }\n\n  &--hoverable {\n    @include rmd-utils-mouse-only {\n      @include rmd-transition(standard);\n\n      transition: background-color $rmd-transition-standard-time;\n\n      &:hover {\n        @include rmd-table-theme(background-color, hover-color);\n\n        // see the `.rmd-table-cell--sticky` selector for more info :/\n        .rmd-table-cell--sticky-cell::after {\n          @include rmd-table-theme(background-color, hover-color);\n        }\n      }\n    }\n  }\n}\n",
       type: "mixin",
     },
     "react-md-table": {
       name: "react-md-table",
       description: "Creates all the styles for the table package.\n",
-      source: "packages/table/src/_mixins.scss#L302-L328",
+      source: "packages/table/src/_mixins.scss#L303-L329",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {
@@ -389,11 +399,50 @@ const sassdoc: PackageSassDoc = {
     },
   },
   variables: {
+    "rmd-table-light-border-color": {
+      name: "rmd-table-light-border-color",
+      description:
+        "The border color to use for tables due to a chrome rendering bug when the `colSpan` is used on a table. This will be applied when using the light theme.\n\nNote: this value is _close_ to the divider default value of `rgba($rmd-black-base, 0.12)`",
+      source: "packages/table/src/_variables.scss#L17",
+      since: "2.3.2",
+      usedBy: [
+        { name: "rmd-theme-light", type: "mixin", packageName: "theme" },
+      ],
+      packageName: "table",
+      type: "Color",
+      value: "#e0e0e0",
+      overridable: true,
+    },
+    "rmd-table-dark-border-color": {
+      name: "rmd-table-dark-border-color",
+      description:
+        "The border color to use for tables due to a chrome rendering bug when the `colSpan` is used on a table. This will be applied when using the dark theme.\n\nNote: this value is _close_ to the divider default value of `rgba($rmd-white-base, 0.12)`",
+      source: "packages/table/src/_variables.scss#L28",
+      since: "2.3.2",
+      usedBy: [{ name: "rmd-theme-dark", type: "mixin", packageName: "theme" }],
+      packageName: "table",
+      type: "Color",
+      value: "#2f2f2f",
+      overridable: true,
+    },
+    "rmd-table-border-color": {
+      name: "rmd-table-border-color",
+      description:
+        "The border color to use for tables due to a chrome rendering bug when the `colSpan` is used on a table.",
+      source: "packages/table/src/_variables.scss#L35-L39",
+      since: "2.3.2",
+      packageName: "table",
+      type: "Color",
+      value:
+        "if(\n  $rmd-theme-light,\n  $rmd-table-light-border-color,\n  $rmd-table-dark-border-color\n)",
+      compiled: "#e0e0e0",
+      overridable: true,
+    },
     "rmd-table-cell-horizontal-padding": {
       name: "rmd-table-cell-horizontal-padding",
       description:
         "The amount of padding to apply to the left and right of each `<td>` and `<th>` in a table.\n",
-      source: "packages/table/src/_variables.scss#L11",
+      source: "packages/table/src/_variables.scss#L44",
       packageName: "table",
       type: "Number",
       value: "1rem",
@@ -403,7 +452,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-cell-vertical-padding",
       description:
         'The amount of padding to apply to the top or bottom for each `<th>` and `<th>` in a table when the cell\'s alignment is set to `"top"` or `"bottom"`.',
-      source: "packages/table/src/_variables.scss#L17",
+      source: "packages/table/src/_variables.scss#L50",
       packageName: "table",
       type: "Number",
       value: "0.375rem",
@@ -413,7 +462,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-cell-sticky-position",
       description:
         "The default position to use for a sticky cell that appears within the `<tbody>` in all tables. This is mostly used if you want to have a custom `<th>` that describes an entire row and should always be visible.\n\nIf you want to update a specific table, you should use the `rmd-table-theme-update-var` mixin for the `sticky-cell` value.",
-      source: "packages/table/src/_variables.scss#L27",
+      source: "packages/table/src/_variables.scss#L60",
       packageName: "table",
       type: "Number",
       value: "0",
@@ -423,7 +472,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-cell-sticky-z-index",
       description:
         "The z-index to apply to all sticky cells within a table. This value doesn't matter too much, but it should just be greater than 1 if you have checkbox cells so that the header will cover the checkboxes.",
-      source: "packages/table/src/_variables.scss#L34",
+      source: "packages/table/src/_variables.scss#L67",
       usedBy: [{ name: "rmd-table-cell", type: "mixin", packageName: "table" }],
       packageName: "table",
       type: "Number",
@@ -433,7 +482,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-table-cell-height": {
       name: "rmd-table-cell-height",
       description: "The minimum height for each `<td>`.\n",
-      source: "packages/table/src/_variables.scss#L38",
+      source: "packages/table/src/_variables.scss#L71",
       usedBy: [{ name: "rmd-thead", type: "mixin", packageName: "table" }],
       packageName: "table",
       type: "Number",
@@ -444,7 +493,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-cell-dense-height",
       description:
         "The minimum height to set for each `<td>` with the dense spec.",
-      source: "packages/table/src/_variables.scss#L43",
+      source: "packages/table/src/_variables.scss#L76",
       usedBy: [{ name: "rmd-thead", type: "mixin", packageName: "table" }],
       packageName: "table",
       type: "Number",
@@ -454,7 +503,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-table-cell-color": {
       name: "rmd-table-cell-color",
       description: "The text color for `<td>` cells within a table.",
-      source: "packages/table/src/_variables.scss#L49",
+      source: "packages/table/src/_variables.scss#L82",
       usedBy: [{ name: "rmd-table-cell", type: "mixin", packageName: "table" }],
       requires: [
         { name: "rmd-theme-var", type: "function", packageName: "theme" },
@@ -469,7 +518,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-cell-horizontal-alignments",
       description:
         "The supported horizontal alignments for the table cell. You can set this value to `null` if you do not want to generate any additional alignments other than the default (`left`), or set to a list of one value if you do not need all the alignments.",
-      source: "packages/table/src/_variables.scss#L57",
+      source: "packages/table/src/_variables.scss#L90",
       usedBy: [
         {
           name: "rmd-table-cell-horizontal-alignments",
@@ -486,7 +535,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-cell-vertical-alignments",
       description:
         'A map of the supported `vertical-align` for a table cell align with the amount of padding to apply. Tables are "fun" to style since theres some weird stuff with how `height` + `padding` works by default so when the `vertical-align` is set to `top` or `bottom`, you also need to apply some padding OR update the `line-height` for the cell. I decided to go with a `padding` approach to make things a bit easier for non-text cells.\n\nNote: You can also set this value to `null` if you do not want to generate the minimal styles for the non-middle alignments.',
-      source: "packages/table/src/_variables.scss#L70",
+      source: "packages/table/src/_variables.scss#L103",
       usedBy: [
         {
           name: "rmd-table-cell-vertical-alignments",
@@ -503,7 +552,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-header-cell-height",
       description:
         "The minimum height for each `<th>` that appears in the `<thead>`.\n\nNote: No styles will be generated if this is `null` or the same value as the `$rmd-table-cell-height`.",
-      source: "packages/table/src/_variables.scss#L78",
+      source: "packages/table/src/_variables.scss#L111",
       usedBy: [{ name: "rmd-thead", type: "mixin", packageName: "table" }],
       packageName: "table",
       type: "Number",
@@ -514,7 +563,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-header-cell-dense-height",
       description:
         "The minimum height for each `<th>` that appears in the `<thead>` with the dense spec.\n\nNote: No styles will be generated if this is `null` or the same value as the `$rmd-table-cell-dense-height`.",
-      source: "packages/table/src/_variables.scss#L87",
+      source: "packages/table/src/_variables.scss#L120",
       usedBy: [{ name: "rmd-thead", type: "mixin", packageName: "table" }],
       packageName: "table",
       type: "Number",
@@ -525,7 +574,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-header-cell-color",
       description:
         "The color to use for `<th>` cells within a table.\n\nNote: No styles will be generated if this is `null` or the same value as the `$rmd-table-cell-color`.",
-      source: "packages/table/src/_variables.scss#L95",
+      source: "packages/table/src/_variables.scss#L128",
       usedBy: [{ name: "rmd-table-cell", type: "mixin", packageName: "table" }],
       packageName: "table",
       type: "Number",
@@ -537,7 +586,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-header-sticky-position",
       description:
         "The default position for a sticky header cell in all tables. If you want to update the header position for a specific table, you can just use the `rmd-table-theme-update-var` mixin for the `sticky-header` variable instead.",
-      source: "packages/table/src/_variables.scss#L102",
+      source: "packages/table/src/_variables.scss#L135",
       packageName: "table",
       type: "Number",
       value: "0",
@@ -547,7 +596,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-row-hover-color",
       description:
         "The background color to use when hovering over a row within the `<tbody>` and the `hoverable` styles have been enabled.",
-      source: "packages/table/src/_variables.scss#L109",
+      source: "packages/table/src/_variables.scss#L142",
       requires: [
         { name: "rmd-black-base", type: "variable", packageName: "theme" },
       ],
@@ -561,7 +610,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-row-selected-color",
       description:
         "The background color to use when a row has been selected within the `<tbody>`.",
-      source: "packages/table/src/_variables.scss#L116",
+      source: "packages/table/src/_variables.scss#L149",
       requires: [
         {
           name: "rmd-states-theme-var",
@@ -579,7 +628,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-footer-sticky-position",
       description:
         "The default position for a sticky footer cell in all tables. If you want to update the footer position for a specific table, you can just use the `rmd-table-theme-update-var` mixin for the `sticky-footer` variable instead.",
-      source: "packages/table/src/_variables.scss#L123",
+      source: "packages/table/src/_variables.scss#L156",
       packageName: "table",
       type: "Number",
       value: "0",
@@ -589,7 +638,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-checkbox-padding",
       description:
         "The amount of padding to apply to a table checkbox cell. This should normally be smaller than the default left and right padding to reduce the width of this cell.",
-      source: "packages/table/src/_variables.scss#L130",
+      source: "packages/table/src/_variables.scss#L163",
       usedBy: [{ name: "rmd-table-cell", type: "mixin", packageName: "table" }],
       packageName: "table",
       type: "Number",
@@ -600,7 +649,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-table-theme-values",
       description:
         'A Map of all the "themeable" parts of the table package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.',
-      source: "packages/table/src/_variables.scss#L137-L148",
+      source: "packages/table/src/_variables.scss#L170-L182",
       usedBy: [
         { name: "rmd-table-theme", type: "function", packageName: "table" },
         { name: "rmd-table-theme-var", type: "function", packageName: "table" },
@@ -615,9 +664,9 @@ const sassdoc: PackageSassDoc = {
       packageName: "table",
       type: "Map",
       value:
-        "(\n  cell-color: $rmd-table-cell-color,\n  cell-h-padding: $rmd-table-cell-horizontal-padding,\n  cell-v-padding: $rmd-table-cell-vertical-padding,\n  cell-height: $rmd-table-cell-height,\n  cell-dense-height: $rmd-table-cell-dense-height,\n  hover-color: $rmd-table-row-hover-color,\n  selected-color: $rmd-table-row-selected-color,\n  sticky-header: $rmd-table-header-sticky-position,\n  sticky-cell: $rmd-table-cell-sticky-position,\n  sticky-footer: $rmd-table-footer-sticky-position,\n)",
+        "(\n  border-color: $rmd-table-border-color,\n  cell-color: $rmd-table-cell-color,\n  cell-h-padding: $rmd-table-cell-horizontal-padding,\n  cell-v-padding: $rmd-table-cell-vertical-padding,\n  cell-height: $rmd-table-cell-height,\n  cell-dense-height: $rmd-table-cell-dense-height,\n  hover-color: $rmd-table-row-hover-color,\n  selected-color: $rmd-table-row-selected-color,\n  sticky-header: $rmd-table-header-sticky-position,\n  sticky-cell: $rmd-table-cell-sticky-position,\n  sticky-footer: $rmd-table-footer-sticky-position,\n)",
       compiled:
-        "(\n  cell-color: var(--rmd-theme-text-primary-on-background, #212121),\n  cell-h-padding: 1rem,\n  cell-v-padding: 0.375rem,\n  cell-height: 3.25rem,\n  cell-dense-height: 2rem,\n  hover-color: rgba(0, 0, 0, 0.12),\n  selected-color: var(--rmd-states-selected-color, rgba(0, 0, 0, 0.16)),\n  sticky-header: 0,\n  sticky-cell: 0,\n  sticky-footer: 0,\n)",
+        "(\n  border-color: #e0e0e0,\n  cell-color: var(--rmd-theme-text-primary-on-background, #212121),\n  cell-h-padding: 1rem,\n  cell-v-padding: 0.375rem,\n  cell-height: 3.25rem,\n  cell-dense-height: 2rem,\n  hover-color: rgba(0, 0, 0, 0.12),\n  selected-color: var(--rmd-states-selected-color, rgba(0, 0, 0, 0.16)),\n  sticky-header: 0,\n  sticky-cell: 0,\n  sticky-footer: 0,\n)",
       overridable: true,
     },
   },

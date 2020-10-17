@@ -216,6 +216,13 @@
     );
   }
 
+  @if mixin-exists(rmd-table-theme-update-var) {
+    @include rmd-table-theme-update-var(
+      border-color,
+      $rmd-table-light-border-color
+    );
+  }
+
   @if mixin-exists(rmd-tabs-theme-update-var) {
     @include rmd-tabs-theme-update-var(active, $rmd-black-base);
     @include rmd-tabs-theme-update-var(
@@ -349,6 +356,13 @@
     @include rmd-states-theme-update-var(
       ripple-background-color,
       $rmd-states-dark-theme-ripple-background-color
+    );
+  }
+
+  @if mixin-exists(rmd-table-theme-update-var) {
+    @include rmd-table-theme-update-var(
+      border-color,
+      $rmd-table-dark-border-color
     );
   }
 

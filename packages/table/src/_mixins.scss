@@ -271,7 +271,8 @@
   }
 
   &--bordered {
-    @include rmd-divider-border(bottom);
+    border-bottom: rmd-divider-theme-var(size) solid
+      rmd-table-theme-var(border-color);
 
     // this is actually pretty nice since it'll also NOT create a border on the
     // header row (which we want)

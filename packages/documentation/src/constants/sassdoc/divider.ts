@@ -50,6 +50,7 @@ const sassdoc: PackageSassDoc = {
           packageName: "card",
         },
         { name: "rmd-divider", type: "mixin", packageName: "divider" },
+        { name: "rmd-table-row", type: "mixin", packageName: "table" },
       ],
       requires: [
         { name: "rmd-theme-get-var", type: "function", packageName: "theme" },
@@ -184,7 +185,6 @@ const sassdoc: PackageSassDoc = {
       source: "packages/divider/src/_mixins.scss#L50-L56",
       usedBy: [
         { name: "react-md-layout", type: "mixin", packageName: "layout" },
-        { name: "rmd-table-row", type: "mixin", packageName: "table" },
       ],
       requires: [
         { name: "rmd-divider-theme", type: "mixin", packageName: "divider" },
