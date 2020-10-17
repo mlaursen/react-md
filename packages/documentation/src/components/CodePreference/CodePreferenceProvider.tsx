@@ -94,7 +94,7 @@ export function CodePreferenceProvider({
       firstRender.current = false;
       const def = getDefaultCodePreference();
       if (def !== pref) {
-        Cookie.set(CODE_PREFERENCE, def);
+        Cookie.set(CODE_PREFERENCE, def, { sameSite: "Strict" });
         setPref(def);
       }
 
@@ -105,7 +105,7 @@ export function CodePreferenceProvider({
       name: EventName.CodePreference,
       lang: pref,
     });
-    Cookie.set(CODE_PREFERENCE, pref);
+    Cookie.set(CODE_PREFERENCE, pref, { sameSite: "Strict" });
     localStorage.setItem(CODE_PREFERENCE, pref);
   }, [pref]);
 

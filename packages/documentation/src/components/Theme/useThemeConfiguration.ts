@@ -42,7 +42,7 @@ export default function useThemeConfiguration(
       ) {
         root.classList.remove(`${theme}-theme`);
         root.classList.add(`${localTheme}-theme`);
-        Cookie.set("theme", localTheme);
+        Cookie.set("theme", localTheme, { sameSite: "Strict" });
         setTheme(localTheme);
       }
 
@@ -54,7 +54,7 @@ export default function useThemeConfiguration(
       name: EventName.ThemeChange,
       mode: theme,
     });
-    Cookie.set("theme", theme);
+    Cookie.set("theme", theme, { sameSite: "Strict" });
     localStorage.setItem("theme", theme);
     root.classList.add(styles.transition);
     // force dom repaint
