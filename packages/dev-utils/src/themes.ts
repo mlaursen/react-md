@@ -163,7 +163,7 @@ async function replaceTheme(
   }: ReplaceThemeOptions
 ): Promise<void> {
   const isContrastCompliant = await import(isContrastCompliantPath).then(
-    (mod) => mod.default
+    (mod) => mod.isContrastCompliant
   );
   const primaryColor = variables[`rmd-${primary}-500`];
   const onPrimaryColor = isContrastCompliant(primaryColor, "#000")
@@ -245,7 +245,7 @@ export async function themes(): Promise<void> {
     })
   );
 
-  const [firstLight, firstDark, ...remainingThemes] = allThemes.slice(0, 8);
+  const [firstLight, firstDark, ...remainingThemes] = allThemes;
   const [lightCSS, darkCSS] = await Promise.all([
     compile(firstLight),
     compile(firstDark),
