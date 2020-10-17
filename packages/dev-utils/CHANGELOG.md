@@ -7,16 +7,11 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- **theme:** Better Contrast Colors by Default and dev-utils refactor
-  ([#955](https://github.com/mlaursen/react-md/issues/955))
+- [@react-md/theme](../theme): Better Contrast Colors by Default and dev-utils
+  refactor ([#955](https://github.com/mlaursen/react-md/issues/955))
   ([519b128](https://github.com/mlaursen/react-md/commit/519b128522de944d55ff96a1e1125447665ed586))
 - **themes:** updated sandboxes to use new CDN for pre-compiled themes
   ([e83f47e](https://github.com/mlaursen/react-md/commit/e83f47edb7401a81af6e3669745815cb85f565a8))
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.3.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.1) (2020-09-15)
 

@@ -7,16 +7,12 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- **theme:** Better Contrast Colors by Default and dev-utils refactor
-  ([#955](https://github.com/mlaursen/react-md/issues/955))
+- [@react-md/theme](../theme): Better Contrast Colors by Default and dev-utils
+  refactor ([#955](https://github.com/mlaursen/react-md/issues/955))
   ([519b128](https://github.com/mlaursen/react-md/commit/519b128522de944d55ff96a1e1125447665ed586))
-- **utils:** added `Dir` component to help determine current writing direction
+- [@react-md/utils](../utils): added `Dir` component to help determine current
+  writing direction
   ([a929e04](https://github.com/mlaursen/react-md/commit/a929e04b20bf41c3bff109714d9cf850bac99eb3))
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [2.3.1](https://github.com/mlaursen/react-md/compare/v2.2.0...v2.3.1) (2020-09-15)
 
