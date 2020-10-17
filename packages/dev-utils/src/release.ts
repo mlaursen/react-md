@@ -71,7 +71,7 @@ export async function release(
   // libsize changes, prettier changelogs, and adding the themes specifically
   // for the tag only
   run(`npx lerna version ${type} --no-push${yes}`);
-  await changelogs(false, true);
+  await changelogs();
 
   log.info("Cleaning all the old dists and `.tsbuildinfo` files...");
   await clean();
