@@ -1,6 +1,7 @@
 import log from "loglevel";
 import prompts from "prompts";
 
+import { changelogs } from "./changelogs";
 import { clean } from "./clean";
 import { libsize } from "./libsize";
 import { ammendCommit, getLernaVersion, git, replaceTag, run } from "./utils";
@@ -70,7 +71,7 @@ export async function release(
   // libsize changes, prettier changelogs, and adding the themes specifically
   // for the tag only
   run(`npx lerna version ${type} --no-push${yes}`);
-  // await fixChangelogs(false, true);
+  await changelogs(false, true);
 
   log.info("Cleaning all the old dists and `.tsbuildinfo` files...");
   await clean();
@@ -88,6 +89,7 @@ export async function release(
   git("add -f themes");
 
   if (blog) {
+    log.info("Update the blog...");
     await verify();
   }
 
