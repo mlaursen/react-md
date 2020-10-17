@@ -5,6 +5,39 @@
 @import '~@react-md/states/dist/functions';
 @import '~@react-md/theme/dist/mixins';
 
+/// The border color to use for tables due to a chrome rendering bug when the
+/// `colSpan` is used on a table. This will be applied when using the light
+/// theme.
+///
+/// Note: this value is _close_ to the divider default value of
+/// `rgba($rmd-black-base, 0.12)`
+///
+/// @since 2.3.2
+/// @type Color
+$rmd-table-light-border-color: #e0e0e0 !default;
+
+/// The border color to use for tables due to a chrome rendering bug when the
+/// `colSpan` is used on a table. This will be applied when using the dark
+/// theme.
+///
+/// Note: this value is _close_ to the divider default value of
+/// `rgba($rmd-white-base, 0.12)`
+///
+/// @since 2.3.2
+/// @type Color
+$rmd-table-dark-border-color: #2f2f2f !default;
+
+/// The border color to use for tables due to a chrome rendering bug when the
+/// `colSpan` is used on a table.
+///
+/// @since 2.3.2
+/// @type Color
+$rmd-table-border-color: if(
+  $rmd-theme-light,
+  $rmd-table-light-border-color,
+  $rmd-table-dark-border-color
+) !default;
+
 /// The amount of padding to apply to the left and right of each `<td>` and
 /// `<th>` in a table.
 /// @type Number
@@ -135,6 +168,7 @@ $rmd-table-checkbox-padding: 0.5rem !default;
 ///
 /// @type Map
 $rmd-table-theme-values: (
+  border-color: $rmd-table-border-color,
   cell-color: $rmd-table-cell-color,
   cell-h-padding: $rmd-table-cell-horizontal-padding,
   cell-v-padding: $rmd-table-cell-vertical-padding,
