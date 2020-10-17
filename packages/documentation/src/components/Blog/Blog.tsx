@@ -75,7 +75,11 @@ export default function Blog({ children }: BlogProps): ReactElement {
       </TextContainer>
       <Divider />
       {posts.map((post, i) => (
-        <Post key={post.date} {...post} isLast={i === posts.length - 1} />
+        <Post
+          key={`${post.date}-${post.title}`}
+          {...post}
+          isLast={i === posts.length - 1}
+        />
       ))}
     </>
   );
