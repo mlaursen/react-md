@@ -11477,9 +11477,9 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1, neo-async@^2.6.2:
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
 next-images@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/next-images/-/next-images-1.4.1.tgz#946f34728609dc24517234d85b2f6b6f9a3344d1"
-  integrity sha512-Xkxxf+Hw/Pet2VVbw72jc7PAcOGisTTXa/L3a6XPRqSlhOJSXyGxE3U8hJn5wwfrzkXT31nxrfnfQKfbgjCPEg==
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/next-images/-/next-images-1.6.0.tgz#aeb75d461d92958fbf2033e963383791764ca741"
+  integrity sha512-Ub395DSBkRcNNLV1N9h/tkzmdvQMF5cXZwmPnNI25OcW3ruN+zrGlFsWN7bBgLoH/Xuiw2kS99zCXE2cxbs63w==
   dependencies:
     file-loader "^6.0.0"
     url-loader "^4.0.0"
