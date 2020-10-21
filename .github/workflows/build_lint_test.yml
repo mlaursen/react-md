@@ -13,6 +13,7 @@ jobs:
   build_node_matrix:
     name: Build Using Node Matrix
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
     strategy:
       matrix:
         node-version: [10.x, 12.x]
@@ -47,6 +48,7 @@ jobs:
     # only want to use codecov for node 14
     name: Build Using Node 14
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
     steps:
     - uses: actions/checkout@v2
 
