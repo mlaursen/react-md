@@ -1,3 +1,16 @@
+Title: react-md 2.4.2
+
+Date: 10/23/2020
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/menu:** fixed DropdownMenu not being able to provide style and
+  className to Menu (7823fea), closes #989
+
+---
+
 Title: react-md 2.4.1
 
 Date: 10/17/2020

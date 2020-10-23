@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/mlaursen/react-md/compare/v2.4.1...v2.4.2) (2020-10-23)
+
+### Bug Fixes
+
+- [@react-md/menu](./packages/menu): fixed DropdownMenu not being able to
+  provide style and className to Menu
+  ([7823fea](https://github.com/mlaursen/react-md/commit/7823fea2ff2979792942534b0bc6cf753bd5ac9a)),
+  closes [#989](https://github.com/mlaursen/react-md/issues/989)
+
 ## [2.4.1](https://github.com/mlaursen/react-md/compare/v2.4.0...v2.4.1) (2020-10-17)
 
 - this is a re-release of v2.4.0 to ensure that all the themes are created

@@ -1,6 +1,6 @@
 {
   "name": "@react-md/portal",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "This package is for including icons within react-md. There is included support for both font icons and SVG icons.  There is also a helper component for applying spacing between icons and text.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
