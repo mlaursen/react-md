@@ -4,7 +4,7 @@ import prompts from "prompts";
 import { changelogs } from "./changelogs";
 import { clean } from "./clean";
 import { libsize } from "./libsize";
-import { ammendCommit, getLernaVersion, git, replaceTag, run } from "./utils";
+import { getLernaVersion, git, replaceTag, run } from "./utils";
 import { variables } from "./variables";
 
 export type ReleaseType =
