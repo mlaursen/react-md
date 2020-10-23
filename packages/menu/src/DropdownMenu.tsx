@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { CSSProperties, forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 
@@ -37,6 +37,16 @@ export interface BaseDropdownMenuProps
    * be changed if it does not.
    */
   menuLabelledBy?: string;
+
+  /**
+   * An optional style object to pass to the `menuRenderer`/`Menu` component.
+   */
+  menuStyle?: CSSProperties;
+
+  /**
+   * An optional className to pass to the `menuRenderer`/`Menu` component.
+   */
+  menuClassName?: string;
 
   /**
    * A custom menu renderer to use. This defaults to just rendering the `Menu`
@@ -82,6 +92,8 @@ export const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
       anchor,
       menuLabel,
       menuLabelledBy,
+      menuStyle,
+      menuClassName,
       menuRenderer = defaultMenuRenderer,
       items,
       itemRenderer = defaultMenuItemRenderer,
@@ -143,6 +155,8 @@ export const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
             "aria-labelledby": labelledBy as string,
             id: `${id}-menu`,
             controlId: id,
+            style: menuStyle,
+            className: menuClassName,
             anchor,
             positionOptions,
             closeOnScroll,

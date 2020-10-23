@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { CSSProperties, ReactElement, ReactNode } from "react";
 import { List } from "@react-md/list";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import { LabelRequiredForA11y } from "@react-md/utils";
@@ -33,6 +33,8 @@ export interface AllInjectedMenuProps
     RenderConditionalPortalProps {
   "aria-label"?: string;
   "aria-labelledby"?: string;
+  style?: CSSProperties;
+  className?: string;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
 }

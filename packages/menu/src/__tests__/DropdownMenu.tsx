@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React from "react";
+import React, { CSSProperties } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import { DropdownMenu } from "../DropdownMenu";
@@ -55,5 +55,25 @@ describe("DropdownMenu", () => {
     ];
     rerender(<DropdownMenu {...PROPS} items={items4} />);
     expect(container).toMatchSnapshot();
+  });
+
+  it("should pass the menuStyle and menuClassName props to the menu correctly", () => {
+    const menuStyle: CSSProperties = { color: "red" };
+    const menuClassName = "my-custom-class-name";
+    const { getByRole } = render(
+      <DropdownMenu
+        {...PROPS}
+        menuStyle={menuStyle}
+        menuClassName={menuClassName}
+        items={["Item 1", "Item 2", "Item 3"]}
+      />
+    );
+
+    const button = getByRole("button");
+    fireEvent.click(button);
+
+    const menu = getByRole("menu");
+    expect(menu.style.color).toBe(menuStyle.color);
+    expect(menu.className).toContain(menuClassName);
   });
 });

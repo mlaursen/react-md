@@ -150,6 +150,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
     role = "menu",
     tabIndex = -1,
     controlId,
+    style: propStyle,
     className,
     visible,
     onRequestClose,
@@ -263,7 +264,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
           ref={ref}
           role={role}
           tabIndex={tabIndex}
-          style={style}
+          style={{ ...propStyle, ...style }}
           className={cn(block({ horizontal }), className)}
           onClick={onClick}
           onKeyDown={onKeyDown}
