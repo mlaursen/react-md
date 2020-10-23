@@ -83,10 +83,7 @@ export async function release(
   run("yarn build");
   await libsize({ umd: true, themes: true, stageChanges: true });
 
-  // add the pre-compiled themes to git so they can be included in the tag, but
-  // then remove them and ammend the commit with them removed so they aren't
-  // added to the main branch.
-  git("add -f themes");
+  git("add themes");
 
   if (blog) {
     log.info("Update the blog...");
@@ -103,9 +100,6 @@ export async function release(
 
   run(`npx lerna publish from-package${distTag}${yes}`);
   await verify();
-
-  git("rm -rf themes");
-  ammendCommit();
 
   git("push origin main");
   git("push --tags");

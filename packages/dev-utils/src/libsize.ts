@@ -267,7 +267,7 @@ ${list(css)}
 
   logPercentChanged(message, !!umds.length, !!css.length);
 
-  if (stageChanges && umds.length && !css.length) {
+  if (stageChanges && umds.length && css.length) {
     log.info("Updating documentation files with libsize...");
     updateLibsize(ROOT_README_PATH, message);
     updateLibsize(ABOUT_README_PATH, message);
