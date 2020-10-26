@@ -81,7 +81,7 @@
     "lint-staged": "^10.2.13",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.0",
-    "react": "^16.13.1",
+    "react": "^17.0.1",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "sass-lint": "^1.13.1",
