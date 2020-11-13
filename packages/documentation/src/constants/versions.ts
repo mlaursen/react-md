@@ -89,7 +89,7 @@ export const versions: Record<string, string> = {
   next: "9.5.5",
   prismjs: "1.21.0",
   qs: "6.9.4",
-  "react-hook-form": "6.5.1",
+  "react-hook-form": "6.11.0",
   "react-router-dom": "5.2.0",
   "react-swipeable": "5.5.1",
   "react-virtualized": "9.21.2",
