@@ -77,7 +77,7 @@
     "react-virtualized": "^9.21.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.4",
+    "@babel/core": "^7.12.3",
     "@react-md/dev-utils": "^2.4.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.7",
@@ -101,7 +101,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.3",
+    "typescript": "^4.0.5",
     "webpack": "^4.44.1"
   }
 }

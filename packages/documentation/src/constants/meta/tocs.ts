@@ -464,10 +464,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -476,7 +472,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -488,7 +484,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -516,7 +512,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-3",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -604,10 +600,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -616,7 +608,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -748,10 +740,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -760,7 +748,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -796,7 +784,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -866,10 +854,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -878,7 +862,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -902,7 +886,7 @@ const tocs: TOCRecord = {
       title: "2.2.0 (2020-08-11)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -998,10 +982,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -1010,7 +990,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -1134,14 +1114,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#bug-fixes",
-      title: "Bug Fixes",
-    },
-    {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -1150,11 +1122,11 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#bug-fixes-1",
+      anchor: "#bug-fixes",
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -1166,11 +1138,11 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#bug-fixes-2",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -1202,7 +1174,7 @@ const tocs: TOCRecord = {
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes-3",
+      anchor: "#bug-fixes-2",
       title: "Bug Fixes",
     },
     {
@@ -1338,10 +1310,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -1350,7 +1318,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -1382,7 +1350,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -1470,10 +1438,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -1482,7 +1446,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -1514,7 +1478,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -1610,10 +1574,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -1622,7 +1582,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -1634,7 +1594,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -1662,7 +1622,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-3",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -1786,10 +1746,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -1798,7 +1754,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -1914,10 +1870,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -1926,7 +1878,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -2038,10 +1990,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -2050,7 +1998,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -2170,14 +2118,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#bug-fixes",
-      title: "Bug Fixes",
-    },
-    {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -2186,11 +2126,11 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#bug-fixes-1",
+      anchor: "#bug-fixes",
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -2202,11 +2142,11 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#bug-fixes-2",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -2222,11 +2162,11 @@ const tocs: TOCRecord = {
       title: "2.2.0 (2020-08-11)",
     },
     {
-      anchor: "#bug-fixes-3",
+      anchor: "#bug-fixes-2",
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-3",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -2242,7 +2182,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-4",
+      anchor: "#features-3",
       title: "Features",
     },
     {
@@ -2250,7 +2190,7 @@ const tocs: TOCRecord = {
       title: "2.0.3 (2020-07-07)",
     },
     {
-      anchor: "#bug-fixes-4",
+      anchor: "#bug-fixes-3",
       title: "Bug Fixes",
     },
     {
@@ -2258,7 +2198,7 @@ const tocs: TOCRecord = {
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes-5",
+      anchor: "#bug-fixes-4",
       title: "Bug Fixes",
     },
     {
@@ -2386,10 +2326,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -2398,7 +2334,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -2522,10 +2458,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -2534,7 +2466,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -2546,7 +2478,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -2654,10 +2586,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -2666,7 +2594,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -2778,10 +2706,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -2790,7 +2714,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -2918,10 +2842,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -2930,7 +2850,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -3020,10 +2940,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -3032,7 +2948,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -3148,10 +3064,6 @@ const tocs: TOCRecord = {
       title: "Bug Fixes",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -3160,7 +3072,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -3172,7 +3084,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -3200,7 +3112,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-3",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -3316,10 +3228,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -3328,7 +3236,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -3340,7 +3248,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -3440,10 +3348,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -3452,7 +3356,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -3526,10 +3430,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -3538,7 +3438,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -3550,7 +3450,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -3670,10 +3570,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -3682,7 +3578,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -3694,7 +3590,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -3722,7 +3618,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#features-3",
+      anchor: "#features-2",
       title: "Features",
     },
     {
@@ -3810,14 +3706,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#bug-fixes",
-      title: "Bug Fixes",
-    },
-    {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -3826,11 +3714,11 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#bug-fixes-1",
+      anchor: "#bug-fixes",
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -3842,7 +3730,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#bug-fixes-2",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -3870,7 +3758,7 @@ const tocs: TOCRecord = {
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes-3",
+      anchor: "#bug-fixes-2",
       title: "Bug Fixes",
     },
     {
@@ -3962,14 +3850,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#bug-fixes",
-      title: "Bug Fixes",
-    },
-    {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -3978,11 +3858,11 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#bug-fixes-1",
+      anchor: "#bug-fixes",
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -4026,7 +3906,7 @@ const tocs: TOCRecord = {
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes-2",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -4126,10 +4006,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -4138,7 +4014,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -4150,7 +4026,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -4266,14 +4142,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#bug-fixes",
-      title: "Bug Fixes",
-    },
-    {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -4282,11 +4150,11 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#bug-fixes-1",
+      anchor: "#bug-fixes",
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -4314,7 +4182,7 @@ const tocs: TOCRecord = {
       title: "2.1.1 (2020-07-21)",
     },
     {
-      anchor: "#bug-fixes-2",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -4322,11 +4190,11 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#bug-fixes-3",
+      anchor: "#bug-fixes-2",
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -4334,7 +4202,7 @@ const tocs: TOCRecord = {
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes-4",
+      anchor: "#bug-fixes-3",
       title: "Bug Fixes",
     },
     {
@@ -4422,10 +4290,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -4434,7 +4298,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -4566,10 +4430,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -4578,7 +4438,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -4706,10 +4566,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -4718,7 +4574,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -4730,7 +4586,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -4826,10 +4682,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -4838,7 +4690,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -4950,10 +4802,6 @@ const tocs: TOCRecord = {
       title: "2.4.2 (2020-10-23)",
     },
     {
-      anchor: "#features",
-      title: "Features",
-    },
-    {
       anchor: "#241-2020-10-17",
       title: "2.4.1 (2020-10-17)",
     },
@@ -4962,7 +4810,7 @@ const tocs: TOCRecord = {
       title: "2.4.0 (2020-10-17)",
     },
     {
-      anchor: "#features-1",
+      anchor: "#features",
       title: "Features",
     },
     {
@@ -4974,7 +4822,7 @@ const tocs: TOCRecord = {
       title: "2.3.0 (2020-09-10)",
     },
     {
-      anchor: "#features-2",
+      anchor: "#features-1",
       title: "Features",
     },
     {
@@ -4994,7 +4842,7 @@ const tocs: TOCRecord = {
       title: "Bug Fixes",
     },
     {
-      anchor: "#features-3",
+      anchor: "#features-2",
       title: "Features",
     },
     {
