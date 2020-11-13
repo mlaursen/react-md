@@ -86,7 +86,7 @@ export const versions: Record<string, string> = {
   marked: "1.2.3",
   "mobile-detect": "1.4.4",
   morgan: "1.10.0",
-  next: "9.5.5",
+  next: "9.5.2",
   prismjs: "1.21.0",
   qs: "6.9.4",
   "react-hook-form": "6.11.0",
