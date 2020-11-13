@@ -36,7 +36,7 @@
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.0",
     "pretty-ms": "^7.0.0",
-    "prompts": "^2.3.2",
+    "prompts": "^2.4.0",
     "rimraf": "^3.0.2",
     "sassdoc": "^2.7.2",
     "ts-morph": "^8.2.0",
