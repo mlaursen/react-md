@@ -39,4 +39,17 @@ describe("SimpleListItem", () => {
     fireEvent.click(item);
     expect(onClick).toBeCalled();
   });
+
+  it("should apply the correct disabled classes based on the disabledOpacity prop", () => {
+    const props = { role: "button", disabled: true, children: "Content" };
+    const { rerender, getByRole } = render(<SimpleListItem {...props} />);
+
+    const item = getByRole("button");
+    expect(item.className).toContain("rmd-list-item--disabled-color");
+    expect(item.className).not.toContain("rmd-list-item--disabled-opacity");
+
+    rerender(<SimpleListItem {...props} disabledOpacity />);
+    expect(item.className).not.toContain("rmd-list-item--disabled-color");
+    expect(item.className).toContain("rmd-list-item--disabled-opacity");
+  });
 });

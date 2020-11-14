@@ -158,6 +158,13 @@ $rmd-list-item-media-large-size: 6.25rem !default;
 /// @type Number
 $rmd-list-item-media-spacing: 1rem !default;
 
+/// The opacity to apply to a list item when it is `disabled` and the
+/// `disabledOpacity` boolean is enabled that will also darken any addons
+/// rendered in the list item.
+///
+/// @type Number
+$rmd-list-item-disabled-opacity: 0.5 !default;
+
 /// A Map of all the "themeable" parts of the list package. Every key in this
 /// map will be used to create a css variable to dynamically update the values
 /// of the icon as needed.

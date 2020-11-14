@@ -19,6 +19,17 @@ export interface SimpleListItemProps
   disabled?: boolean;
 
   /**
+   * Boolean if the list item should apply an opacity value while disabled
+   * instead of overriding the primary and secondary text colors. Enabling this
+   * will allow for the list item addons to also be dimmed.
+   *
+   * This is configured by the `$rmd-list-item-disabled-opacity` variable.
+   *
+   * Note: This does nothing if the `disabled` prop is not enabled.
+   */
+  disabledOpacity?: boolean;
+
+  /**
    * Boolean if the list item should be updated to use the clickable styles to
    * the item. This is really just a pass-down value for the main `ListItem`
    * component and shouldn't really be used unless you are implementing your own

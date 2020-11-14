@@ -184,9 +184,19 @@
   }
 
   &--disabled {
-    @include rmd-theme(color, text-disabled-on-background);
-
     pointer-events: none;
+  }
+
+  &--disabled-color {
+    @include rmd-theme(color, text-disabled-on-background);
+    @include rmd-theme-update-var(
+      text-secondary-on-background,
+      rmd-theme-var(text-disabled-on-background)
+    );
+  }
+
+  &--disabled-opacity {
+    opacity: $rmd-list-item-disabled-opacity;
   }
 
   &--link {

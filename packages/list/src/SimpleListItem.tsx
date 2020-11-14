@@ -39,6 +39,7 @@ export const SimpleListItem = forwardRef<HTMLLIElement, SimpleListItemProps>(
       clickable = false,
       onClick,
       disabled = false,
+      disabledOpacity = false,
       ...props
     },
     ref
@@ -66,6 +67,8 @@ export const SimpleListItem = forwardRef<HTMLLIElement, SimpleListItemProps>(
             "three-lines": threeLines,
             clickable,
             disabled: isDisabled,
+            "disabled-color": isDisabled && !disabledOpacity,
+            "disabled-opacity": isDisabled && disabledOpacity,
           }),
           className
         )}

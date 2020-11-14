@@ -49,4 +49,17 @@ describe("ListItem", () => {
     rerender(<ListItem {...props} tabIndex={0} disabled />);
     expect(item.tabIndex).toBe(0);
   });
+
+  it("should apply the correct disabled classes based on the disabledOpacity prop", () => {
+    const props = { disabled: true, children: "Content" };
+    const { rerender, getByRole } = render(<ListItem {...props} />);
+
+    const item = getByRole("button");
+    expect(item.className).toContain("rmd-list-item--disabled-color");
+    expect(item.className).not.toContain("rmd-list-item--disabled-opacity");
+
+    rerender(<ListItem {...props} disabledOpacity />);
+    expect(item.className).not.toContain("rmd-list-item--disabled-color");
+    expect(item.className).toContain("rmd-list-item--disabled-opacity");
+  });
 });
