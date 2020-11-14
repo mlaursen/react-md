@@ -2804,6 +2804,10 @@ const tocs: TOCRecord = {
       title: "Three Line Examples",
     },
     {
+      anchor: "#configurable-example",
+      title: "Configurable Example",
+    },
+    {
       anchor: "#non-interactable",
       title: "Non Interactable",
     },

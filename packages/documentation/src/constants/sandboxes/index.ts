@@ -285,6 +285,10 @@ const sandboxes: Sandboxes = {
     WithIcons: () => resolve(import("./Link-WithIcons.json")),
   },
   List: {
+    "ConfigurableExample-js": () =>
+      resolve(import("./List-ConfigurableExample-js.json")),
+    ConfigurableExample: () =>
+      resolve(import("./List-ConfigurableExample.json")),
     "NonInteractable-js": () =>
       resolve(import("./List-NonInteractable-js.json")),
     NonInteractable: () => resolve(import("./List-NonInteractable.json")),

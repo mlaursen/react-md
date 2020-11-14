@@ -1279,6 +1279,14 @@ const metadata: readonly RouteMetadata[] = [
     pathname: "/packages/list/demos#three-line-examples-title",
   },
   {
+    title: "List Demo - Configurable Example",
+    summary:
+      "This is a simple demo that will allow you to set some different props on the ListItem and see how the layout changes.",
+    type: "demo",
+    pageUrl: "/packages/list/demos#configurable-example-title",
+    pathname: "/packages/list/demos#configurable-example-title",
+  },
+  {
     title: "List Demo - Non Interactable",
     summary:
       "You can also create non-interactable lists by using the SimpleListItem component even though this method is not recommended as using the default <ul> or <ol> elements along with <li> might be a bit easier due to some styling issues.",

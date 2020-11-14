@@ -11,6 +11,11 @@ import twoLineExamples from "./TwoLineExamples.md";
 import ThreeLineExamples from "./ThreeLineExamples";
 import threeLineExamples from "./ThreeLineExamples.md";
 
+import {
+  ConfigurableExample,
+  configurableExample,
+} from "./ConfigurableExample";
+
 import NonInteractable from "./NonInteractable";
 import nonInteractable from "./NonInteractable.md";
 
@@ -29,6 +34,12 @@ const demos = [
     name: "Three Line Examples",
     description: threeLineExamples,
     children: <ThreeLineExamples />,
+  },
+  {
+    name: "Configurable Example",
+    description: configurableExample,
+    children: <ConfigurableExample />,
+    disableCard: true,
   },
   {
     name: "Non Interactable",
