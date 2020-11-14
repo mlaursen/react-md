@@ -168,7 +168,9 @@ export function createSandbox(
   resolvedFiles.forEach((contents, aliasedFileName) => {
     const fileName = aliasedFileName
       .replace(aliasRegExp, "")
+      .replace(`${demoName}${sep}`, "")
       .replace(/\/?Demos\/[A-z]+\/?/, "");
+
     const key = join("src", `${fileName}${getExtension(fileName)}`);
     if (files[key]) {
       log.error(`${key} already exists in the resolved files`);
