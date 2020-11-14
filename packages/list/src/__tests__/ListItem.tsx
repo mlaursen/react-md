@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/tabindex-no-positive */
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 
@@ -28,5 +29,24 @@ describe("ListItem", () => {
     expect(item.className).toContain("rmd-list-item--disabled");
     fireEvent.click(item);
     expect(onClick).not.toBeCalled();
+  });
+
+  it("should default the tabIndex to 0 when not disabled and to -1 when disabled", () => {
+    const props = { children: "Content" };
+    const { rerender, getByRole } = render(<ListItem {...props} />);
+    const item = getByRole("button");
+    expect(item.tabIndex).toBe(0);
+
+    rerender(<ListItem {...props} disabled />);
+    expect(item.tabIndex).toBe(-1);
+
+    rerender(<ListItem {...props} tabIndex={1} />);
+    expect(item.tabIndex).toBe(1);
+
+    rerender(<ListItem {...props} tabIndex={1} disabled />);
+    expect(item.tabIndex).toBe(1);
+
+    rerender(<ListItem {...props} tabIndex={0} disabled />);
+    expect(item.tabIndex).toBe(0);
   });
 });

@@ -48,13 +48,12 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       rippleClassName,
       rippleContainerClassName,
       role = "button",
-      tabIndex = 0,
+      disabled = false,
+      tabIndex = disabled ? -1 : 0,
       ...props
     },
     ref
   ) {
-    const { disabled } = props;
-
     const { ripples, className, handlers } = useInteractionStates({
       className: propClassName,
       handlers: props,
@@ -84,6 +83,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
         {...handlers}
         ref={ref}
         tabIndex={tabIndex}
+        disabled={disabled}
         role={role}
         className={className}
         clickable
