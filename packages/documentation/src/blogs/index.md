@@ -1,3 +1,29 @@
+Title: react-md 2.4.3
+
+Date: 11/13/2020
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/list:** fixed `ListItem` disabled colors to optionally include
+  addons (a40b6b3), closes #997
+- **@react-md/list:** `ListItem` no longer focusable by default when disabled
+  (06e91ca), closes #997
+
+##### Documentation<!-- no-margin -->
+
+- **examples:** updated
+  [create-react-app]({{GITHUB_FILE_URL}}/examples/create-react-app) to use
+  `react-scripts@4.0.0` (be003a9)
+- **examples:** updated
+  [create-react-app-typescript]({{GITHUB_FILE_URL}}/examples/create-react-app-typescript)
+  to use `react-scripts@4.0.0` (8b7122b)
+- **sandbox:** fixed missing versions for sandboxes (09c97ee)
+- **sandbox:** fixed sandboxes that have additional files (f45aab1)
+
+---
+
 Title: react-md 2.4.2
 
 Date: 10/23/2020

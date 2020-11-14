@@ -736,6 +736,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#243-2020-11-14",
+      title: "2.4.3 (2020-11-14)",
+    },
+    {
       anchor: "#242-2020-10-23",
       title: "2.4.2 (2020-10-23)",
     },
@@ -2114,6 +2118,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#243-2020-11-14",
+      title: "2.4.3 (2020-11-14)",
+    },
+    {
       anchor: "#242-2020-10-23",
       title: "2.4.2 (2020-10-23)",
     },
@@ -2454,6 +2462,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#243-2020-11-14",
+      title: "2.4.3 (2020-11-14)",
+    },
+    {
       anchor: "#242-2020-10-23",
       title: "2.4.2 (2020-10-23)",
     },
@@ -2702,6 +2714,14 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#243-2020-11-14",
+      title: "2.4.3 (2020-11-14)",
+    },
+    {
+      anchor: "#bug-fixes",
+      title: "Bug Fixes",
+    },
+    {
       anchor: "#242-2020-10-23",
       title: "2.4.2 (2020-10-23)",
     },
@@ -2750,7 +2770,7 @@ const tocs: TOCRecord = {
       title: "2.1.0 (2020-07-12)",
     },
     {
-      anchor: "#bug-fixes",
+      anchor: "#bug-fixes-1",
       title: "Bug Fixes",
     },
     {
@@ -2758,7 +2778,7 @@ const tocs: TOCRecord = {
       title: "2.0.2 (2020-06-30)",
     },
     {
-      anchor: "#bug-fixes-1",
+      anchor: "#bug-fixes-2",
       title: "Bug Fixes",
     },
     {
@@ -3058,6 +3078,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#243-2020-11-14",
+      title: "2.4.3 (2020-11-14)",
     },
     {
       anchor: "#242-2020-10-23",
@@ -3850,6 +3874,10 @@ const tocs: TOCRecord = {
       title: "Change Log",
     },
     {
+      anchor: "#243-2020-11-14",
+      title: "2.4.3 (2020-11-14)",
+    },
+    {
       anchor: "#242-2020-10-23",
       title: "2.4.2 (2020-10-23)",
     },
@@ -4564,6 +4592,10 @@ const tocs: TOCRecord = {
     {
       anchor: "#change-log",
       title: "Change Log",
+    },
+    {
+      anchor: "#243-2020-11-14",
+      title: "2.4.3 (2020-11-14)",
     },
     {
       anchor: "#242-2020-10-23",

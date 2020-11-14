@@ -1,6 +1,6 @@
 {
   "name": "@react-md/list",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "This package is used to create lists with the material design specs.",
   "main": "./lib/index.js",
   "module": "./es/index.js",

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.3](https://github.com/mlaursen/react-md/compare/v2.4.2...v2.4.3) (2020-11-14)
+
+### Bug Fixes
+
+- [@react-md/list](../list): fixed `ListItem` disabled colors to optionally
+  include addons
+  ([a40b6b3](https://github.com/mlaursen/react-md/commit/a40b6b3f4b25c5c8e714081ebeb147ccf019ac01)),
+  closes [#997](https://github.com/mlaursen/react-md/issues/997)
+- [@react-md/list](../list): `ListItem` no longer focusable by default when
+  disabled
+  ([06e91ca](https://github.com/mlaursen/react-md/commit/06e91cafd91a2b666d728acf134c0652696715c9)),
+  closes [#997](https://github.com/mlaursen/react-md/issues/997)
+
 ## [2.4.2](https://github.com/mlaursen/react-md/compare/v2.4.1...v2.4.2) (2020-10-23)
 
 **Note:** Version bump only for package [@react-md/list](../list)

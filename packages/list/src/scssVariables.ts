@@ -30,6 +30,7 @@ export default {
   "rmd-list-item-media-size": "3.5rem",
   "rmd-list-item-media-large-size": "6.25rem",
   "rmd-list-item-media-spacing": "1rem",
+  "rmd-list-item-disabled-opacity": 0.5,
   "rmd-list-theme-values": {
     "vertical-padding": "0.5rem",
     "horizontal-padding": 0,
