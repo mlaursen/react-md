@@ -364,7 +364,7 @@ const sassdoc: PackageSassDoc = {
     "rmd-list-item": {
       name: "rmd-list-item",
       description: "Creates all the styles for a list item.\n",
-      source: "packages/list/src/_mixins.scss#L178-L290",
+      source: "packages/list/src/_mixins.scss#L178-L300",
       usedBy: [
         { name: "react-md-list", type: "mixin", packageName: "list" },
         { name: "rmd-tree-item", type: "mixin", packageName: "tree" },
@@ -378,6 +378,7 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-states-surface", type: "mixin", packageName: "states" },
         { name: "rmd-theme", type: "mixin", packageName: "theme" },
+        { name: "rmd-theme-update-var", type: "mixin", packageName: "theme" },
         {
           name: "rmd-list-theme-update-var",
           type: "mixin",
@@ -409,12 +410,18 @@ const sassdoc: PackageSassDoc = {
           type: "mixin",
           packageName: "icon",
         },
+        { name: "rmd-theme-var", type: "function", packageName: "theme" },
         { name: "rmd-list-theme-var", type: "function", packageName: "list" },
         { name: "rmd-icon-theme-var", type: "function", packageName: "icon" },
         {
           name: "rmd-avatar-theme-var",
           type: "function",
           packageName: "avatar",
+        },
+        {
+          name: "rmd-list-item-disabled-opacity",
+          type: "variable",
+          packageName: "list",
         },
         {
           name: "rmd-list-item-secondary-text-line-height",
@@ -425,13 +432,13 @@ const sassdoc: PackageSassDoc = {
       packageName: "list",
       code: "@mixin rmd-list-item { … }",
       sourceCode:
-        '@mixin rmd-list-item {\n  @include rmd-list-item-base;\n\n  &--clickable {\n    @include rmd-utils-hide-focus-outline;\n    @include rmd-states-surface;\n  }\n\n  &--disabled {\n    @include rmd-theme(color, text-disabled-on-background);\n\n    pointer-events: none;\n  }\n\n  &--link {\n    color: inherit;\n    text-decoration: none;\n  }\n\n  &--medium {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-medium-height)\n    );\n  }\n\n  &--large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-large-height)\n    );\n  }\n\n  &--extra-large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-extra-large-height)\n    );\n  }\n\n  &--three-lines {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-three-line-height)\n    );\n\n    .rmd-list-item__text--secondary {\n      @include rmd-typography-line-clamp;\n      @include rmd-list-theme(max-height, item-secondary-three-line-height);\n\n      line-height: $rmd-list-item-secondary-text-line-height;\n      white-space: normal;\n    }\n  }\n\n  &--dense {\n    @include rmd-list-item-dense-theme;\n  }\n\n  &__text {\n    @include rmd-typography-text-overflow-ellipsis;\n    @include rmd-utils-rtl {\n      margin-left: auto;\n    }\n\n    display: block;\n    flex-grow: 1;\n    // this is so it overlays the background colors from the interaction states\n    z-index: 1;\n\n    &--secondary {\n      @include rmd-theme(color, text-secondary-on-background);\n    }\n  }\n\n  &__addon {\n    flex-shrink: 0;\n\n    &--top {\n      align-self: flex-start;\n    }\n\n    &--bottom {\n      align-self: flex-end;\n    }\n\n    &--before {\n      // this should only be added on the first icon in the list item since it\'s the only\n      // one that should match the "keyline" of the app. The right icon/avatars should\n      // have the existing text icon spacing.\n      @include rmd-list-item-addon-spacing(rmd-icon-theme-var(size));\n    }\n\n    &--avatar-before {\n      @include rmd-list-item-addon-spacing(rmd-avatar-theme-var(size));\n    }\n\n    &--media {\n      @include rmd-icon-theme-update-var(\n        text-spacing,\n        rmd-list-theme-var(media-spacing)\n      );\n      @include rmd-list-theme(width, media-size);\n    }\n\n    &--media-large {\n      @include rmd-list-theme-update-var(\n        media-size,\n        rmd-list-theme-var(media-large-size)\n      );\n    }\n  }\n}\n',
+        '@mixin rmd-list-item {\n  @include rmd-list-item-base;\n\n  &--clickable {\n    @include rmd-utils-hide-focus-outline;\n    @include rmd-states-surface;\n  }\n\n  &--disabled {\n    pointer-events: none;\n  }\n\n  &--disabled-color {\n    @include rmd-theme(color, text-disabled-on-background);\n    @include rmd-theme-update-var(\n      text-secondary-on-background,\n      rmd-theme-var(text-disabled-on-background)\n    );\n  }\n\n  &--disabled-opacity {\n    opacity: $rmd-list-item-disabled-opacity;\n  }\n\n  &--link {\n    color: inherit;\n    text-decoration: none;\n  }\n\n  &--medium {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-medium-height)\n    );\n  }\n\n  &--large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-large-height)\n    );\n  }\n\n  &--extra-large {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-extra-large-height)\n    );\n  }\n\n  &--three-lines {\n    @include rmd-list-theme-update-var(\n      item-height,\n      rmd-list-theme-var(item-three-line-height)\n    );\n\n    .rmd-list-item__text--secondary {\n      @include rmd-typography-line-clamp;\n      @include rmd-list-theme(max-height, item-secondary-three-line-height);\n\n      line-height: $rmd-list-item-secondary-text-line-height;\n      white-space: normal;\n    }\n  }\n\n  &--dense {\n    @include rmd-list-item-dense-theme;\n  }\n\n  &__text {\n    @include rmd-typography-text-overflow-ellipsis;\n    @include rmd-utils-rtl {\n      margin-left: auto;\n    }\n\n    display: block;\n    flex-grow: 1;\n    // this is so it overlays the background colors from the interaction states\n    z-index: 1;\n\n    &--secondary {\n      @include rmd-theme(color, text-secondary-on-background);\n    }\n  }\n\n  &__addon {\n    flex-shrink: 0;\n\n    &--top {\n      align-self: flex-start;\n    }\n\n    &--bottom {\n      align-self: flex-end;\n    }\n\n    &--before {\n      // this should only be added on the first icon in the list item since it\'s the only\n      // one that should match the "keyline" of the app. The right icon/avatars should\n      // have the existing text icon spacing.\n      @include rmd-list-item-addon-spacing(rmd-icon-theme-var(size));\n    }\n\n    &--avatar-before {\n      @include rmd-list-item-addon-spacing(rmd-avatar-theme-var(size));\n    }\n\n    &--media {\n      @include rmd-icon-theme-update-var(\n        text-spacing,\n        rmd-list-theme-var(media-spacing)\n      );\n      @include rmd-list-theme(width, media-size);\n    }\n\n    &--media-large {\n      @include rmd-list-theme-update-var(\n        media-size,\n        rmd-list-theme-var(media-large-size)\n      );\n    }\n  }\n}\n',
       type: "mixin",
     },
     "rmd-list-subheader": {
       name: "rmd-list-subheader",
       description: "Creates the styles for a subheader within a list.\n",
-      source: "packages/list/src/_mixins.scss#L293-L305",
+      source: "packages/list/src/_mixins.scss#L303-L315",
       usedBy: [{ name: "react-md-list", type: "mixin", packageName: "list" }],
       requires: [
         { name: "rmd-typography", type: "mixin", packageName: "typography" },
@@ -448,7 +455,7 @@ const sassdoc: PackageSassDoc = {
     "react-md-list": {
       name: "react-md-list",
       description: "Creats all the styles for the list package.\n",
-      source: "packages/list/src/_mixins.scss#L308-L322",
+      source: "packages/list/src/_mixins.scss#L318-L332",
       usedBy: [{ name: "react-md-utils", type: "mixin", packageName: "utils" }],
       requires: [
         {
@@ -794,11 +801,22 @@ const sassdoc: PackageSassDoc = {
       value: "1rem",
       overridable: true,
     },
+    "rmd-list-item-disabled-opacity": {
+      name: "rmd-list-item-disabled-opacity",
+      description:
+        "The opacity to apply to a list item when it is `disabled` and the `disabledOpacity` boolean is enabled that will also darken any addons rendered in the list item.",
+      source: "packages/list/src/_variables.scss#L166",
+      usedBy: [{ name: "rmd-list-item", type: "mixin", packageName: "list" }],
+      packageName: "list",
+      type: "Number",
+      value: "0.5",
+      overridable: true,
+    },
     "rmd-list-theme-values": {
       name: "rmd-list-theme-values",
       description:
         'A Map of all the "themeable" parts of the list package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/list/src/_variables.scss#L165-L192",
+      source: "packages/list/src/_variables.scss#L172-L199",
       usedBy: [
         { name: "rmd-list-theme", type: "function", packageName: "list" },
         { name: "rmd-list-theme-var", type: "function", packageName: "list" },

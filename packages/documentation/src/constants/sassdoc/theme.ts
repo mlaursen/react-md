@@ -545,6 +545,7 @@ const sassdoc: PackageSassDoc = {
         },
         { name: "rmd-icon-color", type: "variable", packageName: "icon" },
         { name: "rmd-link-skip-styles", type: "variable", packageName: "link" },
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
         {
           name: "rmd-menu-background-color",
@@ -1199,6 +1200,7 @@ const sassdoc: PackageSassDoc = {
         { name: "rmd-app-bar-fixed", type: "mixin", packageName: "app-bar" },
         { name: "rmd-card", type: "mixin", packageName: "card" },
         { name: "rmd-dialog", type: "mixin", packageName: "dialog" },
+        { name: "rmd-list-item", type: "mixin", packageName: "list" },
         { name: "rmd-media-overlay", type: "mixin", packageName: "media" },
         {
           name: "rmd-theme-dark-elevation",
