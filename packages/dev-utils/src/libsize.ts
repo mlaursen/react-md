@@ -58,11 +58,11 @@ async function umdSizes(force: boolean): Promise<readonly string[]> {
 }
 
 async function cssSize(force: boolean): Promise<readonly string[]> {
-  let css = await glob("themes/*.min.css", { cwd: projectRoot });
-  if (force || !css.length) {
+  if (force) {
     await themes();
-    css = await glob("themes/*.min.css", { cwd: projectRoot });
   }
+
+  const css = await glob("themes/*.min.css", { cwd: projectRoot });
 
   const { min, max } = css.reduce(
     (result, cssPath) => {

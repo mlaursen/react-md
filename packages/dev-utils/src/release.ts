@@ -81,7 +81,14 @@ export async function release(
   await variables();
 
   run("yarn build");
-  await libsize({ umd: true, themes: true, stageChanges: true });
+  await libsize({
+    umd: true,
+    themes: true,
+    // have to force the themes to be updated since they are always stored in
+    // git now
+    forceThemes: true,
+    stageChanges: true,
+  });
 
   git("add themes");
 
