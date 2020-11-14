@@ -10,7 +10,11 @@ interface PackageJson {
   devDependencies: Record<string, string>;
 }
 
-function getVersion(name: string): string {
+function getVersion(packageName: string): string {
+  const name = packageName.startsWith("@")
+    ? packageName
+    : packageName.replace(/\/.+$/, "");
+
   if (name === "react-scripts") {
     return "latest";
   }
