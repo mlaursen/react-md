@@ -805,7 +805,8 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-item-disabled-opacity",
       description:
         "The opacity to apply to a list item when it is `disabled` and the `disabledOpacity` boolean is enabled that will also darken any addons rendered in the list item.",
-      source: "packages/list/src/_variables.scss#L166",
+      source: "packages/list/src/_variables.scss#L167",
+      since: "2.4.3",
       usedBy: [{ name: "rmd-list-item", type: "mixin", packageName: "list" }],
       packageName: "list",
       type: "Number",
@@ -816,7 +817,7 @@ const sassdoc: PackageSassDoc = {
       name: "rmd-list-theme-values",
       description:
         'A Map of all the "themeable" parts of the list package. Every key in this map will be used to create a css variable to dynamically update the values of the icon as needed.\n',
-      source: "packages/list/src/_variables.scss#L172-L199",
+      source: "packages/list/src/_variables.scss#L173-L200",
       usedBy: [
         { name: "rmd-list-theme", type: "function", packageName: "list" },
         { name: "rmd-list-theme-var", type: "function", packageName: "list" },

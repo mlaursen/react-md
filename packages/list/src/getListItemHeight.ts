@@ -26,6 +26,7 @@ export interface SimpleListItemProps
    * This is configured by the `$rmd-list-item-disabled-opacity` variable.
    *
    * Note: This does nothing if the `disabled` prop is not enabled.
+   * @since 2.4.3
    */
   disabledOpacity?: boolean;
 
