@@ -8,6 +8,7 @@
 @import './file-input/mixins';
 @import './label/mixins';
 @import './select/mixins';
+@import './slider/mixins';
 @import './toggle/mixins';
 @import './text-field/mixins';
 
@@ -96,6 +97,7 @@
 
   @include react-md-file-input;
   @include react-md-label;
+  @include react-md-slider;
   @include react-md-toggle;
   @include react-md-text-field;
   // has to come after text field since it overrides some of the

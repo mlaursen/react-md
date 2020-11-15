@@ -7,6 +7,7 @@ export * from "./FormMessageContainer";
 export * from "./file-input";
 export * from "./label";
 export * from "./select";
+export * from "./slider";
 export * from "./text-field";
 export * from "./toggle";
 

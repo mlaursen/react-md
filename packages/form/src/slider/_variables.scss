@@ -1,0 +1,124 @@
+////
+/// @group slider
+/// @since 2.5.0
+////
+
+@import '~@react-md/theme/dist/color-palette';
+@import '~@react-md/theme/dist/functions';
+
+/// Boolean if vertical slider styles should be generated.
+/// @type Boolean
+$rmd-slider-include-vertical: true !default;
+
+/// The size of the interactable and clickable area for the slider. When the
+/// orientation is `"horizontal"`, this will be the `height` while it will be
+/// the `width` for a `"vertical"` slider.
+///
+/// @type Number
+$rmd-slider-size: 2rem !default;
+
+/// The dense size of the interactable and clickable area for the slider.
+/// @type Number
+$rmd-slider-dense-size: 1.5rem !default;
+
+/// The default height to use for all vertical sliders since they cannot be
+/// `"auto"`.
+///
+/// @type Number
+$rmd-slider-vertical-size: 15rem !default;
+
+/// The size for the `"active"` state of the slider's track. This track will
+/// cover the `"inactive"` state track and should normally be a bigger number.
+///
+/// @type Number
+$rmd-slider-active-track-size: 0.375rem !default;
+
+/// The `background-color` to use for the `"active"` state of the slider's
+/// track.
+///
+/// @type String|Color
+$rmd-slider-active-track-color: rmd-theme-var(secondary) !default;
+
+/// An optional opacity to apply to the active track color.
+/// @type Number
+$rmd-slider-active-track-opacity: null !default;
+
+/// The size for the `inactive` state of the slider's track. This track will
+/// be covered by the `"active"` state track and should normally be a smaller
+/// number.
+///
+/// @type Number
+$rmd-slider-inactive-track-size: 0.25rem !default;
+
+/// The `background-color` to use for the `"inactive"` state of the slider's
+/// track. This defaults to the `$rmd-slider-active-track-color` since it
+/// instead uses an opacity value.
+///
+/// @type String|Color
+$rmd-slider-inactive-track-color: $rmd-slider-active-track-color !default;
+
+/// An optional opacity to apply to the inactive track color.
+/// @type Number
+$rmd-slider-inactive-track-opacity: 0.5 !default;
+
+/// The z-index to use for the "inactive" state for the slider's track. This
+/// value should never really need to be changed.
+///
+/// @type Number
+$rmd-slider-inactive-track-z-index: 1 !default;
+
+/// The z-index to use for the "active" state for the slider's track. This value
+/// should never really need to be changed.
+///
+/// @type Number
+$rmd-slider-active-track-z-index: $rmd-slider-inactive-track-z-index + 1 !default;
+
+/// The height and width for the slider's thumb.
+/// @type Number
+$rmd-slider-thumb-size: 1.25rem !default;
+
+/// The border-radius for the slider's thumb.
+/// @type Number
+$rmd-slider-thumb-radius: 50% !default;
+
+/// The opacity to apply to the focus and active states of the thumb which
+/// creates an extra "bubble" around the thumb using the same theme colors.
+///
+/// @type Number
+$rmd-slider-thumb-bubble-opacity: 0.3 !default;
+
+/// The scale to apply to the focus state of the thumb which creates an extra
+/// "bubble" around the thumb using the same theme colors.
+///
+/// @type Number
+$rmd-slider-thumb-focus-scale: 2 !default;
+
+/// The scale to apply to the focus and active states of the thumb which
+/// creates an extra "bubble" around the thumb using the same theme colors.
+///
+/// @type Number
+$rmd-slider-thumb-active-scale: 2.5 !default;
+
+/// @type Boolean
+/// @access private
+$rmd-slider-is-same-track-color: $rmd-slider-active-track-color ==
+  $rmd-slider-inactive-track-color;
+
+/// A Map of all the "themeable" parts of the slider package. Every key in this
+/// map will be used to create a css variable to dynamically update the values
+/// of the icon as needed.
+/// @type Map
+$rmd-slider-theme-values: (
+  size: $rmd-slider-size,
+  dense-size: $rmd-slider-dense-size,
+  vertical-size: $rmd-slider-vertical-size,
+  active-size: $rmd-slider-active-track-size,
+  inactive-size: $rmd-slider-inactive-track-size,
+  color:
+    if($rmd-slider-is-same-track-color, $rmd-slider-active-track-color, null),
+  active-color:
+    if($rmd-slider-is-same-track-color, null, $rmd-slider-active-track-color),
+  inactive-color:
+    if($rmd-slider-is-same-track-color, null, $rmd-slider-inactive-track-color),
+  thumb-size: $rmd-slider-thumb-size,
+) !default;

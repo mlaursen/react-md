@@ -1,0 +1,288 @@
+////
+/// @group slider
+/// @since 2.5.0
+////
+
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/transition/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
+
+@import './functions';
+@import './variables';
+
+/// Creates the styles for one of the slider's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-slider-theme-values`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-slider-theme-values`
+/// to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-slider-theme-values` map when
+/// `null`.
+@mixin rmd-slider-theme($property, $theme-style: $property, $fallback: null) {
+  @include rmd-theme-apply-rmd-var(
+    $property,
+    $theme-style,
+    $rmd-slider-theme-values,
+    slider
+  );
+}
+
+/// Updates one of the slider's theme variables with the new value for the
+/// section of your app.
+///
+/// @param {String} theme-style - The slider theme style type to update. This
+/// should be one of the `$rmd-slider-theme-values` keys.
+/// @param {Color|String|Number} value - The new value to use.
+@mixin rmd-slider-theme-update-var($theme-style, $value) {
+  @include rmd-theme-update-rmd-var(
+    $value,
+    $theme-style,
+    $rmd-slider-theme-values,
+    slider
+  );
+}
+
+/// This is used internally just to help with the `--offset1` and `--offset2`
+/// custom properties to help position/style the thumbs and tracks in the
+/// Slider.
+///
+/// @param {Number} thumb-index - This should be either 1 or 2
+/// @access private
+@function rmd-slider-offset($thumb-index) {
+  @return var(--offset#{$thumb-index}, 0);
+}
+
+/// The track for the slider is made up of a container `<span>` element that
+/// holds the one or two thumbs and displays the min/max distance the slider can
+/// be dragged. To keep the DOM minimal, the track's "progress" is created by
+/// using the `::before` and `::after` pseudo-selectors to create the progress
+/// "blocks". The `::before` tag is used for the inactive state while the
+/// `::after` tag shows the active state.
+///
+/// @access private
+@mixin rmd-slider-track {
+  @include rmd-slider-track-horizontal;
+  @if $rmd-slider-include-vertical {
+    @include rmd-slider-track-vertical;
+  }
+
+  position: relative;
+
+  &::before,
+  &::after {
+    @if $rmd-slider-is-same-track-color {
+      @include rmd-slider-theme(background-color, color);
+    }
+
+    content: '';
+    pointer-events: none;
+    position: absolute;
+  }
+
+  &::before {
+    @if not $rmd-slider-is-same-track-color {
+      @include rmd-slider-theme(background-color, inactive-color);
+    }
+
+    opacity: $rmd-slider-inactive-track-opacity;
+    z-index: $rmd-slider-inactive-track-z-index;
+  }
+
+  &::after {
+    @if not $rmd-slider-is-same-track-color {
+      @include rmd-slider-theme(background-color, active-color);
+    }
+
+    opacity: $rmd-slider-active-track-opacity;
+    z-index: $rmd-slider-active-track-z-index;
+  }
+
+  &--hoverable:hover {
+    cursor: pointer;
+  }
+
+  &--dense {
+    @include rmd-slider-theme-update-var(size, dense-size);
+  }
+
+  &--animate::after {
+    @include rmd-transition(standard);
+
+    transition-duration: $rmd-transition-standard-time;
+  }
+
+  &--disabled {
+    @if $rmd-slider-is-same-track-color {
+      @include rmd-slider-theme-update-var(
+        color,
+        rmd-theme-var(text-disabled-on-background)
+      );
+
+      &::after {
+        @include rmd-slider-theme-update-var(active-size, 0px);
+      }
+
+      @if $rmd-slider-inactive-track-opacity != null {
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      @if $rmd-slider-active-track-opacity != null {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+@mixin rmd-slider-track-horizontal {
+  &--h {
+    @include rmd-slider-theme(height, size);
+
+    align-items: center;
+    display: flex;
+    width: 100%;
+
+    &::before {
+      @include rmd-slider-theme(height, inactive-size);
+
+      width: 100%;
+    }
+
+    &::after {
+      @include rmd-utils-rtl-auto(left, 0);
+      @include rmd-slider-theme(height, active-size);
+    }
+  }
+
+  // one thumb track horizontal styles
+  &--h1::after {
+    max-width: rmd-slider-offset(1);
+    transition-property: max-width;
+    width: 100%;
+  }
+
+  // one thumb track horizontal inversed styles
+  &--h1-inv::after {
+    @include rmd-utils-rtl-auto(right, 0);
+    @include rmd-utils-rtl-auto(left, rmd-slider-offset(1));
+
+    transition-property: left, right;
+    will-change: left, right;
+  }
+
+  // two thumb track horizontal styles
+  &--h2::after {
+    @include rmd-utils-rtl {
+      left: calc(100% - #{rmd-slider-offset(1)});
+      right: rmd-slider-offset(2);
+    }
+
+    left: rmd-slider-offset(1);
+    right: calc(100% - #{rmd-slider-offset(2)});
+    transition-property: left, right;
+    will-change: left, right;
+  }
+}
+
+@mixin rmd-slider-track-vertical {
+  &--v {
+    @include rmd-slider-theme(height, vertical-size);
+    @include rmd-slider-theme(width, size);
+  }
+}
+
+@mixin rmd-slider-thumb {
+  @include rmd-utils-hide-focus-outline;
+  @include rmd-slider-theme(
+    background-color,
+    if($rmd-slider-is-same-track-color, color, active-color)
+  );
+  @include rmd-slider-theme(height, thumb-size);
+  @include rmd-slider-theme(width, thumb-size);
+  @include rmd-utils-mouse-only {
+    &:hover::after {
+      transform: scale($rmd-slider-thumb-focus-scale);
+    }
+
+    &--active::after,
+    &--active:hover::after {
+      transform: scale($rmd-slider-thumb-active-scale);
+    }
+  }
+  @include rmd-utils-keyboard-only {
+    &:focus::after {
+      transform: scale($rmd-slider-thumb-focus-scale);
+    }
+
+    &--active::after {
+      transform: scale($rmd-slider-thumb-active-scale);
+    }
+  }
+
+  border-radius: $rmd-slider-thumb-radius;
+  position: absolute;
+  z-index: 1;
+
+  &::after {
+    @include rmd-transition(standard);
+    @include rmd-utils-pseudo-element(null);
+
+    background-color: inherit;
+    opacity: $rmd-slider-thumb-bubble-opacity;
+    transition: transform $rmd-transition-standard-time;
+  }
+
+  &--animate {
+    @include rmd-transition(standard);
+
+    transition-duration: $rmd-transition-standard-time;
+  }
+
+  &--h {
+    @include rmd-utils-rtl {
+      transform: translateX(50%);
+    }
+
+    transform: translateX(-50%);
+    transition-property: left, right;
+  }
+
+  // first thumb
+  &--h1 {
+    @include rmd-utils-rtl-auto(left, rmd-slider-offset(1));
+  }
+
+  // second thumb
+  &--h2 {
+    @include rmd-utils-rtl-auto(left, rmd-slider-offset(2));
+  }
+
+  @if $rmd-slider-include-vertical {
+    &--vertical {
+      // @include rmd-slider-theme(bottom, offset);
+
+      transform: translateY(50%);
+      transition-property: bottom;
+    }
+  }
+}
+
+/// Creates all the styles for this package as well as defining all the theme
+/// CSS variables.
+@mixin react-md-slider {
+  @include rmd-theme-create-root-theme($rmd-slider-theme-values, slider);
+
+  .rmd-slider-track {
+    @include rmd-slider-track;
+  }
+
+  .rmd-slider-thumb {
+    @include rmd-slider-thumb;
+  }
+}
