@@ -28,7 +28,14 @@ const PATTERN = `packages/!(documentation)/${src}/**/*.scss`;
  * mixin files for each part of the package in a folder. Need to make sure to
  * create the sub-folders before creating the non-webpack imports.
  */
-const FORM_FOLDERS = ["file-input", "label", "select", "text-field", "toggle"];
+const FORM_FOLDERS = [
+  "file-input",
+  "label",
+  "select",
+  "slider",
+  "text-field",
+  "toggle",
+];
 
 function ensureDists(): void {
   const packages = getPackages(true);
