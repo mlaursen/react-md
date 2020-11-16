@@ -51,6 +51,12 @@ import textFieldHookExamples from "./TextFieldHookExamples.md";
 import NumberHookExamples from "./NumberHookExamples";
 import numberHookExamples from "./NumberHookExamples.md";
 
+import SimpleSliders from "./SimpleSliders";
+import simpleSliders from "./SimpleSliders.md";
+
+import ColorDialogSlider from "./ColorDialogSlider";
+import colorDialogSlider from "./ColorDialogSlider.md";
+
 import ExampleForm from "./ExampleForm";
 import exampleForm from "./ExampleForm.md";
 
@@ -132,6 +138,16 @@ const demos = [
     name: "Number Hook Examples",
     description: numberHookExamples,
     children: <NumberHookExamples />,
+  },
+  {
+    name: "Simple Sliders",
+    description: simpleSliders,
+    children: <SimpleSliders />,
+  },
+  {
+    name: "Color Dialog Slider",
+    description: colorDialogSlider,
+    children: <ColorDialogSlider />,
   },
   {
     name: "Example Form",
