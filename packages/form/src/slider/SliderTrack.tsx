@@ -81,6 +81,10 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
             h1: !vertical && !thumb2Percentage && !inversed,
             "h1-inv": !vertical && !thumb2Percentage && inversed,
             h2: !vertical && thumb2Percentage,
+            v: vertical,
+            v1: vertical && !thumb2Percentage && !inversed,
+            "v1-inv": vertical && !thumb2Percentage && inversed,
+            v2: vertical && thumb2Percentage,
           }),
           className
         )}

@@ -7,6 +7,7 @@ import { SliderTrack } from "./SliderTrack";
 import { SliderProps } from "./types";
 import { SimpleSliderRequiredProps } from "./useSimpleSlider";
 import { useSliderControls } from "./useSliderControls";
+import { SliderContainer } from "./SliderContainer";
 
 export interface BaseSimpleSliderProps
   extends SimpleSliderRequiredProps,
@@ -45,6 +46,8 @@ export const SimpleSlider = forwardRef<HTMLSpanElement, SimpleSliderProps>(
       thumbRef,
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabelledBy,
+      beforeAddon,
+      afterAddon,
       ...props
     },
     ref
@@ -78,29 +81,35 @@ export const SimpleSlider = forwardRef<HTMLSpanElement, SimpleSliderProps>(
     });
 
     return (
-      <SliderTrack
-        id={id}
-        {...props}
-        {...trackProps}
-        animate={!dragging}
-        disabled={disabled}
+      <SliderContainer
+        beforeAddon={beforeAddon}
+        afterAddon={afterAddon}
         vertical={vertical}
       >
-        <SliderThumb
-          aria-label={ariaLabel as string}
-          aria-labelledby={ariaLabelledBy}
-          ref={thumb1Ref}
-          sliderId={id}
-          min={min}
-          max={max}
+        <SliderTrack
+          id={id}
+          {...props}
+          {...trackProps}
+          animate={!dragging}
           disabled={disabled}
           vertical={vertical}
-          animate={!dragging}
-          value={thumb1Value}
-          index={0}
-          active={draggingIndex === 0}
-        />
-      </SliderTrack>
+        >
+          <SliderThumb
+            aria-label={ariaLabel as string}
+            aria-labelledby={ariaLabelledBy}
+            ref={thumb1Ref}
+            sliderId={id}
+            min={min}
+            max={max}
+            disabled={disabled}
+            vertical={vertical}
+            animate={!dragging}
+            value={thumb1Value}
+            index={0}
+            active={draggingIndex === 0}
+          />
+        </SliderTrack>
+      </SliderContainer>
     );
   }
 );

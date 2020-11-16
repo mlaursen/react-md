@@ -194,6 +194,31 @@
   &--v {
     @include rmd-slider-theme(height, vertical-size);
     @include rmd-slider-theme(width, size);
+
+    display: inline-flex;
+    justify-content: center;
+
+    &::before {
+      @include rmd-slider-theme(width, inactive-size);
+
+      height: 100%;
+    }
+
+    &::after {
+      @include rmd-slider-theme(width, active-size);
+
+      bottom: 0;
+    }
+  }
+
+  // one thumb track horizontal styles
+  &--v1::after {
+    max-height: rmd-slider-offset(1);
+    transition-property: max-height;
+    height: 100%;
+    // max-width: rmd-slider-offset(1);
+    // transition-property: max-width;
+    // width: 100%;
   }
 }
 
@@ -264,12 +289,48 @@
   }
 
   @if $rmd-slider-include-vertical {
-    &--vertical {
+    &--v {
       // @include rmd-slider-theme(bottom, offset);
 
       transform: translateY(50%);
       transition-property: bottom;
     }
+
+    &--v1 {
+      bottom: rmd-slider-offset(1);
+    }
+
+    &--v2 {
+      bottom: rmd-slider-offset(2);
+    }
+  }
+}
+
+@mixin rmd-slider-container {
+  @if $rmd-slider-container-addon-spacing != $rmd-icon-spacing-with-text {
+    @include rmd-icon-theme-update-var(
+      text-spacing,
+      $rmd-slider-container-addon-spacing
+    );
+  }
+
+  align-items: center;
+
+  &--h {
+    display: flex;
+  }
+
+  @each $dir in (top, right, bottom, left) {
+    &--pad-#{$dir} {
+      $property: padding-#{$dir};
+
+      #{$property}: $rmd-slider-container-padding;
+    }
+  }
+
+  &--v {
+    display: inline-flex;
+    flex-direction: column-reverse;
   }
 }
 
@@ -277,6 +338,10 @@
 /// CSS variables.
 @mixin react-md-slider {
   @include rmd-theme-create-root-theme($rmd-slider-theme-values, slider);
+
+  .rmd-slider-container {
+    @include rmd-slider-container;
+  }
 
   .rmd-slider-track {
     @include rmd-slider-track;

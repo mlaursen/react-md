@@ -120,7 +120,11 @@ export function useSliderControls({
       }
 
       // prevent text from being highlighted while dragging the slider
-      event.preventDefault();
+      // can't do it on touch events due to being passive events in later
+      // versions of React
+      if (!isTouchEvent(event)) {
+        event.preventDefault();
+      }
       event.stopPropagation();
       let clientX: number;
       let clientY: number;

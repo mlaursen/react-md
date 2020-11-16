@@ -3,6 +3,7 @@
 /// @since 2.5.0
 ////
 
+@import '~@react-md/icon/dist/variables';
 @import '~@react-md/theme/dist/color-palette';
 @import '~@react-md/theme/dist/functions';
 
@@ -98,6 +99,21 @@ $rmd-slider-thumb-focus-scale: 2 !default;
 ///
 /// @type Number
 $rmd-slider-thumb-active-scale: 2.5 !default;
+
+/// The amount of padding to apply to the left and right of the container when
+/// the slider is horizontal. The left padding will be removed if there is a
+/// left addon and the right padding will be removed if there is a right addon.
+///
+/// This padding is really just so that the thumb does not overlay other
+/// elements in the layout.
+///
+/// @type Number
+$rmd-slider-container-padding: $rmd-slider-thumb-size !default;
+
+/// The updated icon spacing to use within sliders.
+///
+/// @type Number
+$rmd-slider-container-addon-spacing: $rmd-slider-thumb-size !default;
 
 /// @type Boolean
 /// @access private

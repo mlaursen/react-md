@@ -1,4 +1,4 @@
-import { Dispatch, HTMLAttributes, SetStateAction } from "react";
+import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from "react";
 
 export type ThumbIndex = 0 | 1;
 export type SliderThumbIndex = ThumbIndex | null;
@@ -92,12 +92,18 @@ export type SliderEventHandlers = Pick<
   SliderEventHandlerNames
 >;
 
+export interface SliderAddons {
+  beforeAddon?: ReactNode;
+  afterAddon?: ReactNode;
+}
+
 /**
  * These are the shared and common props required for both the `SimpleSlider` and
  * `RangeSlider` components.
  */
 export interface SliderProps
   extends SliderPresentation,
+    SliderAddons,
     HTMLAttributes<HTMLSpanElement> {
   /**
    * An id for the slider and different parts which is required for a11y.
