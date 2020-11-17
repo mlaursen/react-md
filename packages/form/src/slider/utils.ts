@@ -4,16 +4,30 @@ import {
   DefinedSliderValueOptions,
   RangeSliderControls,
   RangeSliderValue,
-  SimpleSliderValue,
   SimpleSliderControls as SliderControls,
+  SimpleSliderValue,
 } from "./types";
 
+/**
+ * Gets the number of steps in the allowed range of values.
+ *
+ * @internal
+ */
+export const getSteps = (min: number, max: number, step: number): number =>
+  Math.abs(max - min) / step;
+
+/**
+ * @internal
+ */
 export type SliderDragEvent =
   | MouseEvent
   | TouchEvent
   | React.MouseEvent
   | React.TouchEvent;
 
+/**
+ * @internal
+ */
 export const isMouseEvent = (
   event: SliderDragEvent
 ): event is MouseEvent & { type: "mousedown" | "mousemove" | "mouseup" } =>
@@ -21,6 +35,9 @@ export const isMouseEvent = (
   event.type === "mousemove" ||
   event.type === "mouseup";
 
+/**
+ * @internal
+ */
 export const isTouchEvent = (
   event: SliderDragEvent
 ): event is TouchEvent & { type: "touchstart" | "touchmove" | "touchend" } =>
@@ -28,22 +45,37 @@ export const isTouchEvent = (
   event.type === "touchmove" ||
   event.type === "touchend";
 
+/**
+ * @internal
+ */
 export interface SimpleSliderControls extends SliderControls {
   value: SimpleSliderValue;
 }
 
+/**
+ * @internal
+ */
 export interface ComplexSliderControls extends RangeSliderControls {
   value: RangeSliderValue;
 }
 
+/**
+ * @internal
+ */
 export type CombinedSliderControls =
   | SimpleSliderControls
   | ComplexSliderControls;
 
+/**
+ * @internal
+ */
 export const isRangeSlider = (
   controls: CombinedSliderControls
 ): controls is ComplexSliderControls => Array.isArray(controls.value);
 
+/**
+ * @internal
+ */
 export interface SliderDragValues extends DefinedSliderValueOptions {
   clientX: number;
   clientY: number;
@@ -56,6 +88,13 @@ export interface SliderDragValues extends DefinedSliderValueOptions {
   minValue: number;
   maxValue: number;
 }
+
+/**
+ * This is used to get the next value for the slider while being dragged via
+ * mouse or touch.
+ *
+ * @internal
+ */
 export const getDragValue = ({
   min,
   max,
@@ -81,7 +120,7 @@ export const getDragValue = ({
   const distanceDragged = Math.min(Math.max(0, difference), sliderSize);
   const percentageDragged = distanceDragged / sliderSize;
   const range = max - min;
-  const steps = Math.abs(maxValue - minValue / step);
+  const steps = getSteps(min, max, step);
   const value = percentageDragged * range + min;
   const rounded = nearest(value, minValue, maxValue, steps);
 

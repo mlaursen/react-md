@@ -1,4 +1,5 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import { nearest } from "@react-md/utils";
 
 import {
   DEFAULT_SLIDER_MAX,
@@ -13,10 +14,14 @@ import {
   SliderValueOptions,
   ThumbIndex,
 } from "./types";
+import { getSteps } from "./utils";
 
 export interface RangeSliderRequiredProps
   extends RangeSliderControls,
     DefinedSliderValueOptions {
+  /**
+   * The current value of the slider.
+   */
   value: RangeSliderValue;
 }
 
@@ -26,8 +31,18 @@ export type RangeSliderValueReturnType = readonly [
 ];
 
 /**
- * This hook is used to controlt he values and behavior for the `Slider`
- * component when acting as a range slider.
+ * This hook is used to control the value and behavior of the `RangeSlider`
+ * component. The first argument will contain the current slider value while the
+ * second argument will be all the props required to control the `RangeSlider`
+ * component.
+ *
+ * @param defaultValue An optional default value to use. When omitted, this will
+ * be the `[min, max]` values
+ * @param options An object containing the `min` and `max` values allowed for the
+ * slider as well as a `step` to indicate valid values between the `min` and
+ * `max`.
+ * @return an ordered list containing the current value followed by the
+ * `RangeSlider` props
  */
 export function useRangeSlider(
   defaultValue?: RangeSliderDefaultValue,
@@ -90,6 +105,23 @@ export function useRangeSlider(
     (index: ThumbIndex) => update(index, false, true),
     [update]
   );
+
+  const prev = useRef({ min, max, step });
+  if (
+    prev.current.min !== min ||
+    prev.current.max !== max ||
+    prev.current.step !== step
+  ) {
+    // ensure that if the `min`, `max`, or `step` value changes that the value
+    // is updated as well. Without this, there will be a runtime error if the
+    // value is not within the new range.
+    prev.current = { min, max, step };
+    const steps = getSteps(min, max, step);
+    setValue([
+      nearest(min, max, value[0], steps),
+      nearest(min, max, value[1], steps),
+    ]);
+  }
 
   return [
     value,

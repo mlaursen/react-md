@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, forwardRef } from "react";
+import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
@@ -46,6 +46,11 @@ export interface SliderTrackProps
   thumb2Percentage?: string;
 }
 
+/**
+ * The `SliderTrack` component is used to show the distance that the slider can
+ * be dragged as well as a visual indication of the value. The main usage is to
+ * update the custom css properties for the thumb's values.
+ */
 export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
   function SliderTrack(
     {
@@ -77,6 +82,7 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
           styles({
             animate,
             hoverable: !disabled,
+            disabled,
             h: !vertical,
             h1: !vertical && !thumb2Percentage && !inversed,
             "h1-inv": !vertical && !thumb2Percentage && inversed,
@@ -94,3 +100,19 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
     );
   }
 );
+
+if (process.env.NODE_ENV !== "production") {
+  try {
+    const PropTypes = require("prop-types");
+
+    SliderTrack.propTypes = {
+      className: PropTypes.string,
+      animate: PropTypes.bool,
+      inversed: PropTypes.bool,
+      vertical: PropTypes.bool,
+      disabled: PropTypes.bool,
+      thumb1Percentage: PropTypes.string,
+      thumb2Percentage: PropTypes.string,
+    };
+  } catch (e) {}
+}

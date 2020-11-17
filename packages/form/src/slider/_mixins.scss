@@ -55,6 +55,38 @@
   @return var(--offset#{$thumb-index}, 0);
 }
 
+/// Creates the styles for the slider container that allows for additional
+/// addons to be placed inline with the slider.
+///
+/// @access private
+@mixin rmd-slider-container {
+  @if $rmd-slider-container-addon-spacing != $rmd-icon-spacing-with-text {
+    @include rmd-icon-theme-update-var(
+      text-spacing,
+      $rmd-slider-container-addon-spacing
+    );
+  }
+
+  align-items: center;
+
+  &--h {
+    display: flex;
+  }
+
+  @each $dir in (top, right, bottom, left) {
+    &--pad-#{$dir} {
+      $property: padding-#{$dir};
+
+      #{$property}: $rmd-slider-container-padding;
+    }
+  }
+
+  &--v {
+    display: inline-flex;
+    flex-direction: column-reverse;
+  }
+}
+
 /// The track for the slider is made up of a container `<span>` element that
 /// holds the one or two thumbs and displays the min/max distance the slider can
 /// be dragged. To keep the DOM minimal, the track's "progress" is created by
@@ -104,10 +136,6 @@
     cursor: pointer;
   }
 
-  &--dense {
-    @include rmd-slider-theme-update-var(size, dense-size);
-  }
-
   &--animate::after {
     @include rmd-transition(standard);
 
@@ -118,7 +146,7 @@
     @if $rmd-slider-is-same-track-color {
       @include rmd-slider-theme-update-var(
         color,
-        rmd-theme-var(text-disabled-on-background)
+        $rmd-slider-disabled-track-color
       );
 
       &::after {
@@ -140,6 +168,18 @@
   }
 }
 
+/// Creates the styles for horizontal tracks by attaching the following
+/// modifiers to the parent class:
+///
+/// - `--h` - base styles that should be used along side one of the following
+///   classes
+/// - `--h1` - additional styles when there is only one thumb
+/// - `--h1-inv` - should be used instead of `--h1` when the track is "inversed"
+///    i.e.: "active" state appears on right instead of left.
+/// - `--h2` - additional styles when there are two thumbs. Should not be used
+///   with any of the `--h1*` classes
+///
+/// @access private
 @mixin rmd-slider-track-horizontal {
   &--h {
     @include rmd-slider-theme(height, size);
@@ -190,6 +230,18 @@
   }
 }
 
+/// Creates the styles for horizontal tracks by attaching the following
+/// modifiers to the parent class:
+///
+/// - `--v` - base styles that should be used along side one of the following
+///   classes
+/// - `--v1` - additional styles when there is only one thumb
+/// - `--v1-inv` - should be used instead of `--v1` when the track is "inversed"
+///    i.e.: "active" state appears on right instead of left.
+/// - `--v2` - additional styles when there are two thumbs. Should not be used
+///   with any of the `--v1*` classes
+///
+/// @access private
 @mixin rmd-slider-track-vertical {
   &--v {
     @include rmd-slider-theme(height, vertical-size);
@@ -216,12 +268,21 @@
     max-height: rmd-slider-offset(1);
     transition-property: max-height;
     height: 100%;
-    // max-width: rmd-slider-offset(1);
-    // transition-property: max-width;
-    // width: 100%;
+  }
+
+  &--v1-inv::after {
+    bottom: rmd-slider-offset(1);
+    top: 0;
+
+    transition-property: bottom, top;
+    will-change: bottom, top;
   }
 }
 
+/// Creates the styles for the slider's thumb. This should be used within a
+/// class since it adds additional class modifiers based on the parent class.
+///
+/// @access private
 @mixin rmd-slider-thumb {
   @include rmd-utils-hide-focus-outline;
   @include rmd-slider-theme(
@@ -249,6 +310,10 @@
       transform: scale($rmd-slider-thumb-active-scale);
     }
   }
+  @include rmd-slider-thumb-horizontal;
+  @if $rmd-slider-include-vertical {
+    @include rmd-slider-thumb-vertical;
+  }
 
   border-radius: $rmd-slider-thumb-radius;
   position: absolute;
@@ -269,13 +334,45 @@
     transition-duration: $rmd-transition-standard-time;
   }
 
+  &--disabled {
+    background-color: $rmd-slider-disabled-thumb-color;
+
+    // prevent hover effects like the "bubble"
+    pointer-events: none;
+  }
+
+  &--mask {
+    @include rmd-theme(background-color, background);
+
+    border-radius: 0;
+  }
+}
+
+/// Creates the styles for horizontal thumbs by attaching the following
+/// modifiers to the parent class:
+///
+/// - `--h` - base styles that should be used along side the following classes
+/// - `--h1` - styles specifically for the first thumb
+/// - `--h2` - styles specifically for the second thumb
+/// - `--disabled-h` - disabled styles since the thumb uses a `translateX` +
+///   `scale` transform when disabled. Should not be applied to the "mask" thumb
+///   that is used to add spacing on the track
+/// - `--mask-h` - styles that should be used for the masked thumb to create
+///   spacing on the track.
+///
+/// @access private
+@mixin rmd-slider-thumb-horizontal {
   &--h {
     @include rmd-utils-rtl {
       transform: translateX(50%);
+      transition-property: right;
     }
 
+    // want the thumb to be aligned so that the center is at the current value.
+    // without this transformation, the thumb's left side would be aligned with
+    // the current value
     transform: translateX(-50%);
-    transition-property: left, right;
+    transition-property: left;
   }
 
   // first thumb
@@ -288,49 +385,59 @@
     @include rmd-utils-rtl-auto(left, rmd-slider-offset(2));
   }
 
-  @if $rmd-slider-include-vertical {
-    &--v {
-      // @include rmd-slider-theme(bottom, offset);
-
-      transform: translateY(50%);
-      transition-property: bottom;
+  &--disabled-h {
+    @include rmd-utils-rtl {
+      transform: translateX(50%) scale($rmd-slider-thumb-disabled-scale);
     }
 
-    &--v1 {
-      bottom: rmd-slider-offset(1);
+    transform: translateX(-50%) scale($rmd-slider-thumb-disabled-scale);
+  }
+
+  &--mask-h {
+    @include rmd-utils-rtl {
+      transform: translateX(50%) scale($rmd-slider-thumb-disabled-mask-scale);
     }
 
-    &--v2 {
-      bottom: rmd-slider-offset(2);
-    }
+    transform: translateX(-50%) scale($rmd-slider-thumb-disabled-mask-scale);
   }
 }
 
-@mixin rmd-slider-container {
-  @if $rmd-slider-container-addon-spacing != $rmd-icon-spacing-with-text {
-    @include rmd-icon-theme-update-var(
-      text-spacing,
-      $rmd-slider-container-addon-spacing
-    );
-  }
-
-  align-items: center;
-
-  &--h {
-    display: flex;
-  }
-
-  @each $dir in (top, right, bottom, left) {
-    &--pad-#{$dir} {
-      $property: padding-#{$dir};
-
-      #{$property}: $rmd-slider-container-padding;
-    }
-  }
-
+/// Creates the styles for vertical thumbs by attaching the following modifiers
+/// to the parent class:
+///
+/// - `--v` - base styles that should be used along side the following classes
+/// - `--v1` - styles specifically for the first thumb
+/// - `--v2` - styles specifically for the second thumb
+/// - `--disabled-v` - disabled styles since the thumb uses a `translateY` +
+///   `scale` transform when disabled. Should not be applied to the "mask" thumb
+///   that is used to add spacing on the track
+/// - `--mask-v` - styles that should be used for the masked thumb to create
+///   spacing on the track.
+///
+/// @access private
+@mixin rmd-slider-thumb-vertical {
   &--v {
-    display: inline-flex;
-    flex-direction: column-reverse;
+    // want the thumb to be aligned so that the center is at the current value.
+    // without this transformation, the thumb's bottom side would be aligned
+    // with the current value
+    transform: translateY(50%);
+    transition-property: bottom;
+  }
+
+  &--v1 {
+    bottom: rmd-slider-offset(1);
+  }
+
+  &--v2 {
+    bottom: rmd-slider-offset(2);
+  }
+
+  &--disabled-v {
+    transform: translateY(50%) scale($rmd-slider-thumb-disabled-scale);
+  }
+
+  &--mask-v {
+    transform: translateY(50%) scale($rmd-slider-thumb-disabled-mask-scale);
   }
 }
 

@@ -18,10 +18,6 @@ $rmd-slider-include-vertical: true !default;
 /// @type Number
 $rmd-slider-size: 2rem !default;
 
-/// The dense size of the interactable and clickable area for the slider.
-/// @type Number
-$rmd-slider-dense-size: 1.5rem !default;
-
 /// The default height to use for all vertical sliders since they cannot be
 /// `"auto"`.
 ///
@@ -57,6 +53,17 @@ $rmd-slider-inactive-track-size: 0.25rem !default;
 ///
 /// @type String|Color
 $rmd-slider-inactive-track-color: $rmd-slider-active-track-color !default;
+
+/// The background color to use for the track when the slider is disabled.
+///
+/// @type String|Color
+$rmd-slider-disabled-track-color: rmd-theme-var(
+  text-disabled-on-background
+) !default;
+
+/// The background color to use for the thumb when the slider is disabled.
+/// @type String|Color
+$rmd-slider-disabled-thumb-color: $rmd-slider-disabled-track-color !default;
 
 /// An optional opacity to apply to the inactive track color.
 /// @type Number
@@ -100,6 +107,18 @@ $rmd-slider-thumb-focus-scale: 2 !default;
 /// @type Number
 $rmd-slider-thumb-active-scale: 2.5 !default;
 
+/// The scale to apply to the thumb when the slider is disabled.
+///
+/// @type Number
+$rmd-slider-thumb-disabled-scale: 0.5 !default;
+
+/// The scale to apply to the "mask" for the thumb when the slider is disabled.
+/// This is used to create the empty space on the track on both sides of the
+/// thumb.
+///
+/// @type Number
+$rmd-slider-thumb-disabled-mask-scale: 0.8 !default;
+
 /// The amount of padding to apply to the left and right of the container when
 /// the slider is horizontal. The left padding will be removed if there is a
 /// left addon and the right padding will be removed if there is a right addon.
@@ -126,7 +145,6 @@ $rmd-slider-is-same-track-color: $rmd-slider-active-track-color ==
 /// @type Map
 $rmd-slider-theme-values: (
   size: $rmd-slider-size,
-  dense-size: $rmd-slider-dense-size,
   vertical-size: $rmd-slider-vertical-size,
   active-size: $rmd-slider-active-track-size,
   inactive-size: $rmd-slider-inactive-track-size,

@@ -1,4 +1,6 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import { nearest } from "@react-md/utils";
+
 import {
   DEFAULT_SLIDER_MAX,
   DEFAULT_SLIDER_MIN,
@@ -11,10 +13,14 @@ import {
   SimpleSliderValue,
   SliderValueOptions,
 } from "./types";
+import { getSteps } from "./utils";
 
 export interface SimpleSliderRequiredProps
   extends SimpleSliderControls,
     DefinedSliderValueOptions {
+  /**
+   * The current value of the slider.
+   */
   value: SimpleSliderValue;
 }
 
@@ -24,16 +30,18 @@ export type SimpleSliderValueReturnType = readonly [
 ];
 
 /**
- * This hook is used to control the value and behavior of the `Slider` component
- * when only using one thumb. The first argument will contain the current slider
- * value while the second argument will be all the props required to control the
- * `Slider` component.
+ * This hook is used to control the value and behavior of the `SimpleSlider`
+ * component. The first argument will contain the current slider value while the
+ * second argument will be all the props required to control the `SimpleSlider`
+ * component.
  *
  * @param defaultValue An optional default value to use for the slider. This will
  * default to the `min` option when undefined.
  * @param options An object containing the `min` and `max` values allowed for the
  * slider as well as a `step` to indicate valid values between the `min` and
  * `max`.
+ * @return an ordered list containing the current value followed by the
+ * `SimpleSlider` props
  */
 export function useSimpleSlider(
   defaultValue?: SimpleSliderDefaultValue,
@@ -56,6 +64,19 @@ export function useSimpleSlider(
   const maximum = useCallback(() => {
     setValue(max);
   }, [max]);
+
+  const prev = useRef({ min, max, step });
+  if (
+    prev.current.min !== min ||
+    prev.current.max !== max ||
+    prev.current.step !== step
+  ) {
+    // ensure that if the `min`, `max`, or `step` value changes that the value
+    // is updated as well. Without this, there will be a runtime error if the
+    // value is not within the new range.
+    prev.current = { min, max, step };
+    setValue(nearest(min, max, value, getSteps(min, max, step)));
+  }
 
   return [
     value,

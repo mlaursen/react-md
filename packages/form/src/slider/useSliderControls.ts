@@ -1,10 +1,4 @@
 import {
-  applyRef,
-  getPercentage,
-  useDir,
-  useIsomorphicLayoutEffect,
-} from "@react-md/utils";
-import {
   KeyboardEventHandler,
   MouseEventHandler,
   Ref,
@@ -15,6 +9,13 @@ import {
   useRef,
   useState,
 } from "react";
+import {
+  applyRef,
+  getPercentage,
+  useDir,
+  useIsomorphicLayoutEffect,
+} from "@react-md/utils";
+
 import { DEFAULT_SLIDER_ANIMATION_TIME } from "./constants";
 import {
   DefinedSliderValueOptions,
@@ -35,6 +36,9 @@ import {
   SliderDragValues,
 } from "./utils";
 
+/**
+ * @internal
+ */
 export type SliderControlsOptions = CombinedSliderControls &
   SliderPresentation &
   SliderEventHandlers &
@@ -52,10 +56,13 @@ const VALID_KEYS = [
   "ArrowRight",
   "Home",
   "End",
-  // "PageUp",
-  // "PageDown"
+  "PageUp",
+  "PageDown",
 ];
 
+/**
+ * @internal
+ */
 export interface SliderControls {
   thumb1Ref: RefCallback<HTMLSpanElement | null>;
   thumb1Value: number;
@@ -71,6 +78,12 @@ export interface SliderControls {
   onTouchStart: TouchEventHandler<HTMLSpanElement>;
 }
 
+/**
+ * This hook provides all the logic for updating the slider's when the user
+ * intracts with the slider.
+ *
+ * @internal
+ */
 export function useSliderControls({
   ref,
   thumb1Ref: propThumb1Ref,
@@ -99,6 +112,13 @@ export function useSliderControls({
 
   const { dir } = useDir();
   const isRtl = dir === "rtl";
+
+  /**
+   * The main handler for updating the value of the slider. To help keep the
+   * drag experience smooth, some values are stored in refs to prevent the
+   * `useEffect` from being run during renders which adds and removes the move
+   * event handlers
+   */
   const drag = useCallback(
     (event: SliderDragEvent) => {
       const track = trackRef.current;
@@ -126,6 +146,9 @@ export function useSliderControls({
         event.preventDefault();
       }
       event.stopPropagation();
+
+      // get the current mouse/touch position to help determine hwo far the
+      // slider is being dragged
       let clientX: number;
       let clientY: number;
       if (isMouseEvent(event)) {
@@ -138,6 +161,8 @@ export function useSliderControls({
       let index: ThumbIndex = 0;
       let slider: HTMLSpanElement = slider1;
       if (slider2) {
+        // if we aren't dragging yet, try to find the slider closest to the
+        // mouse/touch position and use that one
         if (draggingIndex === null) {
           const x1 = slider1.getBoundingClientRect().x;
           const x2 = slider2.getBoundingClientRect().x;
@@ -155,6 +180,8 @@ export function useSliderControls({
         slider = index === 0 ? slider1 : slider2;
       }
 
+      // if we aren't dragging yet, want to focus the slider element to make it
+      // easier to switch between mouse dragging and keyboard "dragging"
       if (draggingIndex !== index) {
         slider.focus();
         setDraggingIndex(index);
@@ -245,12 +272,18 @@ export function useSliderControls({
     };
   }, [draggingIndex, draggingBy, animationDuration]);
 
+  /**
+   * Note: this should be attached to the `SliderTrack` component.
+   */
   const handleMouseDown = useCallback<MouseEventHandler<HTMLSpanElement>>(
     (event) => {
       if (onMouseDown) {
         onMouseDown(event);
       }
 
+      // only call drag again when the dragging by isn't null since it can cause
+      // the "drag" events to be re-started if the mouse appears over the slider
+      // thumb again
       if (draggingBy === null) {
         drag(event);
       }
@@ -258,12 +291,18 @@ export function useSliderControls({
     [drag, draggingBy, onMouseDown]
   );
 
+  /**
+   * Note: this should be attached to the `SliderTrack` component.
+   */
   const handleTouchStart = useCallback<TouchEventHandler<HTMLSpanElement>>(
     (event) => {
       if (onTouchStart) {
         onTouchStart(event);
       }
 
+      // only call drag again when the dragging by isn't null since it can cause
+      // the "drag" events to be re-started if the user's finger appears over
+      // the slider thumb again
       if (draggingBy === null) {
         drag(event);
       }
@@ -271,6 +310,9 @@ export function useSliderControls({
     [drag, draggingBy, onTouchStart]
   );
 
+  /**
+   * Note: this should be attached to each `SliderThumb` component.
+   */
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLSpanElement>>(
     (event) => {
       if (onKeyDown) {
@@ -292,11 +334,7 @@ export function useSliderControls({
       let controls: Omit<SimpleSliderControls, "setValue" | "value">;
       if (isRangeSlider(controlsRef.current)) {
         const { increment, decrement, minimum, maximum } = controlsRef.current;
-        const slider = (event.target as HTMLSpanElement).closest(
-          '[role="slider"]'
-        );
-
-        const index = slider === thumb2Ref.current ? 1 : 0;
+        const index = event.currentTarget === thumb2Ref.current ? 1 : 0;
         controls = {
           increment: increment.bind(null, index),
           decrement: decrement.bind(null, index),
@@ -324,6 +362,14 @@ export function useSliderControls({
           break;
         case "End":
           maximum();
+          break;
+        case "PageUp":
+          // not yet implemented
+          // jumpIncrement();
+          break;
+        case "PageDown":
+          // not yet implemented
+          // jumpDecrement();
           break;
       }
     },
