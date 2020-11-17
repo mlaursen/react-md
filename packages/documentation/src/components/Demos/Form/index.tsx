@@ -54,6 +54,9 @@ import numberHookExamples from "./NumberHookExamples.md";
 import SimpleSliders from "./SimpleSliders";
 import simpleSliders from "./SimpleSliders.md";
 
+import RangeSliders from "./RangeSliders";
+import rangeSliders from "./RangeSliders.md";
+
 import ColorDialogSlider from "./ColorDialogSlider";
 import colorDialogSlider from "./ColorDialogSlider.md";
 
@@ -143,6 +146,11 @@ const demos = [
     name: "Simple Sliders",
     description: simpleSliders,
     children: <SimpleSliders />,
+  },
+  {
+    name: "Range Sliders",
+    description: rangeSliders,
+    children: <RangeSliders />,
   },
   {
     name: "Color Dialog Slider",

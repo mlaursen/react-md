@@ -150,6 +150,7 @@
       );
 
       &::after {
+        // sass-lint:disable zero-unit
         @include rmd-slider-theme-update-var(active-size, 0px);
       }
 
@@ -265,15 +266,22 @@
 
   // one thumb track horizontal styles
   &--v1::after {
+    height: 100%;
     max-height: rmd-slider-offset(1);
     transition-property: max-height;
-    height: 100%;
   }
 
   &--v1-inv::after {
     bottom: rmd-slider-offset(1);
     top: 0;
+    transition-property: bottom, top;
+    will-change: bottom, top;
+  }
 
+  // two thumb track horizontal styles
+  &--v2::after {
+    bottom: rmd-slider-offset(1);
+    top: calc(100% - #{rmd-slider-offset(2)});
     transition-property: bottom, top;
     will-change: bottom, top;
   }

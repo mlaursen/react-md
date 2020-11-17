@@ -64,7 +64,7 @@ export const SliderThumb = forwardRef<HTMLSpanElement, SliderThumbProps>(
   function SliderThumb(
     {
       id: propId,
-      baseId: sliderId,
+      baseId,
       className,
       min = DEFAULT_SLIDER_MIN,
       max = DEFAULT_SLIDER_MAX,
@@ -81,7 +81,7 @@ export const SliderThumb = forwardRef<HTMLSpanElement, SliderThumbProps>(
     },
     ref
   ) {
-    const id = propId || `${sliderId}-thumb-${index + 1}`;
+    const id = propId || `${baseId}-thumb-${index + 1}`;
     const isFirst = index === 0;
 
     const styleOptions = {

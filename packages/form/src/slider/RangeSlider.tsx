@@ -160,7 +160,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
     );
 
     const thumbProps = {
-      sliderId: baseId,
+      baseId,
       min,
       max,
       disabled,
@@ -169,7 +169,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
     };
 
     return (
-      <SliderContainer {...props} ref={ref}>
+      <SliderContainer {...props} ref={ref} vertical={vertical}>
         <SliderTrack
           id={baseId}
           {...propTrackProps}
