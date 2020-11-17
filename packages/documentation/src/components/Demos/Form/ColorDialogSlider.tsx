@@ -20,7 +20,9 @@ export default function ColorDialogSlider(): ReactElement | null {
 
   return (
     <>
-      <Button onClick={show}>Show</Button>
+      <Button onClick={show} themeType="outline" theme="primary">
+        Update Color
+      </Button>
       <Dialog
         id={id}
         visible={visible}

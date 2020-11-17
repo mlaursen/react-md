@@ -1,11 +1,13 @@
+import React, { ReactElement, useRef, useState } from "react";
 import {
   SimpleSlider,
   SimpleSliderRequiredProps,
   TextField,
 } from "@react-md/form";
-import { SrOnly } from "@react-md/typography";
+import { SrOnly, Text } from "@react-md/typography";
 import { nearest } from "@react-md/utils";
-import React, { ReactElement, useState, useRef } from "react";
+
+import styles from "./ColorSlider.module.scss";
 
 export interface ColorSliderProps extends SimpleSliderRequiredProps {
   value: number;
@@ -29,49 +31,52 @@ export default function ColorSlider({
   }
 
   return (
-    <>
-      <SrOnly id={labelId}>{`Color ${type}`}</SrOnly>
-      <SimpleSlider
-        id={id}
-        aria-labelledby={labelId}
-        value={value}
-        {...controls}
-        beforeAddon={type.toUpperCase()}
-        afterAddon={
-          <TextField
-            id={`${id}-field`}
-            aria-labelledby={labelId}
-            type="number"
-            style={{ flexShrink: "0" }}
-            min={min}
-            max={max}
-            step={step}
-            value={fieldValue}
-            onChange={(event) => {
-              const { valueAsNumber } = event.currentTarget;
-              if (
-                !Number.isNaN(valueAsNumber) &&
-                valueAsNumber >= min &&
-                valueAsNumber <= max
-              ) {
-                setValue(valueAsNumber);
-              }
-              setFieldValue(event.currentTarget.value);
-            }}
-            onBlur={() => {
-              const parsed = parseInt(fieldValue, 10);
-              if (Number.isNaN(parsed)) {
-                setFieldValue(`${value}`);
-              } else {
-                const inRange =
-                  fieldValue === "" ? 0 : nearest(min, max, parsed, max);
-                setValue(inRange);
-                setFieldValue(`${inRange}`);
-              }
-            }}
-          />
-        }
-      />
-    </>
+    <SimpleSlider
+      baseId={id}
+      aria-labelledby={labelId}
+      value={value}
+      {...controls}
+      className={styles.slider}
+      beforeAddon={
+        <Text id={labelId} component="span">
+          {type.toUpperCase()}
+        </Text>
+      }
+      afterAddon={
+        <TextField
+          id={`${id}-field`}
+          aria-labelledby={labelId}
+          type="number"
+          className={styles.field}
+          min={min}
+          max={max}
+          step={step}
+          value={fieldValue}
+          onChange={(event) => {
+            const { valueAsNumber } = event.currentTarget;
+            if (
+              !Number.isNaN(valueAsNumber) &&
+              valueAsNumber >= min &&
+              valueAsNumber <= max
+            ) {
+              setValue(valueAsNumber);
+            }
+
+            setFieldValue(event.currentTarget.value);
+          }}
+          onBlur={() => {
+            const parsed = parseInt(fieldValue, 10);
+            if (Number.isNaN(parsed)) {
+              setFieldValue(`${value}`);
+            } else {
+              const inRange =
+                fieldValue === "" ? 0 : nearest(min, max, parsed, max);
+              setValue(inRange);
+              setFieldValue(`${inRange}`);
+            }
+          }}
+        />
+      }
+    />
   );
 }

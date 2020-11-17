@@ -1,0 +1,11 @@
+.horizontal {
+  :global(.rmd-slider-container) {
+    margin: 1rem 0;
+  }
+}
+
+.vertical {
+  :global(.rmd-slider-container) {
+    margin: 0 1rem;
+  }
+}

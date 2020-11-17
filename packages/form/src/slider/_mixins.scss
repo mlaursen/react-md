@@ -210,7 +210,7 @@
   // one thumb track horizontal inversed styles
   &--h1-inv::after {
     @include rmd-utils-rtl-auto(right, 0);
-    @include rmd-utils-rtl-auto(left, rmd-slider-offset(1));
+    @include rmd-utils-rtl-auto(left, rmd-slider-offset(1), 0);
 
     transition-property: left, right;
     will-change: left, right;
