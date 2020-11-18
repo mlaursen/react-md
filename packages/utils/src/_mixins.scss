@@ -716,16 +716,16 @@
 ///   }
 /// }
 @mixin rmd-utils-dense {
-  @if mixin-exists(rmd-app-bar-dense-theme) {
-    @include rmd-app-bar-dense-theme;
-  }
-
-  @if mixin-exists(rmd-toggle-dense-theme) {
-    @include rmd-toggle-dense-theme;
+  @if mixin-exists(rmd-tooltip-dense-theme) {
+    @include rmd-tooltip-dense-theme;
   }
 
   @if mixin-exists(rmd-icon-dense-theme) {
     @include rmd-icon-dense-theme;
+  }
+
+  @if mixin-exists(rmd-app-bar-dense-theme) {
+    @include rmd-app-bar-dense-theme;
   }
 
   @if mixin-exists(rmd-list-dense-theme) {
@@ -736,8 +736,8 @@
     @include rmd-list-item-dense-theme;
   }
 
-  @if mixin-exists(rmd-tooltip-dense-theme) {
-    @include rmd-tooltip-dense-theme;
+  @if mixin-exists(rmd-toggle-dense-theme) {
+    @include rmd-toggle-dense-theme;
   }
 }
 
@@ -749,119 +749,117 @@
   @include rmd-utils-base;
   @include react-md-utils-grid;
 
-  @if mixin-exists(react-md-alert) {
-    @include react-md-alert;
-  }
-
-  @if mixin-exists(react-md-avatar) {
-    @include react-md-avatar;
-  }
-
-  @if mixin-exists(react-md-badge) {
-    @include react-md-badge;
-  }
-
-  @if mixin-exists(react-md-button) {
-    @include react-md-button;
-  }
-
-  // has to come after buttons since it overrides some button styles
-  @if mixin-exists(react-md-app-bar) {
-    @include react-md-app-bar;
-  }
-
-  @if mixin-exists(react-md-overlay) {
-    @include react-md-overlay;
-  }
-
-  // has to come after overlays since it overrides the z-index
-  @if mixin-exists(react-md-dialog) {
-    @include react-md-dialog;
-  }
-
-  @if mixin-exists(react-md-card) {
-    @include react-md-card;
-  }
-
-  @if mixin-exists(react-md-chip) {
-    @include react-md-chip;
-  }
-
-  @if mixin-exists(react-md-divider) {
-    @include react-md-divider;
-  }
-
-  @if mixin-exists(react-md-expansion-panel) {
-    @include react-md-expansion-panel;
-  }
-
-  @if mixin-exists(react-md-form) {
-    @include react-md-form;
-  }
-
-  @if mixin-exists(react-md-icon) {
-    @include react-md-icon;
-  }
-
-  @if mixin-exists(react-md-link) {
-    @include react-md-link;
-  }
-
-  @if mixin-exists(react-md-list) {
-    @include react-md-list;
-  }
-
-  @if mixin-exists(react-md-media) {
-    @include react-md-media;
-  }
-
-  @if mixin-exists(react-md-menu) {
-    @include react-md-menu;
-  }
-
-  @if mixin-exists(react-md-progress) {
-    @include react-md-progress;
-  }
-
-  @if mixin-exists(react-md-sheet) {
-    @include react-md-sheet;
-  }
-
-  // has to come after sheet
-  @if mixin-exists(react-md-layout) {
-    @include react-md-layout;
-  }
-
-  @if mixin-exists(react-md-states) {
-    @include react-md-states;
-  }
-
-  @if mixin-exists(react-md-table) {
-    @include react-md-table;
-  }
-
-  @if mixin-exists(react-md-tabs) {
-    @include react-md-tabs;
-  }
-
+  // the mixins are added in this specific order to make overriding easier
   @if mixin-exists(react-md-theme) {
     @include react-md-theme;
   }
 
-  @if mixin-exists(react-md-tooltip) {
-    @include react-md-tooltip;
+  @if mixin-exists(react-md-typography) {
+    @include react-md-typography;
   }
 
   @if mixin-exists(react-md-transition) {
     @include react-md-transition;
   }
 
+  @if mixin-exists(react-md-states) {
+    @include react-md-states;
+  }
+
+  @if mixin-exists(react-md-tooltip) {
+    @include react-md-tooltip;
+  }
+
+  @if mixin-exists(react-md-divider) {
+    @include react-md-divider;
+  }
+
+  @if mixin-exists(react-md-icon) {
+    @include react-md-icon;
+  }
+
+  @if mixin-exists(react-md-avatar) {
+    @include react-md-avatar;
+  }
+
+  @if mixin-exists(react-md-media) {
+    @include react-md-media;
+  }
+
+  @if mixin-exists(react-md-link) {
+    @include react-md-link;
+  }
+
+  @if mixin-exists(react-md-overlay) {
+    @include react-md-overlay;
+  }
+
+  @if mixin-exists(react-md-progress) {
+    @include react-md-progress;
+  }
+
+  @if mixin-exists(react-md-button) {
+    @include react-md-button;
+  }
+
+  @if mixin-exists(react-md-badge) {
+    @include react-md-badge;
+  }
+
+  @if mixin-exists(react-md-chip) {
+    @include react-md-chip;
+  }
+
+  @if mixin-exists(react-md-alert) {
+    @include react-md-alert;
+  }
+
+  @if mixin-exists(react-md-app-bar) {
+    @include react-md-app-bar;
+  }
+
+  @if mixin-exists(react-md-card) {
+    @include react-md-card;
+  }
+
+  @if mixin-exists(react-md-expansion-panel) {
+    @include react-md-expansion-panel;
+  }
+
+  @if mixin-exists(react-md-list) {
+    @include react-md-list;
+  }
+
+  @if mixin-exists(react-md-dialog) {
+    @include react-md-dialog;
+  }
+
+  @if mixin-exists(react-md-menu) {
+    @include react-md-menu;
+  }
+
+  @if mixin-exists(react-md-sheet) {
+    @include react-md-sheet;
+  }
+
+  @if mixin-exists(react-md-tabs) {
+    @include react-md-tabs;
+  }
+
   @if mixin-exists(react-md-tree) {
     @include react-md-tree;
   }
 
-  @if mixin-exists(react-md-typography) {
-    @include react-md-typography;
+  @if mixin-exists(react-md-table) {
+    @include react-md-table;
+  }
+
+  @if mixin-exists(react-md-form) {
+    @include react-md-form;
+  }
+
+  @if mixin-exists(react-md-layout) {
+    @include react-md-layout;
   }
 
   @if $rmd-utils-auto-dense {
