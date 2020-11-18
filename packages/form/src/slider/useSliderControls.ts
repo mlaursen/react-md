@@ -333,11 +333,20 @@ export function useSliderControls({
 
       let controls: Omit<SimpleSliderControls, "setValue" | "value">;
       if (isRangeSlider(controlsRef.current)) {
-        const { increment, decrement, minimum, maximum } = controlsRef.current;
+        const {
+          increment,
+          incrementJump,
+          decrement,
+          decrementJump,
+          minimum,
+          maximum,
+        } = controlsRef.current;
         const index = event.currentTarget === thumb2Ref.current ? 1 : 0;
         controls = {
           increment: increment.bind(null, index),
+          incrementJump: incrementJump.bind(null, index),
           decrement: decrement.bind(null, index),
+          decrementJump: decrementJump.bind(null, index),
           minimum: minimum.bind(null, index),
           maximum: maximum.bind(null, index),
         };
@@ -345,7 +354,14 @@ export function useSliderControls({
         controls = controlsRef.current;
       }
 
-      const { increment, decrement, minimum, maximum } = controls;
+      const {
+        increment,
+        incrementJump,
+        decrement,
+        decrementJump,
+        minimum,
+        maximum,
+      } = controls;
       event.preventDefault();
       event.stopPropagation();
       switch (key) {
@@ -364,12 +380,10 @@ export function useSliderControls({
           maximum();
           break;
         case "PageUp":
-          // not yet implemented
-          // jumpIncrement();
+          incrementJump();
           break;
         case "PageDown":
-          // not yet implemented
-          // jumpDecrement();
+          decrementJump();
           break;
       }
     },

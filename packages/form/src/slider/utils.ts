@@ -17,6 +17,25 @@ export const getSteps = (min: number, max: number, step: number): number =>
   Math.abs(max - min) / step;
 
 /**
+ *
+ * @internal
+ */
+export const getJumpValue = (
+  min: number,
+  max: number,
+  step: number,
+  jump: number | undefined
+): number => {
+  const steps = getSteps(min, max, step);
+  const value = jump ?? (steps / 10) * step;
+  if (Number.isInteger(step)) {
+    return Math.ceil(value);
+  }
+
+  return value;
+};
+
+/**
  * @internal
  */
 export type SliderDragEvent =

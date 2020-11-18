@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { nearest } from "@react-md/utils";
 
 import {
@@ -11,10 +11,10 @@ import {
   RangeSliderControls,
   RangeSliderDefaultValue,
   RangeSliderValue,
-  SliderValueOptions,
+  SliderStepOptions,
   ThumbIndex,
 } from "./types";
-import { getSteps } from "./utils";
+import { getJumpValue, getSteps } from "./utils";
 
 export interface RangeSliderRequiredProps
   extends RangeSliderControls,
@@ -50,13 +50,20 @@ export function useRangeSlider(
     min = DEFAULT_SLIDER_MIN,
     max = DEFAULT_SLIDER_MAX,
     step = DEFAULT_SLIDER_STEP,
-  }: SliderValueOptions = {}
+    jump: propJump,
+  }: SliderStepOptions = {}
 ): RangeSliderValueReturnType {
+  const jump = useMemo(() => getJumpValue(min, max, step, propJump), [
+    min,
+    max,
+    step,
+    propJump,
+  ]);
   const [value, setValue] = useState<RangeSliderValue>(
     defaultValue ?? [min, max]
   );
   const update = useCallback(
-    (index: ThumbIndex, increment: boolean, minMax: boolean) => {
+    (index: ThumbIndex, increment: boolean, minMax: boolean, amount = step) => {
       if (process.env.NODE_ENV !== "production") {
         if (index !== 0 && index !== 1) {
           throw new TypeError("Thumb index must be 0 or 1.");
@@ -80,7 +87,7 @@ export function useRangeSlider(
         } else {
           value = Math.max(
             minValue,
-            Math.min(maxValue, value + (increment ? step : -step))
+            Math.min(maxValue, value + (increment ? amount : -amount))
           );
         }
 
@@ -93,9 +100,17 @@ export function useRangeSlider(
     (index: ThumbIndex) => update(index, true, false),
     [update]
   );
+  const incrementJump = useCallback(
+    (index: ThumbIndex) => update(index, true, false, jump),
+    [update, jump]
+  );
   const decrement = useCallback(
     (index: ThumbIndex) => update(index, false, false),
     [update]
+  );
+  const decrementJump = useCallback(
+    (index: ThumbIndex) => update(index, false, false, jump),
+    [update, jump]
   );
   const minimum = useCallback(
     (index: ThumbIndex) => update(index, true, true),
@@ -133,7 +148,9 @@ export function useRangeSlider(
       minimum,
       maximum,
       increment,
+      incrementJump,
       decrement,
+      decrementJump,
       setValue,
     },
   ];

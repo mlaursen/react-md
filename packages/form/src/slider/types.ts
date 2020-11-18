@@ -23,7 +23,9 @@ export interface SimpleSliderControls {
   minimum(): void;
   maximum(): void;
   increment(): void;
+  incrementJump(): void;
   decrement(): void;
+  decrementJump(): void;
   setValue: Dispatch<SetStateAction<SimpleSliderValue>>;
 }
 
@@ -41,7 +43,9 @@ export interface RangeSliderControls {
   minimum(index: ThumbIndex): void;
   maximum(index: ThumbIndex): void;
   increment(index: ThumbIndex): void;
+  incrementJump(index: ThumbIndex): void;
   decrement(index: ThumbIndex): void;
+  decrementJump(index: ThumbIndex): void;
   setValue: Dispatch<SetStateAction<RangeSliderValue>>;
 }
 
@@ -62,6 +66,15 @@ export interface SliderValueOptions {
    * value of `1`, but can also be decimal values if needed.
    */
   step?: number;
+}
+
+export interface SliderStepOptions extends SliderValueOptions {
+  /**
+   * An optional amount to jump by when using the PageUp or PageDown keys. When
+   * this is omitted, it will try to default to 10% of the full range to the
+   * nearest step
+   */
+  jump?: number;
 }
 
 export interface SliderPresentation {

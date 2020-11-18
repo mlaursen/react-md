@@ -97,7 +97,9 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       minimum,
       maximum,
       increment,
+      incrementJump,
       decrement,
+      decrementJump,
       setValue,
       thumb1Props,
       thumb1Label,
@@ -134,7 +136,9 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       minimum,
       maximum,
       increment,
+      incrementJump,
       decrement,
+      decrementJump,
       setValue,
     });
 

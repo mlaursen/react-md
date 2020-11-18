@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { nearest } from "@react-md/utils";
 
 import {
@@ -11,9 +11,9 @@ import {
   SimpleSliderControls,
   SimpleSliderDefaultValue,
   SimpleSliderValue,
-  SliderValueOptions,
+  SliderStepOptions,
 } from "./types";
-import { getSteps } from "./utils";
+import { getJumpValue, getSteps } from "./utils";
 
 export interface SimpleSliderRequiredProps
   extends SimpleSliderControls,
@@ -49,15 +49,29 @@ export function useSimpleSlider(
     min = DEFAULT_SLIDER_MIN,
     max = DEFAULT_SLIDER_MAX,
     step = DEFAULT_SLIDER_STEP,
-  }: SliderValueOptions = {}
+    jump: propJump,
+  }: SliderStepOptions = {}
 ): SimpleSliderValueReturnType {
+  const jump = useMemo(() => getJumpValue(min, max, step, propJump), [
+    min,
+    max,
+    step,
+    propJump,
+  ]);
+
   const [value, setValue] = useState(defaultValue ?? min);
   const increment = useCallback(() => {
     setValue((prevValue) => Math.max(min, Math.min(max, prevValue + step)));
   }, [min, max, step]);
+  const incrementJump = useCallback(() => {
+    setValue((prevValue) => Math.max(min, Math.min(max, prevValue + jump)));
+  }, [min, max, jump]);
   const decrement = useCallback(() => {
     setValue((prevValue) => Math.max(min, Math.min(max, prevValue - step)));
   }, [min, max, step]);
+  const decrementJump = useCallback(() => {
+    setValue((prevValue) => Math.max(min, Math.min(max, prevValue - jump)));
+  }, [min, max, jump]);
   const minimum = useCallback(() => {
     setValue(min);
   }, [min]);
@@ -86,7 +100,9 @@ export function useSimpleSlider(
       step,
       value,
       increment,
+      incrementJump,
       decrement,
+      decrementJump,
       minimum,
       maximum,
       setValue,

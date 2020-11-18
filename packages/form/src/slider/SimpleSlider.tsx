@@ -102,7 +102,9 @@ export const SimpleSlider = forwardRef<HTMLDivElement, SimpleSliderProps>(
       minimum,
       maximum,
       increment,
+      incrementJump,
       decrement,
+      decrementJump,
       setValue,
     });
 
