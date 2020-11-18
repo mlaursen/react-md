@@ -84,10 +84,10 @@ import the `App.scss` file in the `src/App.js`:
 ```
 
 ```diff
++import './App.scss';
  import React from 'react';
  import logo from './logo.svg';
  import './App.css';
-+import './App.scss';
 ```
 
 Finally, update the `public/index.html` to include the `Roboto` font and the
@@ -124,10 +124,10 @@ components from react-md. It is generally recommended to update your base
 `src/App.js` to include some default configuration components:
 
 ```diff
+ import './App.scss';
  import React from 'react';
 -import logo from './logo.svg';
 -import './App.css';
--import './App.scss';
 -
 -function App() {
 -  return (
@@ -155,7 +155,6 @@ components from react-md. It is generally recommended to update your base
 +  Text,
 +  Button,
 +} from 'react-md';
-+import './App.scss';
 +
 +// see @react-md/layout package for info on the main navigation
 +const routes = {};
