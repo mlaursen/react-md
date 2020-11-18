@@ -1,6 +1,7 @@
 export * from "./SimpleSlider";
 export * from "./RangeSlider";
 
+export * from "./SliderContainer";
 export * from "./SliderThumb";
 export * from "./SliderTrack";
 
