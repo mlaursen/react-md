@@ -19,13 +19,13 @@ export interface BaseSimpleSliderProps
    * An optional label to apply to the slider's thumb. Either this or the
    * `aria-labelledby` prop are required for a11y.
    */
-  "aria-label"?: string;
+  thumbLabel?: string;
 
   /**
    * An optional id point to a label describing the slider's thumb. Either this
    * or the `aria-label` prop are required for a11y.
    */
-  "aria-labelledby"?: string;
+  thumbLabelledBy?: string;
 
   /**
    * Any additional props you'd like to pass to the track element as well as an
@@ -52,6 +52,8 @@ export const SimpleSlider = forwardRef<HTMLDivElement, SimpleSliderProps>(
     {
       baseId,
       trackProps: propTrackProps,
+      thumbLabel,
+      thumbLabelledBy,
       thumbProps,
       min,
       max,
@@ -67,10 +69,10 @@ export const SimpleSlider = forwardRef<HTMLDivElement, SimpleSliderProps>(
       minimum,
       maximum,
       increment,
+      incrementJump,
       decrement,
+      decrementJump,
       setValue,
-      "aria-label": ariaLabel,
-      "aria-labelledby": ariaLabelledBy,
       ...props
     },
     ref
@@ -118,8 +120,8 @@ export const SimpleSlider = forwardRef<HTMLDivElement, SimpleSliderProps>(
           <SliderThumb
             {...thumbProps}
             getValueText={getValueText}
-            aria-label={ariaLabel as string}
-            aria-labelledby={ariaLabelledBy}
+            aria-label={thumbLabel as string}
+            aria-labelledby={thumbLabelledBy}
             ref={thumb1Ref}
             baseId={baseId}
             min={min}
@@ -155,8 +157,8 @@ if (process.env.NODE_ENV !== "production") {
       getValueText: PropTypes.func,
 
       baseId: PropTypes.string.isRequired,
-      "aria-label": PropTypes.string,
-      "aria-labelledby": PropTypes.string,
+      thumbLabel: PropTypes.string,
+      thumbLabelledBy: PropTypes.string,
       trackProps: PropTypes.object,
       thumbProps: PropTypes.object,
       style: PropTypes.object,
@@ -170,17 +172,20 @@ if (process.env.NODE_ENV !== "production") {
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
-      _a11yValidator1: (props, propName: string, component: string) => {
-        const label = props[propName];
-        const labelledBy = props.thumb1LabelledBy;
-        const propsLabel = props.thumb1Props?.["aria-label"];
-        const propsLabelledBy = props.thumb1Props?.["aria-labelledby"];
-        if (label || labelledBy || propsLabel || propsLabelledBy) {
+      _a11yValidator1: (
+        props: SimpleSliderProps,
+        _propName: string,
+        component: string
+      ) => {
+        const { thumbLabel, thumbLabelledBy } = props;
+        const propsLabel = props.thumbProps?.["aria-label"];
+        const propsLabelledBy = props.thumbProps?.["aria-labelledby"];
+        if (thumbLabel || thumbLabelledBy || propsLabel || propsLabelledBy) {
           return null;
         }
 
         return new Error(
-          `Either the \`thumb1Label\`, \`thumb1LabelledBy\`, \`thumb1Props["aria-label"]\`, or \`thumb1Props["aria-labelledby"]\` ` +
+          `Either the \`thumbLabel\`, \`thumbLabelledBy\`, \`thumb1Props["aria-label"]\`, or \`thumb1Props["aria-labelledby"]\` ` +
             `are required for accessibility in the \`${component}\` component, but none were provided.`
         );
       },

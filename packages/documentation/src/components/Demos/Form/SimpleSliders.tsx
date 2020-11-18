@@ -19,22 +19,22 @@ export default function SimpleSliders(): ReactElement | null {
   return (
     <>
       <SlidersContainer>
-        <SimpleSlider baseId={useId()} aria-label="Slider 1" {...controls1} />
+        <SimpleSlider baseId={useId()} thumbLabel="Slider 1" {...controls1} />
         <SimpleSlider
           baseId={useId()}
-          aria-label="Slider 2"
+          thumbLabel="Slider 2"
           {...controls2}
           inversed
         />
         <SimpleSlider
           baseId={useId()}
-          aria-label="Disabled Slider"
+          thumbLabel="Disabled Slider"
           {...disabledControls}
           disabled
         />
         <SimpleSlider
           baseId={useId()}
-          aria-label="Slider 3"
+          thumbLabel="Slider 3"
           {...controls3}
           beforeAddon={<VolumeOffSVGIcon />}
           afterAddon={<VolumeUpSVGIcon />}
@@ -43,20 +43,20 @@ export default function SimpleSliders(): ReactElement | null {
       <SlidersContainer vertical>
         <SimpleSlider
           baseId={useId()}
-          aria-label="Vertical Slider 1"
+          thumbLabel="Vertical Slider 1"
           {...controls4}
           vertical
         />
         <SimpleSlider
           baseId={useId()}
-          aria-label="Vertical Slider 2"
+          thumbLabel="Vertical Slider 2"
           {...controls5}
           vertical
           inversed
         />
         <SimpleSlider
           baseId={useId()}
-          aria-label="Disabled Vertical Slider"
+          thumbLabel="Disabled Vertical Slider"
           {...disabledControls}
           disabled
           vertical
