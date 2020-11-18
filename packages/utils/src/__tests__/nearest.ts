@@ -20,4 +20,18 @@ describe("nearest", () => {
     expect(nearest(0.28, 0, 1, 4)).toBe(0.25);
     expect(nearest(0.33, 0, 1, 4)).toBe(0.25);
   });
+
+  it("should allow for a custom range to be used with range sliders", () => {
+    // to explain this a bit better, need to make sure that the slider thumbs
+    // are always in order of `min -> max` so the min and max values change
+    // depending on which thumb is being dragged:
+    // - thumb1 -> min === min, max === thumb2Value
+    // - thumb2 -> min === thumb1Value, max === max
+
+    expect(nearest(44.3, 40, 100, 100, 100)).toBe(44);
+    expect(nearest(50, 20, 50, 50, 50)).toBe(50);
+    expect(nearest(22.3, 20, 50, 50, 50)).toBe(22);
+    expect(nearest(12.3, 20, 50, 50, 50)).toBe(20);
+    expect(nearest(0, 30, 50, 100, 100)).toBe(30);
+  });
 });

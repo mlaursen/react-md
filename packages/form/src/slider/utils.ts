@@ -152,7 +152,7 @@ export const getDragValue = ({
   const range = max - min;
   const steps = getSteps(min, max, step);
   const value = percentageDragged * range + min;
-  const rounded = nearest(value, minValue, maxValue, steps);
+  const rounded = nearest(value, minValue, maxValue, steps, range);
 
   if (!vertical && isRtl) {
     return steps - rounded;

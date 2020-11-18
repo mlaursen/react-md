@@ -6,6 +6,7 @@
  * @param min The min value allowed
  * @param max The max value allowed
  * @param steps The number of steps in the min/max range
+ * @param range The range allowed for the value that defaults to `max - min`
  * @return the value rounded to the nearest step in the min/max range
  * @since 2.5.0 - Added the `range` param
  */
@@ -13,9 +14,9 @@ export function nearest(
   value: number,
   min: number,
   max: number,
-  steps: number
+  steps: number,
+  range = max - min
 ): number {
-  const range = max - min;
   const rounded = Math.round(((value - min) * steps) / range) / steps;
   const zeroToOne = Math.min(Math.max(rounded, 0), 1);
 
