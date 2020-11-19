@@ -53,8 +53,8 @@
     "adm-zip": "^0.4.16",
     "commander": "^6.0.0",
     "download": "^8.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "peerDependencies": {
     "react": ">= 16.8"

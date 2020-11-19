@@ -1,27 +1,28 @@
 {
-  "presets": [
-    "next/babel"
-  ],
+  "presets": [["next/babel", { "preset-react": { "runtime": "classic" } }]],
   "plugins": [
     "inline-react-svg",
-    ["prismjs", {
-      "languages": [
-        "javascript",
-        "typescript",
-        "jsx",
-        "tsx",
-        "css",
-        "scss",
-        "css-extras",
-        "markup",
-        "bash",
-        "diff",
-        "git",
-        "json",
-        "properties"
-      ],
-      "plugins": [],
-      "css": true
-    }]
+    [
+      "prismjs",
+      {
+        "languages": [
+          "javascript",
+          "typescript",
+          "jsx",
+          "tsx",
+          "css",
+          "scss",
+          "css-extras",
+          "markup",
+          "bash",
+          "diff",
+          "git",
+          "json",
+          "properties"
+        ],
+        "plugins": [],
+        "css": true
+      }
+    ]
   ]
 }

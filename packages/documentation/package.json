@@ -4,13 +4,15 @@
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
-    "prebuild": "dev-utils doc-index",
+    "prebuild": "npm-run-all -p index update-env",
+    "index": "dev-utils doc-index",
+    "update-env": "node updateProdEnv.js",
     "dev": "nodemon",
     "build": "npm-run-all build-client build-server",
     "build-server": "tsc -p tsconfig.server.json",
     "build-client": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
     "start": "cross-env NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production node .next/server",
-    "start-dev": "npm-run-all prebuild dev",
+    "start-dev": "npm-run-all index dev",
     "start-prod": "npm-run-all build start"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
@@ -70,9 +72,9 @@
     "next": "10.0.2",
     "prismjs": "^1.21.0",
     "qs": "^6.9.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-hook-form": "^6.11.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-hook-form": "^6.11.3",
     "react-router-dom": "^5.2.0",
     "react-swipeable": "^5.5.1",
     "react-transition-group": "^4.4.1",
@@ -99,10 +101,8 @@
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
     "raw-loader": "^4.0.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.5",
-    "webpack": "^4.44.1"
+    "webpack": "^5.5.1"
   }
 }

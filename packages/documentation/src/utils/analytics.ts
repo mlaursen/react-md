@@ -2,6 +2,7 @@
 import { kebabCase } from "lodash";
 import { CodePreference } from "components/CodePreference";
 import { ThemeMode } from "components/Theme";
+import { GA_CODE } from "constants/github";
 
 export enum EventName {
   CreateSandbox = "create_sandbox",
@@ -89,7 +90,7 @@ const getEventParams = (event: AnalyticsEvent): Gtag.EventParams => {
  * Sends an analytics event using `gtag` but only in production.
  */
 export function sendAnalyticsEvent(event: AnalyticsEvent): void {
-  if (process.env.NODE_ENV !== "production" && !process.env.GA_CODE) {
+  if (process.env.NODE_ENV !== "production" && !GA_CODE) {
     return;
   }
 

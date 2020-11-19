@@ -35,8 +35,8 @@
     "@react-md/utils": "^2.4.2"
   },
   "devDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "peerDependencies": {
     "react": ">= 16.8"

@@ -2,6 +2,8 @@
 src/readmes
 src/changelogs
 
+.env*.local
+
 # this is copied over from .github/CONTRIBUTING.md
 src/guides/contributing.md
 
