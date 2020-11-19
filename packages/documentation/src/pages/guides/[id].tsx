@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NextFC } from "next";
 
-import NotFoundPage from "components/NotFoundPage";
 import { MarkdownPage } from "components/Markdown";
+import NotFoundPage from "components/NotFoundPage";
+import { useHotReload } from "hooks/useHotReload";
 import { qsToString } from "utils/routes";
 
 interface GuidesProps {
@@ -10,33 +11,13 @@ interface GuidesProps {
   readme: string | null;
 }
 
+const getGuide = (guideId: string): Promise<string | null> =>
+  import(`../../guides/${guideId}.md`)
+    .then((mod) => mod.default)
+    .catch(() => null);
+
 const Guides: NextFC<GuidesProps> = ({ readme: propReadme, guideId }) => {
-  let readme = propReadme;
-  if (process.env.NODE_ENV !== "production") {
-    // This is a hacky way to allow hot reloading for the guide in dev mode
-    // since the getInitialProps isn't re-run for hot reloads...
-    /* eslint-disable react-hooks/rules-of-hooks */
-    const [devReadme, setDevReadme] = useState(readme);
-    readme = devReadme;
-
-    useEffect(() => {
-      let cancelled = false;
-      (async function load() {
-        const readme = await import(`../../guides/${guideId}.md`)
-          .then((mod) => mod.default)
-          .catch(() => null);
-
-        if (!cancelled) {
-          setDevReadme(readme);
-        }
-      })();
-
-      return () => {
-        cancelled = true;
-      };
-    }, [guideId]);
-  }
-
+  const readme = useHotReload(guideId, propReadme, getGuide);
   if (readme === null) {
     return <NotFoundPage />;
   }
@@ -46,9 +27,7 @@ const Guides: NextFC<GuidesProps> = ({ readme: propReadme, guideId }) => {
 
 Guides.getInitialProps = async ({ query }): Promise<GuidesProps> => {
   const guideId = qsToString(query.id);
-  const readme = await import(`../../guides/${guideId}.md`)
-    .then((mod) => mod.default)
-    .catch(() => null);
+  const readme = await getGuide(guideId);
 
   return { guideId, readme };
 };

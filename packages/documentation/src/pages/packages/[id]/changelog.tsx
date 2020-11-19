@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NextFC } from "next";
 
-import NotFoundPage from "components/NotFoundPage";
 import { MarkdownPage } from "components/Markdown";
+import NotFoundPage from "components/NotFoundPage";
+import { useHotReload } from "hooks/useHotReload";
 import { qsToString } from "utils/routes";
 
 export interface ChangelogProps {
@@ -10,36 +11,16 @@ export interface ChangelogProps {
   changelog: string | null;
 }
 
+const getChangelog = (packageName: string): Promise<string | null> =>
+  import(`../../../changelogs/${packageName}.md`)
+    .then((mod) => mod.default)
+    .catch(() => null);
+
 const Changelog: NextFC<ChangelogProps> = ({
   packageName,
   changelog: propChangelog,
 }) => {
-  let changelog = propChangelog;
-  if (process.env.NODE_ENV !== "production") {
-    // This is a hacky way to allow hot reloading for the guide in dev mode
-    // since the getInitialProps isn't re-run for hot reloads...
-    /* eslint-disable react-hooks/rules-of-hooks */
-    const [devChangelog, setDevChangelog] = useState(changelog);
-    changelog = devChangelog;
-
-    useEffect(() => {
-      let cancelled = false;
-      (async function load() {
-        const changelog = await import(`../../../changelogs/${packageName}.md`)
-          .then((mod) => mod.default)
-          .catch(() => null);
-
-        if (!cancelled) {
-          setDevChangelog(changelog);
-        }
-      })();
-
-      return () => {
-        cancelled = true;
-      };
-    }, [packageName]);
-  }
-
+  const changelog = useHotReload(packageName, propChangelog, getChangelog);
   if (changelog === null) {
     return <NotFoundPage />;
   }
@@ -49,9 +30,7 @@ const Changelog: NextFC<ChangelogProps> = ({
 
 Changelog.getInitialProps = async ({ query }): Promise<ChangelogProps> => {
   const packageName = qsToString(query.id);
-  const changelog = await import(`../../../changelogs/${packageName}.md`)
-    .then((mod) => mod.default)
-    .catch(() => null);
+  const changelog = await getChangelog(packageName);
 
   return { packageName, changelog };
 };
