@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import { Link as RMDLink } from "@react-md/link";
 
-export interface LinkProps extends Omit<NextLinkProps, "children"> {
+export interface LinkProps extends Omit<NextLinkProps, "as" | "children"> {
   id?: string;
   className?: string;
   children: ReactNode;
@@ -14,7 +14,6 @@ const Link: FC<LinkProps> = ({
   shallow,
   scroll,
   replace,
-  as,
   href,
   passHref,
   ...props
@@ -33,7 +32,6 @@ const Link: FC<LinkProps> = ({
       scroll={scroll}
       replace={replace}
       href={href}
-      as={as}
       passHref={passHref}
     >
       <RMDLink {...props}>{children}</RMDLink>

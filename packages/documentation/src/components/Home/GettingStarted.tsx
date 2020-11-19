@@ -34,11 +34,7 @@ const GettingStarted: FC = () => (
     </CardContent>
     <Divider />
     <CardActions>
-      <LinkButton
-        href="/guides/[id]"
-        as="/guides/installation"
-        themeType="outline"
-      >
+      <LinkButton href="/guides/installation" themeType="outline">
         Get started!
       </LinkButton>
     </CardActions>

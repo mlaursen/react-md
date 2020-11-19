@@ -10,20 +10,8 @@ export interface ReferenceLinkListProps {
   links: ItemReferenceLink[];
 }
 
-const getLinkProps = (
-  pathname: string,
-  { name, type, packageName }: ItemReferenceLink
-): { href: string; as: string } => {
-  const hash = `#${getId(name, type, packageName)}`;
-
-  return {
-    as: `${pathname.replace("[id]", packageName)}${hash}`,
-    href: `${pathname}${hash}`,
-  };
-};
-
 const ReferenceLinkList: FC<ReferenceLinkListProps> = ({ links }) => {
-  const router = useRouter();
+  const { pathname } = useRouter();
   return (
     <>
       {links.map((link) => {
@@ -41,10 +29,15 @@ const ReferenceLinkList: FC<ReferenceLinkListProps> = ({ links }) => {
           default:
             children = `$${name}`;
         }
+        const href = `${pathname.replace("[id]", packageName)}#${getId(
+          name,
+          type,
+          packageName
+        )}`;
 
         return (
           <li key={id}>
-            <Link {...getLinkProps(router.pathname, link)}>{children}</Link>
+            <Link href={href}>{children}</Link>
           </li>
         );
       })}

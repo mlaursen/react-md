@@ -221,7 +221,6 @@ function createNavItem(
   const itemId = `${parentHref || ""}${currentItemId}`;
   const lastSlashIndex = itemId.lastIndexOf("/");
 
-  let as: string | undefined;
   let href: string | undefined = itemId;
   let parentId: string | null = null;
   if (lastSlashIndex > 0) {
@@ -230,25 +229,11 @@ function createNavItem(
 
   // don't want to render as a link when there are child routes
   if (routes.length) {
-    as = undefined;
     href = undefined;
-  } else if (parentId && parentId.startsWith("/guides")) {
-    as = itemId;
-    href = `${parentId}/[id]`;
-  } else if (
-    parentHref &&
-    itemId.startsWith("/packages") &&
-    !itemId.endsWith("/demos")
-  ) {
-    // section _should_ be api|demo|sassdoc|installation
-    const [, , section] = itemId.substring(1).split("/");
-    as = href;
-    href = `/packages/[id]${section ? `/${section}` : ""}`;
   }
 
   tree[itemId] = {
     ...item,
-    as,
     href,
     itemId,
     parentId,

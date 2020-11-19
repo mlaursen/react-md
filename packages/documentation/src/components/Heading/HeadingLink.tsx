@@ -1,11 +1,13 @@
 import React, { FC, useCallback } from "react";
 import LinkUnstyled from "components/LinkUnstyled";
+import { useRouter } from "next/router";
 
 export interface HeadingLinkProps {
   idRef: string;
 }
 
 const HeadingLink: FC<HeadingLinkProps> = ({ idRef }) => {
+  const { asPath } = useRouter();
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       const area = document.createElement("textarea");
@@ -23,11 +25,12 @@ const HeadingLink: FC<HeadingLinkProps> = ({ idRef }) => {
     },
     []
   );
+  const prefix = asPath.replace(/#.*$/, "");
 
   return (
     <LinkUnstyled
       id={`${idRef}-link`}
-      href={`#${idRef}`}
+      href={`${prefix}#${idRef}`}
       className="heading__link"
       onClick={handleClick}
       aria-label="Quick Link"

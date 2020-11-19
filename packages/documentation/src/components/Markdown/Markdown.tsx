@@ -10,7 +10,6 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import { UrlObject } from "url";
 
 import GoogleFont from "components/GoogleFont";
 
@@ -54,27 +53,6 @@ function useHTML(children: MarkdownChildren): DangerHTML {
   return html;
 }
 
-type RouterArgs = [string] | [string, string];
-function getRouterArgs(href: string): RouterArgs {
-  const args: RouterArgs = [href];
-  if (href.includes("/demos")) {
-    return args;
-  }
-
-  const parts = href.split("/");
-  const index = parts.findIndex(
-    (part) => part === "guides" || part === "packages"
-  );
-  if (index !== -1) {
-    const name = parts[index + 1];
-    args.unshift(href.replace(name, "[id]"));
-  }
-
-  return args;
-}
-
-type Url = UrlObject | string;
-
 function useCustomMarkdownBehavior({
   __html: html,
 }: DangerHTML): MutableRefObject<HTMLDivElement | null> {
@@ -97,13 +75,7 @@ function useCustomMarkdownBehavior({
           event.preventDefault();
           const href = link.href.replace(origin, "");
 
-          const [url, as] = getRouterArgs(href);
-          const args: [Url] | [Url, string] = [url];
-          if (as) {
-            args.push(as);
-          }
-
-          router.push(...args).then((success) => {
+          router.push(href).then((success) => {
             if (success) {
               const [, hash] = href.split("#");
               if (hash) {

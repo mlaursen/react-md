@@ -26,25 +26,23 @@ export interface PostProps extends BlogPost {
   isLast: boolean;
 }
 
-function resolveReadMore(
-  readMore: string | null
-): [] | [string] | [string, string] {
+function resolveReadMore(readMore: string | null): string | null {
   if (readMore === null) {
-    return [];
+    return null;
   }
 
   // github issue read more
   if (readMore.startsWith("#")) {
-    return [`${GITHUB_URL}/issues/${readMore.substring(1)}`];
+    return `${GITHUB_URL}/issues/${readMore.substring(1)}`;
   }
 
   // general link
   if (/^https?:\/\//.test(readMore)) {
-    return [readMore];
+    return readMore;
   }
 
   // link to specific blog
-  return ["/blog/[id]", `/blog/${readMore}`];
+  return `/blog/${readMore}`;
 }
 
 const Post: FC<PostProps> = ({
@@ -55,7 +53,7 @@ const Post: FC<PostProps> = ({
   bullets,
   isLast,
 }) => {
-  const [href, asLink] = resolveReadMore(readMore);
+  const href = resolveReadMore(readMore);
 
   return (
     <>
@@ -71,13 +69,9 @@ const Post: FC<PostProps> = ({
           <Text component="ul" type="subtitle-1">
             {bullets.map((bullet) => {
               let content: ReactNode = <Markdown>{bullet}</Markdown>;
-              if (asLink) {
+              if (href) {
                 const id = toId(bullet);
-                content = (
-                  <Link as={`${asLink}#${id}`} href={`${href}#${id}`}>
-                    {bullet}
-                  </Link>
-                );
+                content = <Link href={`${href}#${id}`}>{bullet}</Link>;
               }
 
               return <li key={bullet}>{content}</li>;
@@ -85,12 +79,7 @@ const Post: FC<PostProps> = ({
           </Text>
         )}
         {href && (
-          <LinkButton
-            as={asLink}
-            href={href}
-            theme="secondary"
-            className={styles.button}
-          >
+          <LinkButton href={href} theme="secondary" className={styles.button}>
             <TextIconSpacing icon={<KeyboardArrowRightSVGIcon />} iconAfter>
               Read More
             </TextIconSpacing>

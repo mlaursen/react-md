@@ -2,7 +2,7 @@ import React, { FC, AnchorHTMLAttributes } from "react";
 import Link, { LinkProps } from "next/link";
 
 export interface LinkUnstyledProps
-  extends Omit<LinkProps, "children" | "passHref" | "onError">,
+  extends Omit<LinkProps, "children" | "passHref" | "onError" | "as">,
     Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "onError" | "href"> {}
 
 const LinkUnstyled: FC<LinkUnstyledProps> = ({
@@ -10,7 +10,6 @@ const LinkUnstyled: FC<LinkUnstyledProps> = ({
   scroll,
   replace,
   href,
-  as,
   children,
   ...props
 }) => {
@@ -23,13 +22,7 @@ const LinkUnstyled: FC<LinkUnstyledProps> = ({
   }
 
   return (
-    <Link
-      shallow={shallow}
-      scroll={scroll}
-      replace={replace}
-      href={href}
-      as={as}
-    >
+    <Link shallow={shallow} scroll={scroll} replace={replace} href={href}>
       <a {...props}>{children}</a>
     </Link>
   );
