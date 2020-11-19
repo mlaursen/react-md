@@ -6,7 +6,7 @@ import { useAppSize } from "@react-md/utils";
 import { usePhoneContext } from "./context";
 import StatusBar from "./StatusBar";
 
-import styles from "./Phone.module.scss";
+import styles from "./PhoneAppBar.module.scss";
 
 const PhoneAppBar: FC<AppBarProps> = ({
   className,
@@ -28,7 +28,13 @@ const PhoneAppBar: FC<AppBarProps> = ({
     <AppBar
       {...props}
       id={`${id}-app-bar`}
-      className={cn(styles.header, className)}
+      className={cn(
+        styles.container,
+        {
+          [styles.emulated]: !isPhone,
+        },
+        className
+      )}
       height={height}
       fixed
       fixedElevation={false}

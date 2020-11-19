@@ -4,21 +4,19 @@ import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
 import { useAppSize, useToggle } from "@react-md/utils";
 
+import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
+import Heading from "components/Heading";
+import Phone, { ClosePhone } from "components/Phone";
 import { GITHUB_DEMO_URL } from "constants/github";
 import { toTitle } from "utils/toTitle";
 
-import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
-import Heading from "components/Heading";
-import { Markdown } from "components/Markdown";
-import Phone, { ClosePhone } from "components/Phone";
-
+import styles from "./Demo.module.scss";
 import CodePreview from "./CodePreview";
+import DemoContainer from "./DemoContainer";
+import DemoDescription from "./DemoDescription";
 import GithubDemoLink from "./GithubDemoLink";
 import Sandbox from "./Sandbox";
 import { DemoProps } from "./types";
-
-import styles from "./Demo.module.scss";
-import phoneStyles from "../Phone/Phone.module.scss";
 
 const getFileName = (title: string, demoName: string): string => {
   const name = demoName.replace(" and ", "And").replace(/[ -()]/g, "");
@@ -67,7 +65,7 @@ const Demo: FC<DemoProps> = ({
       </Phone>
     );
   } else if (typeof emulated !== "boolean" && emulated.fabOffset) {
-    content = <span className={phoneStyles.fabOffset}>{children}</span>;
+    content = <span className={styles.fabOffset}>{children}</span>;
   }
 
   if (
@@ -84,7 +82,7 @@ const Demo: FC<DemoProps> = ({
   return (
     <>
       {index > 0 && <Divider key="divider" className={styles.divider} />}
-      <section id={id} className={styles.container}>
+      <DemoContainer id={id} as="section">
         <Heading
           level={2}
           id={`${id}-title`}
@@ -92,9 +90,9 @@ const Demo: FC<DemoProps> = ({
         >
           {name}
         </Heading>
-        <Markdown id={`${id}-description`} className={styles.description}>
+        <DemoDescription id={`${id}-description`}>
           {description}
-        </Markdown>
+        </DemoDescription>
         <AppBar id={`${id}-preview-toolbar`} theme="clear">
           <CodePreview demoId={id} demoTitle={name} folder={title} />
           <Sandbox id={`${id}-sandbox`} demoName={name} packageName={title} />
@@ -124,7 +122,7 @@ const Demo: FC<DemoProps> = ({
             </>
           </ConditionalFullPageDialog>
         </div>
-      </section>
+      </DemoContainer>
     </>
   );
 };

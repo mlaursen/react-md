@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 
 import Heading from "components/Heading";
-import { Markdown } from "components/Markdown";
 
 import { toTitle } from "utils/toTitle";
 
-import styles from "./Demo.module.scss";
+import DemoContainer from "./DemoContainer";
+import DemoDescription from "./DemoDescription";
 
 interface DemoPageHeaderProps {
   children?: string;
@@ -18,12 +18,12 @@ const DemoPageHeader: FC<DemoPageHeaderProps> = ({ children, packageName }) => {
   }
 
   return (
-    <header className={styles.container}>
+    <DemoContainer as="header">
       <Heading level={2} id="demo-page-title">
         {toTitle(packageName)}
       </Heading>
-      <Markdown className={styles.description}>{children}</Markdown>
-    </header>
+      <DemoDescription>{children}</DemoDescription>
+    </DemoContainer>
   );
 };
 

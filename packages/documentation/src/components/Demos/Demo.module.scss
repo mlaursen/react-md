@@ -8,50 +8,6 @@ $rmd-theme-dark-elevation: true;
 @import '~@react-md/typography/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
 
-// duplicated from TableOfContents.scss
-$toc-width: 15rem;
-$demo-padding: 2rem;
-$demo-padding-extra: 6rem;
-
-.container {
-  @include rmd-utils-tablet-media {
-    @include rmd-utils-rtl-auto(margin-right, $toc-width, auto);
-
-    padding: 0 $demo-padding-extra;
-
-    :global .code--counted {
-      width: calc(100vw - #{$demo-padding-extra * 2});
-    }
-  }
-
-  @include rmd-utils-desktop-media {
-    :global .code--counted {
-      $offset: $rmd-sheet-static-width + $toc-width + ($demo-padding-extra * 2);
-
-      width: calc(100vw - #{$offset});
-    }
-  }
-
-  padding: 0 $demo-padding;
-}
-
-.description {
-  @include rmd-typography(subtitle-1);
-  @include rmd-typography-theme(max-width, line-width);
-
-  p {
-    font: inherit;
-  }
-
-  strong {
-    font-weight: map-get($rmd-typography-font-weights, bold);
-  }
-
-  em {
-    font-style: italic;
-  }
-}
-
 .preview {
   @include rmd-elevation(2);
   @include rmd-theme-dark-elevation(2, true);
@@ -64,4 +20,12 @@ $demo-padding-extra: 6rem;
 
 .divider {
   @include rmd-divider-theme-update-var(spacing, 6rem auto 2rem);
+}
+
+// copied from Phone.module.scss
+.fabOffset {
+  :global .rmd-fab--tl,
+  :global .rmd-fab--tr {
+    top: $rmd-app-bar-height + $rmd-button-floating-margin + $rmd-icon-size;
+  }
 }
