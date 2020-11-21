@@ -364,7 +364,18 @@ export function useTextField({
         onChange(event);
       }
 
-      if (!validateOnChange || event.isPropagationStopped()) {
+      if (event.isPropagationStopped()) {
+        return;
+      }
+
+      if (
+        !validateOnChange ||
+        (Array.isArray(validateOnChange) && !validateOnChange.length)
+      ) {
+        setState((prevState) => ({
+          ...prevState,
+          value: event.currentTarget.value,
+        }));
         return;
       }
 

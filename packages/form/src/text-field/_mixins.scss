@@ -513,6 +513,11 @@
 
 /// @access private
 @mixin react-md-text-field {
+  .rmd-field-message-container {
+    display: flex;
+    flex-direction: column;
+  }
+
   .rmd-text-field-container {
     @include rmd-text-field-container;
   }
