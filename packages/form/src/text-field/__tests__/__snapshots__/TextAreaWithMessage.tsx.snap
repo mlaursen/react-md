@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextAreaWithMessage should work with all the defaults when only an id is provided 1`] = `
+<div>
+  <div
+    class="rmd-field-message-container"
+  >
+    <div
+      class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-textarea-container rmd-textarea-container--animate rmd-textarea-container--cursor"
+    >
+      <div
+        class="rmd-textarea-container__inner rmd-textarea-container__inner--animate"
+      >
+        <textarea
+          aria-describedby="field-id-message"
+          class="rmd-textarea rmd-textarea--rn"
+          id="field-id"
+          rows="2"
+        />
+        <textarea
+          aria-hidden="true"
+          class="rmd-textarea rmd-textarea--rn rmd-textarea--mask"
+          id="field-id-mask"
+          readonly=""
+          rows="2"
+          tabindex="-1"
+        />
+      </div>
+    </div>
+    <div
+      aria-live="polite"
+      class="rmd-form-message rmd-form-message--outline"
+      id="field-id-message"
+    />
+  </div>
+</div>
+`;
