@@ -31,6 +31,11 @@ export interface ConfigurableIcons {
   download?: ReactNode;
 
   /**
+   * The general icon to use when there are form errors.
+   */
+  error?: ReactNode;
+
+  /**
    * The general icon to use for expanding content vertically.
    */
   expander?: ReactNode;
@@ -84,6 +89,7 @@ const DEFAULT_ICONS: ConfiguredIcons = {
   checkbox: <FontIcon>check_box</FontIcon>,
   download: <FontIcon>file_download</FontIcon>,
   dropdown: <FontIcon>arrow_drop_down</FontIcon>,
+  error: <FontIcon>error_outline</FontIcon>,
   expander: <FontIcon>keyboard_arrow_down</FontIcon>,
   forward: <FontIcon>keyboard_arrow_right</FontIcon>,
   menu: <FontIcon>menu</FontIcon>,
@@ -144,6 +150,7 @@ export function IconProvider({
   download = DEFAULT_ICONS.download,
   dropdown = DEFAULT_ICONS.dropdown,
   expander = DEFAULT_ICONS.expander,
+  error = DEFAULT_ICONS.error,
   forward = DEFAULT_ICONS.forward,
   menu = DEFAULT_ICONS.menu,
   notification = DEFAULT_ICONS.notification,
@@ -158,6 +165,7 @@ export function IconProvider({
       checkbox,
       download,
       dropdown,
+      error,
       expander,
       forward,
       menu,
@@ -172,6 +180,7 @@ export function IconProvider({
       checkbox,
       download,
       dropdown,
+      error,
       expander,
       forward,
       menu,
@@ -196,6 +205,7 @@ if (process.env.NODE_ENV !== "production") {
       checkbox: PropTypes.node,
       download: PropTypes.node,
       dropdown: PropTypes.node,
+      error: PropTypes.node,
       expander: PropTypes.node,
       forward: PropTypes.node,
       menu: PropTypes.node,
