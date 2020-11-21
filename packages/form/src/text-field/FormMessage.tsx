@@ -205,7 +205,7 @@ if (process.env.NODE_ENV !== "production") {
       _counterValidator: (props, _propName, component) => {
         const { length, maxLength } = props;
         const lengthType = typeof length;
-        const maxLengthType = typeof length;
+        const maxLengthType = typeof maxLength;
         if (lengthType === maxLengthType) {
           return null;
         }
