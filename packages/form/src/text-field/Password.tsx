@@ -30,8 +30,7 @@ export interface ConfigurableVisibilityIcon {
 
 export type GetVisibilityIcon = (type: "text" | "password") => ReactNode;
 
-export interface PasswordProps
-  extends Omit<TextFieldProps, "type" | "rightChildren"> {
+export interface PasswordProps extends Omit<TextFieldProps, "type"> {
   /**
    * The icon to use to toggle the visibility of the password by changing the
    * input type to text temporarily. This can either be a renderable React node
@@ -108,6 +107,8 @@ export const Password = forwardRef<HTMLInputElement, PasswordProps>(
       onVisibilityClick,
       getVisibilityIcon,
       disableVisibility = false,
+      rightChildren: propRightChildren,
+      isRightAddon = disableVisibility,
       ...props
     },
     ref
@@ -133,6 +134,25 @@ export const Password = forwardRef<HTMLInputElement, PasswordProps>(
         : propVisibilityIcon.invisible;
     }
 
+    let rightChildren: ReactNode = propRightChildren;
+    if (!disableVisibility) {
+      rightChildren = (
+        <Button
+          id={`${id}-password-toggle`}
+          aria-label={visibilityLabel}
+          aria-pressed={visible}
+          buttonType="icon"
+          onClick={toggle}
+          style={visibilityStyle}
+          className={cn(block("toggle"), visibilityClassName)}
+        >
+          {typeof getVisibilityIcon === "function"
+            ? getVisibilityIcon(type)
+            : visibilityIcon}
+        </Button>
+      );
+    }
+
     return (
       <TextField
         {...props}
@@ -143,24 +163,8 @@ export const Password = forwardRef<HTMLInputElement, PasswordProps>(
         )}
         ref={ref}
         type={type}
-        isRightAddon={false}
-        rightChildren={
-          !disableVisibility && (
-            <Button
-              id={`${id}-password-toggle`}
-              aria-label={visibilityLabel}
-              aria-pressed={visible}
-              buttonType="icon"
-              onClick={toggle}
-              style={visibilityStyle}
-              className={cn(block("toggle"), visibilityClassName)}
-            >
-              {typeof getVisibilityIcon === "function"
-                ? getVisibilityIcon(type)
-                : visibilityIcon}
-            </Button>
-          )
-        }
+        isRightAddon={isRightAddon}
+        rightChildren={rightChildren}
       />
     );
   }
