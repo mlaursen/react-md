@@ -10,27 +10,16 @@ import {
   Radio,
   Select,
   Switch,
-  TextField,
 } from "@react-md/form";
 import { CircularProgress } from "@react-md/progress";
 import { useTimeout } from "@react-md/utils";
 
 import CodeBlock from "components/Code/CodeBlock";
-
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  title: string;
-  developer: "yes" | "no" | "";
-  cool: "yes" | "";
-  save: "yes" | "";
-}
+import ControllerTextField, { ExampleFormData } from "./ControllerTextField";
 
 interface State {
   loading: boolean;
-  data: FormData | null;
+  data: ExampleFormData | null;
 }
 
 const EMAIL_PATTERN = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -63,7 +52,7 @@ export default function WithReactHookForm(): ReactElement {
     reset,
     handleSubmit,
     errors: { firstName, lastName, email, phone, title, developer },
-  } = useForm<FormData>({ mode: "onChange" });
+  } = useForm<ExampleFormData>({ mode: "onChange" });
 
   const [{ data, loading }, setState] = useState<State>({
     loading: false,
@@ -97,8 +86,11 @@ export default function WithReactHookForm(): ReactElement {
         }}
         onSubmit={handleSubmit((data) => setState({ data, loading: true }))}
       >
-        <Controller
-          as={TextField}
+        <ControllerTextField
+          id="rhf-first-name"
+          name="firstName"
+          label="First Name"
+          placeholder="John"
           control={control}
           rules={{
             required: "Required",
@@ -107,27 +99,15 @@ export default function WithReactHookForm(): ReactElement {
               message: "Max length is 10",
             },
           }}
-          id="rhf-first-name"
-          aria-describedby="rhf-first-name-error"
-          name="firstName"
-          label="First Name"
-          placeholder="John"
-          defaultValue=""
           error={!!firstName}
+          message={firstName?.message}
         />
-        <FormMessage id="rh-first-name-error" error>
-          {firstName?.message}
-        </FormMessage>
-        <Controller
-          as={TextField}
-          control={control}
+        <ControllerTextField
           id="rhf-last-name"
-          aria-describedby="rhf-last-name-error"
           name="lastName"
           label="Last Name"
           placeholder="Doe"
-          defaultValue=""
-          error={!!lastName}
+          control={control}
           rules={{
             required: "Required",
             minLength: {
@@ -135,21 +115,16 @@ export default function WithReactHookForm(): ReactElement {
               message: "Min length is 2",
             },
           }}
+          error={!!lastName}
+          message={lastName?.message}
         />
-        <FormMessage id="rh-last-name-error" error>
-          {lastName?.message}
-        </FormMessage>
-        <Controller
-          as={TextField}
-          control={control}
+        <ControllerTextField
           id="rhf-email"
-          aria-describedby="rhf-email-error"
           name="email"
           type="email"
           label="Email"
-          defaultValue=""
           placeholder="john.doe@email.com"
-          error={!!email}
+          control={control}
           rules={{
             required: "Required",
             pattern: {
@@ -158,21 +133,16 @@ export default function WithReactHookForm(): ReactElement {
             },
           }}
           pattern={EMAIL_PATTERN.source}
+          error={!!email}
+          message={email?.message}
         />
-        <FormMessage id="rh-email-error" error>
-          {email?.message}
-        </FormMessage>
-        <Controller
-          as={TextField}
+        <ControllerTextField
           control={control}
           id="rhf-phone"
-          aria-describedby="rhf-phone-error"
           name="phone"
           type="tel"
           label="Mobile Phone"
-          defaultValue=""
           placeholder="123 4567"
-          error={!!phone}
           rules={{
             required: "Required",
             minLength: {
@@ -184,10 +154,9 @@ export default function WithReactHookForm(): ReactElement {
               message: "No more than 11 characters",
             },
           }}
+          error={!!phone}
+          message={phone?.message}
         />
-        <FormMessage id="rh-phone-error" error>
-          {phone?.message}
-        </FormMessage>
         <Controller
           control={control}
           name="title"

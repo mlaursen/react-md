@@ -12,16 +12,7 @@ type MessageContainerProps = PropsWithRef<DivAttributes, HTMLDivElement>;
  * `FieldMessageContainer` component. This should really be used internally with
  * any `TextField` or `TextArea` related components.
  */
-export type FieldMessageContainerExtension<P, V = string> = Omit<
-  P,
-  "value" | "defaultValue"
-> & {
-  /**
-   * The value will always be required for these extensions since they should be
-   * used with the `useTextField` hook.
-   */
-  value: V;
-
+export type FieldMessageContainerExtension<P> = P & {
   /**
    * If the extension doesn't actually want to render the `FormMessage`
    * component, these props are optional. It kind of eliminates the whole
