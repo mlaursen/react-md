@@ -35,7 +35,8 @@ export type SupportedInputTypes =
   | "month"
   | "week"
   | "url"
-  | "color";
+  | "color"
+  | "search";
 
 type TextFieldAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "type">;
 
@@ -249,6 +250,7 @@ if (process.env.NODE_ENV !== "production") {
         "week",
         "url",
         "color",
+        "search",
       ]),
       style: PropTypes.object,
       className: PropTypes.string,
