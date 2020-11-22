@@ -212,7 +212,7 @@ if (process.env.NODE_ENV !== "production") {
 
         return new Error(
           `Both the \`length\` and \`maxLength\` props are required to be defined ` +
-            `and a number to create a counter in the \`${component} component, but ` +
+            `and a number to create a counter in the \`${component}\` component, but ` +
             `received \`length: ${length}\` and \`maxLength: ${maxLength}\``
         );
       },

@@ -257,6 +257,167 @@ describe("TextFieldWithMessage", () => {
     expect(() => getByText("My Icon!")).not.toThrow();
   });
 
+  it("should correctly reset with the provided return function", () => {
+    function ResetTest(): ReactElement {
+      const [, props, { reset }] = useTextField({ id: "field-id" });
+
+      return (
+        <>
+          <button type="button" onClick={reset}>
+            Reset
+          </button>
+          <TextFieldWithMessage {...props} />
+        </>
+      );
+    }
+    const { getByRole } = render(<ResetTest />);
+
+    const button = getByRole("button");
+    const field = getByRole("textbox");
+
+    expect(field).toHaveAttribute("value", "");
+    fireEvent.change(field, { target: { value: "my value" } });
+    expect(field).toHaveAttribute("value", "my value");
+
+    fireEvent.click(button);
+    expect(field).toHaveAttribute("value", "");
+  });
+
+  it("should validate on blur", () => {
+    const { getByRole } = render(
+      <Test messageRole="alert" minLength={10} validateOnChange={false} />
+    );
+
+    const field = getByRole("textbox");
+    const container = field.parentElement!;
+    const message = getByRole("alert");
+
+    fireEvent.change(field, { target: { value: "invalid" } });
+    expect(container.className).not.toContain("--error");
+    expect(message.className).not.toContain("--error");
+
+    fireEvent.blur(field);
+    expect(container.className).toContain("--error");
+    expect(message.className).toContain("--error");
+  });
+
+  it("should not do anything if the provided onBlur function calls stopPropagation", () => {
+    const { getByRole } = render(
+      <Test
+        onBlur={(event) => event.stopPropagation()}
+        messageRole="alert"
+        minLength={10}
+        validateOnChange={false}
+      />
+    );
+
+    const field = getByRole("textbox");
+    const container = field.parentElement!;
+    const message = getByRole("alert");
+
+    fireEvent.change(field, { target: { value: "invalid" } });
+    expect(container.className).not.toContain("--error");
+    expect(message.className).not.toContain("--error");
+
+    fireEvent.blur(field);
+    expect(container.className).not.toContain("--error");
+    expect(message.className).not.toContain("--error");
+  });
+
+  it("should allow for a custom default value string", () => {
+    const { getByRole } = render(<Test defaultValue="Hello, world!" />);
+    const field = getByRole("textbox");
+
+    expect(field).toHaveAttribute("value", "Hello, world!");
+  });
+
+  it("should allow for a custom default value function", () => {
+    const { getByRole } = render(<Test defaultValue={() => "Hello, world!"} />);
+    const field = getByRole("textbox");
+
+    expect(field).toHaveAttribute("value", "Hello, world!");
+  });
+
+  it("should not render the FormMessage when the disableMessage option is true", () => {
+    const { container, getByRole } = render(
+      <Test disableMessage messageRole="alert" />
+    );
+    expect(container).toMatchSnapshot();
+
+    expect(container.firstElementChild?.className).toContain("rmd-text-field");
+    expect(container.firstElementChild?.className).not.toContain(
+      "rmd-field-message-container"
+    );
+    expect(() => getByRole("alert")).toThrow();
+  });
+
+  it("should allow for a custom isErrored function", () => {
+    const isErrored = jest.fn(() => false);
+    const { getByRole } = render(
+      <Test isErrored={isErrored} messageRole="alert" minLength={10} />
+    );
+
+    expect(isErrored).not.toBeCalled();
+    const field = getByRole("textbox");
+    const container = field.parentElement!;
+    const message = getByRole("alert");
+    expect(container.className).not.toContain("--error");
+    expect(message.className).not.toContain("--error");
+
+    fireEvent.change(field, { target: { value: "invalid" } });
+    expect(container.className).not.toContain("--error");
+    expect(message.className).not.toContain("--error");
+
+    expect(isErrored).toBeCalledWith({
+      value: "invalid",
+      errorMessage: "",
+      minLength: 10,
+      isBlurEvent: false,
+      validateOnChange: "recommended",
+      validationMessage: "",
+      validity: (field as HTMLInputElement).validity,
+    });
+  });
+
+  it("should call the onErrorChange option correctly", () => {
+    const onErrorChange = jest.fn();
+    const { getByRole } = render(
+      <Test onErrorChange={onErrorChange} minLength={10} />
+    );
+
+    expect(onErrorChange).not.toBeCalled();
+    const field = getByRole("textbox");
+    fireEvent.change(field, { target: { value: "invalid" } });
+    expect(onErrorChange).toBeCalledWith("field-id", true);
+
+    fireEvent.change(field, { target: { value: "this is a valid string" } });
+    expect(onErrorChange).toBeCalledWith("field-id", false);
+    expect(onErrorChange).toBeCalledTimes(2);
+  });
+
+  it("should allow for custom logic for displaying the error icon", () => {
+    const getErrorIcon = jest.fn(
+      (errorMessage, error, errorIcon) =>
+        error && <span data-testid="wrapper">{errorIcon}</span>
+    );
+    const errorIcon = <span data-testid="error-icon" />;
+
+    const { getByTestId, getByRole } = render(
+      <Test minLength={10} errorIcon={errorIcon} getErrorIcon={getErrorIcon} />
+    );
+    const field = getByRole("textbox");
+
+    expect(() => getByTestId("wrapper")).toThrow();
+    expect(() => getByTestId("error-icon")).toThrow();
+    expect(getErrorIcon).toBeCalledWith("", false, errorIcon);
+
+    fireEvent.change(field, { target: { value: "invalid" } });
+    expect(() => getByTestId("wrapper")).not.toThrow();
+    expect(() => getByTestId("error-icon")).not.toThrow();
+    expect(getErrorIcon).toBeCalledWith("", true, errorIcon);
+    expect(getErrorIcon).toBeCalledTimes(2);
+  });
+
   it.todo(
     "should verify the constraint validation, but it requires a real browser to work"
   );

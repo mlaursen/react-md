@@ -16,7 +16,7 @@ export type TextConstraints = Pick<
  * - `true` -> always show the browser message when it exists
  * - `false` -> never show the browser message
  * - `"recommended"` -> only shows the browser message if it is not one of the
- *   `RECOMMENDED_STATE_KEYS` validation errors
+ *   `RECOMMENDED_IGNORED_KEYS` validation errors
  * - `keyof ValidityState` -> only shows the browser message if it is not the
  *   specific validation error
  * - `(keyof ValidityState)[]` -> only shows the browser message if it is not
@@ -68,11 +68,11 @@ export interface ErrorMessageOptions extends TextConstraints {
 export type GetErrorMessage = (options: ErrorMessageOptions) => string;
 
 /** @internal */
-const RECOMMENDED_STATE_KEYS: readonly (keyof ValidityState)[] = [
-  "valueMissing",
-  "tooShort",
-  "tooLong",
+const RECOMMENDED_IGNORED_KEYS: readonly (keyof ValidityState)[] = [
   "badInput",
+  "tooLong",
+  "tooShort",
+  "valueMissing",
 ];
 
 /**
@@ -92,7 +92,7 @@ export const defaultGetErrorMessage: GetErrorMessage = ({
   validationMessage,
   validateOnChange,
 }) => {
-  if (isBlurEvent || !validationMessage) {
+  if (isBlurEvent || !validationMessage || validateOnChange === true) {
     return validationMessage;
   }
 
@@ -100,23 +100,29 @@ export const defaultGetErrorMessage: GetErrorMessage = ({
     return "";
   }
 
-  let keys = RECOMMENDED_STATE_KEYS;
-  if (
-    typeof validateOnChange === "string" &&
-    validateOnChange !== "recommended"
-  ) {
-    keys = [validateOnChange];
-  } else if (Array.isArray(validateOnChange)) {
-    keys = validateOnChange;
+  if (validateOnChange === "recommended") {
+    return Object.entries(validity).some(
+      ([key, errored]) =>
+        errored &&
+        !RECOMMENDED_IGNORED_KEYS.includes(key as keyof ValidityState)
+    )
+      ? validationMessage
+      : "";
+  }
+
+  if (typeof validateOnChange === "string") {
+    return validity[validateOnChange] ? validationMessage : "";
   }
 
   if (
-    Object.entries(validity).some(
-      ([key, value]) => value && !keys.includes(key as keyof ValidityState)
+    !validateOnChange.length ||
+    !Object.entries(validity).some(
+      ([key, errored]) =>
+        errored && validateOnChange.includes(key as keyof ValidityState)
     )
   ) {
-    return validationMessage;
+    return "";
   }
 
-  return "";
+  return validationMessage;
 };

@@ -274,6 +274,7 @@ export function useTextField({
   const messageId = `${id}-message`;
   const isCounting = counter && typeof maxLength === "number";
   const reset = useCallback(() => {
+    /* istanbul ignore next */
     if (fieldRef.current) {
       fieldRef.current.setCustomValidity("");
     }
@@ -291,6 +292,7 @@ export function useTextField({
 
       // need to temporarily set the `maxLength` back so it can be "verified"
       // through the validity api
+      /* istanbul ignore next */
       if (isBlurEvent && disableMaxLength && typeof maxLength === "number") {
         field.maxLength = maxLength;
       }
@@ -301,6 +303,7 @@ export function useTextField({
 
       // remove the temporarily set `maxLength` attribute after checking the
       // validity
+      /* istanbul ignore next */
       if (disableMaxLength && typeof maxLength === "number") {
         field.removeAttribute("maxLength");
       }
@@ -324,6 +327,7 @@ export function useTextField({
         onErrorChange(id, error);
       }
 
+      /* istanbul ignore next */
       if (errorMessage !== field.validationMessage) {
         field.setCustomValidity(errorMessage);
       }
