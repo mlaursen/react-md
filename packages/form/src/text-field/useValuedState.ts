@@ -43,7 +43,10 @@ export function useValuedState<T extends TextElement>({
 
       if (event.currentTarget.value.length > 0) {
         enable();
-      } else {
+      } else if (
+        event.currentTarget.getAttribute("type") !== "number" ||
+        !event.currentTarget.validity.badInput
+      ) {
         disable();
       }
     },
