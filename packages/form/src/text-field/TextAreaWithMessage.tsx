@@ -1,8 +1,8 @@
 import React, { forwardRef, ReactElement } from "react";
 import {
   FieldMessageContainerExtension,
-  FieldMessageContainer,
-} from "./FieldMessageContainer";
+  FormMessageContainer,
+} from "../FormMessageContainer";
 
 import { TextArea, TextAreaProps } from "./TextArea";
 
@@ -39,11 +39,11 @@ export const TextAreaWithMessage = forwardRef<
   ref
 ): ReactElement {
   return (
-    <FieldMessageContainer
+    <FormMessageContainer
       {...messageContainerProps}
       messageProps={messageProps}
     >
       <TextArea {...props} ref={ref} />
-    </FieldMessageContainer>
+    </FormMessageContainer>
   );
 });

@@ -1,6 +1,7 @@
 import React, { forwardRef, HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 import { PropsWithRef } from "@react-md/utils";
+
 import { FormMessage, FormMessageProps } from "./FormMessage";
 
 type DivAttributes = HTMLAttributes<HTMLDivElement>;
@@ -30,7 +31,7 @@ export type FieldMessageContainerExtension<P> = P & {
   messageContainerProps?: MessageContainerProps;
 };
 
-export interface FieldMessageContainerProps extends DivAttributes {
+export interface FormMessageContainerProps extends DivAttributes {
   /**
    * If the extension doesn't actually want to render the `FormMessage`
    * component, these props are optional. It kind of eliminates the whole
@@ -43,10 +44,10 @@ export interface FieldMessageContainerProps extends DivAttributes {
  * A wrapper component that can be used to display a `TextField` related
  * component or `TextArea` along with the `FormMessage` component.
  */
-export const FieldMessageContainer = forwardRef<
+export const FormMessageContainer = forwardRef<
   HTMLDivElement,
-  FieldMessageContainerProps
->(function FieldMessageContainer(
+  FormMessageContainerProps
+>(function FormMessageContainer(
   { className, children, messageProps, ...props },
   ref
 ): ReactElement {

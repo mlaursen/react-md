@@ -11,7 +11,7 @@ import {
 } from "react";
 import { useIcon } from "@react-md/icon";
 
-import { FormMessageCounterProps, FormMessageProps } from "./FormMessage";
+import { FormMessageCounterProps, FormMessageProps } from "../FormMessage";
 import { defaultGetErrorIcon, GetErrorIcon } from "./getErrorIcon";
 import {
   ChangeValidationBehavior,

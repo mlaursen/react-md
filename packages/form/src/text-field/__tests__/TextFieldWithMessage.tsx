@@ -7,7 +7,7 @@ import { ErrorOutlineFontIcon } from "@react-md/material-icons";
 
 import { TextFieldWithMessage } from "../TextFieldWithMessage";
 import { TextFieldHookOptions, useTextField } from "../useTextField";
-import { FormMessageProps } from "../FormMessage";
+import { FormMessageProps } from "../../FormMessage";
 
 function Test({
   id = "field-id",

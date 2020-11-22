@@ -5,7 +5,7 @@ import { fireEvent, render } from "@testing-library/react";
 
 import { PasswordWithMessage } from "../PasswordWithMessage";
 import { TextFieldHookOptions, useTextField } from "../useTextField";
-import { FormMessageProps } from "../FormMessage";
+import { FormMessageProps } from "../../FormMessage";
 
 function Test({
   id = "field-id",

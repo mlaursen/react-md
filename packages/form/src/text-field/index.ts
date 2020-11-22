@@ -4,8 +4,6 @@ export * from "./TextFieldAddon";
 export * from "./Password";
 export * from "./TextArea";
 
-export * from "./FormMessage";
-export * from "./FieldMessageContainer";
 export * from "./TextFieldWithMessage";
 export * from "./TextAreaWithMessage";
 export * from "./PasswordWithMessage";

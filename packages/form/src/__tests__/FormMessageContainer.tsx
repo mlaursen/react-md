@@ -1,15 +1,15 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import { FieldMessageContainer } from "../FieldMessageContainer";
-import { TextField } from "../TextField";
+import { FormMessageContainer } from "../FormMessageContainer";
+import { TextField } from "../text-field/TextField";
 
-describe("FieldMessageContainer }", () => {
+describe("FormMessageContainer }", () => {
   it("should only return the children if there are no message props", () => {
     const { container, rerender } = render(
-      <FieldMessageContainer>
+      <FormMessageContainer>
         <TextField id="text-field" />
-      </FieldMessageContainer>
+      </FormMessageContainer>
     );
 
     expect(container).toMatchSnapshot();
@@ -18,9 +18,9 @@ describe("FieldMessageContainer }", () => {
     );
 
     rerender(
-      <FieldMessageContainer messageProps={{ id: "text-field-message" }}>
+      <FormMessageContainer messageProps={{ id: "text-field-message" }}>
         <TextField id="text-field" />
-      </FieldMessageContainer>
+      </FormMessageContainer>
     );
     expect(container.firstElementChild?.className).toContain(
       "rmd-field-message-container"

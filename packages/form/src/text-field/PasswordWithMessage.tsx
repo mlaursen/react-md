@@ -1,8 +1,8 @@
 import React, { forwardRef, ReactElement } from "react";
 import {
   FieldMessageContainerExtension,
-  FieldMessageContainer,
-} from "./FieldMessageContainer";
+  FormMessageContainer,
+} from "../FormMessageContainer";
 
 import { Password, PasswordProps } from "./Password";
 
@@ -45,11 +45,11 @@ export const PasswordWithMessage = forwardRef<
   ref
 ): ReactElement {
   return (
-    <FieldMessageContainer
+    <FormMessageContainer
       {...messageContainerProps}
       messageProps={messageProps}
     >
       <Password {...props} ref={ref} />
-    </FieldMessageContainer>
+    </FormMessageContainer>
   );
 });

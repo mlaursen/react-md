@@ -2,7 +2,7 @@ import React, { CSSProperties, forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { FormTheme, useFormTheme } from "../FormThemeProvider";
+import { FormTheme, useFormTheme } from "./FormThemeProvider";
 
 const block = bem("rmd-form-message");
 
