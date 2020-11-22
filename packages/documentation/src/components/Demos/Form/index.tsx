@@ -45,6 +45,9 @@ import {
 import SimpleHelpAndErrorMessages from "./SimpleHelpAndErrorMessages";
 import simpleHelpAndErrorMessages from "./SimpleHelpAndErrorMessages.md";
 
+import TextFieldHookExamples from "./TextFieldHookExamples";
+import textFieldHookExamples from "./TextFieldHookExamples.md";
+
 import ExampleForm from "./ExampleForm";
 import exampleForm from "./ExampleForm.md";
 
@@ -116,6 +119,11 @@ const demos = [
     name: "Simple Help and Error Messages",
     description: simpleHelpAndErrorMessages,
     children: <SimpleHelpAndErrorMessages />,
+  },
+  {
+    name: "Text Field Hook Examples",
+    description: textFieldHookExamples,
+    children: <TextFieldHookExamples />,
   },
   {
     name: "Example Form",

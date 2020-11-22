@@ -2292,6 +2292,10 @@ const tocs: TOCRecord = {
       title: "Simple Help and Error Messages",
     },
     {
+      anchor: "#text-field-hook-examples",
+      title: "Text Field Hook Examples",
+    },
+    {
       anchor: "#example-form",
       title: "Example Form",
     },

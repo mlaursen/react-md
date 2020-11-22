@@ -1039,6 +1039,14 @@ const metadata: readonly RouteMetadata[] = [
     pathname: "/packages/form/demos#simple-help-and-error-messages-title",
   },
   {
+    title: "Form Demo - Text Field Hook Examples",
+    summary:
+      "Form validation is pretty difficult and there's a lot of parts involved. If you looked over the Simple Help and Error Messages example you can see that it still isn't entirely \"simple\".",
+    type: "demo",
+    pageUrl: "/packages/form/demos#text-field-hook-examples-title",
+    pathname: "/packages/form/demos#text-field-hook-examples-title",
+  },
+  {
     title: "Form Demo - Example Form",
     summary:
       'This package also exports an extremely simple Form component that just prevents default behavior when it is submitted. This is super nice since the majority of the time you\'ll want to use ajax on form submit instead of the default behavior. Check out the example below for an extended usage of the Form component and some of the other components together to make a "New Contact" form.',
