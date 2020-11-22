@@ -4,8 +4,6 @@
     "baseUrl": ".",
     "noEmit": true,
     "composite": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "paths": {
       "constants/*": ["packages/documentation/src/constants/*"],
       "components/*": ["packages/documentation/src/components/*"],
