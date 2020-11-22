@@ -162,15 +162,16 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   ) {
     const { id, value, defaultValue } = props;
 
-    const [focused, onFocus, onBlur] = useFocusState({
+    const [focused, onFocus, handleBlur] = useFocusState({
       onBlur: propOnBlur,
       onFocus: propOnFocus,
     });
 
-    const [valued, onChange] = useValuedState({
+    const [valued, onChange, onBlur] = useValuedState<HTMLInputElement>({
       value,
       defaultValue,
       onChange: propOnChange,
+      onBlur: handleBlur,
     });
 
     const { theme, underlineDirection } = useFormTheme({
@@ -231,6 +232,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

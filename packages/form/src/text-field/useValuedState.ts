@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { FocusEvent, FocusEventHandler, useCallback } from "react";
 import { useRefCache, useToggle } from "@react-md/utils";
 
 type TextElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
@@ -6,6 +6,7 @@ type Value = string | number | (string | number)[];
 type ChangeEventHandler<T extends TextElement> = React.ChangeEventHandler<T>;
 
 interface Options<T extends TextElement> {
+  onBlur?: FocusEventHandler<T>;
   onChange?: ChangeEventHandler<T>;
   value?: Value;
   defaultValue?: Value;
@@ -18,10 +19,11 @@ interface Options<T extends TextElement> {
  * @private
  */
 export function useValuedState<T extends TextElement>({
+  onBlur,
   onChange,
   value,
   defaultValue,
-}: Options<T>): [boolean, ChangeEventHandler<T> | undefined] {
+}: Options<T>): [boolean, ChangeEventHandler<T>, FocusEventHandler<T>] {
   const handler = useRefCache(onChange);
   const [valued, enable, disable] = useToggle(() => {
     if (typeof value === "undefined") {
@@ -30,8 +32,11 @@ export function useValuedState<T extends TextElement>({
       );
     }
 
-    // this isn't used for controlled components
-    return false;
+    if (typeof value === "string") {
+      return value.length > 0;
+    }
+
+    return typeof value === "number";
   });
 
   const handleChange = useCallback<React.ChangeEventHandler<T>>(
@@ -41,12 +46,17 @@ export function useValuedState<T extends TextElement>({
         onChange(event);
       }
 
-      if (event.currentTarget.value.length > 0) {
+      const input = event.currentTarget;
+      if (input.getAttribute("type") === "number") {
+        input.checkValidity();
+        if (input.validity.badInput) {
+          return;
+        }
+      }
+
+      if (input.value.length > 0) {
         enable();
-      } else if (
-        event.currentTarget.getAttribute("type") !== "number" ||
-        !event.currentTarget.validity.badInput
-      ) {
+      } else {
         disable();
       }
     },
@@ -55,10 +65,27 @@ export function useValuedState<T extends TextElement>({
     [enable, disable]
   );
 
-  if (typeof value !== "undefined") {
-    const isValued = typeof value === "number" || value.length > 0;
-    return [isValued, onChange];
-  }
+  // This is **really** only for TextField components and the input
+  // type="number". When there is a badInput, a change event does not get fired
+  // again once it is "fixed" or emptied.
+  const handleBlur = useCallback(
+    (event: FocusEvent<T>) => {
+      if (onBlur) {
+        onBlur(event);
+      }
 
-  return [valued, handleChange];
+      const input = event.currentTarget;
+      if (input.getAttribute("type") === "number") {
+        input.checkValidity();
+        if (input.validity.badInput || input.value.length > 0) {
+          return;
+        }
+
+        disable();
+      }
+    },
+    [onBlur, disable]
+  );
+
+  return [valued, handleChange, handleBlur];
 }
