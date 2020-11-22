@@ -389,9 +389,24 @@ export function useTextField({
   );
 
   const errorIcon = useIcon("error", propErrorIcon);
-  let messageProps: ProvidedFormMessageProps | undefined;
+  const props: ProvidedTextFieldProps & {
+    messageProps?: ProvidedFormMessageProps;
+  } = {
+    id,
+    value,
+    theme,
+    error,
+    required,
+    pattern,
+    minLength,
+    maxLength: disableMaxLength ? undefined : maxLength,
+    rightChildren: getErrorIcon(errorMessage, error, errorIcon),
+    onBlur: handleBlur,
+    onChange: handleChange,
+  };
   if (!disableMessage) {
-    messageProps = {
+    props["aria-describedby"] = messageId;
+    props.messageProps = {
       id: messageId,
       error,
       theme,
@@ -403,21 +418,7 @@ export function useTextField({
 
   return [
     value,
-    {
-      "aria-describedby": disableMessage ? undefined : messageId,
-      id,
-      value,
-      theme,
-      error,
-      required,
-      pattern,
-      minLength,
-      maxLength: disableMaxLength ? undefined : maxLength,
-      rightChildren: getErrorIcon(errorMessage, error, errorIcon),
-      onBlur: handleBlur,
-      onChange: handleChange,
-      messageProps,
-    },
+    props,
     {
       reset,
       setState,
