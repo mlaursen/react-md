@@ -1,11 +1,14 @@
 import React, { forwardRef, ReactElement } from "react";
 
 import {
-  FormMessageContainer,
   FieldMessageContainerExtension,
+  FormMessageContainer,
 } from "../FormMessageContainer";
 import { TextField, TextFieldProps } from "./TextField";
 
+/**
+ * @since 2.5.0
+ */
 export type TextFieldWithMessageProps = FieldMessageContainerExtension<
   TextFieldProps
 >;
@@ -30,6 +33,8 @@ export type TextFieldWithMessageProps = FieldMessageContainerExtension<
  *   />
  * );
  * ```
+ *
+ * @since 2.5.0
  */
 export const TextFieldWithMessage = forwardRef<
   HTMLInputElement,

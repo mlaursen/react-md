@@ -27,6 +27,9 @@ const noop = (): void => {
   // do nothing
 };
 
+/**
+ * @since 2.5.0
+ */
 export type TextFieldChangeHandlers = Pick<
   HTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
   "onBlur" | "onChange"
@@ -49,9 +52,14 @@ export type TextFieldChangeHandlers = Pick<
  * // form implementation is left as an exercise for the reader
  * <Button type="submit" disabled={invalid} onClick={submitForm}>Submit</Button>
  * ```
+ *
+ * @since 2.5.0
  */
 export type ErrorChangeHandler = (id: string, error: boolean) => void;
 
+/**
+ * @since 2.5.0
+ */
 export interface TextFieldHookOptions
   extends TextConstraints,
     TextFieldChangeHandlers,
@@ -143,6 +151,8 @@ export interface TextFieldHookOptions
 /**
  * All the props that will be generated and return from the `useTextField` hook
  * that should be passed to a `FormMessage` component.
+ *
+ * @since 2.5.0
  */
 export interface ProvidedFormMessageProps
   extends Pick<FormMessageProps, "id" | "theme" | "children">,
@@ -152,6 +162,8 @@ export interface ProvidedFormMessageProps
 /**
  * All the props that will be generated and returned by the `useTextField` hook
  * that should be passed to a `TextField` component.
+ *
+ * @since 2.5.0
  */
 export interface ProvidedTextFieldProps
   extends TextConstraints,
@@ -159,6 +171,9 @@ export interface ProvidedTextFieldProps
     Required<Pick<TextFieldProps, "id" | "value" | "error">>,
     Pick<TextFieldProps, "aria-describedby" | "theme" | "rightChildren"> {}
 
+/**
+ * @since 2.5.0
+ */
 export interface ProvidedTextFieldMessageProps extends ProvidedTextFieldProps {
   /**
    * These props will be defined as long as the `disableMessage` prop is not
@@ -167,6 +182,9 @@ export interface ProvidedTextFieldMessageProps extends ProvidedTextFieldProps {
   messageProps: ProvidedFormMessageProps;
 }
 
+/**
+ * @since 2.5.0
+ */
 export interface TextFieldHookState {
   /**
    * The current value for the `TextField` or `TextArea`.
@@ -190,6 +208,9 @@ export interface TextFieldHookState {
   errorMessage: string;
 }
 
+/**
+ * @since 2.5.0
+ */
 export interface TextFieldHookControls {
   /**
    * Resets the state back to:
@@ -205,6 +226,9 @@ export interface TextFieldHookControls {
   setState: Dispatch<SetStateAction<TextFieldHookState>>;
 }
 
+/**
+ * @since 2.5.0
+ */
 export type TextFieldHookReturnType = [
   string,
   ProvidedTextFieldProps | ProvidedTextFieldMessageProps,
@@ -235,6 +259,7 @@ export function useTextField(
  * @param options All the options used to control the functionality of this
  * hook.
  * @return @see {@link TextFieldHookReturnType}
+ * @since 2.5.0
  */
 export function useTextField({
   id,

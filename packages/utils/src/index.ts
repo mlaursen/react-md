@@ -21,6 +21,7 @@ export * from "./throttle";
 export * from "./loop";
 export * from "./getPercentage";
 export * from "./nearest";
+export * from "./withinRange";
 
 export * from "./useEnsuredRef";
 export * from "./useIsomorphicLayoutEffect";

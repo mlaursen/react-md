@@ -22,6 +22,8 @@ import { useValuedState } from "./useValuedState";
  * These are all the "supported" input types for react-md so that they at least
  * render reasonably well by default. There is no built-in validation or
  * anything adding onto existing browser functionality for these types.
+ *
+ * @since 2.5.0 - `"search"` was added
  */
 export type SupportedInputTypes =
   | "text"

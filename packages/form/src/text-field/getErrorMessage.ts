@@ -1,5 +1,8 @@
 import { InputHTMLAttributes } from "react";
 
+/**
+ * @since 2.5.0
+ */
 export type TextConstraints = Pick<
   InputHTMLAttributes<HTMLInputElement>,
   "pattern" | "required" | "minLength" | "maxLength"
@@ -21,13 +24,19 @@ export type TextConstraints = Pick<
  *   specific validation error
  * - `(keyof ValidityState)[]` -> only shows the browser message if it is not
  *   the specific validation errors
+ *
+ * @since 2.5.0
  */
 export type ChangeValidationBehavior =
   | boolean
   | "recommended"
+  | "number-recommended"
   | keyof ValidityState
   | readonly (keyof ValidityState)[];
 
+/**
+ * @since 2.5.0
+ */
 export interface ErrorMessageOptions extends TextConstraints {
   /**
    * The current input or textarea's validity state.
@@ -64,27 +73,76 @@ export interface ErrorMessageOptions extends TextConstraints {
  * @param options An object containing metadata that can be used to create an
  * error message for your `TextField` or `TextArea`.
  * @return An error message to display or an empty string.
+ * @since 2.5.0
  */
 export type GetErrorMessage = (options: ErrorMessageOptions) => string;
 
-/** @internal */
-const RECOMMENDED_IGNORED_KEYS: readonly (keyof ValidityState)[] = [
+/**
+ * @internal
+ * @since 2.5.0
+ */
+const VALIDITY_STATE_KEYS: readonly (keyof ValidityState)[] = [
   "badInput",
+  "customError",
+  "patternMismatch",
+  "rangeOverflow",
+  "rangeUnderflow",
+  "stepMismatch",
   "tooLong",
   "tooShort",
+  "typeMismatch",
   "valueMissing",
 ];
 
 /**
+ * @internal
+ * @since 2.5.0
+ */
+export const RECOMMENDED_STATE_KEYS: readonly (keyof ValidityState)[] = [
+  "badInput",
+  "tooLong",
+  "valueMissing",
+];
+
+/**
+ * @internal
+ * @since 2.5.0
+ */
+export const RECOMMENDED_NUMBER_STATE_KEYS: readonly (keyof ValidityState)[] = [
+  ...RECOMMENDED_STATE_KEYS,
+  "rangeOverflow",
+  "rangeUnderflow",
+  "tooShort",
+  "typeMismatch",
+];
+
+/**
+ * The validation message is actually kind of weird since it's possible for a
+ * form element to have multiple errors at once. The validation message will be
+ * the first error that appears, so need to make sure that the first error is
+ * one of the recommended state keys so the message appears for only those types
+ * of errors.
+ *
+ * @internal
+ * @since 2.5.0
+ */
+const isRecommended = (validity: ValidityState, isNumber: boolean): boolean => {
+  const errorable = isNumber
+    ? RECOMMENDED_NUMBER_STATE_KEYS
+    : RECOMMENDED_STATE_KEYS;
+
+  return VALIDITY_STATE_KEYS.every((key) => {
+    const errored = validity[key];
+    return !errored || errorable.includes(key);
+  });
+};
+
+/**
  * The default implementation for getting an error message for the `TextField`
- * or `TextArea` components that:
+ * or `TextArea` components that relies on the behavior of the
+ * {@link ChangeValidationBehavior}
  *
- * - prevents the browser `minLength` and `tooLong` error text from appearing
- *   during change events since the message is extremely verbose
- * - prevents the `valueMissing` and `badInput` error text from appearing during
- *   change events since it's better to wait for the blur event.
- *
- * The above behavior is also configured by the {@link ChangeValidationBehavior}.
+ * @since 2.5.0
  */
 export const defaultGetErrorMessage: GetErrorMessage = ({
   isBlurEvent,
@@ -100,29 +158,22 @@ export const defaultGetErrorMessage: GetErrorMessage = ({
     return "";
   }
 
-  if (validateOnChange === "recommended") {
-    return Object.entries(validity).some(
-      ([key, errored]) =>
-        errored &&
-        !RECOMMENDED_IGNORED_KEYS.includes(key as keyof ValidityState)
-    )
+  if (
+    validateOnChange === "recommended" ||
+    validateOnChange === "number-recommended"
+  ) {
+    return isRecommended(validity, validateOnChange === "number-recommended")
       ? validationMessage
       : "";
   }
 
-  if (typeof validateOnChange === "string") {
-    return validity[validateOnChange] ? validationMessage : "";
-  }
+  const keys =
+    typeof validateOnChange === "string"
+      ? [validateOnChange]
+      : validateOnChange;
 
-  if (
-    !validateOnChange.length ||
-    !Object.entries(validity).some(
-      ([key, errored]) =>
-        errored && validateOnChange.includes(key as keyof ValidityState)
-    )
-  ) {
-    return "";
-  }
-
-  return validationMessage;
+  return keys.length &&
+    VALIDITY_STATE_KEYS.some((key) => validity[key] && keys.includes(key))
+    ? validationMessage
+    : "";
 };

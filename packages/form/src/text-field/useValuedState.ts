@@ -36,6 +36,7 @@ export function useValuedState<T extends TextElement>({
       return value.length > 0;
     }
 
+    /* istanbul ignore next */
     return typeof value === "number";
   });
 
@@ -49,6 +50,7 @@ export function useValuedState<T extends TextElement>({
       const input = event.currentTarget;
       if (input.getAttribute("type") === "number") {
         input.checkValidity();
+        /* istanbul ignore next */
         if (input.validity.badInput) {
           return;
         }
@@ -78,13 +80,14 @@ export function useValuedState<T extends TextElement>({
       if (input.getAttribute("type") === "number") {
         input.checkValidity();
         if (input.validity.badInput || input.value.length > 0) {
+          enable();
           return;
         }
 
         disable();
       }
     },
-    [onBlur, disable]
+    [onBlur, enable, disable]
   );
 
   return [valued, handleChange, handleBlur];

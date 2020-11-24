@@ -8,6 +8,7 @@ export const versions: Record<string, string> = {
   "@testing-library/jest-dom": "5.11.6",
   "@testing-library/react": "11.2.0",
   "@testing-library/react-hooks": "3.4.2",
+  "@testing-library/user-event": "12.2.2",
   "@types/classnames": "2.2.11",
   "@types/fs-extra": "9.0.4",
   "@types/glob": "7.1.3",

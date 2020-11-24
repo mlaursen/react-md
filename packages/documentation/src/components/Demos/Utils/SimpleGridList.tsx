@@ -1,34 +1,42 @@
 import React, { FC } from "react";
 import cn from "classnames";
-import { Checkbox, Fieldset, TextField, useChecked } from "@react-md/form";
+import {
+  Checkbox,
+  Fieldset,
+  TextFieldWithMessage,
+  useChecked,
+  useNumberField,
+} from "@react-md/form";
 import { Grid, GridList, GridListCell } from "@react-md/utils";
-
-import useNumberField from "hooks/useNumberField";
 
 import gridStyles from "./Grid.module.scss";
 import styles from "./SimpleGridList.module.scss";
 
 const SimpleGridList: FC = () => {
   const [cells, cellsProps] = useNumberField({
-    defaultValue: 20,
+    id: "simple-grid-list-cell-count",
     min: 0,
     max: 120,
+    defaultValue: 20,
   });
   const [maxCellSize, maxCellSizeProps] = useNumberField({
-    defaultValue: 150,
+    id: "simple-grid-list-cell-size",
     min: 120,
     max: 300,
+    defaultValue: 150,
   });
   const [cellMargin, cellMarginProps] = useNumberField({
-    defaultValue: 8,
+    id: "simple-grid-list-cell-margin",
     min: 0,
     max: 48,
+    defaultValue: 8,
   });
 
   const [containerPadding, containerPaddingProps] = useNumberField({
-    defaultValue: 16,
+    id: "simple-grid-list-grid-padding",
     min: 0,
     max: 48,
+    defaultValue: 16,
   });
 
   const [restricted, handleRestrictedChange] = useChecked(true);
@@ -37,23 +45,13 @@ const SimpleGridList: FC = () => {
     <>
       <Fieldset legend="GridList options">
         <Grid minCellWidth="9rem">
-          <TextField
-            id="simple-grid-list-cell-count"
-            label="Number of cells"
-            {...cellsProps}
-          />
-          <TextField
-            id="simple-grid-list-cell-size"
+          <TextFieldWithMessage label="Number of cells" {...cellsProps} />
+          <TextFieldWithMessage
             label="Max cell width (px)"
             {...maxCellSizeProps}
           />
-          <TextField
-            id="simple-grid-list-cell-margin"
-            label="Cell margin (px)"
-            {...cellMarginProps}
-          />
-          <TextField
-            id="simple-grid-list-grid-padding"
+          <TextFieldWithMessage label="Cell margin (px)" {...cellMarginProps} />
+          <TextFieldWithMessage
             label="Grid padding (px)"
             {...containerPaddingProps}
           />

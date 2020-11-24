@@ -100,7 +100,7 @@ describe("TextFieldWithMessage", () => {
     expect(field).toHaveAttribute("maxLength", "20");
   });
 
-  it("should enable the error state if the value is less than the minLength or more than the maxLength", () => {
+  it("should enable the error state if the value is greater than the maxLength", () => {
     const { getByRole } = render(
       <Test minLength={5} maxLength={20} messageRole="alert" />
     );
@@ -112,8 +112,8 @@ describe("TextFieldWithMessage", () => {
     expect(message.className).not.toContain("--error");
 
     fireEvent.change(field, { target: { value: "1" } });
-    expect(container.className).toContain("--error");
-    expect(message.className).toContain("--error");
+    expect(container.className).not.toContain("--error");
+    expect(message.className).not.toContain("--error");
 
     fireEvent.change(field, { target: { value: "Valid" } });
     expect(container.className).not.toContain("--error");
@@ -215,7 +215,7 @@ describe("TextFieldWithMessage", () => {
 
   it("should render an icon next to the text field when there is an error by default", () => {
     const { getByRole, getByText } = render(
-      <Test minLength={10} errorIcon={<ErrorOutlineFontIcon />} />
+      <Test maxLength={3} errorIcon={<ErrorOutlineFontIcon />} />
     );
     const field = getByRole("textbox");
 
@@ -227,7 +227,7 @@ describe("TextFieldWithMessage", () => {
   it("should default to the icon from the IconProvider", () => {
     const { getByText, getByRole } = render(
       <IconProvider>
-        <Test minLength={10} />
+        <Test maxLength={3} />
       </IconProvider>
     );
     const field = getByRole("textbox");
@@ -240,7 +240,7 @@ describe("TextFieldWithMessage", () => {
   it("should override the IconProvider error icon when the errorIcon prop is defined", () => {
     const { getByRole, getByText, rerender } = render(
       <IconProvider>
-        <Test minLength={10} errorIcon={null} />
+        <Test maxLength={3} errorIcon={null} />
       </IconProvider>
     );
     const field = getByRole("textbox");
@@ -251,7 +251,7 @@ describe("TextFieldWithMessage", () => {
 
     rerender(
       <IconProvider>
-        <Test minLength={10} errorIcon={<span>My Icon!</span>} />
+        <Test maxLength={3} errorIcon={<span>My Icon!</span>} />
       </IconProvider>
     );
     expect(() => getByText("My Icon!")).not.toThrow();
@@ -306,7 +306,7 @@ describe("TextFieldWithMessage", () => {
       <Test
         onBlur={(event) => event.stopPropagation()}
         messageRole="alert"
-        minLength={10}
+        maxLength={3}
         validateOnChange={false}
       />
     );
@@ -354,7 +354,7 @@ describe("TextFieldWithMessage", () => {
   it("should allow for a custom isErrored function", () => {
     const isErrored = jest.fn(() => false);
     const { getByRole } = render(
-      <Test isErrored={isErrored} messageRole="alert" minLength={10} />
+      <Test isErrored={isErrored} messageRole="alert" maxLength={3} />
     );
 
     expect(isErrored).not.toBeCalled();
@@ -371,7 +371,7 @@ describe("TextFieldWithMessage", () => {
     expect(isErrored).toBeCalledWith({
       value: "invalid",
       errorMessage: "",
-      minLength: 10,
+      maxLength: 3,
       isBlurEvent: false,
       validateOnChange: "recommended",
       validationMessage: "",
@@ -382,7 +382,7 @@ describe("TextFieldWithMessage", () => {
   it("should call the onErrorChange option correctly", () => {
     const onErrorChange = jest.fn();
     const { getByRole } = render(
-      <Test onErrorChange={onErrorChange} minLength={10} />
+      <Test onErrorChange={onErrorChange} maxLength={3} />
     );
 
     expect(onErrorChange).not.toBeCalled();
@@ -390,7 +390,7 @@ describe("TextFieldWithMessage", () => {
     fireEvent.change(field, { target: { value: "invalid" } });
     expect(onErrorChange).toBeCalledWith("field-id", true);
 
-    fireEvent.change(field, { target: { value: "this is a valid string" } });
+    fireEvent.change(field, { target: { value: "v" } });
     expect(onErrorChange).toBeCalledWith("field-id", false);
     expect(onErrorChange).toBeCalledTimes(2);
   });
@@ -403,7 +403,7 @@ describe("TextFieldWithMessage", () => {
     const errorIcon = <span data-testid="error-icon" />;
 
     const { getByTestId, getByRole } = render(
-      <Test minLength={10} errorIcon={errorIcon} getErrorIcon={getErrorIcon} />
+      <Test maxLength={3} errorIcon={errorIcon} getErrorIcon={getErrorIcon} />
     );
     const field = getByRole("textbox");
 

@@ -2,11 +2,15 @@ import React, { FC, useState } from "react";
 import { Button } from "@react-md/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
 import { DialogFooter } from "@react-md/dialog";
-import { Fieldset, Form, Select, TextField, FormMessage } from "@react-md/form";
+import {
+  Fieldset,
+  Form,
+  Select,
+  useNumberField,
+  TextFieldWithMessage,
+} from "@react-md/form";
 import { Collapse } from "@react-md/transition";
 import { Grid } from "@react-md/utils";
-
-import useNumberInput from "hooks/useNumberInput";
 
 import styles from "./ConfigurableCollapseExample.module.scss";
 
@@ -14,22 +18,20 @@ const options = ["undefined", "true", "false"];
 
 const ConfigurableCollapseExample: FC = () => {
   const [collapsed, setCollapsed] = useState(true);
-  const [
-    minHeight,
-    minHeightProps,
-    minHeightError,
-    resetMinHeight,
-  ] = useNumberInput({
-    min: 0,
-    max: 200,
-    defaultValue: 0,
-  });
+  const [minHeight, minHeightProps, { reset: resetMinHeight }] = useNumberField(
+    {
+      id: "collapse-min-height",
+      min: 0,
+      max: 200,
+      defaultValue: 0,
+    }
+  );
   const [
     minPaddingTop,
     minPaddingTopProps,
-    minPaddingTopError,
-    resetMinPaddingTop,
-  ] = useNumberInput({
+    { reset: resetMinPaddingTop },
+  ] = useNumberField({
+    id: "collapse-min-padding-top",
     min: 0,
     max: 80,
     defaultValue: 0,
@@ -37,9 +39,9 @@ const ConfigurableCollapseExample: FC = () => {
   const [
     minPaddingBottom,
     minPaddingBottomProps,
-    minPaddingBottomError,
-    resetMinPaddingBottom,
-  ] = useNumberInput({
+    { reset: resetMinPaddingBottom },
+  ] = useNumberField({
+    id: "collapse-min-padding-bottom",
     min: 0,
     max: 80,
     defaultValue: 0,
@@ -66,39 +68,21 @@ const ConfigurableCollapseExample: FC = () => {
       >
         <Fieldset legend="Collapse Options">
           <Grid columns={1} desktopColumns={2} largeDesktopColumns={4}>
-            <div>
-              <TextField
-                id="collapse-min-height"
-                name="minHeight"
-                label="Min Height"
-                {...minHeightProps}
-              />
-              <FormMessage id="collapse-min-height-message" error>
-                {minHeightError}
-              </FormMessage>
-            </div>
-            <div>
-              <TextField
-                id="collapse-min-padding-top"
-                name="minPaddingTop"
-                label="Min Padding Top"
-                {...minPaddingTopProps}
-              />
-              <FormMessage id="collapse-min-padding-top-message" error>
-                {minPaddingTopError}
-              </FormMessage>
-            </div>
-            <div>
-              <TextField
-                id="collapse-min-padding-bottom"
-                name="minPaddingBottom"
-                label="Min Padding Bottom"
-                {...minPaddingBottomProps}
-              />
-              <FormMessage id="collapse-min-padding-bottom-message" error>
-                {minPaddingBottomError}
-              </FormMessage>
-            </div>
+            <TextFieldWithMessage
+              {...minHeightProps}
+              name="minHeight"
+              label="Min Height"
+            />
+            <TextFieldWithMessage
+              {...minPaddingTopProps}
+              name="minPaddingTop"
+              label="Min Padding Top"
+            />
+            <TextFieldWithMessage
+              {...minPaddingBottomProps}
+              name="minPaddingBottom"
+              label="Min Padding Bottom"
+            />
             <Select
               id="collapse-temporary"
               label="Temporary behavior"

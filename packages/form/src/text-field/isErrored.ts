@@ -1,5 +1,8 @@
 import { ErrorMessageOptions } from "./getErrorMessage";
 
+/**
+ * @since 2.5.0
+ */
 export interface IsErroredOptions extends ErrorMessageOptions {
   /**
    * The current error message or an empty string.
@@ -14,6 +17,7 @@ export interface IsErroredOptions extends ErrorMessageOptions {
  * @param options All the current options that can be used to determine the
  * error state.
  * @return True if the component is considered to be in an errored state.
+ * @since 2.5.0
  */
 export type IsErrored = (options: IsErroredOptions) => boolean;
 
@@ -22,13 +26,16 @@ export type IsErrored = (options: IsErroredOptions) => boolean;
  * errored by returning `true` if the `errorMessage` string is truthy or the
  * value is not within the `minLength` and `maxLength` constraints when they
  * exist.
+ *
+ * @since 2.5.0
  */
 export const defaultIsErrored: IsErrored = ({
   value,
   errorMessage,
   minLength,
   maxLength,
+  isBlurEvent,
 }) =>
   !!errorMessage ||
-  (typeof minLength === "number" && value.length < minLength) ||
-  (typeof maxLength === "number" && value.length > maxLength);
+  (typeof maxLength === "number" && value.length > maxLength) ||
+  (isBlurEvent && typeof minLength === "number" && value.length < minLength);

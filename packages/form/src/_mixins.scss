@@ -11,6 +11,7 @@
 @import './toggle/mixins';
 @import './text-field/mixins';
 
+/// @since 2.5.0
 /// @access private
 @mixin rmd-form-message-container {
   display: flex;

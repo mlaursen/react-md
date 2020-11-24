@@ -104,7 +104,7 @@ describe("PasswordWithMessage", () => {
     expect(field).toHaveAttribute("maxLength", "20");
   });
 
-  it("should enable the error state if the value is less than the minLength or more than the maxLength", () => {
+  it("should enable the error state if the value is greater than the maxLength", () => {
     const { getByPlaceholderText, getByRole } = render(
       <Test minLength={5} maxLength={20} messageRole="alert" />
     );
@@ -116,8 +116,8 @@ describe("PasswordWithMessage", () => {
     expect(message.className).not.toContain("--error");
 
     fireEvent.change(field, { target: { value: "1" } });
-    expect(container.className).toContain("--error");
-    expect(message.className).toContain("--error");
+    expect(container.className).not.toContain("--error");
+    expect(message.className).not.toContain("--error");
 
     fireEvent.change(field, { target: { value: "Valid" } });
     expect(container.className).not.toContain("--error");
