@@ -25,6 +25,7 @@ export type TextConstraints = Pick<
 export type ChangeValidationBehavior =
   | boolean
   | "recommended"
+  | "number-recommended"
   | keyof ValidityState
   | readonly (keyof ValidityState)[];
 
@@ -67,6 +68,7 @@ export interface ErrorMessageOptions extends TextConstraints {
  */
 export type GetErrorMessage = (options: ErrorMessageOptions) => string;
 
+/** @internal */
 const VALIDITY_STATE_KEYS: readonly (keyof ValidityState)[] = [
   "badInput",
   "customError",
@@ -81,10 +83,19 @@ const VALIDITY_STATE_KEYS: readonly (keyof ValidityState)[] = [
 ];
 
 /** @internal */
-const RECOMMENDED_STATE_KEYS: readonly (keyof ValidityState)[] = [
+export const RECOMMENDED_STATE_KEYS: readonly (keyof ValidityState)[] = [
   "badInput",
   "tooLong",
   "valueMissing",
+];
+
+/** @internal */
+export const RECOMMENDED_NUMBER_STATE_KEYS: readonly (keyof ValidityState)[] = [
+  ...RECOMMENDED_STATE_KEYS,
+  "rangeOverflow",
+  "rangeUnderflow",
+  "tooShort",
+  "typeMismatch",
 ];
 
 /**
@@ -96,11 +107,16 @@ const RECOMMENDED_STATE_KEYS: readonly (keyof ValidityState)[] = [
  *
  * @internal
  */
-const isRecommended = (validity: ValidityState): boolean =>
-  VALIDITY_STATE_KEYS.every((key) => {
+const isRecommended = (validity: ValidityState, isNumber: boolean): boolean => {
+  const errorable = isNumber
+    ? RECOMMENDED_NUMBER_STATE_KEYS
+    : RECOMMENDED_STATE_KEYS;
+
+  return VALIDITY_STATE_KEYS.every((key) => {
     const errored = validity[key];
-    return !errored || RECOMMENDED_STATE_KEYS.includes(key);
+    return !errored || errorable.includes(key);
   });
+};
 
 /**
  * The default implementation for getting an error message for the `TextField`
@@ -121,8 +137,13 @@ export const defaultGetErrorMessage: GetErrorMessage = ({
     return "";
   }
 
-  if (validateOnChange === "recommended") {
-    return isRecommended(validity) ? validationMessage : "";
+  if (
+    validateOnChange === "recommended" ||
+    validateOnChange === "number-recommended"
+  ) {
+    return isRecommended(validity, validateOnChange === "number-recommended")
+      ? validationMessage
+      : "";
   }
 
   const keys =
