@@ -1717,6 +1717,13 @@
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^7.27.1"
 
+"@testing-library/user-event@^12.2.2":
+  version "12.2.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-12.2.2.tgz#22d0047da745289335240f523dfe74c889ec96cb"
+  integrity sha512-mTYL9LrwiSeyorStUOMuRGQDn1ca40tIhuv//o/K3lY8wBEp+9Im90MFVx5i3u7zCPmavn3uWZs/10chsbI8Tg==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+
 "@ts-morph/common@~0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@ts-morph/common/-/common-0.6.0.tgz#cbd4ee57c5ef971511b9c5778e0bb8eb27de4783"
