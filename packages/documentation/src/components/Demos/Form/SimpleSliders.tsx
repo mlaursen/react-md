@@ -3,6 +3,7 @@ import { SimpleSlider, useSimpleSlider } from "@react-md/form";
 import { VolumeOffSVGIcon, VolumeUpSVGIcon } from "@react-md/material-icons";
 
 import { useId } from "components/IdProvider";
+
 import SlidersContainer from "./SlidersContainer";
 
 export default function SimpleSliders(): ReactElement | null {

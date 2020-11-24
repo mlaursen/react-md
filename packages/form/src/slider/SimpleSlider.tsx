@@ -1,5 +1,5 @@
 import React, { forwardRef, HTMLAttributes } from "react";
-import { LabelRequiredForA11y, PropsWithRef } from "@react-md/utils";
+import { PropsWithRef } from "@react-md/utils";
 
 import {
   DEFAULT_SLIDER_ANIMATION_TIME,
@@ -12,7 +12,7 @@ import { SimpleSliderRequiredProps } from "./useSimpleSlider";
 import { useSliderControls } from "./useSliderControls";
 import { SliderContainer } from "./SliderContainer";
 
-export interface BaseSimpleSliderProps
+export interface SimpleSliderProps
   extends SimpleSliderRequiredProps,
     SliderProps {
   /**
@@ -39,8 +39,6 @@ export interface BaseSimpleSliderProps
    */
   thumbProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
 }
-
-export type SimpleSliderProps = LabelRequiredForA11y<BaseSimpleSliderProps>;
 
 /**
  * The `SimpleSlider` component allows the user to select a single value from a

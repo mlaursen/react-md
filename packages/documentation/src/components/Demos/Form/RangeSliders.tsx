@@ -1,6 +1,7 @@
+import React, { ReactElement } from "react";
 import { RangeSlider, useRangeSlider } from "@react-md/form";
 import { useId } from "components/IdProvider";
-import React, { ReactElement } from "react";
+
 import SlidersContainer from "./SlidersContainer";
 
 export default function RangeSliders(): ReactElement | null {

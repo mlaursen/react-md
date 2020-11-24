@@ -1,11 +1,11 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useRef } from "react";
 import {
   SimpleSlider,
   SimpleSliderRequiredProps,
   TextField,
+  useNumberField,
 } from "@react-md/form";
-import { SrOnly, Text } from "@react-md/typography";
-import { nearest } from "@react-md/utils";
+import { Text } from "@react-md/typography";
 
 import styles from "./ColorSlider.module.scss";
 
@@ -19,21 +19,44 @@ export default function ColorSlider({
   type,
   ...controls
 }: ColorSliderProps): ReactElement | null {
-  const { min, max, step, setValue } = controls;
-
   const id = `color-${type}`;
   const labelId = `${id}-label`;
-  const [fieldValue, setFieldValue] = useState(`${value}`);
+  const { min, max, step, setValue } = controls;
+
+  // it's probably not a good idea to use this hook here because of the `useRef`
+  // usage below, but I really wanted the number validation part.
+  const [numberValue, fieldProps, { setNumber }] = useNumberField({
+    id: `${id}-field`,
+    defaultValue: value,
+    min,
+    max,
+    step,
+    disableMessage: true,
+    errorIcon: null,
+  });
+
+  // these refs are used to track changes between the `value` from the slider
+  // and the `numberValue` from the text field and keep them in sync. So:
+  // - whenever the slider value changes because the user is interacting with
+  //   it, need to also update the text field number value
+  // - whenever the text field value changes because the user is interacting
+  //   with it, need to also update the slider number value
   const prevValue = useRef(value);
-  if (prevValue.current !== value) {
+  const prevNumberValue = useRef(numberValue);
+  if (prevValue.current !== value && prevNumberValue.current !== value) {
     prevValue.current = value;
-    setFieldValue(`${value}`);
+    prevNumberValue.current = value;
+    setNumber(value);
+  } else if (prevNumberValue.current !== numberValue) {
+    prevValue.current = numberValue;
+    prevNumberValue.current = numberValue;
+    setValue(numberValue);
   }
 
   return (
     <SimpleSlider
       baseId={id}
-      aria-labelledby={labelId}
+      thumbLabelledBy={labelId}
       value={value}
       {...controls}
       className={styles.slider}
@@ -44,37 +67,9 @@ export default function ColorSlider({
       }
       afterAddon={
         <TextField
-          id={`${id}-field`}
+          {...fieldProps}
           aria-labelledby={labelId}
-          type="number"
           className={styles.field}
-          min={min}
-          max={max}
-          step={step}
-          value={fieldValue}
-          onChange={(event) => {
-            const { valueAsNumber } = event.currentTarget;
-            if (
-              !Number.isNaN(valueAsNumber) &&
-              valueAsNumber >= min &&
-              valueAsNumber <= max
-            ) {
-              setValue(valueAsNumber);
-            }
-
-            setFieldValue(event.currentTarget.value);
-          }}
-          onBlur={() => {
-            const parsed = parseInt(fieldValue, 10);
-            if (Number.isNaN(parsed)) {
-              setFieldValue(`${value}`);
-            } else {
-              const inRange =
-                fieldValue === "" ? 0 : nearest(min, max, parsed, max);
-              setValue(inRange);
-              setFieldValue(`${inRange}`);
-            }
-          }}
         />
       }
     />
