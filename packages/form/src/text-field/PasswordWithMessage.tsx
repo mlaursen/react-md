@@ -1,11 +1,14 @@
 import React, { forwardRef, ReactElement } from "react";
+
 import {
   FieldMessageContainerExtension,
   FormMessageContainer,
 } from "../FormMessageContainer";
-
 import { Password, PasswordProps } from "./Password";
 
+/**
+ * @since 2.5.0
+ */
 export type PasswordWithMessageProps = FieldMessageContainerExtension<
   PasswordProps
 >;
@@ -36,6 +39,8 @@ export type PasswordWithMessageProps = FieldMessageContainerExtension<
  * Note: Unline the `TextFieldWithMessage` and `TextAreaWithMessage`, the error
  * icon will do nothing for this component unless the disableVisibility`` prop
  * is enabled.`
+ *
+ * @since 2.5.0
  */
 export const PasswordWithMessage = forwardRef<
   HTMLInputElement,

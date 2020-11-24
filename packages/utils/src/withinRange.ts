@@ -5,6 +5,7 @@
  * @param min The optional min value
  * @param max The optional max value
  * @return the updated value
+ * @since 2.5.0
  */
 export function withinRange(
   value: number,

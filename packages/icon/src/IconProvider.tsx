@@ -32,6 +32,8 @@ export interface ConfigurableIcons {
 
   /**
    * The general icon to use when there are form errors.
+   *
+   * @since 2.5.0
    */
   error?: ReactNode;
 

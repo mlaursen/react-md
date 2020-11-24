@@ -12,6 +12,8 @@ type MessageContainerProps = PropsWithRef<DivAttributes, HTMLDivElement>;
  * This is a utility type that allows for a component to "extend" the
  * `FieldMessageContainer` component. This should really be used internally with
  * any `TextField` or `TextArea` related components.
+ *
+ * @since 2.5.0
  */
 export type FieldMessageContainerExtension<P> = P & {
   /**
@@ -31,6 +33,9 @@ export type FieldMessageContainerExtension<P> = P & {
   messageContainerProps?: MessageContainerProps;
 };
 
+/**
+ * @since 2.5.0
+ */
 export interface FormMessageContainerProps extends DivAttributes {
   /**
    * If the extension doesn't actually want to render the `FormMessage`
@@ -43,6 +48,8 @@ export interface FormMessageContainerProps extends DivAttributes {
 /**
  * A wrapper component that can be used to display a `TextField` related
  * component or `TextArea` along with the `FormMessage` component.
+ *
+ * @since 2.5.0
  */
 export const FormMessageContainer = forwardRef<
   HTMLDivElement,
