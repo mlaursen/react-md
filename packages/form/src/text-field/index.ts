@@ -12,3 +12,4 @@ export * from "./isErrored";
 export * from "./getErrorIcon";
 export * from "./getErrorMessage";
 export * from "./useTextField";
+export * from "./useNumberField";
