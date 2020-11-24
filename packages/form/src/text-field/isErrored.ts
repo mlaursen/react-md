@@ -28,7 +28,8 @@ export const defaultIsErrored: IsErrored = ({
   errorMessage,
   minLength,
   maxLength,
+  isBlurEvent,
 }) =>
   !!errorMessage ||
-  (typeof minLength === "number" && value.length < minLength) ||
-  (typeof maxLength === "number" && value.length > maxLength);
+  (typeof maxLength === "number" && value.length > maxLength) ||
+  (isBlurEvent && typeof minLength === "number" && value.length < minLength);

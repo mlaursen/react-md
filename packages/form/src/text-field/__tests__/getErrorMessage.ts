@@ -87,7 +87,7 @@ describe("defaultGetErrorMessage", () => {
     ).toBe("");
   });
 
-  it("should only return the validity message when the validateOnChange is set to recommeded and one of the non RECOMMEDNED_IGNORED_KEYS are errored", () => {
+  it("should only return the validity message when the validateOnChange is set to recommeded and one of the RECOMMENDED_STATE_KEYS are errored", () => {
     const validate = (key: keyof ValidityState, expected: string): void => {
       expect(
         defaultGetErrorMessage({
@@ -98,16 +98,16 @@ describe("defaultGetErrorMessage", () => {
       ).toBe(expected);
     };
 
-    validate("badInput", "");
-    validate("customError", validationMessage);
-    validate("patternMismatch", validationMessage);
-    validate("rangeOverflow", validationMessage);
-    validate("rangeUnderflow", validationMessage);
-    validate("stepMismatch", validationMessage);
-    validate("tooLong", "");
+    validate("badInput", validationMessage);
+    validate("customError", "");
+    validate("patternMismatch", "");
+    validate("rangeOverflow", "");
+    validate("rangeUnderflow", "");
+    validate("stepMismatch", "");
+    validate("tooLong", validationMessage);
     validate("tooShort", "");
-    validate("typeMismatch", validationMessage);
-    validate("valueMissing", "");
+    validate("typeMismatch", "");
+    validate("valueMissing", validationMessage);
   });
 
   it("should only return the validation message for the provided validity state key", () => {

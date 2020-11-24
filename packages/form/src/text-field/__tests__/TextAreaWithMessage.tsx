@@ -38,7 +38,6 @@ describe("TextAreaWithMessage", () => {
 
     expect(field).toHaveAttribute("aria-describedby", "field-id-message");
     expect(field.textContent).toBe("");
-    /* expect(field.value).toBe(""); */
 
     fireEvent.change(field, { target: { value: "a" } });
     expect(field.textContent).toBe("a");
@@ -99,7 +98,7 @@ describe("TextAreaWithMessage", () => {
     expect(field).toHaveAttribute("maxLength", "20");
   });
 
-  it("should enable the error state if the value is less than the minLength or more than the maxLength", () => {
+  it("should enable the error state if the value is greater than the maxLength", () => {
     const { getByRole } = render(
       <Test minLength={5} maxLength={20} messageRole="alert" />
     );
@@ -111,8 +110,8 @@ describe("TextAreaWithMessage", () => {
     expect(message.className).not.toContain("--error");
 
     fireEvent.change(field, { target: { value: "1" } });
-    expect(container.className).toContain("--error");
-    expect(message.className).toContain("--error");
+    expect(container.className).not.toContain("--error");
+    expect(message.className).not.toContain("--error");
 
     fireEvent.change(field, { target: { value: "Valid" } });
     expect(container.className).not.toContain("--error");
@@ -134,7 +133,7 @@ describe("TextAreaWithMessage", () => {
   it("should not update the error state on change or update the value if the custon onChange event stopped propagation", () => {
     const { getByRole } = render(
       <Test
-        minLength={10}
+        maxLength={3}
         onChange={(event) => event.stopPropagation()}
         messageRole="alert"
       />
@@ -154,7 +153,7 @@ describe("TextAreaWithMessage", () => {
 
   it("should not update the error state on change if `validateOnChange` is false", () => {
     const { getByRole } = render(
-      <Test minLength={10} validateOnChange={false} messageRole="alert" />
+      <Test maxLength={3} validateOnChange={false} messageRole="alert" />
     );
 
     const field = getByRole("textbox");
@@ -171,7 +170,7 @@ describe("TextAreaWithMessage", () => {
 
   it("should not update the error state on change if `validateOnChange` is an empty array", () => {
     const { getByRole } = render(
-      <Test minLength={10} validateOnChange={[]} messageRole="alert" />
+      <Test maxLength={3} validateOnChange={[]} messageRole="alert" />
     );
 
     const field = getByRole("textbox");
@@ -214,7 +213,7 @@ describe("TextAreaWithMessage", () => {
 
   it("should render an icon next to the text field when there is an error by default", () => {
     const { getByRole, getByText } = render(
-      <Test minLength={10} errorIcon={<ErrorOutlineFontIcon />} />
+      <Test maxLength={3} errorIcon={<ErrorOutlineFontIcon />} />
     );
     const field = getByRole("textbox");
 
@@ -226,7 +225,7 @@ describe("TextAreaWithMessage", () => {
   it("should default to the icon from the IconProvider", () => {
     const { getByText, getByRole } = render(
       <IconProvider>
-        <Test minLength={10} />
+        <Test maxLength={3} />
       </IconProvider>
     );
     const field = getByRole("textbox");
@@ -239,7 +238,7 @@ describe("TextAreaWithMessage", () => {
   it("should override the IconProvider error icon when the errorIcon prop is defined", () => {
     const { getByRole, getByText, rerender } = render(
       <IconProvider>
-        <Test minLength={10} errorIcon={null} />
+        <Test maxLength={3} errorIcon={null} />
       </IconProvider>
     );
     const field = getByRole("textbox");
@@ -250,7 +249,7 @@ describe("TextAreaWithMessage", () => {
 
     rerender(
       <IconProvider>
-        <Test minLength={10} errorIcon={<span>My Icon!</span>} />
+        <Test maxLength={3} errorIcon={<span>My Icon!</span>} />
       </IconProvider>
     );
     expect(() => getByText("My Icon!")).not.toThrow();

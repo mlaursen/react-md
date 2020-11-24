@@ -67,24 +67,45 @@ export interface ErrorMessageOptions extends TextConstraints {
  */
 export type GetErrorMessage = (options: ErrorMessageOptions) => string;
 
-/** @internal */
-const RECOMMENDED_IGNORED_KEYS: readonly (keyof ValidityState)[] = [
+const VALIDITY_STATE_KEYS: readonly (keyof ValidityState)[] = [
   "badInput",
+  "customError",
+  "patternMismatch",
+  "rangeOverflow",
+  "rangeUnderflow",
+  "stepMismatch",
   "tooLong",
   "tooShort",
+  "typeMismatch",
+  "valueMissing",
+];
+
+/** @internal */
+const RECOMMENDED_STATE_KEYS: readonly (keyof ValidityState)[] = [
+  "badInput",
+  "tooLong",
   "valueMissing",
 ];
 
 /**
+ * The validation message is actually kind of weird since it's possible for a
+ * form element to have multiple errors at once. The validation message will be
+ * the first error that appears, so need to make sure that the first error is
+ * one of the recommended state keys so the message appears for only those types
+ * of errors.
+ *
+ * @internal
+ */
+const isRecommended = (validity: ValidityState): boolean =>
+  VALIDITY_STATE_KEYS.every((key) => {
+    const errored = validity[key];
+    return !errored || RECOMMENDED_STATE_KEYS.includes(key);
+  });
+
+/**
  * The default implementation for getting an error message for the `TextField`
- * or `TextArea` components that:
- *
- * - prevents the browser `minLength` and `tooLong` error text from appearing
- *   during change events since the message is extremely verbose
- * - prevents the `valueMissing` and `badInput` error text from appearing during
- *   change events since it's better to wait for the blur event.
- *
- * The above behavior is also configured by the {@link ChangeValidationBehavior}.
+ * or `TextArea` components that relies on the behavior of the
+ * {@link ChangeValidationBehavior}
  */
 export const defaultGetErrorMessage: GetErrorMessage = ({
   isBlurEvent,
@@ -101,28 +122,16 @@ export const defaultGetErrorMessage: GetErrorMessage = ({
   }
 
   if (validateOnChange === "recommended") {
-    return Object.entries(validity).some(
-      ([key, errored]) =>
-        errored &&
-        !RECOMMENDED_IGNORED_KEYS.includes(key as keyof ValidityState)
-    )
-      ? validationMessage
-      : "";
+    return isRecommended(validity) ? validationMessage : "";
   }
 
-  if (typeof validateOnChange === "string") {
-    return validity[validateOnChange] ? validationMessage : "";
-  }
+  const keys =
+    typeof validateOnChange === "string"
+      ? [validateOnChange]
+      : validateOnChange;
 
-  if (
-    !validateOnChange.length ||
-    !Object.entries(validity).some(
-      ([key, errored]) =>
-        errored && validateOnChange.includes(key as keyof ValidityState)
-    )
-  ) {
-    return "";
-  }
-
-  return validationMessage;
+  return keys.length &&
+    VALIDITY_STATE_KEYS.some((key) => validity[key] && keys.includes(key))
+    ? validationMessage
+    : "";
 };
