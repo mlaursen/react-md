@@ -158,6 +158,32 @@ describe("TextField", () => {
     expect(label.className).toContain("rmd-floating-label--inactive");
   });
 
+  it("should add the inactive floating label state on blur if the change event never really got fired", () => {
+    function Test(): ReactElement {
+      return <TextField id="text-field" label="Label" type="number" />;
+    }
+    const { getByRole, getByText } = render(<Test />);
+
+    const field = getByRole("spinbutton") as HTMLInputElement;
+    const label = getByText("Label");
+    expect(field.value).toBe("");
+    expect(label.className).not.toContain("rmd-floating-label--active");
+    expect(label.className).not.toContain("rmd-floating-label--inactive");
+
+    fireEvent.change(field, { target: { value: "-" } });
+    expect(label.className).not.toContain("rmd-floating-label--active");
+    expect(label.className).not.toContain("rmd-floating-label--inactive");
+
+    // TODO: Look into writing real browser tests since this isn't implemented in JSDOM
+    Object.defineProperty(field.validity, "badInput", {
+      writable: true,
+      value: true,
+    });
+    fireEvent.blur(field);
+    expect(label.className).toContain("rmd-floating-label--active");
+    expect(label.className).toContain("rmd-floating-label--inactive");
+  });
+
   it("should not add the inactive floating label state when a non-number type has a badInput validity", () => {
     const { getByRole, getByText } = render(
       <TextField id="text-field" label="Label" type="url" defaultValue="" />
