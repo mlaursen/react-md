@@ -262,11 +262,18 @@ export function useNumberField({
         return;
       }
 
+      let value = input.valueAsNumber;
+      if (input.value === "" && typeof initial.current === "number") {
+        value = min ?? initial.current;
+      }
+
       // can't have both rangeUnderflow and rangeOverflow at the same time, so
-      // it's "safe" to alwaays provide both
-      const value = withinRange(input.valueAsNumber, min, max);
-      setNumber(value);
-      input.value = `${value}`;
+      // it's "safe" to always provide both
+      value = withinRange(value, min, max);
+      if (!Number.isNaN(value)) {
+        setNumber(value);
+        input.value = `${value}`;
+      }
     },
     [onBlur, fixOnBlur, min, max]
   );

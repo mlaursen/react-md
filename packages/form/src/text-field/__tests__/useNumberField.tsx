@@ -162,6 +162,37 @@ describe("useNumberField", () => {
       fireEvent.blur(field);
       expect(field.value).toBe("100");
     });
+
+    it("should set the value to the min or defaultValue on blur if there is no value in the text field", () => {
+      const { getByRole, rerender } = render(<NumberField defaultValue={1} />);
+      const field = getByRole("spinbutton") as HTMLInputElement;
+      expect(field.value).toBe("1");
+
+      fireEvent.focus(field);
+      fireEvent.blur(field);
+      expect(field.value).toBe("1");
+
+      userEvent.type(field, "00");
+      expect(field.value).toBe("100");
+
+      userEvent.clear(field);
+      fireEvent.blur(field);
+      expect(field.value).toBe("1");
+
+      rerender(<NumberField min={0} defaultValue={1} />);
+      expect(field.value).toBe("1");
+
+      fireEvent.focus(field);
+      fireEvent.blur(field);
+      expect(field.value).toBe("1");
+
+      userEvent.type(field, "00");
+      expect(field.value).toBe("100");
+
+      userEvent.clear(field);
+      fireEvent.blur(field);
+      expect(field.value).toBe("0");
+    });
   });
 
   describe("number change behavior", () => {
