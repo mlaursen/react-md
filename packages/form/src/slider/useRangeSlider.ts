@@ -16,6 +16,9 @@ import {
 } from "./types";
 import { getJumpValue, getSteps } from "./utils";
 
+/**
+ * @since 2.5.0
+ */
 export interface RangeSliderRequiredProps
   extends RangeSliderControls,
     DefinedSliderValueOptions {
@@ -25,6 +28,9 @@ export interface RangeSliderRequiredProps
   value: RangeSliderValue;
 }
 
+/**
+ * @since 2.5.0
+ */
 export type RangeSliderValueReturnType = readonly [
   RangeSliderValue,
   RangeSliderRequiredProps
@@ -43,6 +49,7 @@ export type RangeSliderValueReturnType = readonly [
  * `max`.
  * @return an ordered list containing the current value followed by the
  * `RangeSlider` props
+ * @since 2.5.0
  */
 export function useRangeSlider(
   defaultValue?: RangeSliderDefaultValue,

@@ -7,6 +7,9 @@ import { SliderAddons, SliderPresentation } from "./types";
 
 const styles = bem("rmd-slider-container");
 
+/**
+ * @since 2.5.0
+ */
 export interface SliderContainerProps
   extends HTMLAttributes<HTMLDivElement>,
     SliderAddons,
@@ -17,6 +20,8 @@ export interface SliderContainerProps
  * built-in to the `SimpleSlider` and `RangeSlider` components to add addons
  * to the left or right of the `SliderTrack`. When vertical, it will add
  * addons to the bottom or top instead.
+ *
+ * @since 2.5.0
  */
 export const SliderContainer = forwardRef<HTMLDivElement, SliderContainerProps>(
   function SliderContainer(

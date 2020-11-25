@@ -12,6 +12,7 @@ import {
  * Gets the number of steps in the allowed range of values.
  *
  * @internal
+ * @since 2.5.0
  */
 export const getSteps = (min: number, max: number, step: number): number =>
   Math.abs(max - min) / step;
@@ -19,6 +20,7 @@ export const getSteps = (min: number, max: number, step: number): number =>
 /**
  *
  * @internal
+ * @since 2.5.0
  */
 export const getJumpValue = (
   min: number,
@@ -37,6 +39,7 @@ export const getJumpValue = (
 
 /**
  * @internal
+ * @since 2.5.0
  */
 export type SliderDragEvent =
   | MouseEvent
@@ -46,6 +49,7 @@ export type SliderDragEvent =
 
 /**
  * @internal
+ * @since 2.5.0
  */
 export const isMouseEvent = (
   event: SliderDragEvent
@@ -56,6 +60,7 @@ export const isMouseEvent = (
 
 /**
  * @internal
+ * @since 2.5.0
  */
 export const isTouchEvent = (
   event: SliderDragEvent
@@ -66,6 +71,7 @@ export const isTouchEvent = (
 
 /**
  * @internal
+ * @since 2.5.0
  */
 export interface SimpleSliderControls extends SliderControls {
   value: SimpleSliderValue;
@@ -73,6 +79,7 @@ export interface SimpleSliderControls extends SliderControls {
 
 /**
  * @internal
+ * @since 2.5.0
  */
 export interface ComplexSliderControls extends RangeSliderControls {
   value: RangeSliderValue;
@@ -80,6 +87,7 @@ export interface ComplexSliderControls extends RangeSliderControls {
 
 /**
  * @internal
+ * @since 2.5.0
  */
 export type CombinedSliderControls =
   | SimpleSliderControls
@@ -87,6 +95,7 @@ export type CombinedSliderControls =
 
 /**
  * @internal
+ * @since 2.5.0
  */
 export const isRangeSlider = (
   controls: CombinedSliderControls
@@ -94,6 +103,7 @@ export const isRangeSlider = (
 
 /**
  * @internal
+ * @since 2.5.0
  */
 export interface SliderDragValues extends DefinedSliderValueOptions {
   clientX: number;
@@ -113,6 +123,7 @@ export interface SliderDragValues extends DefinedSliderValueOptions {
  * mouse or touch.
  *
  * @internal
+ * @since 2.5.0
  */
 export const getDragValue = ({
   min,

@@ -17,6 +17,9 @@ import { SliderProps } from "./types";
 import { RangeSliderRequiredProps } from "./useRangeSlider";
 import { useSliderControls } from "./useSliderControls";
 
+/**
+ * @since 2.5.0
+ */
 export interface RangeSliderProps
   extends RangeSliderRequiredProps,
     SliderProps {
@@ -77,6 +80,7 @@ export interface RangeSliderProps
  * The `RangeSlider` component allows the user to select a min and max value from
  * a predefined range of numbers. The functionality for controlling the value of
  * this component is provided by the `useRangeSlider` hook.
+ * @since 2.5.0
  */
 export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
   function RangeSlider(

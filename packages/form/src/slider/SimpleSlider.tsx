@@ -12,6 +12,9 @@ import { SimpleSliderRequiredProps } from "./useSimpleSlider";
 import { useSliderControls } from "./useSliderControls";
 import { SliderContainer } from "./SliderContainer";
 
+/**
+ * @since 2.5.0
+ */
 export interface SimpleSliderProps
   extends SimpleSliderRequiredProps,
     SliderProps {
@@ -44,6 +47,8 @@ export interface SimpleSliderProps
  * The `SimpleSlider` component allows the user to select a single value from a
  * range of numbers. The functionality for controlling the value of this
  * component is provided by the `useSimpleSlider` hook.
+ *
+ * @since 2.5.0
  */
 export const SimpleSlider = forwardRef<HTMLDivElement, SimpleSliderProps>(
   function SimpleSlider(

@@ -15,6 +15,9 @@ import {
 } from "./types";
 import { getJumpValue, getSteps } from "./utils";
 
+/**
+ * @since 2.5.0
+ */
 export interface SimpleSliderRequiredProps
   extends SimpleSliderControls,
     DefinedSliderValueOptions {
@@ -24,6 +27,9 @@ export interface SimpleSliderRequiredProps
   value: SimpleSliderValue;
 }
 
+/**
+ * @since 2.5.0
+ */
 export type SimpleSliderValueReturnType = readonly [
   SimpleSliderValue,
   SimpleSliderRequiredProps
@@ -42,6 +48,7 @@ export type SimpleSliderValueReturnType = readonly [
  * `max`.
  * @return an ordered list containing the current value followed by the
  * `SimpleSlider` props
+ * @since 2.5.0
  */
 export function useSimpleSlider(
   defaultValue?: SimpleSliderDefaultValue,

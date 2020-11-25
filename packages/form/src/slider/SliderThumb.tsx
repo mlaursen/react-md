@@ -11,6 +11,9 @@ import { SliderThumbOptions, ThumbIndex } from "./types";
 
 const styles = bem("rmd-slider-thumb");
 
+/**
+ * @since 2.5.0
+ */
 export interface BaseThumbProps
   extends HTMLAttributes<HTMLSpanElement>,
     SliderThumbOptions {
@@ -54,11 +57,16 @@ export interface BaseThumbProps
   animate?: boolean;
 }
 
+/**
+ * @since 2.5.0
+ */
 export type SliderThumbProps = LabelRequiredForA11y<BaseThumbProps>;
 
 /**
  * The slider thumb implements the `role="slider"` for the `SimpleSlider` and
  * `RangeSlider` components.
+ *
+ * @since 2.5.0
  */
 export const SliderThumb = forwardRef<HTMLSpanElement, SliderThumbProps>(
   function SliderThumb(

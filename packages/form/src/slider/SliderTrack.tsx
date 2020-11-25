@@ -12,6 +12,9 @@ type CSSProperties = React.CSSProperties & {
   [THUMB_2_VAR]?: string;
 };
 
+/**
+ * @since 2.5.0
+ */
 export interface SliderTrackProps
   extends HTMLAttributes<HTMLSpanElement>,
     SliderPresentation {
@@ -50,6 +53,8 @@ export interface SliderTrackProps
  * The `SliderTrack` component is used to show the distance that the slider can
  * be dragged as well as a visual indication of the value. The main usage is to
  * update the custom css properties for the thumb's values.
+ *
+ * @since 2.5.0
  */
 export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
   function SliderTrack(

@@ -1,15 +1,37 @@
 import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from "react";
 
+/**
+ * @since 2.5.0
+ */
 export type ThumbIndex = 0 | 1;
+
+/**
+ * @since 2.5.0
+ */
 export type SliderThumbIndex = ThumbIndex | null;
+
+/**
+ * @since 2.5.0
+ */
 export type SliderDragEvent =
   | MouseEvent
   | TouchEvent
   | React.MouseEvent
   | React.TouchEvent;
+
+/**
+ * @since 2.5.0
+ */
 export type SliderDraggingBy = "mouse" | "touch" | null;
 
+/**
+ * @since 2.5.0
+ */
 export type SimpleSliderValue = number;
+
+/**
+ * @since 2.5.0
+ */
 export type SimpleSliderDefaultValue =
   | SimpleSliderValue
   | (() => SimpleSliderValue);
@@ -18,6 +40,7 @@ export type SimpleSliderDefaultValue =
  * An object containing the functions required to update the `SimpleSlider`'s
  * value when the user interacts with the slider. These functions are provided
  * by the `useSimpleSlider` hook.
+ * @since 2.5.0
  */
 export interface SimpleSliderControls {
   minimum(): void;
@@ -29,7 +52,14 @@ export interface SimpleSliderControls {
   setValue: Dispatch<SetStateAction<SimpleSliderValue>>;
 }
 
+/**
+ * @since 2.5.0
+ */
 export type RangeSliderValue = readonly [number, number];
+
+/**
+ * @since 2.5.0
+ */
 export type RangeSliderDefaultValue =
   | RangeSliderValue
   | (() => RangeSliderValue);
@@ -38,6 +68,7 @@ export type RangeSliderDefaultValue =
  * An object containing the functions required to update the `RangeSlider`'s
  * value when the user interacts with the slider. These functions are provided by
  * the `useRangeSlider` hook.
+ * @since 2.5.0
  */
 export interface RangeSliderControls {
   minimum(index: ThumbIndex): void;
@@ -49,6 +80,9 @@ export interface RangeSliderControls {
   setValue: Dispatch<SetStateAction<RangeSliderValue>>;
 }
 
+/**
+ * @since 2.5.0
+ */
 export interface SliderValueOptions {
   /**
    * The min value for the slider.
@@ -68,6 +102,9 @@ export interface SliderValueOptions {
   step?: number;
 }
 
+/**
+ * @since 2.5.0
+ */
 export interface SliderStepOptions extends SliderValueOptions {
   /**
    * An optional amount to jump by when using the PageUp or PageDown keys. When
@@ -77,6 +114,9 @@ export interface SliderStepOptions extends SliderValueOptions {
   jump?: number;
 }
 
+/**
+ * @since 2.5.0
+ */
 export interface SliderPresentation {
   /**
    * Boolean if the slider is rendered vertically instead of horizontally.
@@ -89,6 +129,9 @@ export interface SliderPresentation {
   disabled?: boolean;
 }
 
+/**
+ * @since 2.5.0
+ */
 export interface SliderThumbOptions
   extends Omit<SliderValueOptions, "step">,
     SliderPresentation {
@@ -99,17 +142,30 @@ export interface SliderThumbOptions
   getValueText?(value: number): string;
 }
 
+/**
+ * @since 2.5.0
+ */
 export type DefinedSliderValueOptions = Required<SliderValueOptions>;
+
+/**
+ * @since 2.5.0
+ */
 export type SliderEventHandlerNames =
   | "onKeyDown"
   | "onMouseDown"
   | "onTouchStart";
 
+/**
+ * @since 2.5.0
+ */
 export type SliderEventHandlers = Pick<
   HTMLAttributes<HTMLSpanElement>,
   SliderEventHandlerNames
 >;
 
+/**
+ * @since 2.5.0
+ */
 export interface SliderAddons {
   /**
    * An optional addon to render before the slider's track. This can be anything
@@ -134,6 +190,7 @@ export interface SliderAddons {
 /**
  * These are the shared and common props required for both the `SimpleSlider` and
  * `RangeSlider` components.
+ * @since 2.5.0
  */
 export interface SliderProps
   extends HTMLAttributes<HTMLDivElement>,
