@@ -1984,9 +1984,9 @@
   integrity sha512-tjSSOTHhI5mCHTy/OOXYIhi2Wt1qcbHmuXD1Ha7q70CgI/I71afO4XtLb/cVexki1oVYchpul/TOuu3Arcdxrg==
 
 "@types/marked@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-1.1.0.tgz#53509b5f127e0c05c19176fcf1d743a41e00ff19"
-  integrity sha512-j8XXj6/l9kFvCwMyVqozznqpd/nk80krrW+QiIJN60Uu9gX5Pvn4/qPJ2YngQrR3QREPwmrE1f9/EWKVTFzoEw==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-1.2.0.tgz#75e1e444386ad7cdd6d788c91be4977111eda231"
+  integrity sha512-Kj9T+GlJrQQbXL0R6/zuYLaqlrtTmEVXl5LojsjA3KbPn1IpetEUFwJWCi4aDgATtvaR5Yj5vqSGX9upoLbBng==
 
 "@types/mime@*":
   version "2.0.1"
