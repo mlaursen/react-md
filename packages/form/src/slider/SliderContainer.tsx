@@ -51,8 +51,17 @@ export const SliderContainer = forwardRef<HTMLDivElement, SliderContainerProps>(
           className
         )}
       >
-        <TextIconSpacing icon={beforeAddon}>
-          <TextIconSpacing icon={afterAddon} iconAfter>
+        <TextIconSpacing
+          icon={beforeAddon}
+          stacked={vertical}
+          flexReverse={vertical}
+        >
+          <TextIconSpacing
+            icon={afterAddon}
+            iconAfter
+            stacked={vertical}
+            flexReverse={vertical}
+          >
             {children}
           </TextIconSpacing>
         </TextIconSpacing>
