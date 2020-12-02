@@ -81,4 +81,30 @@ describe("TextIconSpacing", () => {
     );
     expect(container).toMatchSnapshot();
   });
+
+  it("should swap the classnames correctly when flexReverse is enabled", () => {
+    const props = {
+      icon: <i data-testid="icon" />,
+      children: <span>children</span>,
+      flexReverse: true,
+    };
+    const { container, getByTestId, rerender } = render(
+      <TextIconSpacing {...props} />
+    );
+    expect(container).toMatchSnapshot();
+
+    expect(getByTestId("icon").className).toContain("rmd-icon--after");
+
+    rerender(<TextIconSpacing {...props} iconAfter />);
+    expect(container).toMatchSnapshot();
+    expect(getByTestId("icon").className).toContain("rmd-icon--before");
+
+    rerender(<TextIconSpacing {...props} stacked />);
+    expect(container).toMatchSnapshot();
+    expect(getByTestId("icon").className).toContain("rmd-icon--below");
+
+    rerender(<TextIconSpacing {...props} stacked iconAfter />);
+    expect(container).toMatchSnapshot();
+    expect(getByTestId("icon").className).toContain("rmd-icon--above");
+  });
 });

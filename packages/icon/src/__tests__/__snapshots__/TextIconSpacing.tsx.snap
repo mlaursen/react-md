@@ -30,6 +30,54 @@ exports[`TextIconSpacing should return the children if no icon prop is provided 
 </div>
 `;
 
+exports[`TextIconSpacing should swap the classnames correctly when flexReverse is enabled 1`] = `
+<div>
+  <i
+    class="rmd-icon--after"
+    data-testid="icon"
+  />
+  <span>
+    children
+  </span>
+</div>
+`;
+
+exports[`TextIconSpacing should swap the classnames correctly when flexReverse is enabled 2`] = `
+<div>
+  <span>
+    children
+  </span>
+  <i
+    class="rmd-icon--before"
+    data-testid="icon"
+  />
+</div>
+`;
+
+exports[`TextIconSpacing should swap the classnames correctly when flexReverse is enabled 3`] = `
+<div>
+  <i
+    class="rmd-icon--below"
+    data-testid="icon"
+  />
+  <span>
+    children
+  </span>
+</div>
+`;
+
+exports[`TextIconSpacing should swap the classnames correctly when flexReverse is enabled 4`] = `
+<div>
+  <span>
+    children
+  </span>
+  <i
+    class="rmd-icon--above"
+    data-testid="icon"
+  />
+</div>
+`;
+
 exports[`TextIconSpacing should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled 1`] = `
 <div>
   <span

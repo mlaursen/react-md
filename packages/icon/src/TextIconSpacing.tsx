@@ -76,6 +76,14 @@ export interface TextIconSpacingProps {
    * flex` and `flex-direction: column` for this to work.
    */
   stacked?: boolean;
+
+  /**
+   * Boolean if the icon and content are in a `column-reverse` or `row-reverse`
+   * `flex-direction`. This will swap the different classnames as needed.
+   *
+   * @since 2.5.0
+   */
+  flexReverse?: boolean;
 }
 
 export function TextIconSpacing({
@@ -84,6 +92,7 @@ export function TextIconSpacing({
   children = null,
   stacked = false,
   iconAfter = false,
+  flexReverse = false,
   forceIconWrap = false,
   beforeClassName = "rmd-icon--before",
   afterClassName = "rmd-icon--after",
@@ -94,12 +103,13 @@ export function TextIconSpacing({
     return <>{children}</>;
   }
 
+  const isAfter = flexReverse ? !iconAfter : iconAfter;
   const baseClassName = cn(
     {
-      [beforeClassName]: !stacked && !iconAfter,
-      [afterClassName]: !stacked && iconAfter,
-      [aboveClassName]: stacked && !iconAfter,
-      [belowClassName]: stacked && iconAfter,
+      [beforeClassName]: !stacked && !isAfter,
+      [afterClassName]: !stacked && isAfter,
+      [aboveClassName]: stacked && !isAfter,
+      [belowClassName]: stacked && isAfter,
     },
     className
   );
