@@ -3,14 +3,10 @@ import React, { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
-  /**
-   * An id for the `<input>` or `<textarea>` that this label is for. This is
-   * required since all label's **should** point to a valid
-   * `<input>`/`<textarea>`.
-   */
-  htmlFor: string;
-
+/**
+ * @since 2.5.0
+ */
+export interface LabelStates {
   /**
    * Boolean if the label should gain the error state.
    */
@@ -28,6 +24,17 @@ export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
    * checkbox, radio or switch components.
    */
   active?: boolean;
+}
+
+export interface LabelProps
+  extends HTMLAttributes<HTMLLabelElement>,
+    LabelStates {
+  /**
+   * An id for the `<input>` or `<textarea>` that this label is for. This is
+   * required since all label's **should** point to a valid
+   * `<input>`/`<textarea>`.
+   */
+  htmlFor: string;
 
   /**
    * The component to render the label as. This should be the default value of
@@ -37,7 +44,21 @@ export interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
   component?: "label" | "span";
 }
 
-const block = bem("rmd-label");
+const styles = bem("rmd-label");
+
+/**
+ * A simple util that can generate all the "valid" styles for a label. This
+ * shouldn't really be used, but it's useful if you want the label styles
+ * without rendering a `<label>` element.
+ *
+ * @since 2.5.0
+ * @internal
+ */
+export const labelStyles = ({
+  error = false,
+  active = false,
+  disabled = false,
+}: LabelStates = {}): string => styles({ error, active, disabled });
 
 /**
  * The `Label` component should be used alongside any form elements but is
@@ -64,14 +85,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
     <Component
       {...props}
       ref={ref}
-      className={cn(
-        block({
-          error,
-          active,
-          disabled,
-        }),
-        className
-      )}
+      className={cn(labelStyles({ error, active, disabled }), className)}
       htmlFor={Component === "label" ? htmlFor : undefined}
     >
       {children}
