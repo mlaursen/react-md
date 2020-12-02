@@ -1,16 +1,18 @@
-import React, { forwardRef, HTMLAttributes } from "react";
+import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
+import cn from "classnames";
 import { PropsWithRef } from "@react-md/utils";
 
+import { labelStyles } from "../label";
 import {
   DEFAULT_SLIDER_ANIMATION_TIME,
   DEFAULT_SLIDER_GET_VALUE_TEXT,
 } from "./constants";
+import { SliderContainer } from "./SliderContainer";
 import { SliderThumb } from "./SliderThumb";
 import { SliderTrack } from "./SliderTrack";
 import { SliderProps } from "./types";
 import { SimpleSliderRequiredProps } from "./useSimpleSlider";
 import { useSliderControls } from "./useSliderControls";
-import { SliderContainer } from "./SliderContainer";
 
 /**
  * @since 2.5.0
@@ -19,14 +21,34 @@ export interface SimpleSliderProps
   extends SimpleSliderRequiredProps,
     SliderProps {
   /**
-   * An optional label to apply to the slider's thumb. Either this or the
-   * `aria-labelledby` prop are required for a11y.
+   * An optional label to display with the slider. This should normally be a
+   * short (1-4 word) description for this slider.
+   *
+   * @see {@link #thumbLabel}
+   * @see {@link #thumbLabelledBy}
+   */
+  label?: ReactNode;
+
+  /**
+   * Optional props to pass to the component wrapping the `label` content.
+   */
+  labelProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+
+  /**
+   * An optional label to apply to the slider's thumb. This should normally be a
+   * short (1-4 word) description for this slider.
+   *
+   * @see {@link #label}
+   * @see {@link #thumbLabelledBy}
    */
   thumbLabel?: string;
 
   /**
-   * An optional id point to a label describing the slider's thumb. Either this
-   * or the `aria-label` prop are required for a11y.
+   * An optional id point to a label describing the slider's thumb. This should
+   * normally be a short (1-4 word) description for this slider.
+   *
+   * @see {@link #label}
+   * @see {@link #thumbLabel}
    */
   thumbLabelledBy?: string;
 
@@ -55,6 +77,8 @@ export const SimpleSlider = forwardRef<HTMLDivElement, SimpleSliderProps>(
     {
       baseId,
       trackProps: propTrackProps,
+      label,
+      labelProps,
       thumbLabel,
       thumbLabelledBy,
       thumbProps,
@@ -111,36 +135,52 @@ export const SimpleSlider = forwardRef<HTMLDivElement, SimpleSliderProps>(
       setValue,
     });
 
+    let labelId = "";
+    if (label) {
+      labelId = labelProps?.id || `${baseId}-label`;
+    }
+
     return (
-      <SliderContainer {...props} vertical={vertical} ref={ref}>
-        <SliderTrack
-          id={baseId}
-          {...propTrackProps}
-          {...trackProps}
-          animate={!dragging}
-          disabled={disabled}
-          vertical={vertical}
-          inversed={inversed}
-        >
-          <SliderThumb
-            {...thumbProps}
-            getValueText={getValueText}
-            aria-label={thumbLabel as string}
-            aria-labelledby={thumbLabelledBy}
-            ref={thumb1Ref}
-            baseId={baseId}
-            min={min}
-            max={max}
+      <>
+        {label && (
+          <span
+            {...labelProps}
+            id={labelId}
+            className={cn(labelStyles({ disabled }), labelProps?.className)}
+          >
+            {label}
+          </span>
+        )}
+        <SliderContainer {...props} vertical={vertical} ref={ref}>
+          <SliderTrack
+            id={baseId}
+            {...propTrackProps}
+            {...trackProps}
+            animate={!dragging}
             disabled={disabled}
             vertical={vertical}
-            animate={!dragging}
-            value={thumb1Value}
-            index={0}
-            active={draggingIndex === 0}
-            onKeyDown={onKeyDown}
-          />
-        </SliderTrack>
-      </SliderContainer>
+            inversed={inversed}
+          >
+            <SliderThumb
+              {...thumbProps}
+              getValueText={getValueText}
+              aria-label={thumbLabel}
+              aria-labelledby={thumbLabelledBy || labelId}
+              ref={thumb1Ref}
+              baseId={baseId}
+              min={min}
+              max={max}
+              disabled={disabled}
+              vertical={vertical}
+              animate={!dragging}
+              value={thumb1Value}
+              index={0}
+              active={draggingIndex === 0}
+              onKeyDown={onKeyDown}
+            />
+          </SliderTrack>
+        </SliderContainer>
+      </>
     );
   }
 );
@@ -182,15 +222,21 @@ if (process.env.NODE_ENV !== "production") {
         _propName: string,
         component: string
       ) => {
-        const { thumbLabel, thumbLabelledBy } = props;
+        const { label, thumbLabel, thumbLabelledBy } = props;
         const propsLabel = props.thumbProps?.["aria-label"];
         const propsLabelledBy = props.thumbProps?.["aria-labelledby"];
-        if (thumbLabel || thumbLabelledBy || propsLabel || propsLabelledBy) {
+        if (
+          label ||
+          thumbLabel ||
+          thumbLabelledBy ||
+          propsLabel ||
+          propsLabelledBy
+        ) {
           return null;
         }
 
         return new Error(
-          `Either the \`thumbLabel\`, \`thumbLabelledBy\`, \`thumb1Props["aria-label"]\`, or \`thumb1Props["aria-labelledby"]\` ` +
+          `Either the \`label\`, \`thumbLabel\`, \`thumbLabelledBy\`, \`thumb1Props["aria-label"]\`, or \`thumb1Props["aria-labelledby"]\` ` +
             `are required for accessibility in the \`${component}\` component, but none were provided.`
         );
       },

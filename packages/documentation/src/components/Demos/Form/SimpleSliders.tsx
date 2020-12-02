@@ -20,22 +20,22 @@ export default function SimpleSliders(): ReactElement | null {
   return (
     <>
       <SlidersContainer>
-        <SimpleSlider baseId={useId()} thumbLabel="Slider 1" {...controls1} />
+        <SimpleSlider baseId={useId()} label="Horizontal" {...controls1} />
         <SimpleSlider
           baseId={useId()}
-          thumbLabel="Slider 2"
+          label="Inverse"
           {...controls2}
           inversed
         />
         <SimpleSlider
           baseId={useId()}
-          thumbLabel="Disabled Slider"
+          label="Disabled"
           {...disabledControls}
           disabled
         />
         <SimpleSlider
           baseId={useId()}
-          thumbLabel="Slider 3"
+          label="Volume"
           {...controls3}
           beforeAddon={<VolumeOffSVGIcon />}
           afterAddon={<VolumeUpSVGIcon />}
