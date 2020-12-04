@@ -89,6 +89,14 @@ $rmd-slider-thumb-size: 1.25rem !default;
 /// @type Number
 $rmd-slider-thumb-radius: 50% !default;
 
+/// The z-index to use for the slider's thumb. This should _normally_ never
+/// really need to be changed. This value does need to be at least the same as
+/// the `$rmd-slider-inactive-track-s-index` value or higher for the slider to
+/// look correctly though.
+///
+/// @type Number
+$rmd-slider-thumb-z-index: $rmd-slider-active-track-z-index !default;
+
 /// The opacity to apply to the focus and active states of the thumb which
 /// creates an extra "bubble" around the thumb using the same theme colors.
 ///

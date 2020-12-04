@@ -325,7 +325,7 @@
 
   border-radius: $rmd-slider-thumb-radius;
   position: absolute;
-  z-index: 1;
+  z-index: $rmd-slider-thumb-z-index;
 
   &::after {
     @include rmd-transition(standard);
