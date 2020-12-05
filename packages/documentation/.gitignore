@@ -2,6 +2,7 @@
 src/readmes
 src/changelogs
 src/constants/sandboxes/*
+src/constants/meta/*
 
 .env*.local
 
