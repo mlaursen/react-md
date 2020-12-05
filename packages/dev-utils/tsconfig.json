@@ -11,7 +11,8 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "es2019"
     ]
   },
   "include": [
