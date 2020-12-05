@@ -13,6 +13,12 @@ interface SassDocProps {
 
 const SassDoc: NextFC<SassDocProps> = ({ name, sassdoc }) => {
   if (!sassdoc) {
+    if (process.env.NODE_ENV !== "production") {
+      throw new Error(
+        "No SassDoc found. Run `yarn sassdoc` to create all SassDoc."
+      );
+    }
+
     return <NotFoundPage />;
   }
 

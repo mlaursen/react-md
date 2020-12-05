@@ -1,44 +1,17 @@
 #!/bin/bash
 set -e
 
-for arg in "$@"; do
-  case $arg in
-    -bn|-nb)
-      build_dist=1
-      build_next=1
-      shift
-      ;;
-    -b)
-      build_dist=1
-      shift
-      ;;
-    -n)
-      build_next=1
-      shift
-      ;;
-    *)
-      echo "Unknown argument: $arg"
-      shift
-      ;;
-  esac
-done
-
 dist_tar_name=react-md.tar.bz2
 next_tar_name=nextjs.tar.bz2
 server_alias=react-md
 
 rm -rf $dist_tar_name $next_tar_name
+rm -rf packages/documentation/.next
 
-if [[ $build_dist -eq 1 ]]; then
-  yarn build
-fi
-
+yarn build
 yarn sandbox
-
-if [[ $build_next -eq 1 ]]; then
-  rm -rf packages/documentation/.next
-  yarn workspace documentation build
-fi
+yarn sassdoc
+yarn workspace documentation build
 
 find packages -maxdepth 3 -type d \( -name 'es' -or -name 'lib' -or -name 'dist' -or -name 'types' \) \
   | sed '/react-md/d' \

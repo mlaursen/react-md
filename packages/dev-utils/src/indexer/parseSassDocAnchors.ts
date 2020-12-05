@@ -1,4 +1,6 @@
 import { readFileSync } from "fs";
+import { existsSync } from "fs-extra";
+import log from "loglevel";
 import { join } from "path";
 
 import { documentationRoot, src } from "../constants";
@@ -13,6 +15,13 @@ export function parseSassDocAnchors(packageName: string): readonly TOCAnchor[] {
     "sassdoc",
     `${packageName}.ts`
   );
+  if (!existsSync(sassdocPath)) {
+    log.debug(
+      `Not indexing sassdoc for ${packageName} since the lookup does not exist.`
+    );
+    return [];
+  }
+
   const contents = readFileSync(sassdocPath, "utf8");
 
   // this is the order that they types appear in sassdoc pages
