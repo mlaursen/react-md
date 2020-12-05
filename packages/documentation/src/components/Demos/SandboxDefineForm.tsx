@@ -28,6 +28,12 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
   useEffect(() => {
     const getter = getSandbox(packageName, demoName, theme, isJs);
     if (!getter) {
+      if (process.env.NODE_ENV !== "production") {
+        throw new Error(
+          "No sandbox found. Run `yarn sandbox` to generate demo sandboxes."
+        );
+      }
+
       return;
     }
 

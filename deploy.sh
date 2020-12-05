@@ -33,6 +33,8 @@ if [[ $build_dist -eq 1 ]]; then
   yarn build
 fi
 
+yarn sandbox
+
 if [[ $build_next -eq 1 ]]; then
   rm -rf packages/documentation/.next
   yarn workspace documentation build

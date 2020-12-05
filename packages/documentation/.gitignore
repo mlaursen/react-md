@@ -1,6 +1,7 @@
 /.next
 src/readmes
 src/changelogs
+src/constants/sandboxes/*
 
 .env*.local
 

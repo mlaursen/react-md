@@ -112,13 +112,22 @@ createCommand("release")
 
 createCommand("sandbox", true)
   .option(
+    "--empty",
+    "Creates a mostly empty sandbox index file just so the typechecker will pass."
+  )
+  .option(
     "-p, --pattern [pattern]",
     "An optional glob pattern to use. This should be quoted if using asterisks"
   )
   .option("-d, --demo [demo]", "An optional demo pattern regex string filter.")
   .description("Creates the `*-Sandbox.json` files in the documentation site.")
-  .action(({ pattern = "*", demo = "", clean = false }) =>
-    sandbox(pattern, demo, clean)
+  .action(({ pattern = "*", demo = "", clean = false, empty = false }) =>
+    sandbox({
+      empty,
+      pattern,
+      demoPattern: demo,
+      cleanSandboxes: clean,
+    })
   );
 
 createCommand("libsize")

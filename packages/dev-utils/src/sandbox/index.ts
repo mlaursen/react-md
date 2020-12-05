@@ -8,11 +8,34 @@ import { createSandboxes } from "./createSandboxes";
 
 type Lookups = Record<string, Record<string, string>>;
 
-export async function sandbox(
-  pattern = "*",
-  demoPattern = "",
-  cleanSandboxes = false
-): Promise<void> {
+export interface SandboxOptions {
+  empty: boolean;
+  pattern: string;
+  demoPattern: string;
+  cleanSandboxes: boolean;
+}
+
+async function createEmptySandboxes(): Promise<void> {
+  const code = SANDBOXES_FILE.replace("{{SANDBOXES_JSON}}", "{}").replace(
+    "{{PACKAGE_UNION}}",
+    "string"
+  );
+  const formatted = format(code, "typescript");
+
+  await ensureDir(SANDBOXES_PATH);
+  await writeFile(join(SANDBOXES_PATH, "index.ts"), formatted);
+}
+
+export async function sandbox({
+  empty,
+  pattern,
+  demoPattern,
+  cleanSandboxes,
+}: SandboxOptions): Promise<void> {
+  if (empty) {
+    return createEmptySandboxes();
+  }
+
   if (cleanSandboxes) {
     const sandboxes = await glob(join(SANDBOXES_PATH, "**/*.json"));
     await clean(sandboxes);

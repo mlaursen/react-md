@@ -74,6 +74,12 @@ const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
   );
 
   if (!sandbox && !loading && (pkg || name || from)) {
+    if (process.env.NODE_ENV !== "production") {
+      throw new Error(
+        "No sandbox found. Run `yarn sandbox` to generate demo sandboxes."
+      );
+    }
+
     return <NotFoundPage />;
   }
 

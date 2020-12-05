@@ -11,7 +11,7 @@
     "sandbox": "dev-utils sandbox",
     "start": "yarn workspace documentation start-dev",
     "dev": "npm-run-all -p watch start",
-    "setup": "npm-run-all build-dev-utils force-install build",
+    "setup": "npm-run-all build-dev-utils force-install build \"sandbox --empty\"",
     "force-install": "yarn --force",
     "sassdoc": "dev-utils sassdoc",
     "styles": "dev-utils styles",
