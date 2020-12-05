@@ -15,5 +15,5 @@ export async function clean(
   log.debug(list(paths));
   log.debug();
 
-  await Promise.allSettled(paths.map((path) => remove(path)));
+  await Promise.all(paths.map((path) => remove(path)));
 }

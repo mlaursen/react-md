@@ -1,4 +1,5 @@
 import { ensureDir } from "fs-extra";
+import { flatMap } from "lodash";
 import log from "loglevel";
 import { join } from "path";
 
@@ -17,7 +18,7 @@ export async function markdown(shouldClean = false): Promise<void> {
     src: join(projectRoot, ".github", "CONTRIBUTING.md"),
     dest: join(documentationRoot, src, "guides", "contributing.md"),
   };
-  const markdownFiles = packages.flatMap((name) => [
+  const markdownFiles = flatMap(packages, (name) => [
     {
       src: join(packagesRoot, name, "README.md"),
       dest: join(readmeDest, `${name}.md`),

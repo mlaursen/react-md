@@ -1,6 +1,7 @@
 import cssnano from "cssnano";
 import { writeFileSync } from "fs";
 import { ensureDir, writeFile } from "fs-extra";
+import { flatMap } from "lodash";
 import log from "loglevel";
 import { renderSync } from "node-sass";
 import { join } from "path";
@@ -224,8 +225,8 @@ export async function themes(): Promise<void> {
   const secondaries = colors.slice(0, colors.indexOf("brown"));
 
   const sortedColors = colors.slice().sort();
-  const allThemes: Theme[] = sortedColors.flatMap((primaryColor) =>
-    secondaries.flatMap((secondaryColor) => {
+  const allThemes: Theme[] = flatMap(sortedColors, (primaryColor) =>
+    flatMap(secondaries, (secondaryColor) => {
       if (primaryColor === secondaryColor) {
         return [];
       }
@@ -233,8 +234,8 @@ export async function themes(): Promise<void> {
       const primary = toCSSColor(primaryColor);
       const secondary = toCSSColor(secondaryColor);
 
-      return weights.flatMap((weight) =>
-        tones.flatMap((lightOrDark) => ({
+      return flatMap(weights, (weight) =>
+        flatMap(tones, (lightOrDark) => ({
           fileName: `${primary}-${secondary}-${weight}-${lightOrDark}`,
           primary: primaryColor,
           secondary: secondaryColor,

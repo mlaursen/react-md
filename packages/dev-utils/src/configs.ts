@@ -1,5 +1,5 @@
 import { writeJson as fsWriteJson } from "fs-extra";
-import { merge } from "lodash";
+import { flatMap, merge } from "lodash";
 import { join } from "path";
 
 import {
@@ -96,7 +96,7 @@ export async function configs(): Promise<void> {
   await clean(existingConfigs);
 
   await Promise.all(
-    packages.flatMap(async (name) => {
+    flatMap(packages, async (name) => {
       const dependencies = await getDependencies(name);
       const rmdTsDependencies = dependencies.filter(
         (name) => name.startsWith("@react-md") && !NO_SCRIPT_PACKAGES.test(name)
