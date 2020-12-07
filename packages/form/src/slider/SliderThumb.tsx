@@ -63,7 +63,7 @@ export interface BaseThumbProps
 export type SliderThumbProps = LabelRequiredForA11y<BaseThumbProps>;
 
 /**
- * The slider thumb implements the `role="slider"` for the `SimpleSlider` and
+ * The slider thumb implements the `role="slider"` for the `Slider` and
  * `RangeSlider` components.
  *
  * @since 2.5.0

@@ -1,5 +1,5 @@
-As mentioned above, the `useSimpleSlider` provides an object of `controls` as
-the second argument which is required to update the slider's value. The controls
+As mentioned above, the `useSlider` provides an object of `controls` as the
+second argument which is required to update the slider's value. The controls
 include the following functions:
 
 - `increment` - increment the `value` by the current `step` amount unless
@@ -12,5 +12,4 @@ include the following functions:
   value of the slider manually
 
 This example will show how you can use the `controls` provided by the
-`useSimpleSlider` to link a `TextField` to the `SimpleSlider` and render it
-inline.
+`useSlider` to link a `TextField` to the `Slider` and render it inline.

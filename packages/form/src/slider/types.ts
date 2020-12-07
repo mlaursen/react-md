@@ -27,29 +27,28 @@ export type SliderDraggingBy = "mouse" | "touch" | null;
 /**
  * @since 2.5.0
  */
-export type SimpleSliderValue = number;
+export type SliderValue = number;
 
 /**
  * @since 2.5.0
  */
-export type SimpleSliderDefaultValue =
-  | SimpleSliderValue
-  | (() => SimpleSliderValue);
+export type SliderDefaultValue = SliderValue | (() => SliderValue);
 
 /**
- * An object containing the functions required to update the `SimpleSlider`'s
- * value when the user interacts with the slider. These functions are provided
- * by the `useSimpleSlider` hook.
+ * An object containing the functions required to update the `Slider`'s value
+ * when the user interacts with the slider. These functions are provided by the
+ * `useSlider` hook.
+ *
  * @since 2.5.0
  */
-export interface SimpleSliderControls {
+export interface SliderControls {
   minimum(): void;
   maximum(): void;
   increment(): void;
   incrementJump(): void;
   decrement(): void;
   decrementJump(): void;
-  setValue: Dispatch<SetStateAction<SimpleSliderValue>>;
+  setValue: Dispatch<SetStateAction<SliderValue>>;
 }
 
 /**
@@ -188,11 +187,12 @@ export interface SliderAddons {
 }
 
 /**
- * These are the shared and common props required for both the `SimpleSlider` and
+ * These are the shared and common props required for both the `Slider` and
  * `RangeSlider` components.
+ *
  * @since 2.5.0
  */
-export interface SliderProps
+export interface BaseSliderProps
   extends HTMLAttributes<HTMLDivElement>,
     SliderPresentation,
     SliderAddons,

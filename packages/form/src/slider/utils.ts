@@ -4,8 +4,8 @@ import {
   DefinedSliderValueOptions,
   RangeSliderControls,
   RangeSliderValue,
-  SimpleSliderControls as SliderControls,
-  SimpleSliderValue,
+  SliderControls,
+  SliderValue,
 } from "./types";
 
 /**
@@ -74,7 +74,7 @@ export const isTouchEvent = (
  * @since 2.5.0
  */
 export interface SimpleSliderControls extends SliderControls {
-  value: SimpleSliderValue;
+  value: SliderValue;
 }
 
 /**

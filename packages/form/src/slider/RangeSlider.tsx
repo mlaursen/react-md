@@ -13,7 +13,7 @@ import {
 import { SliderContainer } from "./SliderContainer";
 import { SliderThumb } from "./SliderThumb";
 import { SliderTrack } from "./SliderTrack";
-import { SliderProps } from "./types";
+import { BaseSliderProps } from "./types";
 import { RangeSliderRequiredProps } from "./useRangeSlider";
 import { useSliderControls } from "./useSliderControls";
 
@@ -22,7 +22,7 @@ import { useSliderControls } from "./useSliderControls";
  */
 export interface RangeSliderProps
   extends RangeSliderRequiredProps,
-    SliderProps {
+    BaseSliderProps {
   /**
    * Any additional props you'd like to pass to the track element as well as an
    * optional `ref` if you need access to the track element for some reason.

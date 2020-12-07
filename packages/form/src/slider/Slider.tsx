@@ -10,16 +10,14 @@ import {
 import { SliderContainer } from "./SliderContainer";
 import { SliderThumb } from "./SliderThumb";
 import { SliderTrack } from "./SliderTrack";
-import { SliderProps } from "./types";
-import { SimpleSliderRequiredProps } from "./useSimpleSlider";
+import { BaseSliderProps } from "./types";
+import { SliderRequiredProps } from "./useSlider";
 import { useSliderControls } from "./useSliderControls";
 
 /**
  * @since 2.5.0
  */
-export interface SimpleSliderProps
-  extends SimpleSliderRequiredProps,
-    SliderProps {
+export interface SliderProps extends SliderRequiredProps, BaseSliderProps {
   /**
    * An optional label to display with the slider. This should normally be a
    * short (1-4 word) description for this slider.
@@ -66,130 +64,128 @@ export interface SimpleSliderProps
 }
 
 /**
- * The `SimpleSlider` component allows the user to select a single value from a
- * range of numbers. The functionality for controlling the value of this
- * component is provided by the `useSimpleSlider` hook.
+ * The `Slider` component allows the user to select a single value from a range
+ * of numbers. The functionality for controlling the value of this component is
+ * provided by the `useSlider` hook.
  *
  * @since 2.5.0
  */
-export const SimpleSlider = forwardRef<HTMLDivElement, SimpleSliderProps>(
-  function SimpleSlider(
-    {
-      baseId,
-      trackProps: propTrackProps,
-      label,
-      labelProps,
-      thumbLabel,
-      thumbLabelledBy,
-      thumbProps,
-      min,
-      max,
-      step,
-      disabled = false,
-      vertical = false,
-      inversed = false,
-      onMouseDown,
-      onTouchStart,
-      getValueText = DEFAULT_SLIDER_GET_VALUE_TEXT,
-      animationDuration = DEFAULT_SLIDER_ANIMATION_TIME,
-      value,
-      minimum,
-      maximum,
-      increment,
-      incrementJump,
-      decrement,
-      decrementJump,
-      setValue,
-      ...props
-    },
-    ref
-  ) {
-    const {
-      thumb1Ref,
-      thumb1Value,
-      thumb2Ref: _thumb2Ref,
-      thumb2Value: _thumb2Value,
-      dragging,
-      draggingIndex,
-      onKeyDown,
-      ...trackProps
-    } = useSliderControls({
-      ref: propTrackProps?.ref,
-      thumb1Ref: thumbProps?.ref,
-      min,
-      max,
-      step,
-      value,
-      disabled,
-      vertical,
-      onKeyDown: thumbProps?.onKeyDown,
-      onMouseDown,
-      onTouchStart,
-      animationDuration,
-      minimum,
-      maximum,
-      increment,
-      incrementJump,
-      decrement,
-      decrementJump,
-      setValue,
-    });
+export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
+  {
+    baseId,
+    trackProps: propTrackProps,
+    label,
+    labelProps,
+    thumbLabel,
+    thumbLabelledBy,
+    thumbProps,
+    min,
+    max,
+    step,
+    disabled = false,
+    vertical = false,
+    inversed = false,
+    onMouseDown,
+    onTouchStart,
+    getValueText = DEFAULT_SLIDER_GET_VALUE_TEXT,
+    animationDuration = DEFAULT_SLIDER_ANIMATION_TIME,
+    value,
+    minimum,
+    maximum,
+    increment,
+    incrementJump,
+    decrement,
+    decrementJump,
+    setValue,
+    ...props
+  },
+  ref
+) {
+  const {
+    thumb1Ref,
+    thumb1Value,
+    thumb2Ref: _thumb2Ref,
+    thumb2Value: _thumb2Value,
+    dragging,
+    draggingIndex,
+    onKeyDown,
+    ...trackProps
+  } = useSliderControls({
+    ref: propTrackProps?.ref,
+    thumb1Ref: thumbProps?.ref,
+    min,
+    max,
+    step,
+    value,
+    disabled,
+    vertical,
+    onKeyDown: thumbProps?.onKeyDown,
+    onMouseDown,
+    onTouchStart,
+    animationDuration,
+    minimum,
+    maximum,
+    increment,
+    incrementJump,
+    decrement,
+    decrementJump,
+    setValue,
+  });
 
-    let labelId = "";
-    if (label) {
-      labelId = labelProps?.id || `${baseId}-label`;
-    }
+  let labelId = "";
+  if (label) {
+    labelId = labelProps?.id || `${baseId}-label`;
+  }
 
-    return (
-      <>
-        {label && (
-          <span
-            {...labelProps}
-            id={labelId}
-            className={cn(labelStyles({ disabled }), labelProps?.className)}
-          >
-            {label}
-          </span>
-        )}
-        <SliderContainer {...props} vertical={vertical} ref={ref}>
-          <SliderTrack
-            id={baseId}
-            {...propTrackProps}
-            {...trackProps}
-            animate={!dragging}
+  return (
+    <>
+      {label && (
+        <span
+          {...labelProps}
+          id={labelId}
+          className={cn(labelStyles({ disabled }), labelProps?.className)}
+        >
+          {label}
+        </span>
+      )}
+      <SliderContainer {...props} vertical={vertical} ref={ref}>
+        <SliderTrack
+          id={baseId}
+          {...propTrackProps}
+          {...trackProps}
+          animate={!dragging}
+          disabled={disabled}
+          vertical={vertical}
+          inversed={inversed}
+        >
+          <SliderThumb
+            {...thumbProps}
+            getValueText={getValueText}
+            aria-label={thumbLabel}
+            aria-labelledby={thumbLabelledBy || labelId}
+            ref={thumb1Ref}
+            baseId={baseId}
+            min={min}
+            max={max}
             disabled={disabled}
             vertical={vertical}
-            inversed={inversed}
-          >
-            <SliderThumb
-              {...thumbProps}
-              getValueText={getValueText}
-              aria-label={thumbLabel}
-              aria-labelledby={thumbLabelledBy || labelId}
-              ref={thumb1Ref}
-              baseId={baseId}
-              min={min}
-              max={max}
-              disabled={disabled}
-              vertical={vertical}
-              animate={!dragging}
-              value={thumb1Value}
-              index={0}
-              active={draggingIndex === 0}
-              onKeyDown={onKeyDown}
-            />
-          </SliderTrack>
-        </SliderContainer>
-      </>
-    );
-  }
-);
+            animate={!dragging}
+            value={thumb1Value}
+            index={0}
+            active={draggingIndex === 0}
+            onKeyDown={onKeyDown}
+          />
+        </SliderTrack>
+      </SliderContainer>
+    </>
+  );
+});
 
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    SimpleSlider.propTypes = {
+    Slider.propTypes = {
       min: PropTypes.number.isRequired,
       max: PropTypes.number.isRequired,
       step: PropTypes.number.isRequired,
@@ -218,7 +214,7 @@ if (process.env.NODE_ENV !== "production") {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       _a11yValidator1: (
-        props: SimpleSliderProps,
+        props: SliderProps,
         _propName: string,
         component: string
       ) => {

@@ -1,7 +1,7 @@
 import React, { ReactElement, useRef } from "react";
 import {
-  SimpleSlider,
-  SimpleSliderRequiredProps,
+  Slider,
+  SliderRequiredProps,
   TextField,
   useNumberField,
 } from "@react-md/form";
@@ -9,7 +9,7 @@ import { Text } from "@react-md/typography";
 
 import styles from "./ColorSlider.module.scss";
 
-export interface ColorSliderProps extends SimpleSliderRequiredProps {
+export interface ColorSliderProps extends SliderRequiredProps {
   value: number;
   type: "r" | "g" | "b";
 }
@@ -54,7 +54,7 @@ export default function ColorSlider({
   }
 
   return (
-    <SimpleSlider
+    <Slider
       baseId={id}
       thumbLabelledBy={labelId}
       value={value}

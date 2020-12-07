@@ -19,7 +19,7 @@ import {
 import { DEFAULT_SLIDER_ANIMATION_TIME } from "./constants";
 import {
   DefinedSliderValueOptions,
-  SimpleSliderControls,
+  SliderControls,
   SliderDragEvent,
   SliderDraggingBy,
   SliderEventHandlers,
@@ -65,7 +65,7 @@ const VALID_KEYS = [
  * @internal
  * @since 2.5.0
  */
-export interface SliderControls {
+export interface SliderAndRangeSliderControls {
   thumb1Ref: RefCallback<HTMLSpanElement | null>;
   thumb1Value: number;
   thumb1Percentage: string;
@@ -101,7 +101,7 @@ export function useSliderControls({
   onTouchStart,
   animationDuration = DEFAULT_SLIDER_ANIMATION_TIME,
   ...controls
-}: SliderControlsOptions): SliderControls {
+}: SliderControlsOptions): SliderAndRangeSliderControls {
   const trackRef = useRef<HTMLSpanElement | null>(null);
   const thumb1Ref = useRef<HTMLSpanElement | null>(null);
   const thumb2Ref = useRef<HTMLSpanElement | null>(null);
@@ -334,7 +334,7 @@ export function useSliderControls({
         return;
       }
 
-      let controls: Omit<SimpleSliderControls, "setValue" | "value">;
+      let controls: Omit<SliderControls, "setValue" | "value">;
       if (isRangeSlider(controlsRef.current)) {
         const {
           increment,

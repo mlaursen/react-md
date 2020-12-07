@@ -1,4 +1,4 @@
-export * from "./SimpleSlider";
+export * from "./Slider";
 export * from "./RangeSlider";
 
 export * from "./SliderContainer";
@@ -8,5 +8,5 @@ export * from "./SliderTrack";
 export * from "./constants";
 export * from "./types";
 
-export * from "./useSimpleSlider";
+export * from "./useSlider";
 export * from "./useRangeSlider";

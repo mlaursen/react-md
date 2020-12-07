@@ -8,9 +8,9 @@ import {
 } from "./constants";
 import {
   DefinedSliderValueOptions,
-  SimpleSliderControls,
-  SimpleSliderDefaultValue,
-  SimpleSliderValue,
+  SliderControls,
+  SliderDefaultValue,
+  SliderValue,
   SliderStepOptions,
 } from "./types";
 import { getJumpValue, getSteps } from "./utils";
@@ -18,27 +18,24 @@ import { getJumpValue, getSteps } from "./utils";
 /**
  * @since 2.5.0
  */
-export interface SimpleSliderRequiredProps
-  extends SimpleSliderControls,
+export interface SliderRequiredProps
+  extends SliderControls,
     DefinedSliderValueOptions {
   /**
    * The current value of the slider.
    */
-  value: SimpleSliderValue;
+  value: SliderValue;
 }
 
 /**
  * @since 2.5.0
  */
-export type SimpleSliderValueReturnType = readonly [
-  SimpleSliderValue,
-  SimpleSliderRequiredProps
-];
+export type SliderValueReturnType = readonly [SliderValue, SliderRequiredProps];
 
 /**
- * This hook is used to control the value and behavior of the `SimpleSlider`
- * component. The first argument will contain the current slider value while the
- * second argument will be all the props required to control the `SimpleSlider`
+ * This hook is used to control the value and behavior of the `Slider`
+ * component. The first argument will contain the current slider value while
+ * the second argument will be all the props required to control the `Slider`
  * component.
  *
  * @param defaultValue An optional default value to use for the slider. This will
@@ -46,19 +43,19 @@ export type SimpleSliderValueReturnType = readonly [
  * @param options An object containing the `min` and `max` values allowed for the
  * slider as well as a `step` to indicate valid values between the `min` and
  * `max`.
- * @return an ordered list containing the current value followed by the
- * `SimpleSlider` props
+ * @return an ordered list containing the current value followed by the `Slider`
+ * props
  * @since 2.5.0
  */
-export function useSimpleSlider(
-  defaultValue?: SimpleSliderDefaultValue,
+export function useSlider(
+  defaultValue?: SliderDefaultValue,
   {
     min = DEFAULT_SLIDER_MIN,
     max = DEFAULT_SLIDER_MAX,
     step = DEFAULT_SLIDER_STEP,
     jump: propJump,
   }: SliderStepOptions = {}
-): SimpleSliderValueReturnType {
+): SliderValueReturnType {
   const jump = useMemo(() => getJumpValue(min, max, step, propJump), [
     min,
     max,

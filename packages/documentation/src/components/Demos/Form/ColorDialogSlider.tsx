@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { AppBar, AppBarAction, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
-import { useSimpleSlider } from "@react-md/form";
+import { useSlider } from "@react-md/form";
 import { CloseSVGIcon } from "@react-md/material-icons";
 import { useAppSize, useToggle } from "@react-md/utils";
 
@@ -14,9 +14,9 @@ const titleId = `${id}-title`;
 export default function ColorDialogSlider(): ReactElement | null {
   const { isPhone } = useAppSize();
   const [visible, show, hide] = useToggle(false);
-  const [r, rControls] = useSimpleSlider(0, { max: 255 });
-  const [g, gControls] = useSimpleSlider(150, { max: 255 });
-  const [b, bControls] = useSimpleSlider(136, { max: 255 });
+  const [r, rControls] = useSlider(0, { max: 255 });
+  const [g, gControls] = useSlider(150, { max: 255 });
+  const [b, bControls] = useSlider(136, { max: 255 });
 
   return (
     <>
