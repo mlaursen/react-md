@@ -148,7 +148,8 @@ function logPercentChanged(message: string, umd: boolean, css: boolean): void {
       const currSize = current[i].size;
       const changedKB = (currSize - prevSize) * 100;
       const token = `${currSize} ${current[i].unit}`;
-      const change = `${changedKB > 0 ? "+" : "-"} ${filesize(changedKB)}`;
+      const sign = changedKB > 0 ? "+" : "-";
+      const change = `${sign} ${filesize(Math.abs(changedKB))}`;
       i += 1;
 
       if (changedKB !== 0) {
