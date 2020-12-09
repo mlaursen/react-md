@@ -2600,10 +2600,10 @@ adjust-sourcemap-loader@3.0.0:
     loader-utils "^2.0.0"
     regex-parser "^2.2.11"
 
-adm-zip@^0.4.16:
-  version "0.4.16"
-  resolved "https://registry.yarnpkg.com/adm-zip/-/adm-zip-0.4.16.tgz#cf4c508fdffab02c269cbc7f471a875f05570365"
-  integrity sha512-TFi4HBKSGfIKsK5YCkKaaFG2m4PEDyViZmEwof3MTIgzimHLto6muaHVpbrljdIvIrFZzEq/p4nafOeLcYegrg==
+adm-zip@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/adm-zip/-/adm-zip-0.5.1.tgz#32e51c6fe88370f4389b424567b78a345e79ebc6"
+  integrity sha512-a5ABmIFUJ9OxHV5zrXM9Q41JzpRIflFtdgpL4UQM9DsTHHxQzPRaeyAdnMW7kxL0NRWm/NHafJdj6pO+ty7L2g==
 
 agent-base@4, agent-base@^4.1.0, agent-base@^4.3.0:
   version "4.3.0"
