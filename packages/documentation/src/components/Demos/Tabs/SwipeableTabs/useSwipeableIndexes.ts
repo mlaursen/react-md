@@ -1,5 +1,9 @@
 import { useCallback, useReducer } from "react";
-import { EventData, SwipeableHandlers, useSwipeable } from "react-swipeable";
+import {
+  SwipeableHandlers,
+  SwipeEventData,
+  useSwipeable,
+} from "react-swipeable";
 
 interface State {
   /**
@@ -33,13 +37,13 @@ interface ChangeAction {
 
 interface MoveAction {
   type: typeof MOVE;
-  data: EventData;
+  data: SwipeEventData;
   tabs: number;
 }
 
 interface JumpAction {
   type: typeof JUMP;
-  data: EventData;
+  data: SwipeEventData;
   tabs: number;
 }
 
@@ -70,7 +74,7 @@ const update = (state: State, nextState: State): State => {
  * relative distance has been exceeded. Right now it'll be fired even if it's
  * only 10px.
  */
-function jump(state: State, data: EventData, tabs: number): State {
+function jump(state: State, data: SwipeEventData, tabs: number): State {
   const { activeIndex, swiping } = state;
   const incrementor = data.dir === "Left" ? 1 : -1;
   const nextIndex = Math.max(0, Math.min(tabs, activeIndex + incrementor));
@@ -89,7 +93,7 @@ function jump(state: State, data: EventData, tabs: number): State {
  * This should eventually be updated to ensure that the distance is "normalized"
  * based on the panel width, but it's too much work for an example demo.
  */
-function move(state: State, data: EventData, tabs: number): State {
+function move(state: State, data: SwipeEventData, tabs: number): State {
   let { deltaX } = data;
   if (state.activeIndex === 0) {
     deltaX = Math.max(-30, deltaX);
@@ -136,7 +140,7 @@ export default function useSwipeableIndexes(tabs: number): ReturnValue {
   });
 
   const move = useCallback(
-    (data: EventData) => {
+    (data: SwipeEventData) => {
       const sel = window.getSelection();
       if (sel) {
         sel.removeAllRanges();
@@ -147,7 +151,7 @@ export default function useSwipeableIndexes(tabs: number): ReturnValue {
   );
 
   const jump = useCallback(
-    (data: EventData) => {
+    (data: SwipeEventData) => {
       dispatch({ type: JUMP, data, tabs });
     },
     [tabs]

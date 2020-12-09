@@ -76,7 +76,7 @@
     "react-dom": "^17.0.1",
     "react-hook-form": "^6.11.3",
     "react-router-dom": "^5.2.0",
-    "react-swipeable": "^5.5.1",
+    "react-swipeable": "^6.0.1",
     "react-transition-group": "^4.4.1",
     "react-virtualized": "^9.21.2"
   },
