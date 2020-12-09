@@ -9,12 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import {
-  applyRef,
-  getPercentage,
-  useDir,
-  useIsomorphicLayoutEffect,
-} from "@react-md/utils";
+import { applyRef, useDir, useIsomorphicLayoutEffect } from "@react-md/utils";
 
 import { DEFAULT_SLIDER_ANIMATION_TIME } from "./constants";
 import {
@@ -29,6 +24,7 @@ import {
 } from "./types";
 import {
   CombinedSliderControls,
+  getDragPercentage,
   getDragValue,
   isMouseEvent,
   isRangeSlider,
@@ -106,8 +102,9 @@ export function useSliderControls({
   const thumb1Ref = useRef<HTMLSpanElement | null>(null);
   const thumb2Ref = useRef<HTMLSpanElement | null>(null);
   const [dragging, setDragging] = useState(false);
-  const [draggingIndex, setDraggingIndex] = useState<SliderThumbIndex>(null);
+  const [dragValue, setDragValue] = useState<number>(min);
   const [draggingBy, setDraggingBy] = useState<SliderDraggingBy>(null);
+  const [draggingIndex, setDraggingIndex] = useState<SliderThumbIndex>(null);
   const controlsRef = useRef(controls);
   useIsomorphicLayoutEffect(() => {
     controlsRef.current = controls;
@@ -211,17 +208,20 @@ export function useSliderControls({
 
       const controls = controlsRef.current;
       if (isRangeSlider(controls)) {
-        controls.setValue(([thumb1Value, thumb2Value]) => {
-          const value = getDragValue({
-            ...options,
-            minValue: index === 0 ? min : thumb1Value,
-            maxValue: index === 1 ? max : thumb2Value,
-          });
-
-          return index === 0 ? [value, thumb2Value] : [thumb1Value, value];
+        const [thumb1Value, thumb2Value] = controls.value;
+        const { value, current } = getDragValue({
+          ...options,
+          minValue: index === 0 ? min : thumb1Value,
+          maxValue: index === 1 ? max : thumb2Value,
         });
+        setDragValue(current);
+        controls.setValue(
+          index === 0 ? [value, thumb2Value] : [thumb1Value, value]
+        );
       } else {
-        controls.setValue(getDragValue(options));
+        const { value, current } = getDragValue(options);
+        setDragValue(current);
+        controls.setValue(value);
       }
     },
     [disabled, isRtl, draggingIndex, max, min, step, vertical]
@@ -399,11 +399,25 @@ export function useSliderControls({
   let thumb2Percentage: string | undefined;
   if (isRangeSlider(controls)) {
     [thumb1Value, thumb2Value] = controls.value;
-    thumb1Percentage = `${getPercentage(min, max, thumb1Value) * 100}%`;
-    thumb2Percentage = `${getPercentage(min, max, thumb2Value) * 100}%`;
+    ({ thumb1Percentage, thumb2Percentage } = getDragPercentage({
+      min,
+      max,
+      thumb1Value,
+      thumb2Value,
+      dragging,
+      dragValue,
+      draggingIndex,
+    }));
   } else {
     thumb1Value = controls.value;
-    thumb1Percentage = `${getPercentage(min, max, thumb1Value) * 100}%`;
+    ({ thumb1Percentage } = getDragPercentage({
+      min,
+      max,
+      thumb1Value,
+      dragging,
+      dragValue,
+      draggingIndex,
+    }));
   }
 
   const trackRefHandler = useCallback(

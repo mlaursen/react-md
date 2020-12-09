@@ -1,4 +1,4 @@
-import { nearest } from "@react-md/utils";
+import { getPercentage, nearest } from "@react-md/utils";
 
 import {
   DefinedSliderValueOptions,
@@ -6,6 +6,7 @@ import {
   RangeSliderValue,
   SliderControls,
   SliderValue,
+  ThumbIndex,
 } from "./types";
 
 /**
@@ -119,6 +120,15 @@ export interface SliderDragValues extends DefinedSliderValueOptions {
 }
 
 /**
+ * @since 2.5.0
+ * @internal
+ */
+export interface SliderDragValue {
+  value: number;
+  current: number;
+}
+
+/**
  * This is used to get the next value for the slider while being dragged via
  * mouse or touch.
  *
@@ -139,7 +149,7 @@ export const getDragValue = ({
   isRtl,
   minValue,
   maxValue,
-}: SliderDragValues): number => {
+}: SliderDragValues): SliderDragValue => {
   const sliderSize = vertical ? height : width;
   const sliderPosition = vertical ? top + height : left;
   const cursorPosition = vertical ? clientY : clientX;
@@ -154,9 +164,62 @@ export const getDragValue = ({
   const value = percentageDragged * range + min;
   const rounded = nearest(value, minValue, maxValue, steps, range);
 
-  if (!vertical && isRtl) {
-    return steps - rounded;
+  return {
+    value: isRtl && !vertical ? steps - rounded : rounded,
+    current: percentageDragged,
+  };
+};
+
+/**
+ * @since 2.5.0
+ * @internal
+ */
+interface DragPercentageOptions {
+  min: number;
+  max: number;
+  thumb1Value: number;
+  thumb2Value?: number;
+  dragging: boolean;
+  dragValue: number;
+  draggingIndex: ThumbIndex | null;
+}
+
+interface DragPercentage {
+  thumb1Percentage: string;
+  thumb2Percentage: string | undefined;
+}
+
+/**
+ * @since 2.5.0
+ * @internal
+ */
+export const getDragPercentage = ({
+  min,
+  max,
+  dragging,
+  dragValue,
+  draggingIndex,
+  thumb1Value,
+  thumb2Value,
+}: DragPercentageOptions): DragPercentage => {
+  const thumb1Percentage =
+    dragging && draggingIndex === 0
+      ? dragValue
+      : getPercentage(min, max, thumb1Value);
+
+  let thumb2Percentage: number | undefined;
+  if (typeof thumb2Value === "number") {
+    thumb2Percentage =
+      dragging && draggingIndex === 1
+        ? dragValue
+        : getPercentage(min, max, thumb2Value);
   }
 
-  return rounded;
+  return {
+    thumb1Percentage: `${thumb1Percentage * 100}%`,
+    thumb2Percentage:
+      typeof thumb2Percentage === "number"
+        ? `${thumb2Percentage * 100}%`
+        : undefined,
+  };
 };
