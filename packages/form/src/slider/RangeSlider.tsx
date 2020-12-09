@@ -91,7 +91,6 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       step,
       disabled = false,
       vertical = false,
-      inversed = false,
       trackProps: propTrackProps,
       onMouseDown,
       onTouchStart,
@@ -185,7 +184,6 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
           animate={!dragging}
           disabled={disabled}
           vertical={vertical}
-          inversed={inversed}
         >
           <SliderThumb
             aria-label={thumb1Label as string}
@@ -237,7 +235,6 @@ if (process.env.NODE_ENV !== "production") {
       className: PropTypes.string,
       baseId: PropTypes.string.isRequired,
       animationDuration: PropTypes.number,
-      inversed: PropTypes.bool,
       vertical: PropTypes.bool,
       disabled: PropTypes.bool,
       beforeAddon: PropTypes.node,

@@ -84,7 +84,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
     step,
     disabled = false,
     vertical = false,
-    inversed = false,
     onMouseDown,
     onTouchStart,
     getValueText = DEFAULT_SLIDER_GET_VALUE_TEXT,
@@ -156,7 +155,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
           animate={!dragging}
           disabled={disabled}
           vertical={vertical}
-          inversed={inversed}
         >
           <SliderThumb
             {...thumbProps}
@@ -205,7 +203,6 @@ if (process.env.NODE_ENV !== "production") {
       style: PropTypes.object,
       className: PropTypes.string,
       animationDuration: PropTypes.number,
-      inversed: PropTypes.bool,
       vertical: PropTypes.bool,
       disabled: PropTypes.bool,
       beforeAddon: PropTypes.node,

@@ -26,17 +26,6 @@ export interface SliderTrackProps
   animate?: boolean;
 
   /**
-   * Boolean if the track should inverse the active and inactive states so that
-   * the thicker bar would appear on the right instead of the left when
-   * horizontal. The thicker bar would appear above instead of below for vertical
-   * sliders.
-   *
-   * Note: This does not do anything for sliders that have two thumbs (range
-   * slider).
-   */
-  inversed?: boolean;
-
-  /**
    * This should be the current value as a percentage for the first thumb that
    * appears within the slider.
    */
@@ -65,7 +54,6 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
       animate = false,
       vertical = false,
       disabled = false,
-      inversed = false,
       thumb1Percentage,
       thumb2Percentage,
       ...props
@@ -89,12 +77,10 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
             hoverable: !disabled,
             disabled,
             h: !vertical,
-            h1: !vertical && !thumb2Percentage && !inversed,
-            "h1-inv": !vertical && !thumb2Percentage && inversed,
+            h1: !vertical && !thumb2Percentage,
             h2: !vertical && thumb2Percentage,
             v: vertical,
-            v1: vertical && !thumb2Percentage && !inversed,
-            "v1-inv": vertical && !thumb2Percentage && inversed,
+            v1: vertical && !thumb2Percentage,
             v2: vertical && thumb2Percentage,
           }),
           className
@@ -113,7 +99,6 @@ if (process.env.NODE_ENV !== "production") {
     SliderTrack.propTypes = {
       className: PropTypes.string,
       animate: PropTypes.bool,
-      inversed: PropTypes.bool,
       vertical: PropTypes.bool,
       disabled: PropTypes.bool,
       thumb1Percentage: PropTypes.string,

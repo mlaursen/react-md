@@ -175,8 +175,6 @@
 /// - `--h` - base styles that should be used along side one of the following
 ///   classes
 /// - `--h1` - additional styles when there is only one thumb
-/// - `--h1-inv` - should be used instead of `--h1` when the track is "inversed"
-///    i.e.: "active" state appears on right instead of left.
 /// - `--h2` - additional styles when there are two thumbs. Should not be used
 ///   with any of the `--h1*` classes
 ///
@@ -208,15 +206,6 @@
     width: 100%;
   }
 
-  // one thumb track horizontal inversed styles
-  &--h1-inv::after {
-    @include rmd-utils-rtl-auto(right, 0);
-    @include rmd-utils-rtl-auto(left, rmd-slider-offset(1), 0);
-
-    transition-property: left, right;
-    will-change: left, right;
-  }
-
   // two thumb track horizontal styles
   &--h2::after {
     @include rmd-utils-rtl {
@@ -237,8 +226,6 @@
 /// - `--v` - base styles that should be used along side one of the following
 ///   classes
 /// - `--v1` - additional styles when there is only one thumb
-/// - `--v1-inv` - should be used instead of `--v1` when the track is "inversed"
-///    i.e.: "active" state appears on right instead of left.
 /// - `--v2` - additional styles when there are two thumbs. Should not be used
 ///   with any of the `--v1*` classes
 ///
@@ -269,13 +256,6 @@
     height: 100%;
     max-height: rmd-slider-offset(1);
     transition-property: max-height;
-  }
-
-  &--v1-inv::after {
-    bottom: rmd-slider-offset(1);
-    top: 0;
-    transition-property: bottom, top;
-    will-change: bottom, top;
   }
 
   // two thumb track horizontal styles

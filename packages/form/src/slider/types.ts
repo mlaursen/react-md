@@ -208,15 +208,4 @@ export interface BaseSliderProps
    * comapred to jumping to new values.
    */
   animationDuration?: number;
-
-  /**
-   * Boolean if the track should inverse the active and inactive states so that
-   * the thicker bar would appear on the right instead of the left when
-   * horizontal. The thicker bar would appear above instead of below for vertical
-   * sliders.
-   *
-   * Note: This does not do anything for sliders that have two thumbs (range
-   * slider).
-   */
-  inversed?: boolean;
 }

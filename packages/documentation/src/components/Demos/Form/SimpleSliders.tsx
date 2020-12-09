@@ -21,7 +21,7 @@ export default function SImpleSliders(): ReactElement | null {
     <>
       <SlidersContainer>
         <Slider baseId={useId()} label="Horizontal" {...controls1} />
-        <Slider baseId={useId()} label="Inverse" {...controls2} inversed />
+        <Slider baseId={useId()} label="Horizontal" {...controls2} />
         <Slider
           baseId={useId()}
           label="Disabled"
@@ -39,16 +39,15 @@ export default function SImpleSliders(): ReactElement | null {
       <SlidersContainer vertical>
         <Slider
           baseId={useId()}
-          thumbLabel="Vertical Slider 1"
+          thumbLabel="Vertical Slider"
           {...controls4}
           vertical
         />
         <Slider
           baseId={useId()}
-          thumbLabel="Vertical Slider 2"
+          thumbLabel="Vertical Slider"
           {...controls5}
           vertical
-          inversed
         />
         <Slider
           baseId={useId()}
