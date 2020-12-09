@@ -9,9 +9,7 @@ import { Password, PasswordProps } from "./Password";
 /**
  * @since 2.5.0
  */
-export type PasswordWithMessageProps = FieldMessageContainerExtension<
-  PasswordProps
->;
+export type PasswordWithMessageProps = FieldMessageContainerExtension<PasswordProps>;
 
 /**
  * This component is a simple wrapper for the `Password` and `FormMessage`

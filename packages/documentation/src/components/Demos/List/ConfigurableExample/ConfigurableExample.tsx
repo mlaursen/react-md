@@ -25,12 +25,14 @@ export default function ConfigurableExample(): ReactElement | null {
   const [disabled, setDisabled] = useState(false);
   const [disabledOpacity, setDisabledOpacity] = useState(false);
   const [leftAddon, setLeftAddon] = useState<AddonType>("none");
-  const [leftAddonPosition, setLeftAddonPosition] = useState<
-    ListItemAddonPosition
-  >("middle");
-  const [rightAddonPosition, setRightAddonPosition] = useState<
-    ListItemAddonPosition
-  >("middle");
+  const [
+    leftAddonPosition,
+    setLeftAddonPosition,
+  ] = useState<ListItemAddonPosition>("middle");
+  const [
+    rightAddonPosition,
+    setRightAddonPosition,
+  ] = useState<ListItemAddonPosition>("middle");
   const [rightAddon, setRightAddon] = useState<AddonType>("none");
   const [primaryText, setPrimaryText] = useState("Hello, world!");
   const [secondaryText, setSecondaryText] = useState("");

@@ -86,9 +86,9 @@ export const MessageVisibilityContext = createContext(false);
  * This should normally be used from click event handlers, but can also be
  * triggered with custom logic within components.
  */
-export function useAddMessage<M extends Message = ToastMessage>(): AddMessage<
-  M
-> {
+export function useAddMessage<
+  M extends Message = ToastMessage
+>(): AddMessage<M> {
   return useContext(AddMessageContext);
 }
 

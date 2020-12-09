@@ -9,9 +9,7 @@ import { TextArea, TextAreaProps } from "./TextArea";
 /**
  * @since 2.5.0
  */
-export type TextAreaWithMessageProps = FieldMessageContainerExtension<
-  TextAreaProps
->;
+export type TextAreaWithMessageProps = FieldMessageContainerExtension<TextAreaProps>;
 
 /**
  * This component is a simple wrapper for the `TextArea` and `FormMessage`

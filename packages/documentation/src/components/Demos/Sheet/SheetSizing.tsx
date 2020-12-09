@@ -33,9 +33,10 @@ const verticalSizes: SheetVerticalSize[] = ["none", "touch", "recommended"];
 const SheetSizing: FC = () => {
   const [visible, show, hide] = useToggle(false);
   const [position, setPosition] = useSelectState<SheetPosition>("left");
-  const [horizontalSize, setHorizontalSize] = useSelectState<
-    SheetHorizontalSize
-  >("media");
+  const [
+    horizontalSize,
+    setHorizontalSize,
+  ] = useSelectState<SheetHorizontalSize>("media");
   const [verticalSize, setVerticalSize] = useSelectState<SheetVerticalSize>(
     "recommended"
   );

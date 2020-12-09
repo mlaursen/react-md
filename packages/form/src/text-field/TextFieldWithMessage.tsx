@@ -9,9 +9,7 @@ import { TextField, TextFieldProps } from "./TextField";
 /**
  * @since 2.5.0
  */
-export type TextFieldWithMessageProps = FieldMessageContainerExtension<
-  TextFieldProps
->;
+export type TextFieldWithMessageProps = FieldMessageContainerExtension<TextFieldProps>;
 
 /**
  * This component is a simple wrapper for the `TextField` and `FormMessage`

@@ -59,9 +59,10 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
   const [readOnly, handleReadOnlyChange, setReadOnly] = useChecked(false);
   const [error, handleErrorChange, setError] = useChecked(false);
   const [disabled, handleDisabledChange] = useChecked(false);
-  const [underlineDirection, setUnderlineDirection] = useSelectState<
-    FormUnderlineDirection
-  >("left");
+  const [
+    underlineDirection,
+    setUnderlineDirection,
+  ] = useSelectState<FormUnderlineDirection>("left");
   const [currentTheme, handleThemeChange] = useChoice<FormTheme>(
     "outline",
     (event) => {

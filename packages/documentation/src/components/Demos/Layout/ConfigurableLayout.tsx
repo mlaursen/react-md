@@ -35,15 +35,17 @@ const ConfigurableLayout: FC = () => {
   const [tabletLayout, setTabletLayout] = useState<SupportedTabletLayout>(
     DEFAULT_LANDSCAPE_TABLET_LAYOUT
   );
-  const [landscapeTabletLayout, setLandscapeTabletLayout] = useState<
-    SupportedTabletLayout
-  >(DEFAULT_LANDSCAPE_TABLET_LAYOUT);
+  const [
+    landscapeTabletLayout,
+    setLandscapeTabletLayout,
+  ] = useState<SupportedTabletLayout>(DEFAULT_LANDSCAPE_TABLET_LAYOUT);
   const [desktopLayout, setDesktopLayout] = useState<SupportedWideLayout>(
     DEFAULT_DESKTOP_LAYOUT
   );
-  const [largeDesktopLayout, setLargeDesktopLayout] = useState<
-    SupportedWideLayout
-  >(DEFAULT_DESKTOP_LAYOUT);
+  const [
+    largeDesktopLayout,
+    setLargeDesktopLayout,
+  ] = useState<SupportedWideLayout>(DEFAULT_DESKTOP_LAYOUT);
 
   return (
     <Layout
