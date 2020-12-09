@@ -69,7 +69,7 @@
     "marked": "^1.2.3",
     "mobile-detect": "^1.4.4",
     "morgan": "^1.10.0",
-    "next": "10.0.2",
+    "next": "10.0.3",
     "prismjs": "^1.21.0",
     "qs": "^6.9.4",
     "react": "^17.0.1",
@@ -88,7 +88,7 @@
     "@types/gtag.js": "^0.0.3",
     "@types/hpp": "^0.2.1",
     "@types/js-cookie": "^2.2.6",
-    "@types/marked": "^1.1.0",
+    "@types/marked": "^1.2.1",
     "@types/morgan": "^1.9.2",
     "@types/prismjs": "^1.16.2",
     "@types/qs": "^6.9.3",
@@ -103,6 +103,6 @@
     "raw-loader": "^4.0.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.2",
-    "webpack": "^5.5.1"
+    "webpack": "^5.10.0"
   }
 }
