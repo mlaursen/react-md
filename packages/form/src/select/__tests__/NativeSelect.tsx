@@ -13,7 +13,7 @@ const PROPS = {
   )),
 };
 
-const getIcon = (container: HTMLElement) =>
+const getIcon = (container: Element) =>
   container.querySelector(".rmd-native-select__icon");
 
 describe("NativeSelect", () => {

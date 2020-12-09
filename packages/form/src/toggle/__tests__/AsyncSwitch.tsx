@@ -3,7 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 
 import { AsyncSwitch } from "../AsyncSwitch";
 
-const getLabel = (container: HTMLElement) => {
+const getLabel = (container: Element) => {
   const el = container.querySelector("label");
   if (!el) {
     throw new Error();
