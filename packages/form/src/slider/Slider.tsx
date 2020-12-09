@@ -1,8 +1,6 @@
-import React, { forwardRef, HTMLAttributes, ReactNode } from "react";
-import cn from "classnames";
+import React, { forwardRef, HTMLAttributes } from "react";
 import { PropsWithRef } from "@react-md/utils";
 
-import { labelStyles } from "../label";
 import {
   DEFAULT_SLIDER_ANIMATION_TIME,
   DEFAULT_SLIDER_GET_VALUE_TEXT,
@@ -19,24 +17,10 @@ import { useSliderControls } from "./useSliderControls";
  */
 export interface SliderProps extends SliderRequiredProps, BaseSliderProps {
   /**
-   * An optional label to display with the slider. This should normally be a
-   * short (1-4 word) description for this slider.
-   *
-   * @see {@link #thumbLabel}
-   * @see {@link #thumbLabelledBy}
-   */
-  label?: ReactNode;
-
-  /**
-   * Optional props to pass to the component wrapping the `label` content.
-   */
-  labelProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
-
-  /**
    * An optional label to apply to the slider's thumb. This should normally be a
    * short (1-4 word) description for this slider.
    *
-   * @see {@link #label}
+   * @see {@link SliderLabelProps#label}
    * @see {@link #thumbLabelledBy}
    */
   thumbLabel?: string;
@@ -45,7 +29,7 @@ export interface SliderProps extends SliderRequiredProps, BaseSliderProps {
    * An optional id point to a label describing the slider's thumb. This should
    * normally be a short (1-4 word) description for this slider.
    *
-   * @see {@link #label}
+   * @see {@link SliderLabelProps#label}
    * @see {@link #thumbLabel}
    */
   thumbLabelledBy?: string;
@@ -137,45 +121,42 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
   }
 
   return (
-    <>
-      {label && (
-        <span
-          {...labelProps}
-          id={labelId}
-          className={cn(labelStyles({ disabled }), labelProps?.className)}
-        >
-          {label}
-        </span>
-      )}
-      <SliderContainer {...props} vertical={vertical} ref={ref}>
-        <SliderTrack
-          id={baseId}
-          {...propTrackProps}
-          {...trackProps}
-          animate={!dragging}
+    <SliderContainer
+      {...props}
+      ref={ref}
+      label={label}
+      labelId={labelId}
+      labelProps={labelProps}
+      disabled={disabled}
+      vertical={vertical}
+    >
+      <SliderTrack
+        id={baseId}
+        {...propTrackProps}
+        {...trackProps}
+        animate={!dragging}
+        disabled={disabled}
+        vertical={vertical}
+      >
+        <SliderThumb
+          {...thumbProps}
+          getValueText={getValueText}
+          aria-label={thumbLabel}
+          aria-labelledby={thumbLabelledBy || labelId}
+          ref={thumb1Ref}
+          baseId={baseId}
+          min={min}
+          max={max}
           disabled={disabled}
           vertical={vertical}
-        >
-          <SliderThumb
-            {...thumbProps}
-            getValueText={getValueText}
-            aria-label={thumbLabel}
-            aria-labelledby={thumbLabelledBy || labelId}
-            ref={thumb1Ref}
-            baseId={baseId}
-            min={min}
-            max={max}
-            disabled={disabled}
-            vertical={vertical}
-            animate={!dragging}
-            value={thumb1Value}
-            index={0}
-            active={draggingIndex === 0}
-            onKeyDown={onKeyDown}
-          />
-        </SliderTrack>
-      </SliderContainer>
-    </>
+          animate={!dragging}
+          value={thumb1Value}
+          index={0}
+          active={draggingIndex === 0}
+          onKeyDown={onKeyDown}
+        />
+      </SliderTrack>
+    </SliderContainer>
   );
 });
 
@@ -196,6 +177,8 @@ if (process.env.NODE_ENV !== "production") {
       getValueText: PropTypes.func,
 
       baseId: PropTypes.string.isRequired,
+      label: PropTypes.node,
+      labelProps: PropTypes.object,
       thumbLabel: PropTypes.string,
       thumbLabelledBy: PropTypes.string,
       trackProps: PropTypes.object,

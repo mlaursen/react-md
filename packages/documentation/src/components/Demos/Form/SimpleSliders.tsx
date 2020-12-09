@@ -39,19 +39,19 @@ export default function SImpleSliders(): ReactElement | null {
       <SlidersContainer vertical>
         <Slider
           baseId={useId()}
-          thumbLabel="Vertical Slider"
+          label="Vertical Slider"
           {...controls4}
           vertical
         />
         <Slider
           baseId={useId()}
-          thumbLabel="Vertical Slider"
+          label="Vertical Slider"
           {...controls5}
           vertical
         />
         <Slider
           baseId={useId()}
-          thumbLabel="Disabled Vertical Slider"
+          label="Disabled Vertical Slider"
           {...disabledControls}
           disabled
           vertical

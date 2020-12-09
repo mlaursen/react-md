@@ -80,6 +80,7 @@ export interface RangeSliderProps
  * The `RangeSlider` component allows the user to select a min and max value from
  * a predefined range of numbers. The functionality for controlling the value of
  * this component is provided by the `useRangeSlider` hook.
+ *
  * @since 2.5.0
  */
 export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
@@ -91,6 +92,8 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       step,
       disabled = false,
       vertical = false,
+      label,
+      labelProps,
       trackProps: propTrackProps,
       onMouseDown,
       onTouchStart,
@@ -175,8 +178,21 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       animate: !dragging,
     };
 
+    let labelId = "";
+    if (label) {
+      labelId = labelProps?.id || `${baseId}-label`;
+    }
+
     return (
-      <SliderContainer {...props} ref={ref} vertical={vertical}>
+      <SliderContainer
+        {...props}
+        ref={ref}
+        label={label}
+        labelId={labelId}
+        labelProps={labelProps}
+        disabled={disabled}
+        vertical={vertical}
+      >
         <SliderTrack
           id={baseId}
           {...propTrackProps}
@@ -229,19 +245,25 @@ if (process.env.NODE_ENV !== "production") {
       minimum: PropTypes.func.isRequired,
       maximum: PropTypes.func.isRequired,
       setValue: PropTypes.func.isRequired,
-
       getValueText: PropTypes.func,
+
+      baseId: PropTypes.string.isRequired,
+      label: PropTypes.node,
+      labelProps: PropTypes.object,
+      thumb1Label: PropTypes.string,
+      thumb1LabelledBy: PropTypes.string,
+      thumb2Label: PropTypes.string,
+      thumb2LabelledBy: PropTypes.string,
+      trackProps: PropTypes.object,
+      thumb1Props: PropTypes.object,
+      thumb2Props: PropTypes.object,
       style: PropTypes.object,
       className: PropTypes.string,
-      baseId: PropTypes.string.isRequired,
       animationDuration: PropTypes.number,
       vertical: PropTypes.bool,
       disabled: PropTypes.bool,
       beforeAddon: PropTypes.node,
       afterAddon: PropTypes.node,
-      trackProps: PropTypes.object,
-      thumb1Props: PropTypes.object,
-      thumb2Props: PropTypes.object,
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error

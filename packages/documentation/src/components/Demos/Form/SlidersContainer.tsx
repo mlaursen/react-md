@@ -1,5 +1,10 @@
-import React, { ReactElement, ReactNode } from "react";
-import cn from "classnames";
+import React, {
+  Children,
+  cloneElement,
+  isValidElement,
+  ReactElement,
+  ReactNode,
+} from "react";
 
 import styles from "./SlidersContainer.module.scss";
 
@@ -13,13 +18,28 @@ export default function SlidersContainer({
   children,
 }: SlidersContainerProps): ReactElement | null {
   return (
-    <div
-      className={cn(
-        !vertical && styles.horizontal,
-        vertical && styles.vertical
-      )}
-    >
-      {children}
-    </div>
+    <>
+      {Children.map(children, (slider) => {
+        if (!isValidElement(slider)) {
+          return slider;
+        }
+
+        if (vertical) {
+          // Note: vertical sliders to not "natively" support labels without
+          // custom styles.
+          return (
+            <span className={styles.vertical}>
+              {cloneElement(slider, {
+                labelProps: { className: styles.label },
+              })}
+            </span>
+          );
+        }
+
+        return cloneElement(slider, {
+          className: styles.horizontal,
+        });
+      })}
+    </>
   );
 }

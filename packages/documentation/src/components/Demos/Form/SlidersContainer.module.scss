@@ -1,11 +1,13 @@
 .horizontal {
-  :global(.rmd-slider-container) {
-    margin: 1rem 0;
-  }
+  margin: 1rem 0;
 }
 
 .vertical {
-  :global(.rmd-slider-container) {
-    margin: 0 1rem;
-  }
+  display: inline-flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.label {
+  margin-bottom: 0.5rem;
 }

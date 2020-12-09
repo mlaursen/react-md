@@ -1,4 +1,5 @@
 import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from "react";
+import { PropsWithRef } from "@react-md/utils";
 
 /**
  * @since 2.5.0
@@ -40,6 +41,7 @@ export type SliderDefaultValue = SliderValue | (() => SliderValue);
  * `useSlider` hook.
  *
  * @since 2.5.0
+ * @internal
  */
 export interface SliderControls {
   minimum(): void;
@@ -67,7 +69,9 @@ export type RangeSliderDefaultValue =
  * An object containing the functions required to update the `RangeSlider`'s
  * value when the user interacts with the slider. These functions are provided by
  * the `useRangeSlider` hook.
+ *
  * @since 2.5.0
+ * @internal
  */
 export interface RangeSliderControls {
   minimum(index: ThumbIndex): void;
@@ -106,9 +110,9 @@ export interface SliderValueOptions {
  */
 export interface SliderStepOptions extends SliderValueOptions {
   /**
-   * An optional amount to jump by when using the PageUp or PageDown keys. When
-   * this is omitted, it will try to default to 10% of the full range to the
-   * nearest step
+   * An optional amount to jump by when using the `PageUp` or `PageDown` keys.
+   * When this is omitted, it will try to default to 10% of the full range to
+   * the nearest step
    */
   jump?: number;
 }
@@ -137,6 +141,17 @@ export interface SliderThumbOptions
   /**
    * A function that is used to help with accessibility by creating a better
    * value string if just a number isn't representative enough of your range.
+   *
+   * Example:
+   *
+   * ```tsx
+   * const [value, controls] = useSlider(0, {
+   *   // format to be `$100`, etc
+   *   getValueText: value => `$${value}`,
+   * });
+   *
+   * return <Slider baseId="price-slider" label="Price" {...controls} />;
+   * ```
    */
   getValueText?(value: number): string;
 }
@@ -196,6 +211,7 @@ export interface BaseSliderProps
   extends HTMLAttributes<HTMLDivElement>,
     SliderPresentation,
     SliderAddons,
+    SliderLabelProps,
     Pick<SliderThumbOptions, "getValueText"> {
   /**
    * An id for the slider and different parts which is required for a11y.
@@ -208,4 +224,20 @@ export interface BaseSliderProps
    * comapred to jumping to new values.
    */
   animationDuration?: number;
+}
+
+/**
+ * @since 2.5.0
+ */
+export interface SliderLabelProps {
+  /**
+   * An optional label to display with the slider. This should normally be a
+   * short (1-4 word) description for this slider.
+   */
+  label?: ReactNode;
+
+  /**
+   * Optional props to pass to the component wrapping the `label` content.
+   */
+  labelProps?: PropsWithRef<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
 }

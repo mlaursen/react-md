@@ -73,17 +73,22 @@
     display: flex;
   }
 
-  @each $dir in (top, right, bottom, left) {
+  $directions: (right, left);
+  @if $rmd-slider-include-vertical {
+    $directions: (top, right, bottom, left);
+
+    &--v {
+      display: inline-flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  @each $dir in directions {
     &--pad-#{$dir} {
       $property: padding-#{$dir};
 
       #{$property}: $rmd-slider-container-padding;
     }
-  }
-
-  &--v {
-    display: inline-flex;
-    flex-direction: column-reverse;
   }
 }
 

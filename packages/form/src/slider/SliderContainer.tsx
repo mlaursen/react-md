@@ -3,7 +3,8 @@ import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
-import { SliderAddons, SliderPresentation } from "./types";
+import { SliderAddons, SliderLabelProps, SliderPresentation } from "./types";
+import { labelStyles } from "../label";
 
 const styles = bem("rmd-slider-container");
 
@@ -12,8 +13,12 @@ const styles = bem("rmd-slider-container");
  */
 export interface SliderContainerProps
   extends HTMLAttributes<HTMLDivElement>,
+    SliderLabelProps,
     SliderAddons,
-    Pick<SliderPresentation, "vertical"> {}
+    Pick<SliderPresentation, "vertical"> {
+  labelId: string;
+  disabled?: boolean;
+}
 
 /**
  * The `SliderContainer` component is mostly an interal component that is
@@ -31,41 +36,56 @@ export const SliderContainer = forwardRef<HTMLDivElement, SliderContainerProps>(
       afterAddon,
       children,
       vertical = false,
+      label,
+      labelId,
+      labelProps,
+      disabled = false,
       ...props
     },
     ref
   ) {
     return (
-      <div
-        {...props}
-        ref={ref}
-        className={cn(
-          styles({
-            h: !vertical,
-            "pad-left": !vertical && !beforeAddon,
-            "pad-right": !vertical && !afterAddon,
-            "pad-bottom": vertical && !beforeAddon,
-            "pad-top": vertical && !afterAddon,
-            v: vertical,
-          }),
-          className
+      <>
+        {label && (
+          <span
+            {...labelProps}
+            id={labelId}
+            className={cn(labelStyles({ disabled }), labelProps?.className)}
+          >
+            {label}
+          </span>
         )}
-      >
-        <TextIconSpacing
-          icon={beforeAddon}
-          stacked={vertical}
-          flexReverse={vertical}
+        <div
+          {...props}
+          ref={ref}
+          className={cn(
+            styles({
+              h: !vertical,
+              "pad-left": !vertical && !beforeAddon,
+              "pad-right": !vertical && !afterAddon,
+              "pad-bottom": vertical && !beforeAddon,
+              "pad-top": vertical && !afterAddon,
+              v: vertical,
+            }),
+            className
+          )}
         >
           <TextIconSpacing
-            icon={afterAddon}
-            iconAfter
+            icon={beforeAddon}
             stacked={vertical}
             flexReverse={vertical}
           >
-            {children}
+            <TextIconSpacing
+              icon={afterAddon}
+              iconAfter
+              stacked={vertical}
+              flexReverse={vertical}
+            >
+              {children}
+            </TextIconSpacing>
           </TextIconSpacing>
-        </TextIconSpacing>
-      </div>
+        </div>
+      </>
     );
   }
 );
