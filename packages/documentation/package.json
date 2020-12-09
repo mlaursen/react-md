@@ -95,7 +95,7 @@
     "@types/react-virtualized": "^9.21.10",
     "babel-plugin-inline-react-svg": "^1.1.2",
     "babel-plugin-prismjs": "^2.0.1",
-    "cross-env": "^7.0.2",
+    "cross-env": "^7.0.3",
     "next-images": "^1.6.2",
     "node-sass": "^4.14.1",
     "nodemon": "^2.0.4",
