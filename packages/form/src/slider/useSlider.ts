@@ -93,7 +93,7 @@ export function useSlider(
     // is updated as well. Without this, there will be a runtime error if the
     // value is not within the new range.
     prev.current = { min, max, step };
-    setValue(nearest(min, max, value, getSteps(min, max, step)));
+    setValue(nearest(value, min, max, getSteps(min, max, step)));
   }
 
   return [

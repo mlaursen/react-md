@@ -303,25 +303,6 @@ if (process.env.NODE_ENV !== "production") {
             `are required for accessibility in the \`${component}\` component, but none were provided.`
         );
       },
-      _valueValidator: (
-        props: RangeSliderProps,
-        _propName: keyof RangeSliderProps,
-        component: string
-      ) => {
-        const { value } = props;
-        if (
-          !Array.isArray(value) ||
-          value.length !== 2 ||
-          typeof value[0] !== "number" ||
-          typeof value[1] !== "number"
-        ) {
-          return new Error(
-            `The \`value\` prop is required to be an array of two numbers for the \`${component}\` component.`
-          );
-        }
-
-        return null;
-      },
     };
   } catch (e) {}
 }

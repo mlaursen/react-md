@@ -140,8 +140,8 @@ export function useRangeSlider(
     prev.current = { min, max, step };
     const steps = getSteps(min, max, step);
     setValue([
-      nearest(min, max, value[0], steps),
-      nearest(min, max, value[1], steps),
+      nearest(value[0], min, max, steps),
+      nearest(value[1], min, max, steps),
     ]);
   }
 

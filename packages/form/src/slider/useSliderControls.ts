@@ -134,6 +134,7 @@ export function useSliderControls({
         !track ||
         !slider1 ||
         (isMouseEvent(event) && event.button !== 0) ||
+        (isTouchEvent(event) && event.changedTouches.length !== 1) ||
         (!isMouseEvent(event) && !isTouchEvent(event))
       ) {
         return;
