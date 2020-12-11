@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SliderContainer should have tests so they show up in the coverage report 1`] = `
+<div>
+  <div
+    class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+  />
+</div>
+`;
+
+exports[`SliderContainer should have tests so they show up in the coverage report 2`] = `
+<div>
+  <span
+    class="rmd-label label-class"
+    id="label-id"
+  >
+    Label
+  </span>
+  <div
+    class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+  />
+</div>
+`;
+
+exports[`SliderContainer should have tests so they show up in the coverage report 3`] = `
+<div>
+  <span
+    class="rmd-label rmd-label--disabled label-class"
+    id="label-id"
+  >
+    Label
+  </span>
+  <div
+    class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+  />
+</div>
+`;

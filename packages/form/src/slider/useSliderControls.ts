@@ -262,6 +262,8 @@ export function useSliderControls({
       return;
     }
 
+    // I don't know how to reach this flow.. so maybe can be removed?
+    /* istanbul ignore if */
     if (draggingIndex === null) {
       setDragging(false);
       return;

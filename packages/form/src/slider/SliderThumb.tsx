@@ -155,19 +155,19 @@ if (process.env.NODE_ENV !== "production") {
       id: PropTypes.string,
       baseId: PropTypes.string,
       className: PropTypes.string,
-      min: PropTypes.number.isRequired,
-      max: PropTypes.number.isRequired,
+      min: PropTypes.number,
+      max: PropTypes.number,
       active: PropTypes.bool,
       animate: PropTypes.bool,
       vertical: PropTypes.bool,
       disabled: PropTypes.bool,
       getValueText: PropTypes.func,
-      index: PropTypes.oneOf([0, 1]),
+      index: PropTypes.oneOf([0, 1]).isRequired,
       value: PropTypes.number.isRequired,
       name: PropTypes.string,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
-      _a11yValidator1: (
+      _a11yValidator: (
         props: SliderThumbProps,
         _propName: string,
         component: string

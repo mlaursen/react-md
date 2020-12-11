@@ -16,7 +16,17 @@ export interface SliderContainerProps
     SliderLabelProps,
     SliderAddons,
     Pick<SliderPresentation, "vertical"> {
+  /**
+   * This is _really_ only required when the `label` prop is also provided, but
+   * since this component is only really used internally for the `Slider` and
+   * `RangeSlider`, it is required since they always pass one in.
+   */
   labelId: string;
+
+  /**
+   * Boolean if the `Slider` or `RangeSlider` are disabled so that the `label`
+   * can also be `disabled`.
+   */
   disabled?: boolean;
 }
 

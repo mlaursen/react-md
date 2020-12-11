@@ -71,6 +71,7 @@ export function useRangeSlider(
   );
   const update = useCallback(
     (index: ThumbIndex, increment: boolean, minMax: boolean, amount = step) => {
+      /* istanbul ignore if */
       if (process.env.NODE_ENV !== "production") {
         if (index !== 0 && index !== 1) {
           throw new TypeError("Thumb index must be 0 or 1.");
