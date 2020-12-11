@@ -124,7 +124,41 @@ export interface SliderDragValues extends DefinedSliderValueOptions {
  * @internal
  */
 export interface SliderDragValue {
+  /**
+   * This is the current value for the slider that is completely "valid" and
+   * within the provided range.
+   */
   value: number;
+
+  /**
+   * The current percentage dragged number (> 0 and < 1). This is used only
+   * while dragging with the mouse or touch since it makes the drag experience
+   * smoother. If this is omitted and there is a small number of "steps" in the
+   * range, the mouse/touch won't align with the thumb since it will only move
+   * when the value is updated as well.
+   *
+   * Example:
+   * - slider has width of 1000px, min value is 0, max value is 100, step is 20
+   * - formula:
+   *   - range = max - min
+   *   - steps = range / step
+   *   - new-value-at = slider-width / steps
+   *   - new-value-at = slider-width / ((max - min) / step)
+   * - so:
+   *   - new-value-at = 1000px / ((100 - 0) / 20)
+   *   - new-value-at = 1000px / (100 / 20)
+   *   - new-value-at = 1000px / 5
+   *   - new-value-at = 200px
+   * - user drags from 0px -> 10px
+   *   - no visual change
+   * - user drags from 10px -> 190px
+   *   - no visual change
+   * - user drags from 190px -> 200px
+   *   - visual change to first step
+   *
+   * The current value allows for a visual change while the user drags, but the
+   * thumb will move to the correct value once the user stops dragging.
+   */
   current: number;
 }
 
@@ -190,6 +224,11 @@ interface DragPercentage {
 }
 
 /**
+ * Small util to get the drag percentage for the thumbs within a slider. This
+ * makes sure to use the current `dragValue` when possible so that the thumb
+ * moves with the mouse/touch instead of only for the current values. See
+ * {@link getDragValue} for more examples.
+ *
  * @since 2.5.0
  * @internal
  */
