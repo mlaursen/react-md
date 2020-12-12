@@ -113,6 +113,33 @@ export function useSliderControls({
   const { dir } = useDir();
   const isRtl = dir === "rtl";
 
+  let thumb1Value: number;
+  let thumb1Percentage: string;
+  let thumb2Value: number | undefined;
+  let thumb2Percentage: string | undefined;
+  if (isRangeSlider(controls)) {
+    [thumb1Value, thumb2Value] = controls.value;
+    ({ thumb1Percentage, thumb2Percentage } = getDragPercentage({
+      min,
+      max,
+      thumb1Value,
+      thumb2Value,
+      dragging,
+      dragValue,
+      draggingIndex,
+    }));
+  } else {
+    thumb1Value = controls.value;
+    ({ thumb1Percentage } = getDragPercentage({
+      min,
+      max,
+      thumb1Value,
+      dragging,
+      dragValue,
+      draggingIndex,
+    }));
+  }
+
   /**
    * The main handler for updating the value of the slider. To help keep the
    * drag experience smooth, some values are stored in refs to prevent the
@@ -212,8 +239,8 @@ export function useSliderControls({
         const [thumb1Value, thumb2Value] = controls.value;
         const { value, current } = getDragValue({
           ...options,
-          minValue: index === 0 ? min : thumb1Value,
-          maxValue: index === 1 ? max : thumb2Value,
+          minValue: index === 0 ? min : thumb1Value + step,
+          maxValue: index === 1 ? max : thumb2Value - step,
         });
         setDragValue(current);
         controls.setValue(
@@ -395,33 +422,6 @@ export function useSliderControls({
     },
     [onKeyDown, disabled]
   );
-
-  let thumb1Value: number;
-  let thumb1Percentage: string;
-  let thumb2Value: number | undefined;
-  let thumb2Percentage: string | undefined;
-  if (isRangeSlider(controls)) {
-    [thumb1Value, thumb2Value] = controls.value;
-    ({ thumb1Percentage, thumb2Percentage } = getDragPercentage({
-      min,
-      max,
-      thumb1Value,
-      thumb2Value,
-      dragging,
-      dragValue,
-      draggingIndex,
-    }));
-  } else {
-    thumb1Value = controls.value;
-    ({ thumb1Percentage } = getDragPercentage({
-      min,
-      max,
-      thumb1Value,
-      dragging,
-      dragValue,
-      draggingIndex,
-    }));
-  }
 
   const trackRefHandler = useCallback(
     (instance: HTMLSpanElement | null) => {
