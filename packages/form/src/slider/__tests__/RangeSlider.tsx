@@ -11,6 +11,7 @@ interface TestProps
       RangeSliderProps,
       | "thumb1Props"
       | "thumb2Props"
+      | "onBlur"
       | "onMouseDown"
       | "onTouchStart"
       | "vertical"
@@ -26,6 +27,7 @@ function Test({
   vertical,
   thumb1Props,
   thumb2Props,
+  onBlur,
   onMouseDown,
   onTouchStart,
   getValueText,
@@ -44,6 +46,7 @@ function Test({
       vertical={vertical}
       thumb1Props={thumb1Props}
       thumb2Props={thumb2Props}
+      onBlur={onBlur}
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
       getValueText={getValueText}
@@ -92,18 +95,24 @@ describe("RangeSlider", () => {
   it("should call the prop events correctly", () => {
     const thumb1KeyDown = jest.fn();
     const thumb2KeyDown = jest.fn();
+    const onBlur = jest.fn();
     const onMouseDown = jest.fn();
     const onTouchStart = jest.fn();
 
-    const { getByRole } = render(
+    const { container, getByRole } = render(
       <Test
         thumb1Props={{ onKeyDown: thumb1KeyDown }}
         thumb2Props={{ onKeyDown: thumb2KeyDown }}
+        onBlur={onBlur}
         onMouseDown={onMouseDown}
         onTouchStart={onTouchStart}
       />
     );
 
+    const track = container.querySelector(".rmd-slider-track");
+    if (!track) {
+      throw new Error();
+    }
     const slider1 = getByRole("slider", { name: "Min" });
     const slider2 = getByRole("slider", { name: "Max" });
 
@@ -118,6 +127,9 @@ describe("RangeSlider", () => {
 
     fireEvent.touchStart(slider1);
     expect(onTouchStart).toBeCalledTimes(1);
+
+    fireEvent.blur(track);
+    expect(onBlur).toBeCalledTimes(1);
   });
 
   it("should ensure the value stays within the range if it changes after initial render to prevent errors from being thrown", () => {
@@ -487,6 +499,91 @@ describe("RangeSlider", () => {
       fireEvent.mouseMove(window, { clientX: 10, clientY: 200 });
       expect(slider1).toHaveAttribute("aria-valuenow", "0");
       expect(slider2).toHaveAttribute("aria-valuenow", "50");
+    });
+  });
+
+  describe("update behavior", () => {
+    it('should only update value value on blur or dragend when the updateOn is set to "blur"', () => {
+      const onChange = jest.fn();
+      function Test({ blur }: { blur: boolean }): ReactElement {
+        const [value, controls] = useRangeSlider([0, 50], {
+          onChange,
+          updateOn: blur ? "blur" : "change",
+        });
+
+        return (
+          <>
+            <span data-testid="value1">{value[0]}</span>
+            <span data-testid="value2">{value[1]}</span>
+            <RangeSlider
+              {...controls}
+              baseId="slider"
+              label="Slider"
+              thumb1Label="Min"
+              thumb2Label="Max"
+            />
+          </>
+        );
+      }
+
+      const { getByRole, getByTestId, rerender } = render(
+        <Test blur={false} />
+      );
+      const value1 = getByTestId("value1");
+      const value2 = getByTestId("value2");
+      const slider1 = getByRole("slider", { name: "Min" });
+
+      expect(value1.textContent).toBe("0");
+      expect(value2.textContent).toBe("50");
+      expect(slider1).toHaveAttribute("aria-valuenow", "0");
+
+      slider1.focus();
+      fireEvent.keyDown(slider1, { key: "ArrowRight" });
+      expect(onChange).not.toBeCalled();
+      expect(value1.textContent).toBe("1");
+      expect(value2.textContent).toBe("50");
+      expect(slider1).toHaveAttribute("aria-valuenow", "1");
+
+      fireEvent.keyDown(slider1, { key: "ArrowRight" });
+      expect(onChange).not.toBeCalled();
+      expect(value1.textContent).toBe("2");
+      expect(value2.textContent).toBe("50");
+      expect(slider1).toHaveAttribute("aria-valuenow", "2");
+
+      slider1.blur();
+      // it's pretty much useless to use `onChange` with updateOn === "change"
+      expect(onChange).not.toBeCalled();
+
+      rerender(<Test blur />);
+      expect(onChange).not.toBeCalled();
+      expect(value1.textContent).toBe("2");
+      expect(value2.textContent).toBe("50");
+      expect(slider1).toHaveAttribute("aria-valuenow", "2");
+
+      fireEvent.keyDown(slider1, { key: "ArrowRight" });
+      expect(onChange).not.toBeCalled();
+      expect(value1.textContent).toBe("2");
+      expect(value2.textContent).toBe("50");
+      expect(slider1).toHaveAttribute("aria-valuenow", "3");
+
+      fireEvent.keyDown(slider1, { key: "Home" });
+      expect(onChange).not.toBeCalled();
+      expect(value1.textContent).toBe("2");
+      expect(value2.textContent).toBe("50");
+      expect(slider1).toHaveAttribute("aria-valuenow", "0");
+
+      fireEvent.blur(slider1);
+      expect(onChange).toBeCalledWith([0, 50]);
+      expect(value1.textContent).toBe("0");
+      expect(value2.textContent).toBe("50");
+      expect(slider1).toHaveAttribute("aria-valuenow", "0");
+
+      slider1.focus();
+      fireEvent.keyDown(slider1, { key: "ArrowRight" });
+      fireEvent.keyDown(slider1, { key: "ArrowLeft" });
+      slider1.blur();
+      // should not be called again if value hasn't changed
+      expect(onChange).toBeCalledTimes(1);
     });
   });
 });

@@ -16,6 +16,42 @@ import {
 } from "./types";
 import { getJumpValue, getSteps } from "./utils";
 
+const noop = (): void => {
+  // do nothing
+};
+
+/**
+ * @internal
+ * @since 2.5.0
+ */
+interface UpdateOptions {
+  /**
+   * The thumb index that is being updated.
+   */
+  index: ThumbIndex;
+
+  type:
+    | "increment"
+    | "decrement"
+    | "min"
+    | "max"
+    | "increment-jump"
+    | "decrement-jump";
+}
+
+/**
+ * @since 2.5.0
+ */
+export interface UseRangeSliderOptions extends SliderStepOptions {
+  /**
+   * An optional callback that will be triggered when the value has changed when
+   * the `updateOn` behavior is set to `"blur"`. When the `updateOn` behavior is
+   * set to `"change"` (default), this will do nothing since the return value
+   * from the hook will always be the latest value.
+   */
+  onChange?(value: RangeSliderValue): void;
+}
+
 /**
  * @since 2.5.0
  */
@@ -58,7 +94,9 @@ export function useRangeSlider(
     max = DEFAULT_SLIDER_MAX,
     step = DEFAULT_SLIDER_STEP,
     jump: propJump,
-  }: SliderStepOptions = {}
+    updateOn = "change",
+    onChange = noop,
+  }: UseRangeSliderOptions = {}
 ): RangeSliderValueReturnType {
   const jump = useMemo(() => getJumpValue(min, max, step, propJump), [
     min,
@@ -66,12 +104,18 @@ export function useRangeSlider(
     step,
     propJump,
   ]);
+
+  // since the `currentValue` is a ref, this state is used to force a re-render
+  // to get the updated value from the ref.
+  const [, hack] = useState([]);
   const [value, setValue] = useState<RangeSliderValue>(
     defaultValue ?? [min, max]
   );
+  const currentValue = useRef(value);
+
   const update = useCallback(
-    (index: ThumbIndex, increment: boolean, minMax: boolean, amount = step) => {
-      /* istanbul ignore if */
+    ({ index, type }: UpdateOptions) => {
+      /* istanbul ignore next */
       if (process.env.NODE_ENV !== "production") {
         if (index !== 0 && index !== 1) {
           throw new TypeError("Thumb index must be 0 or 1.");
@@ -90,44 +134,69 @@ export function useRangeSlider(
           minValue = thumb1Value + step;
         }
 
-        if (minMax) {
-          value = increment ? minValue : maxValue;
-        } else {
-          value = Math.max(
-            minValue,
-            Math.min(maxValue, value + (increment ? amount : -amount))
-          );
+        switch (type) {
+          case "min":
+            value = minValue;
+            break;
+          case "max":
+            value = maxValue;
+            break;
+          case "increment":
+            value += step;
+            break;
+          case "decrement":
+            value -= step;
+            break;
+          case "increment-jump":
+            value += jump;
+            break;
+          case "decrement-jump":
+            value -= jump;
+            break;
         }
+
+        value = Math.max(minValue, Math.min(maxValue, value));
 
         return index === 0 ? [value, thumb2Value] : [thumb1Value, value];
       });
     },
-    [max, min, step]
+    [jump, max, min, step]
   );
   const increment = useCallback(
-    (index: ThumbIndex) => update(index, true, false),
+    (index: ThumbIndex) => update({ index, type: "increment" }),
     [update]
   );
   const incrementJump = useCallback(
-    (index: ThumbIndex) => update(index, true, false, jump),
-    [update, jump]
+    (index: ThumbIndex) => update({ index, type: "increment-jump" }),
+    [update]
   );
   const decrement = useCallback(
-    (index: ThumbIndex) => update(index, false, false),
+    (index: ThumbIndex) => update({ index, type: "decrement" }),
     [update]
   );
   const decrementJump = useCallback(
-    (index: ThumbIndex) => update(index, false, false, jump),
-    [update, jump]
+    (index: ThumbIndex) => update({ index, type: "decrement-jump" }),
+    [update]
   );
   const minimum = useCallback(
-    (index: ThumbIndex) => update(index, true, true),
+    (index: ThumbIndex) => update({ index, type: "min" }),
     [update]
   );
   const maximum = useCallback(
-    (index: ThumbIndex) => update(index, false, true),
+    (index: ThumbIndex) => update({ index, type: "max" }),
     [update]
   );
+
+  const persist = useCallback(() => {
+    const [prev1, prev2] = currentValue.current;
+    if (prev1 === value[0] && prev2 === value[1]) {
+      return;
+    }
+
+    onChange(value);
+    currentValue.current = value;
+    hack([]);
+  }, [onChange, value]);
 
   const prev = useRef({ min, max, step });
   if (
@@ -140,14 +209,20 @@ export function useRangeSlider(
     // value is not within the new range.
     prev.current = { min, max, step };
     const steps = getSteps(min, max, step);
-    setValue([
+    const nextValue: RangeSliderValue = [
       nearest(value[0], min, max, steps),
       nearest(value[1], min, max, steps),
-    ]);
+    ];
+    currentValue.current = nextValue;
+    setValue(nextValue);
+  }
+
+  if (updateOn === "change" && currentValue.current !== value) {
+    currentValue.current = value;
   }
 
   return [
-    value,
+    currentValue.current,
     {
       min,
       max,
@@ -159,6 +234,7 @@ export function useRangeSlider(
       incrementJump,
       decrement,
       decrementJump,
+      persist,
       setValue,
     },
   ];

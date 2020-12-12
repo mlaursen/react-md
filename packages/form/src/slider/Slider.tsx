@@ -68,6 +68,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
     step,
     disabled = false,
     vertical = false,
+    onBlur,
     onMouseDown,
     onTouchStart,
     getValueText = DEFAULT_SLIDER_GET_VALUE_TEXT,
@@ -79,6 +80,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
     incrementJump,
     decrement,
     decrementJump,
+    persist,
     setValue,
     ...props
   },
@@ -102,6 +104,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
     value,
     disabled,
     vertical,
+    onBlur,
     onKeyDown: thumbProps?.onKeyDown,
     onMouseDown,
     onTouchStart,
@@ -112,6 +115,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
     incrementJump,
     decrement,
     decrementJump,
+    persist,
     setValue,
   });
 

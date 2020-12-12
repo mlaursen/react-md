@@ -1,6 +1,7 @@
 import {
   KeyboardEventHandler,
   MouseEventHandler,
+  FocusEventHandler,
   Ref,
   RefCallback,
   TouchEventHandler,
@@ -71,6 +72,7 @@ export interface SliderAndRangeSliderControls {
   dragging: boolean;
   draggingIndex: SliderThumbIndex;
   ref: RefCallback<HTMLSpanElement | null>;
+  onBlur: FocusEventHandler<HTMLSpanElement>;
   onKeyDown: KeyboardEventHandler<HTMLSpanElement>;
   onMouseDown: MouseEventHandler<HTMLSpanElement>;
   onTouchStart: TouchEventHandler<HTMLSpanElement>;
@@ -92,6 +94,7 @@ export function useSliderControls({
   step,
   disabled = false,
   vertical = false,
+  onBlur,
   onKeyDown,
   onMouseDown,
   onTouchStart,
@@ -255,6 +258,7 @@ export function useSliderControls({
     [disabled, isRtl, draggingIndex, max, min, step, vertical]
   );
   const stop = useCallback(() => {
+    controlsRef.current.persist();
     setDragging(false);
     setDraggingIndex(null);
     setDraggingBy(null);
@@ -304,6 +308,17 @@ export function useSliderControls({
       window.clearTimeout(timeout);
     };
   }, [draggingIndex, draggingBy, animationDuration]);
+
+  const handleBlur = useCallback<FocusEventHandler<HTMLSpanElement>>(
+    (event) => {
+      if (onBlur) {
+        onBlur(event);
+      }
+
+      controlsRef.current.persist();
+    },
+    [onBlur]
+  );
 
   /**
    * Note: this should be attached to the `SliderTrack` component.
@@ -364,7 +379,7 @@ export function useSliderControls({
         return;
       }
 
-      let controls: Omit<SliderControls, "setValue" | "value">;
+      let controls: Omit<SliderControls, "setValue" | "value" | "persist">;
       if (isRangeSlider(controlsRef.current)) {
         const {
           increment,
@@ -457,6 +472,7 @@ export function useSliderControls({
     dragging,
     draggingIndex,
     ref: trackRefHandler,
+    onBlur: handleBlur,
     onKeyDown: handleKeyDown,
     onMouseDown: handleMouseDown,
     onTouchStart: handleTouchStart,

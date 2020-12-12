@@ -10,6 +10,7 @@ interface TestProps
     Pick<
       SliderProps,
       | "thumbProps"
+      | "onBlur"
       | "onMouseDown"
       | "onTouchStart"
       | "vertical"
@@ -24,6 +25,7 @@ function Test({
   disabled,
   vertical,
   thumbProps,
+  onBlur,
   onMouseDown,
   onTouchStart,
   getValueText,
@@ -39,6 +41,7 @@ function Test({
       disabled={disabled}
       vertical={vertical}
       thumbProps={thumbProps}
+      onBlur={onBlur}
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
       getValueText={getValueText}
@@ -93,6 +96,7 @@ describe("Slider", () => {
   });
 
   it("should call the prop events correctly", () => {
+    const onBlur = jest.fn();
     const onKeyDown = jest.fn();
     const onMouseDown = jest.fn();
     const onTouchStart = jest.fn();
@@ -100,6 +104,7 @@ describe("Slider", () => {
     const { getByRole } = render(
       <Test
         thumbProps={{ onKeyDown }}
+        onBlur={onBlur}
         onMouseDown={onMouseDown}
         onTouchStart={onTouchStart}
       />
@@ -115,6 +120,9 @@ describe("Slider", () => {
 
     fireEvent.touchStart(slider);
     expect(onTouchStart).toBeCalledTimes(1);
+
+    fireEvent.blur(slider);
+    expect(onBlur).toBeCalledTimes(1);
   });
 
   it("should ensure the value stays within the range if it changes after initial render to prevent errors from being thrown", () => {
@@ -259,6 +267,76 @@ describe("Slider", () => {
 
       jest.clearAllTimers();
       jest.useRealTimers();
+    });
+  });
+
+  describe("update behavior", () => {
+    it('should only update value value on blur or dragend when the updateOn is set to "blur"', () => {
+      const onChange = jest.fn();
+      function Test({ blur }: { blur: boolean }): ReactElement {
+        const [value, controls] = useSlider(0, {
+          onChange,
+          updateOn: blur ? "blur" : "change",
+        });
+
+        return (
+          <>
+            <span data-testid="value">{value}</span>
+            <Slider {...controls} baseId="slider" label="Slider" />
+          </>
+        );
+      }
+
+      const { getByRole, getByTestId, rerender } = render(
+        <Test blur={false} />
+      );
+      const value = getByTestId("value");
+      const slider = getByRole("slider");
+
+      expect(value.textContent).toBe("0");
+      expect(slider).toHaveAttribute("aria-valuenow", "0");
+
+      slider.focus();
+      fireEvent.keyDown(slider, { key: "ArrowRight" });
+      expect(onChange).not.toBeCalled();
+      expect(value.textContent).toBe("1");
+      expect(slider).toHaveAttribute("aria-valuenow", "1");
+
+      fireEvent.keyDown(slider, { key: "ArrowRight" });
+      expect(onChange).not.toBeCalled();
+      expect(value.textContent).toBe("2");
+      expect(slider).toHaveAttribute("aria-valuenow", "2");
+
+      slider.blur();
+      // it's pretty much useless to use `onChange` with updateOn === "change"
+      expect(onChange).not.toBeCalled();
+
+      rerender(<Test blur />);
+      expect(onChange).not.toBeCalled();
+      expect(value.textContent).toBe("2");
+      expect(slider).toHaveAttribute("aria-valuenow", "2");
+
+      fireEvent.keyDown(slider, { key: "ArrowRight" });
+      expect(onChange).not.toBeCalled();
+      expect(value.textContent).toBe("2");
+      expect(slider).toHaveAttribute("aria-valuenow", "3");
+
+      fireEvent.keyDown(slider, { key: "Home" });
+      expect(onChange).not.toBeCalled();
+      expect(value.textContent).toBe("2");
+      expect(slider).toHaveAttribute("aria-valuenow", "0");
+
+      fireEvent.blur(slider);
+      expect(onChange).toBeCalledWith(0);
+      expect(value.textContent).toBe("0");
+      expect(slider).toHaveAttribute("aria-valuenow", "0");
+
+      slider.focus();
+      fireEvent.keyDown(slider, { key: "ArrowRight" });
+      fireEvent.keyDown(slider, { key: "ArrowLeft" });
+      slider.blur();
+      // should not be called again if value hasn't changed
+      expect(onChange).toBeCalledTimes(1);
     });
   });
 });

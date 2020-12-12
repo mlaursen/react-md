@@ -44,6 +44,7 @@ export type SliderDefaultValue = SliderValue | (() => SliderValue);
  * @internal
  */
 export interface SliderControls {
+  persist(): void;
   minimum(): void;
   maximum(): void;
   increment(): void;
@@ -74,6 +75,7 @@ export type RangeSliderDefaultValue =
  * @internal
  */
 export interface RangeSliderControls {
+  persist(): void;
   minimum(index: ThumbIndex): void;
   maximum(index: ThumbIndex): void;
   increment(index: ThumbIndex): void;
@@ -115,6 +117,18 @@ export interface SliderStepOptions extends SliderValueOptions {
    * the nearest step
    */
   jump?: number;
+
+  /**
+   * Determines when the `value` should be updated from the `useSlider` and
+   * `useRangeSlider` hooks. When this is set to `"change"`, the `value` will
+   * update immediately as the user interacts with the slider. When this is set
+   * to `"blur"`, the `value` will only be updated once the user has tabbed away
+   * from the slider or completed the drag via mouse/touch.
+   *
+   * It is recommended to set this to `"blur"` when the value does not need to
+   * be used immediately.
+   */
+  updateOn?: "change" | "blur";
 }
 
 /**
@@ -165,6 +179,7 @@ export type DefinedSliderValueOptions = Required<SliderValueOptions>;
  * @since 2.5.0
  */
 export type SliderEventHandlerNames =
+  | "onBlur"
   | "onKeyDown"
   | "onMouseDown"
   | "onTouchStart";

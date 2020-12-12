@@ -27,10 +27,27 @@ export interface SliderRequiredProps
   value: SliderValue;
 }
 
+const noop = (): void => {
+  // do nothing
+};
+
 /**
  * @since 2.5.0
  */
 export type SliderValueReturnType = readonly [SliderValue, SliderRequiredProps];
+
+/**
+ * @since 2.5.0
+ */
+export interface UseSliderOptions extends SliderStepOptions {
+  /**
+   * An optional callback that will be triggered when the value has changed when
+   * the `updateOn` behavior is set to `"blur"`. When the `updateOn` behavior is
+   * set to `"change"` (default), this will do nothing since the return value
+   * from the hook will always be the latest value.
+   */
+  onChange?(value: SliderValue): void;
+}
 
 /**
  * This hook is used to control the value and behavior of the `Slider`
@@ -54,7 +71,9 @@ export function useSlider(
     max = DEFAULT_SLIDER_MAX,
     step = DEFAULT_SLIDER_STEP,
     jump: propJump,
-  }: SliderStepOptions = {}
+    updateOn = "change",
+    onChange = noop,
+  }: UseSliderOptions = {}
 ): SliderValueReturnType {
   const jump = useMemo(() => getJumpValue(min, max, step, propJump), [
     min,
@@ -63,7 +82,12 @@ export function useSlider(
     propJump,
   ]);
 
+  // since the `currentValue` is a ref, this state is used to force a re-render
+  // to get the updated value from the ref.
+  const [, hack] = useState([]);
   const [value, setValue] = useState(defaultValue ?? min);
+  const currentValue = useRef(value);
+
   const increment = useCallback(() => {
     setValue((prevValue) => Math.max(min, Math.min(max, prevValue + step)));
   }, [min, max, step]);
@@ -83,6 +107,16 @@ export function useSlider(
     setValue(max);
   }, [max]);
 
+  const persist = useCallback(() => {
+    if (currentValue.current === value) {
+      return;
+    }
+
+    onChange(value);
+    currentValue.current = value;
+    hack([]);
+  }, [onChange, value]);
+
   const prev = useRef({ min, max, step });
   if (
     prev.current.min !== min ||
@@ -93,11 +127,17 @@ export function useSlider(
     // is updated as well. Without this, there will be a runtime error if the
     // value is not within the new range.
     prev.current = { min, max, step };
-    setValue(nearest(value, min, max, getSteps(min, max, step)));
+    const nextValue = nearest(value, min, max, getSteps(min, max, step));
+    currentValue.current = nextValue;
+    setValue(nextValue);
+  }
+
+  if (updateOn === "change" && currentValue.current !== value) {
+    currentValue.current = value;
   }
 
   return [
-    value,
+    currentValue.current,
     {
       min,
       max,
@@ -109,6 +149,7 @@ export function useSlider(
       decrementJump,
       minimum,
       maximum,
+      persist,
       setValue,
     },
   ];

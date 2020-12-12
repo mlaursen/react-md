@@ -95,6 +95,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       label,
       labelProps,
       trackProps: propTrackProps,
+      onBlur,
       onMouseDown,
       onTouchStart,
       getValueText = DEFAULT_SLIDER_GET_VALUE_TEXT,
@@ -106,6 +107,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       incrementJump,
       decrement,
       decrementJump,
+      persist,
       setValue,
       thumb1Props,
       thumb1Label,
@@ -136,6 +138,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       value,
       disabled,
       vertical,
+      onBlur,
       onMouseDown,
       onTouchStart,
       animationDuration,
@@ -145,6 +148,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       incrementJump,
       decrement,
       decrementJump,
+      persist,
       setValue,
     });
 
