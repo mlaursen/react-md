@@ -28,5 +28,8 @@ export function nearest(
     ? range % steps
     : step.toString().split(".")[1].length;
 
-  return parseFloat((zeroToOne * range + min).toFixed(decimals));
+  return Math.min(
+    max,
+    Math.max(min, parseFloat((zeroToOne * range + min).toFixed(decimals)))
+  );
 }
