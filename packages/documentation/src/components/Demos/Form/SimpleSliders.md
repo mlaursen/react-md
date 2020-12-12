@@ -4,8 +4,8 @@ use of the `useSlider` hook to provide the `value` and "controls" to updating
 the `value`. The hook allows for customizing the `min`, `max`, and `step`
 options.
 
-The `Slider` also requires a `baseId` and either an `aria-label` or
-`aria-labelledby` for accessibility.
+The `Slider` also requires a `baseId` and either a `label`, an `aria-label`, or
+an `aria-labelledby` for accessibility.
 
 Check out the examples below to see how to use the `useSlider` hook and a few of
 the styling props available for the `Slider`.

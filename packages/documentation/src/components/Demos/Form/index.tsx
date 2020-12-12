@@ -60,6 +60,9 @@ import rangeSliders from "./RangeSliders.md";
 import ColorDialogSlider from "./ColorDialogSlider";
 import colorDialogSlider from "./ColorDialogSlider.md";
 
+import ConfigurableSlider from "./ConfigurableSlider";
+import configurableSlider from "./ConfigurableSlider.md";
+
 import ExampleForm from "./ExampleForm";
 import exampleForm from "./ExampleForm.md";
 
@@ -156,6 +159,11 @@ const demos = [
     name: "Color Dialog Slider",
     description: colorDialogSlider,
     children: <ColorDialogSlider />,
+  },
+  {
+    name: "Configurable Slider",
+    description: configurableSlider,
+    children: <ConfigurableSlider />,
   },
   {
     name: "Example Form",

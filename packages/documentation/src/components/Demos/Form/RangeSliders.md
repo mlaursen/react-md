@@ -5,7 +5,12 @@ hook to provide the `value` and "controls" to updating the `value`. The hook
 allows for customizing the `min`, `max`, and `step` options.
 
 The `RangeSlider` also requires providing accessible labels for each "thumb" by
-one of the available label props.
+one of the available label props:
+
+- `thumb1Label`
+- `thumb1LabelledBy`
+- `thumb2Label`
+- `thumb2LabelledBy`
 
 Check out the examples below to see how to use the `useRangeSlider` hook and a
 few of the styling props available for the `RangeSlider`.
