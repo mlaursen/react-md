@@ -131,8 +131,8 @@ export const GridCell = forwardRef<HTMLDivElement, GridCellProps>(
     const media =
       (isPhone && phone) ||
       (isTablet && tablet) ||
-      (isDesktop && desktop) ||
-      (isLargeDesktop && largeDesktop);
+      (isLargeDesktop && largeDesktop) ||
+      (isDesktop && desktop);
 
     if (media) {
       ({
