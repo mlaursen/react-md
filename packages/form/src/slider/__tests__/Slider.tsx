@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
+import { Dir } from "@react-md/utils";
 
 import { Slider, SliderProps } from "../Slider";
 import { SliderStepOptions, SliderValue } from "../types";
@@ -243,6 +244,64 @@ describe("Slider", () => {
       expect(container).toMatchSnapshot();
       expect(track.className).toContain("rmd-slider-track--animate");
       expect(slider).toHaveAttribute("aria-valuenow", "20");
+      expect(setTimeout).toBeCalledTimes(1);
+      act(() => {
+        jest.runAllTimers();
+      });
+      expect(container).toMatchSnapshot();
+      expect(track.className).not.toContain("rmd-slider-track--animate");
+
+      fireEvent.mouseMove(window, { clientX: 500, clientY: 20 });
+      expect(container).toMatchSnapshot();
+      expect(slider).toHaveAttribute("aria-valuenow", "50");
+
+      fireEvent.mouseUp(window);
+      expect(container).toMatchSnapshot();
+      expect(track.className).toContain("rmd-slider-track--animate");
+      expect(slider).toHaveAttribute("aria-valuenow", "50");
+
+      expect(setTimeout).toBeCalledTimes(1);
+
+      fireEvent.mouseMove(window, { clientX: 200, clientY: 10 });
+      expect(slider).toHaveAttribute("aria-valuenow", "50");
+      expect(container).toMatchSnapshot();
+
+      jest.clearAllTimers();
+      jest.useRealTimers();
+    });
+
+    it("should reverse the drag value for RTL languages", () => {
+      jest.useFakeTimers();
+      const { container, getByRole } = render(
+        <Dir defaultDir="rtl">
+          <Test />
+        </Dir>
+      );
+      const slider = getByRole("slider");
+      expect(slider).toHaveAttribute("aria-valuenow", "0");
+      const track = container.querySelector<HTMLSpanElement>(
+        ".rmd-slider-track"
+      );
+      if (!track) {
+        throw new Error();
+      }
+
+      jest.spyOn(track, "getBoundingClientRect").mockImplementation(() => ({
+        x: 0,
+        y: 0,
+        height: 20,
+        width: 1000,
+        top: 0,
+        right: 1000,
+        left: 0,
+        bottom: 20,
+        toJSON: () => "",
+      }));
+      fireEvent.mouseDown(track, { clientX: 200, clientY: 0 });
+
+      expect(container).toMatchSnapshot();
+      expect(track.className).toContain("rmd-slider-track--animate");
+      expect(slider).toHaveAttribute("aria-valuenow", "80");
       expect(setTimeout).toBeCalledTimes(1);
       act(() => {
         jest.runAllTimers();

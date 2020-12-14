@@ -199,13 +199,14 @@
     }
 
     &::after {
-      @include rmd-utils-rtl-auto(left, 0);
       @include rmd-slider-theme(height, active-size);
     }
   }
 
   // one thumb track horizontal styles
   &--h1::after {
+    @include rmd-utils-rtl-auto(left, 0);
+
     max-width: rmd-slider-offset(1);
     transition-property: max-width;
     width: 100%;
@@ -214,8 +215,8 @@
   // two thumb track horizontal styles
   &--h2::after {
     @include rmd-utils-rtl {
-      left: calc(100% - #{rmd-slider-offset(1)});
-      right: rmd-slider-offset(2);
+      left: calc(100% - #{rmd-slider-offset(2)});
+      right: rmd-slider-offset(1);
     }
 
     left: rmd-slider-offset(1);

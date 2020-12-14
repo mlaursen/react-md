@@ -192,14 +192,18 @@ export const getDragValue = ({
     : cursorPosition - sliderPosition;
 
   const distanceDragged = Math.min(Math.max(0, difference), sliderSize);
-  const percentageDragged = distanceDragged / sliderSize;
+  let percentageDragged = distanceDragged / sliderSize;
+  if (isRtl && !vertical) {
+    percentageDragged = 1 - percentageDragged;
+  }
+
   const range = max - min;
   const steps = getSteps(min, max, step);
   const value = percentageDragged * range + min;
   const rounded = nearest(value, minValue, maxValue, steps, range);
 
   return {
-    value: isRtl && !vertical ? steps - rounded : rounded,
+    value: rounded,
     current: percentageDragged,
   };
 };
