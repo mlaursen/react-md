@@ -60,6 +60,9 @@ import rangeSliders from "./RangeSliders.md";
 import ColorDialogSlider from "./ColorDialogSlider";
 import colorDialogSlider from "./ColorDialogSlider.md";
 
+import DiscreteSliders from "./DiscreteSliders";
+import discreteSliders from "./DiscreteSliders.md";
+
 import ConfigurableSlider from "./ConfigurableSlider";
 import configurableSlider from "./ConfigurableSlider.md";
 
@@ -159,6 +162,11 @@ const demos = [
     name: "Color Dialog Slider",
     description: colorDialogSlider,
     children: <ColorDialogSlider />,
+  },
+  {
+    name: "Discrete Sliders",
+    description: discreteSliders,
+    children: <DiscreteSliders />,
   },
   {
     name: "Configurable Slider",
