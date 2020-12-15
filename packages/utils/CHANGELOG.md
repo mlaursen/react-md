@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/mlaursen/react-md/compare/v2.4.3...v2.5.0) (2020-12-15)
+
+### Bug Fixes
+
+- **grid:** gridCell now correctly uses largeDesktop when desktop is also
+  provided
+  ([fd26b8b](https://github.com/mlaursen/react-md/commit/fd26b8b64bc20fd78e3f366208f690b38a2dfa29))
+- [@react-md/utils](../utils): nearest ensures min and max range for value
+  ([48181b3](https://github.com/mlaursen/react-md/commit/48181b3a6b8efa311b97152c1bcf989d7f0a9ba3))
+- [@react-md/utils](../utils): updated nearest to support a custom range for
+  sliders
+  ([6cfc67e](https://github.com/mlaursen/react-md/commit/6cfc67e728059cc36aa71d942f5966f4371125a3))
+
+### Features
+
+- [@react-md/utils](../utils): added a withinRange util for number validation
+  ([e8fb252](https://github.com/mlaursen/react-md/commit/e8fb2529a63572b1654bd5aa6a12b6fc12d20b50))
+- [@react-md/utils](../utils): changed the default
+  [@include](https://github.com/include) order for easier overrides
+  ([4705b09](https://github.com/mlaursen/react-md/commit/4705b098ada805c9fb3a48ffa1b6e93ad3bc6fd9))
+
 ## [2.4.2](https://github.com/mlaursen/react-md/compare/v2.4.1...v2.4.2) (2020-10-23)
 
 **Note:** Version bump only for package [@react-md/utils](../utils)

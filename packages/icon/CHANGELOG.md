@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/mlaursen/react-md/compare/v2.4.3...v2.5.0) (2020-12-15)
+
+### Features
+
+- [@react-md/icon](../icon): added an error icon to the IconProvider Component
+  and useIcon Hook
+  ([4dfd50a](https://github.com/mlaursen/react-md/commit/4dfd50a3c41d450b88ff2f417b27113724813bb3))
+- [@react-md/icon](../icon): added flexReverse prop to TextIconSpacing
+  ([c4ee05b](https://github.com/mlaursen/react-md/commit/c4ee05b1d0f8b8f6ed4de51f904dce2995787b81))
+
 ## [2.4.2](https://github.com/mlaursen/react-md/compare/v2.4.1...v2.4.2) (2020-10-23)
 
 **Note:** Version bump only for package [@react-md/icon](../icon)

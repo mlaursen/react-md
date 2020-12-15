@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/mlaursen/react-md/compare/v2.4.3...v2.5.0) (2020-12-15)
+
+### Bug Fixes
+
+- [@react-md/form](../form): better blur error cases for useNumberField
+  ([8b927ab](https://github.com/mlaursen/react-md/commit/8b927ab93ddb5256d384c626c048748262a34642))
+- [@react-md/form](../form): fixed FormMessage counter prop-type validation
+  ([9ece3e1](https://github.com/mlaursen/react-md/commit/9ece3e1199342a972d7079bd36de7f0ab849fc6c))
+- [@react-md/form](../form): fixed messageProps error from react when
+  disableMessage is enabled
+  ([e452aff](https://github.com/mlaursen/react-md/commit/e452aff2fd5bd8f8b75769a6a38bbe5378214be6))
+- [@react-md/form](../form): Floating Label for controlled value Invalid numbers
+  ([ef1d764](https://github.com/mlaursen/react-md/commit/ef1d76461047b75ae771c442a3f721286a3542a2))
+- [@react-md/form](../form): Maintain Floating Label for Invalid Numbers
+  ([2443f9a](https://github.com/mlaursen/react-md/commit/2443f9abb459f9100812c37793d3de2ddbcf36c2))
+- [@react-md/form](../form): More fixes for number inputs being considered
+  valued
+  ([1832e69](https://github.com/mlaursen/react-md/commit/1832e697b1eafddec82a9e2dcccc62acc35c6285))
+- [@react-md/form](../form): updated `TextField` PropTypes to allow for search
+  input type
+  ([23d92dd](https://github.com/mlaursen/react-md/commit/23d92dd8449588ba5ea1a2ee99fdbf4de0e7995e))
+- [@react-md/utils](../utils): updated nearest to support a custom range for
+  sliders
+  ([6cfc67e](https://github.com/mlaursen/react-md/commit/6cfc67e728059cc36aa71d942f5966f4371125a3))
+
+### Features
+
+- [@react-md/form](../form): added a new `useTextField` hook to validate the
+  `TextField` and `TextArea` values
+  ([578257c](https://github.com/mlaursen/react-md/commit/578257c6cf0d875a57a8d16fe8f5fcaf4a6cdc2b))
+- [@react-md/form](../form): added a number-recommended type for validation
+  ([18c772e](https://github.com/mlaursen/react-md/commit/18c772e48ff8eedba3d1030a708cb3729afabac7))
+- [@react-md/form](../form): added a PasswordWithMessage component to be used
+  with use`TextField` Hook
+  ([f6d84f2](https://github.com/mlaursen/react-md/commit/f6d84f2bf1631b3d0ddf23bbafa6b7845bf892a1))
+- [@react-md/form](../form): added a TextAreaWithMessage component to be used
+  with use`TextField` Hook
+  ([e358799](https://github.com/mlaursen/react-md/commit/e358799379f1a0633b3d7643c37035cba81e4885))
+- [@react-md/form](../form): added a TextFieldWithMessage component to be used
+  with use`TextField` Hook
+  ([f2d7e5d](https://github.com/mlaursen/react-md/commit/f2d7e5d495fe3f117bca689b25ace095bb600ffe))
+- [@react-md/form](../form): added a useNumberField hook to control number field
+  values
+  ([c705f2c](https://github.com/mlaursen/react-md/commit/c705f2c41fa3a6add76a9ef6d3e93f4f9aaeac13))
+- [@react-md/form](../form): better defaults for validation
+  ([4003a07](https://github.com/mlaursen/react-md/commit/4003a07cb3396f50268bb50ac108a11d50f41a45))
+
 ## [2.4.3](https://github.com/mlaursen/react-md/compare/v2.4.2...v2.4.3) (2020-11-14)
 
 **Note:** Version bump only for package [@react-md/form](../form)

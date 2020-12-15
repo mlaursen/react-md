@@ -1,3 +1,60 @@
+Title: react-md 2.5.0
+
+Date: 12/15/2020
+
+Summary:
+
+This release was mainly focused on the form package and added a lot of new
+features. I highly recommend checking out the following PRs for more
+information:
+
+- Simple form validation using the Constraint API with `useTextField` #1009
+- Better number handling with `useNumberField` #1014
+- `Slider` component #1016
+
+##### Features<!-- no margin -->
+
+- **@react-md/form:** added a new `useTextField` hook to validate the
+  `TextField` and `TextArea` values (578257c)
+- **@react-md/form:** added a number-recommended type for validation (18c772e)
+- **@react-md/form:** added a `PasswordWithMessage` component to be used with
+  use`TextField` Hook (f6d84f2)
+- **@react-md/form:** added a `TextAreaWithMessage` component to be used with
+  use`TextField` Hook (e358799)
+- **@react-md/form:** added a `TextFieldWithMessage` component to be used with
+  use`TextField` Hook (f2d7e5d)
+- **@react-md/form:** added a `useNumberField` hook to control number field
+  values (c705f2c)
+- **@react-md/form:** better defaults for validation (4003a07)
+- **@react-md/icon:** added an error icon to the `IconProvider` Component and
+  `useIcon` Hook (4dfd50a)
+- **@react-md/icon:** added `flexReverse` prop to `TextIconSpacing` (c4ee05b)
+- **@react-md/utils:** added a `withinRange` util for number validation
+  (e8fb252)
+- **@react-md/utils:** changed the default `@include` order for easier overrides
+  (4705b09)
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** better blur error cases for `useNumberField` (8b927ab)
+- **@react-md/form:** fixed `FormMessage` counter prop-type validation (9ece3e1)
+- **@react-md/form:** fixed `messageProps` error from react when
+  `disableMessage` is enabled (e452aff)
+- **@react-md/form:** Floating Label for controlled value Invalid numbers
+  (ef1d764)
+- **@react-md/form:** Maintain Floating Label for Invalid Numbers (2443f9a)
+- **@react-md/form:** More fixes for number inputs being considered valued
+  (1832e69)
+- **@react-md/form:** updated `TextField` `PropTypes` to allow for search input
+  type (23d92dd)
+- **utils:** `GridCell` now correctly uses `largeDesktop` when desktop is also
+  provided (fd26b8b)
+- **@react-md/utils:** nearest ensures min and max range for value (48181b3)
+- **@react-md/utils:** updated nearest to support a custom range for sliders
+  (6cfc67e)
+
+---
+
 Title: react-md 2.4.3
 
 Date: 11/13/2020
