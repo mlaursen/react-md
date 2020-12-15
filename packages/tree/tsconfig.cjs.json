@@ -6,14 +6,31 @@
     "rootDir": "src",
     "outDir": "lib",
     "baseUrl": ".",
-    "paths": { "@react-md/*": ["../*"] }
+    "paths": {
+      "@react-md/*": [
+        "../*"
+      ]
+    }
   },
-  "include": ["src"],
-  "exclude": ["**/__tests__/*", "**/scssVariables.ts"],
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "**/__tests__/*",
+    "**/scssVariables.ts"
+  ],
   "references": [
-    { "path": "../icon/tsconfig.cjs.json" },
-    { "path": "../list/tsconfig.cjs.json" },
-    { "path": "../transition/tsconfig.cjs.json" },
-    { "path": "../utils/tsconfig.cjs.json" }
+    {
+      "path": "../icon/tsconfig.cjs.json"
+    },
+    {
+      "path": "../list/tsconfig.cjs.json"
+    },
+    {
+      "path": "../transition/tsconfig.cjs.json"
+    },
+    {
+      "path": "../utils/tsconfig.cjs.json"
+    }
   ]
 }

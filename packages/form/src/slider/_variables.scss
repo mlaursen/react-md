@@ -127,6 +127,19 @@ $rmd-slider-thumb-disabled-scale: 0.5 !default;
 /// @type Number
 $rmd-slider-thumb-disabled-mask-scale: 0.8 !default;
 
+/// This is the size for the caret (triangle) placed below the discrete slider's
+/// value tooltip.
+///
+/// @type Number
+$rmd-slider-thumb-value-caret-size: 0.3rem !default;
+
+/// The distance the discrete slider's value tooltip appears away from the
+/// slider's thumb.
+///
+/// @type Number
+$rmd-slider-thumb-value-offset: -($rmd-slider-thumb-size +
+      $rmd-icon-spacing-with-text) !default;
+
 /// The amount of padding to apply to the left and right of the container when
 /// the slider is horizontal. The left padding will be removed if there is a
 /// left addon and the right padding will be removed if there is a right addon.

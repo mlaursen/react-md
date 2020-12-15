@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import { act, fireEvent, render } from "@testing-library/react";
-import { Dir } from "@react-md/utils";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { Dir, InteractionModeListener } from "@react-md/utils";
 
 import { Slider, SliderProps } from "../Slider";
 import { SliderStepOptions, SliderValue } from "../types";
@@ -17,6 +17,7 @@ interface TestProps
       | "vertical"
       | "disabled"
       | "getValueText"
+      | "discrete"
     > {
   defaultValue?: SliderValue;
 }
@@ -30,6 +31,7 @@ function Test({
   onMouseDown,
   onTouchStart,
   getValueText,
+  discrete,
   ...options
 }: TestProps): ReactElement {
   const [, controls] = useSlider(defaultValue, options);
@@ -42,6 +44,7 @@ function Test({
       disabled={disabled}
       vertical={vertical}
       thumbProps={thumbProps}
+      discrete={discrete}
       onBlur={onBlur}
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
@@ -396,6 +399,139 @@ describe("Slider", () => {
       slider.blur();
       // should not be called again if value hasn't changed
       expect(onChange).toBeCalledTimes(1);
+    });
+  });
+
+  describe("discrete sliders", () => {
+    function DiscreteTest({ disabled }: { disabled?: boolean }): ReactElement {
+      return (
+        <InteractionModeListener>
+          <Test discrete disabled={disabled} />
+        </InteractionModeListener>
+      );
+    }
+
+    it("should show the toolwip when the thumb gains focus while the user interaction mode is keyboard", async () => {
+      const { getByRole, container } = render(<DiscreteTest />);
+      expect(container).toMatchSnapshot();
+      expect(() => getByRole("tooltip")).toThrow();
+
+      const slider = getByRole("slider");
+      // move into keyboard mode
+      fireEvent.keyDown(slider);
+      expect(() => getByRole("tooltip")).toThrow();
+
+      slider.focus();
+      const tooltip = getByRole("tooltip");
+      expect(container).toMatchSnapshot();
+      expect(tooltip.textContent).toBe("0");
+
+      fireEvent.keyDown(slider, { key: "ArrowRight" });
+      expect(tooltip.textContent).toBe("1");
+
+      slider.blur();
+      await waitFor(() => expect(() => getByRole("tooltip")).toThrow());
+      expect(container).toMatchSnapshot();
+
+      // move into mouse mode
+      fireEvent.mouseDown(window);
+      expect(() => getByRole("tooltip")).toThrow();
+      slider.focus();
+      expect(() => getByRole("tooltip")).toThrow();
+    });
+
+    it("should hide the tooltip if it becomes disabled while the tooltip is visible somehow", async () => {
+      const { getByRole, rerender } = render(<DiscreteTest />);
+
+      const slider = getByRole("slider");
+      // move into keyboard mode
+      fireEvent.keyDown(slider);
+      expect(() => getByRole("tooltip")).toThrow();
+
+      slider.focus();
+      expect(() => getByRole("tooltip")).not.toThrow();
+
+      rerender(<DiscreteTest disabled />);
+      await waitFor(() => expect(() => getByRole("tooltip")).toThrow());
+    });
+
+    it("should wait the animationDuration before enabling the visibility for mouse mode", () => {
+      jest.useFakeTimers();
+      const { container, getByRole } = render(<DiscreteTest />);
+      const track = container.querySelector<HTMLSpanElement>(
+        ".rmd-slider-track"
+      );
+      if (!track) {
+        throw new Error();
+      }
+
+      jest.spyOn(track, "getBoundingClientRect").mockImplementation(() => ({
+        x: 0,
+        y: 0,
+        height: 20,
+        width: 1000,
+        top: 0,
+        right: 1000,
+        left: 0,
+        bottom: 20,
+        toJSON: () => "",
+      }));
+      // sanity force mouse mode
+      fireEvent.mouseDown(window);
+      fireEvent.mouseDown(track, { clientX: 200, clientY: 0 });
+      expect(() => getByRole("tooltip")).toThrow();
+      act(() => {
+        jest.runAllTimers();
+      });
+      expect(() => getByRole("tooltip")).not.toThrow();
+
+      jest.clearAllTimers();
+      jest.useRealTimers();
+    });
+
+    it("should not hide the tooltip if switching between keyboard to desktop mode and the track was clicked", () => {
+      jest.useFakeTimers();
+      const { container, getByRole } = render(<DiscreteTest />);
+      const slider = getByRole("slider");
+      const track = container.querySelector<HTMLSpanElement>(
+        ".rmd-slider-track"
+      );
+      if (!track) {
+        throw new Error();
+      }
+
+      jest.spyOn(track, "getBoundingClientRect").mockImplementation(() => ({
+        x: 0,
+        y: 0,
+        height: 20,
+        width: 1000,
+        top: 0,
+        right: 1000,
+        left: 0,
+        bottom: 20,
+        toJSON: () => "",
+      }));
+
+      // move into keyboard mode
+      fireEvent.keyDown(slider);
+      slider.focus();
+      expect(() => getByRole("tooltip")).not.toThrow();
+
+      fireEvent.mouseDown(track, { clientX: 200, clientY: 0 });
+      expect(() => getByRole("tooltip")).not.toThrow();
+      act(() => {
+        jest.runAllTimers();
+      });
+      expect(() => getByRole("tooltip")).not.toThrow();
+
+      slider.blur();
+      act(() => {
+        jest.runAllTimers();
+      });
+      expect(() => getByRole("tooltip")).toThrow();
+
+      jest.clearAllTimers();
+      jest.useRealTimers();
     });
   });
 });

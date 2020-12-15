@@ -3,11 +3,14 @@ import cn from "classnames";
 import { bem, LabelRequiredForA11y } from "@react-md/utils";
 
 import {
+  DEFAULT_SLIDER_ANIMATION_TIME,
   DEFAULT_SLIDER_GET_VALUE_TEXT,
   DEFAULT_SLIDER_MAX,
   DEFAULT_SLIDER_MIN,
 } from "./constants";
+import { SliderValue } from "./SliderValue";
 import { SliderThumbOptions, ThumbIndex } from "./types";
+import { useDiscreteValueVisibility } from "./useDiscreteValueVisibility";
 
 const styles = bem("rmd-slider-thumb");
 
@@ -76,21 +79,39 @@ export const SliderThumb = forwardRef<HTMLSpanElement, SliderThumbProps>(
       className,
       min = DEFAULT_SLIDER_MIN,
       max = DEFAULT_SLIDER_MAX,
+      animationDuration = DEFAULT_SLIDER_ANIMATION_TIME,
       getValueText = DEFAULT_SLIDER_GET_VALUE_TEXT,
       name,
       value,
       index,
       active = false,
       animate = false,
+      discrete = false,
       disabled = false,
       vertical = false,
       tabIndex = disabled ? -1 : 0,
+      onBlur: propOnBlur,
+      onFocus: propOnFocus,
       ...props
     },
     ref
   ) {
     const id = propId || `${baseId}-thumb-${index + 1}`;
     const isFirst = index === 0;
+    const {
+      onBlur,
+      onFocus,
+      animateValue,
+      visible,
+    } = useDiscreteValueVisibility({
+      active,
+      animate,
+      discrete,
+      disabled,
+      onBlur: propOnBlur,
+      onFocus: propOnFocus,
+      animationDuration,
+    });
 
     const styleOptions = {
       h: !vertical,
@@ -132,6 +153,8 @@ export const SliderThumb = forwardRef<HTMLSpanElement, SliderThumbProps>(
           aria-disabled={disabled || undefined}
           aria-orientation={(vertical && "vertical") || undefined}
           tabIndex={tabIndex}
+          onBlur={onBlur}
+          onFocus={onFocus}
           className={cn(
             styles({
               ...styleOptions,
@@ -142,6 +165,16 @@ export const SliderThumb = forwardRef<HTMLSpanElement, SliderThumbProps>(
           )}
         />
         <input id={`${id}-value`} type="hidden" name={name} value={value} />
+        <SliderValue
+          id={`${id}-value`}
+          visible={visible}
+          index={index}
+          animate={animateValue}
+          discrete={discrete}
+          vertical={vertical}
+        >
+          {value}
+        </SliderValue>
       </>
     );
   }
@@ -159,7 +192,9 @@ if (process.env.NODE_ENV !== "production") {
       max: PropTypes.number,
       active: PropTypes.bool,
       animate: PropTypes.bool,
+      animationDuration: PropTypes.number,
       vertical: PropTypes.bool,
+      discrete: PropTypes.bool,
       disabled: PropTypes.bool,
       getValueText: PropTypes.func,
       index: PropTypes.oneOf([0, 1]).isRequired,

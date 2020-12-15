@@ -7,5 +7,7 @@
     "skipLibCheck": true,
     "module": "commonjs"
   },
-  "include": ["src/scssVariables.ts"]
+  "include": [
+    "src/scssVariables.ts"
+  ]
 }

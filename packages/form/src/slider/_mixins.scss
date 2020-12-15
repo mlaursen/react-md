@@ -435,6 +435,79 @@
   }
 }
 
+/// Generates the styles for the discrete slider's value tooltip
+/// @private
+@mixin rmd-slider-value {
+  opacity: 1;
+  position: absolute;
+
+  // this is used to generate the triangle
+  &::after {
+    border: $rmd-slider-thumb-value-caret-size solid transparent;
+    content: '';
+    position: absolute;
+  }
+
+  &--animate {
+    transition: transform $rmd-transition-standard-time;
+  }
+
+  &--h {
+    @include rmd-utils-rtl {
+      transform: translateX(50%) scale(1);
+    }
+
+    top: $rmd-slider-thumb-value-offset;
+    transform: translateX(-50%) scale(1);
+
+    &::after {
+      @include rmd-utils-rtl {
+        transform: translateX(50%);
+      }
+
+      border-top-color: rmd-tooltip-theme-var(background-color);
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &--h-off {
+    transform: translateX(-50%) scale(0);
+  }
+
+  // have to "duplicate" these styles since the `--h-off` would override the
+  // `--h` styles due to css order.
+  &--h-on {
+    transform: translateX(-50%) scale(1);
+  }
+
+  @if $rmd-slider-include-vertical {
+    &--v {
+      // going to force rendering always to the left even in RTL languages
+      left: $rmd-slider-thumb-value-offset;
+      transform: translateY(50%) scale(1);
+
+      &::after {
+        border-left-color: rmd-tooltip-theme-var(background-color);
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    &--v-off {
+      transform: translateY(50%) scale(0);
+    }
+
+    // have to "duplicate" these styles since the `--v-off` would override the
+    // `--v` styles due to css order.
+    &--v-on {
+      transform: translateY(50%) scale(1);
+    }
+  }
+}
+
 /// Creates all the styles for this package as well as defining all the theme
 /// CSS variables.
 @mixin react-md-slider {
@@ -450,5 +523,9 @@
 
   .rmd-slider-thumb {
     @include rmd-slider-thumb;
+  }
+
+  .rmd-slider-value {
+    @include rmd-slider-value;
   }
 }

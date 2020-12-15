@@ -149,9 +149,21 @@ export interface SliderPresentation {
 /**
  * @since 2.5.0
  */
-export interface SliderThumbOptions
-  extends Omit<SliderValueOptions, "step">,
-    SliderPresentation {
+export interface SliderThumbPresentation {
+  /**
+   * Boolean if the slider should act as a discrete slider which will render a
+   * tooltip above the thumb while dragging to visualize the current value for
+   * the slider.
+   */
+  discrete?: boolean;
+
+  /**
+   * The duration that it takes for the slider animation to complete for a new
+   * value. This is just used to help make things look smoother while dragging
+   * compared to jumping to new values.
+   */
+  animationDuration?: number;
+
   /**
    * A function that is used to help with accessibility by creating a better
    * value string if just a number isn't representative enough of your range.
@@ -169,6 +181,14 @@ export interface SliderThumbOptions
    */
   getValueText?(value: number): string;
 }
+
+/**
+ * @since 2.5.0
+ */
+export interface SliderThumbOptions
+  extends Omit<SliderValueOptions, "step">,
+    SliderPresentation,
+    SliderThumbPresentation {}
 
 /**
  * @since 2.5.0
@@ -224,21 +244,14 @@ export interface SliderAddons {
  */
 export interface BaseSliderProps
   extends HTMLAttributes<HTMLDivElement>,
-    SliderPresentation,
     SliderAddons,
     SliderLabelProps,
-    Pick<SliderThumbOptions, "getValueText"> {
+    SliderPresentation,
+    SliderThumbPresentation {
   /**
    * An id for the slider and different parts which is required for a11y.
    */
   baseId: string;
-
-  /**
-   * The duration that it takes for the slider animation to complete for a new
-   * value. This is just used to help make things look smoother while dragging
-   * comapred to jumping to new values.
-   */
-  animationDuration?: number;
 }
 
 /**

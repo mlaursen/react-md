@@ -90,6 +90,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       min,
       max,
       step,
+      discrete = false,
       disabled = false,
       vertical = false,
       label,
@@ -177,9 +178,12 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       baseId,
       min,
       max,
+      discrete,
       disabled,
       vertical,
       animate: !dragging,
+      animationDuration,
+      getValueText,
     };
 
     let labelId = "";
@@ -210,7 +214,6 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
             aria-labelledby={thumb1LabelledBy}
             {...thumb1Props}
             {...thumbProps}
-            getValueText={getValueText}
             ref={thumb1Ref}
             value={thumb1Value}
             index={0}
@@ -222,7 +225,6 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
             aria-labelledby={thumb2LabelledBy}
             {...thumb2Props}
             {...thumbProps}
-            getValueText={getValueText}
             ref={thumb2Ref}
             value={thumb2Value as number}
             index={1}
@@ -266,6 +268,7 @@ if (process.env.NODE_ENV !== "production") {
       animationDuration: PropTypes.number,
       vertical: PropTypes.bool,
       disabled: PropTypes.bool,
+      discrete: PropTypes.bool,
       beforeAddon: PropTypes.node,
       afterAddon: PropTypes.node,
 

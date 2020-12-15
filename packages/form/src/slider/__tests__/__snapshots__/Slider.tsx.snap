@@ -1,5 +1,120 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Slider discrete sliders should show the toolwip when the thumb gains focus while the user interaction mode is keyboard 1`] = `
+<div>
+  <span
+    class="rmd-label"
+    id="slider-label"
+  >
+    Volume
+  </span>
+  <div
+    class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+  >
+    <span
+      class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+      id="slider"
+      style="--offset1: 0%;"
+    >
+      <span
+        aria-labelledby="slider-label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="0"
+        class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
+        id="slider-thumb-1"
+        role="slider"
+        tabindex="0"
+      />
+      <input
+        id="slider-thumb-1-value"
+        type="hidden"
+        value="0"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Slider discrete sliders should show the toolwip when the thumb gains focus while the user interaction mode is keyboard 2`] = `
+<div>
+  <span
+    class="rmd-label"
+    id="slider-label"
+  >
+    Volume
+  </span>
+  <div
+    class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+  >
+    <span
+      class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+      id="slider"
+      style="--offset1: 0%;"
+    >
+      <span
+        aria-labelledby="slider-label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="0"
+        class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
+        id="slider-thumb-1"
+        role="slider"
+        tabindex="0"
+      />
+      <input
+        id="slider-thumb-1-value"
+        type="hidden"
+        value="0"
+      />
+      <span
+        class="rmd-tooltip rmd-tooltip--dense rmd-tooltip--line-wrap rmd-tooltip--dense-line-wrap rmd-tooltip--above rmd-slider-value rmd-slider-value--h rmd-slider-thumb--animate rmd-slider-thumb--h1 rmd-slider-value--h-off rmd-slider-value--h-on rmd-slider-value--animate"
+        id="slider-thumb-1-value"
+        role="tooltip"
+      >
+        0
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Slider discrete sliders should show the toolwip when the thumb gains focus while the user interaction mode is keyboard 3`] = `
+<div>
+  <span
+    class="rmd-label"
+    id="slider-label"
+  >
+    Volume
+  </span>
+  <div
+    class="rmd-slider-container rmd-slider-container--h rmd-slider-container--pad-left rmd-slider-container--pad-right"
+  >
+    <span
+      class="rmd-slider-track rmd-slider-track--animate rmd-slider-track--hoverable rmd-slider-track--h rmd-slider-track--h1"
+      id="slider"
+      style="--offset1: 1%;"
+    >
+      <span
+        aria-labelledby="slider-label"
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="1"
+        class="rmd-slider-thumb rmd-slider-thumb--h rmd-slider-thumb--h1 rmd-slider-thumb--animate"
+        id="slider-thumb-1"
+        role="slider"
+        tabindex="0"
+      />
+      <input
+        id="slider-thumb-1-value"
+        type="hidden"
+        value="1"
+      />
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Slider drag behavior should reverse the drag value for RTL languages 1`] = `
 <div>
   <span

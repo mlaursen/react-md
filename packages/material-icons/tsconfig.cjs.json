@@ -6,9 +6,22 @@
     "rootDir": "src",
     "outDir": "lib",
     "baseUrl": ".",
-    "paths": { "@react-md/*": ["../*"] }
+    "paths": {
+      "@react-md/*": [
+        "../*"
+      ]
+    }
   },
-  "include": ["src"],
-  "exclude": ["**/__tests__/*", "**/scssVariables.ts"],
-  "references": [{ "path": "../icon/tsconfig.cjs.json" }]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "**/__tests__/*",
+    "**/scssVariables.ts"
+  ],
+  "references": [
+    {
+      "path": "../icon/tsconfig.cjs.json"
+    }
+  ]
 }

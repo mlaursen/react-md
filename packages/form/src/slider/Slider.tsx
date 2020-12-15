@@ -66,6 +66,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
     min,
     max,
     step,
+    discrete = false,
     disabled = false,
     vertical = false,
     onBlur,
@@ -144,16 +145,18 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
       >
         <SliderThumb
           {...thumbProps}
-          getValueText={getValueText}
           aria-label={thumbLabel}
           aria-labelledby={thumbLabelledBy || labelId}
-          ref={thumb1Ref}
           baseId={baseId}
+          ref={thumb1Ref}
+          getValueText={getValueText}
           min={min}
           max={max}
+          discrete={discrete}
           disabled={disabled}
           vertical={vertical}
           animate={!dragging}
+          animationDuration={animationDuration}
           value={thumb1Value}
           index={0}
           active={draggingIndex === 0}
@@ -191,6 +194,7 @@ if (process.env.NODE_ENV !== "production") {
       className: PropTypes.string,
       animationDuration: PropTypes.number,
       vertical: PropTypes.bool,
+      discrete: PropTypes.bool,
       disabled: PropTypes.bool,
       beforeAddon: PropTypes.node,
       afterAddon: PropTypes.node,
