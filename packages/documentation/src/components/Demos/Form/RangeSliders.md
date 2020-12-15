@@ -7,9 +7,9 @@ allows for customizing the `min`, `max`, and `step` options.
 The `RangeSlider` also requires providing accessible labels for each "thumb" by
 one of the available label props:
 
-- `thumb1Label`
+- `thumb1Label` - defaults to `"Min"`
 - `thumb1LabelledBy`
-- `thumb2Label`
+- `thumb2Label` - defaults to `"Max"`
 - `thumb2LabelledBy`
 
 Check out the examples below to see how to use the `useRangeSlider` hook and a

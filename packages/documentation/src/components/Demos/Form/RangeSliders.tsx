@@ -14,52 +14,32 @@ export default function RangeSliders(): ReactElement | null {
   return (
     <>
       <SlidersContainer>
-        <RangeSlider
-          baseId={useId()}
-          {...controls1}
-          label="Horizontal"
-          thumb1Label="Min"
-          thumb2Label="Max"
-        />
+        <RangeSlider baseId={useId()} {...controls1} label="Horizontal" />
         <RangeSlider
           baseId={useId()}
           label="Horizontal"
           {...controls2}
-          thumb1Label="Min"
-          thumb2Label="Max"
           disabled
         />
-        <RangeSlider
-          baseId={useId()}
-          label="Horizontal"
-          {...controls3}
-          thumb1Label="Min"
-          thumb2Label="Max"
-        />
+        <RangeSlider baseId={useId()} label="Horizontal" {...controls3} />
       </SlidersContainer>
       <SlidersContainer vertical>
         <RangeSlider
           baseId={useId()}
           label="Vertical"
           {...controls4}
-          thumb1Label="Min"
-          thumb2Label="Max"
           vertical
         />
         <RangeSlider
           baseId={useId()}
           label="Vertical"
           {...controls5}
-          thumb1Label="Min"
-          thumb2Label="Max"
           vertical
         />
         <RangeSlider
           baseId={useId()}
           label="Vertical"
           {...controls6}
-          thumb1Label="Min"
-          thumb2Label="Max"
           vertical
           disabled
         />

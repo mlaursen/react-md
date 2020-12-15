@@ -111,10 +111,10 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
       persist,
       setValue,
       thumb1Props,
-      thumb1Label,
+      thumb1Label = "Min",
       thumb1LabelledBy,
       thumb2Props,
-      thumb2Label,
+      thumb2Label = "Max",
       thumb2LabelledBy,
       ...props
     },
@@ -210,7 +210,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
           vertical={vertical}
         >
           <SliderThumb
-            aria-label={thumb1Label as string}
+            aria-label={thumb1Label}
             aria-labelledby={thumb1LabelledBy}
             {...thumb1Props}
             {...thumbProps}
@@ -221,7 +221,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
             onKeyDown={thumb1KeyDown}
           />
           <SliderThumb
-            aria-label={thumb2Label as string}
+            aria-label={thumb2Label}
             aria-labelledby={thumb2LabelledBy}
             {...thumb2Props}
             {...thumbProps}
@@ -271,45 +271,6 @@ if (process.env.NODE_ENV !== "production") {
       discrete: PropTypes.bool,
       beforeAddon: PropTypes.node,
       afterAddon: PropTypes.node,
-
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      _a11yValidator1: (
-        props: RangeSliderProps,
-        _propName: keyof RangeSliderProps,
-        component: string
-      ) => {
-        const label = props.thumb1Label;
-        const labelledBy = props.thumb1LabelledBy;
-        const propsLabel = props.thumb1Props?.["aria-label"];
-        const propsLabelledBy = props.thumb1Props?.["aria-labelledby"];
-        if (label || labelledBy || propsLabel || propsLabelledBy) {
-          return null;
-        }
-
-        return new Error(
-          `Either the \`thumb1Label\`, \`thumb1LabelledBy\`, \`thumb1Props["aria-label"]\`, or \`thumb1Props["aria-labelledby"]\` ` +
-            `are required for accessibility in the \`${component}\` component, but none were provided.`
-        );
-      },
-      _a11yValidator2: (
-        props: RangeSliderProps,
-        _propName: keyof RangeSliderProps,
-        component: string
-      ) => {
-        const label = props.thumb2Label;
-        const labelledBy = props.thumb2LabelledBy;
-        const propsLabel = props.thumb2Props?.["aria-label"];
-        const propsLabelledBy = props.thumb2Props?.["aria-labelledby"];
-        if (label || labelledBy || propsLabel || propsLabelledBy) {
-          return null;
-        }
-
-        return new Error(
-          `Either the \`thumb2Label\`, \`thumb2LabelledBy\`, \`thumb2Props["aria-label"]\`, or \`thumb2Props["aria-labelledby"]\` ` +
-            `are required for accessibility in the \`${component}\` component, but none were provided.`
-        );
-      },
     };
   } catch (e) {}
 }

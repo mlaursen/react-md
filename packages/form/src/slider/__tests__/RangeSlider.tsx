@@ -40,8 +40,6 @@ function Test({
       {...controls}
       baseId="slider"
       label="Price"
-      thumb1Label="Min"
-      thumb2Label="Max"
       disabled={disabled}
       vertical={vertical}
       thumb1Props={thumb1Props}
@@ -180,46 +178,6 @@ describe("RangeSlider", () => {
     expect(slider2).toHaveAttribute("aria-valuemin", "50");
     expect(slider2).toHaveAttribute("aria-valuemax", "100");
     expect(slider2).toHaveAttribute("aria-valuenow", "50");
-  });
-
-  it("should log an error if the slider does not have a valid label", () => {
-    function Test(
-      props: Pick<
-        RangeSliderProps,
-        | "thumb1Label"
-        | "thumb1LabelledBy"
-        | "thumb1Props"
-        | "thumb2Label"
-        | "thumb2LabelledBy"
-        | "thumb2Props"
-      >
-    ): ReactElement {
-      const [, controls] = useRangeSlider();
-
-      return <RangeSlider {...props} {...controls} baseId="slider" />;
-    }
-
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
-    const { rerender } = render(<Test thumb1Label="Min" thumb2Label="Max" />);
-    rerender(<Test thumb1LabelledBy="some-id" thumb2LabelledBy="some-id" />);
-    rerender(
-      <Test
-        thumb1Props={{ "aria-label": "Min" }}
-        thumb2Props={{ "aria-label": "Max" }}
-      />
-    );
-    rerender(
-      <Test
-        thumb1Props={{ "aria-labelledby": "some-id" }}
-        thumb2Props={{ "aria-labelledby": "some-id" }}
-      />
-    );
-
-    expect(error).not.toBeCalled();
-    rerender(<Test />);
-    expect(error).toBeCalledTimes(2);
-
-    error.mockRestore();
   });
 
   describe("keyboard behavior", () => {
@@ -515,13 +473,7 @@ describe("RangeSlider", () => {
           <>
             <span data-testid="value1">{value[0]}</span>
             <span data-testid="value2">{value[1]}</span>
-            <RangeSlider
-              {...controls}
-              baseId="slider"
-              label="Slider"
-              thumb1Label="Min"
-              thumb2Label="Max"
-            />
+            <RangeSlider {...controls} baseId="slider" label="Slider" />
           </>
         );
       }

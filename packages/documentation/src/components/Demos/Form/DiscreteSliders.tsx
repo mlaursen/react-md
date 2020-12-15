@@ -16,8 +16,6 @@ export default function DiscreteSliders(): ReactElement | null {
           baseId={useId()}
           {...controls2}
           label="Horizontal"
-          thumb1Label="Min"
-          thumb2Label="Max"
           discrete
         />
       </SlidersContainer>
@@ -33,8 +31,6 @@ export default function DiscreteSliders(): ReactElement | null {
           baseId={useId()}
           {...controls4}
           label="Vertical"
-          thumb1Label="Min"
-          thumb2Label="Max"
           discrete
           vertical
         />
