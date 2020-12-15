@@ -436,7 +436,7 @@
 }
 
 /// Generates the styles for the discrete slider's value tooltip
-/// @private
+/// @access private
 @mixin rmd-slider-value {
   opacity: 1;
   position: absolute;
