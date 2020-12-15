@@ -9,7 +9,7 @@ import { list } from "./list";
 export async function clean(
   pathOrPaths: string | readonly string[]
 ): Promise<void> {
-  const paths = Array.isArray(pathOrPaths) ? pathOrPaths : [pathOrPaths];
+  const paths = typeof pathOrPaths === "string" ? [pathOrPaths] : pathOrPaths;
 
   log.debug(`Removing the following files:`);
   log.debug(list(paths));
