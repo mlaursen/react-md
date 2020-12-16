@@ -33,7 +33,7 @@ $rmd-slider-active-track-size: 0.375rem !default;
 /// The `background-color` to use for the `"active"` state of the slider's
 /// track.
 ///
-/// @type String|Color
+/// @type Color|String
 $rmd-slider-active-track-color: rmd-theme-var(secondary) !default;
 
 /// An optional opacity to apply to the active track color.
@@ -51,18 +51,18 @@ $rmd-slider-inactive-track-size: 0.25rem !default;
 /// track. This defaults to the `$rmd-slider-active-track-color` since it
 /// instead uses an opacity value.
 ///
-/// @type String|Color
+/// @type Color|String
 $rmd-slider-inactive-track-color: $rmd-slider-active-track-color !default;
 
 /// The background color to use for the track when the slider is disabled.
 ///
-/// @type String|Color
+/// @type Color|String
 $rmd-slider-disabled-track-color: rmd-theme-var(
   text-disabled-on-background
 ) !default;
 
 /// The background color to use for the thumb when the slider is disabled.
-/// @type String|Color
+/// @type Color|String
 $rmd-slider-disabled-thumb-color: $rmd-slider-disabled-track-color !default;
 
 /// An optional opacity to apply to the inactive track color.
