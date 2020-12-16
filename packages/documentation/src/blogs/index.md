@@ -18,11 +18,11 @@ information:
   `TextField` and `TextArea` values (578257c)
 - **@react-md/form:** added a number-recommended type for validation (18c772e)
 - **@react-md/form:** added a `PasswordWithMessage` component to be used with
-  use`TextField` Hook (f6d84f2)
+  `useTextField` Hook (f6d84f2)
 - **@react-md/form:** added a `TextAreaWithMessage` component to be used with
-  use`TextField` Hook (e358799)
+  `useTextField` Hook (e358799)
 - **@react-md/form:** added a `TextFieldWithMessage` component to be used with
-  use`TextField` Hook (f2d7e5d)
+  `useTextField` Hook (f2d7e5d)
 - **@react-md/form:** added a `useNumberField` hook to control number field
   values (c705f2c)
 - **@react-md/form:** better defaults for validation (4003a07)
