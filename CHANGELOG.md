@@ -7,13 +7,14 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
-- [@react-md/form](./packages/form): better blur error cases for useNumberField
+- [@react-md/form](./packages/form): better blur error cases for
+  `useNumberField`
   ([8b927ab](https://github.com/mlaursen/react-md/commit/8b927ab93ddb5256d384c626c048748262a34642))
-- [@react-md/form](./packages/form): fixed FormMessage counter prop-type
+- [@react-md/form](./packages/form): fixed `FormMessage` counter prop-type
   validation
   ([9ece3e1](https://github.com/mlaursen/react-md/commit/9ece3e1199342a972d7079bd36de7f0ab849fc6c))
-- [@react-md/form](./packages/form): fixed messageProps error from react when
-  disableMessage is enabled
+- [@react-md/form](./packages/form): fixed `messageProps` error from react when
+  `disableMessage` is enabled
   ([e452aff](https://github.com/mlaursen/react-md/commit/e452aff2fd5bd8f8b75769a6a38bbe5378214be6))
 - [@react-md/form](./packages/form): Floating Label for controlled value Invalid
   numbers
@@ -23,11 +24,11 @@ All notable changes to this project will be documented in this file. See
 - [@react-md/form](./packages/form): More fixes for number inputs being
   considered valued
   ([1832e69](https://github.com/mlaursen/react-md/commit/1832e697b1eafddec82a9e2dcccc62acc35c6285))
-- [@react-md/form](./packages/form): updated `TextField` PropTypes to allow for
-  search input type
+- [@react-md/form](./packages/form): updated `TextField` `PropTypes` to allow
+  for search input type
   ([23d92dd](https://github.com/mlaursen/react-md/commit/23d92dd8449588ba5ea1a2ee99fdbf4de0e7995e))
-- ([@react-md/utils](./packages/utils)): `GridCell` now correctly uses
-  largeDesktop when desktop is also provided
+- [@react-md/utils](./packages/utils): `GridCell` now correctly uses
+  `largeDesktop` when desktop is also provided
   ([fd26b8b](https://github.com/mlaursen/react-md/commit/fd26b8b64bc20fd78e3f366208f690b38a2dfa29))
 - [@react-md/utils](./packages/utils): nearest ensures min and max range for
   value
@@ -44,30 +45,31 @@ All notable changes to this project will be documented in this file. See
 - [@react-md/form](./packages/form): added a number-recommended type for
   validation
   ([18c772e](https://github.com/mlaursen/react-md/commit/18c772e48ff8eedba3d1030a708cb3729afabac7))
-- [@react-md/form](./packages/form): added a PasswordWithMessage component to be
-  used with use`TextField` Hook
+- [@react-md/form](./packages/form): added a `PasswordWithMessage` component to
+  be used with use`TextField` Hook
   ([f6d84f2](https://github.com/mlaursen/react-md/commit/f6d84f2bf1631b3d0ddf23bbafa6b7845bf892a1))
-- [@react-md/form](./packages/form): added a TextAreaWithMessage component to be
-  used with use`TextField` Hook
+- [@react-md/form](./packages/form): added a `TextAreaWithMessage` component to
+  be used with use`TextField` Hook
   ([e358799](https://github.com/mlaursen/react-md/commit/e358799379f1a0633b3d7643c37035cba81e4885))
-- [@react-md/form](./packages/form): added a TextFieldWithMessage component to
+- [@react-md/form](./packages/form): added a `TextFieldWithMessage` component to
   be used with use`TextField` Hook
   ([f2d7e5d](https://github.com/mlaursen/react-md/commit/f2d7e5d495fe3f117bca689b25ace095bb600ffe))
-- [@react-md/form](./packages/form): added a useNumberField hook to control
+- [@react-md/form](./packages/form): added a `useNumberField` hook to control
   number field values
   ([c705f2c](https://github.com/mlaursen/react-md/commit/c705f2c41fa3a6add76a9ef6d3e93f4f9aaeac13))
 - [@react-md/form](./packages/form): better defaults for validation
   ([4003a07](https://github.com/mlaursen/react-md/commit/4003a07cb3396f50268bb50ac108a11d50f41a45))
-- [@react-md/icon](./packages/icon): added an error icon to the IconProvider
+- [@react-md/icon](./packages/icon): added an error icon to the `IconProvider`
   Component and useIcon Hook
   ([4dfd50a](https://github.com/mlaursen/react-md/commit/4dfd50a3c41d450b88ff2f417b27113724813bb3))
-- [@react-md/icon](./packages/icon): added flexReverse prop to TextIconSpacing
+- [@react-md/icon](./packages/icon): added `flexReverse` prop to
+  `TextIconSpacing`
   ([c4ee05b](https://github.com/mlaursen/react-md/commit/c4ee05b1d0f8b8f6ed4de51f904dce2995787b81))
-- [@react-md/utils](./packages/utils): added a withinRange util for number
+- [@react-md/utils](./packages/utils): added a `withinRange` util for number
   validation
   ([e8fb252](https://github.com/mlaursen/react-md/commit/e8fb2529a63572b1654bd5aa6a12b6fc12d20b50))
-- [@react-md/utils](./packages/utils): changed the default
-  [@include](https://github.com/include) order for easier overrides
+- [@react-md/utils](./packages/utils): changed the default `@include` order for
+  easier overrides
   ([4705b09](https://github.com/mlaursen/react-md/commit/4705b098ada805c9fb3a48ffa1b6e93ad3bc6fd9))
 
 ## [2.4.3](https://github.com/mlaursen/react-md/compare/v2.4.2...v2.4.3) (2020-11-14)
