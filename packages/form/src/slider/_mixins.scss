@@ -49,8 +49,9 @@
 /// custom properties to help position/style the thumbs and tracks in the
 /// Slider.
 ///
-/// @param {Number} thumb-index - This should be either 1 or 2
 /// @access private
+/// @param {Number} thumb-index - This should be either 1 or 2
+/// @return {String} the css variable for the slider thumb offset
 @function rmd-slider-offset($thumb-index) {
   @return var(--offset#{$thumb-index}, 0);
 }
