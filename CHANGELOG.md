@@ -46,13 +46,13 @@ All notable changes to this project will be documented in this file. See
   validation
   ([18c772e](https://github.com/mlaursen/react-md/commit/18c772e48ff8eedba3d1030a708cb3729afabac7))
 - [@react-md/form](./packages/form): added a `PasswordWithMessage` component to
-  be used with use`TextField` Hook
+  be used with `useTextField` Hook
   ([f6d84f2](https://github.com/mlaursen/react-md/commit/f6d84f2bf1631b3d0ddf23bbafa6b7845bf892a1))
 - [@react-md/form](./packages/form): added a `TextAreaWithMessage` component to
-  be used with use`TextField` Hook
+  be used with `useTextField` Hook
   ([e358799](https://github.com/mlaursen/react-md/commit/e358799379f1a0633b3d7643c37035cba81e4885))
 - [@react-md/form](./packages/form): added a `TextFieldWithMessage` component to
-  be used with use`TextField` Hook
+  be used with `useTextField` Hook
   ([f2d7e5d](https://github.com/mlaursen/react-md/commit/f2d7e5d495fe3f117bca689b25ace095bb600ffe))
 - [@react-md/form](./packages/form): added a `useNumberField` hook to control
   number field values
@@ -60,7 +60,7 @@ All notable changes to this project will be documented in this file. See
 - [@react-md/form](./packages/form): better defaults for validation
   ([4003a07](https://github.com/mlaursen/react-md/commit/4003a07cb3396f50268bb50ac108a11d50f41a45))
 - [@react-md/icon](./packages/icon): added an error icon to the `IconProvider`
-  Component and useIcon Hook
+  Component and `useIcon` Hook
   ([4dfd50a](https://github.com/mlaursen/react-md/commit/4dfd50a3c41d450b88ff2f417b27113724813bb3))
 - [@react-md/icon](./packages/icon): added `flexReverse` prop to
   `TextIconSpacing`
