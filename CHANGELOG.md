@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/mlaursen/react-md/compare/v2.5.0...v2.5.1) (2020-12-16)
+
+### Bug Fixes
+
+- [@react-md/list](./packages/list): fixed list icon spacing to work with sass
+  ([369c206](https://github.com/mlaursen/react-md/commit/369c2066909176b5c5c8611f211cf129b60912c9)),
+  closes [#1015](https://github.com/mlaursen/react-md/issues/1015)
+
 # [2.5.0](https://github.com/mlaursen/react-md/compare/v2.4.3...v2.5.0) (2020-12-15)
 
 ### Bug Fixes

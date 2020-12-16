@@ -1,3 +1,16 @@
+Title: react-md 2.5.1
+
+Date: 12/16/2020
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/list:** fixed list icon spacing to work with `sass` (369c206),
+  closes #1015
+
+---
+
 Title: react-md 2.5.0
 
 Date: 12/15/2020
