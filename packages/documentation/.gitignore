@@ -1,6 +1,7 @@
 /.next
 src/readmes
 src/changelogs
+src/constants/versions.ts
 src/constants/meta/*
 src/constants/sandboxes/*
 src/constants/sassdoc/*
