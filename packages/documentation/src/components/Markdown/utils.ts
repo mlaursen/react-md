@@ -96,7 +96,11 @@ renderer.heading = (text, level, _raw, slugger) => {
   });
 
   return `<h${level} id="${id}" class="${className}">
-  ${isValidHeading ? `<a href="#${id}" class="heading__link">#</a>` : ""}
+  ${
+    isValidHeading
+      ? `<a href="#${id}" class="heading__link" aria-hidden="true">#</a>`
+      : ""
+  }
   ${text}
 </h${level}>`;
 };

@@ -43,6 +43,7 @@ export function CodePreferenceToggle({
           toggle();
         }}
         id={`${PREFIX}${id}`}
+        aria-label="Preferred Coding Language"
         aria-pressed={isJs}
         buttonType="icon"
         tooltip={tooltip}
@@ -65,7 +66,7 @@ export function CodePreferenceToggle({
 
         toggle();
       }}
-      primaryText="Preferred Codinging Language"
+      primaryText="Preferred Coding Language"
       secondaryText={`Current language: ${name}`}
     />
   );

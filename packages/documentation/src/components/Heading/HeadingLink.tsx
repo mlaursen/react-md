@@ -33,8 +33,7 @@ const HeadingLink: FC<HeadingLinkProps> = ({ idRef }) => {
       href={`${prefix}#${idRef}`}
       className="heading__link"
       onClick={handleClick}
-      aria-label="Quick Link"
-      aria-describedby={idRef}
+      aria-hidden
     >
       #
     </LinkUnstyled>

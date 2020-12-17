@@ -11,7 +11,7 @@ const MaterialDesignSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (
 );
 
 MaterialDesignSVGIcon.defaultProps = {
-  role: "img",
+  role: "presentation",
   focusable: "false",
 };
 

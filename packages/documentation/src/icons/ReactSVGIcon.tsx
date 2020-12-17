@@ -13,7 +13,7 @@ const ReactSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (
 );
 
 ReactSVGIcon.defaultProps = {
-  role: "img",
+  role: "presentation",
   focusable: "false",
 };
 

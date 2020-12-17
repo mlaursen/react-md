@@ -8,7 +8,7 @@ const GithubSVGIcon: FC<SVGIconProps> = ({ className, ...props }) => (
 );
 
 GithubSVGIcon.defaultProps = {
-  role: "img",
+  role: "presentation",
   focusable: "false",
 };
 
