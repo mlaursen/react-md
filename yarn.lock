@@ -12825,9 +12825,9 @@ react-dom@^17.0.1:
     scheduler "^0.20.1"
 
 react-hook-form@^6.11.3:
-  version "6.11.3"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.11.3.tgz#7de409d4e100452ac0d3255780b3af3d3027d87a"
-  integrity sha512-RWBQ2FdCI6B247hna8LM1oPThvZiGM8wJkTTOLHRHhSBgD5JrTBYOrteLRo7qKXP9CdVYSAK1kjPs1JCqeWb3g==
+  version "6.13.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.13.1.tgz#b9c0aa61f746db8169ed5e1050de21cacb1947d6"
+  integrity sha512-Q0N7MYcbA8SigYufb02h9z97ZKCpIbe62rywOTPsK4Ntvh6fRTGDXSuzWuRhLHhArLoWbGrWYSNSS4tlb+OFXg==
 
 react-is@16.13.1, "react-is@^16.12.0 || ^17.0.0", react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
