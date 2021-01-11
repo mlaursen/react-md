@@ -38,4 +38,8 @@ module.exports = {
     ...packages.map((name) => `<rootDir>/packages/${name}/es`),
     ...packages.map((name) => `<rootDir>/packages/${name}/lib`),
   ],
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+  ],
 };
