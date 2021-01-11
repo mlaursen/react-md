@@ -1,9 +1,9 @@
-# react-md [![license](https://img.shields.io/npm/l/react-md)](https://github.com/mlaursen/react-md/blob/main/LICENSE) [![codecov](https://codecov.io/gh/mlaursen/react-md/branch/main/graph/badge.svg)](https://codecov.io/gh/mlaursen/react-md) [![Actions Status](https://github.com/mlaursen/react-md/workflows/Build,%20Lint,%20and%20Test/badge.svg)](https://github.com/mlaursen/react-md/actions) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://commitizen.github.io/cz-cli/)
+# react-md [![license](https://img.shields.io/npm/l/react-md)](https://github.com/mlaursen/react-md/blob/main/LICENSE) [![codecov](https://codecov.io/gh/mlaursen/react-md/branch/main/graph/badge.svg)](https://codecov.io/gh/mlaursen/react-md) [![Actions Status](https://github.com/mlaursen/react-md/workflows/Build,%20Lint,%20and%20Test/badge.svg)](https://github.com/mlaursen/react-md/actions) [![Meercode CI Score](https://meercode.io/badge/mlaursen/react-md?type=ci-score&branch=main)](https://meercode.io/mlaursen/react-md) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://commitizen.github.io/cz-cli/)
 
 [![npm](https://img.shields.io/npm/v/react-md)](https://www.npmjs.com/package/react-md)
 [![downloads](https://img.shields.io/npm/dw/react-md)](https://www.npmjs.com/package/react-md)
 [![Join the Chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com)
-[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03) [![Meercode CI Score](https://meercode.io/badge/mlaursen/react-md?type=ci-score&branch=main)](https://meercode.io/mlaursen/react-md)
+[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
 
 Create an accessible React application with the
 [material design specifications](https://material.io/design/) and Scss.
