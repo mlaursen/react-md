@@ -1,3 +1,18 @@
+Title: react-md 2.5.3
+
+Date: 01/12/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** fixed floating label behavior for `TextArea` (80c22ba),
+  closes #1043
+- **@react-md/layout:** Fixed `scrollIntoView` behavior for the layout tree
+  (4716c76)
+
+---
+
 Title: react-md 2.5.2
 
 Date: 01/11/2021

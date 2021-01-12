@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.3](https://github.com/mlaursen/react-md/compare/v2.5.2...v2.5.3) (2021-01-12)
+
+### Bug Fixes
+
+- [@react-md/form](./packages/form): fixed floating label behavior for
+  `TextArea`
+  ([80c22ba](https://github.com/mlaursen/react-md/commit/80c22ba841fc5370165d659a4c9b0e01a0f41017)),
+  closes [#1043](https://github.com/mlaursen/react-md/issues/1043)
+- [@react-md/layout](./packages/layout): Fixed scrollIntoView behavior for the
+  layout tree
+  ([4716c76](https://github.com/mlaursen/react-md/commit/4716c76cf98807de77ae7033206ec939230bf806))
+
 ## [2.5.2](https://github.com/mlaursen/react-md/compare/v2.5.1...v2.5.2) (2021-01-12)
 
 ### Bug Fixes

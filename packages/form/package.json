@@ -1,6 +1,6 @@
 {
   "name": "@react-md/form",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "This package is for creating all the different form input types.",
   "main": "./lib/index.js",
   "module": "./es/index.js",

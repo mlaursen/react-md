@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.3](https://github.com/mlaursen/react-md/compare/v2.5.2...v2.5.3) (2021-01-12)
+
+### Bug Fixes
+
+- [@react-md/layout](../layout): Fixed scrollIntoView behavior for the layout
+  tree
+  ([4716c76](https://github.com/mlaursen/react-md/commit/4716c76cf98807de77ae7033206ec939230bf806))
+
 ## [2.5.1](https://github.com/mlaursen/react-md/compare/v2.5.0...v2.5.1) (2020-12-16)
 
 **Note:** Version bump only for package [@react-md/tree](../tree)
