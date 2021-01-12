@@ -1,6 +1,6 @@
 // TODO: Figure out how to test the resize behavior in jsdom, or just write
 // tests with cypress
-import React from "react";
+import React, { ReactElement, useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 import { mocked } from "ts-jest/utils";
 import ResizeObserverPolyfill from "resize-observer-polyfill";
@@ -144,5 +144,54 @@ describe("TextArea", () => {
 
     rerender(<TextArea {...props} resize="horizontal" />);
     expect(realContainer).toHaveClass("rmd-text-field-container--inline");
+  });
+
+  it("should handle the floating label state correctly for controlled values", () => {
+    function Test(): ReactElement {
+      const [value, setValue] = useState("");
+
+      return (
+        <>
+          <button type="button" onClick={() => setValue("100")}>
+            Set
+          </button>
+          <button type="button" onClick={() => setValue("")}>
+            Reset
+          </button>
+          <TextArea
+            id="field-id"
+            label="Label"
+            value={value}
+            onChange={(event) => setValue(event.currentTarget.value)}
+          />
+        </>
+      );
+    }
+
+    const { getByRole, getByText } = render(<Test />);
+
+    const setButton = getByRole("button", { name: "Set" });
+    const resetButton = getByRole("button", { name: "Reset" });
+    const field = getByRole("textbox") as HTMLInputElement;
+    const label = getByText("Label");
+    expect(label.className).not.toContain("rmd-floating-label--active");
+    expect(label.className).not.toContain("rmd-floating-label--inactive");
+
+    fireEvent.click(setButton);
+    expect(label.className).toContain("rmd-floating-label--active");
+    expect(label.className).toContain("rmd-floating-label--inactive");
+
+    fireEvent.focus(field);
+    fireEvent.change(field, { target: { value: "100-" } });
+    expect(label.className).toContain("rmd-floating-label--active");
+    expect(label.className).not.toContain("rmd-floating-label--inactive");
+
+    fireEvent.blur(field);
+    expect(label.className).toContain("rmd-floating-label--active");
+    expect(label.className).toContain("rmd-floating-label--inactive");
+
+    fireEvent.click(resetButton);
+    expect(label.className).not.toContain("rmd-floating-label--active");
+    expect(label.className).not.toContain("rmd-floating-label--inactive");
   });
 });

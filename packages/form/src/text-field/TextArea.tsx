@@ -248,6 +248,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         mask.value = event.currentTarget.value;
         updateHeight();
       },
+      value,
+      defaultValue,
     });
 
     const [ref, refHandler] = useEnsuredRef(forwardedRef);
