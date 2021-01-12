@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextArea should handle updating the height correctly based on the resize prop 1`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-textarea-container rmd-textarea-container--animate rmd-textarea-container--cursor"
+>
+  <label
+    class="rmd-label rmd-floating-label"
+    for="text-area"
+  >
+    Label
+  </label>
+  <div
+    class="rmd-textarea-container__inner rmd-textarea-container__inner--animate"
+    style="height: 0px;"
+  >
+    <textarea
+      class="rmd-textarea rmd-textarea--floating rmd-textarea--rn"
+      data-testid="container"
+      id="text-area"
+      rows="2"
+      style="height: 0px;"
+    />
+    <textarea
+      aria-hidden="true"
+      class="rmd-textarea rmd-textarea--rn rmd-textarea--mask rmd-textarea--floating"
+      id="text-area-mask"
+      readonly=""
+      rows="2"
+      tabindex="-1"
+    />
+  </div>
+</div>
+`;
+
+exports[`TextArea should handle updating the height correctly based on the resize prop 2`] = `
+<div
+  class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label rmd-textarea-container rmd-textarea-container--cursor"
+>
+  <label
+    class="rmd-label rmd-floating-label"
+    for="text-area"
+  >
+    Label
+  </label>
+  <textarea
+    class="rmd-textarea rmd-textarea--scrollable rmd-textarea--floating rmd-textarea--rn"
+    data-testid="container"
+    id="text-area"
+    rows="2"
+  />
+</div>
+`;

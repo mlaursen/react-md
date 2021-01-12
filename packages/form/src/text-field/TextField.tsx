@@ -11,12 +11,11 @@ import { bem } from "@react-md/utils";
 
 import { useFormTheme } from "../FormThemeProvider";
 import { FloatingLabel } from "../label/FloatingLabel";
-import { useFocusState } from "../useFocusState";
 import {
   TextFieldContainer,
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
-import { useValuedState } from "./useValuedState";
+import { useFieldStates } from "../useFieldStates";
 
 /**
  * These are all the "supported" input types for react-md so that they at least
@@ -163,17 +162,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     ref
   ) {
     const { id, value, defaultValue } = props;
-
-    const [focused, onFocus, handleBlur] = useFocusState({
+    const { valued, focused, onBlur, onFocus, onChange } = useFieldStates({
       onBlur: propOnBlur,
       onFocus: propOnFocus,
-    });
-
-    const [valued, onChange, onBlur] = useValuedState<HTMLInputElement>({
+      onChange: propOnChange,
       value,
       defaultValue,
-      onChange: propOnChange,
-      onBlur: handleBlur,
     });
 
     const { theme, underlineDirection } = useFormTheme({

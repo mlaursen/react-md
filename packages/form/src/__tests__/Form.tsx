@@ -1,5 +1,5 @@
-import React from "react";
-import { render } from "@testing-library/react";
+import React, { FormEvent } from "react";
+import { fireEvent, render } from "@testing-library/react";
 
 import { Form } from "../Form";
 
@@ -14,14 +14,29 @@ describe("Form", () => {
     expect(container).toMatchSnapshot();
   });
 
-  // unable to get this working right now with jsdom even with the suggestions
-  // in https://github.com/jsdom/jsdom/issues/1937
-  //
-  // // this still throws an error
-  // Object.defineProperty(HTMLFormElement.prototype, "submit", {
-  //   value() {
-  //     this.dispatchEvent(new Event("submit"))
-  //   }
-  // })
-  it.todo("should prevent default form submission by default");
+  it("should prevent default form submission by default", () => {
+    let isStopped = false;
+    const onSubmit = jest.fn((event: FormEvent<HTMLFormElement>) => {
+      isStopped = event.isDefaultPrevented();
+    });
+    const { container, rerender } = render(
+      <Form onSubmit={onSubmit} disablePreventDefault />
+    );
+
+    const form = container.firstElementChild;
+    if (!form) {
+      throw new Error();
+    }
+    expect(onSubmit).not.toBeCalled();
+
+    fireEvent.submit(form);
+    expect(isStopped).toBe(false);
+    expect(onSubmit).toBeCalledTimes(1);
+
+    rerender(<Form onSubmit={onSubmit} />);
+
+    fireEvent.submit(form);
+    expect(isStopped).toBe(true);
+    expect(onSubmit).toBeCalledTimes(2);
+  });
 });

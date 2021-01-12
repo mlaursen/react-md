@@ -15,12 +15,11 @@ import { bem, useEnsuredRef, useResizeObserver } from "@react-md/utils";
 
 import { useFormTheme } from "../FormThemeProvider";
 import { FloatingLabel } from "../label/FloatingLabel";
-import { useFocusState } from "../useFocusState";
 import {
   TextFieldContainer,
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
-import { useValuedState } from "./useValuedState";
+import { useFieldStates } from "../useFieldStates";
 
 export type TextAreaResize =
   | "none"
@@ -171,11 +170,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       underlineDirection: propUnderlineDirection,
     });
 
-    const [focused, onFocus, onBlur] = useFocusState({
-      onBlur: propOnBlur,
-      onFocus: propOnFocus,
-    });
-
     const [height, setHeight] = useState<number>();
     if (resize !== "auto" && typeof height === "number") {
       setHeight(undefined);
@@ -185,11 +179,13 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     const [scrollable, setScrollable] = useState(false);
     const updateHeight = useCallback(() => {
       const mask = maskRef.current;
+      /* istanbul ignore if */
       if (!mask) {
         return;
       }
 
       let nextHeight = mask.scrollHeight;
+      /* istanbul ignore if */
       if (maxRows > 0) {
         const lineHeight = parseFloat(
           window.getComputedStyle(mask).lineHeight || DEFAULT_LINE_HEIGHT
@@ -217,16 +213,16 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       ref: maskRef,
       disableHeight: true,
     });
-
-    const [valued, onChange] = useValuedState<HTMLTextAreaElement>({
-      value,
-      defaultValue,
+    const { valued, focused, onBlur, onFocus, onChange } = useFieldStates({
+      onBlur: propOnBlur,
+      onFocus: propOnFocus,
       onChange: (event) => {
         const mask = maskRef.current;
         if (propOnChange) {
           propOnChange(event);
         }
 
+        /* istanbul ignore if */
         if (!mask || resize !== "auto") {
           return;
         }

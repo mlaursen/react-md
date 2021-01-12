@@ -43,15 +43,27 @@ describe("Select", () => {
   });
 
   it("should update the label and select class names when focused as well as hiding the placeholder text", () => {
+    const onBlur = jest.fn();
+    const onFocus = jest.fn();
     const { container } = render(
-      <Select {...PROPS} label="Label" placeholder="Choose..." />
+      <Select
+        {...PROPS}
+        label="Label"
+        placeholder="Choose..."
+        onBlur={onBlur}
+        onFocus={onFocus}
+      />
     );
 
     const select = getSelect();
     expect(container).toMatchSnapshot();
 
     fireEvent.focus(select);
+    expect(onFocus).toBeCalledTimes(1);
     expect(container).toMatchSnapshot();
+
+    fireEvent.blur(select);
+    expect(onBlur).toBeCalledTimes(1);
   });
 
   it("should show and focus the listbox when the spacebar is pressed on the select button", () => {

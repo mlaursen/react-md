@@ -119,6 +119,7 @@ describe("TextField", () => {
 
   it("should add the floating inactive state for a number field that is initially rendered with a value", () => {
     const onBlur = jest.fn();
+    const onFocus = jest.fn();
     function Test(): ReactElement {
       const [value, setValue] = useState("0");
 
@@ -129,6 +130,7 @@ describe("TextField", () => {
           type="number"
           value={value}
           onBlur={onBlur}
+          onFocus={onFocus}
           onChange={(event) => setValue(event.currentTarget.value)}
         />
       );
@@ -142,6 +144,8 @@ describe("TextField", () => {
     expect(label.className).toContain("rmd-floating-label--inactive");
 
     fireEvent.focus(field);
+    expect(onFocus).toBeCalledTimes(1);
+
     fireEvent.change(field, { target: { value: "" } });
     fireEvent.blur(field);
     expect(onBlur).toBeCalledTimes(1);
@@ -271,6 +275,55 @@ describe("TextField", () => {
 
     fireEvent.change(field, { target: { value: "" } });
     fireEvent.blur(field);
+    expect(label.className).not.toContain("rmd-floating-label--active");
+    expect(label.className).not.toContain("rmd-floating-label--inactive");
+  });
+
+  it("should correctly update the floating state if the controlled TextField value changes outside of a change event", () => {
+    function Test(): ReactElement {
+      const [value, setValue] = useState("");
+
+      return (
+        <>
+          <button type="button" onClick={() => setValue("100")}>
+            Set
+          </button>
+          <button type="button" onClick={() => setValue("")}>
+            Reset
+          </button>
+          <TextField
+            id="field-id"
+            label="Label"
+            value={value}
+            onChange={(event) => setValue(event.currentTarget.value)}
+          />
+        </>
+      );
+    }
+
+    const { getByRole, getByText } = render(<Test />);
+
+    const setButton = getByRole("button", { name: "Set" });
+    const resetButton = getByRole("button", { name: "Reset" });
+    const field = getByRole("textbox") as HTMLInputElement;
+    const label = getByText("Label");
+    expect(label.className).not.toContain("rmd-floating-label--active");
+    expect(label.className).not.toContain("rmd-floating-label--inactive");
+
+    fireEvent.click(setButton);
+    expect(label.className).toContain("rmd-floating-label--active");
+    expect(label.className).toContain("rmd-floating-label--inactive");
+
+    fireEvent.focus(field);
+    fireEvent.change(field, { target: { value: "100-" } });
+    expect(label.className).toContain("rmd-floating-label--active");
+    expect(label.className).not.toContain("rmd-floating-label--inactive");
+
+    fireEvent.blur(field);
+    expect(label.className).toContain("rmd-floating-label--active");
+    expect(label.className).toContain("rmd-floating-label--inactive");
+
+    fireEvent.click(resetButton);
     expect(label.className).not.toContain("rmd-floating-label--active");
     expect(label.className).not.toContain("rmd-floating-label--inactive");
   });

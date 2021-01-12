@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormThemeProvider should default to the outline theme and left direction 1`] = `
+<div>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--label"
+  >
+    <label
+      class="rmd-label rmd-floating-label"
+      for="field"
+    >
+      Label
+    </label>
+    <input
+      class="rmd-text-field rmd-text-field--floating"
+      id="field"
+      type="text"
+    />
+  </div>
+</div>
+`;
+
+exports[`FormThemeProvider should default to the outline theme and left direction 2`] = `
+<div>
+  <div
+    class="rmd-text-field-container rmd-text-field-container--hoverable rmd-text-field-container--label rmd-text-field-container--underline rmd-text-field-container--underline-labelled rmd-text-field-container--underline-center"
+  >
+    <label
+      class="rmd-label rmd-floating-label"
+      for="field"
+    >
+      Label
+    </label>
+    <input
+      class="rmd-text-field rmd-text-field--floating"
+      id="field"
+      type="text"
+    />
+  </div>
+</div>
+`;

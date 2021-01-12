@@ -15,8 +15,7 @@ import {
   TextFieldContainer,
   TextFieldContainerOptions,
 } from "../text-field/TextFieldContainer";
-import { useValuedState } from "../text-field/useValuedState";
-import { useFocusState } from "../useFocusState";
+import { useFieldStates } from "../useFieldStates";
 
 export interface NativeSelectProps
   extends SelectHTMLAttributes<HTMLSelectElement>,
@@ -139,15 +138,12 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
     const underline = theme === "underline" || theme === "filled";
 
     const icon = useIcon("dropdown", propIcon);
-    const [focused, onFocus, onBlur] = useFocusState({
+    const { valued, focused, onBlur, onFocus, onChange } = useFieldStates({
       onBlur: propOnBlur,
       onFocus: propOnFocus,
-    });
-
-    const [valued, onChange] = useValuedState({
+      onChange: propOnChange,
       value,
       defaultValue,
-      onChange: propOnChange,
     });
 
     return (
