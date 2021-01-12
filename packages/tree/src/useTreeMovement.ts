@@ -92,6 +92,24 @@ interface ReturnValue {
 }
 
 /**
+ * This is a temporary workaround for allowing the navigation tree to scroll
+ * correctly with keyboard movement since it manually sets the `overflow:
+ * visible` which prevents scrolling. I'll need to think of a better way to
+ * find/get the scrollable element (if any). It might also just go into the
+ * `scrollIntoView` util.
+ *
+ * @since 2.5.3
+ * @private
+ */
+const getScrollContainer = (target: HTMLElement): HTMLElement | null => {
+  if (target.classList.contains("rmd-layout-tree")) {
+    return target.parentElement;
+  }
+
+  return target;
+};
+
+/**
  * This hook handles all the complex and "fun" stuff for selecting keyboard
  * accessibility within a tree and enabling keyboard movement, selection, and
  * expansion.
@@ -156,9 +174,17 @@ export function useTreeMovement({
     onChange(data) {
       const { index, target, query } = data;
       const { itemId } = visibleItems[index];
+      // Note: have to do a custom `scrollIntoView` here instead of relying on
+      // the `useActiveDescendantMovement`'s `scrollIntoView` because of how the
+      // tree renders with the ref behavior.
       const item = itemIdRefs[itemId].ref.current;
-      if (item && target && target.scrollHeight > target.offsetHeight) {
-        scrollIntoView(target, item);
+      const container = getScrollContainer(target);
+      if (
+        item &&
+        container &&
+        container.scrollHeight > container.offsetHeight
+      ) {
+        scrollIntoView(container, item);
       }
 
       if (!multiSelect) {
@@ -372,7 +398,7 @@ export function useTreeMovement({
 
       const currentItem = itemIdRefs[visibleItems[index]?.itemId]?.ref.current;
       if (currentItem && isKeyboard) {
-        scrollIntoView(event.currentTarget, currentItem);
+        scrollIntoView(getScrollContainer(event.currentTarget), currentItem);
       }
       setFocusedIndex(index);
     },
