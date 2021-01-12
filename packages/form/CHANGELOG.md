@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/mlaursen/react-md/compare/v2.5.1...v2.5.2) (2021-01-12)
+
+### Bug Fixes
+
+- [@react-md/form](../form): Added missing containerProps to `TextArea`
+  ([695fd2a](https://github.com/mlaursen/react-md/commit/695fd2a589c0b2c8ebc4f17aa71a20346c4591e1))
+- [@react-md/form](../form): Fixed floating state for controlled text fields
+  ([338d768](https://github.com/mlaursen/react-md/commit/338d76823eea919b3cca3689119306a73002f4f2)),
+  closes [#1043](https://github.com/mlaursen/react-md/issues/1043)
+
 ## [2.5.1](https://github.com/mlaursen/react-md/compare/v2.5.0...v2.5.1) (2020-12-16)
 
 **Note:** Version bump only for package [@react-md/form](../form)

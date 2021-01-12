@@ -1,3 +1,18 @@
+Title: react-md 2.5.2
+
+Date: 01/11/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **docs:** fixed some a11y issues in documentation site (6fee23c)
+- **@react-md/form:** Added missing `containerProps` to `TextArea` (695fd2a)
+- **@react-md/form:** Fixed floating state for controlled text fields (338d768),
+  closes #1043
+
+---
+
 Title: react-md 2.5.1
 
 Date: 12/16/2020
