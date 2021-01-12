@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
-import { Control, Controller, ValidationRules } from "react-hook-form";
+import { Control, Controller, RegisterOptions } from "react-hook-form";
 import {
   TextFieldWithMessage,
   TextFieldWithMessageProps,
@@ -19,7 +19,7 @@ export interface ExampleFormData {
 export interface ControllerTextFieldProps
   extends Omit<TextFieldWithMessageProps, "onFocus" | "onBlur"> {
   control: Control<ExampleFormData>;
-  rules?: ValidationRules;
+  rules?: RegisterOptions;
 
   name: keyof ExampleFormData;
   error: boolean;
