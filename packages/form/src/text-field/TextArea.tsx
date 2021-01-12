@@ -1,6 +1,7 @@
 import React, {
   CSSProperties,
   forwardRef,
+  HTMLAttributes,
   ReactElement,
   ReactNode,
   Ref,
@@ -112,6 +113,15 @@ export interface TextAreaProps
    * default ref is forwarded on to the `input` element.
    */
   containerRef?: Ref<HTMLDivElement>;
+
+  /**
+   * Any additional html attributes that should be applied to the main container
+   * div. This is probably only going to be used internally so that additional
+   * accessibility can be added to text fields for more complex widgets.
+   *
+   * @since 2.5.2
+   */
+  containerProps?: Omit<HTMLAttributes<HTMLDivElement>, "style" | "className">;
 }
 
 const block = bem("rmd-textarea");
@@ -130,6 +140,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       areaStyle,
       areaClassName,
       containerRef,
+      containerProps,
       label,
       labelStyle,
       labelClassName,
@@ -317,6 +328,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     return (
       <TextFieldContainer
+        {...containerProps}
         style={{
           ...style,
           height: height
