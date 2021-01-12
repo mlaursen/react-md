@@ -5,6 +5,7 @@ import log from "loglevel";
 import { join } from "path";
 
 import { documentationRoot, packagesRoot, projectRoot, src } from "./constants";
+import { shared } from "./shared";
 import { themes } from "./themes";
 import { umd as createUmd } from "./umd";
 import { format, git, glob, list, uncommittedFiles } from "./utils";
@@ -273,6 +274,7 @@ ${list(css)}
     updateLibsize(ROOT_README_PATH, message);
     updateLibsize(ABOUT_README_PATH, message);
     updateOtherPros(umds, css);
+    await shared();
 
     if (uncommittedFiles()) {
       git("add -u");
