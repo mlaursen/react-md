@@ -37,6 +37,7 @@ const DEFAULT_ROUTER: NextRouter = {
     emit: () => {},
   },
   isFallback: false,
+  isReady: true,
 };
 
 const AllProviders: FC<CustomOptions> = ({
