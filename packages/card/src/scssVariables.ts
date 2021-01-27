@@ -20,6 +20,7 @@ export default {
   "rmd-card-border-color":
     "var(--rmd-divider-background-color, rgba(0, 0, 0, 0.12))",
   "rmd-card-border-width": "1px",
+  "rmd-card-dark-elevation-bordered-background-color": "#242424",
   "rmd-card-theme-values": {
     "background-color": "var(--rmd-theme-surface, #fff)",
     color: "var(--rmd-theme-on-surface, #000)",

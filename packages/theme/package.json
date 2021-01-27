@@ -1,6 +1,6 @@
 {
   "name": "@react-md/theme",
-  "version": "2.5.0",
+  "version": "2.5.4",
   "description": "The base package for including a theme for react-md. This is required by most other packages.",
   "main": "./dist/scssVariables.js",
   "module": "./dist/scssVariables.js",

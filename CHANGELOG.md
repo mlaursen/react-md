@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.4](https://github.com/mlaursen/react-md/compare/v2.5.3...v2.5.4) (2021-01-27)
+
+### Bug Fixes
+
+- [@react-md/card](./packages/card): fixed the bordered background color when
+  the dark elevation flag is enabled
+  ([a9dd552](https://github.com/mlaursen/react-md/commit/a9dd5521d7eb58442bfc6110686d8f039b525e72)),
+  closes [#1053](https://github.com/mlaursen/react-md/issues/1053)
+
 ## [2.5.3](https://github.com/mlaursen/react-md/compare/v2.5.2...v2.5.3) (2021-01-12)
 
 ### Bug Fixes

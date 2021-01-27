@@ -1,3 +1,16 @@
+Title: react-md 2.5.4
+
+Date: 01/26/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/card:** fixed the bordered background color when the dark
+  elevation flag is enabled (a9dd552), closes #1053
+
+---
+
 Title: react-md 2.5.3
 
 Date: 01/12/2021

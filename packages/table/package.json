@@ -1,6 +1,6 @@
 {
   "name": "@react-md/table",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "description": "Create responsive data tables and accessible fixed tables",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -37,11 +37,11 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/divider": "^2.5.0",
-    "@react-md/form": "^2.5.3",
-    "@react-md/theme": "^2.5.0",
-    "@react-md/transition": "^2.5.0",
-    "@react-md/typography": "^2.5.0",
+    "@react-md/divider": "^2.5.4",
+    "@react-md/form": "^2.5.4",
+    "@react-md/theme": "^2.5.4",
+    "@react-md/transition": "^2.5.4",
+    "@react-md/typography": "^2.5.4",
     "@react-md/utils": "^2.5.0",
     "classnames": "^2.2.6"
   },
