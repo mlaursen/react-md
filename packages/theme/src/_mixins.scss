@@ -60,6 +60,34 @@
   );
 }
 
+/// Conditionally adds styles only when the `$rmd-theme-dark-elevation`
+/// variable is set to `true`. This will also work with the
+/// `$rmd-theme-dark-class` variable to either set the styles with a media
+/// query or only when the dark class has been enabled on a parent element.
+///
+/// @since 2.5.4
+/// @param {Boolean} css-modules [false] - Boolean if this is being used within
+/// CSS Modules which will update the selector to work correctly by wrapping
+/// different parts with `:global` and `:local`.
+@mixin rmd-theme-dark-elevation-styles($css-modules: false) {
+  @if $rmd-theme-dark-elevation {
+    @if $rmd-theme-dark-class == 'prefers-color-scheme' {
+      @media (prefers-color-scheme: dark) {
+        & {
+          @content;
+        }
+      }
+    } @else {
+      @include rmd-utils-optional-css-modules(
+        $rmd-theme-dark-class,
+        $css-modules
+      ) {
+        @content;
+      }
+    }
+  }
+}
+
 /// This mixin should normally be used with the `rmd-elevation` mixin to change
 /// the background color based on the current elevation in dark themes.
 ///
@@ -70,29 +98,12 @@
 /// CSS Modules which will update the selector to work correctly by wrapping
 /// different parts with `:global` and `:local`.
 @mixin rmd-theme-dark-elevation($z-value, $css-modules: false) {
-  @if $rmd-theme-dark-elevation {
-    @if $rmd-theme-dark-class == 'prefers-color-scheme' {
-      @media (prefers-color-scheme: dark) {
-        & {
-          @include rmd-theme-update-var(
-            background,
-            map-get($rmd-theme-dark-elevation-colors, $z-value)
-          );
-          @include rmd-theme(background-color, background);
-        }
-      }
-    } @else {
-      @include rmd-utils-optional-css-modules(
-        $rmd-theme-dark-class,
-        $css-modules
-      ) {
-        @include rmd-theme-update-var(
-          background,
-          map-get($rmd-theme-dark-elevation-colors, $z-value)
-        );
-        @include rmd-theme(background-color, background);
-      }
-    }
+  @include rmd-theme-dark-elevation-styles($css-modules) {
+    @include rmd-theme-update-var(
+      background,
+      map-get($rmd-theme-dark-elevation-colors, $z-value)
+    );
+    @include rmd-theme(background-color, background);
   }
 }
 

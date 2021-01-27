@@ -90,6 +90,19 @@ $rmd-card-border-color: rmd-divider-theme-var(background-color) !default;
 /// @type Number
 $rmd-card-border-width: $rmd-divider-size !default;
 
+/// The background color to use for bordered cards when the
+/// `$rmd-theme-dark-elevation` variable is set to `true`. This basically
+/// overrides the `surface` color to be this value.
+///
+/// @see $rmd-theme-dark-elevation
+/// @require $rmd-theme-dark-elevation-colors
+/// @type Color
+/// @since 2.5.4
+$rmd-card-dark-elevation-bordered-background-color: map-get(
+  $rmd-theme-dark-elevation-colors,
+  $rmd-card-elevation
+);
+
 /// A Map of all the "themeable" parts of the card package. Every key in this
 /// map will be used to create a css variable to dynamically update the values
 /// of the icon as needed.
