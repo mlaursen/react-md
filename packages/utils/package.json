@@ -40,6 +40,7 @@
     "access": "public"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
