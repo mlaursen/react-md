@@ -1,3 +1,15 @@
+Title: react-md 2.5.5
+
+Date: 01/29/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/utils:** added missing `classnames` dependency (8c34790)
+
+---
+
 Title: react-md 2.5.4
 
 Date: 01/26/2021

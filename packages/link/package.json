@@ -1,6 +1,6 @@
 {
   "name": "@react-md/link",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "description": "The base package for including a theme for react-md. This is required by most other packages.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -37,10 +37,10 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/states": "^2.5.4",
-    "@react-md/theme": "^2.5.4",
-    "@react-md/transition": "^2.5.4",
-    "@react-md/typography": "^2.5.4",
+    "@react-md/states": "^2.5.5",
+    "@react-md/theme": "^2.5.5",
+    "@react-md/transition": "^2.5.5",
+    "@react-md/typography": "^2.5.5",
     "classnames": "^2.2.6"
   },
   "devDependencies": {

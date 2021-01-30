@@ -1,6 +1,6 @@
 {
   "name": "@react-md/overlay",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "description": "A very simple package for dynamically creating overlays.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -36,9 +36,9 @@
   "license": "MIT",
   "dependencies": {
     "@react-md/portal": "^2.5.0",
-    "@react-md/theme": "^2.5.4",
-    "@react-md/transition": "^2.5.4",
-    "@react-md/utils": "^2.5.0",
+    "@react-md/theme": "^2.5.5",
+    "@react-md/transition": "^2.5.5",
+    "@react-md/utils": "^2.5.5",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.4.1"
   },
