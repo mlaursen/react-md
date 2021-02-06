@@ -24,7 +24,7 @@ import {
   DEFAULT_TABLET_MAX_WIDTH,
   DEFAULT_TABLET_MIN_WIDTH,
   Dir,
-  InteractionModeListener,
+  UserInteractionModeListener,
   WritingDirection,
 } from "@react-md/utils";
 
@@ -115,7 +115,7 @@ export function Configuration({
         desktopLargeMinWidth={desktopLargeMinWidth}
       >
         <NestedDialogContextProvider>
-          <InteractionModeListener>
+          <UserInteractionModeListener>
             <StatesConfig
               disableRipple={disableRipple}
               disableProgrammaticRipple={disableProgrammaticRipple}
@@ -134,7 +134,7 @@ export function Configuration({
                 </IconProvider>
               </TooltipHoverModeConfig>
             </StatesConfig>
-          </InteractionModeListener>
+          </UserInteractionModeListener>
         </NestedDialogContextProvider>
       </AppSizeListener>
     </Dir>
