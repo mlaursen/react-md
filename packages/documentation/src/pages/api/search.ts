@@ -7,15 +7,15 @@ const indexer = new Fuse(metadata, {
   keys: [
     {
       name: "title",
-      weight: 0.6,
+      weight: 0.9,
     },
     {
       name: "summary",
-      weight: 0.15,
+      weight: 0.0005,
     },
     {
       name: "type",
-      weight: 0.25,
+      weight: 0.0095,
     },
   ],
 });
@@ -26,7 +26,7 @@ export default async (
 ): Promise<void> => {
   const search = qsToString(req.query.q);
   const from = qsToInt(req.query.from, 0);
-  const size = qsToInt(req.query.size, 5);
+  const size = qsToInt(req.query.size, 8);
   if (!search) {
     res.status(403).end();
     return;
