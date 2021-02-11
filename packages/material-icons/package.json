@@ -51,7 +51,7 @@
     "@types/adm-zip": "^0.4.33",
     "@types/download": "^6.2.4",
     "adm-zip": "^0.5.1",
-    "commander": "^6.0.0",
+    "commander": "^7.0.0",
     "download": "^8.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"

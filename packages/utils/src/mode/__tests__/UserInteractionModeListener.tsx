@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 import {
   useIsUserInteractionMode,
