@@ -4,9 +4,7 @@
   ],
   "command": {
     "version": {
-      "message": "chore(release): publish %s"
-    },
-    "publish": {
+      "message": "chore(release): publish %s",
       "conventionalCommits": true
     }
   },
@@ -14,6 +12,9 @@
     "**/__tests__/**",
     "**/*.md"
   ],
+  "changelogPreset": {
+    "name": "./packages/dev-utils/changelog.config.js"
+  },
   "useWorkspaces": true,
   "npmClient": "yarn",
   "version": "2.5.5"

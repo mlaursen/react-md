@@ -1,11 +1,12 @@
 import log from "loglevel";
 import prompts from "prompts";
 
-import { changelogs } from "./changelogs";
 import { clean } from "./clean";
 import { libsize } from "./libsize";
+import { updateChangelogData } from "./changelogData";
 import { getLernaVersion, git, replaceTag, run } from "./utils";
 import { variables } from "./variables";
+import { initBlog } from "./utils/initBlog";
 
 export type ReleaseType =
   | "major"
@@ -70,8 +71,9 @@ export async function release(
   // first, update the version since I'll be ammending this commit and tag with
   // libsize changes, prettier changelogs, and adding the themes specifically
   // for the tag only
+  await updateChangelogData();
   run(`npx lerna version ${type} --no-push${yes}`);
-  await changelogs();
+  await initBlog();
 
   log.info("Cleaning all the old dists and `.tsbuildinfo` files...");
   await clean();

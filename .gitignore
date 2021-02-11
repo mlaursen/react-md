@@ -11,6 +11,7 @@ packages/*/*.tsbuildinfo
 /packages/*/dist
 /packages/*/types
 /packages/dev-utils/bin
+/packages/dev-utils/changelogData.js
 /packages/material-icons/bin
 /packages/material-icons/temp
 !/packages/documentation/types

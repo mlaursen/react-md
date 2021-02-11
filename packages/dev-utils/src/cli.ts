@@ -3,7 +3,6 @@
 import commander from "commander";
 import loglevel from "loglevel";
 
-import { changelogs } from "./changelogs";
 import { clean } from "./clean";
 import { configs } from "./configs";
 import { CLEAN, DEBUG, SILENT } from "./constants";
@@ -67,10 +66,6 @@ createCommand("sassdoc")
 createCommand("variables")
   .description("Creates the `src/scssVariables` file in all scoped packages.")
   .action(() => variables());
-
-createCommand("changelogs")
-  .description("Updates the changelogs to be a bit prettier.")
-  .action(() => changelogs());
 
 createCommand("configs")
   .description(

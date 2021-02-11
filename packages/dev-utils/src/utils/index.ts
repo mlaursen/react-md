@@ -1,6 +1,7 @@
 export * from "./clean";
 export * from "./copy";
 export * from "./format";
+export * from "./getAllReactMDExports";
 export * from "./git";
 export * from "./glob";
 export * from "./list";

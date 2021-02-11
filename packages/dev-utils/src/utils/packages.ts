@@ -17,7 +17,9 @@ let typescriptPackages: string[];
 const VERSIONS = new Map<string, string>();
 const DEPENDENCIES = new Map<string, readonly string[]>();
 
-async function getPackageJson(packageName: string): Promise<PackageJson> {
+export async function getPackageJson(
+  packageName: string
+): Promise<PackageJson> {
   let prefix = join(packagesRoot, packageName);
   if (packageName === "root") {
     prefix = projectRoot;
