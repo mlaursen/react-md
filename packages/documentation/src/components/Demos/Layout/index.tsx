@@ -6,18 +6,31 @@ import README from "./README.md";
 import ConfigurableLayout from "./ConfigurableLayout";
 import configurableLayout from "./ConfigurableLayout.md";
 
+import ControllingTheLayout from "./ControllingTheLayout";
+import controllingTheLayout from "./ControllingTheLayout.md";
+
+const modalProps = {
+  fullPage: true,
+  fullPageFAB: true,
+  fullPageProps: {
+    defaultFocus: "button",
+    disableAppBar: true,
+    disableContent: true,
+  },
+};
+
 const demos = [
   {
+    ...modalProps,
     name: "Configurable Layout",
     description: configurableLayout,
     children: <ConfigurableLayout />,
-    fullPage: true,
-    fullPageFAB: true,
-    fullPageProps: {
-      defaultFocus: "button",
-      disableAppBar: true,
-      disableContent: true,
-    },
+  },
+  {
+    ...modalProps,
+    name: "Controlling the Layout",
+    description: controllingTheLayout,
+    children: <ControllingTheLayout />,
   },
 ];
 

@@ -1,5 +1,10 @@
 import React, { ReactElement } from "react";
-import { render as baseRender, RenderOptions } from "@testing-library/react";
+import {
+  fireEvent,
+  render as baseRender,
+  RenderOptions,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
 import { AppBarAction } from "@react-md/app-bar";
 import {
@@ -12,6 +17,9 @@ import {
 } from "@react-md/utils";
 
 import { Layout, LayoutProps } from "../Layout";
+import { useLayoutConfig } from "../LayoutProvider";
+import { useLayoutNavigation } from "../useLayoutNavigation";
+import { LayoutNavigationTree } from "../types";
 
 const render = (ui: ReactElement, options?: RenderOptions) =>
   baseRender(ui, {
@@ -211,6 +219,143 @@ describe("Layout", () => {
       expect(queryByText("Updated Title")).toBeInTheDocument();
       expect(queryByLabelText("Light Theme")).toBeInTheDocument();
       expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe("layout visibility", () => {
+    const navItems: LayoutNavigationTree = {
+      "/": {
+        itemId: "/",
+        parentId: null,
+        to: "/",
+        children: "Home",
+      },
+    };
+
+    function Test(props: LayoutProps) {
+      return (
+        <Layout
+          desktopLayout="toggleable"
+          {...props}
+          treeProps={useLayoutNavigation(navItems, "/")}
+        />
+      );
+    }
+
+    function Actions(): ReactElement {
+      const { showNav, hideNav } = useLayoutConfig();
+
+      return (
+        <>
+          <button type="button" onClick={showNav}>
+            Show
+          </button>
+          <button type="button" onClick={hideNav}>
+            Hide
+          </button>
+        </>
+      );
+    }
+
+    beforeAll(() => {
+      mockDesktop();
+    });
+
+    it("should default the toggleable layout visibility correctly", () => {
+      let { getByRole, unmount } = render(<Test />);
+      expect(() => getByRole("navigation")).toThrow();
+
+      unmount();
+      ({ getByRole, unmount } = render(<Test desktopLayout="full-height" />));
+      expect(() => getByRole("navigation")).not.toThrow();
+
+      unmount();
+      ({ getByRole, unmount } = render(<Test defaultToggleableVisible />));
+      expect(() => getByRole("navigation")).not.toThrow();
+
+      unmount();
+      ({ getByRole, unmount } = render(
+        <Test defaultToggleableVisible="toggleable" />
+      ));
+      expect(() => getByRole("navigation")).not.toThrow();
+
+      unmount();
+      ({ getByRole, unmount } = render(
+        <Test defaultToggleableVisible="toggleable-mini" />
+      ));
+      expect(() => getByRole("navigation")).toThrow();
+
+      unmount();
+      ({ getByRole, unmount } = render(
+        <Test
+          desktopLayout="toggleable-mini"
+          defaultToggleableVisible="toggleable-mini"
+        />
+      ));
+      expect(() => getByRole("navigation")).not.toThrow();
+
+      unmount();
+      ({ getByRole, unmount } = render(
+        <Test
+          desktopLayout="toggleable-mini"
+          defaultToggleableVisible="toggleable"
+        />
+      ));
+      expect(() => getByRole("navigation")).toThrow();
+    });
+
+    it("should allow the visibility to be controled with the showNav and hideNav functions", async () => {
+      const { getByRole } = render(
+        <Test>
+          <Actions />
+        </Test>
+      );
+      expect(() => getByRole("navigation")).toThrow();
+
+      const show = getByRole("button", { name: "Show" });
+      const hide = getByRole("button", { name: "Hide" });
+
+      fireEvent.click(show);
+      expect(() => getByRole("navigation")).not.toThrow();
+
+      fireEvent.click(hide);
+      await waitForElementToBeRemoved(getByRole("navigation"));
+      expect(() => getByRole("navigation")).toThrow();
+    });
+
+    it("should not hide the visibility for persistent layouts", () => {
+      let { getByRole, unmount } = render(
+        <Test desktopLayout="clipped">
+          <Actions />
+        </Test>
+      );
+
+      expect(() => getByRole("navigation")).not.toThrow();
+
+      fireEvent.click(getByRole("button", { name: "Hide" }));
+      expect(() => getByRole("navigation")).not.toThrow();
+
+      unmount();
+      ({ getByRole, unmount } = render(
+        <Test desktopLayout="floating">
+          <Actions />
+        </Test>
+      ));
+      expect(() => getByRole("navigation")).not.toThrow();
+
+      fireEvent.click(getByRole("button", { name: "Hide" }));
+      expect(() => getByRole("navigation")).not.toThrow();
+
+      unmount();
+      ({ getByRole, unmount } = render(
+        <Test desktopLayout="full-height">
+          <Actions />
+        </Test>
+      ));
+      expect(() => getByRole("navigation")).not.toThrow();
+
+      fireEvent.click(getByRole("button", { name: "Hide" }));
+      expect(() => getByRole("navigation")).not.toThrow();
     });
   });
 });

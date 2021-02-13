@@ -17,12 +17,13 @@ import {
   DEFAULT_TABLET_LAYOUT,
 } from "./constants";
 import { LayoutConfiguration, SupportedWideLayout } from "./types";
-import { getLayoutType, isPersistentLayout } from "./utils";
+import { getLayoutType, isPersistentLayout, isToggleableLayout } from "./utils";
 
 /**
  * @private
  */
 const notInitialized = (name: string) => (): void => {
+  /* istanbul ignore next */
   if (process.env.NODE_ENV !== "production") {
     /* eslint-disable no-console */
     console.warn(
@@ -92,6 +93,19 @@ export interface LayoutProviderProps extends LayoutConfiguration {
 }
 
 /**
+ * @since 2.6.0
+ * @private
+ */
+function isToggleableVisible(
+  behavior: boolean | "toggleable" | "toggleable-mini",
+  layout: SupportedWideLayout
+): boolean {
+  return typeof behavior === "string"
+    ? behavior === layout
+    : behavior && isToggleableLayout(layout);
+}
+
+/**
  * Determines the current layout based on the `LayoutConfiguration` and hooks
  * into the `AppSizeListener` to update on resize. This also initializes the
  * `LayLayoutContext` so that a custom layout implementation can be used along
@@ -104,6 +118,7 @@ export function LayoutProvider({
   landscapeTabletLayout = DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   desktopLayout = DEFAULT_DESKTOP_LAYOUT,
   largeDesktopLayout,
+  defaultToggleableVisible = false,
   children,
 }: LayoutProviderProps): ReactElement {
   const appSize = useAppSize();
@@ -119,12 +134,17 @@ export function LayoutProvider({
   const isPersistent = isPersistentLayout(layout);
 
   const { isDesktop } = appSize;
-  const [visible, setVisible] = useState(isPersistent && isDesktop);
+  const [visible, setVisible] = useState(
+    (isPersistent && isDesktop) ||
+      isToggleableVisible(defaultToggleableVisible, layout)
+  );
   const prevLayout = useRef(layout);
   if (prevLayout.current !== layout) {
     prevLayout.current = layout;
-    if (visible !== isPersistent) {
-      setVisible(isPersistent);
+    const nextVisible =
+      isPersistent || isToggleableVisible(defaultToggleableVisible, layout);
+    if (visible !== nextVisible) {
+      setVisible(nextVisible);
     }
   }
 

@@ -95,6 +95,23 @@ export interface LayoutConfiguration {
    * inherit the `desktopLayout` if it is omitted.
    */
   largeDesktopLayout?: SupportedWideLayout;
+
+  /**
+   * This prop is used to be able to update the toggleable layouts to start
+   * visible/expanded instead of requiring the toggle button to be pressed.
+   *
+   * If this is:
+   * - `"toggleable"` - the `"toggleable-mini"` variant will still require a
+   *   button click to be visible
+   * - `"toggleable-mini"` - the `"toggleable"` variant will still require a
+   *   button click to be visible
+   * - `true` - both toggleable variants will start visible
+   * - `false | undefined` - both toggleable variants will require a button
+   *   click to be visible
+   *
+   * @since 2.6.0
+   */
+  defaultToggleableVisible?: boolean | "toggleable" | "toggleable-mini";
 }
 
 /**

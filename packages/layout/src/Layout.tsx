@@ -267,6 +267,7 @@ export function Layout({
   landscapeTabletLayout = DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   desktopLayout = DEFAULT_DESKTOP_LAYOUT,
   largeDesktopLayout,
+  defaultToggleableVisible = false,
   customTitle,
   title,
   titleProps,
@@ -323,6 +324,7 @@ export function Layout({
       landscapeTabletLayout={landscapeTabletLayout}
       desktopLayout={desktopLayout}
       largeDesktopLayout={largeDesktopLayout}
+      defaultToggleableVisible={defaultToggleableVisible}
     >
       <SkipToMainContent {...skipProps} mainId={mainId} />
       {navAfterAppBar && appBar}
