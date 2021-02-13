@@ -31,12 +31,14 @@ module.exports = {
     '^pages/(.*)$': `${docsSrc}/pages/$1`,
     '^utils/(.*)$': `${docsSrc}/utils/$1`,
   },
-  coveragePathIgnorePatterns: [
-    '/node_modules/',
-    '<rootDir>/packages/documentation/src',
-    '<rootDir>/testSetup',
-    ...packages.map((name) => `<rootDir>/packages/${name}/es`),
-    ...packages.map((name) => `<rootDir>/packages/${name}/lib`),
+  collectCoverageFrom: [
+    '<rootDir>/packages/*/src/**/*.{ts,tsx}',
+    // internal usage and don't matter for the library coverage reports
+    '!<rootDir>/packages/{dev-utils,documentation,material-icons,react-md}/src/**/*',
+    // these are generated files
+    '!<rootDir>/packages/*/src/scssVariables.ts',
+    // index.ts files are always `export * from "./fileOrFolder"`
+    '!<rootDir>/packages/**/index.ts',
   ],
   watchPlugins: [
     'jest-watch-typeahead/filename',
