@@ -3,7 +3,7 @@ import prompts from "prompts";
 
 import { clean } from "./clean";
 import { libsize } from "./libsize";
-import { updateChangelogData } from "./changelogData";
+import { changelogData } from "./changelogData";
 import { getLernaVersion, git, replaceTag, run } from "./utils";
 import { variables } from "./variables";
 import { initBlog } from "./utils/initBlog";
@@ -61,28 +61,38 @@ async function verify(): Promise<void> {
   log.info();
 }
 
-export async function release(
-  type: ReleaseType = "",
-  blog = !type.startsWith("pre"),
-  autoYes = false
-): Promise<void> {
+interface Options {
+  clean: boolean;
+  type: ReleaseType;
+  blog: boolean;
+  autoYes: boolean;
+}
+
+export async function release({
+  autoYes,
+  blog,
+  clean: enableClean,
+  type,
+}: Options): Promise<void> {
   const yes = autoYes ? " --yes" : "";
 
-  // first, update the version since I'll be ammending this commit and tag with
-  // libsize changes, prettier changelogs, and adding the themes specifically
-  // for the tag only
-  await updateChangelogData();
-  run(`npx lerna version ${type} --no-push${yes}`);
-  await initBlog();
-
-  log.info("Cleaning all the old dists and `.tsbuildinfo` files...");
-  await clean();
+  if (enableClean) {
+    log.info("Cleaning all the old dists and `.tsbuildinfo` files...");
+    await clean();
+  }
 
   log.info("Updating scssVariables files...");
   // ensure the latest `dist/scssVariables` have been created
   await variables();
 
+  // have to run the build before updating the changelog data since it pulls
+  // the variables from the react-md package
   run("yarn build");
+
+  await changelogData();
+  run(`npx lerna version ${type} --no-push${yes}`);
+  await initBlog();
+
   await libsize({
     umd: true,
     themes: true,

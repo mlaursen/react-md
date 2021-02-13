@@ -100,9 +100,18 @@ createCommand("release")
     "--yes",
     "Passes `--yes` to the `lerna version` and `lerna publish` commands"
   )
+  .option(
+    "--no-clean",
+    "Disables cleaning when the build waas cancelled beforehand"
+  )
   .description("Goes through the steps of releasing a new version of react-md.")
-  .action(({ yes = false, blog = undefined, type = "" }) =>
-    release(type, blog, yes)
+  .action(({ yes = false, blog = undefined, type = "", clean = true }) =>
+    release({
+      autoYes: yes,
+      blog,
+      clean,
+      type,
+    })
   );
 
 createCommand("sandbox", true)

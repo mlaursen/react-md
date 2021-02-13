@@ -1,5 +1,6 @@
 import { writeFile } from "fs-extra";
 import { join } from "path";
+
 import { packagesRoot } from "./constants";
 import {
   format,
@@ -9,7 +10,7 @@ import {
   loadDependenciesOf,
 } from "./utils";
 
-export async function updateChangelogData(): Promise<void> {
+export async function changelogData(): Promise<void> {
   const outputPath = join(packagesRoot, "dev-utils", "changelogData.js");
   const rmdExports = getAllReactMDExports();
   await loadDependenciesOf("dev-utils", false);
