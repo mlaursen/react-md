@@ -106,11 +106,11 @@
 
   .rmd-layout-nav-toggle {
     &--offset {
+      $title-margin: $rmd-app-bar-title-nav-margin -
+        ($rmd-app-bar-lr-margin * 2);
       $nav-size: rmd-layout-theme-var(nav-width);
       $icon-size: rmd-button-theme-var(icon-size);
-      $distance: calc(
-        #{$rmd-app-bar-title-nav-margin} + #{$nav-size} - #{$icon-size}
-      );
+      $distance: calc(#{$title-margin} + #{$nav-size} - #{$icon-size});
 
       @include rmd-utils-rtl-auto(
         margin-right,
