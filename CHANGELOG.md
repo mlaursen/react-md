@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/mlaursen/react-md/compare/v2.5.5...v2.6.0) (2021-02-13)
+
+
+### Bug Fixes
+
+* **@react-md/layout:** floating layout has correct color in dark theme ([7fa6b0c](https://github.com/mlaursen/react-md/commit/7fa6b0c415b87aade6296b7c5083abe1e75abf24))
+* **@react-md/layout:** toggleable layout title now aligns with persistent layouts ([8b8efb2](https://github.com/mlaursen/react-md/commit/8b8efb2ac6176975e4f3898956916350526487fa))
+
+
+### Features
+
+* **@react-md/chip:** added support for noninteractable chips ([9309985](https://github.com/mlaursen/react-md/commit/9309985a2efaafd731bbfb3e157d8b1443b297de)), closes [#1046](https://github.com/mlaursen/react-md/issues/1046)
+* **@react-md/layout:** added prop to control toggleable layouts default visibility ([6e4a06d](https://github.com/mlaursen/react-md/commit/6e4a06db83d079bf67f75a1625e4375effd159b0)), closes [#1066](https://github.com/mlaursen/react-md/issues/1066)
+
+
+### Documentation
+
+* **react-md.dev:** slightly better search results ([0e3d3f7](https://github.com/mlaursen/react-md/commit/0e3d3f79bf71450f49cc67df88a56af0dde72359))
+
+
+### Other Internal Changes
+
+* **@react-md/divider:** updated test to use the correct act ([a621625](https://github.com/mlaursen/react-md/commit/a621625d7f6229fb91fea91b5c30e82e27a3f45c))
+* **@react-md/link:** added new tests for `SkipToMainContent` ([3f6e866](https://github.com/mlaursen/react-md/commit/3f6e866bb0b97ec3a4be08dc9744592e9c8443cb))
+* **@react-md/utils:** Added better dev display names for UserInteractionMode context parts ([01f6e3d](https://github.com/mlaursen/react-md/commit/01f6e3dbc91086b2c76099e8ba75f595480c8302))
+* **@react-md/utils:** refactored UserInteractionMode hooks and components ([af72791](https://github.com/mlaursen/react-md/commit/af7279154bf8d5b4d4c8ee83e8e0815354e5eee0))
+* **changelog:** fixed some more changelog/release behavior ([e11c0ea](https://github.com/mlaursen/react-md/commit/e11c0ea16e59167eb13746ad0160a8d00fb90ef1))
+* **coverage:** fixed test coverage to include files without tests ([ba72630](https://github.com/mlaursen/react-md/commit/ba726304c4a9a55d5735b41faee8ad14449c07cb))
+
+
+
+
+
+
 ## [2.5.5](https://github.com/mlaursen/react-md/compare/v2.5.4...v2.5.5) (2021-01-30)
 
 ### Bug Fixes

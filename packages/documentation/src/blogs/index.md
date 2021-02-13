@@ -1,3 +1,40 @@
+Title: react-md 2.6.0
+
+Date: 02/12/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/layout:** floating layout has correct color in dark theme
+  (7fa6b0c)
+- **@react-md/layout:** toggleable layout title now aligns with persistent
+  layouts (8b8efb2)
+
+##### Features<!-- no-margin -->
+
+- **@react-md/chip:** added support for noninteractable chips (9309985), closes
+  #1046
+- **@react-md/layout:** added prop to control toggleable layouts default
+  visibility (6e4a06d), closes #1066
+
+##### Documentation<!-- no-margin -->
+
+- **react-md.dev:** slightly better search results (0e3d3f7)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- **@react-md/divider:** updated test to use the correct act (a621625)
+- **@react-md/link:** added new tests for `SkipToMainContent` (3f6e866)
+- **@react-md/utils:** Added better dev display names for UserInteractionMode
+  context parts (01f6e3d)
+- **@react-md/utils:** refactored UserInteractionMode hooks and components
+  (af72791)
+- **changelog:** fixed some more changelog/release behavior (e11c0ea)
+- **coverage:** fixed test coverage to include files without tests (ba72630)
+
+---
+
 Title: react-md 2.5.5
 
 Date: 01/29/2021

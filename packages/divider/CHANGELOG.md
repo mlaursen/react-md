@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/mlaursen/react-md/compare/v2.5.5...v2.6.0) (2021-02-13)
+
+
+### Other Internal Changes
+
+* **@react-md/divider:** updated test to use the correct act ([a621625](https://github.com/mlaursen/react-md/commit/a621625d7f6229fb91fea91b5c30e82e27a3f45c))
+
+
+
+
+
+
 ## [2.5.5](https://github.com/mlaursen/react-md/compare/v2.5.4...v2.5.5) (2021-01-30)
 
 **Note:** Version bump only for package [@react-md/divider](../divider)

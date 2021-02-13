@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/mlaursen/react-md/compare/v2.5.5...v2.6.0) (2021-02-13)
+
+
+### Other Internal Changes
+
+* **@react-md/link:** added new tests for `SkipToMainContent` ([3f6e866](https://github.com/mlaursen/react-md/commit/3f6e866bb0b97ec3a4be08dc9744592e9c8443cb))
+
+
+
+
+
+
 ## [2.5.5](https://github.com/mlaursen/react-md/compare/v2.5.4...v2.5.5) (2021-01-30)
 
 **Note:** Version bump only for package [@react-md/link](../link)
