@@ -95,6 +95,9 @@ export const InteractionModeListener = UserInteractionModeListener;
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
+  modeContext.displayName = "UserInteractionMode";
+  parentContext.displayName = "MultiUserInteractionMode";
+
   try {
     const PropTypes = require("prop-types");
 
