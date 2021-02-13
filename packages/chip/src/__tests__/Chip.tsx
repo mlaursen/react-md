@@ -71,4 +71,30 @@ describe("Chip", () => {
     expect(container).toMatchSnapshot();
     expect(getIcon()).toBeNull();
   });
+
+  it("should render as a span when the noninteractable prop is enabled", () => {
+    const props = {
+      "data-testid": "chip",
+      children: "Content",
+    };
+    const { getByTestId, rerender } = render(
+      <Chip {...props} noninteractable />
+    );
+
+    let chip = getByTestId("chip");
+    expect(chip).toBeInstanceOf(HTMLSpanElement);
+    expect(chip).not.toHaveAttribute("aria-pressed");
+    expect(chip).not.toHaveAttribute("type");
+    expect(chip).not.toHaveAttribute("disabled");
+    expect(chip.className).toContain("rmd-chip--noninteractable");
+    expect(chip).toMatchSnapshot();
+
+    rerender(<Chip {...props} />);
+    chip = getByTestId("chip");
+    expect(chip).toBeInstanceOf(HTMLButtonElement);
+    expect(chip).toHaveAttribute("type", "button");
+    expect(chip).not.toHaveAttribute("disabled");
+    expect(chip.className).not.toContain("rmd-chip--noninteractable");
+    expect(chip).toMatchSnapshot();
+  });
 });

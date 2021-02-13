@@ -82,6 +82,18 @@
   max-width: 100%;
   position: relative;
 
+  &--noninteractable {
+    @include rmd-states-theme-update-var(hover-color, transparent);
+
+    &:hover {
+      // because the rmd-states-surface mixin uses
+      // `:not(:disabled):not([aria-disabled='true'])`, have to use important or
+      // an even more specific selector
+      // sass-lint:disable no-important
+      cursor: initial !important;
+    }
+  }
+
   &--solid {
     @include rmd-elevation-transition(
       0,

@@ -100,6 +100,14 @@ export interface ChipProps extends ButtonAttributes {
    * `max-width` of the icon.
    */
   disableIconTransition?: boolean;
+
+  /**
+   * Boolean if the chip should render as a non-interactable element (`<span>`)
+   * instead of a button. This can be used to just apply the chip styles.
+   *
+   * @since 2.6.0
+   */
+  noninteractable?: boolean;
 }
 
 const block = bem("rmd-chip");
@@ -127,6 +135,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
     contentClassName,
     disableContentWrap = false,
     selectedIcon: propSelectedIcon,
+    noninteractable = false,
     disableIconTransition = false,
     ...props
   },
@@ -135,8 +144,8 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
     className: propClassName,
-    disabled,
-    enablePressedAndRipple: raisable,
+    disabled: disabled || noninteractable,
+    enablePressedAndRipple: raisable && !noninteractable,
   });
 
   let content = children;
@@ -176,14 +185,19 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
 
   const leading = leftIcon && !isHiddenIcon;
   const trailing = rightIcon;
+  const Component = noninteractable ? "span" : "button";
+  const buttonProps = {
+    "aria-pressed": ariaPressed ?? (!!selected || undefined),
+    type: "button",
+    disabled,
+  } as const;
 
   return (
-    <button
+    <Component
+      {...(noninteractable ? {} : buttonProps)}
       {...props}
       {...handlers}
       ref={ref}
-      aria-pressed={ariaPressed ?? (!!selected || undefined)}
-      type="button"
       className={cn(
         block({
           [theme]: true,
@@ -194,10 +208,10 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
           "leading-icon": leading && !trailing,
           "trailing-icon": trailing && !leading,
           surrounded: leading && trailing,
+          noninteractable,
         }),
         className
       )}
-      disabled={disabled}
     >
       <TextIconSpacing
         icon={leftIcon}
@@ -208,7 +222,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
         </TextIconSpacing>
       </TextIconSpacing>
       {ripples}
-    </button>
+    </Component>
   );
 });
 
@@ -234,6 +248,7 @@ if (process.env.NODE_ENV !== "production") {
       selectedThemed: PropTypes.bool,
       children: PropTypes.node,
       selectedIcon: PropTypes.node,
+      noninteractable: PropTypes.bool,
       disableIconTransition: PropTypes.bool,
     };
   } catch (e) {}

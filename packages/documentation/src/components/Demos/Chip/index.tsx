@@ -14,6 +14,9 @@ import choiceChips from "./ChoiceChips.md";
 import { ActionChips, actionChips } from "./ActionChips";
 import { InputChips, inputChips } from "./InputChips";
 
+import NoninteractableChips from "./NoninteractableChips";
+import noninteractableChips from "./NoninteractableChips.md";
+
 const demos = [
   {
     name: "Simple Chips",
@@ -41,6 +44,11 @@ const demos = [
     name: "Input Chips",
     description: inputChips,
     children: <InputChips />,
+  },
+  {
+    name: "Noninteractable Chips",
+    description: noninteractableChips,
+    children: <NoninteractableChips />,
   },
 ];
 
