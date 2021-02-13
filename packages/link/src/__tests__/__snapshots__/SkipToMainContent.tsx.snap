@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkipToMainContent should render correctly 1`] = `
+<div>
+  <a
+    class="rmd-link rmd-link-skip rmd-link-skip--styled"
+    href="#"
+    id="skip-to-main-content"
+  >
+    Skip to main content
+  </a>
+</div>
+`;
+
+exports[`SkipToMainContent should render correctly 2`] = `
+<div>
+  <a
+    class="rmd-link rmd-link-skip"
+    href="#main-content"
+    id="skip"
+  >
+    Skip
+  </a>
+</div>
+`;
