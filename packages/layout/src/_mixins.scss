@@ -75,6 +75,17 @@
     &--floating {
       background-color: transparent;
       box-shadow: none;
+
+      // need to set it back to transparent so that it renders correctly in
+      // dialogs/sheets
+      @if $rmd-theme-dark-class !=
+        'prefers-color-scheme' and
+        $rmd-theme-dark-class
+      {
+        #{$rmd-theme-dark-class} & {
+          background-color: transparent;
+        }
+      }
     }
 
     &--header-offset {
