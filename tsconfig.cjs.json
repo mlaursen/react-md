@@ -26,6 +26,9 @@
       "path": "./packages/chip/tsconfig.cjs.json"
     },
     {
+      "path": "./packages/datetime/tsconfig.cjs.json"
+    },
+    {
       "path": "./packages/dialog/tsconfig.cjs.json"
     },
     {

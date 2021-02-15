@@ -23,6 +23,9 @@
       "path": "./packages/chip/tsconfig.var.json"
     },
     {
+      "path": "./packages/datetime/tsconfig.var.json"
+    },
+    {
       "path": "./packages/dialog/tsconfig.var.json"
     },
     {

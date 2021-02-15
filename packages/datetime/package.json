@@ -1,0 +1,62 @@
+{
+  "name": "@react-md/datetime",
+  "version": "2.7.0",
+  "description": "This package is for creating date pickers, time pickers, and date+time pickers",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "sideEffects": [
+    "dist/**/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/form"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev/packages/datetime/demos",
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "date",
+    "time",
+    "datetime",
+    "pickers",
+    "date picker",
+    "time picker",
+    "accessible",
+    "component",
+    "components"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/button": "^2.7.0",
+    "@react-md/dialog": "^2.7.0",
+    "@react-md/icon": "^2.7.0",
+    "@react-md/form": "^2.7.0",
+    "@react-md/states": "^2.7.0",
+    "@react-md/theme": "^2.7.0",
+    "@react-md/tooltip": "^2.7.0",
+    "@react-md/transition": "^2.7.0",
+    "@react-md/typography": "^2.7.0",
+    "@react-md/utils": "^2.7.0",
+    "classnames": "^2.2.6"
+  },
+  "devDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8"
+  },
+  "optionalDependencies": {
+    "prop-types": ">= 15.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

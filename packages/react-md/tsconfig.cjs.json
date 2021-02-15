@@ -45,6 +45,9 @@
       "path": "../chip/tsconfig.cjs.json"
     },
     {
+      "path": "../datetime/tsconfig.cjs.json"
+    },
+    {
       "path": "../dialog/tsconfig.cjs.json"
     },
     {

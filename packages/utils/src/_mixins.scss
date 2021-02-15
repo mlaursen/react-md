@@ -862,6 +862,10 @@
     @include react-md-layout;
   }
 
+  @if mixin-exists(react-md-datetime) {
+    @include react-md-datetime;
+  }
+
   @if $rmd-utils-auto-dense {
     :root {
       @include rmd-utils-desktop-media {

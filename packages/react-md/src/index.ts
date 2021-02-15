@@ -6,6 +6,7 @@ export * from "@react-md/badge";
 export * from "@react-md/button";
 export * from "@react-md/card";
 export * from "@react-md/chip";
+export * from "@react-md/datetime";
 export * from "@react-md/dialog";
 export * from "@react-md/divider";
 export * from "@react-md/expansion-panel";

@@ -36,6 +36,7 @@
     "@react-md/button": "^2.9.0",
     "@react-md/card": "^2.9.0",
     "@react-md/chip": "^2.9.0",
+    "@react-md/datetime": "^2.9.0",
     "@react-md/dialog": "^2.9.0",
     "@react-md/divider": "^2.9.0",
     "@react-md/elevation": "^2.9.0",

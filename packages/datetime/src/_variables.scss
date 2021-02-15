@@ -1,0 +1,9 @@
+////
+/// @group datetime
+////
+
+/// A Map of all the "themeable" parts of the datetime package. Every
+/// key in this map will be used to create a css variable to dynamically
+/// update the values of the icon as needed.
+/// @type Map
+$rmd-datetime-theme-values: () !default;
