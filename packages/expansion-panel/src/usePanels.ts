@@ -318,7 +318,14 @@ export function usePanels({
         return;
       }
 
-      attemptFocus(loop(currentIndex, panels.length - 1, increment), panels);
+      attemptFocus(
+        loop({
+          value: currentIndex,
+          max: panels.length - 1,
+          increment,
+        }),
+        panels
+      );
     },
     [panels]
   );

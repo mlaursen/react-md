@@ -222,12 +222,12 @@ export function useKeyboardMovement<
           index = lastIndex;
           break;
         default:
-          index = loop(
-            focusedIndex,
-            lastIndex,
-            type === "increment",
-            !loopable
-          );
+          index = loop({
+            value: focusedIndex,
+            max: lastIndex,
+            increment: type === "increment",
+            minmax: !loopable,
+          });
       }
 
       if (index === focusedIndex) {
