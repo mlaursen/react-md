@@ -10,3 +10,4 @@ export * from "./useCloseOnEscape";
 export * from "./getFocusableElements";
 export * from "./focusElementWithin";
 export * from "./extractTextContent";
+export * from "./tryToSubmitRelatedForm";

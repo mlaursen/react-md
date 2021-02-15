@@ -15,6 +15,7 @@ import {
   DEFAULT_GET_ITEM_VALUE,
   PositionAnchor,
   PositionWidth,
+  tryToSubmitRelatedForm,
   useCloseOnOutsideClick,
   useEnsuredRef,
   useToggle,
@@ -258,6 +259,10 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
         onKeyDown(event);
       }
 
+      if (tryToSubmitRelatedForm(event)) {
+        return;
+      }
+
       switch (event.key) {
         case " ":
         case "ArrowUp":
@@ -266,33 +271,6 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
           event.preventDefault();
           show();
           break;
-        case "Enter": {
-          const form = event.currentTarget.closest("form");
-          if (form) {
-            // the default behavior of pressing the "Enter" key on a form
-            // control (input, textarea, select) is to submit a form, so that's
-            // what this is attempting to polyfill. Unfortunately, using the
-            // form.submit() ignores any `onSubmit` handlers like
-            // event.preventDefault() so to work around that, try to first find
-            // a submit button and click that instead. If there isn't a submit
-            // button as a child of the form, try to find a submit button that
-            // has the form attribute set to this current form's id.
-            let submit = form.querySelector<HTMLButtonElement>(
-              '[type="submit"]'
-            );
-
-            if (!submit && form.id) {
-              submit = document.querySelector(
-                `[type="submit"][form="${form.id}"]`
-              );
-            }
-
-            if (submit) {
-              submit.click();
-            }
-          }
-          break;
-        }
         // no default
       }
     },
