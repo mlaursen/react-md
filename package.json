@@ -51,7 +51,8 @@
   "homepage": "https://react-md.dev",
   "devDependencies": {
     "@babel/plugin-transform-typescript": "^7.12.13",
-    "@mlaursen/eslint-config": "^0.0.6",
+    "@mlaursen/changelog-preset": "^0.0.1",
+    "@mlaursen/eslint-config": "^0.0.9",
     "@testing-library/dom": "^7.29.4",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",

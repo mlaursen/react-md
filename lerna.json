@@ -13,7 +13,7 @@
     "**/*.md"
   ],
   "changelogPreset": {
-    "name": "./packages/dev-utils/changelog.config.js"
+    "name": "@mlaursen/changelog-preset"
   },
   "useWorkspaces": true,
   "npmClient": "yarn",

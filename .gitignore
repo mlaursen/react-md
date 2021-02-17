@@ -6,12 +6,12 @@ node_modules
 packages/*/*.tsbuildinfo
 
 # Compiled files
+/changelogData.js
 /packages/*/es
 /packages/*/lib
 /packages/*/dist
 /packages/*/types
 /packages/dev-utils/bin
-/packages/dev-utils/changelogData.js
 /packages/material-icons/bin
 /packages/material-icons/temp
 !/packages/documentation/types
