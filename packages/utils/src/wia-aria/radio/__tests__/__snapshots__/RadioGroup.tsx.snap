@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioGroup, RadioGroupProps should be able to render object items 1`] = `
+<div>
+  <span
+    aria-label="Radio Group"
+    id="radio-group"
+    role="radiogroup"
+    tabindex="-1"
+  >
+    <span
+      aria-checked="false"
+      id="radio-group-1"
+      role="radio"
+      tabindex="0"
+    >
+      Item 1
+    </span>
+    <span
+      aria-checked="false"
+      id="radio-group-2"
+      role="radio"
+      tabindex="0"
+    >
+      Item 2
+    </span>
+    <span
+      aria-checked="false"
+      id="radio-group-3"
+      role="radio"
+      tabindex="0"
+    >
+      Item 3
+    </span>
+  </span>
+</div>
+`;
+
+exports[`RadioGroup, RadioGroupProps should be able to render object items 2`] = `
+<div>
+  <span
+    aria-label="Radio Group"
+    id="radio-group"
+    role="radiogroup"
+    tabindex="-1"
+  >
+    <span
+      aria-checked="false"
+      id="radio-group-1"
+      role="radio"
+      tabindex="0"
+    >
+      Item 1
+    </span>
+    <span
+      aria-checked="false"
+      id="radio-group-2"
+      role="radio"
+      tabindex="0"
+    >
+      Item 2
+    </span>
+    <span
+      aria-checked="false"
+      id="radio-group-3"
+      role="radio"
+      tabindex="0"
+    >
+      Item 3
+    </span>
+  </span>
+</div>
+`;
+
+exports[`RadioGroup, RadioGroupProps should be able to render object items 3`] = `
+<div>
+  <span
+    aria-label="Radio Group"
+    id="radio-group"
+    role="radiogroup"
+    tabindex="-1"
+  >
+    <span
+      aria-checked="false"
+      id="radio-group-1"
+      role="radio"
+      tabindex="0"
+    >
+      Item 1
+    </span>
+    <span
+      aria-checked="false"
+      id="radio-group-2"
+      role="radio"
+      tabindex="0"
+    >
+      <span>
+        Item 2
+      </span>
+    </span>
+    <span
+      aria-checked="false"
+      id="radio-group-3"
+      role="radio"
+      tabindex="0"
+    />
+  </span>
+</div>
+`;
+
+exports[`RadioGroup, RadioGroupProps should default to applying any style and className found on the item objects 1`] = `
+<div>
+  <span
+    aria-label="Radio Group"
+    id="radio-group"
+    role="radiogroup"
+    tabindex="-1"
+  >
+    <span
+      aria-checked="false"
+      id="radio-group-1"
+      role="radio"
+      style="color: red;"
+      tabindex="0"
+    >
+      Item 1
+    </span>
+    <span
+      aria-checked="false"
+      class="item--orange"
+      id="radio-group-2"
+      role="radio"
+      tabindex="0"
+    >
+      Item 2
+    </span>
+    <span
+      aria-checked="false"
+      class="item--boop"
+      id="radio-group-3"
+      role="radio"
+      style="background-color: purple;"
+      tabindex="0"
+    >
+      Item 2
+    </span>
+  </span>
+</div>
+`;

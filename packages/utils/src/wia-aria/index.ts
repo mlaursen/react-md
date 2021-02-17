@@ -1,6 +1,7 @@
 export * from "./FocusContainer";
 
 export * from "./movement";
+export * from "./radio";
 
 export * from "./useScrollLock";
 export * from "./useFocusOnMount";
