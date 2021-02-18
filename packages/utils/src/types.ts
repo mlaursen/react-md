@@ -49,3 +49,27 @@ export type LabelRequiredForA11y<Props extends LabelA11y> = RequireAtLeastOne<
   Props,
   keyof LabelA11y
 >;
+
+/**
+ * This is really just used to create "enum" types until `const enum` is
+ * supported by babel to help reduce bundle size of enums.
+ *
+ * @example
+ * Comparison to const enum
+ * ```ts
+ * export const MyEnum = {
+ *   Field1: "some-string-1",
+ *   Field2: "some-string-2"
+ * } as const;
+ * export type MyEnum = ValueOf<typeof MyEnum>
+ *
+ * // would represent the same as:
+ * export const enum MyEnum {
+ *   Field1 = "some-string-1",
+ *   Field2 = "some-string-2"
+ * }
+ * ```
+ *
+ * @remarks \@since 2.7.0
+ */
+export type ValuesOf<T> = T[keyof T];
