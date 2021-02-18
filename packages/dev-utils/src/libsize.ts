@@ -126,7 +126,11 @@ function getSizes(message: string): readonly Size[] {
   });
 }
 
-function logPercentChanged(message: string, umd: boolean, css: boolean): void {
+function getPercentChanged(
+  message: string,
+  umd: boolean,
+  css: boolean
+): string {
   const previous = getSizes(getPreviousLibsize(ROOT_README_PATH));
   const current = getSizes(message);
   const start = umd ? 0 : 3;
@@ -161,7 +165,7 @@ function logPercentChanged(message: string, umd: boolean, css: boolean): void {
     })
     .join("\n");
 
-  log.info(updated);
+  return updated;
 }
 
 function updateLibsize(filePath: string, message: string): void {
@@ -233,7 +237,7 @@ export async function libsize({
   themes = true,
   forceThemes = false,
   stageChanges = false,
-}: Options): Promise<void> {
+}: Options): Promise<string> {
   umd = umd || forceUmd;
   themes = themes || forceThemes;
   if (!umd && !themes) {
@@ -267,7 +271,12 @@ ${list(css)}
 `;
   }
 
-  logPercentChanged(message, !!umds.length, !!css.length);
+  const percentChanged = getPercentChanged(
+    message,
+    !!umds.length,
+    !!css.length
+  );
+  log.info(percentChanged);
 
   if (stageChanges && umds.length && css.length) {
     log.info("Updating documentation files with libsize...");
@@ -280,4 +289,6 @@ ${list(css)}
       git("add -u");
     }
   }
+
+  return percentChanged;
 }

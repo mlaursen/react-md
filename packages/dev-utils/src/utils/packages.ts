@@ -83,7 +83,7 @@ export async function getAllVersions(): Promise<typeof VERSIONS> {
 /**
  * Gets the current root lerna version.
  */
-export async function getLernaVersion(): Promise<string | null> {
+export async function getLernaVersion(): Promise<string> {
   const lernaJsonPath = join(projectRoot, "lerna.json");
   if (VERSIONS.has(lernaJsonPath)) {
     const value = VERSIONS.get(lernaJsonPath);

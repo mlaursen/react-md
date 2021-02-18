@@ -165,7 +165,16 @@ createCommand("libsize")
       themes = true,
       forceThemes = false,
       stageChanges = false,
-    }) => libsize({ umd, forceUmd, themes, forceThemes, stageChanges })
+    }) =>
+      libsize({
+        umd,
+        forceUmd,
+        themes,
+        forceThemes,
+        stageChanges,
+      }).then(() => {
+        // .action only allows Promise<void> or void
+      })
   );
 
 createCommand("themes")

@@ -16,6 +16,9 @@ packages/*/*.tsbuildinfo
 /packages/material-icons/temp
 !/packages/documentation/types
 
+# for creating github releases
+/.env.local
+
 # Testing
 coverage
 

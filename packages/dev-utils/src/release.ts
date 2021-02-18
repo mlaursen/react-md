@@ -1,12 +1,16 @@
+import { Octokit } from "@octokit/core";
+import dotenv from "dotenv";
 import log from "loglevel";
+import { join } from "path";
 import prompts from "prompts";
 
-import { clean } from "./clean";
-import { libsize } from "./libsize";
 import { changelogData } from "./changelogData";
+import { clean } from "./clean";
+import { projectRoot } from "./constants";
+import { libsize } from "./libsize";
 import { getLernaVersion, git, replaceTag, run } from "./utils";
-import { variables } from "./variables";
 import { initBlog } from "./utils/initBlog";
+import { variables } from "./variables";
 
 export type ReleaseType =
   | "major"
@@ -74,6 +78,21 @@ export async function release({
   clean: enableClean,
   type,
 }: Options): Promise<void> {
+  const localDotEnv = join(projectRoot, ".env.local");
+  dotenv.config({ path: localDotEnv });
+  const { GITHUB_TOKEN } = process.env;
+  if (!GITHUB_TOKEN) {
+    log.error(
+      `Missing a \`GITHUB_TOKEN\` environment variable. This should be located at:
+- ${localDotEnv}
+
+A token can be created at:
+- https://github.com/settings/tokens/new?scopes=repo
+`
+    );
+
+    process.exit(1);
+  }
   const yes = autoYes ? " --yes" : "";
 
   if (enableClean) {
@@ -91,9 +110,9 @@ export async function release({
 
   await changelogData();
   run(`npx lerna version ${type} --no-push${yes}`);
-  await initBlog();
+  const changelog = await initBlog();
 
-  await libsize({
+  const percentChanged = await libsize({
     umd: true,
     themes: true,
     // have to force the themes to be updated since they are always stored in
@@ -122,4 +141,26 @@ export async function release({
 
   git("push origin main");
   git("push --tags");
+
+  log.info("Creating github release");
+  const body = `${changelog}
+
+### Library Size Changes
+
+${percentChanged}
+`;
+  const version = await getLernaVersion();
+  const octokit = new Octokit({ auth: GITHUB_TOKEN });
+  const response = await octokit.request(
+    "POST /repos/{owner}/{repo}/releases",
+    {
+      owner: "mlaursen",
+      repo: "react-md",
+      tag_name: `v${version}`,
+      body,
+      prerelease: type.startsWith("pre"),
+    }
+  );
+
+  log.info(`Created release: ${response.data.html_url}`);
 }

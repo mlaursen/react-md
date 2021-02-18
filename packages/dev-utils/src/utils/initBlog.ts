@@ -7,7 +7,12 @@ import { format } from "./format";
 
 const NEW_ENTRY = /^#{1,2}\s+\[\d/;
 
-export async function initBlog(): Promise<void> {
+/**
+ *
+ * @return the current release markdown that can be used to generate a github
+ * release for the current tag.
+ */
+export async function initBlog(): Promise<string> {
   const blogPath = join(documentationRoot, src, "blogs", "index.md");
   const version = (await getPackageJson("react-md")).version;
   const changelog = await readFile(join(projectRoot, "CHANGELOG.md"), "utf8");
@@ -31,9 +36,8 @@ export async function initBlog(): Promise<void> {
     process.exit(1);
   }
 
-  const currentRelease = lines
-    .slice(lastEntryStart, nextEntryStart)
-    .join("\n")
+  const currentRelease = lines.slice(lastEntryStart, nextEntryStart).join("\n");
+  const blogMarkdown = currentRelease
     // create smaller headings and remove margin
     .replace(/^(###)\s+(.+)$/gm, "##### $2<!-- no-margin -->")
     // replace issue/pr references with super-shorthand syntax.  they can
@@ -52,7 +56,7 @@ Date: ${new Date().toLocaleDateString("en-US", {
 
 Summary:
 
-${currentRelease}
+${blogMarkdown}
 
 ---
 
@@ -60,4 +64,6 @@ ${blog}
 `;
 
   await writeFile(blogPath, format(contents, "markdown"));
+
+  return currentRelease;
 }
