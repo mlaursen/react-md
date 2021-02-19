@@ -26,8 +26,8 @@ type BEMResult = (
  * Applies the BEM styled class name to an element.
  *
  * @see https://en.bem.info/methodology/css/
- * @param base The base class to use
- * @return a function to call that generates the full class name
+ * @param base - The base class to use
+ * @returns a function to call that generates the full class name
  */
 export function bem(base: Block): BEMResult {
   if (process.env.NODE_ENV !== "production") {
@@ -43,12 +43,12 @@ export function bem(base: Block): BEMResult {
    * without any arguments which will just return the base block name (kind of
    * worthless), or you can provide a child element name and modifiers.
    *
-   * @param elementOrModifier This is either the child element name or an object
-   * of modifiers to apply. This **must** be a string if the second argument is
-   * provided.
-   * @param modifier Any optional modifiers to apply to the block and optional
+   * @param elementOrModifier - This is either the child element name or an
+   * object of modifiers to apply. This **must** be a string if the second
+   * argument is provided.
+   * @param modifier - Any optional modifiers to apply to the block and optional
    * element.
-   * @return the full class name
+   * @returns the full class name
    */
   return function block(
     elementOrModifier?: Element | Modifier,

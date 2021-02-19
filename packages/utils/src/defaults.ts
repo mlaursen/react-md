@@ -6,10 +6,10 @@ type Rec = Record<string, unknown>;
  * just like `defaultProps` in react.
  *
  * @internal
- * @param optional The original object that has the optional/omitted values
- * @param required The required default values that should be used to fill the
+ * @param optional - The original object that has the optional/omitted values
+ * @param required - The required default values that should be used to fill the
  * optional object with
- * @return a new object with both the values of the optional and required
+ * @returns a new object with both the values of the optional and required
  * objects but use the optional values if they were defined.
  */
 export function defaults<O extends {}, R extends {}>(

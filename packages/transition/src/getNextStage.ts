@@ -10,7 +10,7 @@ import {
 
 /**
  *
- * @private
+ * @internal
  */
 export function getNextStage(stage: TransitionStage): TransitionStage {
   switch (stage) {

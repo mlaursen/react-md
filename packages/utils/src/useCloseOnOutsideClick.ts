@@ -4,7 +4,7 @@ import { containsElement } from "./containsElement";
 
 /**
  * Gets the HTMLElement or null from a provided RefObject or HTMLElement/null
- * @private
+ * @internal
  */
 export function getElement<E extends HTMLElement>(
   element: MutableRefObject<E | null> | E | null
@@ -37,7 +37,7 @@ export type OnOutsideClick<E extends HTMLElement> = (
 ) => void;
 
 /**
- * @typeparam E The HTMLElement type of the container element that should not
+ * @typeParam E - The HTMLElement type of the container element that should not
  * trigger the close behavior if an element inside is clicked.
  */
 export interface CloseOnOutsideClickOptions<E extends HTMLElement> {
@@ -67,7 +67,7 @@ export interface CloseOnOutsideClickOptions<E extends HTMLElement> {
  * The callback will be provided the current `element` as well as the click
  * target if additional logic should be applied before closing.
  *
- * @typeparam E The type of element
+ * @typeParam E - The type of element
  */
 export function useCloseOnOutsideClick<E extends HTMLElement>({
   enabled,

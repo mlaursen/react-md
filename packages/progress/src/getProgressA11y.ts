@@ -7,8 +7,8 @@ export interface ProgressA11y {
  * An extremely simple util that can be used to get the required a11y props for
  * another component that relies on a progress component.
  *
- * @param progressId The id for the progress bar
- * @param progressing Boolean if the progress bar is visible and progressing
+ * @param progressId - The id for the progress bar
+ * @param progressing - Boolean if the progress bar is visible and progressing
  */
 export function getProgressA11y(
   progressId: string,

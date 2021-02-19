@@ -16,13 +16,13 @@ export type TextConstraints = Pick<
  *
  * When this is:
  *
- * - `true` -> always show the browser message when it exists
- * - `false` -> never show the browser message
- * - `"recommended"` -> only shows the browser message if it is not one of the
+ * - `true` -&gt; always show the browser message when it exists
+ * - `false` -&gt; never show the browser message
+ * - `"recommended"` -&gt; only shows the browser message if it is not one of the
  *   `RECOMMENDED_IGNORED_KEYS` validation errors
- * - `keyof ValidityState` -> only shows the browser message if it is not the
+ * - `keyof ValidityState` -&gt; only shows the browser message if it is not the
  *   specific validation error
- * - `(keyof ValidityState)[]` -> only shows the browser message if it is not
+ * - `(keyof ValidityState)[]` -&gt; only shows the browser message if it is not
  *   the specific validation errors
  *
  * @since 2.5.0
@@ -70,9 +70,9 @@ export interface ErrorMessageOptions extends TextConstraints {
  * useful when using the `pattern` attribute to give additional information or
  * changing the native "language translated" error message.
  *
- * @param options An object containing metadata that can be used to create an
+ * @param options - An object containing metadata that can be used to create an
  * error message for your `TextField` or `TextArea`.
- * @return An error message to display or an empty string.
+ * @returns An error message to display or an empty string.
  * @since 2.5.0
  */
 export type GetErrorMessage = (options: ErrorMessageOptions) => string;

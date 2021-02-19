@@ -24,7 +24,7 @@ export interface VisibilityChangeOptions {
  * This hook will call the `onShow` and `onHide` functions as needed based on
  * the current interaction mode and the visibility of the tooltip.
  *
- * @private
+ * @internal
  */
 export function useVisiblityChange({
   onShow,

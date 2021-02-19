@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { BaseTreeItem, TreeData, TreeItemId, TreeItemSorter } from "./types";
 
 /**
- * @private
+ * @internal
  */
 export type NestedTreeItem<T extends BaseTreeItem> = T & {
   childItems?: NestedTreeItem<T>[];
@@ -19,7 +19,7 @@ export type NestedTreeItem<T extends BaseTreeItem> = T & {
  * TODO: Add a dev-only warning/error if the tree is built, but there are some
  * items that never referenced another `itemId`
  *
- * @private
+ * @internal
  */
 export function buildTree<T extends BaseTreeItem>(
   parentId: null | TreeItemId,
@@ -58,10 +58,10 @@ export function buildTree<T extends BaseTreeItem>(
  * This is an internal hook that will create a renderable nested list view of
  * the tree data.
  *
- * @private
- * @param tree The full tree to convert to a nested list representation
- * @param sort An optional function that sorts the items at each level
- * @param rootId The starting `parentId` to use while building the tree.  This
+ * @internal
+ * @param tree - The full tree to convert to a nested list representation
+ * @param sort - An optional function that sorts the items at each level
+ * @param rootId - The starting `parentId` to use while building the tree. This
  * defaults to `null` since this is most likely the general use case, but if
  * there's a different unique identifier for the "root level" items, that can be
  * used instead.

@@ -14,9 +14,9 @@ type ReturnValue = [boolean, Enable, Disable, Toggle, SetToggle];
  * components.  The main use case for this will be toggling the visibility of
  * something. All the provided actions are guaranteed to never change.
  *
- * @param defaultToggled Boolean if the visibility should be enabled first
+ * @param defaultToggled - Boolean if the visibility should be enabled first
  * render.
- * @return an array containing the toggled state, an enable function, a disable
+ * @returns an array containing the toggled state, an enable function, a disable
  * function, a toggle function, and then a manual set toggle function.
  */
 export function useToggle(

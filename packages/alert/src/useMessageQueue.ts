@@ -18,7 +18,7 @@ export const POP_MESSAGE = "POP_MESSAGE";
 export const RESET_QUEUE = "RESET_QUEUE";
 
 /**
- * @private
+ * @internal
  */
 export interface AddMessageAction<M extends Message = ToastMessage> {
   type: typeof ADD_MESSAGE;
@@ -27,7 +27,7 @@ export interface AddMessageAction<M extends Message = ToastMessage> {
 }
 
 /**
- * @private
+ * @internal
  */
 export function addMessage<M extends Message = ToastMessage>(
   message: M,
@@ -37,31 +37,31 @@ export function addMessage<M extends Message = ToastMessage>(
 }
 
 /**
- * @private
+ * @internal
  */
 export interface PopMessageAction {
   type: typeof POP_MESSAGE;
 }
 
 /**
- * @private
+ * @internal
  */
 export const popMessage = (): PopMessageAction => ({ type: POP_MESSAGE });
 
 /**
- * @private
+ * @internal
  */
 export interface ResetQueueAction {
   type: typeof RESET_QUEUE;
 }
 
 /**
- * @private
+ * @internal
  */
 export const resetQueue = (): ResetQueueAction => ({ type: RESET_QUEUE });
 
 /**
- * @private
+ * @internal
  */
 export type MessageActions<M extends Message = ToastMessage> =
   | AddMessageAction<M>
@@ -72,7 +72,7 @@ export type MessageActions<M extends Message = ToastMessage> =
  * This function is used to update the message queue state by adding a new message when
  * needed.
  *
- * @private
+ * @internal
  */
 export function handleAddMessage<M extends Message = ToastMessage>(
   state: M[],
@@ -137,7 +137,7 @@ type MessageQueueReducer<M extends Message = ToastMessage> = Reducer<
 >;
 
 /**
- * @private
+ * @internal
  */
 export function reducer<M extends Message = ToastMessage>(
   state: M[],
@@ -174,7 +174,7 @@ export interface MessageQueueResult<M extends Message = ToastMessage>
  * - creating timeouts as needed to show/hide toasts within the SnackbarQueue component
  * - create a way to push messages with optional priority onto the queue
  *
- * @private
+ * @internal
  */
 export function useMessageQueue<M extends Message = ToastMessage>({
   timeout = DEFAULT_MESSAGE_QUEUE_TIMEOUT,

@@ -31,9 +31,9 @@ type KeyboardSubmitEventPartial = Pick<
  * handlers. If you click the submit button though, the `form.onsubmit` handlers
  * will be called correctly.
  *
- * @param event The keyboard event that should attempt to submit the form when
+ * @param event - The keyboard event that should attempt to submit the form when
  * the enter key is presssed.
- * @return `true` if the `event.key` was the `"Enter"` key so that other
+ * @returns `true` if the `event.key` was the `"Enter"` key so that other
  * keydown logic can be ignored.
  * @since 2.7.0
  */

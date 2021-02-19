@@ -12,10 +12,10 @@ import {
  * query string appear in-order for all the remaining items. However, the
  * letters *do not need to be consecutive*.
  *
- * @param query The current query string
- * @param searchable The list of searchable items that should be filtered
- * @param options All the search options to use
- * @return A filtered list of all the searchable items based on the query
+ * @param query - The current query string
+ * @param searchable - The list of searchable items that should be filtered
+ * @param options - All the search options to use
+ * @returns A filtered list of all the searchable items based on the query
  * string.
  */
 export function fuzzyFilter<T = unknown>(

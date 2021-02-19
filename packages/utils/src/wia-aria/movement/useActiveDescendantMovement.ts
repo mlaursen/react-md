@@ -14,10 +14,10 @@ export type ActiveDescendantId = string;
 
 /**
  *
- * @typeparam CE The HTMLElement type of the container element that handles the
- * custom keyboard movement.
- * @typeparam IE The HTMLElement type of each item within the container element
- * that can be focusable.
+ * @typeParam CE - The HTMLElement type of the container element that handles
+ * the custom keyboard movement.
+ * @typeParam IE - The HTMLElement type of each item within the container
+ * element that can be focusable.
  */
 export interface ActiveDescendantMovementProviders<
   CE extends HTMLElement,
@@ -96,11 +96,11 @@ interface ActiveDescendantOptions<
  * The `itemRefs` **must** be applied so that a new "focused" item can be
  * scrolled into view as needed.
  *
- * @typeparam D The type of each data item within the items list.
- * @typeparam CE The HTMLElement type of the container element that handles the
- * custom keyboard movement.
- * @typeparam IE The HTMLElement type of each item within the container element
- * that can be focusable.
+ * @typeParam D - The type of each data item within the items list.
+ * @typeParam CE - The HTMLElement type of the container element that handles
+ * the custom keyboard movement.
+ * @typeParam IE - The HTMLElement type of each item within the container
+ * element that can be focusable.
  */
 export function useActiveDescendantMovement<
   D = unknown,

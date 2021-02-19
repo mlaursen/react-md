@@ -2,12 +2,12 @@
  * Rounds a number to the nearest step within a min/max range.
  *
  * @see https://stackoverflow.com/a/13635455
- * @param value The value to round to the nearest step
- * @param min The min value allowed
- * @param max The max value allowed
- * @param steps The number of steps in the min/max range
- * @param range The range allowed for the value that defaults to `max - min`
- * @return the value rounded to the nearest step in the min/max range
+ * @param value - The value to round to the nearest step
+ * @param min - The min value allowed
+ * @param max - The max value allowed
+ * @param steps - The number of steps in the min/max range
+ * @param range - The range allowed for the value that defaults to `max - min`
+ * @returns the value rounded to the nearest step in the min/max range
  * @since 2.5.0 - Added the `range` param
  */
 export function nearest(

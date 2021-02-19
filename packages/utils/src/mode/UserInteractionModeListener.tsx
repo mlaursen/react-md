@@ -9,29 +9,29 @@ import { UserInteractionMode } from "./types";
 import { useInteractionMode } from "./useInteractionMode";
 
 /**
- * @private
+ * @internal
  */
 const modeContext = createContext<UserInteractionMode>("mouse");
 
 /**
- * @private
+ * @internal
  */
 const parentContext = createContext(false);
 
 /**
- * @private
+ * @internal
  */
 const { Provider: UserInteractionModeProvider } = modeContext;
 
 /**
- * @private
+ * @internal
  */
 const { Provider: ParentProvider } = parentContext;
 
 /**
  * Returns the current user interaction mode.
  *
- * @return {@link UserInteractionMode}
+ * @returns {@link UserInteractionMode}
  */
 export function useUserInteractionMode(): UserInteractionMode {
   return useContext(modeContext);
@@ -45,8 +45,8 @@ export function useUserInteractionMode(): UserInteractionMode {
  * // do stuff if keyboard only
  * ```
  *
- * @param mode The {@link UserInteractionMode} to check against.
- * @return `true` if the current user interaction mode matches the provided
+ * @param mode - The {@link UserInteractionMode} to check against.
+ * @returns `true` if the current user interaction mode matches the provided
  * mode.
  */
 export function useIsUserInteractionMode(mode: UserInteractionMode): boolean {

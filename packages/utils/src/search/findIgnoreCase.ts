@@ -10,10 +10,10 @@ import {
  * searchable item type and return the first item that starts with the current
  * query string ignoring case.
  *
- * @param query The current query string to use to match with
- * @param searchable The list of searchable items
- * @param options The additional search options available.
- * @return the found item in the searchable list or null
+ * @param query - The current query string to use to match with
+ * @param searchable - The list of searchable items
+ * @param options - The additional search options available.
+ * @returns the found item in the searchable list or null
  */
 export function findIgnoreCase<T = unknown>(
   query: string,

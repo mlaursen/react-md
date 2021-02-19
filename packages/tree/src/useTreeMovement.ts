@@ -93,13 +93,13 @@ interface ReturnValue {
 
 /**
  * This is a temporary workaround for allowing the navigation tree to scroll
- * correctly with keyboard movement since it manually sets the `overflow:
- * visible` which prevents scrolling. I'll need to think of a better way to
- * find/get the scrollable element (if any). It might also just go into the
- * `scrollIntoView` util.
+ * correctly with keyboard movement since it manually sets the
+ * `overflow: visible` which prevents scrolling. I'll need to think of a better
+ * way to find/get the scrollable element (if any). It might also just go into
+ * the `scrollIntoView` util.
  *
  * @since 2.5.3
- * @private
+ * @internal
  */
 const getScrollContainer = (target: HTMLElement): HTMLElement | null => {
   if (target.classList.contains("rmd-layout-tree")) {
@@ -114,7 +114,7 @@ const getScrollContainer = (target: HTMLElement): HTMLElement | null => {
  * accessibility within a tree and enabling keyboard movement, selection, and
  * expansion.
  *
- * @private
+ * @internal
  */
 export function useTreeMovement({
   id,

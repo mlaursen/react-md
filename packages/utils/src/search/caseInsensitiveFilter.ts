@@ -18,10 +18,10 @@ export interface CaseInsensitiveOptions<T = unknown> extends SearchOptions<T> {
  * Filters a list by ensuring that all items contain the query string in order
  * anywhere in it's own value.
  *
- * @param query The current query string
- * @param searchable The list of searchable items that should be filtered
- * @param options All the search options to use
- * @return A filtered list of all the searchable items based on the query
+ * @param query - The current query string
+ * @param searchable - The list of searchable items that should be filtered
+ * @param options - All the search options to use
+ * @returns A filtered list of all the searchable items based on the query
  * string.
  */
 export function caseInsensitiveFilter<T = unknown>(

@@ -91,7 +91,7 @@ export interface AutoCompleteReturnValue {
 /**
  * This hook handles all the autocomplete's "logic" and behavior.
  *
- * @private
+ * @internal
  */
 export function useAutoComplete({
   suggestionsId,

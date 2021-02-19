@@ -7,7 +7,7 @@ let warnedOnce = false;
  * that will warn about items that are not keyboard searchable in non-production
  * environments.
  *
- * @private
+ * @internal
  */
 export function defaultGetItemValue(
   item: UnknownTreeItem,

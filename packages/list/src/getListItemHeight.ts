@@ -52,11 +52,11 @@ export interface SimpleListItemProps
    *
    * Conversions:
    *
-   * - height !== "auto" -> height
-   * - secondaryText or left/right addon is media/media-large  -> "extra-large"
-   * - left/right addon is avatar -> "large"
-   * - left/right addon is icon -> "medium"
-   * - no addons and no secondary text -> "normal"
+   * - height !== "auto" -&gt; height
+   * - secondaryText or left/right addon is media/media-large  -&gt; "extra-large"
+   * - left/right addon is avatar -&gt; "large"
+   * - left/right addon is icon -&gt; "medium"
+   * - no addons and no secondary text -&gt; "normal"
    */
   height?: ListItemHeight;
 }
@@ -67,13 +67,13 @@ export interface SimpleListItemProps
  *
  * Conversions:
  *
- * - height !== "auto" -> height
- * - secondaryText or left/right addon is media/media-large  -> "extra-large"
- * - left/right addon is avatar -> "large"
- * - left/right addon is icon -> "medium"
- * - no addons and no secondary text -> "normal"
+ * - height !== "auto" -&gt; height
+ * - secondaryText or left/right addon is media/media-large  -&gt; "extra-large"
+ * - left/right addon is avatar -&gt; "large"
+ * - left/right addon is icon -&gt; "medium"
+ * - no addons and no secondary text -&gt; "normal"
  *
- * @private
+ * @internal
  */
 export function getListItemHeight({
   height = "auto",

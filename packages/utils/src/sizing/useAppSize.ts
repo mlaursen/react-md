@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 import { AppSize, DEFAULT_APP_SIZE } from "./useAppSizeMedia";
 
 /**
- * @private
+ * @internal
  */
 export const AppSizeContext = createContext<
   AppSize & { __initialized: boolean }
@@ -15,7 +15,7 @@ export const AppSizeContext = createContext<
 /**
  * Gets the current app size.
  *
- * @return the current AppSize
+ * @returns the current AppSize
  */
 export function useAppSize(): AppSize {
   const { __initialized, ...context } = useContext(AppSizeContext);

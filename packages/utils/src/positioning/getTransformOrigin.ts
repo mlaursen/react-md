@@ -5,10 +5,10 @@ import { PositionAnchor } from "./types";
  * that the fixed element can animate from the correct point based on the
  * provided anchor.
  *
- * @param anchor The anchor that should be used to create the transform origin
+ * @param anchor - The anchor that should be used to create the transform origin
  * for.
- * @return the transform origin string
- * @private
+ * @returns the transform origin string
+ * @internal
  */
 export function getTransformOrigin(anchor: PositionAnchor): string {
   let x = "0";

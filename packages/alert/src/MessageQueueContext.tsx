@@ -31,7 +31,7 @@ export interface Message {
    * existing messages will maintain their order but pushed behind this new
    * message.
    *
-   * @default "normal"
+   * @defaultValue `"normal"`
    */
   messagePriority?: MessagePriority;
 
@@ -41,7 +41,7 @@ export interface Message {
    * the user presses the action inside or it is a toast that will be hidden by
    * some other logic (like online/offline).
    *
-   * @default false
+   * @defaultValue `false`
    */
   disableAutohide?: boolean;
 }
@@ -68,7 +68,7 @@ export interface ToastMessage
 export type AddMessage<M extends Message> = (message: M) => void;
 
 /**
- * @private
+ * @internal
  */
 export const AddMessageContext = createContext<AddMessage<Message>>(() => {
   throw new Error(
@@ -77,7 +77,7 @@ export const AddMessageContext = createContext<AddMessage<Message>>(() => {
 });
 
 /**
- * @private
+ * @internal
  */
 export const MessageVisibilityContext = createContext(false);
 
@@ -95,7 +95,7 @@ export function useAddMessage<
 /**
  * Gets the current message visibility to provide to the toast.
  *
- * @private
+ * @internal
  */
 export function useMessageVisibility(): boolean {
   return useContext(MessageVisibilityContext);
@@ -144,7 +144,7 @@ export type RestartVisibilityTimer = () => void;
 export type ResetQueue<M extends Message> = () => M[];
 
 /**
- * @private
+ * @internal
  */
 export interface MessageQueueActions<M extends Message> {
   popMessage: PopMessage;
@@ -156,7 +156,7 @@ export interface MessageQueueActions<M extends Message> {
 }
 
 /**
- * @private
+ * @internal
  */
 export const MessageQueueActionsContext = createContext<
   MessageQueueActions<Message>
@@ -205,7 +205,7 @@ export function useMessageQueueActions<
 }
 
 /**
- * @private
+ * @internal
  */
 export const MessageQueueContext = createContext<Message[]>([]);
 

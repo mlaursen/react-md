@@ -19,7 +19,7 @@ export interface GetLayoutOptions extends LayoutConfiguration {
 /**
  * Gets the current layout based on the app size and layout configuration.
  *
- * @return The current layout type
+ * @returns The current layout type
  */
 export function getLayoutType({
   appSize,
@@ -48,8 +48,8 @@ export function getLayoutType({
 /**
  * Checks if the current `layout` is one of the temporary types
  *
- * @param layout The layout to check against
- * @return true if the current layout has a temporary navigation.
+ * @param layout - The layout to check against
+ * @returns true if the current layout has a temporary navigation.
  */
 export function isTemporaryLayout(layout: SupportedWideLayout): boolean {
   return layout === "temporary" || layout === "temporary-mini";
@@ -58,18 +58,19 @@ export function isTemporaryLayout(layout: SupportedWideLayout): boolean {
 /**
  * Checks if the current `layout` is one of the toggleable types
  *
- * @param layout The layout to check against
- * @return true if the current layout is toggleable.
+ * @param layout - The layout to check against
+ * @returns true if the current layout is toggleable.
  */
 export function isToggleableLayout(layout: SupportedWideLayout): boolean {
   return layout === "toggleable" || layout === "toggleable-mini";
 }
 
 /**
- * Checks if the current `layout` is `"clipped"`, `"floating"`, or `"full-height"`.
+ * Checks if the current `layout` is `"clipped"`, `"floating"`, or
+ * `"full-height"`.
  *
- * @param layout The layout to check against
- * @return true if the current layout is persistent.
+ * @param layout - The layout to check against
+ * @returns true if the current layout is persistent.
  */
 export function isPersistentLayout(layout: SupportedWideLayout): boolean {
   return (
@@ -80,8 +81,8 @@ export function isPersistentLayout(layout: SupportedWideLayout): boolean {
 /**
  * Checks if the current `layout` is the `"full-height"` variant.
  *
- * @param layout The layout to check against
- * @return true if the current layout is the full height variant.
+ * @param layout - The layout to check against
+ * @returns true if the current layout is the full height variant.
  */
 export function isFullHeightLayout(layout: SupportedWideLayout): boolean {
   return layout === "full-height";

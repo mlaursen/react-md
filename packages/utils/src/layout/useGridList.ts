@@ -113,8 +113,8 @@ export interface UseGridListOptions {
    * cause problems when server-side rendering when using the children renderer
    * to create a grid list dynamically based on the number of columns. If the
    * number of columns and default `cellWidth` can be guessed server-side, you
-   * should provide this prop. Otherwise it will be: `{ cellSize; maxCellSize,
-   * columns: -1 }`
+   * should provide this prop. Otherwise it will be:
+   * `{ cellSize; maxCellSize, columns: -1 }`
    */
   defaultSize?: GridListSize | (() => GridListSize);
 

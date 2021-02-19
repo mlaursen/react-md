@@ -48,7 +48,6 @@ const getActiveTab = (
 
 /**
  * @since 2.3.0
- * @private
  * @internal
  */
 const context = createContext<UpdateIndicatorStyles>(() => {
@@ -57,14 +56,12 @@ const context = createContext<UpdateIndicatorStyles>(() => {
 
 /**
  * @since 2.3.0
- * @private
  * @internal
  */
 export const { Provider: UpdateIndicatorStylesProvider } = context;
 
 /**
  * @since 2.3.0
- * @private
  * @internal
  */
 export function useUpdateIndicatorStyles(): UpdateIndicatorStyles {
@@ -77,7 +74,7 @@ export function useUpdateIndicatorStyles(): UpdateIndicatorStyles {
  * indicator will be updated to be the same width as the tab along with offset
  * by all the tabs' sizes.
  *
- * @private
+ * @internal
  */
 export function useTabIndicatorStyle({
   style,

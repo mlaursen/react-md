@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 
 /**
  * Boolean if the child components should inherit the color of the app bar.
- * @private
+ * @internal
  */
 export const InheritContext = createContext(false);
 
@@ -21,9 +21,9 @@ export interface AppBarColorInherit {
  * AppBar. If the `inheritColor` prop was provided to the component, that value
  * will be used instead.
  *
- * @param inheritColor The prop inheritColor for the component
- * @return true if the color should be inherited.
- * @private
+ * @param inheritColor - The prop inheritColor for the component
+ * @returns true if the color should be inherited.
+ * @internal
  */
 export function useInheritContext(inheritColor: boolean | undefined): boolean {
   const inheritContext = useContext(InheritContext);
@@ -36,13 +36,13 @@ export function useInheritContext(inheritColor: boolean | undefined): boolean {
  * nested app bars usually happen with prominent toolbars and the root app bar
  * defines the theme.
  *
- * @private
+ * @internal
  */
 export const ParentContext = createContext(false);
 
 /**
  *
- * @private
+ * @internal
  */
 export function useParentContext(): boolean {
   return useContext(ParentContext);

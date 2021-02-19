@@ -11,7 +11,7 @@ type DefinedCSSTransitionClassNames = Required<CSSTransitionClassNames>;
  * `enter` classes if the provided classNames left the `appear` classes as
  * undefined but enabled the `appear` state.
  *
- * @private
+ * @internal
  */
 export function getClassNames(
   classNames: CSSTransitionClassNames | string,

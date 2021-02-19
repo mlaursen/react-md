@@ -6,12 +6,12 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 /**
- * @private
+ * @internal
  */
 export const { Provider: TableFooterProvider } = context;
 
 /**
- * @private
+ * @internal
  */
 export function useTableFooter(): boolean {
   return useContext(context);

@@ -32,10 +32,11 @@ export const AAA_CONTRAST_RATIO = 7;
  * Checks if there is an acceptable contrast ratio between the background and
  * foreground colors based on the provided compliance level.
  *
- * @param background The background color to check against
- * @param foreground The foreground color to check against
- * @param compliance The compliance level to use or a custom number as a ratio.
- * @return true if there is enough contrast between the foreground and
+ * @param background - The background color to check against
+ * @param foreground - The foreground color to check against
+ * @param compliance - The compliance level to use or a custom number as a
+ * ratio.
+ * @returns true if there is enough contrast between the foreground and
  * background colors for the provided compliance level.
  */
 export function isContrastCompliant(

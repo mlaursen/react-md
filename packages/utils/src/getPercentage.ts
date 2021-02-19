@@ -1,10 +1,10 @@
 /**
  * Gets the current percentage based on the min, max, and current value.
  *
- * @param min the min value
- * @param max the max value
- * @param value the current value to compare against
- * @return the percentage that the `value` is between the `min` and `max`
+ * @param min - the min value
+ * @param max - the max value
+ * @param value - the current value to compare against
+ * @returns the percentage that the `value` is between the `min` and `max`
  * values.
  */
 export function getPercentage(min: number, max: number, value: number): number {

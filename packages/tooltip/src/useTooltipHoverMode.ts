@@ -29,8 +29,8 @@ interface TooltipHoverModeState {
  * This is a private hook that is used to cache and update the tooltip delay
  * context state when needed.
  *
- * @param defaultDelay The default delay to use for all tooltips
- * @return the tooltip delay state
+ * @param defaultDelay - The default delay to use for all tooltips
+ * @returns the tooltip delay state
  */
 export function useTooltipHoverModeState(
   defaultDelay: number,
@@ -99,7 +99,7 @@ export const HoverModeEnabled = createContext(false);
 /**
  * This hook returns the current delay timeout. This probably shouldn't be used
  * much outside of this package.
- * @private
+ * @internal
  */
 export function useTooltipHoverModeDelay(): number {
   return useContext(HoverModeDelay);
@@ -108,14 +108,14 @@ export function useTooltipHoverModeDelay(): number {
 /**
  * This hook returns the actions to enable the hover mode as well as start a
  * timer to disable it.
- * @private
+ * @internal
  */
 export function useTooltipHoverModeActions(): HoverModeActionsContext {
   return useContext(HoverModeActions);
 }
 
 /**
- * @private
+ * @internal
  */
 export function useTooltipHoverModeEnabled(): boolean {
   return useContext(HoverModeEnabled);

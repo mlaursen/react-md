@@ -8,8 +8,8 @@ import { MutableRefObject, useEffect, useRef } from "react";
  * (A great example is for ref callbacks that *shouldn't* be triggered each
  * render. But that might just be a programming error instead).
  *
- * @param cacheable The cacheable thing that gets updated after each render.
- * @return a mutable ref object containing the current cache.
+ * @param cacheable - The cacheable thing that gets updated after each render.
+ * @returns a mutable ref object containing the current cache.
  */
 export function useRefCache<T>(cacheable: T): MutableRefObject<T> {
   const ref = useRef(cacheable);

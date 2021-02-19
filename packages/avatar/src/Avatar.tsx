@@ -27,7 +27,7 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
    * An optional `referrerPolicy` to provide to the `<img>` element if the `src`
    * or `imgProps` props are provided.
    *
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-referrerpolicy
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-referrerpolicy|Referrer Policy}
    *
    * @since 2.2.0
    */

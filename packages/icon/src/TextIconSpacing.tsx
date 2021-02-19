@@ -72,8 +72,8 @@ export interface TextIconSpacingProps {
 
   /**
    * Boolean if the icon and text should be stacked instead of inline. Note:
-   * You'll normally want to update the container element to have `display:
-   * flex` and `flex-direction: column` for this to work.
+   * You'll normally want to update the container element to have
+   * `display: flex` and `flex-direction: column` for this to work.
    */
   stacked?: boolean;
 

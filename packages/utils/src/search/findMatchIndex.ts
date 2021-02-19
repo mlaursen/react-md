@@ -7,11 +7,11 @@
  * string of all capital letters to work as each value will be converted to
  * uppercase before checking.
  *
- * @param value The current query string to find within the values
- * @param values The list of values to search within
- * @param startIndex The start index for the search
- * @param endIndex The end index for the search
- * @private
+ * @param value - The current query string to find within the values
+ * @param values - The list of values to search within
+ * @param startIndex - The start index for the search
+ * @param endIndex - The end index for the search
+ * @internal
  */
 export function findMatchInRange(
   value: string,
@@ -39,12 +39,12 @@ export function findMatchInRange(
  * disabling the `isSelfMatchable` argument. This will make a self-match return
  * `-1`.
  *
- * @param value The current search value
- * @param values A list of values to search within
- * @param startIndex The index within the values list to start the search from
- * @param isSelfMatchable Boolean if the current index can be included in the
+ * @param value - The current search value
+ * @param values - A list of values to search within
+ * @param startIndex - The index within the values list to start the search from
+ * @param isSelfMatchable - Boolean if the current index can be included in the
  * search
- * @private
+ * @internal
  */
 export function findMatchIndex(
   value: string,

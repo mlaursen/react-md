@@ -5,9 +5,9 @@ import { BaseTreeItem, TreeData, TreeItemId, UnknownTreeItem } from "./types";
  * tree that can be used for drag and drop behavior or building a breadcrumb
  * list.
  *
- * @param data The flattened tree data to navigate.
- * @param itemId The item id to start the search at.
- * @return an ordered list of the current item followed by all the direct
+ * @param data - The flattened tree data to navigate.
+ * @param itemId - The item id to start the search at.
+ * @returns an ordered list of the current item followed by all the direct
  * parents of that item.
  */
 export function getItemsFrom<T extends BaseTreeItem = UnknownTreeItem>(

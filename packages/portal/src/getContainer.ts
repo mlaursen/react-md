@@ -13,9 +13,9 @@ export type PortalInto =
  * A utility function to get the current container for the portal.  For SSR, the
  * container will always be `null` since portals don't work server side.
  *
- * @param into The element to portal into
- * @param intoId An id for an element to portal into
- * @return the portal container element or null
+ * @param into - The element to portal into
+ * @param intoId - An id for an element to portal into
+ * @returns the portal container element or null
  */
 export function getContainer(
   into?: PortalInto | undefined,

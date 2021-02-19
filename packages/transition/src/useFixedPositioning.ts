@@ -107,15 +107,17 @@ interface ReturnValue extends Required<TransitionHooks> {
 }
 
 /**
- * This hook is used to automatically handle fixed positioning when an element is used alongside a
- * `Transition` from `react-transition-group`. This will provide merged `onEnter`, `onEntering`,
- * `onEntered`, and `onExited` handlers to pass down as well as the current style object to apply
- * to the element.
+ * This hook is used to automatically handle fixed positioning when an element
+ * is used alongside a `Transition` from `react-transition-group`. This will
+ * provide merged `onEnter`, `onEntering`, `onEntered`, and `onExited` handlers
+ * to pass down as well as the current style object to apply to the element.
  *
- * Until the element has been removed from the DOM and is visible, the position will automatically
- * update when the user scrolls or resizes the screen.
+ * Until the element has been removed from the DOM and is visible, the position
+ * will automatically update when the user scrolls or resizes the screen.
  *
- * > It is recommended to start the exit animation when that happens though.
+ * @remarks
+ *
+ * It is recommended to start the exit animation when that happens though.
  */
 export function useFixedPositioning({
   onEnter,

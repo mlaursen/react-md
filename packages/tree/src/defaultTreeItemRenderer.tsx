@@ -37,14 +37,15 @@ function isElementType(
  * }
  * ```
  *
- * @param itemProps The providied tree item props that should be passed down for
- * keyboard functionality, accessibility, and a `key` for the item.
- * @param item The item itself. This is used to extract any of the common
+ * @param itemProps - The providied tree item props that should be passed down
+ * for keyboard functionality, accessibility, and a `key` for the item.
+ * @param item - The item itself. This is used to extract any of the common
  * ListItemChildren props.
- * @param treeProps The props for the Tree this item is being rendered in. This
- * is really used so the `expanderLeft`, `expanderIcon`, `labelKey`,
- * `getItemLabel`, and `getItemProps` can be used to render the TreeItem itself.
- * @return a `TreeItem` or a custom `ReactElement`
+ * @param treeProps - The props for the Tree this item is being rendered in.
+ * This is really used so the `expanderLeft`, `expanderIcon`, `labelKey`,
+ * `getItemLabel`, and `getItemProps` can be used to render the TreeItem
+ * itself.
+ * @returns a `TreeItem` or a custom `ReactElement`
  */
 export function defaultTreeItemRenderer(
   itemProps: ProvidedTreeItemProps,

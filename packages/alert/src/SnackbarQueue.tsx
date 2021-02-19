@@ -47,7 +47,7 @@ function getId(
  * component, it's actually required to create a separate component instance so
  * that the context API can be
  *
- * @private
+ * @internal
  */
 function SnackbarQueueT<M extends ToastMessage = ToastMessage>(
   { queue, onActionClick, ...props }: SnackbarQueueProps<M>,

@@ -130,14 +130,14 @@ function createDelegatedEventHandler(
  * there is at least 1 callback.
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/Events/resize#Examples
- * @param eventType One of the event types that should be used to create a
+ * @param eventType - One of the event types that should be used to create a
  * delegated event for. This should be things like resize, click, scroll, etc.
- * @param eventTarget The target that should have the delegated event handler
+ * @param eventTarget - The target that should have the delegated event handler
  * attached to. This is normally the window, but can be any element as needed.
- * @param throttle Boolean if the event should be throttled or not. Normally
+ * @param throttle - Boolean if the event should be throttled or not. Normally
  * only event types like resize or scroll should be throttled for performance
  * boosts, but anything can be.
- * @return The delegated event handler that allows you to add or remove
+ * @returns The delegated event handler that allows you to add or remove
  * `EventListener`s to that event.
  */
 export function delegateEvent(

@@ -113,10 +113,10 @@ export interface TooltippedProps
    * use the provided `spacing` or `denseSpacing` props based on the `dense`
    * prop.
    *
-   * Note: This will be defaulted to `true` when the `process.env.NODE_ENV ===
-   * 'test'` since test environments normally don't have a default
-   * `window.getComgetComputedStyle` value that is not `NaN` which will display
-   * errors in your tests.
+   * Note: This will be defaulted to `true` when the
+   * `process.env.NODE_ENV === 'test'` since test environments normally don't
+   * have a default `window.getComgetComputedStyle` value that is not `NaN`
+   * which will display errors in your tests.
    */
   disableAutoSpacing?: boolean;
 

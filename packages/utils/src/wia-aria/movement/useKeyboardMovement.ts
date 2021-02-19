@@ -22,7 +22,7 @@ export type MovementHandler<
  * "focusable"/"searchable" list of elements so that custom focus behavior can
  * be triggered.
  *
- * @typeparam E the element type of each item within the focusable list.
+ * @typeParam E - the element type of each item within the focusable list.
  */
 export type ItemRef<E extends HTMLElement> = MutableRefObject<E | null>;
 
@@ -56,9 +56,9 @@ export interface BaseKeyboardMovementOptions<
 /**
  * The options for custom keyboard movement.
  *
- * @typeparam D the type of each item within the item list
- * @typeparam CE the type of the DOM element for the keyboard event handler.
- * @typeparam IE the type of the DOM element for the keyboard event handler.
+ * @typeParam D - the type of each item within the item list
+ * @typeParam CE - the type of the DOM element for the keyboard event handler.
+ * @typeParam IE - the type of the DOM element for the keyboard event handler.
  */
 export interface KeyboardMovementOptions<
   D = unknown,
@@ -87,10 +87,10 @@ export interface KeyboardMovementOptions<
  * - itemRefs
  * - onKeyDown event handler
  *
- * @typeparam CE The HTMLElement type of the container element that handles the
- * custom keyboard movement.
- * @typeparam IE The HTMLElement type of each item within the container element
- * that can be focusable.
+ * @typeParam CE - The HTMLElement type of the container element that handles
+ * the custom keyboard movement.
+ * @typeParam IE - The HTMLElement type of each item within the container
+ * element that can be focusable.
  */
 export type KeyboardMovementProviders<
   CE extends HTMLElement,
@@ -133,11 +133,11 @@ export type KeyboardMovementProviders<
  * will be fired with the matching data and allows for custom movement with
  * `target.focus()` or updating the `aria-activedescendant` attribute as needed.
  *
- * @typeparam D The type of each data item within the items list.
- * @typeparam CE The HTMLElement type of the container element that handles the
- * custom keyboard movement.
- * @typeparam IE The HTMLElement type of each item within the container element
- * that can be focusable.
+ * @typeParam D - The type of each data item within the items list.
+ * @typeParam CE - The HTMLElement type of the container element that handles
+ * the custom keyboard movement.
+ * @typeParam IE - The HTMLElement type of each item within the container
+ * element that can be focusable.
  */
 export function useKeyboardMovement<
   D = unknown,

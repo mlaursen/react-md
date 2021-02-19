@@ -73,7 +73,7 @@ export interface TransitionReturnValue<E extends HTMLElement>
 
 /**
  *
- * @private
+ * @internal
  */
 const reducer = (
   state: TransitionState,
@@ -97,7 +97,7 @@ const reducer = (
 
 /**
  *
- * @private
+ * @internal
  */
 const INITIAL_STATE: TransitionState = {
   appearing: false,
@@ -107,7 +107,7 @@ const INITIAL_STATE: TransitionState = {
 
 /**
  *
- * @private
+ * @internal
  */
 const getInitialState = (
   transitionIn: boolean,
@@ -129,8 +129,8 @@ const getInitialState = (
  * defined timeouts, but you'll most likely be looking for the
  * `useCSSTransition` instead.
  *
- * @param options All the options used for the transition.
- * @return An object describing the current transition stage and props that
+ * @param options - All the options used for the transition.
+ * @returns An object describing the current transition stage and props that
  * should be passed to a component.
  */
 export function useTransition<E extends HTMLElement = HTMLDivElement>({
@@ -153,8 +153,8 @@ export function useTransition<E extends HTMLElement = HTMLDivElement>({
     getInitialState(transitionIn, temporary, appear)
   );
 
-  // need to store in mutable ref since these are mostly going to be arrow functions
-  // and shouldn't cause the transitions to change
+  // need to store in mutable ref since these are mostly going to be arrow
+  // functions and shouldn't cause the transitions to change
   const handlers = useRef({
     onEnter,
     onEntering,

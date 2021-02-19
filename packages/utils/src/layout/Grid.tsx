@@ -17,7 +17,7 @@ import { GridCell } from "./GridCell";
  * the default grid implementation, but is used here to add additional
  * inline-style overrides.
  *
- * @private
+ * @internal
  */
 export const GRID_COLUMNS_VAR = "--rmd-grid-cols";
 
@@ -25,7 +25,7 @@ export const GRID_COLUMNS_VAR = "--rmd-grid-cols";
  * This CSS Variable allows you to override the gutter (grid-gap) between each
  * cell in the grid.
  *
- * @private
+ * @internal
  */
 export const GRID_GUTTER_VAR = "--rmd-grid-gutter";
 

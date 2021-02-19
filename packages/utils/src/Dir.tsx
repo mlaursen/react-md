@@ -122,6 +122,7 @@ export const DEFAULT_DIR = (): WritingDirection => {
  *   </Dir>,
  *   root
  * );
+ * ```
  *
  * Note: Since the `dir` is cloned into the child element, you need to make sure
  * that the child is either a DOM element or the `dir` prop is passed from your

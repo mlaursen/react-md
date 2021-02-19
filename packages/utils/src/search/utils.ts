@@ -2,14 +2,15 @@
  * This is a small util that is used to transform a search string with common
  * patterns.
  *
- * @param value The string to transform
- * @param lowercase Boolean if the value should be lowercased for
+ * @param value - The string to transform
+ * @param lowercase - Boolean if the value should be lowercased for
  * case-insensitive searches
- * @param trim Boolean if the leading and trailing whitespace should be trimmed
- * @param ignoreWhitespace Boolean if all whitespace should be ignored. This
+ * @param trim - Boolean if the leading and trailing whitespace should be
+ * trimmed
+ * @param ignoreWhitespace - Boolean if all whitespace should be ignored. This
  * will take precedence over the `trim` parameter if set to true.
- * @return The transformed search string
- * @private
+ * @returns The transformed search string
+ * @internal
  */
 export function getSearchString(
   value: string,
@@ -34,11 +35,11 @@ export function getSearchString(
  * The default implementation of the getItemValue search option that will
  * attempt to "stringify" any unknown item as a string.
  *
- * @param item The current item to transform
- * @param valueKey The key to use that should hold the value if the item is an
+ * @param item - The current item to transform
+ * @param valueKey - The key to use that should hold the value if the item is an
  * object
- * @return the item as a string
- * @private
+ * @returns the item as a string
+ * @internal
  */
 export function getItemValue(item: unknown, valueKey = "value"): string {
   switch (typeof item) {

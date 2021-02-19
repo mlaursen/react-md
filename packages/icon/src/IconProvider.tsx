@@ -113,9 +113,9 @@ const { Provider } = context;
  * If te second argument is provided and it is not `undefined`, that value will
  * be used instead of the inherited icon type.
  *
- * @param name The name of the icon you want to use.
- * @param override An optional override to use instead of the inherited icon.
- * @return The overridden icon value or the inherited icon.
+ * @param name - The name of the icon you want to use.
+ * @param override - An optional override to use instead of the inherited icon.
+ * @returns The overridden icon value or the inherited icon.
  */
 export function useIcon(
   name: keyof ConfigurableIcons,

@@ -4,7 +4,7 @@ import { UserInteractionMode } from "./types";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 
 /**
- * @private
+ * @internal
  */
 const TOUCH_TIMEOUT = 1200;
 
@@ -48,7 +48,6 @@ const TOUCH_TIMEOUT = 1200;
  * don't really know of any use-cases other than the weird touch-desktop stuff
  * and I have no experience using them.
  *
- * @private
  * @internal
  */
 export function useInteractionMode(): UserInteractionMode {

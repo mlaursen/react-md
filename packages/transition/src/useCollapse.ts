@@ -57,11 +57,11 @@ type ReturnValue<E extends HTMLElement> = [
  * `padding-bottom` is much less performant than `transform` transition since it
  * forces the DOM to repaint during the
  *
- * @param collapsed Boolean if the element is currently collapsed. Changing this
- * value will cause the animation to trigger.
- * @param options All the additional options available for the collapse
+ * @param collapsed - Boolean if the element is currently collapsed. Changing
+ * this value will cause the animation to trigger.
+ * @param options - All the additional options available for the collapse
  * transition.
- * @return An ordered list containing a boolean if the collapse should be
+ * @returns An ordered list containing a boolean if the collapse should be
  * rendered in the DOM followed by an object of props to pass to the collapsible
  * element to handle the transition.
  */

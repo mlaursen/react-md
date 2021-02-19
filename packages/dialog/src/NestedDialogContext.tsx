@@ -80,7 +80,7 @@ export function NestedDialogContextProvider({
  * Gets the current nested dialog context. This shouldn't really be used
  * externally and is a private context hook.
  *
- * @private
+ * @internal
  */
 export function useNestedDialogContext(): NestedDialogContext {
   return useContext(context);

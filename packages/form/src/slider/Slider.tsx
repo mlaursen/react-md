@@ -21,7 +21,7 @@ export interface SliderProps extends SliderRequiredProps, BaseSliderProps {
    * short (1-4 word) description for this slider.
    *
    * @see {@link SliderLabelProps#label}
-   * @see {@link #thumbLabelledBy}
+   * @see {@link thumbLabelledBy}
    */
   thumbLabel?: string;
 
@@ -30,7 +30,7 @@ export interface SliderProps extends SliderRequiredProps, BaseSliderProps {
    * normally be a short (1-4 word) description for this slider.
    *
    * @see {@link SliderLabelProps#label}
-   * @see {@link #thumbLabel}
+   * @see {@link thumbLabel}
    */
   thumbLabelledBy?: string;
 

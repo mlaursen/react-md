@@ -107,7 +107,7 @@ type ReturnValue = [
 type PanelMemo = Pick<ProvidedPanelProps, "id" | "headerRef">;
 
 /**
- * @private
+ * @internal
  */
 const attemptFocus = (index: number, panels: PanelMemo[]): void => {
   const panel = panels[index]?.headerRef.current;

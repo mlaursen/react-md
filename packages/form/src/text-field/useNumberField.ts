@@ -204,9 +204,9 @@ export function useNumberField(
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
  * @see {@link useTextField}
- * @param options All the options used to control the functionality of this
+ * @param options - All the options used to control the functionality of this
  * hook.
- * @return @see {@link NumberFieldHookReturnType}
+ * @returns @see {@link NumberFieldHookReturnType}
  * @since 2.5.0
  */
 export function useNumberField({

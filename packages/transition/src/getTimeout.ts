@@ -1,7 +1,7 @@
 import { TransitionTimeout } from "./types";
 
 /**
- * @private
+ * @internal
  */
 export interface DefinedTimeout {
   appear: number;
@@ -14,7 +14,7 @@ const error = (part?: keyof DefinedTimeout): never => {
 };
 
 /**
- * @private
+ * @internal
  */
 export function getTimeout(
   timeout: TransitionTimeout,

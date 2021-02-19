@@ -9,7 +9,7 @@ export interface PanelGroupProps {
 }
 
 /**
- * @private
+ * @internal
  */
 export function PanelGroup({
   persistent,

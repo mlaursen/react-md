@@ -29,10 +29,10 @@ export type ThrottledFunction<F extends ThrottleableFunction> = (
  * sent every keystroke, but every few letters. You _could_ also do debounce
  * here, but it'll feel more "responsive" to the user when throttled.
  *
- * @param fn The function that should be throttled
- * @param wait The number of milliseconds to wait before calling the function
+ * @param fn - The function that should be throttled
+ * @param wait - The number of milliseconds to wait before calling the function
  * again
- * @return a throttled version of the function that'll return the last computed
+ * @returns a throttled version of the function that'll return the last computed
  * value if it was called again during the "wait" period.
  */
 export function throttle<F extends ThrottleableFunction>(

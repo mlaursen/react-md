@@ -41,9 +41,9 @@ export type ListboxChangeEventData = Pick<
  * the arrow keys. If this is undesired behavior, enable the
  * `disableMovementChange` prop so that it'll only be called on "click" events.
  *
- * @param nextValue The next value that should be set for the listbox.
- * @param option The option that was selected.
- * @param listbox Part of the listbox props to help identify which listbox has
+ * @param nextValue - The next value that should be set for the listbox.
+ * @param option - The option that was selected.
+ * @param listbox - Part of the listbox props to help identify which listbox has
  * been changed if reusing an event handler for multiple form parts.
  */
 export type ListboxChangeEventHandler = (

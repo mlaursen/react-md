@@ -87,7 +87,7 @@ export interface FormattedItem {
 
   /**
    * The package that the item is in. This will not be prefixed
-   * with @react-md.
+   * with \@react-md.
    */
   packageName: string;
 

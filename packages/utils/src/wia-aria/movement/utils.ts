@@ -6,8 +6,8 @@ import { FocusType, KeyConfig, MovementKey } from "./types";
  * should have custom focus with the `aria-activedescendant` flow instead of
  * native focus.
  *
- * @param id The base id for the container element of all the items.
- * @param i The index of the item within the list. This number will be
+ * @param id - The base id for the container element of all the items.
+ * @param i - The index of the item within the list. This number will be
  * incremented by 1 as an id to start from 1 instead of 0.
  */
 export function getItemId(id: string, i: number): string {
@@ -27,10 +27,10 @@ export function getItemId(id: string, i: number): string {
  * `KeyConfig` objects. This is useful for how I determine what behavior to
  * implement after a keydown event.
  *
- * @param keys A list of key mappings to convert to a key object. These should
+ * @param keys - A list of key mappings to convert to a key object. These should
  * be things like: "Tab", "Alt+Home", "A", "Shift+Alt+ArrowUp"
- * @param type The keyboard focus type this key should be mapped to
- * @private
+ * @param type - The keyboard focus type this key should be mapped to
+ * @internal
  */
 export function transformKeys(
   keys: readonly MovementKey[],
@@ -53,10 +53,10 @@ export function transformKeys(
  *
  * If a key is not found, `null` will be returned instead.
  *
- * @param event The event to get a key mapping type for
- * @param keys A list of key mappings to attempt to find a valid key event type
- * from.
- * @private
+ * @param event - The event to get a key mapping type for
+ * @param keys - A list of key mappings to attempt to find a valid key event
+ * type from.
+ * @internal
  */
 export function getKeyboardConfig(
   event: KeyboardEvent | React.KeyboardEvent,
@@ -80,8 +80,8 @@ export function getKeyboardConfig(
  * can be checked in the `onChange` callback for keyboard movement. This is used
  * as the `query` attribute on the change data.
  *
- * @param config The key config to stringify
- * @private
+ * @param config - The key config to stringify
+ * @internal
  */
 export function getStringifiedKeyConfig(config: KeyConfig): string {
   const { key, altKey, ctrlKey, metaKey, shiftKey, type } = config;

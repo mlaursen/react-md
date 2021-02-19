@@ -27,10 +27,10 @@ export type FocusFallback =
  * The animation frame is unfortunately required for keyboard users as pressing
  * enter key will click the previous element immediately on focus as well.
  *
- * @param disabled Boolean if the focus behavior should be disabled.
- * @param fallback The fallback query, element, or function to use if the
+ * @param disabled - Boolean if the focus behavior should be disabled.
+ * @param fallback - The fallback query, element, or function to use if the
  * previous element no longer exists in the DOM.
- * @param previousElement An optional previous element to focus. If this is
+ * @param previousElement - An optional previous element to focus. If this is
  * omitted, the `document.activeElement` will be used instead.
  */
 export function usePreviousFocus(

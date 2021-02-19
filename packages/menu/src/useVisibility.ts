@@ -27,7 +27,7 @@ interface ReturnValue {
  * `DropdownMenuItem` components. It'll provide the current visibility as well
  * as the default focus type once the menu becomes visible.
  *
- * @private
+ * @internal
  */
 export function useVisibility({
   defaultVisible = false,

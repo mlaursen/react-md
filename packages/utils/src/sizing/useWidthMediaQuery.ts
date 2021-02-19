@@ -34,9 +34,9 @@ type WidthMediaQuerys =
  * This is a simple hoo that will create a memoized media query string with the
  * provided min anx max values.
  *
- * @param min An optional min value to use
- * @param max An optional max value to use
- * @return a boolean if the current media query is a match.
+ * @param min - An optional min value to use
+ * @param max - An optional max value to use
+ * @returns a boolean if the current media query is a match.
  */
 export function useWidthMediaQuery({
   min,

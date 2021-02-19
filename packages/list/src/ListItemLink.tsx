@@ -16,8 +16,8 @@ export interface ListItemLinkProps
   /**
    * An optional component to render as. This should really only be used if you
    * are using a router library like
-   * [react-router](https://github.com/ReactTraining/react-router) or
-   * [@reach/router](https://github.com/reach/router). This will call
+   * {@link https://github.com/ReactTraining/react-router|react-router} or
+   * {@link https://github.com/reach/router|@reach/router}. This will call
    * `createElement` with this value and provide all props and class name.
    */
   component?: ElementType;

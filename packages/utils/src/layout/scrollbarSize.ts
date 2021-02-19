@@ -13,7 +13,7 @@ const cached: Cache = {
 /**
  * This is used to reset the cached value for each test and verify the cached
  * behavior is working
- * @private
+ * @internal
  */
 export const reset = (): void => {
   cached.height = undefined;
@@ -33,11 +33,12 @@ export const reset = (): void => {
  * and actually don't take up height/width real estate.
  *
  * @see https://stackoverflow.com/a/13382873
- * @param type Either the string "height" or "width" to determine which size to
- * get
- * @param forced Boolean if the scrollbar height/width should be force updated. When
- * this is false, the "cached" value will be returned immediately instead
- * @return the current scrollbar width or -1 if running this on the server
+ * @param type - Either the string "height" or "width" to determine which size
+ * to get
+ * @param forced - Boolean if the scrollbar height/width should be force
+ * updated. When this is false, the "cached" value will be returned immediately
+ * instead
+ * @returns the current scrollbar width or -1 if running this on the server
  */
 export function scrollbarSize(
   type: SizingType = "width",

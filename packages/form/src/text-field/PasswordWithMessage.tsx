@@ -35,8 +35,8 @@ export type PasswordWithMessageProps = FieldMessageContainerExtension<PasswordPr
  * ```
  *
  * Note: Unline the `TextFieldWithMessage` and `TextAreaWithMessage`, the error
- * icon will do nothing for this component unless the disableVisibility`` prop
- * is enabled.`
+ * icon will do nothing for this component unless the `disableVisibility` prop
+ * is enabled.
  *
  * @since 2.5.0
  */

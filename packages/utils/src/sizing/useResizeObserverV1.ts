@@ -17,7 +17,7 @@ type RefTarget<
  * - null
  * - HTMLElement
  * - a document.querySelector string
- * - a ref with { current: null | HTMLElement }
+ * - a ref with `{ current: null | HTMLElement }`
  * - a function that returns
  *   - null
  *   - HTMLElement
@@ -32,7 +32,7 @@ export type ResizeObserverTarget<E extends HTMLElement = HTMLElement> =
   | GetTarget<E>;
 
 /**
- * @private
+ * @internal
  */
 const isRefTarget = (
   target: ResizeObserverTarget
@@ -42,7 +42,7 @@ const isRefTarget = (
     "undefined";
 
 /**
- * @private
+ * @internal
  */
 const isFunctionTarget = (target: ResizeObserverTarget): target is GetTarget =>
   typeof target === "function";
@@ -50,7 +50,7 @@ const isFunctionTarget = (target: ResizeObserverTarget): target is GetTarget =>
 /**
  * A utility function to get the current resize observer element.
  *
- * @private
+ * @internal
  */
 export function getResizeObserverTarget(
   target: ResizeObserverTarget
@@ -72,7 +72,7 @@ export function getResizeObserverTarget(
 
 /**
  *
- * @private
+ * @internal
  */
 export function isHeightChange(
   prevSize: ElementSize | undefined,
@@ -87,7 +87,7 @@ export function isHeightChange(
 
 /**
  *
- * @private
+ * @internal
  */
 export function isWidthChange(
   prevSize: ElementSize | undefined,
@@ -149,7 +149,6 @@ export interface UseResizeObserverV1Options<
 }
 
 /**
- * @private
  * @internal
  */
 export const warnedOnce = {
@@ -161,7 +160,7 @@ export const warnedOnce = {
  * A hook that is used to trigger esize events when a target element is resized
  * via CSS or other changes.
  *
- * @param options The resize observer options.
+ * @param options - The resize observer options.
  * @deprecated 2.3.0 Use the new ref API instead
  */
 export function useResizeObserverV1<E extends HTMLElement>({

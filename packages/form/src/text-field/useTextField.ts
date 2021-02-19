@@ -256,9 +256,9 @@ export function useTextField(
  * complex forms
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
- * @param options All the options used to control the functionality of this
+ * @param options - All the options used to control the functionality of this
  * hook.
- * @return @see {@link TextFieldHookReturnType}
+ * @returns @see {@link TextFieldHookReturnType}
  * @since 2.5.0
  */
 export function useTextField({

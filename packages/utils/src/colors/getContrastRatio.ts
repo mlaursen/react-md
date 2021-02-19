@@ -6,10 +6,10 @@ import { HexString } from "./hexToRGB";
  *
  * @see https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
  *
- * @param background The background color
- * @param foreground The foreground color. This is normally the `color` css
+ * @param background - The background color
+ * @param foreground - The foreground color. This is normally the `color` css
  * value.
- * @return the contrast ratio between the background and foreground colors.
+ * @returns the contrast ratio between the background and foreground colors.
  */
 export function getContrastRatio(
   background: HexString,

@@ -188,10 +188,10 @@ declare module "sassdoc" {
    * @param {Boolean} my-bool [false] - Another description
    * ```
    *
-   * @typeparam T This can be used if you want to strongly type what types you
-   * want to use in your sassdoc (normally for case-sensitivity). sassdoc is not
-   * type sensitive and any type can really be added here. You can also use
-   * pipes (`|`) to support multiple types.
+   * @typeParam T - This can be used if you want to strongly type what types
+   * you want to use in your sassdoc (normally for case-sensitivity). sassdoc
+   * is not type sensitive and any type can really be added here. You can also
+   * use pipes (`|`) to support multiple types.
    */
   export interface ItemParameter<T extends string = ItemDataType> {
     /**
@@ -570,8 +570,8 @@ declare module "sassdoc" {
    * to some "recommended" capitalized versions that should be used when
    * documenting.
    *
-   * @typeparam T the data type for the `@type` annotation.  @typeparam IT The
-   * data type for each item `@prop` annotation.
+   * @typeParam T - the data type for the `@type` annotation.
+   * @typeParam IT - The data type for each item `@prop` annotation.
    */
   export interface VariableItem<
     T extends string = DataType,

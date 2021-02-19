@@ -5,7 +5,7 @@ import { UnknownTreeItem } from "./types";
 /**
  * A "reasonable" default implementation for rendering a label for a tree item.
  *
- * @private
+ * @internal
  */
 export function defaultGetItemLabel(
   item: UnknownTreeItem,

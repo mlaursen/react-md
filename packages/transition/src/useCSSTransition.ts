@@ -89,8 +89,8 @@ export type CSSTransitionReturnValue<E extends HTMLElement> = [
  *
  * @see useCrossFade The `useCrossFade` is a good example of using this hook for
  * a custom CSS Transition.
- * @param options The transition options
- * @return An ordered list of a boolean if the component should be rendered,
+ * @param options - The transition options
+ * @returns An ordered list of a boolean if the component should be rendered,
  * transition props to provide to the transitioning element, a dispatch function
  * for triggering the transition manually (should not be used much), and the
  * current transition stage.

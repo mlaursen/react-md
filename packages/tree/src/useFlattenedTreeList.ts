@@ -109,7 +109,7 @@ type ReturnValue = [SearchableTreeItem[], MetadataRecord, SearchableTreeItem[]];
  * This flattened list will remove the `childItems` (if it existed) on each item for
  * simplicity and the child items aren't needed for this flattened list.
  *
- * @private
+ * @internal
  */
 export function useFlattenedTreeList({
   id,

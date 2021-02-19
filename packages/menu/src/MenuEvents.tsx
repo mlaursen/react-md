@@ -11,7 +11,7 @@ export interface MenuEventsProps {
  * This is just a simple component that is used with the `Menu` component to
  * handle the initial focus on mount and re-focusing a previous element on
  * unmount.
- * @private
+ * @internal
  */
 export function MenuEvents({
   menuRef,

@@ -50,9 +50,9 @@ export interface CrossFadeOptions<E extends HTMLElement>
  * }
  * ```
  *
- * @param options Any additional options and configuration that should be used
+ * @param options - Any additional options and configuration that should be used
  * for the transition.
- * @return An ordered list of a boolean if the component should be rendered,
+ * @returns An ordered list of a boolean if the component should be rendered,
  * transition props to provide to the transitioning element, a dispatch function
  * for triggering the transition manually (should not be used much), and the
  * current transition stage.

@@ -18,7 +18,7 @@ export interface BadgedButtonProps
 
   /**
    * An optional id for the badge. Either this prop or the `id` prop is required
-   * for a11y when the `badgeChildren` is provided` to create the
+   * for a11y when the `badgeChildren` is provided to create the
    * `aria-describedby` value on the button.
    */
   badgeId?: string;

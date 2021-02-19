@@ -7,8 +7,8 @@ const removeWhitespace = (s: string): string => s.replace(/\s/g, "");
  * FontIcon to return the textContent instead. This is because the FontIcon's
  * text content would also be returned from the node's text content.
  *
- * @param stringOrElement Either a string or an element element to convert
- * @param fontIconQuerySelector A string to use for finding font icons in the
+ * @param stringOrElement - Either a string or an element element to convert
+ * @param fontIconQuerySelector - A string to use for finding font icons in the
  * HTML Element. When this is set to the empty string, the element will not be
  * checked for font icons which _might_ be a slight performance boost if you are
  * guarenteed to not use font icons

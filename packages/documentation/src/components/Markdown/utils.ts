@@ -163,8 +163,11 @@ const whitespace = "(?=\r?\n| |[^/])";
  * installation page. The installation page will only be used if the package is
  * not demoable.
  *
- * Example:
+ * @example
+ *
+ * ```
  * #package-name -> [@react-md/package-name](/packages/package-name/demos|installation)
+ * ```
  */
 export const packageQuickLink: Transformer = (md) =>
   md.replace(
@@ -176,8 +179,11 @@ export const packageQuickLink: Transformer = (md) =>
  * Updates the markdown to quickly link to a specific package's documentation
  * page.
  *
- * Example:
+ * @example
+ *
+ * ```
  * #package-name -> [package-name page](/packages/package-name/page)
+ * ```
  */
 export const packagePageQuickLink: Transformer = (md) =>
   md.replace(
@@ -189,8 +195,11 @@ export const packagePageQuickLink: Transformer = (md) =>
  * Updates the markdown to list all the available packages by creating links to
  * all the demo or installation pages.
  *
- * Example:
+ * @example
+ *
+ * ```
  * #packages -> markdown list for all react-md packages
+ * ```
  */
 export const listAllPackages: Transformer = (md) =>
   md.replace(/#packages(\/(demos|sassdoc))?/g, (_, subpath) => {
@@ -218,9 +227,12 @@ export const linkToCustomizingTheme: Transformer = (md) =>
  * GitHub. This will also try to make sure that hex color codes aren't updated
  * to GitHub links as well.
  *
- * Examples:
+ * @example
+ *
+ * ```
  * #1 > [#1](https://github.com/mlaursen/react-md/issues/1)
  * #713 -> [#713](https://github.com/mlaursen/react-md/issues/713)
+ * ```
  */
 export const linkToGithubIssues: Transformer = (md) =>
   md.replace(
@@ -238,8 +250,11 @@ export const linkToGithubIssues: Transformer = (md) =>
  * Updates the markdown to link to specific github commits if there is a 7 digit
  * sha in the markdown.
  *
- * Example:
+ * @example
+ *
+ * ```
  * 034c7de -> [034c7de](https://github.com/mlaursen/react-md/commit/034c7de)
+ * ```
  */
 export const linkToGithubCommit: Transformer = (md) =>
   md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`);
@@ -249,7 +264,10 @@ export const linkToGithubCommit: Transformer = (md) =>
  * markdown did not use the emoji character.
  *
  * Currently only supports:
+ *
+ * ```
  * :tada: -> 🎉
+ * ```
  */
 export const replaceEmojis: Transformer = (md) => md.replace(/(:tada:)/g, "🎉");
 

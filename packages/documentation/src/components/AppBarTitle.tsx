@@ -9,9 +9,9 @@ import { useResizeObserver } from "@react-md/utils";
 import { useId } from "./IdProvider";
 
 /**
- * This component is a wrapper for the AppBarTitle component from @react-md/app-bar
- * that will automatically update the title to show a tooltip if the title becomes
- * truncated.
+ * This component is a wrapper for the AppBarTitle component from
+ * \@react-md/app-bar that will automatically update the title to show a tooltip
+ * if the title becomes truncated.
  *
  * This is pretty hacky right so it isn't part of the main lib yet, but a better
  * sultion to "auto tooltip" things might be added one day.

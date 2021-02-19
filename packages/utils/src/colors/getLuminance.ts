@@ -9,7 +9,7 @@ const BLUE_MULTIPLIER = 0.0722;
  * formula doesn't really describe it much:
  *
  * @see https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
- * @private
+ * @internal
  */
 function get8BitColor(color: number): number {
   color /= 255;
@@ -26,7 +26,7 @@ function get8BitColor(color: number): number {
  * should be closest to white.
  *
  * @see https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
- * @private
+ * @internal
  */
 export function getLuminance(color: HexString): number {
   const [r, g, b] = hexToRGB(color);

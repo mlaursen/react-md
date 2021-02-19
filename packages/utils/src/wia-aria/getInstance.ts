@@ -13,8 +13,8 @@ export type RefOrInstance =
  * Simple private util to get the DOM "instance" from either a ref object or an
  * HTMLElement.
  *
- * @param refOrInstance The ref or instance to get an HTMLElement from
- * @return The HTMLElement or null.
+ * @param refOrInstance - The ref or instance to get an HTMLElement from
+ * @returns The HTMLElement or null.
  * @internal
  */
 export function getInstance(refOrInstance: RefOrInstance): HTMLElement | null {

@@ -35,7 +35,7 @@ export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
    * When this is disabled, it will also make sure that the ripple and pressed
    * effects are not triggered from a spacebar click.
    *
-   * @default false
+   * @defaultValue `false`
    */
   disableSpacebarClick?: boolean;
 
@@ -43,7 +43,7 @@ export interface InteractionStatesOptions<E extends HTMLElement = HTMLElement>
    * Boolean if the component should fallback to using the custom pressed class
    * names when ripples are disabled.
    *
-   * @default false
+   * @defaultValue `false`
    */
   disablePressedFallback?: boolean;
 
@@ -90,8 +90,8 @@ interface ReturnValue<E extends HTMLElement> {
  * - `ripples` - a renderable element that displays the ripple effects. This
  *   will be `null` when ripples are disabled.
  *
- * @typeparam E The element type for the component being wrapped. This is really
- * just used to "better type" the event handlers.
+ * @typeParam E - The element type for the component being wrapped. This is
+ * really just used to "better type" the event handlers.
  */
 export function useInteractionStates<E extends HTMLElement = HTMLElement>(
   options: InteractionStatesOptions<E> = {}

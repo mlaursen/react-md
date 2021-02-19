@@ -10,7 +10,7 @@ interface CollapseSizing {
  * max-height value since `max-height: auto` does not transition. The only way
  * to get transition is to change max-height values manually.
  *
- * @private
+ * @internal
  */
 export function getElementSizing(element: HTMLElement | null): CollapseSizing {
   let maxHeight;

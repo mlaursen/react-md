@@ -75,9 +75,9 @@ const block = bem("rmd-button");
  * used so that other elements like clickable `<div>`s or `<input type="file">`
  * can look like buttons.
  *
- * @param props An object containing the themeable button props to generate a
+ * @param props - An object containing the themeable button props to generate a
  * button theme className.
- * @return a string of class names to create an element with a button theme.
+ * @returns a string of class names to create an element with a button theme.
  */
 export function buttonThemeClassNames({
   theme: propTheme = "clear",

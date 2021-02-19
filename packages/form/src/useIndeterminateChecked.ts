@@ -12,8 +12,8 @@ export interface ProvidedIndeterminateCheckboxProps {
 }
 
 /**
- * All the props that will be provided for all the checkboxes that are controlled
- * by the root indeterminate checkbox.
+ * All the props that will be provided for all the checkboxes that are
+ * controlled by the root indeterminate checkbox.
  */
 export interface ProvidedIndeterminateControlledCheckboxProps<
   T extends string
@@ -24,8 +24,8 @@ export interface ProvidedIndeterminateControlledCheckboxProps<
 }
 
 /**
- * The function that provides the props for each checkbox that is controlled by the
- * root indeterminate checkbox.
+ * The function that provides the props for each checkbox that is controlled by
+ * the root indeterminate checkbox.
  */
 export type GetIndeterminateControlledCheckboxProps<T extends string> = (
   value: T
@@ -110,18 +110,18 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  * );
  * ```
  *
- * @param values All the checkbox values that the indeterminate checkbox can
+ * @param values - All the checkbox values that the indeterminate checkbox can
  * control. The values will **need** to be unique as they are passed to each
  * checkbox to determine if it is checked or not. This will directly map to
  * the `value` attribute for each checkbox.
- * @param defaultCheckedValues An optional list of all the values that are
+ * @param defaultCheckedValues - An optional list of all the values that are
  * checked on first render. Changing this value will not update the checked
  * values.
- * @param onChange An optional function to call whenever the checked values list
- * updates that will provide the next list of all the checked values. This isn't
- * a super helpful prop since this hook will always return the checked values
- * anyways.
- * @return An object containing a function to get the props for each controlled
+ * @param onChange - An optional function to call whenever the checked values
+ * list updates that will provide the next list of all the checked values. This
+ * isn't a super helpful prop since this hook will always return the checked
+ * values anyways.
+ * @returns An object containing a function to get the props for each controlled
  * checkbox, the props for the root indeterminate checkbox, a list of all the
  * checked values, and a general `setCheckboxValues` function from `useState` if
  * the list of values can be changed from external sources as well.

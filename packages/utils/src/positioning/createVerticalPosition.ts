@@ -10,7 +10,7 @@ import { getViewportSize } from "./getViewportSize";
 import { FixedPositionOptions, VerticalPosition } from "./types";
 
 /**
- * @private
+ * @internal
  */
 interface YPosition {
   top: number;
@@ -19,7 +19,7 @@ interface YPosition {
 }
 
 /**
- * @private
+ * @internal
  */
 export interface FixConfig extends YCoordConfig {
   vhMargin: number;
@@ -30,7 +30,7 @@ export interface FixConfig extends YCoordConfig {
 }
 
 /**
- * @private
+ * @internal
  */
 interface Options
   extends Required<
@@ -58,7 +58,7 @@ interface Options
  * the viewport even after being swapped below or swapping is disabled, it will
  * be positioned to the top viewport boundary.
  *
- * @private
+ * @internal
  */
 export function createAnchoredAbove(config: FixConfig): YPosition {
   const {
@@ -116,7 +116,7 @@ export function createAnchoredAbove(config: FixConfig): YPosition {
  * being swapped to the bottom position or swapping is disabled, it will be
  * positioned to the top viewport boundary.
  *
- * @private
+ * @internal
  */
 export function createAnchoredTop(config: FixConfig): YPosition {
   const {
@@ -150,7 +150,7 @@ export function createAnchoredTop(config: FixConfig): YPosition {
  * entered element can't fit within the viewport, it'll update the top value
  * to either be the vhMargin or position to the screen bottom boundary
  *
- * @private
+ * @internal
  */
 export function createAnchoredCenter(config: FixConfig): YPosition {
   const { vhMargin, screenBottom, elHeight, disableVHBounds } = config;
@@ -176,7 +176,7 @@ export function createAnchoredCenter(config: FixConfig): YPosition {
  * swapped to the top position or swapping is disabled, it will be positioned to
  * the bottom viewport boundary.
  *
- * @private
+ * @internal
  */
 export function createAnchoredBottom(config: FixConfig): YPosition {
   const {
@@ -211,7 +211,7 @@ export function createAnchoredBottom(config: FixConfig): YPosition {
  * the viewport even after being swapped above or swapping is disabled, it will
  * be positioned to the bottom viewport boundary.
  *
- * @private
+ * @internal
  */
 export function createAnchoredBelow(config: FixConfig): YPosition {
   const {
@@ -263,7 +263,7 @@ export function createAnchoredBelow(config: FixConfig): YPosition {
 /**
  * Creates the vertical position for a fixed element with the provided options.
  *
- * @private
+ * @internal
  */
 export function createVerticalPosition({
   y,

@@ -14,10 +14,10 @@ type ReturnValue<T> = [CurrentValueRef<T>, SetValue<T>, ResetValue];
  * NOTE: This does not force a re-render when the value changes and instead uses
  * a ref value instead.
  *
- * @typeparam T the type for the value
- * @param defaultValue The default value to use. Each time the reset timeout is
- * triggered, this value will be set again.
- * @param resetTime The amount of time before the value is reset back to the
+ * @typeParam T - the type for the value
+ * @param defaultValue - The default value to use. Each time the reset timeout
+ * is triggered, this value will be set again.
+ * @param resetTime - The amount of time before the value is reset back to the
  * default value
  */
 export function useTempValue<T>(

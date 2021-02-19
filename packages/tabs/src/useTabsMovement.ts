@@ -33,7 +33,7 @@ interface ReturnValue {
 }
 
 /**
- * @private
+ * @internal
  */
 export function useTabsMovement({
   onClick,

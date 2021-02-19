@@ -9,7 +9,7 @@ import {
 import { FixedPositionOptions, HorizontalPosition } from "./types";
 
 /**
- * @private
+ * @internal
  */
 interface XPosition {
   left: number;
@@ -20,7 +20,7 @@ interface XPosition {
 }
 
 /**
- * @private
+ * @internal
  */
 export interface FixConfig extends XCoordConfig {
   vwMargin: number;
@@ -29,7 +29,7 @@ export interface FixConfig extends XCoordConfig {
 }
 
 /**
- * @private
+ * @internal
  */
 interface Options
   extends Required<
@@ -53,7 +53,7 @@ interface Options
  * being swapped to the right or swapping is disabled, it will be positioned to
  * the viewport left boundary.
  *
- * @private
+ * @internal
  */
 export function createAnchoredLeft(config: FixConfig): XPosition {
   const { vwMargin, screenRight, elWidth, disableSwapping } = config;
@@ -83,7 +83,7 @@ export function createAnchoredLeft(config: FixConfig): XPosition {
  * even after being swapped to the right or swapping is disabled, it will be
  * positioned to the viewport left boundary.
  *
- * @private
+ * @internal
  */
 export function createAnchoredInnerLeft(config: FixConfig): XPosition {
   const { vwMargin, screenRight, elWidth, disableSwapping } = config;
@@ -112,7 +112,7 @@ export function createAnchoredInnerLeft(config: FixConfig): XPosition {
  * value if it overflowed to the left, it'll position to the screen right
  * boundary.
  *
- * @private
+ * @internal
  */
 export function createAnchoredCenter(config: FixConfig): XPosition {
   const { vwMargin, screenRight, elWidth } = config;
@@ -134,7 +134,7 @@ export function createAnchoredCenter(config: FixConfig): XPosition {
  * viewport even after being swapped to the left or swapping is disabled, it
  * will be positioned to the viewport right boundary.
  *
- * @private
+ * @internal
  */
 export function createAnchoredInnerRight(config: FixConfig): XPosition {
   const { screenRight, vwMargin, elWidth, disableSwapping } = config;
@@ -166,7 +166,7 @@ export function createAnchoredInnerRight(config: FixConfig): XPosition {
  * being swapped to the left or swapping is disabled, it will be positioned to
  * the viewport right boundary.
  *
- * @private
+ * @internal
  */
 export function createAnchoredRight(config: FixConfig): XPosition {
   const { screenRight, vwMargin, elWidth, disableSwapping } = config;
@@ -203,7 +203,7 @@ interface EqualWidthOptions
 }
 
 /**
- * @private
+ * @internal
  */
 export function createEqualWidth({
   x,
@@ -242,7 +242,7 @@ export function createEqualWidth({
 /**
  * Creates the horizontal position for a fixed element with the provided
  * options.
- * @private
+ * @internal
  */
 export function createHorizontalPosition({
   x,

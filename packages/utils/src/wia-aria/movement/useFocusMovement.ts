@@ -29,11 +29,11 @@ interface KeyboardFocusOptions<
  * **must** either be an HTMLElement or the ref is forwarded down to the
  * HTMLElement.
  *
- * @typeparam D The type of each data item within the items list.
- * @typeparam CE The HTMLElement type of the container element that handles the
- * custom keyboard movement.
- * @typeparam IE The HTMLElement type of each item within the container element
- * that can be focusable.
+ * @typeParam D - The type of each data item within the items list.
+ * @typeParam CE - The HTMLElement type of the container element that handles
+ * the custom keyboard movement.
+ * @typeParam IE - The HTMLElement type of each item within the container
+ * element that can be focusable.
  */
 export function useFocusMovement<
   D = unknown,

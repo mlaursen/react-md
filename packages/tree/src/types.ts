@@ -48,7 +48,7 @@ export interface BaseTreeItem extends TreeItemIds, ListItemChildrenProps {
  * This is just a type I use internally for handling tree items with unknown
  * keys.
  *
- * @private
+ * @internal
  */
 export interface UnknownTreeItem extends BaseTreeItem {
   [key: string]: unknown;

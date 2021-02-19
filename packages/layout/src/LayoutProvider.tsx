@@ -20,7 +20,7 @@ import { LayoutConfiguration, SupportedWideLayout } from "./types";
 import { getLayoutType, isPersistentLayout, isToggleableLayout } from "./utils";
 
 /**
- * @private
+ * @internal
  */
 const notInitialized = (name: string) => (): void => {
   /* istanbul ignore next */
@@ -94,7 +94,7 @@ export interface LayoutProviderProps extends LayoutConfiguration {
 
 /**
  * @since 2.6.0
- * @private
+ * @internal
  */
 function isToggleableVisible(
   behavior: boolean | "toggleable" | "toggleable-mini",

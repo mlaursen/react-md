@@ -13,8 +13,8 @@ export interface AppBarActionClassNameProps extends AppBarColorInherit {
 
   /**
    * Boolean if this is the first action within the app bar. This is really just
-   * used to automatically right-align all the actions by applying `margin-left:
-   * auto` to this action.
+   * used to automatically right-align all the actions by applying
+   * `margin-left: auto` to this action.
    */
   first?: boolean;
 
@@ -32,7 +32,7 @@ export interface AppBarActionClassNameProps extends AppBarColorInherit {
  * really not be used externally and is really just for creating dropdown menus
  * within app bars that have the action styles.
  *
- * @private
+ * @internal
  */
 export function useActionClassName({
   first,

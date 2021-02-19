@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 /**
  * A small util to check if the badge is considered empty.
  *
- * @private
+ * @internal
  */
 export function isEmpty(
   children: ReactNode,

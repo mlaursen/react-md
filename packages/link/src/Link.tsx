@@ -6,8 +6,8 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   /**
    * An optional component to render as. This should really only be used if you
    * are using a router library like
-   * [react-router](https://github.com/ReactTraining/react-router) or
-   * [@reach/router](https://github.com/reach/router). This will call
+   * {@link https://github.com/ReactTraining/react-router|react-router} or
+   * {@link https://github.com/reach/router|@reach/router}. This will call
    * `createElement` with this value and provide all props and class name.
    */
   component?: ElementType;
@@ -50,12 +50,12 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   rel?: string;
 
   /**
-   * Boolean if the link should automatically be updated to apply `rel=noopener
-   * noreferrer` when the `target` prop is set to `"_blank"`. This is
-   * recommended to have enabled by default, but can be disabled by setting this
-   * prop to `false` or specificying a `rel` prop yourself. You can read more
-   * about the reason for this
-   * [here](https://mathiasbynens.github.io/rel-noopener/).
+   * Boolean if the link should automatically be updated to apply
+   * `rel=noopener noreferrer` when the `target` prop is set to `"_blank"`. This
+   * is recommended to have enabled by default, but can be disabled by setting
+   * this prop to `false` or specificying a `rel` prop yourself. You can read
+   * more about the reason for this
+   * {@link https://mathiasbynens.github.io/rel-noopener/|here}.
    */
   preventMaliciousTarget?: boolean;
 

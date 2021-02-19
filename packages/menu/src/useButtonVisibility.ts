@@ -24,7 +24,7 @@ interface ReturnValue
  * well as the current visibility state and a `hide` function to pass to the
  * `Menu`.
  *
- * @private
+ * @internal
  */
 export function useButtonVisibility({
   onClick: propOnClick,

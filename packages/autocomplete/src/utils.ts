@@ -10,9 +10,9 @@ import {
 /**
  * Generates an id for each result in the autocomplete's listbox.
  *
- * @param id The listbox's id
- * @param index The index of the result in the list
- * @return an id string
+ * @param id - The listbox's id
+ * @param index - The index of the result in the list
+ * @returns an id string
  */
 export function getResultId(id: string, index: number): string {
   return `${id}-result-${index + 1}`;
@@ -22,12 +22,12 @@ export function getResultId(id: string, index: number): string {
  * Gets a renderable label for each result in the autocomplete's listbox. This
  * will be applied as the `children` for the `Option` element.
  *
- * @param datum The current result datum to get a label for
- * @param labelKey The key to extract a label from if the datum is an object
- * @param query The current search query. This is useful if you want to
+ * @param datum - The current result datum to get a label for
+ * @param labelKey - The key to extract a label from if the datum is an object
+ * @param query - The current search query. This is useful if you want to
  * implement text "highlighting" (bold) of all the letters that match in the
  * item.
- * @return a renderable node to display
+ * @returns a renderable node to display
  */
 export function getResultLabel(
   datum: Readonly<AutoCompleteData>,
@@ -45,10 +45,10 @@ export function getResultLabel(
 /**
  * Gets a value string from each result that can be searched.
  *
- * @param datum The current result datum that should have a string extracted
- * @param valueKey The key to use to extract a string value from if the datum is
- * an object
- * @return a searchable string.
+ * @param datum - The current result datum that should have a string extracted
+ * @param valueKey - The key to use to extract a string value from if the datum
+ * is an object
+ * @returns a searchable string.
  */
 export function getResultValue(
   datum: Readonly<AutoCompleteData>,
@@ -73,7 +73,7 @@ export function getResultValue(
 /**
  * This is used to disable filtering and just return the data list immediately.
  * Useful when the filtering is done somewhere else like a server/API
- * @private
+ * @internal
  */
 export const noFilter: FilterFunction = (_, data) => data;
 
@@ -81,7 +81,7 @@ export const noFilter: FilterFunction = (_, data) => data;
  * Gets the filter function to use within the Autocomplete based on the provided
  * filter prop
  *
- * @private
+ * @internal
  */
 export function getFilterFunction<O extends {} = {}>(
   filter: AutoCompleteFilterFunction<O>
@@ -131,7 +131,7 @@ export function getFilterFunction<O extends {} = {}>(
  * }, [])
  * ```
  *
- * @param datum The result data to type guard against.
+ * @param datum - The result data to type guard against.
  */
 export function isResultOf<T extends {}>(
   datum: Readonly<AutoCompleteData>

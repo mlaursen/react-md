@@ -9,13 +9,13 @@ import {
 } from "react";
 
 /**
- * @private
+ * @internal
  * @since 2.5.2
  */
 type FormElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 /**
- * @private
+ * @internal
  * @since 2.5.2
  */
 interface EventHandlers<E extends FormElement> {
@@ -25,7 +25,7 @@ interface EventHandlers<E extends FormElement> {
 }
 
 /**
- * @private
+ * @internal
  * @since 2.5.2
  */
 interface FieldStatesOptions<E extends FormElement> extends EventHandlers<E> {
@@ -34,13 +34,13 @@ interface FieldStatesOptions<E extends FormElement> extends EventHandlers<E> {
 }
 
 /**
- * @private
+ * @internal
  * @since 2.5.2
  */
 interface ReturnValue<E extends FormElement>
   extends Required<EventHandlers<E>> {
   /**
-   * Boolean if the TextField or TextArea current has a value with a length > 0
+   * Boolean if the TextField or TextArea current has a value with a `length > 0`
    * so that any labels will correctly float above the text field. This will
    * also make sure that number inputs will still be considered valued when
    * there is a `badInput` validity error.
@@ -57,7 +57,7 @@ interface ReturnValue<E extends FormElement>
  * This hook is used to handle the different states for the text field based on
  * the current value and user interaction.
  *
- * @private
+ * @internal
  * @since 2.5.2
  */
 export function useFieldStates<E extends FormElement>({

@@ -55,13 +55,13 @@ export interface UseSliderOptions extends SliderStepOptions {
  * the second argument will be all the props required to control the `Slider`
  * component.
  *
- * @param defaultValue An optional default value to use for the slider. This will
- * default to the `min` option when undefined.
- * @param options An object containing the `min` and `max` values allowed for the
- * slider as well as a `step` to indicate valid values between the `min` and
+ * @param defaultValue - An optional default value to use for the slider. This
+ * will default to the `min` option when undefined.
+ * @param options - An object containing the `min` and `max` values allowed for
+ * the slider as well as a `step` to indicate valid values between the `min` and
  * `max`.
- * @return an ordered list containing the current value followed by the `Slider`
- * props
+ * @returns an ordered list containing the current value followed by the
+ * `Slider` props
  * @since 2.5.0
  */
 export function useSlider(

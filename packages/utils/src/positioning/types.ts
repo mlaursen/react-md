@@ -171,7 +171,7 @@ export interface FixedPositionOptions extends InitialCoords {
  * The `width` values will only be used when the `equalWidth` or `minEqualWidth`
  * options are enabled.
  *
- * @private
+ * @internal
  */
 export interface Coords {
   top?: number;

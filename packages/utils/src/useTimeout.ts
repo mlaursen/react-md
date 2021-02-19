@@ -12,12 +12,12 @@ type ReturnValue = [StartTimeout, StopTimeout, RestartTimeout];
  * Simple hook to use an timeout with auto setup and teardown. The provided
  * functions will be guaranteed to not change and are memoized.
  *
- * @param cb The callback function to call
- * @param delay The time in milliseconds the timer should delay between
+ * @param cb - The callback function to call
+ * @param delay - The time in milliseconds the timer should delay between
  * executions of the callback function
- * @param defaultStarted Boolean if the timeout should be started immediately.
- * @return a list containing a function to start the timeout, a function to stop
- * the timeout, and a function to restart the timeout.
+ * @param defaultStarted - Boolean if the timeout should be started immediately.
+ * @returns a list containing a function to start the timeout, a function to
+ * stop the timeout, and a function to restart the timeout.
  */
 export function useTimeout(
   cb: () => void,
@@ -35,7 +35,8 @@ export function useTimeout(
   }, []);
 
   /* eslint-disable react-hooks/exhaustive-deps */
-  // these are all guaranteed to not change since using refs or non-updating callbacks
+  // these are all guaranteed to not change since using refs or non-updating
+  // callbacks
   const restart = useCallback(() => {
     clearTimeout();
     timeoutRef.current = window.setTimeout(() => {

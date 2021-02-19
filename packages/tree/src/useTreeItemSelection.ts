@@ -6,12 +6,12 @@ import { SelectedIds, TreeItemId, TreeItemSelection } from "./types";
  * A hook that implements the base functionality for selecting different tree
  * items.
  *
- * @param defaultSelectedIds The default list of tree item ids that should be
+ * @param defaultSelectedIds - The default list of tree item ids that should be
  * expanded by default
- * @param multiSelect Boolean if the tree can have multiple items selected or
+ * @param multiSelect - Boolean if the tree can have multiple items selected or
  * not.
- * @return an object containing props that can be passed to the `Tree` component
- * to handle the selection state within the tree
+ * @returns an object containing props that can be passed to the `Tree`
+ * component to handle the selection state within the tree
  */
 export function useTreeItemSelection(
   defaultSelectedIds: SelectedIds | (() => SelectedIds),

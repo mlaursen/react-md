@@ -72,7 +72,7 @@ export interface TableConfiguration
 }
 
 /**
- * @private
+ * @internal
  */
 export interface TableCellConfig extends TableCellConfiguration {
   /**
@@ -82,7 +82,7 @@ export interface TableCellConfig extends TableCellConfiguration {
    * setting the `type="th"` fot the `TableCell` if using the low-level
    * components.
    *
-   * @private
+   * @internal
    */
   header?: boolean;
 }
@@ -104,7 +104,7 @@ const context = createContext<TableConfigContext>({
  * components for the table. This will use the inherited table configuration
  * context if the prop value is `undefined`.
  *
- * @private
+ * @internal
  */
 export function useTableConfig(options: TableConfig): TableConfigContext {
   const inherited = useContext(context);
@@ -126,6 +126,6 @@ export function useTableConfig(options: TableConfig): TableConfigContext {
 }
 
 /**
- * @private
+ * @internal
  */
 export const { Provider: TableConfigProvider } = context;

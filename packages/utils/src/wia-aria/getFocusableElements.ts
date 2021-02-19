@@ -6,11 +6,11 @@ import { PROGRAMATICALLY_FOCUSABLE, TAB_FOCUSABLE } from "./constants";
  * but it can also be the entire document if you want to find **all** focusable
  * elements within your page.
  *
- * @param container The container element/document to find focusable elements
+ * @param container - The container element/document to find focusable elements
  * within.
- * @param programatic Boolean if programatically focusable elements should be
+ * @param programatic - Boolean if programatically focusable elements should be
  * included instead of only tab focusable.
- * @return A list of HTMLElements that are focusable within the container.
+ * @returns A list of HTMLElements that are focusable within the container.
  */
 export function getFocusableElements(
   container: HTMLElement | Document,

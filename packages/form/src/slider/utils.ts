@@ -149,11 +149,11 @@ export interface SliderDragValue {
    *   - new-value-at = 1000px / (100 / 20)
    *   - new-value-at = 1000px / 5
    *   - new-value-at = 200px
-   * - user drags from 0px -> 10px
+   * - user drags from 0px -&gt; 10px
    *   - no visual change
-   * - user drags from 10px -> 190px
+   * - user drags from 10px -&gt; 190px
    *   - no visual change
-   * - user drags from 190px -> 200px
+   * - user drags from 190px -&gt; 200px
    *   - visual change to first step
    *
    * The current value allows for a visual change while the user drags, but the

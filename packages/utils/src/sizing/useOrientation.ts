@@ -20,11 +20,11 @@ export const getOrientationType = (): OrientationType => {
  * based on the `window.screen.orientation.type`. This will always be
  * `"landscape-primary"` server side unless a default value is provided.
  *
- * @param defaultValue an optional default value to use. When this is omitted,
+ * @param defaultValue - an optional default value to use. When this is omitted,
  * it will default to `"landscape-primary"` unless the `window` is defined. If
  * the `window` is defined, it will immediately check the orientation type on
  * mount.
- * @return the orientation type value.
+ * @returns the orientation type value.
  */
 export function useOrientation(
   defaultValue?: OrientationType

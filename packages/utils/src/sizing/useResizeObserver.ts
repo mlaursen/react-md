@@ -76,7 +76,6 @@ export type OnResizeObserverChange<E extends HTMLElement = HTMLElement> = (
 ) => void;
 
 /**
- * @private
  * @internal
  */
 interface ResizeObserverSubscription<E extends HTMLElement> {
@@ -88,7 +87,6 @@ interface ResizeObserverSubscription<E extends HTMLElement> {
 }
 
 /**
- * @private
  * @internal
  */
 function isHeightChange(
@@ -103,7 +101,6 @@ function isHeightChange(
 }
 
 /**
- * @private
  * @internal
  */
 function isWidthChange(
@@ -124,14 +121,12 @@ function isWidthChange(
  * Note: Probably a bit of a premature optimization right now...
  *
  * @see https://github.com/WICG/resize-observer/issues/59
- * @private
  * @internal
  */
 let sharedObserver: ResizeObserverPolyfill | undefined;
 
 /**
  *
- * @private
  * @internal
  */
 const subscriptions: ResizeObserverSubscription<HTMLElement>[] = [];
@@ -140,7 +135,6 @@ const subscriptions: ResizeObserverSubscription<HTMLElement>[] = [];
  * Lazy initializes the shared resize observer which will loop through all the
  * subscriptions when a resize event is called.
  *
- * @private
  * @internal
  */
 function init(): void {
@@ -190,7 +184,6 @@ function init(): void {
 
 /**
  *
- * @private
  * @internal
  */
 function subscribe<E extends HTMLElement>(
@@ -217,7 +210,6 @@ function subscribe<E extends HTMLElement>(
 
 /**
  *
- * @private
  * @internal
  */
 function unsubscribe<E extends HTMLElement>(
@@ -257,14 +249,14 @@ export function useResizeObserver<E extends HTMLElement>(
 ): void;
 
 /**
- * The new resize observer API that returns a `refHandler` to attach to a DOM node
- * instead of using the weird `target` API.
+ * The new resize observer API that returns a `refHandler` to attach to a DOM
+ * node instead of using the weird `target` API.
  *
  * @since 2.3.0
- * @param onResize The resize handler to call when the element has changed
+ * @param onResize - The resize handler to call when the element has changed
  * height or width. If you notice performance issues or other oddities, it is
  * recommended to wrap this function in `useCallback`.
- * @param options Any additional options to use for the resize observer.
+ * @param options - Any additional options to use for the resize observer.
  */
 export function useResizeObserver<E extends HTMLElement>(
   onResize: OnResizeObserverChange<E>,

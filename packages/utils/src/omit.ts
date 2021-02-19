@@ -6,9 +6,9 @@ type R = Record<string, unknown>;
  * omitKeys param.
  *
  * @internal
- * @param object The object to remove keys from
- * @param omitKeys The keys to remove.
- * @return a new object without the specified keys
+ * @param object - The object to remove keys from
+ * @param omitKeys - The keys to remove.
+ * @returns a new object without the specified keys
  */
 export function omit<T extends object, K extends keyof T>(
   object: T,

@@ -70,8 +70,10 @@ export interface ChipProps extends ButtonAttributes {
    * `true` and will transition in and out when swapped between `true` and
    * `false`.
    *
-   * > See the `disableIconTransition` and `selectedIcon` props for more details
-   * > about the icon behavior
+   * @remarks
+   *
+   * See the `disableIconTransition` and `selectedIcon` props for more details
+   * about the icon behavior
    */
   selected?: boolean;
 

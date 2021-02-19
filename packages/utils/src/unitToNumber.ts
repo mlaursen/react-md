@@ -6,9 +6,9 @@ export interface UnitToNumberOptions {
  * A simple util to convert a unit that is using `px`, `em`, or `rem` to a
  * number so that calculations can be made on that unit.
  *
- * @param unit The unit to convert to a number
- * @param element The element to use to use for calculating `em`
- * @return the unit as a number
+ * @param unit - The unit to convert to a number
+ * @param element - The element to use to use for calculating `em`
+ * @returns the unit as a number
  */
 export function unitToNumber(
   unit: string | number,

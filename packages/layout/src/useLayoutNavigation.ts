@@ -31,7 +31,7 @@ export interface LayoutNavigationState<
 }
 
 /**
- * @private
+ * @internal
  */
 const getParentIds = (
   itemId: TreeItemId,
@@ -43,7 +43,7 @@ const getParentIds = (
  * since only one id can be selected at a time, and it'll always be the current
  * pathname's itemId
  *
- * @private
+ * @internal
  */
 const noop = (): void => {
   // do nothing
@@ -60,16 +60,16 @@ const noop = (): void => {
  * ensures that your layout re-renders on a path change.
  *
  * @see LayoutNavigationTree for description of the navItems
- * @param navItems All the navigation items within your layout. This is used for
- * determining which parent tree items should be expanded when the route changes
- * so the current route won't be hidden from view. This sort of flow happens if
- * you have a link outside of the navigation tree.
- * @param pathname The current pathname
- * @param linkComponent The link component to use within the navigation tree for
- * any item that has a `to` or `href` attribute. This defaults to the `Link`
+ * @param navItems - All the navigation items within your layout. This is used
+ * for determining which parent tree items should be expanded when the route
+ * changes so the current route won't be hidden from view. This sort of flow
+ * happens if you have a link outside of the navigation tree.
+ * @param pathname - The current pathname
+ * @param linkComponent - The link component to use within the navigation tree
+ * for any item that has a `to` or `href` attribute. This defaults to the `Link`
  * from `@react-md/link` but should be changed to whatever link component you
  * need if using a routing library like `react-router`.
- * @return the required `Tree` selection and expansion state and handlers that
+ * @returns the required `Tree` selection and expansion state and handlers that
  * should be passed to the `Layout` component.
  */
 export function useLayoutNavigation<

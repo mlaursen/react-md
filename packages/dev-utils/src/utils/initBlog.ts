@@ -9,7 +9,7 @@ const NEW_ENTRY = /^#{1,2}\s+\[\d/;
 
 /**
  *
- * @return the current release markdown that can be used to generate a github
+ * @returns the current release markdown that can be used to generate a github
  * release for the current tag.
  */
 export async function initBlog(): Promise<string> {

@@ -9,12 +9,12 @@ function applyCoords(coord: number | undefined): string {
  * ensures that transitions using tarnsforms don't mess up the sizing so that
  * position calculations are easier to do.
  *
- * @param element The element to get a rect for.
- * @param coords An optional object of coordinates to apply to the positioning
+ * @param element - The element to get a rect for.
+ * @param coords - An optional object of coordinates to apply to the positioning
  * styles. This should be used when the coords might resize the element since it
  * needs to try to fit within the viewport.
- * @return either a DOMRect or ClientRect for the element
- * @private
+ * @returns either a DOMRect or ClientRect for the element
+ * @internal
  */
 export function getElementRect(
   element: HTMLElement,
@@ -32,8 +32,8 @@ export function getElementRect(
   cloned.style.position = "fixed";
   cloned.style.visibility = "hidden";
 
-  // reset positionion to get a "pure" calculation. otherwise this will mess up the
-  // height and width if the element is able to line wrap.
+  // reset positionion to get a "pure" calculation. otherwise this will mess up
+  // the height and width if the element is able to line wrap.
   cloned.style.left = applyCoords(coords.left);
   cloned.style.top = applyCoords(coords.top);
   cloned.style.right = applyCoords(coords.right);

@@ -13,7 +13,7 @@ type FocusEventHandler = React.FocusEventHandler<FocusElement>;
 type Options = Pick<HTMLAttributes<FocusElement>, "onBlur" | "onFocus">;
 
 /**
- * @private
+ * @internal
  */
 export function useFocusState({
   onFocus,

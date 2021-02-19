@@ -14,9 +14,9 @@ export interface IsErroredOptions extends ErrorMessageOptions {
  * A function that is used to determine if a `TextField` or `TextArea` is in an
  * errored state.
  *
- * @param options All the current options that can be used to determine the
+ * @param options - All the current options that can be used to determine the
  * error state.
- * @return True if the component is considered to be in an errored state.
+ * @returns True if the component is considered to be in an errored state.
  * @since 2.5.0
  */
 export type IsErrored = (options: IsErroredOptions) => boolean;

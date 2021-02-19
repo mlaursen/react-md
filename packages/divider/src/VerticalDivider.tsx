@@ -27,12 +27,12 @@ interface VerticalDividerHeight {
 }
 
 /**
- * This is a small hook that is used to automatically create a vertical divider based
- * on the computed height of its parent element.
+ * This is a small hook that is used to automatically create a vertical divider
+ * based on the computed height of its parent element.
  *
- * @param maxHeight The max height for the vertical divider. When the value is between
- * 0 and 1, it will be used as a percentage. Otherwise the smaller value of parent element
- * height and this will be used.
+ * @param maxHeight - The max height for the vertical divider. When the value is
+ * between 0 and 1, it will be used as a percentage. Otherwise the smaller value
+ * of parent element height and this will be used.
  */
 export function useVerticalDividerHeight(
   maxHeight: number,

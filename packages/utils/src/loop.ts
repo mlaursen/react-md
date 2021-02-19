@@ -10,7 +10,7 @@ export interface LoopOptions {
   /**
    * An optional `min` value that can be used before looping to the `max` value.
    *
-   * @default 0
+   * @defaultValue `0`
    */
   min?: number;
 
@@ -39,7 +39,7 @@ export interface LoopOptions {
  * values below 0 for now.
  *
  * @internal
- * @param options {@link LoopOptions}
+ * @param options - {@link LoopOptions}
  * @since 2.7.0 The `min` option was added and the arguments changed to an
  * object
  */

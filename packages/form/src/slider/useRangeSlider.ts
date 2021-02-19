@@ -78,12 +78,12 @@ export type RangeSliderValueReturnType = readonly [
  * second argument will be all the props required to control the `RangeSlider`
  * component.
  *
- * @param defaultValue An optional default value to use. When omitted, this will
- * be the `[min, max]` values
- * @param options An object containing the `min` and `max` values allowed for the
- * slider as well as a `step` to indicate valid values between the `min` and
+ * @param defaultValue - An optional default value to use. When omitted, this
+ * will be the `[min, max]` values
+ * @param options - An object containing the `min` and `max` values allowed for
+ * the slider as well as a `step` to indicate valid values between the `min` and
  * `max`.
- * @return an ordered list containing the current value followed by the
+ * @returns an ordered list containing the current value followed by the
  * `RangeSlider` props
  * @since 2.5.0
  */

@@ -7,7 +7,7 @@ type CheckableThing = CheckableElement | MutableRefObject<CheckableElement>;
  * Typeguard that will check if the provided checkable thing is a
  * MutableRefObject or just an HTMLElement.
  *
- * @private
+ * @internal
  */
 const isMutableRefObject = (
   thing: CheckableThing
@@ -18,7 +18,7 @@ const isMutableRefObject = (
 /**
  * Gets the HTMLElement or null from the checkable thing.
  *
- * @private
+ * @internal
  */
 const getElement = (thing: CheckableThing): CheckableElement => {
   if (isMutableRefObject(thing)) {
@@ -33,14 +33,14 @@ const getElement = (thing: CheckableThing): CheckableElement => {
  * allowing for nulls or a MutableRefObject of HTMLElement or null. Mostly just
  * a convenience function that should be used internally.
  *
- * @param container The element to use as a container element. This can be an
+ * @param container - The element to use as a container element. This can be an
  * HTMLElement, null, or a MutableRefObject of HTMLElement or null.
- * @param child The element that might be a child of the container
+ * @param child - The element that might be a child of the container
  * element. This can be an HTMLElement, null, or a MutableRefObject of
  * HTMLElement or null.
- * @return True if the container contains the child element and both the
+ * @returns True if the container contains the child element and both the
  * container and child are valid HTMLElements (not null).
- * @private
+ * @internal
  */
 export function containsElement(
   container: CheckableThing,

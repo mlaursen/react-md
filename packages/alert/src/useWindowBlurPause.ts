@@ -17,7 +17,7 @@ interface Options {
  * user since they minimized the browser or viewing something on a second
  * screen.
  *
- * @private
+ * @internal
  */
 export function useWindowBlurPause({
   startTimer,

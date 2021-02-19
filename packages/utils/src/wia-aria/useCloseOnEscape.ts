@@ -3,10 +3,10 @@ import { KeyboardEventHandler, useCallback } from "react";
 /**
  * This will conditionally close the dialog when the escape key is pressed.
  *
- * @param onRequestClose The function to call to close the dialog.
- * @param disabled Boolean if the escape key functionality should be disabled
- * @param onKeyDown An optional keydown event handler to also call.
- * @return A keydown event handler
+ * @param onRequestClose - The function to call to close the dialog.
+ * @param disabled - Boolean if the escape key functionality should be disabled
+ * @param onKeyDown - An optional keydown event handler to also call.
+ * @returns A keydown event handler
  */
 export function useCloseOnEscape<E extends HTMLElement>(
   onRequestClose: () => void,
