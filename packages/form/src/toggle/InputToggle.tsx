@@ -70,7 +70,7 @@ export interface InputToggleProps
    * `style` prop is passed to the container element, but you probably shouldn't
    * really style this element anyways.
    *
-   * @since 2.2.0
+   * @remarks \@since 2.2.0
    */
   inputStyle?: CSSProperties;
 
@@ -91,7 +91,7 @@ export interface InputToggleProps
    * }
    * ```
    *
-   * @since 2.2.0
+   * @remarks \@since 2.2.0
    */
   inputClassName?: string;
 

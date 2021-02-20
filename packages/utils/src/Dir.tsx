@@ -13,12 +13,12 @@ import React, {
 /**
  * Note: unlike the `dir` DOM attribute, the `"auto"` value is not supported
  *
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export type WritingDirection = "ltr" | "rtl";
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export interface WritingDirectionContext {
   /**
@@ -54,7 +54,7 @@ const { Provider } = context;
  * Gets the writing direction context which provides access to the current `dir`
  * and a `toggleDir` function.
  *
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export function useDir(): WritingDirectionContext {
   const { root: _root, ...current } = useContext(context);
@@ -62,7 +62,7 @@ export function useDir(): WritingDirectionContext {
 }
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export interface DirProps {
   /**
@@ -80,7 +80,7 @@ export interface DirProps {
 }
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export const DEFAULT_DIR = (): WritingDirection => {
   let dir: WritingDirection = "ltr";
@@ -128,7 +128,7 @@ export const DEFAULT_DIR = (): WritingDirection => {
  * that the child is either a DOM element or the `dir` prop is passed from your
  * custom component.
  *
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export function Dir({
   children,

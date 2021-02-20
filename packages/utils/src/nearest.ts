@@ -8,7 +8,7 @@
  * @param steps - The number of steps in the min/max range
  * @param range - The range allowed for the value that defaults to `max - min`
  * @returns the value rounded to the nearest step in the min/max range
- * @since 2.5.0 - Added the `range` param
+ * @remarks \@since 2.5.0 - Added the `range` param
  */
 export function nearest(
   value: number,

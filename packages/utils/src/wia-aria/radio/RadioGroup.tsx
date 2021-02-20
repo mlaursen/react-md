@@ -31,7 +31,7 @@ import {
  * This is a controlled component to render a group of radio buttons when the
  * `<input type="radio">` does not work.
  *
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export interface BaseRadioGroupProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "onChange"> {
@@ -68,7 +68,7 @@ export interface BaseRadioGroupProps
 }
 
 /**
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export type RadioGroupProps = LabelRequiredForA11y<BaseRadioGroupProps>;
 
@@ -77,7 +77,7 @@ export type RadioGroupProps = LabelRequiredForA11y<BaseRadioGroupProps>;
  * and instead only provides the accessibility required for a
  * `role="radiogroup"` and rendering each `role="radio"` item.
  *
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export const RadioGroup = forwardRef<HTMLSpanElement, RadioGroupProps>(
   function RadioGroup(

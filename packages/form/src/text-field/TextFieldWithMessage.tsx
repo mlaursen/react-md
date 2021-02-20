@@ -7,7 +7,7 @@ import {
 import { TextField, TextFieldProps } from "./TextField";
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type TextFieldWithMessageProps = FieldMessageContainerExtension<TextFieldProps>;
 
@@ -32,7 +32,7 @@ export type TextFieldWithMessageProps = FieldMessageContainerExtension<TextField
  * );
  * ```
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export const TextFieldWithMessage = forwardRef<
   HTMLInputElement,

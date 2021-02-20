@@ -7,7 +7,7 @@ import {
 import { Password, PasswordProps } from "./Password";
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type PasswordWithMessageProps = FieldMessageContainerExtension<PasswordProps>;
 
@@ -38,7 +38,7 @@ export type PasswordWithMessageProps = FieldMessageContainerExtension<PasswordPr
  * icon will do nothing for this component unless the `disableVisibility` prop
  * is enabled.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export const PasswordWithMessage = forwardRef<
   HTMLInputElement,

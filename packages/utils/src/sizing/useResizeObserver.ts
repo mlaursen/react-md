@@ -9,7 +9,7 @@ import {
 } from "./useResizeObserverV1";
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export interface UseResizeObserverOptions<E extends HTMLElement> {
   /**
@@ -31,7 +31,7 @@ export interface UseResizeObserverOptions<E extends HTMLElement> {
 }
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export interface ResizeObserverElementSize {
   /**
@@ -56,7 +56,7 @@ export interface ResizeObserverElementSize {
 }
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export interface ResizeObserverElementData<E extends HTMLElement = HTMLElement>
   extends ResizeObserverElementSize {
@@ -69,7 +69,7 @@ export interface ResizeObserverElementData<E extends HTMLElement = HTMLElement>
 /**
  * The callback that is triggered each time an element's size change has been
  * observered.
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export type OnResizeObserverChange<E extends HTMLElement = HTMLElement> = (
   resizeData: ResizeObserverElementData<E>
@@ -252,7 +252,7 @@ export function useResizeObserver<E extends HTMLElement>(
  * The new resize observer API that returns a `refHandler` to attach to a DOM
  * node instead of using the weird `target` API.
  *
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  * @param onResize - The resize handler to call when the element has changed
  * height or width. If you notice performance issues or other oddities, it is
  * recommended to wrap this function in `useCallback`.
@@ -270,7 +270,7 @@ export function useResizeObserver<E extends HTMLElement>(
  *
  * Please migrate to the v2 behavior with the ref handler when possible.
  *
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export function useResizeObserver<E extends HTMLElement>(
   arg1: UseResizeObserverV1Options<E> | OnResizeObserverChange<E>,

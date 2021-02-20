@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import { RadioWidgetAttributes } from "./types";
 
 /**
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export interface RadioWidgetProps extends RadioWidgetAttributes {
   /**
@@ -30,7 +30,7 @@ export interface RadioWidgetProps extends RadioWidgetAttributes {
  * This component offers no styles and probably shouldn't be used externally
  * since it is just rendered by the `RadioGroup` component.
  *
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export const RadioWidget = forwardRef<HTMLSpanElement, RadioWidgetProps>(
   function RadioGroupRadio({ checked, children, ...props }, ref) {

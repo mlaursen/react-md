@@ -22,7 +22,7 @@ import { useFieldStates } from "../useFieldStates";
  * render reasonably well by default. There is no built-in validation or
  * anything adding onto existing browser functionality for these types.
  *
- * @since 2.5.0 - `"search"` was added
+ * @remarks \@since 2.5.0 - `"search"` was added
  */
 export type SupportedInputTypes =
   | "text"

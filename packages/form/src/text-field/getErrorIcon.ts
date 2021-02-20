@@ -10,7 +10,7 @@ import { ReactNode } from "react";
  * @param errorIcon - The current `errorIcon` that was provided to the
  * `useTextField` hook.
  * @returns An icon to render or falsey to render nothing.
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type GetErrorIcon = (
   errorMessage: string,
@@ -22,7 +22,7 @@ export type GetErrorIcon = (
  * The default implementation for showing an error icon in `TextField` and
  * `TextArea` components that will only display when the error flag is enabled.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export const defaultGetErrorIcon: GetErrorIcon = (_message, error, errorIcon) =>
   error && errorIcon;

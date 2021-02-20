@@ -9,7 +9,7 @@ import { labelStyles } from "../label";
 const styles = bem("rmd-slider-container");
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderContainerProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -36,7 +36,7 @@ export interface SliderContainerProps
  * left or right of the `SliderTrack`. When vertical, it will add addons to the
  * bottom or top instead.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export const SliderContainer = forwardRef<HTMLDivElement, SliderContainerProps>(
   function SliderContainer(

@@ -47,7 +47,7 @@ const getActiveTab = (
 };
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  * @internal
  */
 const context = createContext<UpdateIndicatorStyles>(() => {
@@ -55,13 +55,13 @@ const context = createContext<UpdateIndicatorStyles>(() => {
 });
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  * @internal
  */
 export const { Provider: UpdateIndicatorStylesProvider } = context;
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  * @internal
  */
 export function useUpdateIndicatorStyles(): UpdateIndicatorStyles {

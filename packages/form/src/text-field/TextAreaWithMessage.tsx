@@ -7,7 +7,7 @@ import {
 import { TextArea, TextAreaProps } from "./TextArea";
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type TextAreaWithMessageProps = FieldMessageContainerExtension<TextAreaProps>;
 
@@ -32,7 +32,7 @@ export type TextAreaWithMessageProps = FieldMessageContainerExtension<TextAreaPr
  * );
  * ```
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export const TextAreaWithMessage = forwardRef<
   HTMLTextAreaElement,

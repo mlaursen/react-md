@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from "react";
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type TextConstraints = Pick<
   InputHTMLAttributes<HTMLInputElement>,
@@ -25,7 +25,7 @@ export type TextConstraints = Pick<
  * - `(keyof ValidityState)[]` -&gt; only shows the browser message if it is not
  *   the specific validation errors
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type ChangeValidationBehavior =
   | boolean
@@ -35,7 +35,7 @@ export type ChangeValidationBehavior =
   | readonly (keyof ValidityState)[];
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface ErrorMessageOptions extends TextConstraints {
   /**
@@ -73,13 +73,13 @@ export interface ErrorMessageOptions extends TextConstraints {
  * @param options - An object containing metadata that can be used to create an
  * error message for your `TextField` or `TextArea`.
  * @returns An error message to display or an empty string.
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type GetErrorMessage = (options: ErrorMessageOptions) => string;
 
 /**
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 const VALIDITY_STATE_KEYS: readonly (keyof ValidityState)[] = [
   "badInput",
@@ -96,7 +96,7 @@ const VALIDITY_STATE_KEYS: readonly (keyof ValidityState)[] = [
 
 /**
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export const RECOMMENDED_STATE_KEYS: readonly (keyof ValidityState)[] = [
   "badInput",
@@ -106,7 +106,7 @@ export const RECOMMENDED_STATE_KEYS: readonly (keyof ValidityState)[] = [
 
 /**
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export const RECOMMENDED_NUMBER_STATE_KEYS: readonly (keyof ValidityState)[] = [
   ...RECOMMENDED_STATE_KEYS,
@@ -124,7 +124,7 @@ export const RECOMMENDED_NUMBER_STATE_KEYS: readonly (keyof ValidityState)[] = [
  * of errors.
  *
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 const isRecommended = (validity: ValidityState, isNumber: boolean): boolean => {
   const errorable = isNumber
@@ -142,7 +142,7 @@ const isRecommended = (validity: ValidityState, isNumber: boolean): boolean => {
  * or `TextArea` components that relies on the behavior of the
  * {@link ChangeValidationBehavior}
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export const defaultGetErrorMessage: GetErrorMessage = ({
   isBlurEvent,

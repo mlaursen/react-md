@@ -13,7 +13,7 @@ type CSSProperties = React.CSSProperties & {
 };
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderTrackProps
   extends HTMLAttributes<HTMLSpanElement>,
@@ -43,7 +43,7 @@ export interface SliderTrackProps
  * be dragged as well as a visual indication of the value. The main usage is to
  * update the custom css properties for the thumb's values.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
   function SliderTrack(

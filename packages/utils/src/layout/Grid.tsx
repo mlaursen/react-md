@@ -38,7 +38,7 @@ export interface GridProps extends HTMLAttributes<HTMLDivElement> {
    * Note: if this prop is provided, all of the `HTMLAttributes` props will be
    * ignored as well as the `clone` and `wrapOnly` props.
    *
-   * @since 2.3.0
+   * @remarks \@since 2.3.0
    */
   cloneStyles?: boolean;
 

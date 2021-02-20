@@ -67,7 +67,7 @@ export interface UserInteractionModeListenerProps {
  * current mode. This is what allows the `rmd-utils-phone-only`,
  * `rmd-utils-keyboard-only`, and `rmd-utils-mouse-only` mixins to work.
  *
- * @since 2.6.0 Renamed from `InteractionModeListener`
+ * @remarks \@since 2.6.0 Renamed from `InteractionModeListener`
  * @throws When this component has been mounted multiple times in your app.
  */
 export function UserInteractionModeListener({
@@ -89,7 +89,7 @@ export function UserInteractionModeListener({
 
 /**
  * @deprecated Use the `UserInteractionModeListener` component instead.
- * @since 2.6.0
+ * @remarks \@since 2.6.0
  */
 export const InteractionModeListener = UserInteractionModeListener;
 

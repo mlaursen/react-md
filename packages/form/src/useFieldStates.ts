@@ -10,13 +10,13 @@ import {
 
 /**
  * @internal
- * @since 2.5.2
+ * @remarks \@since 2.5.2
  */
 type FormElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 /**
  * @internal
- * @since 2.5.2
+ * @remarks \@since 2.5.2
  */
 interface EventHandlers<E extends FormElement> {
   onBlur?: FocusEventHandler<E>;
@@ -26,7 +26,7 @@ interface EventHandlers<E extends FormElement> {
 
 /**
  * @internal
- * @since 2.5.2
+ * @remarks \@since 2.5.2
  */
 interface FieldStatesOptions<E extends FormElement> extends EventHandlers<E> {
   value?: string | string[];
@@ -35,7 +35,7 @@ interface FieldStatesOptions<E extends FormElement> extends EventHandlers<E> {
 
 /**
  * @internal
- * @since 2.5.2
+ * @remarks \@since 2.5.2
  */
 interface ReturnValue<E extends FormElement>
   extends Required<EventHandlers<E>> {
@@ -58,7 +58,7 @@ interface ReturnValue<E extends FormElement>
  * the current value and user interaction.
  *
  * @internal
- * @since 2.5.2
+ * @remarks \@since 2.5.2
  */
 export function useFieldStates<E extends FormElement>({
   onBlur,

@@ -295,7 +295,7 @@ export interface AutoCompleteProps
    * autocomplete's menu. This should normally be for any presentational data or
    * things that should not be searchable.
    *
-   * @since 2.1.0
+   * @remarks \@since 2.1.0
    */
   beforeResultsChildren?: ReactNode;
 
@@ -304,7 +304,7 @@ export interface AutoCompleteProps
    * autocomplete's menu. This should normally be for any presentational data or
    * things that should not be searchable.
    *
-   * @since 2.1.0
+   * @remarks \@since 2.1.0
    */
   afterResultsChildren?: ReactNode;
 }

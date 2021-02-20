@@ -81,7 +81,7 @@ export interface CircularProgressProps
   /**
    * Boolean if the smaller size should be used instead.
    *
-   * @since 2.3.0
+   * @remarks \@since 2.3.0
    */
   small?: boolean;
 }

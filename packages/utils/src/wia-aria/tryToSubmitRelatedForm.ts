@@ -35,7 +35,7 @@ type KeyboardSubmitEventPartial = Pick<
  * the enter key is presssed.
  * @returns `true` if the `event.key` was the `"Enter"` key so that other
  * keydown logic can be ignored.
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export function tryToSubmitRelatedForm(
   event: KeyboardSubmitEventPartial

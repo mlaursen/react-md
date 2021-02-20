@@ -17,7 +17,7 @@ import {
 } from "./useTextField";
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface NumberFieldConstraints {
   /**
@@ -40,7 +40,7 @@ export interface NumberFieldConstraints {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface ProvidedNumberFieldProps
   extends NumberFieldConstraints,
@@ -60,19 +60,19 @@ export interface ProvidedNumberFieldProps
  * and `max` values. Otherwise, setting this to `min` will only fix the minimum
  * value while `max` will only fix the maximum.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type FixNumberOnBlur = boolean | "min" | "max";
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface ProvidedNumberFieldMessageProps
   extends ProvidedNumberFieldProps,
     Pick<ProvidedTextFieldMessageProps, "messageProps"> {}
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface NumberFieldHookOptions
   extends Omit<TextFieldHookOptions, "defaultValue">,
@@ -97,7 +97,7 @@ export interface NumberFieldHookOptions
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface NumberFieldHookControls {
   /**
@@ -113,7 +113,7 @@ export interface NumberFieldHookControls {
  * - the current `number` value of the field which will be updated based on the
  *   {@link NumberFieldHookOptions#updateOnChange} option
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type NumberFieldHookReturnType = [
   number | undefined,
@@ -207,7 +207,7 @@ export function useNumberField(
  * @param options - All the options used to control the functionality of this
  * hook.
  * @returns @see {@link NumberFieldHookReturnType}
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export function useNumberField({
   id,

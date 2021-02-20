@@ -3,7 +3,7 @@ import { MutableRefObject, Ref, RefCallback, useCallback, useRef } from "react";
 import { applyRef } from "./applyRef";
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export type EnsuredRefs<E extends HTMLElement> = readonly [
   MutableRefObject<E | null>,
@@ -17,7 +17,7 @@ export type EnsuredRefs<E extends HTMLElement> = readonly [
  * followed by a ref callback function that should be passed to the DOM node
  * that will ensure that both the optional `propRef` and hook ref are updated.
  *
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export function useEnsuredRef<E extends HTMLElement>(
   propRef?: Ref<E | null>

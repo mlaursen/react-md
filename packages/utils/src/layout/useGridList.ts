@@ -23,12 +23,12 @@ export const CELL_SIZE_VAR = "--rmd-cell-size";
 export const CELL_MARGIN_VAR = "--rmd-cell-margin";
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export const DEFAULT_GRID_LIST_MAX_CELL_SIZE = 150;
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export const DEFAULT_GRID_LIST_PADDING = 16;
 
@@ -50,7 +50,7 @@ const context = createContext<GridListSize>({
 });
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export const { Provider: GridListSizeProvider } = context;
 
@@ -62,14 +62,14 @@ if (process.env.NODE_ENV !== "production") {
  * Gets the current size of each cell within the `GridList` component. If this
  * is used without a parent `GridList` component, `-1` is returned instead.
  *
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export function useGridListSize(): GridListSize {
   return useContext(context);
 }
 
 /**
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export interface UseGridListOptions {
   /**
@@ -176,7 +176,7 @@ export type UseGridListReturnValue<E extends HTMLElement> = readonly [
  * );
  * ```
  *
- * @since 2.3.0
+ * @remarks \@since 2.3.0
  */
 export function useGridList<E extends HTMLElement>({
   ref: propRef,

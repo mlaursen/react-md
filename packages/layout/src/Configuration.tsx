@@ -74,7 +74,7 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
    * should be changed to `"rtl"` if using a language that is read from right to
    * left.
    *
-   * @since 2.3.0
+   * @remarks \@since 2.3.0
    */
   defaultDir?: WritingDirection | (() => WritingDirection);
 }

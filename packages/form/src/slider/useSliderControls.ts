@@ -35,7 +35,7 @@ import {
 
 /**
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type SliderControlsOptions = CombinedSliderControls &
   SliderPresentation &
@@ -60,7 +60,7 @@ const VALID_KEYS = [
 
 /**
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderAndRangeSliderControls {
   thumb1Ref: RefCallback<HTMLSpanElement | null>;
@@ -83,7 +83,7 @@ export interface SliderAndRangeSliderControls {
  * intracts with the slider.
  *
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export function useSliderControls({
   ref,

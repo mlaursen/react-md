@@ -93,7 +93,7 @@ export interface LayoutProviderProps extends LayoutConfiguration {
 }
 
 /**
- * @since 2.6.0
+ * @remarks \@since 2.6.0
  * @internal
  */
 function isToggleableVisible(

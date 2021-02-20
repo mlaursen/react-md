@@ -107,7 +107,7 @@ export interface ChipProps extends ButtonAttributes {
    * Boolean if the chip should render as a non-interactable element (`<span>`)
    * instead of a button. This can be used to just apply the chip styles.
    *
-   * @since 2.6.0
+   * @remarks \@since 2.6.0
    */
   noninteractable?: boolean;
 }

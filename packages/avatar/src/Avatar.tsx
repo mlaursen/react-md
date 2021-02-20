@@ -29,7 +29,7 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
    *
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-referrerpolicy|Referrer Policy}
    *
-   * @since 2.2.0
+   * @remarks \@since 2.2.0
    */
   referrerPolicy?: ImgAttributes["referrerPolicy"];
 
@@ -42,7 +42,7 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
    * Note: The values in this object will override the `src`, `alt`, and
    * `referrerPolicy` root level avatar props if they exist on this object.
    *
-   * @since 2.2.0
+   * @remarks \@since 2.2.0
    */
   imgProps?: PropsWithRef<ImgAttributes, HTMLImageElement>;
 

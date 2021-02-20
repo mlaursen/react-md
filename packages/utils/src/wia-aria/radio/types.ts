@@ -4,7 +4,7 @@ import { HTMLAttributes } from "react";
  * Since the `RadioWidget` modifies the props a bit for the radio widget, these
  * are the `HTMLAttributes` for the `RadioWidget` that can be overwritten.
  *
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export type RadioWidgetAttributes = Omit<
   HTMLAttributes<HTMLSpanElement>,
@@ -12,7 +12,7 @@ export type RadioWidgetAttributes = Omit<
 >;
 
 /**
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export interface RadioItemValueObject extends RadioWidgetAttributes {
   /**
@@ -26,12 +26,12 @@ export interface RadioItemValueObject extends RadioWidgetAttributes {
  * The radio item value can be a simple string or an object containing a `value`
  * attribute.
  *
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export type RadioItem = string | RadioItemValueObject;
 
 /**
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export interface RadioItemStyleObject extends RadioItemValueObject {
   /**

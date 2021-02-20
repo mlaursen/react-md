@@ -7,7 +7,7 @@ import { RadioItemStyleObject, RadioItem } from "./types";
  *
  * @param value - {@link RadioItem}
  * @returns the current string value of the radio item
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export function getRadioItemValue(value: RadioItem): string {
   return typeof value === "string" ? value : value.value;
@@ -19,7 +19,7 @@ export function getRadioItemValue(value: RadioItem): string {
  *
  * @param item - {@link RadioItemStyleObject}
  * @returns an optional style object to provide to the radio.
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export const defaultGetRadioStyle = (
   item: RadioItemStyleObject
@@ -31,7 +31,7 @@ export const defaultGetRadioStyle = (
  *
  * @param item - {@link RadioItemStyleObject}
  * @returns an optional className to provide to the radio
- * @since 2.7.0
+ * @remarks \@since 2.7.0
  */
 export const defaultGetRadioClassName = (
   item: RadioItemStyleObject

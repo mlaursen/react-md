@@ -4,7 +4,7 @@ import cn from "classnames";
 import { bem } from "@react-md/utils";
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface LabelStates {
   /**
@@ -51,7 +51,7 @@ const styles = bem("rmd-label");
  * shouldn't really be used, but it's useful if you want the label styles
  * without rendering a `<label>` element.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  * @internal
  */
 export const labelStyles = ({

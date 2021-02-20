@@ -23,7 +23,7 @@ const VERTICAL_CLASS_NAMES: CSSTransitionClassNames = {
 };
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  * @internal
  */
 export interface SliderValueProps extends TooltipProps {
@@ -37,7 +37,7 @@ export interface SliderValueProps extends TooltipProps {
  * This component creates the "discrete" slider thumb value by rendering a
  * tooltip when needed.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  * @internal
  */
 export function SliderValue({

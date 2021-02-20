@@ -22,7 +22,7 @@ const noop = (): void => {
 
 /**
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 interface UpdateOptions {
   /**
@@ -40,7 +40,7 @@ interface UpdateOptions {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface UseRangeSliderOptions extends SliderStepOptions {
   /**
@@ -53,7 +53,7 @@ export interface UseRangeSliderOptions extends SliderStepOptions {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface RangeSliderRequiredProps
   extends RangeSliderControls,
@@ -65,7 +65,7 @@ export interface RangeSliderRequiredProps
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type RangeSliderValueReturnType = readonly [
   RangeSliderValue,
@@ -85,7 +85,7 @@ export type RangeSliderValueReturnType = readonly [
  * `max`.
  * @returns an ordered list containing the current value followed by the
  * `RangeSlider` props
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export function useRangeSlider(
   defaultValue?: RangeSliderDefaultValue,

@@ -2,17 +2,17 @@ import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from "react";
 import { PropsWithRef } from "@react-md/utils";
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type ThumbIndex = 0 | 1;
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type SliderThumbIndex = ThumbIndex | null;
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type SliderDragEvent =
   | MouseEvent
@@ -21,17 +21,17 @@ export type SliderDragEvent =
   | React.TouchEvent;
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type SliderDraggingBy = "mouse" | "touch" | null;
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type SliderValue = number;
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type SliderDefaultValue = SliderValue | (() => SliderValue);
 
@@ -40,7 +40,7 @@ export type SliderDefaultValue = SliderValue | (() => SliderValue);
  * when the user interacts with the slider. These functions are provided by the
  * `useSlider` hook.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  * @internal
  */
 export interface SliderControls {
@@ -55,12 +55,12 @@ export interface SliderControls {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type RangeSliderValue = readonly [number, number];
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type RangeSliderDefaultValue =
   | RangeSliderValue
@@ -71,7 +71,7 @@ export type RangeSliderDefaultValue =
  * value when the user interacts with the slider. These functions are provided by
  * the `useRangeSlider` hook.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  * @internal
  */
 export interface RangeSliderControls {
@@ -86,7 +86,7 @@ export interface RangeSliderControls {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderValueOptions {
   /**
@@ -108,7 +108,7 @@ export interface SliderValueOptions {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderStepOptions extends SliderValueOptions {
   /**
@@ -132,7 +132,7 @@ export interface SliderStepOptions extends SliderValueOptions {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderPresentation {
   /**
@@ -147,7 +147,7 @@ export interface SliderPresentation {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderThumbPresentation {
   /**
@@ -183,7 +183,7 @@ export interface SliderThumbPresentation {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderThumbOptions
   extends Omit<SliderValueOptions, "step">,
@@ -191,12 +191,12 @@ export interface SliderThumbOptions
     SliderThumbPresentation {}
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type DefinedSliderValueOptions = Required<SliderValueOptions>;
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type SliderEventHandlerNames =
   | "onBlur"
@@ -205,7 +205,7 @@ export type SliderEventHandlerNames =
   | "onTouchStart";
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type SliderEventHandlers = Pick<
   HTMLAttributes<HTMLSpanElement>,
@@ -213,7 +213,7 @@ export type SliderEventHandlers = Pick<
 >;
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderAddons {
   /**
@@ -240,7 +240,7 @@ export interface SliderAddons {
  * These are the shared and common props required for both the `Slider` and
  * `RangeSlider` components.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface BaseSliderProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -255,7 +255,7 @@ export interface BaseSliderProps
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderLabelProps {
   /**

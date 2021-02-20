@@ -98,7 +98,7 @@ interface ReturnValue {
  * way to find/get the scrollable element (if any). It might also just go into
  * the `scrollIntoView` util.
  *
- * @since 2.5.3
+ * @remarks \@since 2.5.3
  * @internal
  */
 const getScrollContainer = (target: HTMLElement): HTMLElement | null => {

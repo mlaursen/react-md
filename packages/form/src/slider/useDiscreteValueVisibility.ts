@@ -17,7 +17,7 @@ const noop = (): void => {
 
 /**
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 interface Options {
   active: boolean;
@@ -31,7 +31,7 @@ interface Options {
 
 /**
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 interface ReturnedProps {
   /**
@@ -52,7 +52,7 @@ interface ReturnedProps {
  * user holds the mouse down in the same spot for the `animationDuration`.
  *
  * @internal
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export function useDiscreteValueVisibility({
   active,

@@ -15,7 +15,7 @@ import { useDiscreteValueVisibility } from "./useDiscreteValueVisibility";
 const styles = bem("rmd-slider-thumb");
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface BaseThumbProps
   extends HTMLAttributes<HTMLSpanElement>,
@@ -61,7 +61,7 @@ export interface BaseThumbProps
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type SliderThumbProps = LabelRequiredForA11y<BaseThumbProps>;
 
@@ -69,7 +69,7 @@ export type SliderThumbProps = LabelRequiredForA11y<BaseThumbProps>;
  * The slider thumb implements the `role="slider"` for the `Slider` and
  * `RangeSlider` components.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export const SliderThumb = forwardRef<HTMLSpanElement, SliderThumbProps>(
   function SliderThumb(

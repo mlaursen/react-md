@@ -28,7 +28,7 @@ const noop = (): void => {
 };
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type TextFieldChangeHandlers = Pick<
   HTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
@@ -53,12 +53,12 @@ export type TextFieldChangeHandlers = Pick<
  * <Button type="submit" disabled={invalid} onClick={submitForm}>Submit</Button>
  * ```
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type ErrorChangeHandler = (id: string, error: boolean) => void;
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface TextFieldHookOptions
   extends TextConstraints,
@@ -152,7 +152,7 @@ export interface TextFieldHookOptions
  * All the props that will be generated and return from the `useTextField` hook
  * that should be passed to a `FormMessage` component.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface ProvidedFormMessageProps
   extends Pick<FormMessageProps, "id" | "theme" | "children">,
@@ -163,7 +163,7 @@ export interface ProvidedFormMessageProps
  * All the props that will be generated and returned by the `useTextField` hook
  * that should be passed to a `TextField` component.
  *
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface ProvidedTextFieldProps
   extends TextConstraints,
@@ -172,7 +172,7 @@ export interface ProvidedTextFieldProps
     Pick<TextFieldProps, "aria-describedby" | "theme" | "rightChildren"> {}
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface ProvidedTextFieldMessageProps extends ProvidedTextFieldProps {
   /**
@@ -183,7 +183,7 @@ export interface ProvidedTextFieldMessageProps extends ProvidedTextFieldProps {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface TextFieldHookState {
   /**
@@ -209,7 +209,7 @@ export interface TextFieldHookState {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface TextFieldHookControls {
   /**
@@ -227,7 +227,7 @@ export interface TextFieldHookControls {
 }
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type TextFieldHookReturnType = [
   string,
@@ -259,7 +259,7 @@ export function useTextField(
  * @param options - All the options used to control the functionality of this
  * hook.
  * @returns @see {@link TextFieldHookReturnType}
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export function useTextField({
   id,

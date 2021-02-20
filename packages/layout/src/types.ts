@@ -109,7 +109,7 @@ export interface LayoutConfiguration {
    * - `false | undefined` - both toggleable variants will require a button
    *   click to be visible
    *
-   * @since 2.6.0
+   * @remarks \@since 2.6.0
    */
   defaultToggleableVisible?: boolean | "toggleable" | "toggleable-mini";
 }

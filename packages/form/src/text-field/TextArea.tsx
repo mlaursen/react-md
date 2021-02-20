@@ -118,7 +118,7 @@ export interface TextAreaProps
    * div. This is probably only going to be used internally so that additional
    * accessibility can be added to text fields for more complex widgets.
    *
-   * @since 2.5.2
+   * @remarks \@since 2.5.2
    */
   containerProps?: Omit<HTMLAttributes<HTMLDivElement>, "style" | "className">;
 }

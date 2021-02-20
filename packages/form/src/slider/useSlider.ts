@@ -16,7 +16,7 @@ import {
 import { getJumpValue, getSteps } from "./utils";
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface SliderRequiredProps
   extends SliderControls,
@@ -32,12 +32,12 @@ const noop = (): void => {
 };
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export type SliderValueReturnType = readonly [SliderValue, SliderRequiredProps];
 
 /**
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export interface UseSliderOptions extends SliderStepOptions {
   /**
@@ -62,7 +62,7 @@ export interface UseSliderOptions extends SliderStepOptions {
  * `max`.
  * @returns an ordered list containing the current value followed by the
  * `Slider` props
- * @since 2.5.0
+ * @remarks \@since 2.5.0
  */
 export function useSlider(
   defaultValue?: SliderDefaultValue,
