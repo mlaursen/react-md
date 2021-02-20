@@ -1414,19 +1414,34 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@mlaursen/changelog-preset@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@mlaursen/changelog-preset/-/changelog-preset-0.0.1.tgz#24d91f8e5b73f18be6ae851a470bacb371d9ffaa"
-  integrity sha512-4tUHp7DfpYr4BGn47PUs2SrDWuLosoEoRjHf/hR6Ko3rpgjjrIntdMqZ2vHaVeXojWOUS+iK7DPNst9W0QeNcg==
+"@microsoft/tsdoc-config@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/tsdoc-config/-/tsdoc-config-0.14.0.tgz#fbad7dd69edabc3623a5ee3b99c9b832aa78c5c2"
+  integrity sha512-KSj15FwyaxMCGJkC320rvNXxuJNCOVO02pNqIEdf5cbLakvHK8afoHTmcjdBEWl0cfBFZlMu/1DhL4VCzZq0rQ==
+  dependencies:
+    "@microsoft/tsdoc" "0.13.0"
+    ajv "~6.12.6"
+    jju "~1.4.0"
+    resolve "~1.19.0"
+
+"@microsoft/tsdoc@0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.13.0.tgz#f05c6315bc3dfd18cdca70f28cd40d28da643249"
+  integrity sha512-/8J+4DdvexBH1Qh1yR8VZ6bPay2DL/TDdmSIypAa3dAghJzsdaiZG8COvzpYIML6HV2UVN0g4qbuqzjG4YKgWg==
+
+"@mlaursen/changelog-preset@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@mlaursen/changelog-preset/-/changelog-preset-1.0.0.tgz#a7dadf0621db4529f0fbdd223dba395ec1b85c3c"
+  integrity sha512-/ccuNe6jTU2EmM+44c+HmyjnpTix4KRxrDL0Xc4oNOoiUxMqnsQVKYKvqRdU72qxMVuHVZW8kBgOzUsBWeGwYQ==
   dependencies:
     "@types/conventional-changelog" "^3.1.0"
     "@types/conventional-changelog-core" "^4.1.1"
     "@types/conventional-commits-parser" "^3.0.1"
 
-"@mlaursen/eslint-config@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@mlaursen/eslint-config/-/eslint-config-0.0.9.tgz#da77a11a3c41e1e0701a7f1a7ec1f5ea10c3be81"
-  integrity sha512-lgSt5b7rSTTe0vDJPM6TBA1DkLxyglqxb/ADxqp0ELwCv6fCgWvvdBeGNR8Caf2GXJwjA9RGB6cNkqOHv1nfjw==
+"@mlaursen/eslint-config@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@mlaursen/eslint-config/-/eslint-config-1.1.1.tgz#22e1f5d9f1c15d4aedebf849716f61aee3156642"
+  integrity sha512-UauL1KgMNN/o0R42uFggfKiMJC5En3zuZ5gvg5Yo23702aPjiWA/EhJ+4QzETVhTA72XfjaCLiWtcIw1fdnouQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.15.1"
     "@typescript-eslint/parser" "^4.15.1"
@@ -1437,6 +1452,7 @@
     eslint-plugin-jsx-a11y "^6.3.1"
     eslint-plugin-react "^7.21.4"
     eslint-plugin-react-hooks "^4.1.2"
+    eslint-plugin-tsdoc "^0.2.11"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -2936,7 +2952,7 @@ ajv@^4.7.0:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
 
-ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.4, ajv@^6.12.5, ajv@^6.5.5:
+ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.4, ajv@^6.12.5, ajv@^6.5.5, ajv@~6.12.6:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
   integrity sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
@@ -6365,6 +6381,14 @@ eslint-plugin-react@^7.21.4:
     resolve "^1.17.0"
     string.prototype.matchall "^4.0.2"
 
+eslint-plugin-tsdoc@^0.2.11:
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-tsdoc/-/eslint-plugin-tsdoc-0.2.11.tgz#dda92e69d88fd7f9f0a604438dca837a3341aaee"
+  integrity sha512-vEjGANpmBfrvpKj9rwePGhA+gIe1mp+dhDZsrkxlHqPVOZvzVdFSV9fxu/o3eppmxhybI8brD88jOrLEAIB9Gw==
+  dependencies:
+    "@microsoft/tsdoc" "0.13.0"
+    "@microsoft/tsdoc-config" "0.14.0"
+
 eslint-scope@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-4.0.3.tgz#ca03833310f6889a3264781aa82e63eb9cfe7848"
@@ -9480,6 +9504,11 @@ jest@^26.6.3:
     "@jest/core" "^26.6.3"
     import-local "^3.0.2"
     jest-cli "^26.6.3"
+
+jju@~1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/jju/-/jju-1.4.0.tgz#a3abe2718af241a2b2904f84a625970f389ae32a"
+  integrity sha1-o6vicYryQaKykE+EpiWXDzia4yo=
 
 js-base64@^2.1.8:
   version "2.5.2"
@@ -13833,7 +13862,7 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@^1.1.7, resolve@^1.10.0, resolve@^1.13.1, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.19.0:
+resolve@^1.1.7, resolve@^1.10.0, resolve@^1.13.1, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.19.0, resolve@~1.19.0:
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.19.0.tgz#1af5bf630409734a067cae29318aac7fa29a267c"
   integrity sha512-rArEXAgsBG4UgRGcynxWIWKFvh/XZCcS8UJdHhwy91zwAvCZIbcs+vAbflgBnNjYMs/i/i+/Ux6IZhML1yPvxg==
