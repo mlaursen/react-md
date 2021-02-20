@@ -42,6 +42,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

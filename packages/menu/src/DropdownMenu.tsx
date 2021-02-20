@@ -177,6 +177,7 @@ export const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

@@ -172,6 +172,7 @@ export function LayoutProvider({
   return <Provider value={value}>{children}</Provider>;
 }
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     context.displayName = "Layout";

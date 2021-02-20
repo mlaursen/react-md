@@ -77,6 +77,7 @@ export function ListItemAddon({
   );
 }
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

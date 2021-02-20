@@ -91,6 +91,7 @@ export function ResizeObserver({
   return <Component className={className} aria-hidden="true" ref={ref} />;
 }
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

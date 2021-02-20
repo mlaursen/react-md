@@ -49,6 +49,7 @@ export const SrOnly = forwardRef<TextElement, SrOnlyProps>(function SrOnly(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

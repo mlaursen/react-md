@@ -164,6 +164,7 @@ export function Dir({
   return <Provider value={value}>{child}</Provider>;
 }
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   context.displayName = "WritingDirection";
 

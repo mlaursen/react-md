@@ -105,6 +105,7 @@ export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

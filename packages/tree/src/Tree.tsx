@@ -169,6 +169,7 @@ export const Tree = forwardRef<ListElement, TreeProps<any>>(function Tree( // es
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

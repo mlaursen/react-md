@@ -45,6 +45,7 @@ export const MenuItemSeparator = forwardRef<
   return <Divider {...props} ref={ref} role="separator" />;
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

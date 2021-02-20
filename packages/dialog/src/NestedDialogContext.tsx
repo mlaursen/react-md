@@ -25,6 +25,7 @@ const context = createContext<NestedDialogContext>({
   remove: noop,
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   context.displayName = "NestedDialogContext";
 }
@@ -49,6 +50,7 @@ export function NestedDialogContextProvider({
   const [stack, setStack] = useState<string[]>([]);
   const add = useCallback((dialogId: string) => {
     setStack((prevStack) => {
+      /* istanbul ignore next */
       if (
         process.env.NODE_ENV !== "production" &&
         prevStack.includes(dialogId)

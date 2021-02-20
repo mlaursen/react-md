@@ -73,6 +73,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

@@ -237,6 +237,7 @@ export const RangeSlider = forwardRef<HTMLDivElement, RangeSliderProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

@@ -47,6 +47,7 @@ export const MediaOverlay = forwardRef<HTMLDivElement, MediaOverlayProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

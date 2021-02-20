@@ -181,6 +181,7 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

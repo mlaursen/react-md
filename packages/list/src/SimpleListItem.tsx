@@ -95,6 +95,7 @@ export const SimpleListItem = forwardRef<HTMLLIElement, SimpleListItemProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

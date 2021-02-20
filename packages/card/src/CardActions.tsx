@@ -35,6 +35,7 @@ export const CardActions = forwardRef<HTMLDivElement, CardActionsProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

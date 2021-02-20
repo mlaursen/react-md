@@ -262,6 +262,7 @@ export const Text = forwardRef<TextElement, TextProps>(function Text(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

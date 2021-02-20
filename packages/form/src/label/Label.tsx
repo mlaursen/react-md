@@ -93,6 +93,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

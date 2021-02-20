@@ -40,6 +40,7 @@ export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

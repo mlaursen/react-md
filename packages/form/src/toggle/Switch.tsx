@@ -168,6 +168,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

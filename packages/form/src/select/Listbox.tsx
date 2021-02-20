@@ -454,6 +454,7 @@ export const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

@@ -281,6 +281,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

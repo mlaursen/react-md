@@ -114,6 +114,7 @@ export const BadgedButton = forwardRef<HTMLButtonElement, BadgedButtonProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

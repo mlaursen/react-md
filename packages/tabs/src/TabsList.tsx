@@ -163,6 +163,7 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

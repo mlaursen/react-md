@@ -167,6 +167,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

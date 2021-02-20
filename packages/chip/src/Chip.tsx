@@ -228,6 +228,7 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

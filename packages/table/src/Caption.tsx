@@ -18,6 +18,7 @@ export const Caption = forwardRef<HTMLTableCaptionElement, CaptionProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

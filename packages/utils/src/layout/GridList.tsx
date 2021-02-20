@@ -131,6 +131,7 @@ export const GridList = forwardRef<HTMLDivElement, GridListProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

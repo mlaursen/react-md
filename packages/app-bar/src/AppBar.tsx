@@ -166,6 +166,7 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

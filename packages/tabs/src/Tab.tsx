@@ -114,6 +114,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
   );
 });
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

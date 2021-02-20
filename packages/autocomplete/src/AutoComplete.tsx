@@ -226,6 +226,7 @@ export const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

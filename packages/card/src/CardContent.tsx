@@ -71,6 +71,7 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");

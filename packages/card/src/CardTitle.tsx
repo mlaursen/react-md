@@ -48,6 +48,7 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   }
 );
 
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
