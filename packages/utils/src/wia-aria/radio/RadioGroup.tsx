@@ -108,9 +108,16 @@ export const RadioGroup = forwardRef<HTMLSpanElement, RadioGroupProps>(
     const handleFocus = useCallback(
       (event: FocusEvent<HTMLSpanElement>) => {
         onFocus?.(event);
+
+        if (event.target === event.currentTarget) {
+          const radio =
+            refs.find(({ current }) => current?.tabIndex === 0) || refs[0];
+          radio.current?.focus();
+        }
+
         setFocused(true);
       },
-      [onFocus]
+      [onFocus, refs]
     );
     const handleClick = useCallback(
       (event: MouseEvent<HTMLSpanElement>) => {

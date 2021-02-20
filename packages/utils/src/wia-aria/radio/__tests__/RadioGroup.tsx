@@ -270,4 +270,20 @@ describe("RadioGroup, RadioGroupProps", () => {
     expect(item2.style.color).toBe("red");
     expect(item3.style.color).toBe("");
   });
+
+  it("should focus the first focusable radio item if the group itself is focused", () => {
+    const { getByRole } = render(<Test />);
+    const group = getByRole("radiogroup");
+    const item1 = getByRole("radio", { name: "Item 1" });
+    const item3 = getByRole("radio", { name: "Item 3" });
+
+    group.focus();
+    expect(document.activeElement).toBe(item1);
+
+    fireEvent.click(item3);
+
+    document.documentElement.focus();
+    group.focus();
+    expect(document.activeElement).toBe(item3);
+  });
 });
