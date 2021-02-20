@@ -69,8 +69,8 @@ export type MessageActions<M extends Message = ToastMessage> =
   | ResetQueueAction;
 
 /**
- * This function is used to update the message queue state by adding a new message when
- * needed.
+ * This function is used to update the message queue state by adding a new
+ * message when needed.
  *
  * @internal
  */
@@ -94,8 +94,8 @@ export function handleAddMessage<M extends Message = ToastMessage>(
   if (isNext || isImmediate) {
     const nextState = state.slice();
 
-    // remove the existing message if duplicated messages aren't allowed. This will
-    // kind of act like a replace + next behavior
+    // remove the existing message if duplicated messages aren't allowed. This
+    // will kind of act like a replace + next behavior
     if (!isDuplicable && i > 0) {
       nextState.splice(i, 1);
     }
@@ -114,8 +114,8 @@ export function handleAddMessage<M extends Message = ToastMessage>(
 
   if (isNormal) {
     if (isRestart) {
-      // creating a new state so that the queue visibility hook can still be triggered
-      // which will restart the timer
+      // creating a new state so that the queue visibility hook can still be
+      // triggered which will restart the timer
       return state.slice();
     }
 
@@ -171,7 +171,8 @@ export interface MessageQueueResult<M extends Message = ToastMessage>
 /**
  * This is the main logic for the message queue behavior that will handle:
  *
- * - creating timeouts as needed to show/hide toasts within the SnackbarQueue component
+ * - creating timeouts as needed to show/hide toasts within the `SnackbarQueue`
+ *   component
  * - create a way to push messages with optional priority onto the queue
  *
  * @internal
@@ -217,8 +218,8 @@ export function useMessageQueue<M extends Message = ToastMessage>({
   );
 
   useEffect(() => {
-    // this effect will handle all the "logic" for transitioning between each message along with the
-    // message priority updates.
+    // this effect will handle all the "logic" for transitioning between each
+    // message along with the message priority updates.
     const [message, nextMessage] = queue;
     if (!message) {
       return;

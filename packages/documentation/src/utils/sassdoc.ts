@@ -1,5 +1,5 @@
-/**
- * This file was generated from `@react-md/dev-utils` and should not be updated
+/*
+ * This file was generated from @react-md/dev-utils and should not be updated
  * manually.
  */
 
@@ -177,10 +177,10 @@ export type ItemOutput = string;
  * @param {Boolean} my-bool [false] - Another description
  * ```
  *
- * @typeParam T - This can be used if you want to strongly type what types you
- * want to use in your sassdoc (normally for case-sensitivity). sassdoc is not
- * type sensitive and any type can really be added here. You can also use
- * pipes (`|`) to support multiple types.
+ * @typeParam T - This can be used if you want to strongly type what types
+ * you want to use in your sassdoc (normally for case-sensitivity). sassdoc
+ * is not type sensitive and any type can really be added here. You can also
+ * use pipes (`|`) to support multiple types.
  */
 export interface ItemParameter<T extends string = ItemDataType> {
   /**
@@ -559,8 +559,8 @@ export interface BaseItem {
  * to some "recommended" capitalized versions that should be used when
  * documenting.
  *
- * @typeParam T - The data type for the `@type` annotation.
- * @typeParam IT - - The data type for each item `@prop` annotation.
+ * @typeParam T - the data type for the `@type` annotation.
+ * @typeParam IT - The data type for each item `@prop` annotation.
  */
 export interface VariableItem<
   T extends string = DataType,
@@ -700,7 +700,7 @@ export interface FormattedItem {
 
   /**
    * The package that the item is in. This will not be prefixed
-   * with `@react-md`.
+   * with \@react-md.
    */
   packageName: string;
 

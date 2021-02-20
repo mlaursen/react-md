@@ -25,15 +25,15 @@ export interface MessageQueueProps<M extends ToastMessage>
 
   /**
    * An optional function to call when the action button is clicked. This will
-   * be applied to **all** toasts that appear in this message queue. You will be
-   * provided the current message followed by the click event.
+   * be applied to **all** toasts that appear in this message queue. You will
+   * be provided the current message followed by the click event.
    */
   onActionClick?: ActionEventHandler<M>;
 }
 
 /**
- * This component is used to be able to create a queue of messages with the `Snackbar` and
- * `Toast` components with a _fairly_ decent API out of the box.
+ * This component is used to be able to create a queue of messages with the
+ * `Snackbar` and `Toast` components with a _fairly_ decent API out of the box.
  */
 export function MessageQueue<M extends ToastMessage = ToastMessage>({
   timeout = 5000,

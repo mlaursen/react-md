@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 import { join } from "path";
 
-export const COPY_BANNER = `/**
+export const COPY_BANNER = `/*
  * This file was generated from @react-md/dev-utils and should not be updated
  * manually.
  */

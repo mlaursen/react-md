@@ -22,9 +22,9 @@ interface ReturnValue {
  * overlay and escape keypress will be disabled.
  *
  * NOTE: This will not work if you nest dialogs together and have them become
- * visible at the same time because the ids will get added from child -&gt;
- * parent instead of parent -&gt; child. This flow shouldn't really happen
- * though so it isn't planned on being fixed.
+ * visible at the same time because the ids will get added from child to parent
+ * instead of parent -&gt; child. This flow shouldn't really happen though so it
+ * isn't planned on being fixed.
  */
 export function useNestedDialogFixes({
   id,

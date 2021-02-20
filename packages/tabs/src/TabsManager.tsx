@@ -18,11 +18,15 @@ export interface TabsManagerContext {
    * This is an id prefix to use for all the child Tab, TabList, and TabPanel
    * components.
    *
+   * @example
+   * id behavior
+   * ```
    * - `Tabs` -> id={id}
    * - `Tab` ->
    *    - id={`${id}-tab-${index + 1}`}
    *    - panelId={active && `${id}-panel-${index + 1}`}
    * - `TabPanel` -> id={`${id}-panel-${index + 1}`}
+   * ```
    */
   tabsId: string;
 

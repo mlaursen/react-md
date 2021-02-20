@@ -140,10 +140,10 @@ export interface TransitionOptions<E extends HTMLElement = HTMLDivElement>
    * - `EXITED`
    *
    * Changing from `false` to `true`, the stagees will change in this order:
-   * `EXITED` -&gt; `ENTER` -&gt; `ENTERING` -&gt; `ENTERED`
+   * `EXITED -> ENTER -> ENTERING -> ENTERED`
    *
    * Changing from `true` to `false`, the stagees will change in this order:
-   * `ENTERED` -&gt; `EXIT` -&gt; `EXITING` -&gt; `EXITED`
+   * `ENTERED -> EXIT -> EXITING -> EXITED`
    */
   transitionIn: boolean;
 

@@ -131,7 +131,7 @@ export interface SliderDragValue {
   value: number;
 
   /**
-   * The current percentage dragged number (> 0 and < 1). This is used only
+   * The current percentage dragged number (`> 0` and `< 1`). This is used only
    * while dragging with the mouse or touch since it makes the drag experience
    * smoother. If this is omitted and there is a small number of "steps" in the
    * range, the mouse/touch won't align with the thumb since it will only move
@@ -149,11 +149,11 @@ export interface SliderDragValue {
    *   - new-value-at = 1000px / (100 / 20)
    *   - new-value-at = 1000px / 5
    *   - new-value-at = 200px
-   * - user drags from 0px -&gt; 10px
+   * - user drags from `0px -> 10px`
    *   - no visual change
-   * - user drags from 10px -&gt; 190px
+   * - user drags from `10px -> 190px`
    *   - no visual change
-   * - user drags from 190px -&gt; 200px
+   * - user drags from `190px -> 200px`
    *   - visual change to first step
    *
    * The current value allows for a visual change while the user drags, but the

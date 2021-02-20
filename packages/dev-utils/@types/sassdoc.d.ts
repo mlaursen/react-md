@@ -1,13 +1,19 @@
 /**
  * From the sassdoc documentation:
  *
- * > sassdoc uses the word "item" to described either a variable, a function, a
- * > mixin, or a placeholder.
+ * @remarks
+ *
+ * sassdoc uses the word "item" to described either a variable, a function, a
+ * mixin, or a placeholder.
+ *
+ *
+ * @remarks
  *
  * The types will be named and based off of this documentation.
  *
  * Note: I should probably move this to the DefinitelyTyped repo at some point.
- * @see http://sassdoc.com/data-interface/#terminology
+ *
+ * @see {@link http://sassdoc.com/data-interface/#terminology|SassDoc Data Interface}
  */
 declare module "sassdoc" {
   /**
@@ -556,7 +562,7 @@ declare module "sassdoc" {
     throw?: ItemThrow;
 
     /**
-     * An optional @since annotation that has a version number and an optional
+     * An optional `@since` annotation that has a version number and an optional
      * description.
      */
     since?: ItemSince[];
