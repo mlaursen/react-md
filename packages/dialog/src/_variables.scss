@@ -3,6 +3,8 @@
 ////
 
 @import '~@react-md/overlay/dist/variables';
+@import '~@react-md/theme/dist/variables';
+@import '~@react-md/theme/dist/functions';
 @import '~@react-md/utils/dist/variables';
 
 /// The elevation (box-shadow) to use for the dialog when it is not full page.
@@ -11,6 +13,44 @@
 ///
 /// @type Number
 $rmd-dialog-elevation: 16 !default;
+
+/// The background color for a dialog in light themes.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-dialog-light-background-color: rmd-theme-var(surface) !default;
+
+/// The background color for a dialog in dark themes when the
+/// `$rmd-theme-dark-elevation` feature flag is also enabled.
+///
+/// @see $rmd-theme-dark-elevation
+/// @require $rmd-theme-dark-elevation-colors
+/// @type Color
+/// @since 2.7.0
+$rmd-dialog-dark-elevation-background-color: map-get(
+  $rmd-theme-dark-elevation-colors,
+  $rmd-dialog-elevation
+) !default;
+
+/// The background color for a dialog in dark themes.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-dialog-dark-background-color: if(
+  $rmd-theme-dark-elevation and $rmd-dialog-dark-elevation-background-color,
+  $rmd-dialog-dark-elevation-background-color,
+  rmd-theme-var(surface)
+) !default;
+
+/// The base background color to apply to dialogs.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-dialog-background-color: if(
+  $rmd-theme-light,
+  $rmd-dialog-light-background-color,
+  $rmd-dialog-dark-background-color
+) !default;
 
 /// The z-index for dialogs. This value is a bit larger than overlays just in
 /// case other components are using the overlay as well. The dialog's overlay
@@ -77,6 +117,7 @@ $rmd-dialog-min-width: 17.5rem !default;
 /// of the icon as needed.
 /// @type Map
 $rmd-dialog-theme-values: (
+  background-color: $rmd-dialog-background-color,
   horizontal-margin: $rmd-dialog-horizontal-margin,
   vertical-margin: $rmd-dialog-vertical-margin,
   min-width: $rmd-dialog-min-width,

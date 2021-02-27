@@ -201,6 +201,16 @@
     );
   }
 
+  @if mixin-exists(rmd-dialog-theme-update-var) {
+    @if $rmd-dialog-light-background-color != $rmd-dialog-dark-background-color
+    {
+      @include rmd-dialog-theme-update-var(
+        background-color,
+        $rmd-dialog-light-background-color
+      );
+    }
+  }
+
   @if mixin-exists(rmd-divider-theme-update-var) {
     @include rmd-divider-theme-update-var(
       background-color,
@@ -373,6 +383,16 @@
       outline-color,
       $rmd-chip-outline-dark-color
     );
+  }
+
+  @if mixin-exists(rmd-dialog-theme-update-var) {
+    @if $rmd-dialog-light-background-color != $rmd-dialog-dark-background-color
+    {
+      @include rmd-dialog-theme-update-var(
+        background-color,
+        $rmd-dialog-dark-background-color
+      );
+    }
   }
 
   @if mixin-exists(rmd-divider-theme-update-var) {
