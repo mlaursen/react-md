@@ -6,11 +6,52 @@
 @import '~@react-md/divider/dist/variables';
 @import '~@react-md/theme/dist/functions';
 
+/// The elevation to use for cards that are not raisable.
+/// @type Number
+$rmd-card-elevation: 2 !default;
+
+/// The background color for a card in light themes.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-card-light-background-color: rmd-theme-var(surface) !default;
+
+/// The background color for a card in dark themes when the
+/// `$rmd-theme-dark-elevation` feature flag is also enabled.
+///
+/// @see $rmd-theme-dark-elevation
+/// @require $rmd-theme-dark-elevation-colors
+/// @type Color
+/// @since 2.7.0
+$rmd-card-dark-elevation-background-color: map-get(
+  $rmd-theme-dark-elevation-colors,
+  $rmd-card-elevation
+);
+
+/// @type Color
+/// @since 2.5.4
+/// @deprecated Use `$rmd-card-dark-elevation-color` instead starting with `v2.7.0`
+$rmd-card-dark-elevation-bordered-background-color: $rmd-card-dark-elevation-background-color;
+
+/// The background color for a card in dark themes.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-card-dark-background-color: if(
+  $rmd-theme-dark-elevation and $rmd-card-dark-elevation-background-color,
+  $rmd-card-dark-elevation-background-color,
+  rmd-theme-var(surface)
+) !default;
+
 /// The base background color to apply to cards.
 ///
 /// @require rmd-theme-var
 /// @type Color
-$rmd-card-background-color: rmd-theme-var(surface) !default;
+$rmd-card-background-color: if(
+  $rmd-theme-light,
+  $rmd-card-light-background-color,
+  $rmd-card-dark-background-color
+) !default;
 
 /// The base primary text color to apply to cards.
 ///
@@ -31,10 +72,6 @@ $rmd-card-secondary-color: if(
   rmd-theme-var(text-primary-on-light),
   rmd-theme-var(text-primary-on-dark)
 ) !default;
-
-/// The elevation to use for cards that are not raisable.
-/// @type Number
-$rmd-card-elevation: 2 !default;
 
 /// The starting elevation for a raisable card.
 /// @type Number
@@ -89,19 +126,6 @@ $rmd-card-border-color: rmd-divider-theme-var(background-color) !default;
 /// @require $rmd-divider-size
 /// @type Number
 $rmd-card-border-width: $rmd-divider-size !default;
-
-/// The background color to use for bordered cards when the
-/// `$rmd-theme-dark-elevation` variable is set to `true`. This basically
-/// overrides the `surface` color to be this value.
-///
-/// @see $rmd-theme-dark-elevation
-/// @require $rmd-theme-dark-elevation-colors
-/// @type Color
-/// @since 2.5.4
-$rmd-card-dark-elevation-bordered-background-color: map-get(
-  $rmd-theme-dark-elevation-colors,
-  $rmd-card-elevation
-);
 
 /// A Map of all the "themeable" parts of the card package. Every key in this
 /// map will be used to create a css variable to dynamically update the values

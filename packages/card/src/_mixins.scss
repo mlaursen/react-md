@@ -73,25 +73,17 @@
       );
     }
   }
-  @include rmd-theme(background-color, surface);
-  @include rmd-theme(color, text-primary-on-background);
+  @include rmd-card-theme(background-color);
+  @include rmd-card-theme(color);
 
   border-radius: $rmd-card-border-radius;
   display: inline-block;
 
   &--shadowed {
     @include rmd-elevation($rmd-card-elevation);
-    @include rmd-theme-dark-elevation($rmd-card-elevation);
   }
 
   &--bordered {
-    @include rmd-theme-dark-elevation-styles {
-      @include rmd-theme-update-var(
-        surface,
-        $rmd-card-dark-elevation-bordered-background-color
-      );
-    }
-
     border: $rmd-card-border-width solid $rmd-card-border-color;
   }
 

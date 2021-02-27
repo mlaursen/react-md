@@ -169,6 +169,13 @@
       secondary-color,
       $rmd-theme-secondary-text-on-light-color
     );
+
+    @if $rmd-card-light-background-color != $rmd-card-dark-background-color {
+      @include rmd-card-theme-update-var(
+        background-color,
+        $rmd-card-light-background-color
+      );
+    }
   }
 
   @if mixin-exists(rmd-chip-theme-update-var) {
@@ -339,6 +346,13 @@
       secondary-color,
       $rmd-theme-secondary-text-on-dark-color
     );
+
+    @if $rmd-card-light-background-color != $rmd-card-dark-background-color {
+      @include rmd-card-theme-update-var(
+        background-color,
+        $rmd-card-dark-background-color
+      );
+    }
   }
 
   @if mixin-exists(rmd-chip-theme-update-var) {
