@@ -216,6 +216,15 @@
     );
   }
 
+  @if mixin-exists(rmd-menu-theme-update-var) {
+    @if $rmd-menu-light-background-color != $rmd-menu-dark-background-color {
+      @include rmd-menu-theme-update-var(
+        background-color,
+        $rmd-menu-light-background-color
+      );
+    }
+  }
+
   @if mixin-exists(rmd-states-theme-update-var) {
     @include rmd-states-theme-update-var(
       hover-color,
@@ -372,6 +381,15 @@
       text-filled-color,
       $rmd-text-field-filled-dark-background-color
     );
+  }
+
+  @if mixin-exists(rmd-menu-theme-update-var) {
+    @if $rmd-menu-light-background-color != $rmd-menu-dark-background-color {
+      @include rmd-menu-theme-update-var(
+        background-color,
+        $rmd-menu-dark-background-color
+      );
+    }
   }
 
   @if mixin-exists(rmd-states-theme-update-var) {
