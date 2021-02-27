@@ -100,8 +100,11 @@
 
 /// Creates the styles for a sheet component
 @mixin rmd-sheet {
+  @if $rmd-theme-dark-elevation {
+    @include rmd-sheet-theme(background-color);
+  }
+
   @include rmd-elevation($rmd-sheet-elevation);
-  @include rmd-theme-dark-elevation($rmd-sheet-elevation);
   @include rmd-utils-scroll;
   @include rmd-sheet-positions;
   @include rmd-sheet-theme(max-height);
@@ -112,8 +115,13 @@
   z-index: $rmd-sheet-z-index;
 
   &--raised {
+    @if $rmd-theme-dark-elevation {
+      @include rmd-sheet-theme-update-var(
+        background-color,
+        rmd-sheet-theme-var(raised-background-color)
+      );
+    }
     @include rmd-elevation($rmd-sheet-raised-elevation);
-    @include rmd-theme-dark-elevation($rmd-sheet-elevation);
 
     z-index: $rmd-sheet-raised-z-index;
   }
@@ -199,7 +207,17 @@
 /// Creates all the styles for the sheet package as well as the root css
 /// variable theme.
 @mixin react-md-sheet {
-  @include rmd-theme-create-root-theme($rmd-sheet-theme-values, sheet);
+  $exclude: if(
+    $rmd-theme-dark-elevation,
+    (),
+    (background-color, raised-background-color)
+  );
+
+  @include rmd-theme-create-root-theme(
+    $rmd-sheet-theme-values,
+    sheet,
+    $exclude
+  );
 
   .rmd-sheet {
     @include rmd-sheet;

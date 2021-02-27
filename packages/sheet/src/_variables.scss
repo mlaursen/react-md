@@ -2,6 +2,7 @@
 /// @group sheet
 ////
 
+@import '~@react-md/dialog/dist/variables';
 @import '~@react-md/overlay/dist/variables';
 @import '~@react-md/transition/dist/variables';
 @import '~@react-md/theme/dist/functions';
@@ -39,6 +40,114 @@ $rmd-sheet-elevation: 2 !default;
 /// well.
 /// @type Number
 $rmd-sheet-raised-elevation: 16 !default;
+
+/// The background color for a sheet rendered "inline" with other content in the
+/// light theme.
+///
+/// Note: If `$rmd-theme-dark-elevation` is set to `false`, this variable is
+/// ignored and the color is determined by the normal dialog background color
+/// instead.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-sheet-light-background-color: rmd-dialog-theme-var(
+  background-color
+) !default;
+
+/// The background color for a sheet rendered "inline" with other content in the
+/// dark theme and the `$rmd-theme-dark-elevation` feature flag is also enabled.
+///
+/// @see $rmd-theme-dark-elevation
+/// @require $rmd-theme-dark-elevation-colors
+/// @type Color
+/// @since 2.7.0
+$rmd-sheet-dark-elevation-background-color: map-get(
+  $rmd-theme-dark-elevation-colors,
+  $rmd-sheet-elevation
+) !default;
+
+/// The background color for a sheet rendered "inline" with other content in the
+/// dark theme.
+///
+/// Note: If `$rmd-theme-dark-elevation` is set to `false`, this variable is
+/// ignored and the color is determined by the normal dialog background color
+/// instead.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-sheet-dark-background-color: if(
+  $rmd-theme-dark-elevation,
+  $rmd-sheet-dark-elevation-background-color,
+  rmd-dialog-theme-var(background-color)
+) !default;
+
+/// The background color for a sheet rendered "inline" with other content.
+///
+/// Note: If `$rmd-theme-dark-elevation` is set to `false`, this variable is
+/// ignored and the color is determined by the normal dialog background color
+/// instead.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-sheet-background-color: if(
+  $rmd-theme-light,
+  $rmd-sheet-light-background-color,
+  $rmd-theme-dark-background-color
+) !default;
+
+/// The background color for a sheet raised above other content in the light
+/// theme.
+///
+/// Note: If `$rmd-theme-dark-elevation` is set to `false`, this variable is
+/// ignored and the color is determined by the normal dialog background color
+/// instead.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-sheet-raised-light-background-color: rmd-dialog-theme-var(
+  background-color
+) !default;
+
+/// The background color for a sheet raised above other content in the dark
+/// theme and the `$rmd-theme-dark-elevation` feature flag is also enabled.
+///
+/// @see $rmd-theme-dark-elevation
+/// @require $rmd-theme-dark-elevation-colors
+/// @type Color
+/// @since 2.7.0
+$rmd-sheet-raised-dark-elevation-background-color: map-get(
+  $rmd-theme-dark-elevation-colors,
+  $rmd-sheet-raised-elevation
+) !default;
+
+/// The background color for a sheet raised above other content in the dark
+/// theme.
+///
+/// Note: If `$rmd-theme-dark-elevation` is set to `false`, this variable is
+/// ignored and the color is determined by the normal dialog background color
+/// instead.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-sheet-raised-dark-background-color: if(
+  $rmd-theme-dark-elevation,
+  $rmd-sheet-raised-dark-elevation-background-color,
+  rmd-dialog-theme-var(background-color)
+) !default;
+
+/// The background color for a sheet raised above other content.
+///
+/// Note: If `$rmd-theme-dark-elevation` is set to `false`, this variable is
+/// ignored and the color is determined by the normal dialog background color
+/// instead.
+///
+/// @type Color
+/// @since 2.7.0
+$rmd-sheet-raised-background-color: if(
+  $rmd-theme-light,
+  $rmd-sheet-raised-light-background-color,
+  $rmd-theme-raised-dark-background-color
+) !default;
 
 /// The duration for the enter transition.
 ///
@@ -108,6 +217,8 @@ $rmd-sheet-enabled-positions: $rmd-sheet-positions !default;
 /// of the icon as needed.
 /// @type Map
 $rmd-sheet-theme-values: (
+  background-color: $rmd-sheet-background-color,
+  raised-background-color: $rmd-sheet-raised-background-color,
   touch-width: $rmd-sheet-touch-width,
   static-width: $rmd-sheet-static-width,
   touchable-max-height: $rmd-sheet-touchable-max-height,

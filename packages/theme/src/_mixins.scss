@@ -211,6 +211,23 @@
     }
   }
 
+  @if mixin-exists(rmd-sheet-theme-update-var) {
+    @if $rmd-sheet-light-background-color != $rmd-sheet-dark-background-color {
+      @include rmd-sheet-theme-update-var(
+        background-color,
+        $rmd-sheet-light-background-color
+      );
+    }
+    @if $rmd-sheet-raised-light-background-color !=
+      $rmd-sheet-raised-dark-background-color
+    {
+      @include rmd-sheet-theme-update-var(
+        raised-background-color,
+        $rmd-sheet-raised-light-background-color
+      );
+    }
+  }
+
   @if mixin-exists(rmd-divider-theme-update-var) {
     @include rmd-divider-theme-update-var(
       background-color,
@@ -400,6 +417,23 @@
       @include rmd-dialog-theme-update-var(
         background-color,
         $rmd-dialog-dark-background-color
+      );
+    }
+  }
+
+  @if mixin-exists(rmd-sheet-theme-update-var) {
+    @if $rmd-sheet-light-background-color != $rmd-sheet-dark-background-color {
+      @include rmd-sheet-theme-update-var(
+        background-color,
+        $rmd-sheet-dark-background-color
+      );
+    }
+    @if $rmd-sheet-raised-light-background-color !=
+      $rmd-sheet-raised-dark-background-color
+    {
+      @include rmd-sheet-theme-update-var(
+        raised-background-color,
+        $rmd-sheet-raised-dark-background-color
       );
     }
   }
