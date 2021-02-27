@@ -231,6 +231,15 @@
       text-filled-color,
       $rmd-text-field-filled-light-background-color
     );
+
+    @if $rmd-listbox-light-background-color !=
+      $rmd-listbox-dark-background-color
+    {
+      @include rmd-form-theme-update-var(
+        listbox-background-color,
+        $rmd-listbox-light-background-color
+      );
+    }
   }
 
   @if mixin-exists(rmd-menu-theme-update-var) {
@@ -415,6 +424,15 @@
       text-filled-color,
       $rmd-text-field-filled-dark-background-color
     );
+
+    @if $rmd-listbox-light-background-color !=
+      $rmd-listbox-dark-background-color
+    {
+      @include rmd-form-theme-update-var(
+        listbox-background-color,
+        $rmd-listbox-dark-background-color
+      );
+    }
   }
 
   @if mixin-exists(rmd-menu-theme-update-var) {

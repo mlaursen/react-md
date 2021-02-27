@@ -120,8 +120,7 @@
 
   &--temporary {
     @include rmd-elevation($rmd-listbox-elevation);
-    @include rmd-theme-dark-elevation($rmd-listbox-elevation);
-    @include rmd-theme(background-color, surface);
+    @include rmd-form-theme(background-color, listbox-background-color);
     @include rmd-theme(color, on-surface);
 
     z-index: $rmd-listbox-z-index;
