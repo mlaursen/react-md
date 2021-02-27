@@ -65,22 +65,127 @@
 /// `$rmd-theme-dark-class` variable to either set the styles with a media
 /// query or only when the dark class has been enabled on a parent element.
 ///
+/// Note: This will have a higher specificity than other variables so the colors
+/// might not be as expected. It is recommended to set a custom CSS variable
+/// instead of using this mixin.
+///
+/// @example scss - Simple Example
+///   $rmd-theme-dark-elevation: true;
+///   // OVERRIDE_VARIABLES
+///
+///   .container {
+///     @include rmd-theme-dark-elevation-styles {
+///       background-color: red;
+///     }
+///   }
+///
+///   @include rmd-theme-dark-elevation-styles($selector: null) {
+///     --container-bg: orange;
+///   }
+///
+///   @include rmd-theme-dark-elevation-styles($selector: '.rmd-menu') {
+///     --container-bg: blue;
+///   }
+///
+///   .container-2 {
+///     background-color: var(--container-bg, red);
+///   }
+///
+/// @example scss - Simple Prefers Color Scheme
+///   $rmd-theme-dark-elevation: true;
+///   $rmd-theme-dark-class: 'prefers-color-scheme';
+///   // OVERRIDE_VARIABLES
+///
+///   .container {
+///     @include rmd-theme-dark-elevation-styles {
+///       background-color: red;
+///     }
+///   }
+///
+///   @include rmd-theme-dark-elevation-styles($selector: ':root') {
+///     --container-bg: orange;
+///   }
+///
+///   @include rmd-theme-dark-elevation-styles($selector: '.rmd-menu') {
+///     --container-bg: blue;
+///   }
+///
+///   .container-2 {
+///     background-color: var(--container-bg, red);
+///   }
+///
+/// @example scss - CSS Module Example
+///   $rmd-theme-dark-elevation: true;
+///   // OVERRIDE_VARIABLES
+///
+///   .container {
+///     @include rmd-theme-dark-elevation-styles(true) {
+///       background-color: red;
+///     }
+///   }
+///
+///   @include rmd-theme-dark-elevation-styles(true, null) {
+///     --container-bg: orange;
+///   }
+///
+///   @include rmd-theme-dark-elevation-styles(true, '.rmd-menu') {
+///     --container-bg: blue;
+///   }
+///
+///   .container-2 {
+///     background-color: var(--container-bg, red);
+///   }
+///
+/// @example scss - CSS Module Prefers Color Scheme Example
+///   $rmd-theme-dark-elevation: true;
+///   $rmd-theme-dark-class: 'prefers-color-scheme';
+///   // OVERRIDE_VARIABLES
+///
+///   .container {
+///     @include rmd-theme-dark-elevation-styles(true) {
+///       background-color: red;
+///     }
+///   }
+///
+///   @include rmd-theme-dark-elevation-styles(true, ':root') {
+///     --container-bg: orange;
+///   }
+///
+///   @include rmd-theme-dark-elevation-styles(true, '.rmd-menu') {
+///     --container-bg: blue;
+///   }
+///
+///   .container-2 {
+///     background-color: var(--container-bg, red);
+///   }
+///
 /// @since 2.5.4
 /// @param {Boolean} css-modules [false] - Boolean if this is being used within
 /// CSS Modules which will update the selector to work correctly by wrapping
 /// different parts with `:global` and `:local`.
-@mixin rmd-theme-dark-elevation-styles($css-modules: false) {
+/// @param {String} selector ['&'] - An optional selector to use if the
+/// `$rmd-theme-dark-class` is `'prefers-color-scheme'`. Otherwise, setting this
+/// to a value other than `'&'` will be joined to the `$rmd-theme-dark-class`.
+@mixin rmd-theme-dark-elevation-styles($css-modules: false, $selector: '&') {
   @if $rmd-theme-dark-elevation {
     @if $rmd-theme-dark-class == 'prefers-color-scheme' {
       @media (prefers-color-scheme: dark) {
-        & {
+        #{$selector} {
           @content;
         }
       }
     } @else {
-      @include rmd-utils-optional-css-modules(
+      $parent-selector: $selector == '&';
+      $class-name: if(
+        $parent-selector or not $selector,
         $rmd-theme-dark-class,
-        $css-modules
+        $rmd-theme-dark-class + ' ' + $selector
+      );
+
+      @include rmd-utils-optional-css-modules(
+        $class-name,
+        $css-modules,
+        $parent-selector
       ) {
         @content;
       }
@@ -90,6 +195,30 @@
 
 /// This mixin should normally be used with the `rmd-elevation` mixin to change
 /// the background color based on the current elevation in dark themes.
+///
+/// Note: This will have a higher specificity than other variables so the colors
+/// might not be as expected. It is recommended to set a custom CSS variable
+/// instead of using this mixin.
+///
+/// @example scss - All z-values
+///   $rmd-theme-dark-elevation: true;
+///   // OVERRIDE_VARIABLES
+///
+///   .container {
+///     @for $i from 0 to 24 {
+///       @include rmd-theme-dark-elevation($i);
+///     }
+///   }
+///
+/// @example scss - All z-values with CSS Modules
+///   $rmd-theme-dark-elevation: true;
+///   // OVERRIDE_VARIABLES
+///
+///   .container {
+///     @for $i from 0 to 24 {
+///       @include rmd-theme-dark-elevation($i, true);
+///     }
+///   }
 ///
 /// @since 2.1.0
 /// @param {Number} z-value - This should be a number between 0 and 24
