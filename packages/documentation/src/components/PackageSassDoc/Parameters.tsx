@@ -26,7 +26,7 @@ const Parameters: FC<ParametersProps> = ({ parameters }) => {
 
   return (
     <TableContainer>
-      <Table>
+      <Table disableHover>
         <caption className={styles.caption}>Parameters</caption>
         <TableHeader>
           <TableRow>

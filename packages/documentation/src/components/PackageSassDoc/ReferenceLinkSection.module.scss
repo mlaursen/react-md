@@ -1,0 +1,16 @@
+@import '~@react-md/icon/dist/mixins';
+
+.container {
+  align-items: center;
+  display: flex;
+}
+
+// this should only happen when the previous `ReferenceLinkSection` is collapsed
+.container + .container {
+  margin-top: 1rem;
+}
+
+.chevron {
+  @include rmd-icon-theme-update-var(rotate-from, rotate(90deg));
+  @include rmd-icon-theme-update-var(rotate-to, rotate(270deg));
+}
