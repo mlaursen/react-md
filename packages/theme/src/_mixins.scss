@@ -137,6 +137,18 @@
     $rmd-theme-icon-on-light-color
   );
 
+  @if mixin-exists(rmd-alert-theme-update-var) {
+    @if $rmd-toast-light-background-color != $rmd-toast-dark-background-color {
+      @include rmd-alert-theme-update-var(
+        background-color,
+        $rmd-toast-light-background-color
+      );
+    }
+    @if $rmd-toast-light-color != $rmd-toast-dark-color {
+      @include rmd-alert-theme-update-var(color, $rmd-toast-light-color);
+    }
+  }
+
   @if mixin-exists(rmd-app-bar-theme-update-var) {
     @include rmd-app-bar-theme-update-var(
       default-background-color,
@@ -282,6 +294,21 @@
     text-icon-on-background,
     $rmd-theme-icon-on-dark-color
   );
+
+  @if mixin-exists(rmd-alert-theme-update-var) {
+    @if $rmd-toast-light-color != $rmd-toast-dark-color {
+      @include rmd-alert-theme-update-var(
+        background-color,
+        $rmd-toast-dark-color
+      );
+    }
+    @if $rmd-toast-light-background-color != $rmd-toast-dark-background-color {
+      @include rmd-alert-theme-update-var(
+        background-color,
+        $rmd-toast-dark-background-color
+      );
+    }
+  }
 
   @if mixin-exists(rmd-app-bar-theme-update-var) {
     @include rmd-app-bar-theme-update-var(
