@@ -1429,24 +1429,15 @@
   resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.13.0.tgz#f05c6315bc3dfd18cdca70f28cd40d28da643249"
   integrity sha512-/8J+4DdvexBH1Qh1yR8VZ6bPay2DL/TDdmSIypAa3dAghJzsdaiZG8COvzpYIML6HV2UVN0g4qbuqzjG4YKgWg==
 
-"@mlaursen/changelog-preset@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@mlaursen/changelog-preset/-/changelog-preset-1.0.0.tgz#a7dadf0621db4529f0fbdd223dba395ec1b85c3c"
-  integrity sha512-/ccuNe6jTU2EmM+44c+HmyjnpTix4KRxrDL0Xc4oNOoiUxMqnsQVKYKvqRdU72qxMVuHVZW8kBgOzUsBWeGwYQ==
-  dependencies:
-    "@types/conventional-changelog" "^3.1.0"
-    "@types/conventional-changelog-core" "^4.1.1"
-    "@types/conventional-commits-parser" "^3.0.1"
-
-"@mlaursen/eslint-config@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@mlaursen/eslint-config/-/eslint-config-1.1.1.tgz#22e1f5d9f1c15d4aedebf849716f61aee3156642"
-  integrity sha512-UauL1KgMNN/o0R42uFggfKiMJC5En3zuZ5gvg5Yo23702aPjiWA/EhJ+4QzETVhTA72XfjaCLiWtcIw1fdnouQ==
+"@mlaursen/eslint-config@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@mlaursen/eslint-config/-/eslint-config-1.1.2.tgz#d73e662b7abd271f6f3fed9564eaceb231cd3873"
+  integrity sha512-7ugIR1McWguBGvmNFvTB6VjQTWZy1cIQW56w6nbixuIj04kIrmGr/HKjSW/Pz1PnsmMUoHC/uPNw86DA5Fc1mg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.15.1"
     "@typescript-eslint/parser" "^4.15.1"
     confusing-browser-globals "^1.0.9"
-    eslint-config-prettier "^7.0.0"
+    eslint-config-prettier "^8.1.0"
     eslint-plugin-import "^2.22.1"
     eslint-plugin-jest "^24.1.5"
     eslint-plugin-jsx-a11y "^6.3.1"
@@ -1922,52 +1913,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/conventional-changelog-core@*", "@types/conventional-changelog-core@^4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@types/conventional-changelog-core/-/conventional-changelog-core-4.1.1.tgz#30f3258881075e5ec4b4ac8e3e30d006f0693168"
-  integrity sha512-eIUsocsEtwiQB1vau0UPzuqzWERyrHzaSkUsK+kbnUkYtOM8hlFrJI+UZFxXTKU6CLR/FGsSeGPww8zgAO9WvA==
-  dependencies:
-    "@types/conventional-changelog-writer" "*"
-    "@types/conventional-commits-parser" "*"
-    "@types/conventional-recommended-bump" "*"
-    "@types/git-raw-commits" "*"
-    "@types/node" "*"
-    "@types/normalize-package-data" "*"
-
-"@types/conventional-changelog-writer@*":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/conventional-changelog-writer/-/conventional-changelog-writer-4.0.0.tgz#79b9f9691212a07eebf15f875c136c896a4286fa"
-  integrity sha512-kGp2OSPanEjHk/iVns+cJxyWq3yI0Kbh/KkUHmrejccWzHgNiAQAyb/E1Iswd/O/X50oDgJVxfTpDcjBC1aLoA==
-  dependencies:
-    "@types/conventional-commits-parser" "*"
-    "@types/node" "*"
-
-"@types/conventional-changelog@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@types/conventional-changelog/-/conventional-changelog-3.1.0.tgz#d730c1c1cfbcb49ac1eed6b202bb14bc70237372"
-  integrity sha512-PUg1zBJRhetojI0H/dbu2gLLZVnZSu6vPzo6tfTBrA53Ebvp+F65NN61y6XSMLPfOGr1kHTqxRCetwzAOgphaQ==
-  dependencies:
-    "@types/conventional-changelog-core" "*"
-    "@types/conventional-changelog-writer" "*"
-    "@types/conventional-commits-parser" "*"
-    "@types/node" "*"
-
-"@types/conventional-commits-parser@*", "@types/conventional-commits-parser@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@types/conventional-commits-parser/-/conventional-commits-parser-3.0.1.tgz#1a4796a0ae2bf33b41ea49f55e27ccbdb29cce5e"
-  integrity sha512-xkKomW6PqJS0rzFPPQSzKwbKIRqAGjYa1aWWkoT14YYodXyEpG4ok4H1US3olqGBxejz7EeBfT3fTJ3hUOiUkQ==
-  dependencies:
-    "@types/node" "*"
-
-"@types/conventional-recommended-bump@*":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@types/conventional-recommended-bump/-/conventional-recommended-bump-6.0.0.tgz#c80b5a46c6dbbe106120bf7df6f7000701ddfbe4"
-  integrity sha512-jvkG0mN9RVzp4jID6tzM47YPOyP5r0NS0DfamT5I0rOUE3L1DJdGPfhX5138bKXIOwqB1+f4wLee3lyamdFdCg==
-  dependencies:
-    "@types/conventional-changelog-core" "*"
-    "@types/conventional-changelog-writer" "*"
-    "@types/conventional-commits-parser" "*"
-
 "@types/cookie-parser@^1.4.2":
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/@types/cookie-parser/-/cookie-parser-1.4.2.tgz#e4d5c5ffda82b80672a88a4281aaceefb1bd9df5"
@@ -2046,13 +1991,6 @@
   version "9.0.6"
   resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.6.tgz#488e56b77299899a608b8269719c1d133027a6ab"
   integrity sha512-ecNRHw4clCkowNOBJH1e77nvbPxHYnWIXMv1IAoG/9+MYGkgoyr3Ppxr7XYFNL41V422EDhyV4/4SSK8L2mlig==
-  dependencies:
-    "@types/node" "*"
-
-"@types/git-raw-commits@*":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/git-raw-commits/-/git-raw-commits-2.0.0.tgz#157e9e4709db0748fb1aa623f8927ddd4864bac6"
-  integrity sha512-sHXOKjKqu1kQxbxkZiz2s0yx2kc7g20g6tE98LYGq5jQyT9r+GRyTn19NBfPotOlXhGO6oPvYT3tdnPl8MYYyA==
   dependencies:
     "@types/node" "*"
 
@@ -2181,7 +2119,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.7.tgz#8ea1e8f8eae2430cf440564b98c6dfce1ec5945d"
   integrity sha512-Zw1vhUSQZYw+7u5dAwNbIA9TuTotpzY/OF7sJM9FqPOF3SPjKnxrjoTktXDZgUjybf4cWVBP7O8wvKdSaGHweg==
 
-"@types/normalize-package-data@*", "@types/normalize-package-data@^2.4.0":
+"@types/normalize-package-data@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
@@ -6295,10 +6233,10 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-prettier@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-7.0.0.tgz#c1ae4106f74e6c0357f44adb076771d032ac0e97"
-  integrity sha512-8Y8lGLVPPZdaNA7JXqnvETVC7IiVRgAP6afQu9gOQRn90YY3otMNh+x7Vr2vMePQntF+5erdSUBqSzCmU/AxaQ==
+eslint-config-prettier@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.1.0.tgz#4ef1eaf97afe5176e6a75ddfb57c335121abc5a6"
+  integrity sha512-oKMhGv3ihGbCIimCAjqkdzx2Q+jthoqnXSP+d86M9tptwugycmTFdVR4IpLgq2c4SHifbwO90z2fQ8/Aio73yw==
 
 eslint-import-resolver-node@^0.3.4:
   version "0.3.4"

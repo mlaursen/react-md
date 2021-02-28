@@ -8,7 +8,13 @@ import { changelogData } from "./changelogData";
 import { clean } from "./clean";
 import { projectRoot } from "./constants";
 import { libsize } from "./libsize";
-import { getLernaVersion, git, replaceTag, run } from "./utils";
+import {
+  getLernaVersion,
+  git,
+  replaceTag,
+  run,
+  uncommittedFiles,
+} from "./utils";
 import { initBlog } from "./utils/initBlog";
 import { variables } from "./variables";
 
@@ -108,6 +114,11 @@ A token can be created at:
   // the variables from the react-md package
   run("yarn build");
 
+  const updatedVariables = uncommittedFiles();
+  if (updatedVariables) {
+    git("stash");
+  }
+
   await changelogData();
   run(`npx lerna version ${type} --no-push${yes}`);
   const changelog = await initBlog();
@@ -122,6 +133,9 @@ A token can be created at:
   });
 
   git("add themes");
+  if (updatedVariables) {
+    git("stash pop");
+  }
 
   if (blog) {
     log.info("Update the blog...");

@@ -92,7 +92,7 @@ $rmd-sheet-dark-background-color: if(
 $rmd-sheet-background-color: if(
   $rmd-theme-light,
   $rmd-sheet-light-background-color,
-  $rmd-theme-dark-background-color
+  $rmd-sheet-dark-background-color
 ) !default;
 
 /// The background color for a sheet raised above other content in the light
@@ -146,7 +146,7 @@ $rmd-sheet-raised-dark-background-color: if(
 $rmd-sheet-raised-background-color: if(
   $rmd-theme-light,
   $rmd-sheet-raised-light-background-color,
-  $rmd-theme-raised-dark-background-color
+  $rmd-sheet-raised-dark-background-color
 ) !default;
 
 /// The duration for the enter transition.
