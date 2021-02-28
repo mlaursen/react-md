@@ -10,9 +10,9 @@ import CloseButton from "./CloseButton";
 
 const options: SupportedWideLayout[] = [
   "temporary",
-  // 'temporary-mini', // not supported yet
+  "temporary-mini",
   "toggleable",
-  // 'toggleable-mini', // not supported yet
+  "toggleable-mini",
   "clipped",
   "floating",
   "full-height",

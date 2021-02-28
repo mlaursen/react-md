@@ -1,39 +1,91 @@
-import React, { FC, useState } from "react";
-import { Form, Select } from "@react-md/form";
+import React, { ReactElement, useState } from "react";
 import {
   DEFAULT_DESKTOP_LAYOUT,
   DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   DEFAULT_PHONE_LAYOUT,
+  DEFAULT_TABLET_LAYOUT,
   Layout,
+  LayoutNavigationTree,
   SupportedPhoneLayout,
   SupportedTabletLayout,
   SupportedWideLayout,
+  useLayoutNavigation,
 } from "@react-md/layout";
-import { Text } from "@react-md/typography";
-import { Grid } from "@react-md/utils";
+import {
+  HomeSVGIcon,
+  SecuritySVGIcon,
+  SettingsSVGIcon,
+  ShareSVGIcon,
+  SnoozeSVGIcon,
+  StarSVGIcon,
+  StorageSVGIcon,
+} from "@react-md/material-icons";
 
-import Code from "components/Code/Code";
+import { ConfigurationForm } from "./ConfigurationForm";
+import { CurrentChildren } from "./CurrentChildren";
 
-import CloseButton from "./CloseButton";
+const navItems: LayoutNavigationTree = {
+  "/": {
+    itemId: "/",
+    parentId: null,
+    children: "Home",
+    leftAddon: <HomeSVGIcon />,
+  },
+  "/route-1": {
+    itemId: "/route-1",
+    parentId: null,
+    children: "Route 1",
+    leftAddon: <StarSVGIcon />,
+  },
+  "/divider-1": {
+    itemId: "/divider-1",
+    parentId: null,
+    divider: true,
+    isCustom: true,
+  },
+  "/route-2": {
+    itemId: "/route-2",
+    parentId: null,
+    children: "Route 2",
+    leftAddon: <ShareSVGIcon />,
+  },
+  "/route-2-1": {
+    itemId: "/route-2-1",
+    parentId: "/route-2",
+    children: "Route 2-1",
+    leftAddon: <SettingsSVGIcon />,
+  },
+  "/route-2-2": {
+    itemId: "/route-2-2",
+    parentId: "/route-2",
+    children: "Route 2-2",
+    leftAddon: <StorageSVGIcon />,
+  },
+  "/route-2-3": {
+    itemId: "/route-2-3",
+    parentId: "/route-2",
+    children: "Route 2-3",
+    leftAddon: <SecuritySVGIcon />,
+  },
+  "/route-3": {
+    itemId: "/route-3",
+    parentId: null,
+    children: "Route 3",
+    leftAddon: <SnoozeSVGIcon />,
+  },
+  "/route-4": {
+    itemId: "/route-4",
+    parentId: null,
+    children: "Route 4",
+  },
+};
 
-const PHONE_LAYOUTS: SupportedPhoneLayout[] = ["temporary"];
-const TABLET_LAYOUTS: SupportedTabletLayout[] = [
-  ...PHONE_LAYOUTS,
-  "toggleable",
-];
-const WIDE_LAYOUTS: SupportedWideLayout[] = [
-  ...TABLET_LAYOUTS,
-  "clipped",
-  "floating",
-  "full-height",
-];
-
-const ConfigurableLayout: FC = () => {
+export default function ConfigurableLayout(): ReactElement {
   const [phoneLayout, setPhoneLayout] = useState<SupportedPhoneLayout>(
     DEFAULT_PHONE_LAYOUT
   );
   const [tabletLayout, setTabletLayout] = useState<SupportedTabletLayout>(
-    DEFAULT_LANDSCAPE_TABLET_LAYOUT
+    DEFAULT_TABLET_LAYOUT
   );
   const [
     landscapeTabletLayout,
@@ -47,6 +99,8 @@ const ConfigurableLayout: FC = () => {
     setLargeDesktopLayout,
   ] = useState<SupportedWideLayout>(DEFAULT_DESKTOP_LAYOUT);
 
+  const [selectedId, setSelectedId] = useState("/");
+
   return (
     <Layout
       id="configurable-layout"
@@ -56,84 +110,27 @@ const ConfigurableLayout: FC = () => {
       tabletLayout={tabletLayout}
       landscapeTabletLayout={landscapeTabletLayout}
       desktopLayout={desktopLayout}
-      navProps={{
-        children: (
-          <>
-            <CloseButton />
-            <Text style={{ padding: "1rem" }}>
-              Here is some amazing content that should normally be a navigation
-              tree. You can actually still display a navigation tree along with
-              any custom content you want by using the{" "}
-              <Code>navProps.children</Code>
-            </Text>
-          </>
-        ),
+      treeProps={{
+        ...useLayoutNavigation(navItems, selectedId),
+        onItemSelect: setSelectedId,
       }}
       // this is only required since I already have a main element due to the
       // documentation site's Layout component
       mainProps={{ component: "div" }}
     >
-      <Grid cloneStyles columns={2} desktopColumns={4}>
-        <Form>
-          <Select
-            id="phone-layout-type"
-            label="Phone Layout"
-            value={phoneLayout}
-            options={PHONE_LAYOUTS}
-            onChange={(nextValue) => {
-              if (PHONE_LAYOUTS.includes(nextValue as SupportedPhoneLayout)) {
-                setPhoneLayout(nextValue as SupportedPhoneLayout);
-              }
-            }}
-          />
-          <Select
-            id="tablet-layout-type"
-            label="Tablet Layout"
-            value={tabletLayout}
-            options={TABLET_LAYOUTS}
-            onChange={(nextValue) => {
-              if (TABLET_LAYOUTS.includes(nextValue as SupportedTabletLayout)) {
-                setTabletLayout(nextValue as SupportedTabletLayout);
-              }
-            }}
-          />
-          <Select
-            id="landscape-tablet-layout-type"
-            label="Landscape Tablet Layout"
-            value={landscapeTabletLayout}
-            options={TABLET_LAYOUTS}
-            onChange={(nextValue) => {
-              if (TABLET_LAYOUTS.includes(nextValue as SupportedTabletLayout)) {
-                setLandscapeTabletLayout(nextValue as SupportedTabletLayout);
-              }
-            }}
-          />
-          <Select
-            id="desktop-layout-type"
-            label="Desktop Layout"
-            value={desktopLayout}
-            options={WIDE_LAYOUTS}
-            onChange={(nextValue) => {
-              if (WIDE_LAYOUTS.includes(nextValue as SupportedWideLayout)) {
-                setDesktopLayout(nextValue as SupportedWideLayout);
-              }
-            }}
-          />
-          <Select
-            id="large-desktop-layout-type"
-            label="Large Desktop Layout"
-            value={largeDesktopLayout}
-            options={WIDE_LAYOUTS}
-            onChange={(nextValue) => {
-              if (WIDE_LAYOUTS.includes(nextValue as SupportedWideLayout)) {
-                setLargeDesktopLayout(nextValue as SupportedWideLayout);
-              }
-            }}
-          />
-        </Form>
-      </Grid>
+      <CurrentChildren route={selectedId} />
+      <ConfigurationForm
+        phoneLayout={phoneLayout}
+        setPhoneLayout={setPhoneLayout}
+        tabletLayout={tabletLayout}
+        setTabletLayout={setTabletLayout}
+        landscapeTabletLayout={landscapeTabletLayout}
+        setLandscapeTabletLayout={setLandscapeTabletLayout}
+        desktopLayout={desktopLayout}
+        setDesktopLayout={setDesktopLayout}
+        largeDesktopLayout={largeDesktopLayout}
+        setLargeDesktopLayout={setLargeDesktopLayout}
+      />
     </Layout>
   );
-};
-
-export default ConfigurableLayout;
+}
