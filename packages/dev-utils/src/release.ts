@@ -161,7 +161,9 @@ A token can be created at:
 
 ### Library Size Changes
 
+\`\`\`sh
 ${percentChanged}
+\`\`\`
 `;
   const version = await getLernaVersion();
   const octokit = new Octokit({ auth: GITHUB_TOKEN });
