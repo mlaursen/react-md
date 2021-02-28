@@ -2827,9 +2827,9 @@ adjust-sourcemap-loader@3.0.0:
     regex-parser "^2.2.11"
 
 adm-zip@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/adm-zip/-/adm-zip-0.5.1.tgz#32e51c6fe88370f4389b424567b78a345e79ebc6"
-  integrity sha512-a5ABmIFUJ9OxHV5zrXM9Q41JzpRIflFtdgpL4UQM9DsTHHxQzPRaeyAdnMW7kxL0NRWm/NHafJdj6pO+ty7L2g==
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/adm-zip/-/adm-zip-0.5.3.tgz#f5ac6b2507f4418e2691c0feb6f130b4b90d7643"
+  integrity sha512-zsoTXEwRNCxBzRHLENFLuecCcwzzXiEhWo1r3GP68iwi8Q/hW2RrqgeY1nfJ/AhNQNWnZq/4v0TbfMsUkI+TYw==
 
 agent-base@4, agent-base@^4.1.0, agent-base@^4.3.0:
   version "4.3.0"
