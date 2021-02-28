@@ -1,6 +1,6 @@
 {
   "name": "@react-md/sheet",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "A package for making temporary sheets of material (normally for navigation or details).",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -37,12 +37,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/dialog": "^2.6.0",
-    "@react-md/elevation": "^2.6.0",
-    "@react-md/overlay": "^2.6.0",
-    "@react-md/theme": "^2.6.0",
-    "@react-md/transition": "^2.6.0",
-    "@react-md/utils": "^2.6.0",
+    "@react-md/dialog": "^2.7.0",
+    "@react-md/elevation": "^2.7.0",
+    "@react-md/overlay": "^2.7.0",
+    "@react-md/theme": "^2.7.0",
+    "@react-md/transition": "^2.7.0",
+    "@react-md/utils": "^2.7.0",
     "classnames": "^2.2.6"
   },
   "devDependencies": {

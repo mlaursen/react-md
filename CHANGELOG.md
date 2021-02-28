@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/mlaursen/react-md/compare/v2.6.0...v2.7.0) (2021-02-28)
+
+
+### Bug Fixes
+
+* **@react-md/alert:** fixed alert color when dark theme elevation is enabled ([99cc271](https://github.com/mlaursen/react-md/commit/99cc2710dbc9618b40595cd903697fed8e5651c0)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+* **@react-md/card:** fixed card color when dark theme elevation is enabled ([e5da5f5](https://github.com/mlaursen/react-md/commit/e5da5f55de9b6fdd669b03157fbae38dd7f223cc)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+* **@react-md/dialog:** fixed dialog color when dark theme elevation is enabled ([e79993d](https://github.com/mlaursen/react-md/commit/e79993d3b07072cf1c379677eea3f40b3e149eb7)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+* **@react-md/form:** fixed listbox color when dark theme elevation is enabled ([b68ac04](https://github.com/mlaursen/react-md/commit/b68ac04e781787269293e5f63cc8032e2a4382f9)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+* **@react-md/menu:** fixed menu color when dark theme elevation is enabled ([52c752d](https://github.com/mlaursen/react-md/commit/52c752d05a4a3cb3fb0119e213db7b58218fbfa9)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+* **@react-md/sheet:** fixed sheet color when dark theme elevation is enabled ([0abe05e](https://github.com/mlaursen/react-md/commit/0abe05e8231f3dec3306e23e577b81505b94631f)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+
+
+### Features
+
+* **@react-md/layout:** added support for mini layouts ([36b3cbc](https://github.com/mlaursen/react-md/commit/36b3cbc02a059cae20d7495ff369570003bc0a47))
+* **@react-md/utils:** added a low level `RadioGroup` widget for the radiogroup role ([76d6d27](https://github.com/mlaursen/react-md/commit/76d6d27d050b0d85a5dfa8e91fb55b0d0b7283cb))
+
+
+### Documentation
+
+* updated Used By/Requires SassDoc to be collapsible ([37a7536](https://github.com/mlaursen/react-md/commit/37a7536f7984ceea0d27244981d7caf01a265707))
+* **@react-md/theme:** added additional dark-theme-elevation SassDoc examples ([172ee40](https://github.com/mlaursen/react-md/commit/172ee40e60ca687a6a35413afacab64654823ca0))
+* **react-md.dev:** added information about Noninteractable Chips demo ([42e929b](https://github.com/mlaursen/react-md/commit/42e929b27f58432d498cb22d094d4e43433761bc))
+* **react-md.dev:** updated layout demos for mini layout support ([1065688](https://github.com/mlaursen/react-md/commit/1065688482a627a7dc0557a8c9bf7b1b69586f82))
+* **tsdoc:** fixed remaining tsdoc syntax warnings ([946f4dd](https://github.com/mlaursen/react-md/commit/946f4dddf380b9f2313fb76d54d969aa2adbff53))
+* **tsdoc:** fixed some tsdoc annotations and styling ([0449b86](https://github.com/mlaursen/react-md/commit/0449b86e4e51793710b35a452b7ebcbb6e7b5b2e))
+* **tsdoc:** updated \@since annotations ([c62027e](https://github.com/mlaursen/react-md/commit/c62027ebf2223167a2fde0378882e4b934d61971))
+
+
+### Other Internal Changes
+
+* updated test coverage to not include conditional component PropTypes ([24e5df1](https://github.com/mlaursen/react-md/commit/24e5df14c731411d7691253383435036326407b5))
+* **@react-md/dev-utils:** release script will now automatically create github release ([83c2b65](https://github.com/mlaursen/react-md/commit/83c2b653ebbbf6fd164562c5518d26d2e4abfe12))
+* **@react-md/utils:** added `tryToSubmitRelatedForm` util to help with additional a11y ([0566e14](https://github.com/mlaursen/react-md/commit/0566e1497f2ab6f23f7e5acb86464c37d3ee0d44))
+* **@react-md/utils:** updated `loop` util to allow for a specific min value ([51bcf92](https://github.com/mlaursen/react-md/commit/51bcf92ebf0708531ecc4ae2abe42b957f299598))
+
+
+
+
+
+
 # [2.6.0](https://github.com/mlaursen/react-md/compare/v2.5.5...v2.6.0) (2021-02-13)
 
 

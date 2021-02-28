@@ -6,9 +6,11 @@
 export default {
   "rmd-snackbar-margin": "1rem",
   "rmd-snackbar-z-index": 40,
+  "rmd-toast-elevation": 6,
   "rmd-toast-border-radius": "0.25rem",
   "rmd-toast-light-background-color": "#323232",
   "rmd-toast-light-color": "#fff",
+  "rmd-toast-dark-elevation-background-color": "#2c2c2c",
   "rmd-toast-dark-background-color": "#323232",
   "rmd-toast-dark-color": "#fff",
   "rmd-toast-background-color": "#323232",
@@ -20,7 +22,6 @@ export default {
   "rmd-toast-horizontal-padding": "1rem",
   "rmd-toast-action-margin": "0.5rem",
   "rmd-toast-stacked-action-margin-top": "0.25rem",
-  "rmd-toast-elevation": 6,
   "rmd-toast-enter-duration": "0.15s",
   "rmd-toast-exit-duration": "0.15s",
   "rmd-alert-theme-values": {

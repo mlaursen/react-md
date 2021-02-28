@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/mlaursen/react-md/compare/v2.6.0...v2.7.0) (2021-02-28)
+
+
+### Bug Fixes
+
+* **@react-md/alert:** fixed alert color when dark theme elevation is enabled ([99cc271](https://github.com/mlaursen/react-md/commit/99cc2710dbc9618b40595cd903697fed8e5651c0)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+* **@react-md/card:** fixed card color when dark theme elevation is enabled ([e5da5f5](https://github.com/mlaursen/react-md/commit/e5da5f55de9b6fdd669b03157fbae38dd7f223cc)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+* **@react-md/dialog:** fixed dialog color when dark theme elevation is enabled ([e79993d](https://github.com/mlaursen/react-md/commit/e79993d3b07072cf1c379677eea3f40b3e149eb7)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+* **@react-md/form:** fixed listbox color when dark theme elevation is enabled ([b68ac04](https://github.com/mlaursen/react-md/commit/b68ac04e781787269293e5f63cc8032e2a4382f9)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+* **@react-md/menu:** fixed menu color when dark theme elevation is enabled ([52c752d](https://github.com/mlaursen/react-md/commit/52c752d05a4a3cb3fb0119e213db7b58218fbfa9)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+* **@react-md/sheet:** fixed sheet color when dark theme elevation is enabled ([0abe05e](https://github.com/mlaursen/react-md/commit/0abe05e8231f3dec3306e23e577b81505b94631f)), closes [#1075](https://github.com/mlaursen/react-md/issues/1075)
+
+
+### Documentation
+
+* **@react-md/theme:** added additional dark-theme-elevation SassDoc examples ([172ee40](https://github.com/mlaursen/react-md/commit/172ee40e60ca687a6a35413afacab64654823ca0))
+* **tsdoc:** fixed remaining tsdoc syntax warnings ([946f4dd](https://github.com/mlaursen/react-md/commit/946f4dddf380b9f2313fb76d54d969aa2adbff53))
+
+
+
+
+
+
 # [2.6.0](https://github.com/mlaursen/react-md/compare/v2.5.5...v2.6.0) (2021-02-13)
 
 **Note:** Version bump only for package @react-md/theme

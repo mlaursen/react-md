@@ -4,10 +4,14 @@
  */
 
 export default {
+  "rmd-card-elevation": 2,
+  "rmd-card-light-background-color": "var(--rmd-theme-surface, #fff)",
+  "rmd-card-dark-elevation-background-color": "#242424",
+  "rmd-card-dark-elevation-bordered-background-color": "#242424",
+  "rmd-card-dark-background-color": "var(--rmd-theme-surface, #fff)",
   "rmd-card-background-color": "var(--rmd-theme-surface, #fff)",
   "rmd-card-color": "var(--rmd-theme-on-surface, #000)",
   "rmd-card-secondary-color": "var(--rmd-theme-text-primary-on-light, #212121)",
-  "rmd-card-elevation": 2,
   "rmd-card-base-elevation": 1,
   "rmd-card-raised-elevation": 8,
   "rmd-card-border-radius": "0.25rem",
@@ -20,7 +24,6 @@ export default {
   "rmd-card-border-color":
     "var(--rmd-divider-background-color, rgba(0, 0, 0, 0.12))",
   "rmd-card-border-width": "1px",
-  "rmd-card-dark-elevation-bordered-background-color": "#242424",
   "rmd-card-theme-values": {
     "background-color": "var(--rmd-theme-surface, #fff)",
     color: "var(--rmd-theme-on-surface, #000)",

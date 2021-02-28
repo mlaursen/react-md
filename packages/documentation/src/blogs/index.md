@@ -1,3 +1,53 @@
+Title: react-md 2.7.0
+
+Date: 02/28/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/alert:** fixed alert color when dark theme elevation is enabled
+  (99cc271), closes #1075
+- **@react-md/card:** fixed card color when dark theme elevation is enabled
+  (e5da5f5), closes #1075
+- **@react-md/dialog:** fixed dialog color when dark theme elevation is enabled
+  (e79993d), closes #1075
+- **@react-md/form:** fixed listbox color when dark theme elevation is enabled
+  (b68ac04), closes #1075
+- **@react-md/menu:** fixed menu color when dark theme elevation is enabled
+  (52c752d), closes #1075
+- **@react-md/sheet:** fixed sheet color when dark theme elevation is enabled
+  (0abe05e), closes #1075
+
+##### Features<!-- no-margin -->
+
+- **@react-md/layout:** added support for mini layouts (36b3cbc)
+- **@react-md/utils:** added a low level `RadioGroup` widget for the radiogroup
+  role (76d6d27)
+
+##### Documentation<!-- no-margin -->
+
+- updated Used By/Requires SassDoc to be collapsible (37a7536)
+- **@react-md/theme:** added additional dark-theme-elevation SassDoc examples
+  (172ee40)
+- **react-md.dev:** added information about Noninteractable Chips demo (42e929b)
+- **react-md.dev:** updated layout demos for mini layout support (1065688)
+- **tsdoc:** fixed remaining tsdoc syntax warnings (946f4dd)
+- **tsdoc:** fixed some tsdoc annotations and styling (0449b86)
+- **tsdoc:** updated \@since annotations (c62027e)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- updated test coverage to not include conditional component PropTypes (24e5df1)
+- **@react-md/dev-utils:** release script will now automatically create github
+  release (83c2b65)
+- **@react-md/utils:** added `tryToSubmitRelatedForm` util to help with
+  additional a11y (0566e14)
+- **@react-md/utils:** updated `loop` util to allow for a specific min value
+  (51bcf92)
+
+---
+
 Title: react-md 2.6.0
 
 Date: 02/12/2021

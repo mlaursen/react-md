@@ -1,6 +1,6 @@
 {
   "name": "@react-md/divider",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "This package is used to create horizontal or vertical dividers in your application.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -35,8 +35,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/theme": "^2.6.0",
-    "@react-md/utils": "^2.6.0",
+    "@react-md/theme": "^2.7.0",
+    "@react-md/utils": "^2.7.0",
     "classnames": "^2.2.6"
   },
   "devDependencies": {

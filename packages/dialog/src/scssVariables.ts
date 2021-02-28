@@ -5,6 +5,10 @@
 
 export default {
   "rmd-dialog-elevation": 16,
+  "rmd-dialog-light-background-color": "var(--rmd-theme-surface, #fff)",
+  "rmd-dialog-dark-elevation-background-color": "#353535",
+  "rmd-dialog-dark-background-color": "var(--rmd-theme-surface, #fff)",
+  "rmd-dialog-background-color": "var(--rmd-theme-surface, #fff)",
   "rmd-dialog-z-index": 30,
   "rmd-dialog-vertical-margin": "1.5rem",
   "rmd-dialog-horizontal-margin": "2.5rem",
@@ -17,6 +21,7 @@ export default {
   "rmd-dialog-leave-duration": "0.15s",
   "rmd-dialog-min-width": "17.5rem",
   "rmd-dialog-theme-values": {
+    "background-color": "var(--rmd-theme-surface, #fff)",
     "horizontal-margin": "2.5rem",
     "vertical-margin": "1.5rem",
     "min-width": "17.5rem",
