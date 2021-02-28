@@ -5,7 +5,16 @@ import {
   RenderOptions,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
-import { LightbulbOutlineSVGIcon } from "@react-md/material-icons";
+import {
+  HomeSVGIcon,
+  LightbulbOutlineSVGIcon,
+  SettingsSVGIcon,
+  StarSVGIcon,
+  ShareSVGIcon,
+  StorageSVGIcon,
+  SecuritySVGIcon,
+  SnoozeSVGIcon,
+} from "@react-md/material-icons";
 import { AppBarAction } from "@react-md/app-bar";
 import {
   AppSizeListener,
@@ -301,7 +310,10 @@ describe("Layout", () => {
           defaultToggleableVisible="toggleable"
         />
       ));
-      expect(() => getByRole("navigation")).toThrow();
+      // the mini variant will always render a navigation, but the dialog
+      // version should not be visible
+      expect(() => getByRole("navigation")).not.toThrow();
+      expect(() => getByRole("dialog")).toThrow();
     });
 
     it("should allow the visibility to be controled with the showNav and hideNav functions", async () => {
@@ -356,6 +368,100 @@ describe("Layout", () => {
 
       fireEvent.click(getByRole("button", { name: "Hide" }));
       expect(() => getByRole("navigation")).not.toThrow();
+    });
+  });
+
+  describe("mini variant", () => {
+    it("should display only valid nav items at the root in the mini variant", () => {
+      const navItems: LayoutNavigationTree = {
+        "/": {
+          itemId: "/",
+          parentId: null,
+          children: "Home",
+          leftAddon: <HomeSVGIcon />,
+        },
+        "/route-1": {
+          itemId: "/route-1",
+          parentId: null,
+          children: "Route 1",
+          leftAddon: <StarSVGIcon />,
+        },
+        "/divider-1": {
+          itemId: "/divider-1",
+          parentId: null,
+          divider: true,
+          isCustom: true,
+        },
+        "/route-2": {
+          itemId: "/route-2",
+          parentId: null,
+          children: "Route 2",
+          leftAddon: <ShareSVGIcon />,
+        },
+        "/route-2-1": {
+          itemId: "/route-2-1",
+          parentId: "/route-2",
+          children: "Route 2-1",
+          leftAddon: <SettingsSVGIcon />,
+        },
+        "/route-2-2": {
+          itemId: "/route-2-2",
+          parentId: "/route-2",
+          children: "Route 2-2",
+          leftAddon: <StorageSVGIcon />,
+        },
+        "/route-2-3": {
+          itemId: "/route-2-3",
+          parentId: "/route-2",
+          children: "Route 2-3",
+          leftAddon: <SecuritySVGIcon />,
+        },
+        "/route-3": {
+          itemId: "/route-3",
+          parentId: null,
+          children: "Route 3",
+          leftAddon: <SnoozeSVGIcon />,
+        },
+        "/route-4": {
+          itemId: "/route-4",
+          parentId: null,
+          children: "Route 4",
+        },
+      };
+
+      function Test(): ReactElement {
+        return (
+          <Layout
+            desktopLayout="temporary-mini"
+            treeProps={useLayoutNavigation(navItems, "/")}
+          />
+        );
+      }
+
+      const getMiniNav = () => getById("layout-mini-nav-container");
+      const getNav = () => getById("layout-nav-container");
+
+      const { getByRole, queryAllByRole } = render(<Test />);
+      expect(getNav).toThrow();
+      expect(getMiniNav).not.toThrow();
+
+      expect(() => getByRole("treeitem", { name: "Home" })).not.toThrow();
+      expect(() => getByRole("treeitem", { name: "Route 1" })).not.toThrow();
+      expect(() => getByRole("treeitem", { name: "Route 3" })).not.toThrow();
+
+      expect(() => getByRole("treeitem", { name: "Route 1-1" })).toThrow();
+      expect(() => getByRole("treeitem", { name: "Route 2" })).toThrow();
+      expect(() => getByRole("treeitem", { name: "Route 2-1" })).toThrow();
+      expect(() => getByRole("treeitem", { name: "Route 2-2" })).toThrow();
+      expect(() => getByRole("treeitem", { name: "Route 2-3" })).toThrow();
+      expect(() => getByRole("treeitem", { name: "Route 4" })).toThrow();
+      expect(queryAllByRole("separator").length).toBe(1);
+
+      expect(getMiniNav()).toMatchSnapshot();
+
+      fireEvent.click(getByRole("button", { name: "Show Navigation" }));
+      expect(getNav).not.toThrow();
+      expect(getMiniNav).not.toThrow();
     });
   });
 });

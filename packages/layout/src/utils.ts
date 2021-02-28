@@ -87,3 +87,15 @@ export function isPersistentLayout(layout: SupportedWideLayout): boolean {
 export function isFullHeightLayout(layout: SupportedWideLayout): boolean {
   return layout === "full-height";
 }
+
+/**
+ * Checks if the current `layout` is either `"temporary-mini"` or
+ * `"toggleable-mini"`.
+ *
+ * @param layout - The layout to check against
+ * @returns true if the current layout is the mini variant.
+ * @remarks \@since 2.7.0
+ */
+export function isMiniLayout(layout: SupportedWideLayout): boolean {
+  return layout === "temporary-mini" || layout === "toggleable-mini";
+}

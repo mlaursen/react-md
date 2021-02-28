@@ -1,5 +1,4 @@
 import React, { ReactNode, ReactElement } from "react";
-import { SkipToMainContent, SkipToMainContentProps } from "@react-md/link";
 import { BaseTreeItem } from "@react-md/tree";
 import { PropsWithRef } from "@react-md/utils";
 
@@ -9,9 +8,9 @@ import {
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
 } from "./constants";
-import { LayoutAppBar, LayoutAppBarProps } from "./LayoutAppBar";
-import { LayoutMain, LayoutMainProps } from "./LayoutMain";
-import { LayoutNavigation, LayoutNavigationProps } from "./LayoutNavigation";
+import { LayoutChildren, LayoutChildrenProps } from "./LayoutChildren";
+import { LayoutAppBarProps } from "./LayoutAppBar";
+import { LayoutNavigationProps } from "./LayoutNavigation";
 import { LayoutWithNavToggle } from "./LayoutNavToggle";
 import { LayoutProvider } from "./LayoutProvider";
 import { LayoutTreeProps } from "./LayoutTree";
@@ -104,6 +103,26 @@ export interface FlattenedLayoutComponentConfiguration<
    * - `treeProps`
    */
   nav?: ReactNode;
+
+  /**
+   * A custom implementation for the main mini navigation component within the
+   * `Layout`. If this is not `undefined`, it will be used instead of the
+   * default implementation.
+   *
+   * Using this prop will make the following props do nothing for the mini nav:
+   *
+   * - `navProps`
+   * - `navHeader`
+   * - `navHeaderProps`
+   * - `navHeaderTitle`
+   * - `navHeaderTitleProps`
+   * - `closeNav`
+   * - `closeNavProps`
+   * - `treeProps`
+   *
+   * @remarks \@since.2.7.0
+   */
+  miniNav?: ReactNode;
 
   /**
    * Any additional props to provide to the default `LayoutNavigation`.
@@ -205,44 +224,7 @@ export interface FlattenedLayoutComponentConfiguration<
 
 export interface LayoutProps<T extends BaseTreeItem = LayoutNavigationItem>
   extends LayoutConfiguration,
-    FlattenedLayoutComponentConfiguration<T> {
-  /**
-   * The base id to use for everything within the layout component. The `id`
-   * will be applied to:
-   *
-   * - the `LayoutAppBar` as `${id}-header`
-   * - the `AppBarTitle` as `${id}-title`
-   * - the `LayoutNavToggle` as `${id}-nav-toggle`
-   * - the `LayoutMain` element as `${id}-main`
-   */
-  id?: string;
-
-  /**
-   * The children to display within the layout. This is pretty much required
-   * since you'll have an empty app otherwise, but it's left as optional just
-   * for prototyping purposes.
-   */
-  children?: ReactNode;
-
-  /**
-   * Any additional props to provide to the `<SkipToMainContent />` link that is
-   * automatically rendered in the layout.
-   */
-  skipProps?: Omit<SkipToMainContentProps, "mainId">;
-
-  /**
-   * Any optional props to provide to the `<main>` element of the page.
-   */
-  mainProps?: PropsWithRef<LayoutMainProps, HTMLDivElement>;
-
-  /**
-   * Boolean if the main app bar should appear after the navigation component.
-   * It is generally recommended to enable this prop if the navigation component
-   * as a focusable element in the header since it will have a better tab focus
-   * order.
-   */
-  navAfterAppBar?: boolean;
-}
+    LayoutChildrenProps<T> {}
 
 /**
  * The layout to use for your app. There are 9 different types of layouts
@@ -256,66 +238,14 @@ export interface LayoutProps<T extends BaseTreeItem = LayoutNavigationItem>
  */
 export function Layout({
   id = "layout",
-  appBar: propAppBar,
-  appBarProps,
-  navAfterAppBar = false,
-  children,
-  skipProps,
-  mainProps,
   phoneLayout = DEFAULT_PHONE_LAYOUT,
   tabletLayout = DEFAULT_TABLET_LAYOUT,
   landscapeTabletLayout = DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   desktopLayout = DEFAULT_DESKTOP_LAYOUT,
   largeDesktopLayout,
   defaultToggleableVisible = false,
-  customTitle,
-  title,
-  titleProps,
-  navToggle,
-  navToggleProps,
-  nav: propNav,
-  navProps,
-  navHeader,
-  navHeaderProps,
-  navHeaderTitle,
-  navHeaderTitleProps,
-  closeNav,
-  closeNavProps,
-  treeProps,
+  ...props
 }: LayoutProps): ReactElement {
-  const fixedAppBar = appBarProps?.fixed ?? typeof propAppBar === "undefined";
-  const mainId = mainProps?.id || `${id}-main`;
-
-  let appBar = propAppBar;
-  if (typeof appBar === "undefined") {
-    appBar = (
-      <LayoutAppBar
-        {...appBarProps}
-        customTitle={customTitle}
-        title={title}
-        titleProps={titleProps}
-        navToggle={navToggle}
-        navToggleProps={navToggleProps}
-      />
-    );
-  }
-
-  let nav = propNav;
-  if (typeof nav === "undefined") {
-    nav = (
-      <LayoutNavigation
-        header={navHeader}
-        headerProps={navHeaderProps}
-        headerTitle={navHeaderTitle}
-        headerTitleProps={navHeaderTitleProps}
-        closeNav={closeNav}
-        closeNavProps={closeNavProps}
-        treeProps={treeProps}
-        {...navProps}
-      />
-    );
-  }
-
   return (
     <LayoutProvider
       baseId={id}
@@ -326,13 +256,7 @@ export function Layout({
       largeDesktopLayout={largeDesktopLayout}
       defaultToggleableVisible={defaultToggleableVisible}
     >
-      <SkipToMainContent {...skipProps} mainId={mainId} />
-      {navAfterAppBar && appBar}
-      {nav}
-      {!navAfterAppBar && appBar}
-      <LayoutMain headerOffset={fixedAppBar} {...mainProps} id={mainId}>
-        {children}
-      </LayoutMain>
+      <LayoutChildren id={id} {...props} />
     </LayoutProvider>
   );
 }

@@ -52,6 +52,8 @@
 
 /// Creates all the styles for the layout package.
 @mixin react-md-layout {
+  @include rmd-theme-create-root-theme($rmd-layout-theme-values, layout);
+
   // this is used for the title and main elements for animating their margin
   // while the toggleable layout appears. it will use the same transition
   // functions and time as the sheet so it all transitions together
@@ -90,6 +92,16 @@
 
     &--header-offset {
       @include rmd-app-bar-offset(top);
+    }
+
+    &--mini {
+      @include rmd-sheet-theme-update-var(
+        width,
+        rmd-layout-theme-var(mini-nav-width)
+      );
+      @include rmd-app-bar-theme(top, height);
+
+      z-index: $rmd-layout-navigation-mini-z-index;
     }
   }
 
@@ -181,6 +193,13 @@
       // might need to change to just left and right instead of margin-left and
       // margin-right for some browser support
       @include rmd-layout-theme(margin-left, nav-width);
+    }
+
+    &--mini {
+      @include rmd-layout-theme-update-var(
+        nav-width,
+        rmd-layout-theme-var(mini-nav-width)
+      );
     }
   }
 }

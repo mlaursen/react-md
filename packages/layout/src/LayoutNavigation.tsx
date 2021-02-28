@@ -86,6 +86,14 @@ export interface LayoutNavigationProps<
    * element and any provided `children`.
    */
   treeProps?: LayoutTreeProps<T>;
+
+  /**
+   * Boolean if being rendered as the `mini` variant. This will override some
+   * other behavior and styling within this component.
+   *
+   * @remarks \@since 2.7.0
+   */
+  mini?: boolean;
 }
 
 const styles = bem("rmd-layout-navigation");
@@ -104,6 +112,7 @@ export const LayoutNavigation = forwardRef<
     "aria-labelledby": ariaLabelledby,
     className,
     children,
+    mini = false,
     header: propHeader,
     headerProps,
     headerTitle,
@@ -115,16 +124,22 @@ export const LayoutNavigation = forwardRef<
   },
   ref
 ) {
-  const { baseId, layout, visible, hideNav } = useLayoutConfig();
-  const id = propId || `${baseId}-nav-container`;
+  const {
+    baseId,
+    layout,
+    visible: isNonMiniVisible,
+    hideNav,
+  } = useLayoutConfig();
+  const visible = mini || isNonMiniVisible;
+  const id = propId || `${baseId}-${mini ? "mini-" : ""}nav-container`;
 
-  const isTemporary = isTemporaryLayout(layout);
-  const isPersistent = isPersistentLayout(layout);
-  const isToggleable = isToggleableLayout(layout);
+  const isTemporary = !mini && isTemporaryLayout(layout);
+  const isPersistent = mini || isPersistentLayout(layout);
+  const isToggleable = !mini && isToggleableLayout(layout);
   const floating = layout === "floating";
 
   let header = propHeader;
-  if (typeof header === "undefined") {
+  if (!mini && typeof header === "undefined") {
     header = (
       <LayoutNavigationHeader
         closeNav={closeNav}
@@ -153,8 +168,10 @@ export const LayoutNavigation = forwardRef<
       overlay={isTemporary}
       disableScrollLock={!isTemporary}
       disableTabFocusWrap={isToggleable}
+      disableNestedDialogFixes={mini}
       className={cn(
         styles({
+          mini,
           floating,
           "header-offset": layout === "clipped" || floating,
         }),
@@ -162,7 +179,7 @@ export const LayoutNavigation = forwardRef<
       )}
     >
       {header}
-      {treeProps && <LayoutTree {...treeProps} />}
+      {treeProps && <LayoutTree {...treeProps} mini={mini} />}
       {children}
     </Sheet>
   );

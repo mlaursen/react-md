@@ -1,11 +1,15 @@
 import React, { CSSProperties, forwardRef, useEffect, useRef } from "react";
 import cn from "classnames";
 import { BaseTreeItem, Tree, TreeData, TreeProps } from "@react-md/tree";
+import { bem } from "@react-md/utils";
 
+import { defaultMiniNavigationItemRenderer } from "./defaultMiniNavigationItemRenderer";
 import { defaultNavigationItemRenderer } from "./defaultNavigationItemRenderer";
 import { useLayoutConfig } from "./LayoutProvider";
 import { LayoutNavigationItem } from "./types";
 import { isTemporaryLayout } from "./utils";
+
+const styles = bem("rmd-layout-nav");
 
 export type BaseLayoutTreeProps<
   T extends BaseTreeItem = LayoutNavigationItem
@@ -32,6 +36,16 @@ export interface LayoutTreeProps<T extends BaseTreeItem = LayoutNavigationItem>
    * reader description.
    */
   "aria-labelledby"?: string;
+
+  /**
+   * Boolean if the `LayoutTree` is being rendered as the mini variant. This
+   * will update the `itemRenderer` to default to the
+   * `defaultMiniNavigationItemRenderer` instead of the
+   * `defaultNavigationItemRenderer`.
+   *
+   * @remarks \@since 2.7.0
+   */
+  mini?: boolean;
 
   /**
    * Optional style to provide to the `<nav>` element surrounding the tree
@@ -69,12 +83,15 @@ export const LayoutTree = forwardRef<HTMLUListElement, LayoutTreeProps>(
       "aria-labelledby": ariaLabelledBy,
       "aria-label": ariaLabel = ariaLabelledBy ? undefined : "Navigation",
       className,
+      mini = false,
       navStyle,
       navClassName,
       navItems,
       labelKey = "children",
       valueKey = "children",
-      itemRenderer = defaultNavigationItemRenderer,
+      itemRenderer = mini
+        ? defaultMiniNavigationItemRenderer
+        : defaultNavigationItemRenderer,
       selectedIds,
       disableTemporaryAutoclose = false,
       ...props
@@ -110,7 +127,7 @@ export const LayoutTree = forwardRef<HTMLUListElement, LayoutTreeProps>(
       <nav
         id={`${id}-nav`}
         style={navStyle}
-        className={cn("rmd-layout-nav", navClassName)}
+        className={cn(styles({ mini }), navClassName)}
       >
         <Tree
           {...props}
@@ -139,6 +156,7 @@ if (process.env.NODE_ENV !== "production") {
       id: PropTypes.string,
       "aria-label": PropTypes.string,
       "aria-labelledby": PropTypes.string,
+      mini: PropTypes.bool,
       className: PropTypes.string,
       navStyle: PropTypes.object,
       navClassName: PropTypes.string,

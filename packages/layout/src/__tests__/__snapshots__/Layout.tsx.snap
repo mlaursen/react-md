@@ -176,3 +176,130 @@ exports[`Layout header behavior should render the \`title\` prop as the main tit
   />
 </div>
 `;
+
+exports[`Layout mini variant should display only valid nav items at the root in the mini variant 1`] = `
+<div
+  aria-label="Navigation"
+  class="rmd-dialog rmd-sheet rmd-sheet--horizontal rmd-sheet--left rmd-sheet--media-width rmd-layout-navigation rmd-layout-navigation--mini"
+  id="layout-mini-nav-container"
+  tabindex="-1"
+>
+  <nav
+    class="rmd-layout-nav rmd-layout-nav--mini"
+    id="layout-navigation-tree-nav"
+  >
+    <ul
+      aria-activedescendant=""
+      aria-label="Navigation"
+      class="rmd-list rmd-tree rmd-layout-tree"
+      id="layout-navigation-tree"
+      role="tree"
+      tabindex="0"
+    >
+      <li
+        aria-level="1"
+        aria-posinset="1"
+        aria-setsize="6"
+        class="rmd-tree-item"
+        id="layout-navigation-tree-item-1"
+        role="treeitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected"
+        >
+          <svg
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--svg"
+            focusable="false"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+            />
+          </svg>
+          <span
+            class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+          >
+            Home
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </span>
+      </li>
+      <li
+        aria-level="1"
+        aria-posinset="2"
+        aria-setsize="6"
+        class="rmd-tree-item"
+        id="layout-navigation-tree-item-2"
+        role="treeitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--clickable"
+        >
+          <svg
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--svg"
+            focusable="false"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+            />
+          </svg>
+          <span
+            class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+          >
+            Route 1
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </span>
+      </li>
+      <hr
+        class="rmd-divider"
+        role="separator"
+      />
+      <li
+        aria-level="1"
+        aria-posinset="5"
+        aria-setsize="6"
+        class="rmd-tree-item"
+        id="layout-navigation-tree-item-5"
+        role="treeitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-tree-item__content rmd-tree-item__content--clickable"
+        >
+          <svg
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--svg"
+            focusable="false"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm-3-9h3.63L9 15.2V17h6v-2h-3.63L15 10.8V9H9v2z"
+            />
+          </svg>
+          <span
+            class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+          >
+            Route 3
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </span>
+      </li>
+    </ul>
+  </nav>
+</div>
+`;

@@ -31,6 +31,14 @@ export interface LayoutMainProps extends HTMLAttributes<HTMLDivElement> {
   headerOffset?: boolean;
 
   /**
+   * Boolean of there is a mini nav visible within the layout. This makes sure
+   * that the content if offset by the current nav's width when needed.
+   *
+   * @remarks \@since 2.7.0
+   */
+  mini?: boolean;
+
+  /**
    * The transition timeout to use for the toggleable `LayoutNavigation` either
    * comes into view or expands from mini to full-width. The transition can be
    * disabled by setting this value to `0`.
@@ -60,6 +68,7 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       headerOffset = false,
       timeout: propTimeout = DEFAULT_SHEET_TIMEOUT,
       classNames = DEFAULT_LAYOUT_MAIN_CLASSNAMES,
+      mini = false,
       ...props
     },
     forwardedRef
@@ -116,7 +125,14 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
         {...props}
         ref={ref}
         tabIndex={tabIndex}
-        className={cn(styles({ "header-offset": headerOffset }), className)}
+        className={cn(
+          styles({
+            mini: mini && (isTemporaryLayout(layout) || !visible),
+            "nav-offset": mini,
+            "header-offset": headerOffset,
+          }),
+          className
+        )}
       />
     );
   }
