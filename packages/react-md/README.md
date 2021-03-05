@@ -55,6 +55,7 @@ a link to their demo documentation page:
 - [@react-md/button](https://react-md.dev/packages/button/demos)
 - [@react-md/card](https://react-md.dev/packages/card/demos)
 - [@react-md/chip](https://react-md.dev/packages/chip/demos)
+- [@react-md/datetime](https://react-md.dev/packages/datetime/demos)
 - [@react-md/dialog](https://react-md.dev/packages/dialog/demos)
 - [@react-md/divider](https://react-md.dev/packages/divider/demos)
 - [@react-md/elevation](https://react-md.dev/packages/elevation/demos)

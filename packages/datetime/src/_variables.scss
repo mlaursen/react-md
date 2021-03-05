@@ -2,8 +2,38 @@
 /// @group datetime
 ////
 
+@import '~@react-md/form/dist/functions';
+@import '~@react-md/typography/dist/functions';
+
+$rmd-time-input-width: 2.75rem !default;
+$rmd-time-input-milliseconds-width: 3.5rem !default;
+$rmd-time-input-large-width: 6rem !default;
+$rmd-time-input-milliseconds-large-width: 7.5rem !default;
+$rmd-time-input-large-height: 5rem !default;
+$rmd-time-input-large-font-size: 3rem !default;
+
+$rmd-time-colon-width: 0.75rem !default;
+$rmd-time-colon-large-width: 1.5rem !default;
+
+$rmd-time-am-pm-border-radius: 0.25rem !default;
+$rmd-time-am-pm-border-color: #999 !default;
+$rmd-time-am-pm-border-size: 1px !default;
+$rmd-time-am-pm-width: 2.5rem !default;
+$rmd-time-am-pm-height: 3rem !default;
+$rmd-time-am-pm-font-size: rmd-typography-value(subtitle-2, font-size);
+$rmd-time-am-pm-large-width: 3.25rem !default;
+$rmd-time-am-pm-large-font-size: rmd-typography-value(subtitle-1, font-size);
+
 /// A Map of all the "themeable" parts of the datetime package. Every
 /// key in this map will be used to create a css variable to dynamically
 /// update the values of the icon as needed.
 /// @type Map
-$rmd-datetime-theme-values: () !default;
+$rmd-datetime-theme-values: (
+  am-pm-border-color: $rmd-time-am-pm-border-color,
+  am-pm-border-radius: $rmd-time-am-pm-border-radius,
+  am-pm-font-size: $rmd-time-am-pm-font-size,
+  am-pm-width: $rmd-time-am-pm-width,
+  colon-width: $rmd-time-colon-width,
+  time-width: $rmd-time-input-width,
+  ms-width: $rmd-time-input-milliseconds-width,
+) !default;

@@ -20,6 +20,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@date-io/core": "^2.10.7",
+    "@date-io/date-fns": "^2.10.8",
     "@react-md/alert": "^2.9.0",
     "@react-md/app-bar": "^2.9.0",
     "@react-md/autocomplete": "^2.9.0",

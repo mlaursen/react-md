@@ -12,6 +12,7 @@ export const PACKAGE_NAMES = [
   "button",
   "card",
   "chip",
+  "datetime",
   "dialog",
   "divider",
   "elevation",

@@ -1,6 +1,6 @@
 {
   "name": "@react-md/datetime",
-  "version": "2.7.0",
+  "version": "2.9.0",
   "description": "This package is for creating date pickers, time pickers, and date+time pickers",
   "main": "./lib/index.js",
   "module": "./es/index.js",

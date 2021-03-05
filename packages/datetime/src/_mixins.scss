@@ -4,6 +4,12 @@
 
 @import './functions';
 @import './variables';
+@import '~@react-md/button/dist/mixins';
+@import '~@react-md/form/dist/mixins';
+@import '~@react-md/typography/dist/mixins';
+@import '~@react-md/states/dist/mixins';
+@import '~@react-md/theme/dist/mixins';
+@import '~@react-md/utils/dist/mixins';
 
 /// Creates the styles for one of the datetime's theme values. This is mostly
 /// going to be an internal helper mixin util.
@@ -40,8 +46,239 @@
   );
 }
 
+/// @access private
+@mixin rmd-time {
+  align-items: center;
+  display: inline-flex;
+
+  &--dense {
+    @include rmd-form-theme-update-var(
+      text-height,
+      rmd-form-theme-var(text-placeholder-dense-height)
+    );
+  }
+
+  &--large {
+    @include rmd-form-theme-update-var(
+      text-height,
+      $rmd-time-input-large-height
+    );
+    @include rmd-datetime-theme-update-var(
+      time-width,
+      $rmd-time-input-large-width
+    );
+    @include rmd-datetime-theme-update-var(
+      colon-width,
+      $rmd-time-colon-large-width
+    );
+    @include rmd-datetime-theme-update-var(
+      am-pm-font-size,
+      $rmd-time-am-pm-large-font-size
+    );
+    @include rmd-datetime-theme-update-var(
+      am-pm-width,
+      $rmd-time-am-pm-large-width
+    );
+    @include rmd-datetime-theme-update-var(
+      ms-width,
+      $rmd-time-input-milliseconds-large-width
+    );
+
+    font-size: $rmd-time-input-large-font-size;
+  }
+}
+
+/// @access private
+@mixin rmd-time-input {
+  @include rmd-datetime-theme(width, time-width);
+  @include rmd-typography-value(subtitle-1, letter-spacing);
+
+  padding: 0;
+  text-align: center;
+
+  &--ms {
+    @include rmd-datetime-theme(width, ms-width);
+  }
+}
+
+/// @access private
+@mixin rmd-time-sep {
+  @include rmd-form-theme(height, text-height);
+  @include rmd-datetime-theme(width, colon-width);
+
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+/// @access private
+@mixin rmd-time-am-pm {
+  @include rmd-datetime-theme(border-radius, am-pm-border-radius);
+  @include rmd-form-theme(height, text-height);
+
+  border: $rmd-time-am-pm-border-size solid
+    rmd-datetime-theme-var(am-pm-border-color);
+  display: inline-flex;
+  flex-shrink: 0;
+  position: relative;
+
+  &::after {
+    @include rmd-datetime-theme(background-color, am-pm-border-color);
+
+    content: '';
+    position: absolute;
+  }
+
+  &--inline {
+    grid-column-end: span 3;
+    width: 100%;
+
+    &::after {
+      bottom: 0;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: $rmd-time-am-pm-border-size;
+    }
+  }
+
+  &--inline-large {
+    height: $rmd-time-am-pm-height;
+  }
+
+  &--stacked {
+    @include rmd-datetime-theme(width, am-pm-width);
+    @include rmd-utils-rtl-auto(margin-left, $rmd-time-colon-width);
+
+    flex-direction: column;
+
+    &::after {
+      height: $rmd-time-am-pm-border-size;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+/// @access private
+@mixin rmd-time-am-pm-radio {
+  @include rmd-button-base;
+  @include rmd-datetime-theme(font-size, am-pm-font-size);
+  @include rmd-states-focus-shadow($create-pseudo: true);
+  @include rmd-theme(color, text-secondary-on-background);
+  @include rmd-typography(subtitle-2, (line-height, font-size));
+
+  flex: 1 1 auto;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--checked {
+    @include rmd-theme(color, primary);
+
+    background-color: $rmd-blue-100;
+  }
+
+  &--disabled {
+    @include rmd-theme(color, text-disabled-on-background);
+
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  &--top {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+  }
+
+  &--right {
+    border-bottom-right-radius: inherit;
+    border-top-right-radius: inherit;
+  }
+
+  &--bottom {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
+
+  &--left {
+    border-bottom-left-radius: inherit;
+    border-top-left-radius: inherit;
+  }
+}
+
 /// Creates all the styles for this package as well as defining all the theme
 /// CSS variables.
 @mixin react-md-datetime {
   @include rmd-theme-create-root-theme($rmd-datetime-theme-values, datetime);
+
+  .rmd-time {
+    @include rmd-time;
+    // $input-width: calc(2px + #{rmd-datetime-theme-var(time-width)});
+    // $ms-width: calc(2px + #{rmd-datetime-theme-var(ms-width)});
+    // $colon-width: rmd-datetime-theme-var(time-colon-width);
+    // $am-pm-width: calc(#{$colon-width} + #{rmd-datetime-theme-var(am-pm-width)});
+
+    // // only trying this because of the labels...
+    // display: grid;
+    // grid-row-gap: 0.25rem;
+
+    // &--2d-tp {
+    //   grid-template-columns: $input-width $am-pm-width;
+    // }
+
+    // &--2d-s-2d {
+    //   grid-template-columns: $input-width $colon-width $input-width;
+    // }
+
+    // &--2d-s-2d-tp {
+    //   grid-template-columns: $input-width $colon-width $input-width $am-pm-width;
+    // }
+
+    // &--2d-s-2d-s-2d {
+    //   grid-template-columns: $input-width $colon-width $input-width $colon-width $input-width;
+    // }
+
+    // &--2d-s-2d-s-2d-tp {
+    //   grid-template-columns: $input-width $colon-width $input-width $colon-width $input-width $am-pm-width;
+    // }
+
+    // &--2d-s-2d-s-2d-s-3d {
+    //   grid-template-columns: $input-width $colon-width $input-width $colon-width $input-width $colon-width $ms-width;
+    // }
+
+    // &--2d-s-2d-s-2d-s-3d-tp {
+    //   grid-template-columns: $input-width $colon-width $input-width $colon-width $input-width $colon-width $ms-width $am-pm-width;
+    // }
+
+    // label {
+    //   @include rmd-typography(caption);
+
+    //   margin-bottom: 0.5rem;
+
+    //   &:not(:last-child) {
+    //     grid-column-start: span 2;
+    //   }
+    // }
+  }
+
+  .rmd-time-input {
+    @include rmd-time-input;
+  }
+
+  .rmd-time-sep {
+    @include rmd-time-sep;
+  }
+
+  .rmd-am-pm {
+    @include rmd-time-am-pm;
+
+    &__radio {
+      @include rmd-time-am-pm-radio;
+    }
+  }
 }
