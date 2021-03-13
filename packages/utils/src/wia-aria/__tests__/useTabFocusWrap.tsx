@@ -8,6 +8,7 @@ interface Props {
   disableFocusCache?: boolean;
   onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   count: 1 | 2 | 3;
+  tabIndex?: number;
 }
 
 function Test({
@@ -15,6 +16,7 @@ function Test({
   disableFocusCache,
   disabled,
   count,
+  tabIndex,
 }: Props): ReactElement {
   const handleKeyDown = useTabFocusWrap({
     onKeyDown,
@@ -23,7 +25,7 @@ function Test({
   });
 
   return (
-    <div onKeyDown={handleKeyDown} data-testid="div">
+    <div onKeyDown={handleKeyDown} data-testid="div" tabIndex={tabIndex}>
       {count >= 1 && <input data-testid="input-1" type="text" />}
       {count >= 2 && <input data-testid="input-2" type="text" />}
       {count >= 3 && <input data-testid="input-3" type="text" />}
@@ -33,16 +35,17 @@ function Test({
 
 describe("useTabFocusWrap", () => {
   it("should not focus a different element if there is only one focusable child", () => {
-    const { getByTestId } = render(<Test count={1} />);
+    const { getByTestId } = render(<Test count={1} tabIndex={-1} />);
 
     const input = getByTestId("input-1");
     input.focus();
     expect(document.activeElement).toBe(input);
 
-    const inputFocus = jest.spyOn(input, "focus");
-
     fireEvent.keyDown(input, { key: "Tab" });
-    expect(inputFocus).not.toBeCalled();
+    expect(document.activeElement).toBe(input);
+
+    const container = getByTestId("div");
+    fireEvent.keyDown(container, { key: "Tab" });
     expect(document.activeElement).toBe(input);
   });
 

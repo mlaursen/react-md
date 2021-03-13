@@ -60,6 +60,7 @@ export function useTabFocusWrap<E extends HTMLElement>({
 
       if (l === 1) {
         event.preventDefault();
+        elements[0].focus();
       } else if (elements[0] === event.target && event.shiftKey) {
         event.preventDefault();
         elements[l - 1].focus();
