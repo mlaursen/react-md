@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
 import { useInteractionStates } from "@react-md/states";
 
@@ -9,7 +9,9 @@ export interface LinkButtonProps extends LinkUnstyledProps, ButtonThemeProps {
   tooltipClassName?: string;
 }
 
-const LinkButton: FC<LinkButtonProps> = (providedProps) => {
+export default function LinkButton(
+  providedProps: LinkButtonProps
+): ReactElement {
   const {
     className: _className,
     theme,
@@ -39,6 +41,4 @@ const LinkButton: FC<LinkButtonProps> = (providedProps) => {
       {children}
     </LinkUnstyled>
   );
-};
-
-export default LinkButton;
+}

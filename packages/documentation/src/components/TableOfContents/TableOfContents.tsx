@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
 import { Text } from "@react-md/typography";
 import { useAppSize } from "@react-md/utils";
@@ -22,7 +22,9 @@ const CLASSNAMES = {
   exitActive: styles.exiting,
 };
 
-const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
+export default function TableOfContents({
+  pathname,
+}: TableOfContentsProps): ReactElement | null {
   const { isPhone, isLargeDesktop } = useAppSize();
   const { visible, rendered } = useTOCVisibility();
   const { hide, toggle } = useTOCActions();
@@ -71,6 +73,4 @@ const TableOfContents: FC<TableOfContentsProps> = ({ pathname }) => {
       </Dialog>
     </>
   );
-};
-
-export default TableOfContents;
+}

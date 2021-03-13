@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import { List, ListRowRenderer } from "react-virtualized";
 import scssVariables from "@react-md/list/dist/scssVariables";
 import { ListItemAddonType } from "@react-md/list";
@@ -19,7 +19,11 @@ interface Item {
   children: string;
 }
 
-const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
+export default function VirtualizedMenu({
+  items,
+}: {
+  items: Item[];
+}): ReactElement {
   const { isDesktop } = useAppSize();
   const [value, setValue] = useState("None");
 
@@ -71,6 +75,4 @@ const VirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
       </DropdownMenu>
     </>
   );
-};
-
-export default VirtualizedMenu;
+}

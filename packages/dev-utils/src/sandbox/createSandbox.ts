@@ -57,7 +57,6 @@ function transformFileContents(
 
   if (demoName) {
     transformed = transformed
-      .replace(`${demoName}: FC`, "Demo: FC")
       .replace(`default ${demoName};`, "default Demo;")
       .replace(new RegExp(`<${demoName}(\\s+)`, "g"), "<Demo$1");
   }

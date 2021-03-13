@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useCallback } from "react";
+import React, { ReactElement, useEffect, useState, useCallback } from "react";
 import Head from "next/head";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Dialog } from "@react-md/dialog";
@@ -27,7 +27,7 @@ interface SandboxModalProps {
   onRequestClose: () => void;
 }
 
-const SandboxModal: FC<SandboxModalProps> = ({
+export default function SandboxModal({
   pkg,
   name,
   from,
@@ -38,7 +38,7 @@ const SandboxModal: FC<SandboxModalProps> = ({
   loading,
   onFileChange,
   onRequestClose,
-}) => {
+}: SandboxModalProps): ReactElement {
   const pkgName = toTitle(pkg, " ", true);
   const title = `react-md - ${pkgName} - ${name} Sandbox`;
 
@@ -113,6 +113,4 @@ const SandboxModal: FC<SandboxModalProps> = ({
       />
     </Dialog>
   );
-};
-
-export default SandboxModal;
+}

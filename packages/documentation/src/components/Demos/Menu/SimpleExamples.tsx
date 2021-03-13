@@ -1,6 +1,6 @@
 // keys aren't required for the dropdown menu items
 /* eslint-disable react/jsx-key */
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   ArrowDropDownSVGIcon,
   HomeSVGIcon,
@@ -26,7 +26,7 @@ const items = [
   <MenuItemLink href="#">Link</MenuItemLink>,
 ];
 
-const SimpleExamples: FC = () => {
+export default function SimpleExamples(): ReactElement {
   return (
     <Container>
       <DropdownMenu id="dropdown-menu-1" items={items}>
@@ -52,6 +52,4 @@ const SimpleExamples: FC = () => {
       </DropdownMenu>
     </Container>
   );
-};
-
-export default SimpleExamples;
+}

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { getParameters } from "codesandbox/lib/api/define";
 
 import { useCodePreference } from "components/CodePreference";
@@ -15,11 +15,11 @@ export interface SandboxDefineFormProps {
   onCreated: () => void;
 }
 
-const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
+export default function SandboxDefineForm({
   demoName,
   packageName,
   onCreated,
-}) => {
+}: SandboxDefineFormProps): ReactElement | null {
   const [parameters, setParameters] = useState("");
   const { theme } = useTheme();
   const { pref } = useCodePreference();
@@ -80,6 +80,4 @@ const SandboxDefineForm: FC<SandboxDefineFormProps> = ({
       <input type="hidden" name="parameters" value={parameters} />
     </form>
   );
-};
-
-export default SandboxDefineForm;
+}

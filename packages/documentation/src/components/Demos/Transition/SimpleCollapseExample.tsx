@@ -1,10 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Button } from "@react-md/button";
 import { Collapse } from "@react-md/transition";
 
 import Page1 from "./Page1";
 
-const SimpleCollapseExample: FC = () => {
+export default function SimpleCollapseExample(): ReactElement {
   const [collapsed, setCollapsed] = useState(true);
   return (
     <>
@@ -14,6 +14,4 @@ const SimpleCollapseExample: FC = () => {
       </Collapse>
     </>
   );
-};
-
-export default SimpleCollapseExample;
+}

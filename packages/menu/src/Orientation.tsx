@@ -1,5 +1,10 @@
 /* eslint-disable react/prop-types */
-import React, { createContext, FC, ReactNode, useContext } from "react";
+import React, {
+  createContext,
+  ReactElement,
+  ReactNode,
+  useContext,
+} from "react";
 
 type MenuOrientation = "horizontal" | "vertical";
 const Orientation = createContext<MenuOrientation>("vertical");
@@ -13,9 +18,11 @@ interface OrientationProviderProps {
   children: ReactNode;
 }
 
-export const OrientationProvider: FC<OrientationProviderProps> = ({
+export function OrientationProvider({
   orientation,
   children,
-}) => (
-  <Orientation.Provider value={orientation}>{children}</Orientation.Provider>
-);
+}: OrientationProviderProps): ReactElement {
+  return (
+    <Orientation.Provider value={orientation}>{children}</Orientation.Provider>
+  );
+}

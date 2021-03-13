@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { Text } from "@react-md/typography";
 
@@ -14,7 +14,12 @@ interface ColorProps extends ColorValue {
   secondary?: boolean;
 }
 
-const Color: FC<ColorProps> = ({ name, value, primary, secondary }) => {
+export default function Color({
+  name,
+  value,
+  primary,
+  secondary,
+}: ColorProps): ReactElement {
   const withoutRMD = name.replace("rmd-", "");
   let hexValue = value;
   if (hexValue.length === 4) {
@@ -49,6 +54,4 @@ const Color: FC<ColorProps> = ({ name, value, primary, secondary }) => {
       </Text>
     </li>
   );
-};
-
-export default Color;
+}

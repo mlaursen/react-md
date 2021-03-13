@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   Checkbox,
   Fieldset,
@@ -27,20 +27,25 @@ const grouped = states.reduce<Record<string, State[]>>((collection, state) => {
   return collection;
 }, {});
 
-const States: FC<{ states: readonly State[]; readOnly?: boolean }> = ({
+function States({
   states,
   readOnly,
-}) => (
-  <>
-    {states.map(({ name, abbreviation }) => (
-      <option key={abbreviation} value={abbreviation} disabled={readOnly}>
-        {name}
-      </option>
-    ))}
-  </>
-);
+}: {
+  states: readonly State[];
+  readOnly?: boolean;
+}): ReactElement {
+  return (
+    <>
+      {states.map(({ name, abbreviation }) => (
+        <option key={abbreviation} value={abbreviation} disabled={readOnly}>
+          {name}
+        </option>
+      ))}
+    </>
+  );
+}
 
-const NativeSelectExample: FC = () => {
+export default function NativeSelectExample(): ReactElement {
   const [icon, handleIconChange, setIcon] = useChecked(true);
   const [size, handleSizeChange] = useChoice("4");
   const [multiple, handleMultipleChange] = useChecked(false);
@@ -119,6 +124,4 @@ const NativeSelectExample: FC = () => {
       </Fieldset>
     </TextFieldThemeConfig>
   );
-};
-
-export default NativeSelectExample;
+}

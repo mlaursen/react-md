@@ -1,6 +1,6 @@
 // keys aren't required for the dropdown menu items
 /* eslint-disable react/jsx-key */
-import React, { FC, useMemo } from "react";
+import React, { ReactElement, useMemo } from "react";
 import scssVariables from "@react-md/app-bar/dist/scssVariables";
 import { MoreVertSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu } from "@react-md/menu";
@@ -20,7 +20,7 @@ const options = {
   vhMargin: margin,
 };
 
-const ActionMenu: FC = () => {
+export default function ActionMenu(): ReactElement {
   const items = useMemo(
     () => [
       <ToggleTheme as="menuitem" />,
@@ -46,6 +46,4 @@ const ActionMenu: FC = () => {
       <MoreVertSVGIcon />
     </DropdownMenu>
   );
-};
-
-export default ActionMenu;
+}

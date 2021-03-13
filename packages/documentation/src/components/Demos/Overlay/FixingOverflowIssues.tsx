@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Checkbox, useChecked } from "@react-md/form";
@@ -8,7 +8,7 @@ import { useToggle } from "@react-md/utils";
 
 import styles from "./FixingOverflowIssues.module.scss";
 
-const FixingOverflowIssues: FC = () => {
+export default function FixingOverflowIssues(): ReactElement {
   const [visible, , disable, toggle] = useToggle(false);
   const [portal, handlePortalChange] = useChecked(false);
   return (
@@ -62,6 +62,4 @@ const FixingOverflowIssues: FC = () => {
       </div>
     </>
   );
-};
-
-export default FixingOverflowIssues;
+}

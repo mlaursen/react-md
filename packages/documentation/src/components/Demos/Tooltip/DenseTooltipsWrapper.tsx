@@ -1,4 +1,10 @@
-import React, { FC, useState, useEffect, useRef } from "react";
+import React, {
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import scssVariables from "@react-md/tooltip/dist/scssVariables";
 import { useUserInteractionMode } from "@react-md/utils";
 
@@ -37,7 +43,11 @@ const VARIABLES: CSSVariable[] = [
  * that, I have this wrapper that will remove the "dense" spec that gets applied
  * through scss only while the DenseTooltips example is being interacted with.
  */
-const DenseTooltipsWrapper: FC = ({ children }) => {
+export default function DenseTooltipsWrapper({
+  children,
+}: {
+  children: ReactNode;
+}): ReactElement {
   const [variables, setVariables] = useState<CSSVariable[]>([]);
   const container = useRef<HTMLDivElement | null>(null);
   const mode = useUserInteractionMode();
@@ -98,6 +108,4 @@ const DenseTooltipsWrapper: FC = ({ children }) => {
       {children}
     </div>
   );
-};
-
-export default DenseTooltipsWrapper;
+}

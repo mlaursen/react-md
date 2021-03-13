@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { ReactElement, useCallback, useState } from "react";
 import { AutoComplete, AutoCompleteHandler } from "@react-md/autocomplete";
 import {
   AppBarNav,
@@ -18,7 +18,7 @@ import styles from "./HighlightMatches.module.scss";
 
 const desserts = dessertList.map(({ name }) => name);
 
-const HighlightMatches: FC = () => {
+export default function HighlightMatches(): ReactElement {
   const [dessert, setDessert] = useState<Dessert | null>(null);
   const onAutoComplete = useCallback<AutoCompleteHandler>(({ dataIndex }) => {
     setDessert(dessertList[dataIndex]);
@@ -70,6 +70,4 @@ const HighlightMatches: FC = () => {
       </PhoneOnly>
     </Phone>
   );
-};
-
-export default HighlightMatches;
+}

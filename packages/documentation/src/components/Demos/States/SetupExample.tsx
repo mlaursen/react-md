@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 
-const ConfigExample: FC = () => <Button id="state-button-1">Button 1</Button>;
-
-export default ConfigExample;
+export default function ConfigExample(): ReactElement {
+  return <Button id="state-button-1">Button 1</Button>;
+}

@@ -1,11 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Button } from "@react-md/button";
 import { useCSSTransition } from "@react-md/transition";
 
 import Page1 from "./Page1";
 import styles from "./UseCSSTransition.module.scss";
 
-const UseCSSTransition: FC = () => {
+export default function UseCSSTransition(): ReactElement {
   const [transitionIn, setTransitionIn] = useState(false);
   const [rendered, transitionProps] = useCSSTransition({
     // changing this value causes the transition behavior to change
@@ -39,6 +39,4 @@ const UseCSSTransition: FC = () => {
       {rendered && <Page1 {...transitionProps} />}
     </>
   );
-};
-
-export default UseCSSTransition;
+}

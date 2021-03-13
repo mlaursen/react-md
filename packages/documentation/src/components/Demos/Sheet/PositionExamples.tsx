@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { Fieldset, Radio, useChoice } from "@react-md/form";
 import { List, ListItem } from "@react-md/list";
@@ -7,7 +7,7 @@ import { useToggle } from "@react-md/utils";
 
 const positions: SheetPosition[] = ["top", "right", "bottom", "left"];
 
-const PositionExamples: FC = () => {
+export default function PositionExamples(): ReactElement {
   const [position, handlePositionChange] = useChoice<SheetPosition>("left");
   const [visible, show, hide] = useToggle(false);
 
@@ -51,6 +51,4 @@ const PositionExamples: FC = () => {
       </Sheet>
     </>
   );
-};
-
-export default PositionExamples;
+}

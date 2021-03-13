@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { ReactElement, useMemo } from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,
@@ -13,7 +13,7 @@ import { useToggle } from "@react-md/utils";
 import people from "constants/people";
 import Container from "./Container";
 
-const AccessibilityExample: FC = () => {
+export default function AccessibilityExample(): ReactElement {
   const [visible, show, hide] = useToggle(false);
   const items = useMemo(
     () => people.map((name) => ({ children: name, onClick: show })),
@@ -50,6 +50,4 @@ const AccessibilityExample: FC = () => {
       </Dialog>
     </Container>
   );
-};
-
-export default AccessibilityExample;
+}

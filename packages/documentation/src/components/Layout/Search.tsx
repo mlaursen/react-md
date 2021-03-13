@@ -1,6 +1,6 @@
 import React, {
   ChangeEvent,
-  FC,
+  ReactElement,
   useCallback,
   useEffect,
   useRef,
@@ -22,7 +22,7 @@ import { RouteMetadata } from "constants/meta/types";
 import styles from "./Search.module.scss";
 import SearchType from "./SearchType";
 
-const Search: FC = () => {
+export default function Search(): ReactElement {
   const [value, setValue] = useState("");
   const [data, setData] = useState<readonly RouteMetadata[]>([]);
   const router = useRouter();
@@ -131,6 +131,4 @@ const Search: FC = () => {
       anchor={BELOW_INNER_RIGHT_ANCHOR}
     />
   );
-};
-
-export default Search;
+}

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { Avatar } from "@react-md/avatar";
 import scssVariables from "@react-md/avatar/dist/scssVariables";
 import { ListItemAddonType } from "@react-md/list";
@@ -19,11 +19,11 @@ const items: Item[] = Array.from({ length: 1000 }, (_, i) => ({
   children: `Item ${i + 1}`,
 }));
 
-const CustomRenderers: FC = () => (
-  <>
-    <NonVirtualizedMenu items={items} />
-    <VirtualizedMenu items={items} />
-  </>
-);
-
-export default CustomRenderers;
+export default function CustomRenderers(): ReactElement {
+  return (
+    <>
+      <NonVirtualizedMenu items={items} />
+      <VirtualizedMenu items={items} />
+    </>
+  );
+}

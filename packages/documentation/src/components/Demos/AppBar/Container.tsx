@@ -1,13 +1,13 @@
-import React, { FC, HTMLAttributes } from "react";
+import React, { HTMLAttributes, ReactElement } from "react";
 import { Grid } from "@react-md/utils";
 
-const Container: FC<HTMLAttributes<HTMLDivElement>> = ({
+export default function Container({
   children,
   ...props
-}) => (
-  <Grid {...props} clone padding={0} columns={1}>
-    {children}
-  </Grid>
-);
-
-export default Container;
+}: HTMLAttributes<HTMLDivElement>): ReactElement {
+  return (
+    <Grid {...props} clone padding={0} columns={1}>
+      {children}
+    </Grid>
+  );
+}

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Checkbox, Select } from "@react-md/form";
 import {
   ConfigurableIcons,
@@ -22,7 +22,7 @@ const overrides: ConfigurableIcons = {
   dropdown: <ArrowDropDownSVGIcon />,
 };
 
-const PulledFromContext: FC = () => {
+function PulledFromContext(): ReactElement {
   const icon = useIcon("dropdown");
 
   // I'm cheating a little bit for this demo, you probably shouldn't reference
@@ -34,9 +34,9 @@ const PulledFromContext: FC = () => {
       </TextIconSpacing>
     </div>
   );
-};
+}
 
-const OverridingDefaultIcons: FC = () => {
+export default function OverridingDefaultIcons(): ReactElement {
   const [value1, setValue1] = useState("");
   const [value2, setValue2] = useState("");
   return (
@@ -64,6 +64,4 @@ const OverridingDefaultIcons: FC = () => {
       </Grid>
     </IconProvider>
   );
-};
-
-export default OverridingDefaultIcons;
+}

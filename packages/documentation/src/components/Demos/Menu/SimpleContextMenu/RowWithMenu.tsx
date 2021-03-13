@@ -21,13 +21,13 @@ interface Props extends Omit<DriveContentItem, "id"> {
   index: number;
 }
 
-const RowWithMenu = ({
+export default function RowWithMenu({
   name,
   owner,
   lastModified,
   size,
   index,
-}: Props): ReactElement | null => {
+}: Props): ReactElement | null {
   const id = `content-row-${index + 1}`;
   const [menuProps, onContextMenu] = useContextMenu();
   const { visible } = menuProps;
@@ -61,6 +61,4 @@ const RowWithMenu = ({
       </Menu>
     </>
   );
-};
-
-export default RowWithMenu;
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import {
   CircularProgress,
@@ -11,7 +11,7 @@ import Phone from "components/Phone";
 import useTemporaryToggle from "./useTemporaryToggle";
 import styles from "./SimpleDeterminateExamples.module.scss";
 
-const SimpleIndeterminateExamples: FC = () => {
+export default function SimpleIndeterminateExamples(): ReactElement {
   const {
     toggled: linearVisible,
     toggle: toggleLinear,
@@ -59,6 +59,4 @@ const SimpleIndeterminateExamples: FC = () => {
       </Phone>
     </>
   );
-};
-
-export default SimpleIndeterminateExamples;
+}

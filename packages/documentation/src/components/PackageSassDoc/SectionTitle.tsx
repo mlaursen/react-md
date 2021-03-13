@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 
 import Heading from "components/Heading";
 
@@ -9,14 +9,17 @@ export interface SectionTitleProps {
   type: "Variables" | "Functions" | "Mixins";
 }
 
-const SectionTitle: FC<SectionTitleProps> = ({ packageName, type }) => (
-  <Heading
-    id={`${packageName}-${type.toLowerCase()}`}
-    level={1}
-    className={styles.title}
-  >
-    {type}
-  </Heading>
-);
-
-export default SectionTitle;
+export default function SectionTitle({
+  packageName,
+  type,
+}: SectionTitleProps): ReactElement {
+  return (
+    <Heading
+      id={`${packageName}-${type.toLowerCase()}`}
+      level={1}
+      className={styles.title}
+    >
+      {type}
+    </Heading>
+  );
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Switch, useChecked } from "@react-md/form";
 import { Text } from "@react-md/typography";
 
@@ -11,13 +11,13 @@ interface ExampleProps extends CompiledExample {
   id: string;
 }
 
-const Example: FC<ExampleProps> = ({
+export default function Example({
   id,
   code,
   type,
   description,
   compiled,
-}) => {
+}: ExampleProps): ReactElement {
   const [enabled, handleChange] = useChecked(false);
 
   return (
@@ -37,6 +37,4 @@ const Example: FC<ExampleProps> = ({
       <CodeBlock language={type}>{enabled ? compiled : code}</CodeBlock>
     </>
   );
-};
-
-export default Example;
+}

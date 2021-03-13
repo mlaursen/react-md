@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogHeader, DialogTitle } from "@react-md/dialog";
 import { List, ListItem } from "@react-md/list";
@@ -6,7 +6,7 @@ import { useToggle } from "@react-md/utils";
 
 import styles from "./SimpleListExample.module.scss";
 
-const SimpleExample: FC = () => {
+export default function SimpleExample(): ReactElement {
   const [toggled, enable, disable] = useToggle(false);
   return (
     <>
@@ -31,6 +31,4 @@ const SimpleExample: FC = () => {
       </Dialog>
     </>
   );
-};
-
-export default SimpleExample;
+}

@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogProps } from "@react-md/dialog";
@@ -24,7 +24,7 @@ export interface ConditionalFullPageDialogProps extends AllowedDialogProps {
   disableFocusOnMount?: boolean;
 }
 
-const ConditionalFullPageDialog: FC<ConditionalFullPageDialogProps> = ({
+export default function ConditionalFullPageDialog({
   id,
   title = "Full Page Demo",
   children,
@@ -36,7 +36,7 @@ const ConditionalFullPageDialog: FC<ConditionalFullPageDialogProps> = ({
   disableContent = false,
   disableFocusOnMount = false,
   ...props
-}) => {
+}: ConditionalFullPageDialogProps): ReactElement {
   if (disabled) {
     return children;
   }
@@ -82,6 +82,4 @@ const ConditionalFullPageDialog: FC<ConditionalFullPageDialogProps> = ({
       </Dialog>
     </>
   );
-};
-
-export default ConditionalFullPageDialog;
+}

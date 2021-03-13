@@ -1,5 +1,5 @@
 import React, {
-  FC,
+  ReactElement,
   useCallback,
   useEffect,
   useMemo,
@@ -20,7 +20,7 @@ import { BELOW_INNER_LEFT_ANCHOR } from "@react-md/utils";
 import contacts, { Contact } from "./contacts";
 import styles from "./To.module.scss";
 
-const To: FC = () => {
+export default function To(): ReactElement {
   const [chips, setChips] = useState<Contact[]>([]);
   const data = useMemo<(AutoCompleteData & { label: string })[]>(
     () =>
@@ -100,6 +100,4 @@ const To: FC = () => {
       </div>
     </div>
   );
-};
-
-export default To;
+}

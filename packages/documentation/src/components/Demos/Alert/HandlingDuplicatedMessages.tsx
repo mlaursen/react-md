@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import {
   DuplicateBehavior,
   MessageQueue,
@@ -38,10 +38,10 @@ const MESSAGES: Record<MessageKeys, ToastMessage> = {
   },
 };
 
-const HandlingDuplicatedMessages: FC<Props> = ({
+function HandlingDuplicatedMessages({
   duplicates,
   onDuplicateChange,
-}) => {
+}: Props): ReactElement {
   const addMessage = useAddMessage();
   const [key, handleKeyChange] = useChoice<MessageKeys>(ONLINE);
   return (
@@ -100,7 +100,7 @@ const HandlingDuplicatedMessages: FC<Props> = ({
       </Button>
     </Form>
   );
-};
+}
 
 export default function DuplicatedMessages(): ReactElement {
   const [duplicates, onDuplicateChange] = useChoice<DuplicateBehavior>("allow");

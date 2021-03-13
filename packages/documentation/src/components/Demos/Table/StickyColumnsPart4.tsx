@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { useIndeterminateChecked } from "@react-md/form";
 import {
   Table,
@@ -15,7 +15,7 @@ import styles from "./StickyColumnsPart4.module.scss";
 const rows = Array.from({ length: 30 }, (_, i) => `row-${i + 1}`);
 const headers = Array.from({ length: 20 }, (_, i) => `Header ${i + 1}`);
 
-const StickyColumnsPart4: FC = () => {
+export default function StickyColumnsPart4(): ReactElement {
   const { rootProps, getProps } = useIndeterminateChecked(rows);
 
   return (
@@ -79,6 +79,4 @@ const StickyColumnsPart4: FC = () => {
       </Table>
     </TableContainer>
   );
-};
-
-export default StickyColumnsPart4;
+}

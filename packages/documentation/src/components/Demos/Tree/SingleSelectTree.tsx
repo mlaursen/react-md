@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   Tree,
   useTreeItemSelection,
@@ -7,7 +7,7 @@ import {
 
 import folders from "./folders";
 
-const SingleSelectTree: FC = () => {
+export default function SingleSelectTree(): ReactElement {
   const selection = useTreeItemSelection([], false);
   const expansion = useTreeItemExpansion([]);
 
@@ -20,6 +20,4 @@ const SingleSelectTree: FC = () => {
       {...expansion}
     />
   );
-};
-
-export default SingleSelectTree;
+}

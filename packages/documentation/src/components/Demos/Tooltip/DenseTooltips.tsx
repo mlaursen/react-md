@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Text } from "@react-md/typography";
 import { SimplePosition } from "@react-md/utils";
 
@@ -7,7 +7,7 @@ import TooltippedButton from "./TooltippedButton";
 
 const positions: SimplePosition[] = ["above", "right", "below", "left"];
 
-const DenseTooltips: FC = () => {
+export default function DenseTooltips(): ReactElement {
   return (
     <>
       <Text type="headline-6" margin="none">
@@ -43,6 +43,4 @@ const DenseTooltips: FC = () => {
       </Container>
     </>
   );
-};
-
-export default DenseTooltips;
+}

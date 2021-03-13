@@ -1,4 +1,10 @@
-import React, { CSSProperties, FC, useCallback, useRef, useState } from "react";
+import React, {
+  CSSProperties,
+  ReactElement,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { List, ListItem } from "@react-md/list";
@@ -9,7 +15,7 @@ import { getFixedPosition, ScrollListener, useToggle } from "@react-md/utils";
 
 import styles from "./SimpleExample.module.scss";
 
-const SimpleExample: FC = () => {
+export default function SimpleExample(): ReactElement {
   const [visible, , hide, toggle] = useToggle(false);
   const [style, setStyle] = useState<CSSProperties | undefined>();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -86,6 +92,4 @@ const SimpleExample: FC = () => {
       </Text>
     </div>
   );
-};
-
-export default SimpleExample;
+}

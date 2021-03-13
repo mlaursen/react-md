@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { GridCell } from "@react-md/utils";
 
 export interface ConfigurationCellProps {
@@ -6,17 +6,17 @@ export interface ConfigurationCellProps {
   children: ReactNode;
 }
 
-const ConfigurationCell: FC<ConfigurationCellProps> = ({
+export default function ConfigurationCell({
   fullWidth,
   children,
-}) => (
-  <GridCell
-    clone
-    largeDesktop={fullWidth ? { colSpan: 3 } : undefined}
-    tablet={{ colSpan: fullWidth ? 2 : 1 }}
-  >
-    {children}
-  </GridCell>
-);
-
-export default ConfigurationCell;
+}: ConfigurationCellProps): ReactElement {
+  return (
+    <GridCell
+      clone
+      largeDesktop={fullWidth ? { colSpan: 3 } : undefined}
+      tablet={{ colSpan: fullWidth ? 2 : 1 }}
+    >
+      {children}
+    </GridCell>
+  );
+}

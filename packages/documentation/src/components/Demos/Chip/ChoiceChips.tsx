@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Button } from "@react-md/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
 import { Chip } from "@react-md/chip";
@@ -12,7 +12,7 @@ const sizes = Array.from({ length: 8 }, (_, i) => {
   return `${size < 10 ? "0" : ""}${size}`;
 });
 
-const ChoiceChips: FC = () => {
+export default function ChoiceChips(): ReactElement {
   const [selectedSize, setSelectedSize] = useState<string>("02");
   return (
     <Card className={styles.container}>
@@ -53,6 +53,4 @@ const ChoiceChips: FC = () => {
       </CardContent>
     </Card>
   );
-};
-
-export default ChoiceChips;
+}

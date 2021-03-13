@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { AppBar, AppBarProps } from "@react-md/app-bar";
 import { useAppSize } from "@react-md/utils";
@@ -8,12 +8,12 @@ import StatusBar from "./StatusBar";
 
 import styles from "./PhoneAppBar.module.scss";
 
-const PhoneAppBar: FC<AppBarProps> = ({
+export default function PhoneAppBar({
   className,
   children,
   height: propHeight,
   ...props
-}) => {
+}: AppBarProps): ReactElement {
   const { id } = usePhoneContext();
   const { isPhone } = useAppSize();
 
@@ -43,10 +43,8 @@ const PhoneAppBar: FC<AppBarProps> = ({
       {children}
     </AppBar>
   );
-};
+}
 
 PhoneAppBar.defaultProps = {
   theme: "default",
 };
-
-export default PhoneAppBar;

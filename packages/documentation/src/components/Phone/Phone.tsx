@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useMemo, useCallback } from "react";
+import React, { ReactElement, ReactNode, useMemo, useCallback } from "react";
 import cn from "classnames";
 import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
@@ -93,7 +93,7 @@ export interface PhoneProps
 
 const DEFAULT_APP_BAR = <DefaultAppBar />;
 
-const Phone: FC<PhoneProps> = ({
+export default function Phone({
   id,
   title = "Example",
   children,
@@ -107,7 +107,7 @@ const Phone: FC<PhoneProps> = ({
   disableFocusOnMount = false,
   onPhoneClose,
   statusBar = false,
-}) => {
+}: PhoneProps): ReactElement {
   const { isPhone } = useAppSize();
   const [visible, enable, disable] = useToggle(false);
   const closePhone = useCallback(() => {
@@ -179,6 +179,4 @@ const Phone: FC<PhoneProps> = ({
       </ConditionalFullPageDialog>
     </PhoneContext.Provider>
   );
-};
-
-export default Phone;
+}

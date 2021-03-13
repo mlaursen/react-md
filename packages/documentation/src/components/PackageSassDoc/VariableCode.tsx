@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Switch, useChecked } from "@react-md/form";
 
 import { CodeBlock } from "components/Code";
@@ -12,13 +12,13 @@ export interface VariableCodeProps
   baseId: string;
 }
 
-const VariableCode: FC<VariableCodeProps> = ({
+export default function VariableCode({
   baseId,
   name,
   value,
   compiled,
   overridable,
-}) => {
+}: VariableCodeProps): ReactElement {
   const [enabled, handleChange] = useChecked(false);
   let code = `${value}${overridable ? " !default" : ""};`;
   if (enabled && compiled) {
@@ -40,6 +40,4 @@ const VariableCode: FC<VariableCodeProps> = ({
       <CodeBlock language="scss">{`$${name}: ${code}`}</CodeBlock>
     </>
   );
-};
-
-export default VariableCode;
+}

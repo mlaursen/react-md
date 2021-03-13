@@ -1,16 +1,16 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 
 import styles from "./CustomInteractions.module.scss";
 
-const CustomInteractions: FC = () => (
-  <Button
-    id="custom-state-button"
-    enablePressedAndRipple
-    className={styles.button}
-  >
-    Button
-  </Button>
-);
-
-export default CustomInteractions;
+export default function CustomInteractions(): ReactElement {
+  return (
+    <Button
+      id="custom-state-button"
+      enablePressedAndRipple
+      className={styles.button}
+    >
+      Button
+    </Button>
+  );
+}

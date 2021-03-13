@@ -7,10 +7,12 @@ interface Props {
   children: ReactNode;
 }
 
-const TableCellList = ({ children }: Props): ReactElement | null => (
-  <TableCell>
-    <ul className={styles.list}>{children}</ul>
-  </TableCell>
-);
-
-export default TableCellList;
+export default function TableCellList({
+  children,
+}: Props): ReactElement | null {
+  return (
+    <TableCell>
+      <ul className={styles.list}>{children}</ul>
+    </TableCell>
+  );
+}

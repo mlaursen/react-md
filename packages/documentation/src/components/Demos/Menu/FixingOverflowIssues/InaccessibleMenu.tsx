@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */
-import React, { FC, useEffect, useRef } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import { Button } from "@react-md/button";
 import { IconRotator, TextIconSpacing } from "@react-md/icon";
 import { List } from "@react-md/list";
@@ -10,7 +10,11 @@ import { useToggle } from "@react-md/utils";
 import styles from "./InaccessibleMenu.module.scss";
 
 // sorry -- too lazy to fully implement a11y and functionality just for a "broken" demo
-const InaccessibleMenu: FC<{ items: string[] }> = ({ items }) => {
+export default function InaccessibleMenu({
+  items,
+}: {
+  items: readonly string[];
+}): ReactElement {
   const [visible, , disable, toggle] = useToggle(false);
   const menu = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -67,6 +71,4 @@ const InaccessibleMenu: FC<{ items: string[] }> = ({ items }) => {
       )}
     </div>
   );
-};
-
-export default InaccessibleMenu;
+}

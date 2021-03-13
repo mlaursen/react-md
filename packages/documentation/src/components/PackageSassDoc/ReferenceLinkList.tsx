@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { useRouter } from "next/router";
 
 import Link from "components/Link";
@@ -10,7 +10,9 @@ export interface ReferenceLinkListProps {
   links: ItemReferenceLink[];
 }
 
-const ReferenceLinkList: FC<ReferenceLinkListProps> = ({ links }) => {
+export default function ReferenceLinkList({
+  links,
+}: ReferenceLinkListProps): ReactElement {
   const { pathname } = useRouter();
   return (
     <>
@@ -43,6 +45,4 @@ const ReferenceLinkList: FC<ReferenceLinkListProps> = ({ links }) => {
       })}
     </>
   );
-};
-
-export default ReferenceLinkList;
+}

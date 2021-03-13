@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import {
   Fieldset,
@@ -24,7 +24,7 @@ import styles from "./ExampleForm.module.scss";
 
 const themes: FormTheme[] = ["none", "underline", "filled", "outline"];
 
-const ExampleForm: FC = () => {
+export default function ExampleForm(): ReactElement {
   const [currentTheme, handleChange] = useChoice<FormTheme>("outline");
   const isUnstyled = currentTheme === "none";
 
@@ -115,6 +115,4 @@ const ExampleForm: FC = () => {
       </Phone>
     </FormThemeProvider>
   );
-};
-
-export default ExampleForm;
+}

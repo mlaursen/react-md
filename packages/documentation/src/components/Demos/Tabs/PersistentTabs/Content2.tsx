@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { FC, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { CircularProgress } from "@react-md/progress";
 import { TabPanel, TabPanelProps } from "@react-md/tabs";
@@ -29,7 +29,7 @@ interface PicsumPhotoItem {
   post_url: string;
 }
 
-const Content2: FC<TabPanelProps> = (props) => {
+export default function Content2(props: TabPanelProps): ReactElement {
   const [{ loading, data }, setState] = useState<State>({
     loading: false,
     data: [],
@@ -80,6 +80,4 @@ const Content2: FC<TabPanelProps> = (props) => {
       </GridList>
     </TabPanel>
   );
-};
-
-export default Content2;
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { ButtonProps, Button } from "@react-md/button";
 import { Tooltipped, TooltippedProps } from "@react-md/tooltip";
 
@@ -8,7 +8,7 @@ interface TooltippedButtonProps
   id: string;
 }
 
-const TooltippedButton: FC<TooltippedButtonProps> = ({
+export default function TooltippedButton({
   id,
   tooltip,
   onMouseEnter,
@@ -21,25 +21,25 @@ const TooltippedButton: FC<TooltippedButtonProps> = ({
   dense,
   defaultPosition,
   ...props
-}) => (
-  <Tooltipped
-    id={id}
-    tooltip={tooltip}
-    dense={dense}
-    defaultPosition={defaultPosition}
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-    onTouchStart={onTouchStart}
-    onTouchMove={onTouchMove}
-    onFocus={onFocus}
-    onKeyDown={onKeyDown}
-  >
-    <Button {...props}>{children}</Button>
-  </Tooltipped>
-);
+}: TooltippedButtonProps): ReactElement {
+  return (
+    <Tooltipped
+      id={id}
+      tooltip={tooltip}
+      dense={dense}
+      defaultPosition={defaultPosition}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onFocus={onFocus}
+      onKeyDown={onKeyDown}
+    >
+      <Button {...props}>{children}</Button>
+    </Tooltipped>
+  );
+}
 
 TooltippedButton.defaultProps = {
   themeType: "outline",
 };
-
-export default TooltippedButton;

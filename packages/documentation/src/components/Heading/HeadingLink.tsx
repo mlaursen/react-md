@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { ReactElement, useCallback } from "react";
 import LinkUnstyled from "components/LinkUnstyled";
 import { useRouter } from "next/router";
 
@@ -6,7 +6,7 @@ export interface HeadingLinkProps {
   idRef: string;
 }
 
-const HeadingLink: FC<HeadingLinkProps> = ({ idRef }) => {
+export default function HeadingLink({ idRef }: HeadingLinkProps): ReactElement {
   const { asPath } = useRouter();
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -38,6 +38,4 @@ const HeadingLink: FC<HeadingLinkProps> = ({ idRef }) => {
       #
     </LinkUnstyled>
   );
-};
-
-export default HeadingLink;
+}

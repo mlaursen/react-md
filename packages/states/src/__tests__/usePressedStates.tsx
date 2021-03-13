@@ -1,4 +1,4 @@
-import React, { createRef, FC, HTMLAttributes } from "react";
+import React, { createRef, HTMLAttributes, ReactElement } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
@@ -10,7 +10,7 @@ interface Props
   pressedRef?: { current: boolean | null };
   disableSpacebarClick?: boolean;
 }
-const Test: FC<Props> = ({
+function Test({
   onClick,
   onKeyDown,
   onKeyUp,
@@ -22,7 +22,7 @@ const Test: FC<Props> = ({
   onTouchEnd,
   pressedRef,
   disableSpacebarClick,
-}) => {
+}: Props): ReactElement {
   const { pressed, handlers } = usePressedStates({
     handlers: {
       onClick,
@@ -47,7 +47,7 @@ const Test: FC<Props> = ({
       Button
     </button>
   );
-};
+}
 
 describe("usePressedStates", () => {
   it("should return an object containing the pressed state and all the event handlers", () => {

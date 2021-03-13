@@ -1,4 +1,4 @@
-import React, { FC, Ref } from "react";
+import React, { ReactElement, Ref } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
@@ -11,12 +11,12 @@ interface Props {
   liRef?: Ref<HTMLLIElement>;
 }
 
-const Test: FC<Props> = ({
+function Test({
   disabled,
   onKeyDown,
   disableSpacebarClick,
   liRef,
-}) => {
+}: Props): ReactElement {
   const handleKeyDown = useKeyboardClickPolyfill({
     onKeyDown,
     disabled,
@@ -28,7 +28,7 @@ const Test: FC<Props> = ({
       Item
     </li>
   );
-};
+}
 
 describe("useKeyboardClickPolyfill", () => {
   it("should return a click handler", () => {
@@ -100,7 +100,10 @@ describe("useKeyboardClickPolyfill", () => {
       aRef?: Ref<HTMLAnchorElement>;
       disableSpacebarClick?: boolean;
     }
-    const TestTwo: FC<TestTwoProps> = ({ aRef, disableSpacebarClick }) => {
+    function TestTwo({
+      aRef,
+      disableSpacebarClick,
+    }: TestTwoProps): ReactElement {
       const handleKeyDown = useKeyboardClickPolyfill({
         disabled: false,
         disableSpacebarClick,
@@ -111,7 +114,7 @@ describe("useKeyboardClickPolyfill", () => {
           Link
         </a>
       );
-    };
+    }
     const ref = React.createRef<HTMLAnchorElement>();
     const { getByText, rerender } = render(<TestTwo aRef={ref} />);
     expect(ref.current).not.toBeNull();

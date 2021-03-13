@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { DialogContent } from "@react-md/dialog";
@@ -30,7 +30,7 @@ const horizontalSizes: SheetHorizontalSize[] = [
 ];
 const verticalSizes: SheetVerticalSize[] = ["none", "touch", "recommended"];
 
-const SheetSizing: FC = () => {
+export default function SheetSizing(): ReactElement {
   const [visible, show, hide] = useToggle(false);
   const [position, setPosition] = useSelectState<SheetPosition>("left");
   const [
@@ -128,6 +128,4 @@ const SheetSizing: FC = () => {
       </ConditionalPhone>
     </Form>
   );
-};
-
-export default SheetSizing;
+}

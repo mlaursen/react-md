@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Text } from "@react-md/typography";
 
 import Link from "components/Link";
@@ -11,7 +11,10 @@ export interface LinksProps {
   see: ItemReferenceLink[] | undefined;
 }
 
-const Links: FC<LinksProps> = ({ links = [], see = [] }) => {
+export default function Links({
+  links = [],
+  see = [],
+}: LinksProps): ReactElement | null {
   if (!links.length && !see.length) {
     return null;
   }
@@ -31,6 +34,4 @@ const Links: FC<LinksProps> = ({ links = [], see = [] }) => {
       </ul>
     </>
   );
-};
-
-export default Links;
+}

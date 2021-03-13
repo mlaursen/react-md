@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
 import { MobileOnly, useAppSize } from "@react-md/utils";
@@ -17,13 +17,13 @@ interface SandboxNavigationProps {
   onRequestClose: () => void;
 }
 
-const SandboxNavigation: FC<SandboxNavigationProps> = ({
+export default function SandboxNavigation({
   name,
   from,
   fileName,
   onRequestFiles,
   onRequestClose,
-}) => {
+}: SandboxNavigationProps): ReactElement {
   const { isPhone, isTablet } = useAppSize();
   const mobile = isPhone || isTablet;
 
@@ -52,6 +52,4 @@ const SandboxNavigation: FC<SandboxNavigationProps> = ({
       </code>
     </AppBar>
   );
-};
-
-export default SandboxNavigation;
+}

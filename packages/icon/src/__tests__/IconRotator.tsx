@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import cn from "classnames";
 import { render } from "@testing-library/react";
 
@@ -6,9 +6,9 @@ import { FontIcon } from "../FontIcon";
 import { IconRotator } from "../IconRotator";
 import { SVGIcon } from "../SVGIcon";
 
-const Icon: FC<{ className?: string }> = ({ className }) => (
-  <i data-testid="icon" className={cn("custom-icon", className)} />
-);
+function Icon({ className }: { className?: string }) {
+  return <i data-testid="icon" className={cn("custom-icon", className)} />;
+}
 
 describe("IconRotator", () => {
   it("should default to cloning the icon rotator class names into the child element", () => {

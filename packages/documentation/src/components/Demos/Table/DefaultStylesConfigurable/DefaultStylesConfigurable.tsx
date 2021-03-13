@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 
 import { Provider, useStylesState } from "./context";
 import StyledTable from "./StyledTable";
 import TableConfiguration from "./TableConfiguration";
 
-const DefaultStylesConfigurable: FC = () => {
+export default function DefaultStylesConfigurable(): ReactElement {
   const value = useStylesState();
 
   return (
@@ -13,6 +13,4 @@ const DefaultStylesConfigurable: FC = () => {
       <StyledTable />
     </Provider>
   );
-};
-
-export default DefaultStylesConfigurable;
+}

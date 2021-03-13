@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { ReactElement, ReactNode, useMemo } from "react";
 
 import { ThemeMode } from "./colors";
 import { ThemeContext } from "./useTheme";
@@ -7,9 +7,13 @@ import useThemeConfiguration from "./useThemeConfiguration";
 
 export interface ThemeProps {
   defaultTheme?: ThemeMode;
+  children: ReactNode;
 }
 
-const Theme: FC<ThemeProps> = ({ defaultTheme = "light", children }) => {
+export default function Theme({
+  defaultTheme = "light",
+  children,
+}: ThemeProps): ReactElement {
   const {
     primary,
     secondary,
@@ -49,6 +53,4 @@ const Theme: FC<ThemeProps> = ({ defaultTheme = "light", children }) => {
       </ThemeActionsContext.Provider>
     </ThemeContext.Provider>
   );
-};
-
-export default Theme;
+}

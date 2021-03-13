@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Checkbox, Fieldset, useIndeterminateChecked } from "@react-md/form";
 
 const condiments = ["Lettuce", "Tomato", "Mustard", "Sprouts"];
 
-const IndeterminateCheckboxes: FC = () => {
+export default function IndeterminateCheckboxes(): ReactElement {
   const {
     getProps,
     rootProps,
@@ -28,6 +28,4 @@ const IndeterminateCheckboxes: FC = () => {
       </ul>
     </Fieldset>
   );
-};
-
-export default IndeterminateCheckboxes;
+}

@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { Fragment, ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { CrossFade } from "@react-md/transition";
 import { Text } from "@react-md/typography";
@@ -10,7 +10,10 @@ export interface PanelContentProps {
   customTransition: boolean;
 }
 
-const PanelContent: FC<PanelContentProps> = ({ i, customTransition }) => {
+export default function PanelContent({
+  i,
+  customTransition,
+}: PanelContentProps): ReactElement {
   const Container = customTransition ? CrossFade : Fragment;
 
   return (
@@ -36,6 +39,4 @@ const PanelContent: FC<PanelContentProps> = ({ i, customTransition }) => {
       </div>
     </Container>
   );
-};
-
-export default PanelContent;
+}

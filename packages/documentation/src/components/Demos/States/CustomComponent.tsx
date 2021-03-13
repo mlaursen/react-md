@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, FC } from "react";
+import React, { ButtonHTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 import {
   InteractionStatesOptions,
@@ -11,7 +11,7 @@ interface CustomButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     Omit<InteractionStatesOptions, "handlers"> {}
 
-const CustomButton: FC<CustomButtonProps> = ({
+function CustomButton({
   disabled,
   disableRipple,
   disableSpacebarClick,
@@ -27,7 +27,7 @@ const CustomButton: FC<CustomButtonProps> = ({
   onTouchMove,
   onTouchEnd,
   ...props
-}) => {
+}: CustomButtonProps): ReactElement {
   const { ripples, handlers, className } = useInteractionStates({
     handlers: {
       onKeyDown,
@@ -57,14 +57,12 @@ const CustomButton: FC<CustomButtonProps> = ({
       {ripples}
     </button>
   );
-};
+}
 
-const CustomComponent: FC = () => {
+export default function CustomComponent(): ReactElement {
   return (
     <>
       <CustomButton id="custom-button-1">Hello</CustomButton>
     </>
   );
-};
-
-export default CustomComponent;
+}

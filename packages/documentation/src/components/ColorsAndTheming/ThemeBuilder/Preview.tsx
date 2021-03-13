@@ -1,4 +1,4 @@
-import React, { FC, useRef } from "react";
+import React, { ReactElement, useRef } from "react";
 import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { List, ListItem } from "@react-md/list";
@@ -9,7 +9,7 @@ import { useToggle, GridCell } from "@react-md/utils";
 
 import styles from "./Preview.module.scss";
 
-const Preview: FC = () => {
+export default function Preview(): ReactElement {
   const [visible, show, hide] = useToggle(false);
   const container = useRef<HTMLDivElement | null>(null);
 
@@ -56,6 +56,4 @@ const Preview: FC = () => {
       </div>
     </GridCell>
   );
-};
-
-export default Preview;
+}

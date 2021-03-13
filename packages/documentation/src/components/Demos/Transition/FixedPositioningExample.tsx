@@ -2,7 +2,7 @@
 // disabled the no-non-null-assertions since the refs are guarenteed to not be
 // null by the time of running and this will eventually be re-written once I
 // updated the `@react-md/transition` package for the new `nodeRef` API
-import React, { FC, useCallback, useRef, useState } from "react";
+import React, { ReactElement, useCallback, useRef, useState } from "react";
 import CSSTransition, {
   CSSTransitionClassNames,
 } from "react-transition-group/CSSTransition";
@@ -77,7 +77,7 @@ const CLASSNAMES: CSSTransitionClassNames = {
   exitActive: styles.exiting,
 };
 
-const FixedPositioningExample: FC = () => {
+export default function FixedPositioningExample(): ReactElement {
   const [visible, show, hide] = useToggle(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const divRef = useRef<HTMLDivElement>(null);
@@ -234,6 +234,4 @@ const FixedPositioningExample: FC = () => {
       </CSSTransition>
     </>
   );
-};
-
-export default FixedPositioningExample;
+}

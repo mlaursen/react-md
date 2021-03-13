@@ -37,7 +37,7 @@ and more customization information, but an example usage is shown below.
 ### Usage with react-router
 
 ```tsx
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { render } from "react-dom";
 import {
   Link as ReactRouterLink,
@@ -48,22 +48,29 @@ import { Link as ReactMDLink, LinkProps as RMDLinkProps } from "@react-md/link";
 
 export type LinkProps = RDMLinkProps & ReactRouterLinkProps;
 
-const Link: FC<LinkProps> = (props) => (
-  <ReactMDLink {...props} component={ReactRouterLink} />
-);
+function Link(props: linkProps): ReactElement {
+  return <ReactMDLink {...props} component={ReactRouterLink} />;
+}
 
-const Home = () => <h1>Home page!</h1>;
-const About = () => <h1>About page!</h1>;
+function Home(): ReactElement {
+  return <h1>Home page!</h1>;
+}
 
-const App = () => (
-  <BrowserRouter>
-    <Link to="/">Home</Link>
-    <Link to="/about">About</Link>
+function About(): ReactElement {
+  return <h1>About page!</h1>;
+}
 
-    <Route exact path="/" component={Home} />
-    <Route path="/about" component={About} />
-  </BrowserRouter>
-);
+function App(): ReactElement {
+  return (
+    <BrowserRouter>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
+    </BrowserRouter>
+  );
+}
 
 render(<App />, document.getElementById("root"));
 ```
@@ -75,7 +82,7 @@ built-in to help out! However, this component can also be used within full page
 dialogs or custom screens to be able to jump to a specific element in the page.
 
 ```tsx
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { render } from "react-dom";
 import {
   Dialog,
@@ -87,22 +94,24 @@ import { SkipToMainContent } from "@react-md/link";
 
 const noop = (): void => {};
 
-const App: FC = () => (
-  <Dialog
-    id="full-page-dialog"
-    aria-labelledby="full-page-dialog-title"
-    visible
-    onRequestClose={noop}
-  >
-    <DialogHeader>
-      <SkipToMainContent mainId="full-page-dialog-content" />
-      {/* pretend 100 focusable things before main content */}
-    </DialogHeader>
-    <DialogContent id="full-page-dialog-content">
-      <p>Here is some content</p>
-    </DialogContent>
-  </Dialog>
-);
+function App(): ReactElement {
+  return (
+    <Dialog
+      id="full-page-dialog"
+      aria-labelledby="full-page-dialog-title"
+      visible
+      onRequestClose={noop}
+    >
+      <DialogHeader>
+        <SkipToMainContent mainId="full-page-dialog-content" />
+        {/* pretend 100 focusable things before main content */}
+      </DialogHeader>
+      <DialogContent id="full-page-dialog-content">
+        <p>Here is some content</p>
+      </DialogContent>
+    </Dialog>
+  );
+}
 
 render(<App />, document.getElementById("root"));
 ```

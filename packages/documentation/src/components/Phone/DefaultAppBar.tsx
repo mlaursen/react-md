@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 
 import AppBarTitle from "components/AppBarTitle";
@@ -9,7 +9,7 @@ import OptionsAction from "./OptionsAction";
 import PhoneAppBar from "./PhoneAppBar";
 import SearchAction from "./SearchAction";
 
-const DefaultPhoneAppBar: FC = () => {
+export default function DefaultPhoneAppBar(): ReactElement {
   const { title } = usePhoneContext();
   return (
     <PhoneAppBar>
@@ -21,6 +21,4 @@ const DefaultPhoneAppBar: FC = () => {
       </AppBar>
     </PhoneAppBar>
   );
-};
-
-export default DefaultPhoneAppBar;
+}

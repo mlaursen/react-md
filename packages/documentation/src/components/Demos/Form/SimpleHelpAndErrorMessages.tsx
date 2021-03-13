@@ -1,10 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { FormMessage, TextField } from "@react-md/form";
 import { Grid } from "@react-md/utils";
 
 const id = "simple-help-and-error-messages";
 
-const SimpleHelpAndErrorMessages: FC = () => {
+export default function SimpleHelpAndErrorMessages(): ReactElement {
   const [value1, setValue1] = useState("");
   const [value2, setValue2] = useState("");
   return (
@@ -68,6 +68,4 @@ const SimpleHelpAndErrorMessages: FC = () => {
       </div>
     </Grid>
   );
-};
-
-export default SimpleHelpAndErrorMessages;
+}

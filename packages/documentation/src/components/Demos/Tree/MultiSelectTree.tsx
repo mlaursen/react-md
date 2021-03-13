@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   Tree,
   useTreeItemSelection,
@@ -7,7 +7,7 @@ import {
 
 import folders from "./folders";
 
-const MultiSelectTree: FC = () => {
+export default function MultiSelectTree(): ReactElement {
   const selection = useTreeItemSelection([], true);
   const expansion = useTreeItemExpansion([]);
 
@@ -20,6 +20,4 @@ const MultiSelectTree: FC = () => {
       {...expansion}
     />
   );
-};
-
-export default MultiSelectTree;
+}

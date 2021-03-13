@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 
 import { FormattedSassDocItem } from "utils/sassdoc";
 
@@ -11,7 +11,11 @@ export interface SectionProps {
   packageName: string;
 }
 
-const Section: FC<SectionProps> = ({ items, type, packageName }) => {
+export default function Section({
+  items,
+  type,
+  packageName,
+}: SectionProps): ReactElement | null {
   if (!items.length) {
     return null;
   }
@@ -24,6 +28,4 @@ const Section: FC<SectionProps> = ({ items, type, packageName }) => {
       ))}
     </>
   );
-};
-
-export default Section;
+}

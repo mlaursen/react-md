@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Select } from "@react-md/form";
 
 import immutableStates from "constants/states";
@@ -6,7 +6,7 @@ import useSelect from "./useSelect";
 
 const states = immutableStates.slice();
 
-const UsingKeys: FC = () => {
+export default function UsingKeys(): ReactElement {
   const [value, handleChange] = useSelect("");
   return (
     <Select
@@ -20,6 +20,4 @@ const UsingKeys: FC = () => {
       onChange={handleChange}
     />
   );
-};
-
-export default UsingKeys;
+}

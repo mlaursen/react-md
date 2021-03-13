@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import {
   AppBarAction as RMDAppBarAction,
   AppBarActionProps,
@@ -10,7 +10,7 @@ interface Props extends AppBarActionProps {
   tooltip?: ReactNode;
 }
 
-const AppBarAction: FC<Props> = ({
+export default function AppBarAction({
   id,
   tooltip,
   onMouseEnter,
@@ -21,19 +21,19 @@ const AppBarAction: FC<Props> = ({
   onKeyDown,
   children,
   ...props
-}) => (
-  <Tooltipped
-    id={id}
-    tooltip={tooltip}
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-    onTouchStart={onTouchStart}
-    onTouchMove={onTouchMove}
-    onFocus={onFocus}
-    onKeyDown={onKeyDown}
-  >
-    <RMDAppBarAction {...props}>{children}</RMDAppBarAction>
-  </Tooltipped>
-);
-
-export default AppBarAction;
+}: Props): ReactElement {
+  return (
+    <Tooltipped
+      id={id}
+      tooltip={tooltip}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onFocus={onFocus}
+      onKeyDown={onKeyDown}
+    >
+      <RMDAppBarAction {...props}>{children}</RMDAppBarAction>
+    </Tooltipped>
+  );
+}

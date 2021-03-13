@@ -32,7 +32,7 @@ However, it is recommended to also provide a `label` and `placeholder` text to
 help the user understand this component.
 
 ```tsx
-import React, { FC } from "react";
+import React from "react";
 import { AutoComplete } from "@react-md/autocomplete";
 
 const fruits = [
@@ -47,15 +47,15 @@ const fruits = [
   "Strawberry",
 ];
 
-const Example: FC = () => (
-  <AutoComplete
-    id="search-fruits"
-    name="fruits"
-    label="Fruits"
-    placeholder="Kiwi..."
-    data={fruits}
-  />
-);
-
-export default Example;
+function Example() {
+  return (
+    <AutoComplete
+      id="search-fruits"
+      name="fruits"
+      label="Fruits"
+      placeholder="Kiwi..."
+      data={fruits}
+    />
+  );
+}
 ```

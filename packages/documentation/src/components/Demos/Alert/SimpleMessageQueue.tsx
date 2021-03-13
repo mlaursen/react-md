@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { MessageQueue, ToastMessage, useAddMessage } from "@react-md/alert";
 import { Button } from "@react-md/button";
 import { Form, Radio, useChoice } from "@react-md/form";
@@ -57,7 +57,7 @@ const messages: MessageRecord = {
   },
 };
 
-const SimpleMessageQueue: FC = () => {
+function SimpleMessageQueue(): ReactElement {
   const addMessage = useAddMessage();
   const [key, handleKeyChange] = useChoice<MessageKeys>(SINGLE_LINE);
 
@@ -108,7 +108,7 @@ const SimpleMessageQueue: FC = () => {
       </Button>
     </Form>
   );
-};
+}
 
 export default function SimpleMessageQueueContainer(): ReactElement {
   return (

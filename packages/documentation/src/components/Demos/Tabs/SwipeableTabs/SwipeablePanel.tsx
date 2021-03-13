@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties } from "react";
+import React, { CSSProperties, ReactElement } from "react";
 import { TabPanel, TabPanelProps } from "@react-md/tabs";
 import { Text } from "@react-md/typography";
 
@@ -23,13 +23,13 @@ function isStyleable(
   return index === activeIndex || index + incrementor === activeIndex;
 }
 
-const SwipeablePanel: FC<SwipeablePanelProps> = ({
+export default function SwipeablePanel({
   index,
   activeIndex,
   distance,
   swiping,
   ...props
-}) => {
+}: SwipeablePanelProps): ReactElement {
   let style: CSSProperties | undefined;
   if (swiping && isStyleable(index, activeIndex, distance)) {
     const transform = `translateX(${distance})`;
@@ -41,6 +41,4 @@ const SwipeablePanel: FC<SwipeablePanelProps> = ({
       <Text type="headline-4">{`Content ${index + 1}`}</Text>
     </TabPanel>
   );
-};
-
-export default SwipeablePanel;
+}

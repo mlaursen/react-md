@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
 import { Checkbox, Form, InputToggleProps, useChecked } from "@react-md/form";
 import {
@@ -8,11 +8,11 @@ import {
 
 import styles from "./CustomCheckboxes.module.scss";
 
-const CustomCheckbox: FC<InputToggleProps> = ({
+function CustomCheckbox({
   defaultChecked = false,
   onChange: propOnChange,
   ...props
-}) => {
+}: InputToggleProps): ReactElement {
   const [checked, onChange] = useChecked(defaultChecked, propOnChange);
 
   return (
@@ -24,48 +24,48 @@ const CustomCheckbox: FC<InputToggleProps> = ({
       disableIconOverlay
     />
   );
-};
+}
 
-const CustomCheckboxes: FC = () => (
-  <Form>
-    <CustomCheckbox
-      id="custom-checkbox-1"
-      name="custom-checkbox"
-      label="Checkbox 1"
-    />
-    <CustomCheckbox
-      id="custom-checkbox-2"
-      name="custom-checkbox"
-      label="Checkbox 2"
-      defaultChecked
-    />
-    <CustomCheckbox
-      id="custom-checkbox-3"
-      name="custom-checkbox"
-      label="Checkbox 3"
-      disabled
-    />
-    <CustomCheckbox
-      id="custom-checkbox-4"
-      name="custom-checkbox"
-      label="Checkbox 4"
-      disabled
-      defaultChecked
-    />
-    <Divider />
-    <Checkbox
-      id="custom-checkbox-5"
-      label="Super Small"
-      name="custom-checkbox"
-      className={styles.small}
-    />
-    <Checkbox
-      id="custom-checkbox-6"
-      label="Super Large"
-      name="custom-checkbox"
-      className={styles.large}
-    />
-  </Form>
-);
-
-export default CustomCheckboxes;
+export default function CustomCheckboxes(): ReactElement {
+  return (
+    <Form>
+      <CustomCheckbox
+        id="custom-checkbox-1"
+        name="custom-checkbox"
+        label="Checkbox 1"
+      />
+      <CustomCheckbox
+        id="custom-checkbox-2"
+        name="custom-checkbox"
+        label="Checkbox 2"
+        defaultChecked
+      />
+      <CustomCheckbox
+        id="custom-checkbox-3"
+        name="custom-checkbox"
+        label="Checkbox 3"
+        disabled
+      />
+      <CustomCheckbox
+        id="custom-checkbox-4"
+        name="custom-checkbox"
+        label="Checkbox 4"
+        disabled
+        defaultChecked
+      />
+      <Divider />
+      <Checkbox
+        id="custom-checkbox-5"
+        label="Super Small"
+        name="custom-checkbox"
+        className={styles.small}
+      />
+      <Checkbox
+        id="custom-checkbox-6"
+        label="Super Large"
+        name="custom-checkbox"
+        className={styles.large}
+      />
+    </Form>
+  );
+}

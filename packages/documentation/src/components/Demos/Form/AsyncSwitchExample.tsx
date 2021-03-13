@@ -1,8 +1,8 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { AsyncSwitch, Checkbox, useChecked } from "@react-md/form";
 import { useTimeout } from "@react-md/utils";
 
-const AsyncSwitchExample: FC = () => {
+export default function AsyncSwitchExample(): ReactElement {
   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
   const [fail, handleFailChange] = useChecked(false);
@@ -35,6 +35,4 @@ const AsyncSwitchExample: FC = () => {
       />
     </>
   );
-};
-
-export default AsyncSwitchExample;
+}

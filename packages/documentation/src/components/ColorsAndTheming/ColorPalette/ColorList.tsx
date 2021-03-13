@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 
 import Color, { ColorValue } from "./Color";
 
@@ -9,7 +9,10 @@ interface ColorListProps {
   colors: ColorValue[];
 }
 
-const ColorList: FC<ColorListProps> = ({ baseColor, colors }) => {
+export default function ColorList({
+  baseColor,
+  colors,
+}: ColorListProps): ReactElement {
   const baseName = `rmd-${baseColor}-500`;
   const baseValue = (colors.find((c) => c.name === baseName) || colors[6])
     .value;
@@ -31,6 +34,4 @@ const ColorList: FC<ColorListProps> = ({ baseColor, colors }) => {
       ))}
     </ol>
   );
-};
-
-export default ColorList;
+}

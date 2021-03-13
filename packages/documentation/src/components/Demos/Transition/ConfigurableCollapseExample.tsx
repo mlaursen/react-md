@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Button } from "@react-md/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
 import { DialogFooter } from "@react-md/dialog";
@@ -16,7 +16,7 @@ import styles from "./ConfigurableCollapseExample.module.scss";
 
 const options = ["undefined", "true", "false"];
 
-const ConfigurableCollapseExample: FC = () => {
+export default function ConfigurableCollapseExample(): ReactElement {
   const [collapsed, setCollapsed] = useState(true);
   const [minHeight, minHeightProps, { reset: resetMinHeight }] = useNumberField(
     {
@@ -143,6 +143,4 @@ const ConfigurableCollapseExample: FC = () => {
       </Collapse>
     </>
   );
-};
-
-export default ConfigurableCollapseExample;
+}

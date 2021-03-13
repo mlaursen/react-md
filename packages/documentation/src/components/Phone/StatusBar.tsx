@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import {
@@ -14,7 +14,10 @@ export interface StatusBarProps {
   isPhone: boolean;
 }
 
-const StatusBar: FC<StatusBarProps> = ({ id, isPhone }) => {
+export default function StatusBar({
+  id,
+  isPhone,
+}: StatusBarProps): ReactElement | null {
   if (isPhone) {
     return null;
   }
@@ -35,6 +38,4 @@ const StatusBar: FC<StatusBarProps> = ({ id, isPhone }) => {
       <BatteryFullSVGIcon role="presentation" className={styles.icon} />
     </AppBar>
   );
-};
-
-export default StatusBar;
+}

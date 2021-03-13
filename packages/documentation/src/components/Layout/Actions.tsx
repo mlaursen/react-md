@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { useAppSize } from "@react-md/utils";
 
 import { CodePreferenceToggle } from "components/CodePreference";
@@ -9,7 +9,7 @@ import ActionMenu from "./ActionMenu";
 import GithubLink from "./GithubLink";
 import Search from "./Search";
 
-const Actions: FC = () => {
+export default function Actions(): ReactElement {
   const { isPhone } = useAppSize();
   if (isPhone) {
     return (
@@ -29,6 +29,4 @@ const Actions: FC = () => {
       <ToggleRTL as="action" />
     </>
   );
-};
-
-export default Actions;
+}

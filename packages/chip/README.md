@@ -23,10 +23,10 @@ and more customization information, but an example usage is shown below.
 ## Usage
 
 ```tsx
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Chip } from "@react-md/chip";
 
-const Example: FC = () => <Chip id="example-chip-1">I'm a chip!</Chip>;
-
-export default Example;
+export default function Example(): ReactElement {
+  return <Chip id="example-chip-1">I'm a chip!</Chip>;
+}
 ```

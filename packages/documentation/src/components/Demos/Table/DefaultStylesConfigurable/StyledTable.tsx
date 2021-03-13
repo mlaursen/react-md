@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import {
   Caption,
   Table,
@@ -22,7 +22,7 @@ interface ContainerProps {
 type RowProps = Required<TableRowConfiguration> | undefined;
 type CellProps = Required<TableCellConfiguration> | undefined;
 
-const Container: FC<ContainerProps> = ({ container, children }) => {
+function Container({ container, children }: ContainerProps): ReactElement {
   if (!container) {
     return children;
   }
@@ -30,9 +30,9 @@ const Container: FC<ContainerProps> = ({ container, children }) => {
   return (
     <TableContainer className={styles.container}>{children}</TableContainer>
   );
-};
+}
 
-const StyledTable: FC = () => {
+export default function StyledTable(): ReactElement {
   const {
     rows,
     cols,
@@ -104,6 +104,4 @@ const StyledTable: FC = () => {
       </Table>
     </Container>
   );
-};
-
-export default StyledTable;
+}

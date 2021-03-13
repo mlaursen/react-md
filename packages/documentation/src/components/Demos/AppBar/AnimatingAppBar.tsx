@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { AppBar, AppBarAction, AppBarNav } from "@react-md/app-bar";
 import { Avatar } from "@react-md/avatar";
 import avatarVariables from "@react-md/avatar/dist/scssVariables";
@@ -31,7 +31,7 @@ const HEIGHT = 96;
 // and just looked "decent"
 const SCROLL_MULTIPLIER = 0.314;
 
-const AnimatingAppBar: FC = () => {
+export default function AnimatingAppBar(): ReactElement {
   const [height, setHeight] = useState(`${HEIGHT}px`);
 
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
@@ -90,6 +90,4 @@ const AnimatingAppBar: FC = () => {
       </div>
     </div>
   );
-};
-
-export default AnimatingAppBar;
+}

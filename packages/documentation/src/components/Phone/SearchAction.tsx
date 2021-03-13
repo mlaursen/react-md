@@ -1,22 +1,23 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { AppBarAction, AppBarActionProps } from "@react-md/app-bar";
 import { SearchSVGIcon } from "@react-md/material-icons";
 
 import { usePhoneContext } from "./context";
 
-const SearchAction: FC<AppBarActionProps> = ({ children, ...props }) => {
+export default function SearchAction({
+  children,
+  ...props
+}: AppBarActionProps): ReactElement {
   const { id } = usePhoneContext();
   return (
     <AppBarAction {...props} id={`${id}-search`}>
       {children}
     </AppBarAction>
   );
-};
+}
 
 SearchAction.defaultProps = {
   "aria-label": "Search",
   children: <SearchSVGIcon />,
   first: true,
 };
-
-export default SearchAction;

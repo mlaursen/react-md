@@ -1,4 +1,9 @@
-import React, { Dispatch, FC, MutableRefObject, SetStateAction } from "react";
+import React, {
+  Dispatch,
+  MutableRefObject,
+  ReactElement,
+  SetStateAction,
+} from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 
 import { useChecked } from "../useChecked";
@@ -11,7 +16,7 @@ interface Props {
   defaultChecked: boolean | (() => boolean);
 }
 
-const Test: FC<Props> = ({ onChange, defaultChecked }) => {
+function Test({ onChange, defaultChecked }: Props): ReactElement {
   const [checked, handleChange, setChecked] = useChecked(
     defaultChecked,
     onChange
@@ -28,7 +33,7 @@ const Test: FC<Props> = ({ onChange, defaultChecked }) => {
       onChange={handleChange}
     />
   );
-};
+}
 
 describe("useChecked", () => {
   it("should update the input state as expected", () => {

@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { ReactElement, useCallback, useState } from "react";
 import {
   Checkbox,
   Fieldset,
@@ -11,7 +11,7 @@ import TextFieldThemeConfig from "./TextFieldThemeConfig";
 
 const options = Array.from({ length: 8 }, (_, i) => `Option ${i + 1}`);
 
-const SelectExample: FC = () => {
+export default function SelectExample(): ReactElement {
   const [value, setValue] = useState("");
   const handleChange = useCallback(
     (nextValue: string, _option: ListboxOption) => {
@@ -46,6 +46,4 @@ const SelectExample: FC = () => {
       </Fieldset>
     </TextFieldThemeConfig>
   );
-};
-
-export default SelectExample;
+}

@@ -18,45 +18,45 @@ import StylingPros from "./StylingPros";
 
 import styles from "./LibraryInfo.module.scss";
 
-const LibraryInfo = (): ReactElement | null => (
-  <>
-    <TextContainer>
-      <Text type="headline-6" component="p">
-        Before you choosing this library, it is highly recommended to check out
-        the pros and cons list below.
-      </Text>
-    </TextContainer>
-    <Table fullWidth className={styles.container} disableHover>
-      <Header />
-      <TableBody vAlign="top" lineWrap="padded">
-        <ResponsiveBlock
-          name="Styling"
-          pros={<StylingPros />}
-          cons={<StylingCons />}
-        />
-        <ResponsiveBlock
-          name="Components"
-          pros={<ComponentsPros />}
-          cons={<ComponentsCons />}
-        />
-        <ResponsiveBlock
-          name="Accessibility"
-          pros={<AccessibilityPros />}
-          cons={<AccessibilityCons />}
-        />
-        <ResponsiveBlock
-          name="Documentation"
-          pros={<DocumentationPros />}
-          cons={<DocumentationCons />}
-        />
-        <ResponsiveBlock
-          name="Other"
-          pros={<OtherPros />}
-          cons={<OtherCons />}
-        />
-      </TableBody>
-    </Table>
-  </>
-);
-
-export default LibraryInfo;
+export default function LibraryInfo(): ReactElement | null {
+  return (
+    <>
+      <TextContainer>
+        <Text type="headline-6" component="p">
+          Before you choosing this library, it is highly recommended to check
+          out the pros and cons list below.
+        </Text>
+      </TextContainer>
+      <Table fullWidth className={styles.container} disableHover>
+        <Header />
+        <TableBody vAlign="top" lineWrap="padded">
+          <ResponsiveBlock
+            name="Styling"
+            pros={<StylingPros />}
+            cons={<StylingCons />}
+          />
+          <ResponsiveBlock
+            name="Components"
+            pros={<ComponentsPros />}
+            cons={<ComponentsCons />}
+          />
+          <ResponsiveBlock
+            name="Accessibility"
+            pros={<AccessibilityPros />}
+            cons={<AccessibilityCons />}
+          />
+          <ResponsiveBlock
+            name="Documentation"
+            pros={<DocumentationPros />}
+            cons={<DocumentationCons />}
+          />
+          <ResponsiveBlock
+            name="Other"
+            pros={<OtherPros />}
+            cons={<OtherCons />}
+          />
+        </TableBody>
+      </Table>
+    </>
+  );
+}

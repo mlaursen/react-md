@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,
@@ -10,7 +10,7 @@ import {
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
-const SimpleExample: FC = () => {
+export default function SimpleExample(): ReactElement {
   const [visible, enable, disable] = useToggle(false);
   return (
     <>
@@ -37,6 +37,4 @@ const SimpleExample: FC = () => {
       </Dialog>
     </>
   );
-};
-
-export default SimpleExample;
+}

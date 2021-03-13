@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import { HomeSVGIcon } from "@react-md/material-icons";
@@ -14,7 +14,7 @@ interface Props {
   className?: string;
 }
 
-const NotFoundPage: FC<Props> = ({ className }) => {
+export default function NotFoundPage({ className }: Props): ReactElement {
   return (
     <MediaContainer
       className={cn(styles.container, className)}
@@ -43,6 +43,4 @@ const NotFoundPage: FC<Props> = ({ className }) => {
       </LinkButton>
     </MediaContainer>
   );
-};
-
-export default NotFoundPage;
+}

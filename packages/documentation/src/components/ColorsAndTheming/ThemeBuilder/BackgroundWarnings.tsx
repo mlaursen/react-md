@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   HexString,
   isContrastCompliant,
@@ -23,13 +23,13 @@ const DARK_TEXT_SECONDARY =
 const LIGHT_TEXT_SECONDARY =
   scssVariables["rmd-theme-light-secondary-text-color"];
 
-const BackgroundWarnings: FC<BackgroundWarningsProps> = ({
+export default function BackgroundWarnings({
   className,
   primaryColor,
   secondaryColor,
   isDark,
   compliance,
-}) => {
+}: BackgroundWarningsProps): ReactElement | null {
   const warnings: string[] = [];
   const backgroundColor = isDark ? DARK_BG : LIGHT_BG;
   const textSecondary = isDark ? DARK_TEXT_SECONDARY : LIGHT_TEXT_SECONDARY;
@@ -70,6 +70,4 @@ or create a different high-contrast theme for these users.
 `}
     </Markdown>
   );
-};
-
-export default BackgroundWarnings;
+}

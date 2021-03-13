@@ -1,10 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 
-const AddingOnClick: FC = () => {
+export default function AddingOnClick(): ReactElement {
   const [value, setValue] = useState("None");
 
   const onClick = (event: React.MouseEvent): void => {
@@ -43,6 +43,4 @@ const AddingOnClick: FC = () => {
       </DropdownMenu>
     </>
   );
-};
-
-export default AddingOnClick;
+}

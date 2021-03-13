@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Collapse } from "@react-md/transition";
 import { Card, CardHeader, CardTitle, CardSubtitle } from "@react-md/card";
 import { Avatar } from "@react-md/avatar";
@@ -15,7 +15,7 @@ import { MediaContainer } from "@react-md/media";
 
 import Container from "./Container";
 
-const ExpandableCards: FC = () => {
+export default function ExpandableCards(): ReactElement {
   const [expanded, , , toggle] = useToggle(false);
   return (
     <Container centered>
@@ -59,6 +59,4 @@ const ExpandableCards: FC = () => {
       </Card>
     </Container>
   );
-};
-
-export default ExpandableCards;
+}

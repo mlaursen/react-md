@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import {
   ArrowDropDownSVGIcon,
@@ -96,7 +96,7 @@ const getItemProps: GetItemProps<Item> = (item) => {
   };
 };
 
-const CustomizingTreeItems: FC = () => {
+export default function CustomizingTreeItems(): ReactElement {
   const selection = useTreeItemSelection([demo.itemId], false);
   const expansion = useTreeItemExpansion([
     srcFolder.itemId,
@@ -114,6 +114,4 @@ const CustomizingTreeItems: FC = () => {
       getItemProps={getItemProps}
     />
   );
-};
-
-export default CustomizingTreeItems;
+}

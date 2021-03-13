@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import {
   BrightnessHighSVGIcon,
   BrightnessLowSVGIcon,
@@ -12,7 +12,7 @@ import ActionChip from "./ActionChip";
 const id = "action-chip-lights";
 const progressId = `${id}-progress`;
 
-const ActionChipLights: FC = () => {
+export default function ActionChipLights(): ReactElement {
   const [enabled, setEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -54,6 +54,4 @@ const ActionChipLights: FC = () => {
       Turn on lights
     </ActionChip>
   );
-};
-
-export default ActionChipLights;
+}

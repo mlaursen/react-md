@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Checkbox, useChecked } from "@react-md/form";
 import { TabsManager, Tabs, TabPanels } from "@react-md/tabs";
@@ -9,7 +9,7 @@ import styles from "./PersistentTabs.module.scss";
 
 const tabs = ["Tab 1", "Tab 2"];
 
-const PersistentTabs: FC = () => {
+export default function PersistentTabs(): ReactElement {
   const [persistent, handleChange] = useChecked(false);
   return (
     <TabsManager tabs={tabs} tabsId="persistent-tabs">
@@ -30,6 +30,4 @@ const PersistentTabs: FC = () => {
       </TabPanels>
     </TabsManager>
   );
-};
-
-export default PersistentTabs;
+}

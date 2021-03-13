@@ -1,4 +1,4 @@
-import React, { FC, MutableRefObject } from "react";
+import React, { MutableRefObject } from "react";
 import { render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
@@ -40,7 +40,7 @@ describe("useNestedDialogFixes", () => {
     >;
 
     const firstResult: Result = { current: undefined };
-    const First: FC = () => {
+    function First() {
       firstResult.current = useNestedDialogFixes({
         id: "dialog-1",
         visible: true,
@@ -49,10 +49,10 @@ describe("useNestedDialogFixes", () => {
       });
 
       return null;
-    };
+    }
 
     const secondResult: Result = { current: undefined };
-    const Second: FC = () => {
+    function Second() {
       secondResult.current = useNestedDialogFixes({
         id: "dialog-2",
         visible: true,
@@ -61,14 +61,16 @@ describe("useNestedDialogFixes", () => {
       });
 
       return null;
-    };
+    }
 
-    const Test = () => (
-      <NestedDialogContextProvider>
-        <First />
-        <Second />
-      </NestedDialogContextProvider>
-    );
+    function Test() {
+      return (
+        <NestedDialogContextProvider>
+          <First />
+          <Second />
+        </NestedDialogContextProvider>
+      );
+    }
 
     render(<Test />);
     expect(firstResult.current).toEqual({
@@ -87,7 +89,7 @@ describe("useNestedDialogFixes", () => {
     const warn = jest.spyOn(console, "warn");
     // hide warnings
     warn.mockImplementation(() => {});
-    const Dialog: FC = () => {
+    function Dialog() {
       useNestedDialogFixes({
         id: "dialog-id",
         visible: true,
@@ -96,15 +98,16 @@ describe("useNestedDialogFixes", () => {
       });
 
       return null;
-    };
-    const Test: FC = () => {
+    }
+
+    function Test() {
       return (
         <NestedDialogContextProvider>
           <Dialog />
           <Dialog />
         </NestedDialogContextProvider>
       );
-    };
+    }
 
     const { unmount } = render(<Test />);
     unmount();

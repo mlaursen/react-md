@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 
 import { GITHUB_URL } from "constants/github";
@@ -13,17 +13,13 @@ export interface GithubLinkProps extends Omit<LinkButtonProps, "href"> {
   inherit?: boolean;
 }
 
-type WithDefaultProps = GithubLinkProps & { href: string };
-
-const GithubLink: FC<GithubLinkProps> = (providedProps) => {
-  const {
-    className,
-    href,
-    suffix,
-    inherit,
-    ...props
-  } = providedProps as WithDefaultProps;
-
+export default function GithubLink({
+  className,
+  href,
+  suffix,
+  inherit,
+  ...props
+}: GithubLinkProps): ReactElement {
   return (
     <LinkButton
       {...props}
@@ -39,7 +35,7 @@ const GithubLink: FC<GithubLinkProps> = (providedProps) => {
       <GithubSVGIcon />
     </LinkButton>
   );
-};
+}
 
 GithubLink.defaultProps = {
   "aria-label": "GitHub",
@@ -50,5 +46,3 @@ GithubLink.defaultProps = {
   buttonType: "icon",
   inherit: false,
 };
-
-export default GithubLink;

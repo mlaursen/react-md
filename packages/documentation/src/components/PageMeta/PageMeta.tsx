@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -13,11 +13,20 @@ interface PageMetaProps {
   };
 }
 
-type DefaultProps = Required<Pick<PageMetaProps, "description" | "image">>;
-type WithDefaultProps = PageMetaProps & DefaultProps;
+const defaultTitle = "react-md - Accessible React Material Design Components";
+const defaultDescription =
+  "Create fully accessible React components using the material design specifications.";
+const defaultImage = {
+  src: home,
+  alt:
+    "The landing page for react-md. It describes the purpose of the library and what it tries to accomplish",
+};
 
-const PageMeta: FC<PageMetaProps> = (props) => {
-  const { title, description, image } = props as WithDefaultProps;
+export default function PageMeta({
+  title = defaultTitle,
+  description = defaultDescription,
+  image = defaultImage,
+}: PageMetaProps): ReactElement {
   const router = useRouter();
 
   return (
@@ -37,17 +46,4 @@ const PageMeta: FC<PageMetaProps> = (props) => {
       <meta property="twitter:image" content={image.src} />
     </Head>
   );
-};
-
-PageMeta.defaultProps = {
-  title: "react-md - Accessible React Material Design Components",
-  description:
-    "Create fully accessible React components using the material design specifications.",
-  image: {
-    src: home,
-    alt:
-      "The landing page for react-md. It describes the purpose of the library and what it tries to accomplish",
-  },
-};
-
-export default PageMeta;
+}

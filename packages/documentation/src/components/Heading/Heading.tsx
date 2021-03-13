@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { Text, TextProps, TextTypes } from "@react-md/typography";
 
@@ -11,22 +11,22 @@ export interface HeadingProps extends Omit<TextProps, "type"> {
   level: Level;
 }
 
-const Heading: FC<HeadingProps> = ({
+export default function Heading({
   id,
   level,
   children,
   className,
   ...props
-}) => (
-  <Text
-    id={id}
-    {...props}
-    type={`headline-${level}` as TextTypes}
-    className={cn("heading", className)}
-  >
-    <HeadingLink idRef={id} />
-    {children}
-  </Text>
-);
-
-export default Heading;
+}: HeadingProps): ReactElement {
+  return (
+    <Text
+      id={id}
+      {...props}
+      type={`headline-${level}` as TextTypes}
+      className={cn("heading", className)}
+    >
+      <HeadingLink idRef={id} />
+      {children}
+    </Text>
+  );
+}

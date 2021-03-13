@@ -1,6 +1,6 @@
 // keys aren't required for the dropdown menu items
 /* eslint-disable react/jsx-key */
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Checkbox } from "@react-md/form";
 import {
   DropdownMenu,
@@ -8,28 +8,36 @@ import {
   MenuItemSeparator,
 } from "@react-md/menu";
 
-const InfiniteNestedMenus: FC<{
+interface InfiniteNestedMenusProps {
   depth: number;
   index: number;
   portal: boolean;
-}> = ({ depth, index, portal }) => (
-  <DropdownMenuItem
-    id={`nested-menu-depth-${index}-${depth}`}
-    portal={portal}
-    items={[
-      "Item 1",
-      "Item 2",
-      ...Array.from({ length: 4 }, (_, i) => (
-        <InfiniteNestedMenus depth={depth + 1} index={i} portal={portal} />
-      )),
-      "Item 8",
-    ]}
-  >
-    {`Current depth: ${depth} and index: ${index}`}
-  </DropdownMenuItem>
-);
+}
 
-const NestedDropdownMenus: FC = () => {
+function InfiniteNestedMenus({
+  depth,
+  index,
+  portal,
+}: InfiniteNestedMenusProps): ReactElement {
+  return (
+    <DropdownMenuItem
+      id={`nested-menu-depth-${index}-${depth}`}
+      portal={portal}
+      items={[
+        "Item 1",
+        "Item 2",
+        ...Array.from({ length: 4 }, (_, i) => (
+          <InfiniteNestedMenus depth={depth + 1} index={i} portal={portal} />
+        )),
+        "Item 8",
+      ]}
+    >
+      {`Current depth: ${depth} and index: ${index}`}
+    </DropdownMenuItem>
+  );
+}
+
+export default function NestedDropdownMenus(): ReactElement {
   const [portal, setPortal] = useState(true);
 
   return (
@@ -57,6 +65,4 @@ const NestedDropdownMenus: FC = () => {
       </DropdownMenu>
     </>
   );
-};
-
-export default NestedDropdownMenus;
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Select } from "@react-md/form";
 
 import desserts from "constants/desserts";
@@ -22,7 +22,7 @@ const options = desserts.map(({ name, calories }, i) => ({
   ),
 }));
 
-const CustomChildren: FC = () => {
+export default function CustomChildren(): ReactElement {
   const [value, handleChange] = useSelect(options[0].value);
   return (
     <Select
@@ -34,6 +34,4 @@ const CustomChildren: FC = () => {
       onChange={handleChange}
     />
   );
-};
-
-export default CustomChildren;
+}

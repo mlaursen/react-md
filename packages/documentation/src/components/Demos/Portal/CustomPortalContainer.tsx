@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Radio, useChoice } from "@react-md/form";
 import { Portal } from "@react-md/portal";
 import { Text } from "@react-md/typography";
@@ -16,7 +16,7 @@ const values = [
   },
 ];
 
-const CustomPortalContainer: FC = () => {
+export default function CustomPortalContainer(): ReactElement {
   const [selected, handleChange] = useChoice<"0" | "1" | "2">("0");
 
   return (
@@ -61,6 +61,4 @@ const CustomPortalContainer: FC = () => {
       </div>
     </>
   );
-};
-
-export default CustomPortalContainer;
+}

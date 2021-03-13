@@ -14,21 +14,23 @@ the `Link` from `react-router` and provide all the `react-router` link specific
 props into the react-md `Link`:
 
 ```tsx
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { render } from "react-dom";
 import { Link as ReactRouterLink, LinkProps } from "react-router";
 import { Link as ReactMDLink } from "@react-md/link";
 
-const Link: FC<LinkProps> = (props) => (
-  <ReactMDLink component={ReactRouterLink} {...props} />
-);
+function Link(props: LinkProps): ReactElement {
+  return <ReactMDLink component={ReactRouterLink} {...props} />;
+}
 
-const App = () => (
-  <div>
-    <Link to="/">Home</Link>
-    <Link to="/login">Login</Link>
-  </div>
-);
+function App(): ReactElement {
+  return (
+    <div>
+      <Link to="/">Home</Link>
+      <Link to="/login">Login</Link>
+    </div>
+  );
+}
 
 render(<App />, document.getElementById("root"));
 ```

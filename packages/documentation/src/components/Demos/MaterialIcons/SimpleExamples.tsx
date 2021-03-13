@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Text } from "@react-md/typography";
 import {
   AccessAlarmFontIcon,
@@ -13,19 +13,19 @@ import {
 
 import styles from "./SimpleExamples.module.scss";
 
-const SimpleExamples: FC = () => (
-  <div className={styles.container}>
-    <Text type="headline-4">Font Icon Versions</Text>
-    <AccessAlarmFontIcon />
-    <Rotation3DFontIcon />
-    <HomeFontIcon />
-    <TvFontIcon />
-    <Text type="headline-4">SVG Icon Versions</Text>
-    <AccessAlarmSVGIcon />
-    <Rotation3DSVGIcon />
-    <HomeSVGIcon />
-    <TvSVGIcon />
-  </div>
-);
-
-export default SimpleExamples;
+export default function SimpleExamples(): ReactElement {
+  return (
+    <div className={styles.container}>
+      <Text type="headline-4">Font Icon Versions</Text>
+      <AccessAlarmFontIcon />
+      <Rotation3DFontIcon />
+      <HomeFontIcon />
+      <TvFontIcon />
+      <Text type="headline-4">SVG Icon Versions</Text>
+      <AccessAlarmSVGIcon />
+      <Rotation3DSVGIcon />
+      <HomeSVGIcon />
+      <TvSVGIcon />
+    </div>
+  );
+}

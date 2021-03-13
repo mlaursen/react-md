@@ -1,11 +1,13 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { differenceInDays, parse, isAfter } from "date-fns";
 
 export interface RelativeDateProps {
   date: string | Date;
 }
 
-const RelativeDate: FC<RelativeDateProps> = ({ date: propDate }) => {
+export default function RelativeDate({
+  date: propDate,
+}: RelativeDateProps): ReactElement | null {
   const date =
     typeof propDate === "string"
       ? parse(propDate, "MM/dd/yyyy", new Date())
@@ -31,6 +33,4 @@ const RelativeDate: FC<RelativeDateProps> = ({ date: propDate }) => {
       ({relative})
     </>
   );
-};
-
-export default RelativeDate;
+}

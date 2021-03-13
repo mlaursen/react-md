@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 
 import Phone, { PhoneProps } from "./Phone";
 
@@ -7,16 +7,14 @@ export interface ConditionalPhoneProps extends PhoneProps {
   children: ReactNode;
 }
 
-const ConditionalPhone: FC<ConditionalPhoneProps> = ({
+export default function ConditionalPhone({
   enabled,
   children,
   ...props
-}) => {
+}: ConditionalPhoneProps): ReactElement {
   if (!enabled) {
     return <>{children}</>;
   }
 
   return <Phone {...props}>{children}</Phone>;
-};
-
-export default ConditionalPhone;
+}

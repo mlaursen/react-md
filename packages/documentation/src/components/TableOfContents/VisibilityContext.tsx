@@ -1,6 +1,7 @@
 import React, {
   createContext,
-  FC,
+  ReactElement,
+  ReactNode,
   useContext,
   useEffect,
   useMemo,
@@ -35,10 +36,15 @@ const TOCActions = createContext<TOCActionsContext>({
   toggle: noop,
 });
 
-export const TOCVisibilityProvider: FC<{ pathname: string }> = ({
+interface TOCVisibilityProviderProps {
+  pathname: string;
+  children: ReactNode;
+}
+
+export function TOCVisibilityProvider({
   children,
   pathname,
-}) => {
+}: TOCVisibilityProviderProps): ReactElement {
   const { isLargeDesktop } = useAppSize();
   const [visible, show, hide, toggle] = useToggle(isLargeDesktop);
 
@@ -68,7 +74,7 @@ export const TOCVisibilityProvider: FC<{ pathname: string }> = ({
       <TOCActions.Provider value={actions}>{children}</TOCActions.Provider>
     </TOCVisibility.Provider>
   );
-};
+}
 
 export function useTOCVisibility(): TOCVisibility {
   return useContext(TOCVisibility);

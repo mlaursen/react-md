@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
@@ -20,12 +20,12 @@ export interface FileNotFoundProps {
 
 const block = bem("sandbox-modal");
 
-const FileNotFound: FC<FileNotFoundProps> = ({
+export default function FileNotFound({
   offset,
   fileName,
   onFileChange,
   sandbox,
-}) => {
+}: FileNotFoundProps): ReactElement {
   return (
     <DialogContent
       className={cn({
@@ -55,6 +55,4 @@ const FileNotFound: FC<FileNotFoundProps> = ({
       </TextContainer>
     </DialogContent>
   );
-};
-
-export default FileNotFound;
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,
@@ -18,7 +18,9 @@ interface NestedDemoProps {
  * This demo will recursively call itself until there have been 3 dialogs created
  * and then stop.
  */
-const NestedDemo: FC<NestedDemoProps> = ({ depth }) => {
+export default function NestedDemo({
+  depth,
+}: NestedDemoProps): ReactElement | null {
   const [visible, enable, disable] = useToggle(false);
   if (depth >= 3) {
     return null;
@@ -57,6 +59,4 @@ const NestedDemo: FC<NestedDemoProps> = ({ depth }) => {
       </Dialog>
     </>
   );
-};
-
-export default NestedDemo;
+}

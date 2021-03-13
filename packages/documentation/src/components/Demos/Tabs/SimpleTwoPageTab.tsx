@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   AppBar,
   AppBarAction,
@@ -26,7 +26,7 @@ const tabs: TabConfig[] = [
   { icon: <FavoriteSVGIcon />, children: "Favorites" },
 ];
 
-const Header: FC = () => {
+function Header(): ReactElement {
   const { isTablet } = useAppSize();
 
   return (
@@ -43,36 +43,38 @@ const Header: FC = () => {
       <Tabs align={isTablet ? "center" : "left"} />
     </AppBar>
   );
-};
+}
 
-const Panels: FC = () => (
-  <TabPanels>
-    <TabPanel>
-      <GridList maxCellSize={200} clone>
-        {Array.from({ length: 10 }, (_, i) => (
-          <MediaContainer key={i}>
-            <img src={`https://picsum.photos/200?image=${i + 1}`} alt="" />
-          </MediaContainer>
-        ))}
-      </GridList>
-    </TabPanel>
-    <TabPanel>
-      <GridList maxCellSize={200} clone>
-        {Array.from({ length: 22 }, (_, i) => (
-          <MediaContainer key={i}>
-            <img src={`https://picsum.photos/200?image=${i + 51}`} alt="" />
-          </MediaContainer>
-        ))}
-      </GridList>
-    </TabPanel>
-  </TabPanels>
-);
+function Panels(): ReactElement {
+  return (
+    <TabPanels>
+      <TabPanel>
+        <GridList maxCellSize={200} clone>
+          {Array.from({ length: 10 }, (_, i) => (
+            <MediaContainer key={i}>
+              <img src={`https://picsum.photos/200?image=${i + 1}`} alt="" />
+            </MediaContainer>
+          ))}
+        </GridList>
+      </TabPanel>
+      <TabPanel>
+        <GridList maxCellSize={200} clone>
+          {Array.from({ length: 22 }, (_, i) => (
+            <MediaContainer key={i}>
+              <img src={`https://picsum.photos/200?image=${i + 51}`} alt="" />
+            </MediaContainer>
+          ))}
+        </GridList>
+      </TabPanel>
+    </TabPanels>
+  );
+}
 
-const SimpleTwoPageTab: FC = () => (
-  <TabsManager stacked tabs={tabs} tabsId="simple-two-page-tabs">
-    <Header />
-    <Panels />
-  </TabsManager>
-);
-
-export default SimpleTwoPageTab;
+export default function SimpleTwoPageTab(): ReactElement {
+  return (
+    <TabsManager stacked tabs={tabs} tabsId="simple-two-page-tabs">
+      <Header />
+      <Panels />
+    </TabsManager>
+  );
+}

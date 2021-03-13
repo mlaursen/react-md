@@ -1,11 +1,14 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 
 export interface CustomLabelProps {
   isDefault: boolean;
   children: ReactNode;
 }
 
-const CustomLabel: FC<CustomLabelProps> = ({ children, isDefault }) => {
+export default function CustomLabel({
+  children,
+  isDefault,
+}: CustomLabelProps): ReactElement {
   if (!isDefault) {
     return <>{children}</>;
   }
@@ -18,6 +21,4 @@ const CustomLabel: FC<CustomLabelProps> = ({ children, isDefault }) => {
       </small>
     </>
   );
-};
-
-export default CustomLabel;
+}

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Button } from "@react-md/button";
 import { AlarmSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
@@ -6,7 +6,7 @@ import { Sheet } from "@react-md/sheet";
 import ActionChip from "./ActionChip";
 import styles from "./ActionChipAlarm.module.scss";
 
-const ActionChipAlarm: FC = () => {
+export default function ActionChipAlarm(): ReactElement {
   const [visible, setVisible] = useState(false);
   const hide = (): void => setVisible(false);
 
@@ -41,6 +41,4 @@ const ActionChipAlarm: FC = () => {
       </Sheet>
     </>
   );
-};
-
-export default ActionChipAlarm;
+}

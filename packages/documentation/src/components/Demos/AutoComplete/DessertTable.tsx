@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Table, TableBody, TableRow, TableCell } from "@react-md/table";
 import { CrossFade } from "@react-md/transition";
 
@@ -8,7 +8,9 @@ export interface DessertTableProps {
   dessert: null | Dessert;
 }
 
-const DessertTable: FC<DessertTableProps> = ({ dessert }) => {
+export default function DessertTable({
+  dessert,
+}: DessertTableProps): ReactElement | null {
   if (!dessert) {
     return null;
   }
@@ -87,6 +89,4 @@ const DessertTable: FC<DessertTableProps> = ({ dessert }) => {
       </Table>
     </CrossFade>
   );
-};
-
-export default DessertTable;
+}

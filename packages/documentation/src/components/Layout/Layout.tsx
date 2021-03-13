@@ -1,4 +1,10 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, {
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { ConfiguredIcons } from "@react-md/icon";
 import {
   Configuration,
@@ -41,6 +47,7 @@ export interface LayoutProps
   extends Required<Pick<AppSizeListenerProps, "defaultSize">> {
   title: string;
   pathname: string;
+  children: ReactNode;
   defaultPreference: CodePreference;
 }
 
@@ -60,13 +67,13 @@ const icons: ConfiguredIcons = {
   sort: <ArrowUpwardSVGIcon />,
 };
 
-const Layout: FC<LayoutProps> = ({
+export default function Layout({
   children,
   title,
   pathname,
   defaultSize,
   defaultPreference,
-}) => {
+}: LayoutProps): ReactElement {
   const [elevated, setElevated] = useState(pathname !== "/");
   const rendered = useRef(false);
   useEffect(() => {
@@ -122,6 +129,4 @@ const Layout: FC<LayoutProps> = ({
       </TOCVisibilityProvider>
     </Configuration>
   );
-};
-
-export default Layout;
+}

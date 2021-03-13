@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect } from "react";
+import React, { ReactElement, useRef, useEffect } from "react";
 import { Text } from "@react-md/typography";
 
 import { useFixedAppBarContext } from "components/Layout/fixedAppBarContext";
@@ -6,7 +6,7 @@ import { useFixedAppBarContext } from "components/Layout/fixedAppBarContext";
 import Logo from "./Logo";
 import styles from "./Banner.module.scss";
 
-const Banner: FC = () => {
+export default function Banner(): ReactElement {
   const ref = useRef<HTMLDivElement | null>(null);
   const setElevation = useFixedAppBarContext();
   useEffect(() => {
@@ -40,6 +40,4 @@ const Banner: FC = () => {
       <Logo className={styles.logo} />
     </div>
   );
-};
-
-export default Banner;
+}

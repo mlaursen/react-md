@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import {
   Checkbox,
@@ -12,7 +12,7 @@ import { Grid, GridList, GridListCell } from "@react-md/utils";
 import gridStyles from "./Grid.module.scss";
 import styles from "./SimpleGridList.module.scss";
 
-const SimpleGridList: FC = () => {
+export default function SimpleGridList(): ReactElement {
   const [cells, cellsProps] = useNumberField({
     id: "simple-grid-list-cell-count",
     min: 0,
@@ -90,6 +90,4 @@ const SimpleGridList: FC = () => {
       </div>
     </>
   );
-};
-
-export default SimpleGridList;
+}

@@ -1,4 +1,4 @@
-import React, { MutableRefObject, FC } from "react";
+import React, { MutableRefObject, ReactElement, ReactNode } from "react";
 import { renderHook } from "@testing-library/react-hooks";
 import { render } from "@testing-library/react";
 
@@ -15,9 +15,11 @@ describe("useInheritContext", () => {
       current: undefined,
     };
 
-    const Context: FC = ({ children }) => (
-      <InheritContext.Provider value>{children}</InheritContext.Provider>
-    );
+    function Context({ children }: { children: ReactNode }): ReactElement {
+      return (
+        <InheritContext.Provider value>{children}</InheritContext.Provider>
+      );
+    }
 
     const Test1 = () => {
       result.current = useInheritContext(undefined);

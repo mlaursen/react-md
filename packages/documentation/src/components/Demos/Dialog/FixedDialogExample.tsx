@@ -1,4 +1,4 @@
-import React, { FC, useRef } from "react";
+import React, { ReactElement, useRef } from "react";
 import {
   AppBar,
   AppBarAction,
@@ -14,7 +14,7 @@ import {
 import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
-const FixedDialogExample: FC = () => {
+export default function FixedDialogExample(): ReactElement {
   const actionRef = useRef<HTMLButtonElement | null>(null);
   const [visible, show, hide] = useToggle(false);
   return (
@@ -52,6 +52,4 @@ const FixedDialogExample: FC = () => {
       </FixedDialog>
     </AppBar>
   );
-};
-
-export default FixedDialogExample;
+}

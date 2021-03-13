@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { render, act } from "@testing-library/react";
 
 import { useCSSTransition } from "../useCSSTransition";
@@ -10,11 +10,11 @@ type TestProps = Omit<
 > &
   Partial<Pick<CSSTransitionOptions<HTMLDivElement>, "timeout" | "classNames">>;
 
-const Test: FC<TestProps> = ({
+function Test({
   timeout = 150,
   classNames = "transition",
   ...props
-}) => {
+}: TestProps): ReactElement | null {
   const [rendered, transitionProps] = useCSSTransition({
     timeout,
     classNames,
@@ -30,7 +30,7 @@ const Test: FC<TestProps> = ({
       Amazing content!
     </div>
   );
-};
+}
 
 describe("useCSSTransition", () => {
   beforeAll(() => {

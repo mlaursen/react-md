@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { TabsManager, Tabs, TabPanel } from "@react-md/tabs";
 import { useCrossFade, ENTER } from "@react-md/transition";
@@ -10,7 +10,7 @@ import Page3 from "./Page3";
 
 const tabs = ["Page 1", "Page 2", "Page 3"];
 
-const CrossFadeHookExample: FC = () => {
+export default function CrossFadeHookExample(): ReactElement {
   const [page, setPage] = useState(0);
   const [, transitionProps, dispatch] = useCrossFade({ appear: false });
   const onActiveIndexChange = (page: number): void => {
@@ -47,6 +47,4 @@ const CrossFadeHookExample: FC = () => {
       </Container>
     </TabsManager>
   );
-};
-
-export default CrossFadeHookExample;
+}

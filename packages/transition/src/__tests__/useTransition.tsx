@@ -1,4 +1,4 @@
-import React, { createRef, FC, MutableRefObject, Ref } from "react";
+import React, { createRef, MutableRefObject, ReactElement, Ref } from "react";
 import { act, render } from "@testing-library/react";
 
 import { ENTERED, ENTERING, EXITED, EXITING } from "../constants";
@@ -14,12 +14,12 @@ interface TestProps extends TransitionOptions<HTMLDivElement> {
 
 const createResultRef = (): TestResult => (({} as unknown) as TestResult);
 
-const Test: FC<TestProps> = ({ result, nodeRef, ...options }) => {
+function Test({ result, nodeRef, ...options }: TestProps): ReactElement {
   const hookResult = useTransition({ ...options, ref: nodeRef });
   result.current = hookResult;
 
   return <div ref={hookResult.ref} />;
-};
+}
 
 describe("useTransition", () => {
   beforeAll(() => {
@@ -226,13 +226,13 @@ describe("useTransition", () => {
       repaint: boolean;
     }
 
-    const ScrollTopTest: FC<ScrollTopTestProps> = (props) => {
+    function ScrollTopTest(props: ScrollTopTestProps): null {
       const { ref } = useTransition({ timeout: 200, ...props });
 
       ref(div);
 
       return null;
-    };
+    }
 
     const { rerender } = render(
       <ScrollTopTest repaint={false} transitionIn={false} />

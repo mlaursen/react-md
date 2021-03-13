@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { TabPanel, TabPanels, Tabs, TabsManager } from "@react-md/tabs";
 
@@ -7,7 +7,7 @@ import PanelContent from "./PanelContent";
 import useConfiguration from "./useConfiguration";
 import styles from "./ConfigurableTabs.module.scss";
 
-const ConfigurableTabs: FC = () => {
+export default function ConfigurableTabs(): ReactElement {
   const { tabs, ...configuration } = useConfiguration();
   const {
     themed,
@@ -53,6 +53,4 @@ const ConfigurableTabs: FC = () => {
       </div>
     </>
   );
-};
-
-export default ConfigurableTabs;
+}

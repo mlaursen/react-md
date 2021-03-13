@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import { useTabFocusWrap } from "../useTabFocusWrap";
@@ -10,7 +10,12 @@ interface Props {
   count: 1 | 2 | 3;
 }
 
-const Test: FC<Props> = ({ onKeyDown, disableFocusCache, disabled, count }) => {
+function Test({
+  onKeyDown,
+  disableFocusCache,
+  disabled,
+  count,
+}: Props): ReactElement {
   const handleKeyDown = useTabFocusWrap({
     onKeyDown,
     disabled,
@@ -24,7 +29,7 @@ const Test: FC<Props> = ({ onKeyDown, disableFocusCache, disabled, count }) => {
       {count >= 3 && <input data-testid="input-3" type="text" />}
     </div>
   );
-};
+}
 
 describe("useTabFocusWrap", () => {
   it("should not focus a different element if there is only one focusable child", () => {

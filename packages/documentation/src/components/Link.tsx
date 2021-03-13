@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import { Link as RMDLink } from "@react-md/link";
 
@@ -9,7 +9,7 @@ export interface LinkProps extends Omit<NextLinkProps, "as" | "children"> {
   href: string;
 }
 
-const Link: FC<LinkProps> = ({
+export default function Link({
   children,
   shallow,
   scroll,
@@ -17,7 +17,7 @@ const Link: FC<LinkProps> = ({
   href,
   passHref,
   ...props
-}) => {
+}: LinkProps): ReactElement {
   if (href.startsWith("http")) {
     return (
       <RMDLink {...props} href={href}>
@@ -37,10 +37,8 @@ const Link: FC<LinkProps> = ({
       <RMDLink {...props}>{children}</RMDLink>
     </NextLink>
   );
-};
+}
 
 Link.defaultProps = {
   passHref: true,
 };
-
-export default Link;

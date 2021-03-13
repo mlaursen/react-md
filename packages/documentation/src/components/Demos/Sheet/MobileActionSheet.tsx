@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { ReactElement, useCallback } from "react";
 import {
   ArrowDropDownSVGIcon,
   DeleteSVGIcon,
@@ -23,7 +23,7 @@ const items = [
   { leftAddon: <DeleteSVGIcon />, children: "Delete collection" },
 ];
 
-const MenuSheet: FC<SheetProps> = ({ children, ...props }) => {
+function MenuSheet({ children, ...props }: SheetProps): ReactElement {
   const { onRequestClose } = props;
   const handleClick = useCallback(
     (event: React.MouseEvent) => {
@@ -47,7 +47,7 @@ const MenuSheet: FC<SheetProps> = ({ children, ...props }) => {
       {children}
     </Sheet>
   );
-};
+}
 
 const renderSheet: MenuRenderer = ({
   // these props are only required for the `Menu` component, but not within the sheet
@@ -61,7 +61,7 @@ const renderSheet: MenuRenderer = ({
   ...props
 }) => <MenuSheet {...props} />;
 
-const MobileActionSheet: FC = () => {
+export default function MobileActionSheet(): ReactElement {
   const { isTablet, isLandscape, isDesktop, isLargeDesktop } = useAppSize();
   const sheet = !isDesktop && !isLargeDesktop && !(isTablet && isLandscape);
   return (
@@ -74,6 +74,4 @@ const MobileActionSheet: FC = () => {
       Dropdown
     </DropdownMenu>
   );
-};
-
-export default MobileActionSheet;
+}

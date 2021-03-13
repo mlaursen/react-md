@@ -52,11 +52,11 @@ render(
 `src/App.tsx`
 
 ```tsx
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { useAddMessage } from "@react-md/alert";
 import { Button } from "@react-md/button";
 
-const App: FC = () => {
+function App(): ReactElement {
   const addMessage = useAddMessage();
 
   return (
@@ -67,7 +67,7 @@ const App: FC = () => {
       Show Message
     </Button>
   );
-};
+}
 
 export default App;
 ```

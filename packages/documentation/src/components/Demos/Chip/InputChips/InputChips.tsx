@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
 import { TextArea, TextField, FormThemeProvider } from "@react-md/form";
 import { useIsUserInteractionMode } from "@react-md/utils";
@@ -9,7 +9,7 @@ import styles from "./InputChips.module.scss";
 
 import To from "./To";
 
-const InputChips: FC = () => {
+export default function InputChips(): ReactElement {
   const isTouch = useIsUserInteractionMode("touch");
   return (
     <FormThemeProvider theme="none">
@@ -39,6 +39,4 @@ const InputChips: FC = () => {
       </Phone>
     </FormThemeProvider>
   );
-};
-
-export default InputChips;
+}

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { CircularProgress } from "@react-md/progress";
@@ -17,13 +17,13 @@ export interface CodePreviewProps {
   onFileChange: (fileName: string) => void;
 }
 
-const CodePreview: FC<CodePreviewProps> = ({
+export default function CodePreview({
   fileName,
   sandbox,
   offset,
   loading,
   onFileChange,
-}) => {
+}: CodePreviewProps): ReactElement {
   let content = "";
   let language = "markdown";
   if (sandbox && sandbox[fileName]) {
@@ -76,6 +76,4 @@ const CodePreview: FC<CodePreviewProps> = ({
       {content}
     </CodeBlock>
   );
-};
-
-export default CodePreview;
+}

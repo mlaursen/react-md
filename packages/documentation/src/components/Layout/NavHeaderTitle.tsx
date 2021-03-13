@@ -1,6 +1,6 @@
 // keys aren't required for the dropdown menu items
 /* eslint-disable react/jsx-key */
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { AppBarTitle } from "@react-md/app-bar";
 import { useLayoutConfig, isToggleableLayout } from "@react-md/layout";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
@@ -10,7 +10,7 @@ import { BELOW_INNER_RIGHT_ANCHOR } from "@react-md/utils";
 import styles from "./NavHeaderTitle.module.scss";
 import Version1MenuItem from "./Version1MenuItem";
 
-const NavHeaderTitle: FC = () => {
+export default function NavHeaderTitle(): ReactElement {
   const { layout } = useLayoutConfig();
   return (
     <>
@@ -26,6 +26,4 @@ const NavHeaderTitle: FC = () => {
       </DropdownMenu>
     </>
   );
-};
-
-export default NavHeaderTitle;
+}

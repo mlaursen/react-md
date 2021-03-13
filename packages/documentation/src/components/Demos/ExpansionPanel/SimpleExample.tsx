@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   ExpansionList,
   ExpansionPanel,
@@ -7,7 +7,7 @@ import {
 import { TextField } from "@react-md/form";
 import { Grid } from "@react-md/utils";
 
-const SimpleExample: FC = () => {
+export default function SimpleExample(): ReactElement {
   const [panels, onKeyDown] = usePanels({
     idPrefix: "simple-panels",
     count: 3,
@@ -101,6 +101,4 @@ const SimpleExample: FC = () => {
       </ExpansionPanel>
     </ExpansionList>
   );
-};
-
-export default SimpleExample;
+}

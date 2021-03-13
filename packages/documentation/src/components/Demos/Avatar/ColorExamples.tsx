@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Avatar } from "@react-md/avatar";
 import scssVariables from "@react-md/avatar/dist/scssVariables";
 import { List, ListItem } from "@react-md/list";
@@ -16,28 +16,28 @@ const transformedPeople = people.map((name, i) => ({
   color: COLORS[i % COLORS.length],
 }));
 
-const ColorExamples: FC = () => (
-  <>
-    <Container>
-      {COLORS.map((color) => (
-        <Avatar color={color} key={color}>
-          {color.substring(0, 1).toUpperCase()}
-        </Avatar>
-      ))}
-    </Container>
-    <List className={styles.list}>
-      {transformedPeople.map(({ id, name, avatar, color }, i) => (
-        <ListItem
-          id={`person-${i}`}
-          key={id}
-          leftAddon={<Avatar color={color}>{avatar}</Avatar>}
-          leftAddonType="avatar"
-        >
-          {name}
-        </ListItem>
-      ))}
-    </List>
-  </>
-);
-
-export default ColorExamples;
+export default function ColorExamples(): ReactElement {
+  return (
+    <>
+      <Container>
+        {COLORS.map((color) => (
+          <Avatar color={color} key={color}>
+            {color.substring(0, 1).toUpperCase()}
+          </Avatar>
+        ))}
+      </Container>
+      <List className={styles.list}>
+        {transformedPeople.map(({ id, name, avatar, color }, i) => (
+          <ListItem
+            id={`person-${i}`}
+            key={id}
+            leftAddon={<Avatar color={color}>{avatar}</Avatar>}
+            leftAddonType="avatar"
+          >
+            {name}
+          </ListItem>
+        ))}
+      </List>
+    </>
+  );
+}

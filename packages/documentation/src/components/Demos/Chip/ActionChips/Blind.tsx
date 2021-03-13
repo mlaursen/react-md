@@ -1,4 +1,4 @@
-import React, { FC, useRef } from "react";
+import React, { ReactElement, useRef } from "react";
 import cn from "classnames";
 import CSSTransition, {
   CSSTransitionClassNames,
@@ -19,7 +19,7 @@ const CLASSNAMES: CSSTransitionClassNames = {
   exitActive: cn(styles.exiting, styles.animate),
 };
 
-const Blind: FC<BlindProps> = ({ visible, onExited }) => {
+export default function Blind({ visible, onExited }: BlindProps): ReactElement {
   const ref = useRef<HTMLSpanElement | null>(null);
 
   return (
@@ -33,6 +33,4 @@ const Blind: FC<BlindProps> = ({ visible, onExited }) => {
       <span ref={ref} className={styles.blind} />
     </CSSTransition>
   );
-};
-
-export default Blind;
+}

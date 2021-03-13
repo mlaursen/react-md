@@ -1,4 +1,4 @@
-import React, { FC, Suspense, useState } from "react";
+import React, { ReactElement, Suspense, useState } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { CircularProgress } from "@react-md/progress";
 import { Tabs, TabsManager } from "@react-md/tabs";
@@ -16,7 +16,7 @@ interface CurrentPageProps {
   page: number;
 }
 
-const CurrentPage: FC<CurrentPageProps> = ({ page }) => {
+function CurrentPage({ page }: CurrentPageProps): ReactElement {
   let content = <Page1 />;
   if (page === 1) {
     content = <Page2 />;
@@ -25,9 +25,9 @@ const CurrentPage: FC<CurrentPageProps> = ({ page }) => {
   }
 
   return <CrossFade>{content}</CrossFade>;
-};
+}
 
-const CrossFadeExamplesAsync: FC = () => {
+export default function CrossFadeExamplesAsync(): ReactElement {
   // just make it so it doesn't start loading until a new tab is shown
   const [page, setPage] = useState<number>(-1);
   const Content = useFakeLazyImport<CurrentPageProps>(CurrentPage, page, 5000);
@@ -58,6 +58,4 @@ const CrossFadeExamplesAsync: FC = () => {
       </Container>
     </>
   );
-};
-
-export default CrossFadeExamplesAsync;
+}

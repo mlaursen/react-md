@@ -1,16 +1,16 @@
-import React, { FC, HTMLAttributes } from "react";
+import React, { HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 
 import styles from "./Container.module.scss";
 
-const Container: FC<HTMLAttributes<HTMLDivElement>> = ({
+export default function Container({
   className,
   children,
   ...props
-}) => (
-  <div {...props} className={cn(styles.container, className)}>
-    {children}
-  </div>
-);
-
-export default Container;
+}: HTMLAttributes<HTMLDivElement>): ReactElement {
+  return (
+    <div {...props} className={cn(styles.container, className)}>
+      {children}
+    </div>
+  );
+}

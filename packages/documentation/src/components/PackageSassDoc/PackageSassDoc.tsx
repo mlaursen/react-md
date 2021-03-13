@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { ReactElement, useMemo } from "react";
 
 import { PackageSassDoc as FoundSassDoc } from "utils/sassdoc";
 
@@ -11,12 +11,12 @@ interface PackageSassDocProps extends FoundSassDoc {
   packageName: string;
 }
 
-const PackageSassDoc: FC<PackageSassDocProps> = ({
+export default function PackageSassDoc({
   packageName,
   mixins: mixinRecord,
   functions: functionRecord,
   variables: variableRecord,
-}) => {
+}: PackageSassDocProps): ReactElement {
   const variables = useMemo(
     () =>
       Object.values(variableRecord).filter(
@@ -46,6 +46,4 @@ const PackageSassDoc: FC<PackageSassDocProps> = ({
       <Section items={functions} type="Functions" packageName={packageName} />
     </div>
   );
-};
-
-export default PackageSassDoc;
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { List, ListItem } from "@react-md/list";
 import { StarSVGIcon } from "@react-md/material-icons";
 
@@ -24,27 +24,27 @@ const inbox = [
   },
 ];
 
-const ThreeLineExamples: FC = () => (
-  <Container>
-    <List>
-      {inbox.map(({ subject, message }, i) => (
-        <ListItem
-          id={`three-line-item-${i}`}
-          key={i}
-          leftAddon={
-            <img src={`https://picsum.photos/40?image=100${i}`} alt="" />
-          }
-          leftAddonType="media"
-          rightAddon={<StarSVGIcon />}
-          rightAddonPosition="top"
-          secondaryText={message}
-          threeLines
-        >
-          {subject}
-        </ListItem>
-      ))}
-    </List>
-  </Container>
-);
-
-export default ThreeLineExamples;
+export default function ThreeLineExamples(): ReactElement {
+  return (
+    <Container>
+      <List>
+        {inbox.map(({ subject, message }, i) => (
+          <ListItem
+            id={`three-line-item-${i}`}
+            key={i}
+            leftAddon={
+              <img src={`https://picsum.photos/40?image=100${i}`} alt="" />
+            }
+            leftAddonType="media"
+            rightAddon={<StarSVGIcon />}
+            rightAddonPosition="top"
+            secondaryText={message}
+            threeLines
+          >
+            {subject}
+          </ListItem>
+        ))}
+      </List>
+    </Container>
+  );
+}

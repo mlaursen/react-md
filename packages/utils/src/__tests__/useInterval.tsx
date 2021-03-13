@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { render } from "@testing-library/react";
 import { act, renderHook } from "@testing-library/react-hooks";
 import { mocked } from "ts-jest/utils";
@@ -19,10 +19,10 @@ interface TestProps {
   defaultRunning?: boolean;
 }
 
-const Test: FC<TestProps> = ({ cb, delay = 300, defaultRunning = false }) => {
+function Test({ cb, delay = 300, defaultRunning = false }: TestProps): null {
   useInterval(cb, delay, defaultRunning);
   return null;
-};
+}
 
 describe("useInterval", () => {
   it("should default to not starting the interval when mounted", () => {

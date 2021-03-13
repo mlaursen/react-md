@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import {
   Card,
   CardContent,
@@ -19,7 +19,7 @@ import styles from "./ActionChips.module.scss";
 const width = 240;
 const height = width * 0.75;
 
-const ActionChips: FC = () => {
+export default function ActionChips(): ReactElement {
   const [blinds, setBlinds] = useState(false);
   return (
     <Card id="action-chips-card" className={styles.container}>
@@ -42,6 +42,4 @@ const ActionChips: FC = () => {
       </CardContent>
     </Card>
   );
-};
-
-export default ActionChips;
+}

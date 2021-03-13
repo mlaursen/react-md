@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Tabs, TabsManager } from "@react-md/tabs";
 import { CrossFade } from "@react-md/transition";
@@ -8,7 +8,7 @@ import Page1 from "./Page1";
 import Page2 from "./Page2";
 import Page3 from "./Page3";
 
-const CrossFadeExamplesStatic: FC = () => {
+export default function CrossFadeExamplesStatic(): ReactElement {
   const [page, setPage] = useState<number>(0);
   let content = <Page1 />;
   if (page === 1) {
@@ -43,6 +43,4 @@ const CrossFadeExamplesStatic: FC = () => {
       </Container>
     </>
   );
-};
-
-export default CrossFadeExamplesStatic;
+}

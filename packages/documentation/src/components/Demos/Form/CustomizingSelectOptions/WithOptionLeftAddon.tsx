@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Avatar } from "@react-md/avatar";
 import scssVariables from "@react-md/avatar/dist/scssVariables";
 import { Checkbox, Select, useChecked, ListboxOption } from "@react-md/form";
@@ -27,7 +27,7 @@ const states: ListboxOption[] = immutableStates.map(
   })
 );
 
-const WithOptionLeftAddon: FC = () => {
+export default function WithOptionLeftAddon(): ReactElement {
   const [value, handleChange] = useSelect("");
   const [disableLeftAddon, handleLeftAddonChange] = useChecked(false);
   return (
@@ -50,6 +50,4 @@ const WithOptionLeftAddon: FC = () => {
       />
     </>
   );
-};
-
-export default WithOptionLeftAddon;
+}

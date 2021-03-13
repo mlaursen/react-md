@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogFooter } from "@react-md/dialog";
 import { TextArea } from "@react-md/form";
@@ -12,7 +12,7 @@ draft. When you click on "Submit", a modal confirmation dialog will ask you
 if you really want to submit this.
 `.replace(/\r?\n/g, " ");
 
-const AlertDialogsAndModals: FC = () => {
+export default function AlertDialogsAndModals(): ReactElement {
   const [state, setState] = useState({ visible: false, modal: false });
   const hide = (): void => {
     setState((prevState) => ({ ...prevState, visible: false }));
@@ -87,6 +87,4 @@ const AlertDialogsAndModals: FC = () => {
       </Dialog>
     </>
   );
-};
-
-export default AlertDialogsAndModals;
+}

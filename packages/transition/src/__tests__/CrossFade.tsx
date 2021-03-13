@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { render, act } from "@testing-library/react";
 
 import { CrossFade } from "../CrossFade";
@@ -28,7 +28,10 @@ describe("CrossFade", () => {
   });
 
   it("should allow for wrapping in a div to apply the transition instead of cloning into the child", () => {
-    const Child: FC = () => <div>My Amazing Content!</div>;
+    function Child(): ReactElement {
+      return <div>My Amazing Content!</div>;
+    }
+
     const { container } = render(
       <CrossFade wrap>
         <Child />

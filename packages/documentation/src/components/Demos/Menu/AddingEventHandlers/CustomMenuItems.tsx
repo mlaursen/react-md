@@ -1,25 +1,29 @@
 // keys aren't required for the dropdown menu items
 /* eslint-disable react/jsx-key */
-import React, { FC, useCallback, useState } from "react";
+import React, { ReactElement, useCallback, useState } from "react";
 import { AddSVGIcon, ShareSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu, MenuItem, MenuItemProps } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
 
-const Share: FC<MenuItemProps> = (props) => (
-  <MenuItem {...props} leftAddon={<ShareSVGIcon />}>
-    Share
-  </MenuItem>
-);
+function Share(props: MenuItemProps): ReactElement {
+  return (
+    <MenuItem {...props} leftAddon={<ShareSVGIcon />}>
+      Share
+    </MenuItem>
+  );
+}
 
-const New: FC<MenuItemProps> = (props) => (
-  <MenuItem {...props} leftAddon={<AddSVGIcon />}>
-    New
-  </MenuItem>
-);
+function New(props: MenuItemProps): ReactElement {
+  return (
+    <MenuItem {...props} leftAddon={<AddSVGIcon />}>
+      New
+    </MenuItem>
+  );
+}
 
-const CustomMenuItems: FC = () => {
+export default function CustomMenuItems(): ReactElement {
   const [value, setValue] = useState("None");
   const onClick = useCallback((event: React.MouseEvent<HTMLLIElement>) => {
     setValue(event.currentTarget.textContent || "");
@@ -40,6 +44,4 @@ const CustomMenuItems: FC = () => {
       </DropdownMenu>
     </>
   );
-};
-
-export default CustomMenuItems;
+}

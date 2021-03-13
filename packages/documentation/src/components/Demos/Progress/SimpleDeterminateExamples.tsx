@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloudDownloadSVGIcon } from "@react-md/material-icons";
@@ -11,11 +11,11 @@ import {
 import useDownloadInterval from "./useDownloadInterval";
 import styles from "./SimpleDeterminateExamples.module.scss";
 
-const Container: FC = ({ children }) => (
-  <div className={styles.container}>{children}</div>
-);
+function Container({ children }: { children: ReactNode }): ReactElement {
+  return <div className={styles.container}>{children}</div>;
+}
 
-const SimpleDeterminateExamples: FC = () => {
+export default function SimpleDeterminateExamples(): ReactElement {
   const {
     value: value1,
     running: running1,
@@ -70,6 +70,4 @@ const SimpleDeterminateExamples: FC = () => {
       </Container>
     </>
   );
-};
-
-export default SimpleDeterminateExamples;
+}

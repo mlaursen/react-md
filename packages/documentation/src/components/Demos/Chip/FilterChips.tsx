@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Chip } from "@react-md/chip";
 import { Text } from "@react-md/typography";
 
@@ -13,7 +13,7 @@ const amenities = [
   "Cats ok",
 ];
 
-const FilterChips: FC = () => {
+export default function FilterChips(): ReactElement {
   const [selectedAmenities, setSelected] = useState<string[]>([]);
   return (
     <>
@@ -46,6 +46,4 @@ const FilterChips: FC = () => {
       </div>
     </>
   );
-};
-
-export default FilterChips;
+}

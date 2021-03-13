@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { UnstyledButton } from "@react-md/button";
 import { Collapse } from "@react-md/transition";
 
@@ -11,7 +11,10 @@ export interface ExpandableCodeProps {
   sourceCode: string;
 }
 
-const ExpandableCode: FC<ExpandableCodeProps> = ({ code, sourceCode }) => {
+export default function ExpandableCode({
+  code,
+  sourceCode,
+}: ExpandableCodeProps): ReactElement {
   const [collapsed, setCollapsed] = useState(true);
   const [currentCode, setCurrentCode] = useState(code);
 
@@ -36,6 +39,4 @@ const ExpandableCode: FC<ExpandableCodeProps> = ({ code, sourceCode }) => {
       </Collapse>
     </UnstyledButton>
   );
-};
-
-export default ExpandableCode;
+}

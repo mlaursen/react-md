@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { ReactElement, useCallback, useMemo } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useRouter } from "next/router";
 
@@ -17,7 +17,9 @@ interface DemoSandboxProps {
 }
 const EMPTY = {};
 
-const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
+export default function DemoSandbox({
+  sandbox: defaultSandbox,
+}: DemoSandboxProps): ReactElement {
   const router = useRouter();
   const { theme } = useTheme();
   const isJs = useJs();
@@ -100,6 +102,4 @@ const DemoSandbox: FC<DemoSandboxProps> = ({ sandbox: defaultSandbox }) => {
       />
     </>
   );
-};
-
-export default DemoSandbox;
+}

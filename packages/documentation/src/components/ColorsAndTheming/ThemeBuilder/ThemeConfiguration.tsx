@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { Button } from "@react-md/button";
 import { Checkbox, Form, Select } from "@react-md/form";
 import { Text } from "@react-md/typography";
@@ -54,14 +54,14 @@ const compliances = [
   },
 ];
 
-const ThemeConfiguration: FC<ThemeConfigurationProps> = ({
+export default function ThemeConfiguration({
   primary,
   secondary,
   accent,
   theme,
   primaryColor,
   secondaryColor,
-}) => {
+}: ThemeConfigurationProps): ReactElement {
   const {
     setPrimary,
     setSecondary,
@@ -178,6 +178,4 @@ const ThemeConfiguration: FC<ThemeConfigurationProps> = ({
       </Form>
     </GridCell>
   );
-};
-
-export default ThemeConfiguration;
+}

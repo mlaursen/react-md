@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { Avatar, AvatarProps } from "@react-md/avatar";
 import { FolderSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";
@@ -22,67 +22,73 @@ const formatShort = (d: Date): string =>
     year: "numeric",
   });
 
-const Folder: FC<AvatarProps> = (props) => (
-  <Avatar {...props}>
-    <FolderSVGIcon />
-  </Avatar>
-);
+function Folder(props: AvatarProps): ReactElement {
+  return (
+    <Avatar {...props}>
+      <FolderSVGIcon />
+    </Avatar>
+  );
+}
 
-const InfoIcon: FC<SVGIconProps & { id: string; date: Date }> = ({
+function InfoIcon({
   id,
   className,
   date,
   ...props
-}) => (
-  <Tooltipped
-    id={`${id}-info`}
-    tooltip={date.toLocaleString()}
-    defaultPosition="left"
-  >
-    <span tabIndex={0} className={cn(styles.icon, className)}>
-      <InfoOutlineSVGIcon {...props} />
-    </span>
-  </Tooltipped>
-);
+}: SVGIconProps & { id: string; date: Date }): ReactElement {
+  return (
+    <Tooltipped
+      id={`${id}-info`}
+      tooltip={date.toLocaleString()}
+      defaultPosition="left"
+    >
+      <span tabIndex={0} className={cn(styles.icon, className)}>
+        <InfoOutlineSVGIcon {...props} />
+      </span>
+    </Tooltipped>
+  );
+}
 
-const TwoLineExamples: FC = () => (
-  <Container>
-    <List>
-      <ListSubheader>Folders</ListSubheader>
-      <ListItem
-        id="two-line-item-0"
-        secondaryText={formatShort(lastAccessedPhotos)}
-        leftAddon={<Folder color="blue" />}
-        leftAddonType="avatar"
-        rightAddon={<InfoIcon id="two-line-item-0" date={lastAccessedPhotos} />}
-        rightAddonPosition="top"
-      >
-        Photos
-      </ListItem>
-      <ListItem
-        id="two-line-item-1"
-        secondaryText={formatShort(lastAccessedRecipes)}
-        leftAddon={<Folder color="green" />}
-        leftAddonType="avatar"
-        rightAddon={
-          <InfoIcon id="two-line-item-1" date={lastAccessedRecipes} />
-        }
-        rightAddonPosition="top"
-      >
-        Recipes
-      </ListItem>
-      <ListItem
-        id="two-line-item-2"
-        secondaryText={formatShort(lastAccessedWork)}
-        leftAddon={<Folder color="red" />}
-        leftAddonType="avatar"
-        rightAddon={<InfoIcon id="two-line-item-2" date={lastAccessedWork} />}
-        rightAddonPosition="top"
-      >
-        Work
-      </ListItem>
-    </List>
-  </Container>
-);
-
-export default TwoLineExamples;
+export default function TwoLineExamples(): ReactElement {
+  return (
+    <Container>
+      <List>
+        <ListSubheader>Folders</ListSubheader>
+        <ListItem
+          id="two-line-item-0"
+          secondaryText={formatShort(lastAccessedPhotos)}
+          leftAddon={<Folder color="blue" />}
+          leftAddonType="avatar"
+          rightAddon={
+            <InfoIcon id="two-line-item-0" date={lastAccessedPhotos} />
+          }
+          rightAddonPosition="top"
+        >
+          Photos
+        </ListItem>
+        <ListItem
+          id="two-line-item-1"
+          secondaryText={formatShort(lastAccessedRecipes)}
+          leftAddon={<Folder color="green" />}
+          leftAddonType="avatar"
+          rightAddon={
+            <InfoIcon id="two-line-item-1" date={lastAccessedRecipes} />
+          }
+          rightAddonPosition="top"
+        >
+          Recipes
+        </ListItem>
+        <ListItem
+          id="two-line-item-2"
+          secondaryText={formatShort(lastAccessedWork)}
+          leftAddon={<Folder color="red" />}
+          leftAddonType="avatar"
+          rightAddon={<InfoIcon id="two-line-item-2" date={lastAccessedWork} />}
+          rightAddonPosition="top"
+        >
+          Work
+        </ListItem>
+      </List>
+    </Container>
+  );
+}

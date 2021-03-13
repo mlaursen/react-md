@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
@@ -26,7 +26,7 @@ const getFileName = (title: string, demoName: string): string => {
   return `${fileName}${suffix}`;
 };
 
-const Demo: FC<DemoProps> = ({
+export default function Demo({
   id,
   name,
   description,
@@ -42,7 +42,7 @@ const Demo: FC<DemoProps> = ({
   disableCard = false,
   disableFullPageAppBar = false,
   disableFullPageContent = false,
-}) => {
+}: DemoProps): ReactElement {
   const title = toTitle(packageName, "");
   const fileName = getFileName(title, name);
 
@@ -125,6 +125,4 @@ const Demo: FC<DemoProps> = ({
       </DemoContainer>
     </>
   );
-};
-
-export default Demo;
+}

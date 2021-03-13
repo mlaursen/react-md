@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
@@ -11,7 +11,9 @@ interface ReturnsProps {
   returns?: ItemReturn<SupportedItemDataType>;
 }
 
-const Returns: FC<ReturnsProps> = ({ returns }) => {
+export default function Returns({
+  returns,
+}: ReturnsProps): ReactElement | null {
   if (!returns) {
     return null;
   }
@@ -27,6 +29,4 @@ const Returns: FC<ReturnsProps> = ({ returns }) => {
       <Text className={styles.returns}>{description}</Text>
     </>
   );
-};
-
-export default Returns;
+}

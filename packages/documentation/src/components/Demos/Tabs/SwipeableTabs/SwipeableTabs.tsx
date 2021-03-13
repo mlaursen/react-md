@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { TabPanels, Tabs, TabsManager } from "@react-md/tabs";
 
 import SwipeablePanel from "./SwipeablePanel";
@@ -6,7 +6,7 @@ import useSwipeableIndexes from "./useSwipeableIndexes";
 
 const tabs = ["Tab One", "Tab Two", "Tab Three", "Tab Four"];
 
-const SwipeableTabs: FC = () => {
+export default function SwipeableTabs(): ReactElement {
   const {
     activeIndex,
     distance,
@@ -36,6 +36,4 @@ const SwipeableTabs: FC = () => {
       </TabPanels>
     </TabsManager>
   );
-};
-
-export default SwipeableTabs;
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { AppBar, AppBarAction, AppBarNav } from "@react-md/app-bar";
 import { TextIconSpacing } from "@react-md/icon";
 import {
@@ -12,93 +12,101 @@ import AppBarTitle from "components/AppBarTitle";
 
 import Container from "./Container";
 
-const DenseAppBar: FC = () => (
-  <AppBar height="dense">
-    <AppBarNav aria-label="Navigation" id="dense-nav">
-      <MenuSVGIcon />
-    </AppBarNav>
-    <AppBarTitle>Dense</AppBarTitle>
-    <AppBarAction first aria-label="Search" id="dense-search">
-      <SearchSVGIcon />
-    </AppBarAction>
-    <AppBarAction last aria-label="Actions" id="dense-actions">
-      <MoreVertSVGIcon />
-    </AppBarAction>
-  </AppBar>
-);
-
-const NormalAppBar: FC = () => (
-  // or add height="normal"
-  <AppBar>
-    <AppBarNav aria-label="Navigation" id="normal-nav">
-      <MenuSVGIcon />
-    </AppBarNav>
-    <AppBarTitle>Dense Prominent</AppBarTitle>
-    <AppBarAction first aria-label="Search" id="normal-search">
-      <SearchSVGIcon />
-    </AppBarAction>
-    <AppBarAction last aria-label="Actions" id="normal-actions">
-      <MoreVertSVGIcon />
-    </AppBarAction>
-  </AppBar>
-);
-
-const DenseProminentAppBar: FC = () => (
-  <AppBar height="prominent-dense">
+function DenseAppBar(): ReactElement {
+  return (
     <AppBar height="dense">
-      <AppBarNav aria-label="Navigation" id="dense-prominent-nav">
+      <AppBarNav aria-label="Navigation" id="dense-nav">
         <MenuSVGIcon />
       </AppBarNav>
       <AppBarTitle>Dense</AppBarTitle>
-      <AppBarAction first aria-label="Search" id="dense-prominent-search">
+      <AppBarAction first aria-label="Search" id="dense-search">
         <SearchSVGIcon />
       </AppBarAction>
-      <AppBarAction last aria-label="Actions" id="dense-prominent-actions">
+      <AppBarAction last aria-label="Actions" id="dense-actions">
         <MoreVertSVGIcon />
       </AppBarAction>
     </AppBar>
-    <AppBar height="dense">
-      <AppBarTitle keyline>And Prominent!</AppBarTitle>
-      <AppBarAction first buttonType="text" id="dense-prominent-new">
-        <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>
-          New...
-        </TextIconSpacing>
-      </AppBarAction>
-    </AppBar>
-  </AppBar>
-);
+  );
+}
 
-const ProminentAppBar: FC = () => (
-  <AppBar height="prominent">
+function NormalAppBar(): ReactElement {
+  return (
+    // or add height="normal"
     <AppBar>
-      <AppBarNav aria-label="Navigation">
+      <AppBarNav aria-label="Navigation" id="normal-nav">
         <MenuSVGIcon />
       </AppBarNav>
-      <AppBarAction first aria-label="Search">
+      <AppBarTitle>Dense Prominent</AppBarTitle>
+      <AppBarAction first aria-label="Search" id="normal-search">
         <SearchSVGIcon />
       </AppBarAction>
-      <AppBarAction last aria-label="Actions" id="prominent-actions">
+      <AppBarAction last aria-label="Actions" id="normal-actions">
         <MoreVertSVGIcon />
       </AppBarAction>
     </AppBar>
-    <AppBar>
-      <AppBarTitle keyline>Only Prominent</AppBarTitle>
-      <AppBarAction first buttonType="text" id="prominent-new">
-        <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>
-          New...
-        </TextIconSpacing>
-      </AppBarAction>
+  );
+}
+
+function DenseProminentAppBar(): ReactElement {
+  return (
+    <AppBar height="prominent-dense">
+      <AppBar height="dense">
+        <AppBarNav aria-label="Navigation" id="dense-prominent-nav">
+          <MenuSVGIcon />
+        </AppBarNav>
+        <AppBarTitle>Dense</AppBarTitle>
+        <AppBarAction first aria-label="Search" id="dense-prominent-search">
+          <SearchSVGIcon />
+        </AppBarAction>
+        <AppBarAction last aria-label="Actions" id="dense-prominent-actions">
+          <MoreVertSVGIcon />
+        </AppBarAction>
+      </AppBar>
+      <AppBar height="dense">
+        <AppBarTitle keyline>And Prominent!</AppBarTitle>
+        <AppBarAction first buttonType="text" id="dense-prominent-new">
+          <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>
+            New...
+          </TextIconSpacing>
+        </AppBarAction>
+      </AppBar>
     </AppBar>
-  </AppBar>
-);
+  );
+}
 
-const DifferentSizes: FC = () => (
-  <Container>
-    <DenseAppBar />
-    <NormalAppBar />
-    <DenseProminentAppBar />
-    <ProminentAppBar />
-  </Container>
-);
+function ProminentAppBar(): ReactElement {
+  return (
+    <AppBar height="prominent">
+      <AppBar>
+        <AppBarNav aria-label="Navigation">
+          <MenuSVGIcon />
+        </AppBarNav>
+        <AppBarAction first aria-label="Search">
+          <SearchSVGIcon />
+        </AppBarAction>
+        <AppBarAction last aria-label="Actions" id="prominent-actions">
+          <MoreVertSVGIcon />
+        </AppBarAction>
+      </AppBar>
+      <AppBar>
+        <AppBarTitle keyline>Only Prominent</AppBarTitle>
+        <AppBarAction first buttonType="text" id="prominent-new">
+          <TextIconSpacing icon={<ArrowDropDownSVGIcon />} iconAfter>
+            New...
+          </TextIconSpacing>
+        </AppBarAction>
+      </AppBar>
+    </AppBar>
+  );
+}
 
-export default DifferentSizes;
+export default function DifferentSizes(): ReactElement {
+  return (
+    <Container>
+      <DenseAppBar />
+      <NormalAppBar />
+      <DenseProminentAppBar />
+      <ProminentAppBar />
+    </Container>
+  );
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Text } from "@react-md/typography";
 
 import { CompiledExample } from "utils/sassdoc";
@@ -10,7 +10,10 @@ export interface ExamplesProps {
   examples: CompiledExample[] | undefined;
 }
 
-const Examples: FC<ExamplesProps> = ({ baseId, examples }) => {
+export default function Examples({
+  baseId,
+  examples,
+}: ExamplesProps): ReactElement | null {
   if (!examples) {
     return null;
   }
@@ -29,6 +32,4 @@ const Examples: FC<ExamplesProps> = ({ baseId, examples }) => {
       ))}
     </>
   );
-};
-
-export default Examples;
+}

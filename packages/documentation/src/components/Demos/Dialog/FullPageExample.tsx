@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { AppBar, AppBarNav } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
@@ -120,7 +120,7 @@ const previews = validIds.map((id) => ({
   id,
 }));
 
-const FullPageExample: FC = () => {
+export default function FullPageExample(): ReactElement {
   const [state, setState] = useState({ imageId: 277, visible: false });
   const show = (event: React.MouseEvent<HTMLButtonElement>): void => {
     const [index] = event.currentTarget.id.split("-").reverse();
@@ -180,6 +180,4 @@ const FullPageExample: FC = () => {
       </Dialog>
     </>
   );
-};
-
-export default FullPageExample;
+}

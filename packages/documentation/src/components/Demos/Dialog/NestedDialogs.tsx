@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { AppBar, AppBarNav } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import {
@@ -16,7 +16,7 @@ import NestedDemo from "./NestedDemo";
 
 import styles from "./NestedDialogs.module.scss";
 
-const NestedDialogs: FC = () => {
+export default function NestedDialogs(): ReactElement {
   const [visible, enable, disable] = useToggle(false);
   const dialogId = "nested-demo-dialog-full-page";
   return (
@@ -44,6 +44,4 @@ const NestedDialogs: FC = () => {
       </Dialog>
     </NestedDialogContextProvider>
   );
-};
-
-export default NestedDialogs;
+}

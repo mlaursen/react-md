@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";
@@ -19,14 +19,14 @@ export interface FullPageDemoProps {
   disableContent?: boolean;
 }
 
-const FullPageDemo: FC<FullPageDemoProps> = ({
+export default function FullPageDemo({
   id,
   title,
   children,
   disabled,
   disableAppBar,
   disableContent,
-}) => {
+}: FullPageDemoProps): ReactElement {
   const [visible, show, hide] = useToggle(false);
   if (disabled) {
     return children;
@@ -71,10 +71,8 @@ const FullPageDemo: FC<FullPageDemoProps> = ({
       </Dialog>
     </>
   );
-};
+}
 
 FullPageDemo.defaultProps = {
   title: "Demo",
 };
-
-export default FullPageDemo;

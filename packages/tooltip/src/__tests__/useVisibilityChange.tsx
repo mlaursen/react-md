@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { render } from "@testing-library/react";
 
 import { TooltipInitiated } from "../useHandlers";
@@ -11,7 +11,7 @@ interface Props {
   visible: boolean;
   mode: TooltipInitiated;
 }
-const Test: FC<Props> = ({ visible, mode }) => {
+function Test({ visible, mode }: Props): null {
   useVisiblityChange({
     mode,
     visible,
@@ -19,7 +19,7 @@ const Test: FC<Props> = ({ visible, mode }) => {
     onHide,
   });
   return null;
-};
+}
 
 beforeEach(() => {
   jest.clearAllMocks();

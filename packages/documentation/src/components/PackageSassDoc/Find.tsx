@@ -1,4 +1,10 @@
-import React, { FC, ReactNode, useCallback, useMemo, useState } from "react";
+import React, {
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
 import { useRouter } from "next/router";
 import { AutoComplete, FilterFunction } from "@react-md/autocomplete";
 import { Button } from "@react-md/button";
@@ -22,7 +28,7 @@ interface FindProps {
   items: FormattedSassDocItem[];
 }
 
-const Find: FC<FindProps> = ({ items }) => {
+export default function Find({ items }: FindProps): ReactElement | null {
   const router = useRouter();
   const [visible, setVisible] = useState(false);
   const searchables = useMemo(
@@ -111,6 +117,4 @@ const Find: FC<FindProps> = ({ items }) => {
       </Dialog>
     </>
   );
-};
-
-export default Find;
+}

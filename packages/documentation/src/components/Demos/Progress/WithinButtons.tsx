@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { Text } from "@react-md/typography";
 
 import AsyncButton, { AsyncButtonProps } from "./AsyncButton";
@@ -9,7 +9,7 @@ interface ExampleProps extends Pick<AsyncButtonProps, "id" | "asyncType"> {
   children: ReactNode;
 }
 
-const Example: FC<ExampleProps> = ({ children, ...props }) => {
+function Example({ children, ...props }: ExampleProps): ReactElement {
   const { toggled, toggle } = useTemporaryToggle();
 
   return (
@@ -32,23 +32,23 @@ const Example: FC<ExampleProps> = ({ children, ...props }) => {
       />
     </Container>
   );
-};
+}
 
-const WithinButtons: FC = () => (
-  <>
-    <Example id="async-button-1" asyncType="icon-before">
-      Circular Before
-    </Example>
-    <Example id="async-button-2" asyncType="icon-after">
-      Circular After
-    </Example>
-    <Example id="async-button-3" asyncType="circular-overlay">
-      Circular Overlay
-    </Example>
-    <Example id="async-button-4" asyncType="linear-overlay">
-      Linear Overlay
-    </Example>
-  </>
-);
-
-export default WithinButtons;
+export default function WithinButtons(): ReactElement {
+  return (
+    <>
+      <Example id="async-button-1" asyncType="icon-before">
+        Circular Before
+      </Example>
+      <Example id="async-button-2" asyncType="icon-after">
+        Circular After
+      </Example>
+      <Example id="async-button-3" asyncType="circular-overlay">
+        Circular Overlay
+      </Example>
+      <Example id="async-button-4" asyncType="linear-overlay">
+        Linear Overlay
+      </Example>
+    </>
+  );
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 
 import Heading from "components/Heading";
 
@@ -12,7 +12,10 @@ interface DemoPageHeaderProps {
   packageName: string;
 }
 
-const DemoPageHeader: FC<DemoPageHeaderProps> = ({ children, packageName }) => {
+export default function DemoPageHeader({
+  children,
+  packageName,
+}: DemoPageHeaderProps): ReactElement | null {
   if (!children) {
     return null;
   }
@@ -25,6 +28,4 @@ const DemoPageHeader: FC<DemoPageHeaderProps> = ({ children, packageName }) => {
       <DemoDescription>{children}</DemoDescription>
     </DemoContainer>
   );
-};
-
-export default DemoPageHeader;
+}

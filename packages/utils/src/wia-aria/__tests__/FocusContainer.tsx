@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { render } from "@testing-library/react";
 
 import { FocusContainer, FocusContainerProps } from "../FocusContainer";
@@ -6,26 +6,28 @@ import { FocusContainer, FocusContainerProps } from "../FocusContainer";
 const requestAnimationFrame = jest.spyOn(window, "requestAnimationFrame");
 
 type TestProps = FocusContainerProps & { visible: boolean };
-const Test: FC<TestProps> = ({ visible, ...props }) => (
-  <>
-    <button id="main-button" type="button" autoFocus>
-      Button
-    </button>
-    {visible && (
-      <FocusContainer {...props}>
-        <button id="button-1" type="button">
-          Button 1
-        </button>
-        <button id="button-2" type="button">
-          Button 2
-        </button>
-        <button id="button-3" type="button">
-          Button 3
-        </button>
-      </FocusContainer>
-    )}
-  </>
-);
+function Test({ visible, ...props }: TestProps): ReactElement {
+  return (
+    <>
+      <button id="main-button" type="button" autoFocus>
+        Button
+      </button>
+      {visible && (
+        <FocusContainer {...props}>
+          <button id="button-1" type="button">
+            Button 1
+          </button>
+          <button id="button-2" type="button">
+            Button 2
+          </button>
+          <button id="button-3" type="button">
+            Button 3
+          </button>
+        </FocusContainer>
+      )}
+    </>
+  );
+}
 
 beforeEach(() => {
   requestAnimationFrame.mockClear();

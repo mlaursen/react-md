@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react";
+import React, { ReactElement, useState, useRef } from "react";
 import cn from "classnames";
 import CSSTransition, {
   CSSTransitionClassNames,
@@ -18,7 +18,7 @@ const CLASSNAMES: CSSTransitionClassNames = {
   exitActive: cn(styles.exiting, styles.animate),
 };
 
-const Blinds: FC<BlindsProps> = ({ visible }) => {
+export default function Blinds({ visible }: BlindsProps): ReactElement {
   const ref = useRef<HTMLDivElement | null>(null);
   const [exited, setExited] = useState(true);
   if (visible && exited) {
@@ -51,6 +51,4 @@ const Blinds: FC<BlindsProps> = ({ visible }) => {
       )}
     </CSSTransition>
   );
-};
-
-export default Blinds;
+}

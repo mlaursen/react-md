@@ -1,9 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { usePanels, ExpansionPanel } from "@react-md/expansion-panel";
 import { Text } from "@react-md/typography";
 import { Grid } from "@react-md/utils";
 
-const SinglePanel: FC = () => {
+export default function SinglePanel(): ReactElement {
   const [[panelProps]] = usePanels({ idPrefix: "single-panel", count: 1 });
   const [expanded, setExpanded] = useState(false);
   return (
@@ -51,6 +51,4 @@ const SinglePanel: FC = () => {
       </ExpansionPanel>
     </Grid>
   );
-};
-
-export default SinglePanel;
+}

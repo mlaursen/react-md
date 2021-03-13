@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Text } from "@react-md/typography";
 
 import Code from "components/Code/Code";
@@ -27,7 +27,7 @@ import ReferenceLinkSection from "./ReferenceLinkSection";
 
 import styles from "./SassDocItem.module.scss";
 
-const SassDocItem: FC<FormattedSassDocItem> = (props) => {
+export default function SassDocItem(props: FormattedSassDocItem): ReactElement {
   const {
     name,
     description,
@@ -97,6 +97,4 @@ const SassDocItem: FC<FormattedSassDocItem> = (props) => {
       <ReferenceLinkSection links={requires}>Requires</ReferenceLinkSection>
     </>
   );
-};
-
-export default SassDocItem;
+}

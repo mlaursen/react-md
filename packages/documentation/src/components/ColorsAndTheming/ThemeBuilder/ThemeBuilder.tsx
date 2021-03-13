@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Grid } from "@react-md/utils";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 
@@ -10,7 +10,7 @@ import ThemeUsage from "./ThemeUsage";
 
 import styles from "./ThemeBuilder.module.scss";
 
-const ThemeBuilder: FC = () => {
+export default function ThemeBuilder(): ReactElement {
   const { primary, secondary, accent, theme } = useTheme();
   const primaryName = `rmd-${primary}-500` as "rmd-teal-500";
   const primaryColor = scssVariables[primaryName];
@@ -36,6 +36,4 @@ const ThemeBuilder: FC = () => {
       />
     </Grid>
   );
-};
-
-export default ThemeBuilder;
+}

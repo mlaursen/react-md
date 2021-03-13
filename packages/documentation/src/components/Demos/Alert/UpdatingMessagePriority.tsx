@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  ReactElement,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import {
   Message,
   MessagePriority,
@@ -25,7 +19,7 @@ interface ExampleMessage
 
 const PRIORITIES: MessagePriority[] = ["next", "immediate", "replace"];
 
-const UpdatingMessagePriority: FC = () => {
+function UpdatingMessagePriority(): ReactElement {
   const addMessage = useAddMessage<ExampleMessage>();
   const [priority, handlePriorityChange] = useChoice<MessagePriority>("next");
   const queue = useQueue<ExampleMessage>();
@@ -106,7 +100,7 @@ const UpdatingMessagePriority: FC = () => {
       </Form>
     </>
   );
-};
+}
 
 export default function UpdatingMessagePriorityContainer(): ReactElement {
   return (

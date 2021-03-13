@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { LinearProgress } from "@react-md/progress";
 import { Text } from "@react-md/typography";
 
@@ -8,7 +8,9 @@ interface WithSuspenseFallbackProps {
   complete: () => void;
 }
 
-const WithSuspenseFallback: FC<WithSuspenseFallbackProps> = ({ complete }) => {
+export default function WithSuspenseFallback({
+  complete,
+}: WithSuspenseFallbackProps): ReactElement {
   // trigger the complete action when this component unmounts
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => () => complete(), []);
@@ -21,6 +23,4 @@ const WithSuspenseFallback: FC<WithSuspenseFallbackProps> = ({ complete }) => {
       <LinearProgress id="with-suspense-loading" />
     </div>
   );
-};
-
-export default WithSuspenseFallback;
+}

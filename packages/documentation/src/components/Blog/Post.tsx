@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { Divider } from "@react-md/divider";
 import { TextIconSpacing } from "@react-md/icon";
 import { KeyboardArrowRightSVGIcon } from "@react-md/material-icons";
@@ -45,14 +45,14 @@ function resolveReadMore(readMore: string | null): string | null {
   return `/blog/${readMore}`;
 }
 
-const Post: FC<PostProps> = ({
+export default function Post({
   title,
   date,
   readMore,
   summary,
   bullets,
   isLast,
-}) => {
+}: PostProps): ReactElement {
   const href = resolveReadMore(readMore);
 
   return (
@@ -89,6 +89,4 @@ const Post: FC<PostProps> = ({
       {!isLast && <Divider />}
     </>
   );
-};
-
-export default Post;
+}

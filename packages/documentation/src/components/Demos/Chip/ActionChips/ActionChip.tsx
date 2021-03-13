@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { Chip, ChipProps } from "@react-md/chip";
 
@@ -8,26 +8,26 @@ interface ActionChipProps extends ChipProps {
   yellow?: boolean;
 }
 
-const ActionChip: FC<ActionChipProps> = ({
+export default function ActionChip({
   children,
   className,
   theme = "outline",
   yellow = false,
   ...props
-}) => (
-  <Chip
-    {...props}
-    theme={theme}
-    className={cn(
-      styles.chip,
-      {
-        [styles.yellow]: yellow,
-      },
-      className
-    )}
-  >
-    {children}
-  </Chip>
-);
-
-export default ActionChip;
+}: ActionChipProps): ReactElement {
+  return (
+    <Chip
+      {...props}
+      theme={theme}
+      className={cn(
+        styles.chip,
+        {
+          [styles.yellow]: yellow,
+        },
+        className
+      )}
+    >
+      {children}
+    </Chip>
+  );
+}

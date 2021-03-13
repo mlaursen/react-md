@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { GridCell } from "@react-md/utils";
 
 import { Markdown } from "components/Markdown";
@@ -21,12 +21,12 @@ $rmd-theme-light: false;`;
 
 const toCSSName = (name: string): string => name.replace("-", "_");
 
-const ThemeUsage: FC<ThemeUsageProps> = ({
+export default function ThemeUsage({
   primary,
   secondary,
   accent,
   theme,
-}) => {
+}: ThemeUsageProps): ReactElement {
   const cssName = `dist/css/react-md.${toCSSName(primary)}-${toCSSName(
     secondary
   )}-${accent}-${theme}.min.css`;
@@ -69,6 +69,4 @@ $rmd-theme-secondary: $rmd-${secondary}-a-${accent};
       </Markdown>
     </GridCell>
   );
-};
-
-export default ThemeUsage;
+}

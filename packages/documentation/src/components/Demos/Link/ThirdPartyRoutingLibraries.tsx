@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import Link from "components/Link";
 import { useRouter } from "next/router";
 
-const ThirdPartyRoutingLibraries: FC = () => {
+export default function ThirdPartyRoutingLibraries(): ReactElement {
   const { asPath } = useRouter();
   const prefix = asPath.replace(/#.*$/, "");
   return (
@@ -12,6 +12,4 @@ const ThirdPartyRoutingLibraries: FC = () => {
       </li>
     </ul>
   );
-};
-
-export default ThirdPartyRoutingLibraries;
+}

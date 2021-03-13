@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,
@@ -14,7 +14,7 @@ import styles from "./FixingOverflowIssues.module.scss";
 
 const ITEMS = Array.from({ length: 20 }, (_, i) => `Item ${i + 1}`);
 
-const FixingOverflowIssues: FC = () => {
+export default function FixingOverflowIssues(): ReactElement {
   const [visible, show, hide] = useToggle(false);
   return (
     <>
@@ -50,6 +50,4 @@ const FixingOverflowIssues: FC = () => {
       </Dialog>
     </>
   );
-};
-
-export default FixingOverflowIssues;
+}

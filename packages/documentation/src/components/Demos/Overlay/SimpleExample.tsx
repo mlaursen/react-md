@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { Overlay } from "@react-md/overlay";
 import { useToggle } from "@react-md/utils";
 
-const SimpleExample: FC = () => {
+export default function SimpleExample(): ReactElement {
   const [toggled, , disable, toggle] = useToggle(false);
   return (
     <>
@@ -18,6 +18,4 @@ const SimpleExample: FC = () => {
       <Overlay id="simple-overlay" visible={toggled} onRequestClose={disable} />
     </>
   );
-};
-
-export default SimpleExample;
+}

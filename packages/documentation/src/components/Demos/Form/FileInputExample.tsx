@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { ReactElement, useCallback, useState } from "react";
 import { ButtonTheme, ButtonThemeType } from "@react-md/button";
 import { Divider } from "@react-md/divider";
 import {
@@ -25,7 +25,7 @@ const themes: ButtonTheme[] = [
 ];
 const themeTypes: ButtonThemeType[] = ["flat", "outline", "contained"];
 
-const SimpleFileInputs: FC = () => {
+export default function SimpleFileInputs(): ReactElement {
   const [file, setFile] = useState("");
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
     (event) => {
@@ -96,6 +96,4 @@ const SimpleFileInputs: FC = () => {
       </Form>
     </>
   );
-};
-
-export default SimpleFileInputs;
+}

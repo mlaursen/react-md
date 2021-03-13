@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { TextContainer, Text } from "@react-md/typography";
 import { AppSizeListener, useAppSize } from "@react-md/utils";
 
 import CodeBlock from "components/Code/CodeBlock";
 
-const CurrentSize: FC = () => {
+function CurrentSize(): ReactElement {
   const context = useAppSize();
   return (
     <TextContainer>
@@ -12,12 +12,12 @@ const CurrentSize: FC = () => {
       <CodeBlock language="json">{JSON.stringify(context, null, 2)}</CodeBlock>
     </TextContainer>
   );
-};
+}
 
-const AppSizeListenerExample: FC = () => (
-  <AppSizeListener>
-    <CurrentSize />
-  </AppSizeListener>
-);
-
-export default AppSizeListenerExample;
+export default function AppSizeListenerExample(): ReactElement {
+  return (
+    <AppSizeListener>
+      <CurrentSize />
+    </AppSizeListener>
+  );
+}

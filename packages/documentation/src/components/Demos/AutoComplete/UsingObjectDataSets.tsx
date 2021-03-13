@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { AutoComplete, AutoCompleteData } from "@react-md/autocomplete";
 import { Avatar } from "@react-md/avatar";
 
@@ -61,29 +61,29 @@ const desserts = dessertsList.map<AutoCompleteData>(
 // just slicing since `statesList` is readonly
 const states = statesList.slice();
 
-const UsingObjectDataSets: FC = () => (
-  <ExampleGrid>
-    <AutoComplete
-      id="object-dataset-1"
-      label="Results"
-      placeholder="Search..."
-      data={data}
-    />
-    <AutoComplete
-      id="object-dataset-2"
-      label="Desserts"
-      placeholder="Cupcake"
-      data={desserts}
-    />
-    <AutoComplete
-      id="object-dataset-3"
-      label="State"
-      placeholder="Search..."
-      data={states}
-      labelKey="name"
-      valueKey="name"
-    />
-  </ExampleGrid>
-);
-
-export default UsingObjectDataSets;
+export default function UsingObjectDataSets(): ReactElement {
+  return (
+    <ExampleGrid>
+      <AutoComplete
+        id="object-dataset-1"
+        label="Results"
+        placeholder="Search..."
+        data={data}
+      />
+      <AutoComplete
+        id="object-dataset-2"
+        label="Desserts"
+        placeholder="Cupcake"
+        data={desserts}
+      />
+      <AutoComplete
+        id="object-dataset-3"
+        label="State"
+        placeholder="Search..."
+        data={states}
+        labelKey="name"
+        valueKey="name"
+      />
+    </ExampleGrid>
+  );
+}

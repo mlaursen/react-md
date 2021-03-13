@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   Checkbox,
   Fieldset,
@@ -14,7 +14,7 @@ import styles from "./TextAreaExample.module.scss";
 
 const MAX_ROWS = [-1, 4, 5, 6, 7, 8, 9, 10];
 
-const TextAreaExample: FC = () => {
+export default function TextAreaExample(): ReactElement {
   const [resize, handleResizeChange] = useChoice<TextAreaResize>("auto");
   const [animate, handleAnimateChange] = useChecked(true);
   const [rows, handleRowChange] = useChoice("2");
@@ -99,6 +99,4 @@ const TextAreaExample: FC = () => {
       </Fieldset>
     </TextFieldThemeConfig>
   );
-};
-
-export default TextAreaExample;
+}

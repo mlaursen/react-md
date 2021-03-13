@@ -1,4 +1,4 @@
-import React, { ElementType, FC, useMemo } from "react";
+import React, { ElementType, ReactElement, useMemo } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import {
@@ -84,7 +84,7 @@ const getItemProps: GetItemProps<FileTreeData> = (item) => {
   };
 };
 
-const SandboxFileTree: FC<SandboxFileTreeProps> = ({
+export default function SandboxFileTree({
   from,
   inline,
   visible,
@@ -95,7 +95,7 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
   onFileChange,
   onRequestClose,
   disableTransition,
-}) => {
+}: SandboxFileTreeProps): ReactElement {
   const defaultExpandedIds = useMemo(() => {
     const children = getItemsFrom(files, fileName).reduce<string[]>(
       (folderIds, { itemId }) => {
@@ -182,6 +182,4 @@ const SandboxFileTree: FC<SandboxFileTreeProps> = ({
       />
     </Sheet>
   );
-};
-
-export default SandboxFileTree;
+}

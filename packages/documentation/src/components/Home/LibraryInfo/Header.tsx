@@ -4,7 +4,7 @@ import { useAppSize } from "@react-md/utils";
 
 import styles from "./LibraryInfo.module.scss";
 
-const Header = (): ReactElement | null => {
+export default function Header(): ReactElement | null {
   const { isPhone } = useAppSize();
   if (isPhone) {
     return null;
@@ -19,6 +19,4 @@ const Header = (): ReactElement | null => {
       </TableRow>
     </TableHeader>
   );
-};
-
-export default Header;
+}

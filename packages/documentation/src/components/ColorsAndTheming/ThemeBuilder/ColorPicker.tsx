@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Select, ListboxProps } from "@react-md/form";
 
 interface Color {
@@ -12,12 +12,12 @@ export interface ColorPickerProps extends ListboxProps {
   colors: Color[];
 }
 
-const ColorPicker: FC<ColorPickerProps> = ({
+export default function ColorPicker({
   colors,
   name,
   value,
   onChange,
-}) => {
+}: ColorPickerProps): ReactElement {
   return (
     <Select
       id={`color-${name}`}
@@ -28,6 +28,4 @@ const ColorPicker: FC<ColorPickerProps> = ({
       onChange={onChange}
     />
   );
-};
-
-export default ColorPicker;
+}

@@ -1,11 +1,13 @@
-import React, { FC, memo } from "react";
+import React, { memo, ReactElement } from "react";
 import Head from "next/head";
 
 export interface GoogleFontProps {
   font: string;
 }
 
-const GoogleFont: FC<GoogleFontProps> = ({ font }) => {
+export default memo(function GoogleFont({
+  font,
+}: GoogleFontProps): ReactElement {
   const name = font.split(" ").join("+");
 
   return (
@@ -17,6 +19,4 @@ const GoogleFont: FC<GoogleFontProps> = ({ font }) => {
       />
     </Head>
   );
-};
-
-export default memo(GoogleFont);
+});

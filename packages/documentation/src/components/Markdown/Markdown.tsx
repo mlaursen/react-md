@@ -1,8 +1,8 @@
 /* eslint-disable react/no-danger */
 import React, {
-  FC,
   HTMLAttributes,
   MutableRefObject,
+  ReactElement,
   useEffect,
   useMemo,
   useRef,
@@ -105,12 +105,12 @@ export interface MarkdownProps extends HTMLAttributes<HTMLDivElement> {
   disableSinglePMargin?: boolean;
 }
 
-const Markdown: FC<MarkdownProps> = ({
+export default function Markdown({
   className,
   children,
   disableSinglePMargin,
   ...props
-}) => {
+}: MarkdownProps): ReactElement {
   const html = useHTML(children);
   const ref = useCustomMarkdownBehavior(html);
 
@@ -131,6 +131,4 @@ const Markdown: FC<MarkdownProps> = ({
       />
     </>
   );
-};
-
-export default Markdown;
+}

@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { ReactElement, useCallback, useState } from "react";
 import cn from "classnames";
 import { Button } from "@react-md/button";
 import { Checkbox, Form, useChecked } from "@react-md/form";
@@ -10,7 +10,7 @@ import { FocusContainer } from "@react-md/utils";
 import Page1 from "./Page1";
 import styles from "./ScaleTransitionExample.module.scss";
 
-const ScaleTransitionExample: FC = () => {
+export default function ScaleTransitionExample(): ReactElement {
   const [visible, setVisible] = useState(false);
   const [temporary, onTemporaryChange] = useChecked(false);
   const [vertical, onVerticalChange] = useChecked(false);
@@ -54,6 +54,4 @@ const ScaleTransitionExample: FC = () => {
       <Overlay visible={visible && temporary} onRequestClose={hide} />
     </div>
   );
-};
-
-export default ScaleTransitionExample;
+}

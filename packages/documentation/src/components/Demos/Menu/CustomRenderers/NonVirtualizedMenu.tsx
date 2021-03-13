@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useMemo, useState } from "react";
+import React, { ReactElement, ReactNode, useMemo, useState } from "react";
 import { ListItemAddonType } from "@react-md/list";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";
@@ -11,7 +11,11 @@ interface Item {
   children: string;
 }
 
-const NonVirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
+export default function NonVirtualizedMenu({
+  items,
+}: {
+  items: Item[];
+}): ReactElement {
   const [value, setValue] = useState("None");
   const clickableItems = useMemo(
     () =>
@@ -37,6 +41,4 @@ const NonVirtualizedMenu: FC<{ items: Item[] }> = ({ items }) => {
       </DropdownMenu>
     </>
   );
-};
-
-export default NonVirtualizedMenu;
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Checkbox, Fieldset, Select, TextField } from "@react-md/form";
 import {
   TableCellHorizontalAlignment,
@@ -13,7 +13,7 @@ const horizontals: TableCellHorizontalAlignment[] = ["left", "center", "right"];
 const verticals: TableCellVerticalAlignment[] = ["top", "middle", "bottom"];
 const lineWrapping = ["true", "false", "padded"];
 
-const TableConfiguration: FC = () => {
+export default function TableConfiguration(): ReactElement {
   const {
     cols,
     rows,
@@ -176,6 +176,4 @@ const TableConfiguration: FC = () => {
       </Fieldset>
     </Grid>
   );
-};
-
-export default TableConfiguration;
+}

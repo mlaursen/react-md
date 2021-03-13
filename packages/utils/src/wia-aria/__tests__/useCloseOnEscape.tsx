@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { render, fireEvent } from "@testing-library/react";
 
 import { useCloseOnEscape } from "../useCloseOnEscape";
@@ -9,11 +9,15 @@ interface Props {
   onRequestClose: () => void;
 }
 
-const Test: FC<Props> = ({ onKeyDown, onRequestClose, disabled = false }) => {
+function Test({
+  onKeyDown,
+  onRequestClose,
+  disabled = false,
+}: Props): ReactElement {
   const handleKeyDown = useCloseOnEscape(onRequestClose, disabled, onKeyDown);
 
   return <div tabIndex={-1} onKeyDown={handleKeyDown} data-testid="div" />;
-};
+}
 
 describe("useCloseOnEscape", () => {
   it("should call the onRequestClose function when the escape key is pressed", () => {

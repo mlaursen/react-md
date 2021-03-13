@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { MenuItem } from "@react-md/menu";
 import { ViewHeadlineSVGIcon } from "@react-md/material-icons";
 import {
@@ -6,7 +6,7 @@ import {
   useTOCVisibility,
 } from "components/TableOfContents/VisibilityContext";
 
-const TableOfContentsMenuItem: FC = () => {
+export default function TableOfContentsMenuItem(): ReactElement | null {
   const { show } = useTOCActions();
   const { rendered } = useTOCVisibility();
   if (!rendered) {
@@ -23,6 +23,4 @@ const TableOfContentsMenuItem: FC = () => {
       Table of contents
     </MenuItem>
   );
-};
-
-export default TableOfContentsMenuItem;
+}

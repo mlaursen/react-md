@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { upperFirst } from "lodash";
 import { Checkbox, Select, useChecked } from "@react-md/form";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
@@ -74,7 +74,7 @@ const options = anchors.map((anchor, index) => ({
 // don't include all items to better show how the position affects the menu
 const items = options.slice(0, 5).map(({ label }) => label);
 
-const MenuPositioning: FC = () => {
+export default function MenuPositioning(): ReactElement {
   const [anchorIndex, setAnchorIndex] = useState(() =>
     anchors.findIndex((a) => a === CENTER_CENTER_ANCHOR)
   );
@@ -120,6 +120,4 @@ const MenuPositioning: FC = () => {
       </DropdownMenu>
     </>
   );
-};
-
-export default MenuPositioning;
+}

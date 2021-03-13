@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   useLayoutConfig,
   isPersistentLayout,
   LayoutCloseNavigationButton,
 } from "@react-md/layout";
 
-const CloseButton: FC = () => {
+export default function CloseButton(): ReactElement {
   const { layout } = useLayoutConfig();
 
   // the default behavior for this button is only to be rendered for toggleable
@@ -18,6 +18,4 @@ const CloseButton: FC = () => {
       Close
     </LayoutCloseNavigationButton>
   );
-};
-
-export default CloseButton;
+}

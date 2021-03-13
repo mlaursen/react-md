@@ -95,7 +95,7 @@ return an object containing:
   to the DOM element so all the interaction states can happen.
 
 ```tsx
-import React, { FC, HTMLAttributes } from "react";
+import React, { HTMLAttributes, ReactElement } from "react";
 import { render } from "react-dom";
 import {
   StatesConfig,
@@ -105,7 +105,7 @@ import {
 
 type ButtonProps = HTMLAttributes<HTMLButtonElement> &
   InteractionStatesOptions<HTMLButtonElement>;
-const Button: FC<ButtonProps> = ({
+function Button({
   className: propClassName,
   disabled,
   disableRipple,
@@ -114,7 +114,7 @@ const Button: FC<ButtonProps> = ({
   disablePressedFallback,
   children,
   ...propHandlers
-}) => {
+}: ButtonProps): ReactElement {
   const { ripples, handlers, className } = useInteractionStates({
     handlers: propHandlers,
     className: propClassName,
@@ -131,17 +131,19 @@ const Button: FC<ButtonProps> = ({
       {ripples}
     </button>
   );
-};
+}
 
-const App = () => (
-  <>
-    <Button>Button 1</Button>
-    <Button disableRipple>Button 2</Button>
-    <Button disableRipple disablePressedFallback>
-      Button 3
-    </Button>
-  </>
-);
+function App(): ReactElement {
+  return (
+    <>
+      <Button>Button 1</Button>
+      <Button disableRipple>Button 2</Button>
+      <Button disableRipple disablePressedFallback>
+        Button 3
+      </Button>
+    </>
+  );
+}
 
 render(<App />, document.getElementById("root"));
 ```

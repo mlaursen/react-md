@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   CardHeader,
   CardTitle,
@@ -15,32 +15,32 @@ import LinkButton from "components/LinkButton";
 import { Component as SVG } from "./components.svg";
 import JumpStartCard from "./JumpStartCard";
 
-const Components: FC = () => (
-  <JumpStartCard>
-    <CardHeader>
-      <CardTitle>Components and Styles</CardTitle>
-    </CardHeader>
-    <MediaContainer fullWidth>
-      <SVG role="presentation" />
-    </MediaContainer>
-    <CardContent disableSecondaryColor>
-      <Text>
-        Once you&apos;ve installed <Code>react-md</Code>, it&apos;s time to
-        check out all the components that are available and how to use them.
-      </Text>
-    </CardContent>
-    <CodeBlock language="tsx">
-      {`<Button id="example-button" onClick={() => console.log("I was clicked!")}>
+export default function Components(): ReactElement {
+  return (
+    <JumpStartCard>
+      <CardHeader>
+        <CardTitle>Components and Styles</CardTitle>
+      </CardHeader>
+      <MediaContainer fullWidth>
+        <SVG role="presentation" />
+      </MediaContainer>
+      <CardContent disableSecondaryColor>
+        <Text>
+          Once you&apos;ve installed <Code>react-md</Code>, it&apos;s time to
+          check out all the components that are available and how to use them.
+        </Text>
+      </CardContent>
+      <CodeBlock language="tsx">
+        {`<Button id="example-button" onClick={() => console.log("I was clicked!")}>
   Example Button
 </Button>`}
-    </CodeBlock>
-    <Divider />
-    <CardActions>
-      <LinkButton href="/packages/alert/demos" themeType="outline">
-        See Examples!
-      </LinkButton>
-    </CardActions>
-  </JumpStartCard>
-);
-
-export default Components;
+      </CodeBlock>
+      <Divider />
+      <CardActions>
+        <LinkButton href="/packages/alert/demos" themeType="outline">
+          See Examples!
+        </LinkButton>
+      </CardActions>
+    </JumpStartCard>
+  );
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { TextContainer } from "@react-md/typography";
 
@@ -8,14 +8,14 @@ export interface MarkdownPageProps extends MarkdownProps {
   containerClassName?: string;
 }
 
-const MarkdownPage: FC<MarkdownPageProps> = ({
+export default function MarkdownPage({
   containerClassName,
   children,
   ...props
-}) => (
-  <TextContainer className={cn("markdown-page", containerClassName)}>
-    <Markdown {...props}>{children}</Markdown>
-  </TextContainer>
-);
-
-export default MarkdownPage;
+}: MarkdownPageProps): ReactElement {
+  return (
+    <TextContainer className={cn("markdown-page", containerClassName)}>
+      <Markdown {...props}>{children}</Markdown>
+    </TextContainer>
+  );
+}

@@ -1,11 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { Checkbox, useChecked } from "@react-md/form";
 import { Text } from "@react-md/typography";
 import { ResizeListener } from "@react-md/utils";
 
 import CodeBlock from "components/Code/CodeBlock";
 
-const ResizeListenerExample: FC = () => {
+export default function ResizeListenerExample(): ReactElement {
   const [size, setSize] = useState(() => {
     if (typeof window !== "undefined") {
       return window.innerWidth;
@@ -43,6 +43,4 @@ const ResizeListenerExample: FC = () => {
       <CodeBlock>{size}px</CodeBlock>
     </>
   );
-};
-
-export default ResizeListenerExample;
+}

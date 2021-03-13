@@ -1,4 +1,4 @@
-import React, { FC, MutableRefObject } from "react";
+import React, { MutableRefObject, ReactElement } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
@@ -15,14 +15,14 @@ interface TestProps
   result: MutableRefObject<VisibilityState | undefined>;
 }
 
-const Test: FC<TestProps> = ({
+function Test({
   onClick: propOnClick,
   onKeyDown: propOnKeyDown,
   onVisibilityChange,
   children = "Button",
   result,
   ...props
-}) => {
+}: TestProps): ReactElement {
   const { onClick, onKeyDown, visible, defaultFocus } = useButtonVisibility({
     onClick: propOnClick,
     onKeyDown: propOnKeyDown,
@@ -41,7 +41,7 @@ const Test: FC<TestProps> = ({
       {children}
     </MenuButton>
   );
-};
+}
 
 describe("useButtonVisibility", () => {
   it("should return the correct default state", () => {

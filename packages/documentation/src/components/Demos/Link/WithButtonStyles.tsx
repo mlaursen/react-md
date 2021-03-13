@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { ButtonThemeProps, buttonThemeClassNames } from "@react-md/button";
 import { Link, LinkProps } from "@react-md/link";
 
 import styles from "./WithButtonStyles.module.scss";
 
-const LinkStyledButton: FC<ButtonThemeProps & LinkProps> = ({
+function LinkStyledButton({
   className,
   theme,
   themeType,
@@ -13,20 +13,22 @@ const LinkStyledButton: FC<ButtonThemeProps & LinkProps> = ({
   disabled,
   children,
   ...props
-}) => (
-  <Link
-    {...props}
-    className={buttonThemeClassNames({
-      disabled,
-      theme,
-      themeType,
-      buttonType,
-      className: cn(styles.link, className),
-    })}
-  >
-    {children}
-  </Link>
-);
+}: ButtonThemeProps & LinkProps): ReactElement {
+  return (
+    <Link
+      {...props}
+      className={buttonThemeClassNames({
+        disabled,
+        theme,
+        themeType,
+        buttonType,
+        className: cn(styles.link, className),
+      })}
+    >
+      {children}
+    </Link>
+  );
+}
 
 LinkStyledButton.defaultProps = {
   theme: "primary",
@@ -34,10 +36,10 @@ LinkStyledButton.defaultProps = {
   buttonType: "text",
 };
 
-const WithButtonStyles: FC = () => (
-  <LinkStyledButton href="https://react-md.dev">
-    https://react-md.dev
-  </LinkStyledButton>
-);
-
-export default WithButtonStyles;
+export default function WithButtonStyles(): ReactElement {
+  return (
+    <LinkStyledButton href="https://react-md.dev">
+      https://react-md.dev
+    </LinkStyledButton>
+  );
+}

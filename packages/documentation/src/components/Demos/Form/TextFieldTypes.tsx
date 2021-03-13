@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
 import {
   Form,
@@ -28,7 +28,7 @@ const types: SupportedInputTypes[] = [
 ];
 const themes: FormTheme[] = ["underline", "filled", "outline"];
 
-const TextFieldTypes: FC = () => {
+export default function TextFieldTypes(): ReactElement {
   const [currentTheme, handleThemeChange] = useChoice<FormTheme>("outline");
 
   return (
@@ -65,6 +65,4 @@ const TextFieldTypes: FC = () => {
       </Form>
     </FormThemeProvider>
   );
-};
-
-export default TextFieldTypes;
+}

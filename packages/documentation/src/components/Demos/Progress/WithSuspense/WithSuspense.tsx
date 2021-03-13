@@ -1,5 +1,5 @@
 import React, {
-  FC,
+  ReactElement,
   Suspense,
   useState,
   useRef,
@@ -28,7 +28,7 @@ enum State {
   COMPELTED,
 }
 
-const WithSuspense: FC = () => {
+export default function WithSuspense(): ReactElement {
   const [state, setState] = useState(State.READY);
   const stateRef = useRef(state);
   const key = useRef(Date.now());
@@ -99,6 +99,4 @@ const WithSuspense: FC = () => {
       </div>
     </Phone>
   );
-};
-
-export default WithSuspense;
+}

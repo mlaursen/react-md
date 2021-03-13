@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import { defaults } from "lodash";
 
@@ -15,9 +15,6 @@ export interface DemoPageProps extends DemoPageConfig {
   className?: string;
   packageName: string;
 }
-
-type DefaultProps = Required<Pick<DemoPageProps, "fonts" | "disableCard">>;
-type WithDefaultProps = DemoPageProps & DefaultProps;
 
 const getDemoProps = (
   props: DemoPageProps,
@@ -38,15 +35,16 @@ const getDemoProps = (
   };
 };
 
-const DemoPage: FC<DemoPageProps> = (props) => {
+const EMPTY_LIST: string[] = [];
+
+export default function DemoPage(props: DemoPageProps): ReactElement {
   const {
     demos,
     description,
     packageName,
     className,
-    fonts,
-  } = props as WithDefaultProps;
-
+    fonts = EMPTY_LIST,
+  } = props;
   return (
     <div id="demo-page-container" className={cn(styles.container, className)}>
       {fonts.map((font) => (
@@ -59,11 +57,4 @@ const DemoPage: FC<DemoPageProps> = (props) => {
       ))}
     </div>
   );
-};
-
-DemoPage.defaultProps = {
-  fonts: [],
-  disableCard: false,
-};
-
-export default DemoPage;
+}

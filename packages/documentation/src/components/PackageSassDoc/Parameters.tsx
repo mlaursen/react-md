@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   Table,
   TableBody,
@@ -19,7 +19,9 @@ export interface ParametersProps {
   parameters: ParameterizedItemParameter[] | undefined;
 }
 
-const Parameters: FC<ParametersProps> = ({ parameters }) => {
+export default function Parameters({
+  parameters,
+}: ParametersProps): ReactElement | null {
   if (!parameters) {
     return null;
   }
@@ -59,6 +61,4 @@ const Parameters: FC<ParametersProps> = ({ parameters }) => {
       </Table>
     </TableContainer>
   );
-};
-
-export default Parameters;
+}

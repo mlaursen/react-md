@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { List, ListItem } from "@react-md/list";
 import { Overlay } from "@react-md/overlay";
@@ -6,7 +6,7 @@ import { useToggle } from "@react-md/utils";
 
 import styles from "./CustomTheme.module.scss";
 
-const CustomTheme: FC = () => {
+export default function CustomTheme(): ReactElement {
   const [toggled, , disable, toggle] = useToggle(false);
   return (
     <>
@@ -34,6 +34,4 @@ const CustomTheme: FC = () => {
       </Overlay>
     </>
   );
-};
-
-export default CustomTheme;
+}

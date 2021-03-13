@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from "react";
+import React, { HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 
 import styles from "./Container.module.scss";
@@ -7,12 +7,12 @@ interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
   inline?: boolean;
 }
 
-const Container: FC<ContainerProps> = ({
+export default function Container({
   className,
   children,
   inline,
   ...props
-}) => {
+}: ContainerProps): ReactElement {
   return (
     <div
       {...props}
@@ -27,6 +27,4 @@ const Container: FC<ContainerProps> = ({
       {children}
     </div>
   );
-};
-
-export default Container;
+}

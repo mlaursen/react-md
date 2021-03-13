@@ -1,17 +1,17 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { render, fireEvent } from "@testing-library/react";
 
 import { usePanels, UsePanelsOptions } from "../usePanels";
 import { ExpansionList } from "../ExpansionList";
 import { ExpansionPanel } from "../ExpansionPanel";
 
-const Test: FC<Partial<UsePanelsOptions>> = ({
+function Test({
   idPrefix = "panel",
   count = 3,
   multiple,
   preventAllClosed,
   defaultExpandedIndex,
-}) => {
+}: Partial<UsePanelsOptions>): ReactElement {
   const [panels, onKeyDown] = usePanels({
     idPrefix,
     count,
@@ -38,7 +38,7 @@ const Test: FC<Partial<UsePanelsOptions>> = ({
       ))}
     </ExpansionList>
   );
-};
+}
 
 const getById = (id: string) => {
   const panel = document.getElementById(id);

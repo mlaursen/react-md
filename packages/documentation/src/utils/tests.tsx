@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { FC, ReactElement } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import { NextRouter } from "next/router";
 import { Configuration } from "@react-md/layout";
@@ -42,15 +42,17 @@ const DEFAULT_ROUTER: NextRouter = {
   isLocaleDomain: true,
 };
 
-const AllProviders: FC<CustomOptions> = ({
+function AllProviders({
   children,
   router = DEFAULT_ROUTER,
   defaultAppSize,
-}) => (
-  <RouterContext.Provider value={{ ...DEFAULT_ROUTER, ...router }}>
-    <Configuration defaultSize={defaultAppSize}>{children}</Configuration>
-  </RouterContext.Provider>
-);
+}: CustomOptions & { children: ReactNode }): ReactElement {
+  return (
+    <RouterContext.Provider value={{ ...DEFAULT_ROUTER, ...router }}>
+      <Configuration defaultSize={defaultAppSize}>{children}</Configuration>
+    </RouterContext.Provider>
+  );
+}
 
 // it would be better do do this in a test setup script, but since
 // this is required to run any tests, I'll do it here instead.

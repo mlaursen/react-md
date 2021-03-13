@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { render } from "@testing-library/react";
 
 import { FocusFallback, usePreviousFocus } from "../usePreviousFocus";
@@ -20,11 +20,11 @@ interface TestProps {
   previousElement?: HTMLElement | null;
 }
 
-const Test: FC<TestProps> = ({
+function Test({
   disabled,
   fallback,
   previousElement = null,
-}) => {
+}: TestProps): ReactElement {
   usePreviousFocus(disabled, fallback, previousElement);
 
   return (
@@ -32,18 +32,18 @@ const Test: FC<TestProps> = ({
       Button 2
     </button>
   );
-};
+}
 
 interface TestComponentProps extends TestProps {
   mounted: boolean;
   buttonMounted?: boolean;
 }
 
-const TestComponent: FC<TestComponentProps> = ({
+function TestComponent({
   mounted,
   buttonMounted = true,
   ...props
-}) => {
+}: TestComponentProps): ReactElement {
   return (
     <>
       {buttonMounted && (
@@ -54,7 +54,7 @@ const TestComponent: FC<TestComponentProps> = ({
       {mounted && <Test {...props} />}
     </>
   );
-};
+}
 
 // eslint-disable-next-line jest/no-disabled-tests
 describe.skip("usePreviousFocus", () => {

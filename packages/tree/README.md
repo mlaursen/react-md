@@ -47,7 +47,7 @@ to help out such as the `TreeData`, `BaseTreeItem`, and `TreeItemSorter`.
 Here's a quick example:
 
 ```tsx
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { render } from "react-dom";
 import {
   Tree,
@@ -64,13 +64,13 @@ interface MyTreeItem extends BaseTreeItem {
 const data: TreeData<MyTreeItem> = {
   "item-1-id": {
     name: "Root Node",
-    itemId:" item-1-id",
+    itemId: " item-1-id",
     parentId: null,
   },
   "item-2-id": {
     name: "Child 1",
     itemId: "item-2-id",
-    parentId: "item-1-id"<
+    parentId: "item-1-id",
   },
   "item-3-id": {
     name: "Child 2",
@@ -79,7 +79,7 @@ const data: TreeData<MyTreeItem> = {
   },
 };
 
-const Example: FC = () => {
+export default function Example(): ReactElement {
   const selection = useTreeItemSelection([], false);
   const expansion = useTreeItemExpansion([]);
 
@@ -92,5 +92,5 @@ const Example: FC = () => {
       {...expansion}
     />
   );
-};
+}
 ```

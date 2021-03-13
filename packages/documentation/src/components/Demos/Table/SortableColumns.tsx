@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { upperFirst } from "lodash";
 import {
   TableContainer,
@@ -41,7 +41,7 @@ const sort = (key: DessertKey, ascending: boolean): readonly Dessert[] => {
   return sorted;
 };
 
-const SortableColumns: FC = () => {
+export default function SortableColumns(): ReactElement {
   const [state, setState] = useState<SortState>(() => ({
     data: sort("name", true),
     sortKey: "name",
@@ -108,6 +108,4 @@ const SortableColumns: FC = () => {
       </Table>
     </TableContainer>
   );
-};
-
-export default SortableColumns;
+}

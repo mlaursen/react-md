@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { Text } from "@react-md/typography";
 import { ItemThrow } from "utils/sassdoc";
 
@@ -6,7 +6,7 @@ export interface ThrowsProps {
   throws: ItemThrow | undefined;
 }
 
-const Throws: FC<ThrowsProps> = ({ throws }) => {
+export default function Throws({ throws }: ThrowsProps): ReactElement | null {
   if (!throws || !throws.length) {
     return null;
   }
@@ -23,6 +23,4 @@ const Throws: FC<ThrowsProps> = ({ throws }) => {
       </ul>
     </>
   );
-};
-
-export default Throws;
+}

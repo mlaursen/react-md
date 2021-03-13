@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import Head from "next/head";
 
 import GoogleFont from "components/GoogleFont";
@@ -7,7 +7,9 @@ export interface DemoPageFontProps {
   font: string;
 }
 
-const DemoPageFont: FC<DemoPageFontProps> = ({ font }) => {
+export default function DemoPageFont({
+  font,
+}: DemoPageFontProps): ReactElement {
   if (font === "Font Awesome") {
     return (
       <Head>
@@ -21,6 +23,4 @@ const DemoPageFont: FC<DemoPageFontProps> = ({ font }) => {
   }
 
   return <GoogleFont font={font} />;
-};
-
-export default DemoPageFont;
+}

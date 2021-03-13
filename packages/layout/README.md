@@ -72,7 +72,7 @@ you'll want to get the pathname from your favorite routing library
 that the current route will automatically be selected.
 
 ```tsx
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   Layout,
   LayoutNavigationTree,
@@ -125,12 +125,23 @@ const navItems: LayoutNavigationTree = {
   },
 };
 
-const Home: FC = () => <Text>Home Page</Text>;
-const Route1: FC = () => <Text>First Route</Text>;
-const Route2: FC = () => <Text>Second Route</Text>;
-const Route3: FC = () => <Text>Third Route</Text>;
+function Home(): ReactElement {
+  return <Text>Home Page</Text>;
+}
 
-const App: FC = () => {
+function Route1(): ReactElement {
+  return <Text>First Route</Text>;
+}
+
+function Route2(): ReactElement {
+  return <Text>Second Route</Text>;
+}
+
+function Route3(): ReactElement {
+  return <Text>Third Route</Text>;
+}
+
+function App(): ReactElement {
   const { pathname } = useLocation();
 
   return (
@@ -147,9 +158,9 @@ const App: FC = () => {
       </Switch>
     </Layout>
   );
-};
+}
 
-export default function MyApp() {
+export default function MyApp(): ReactElement {
   return (
     <BrowserRouter>
       <App />

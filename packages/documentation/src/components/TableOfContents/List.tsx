@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
-import React, { FC, useCallback } from "react";
+import React, { ReactElement, useCallback } from "react";
 import { Link } from "@react-md/link";
 
 import { TOCAnchor } from "constants/meta/types";
@@ -12,7 +12,11 @@ export interface ListProps {
   onRequestClose: () => void;
 }
 
-const List: FC<ListProps> = ({ anchors, isLargeDesktop, onRequestClose }) => {
+export default function List({
+  anchors,
+  isLargeDesktop,
+  onRequestClose,
+}: ListProps): ReactElement {
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLUListElement>) => {
       if (
@@ -35,6 +39,4 @@ const List: FC<ListProps> = ({ anchors, isLargeDesktop, onRequestClose }) => {
       ))}
     </ul>
   );
-};
-
-export default List;
+}

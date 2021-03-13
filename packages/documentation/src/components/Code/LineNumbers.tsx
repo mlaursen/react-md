@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { bem } from "@react-md/utils";
 
 export interface LineNumbersProps {
@@ -9,7 +9,10 @@ export interface LineNumbersProps {
 
 const block = bem("code");
 
-const LineNumbers: FC<LineNumbersProps> = ({ code, enabled }) => {
+export default function LineNumbers({
+  code,
+  enabled,
+}: LineNumbersProps): ReactElement | null {
   if (!enabled) {
     return null;
   }
@@ -25,6 +28,4 @@ const LineNumbers: FC<LineNumbersProps> = ({ code, enabled }) => {
       ))}
     </span>
   );
-};
-
-export default LineNumbers;
+}

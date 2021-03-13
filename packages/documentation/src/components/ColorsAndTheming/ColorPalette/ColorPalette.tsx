@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 
 import About from "./About";
@@ -37,7 +37,7 @@ const colorMap = uniqueColors.reduce<ColorMap>((map, color) => {
   return map;
 }, {});
 
-const ColorPalette: FC = () => {
+export default function ColorPalette(): ReactElement {
   return (
     <>
       <About />
@@ -61,6 +61,4 @@ const ColorPalette: FC = () => {
       </div>
     </>
   );
-};
-
-export default ColorPalette;
+}

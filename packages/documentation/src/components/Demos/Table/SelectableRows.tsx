@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { useIndeterminateChecked } from "@react-md/form";
 import {
   Table,
@@ -23,7 +23,7 @@ const headers = [
   "Icon (mg)",
 ];
 
-const SelectableRows: FC = () => {
+export default function SelectableRows(): ReactElement {
   const { rootProps, getProps } = useIndeterminateChecked(
     desserts.map(({ name }) => name)
   );
@@ -82,6 +82,4 @@ const SelectableRows: FC = () => {
       </Table>
     </TableContainer>
   );
-};
-
-export default SelectableRows;
+}

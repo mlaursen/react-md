@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import {
   ExpansionList,
   ExpansionPanel,
@@ -13,7 +13,11 @@ interface Props {
   preventAllClosed: boolean;
 }
 
-const Example: FC<Props> = ({ multiple, expandedIndex, preventAllClosed }) => {
+function Example({
+  multiple,
+  expandedIndex,
+  preventAllClosed,
+}: Props): ReactElement {
   let defaultExpandedIndex: number | number[] | undefined;
   if (expandedIndex) {
     defaultExpandedIndex = multiple ? [1, 2] : 0;
@@ -61,9 +65,9 @@ const Example: FC<Props> = ({ multiple, expandedIndex, preventAllClosed }) => {
       </ExpansionPanel>
     </ExpansionList>
   );
-};
+}
 
-const ConfiguringUsePanelsBehavior: FC = () => {
+export default function ConfiguringUsePanelsBehavior(): ReactElement {
   const [multiple, onMultipleChange] = useChecked(false);
   const [expandedIndex, onExpandedIndexChange] = useChecked(false);
   const [preventAllClosed, onPreventAllClosedChange] = useChecked(false);
@@ -104,6 +108,4 @@ const ConfiguringUsePanelsBehavior: FC = () => {
       />
     </Grid>
   );
-};
-
-export default ConfiguringUsePanelsBehavior;
+}

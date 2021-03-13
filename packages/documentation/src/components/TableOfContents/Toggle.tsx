@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes, ReactNode } from "react";
+import React, { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { ViewHeadlineSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 
 import Button from "components/Button";
@@ -11,11 +11,11 @@ export interface ToggleProps {
   isDialogVisible: boolean;
 }
 
-const Toggle: FC<ToggleProps> = ({
+export default function Toggle({
   onClick,
   isLargeDesktop,
   isDialogVisible,
-}) => {
+}: ToggleProps): ReactElement {
   let tooltip: ReactNode = null;
   if (!isLargeDesktop) {
     tooltip = "Table of Contents";
@@ -39,6 +39,4 @@ const Toggle: FC<ToggleProps> = ({
       )}
     </Button>
   );
-};
-
-export default Toggle;
+}

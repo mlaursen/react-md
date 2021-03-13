@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from "react";
+import React, { HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 
 import styles from "./Container.module.scss";
@@ -7,28 +7,24 @@ interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
   stacked?: boolean;
 }
 
-const Container: FC<ContainerProps> = ({
+export default function Container({
   className,
   children,
-  stacked,
+  stacked = false,
   ...props
-}) => (
-  <div
-    {...props}
-    className={cn(
-      styles.container,
-      {
-        [styles.stacked]: stacked,
-      },
-      className
-    )}
-  >
-    {children}
-  </div>
-);
-
-Container.defaultProps = {
-  stacked: false,
-};
-
-export default Container;
+}: ContainerProps): ReactElement {
+  return (
+    <div
+      {...props}
+      className={cn(
+        styles.container,
+        {
+          [styles.stacked]: stacked,
+        },
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+}

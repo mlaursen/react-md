@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import {
   Checkbox,
   Fieldset,
@@ -44,13 +44,13 @@ export interface TextFieldThemeProps {
  * This is a small higher-order-component that will provide the themeable props
  * to either a `TextField` or `TextArea` for the two configurable examples.
  */
-const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
+export default function TextFieldThemeConfig({
   idPrefix,
   children,
   renderField,
   disableDense,
   disableRightIcon,
-}) => {
+}: TextFieldThemeProps): ReactElement {
   const [useLeft, handleLeftChange, setLeftIcon] = useChecked(false);
   const [useRight, handleRightChange, setRightIcon] = useChecked(false);
   const [dense, handleDenseChange, setDense] = useChecked(false);
@@ -204,6 +204,4 @@ const TextFieldThemeConfig: FC<TextFieldThemeProps> = ({
       </div>
     </Form>
   );
-};
-
-export default TextFieldThemeConfig;
+}

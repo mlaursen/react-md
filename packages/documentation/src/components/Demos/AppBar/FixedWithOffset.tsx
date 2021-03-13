@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import cn from "classnames";
 import {
   AppBar,
@@ -25,7 +25,7 @@ interface ExampleProps {
   height?: AppBarHeight;
 }
 
-const Example: FC<ExampleProps> = ({ height }) => {
+function Example({ height }: ExampleProps): ReactElement {
   const dense = height === "dense" || height === "prominent-dense";
   const prominent = height === "prominent" || height === "prominent-dense";
   const id = `fixed-with-offset${dense ? "-dense" : ""}${
@@ -103,15 +103,15 @@ const Example: FC<ExampleProps> = ({ height }) => {
       </div>
     </div>
   );
-};
+}
 
-const FixedWithOffset: FC = () => (
-  <>
-    <Example />
-    <Example height="dense" />
-    <Example height="prominent" />
-    <Example height="prominent-dense" />
-  </>
-);
-
-export default FixedWithOffset;
+export default function FixedWithOffset(): ReactElement {
+  return (
+    <>
+      <Example />
+      <Example height="dense" />
+      <Example height="prominent" />
+      <Example height="prominent-dense" />
+    </>
+  );
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ReactElement } from "react";
 import { MetadataType } from "constants/meta/types";
 import { toTitle } from "utils/toTitle";
 
@@ -8,8 +8,6 @@ export interface SearchTypeProps {
   type: MetadataType;
 }
 
-const SearchType: FC<SearchTypeProps> = ({ type }) => (
-  <span className={styles.type}>{toTitle(type)}</span>
-);
-
-export default SearchType;
+export default function SearchType({ type }: SearchTypeProps): ReactElement {
+  return <span className={styles.type}>{toTitle(type)}</span>;
+}
