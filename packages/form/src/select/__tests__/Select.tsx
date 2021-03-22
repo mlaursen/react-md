@@ -40,6 +40,15 @@ describe("Select", () => {
 
     rerender(<Select {...PROPS} placeholder="Choose..." label="Label" />);
     expect(container).toMatchSnapshot();
+
+    rerender(<Select {...PROPS} dense />);
+    expect(container).toMatchSnapshot();
+
+    rerender(<Select {...PROPS} dense label="Label" />);
+    expect(container).toMatchSnapshot();
+
+    rerender(<Select {...PROPS} dense label="Label" placeholder="Choose..." />);
+    expect(container).toMatchSnapshot();
   });
 
   it("should update the label and select class names when focused as well as hiding the placeholder text", () => {

@@ -339,6 +339,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
         aria-disabled={disabled || undefined}
         ref={refHandler}
         role="button"
+        dense={dense}
         tabIndex={disabled ? undefined : 0}
         label={!!label}
         onFocus={handleFocus}

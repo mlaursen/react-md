@@ -106,6 +106,116 @@ exports[`Select should render correctly 3`] = `
 </div>
 `;
 
+exports[`Select should render correctly 4`] = `
+<div>
+  <div
+    aria-haspopup="listbox"
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense rmd-text-field-container--outline-right rmd-select"
+    id="select"
+    role="button"
+    tabindex="0"
+  >
+    <span
+      class="rmd-select__value"
+      id="select-display-value"
+    />
+    <input
+      id="select-value"
+      type="hidden"
+      value=""
+    />
+    <span
+      class="rmd-text-field-addon rmd-text-field-addon--presentational"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        arrow_drop_down
+      </i>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Select should render correctly 5`] = `
+<div>
+  <div
+    aria-haspopup="listbox"
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense-label rmd-text-field-container--outline-right rmd-select"
+    id="select"
+    role="button"
+    tabindex="0"
+  >
+    <span
+      class="rmd-label rmd-floating-label rmd-floating-label--dense rmd-select__label"
+      id="select-label"
+    >
+      Label
+    </span>
+    <span
+      class="rmd-select__value"
+      id="select-display-value"
+    />
+    <input
+      id="select-value"
+      type="hidden"
+      value=""
+    />
+    <span
+      class="rmd-text-field-addon rmd-text-field-addon--presentational"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        arrow_drop_down
+      </i>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Select should render correctly 6`] = `
+<div>
+  <div
+    aria-haspopup="listbox"
+    class="rmd-text-field-container rmd-text-field-container--outline rmd-text-field-container--hoverable rmd-text-field-container--dense-label rmd-text-field-container--outline-right rmd-select"
+    id="select"
+    role="button"
+    tabindex="0"
+  >
+    <span
+      class="rmd-label rmd-floating-label rmd-floating-label--dense rmd-select__label"
+      id="select-label"
+    >
+      Label
+    </span>
+    <span
+      class="rmd-select__value rmd-select__value--placeholder"
+      id="select-display-value"
+    >
+      Choose...
+    </span>
+    <input
+      id="select-value"
+      type="hidden"
+      value=""
+    />
+    <span
+      class="rmd-text-field-addon rmd-text-field-addon--presentational"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons"
+      >
+        arrow_drop_down
+      </i>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Select should update the label and select class names when focused as well as hiding the placeholder text 1`] = `
 <div>
   <div
