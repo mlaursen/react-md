@@ -396,6 +396,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
         style={{ ...fixedStyle, ...listboxStyle }}
         className={listboxClassName}
         name={name}
+        readOnly={readOnly}
         portal={portal}
         portalInto={portalInto}
         portalIntoId={portalIntoId}

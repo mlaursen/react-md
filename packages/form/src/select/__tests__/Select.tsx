@@ -29,6 +29,15 @@ const getListbox = () => {
   return listbox;
 };
 
+const getValue = () => {
+  const value = document.getElementById("select-value");
+  if (!value) {
+    throw new Error();
+  }
+
+  return value as HTMLInputElement;
+};
+
 describe("Select", () => {
   it("should render correctly", () => {
     const { container, rerender } = render(<Select {...PROPS} />);
@@ -254,5 +263,24 @@ describe("Select", () => {
     expect(document.activeElement).toBe(listbox);
     fireEvent.keyDown(listbox, { key: "Escape" });
     expect(document.activeElement).toBe(select);
+  });
+
+  it("should not allow the values to be changed when the readOnly prop is enabled", () => {
+    const onChange = jest.fn();
+    const { getByRole } = render(
+      <Select {...PROPS} label="Label" readOnly onChange={onChange} />
+    );
+
+    const button = getByRole("button", { name: "Label" });
+    const value = getValue();
+    expect(value.value).toBe("");
+
+    fireEvent.click(button);
+    const listbox = getByRole("listbox", { name: "Label" });
+    expect(document.activeElement).toBe(listbox);
+    fireEvent.click(getByRole("option", { name: "Option 1" }));
+    expect(onChange).not.toBeCalled();
+
+    expect(value.value).toBe("");
   });
 });
