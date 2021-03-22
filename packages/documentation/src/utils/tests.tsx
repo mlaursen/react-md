@@ -38,6 +38,8 @@ const DEFAULT_ROUTER: NextRouter = {
   },
   isFallback: false,
   isReady: true,
+  isPreview: false,
+  isLocaleDomain: true,
 };
 
 const AllProviders: FC<CustomOptions> = ({

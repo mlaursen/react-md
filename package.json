@@ -72,7 +72,6 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-test-renderer": "^17.0.0",
     "@types/react-transition-group": "^4.4.0",
-    "@types/webpack": "^4.41.25",
     "chokidar": "^3.5.0",
     "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",
