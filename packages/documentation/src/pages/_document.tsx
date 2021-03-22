@@ -27,7 +27,7 @@ export default class MyDocument extends Document<MyDocumentProps> {
     const initialProps = await Document.getInitialProps(ctx);
     let theme = "light";
     if (ctx && ctx.req) {
-      ({ theme = "light" } = ctx.req.cookies);
+      ({ theme = "light" } = ctx.req.cookies ?? {});
     } else if (typeof window !== "undefined") {
       theme = Cookie.get("theme") || "light";
     }
