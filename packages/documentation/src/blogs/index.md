@@ -1,3 +1,33 @@
+Title: react-md 2.7.1
+
+Date: 03/22/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** `Select` correctly respects the `readOnly` prop (d9a0262),
+  closes #1089
+- **@react-md/form:** `Select` correctly updates for the `dense` spec (2930595),
+  closes #1089
+- **@react-md/utils:** useTabFocusWrap when only one element (25178d7)
+- **umd:** now correctly use production string for UMD bundles (a9b78ad)
+
+##### Documentation<!-- no-margin -->
+
+- **react-md.dev:** fixed build error after upgrading `next` (1861731)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- **@react-md/dev-utils:** GitHub release surrounds libsize in code block
+  (d3d122a)
+- **@react-md/utils:** Added a simple `useOnUnmount` hook (96f3cc0)
+- **react-md.dev:** fixed Demo name replacement (70e60e1)
+- **ts:** stopped using FC type (c5daa47)
+- **workflow:** added develop branch to workflow triggers (c379ce3)
+
+---
+
 Title: react-md 2.7.0
 
 Date: 02/28/2021

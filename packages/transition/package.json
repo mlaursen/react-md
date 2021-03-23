@@ -1,6 +1,6 @@
 {
   "name": "@react-md/transition",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "A package for working with react-md to use some simple transitions.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -37,8 +37,8 @@
   "license": "MIT",
   "dependencies": {
     "@react-md/portal": "^2.7.0",
-    "@react-md/theme": "^2.7.0",
-    "@react-md/utils": "^2.7.0",
+    "@react-md/theme": "^2.7.1",
+    "@react-md/utils": "^2.7.1",
     "@types/react-transition-group": "^4.2.4",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.4.1"
