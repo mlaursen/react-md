@@ -15,7 +15,8 @@ export function git(command: string): string {
 }
 
 export function uncommittedFiles(): boolean {
-  return !!git("status --porcelain");
+  const status = git("status --porcelain");
+  return !!status && status !== "?? tempStyles/";
 }
 
 export function ammendCommit(): void {
