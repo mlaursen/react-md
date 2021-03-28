@@ -3,13 +3,13 @@
 import React, { ReactElement, useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 import { mocked } from "ts-jest/utils";
-import ResizeObserverPolyfill from "resize-observer-polyfill";
+import { ResizeObserver } from "@juggle/resize-observer";
 
 import { TextArea } from "../TextArea";
 
-jest.mock("resize-observer-polyfill");
+jest.mock("@juggle/resize-observer");
 
-const ResizeObserverMock = mocked(ResizeObserverPolyfill);
+const ResizeObserverMock = mocked(ResizeObserver);
 const DEFAULT_DOM_RECT: DOMRectReadOnly = {
   x: 0,
   y: 0,
@@ -57,7 +57,12 @@ class MockedObserver implements ResizeObserver {
 
     act(() => {
       this._callback(
-        this._elements.map((target) => ({ target, contentRect })),
+        this._elements.map((target) => ({
+          target,
+          contentRect,
+          borderBoxSize: [],
+          contentBoxSize: [],
+        })),
         this
       );
     });
@@ -68,6 +73,7 @@ describe("TextArea", () => {
   let observer: MockedObserver | undefined;
   beforeAll(() => {
     ResizeObserverMock.mockImplementation((callback) => {
+      // @ts-ignore
       observer = new MockedObserver(callback);
       return observer;
     });

@@ -1,5 +1,5 @@
 import { Ref } from "react";
-import ResizeObserverPolyfill from "resize-observer-polyfill";
+import { ResizeObserver } from "@juggle/resize-observer";
 
 import { EnsuredRefs, useEnsuredRef } from "../useEnsuredRef";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
@@ -123,7 +123,7 @@ function isWidthChange(
  * @see https://github.com/WICG/resize-observer/issues/59
  * @internal
  */
-let sharedObserver: ResizeObserverPolyfill | undefined;
+let sharedObserver: ResizeObserver | undefined;
 
 /**
  *
@@ -142,7 +142,7 @@ function init(): void {
     return;
   }
 
-  sharedObserver = new ResizeObserverPolyfill((entries) => {
+  sharedObserver = new ResizeObserver((entries) => {
     // Note: might need to wait until an requestAnimationFrame has completed to
     // fix the resize observer loop exceeded error if switching to
     // `useIsomorphicLayoutEffect` and a shared observer didn't fix that error:

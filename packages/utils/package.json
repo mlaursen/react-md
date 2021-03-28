@@ -40,8 +40,8 @@
     "access": "public"
   },
   "dependencies": {
-    "classnames": "^2.3.1",
-    "resize-observer-polyfill": "^1.5.1"
+    "@juggle/resize-observer": "^3.3.0",
+    "classnames": "^2.3.1"
   },
   "devDependencies": {
     "react": "^17.0.2",

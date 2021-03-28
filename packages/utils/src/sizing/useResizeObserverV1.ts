@@ -1,5 +1,5 @@
 import { MutableRefObject, useEffect } from "react";
-import ResizeObserverPolyfill from "resize-observer-polyfill";
+import { ResizeObserver } from "@juggle/resize-observer";
 
 /**
  * A function that will return the resize observer target element. This should
@@ -201,7 +201,7 @@ export function useResizeObserverV1<E extends HTMLElement>({
     }
 
     let prevSize: ElementSize | undefined;
-    const observer = new ResizeObserverPolyfill((entries) => {
+    const observer = new ResizeObserver((entries) => {
       for (let i = 0; i < entries.length; i += 1) {
         const entry = entries[i];
         const target = entry.target as HTMLElement;

@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useRef } from "react";
 import { act, render } from "@testing-library/react";
-import ResizeObserverPolyfill from "resize-observer-polyfill";
+import { ResizeObserver } from "@juggle/resize-observer";
 import { mocked } from "ts-jest/utils";
 
 import {
@@ -10,9 +10,9 @@ import {
   useResizeObserver,
 } from "../useResizeObserver";
 
-jest.mock("resize-observer-polyfill");
+jest.mock("@juggle/resize-observer");
 
-const ResizeObserverMock = mocked(ResizeObserverPolyfill);
+const ResizeObserverMock = mocked(ResizeObserver);
 const observe = jest.fn();
 const unobserve = jest.fn();
 const disconnect = jest.fn();
@@ -62,7 +62,12 @@ class MockedObserver implements ResizeObserver {
 
     act(() => {
       this._callback(
-        this._elements.map((target) => ({ target, contentRect })),
+        this._elements.map((target) => ({
+          target,
+          contentRect,
+          borderBoxSize: [],
+          contentBoxSize: [],
+        })),
         this
       );
     });
@@ -78,7 +83,10 @@ class MockedObserver implements ResizeObserver {
         throw new Error("Unable to find triggerable element");
       }
 
-      this._callback([{ target, contentRect }], this);
+      this._callback(
+        [{ target, contentRect, borderBoxSize: [], contentBoxSize: [] }],
+        this
+      );
     });
   }
 }
@@ -87,6 +95,7 @@ describe("useResizeObserver", () => {
   let observer: MockedObserver | undefined;
   beforeAll(() => {
     ResizeObserverMock.mockImplementation((callback) => {
+      // @ts-ignore
       observer = new MockedObserver(callback);
       return observer;
     });

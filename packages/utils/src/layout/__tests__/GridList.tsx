@@ -1,15 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 import React from "react";
 import { act, render } from "@testing-library/react";
-import ResizeObserverPolyfill from "resize-observer-polyfill";
+import { ResizeObserver } from "@juggle/resize-observer";
 import { mocked } from "ts-jest/utils";
 
 import { GridList } from "../GridList";
 import { useGridListSize } from "../useGridList";
 
-jest.mock("resize-observer-polyfill");
+jest.mock("@juggle/resize-observer");
 
-const ResizeObserverMock = mocked(ResizeObserverPolyfill);
+const ResizeObserverMock = mocked(ResizeObserver);
 
 const DEFAULT_DOM_RECT: DOMRectReadOnly = {
   x: 100,
@@ -53,7 +53,12 @@ class MockedObserver implements ResizeObserver {
 
     act(() => {
       this._callback(
-        this._elements.map((target) => ({ target, contentRect })),
+        this._elements.map((target) => ({
+          target,
+          contentRect,
+          borderBoxSize: [],
+          contentBoxSize: [],
+        })),
         this
       );
     });
@@ -64,6 +69,7 @@ let observer: MockedObserver | undefined;
 let getBoundingClientRect: jest.SpyInstance<DOMRect, []>;
 beforeAll(() => {
   ResizeObserverMock.mockImplementation((callback) => {
+    // @ts-ignore
     observer = new MockedObserver(callback);
     return observer;
   });
