@@ -705,6 +705,155 @@
   }
 }
 
+/// @since 2.7.2
+/// @access private
+@mixin rmd-utils-create-css-variables {
+  @if variable-exists(rmd-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-theme-values, theme);
+  }
+
+  @if variable-exists(rmd-typography-theme-values) {
+    @include rmd-theme-create-css-variables(
+      $rmd-typography-theme-values,
+      typography
+    );
+  }
+
+  @if variable-exists(rmd-states-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-states-theme-values, states);
+  }
+
+  @if variable-exists(rmd-tooltip-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-tooltip-theme-values, tooltip);
+  }
+
+  @if variable-exists(rmd-divider-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-divider-theme-values, divider);
+  }
+
+  @if variable-exists(rmd-icon-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-icon-theme-values, icon);
+  }
+
+  @if variable-exists(rmd-avatar-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-avatar-theme-values, avatar);
+  }
+
+  @if variable-exists(rmd-link-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-link-theme-values, link);
+  }
+
+  @if variable-exists(rmd-overlay-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-overlay-theme-values, overlay);
+  }
+
+  @if variable-exists(rmd-progress-theme-values) {
+    @include rmd-theme-create-css-variables(
+      $rmd-progress-theme-values,
+      progress
+    );
+  }
+
+  @if variable-exists(rmd-button-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-button-theme-values, button);
+  }
+
+  @if variable-exists(rmd-badge-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-badge-theme-values, badge);
+  }
+
+  @if variable-exists(rmd-chip-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-chip-theme-values, chip);
+  }
+
+  @if variable-exists(rmd-alert-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-alert-theme-values, alert);
+  }
+
+  @if variable-exists(rmd-app-bar-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-app-bar-theme-values, app-bar);
+  }
+
+  @if variable-exists(rmd-card-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-card-theme-values, card);
+  }
+
+  @if variable-exists(rmd-expansion-panel-theme-values) {
+    @include rmd-theme-create-css-variables(
+      $rmd-expansion-panel-theme-values,
+      expansion-panel
+    );
+  }
+
+  @if variable-exists(rmd-list-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-list-theme-values, list);
+  }
+
+  @if variable-exists(rmd-dialog-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-dialog-theme-values, dialog);
+  }
+
+  @if variable-exists(rmd-menu-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-menu-theme-values, menu);
+  }
+
+  @if variable-exists(rmd-sheet-theme-values) {
+    $exclude: if(
+      $rmd-theme-dark-elevation,
+      (),
+      (background-color, raised-background-color)
+    );
+
+    @include rmd-theme-create-css-variables(
+      $rmd-sheet-theme-values,
+      sheet,
+      $exclude
+    );
+  }
+
+  @if variable-exists(rmd-tabs-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-tabs-theme-values, tabs);
+  }
+
+  @if variable-exists(rmd-tree-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-tree-theme-values, tree);
+  }
+
+  @if variable-exists(rmd-table-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-table-theme-values, table);
+  }
+
+  @if variable-exists(rmd-form-theme-values) {
+    $exclude: (
+      addon-top
+        label-left-offset
+        label-top-offset
+        label-active-background-color
+        label-active-padding
+        text-offset
+        text-padding-left
+        text-padding-right
+        text-padding-top
+    );
+
+    @include rmd-theme-create-css-variables(
+      $rmd-form-theme-values,
+      form,
+      $exclude
+    );
+  }
+
+  @if variable-exists(rmd-layout-theme-values) {
+    @include rmd-theme-create-css-variables($rmd-layout-theme-values, layout);
+  }
+
+  @if $rmd-utils-auto-dense {
+    @include rmd-utils-desktop-media {
+      @include rmd-utils-dense;
+    }
+  }
+}
+
 /// This mixin will attempt to apply all the available dense theme mixins that have
 /// been imported. This should normally be used within a `:root` selector and a media
 /// query.
@@ -748,6 +897,14 @@
 @mixin react-md-utils {
   @include rmd-utils-base;
   @include react-md-utils-grid;
+
+  @if $rmd-utils-group-css-variables and
+    mixin-exists(rmd-theme-create-css-variables)
+  {
+    :root {
+      @include rmd-utils-create-css-variables;
+    }
+  }
 
   // the mixins are added in this specific order to make overriding easier
   @if mixin-exists(react-md-theme) {
@@ -862,7 +1019,7 @@
     @include react-md-layout;
   }
 
-  @if $rmd-utils-auto-dense {
+  @if $rmd-utils-auto-dense and not $rmd-utils-group-css-variables {
     :root {
       @include rmd-utils-desktop-media {
         @include rmd-utils-dense;
