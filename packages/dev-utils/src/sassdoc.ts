@@ -14,7 +14,7 @@ import {
   VariableItem,
 } from "sassdoc";
 
-import { nonWebpackDist, packagesRoot, src, tempStylesDir } from "./constants";
+import { dist, packagesRoot, src, tempStylesDir } from "./constants";
 import {
   CompiledExample,
   format,
@@ -104,18 +104,17 @@ function compileExampleCode(code: string): string {
   const i = code.indexOf(OVERRIDE_VARIABLES_TOKEN);
   let prefix = "";
   if (i !== -1) {
-    prefix = `@import '@react-md/theme/${nonWebpackDist}/color-palette';
+    prefix = `@import '@react-md/theme/${dist}/color-palette';
 ${code.substring(0, i)}
 `;
     code = code.substring(i + OVERRIDE_VARIABLES_TOKEN.length);
   }
 
   const imports = getPackages("scss")
-    .map((p) => `@import '@react-md/${p}/${nonWebpackDist}/mixins';`)
+    .map((p) => `@import '@react-md/${p}';`)
     .join("\n");
 
   const data = `${prefix}${imports}
-@import '@react-md/icon/${nonWebpackDist}/material-icons';
 
 ${code}
 `;
@@ -262,7 +261,7 @@ function formatItem(
     name,
     description: formatDescription(description),
     source: getGithubUrl(
-      path.replace("@react-md/", "").replace(nonWebpackDist, src),
+      path.replace("@react-md/", "").replace(dist, src),
       line.start,
       line.end
     ),

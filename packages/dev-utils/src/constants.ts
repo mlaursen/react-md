@@ -21,7 +21,6 @@ export const es = "es";
 export const lib = "lib";
 export const types = "types";
 export const dist = "dist";
-export const nonWebpackDist = join(dist, "scss");
 export const tempStylesDir = "tempStyles";
 
 // common files

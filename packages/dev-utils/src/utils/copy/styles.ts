@@ -5,14 +5,12 @@ import {
   readFileSync,
   removeSync,
   writeFile,
-  writeFileSync,
 } from "fs-extra";
 import log from "loglevel";
 import { join, sep } from "path";
 
 import {
   dist,
-  nonWebpackDist,
   packagesRoot,
   projectRoot,
   src,
@@ -41,27 +39,11 @@ function ensureDists(): void {
   const packages = getPackages(true);
   packages.forEach((pkg) => {
     ensureDirSync(join(packagesRoot, pkg, dist));
-    ensureDirSync(join(packagesRoot, pkg, nonWebpackDist));
   });
 
   FORM_FOLDERS.forEach((folder) => {
     ensureDirSync(join(packagesRoot, "form", dist, folder));
-    ensureDirSync(join(packagesRoot, "form", nonWebpackDist, folder));
   });
-}
-
-function getNonTildedContents(filePath: string): string {
-  const contents = readFileSync(filePath, "utf8");
-  return contents
-    .replace(/~@react-md/g, "@react-md")
-    .replace(/dist\//g, `${nonWebpackDist}/`);
-}
-
-function createNonTildedImports(srcPath: string): void {
-  const webpackDest = srcPath.replace(`${src}/`, `${nonWebpackDist}/`);
-  log.debug(` - ${srcPath} -> ${webpackDest}`);
-
-  writeFileSync(webpackDest, getNonTildedContents(srcPath), "utf8");
 }
 
 /**
@@ -78,7 +60,6 @@ export async function copyStyles(): Promise<void> {
     const dest = srcPath.replace(`${src}/`, `${dist}/`);
     log.debug(` - ${srcPath} -> ${dest}`);
     copyFileSync(srcPath, dest);
-    createNonTildedImports(srcPath);
   });
   log.debug();
 }
@@ -91,15 +72,10 @@ export async function copyStylesTemp(): Promise<void> {
   const files = await glob(PATTERN);
   await Promise.all(
     files.map(async (filePath) => {
-      const contents = getNonTildedContents(filePath);
+      const contents = readFileSync(filePath, "utf8");
       const [, name, , ...others] = filePath.split(sep);
       const packageName = name === "react-md" ? name : join("@react-md", name);
-      const dest = join(
-        tempStylesDir,
-        packageName,
-        nonWebpackDist,
-        others.join(sep)
-      );
+      const dest = join(tempStylesDir, packageName, others.join(sep));
       const parentFolders = dest.substring(0, dest.lastIndexOf(sep));
 
       await ensureDir(parentFolders);
