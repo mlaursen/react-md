@@ -2,10 +2,9 @@
 /// @group dialog
 ////
 
-@import '@react-md/overlay/dist/variables';
-@import '@react-md/theme/dist/variables';
-@import '@react-md/theme/dist/functions';
-@import '@react-md/utils/dist/variables';
+@import '@react-md/overlay';
+@import '@react-md/theme';
+@import '@react-md/utils';
 
 /// The elevation (box-shadow) to use for the dialog when it is not full page.
 /// This should be a number between 0 and 24 since it gets passed to the

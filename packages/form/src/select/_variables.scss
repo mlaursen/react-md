@@ -2,9 +2,8 @@
 /// @group form-select
 ////
 
-@import '@react-md/theme/dist/color-palette';
-@import '@react-md/theme/dist/functions';
-@import '@react-md/utils/dist/variables';
+@import '@react-md/theme';
+@import '@react-md/utils';
 
 /// The additional amount of apdding to apply to the top of the select field
 /// container in addition to normal text field padding. This is used so the

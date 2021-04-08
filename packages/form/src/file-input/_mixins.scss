@@ -2,8 +2,8 @@
 /// @group form-file-input
 ////
 
-@import '@react-md/states/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '@react-md/states';
+@import '@react-md/utils';
 
 /// @access private
 @mixin react-md-file-input {

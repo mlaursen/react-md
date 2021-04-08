@@ -2,9 +2,8 @@
 /// @group expansion-panel
 ////
 
-@import '@react-md/icon/dist/variables';
-@import '@react-md/theme/dist/color-a11y';
-@import '@react-md/theme/dist/variables';
+@import '@react-md/icon';
+@import '@react-md/theme';
 
 /// The amount of spacing to use between panels when multiple are used together.
 /// This gets applied as a `margin-top` value.

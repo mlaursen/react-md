@@ -2,12 +2,12 @@
 /// @group form-select
 ////
 
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/list/dist/mixins';
-@import '@react-md/transition/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '@react-md/elevation';
+@import '@react-md/icon';
+@import '@react-md/list';
+@import '@react-md/transition';
+@import '@react-md/typography';
+@import '@react-md/utils';
 @import '../text-field/mixins';
 @import '../functions';
 @import '../variables';

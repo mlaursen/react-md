@@ -2,9 +2,9 @@
 /// @group avatar
 ////
 
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/theme/dist/helpers';
-@import '@react-md/typography/dist/mixins';
+@import '@react-md/icon';
+@import '@react-md/theme';
+@import '@react-md/typography';
 @import './variables';
 
 /// Creates the styles for one of the avatar's theme values. This is mostly

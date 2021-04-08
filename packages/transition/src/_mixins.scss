@@ -2,7 +2,7 @@
 /// @group transition
 ////
 
-@import '@react-md/utils/dist/mixins';
+@import '@react-md/utils';
 @import './variables';
 
 /// Adds a transition timing function for the provided transition type.
@@ -56,7 +56,7 @@
 /// A mixin that allows you to animate box shadow performantly.
 ///
 /// @example scss - Simple Usage
-///   @import '@react-md/theme/dist/color-palette';
+///   @import '@react-md/theme';
 ///
 ///   .my-class {
 ///     $start-shadow: inset 0 0 1px $rmd-blue-500;
@@ -66,8 +66,8 @@
 ///   }
 ///
 /// @example scss - Merging with elevation
-///   @import '@react-md/elevation/dist/functions';
-///   @import '@react-md/theme/dist/color-palette';
+///   @import '@react-md/elevation';
+///   @import '@react-md/theme';
 ///
 ///   .my-class {
 ///     $start-shadow: rmd-elevation(2);

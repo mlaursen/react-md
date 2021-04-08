@@ -2,10 +2,9 @@
 /// @group app-bar
 ////
 
-@import '@react-md/button/dist/variables';
-@import '@react-md/icon/dist/variables';
-@import '@react-md/theme/dist/color-palette';
-@import '@react-md/theme/dist/variables';
+@import '@react-md/button';
+@import '@react-md/icon';
+@import '@react-md/theme';
 
 /// The z-index to use for the fixed app bar. Ideally this value should be less
 /// than any of the "temporary" materials like overlays, sheets, and menus.

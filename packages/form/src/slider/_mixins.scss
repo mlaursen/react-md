@@ -3,9 +3,9 @@
 /// @since 2.5.0
 ////
 
-@import '@react-md/states/dist/mixins';
-@import '@react-md/transition/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '@react-md/states';
+@import '@react-md/transition';
+@import '@react-md/utils';
 
 @import './functions';
 @import './variables';

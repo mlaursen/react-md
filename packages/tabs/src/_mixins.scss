@@ -2,13 +2,12 @@
 /// @group tabs
 ////
 
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/theme/dist/helpers';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/states/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/transition/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '@react-md/icon';
+@import '@react-md/theme';
+@import '@react-md/states';
+@import '@react-md/typography';
+@import '@react-md/transition';
+@import '@react-md/utils';
 @import './functions';
 @import './variables';
 

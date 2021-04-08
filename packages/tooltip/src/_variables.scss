@@ -2,11 +2,9 @@
 /// @group tooltip
 ////
 
-@import '@react-md/theme/dist/color-palette';
-@import '@react-md/theme/dist/color-a11y';
-@import '@react-md/theme/dist/functions';
-@import '@react-md/transition/dist/variables';
-@import '@react-md/utils/dist/variables';
+@import '@react-md/theme';
+@import '@react-md/transition';
+@import '@react-md/utils';
 
 /// The background color to use for tooltips.
 /// @type Color

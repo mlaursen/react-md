@@ -2,12 +2,11 @@
 /// @group sheet
 ////
 
-@import '@react-md/dialog/dist/variables';
-@import '@react-md/overlay/dist/variables';
-@import '@react-md/transition/dist/variables';
-@import '@react-md/theme/dist/functions';
-@import '@react-md/theme/dist/variables';
-@import '@react-md/utils/dist/variables';
+@import '@react-md/dialog';
+@import '@react-md/overlay';
+@import '@react-md/transition';
+@import '@react-md/theme';
+@import '@react-md/utils';
 
 /// The z-index to use for sheets that normally appear without an overlay and
 /// inline with other content. This should be a number greater than 1 in case

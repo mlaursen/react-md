@@ -2,12 +2,10 @@
 /// @group menu
 ////
 
-@import '@react-md/elevation/dist/mixins';
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/theme/dist/variables';
-@import '@react-md/theme/dist/helpers';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '@react-md/elevation';
+@import '@react-md/icon';
+@import '@react-md/theme';
+@import '@react-md/utils';
 @import './functions';
 @import './variables';
 

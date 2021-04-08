@@ -2,9 +2,9 @@
 /// @group menu
 ////
 
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/list/dist/functions';
-@import '@react-md/utils/dist/variables';
+@import '@react-md/theme';
+@import '@react-md/list';
+@import '@react-md/utils';
 
 /// The elevation for menus. This should be a number from 0 to 24 (inclusive) as
 /// it gets passed to the `rmd-elevation` mixin.

@@ -2,15 +2,13 @@
 /// @group list
 ////
 
-@import '@react-md/avatar/dist/functions';
-@import '@react-md/divider/dist/mixins';
-@import '@react-md/icon/dist/variables';
-@import '@react-md/icon/dist/mixins';
-@import '@react-md/states/dist/mixins';
-@import '@react-md/theme/dist/helpers';
-@import '@react-md/theme/dist/mixins';
-@import '@react-md/typography/dist/mixins';
-@import '@react-md/utils/dist/mixins';
+@import '@react-md/avatar';
+@import '@react-md/divider';
+@import '@react-md/icon';
+@import '@react-md/states';
+@import '@react-md/theme';
+@import '@react-md/typography';
+@import '@react-md/utils';
 @import './variables';
 @import './functions';
 
