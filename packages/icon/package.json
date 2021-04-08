@@ -5,6 +5,7 @@
   "main": "./lib/index.js",
   "module": "./es/index.js",
   "types": "./types/index.d.ts",
+  "sass": "./dist/_icon.scss",
   "sideEffects": [
     "dist/**/*"
   ],

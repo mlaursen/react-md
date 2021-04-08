@@ -5,6 +5,7 @@
   "main": "./dist/scssVariables.js",
   "module": "./dist/scssVariables.js",
   "types": "./dist/scssVariables.d.ts",
+  "sass": "./dist/_elevation.scss",
   "sideEffects": [
     "dist/**/*"
   ],
