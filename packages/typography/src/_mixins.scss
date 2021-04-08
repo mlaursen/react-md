@@ -2,9 +2,9 @@
 /// @group typography
 ////
 
-@import '~@react-md/theme/dist/helpers';
-@import '~@react-md/theme/dist/mixins';
-@import '~@react-md/utils/dist/mixins';
+@import '@react-md/theme/dist/helpers';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/utils/dist/mixins';
 @import './variables';
 @import './functions';
 
@@ -397,13 +397,13 @@
 ///   @include rmd-typography-host-google-font(
 ///     Roboto,
 ///     $rmd-typography-default-font-weights,
-///     '~./fonts/roboto'
+///     './fonts/roboto'
 ///   );
 ///
 ///   @include rmd-typography-host-google-font(
 ///     'Source Code Pro',
 ///     regular,
-///     '~./fonts/source-code-pro'
+///     './fonts/source-code-pro'
 ///   );
 ///
 /// @example scss - Custom Font Map Declarations

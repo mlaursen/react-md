@@ -2,11 +2,11 @@
 /// @group button
 ////
 
-@import '~@react-md/icon/dist/functions';
-@import '~@react-md/theme/dist/helpers';
-@import '~@react-md/theme/dist/mixins';
-@import '~@react-md/theme/dist/variables';
-@import '~@react-md/utils/dist/variables';
+@import '@react-md/icon/dist/functions';
+@import '@react-md/theme/dist/helpers';
+@import '@react-md/theme/dist/mixins';
+@import '@react-md/theme/dist/variables';
+@import '@react-md/utils/dist/variables';
 
 /// Boolean if text buttons with icons should have the icons inherit the current
 /// color. If this is disabled, only icon buttons will inherit the current text
@@ -111,9 +111,9 @@ $rmd-button-floating-margin: 1.5rem !default;
 /// `@react-md/button`'s `mixin`s.
 ///
 /// @example scss - Includes `CircularProgress` size<!-- no-compile -->
-///   @import '~@react-md/button/dist/mixins';
-///   @import '~@react-md/progress/dist/mixins';
-///   @import '~@react-md/utils/dist/mixins';
+///   @import '@react-md/button/dist/mixins';
+///   @import '@react-md/progress/dist/mixins';
+///   @import '@react-md/utils/dist/mixins';
 ///
 ///   // can also manually set it to a different value if desired:
 ///   // $rmd-button-circular-progress-size: 1.5rem;
@@ -123,16 +123,16 @@ $rmd-button-floating-margin: 1.5rem !default;
 ///
 /// @example scss - Does not include `CircularProgress` size<!-- no-compile -->
 ///   // bad example since `@react-md/progress` was not imported
-///   @import '~@react-md/button/dist/mixins';
-///   @import '~@react-md/utils/dist/mixins';
+///   @import '@react-md/button/dist/mixins';
+///   @import '@react-md/utils/dist/mixins';
 ///
 ///   // or @include react-md-button;
 ///   @include react-md-utils;
 ///
 /// @example scss - Opt-out of `CircularProgress` size<!-- no-compile -->
-///   @import '~@react-md/button/dist/mixins';
-///   @import '~@react-md/progress/dist/mixins';
-///   @import '~@react-md/utils/dist/mixins';
+///   @import '@react-md/button/dist/mixins';
+///   @import '@react-md/progress/dist/mixins';
+///   @import '@react-md/utils/dist/mixins';
 ///
 ///   // manually set it to `null` to prevent it from being added
 ///   $rmd-button-circular-progress-size: null;

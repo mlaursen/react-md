@@ -2,9 +2,9 @@
 /// @group chip
 ////
 
-@import '~@react-md/states/dist/variables';
-@import '~@react-md/transition/dist/variables';
-@import '~@react-md/theme/dist/functions';
+@import '@react-md/states/dist/variables';
+@import '@react-md/transition/dist/variables';
+@import '@react-md/theme/dist/functions';
 
 /// Boolean if the chip should disable the background color change when it gains
 /// keyboard focus. This is disabled by default since the focus shadow looks a

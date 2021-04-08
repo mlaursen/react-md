@@ -2,7 +2,7 @@
 /// @group icon
 ////
 
-@import '~@react-md/typography/dist/variables';
+@import '@react-md/typography/dist/variables';
 @import 'mixins';
 
 /// Creates the font face for material icons. This takes either a font url
@@ -157,7 +157,7 @@
 ///
 ///   // Note the `~./`. This will resolve this import to the `src` directory
 ///   // within create-react-app
-///   @include rmd-icon-material-icons-font-face('~./fonts/material-icons');
+///   @include rmd-icon-material-icons-font-face('./fonts/material-icons');
 ///
 /// @param {Map|String} font-url-or-map ['/fonts/material-icons'] - This is
 /// either a font url prefix for the folder that is "hosting" the material icons

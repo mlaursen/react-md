@@ -2,8 +2,8 @@
 /// @group table
 ////
 
-@import '~@react-md/states/dist/functions';
-@import '~@react-md/theme/dist/mixins';
+@import '@react-md/states/dist/functions';
+@import '@react-md/theme/dist/mixins';
 
 /// The border color to use for tables due to a chrome rendering bug when the
 /// `colSpan` is used on a table. This will be applied when using the light
