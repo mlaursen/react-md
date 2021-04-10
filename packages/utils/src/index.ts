@@ -6,6 +6,7 @@ export * from "./defaults";
 export * from "./Dir";
 export * from "./events";
 export * from "./getPercentage";
+export * from "./hover";
 export * from "./layout";
 export * from "./loop";
 export * from "./mode";
