@@ -1,4 +1,10 @@
-import { CSSProperties, useCallback, useEffect, useState } from "react";
+import {
+  CSSProperties,
+  RefObject,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { TransitionProps } from "react-transition-group/Transition";
 import {
   FixedPositionOptions,
@@ -10,7 +16,16 @@ import {
 } from "@react-md/utils";
 
 export type FixedToFunction = () => HTMLElement | null;
-export type FixedTo = string | HTMLElement | null | FixedToFunction;
+
+/**
+ * @remarks \@since 2.8.0 Supports `RefObject` implementation.
+ */
+export type FixedTo =
+  | RefObject<HTMLElement | null>
+  | FixedToFunction
+  | HTMLElement
+  | string
+  | null;
 export type OptionalFixedPositionOptions = Omit<
   FixedPositionOptions,
   "container" | "element"
@@ -86,19 +101,22 @@ function getFixedTo(fixedTo: FixedTo): HTMLElement | null {
     return null;
   }
 
-  const t = typeof fixedTo;
-  switch (t) {
-    case "string":
-      fixedTo = fixedTo as string;
-      return (
-        document.getElementById(fixedTo) ||
-        document.querySelector<HTMLElement>(fixedTo)
-      );
-    case "function":
-      return (fixedTo as FixedToFunction)();
-    default:
-      return fixedTo as HTMLElement;
+  if (typeof fixedTo === "string") {
+    return (
+      document.getElementById(fixedTo) ||
+      document.querySelector<HTMLElement>(fixedTo)
+    );
   }
+
+  if (typeof fixedTo === "function") {
+    return fixedTo();
+  }
+
+  if ("current" in fixedTo) {
+    return fixedTo.current;
+  }
+
+  return fixedTo;
 }
 
 interface ReturnValue extends Required<TransitionHooks> {
