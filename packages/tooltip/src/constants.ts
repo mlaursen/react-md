@@ -18,3 +18,18 @@ export const DEFAULT_TOOLTIP_TIMEOUT: TransitionTimeout = {
 
 export const DEFAULT_TOOLTIP_DELAY = 1000;
 export const DEFAULT_TOOLTIP_THRESHOLD = 0.75;
+
+/** @remarks \@since 2.8.0 */
+export const DEFAULT_TOOLTIP_SPACING = "1.5rem";
+/** @remarks \@since 2.8.0 */
+export const DEFAULT_TOOLTIP_DENSE_SPACING = "0.875rem";
+/** @remarks \@since 2.8.0 */
+export const DEFAULT_TOOLTIP_MARGIN = 16;
+/** @remarks \@since 2.8.0 */
+export const DEFAULT_TOOLTIP_POSITION = "below";
+
+/**
+ * @internal
+ * @remarks \@since 2.8.0
+ */
+export const TOOLTIP_SPACING_VAR = "--rmd-tooltip-spacing";

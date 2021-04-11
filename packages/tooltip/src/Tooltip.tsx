@@ -9,6 +9,10 @@ import CSSTransition, {
   CSSTransitionClassNames,
 } from "react-transition-group/CSSTransition";
 import {
+  ConditionalPortal,
+  RenderConditionalPortalProps,
+} from "@react-md/portal";
+import {
   OverridableTransitionProps,
   TransitionTimeout,
 } from "@react-md/transition";
@@ -16,26 +20,33 @@ import { bem, SimplePosition } from "@react-md/utils";
 
 import {
   DEFAULT_TOOLTIP_CLASSNAMES,
+  DEFAULT_TOOLTIP_POSITION,
   DEFAULT_TOOLTIP_TIMEOUT,
 } from "./constants";
+
+/** @remarks \@since 2.8.0 */
+export type TooltipTransitionProps = Pick<
+  OverridableTransitionProps,
+  | "onEnter"
+  | "onEntering"
+  | "onEntered"
+  | "onExit"
+  | "onExiting"
+  | "onExited"
+  | "mountOnEnter"
+  | "unmountOnExit"
+>;
 
 /**
  * The base props for the `Tooltip` component. This can be extended when
  * creating custom tooltip implementations.
+ *
+ * @remarks \@since 2.8.0 Supports the {@link RenderConditionalPortalProps}
  */
 export interface TooltipProps
-  extends Pick<
-      OverridableTransitionProps,
-      | "onEnter"
-      | "onEntering"
-      | "onEntered"
-      | "onExit"
-      | "onExiting"
-      | "onExited"
-      | "mountOnEnter"
-      | "unmountOnExit"
-    >,
-    HTMLAttributes<HTMLSpanElement> {
+  extends TooltipTransitionProps,
+    HTMLAttributes<HTMLSpanElement>,
+    RenderConditionalPortalProps {
   /**
    * An id for the tooltip. This is required for accessibility and finding an
    * element to attach event listeners to show and hide the tooltip.
@@ -114,6 +125,28 @@ const block = bem("rmd-tooltip");
  * with an animation when the visibility changes. If this component is used, you
  * will need to manually add all the event listeners and triggers to change the
  * `visible` prop.
+ *
+ * @example
+ * Simple Usage
+ * ```tsx
+ * import { Button } from "@react-md/button";
+ * import { useTooltip, Tooltip } from "@react-md/tooltip";
+ *
+ * function Example() {
+ *   const { tooltipProps, elementProps } = useTooltip({
+ *     baseId: 'my-element',
+ *   });
+ *
+ *   return (
+ *     <>
+ *       <Button {...elementProps}>Button</Button>
+ *       <Tooltip {...tooltipProps}>
+ *         Tooltip Content
+ *       </Tooltip>
+ *     </>
+ *   );
+ * }
+ * ```
  */
 export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
   function Tooltip(
@@ -124,7 +157,7 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       timeout = DEFAULT_TOOLTIP_TIMEOUT,
       dense = false,
       lineWrap = true,
-      position = "below",
+      position = DEFAULT_TOOLTIP_POSITION,
       children,
       onEnter,
       onEntering,
@@ -132,6 +165,9 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       onExit,
       onExiting,
       onExited,
+      portal = true,
+      portalInto,
+      portalIntoId,
       mountOnEnter = true,
       unmountOnExit = true,
       ...props
@@ -139,36 +175,42 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
     ref
   ) {
     return (
-      <CSSTransition
-        classNames={classNames}
-        in={visible}
-        timeout={timeout}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExiting={onExiting}
-        onExited={onExited}
-        mountOnEnter={mountOnEnter}
-        unmountOnExit={unmountOnExit}
+      <ConditionalPortal
+        portal={portal}
+        portalInto={portalInto}
+        portalIntoId={portalIntoId}
       >
-        <span
-          {...props}
-          ref={ref}
-          role="tooltip"
-          className={cn(
-            block({
-              dense,
-              "line-wrap": lineWrap,
-              "dense-line-wrap": dense && lineWrap,
-              [position]: true,
-            }),
-            className
-          )}
+        <CSSTransition
+          classNames={classNames}
+          in={visible}
+          timeout={timeout}
+          onEnter={onEnter}
+          onEntering={onEntering}
+          onEntered={onEntered}
+          onExit={onExit}
+          onExiting={onExiting}
+          onExited={onExited}
+          mountOnEnter={mountOnEnter}
+          unmountOnExit={unmountOnExit}
         >
-          {children}
-        </span>
-      </CSSTransition>
+          <span
+            {...props}
+            ref={ref}
+            role="tooltip"
+            className={cn(
+              block({
+                dense,
+                "line-wrap": lineWrap,
+                "dense-line-wrap": dense && lineWrap,
+                [position]: true,
+              }),
+              className
+            )}
+          >
+            {children}
+          </span>
+        </CSSTransition>
+      </ConditionalPortal>
     );
   }
 );

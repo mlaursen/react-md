@@ -1,12 +1,8 @@
-import React, { ReactElement, ReactNode, useMemo } from "react";
+/* istanbul ignore file */
+import React, { ReactElement, ReactNode } from "react";
+import { HoverModeProvider } from "@react-md/utils";
 
 import { DEFAULT_TOOLTIP_DELAY } from "./constants";
-import {
-  HoverModeActions,
-  HoverModeDelay,
-  HoverModeEnabled,
-  useTooltipHoverModeState,
-} from "./useTooltipHoverMode";
 
 interface TooltipHoverModeConfigProps {
   children: ReactNode;
@@ -19,6 +15,9 @@ interface TooltipHoverModeConfigProps {
  * This component is used so that tooltips can gain the "hover mode"
  * functionality in that once a tooltip has become visible by hover, all other
  * tooltips will become visible immediately until 3 seconds have passed.
+ *
+ * @deprecated \@since 2.8.0 Use the {@link @react-md/utils#HoverModeProvider}
+ * instead.
  */
 export function TooltipHoverModeConfig({
   defaultDelay = DEFAULT_TOOLTIP_DELAY,
@@ -26,31 +25,17 @@ export function TooltipHoverModeConfig({
   enabled = true,
   children,
 }: TooltipHoverModeConfigProps): ReactElement {
-  const { delay, enable, startDisableTimer } = useTooltipHoverModeState(
-    defaultDelay,
-    delayTimeout
-  );
-
-  const actions = useMemo(
-    () => ({
-      enable,
-      startDisableTimer,
-    }),
-    [enable, startDisableTimer]
-  );
-
   return (
-    <HoverModeDelay.Provider value={delay}>
-      <HoverModeActions.Provider value={actions}>
-        <HoverModeEnabled.Provider value={enabled}>
-          {children}
-        </HoverModeEnabled.Provider>
-      </HoverModeActions.Provider>
-    </HoverModeDelay.Provider>
+    <HoverModeProvider
+      disabled={!enabled}
+      defaultVisibleInTime={defaultDelay}
+      deactivateTime={delayTimeout}
+    >
+      {children}
+    </HoverModeProvider>
   );
 }
 
-/* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
