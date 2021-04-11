@@ -9,10 +9,6 @@ import {
   StatesConfigProps,
 } from "@react-md/states";
 import {
-  DEFAULT_TOOLTIP_DELAY,
-  TooltipHoverModeConfig,
-} from "@react-md/tooltip";
-import {
   AppSizeListener,
   AppSizeListenerProps,
   AppSizeOptions,
@@ -24,6 +20,8 @@ import {
   DEFAULT_TABLET_MAX_WIDTH,
   DEFAULT_TABLET_MIN_WIDTH,
   Dir,
+  HoverModeConfiguration,
+  HoverModeProvider,
   UserInteractionModeListener,
   WritingDirection,
 } from "@react-md/utils";
@@ -31,23 +29,32 @@ import {
 export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
   /**
    * An optional function to call when the app gets resized based on media
-   * queries.  This is useful if you want to store the current app state in
-   * redux if you can't always access this state with the `useAppSize` hook.
+   * queries. This is useful if you want to store the current app state in redux
+   * if you can't always access this state with the `useAppSize` hook.
    */
   onAppResize?: AppSizeListenerProps["onChange"];
 
   /**
    * Boolean if the default tooltip hover mode should be disabled.
+   *
+   * @deprecated \@since 2.8.0 Use the {@link ConfigurationProps#hoverMode}
+   * configuration object instead.
    */
   disableTooltipHoverMode?: boolean;
 
   /**
    * The default delay before the tooltip hover mode is enabled.
+   *
+   * @deprecated \@since 2.8.0 Use the {@link ConfigurationProps#hoverMode}
+   * configuration object instead.
    */
   tooltipDefaultDelay?: number;
 
   /**
    * The delay before the tooltip should become visible.
+   *
+   * @deprecated \@since 2.8.0 Use the {@link ConfigurationProps#hoverMode}
+   * configuration object instead.
    */
   tooltipDelayTimeout?: number;
 
@@ -77,6 +84,12 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
    * @remarks \@since 2.3.0
    */
   defaultDir?: WritingDirection | (() => WritingDirection);
+
+  /**
+   * @see {@link HoverModeConfiguration}
+   * @remarks \@since 2.8.0
+   */
+  hoverMode?: HoverModeConfiguration;
 }
 
 /**
@@ -99,9 +112,10 @@ export function Configuration({
   rippleClassNames = DEFAULT_RIPPLE_CLASSNAMES,
   disableRipple = false,
   disableProgrammaticRipple = false,
-  disableTooltipHoverMode = false,
-  tooltipDefaultDelay = DEFAULT_TOOLTIP_DELAY,
-  tooltipDelayTimeout = DEFAULT_TOOLTIP_DELAY,
+  disableTooltipHoverMode,
+  tooltipDefaultDelay,
+  tooltipDelayTimeout,
+  hoverMode,
 }: ConfigurationProps): ReactElement {
   return (
     <Dir defaultDir={defaultDir}>
@@ -122,17 +136,18 @@ export function Configuration({
               rippleTimeout={rippleTimeout}
               rippleClassNames={rippleClassNames}
             >
-              <TooltipHoverModeConfig
-                enabled={!disableTooltipHoverMode}
-                defaultDelay={tooltipDefaultDelay}
-                delayTimeout={tooltipDelayTimeout}
+              <HoverModeProvider
+                disabled={disableTooltipHoverMode}
+                defaultVisibleInTime={tooltipDefaultDelay}
+                deactivateTime={tooltipDelayTimeout}
+                {...hoverMode}
               >
                 <IconProvider {...icons}>
                   <FormThemeProvider {...formTheme}>
                     {children}
                   </FormThemeProvider>
                 </IconProvider>
-              </TooltipHoverModeConfig>
+              </HoverModeProvider>
             </StatesConfig>
           </UserInteractionModeListener>
         </NestedDialogContextProvider>
