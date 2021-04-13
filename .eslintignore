@@ -4,3 +4,12 @@ packages/documentation/src/components/SassDocPage
 
 # this is needed to fix a config extension error for "@ljharb" in the qs library
 packages/*/node_modules
+
+/examples
+/testSetup
+/packages/*/es
+/packages/*/lib
+/packages/*/bin
+/packages/*/types
+/packages/*/dist
+/packages/dev-utils/typedoc
