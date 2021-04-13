@@ -31,6 +31,7 @@ export default function PageMeta({
 
   return (
     <Head>
+      <meta name="description" content={description} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta
@@ -38,7 +39,7 @@ export default function PageMeta({
         content={`https://react-md.dev${router.pathname}`}
       />
       <meta property="og:image" content={image.src} />
-      <meta property="og:image:alt" />
+      <meta property="og:image:alt" content={image.alt} />
       <meta property="og:type" content="website" />
       <meta property="twitter:site" content="react-md" />
       <meta property="twitter:creator" content="Mikkel Laursen" />
