@@ -59,7 +59,7 @@
     "classnames": "^2.3.1",
     "codesandbox": "^2.2.1",
     "cookie-parser": "^1.4.5",
-    "date-fns": "^2.19.0",
+    "date-fns": "^2.20.3",
     "express": "^4.17.1",
     "fuse.js": "6.4.6",
     "helmet": "^4.4.1",
