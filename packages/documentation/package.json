@@ -72,7 +72,7 @@
     "next": "10.0.9",
     "prismjs": "^1.23.0",
     "qs": "^6.10.0",
-    "react": "^17.0.1",
+    "react": "^17.0.2",
     "react-dom": "^17.0.1",
     "react-hook-form": "^6.15.5",
     "react-router-dom": "^5.2.0",
