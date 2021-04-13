@@ -15,7 +15,7 @@
     "watch": "npm-run-all -p \"compile -w\" watcher"
   },
   "dependencies": {
-    "@babel/core": "^7.13.10",
+    "@babel/core": "^7.13.15",
     "@octokit/core": "^3.2.5",
     "chokidar": "^3.5.0",
     "commander": "^7.2.0",
