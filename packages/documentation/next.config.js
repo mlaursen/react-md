@@ -2,6 +2,10 @@ const withImages = require('next-images');
 
 const withCustomConfig = (nextConfig = {}) => ({
   ...nextConfig,
+  future: {
+    webpack5: true,
+    strictPostcssConfiguration: true,
+  },
   poweredByHeader: false,
   webpack(config, options) {
     config.module.rules.unshift({
