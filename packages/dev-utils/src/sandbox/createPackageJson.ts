@@ -18,7 +18,6 @@ function toDependencyJson(
 }
 
 const SIMPLE_AT_TYPES = [
-  "classnames",
   "qs",
   "react-router",
   "react-router-dom",
