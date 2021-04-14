@@ -1,4 +1,5 @@
 /.next
+/build
 src/readmes
 src/changelogs
 src/constants/versions.ts

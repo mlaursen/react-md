@@ -6,6 +6,7 @@ const withCustomConfig = (nextConfig = {}) => ({
     webpack5: true,
     strictPostcssConfiguration: true,
   },
+  distDir: 'build',
   poweredByHeader: false,
   webpack(config, options) {
     config.module.rules.unshift({

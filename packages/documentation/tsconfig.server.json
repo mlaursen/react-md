@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "module": "commonjs",
     "target": "es2017",
-    "outDir": ".next"
+    "outDir": "./build"
   },
   "include": ["src/server/**/*.ts"],
   "exclude": [".next"]
