@@ -67,6 +67,23 @@ export interface FixedPositioningOptions
   fixedTo: FixedTo;
 
   /**
+   * An optional style object to merge and override the generated fixed
+   * positioning styles.
+   *
+   * @example
+   * Overriding
+   * ```ts
+   * useFixedPositioning({
+   *   // this will force the `top` to always be `0`
+   *   style: { top: 0 },
+   * });
+   * ```
+   *
+   * @remarks \@since 2.8.0
+   */
+  style?: CSSProperties;
+
+  /**
    * An optional function to call to dynamically get the options when the node
    * has been added to the DOM. This is helpful if you need to check sizes or other
    * things once the DOM node has been added for initial positioning or other things
@@ -79,7 +96,7 @@ export interface FixedPositioningOptions
    * event has occurred. The main use-case for this is hiding the fixed element when
    * the page is resized.
    */
-  onResize?: (event: Event) => void;
+  onResize?(event: Event): void;
 
   /**
    * An optional function to call when the element is in the DOM and a window scroll
@@ -119,9 +136,9 @@ function getFixedTo(fixedTo: FixedTo): HTMLElement | null {
   return fixedTo;
 }
 
-interface ReturnValue extends Required<TransitionHooks> {
-  style?: CSSProperties;
-  updateStyle: () => void;
+interface FixedPositioningHookReturnValue extends Required<TransitionHooks> {
+  style: CSSProperties;
+  updateStyle(): void;
 }
 
 /**
@@ -138,6 +155,7 @@ interface ReturnValue extends Required<TransitionHooks> {
  * It is recommended to start the exit animation when that happens though.
  */
 export function useFixedPositioning({
+  style: propStyle,
   onEnter,
   onEntering,
   onEntered,
@@ -159,7 +177,7 @@ export function useFixedPositioning({
   preventOverlap = false,
   disableSwapping = false,
   disableVHBounds = false,
-}: FixedPositioningOptions): ReturnValue {
+}: FixedPositioningOptions): FixedPositioningHookReturnValue {
   const [style, setStyle] = useState<CSSProperties | undefined>();
   const [element, setElement] = useState<HTMLElement | null>(null);
 
@@ -326,7 +344,7 @@ export function useFixedPositioning({
   }, [initialX, initialY]);
 
   return {
-    style,
+    style: { ...style, ...propStyle },
     updateStyle,
     onEnter: handleEnter,
     onEntering: handleEntering,

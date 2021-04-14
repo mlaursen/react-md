@@ -190,7 +190,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
     labelClassName,
     displayLabelStyle,
     displayLabelClassName,
-    listboxStyle,
+    listboxStyle: propListboxStyle,
     listboxClassName,
     anchor = BELOW_CENTER_ANCHOR,
     theme: propTheme,
@@ -286,12 +286,13 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   });
 
   const {
-    style: fixedStyle,
+    style: listboxStyle,
     onEnter,
     onEntering,
     onEntered,
     onExited,
   } = useFixedPositioning({
+    style: propListboxStyle,
     fixedTo: () => ref.current,
     anchor,
     onScroll: closeOnScroll ? hide : undefined,
@@ -393,7 +394,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
       <Listbox
         id={listboxId}
         aria-labelledby={id}
-        style={{ ...fixedStyle, ...listboxStyle }}
+        style={listboxStyle}
         className={listboxClassName}
         name={name}
         readOnly={readOnly}
