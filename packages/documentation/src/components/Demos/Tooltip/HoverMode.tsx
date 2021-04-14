@@ -1,12 +1,13 @@
 import React, { ReactElement } from "react";
-import { TooltipHoverModeConfig, Tooltipped } from "@react-md/tooltip";
+import { Tooltipped } from "@react-md/tooltip";
 import { Button } from "@react-md/button";
+import { HoverModeProvider } from "@react-md/utils";
 
 import Container from "./Container";
 
 export default function HoverMode(): ReactElement {
   return (
-    <TooltipHoverModeConfig>
+    <HoverModeProvider>
       <Container>
         {Array.from({ length: 8 }).map((_, i) => (
           <Tooltipped
@@ -18,6 +19,6 @@ export default function HoverMode(): ReactElement {
           </Tooltipped>
         ))}
       </Container>
-    </TooltipHoverModeConfig>
+    </HoverModeProvider>
   );
 }

@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { TooltipHoverModeConfig } from "@react-md/tooltip";
+import { HoverModeProvider } from "@react-md/utils";
 
 import DemoPage from "../DemoPage";
 
@@ -69,9 +69,7 @@ const demos = [
   ...demo,
   // remove the global tooltip hover mode config from all demos since it'll
   // manually be applied in a specific demo instead
-  children: (
-    <TooltipHoverModeConfig enabled={false}>{children}</TooltipHoverModeConfig>
-  ),
+  children: <HoverModeProvider disabled>{children}</HoverModeProvider>,
 }));
 
 export default function Tooltip(): ReactElement {
