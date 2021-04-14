@@ -55,6 +55,7 @@ export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
   function FixedDialog(
     {
       fixedTo,
+      style: propStyle,
       anchor = TOP_INNER_RIGHT_ANCHOR,
       options,
       getOptions,
@@ -76,6 +77,7 @@ export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
       onEntered,
       onExited,
     } = useFixedPositioning({
+      style: propStyle,
       transformOrigin: true,
       ...options,
       onScroll: (_event, { visible }) => {
