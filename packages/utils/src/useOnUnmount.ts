@@ -20,6 +20,7 @@ import { useEffect, useRef } from "react";
  * // update data
  * ```
  *
+ * @remarks \@since 2.7.1
  * @param callback - the function to call when the component unmounts.
  */
 export function useOnUnmount(callback: () => void): void {
