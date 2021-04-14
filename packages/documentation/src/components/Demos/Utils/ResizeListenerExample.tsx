@@ -40,7 +40,7 @@ export default function ResizeListenerExample(): ReactElement {
         />
       )}
       <Text>The current app size is:</Text>
-      <CodeBlock>{size}px</CodeBlock>
+      <CodeBlock suppressHydrationWarning>{size}px</CodeBlock>
     </>
   );
 }
