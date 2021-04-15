@@ -23,6 +23,9 @@ import simpleGridList from "./SimpleGridList.md";
 import GridListSize from "./GridListSize";
 import gridListSize from "./GridListSize.md";
 
+import HoverMode from "./HoverMode";
+import hoverMode from "./HoverMode.md";
+
 const demos = [
   {
     name: "App Size Listener Example",
@@ -58,6 +61,11 @@ const demos = [
     name: "Grid List Size",
     description: gridListSize,
     children: <GridListSize />,
+  },
+  {
+    name: "Hover Mode",
+    description: hoverMode,
+    children: <HoverMode />,
   },
 ];
 
