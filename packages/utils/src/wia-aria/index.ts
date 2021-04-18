@@ -1,14 +1,12 @@
+export * from "./extractTextContent";
 export * from "./FocusContainer";
-
+export * from "./focusElementWithin";
+export * from "./getFocusableElements";
+export * from "./isFocusable";
 export * from "./movement";
 export * from "./radio";
-
-export * from "./useScrollLock";
+export * from "./tryToSubmitRelatedForm";
+export * from "./useCloseOnEscape";
 export * from "./useFocusOnMount";
 export * from "./usePreviousFocus";
-export * from "./useCloseOnEscape";
-
-export * from "./getFocusableElements";
-export * from "./focusElementWithin";
-export * from "./extractTextContent";
-export * from "./tryToSubmitRelatedForm";
+export * from "./useScrollLock";
