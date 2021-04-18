@@ -194,6 +194,9 @@ export interface HoverModeReturnValue<E extends HTMLElement>
  *       visible={visible}
  *       onRequestClose={() => setVisible(false)}
  *       fixedTo={buttonRef}
+ *       anchor={BELOW_CENTER_ANCHOR}
+ *       options={{ preventOverlap: true }}
+ *       // this allows the close on outside click"" behavior" to work
  *       overlay={!stuck && active ? false : undefined}
  *       disableScrollLock={active}
  *     >

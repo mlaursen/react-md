@@ -22,14 +22,15 @@ export default function StickyHoverMode(): ReactElement {
         Button
       </Button>
       <FixedDialog
+        {...handlers}
         aria-label="Additional Information"
         id="some-dialog-id"
         visible={visible}
         onRequestClose={() => setVisible(false)}
-        {...handlers}
         anchor={BELOW_CENTER_ANCHOR}
         fixedTo={buttonRef}
         options={{ preventOverlap: true }}
+        // this allows the close on outside click"" behavior" to work
         overlay={!stuck && active ? false : undefined}
         disableScrollLock={!active}
       >

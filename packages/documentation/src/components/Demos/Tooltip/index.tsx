@@ -1,7 +1,11 @@
 import React, { ReactElement } from "react";
 import { HoverModeProvider } from "@react-md/utils";
 
+import description from "./README.md";
 import DemoPage from "../DemoPage";
+
+import TooltipHookExample from "./TooltipHookExample";
+import tooltipHookExample from "./TooltipHookExample.md";
 
 import SimpleExamples from "./SimpleExamples";
 import simpleExamples from "./SimpleExamples.md";
@@ -26,6 +30,11 @@ import AdvancedAPIAndGotchas from "./AdvancedAPIAndGotchas";
 import advancedAPIAndGotchas from "./AdvancedAPIAndGotchas.md";
 
 const demos = [
+  {
+    name: "Tooltip Hook Example",
+    description: tooltipHookExample,
+    children: <TooltipHookExample />,
+  },
   {
     name: "Simple Examples",
     description: simpleExamples,
@@ -73,5 +82,7 @@ const demos = [
 }));
 
 export default function Tooltip(): ReactElement {
-  return <DemoPage demos={demos} packageName="tooltip" />;
+  return (
+    <DemoPage demos={demos} packageName="tooltip" description={description} />
+  );
 }
