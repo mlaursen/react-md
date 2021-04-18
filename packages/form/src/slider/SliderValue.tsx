@@ -47,6 +47,7 @@ export function SliderValue({
   vertical,
   children,
   className,
+  portal = false,
   ...props
 }: SliderValueProps): ReactElement | null {
   if (!discrete) {
@@ -56,6 +57,7 @@ export function SliderValue({
   return (
     <Tooltip
       {...props}
+      portal={portal}
       className={cn(
         styles({
           h: !vertical,

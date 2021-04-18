@@ -4,27 +4,26 @@ import React, {
   CSSProperties,
   ReactElement,
   ReactNode,
-  useMemo,
-  useRef,
 } from "react";
-import cn from "classnames";
-import {
-  ConditionalPortal,
-  RenderConditionalPortalProps,
-} from "@react-md/portal";
-import { useFixedPositioning } from "@react-md/transition";
-import {
-  HorizontalPosition,
-  unitToNumber,
-  VerticalPosition,
-} from "@react-md/utils";
+import { RenderConditionalPortalProps } from "@react-md/portal";
+import { UserInteractionMode } from "@react-md/utils";
 
-import { DEFAULT_TOOLTIP_DELAY, DEFAULT_TOOLTIP_THRESHOLD } from "./constants";
+import {
+  DEFAULT_TOOLTIP_DENSE_SPACING,
+  DEFAULT_TOOLTIP_MARGIN,
+  DEFAULT_TOOLTIP_POSITION,
+  DEFAULT_TOOLTIP_SPACING,
+  DEFAULT_TOOLTIP_THRESHOLD,
+} from "./constants";
 import { Tooltip, TooltipProps } from "./Tooltip";
-import { MergableHandlers } from "./useHandlers";
-import { TooltipStateOptions, useTooltipState } from "./useTooltipState";
+import {
+  TooltippedElementEventHandlers,
+  BaseTooltipHookOptions,
+  useTooltip,
+} from "./useTooltip";
 
-interface TooltippedProvidedProps extends MergableHandlers {
+interface TooltippedProvidedProps
+  extends TooltippedElementEventHandlers<HTMLElement> {
   id: string;
   "aria-describedby"?: string;
   tooltip: ReactNode;
@@ -36,11 +35,10 @@ type R = Record<string, unknown>;
 type ChildProps = Partial<Omit<TooltippedProvidedProps, "tooltip">>;
 type ChildElement = ReactElement<ChildProps>;
 
-const MERGABLE_PROPS: (keyof MergableHandlers)[] = [
+const MERGABLE_PROPS: (keyof TooltippedElementEventHandlers<HTMLElement>)[] = [
   "onMouseEnter",
   "onMouseLeave",
   "onTouchStart",
-  "onTouchMove",
   "onFocus",
   "onKeyDown",
   "onContextMenu",
@@ -48,8 +46,7 @@ const MERGABLE_PROPS: (keyof MergableHandlers)[] = [
 
 export interface TooltippedProps
   extends RenderConditionalPortalProps,
-    Omit<TooltipStateOptions, "defaultPosition">,
-    Partial<Pick<TooltipStateOptions, "defaultPosition">>,
+    BaseTooltipHookOptions<HTMLElement>,
     Pick<
       TooltipProps,
       "dense" | "lineWrap" | "mountOnEnter" | "unmountOnExit"
@@ -69,12 +66,6 @@ export interface TooltippedProps
   tooltip?: ReactNode;
 
   /**
-   * An optional id for the tooltip. When this is omitted, it will be set as
-   * `${id}-tooltip`.
-   */
-  tooltipId?: string;
-
-  /**
    * An optional additional `aria-describedby` id or ids to merge with the
    * tooltip id. This is really used for things like notifications or when
    * multiple elements describe your tooltipped element.
@@ -90,56 +81,6 @@ export interface TooltippedProps
    * An optional className for the tooltip
    */
   className?: string;
-
-  /**
-   * The amount of spacing to use for a non-dense tooltip. This is the distance
-   * between the container element and the tooltip.
-   */
-  spacing?: number | string;
-
-  /**
-   * The amount of spacing to use for a dense tooltip. This is the distance
-   * between the container element and the tooltip.
-   */
-  denseSpacing?: number | string;
-
-  /**
-   * Since `react-md` provides mixins to automatically apply a dense spec
-   * through mixins via mexia queries, the dense spec might be applied in css
-   * instead of in JS. This component will actually check the current spacing
-   * amount that has been applied when the tooltip becomes visible.
-   *
-   * If this behavior is not desired, you can enable this prop and it will only
-   * use the provided `spacing` or `denseSpacing` props based on the `dense`
-   * prop.
-   *
-   * Note: This will be defaulted to `true` when the
-   * `process.env.NODE_ENV === 'test'` since test environments normally don't
-   * have a default `window.getComgetComputedStyle` value that is not `NaN`
-   * which will display errors in your tests.
-   */
-  disableAutoSpacing?: boolean;
-
-  /**
-   * Boolean if the auto-swapping behavior should be disabled. When this value
-   * is `undefined`, it'll be treated as `true` when the `position` prop is
-   * defined, otherwise `false`.
-   */
-  disableSwapping?: boolean;
-
-  /**
-   * This is the viewwidth margin to use in the positioning calculation. This is
-   * just used so that the tooltip can be placed with some spacing between the
-   * left and right edges of the viewport if desired.
-   */
-  vwMargin?: number;
-
-  /**
-   * This is the viewheight margin to use in the positioning calculation. This
-   * is just used so that the tooltip can be placed with some spacing between
-   * the top and abottom edges of the viewport if desired.
-   */
-  vhMargin?: number;
 
   /**
    * The children for this component should either be a function or a single
@@ -159,107 +100,89 @@ export interface TooltippedProps
    * `aria-describedby` and the event handlers will be omitted.
    */
   children: ChildElement | ChildrenRenderer;
+
+  /** @deprecated \@since 2.8.0 Use `threshold` instead.  */
+  positionThreshold?: number;
+  /** @deprecated \@since 2.8.0 */
+  tooltipId?: string;
+  /** @deprecated \@since 2.8.0 */
+  hoverDelay?: number;
+  /** @deprecated \@since 2.8.0 */
+  focusDelay?: number;
+  /** @deprecated \@since 2.8.0 */
+  touchTimeout?: number;
+  /** @deprecated \@since 2.8.0 */
+  onShow?(mode: UserInteractionMode): void;
+  /** @deprecated \@since 2.8.0 */
+  onHide?(): void;
 }
 
 /**
  * The `Tooltipped` component can be used to dynamically add a tooltip to child
  * element by cloning the required event handlers and accessibility props into
  * the child with `React.cloneChild`.
+ *
+ * Note: This component is _kind of_ deprecated in favor of using the
+ * `useTooltip` hook and `Tooltip` component instead.
+ *
+ * @see {@link Tooltip} for an example
  */
 export function Tooltipped({
   id,
+  style,
   children,
   tooltip: tooltipChildren,
   dense = false,
-  vhMargin = 16,
-  vwMargin = 16,
-  hoverDelay = DEFAULT_TOOLTIP_DELAY,
-  focusDelay = DEFAULT_TOOLTIP_DELAY,
-  touchTimeout = DEFAULT_TOOLTIP_DELAY,
-  spacing = "1.5rem",
-  denseSpacing = "0.875rem",
+  vhMargin = DEFAULT_TOOLTIP_MARGIN,
+  vwMargin = DEFAULT_TOOLTIP_MARGIN,
+  spacing = DEFAULT_TOOLTIP_SPACING,
+  denseSpacing = DEFAULT_TOOLTIP_DENSE_SPACING,
   position: propPosition,
-  positionThreshold = DEFAULT_TOOLTIP_THRESHOLD,
-  portal = true,
-  portalInto,
-  portalIntoId,
+  positionThreshold,
+  threshold = positionThreshold ?? DEFAULT_TOOLTIP_THRESHOLD,
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
-  onTouchMove,
   onContextMenu,
+  onBlur,
   onFocus,
   onKeyDown,
-  onShow,
-  onHide,
-  disableHoverMode,
   "aria-describedby": describedBy,
-  defaultPosition = "below",
-  disableSwapping,
+  defaultPosition = DEFAULT_TOOLTIP_POSITION,
   mountOnEnter = true,
   unmountOnExit = true,
+  disableSwapping,
+  disableHoverMode,
   disableAutoSpacing = process.env.NODE_ENV === "test",
+  tooltipId: _tooltipId,
+  hoverDelay: _hoverDelay,
+  focusDelay: _focusDelay,
+  touchTimeout: _touchTimeout,
+  onShow: _onShow,
+  onHide: _onHide,
   ...props
 }: TooltippedProps): ReactElement {
-  const { hide, visible, position, handlers } = useTooltipState({
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+    style,
+    dense,
+    spacing,
+    denseSpacing,
+    vwMargin,
+    vhMargin,
     position: propPosition,
-    disableHoverMode,
     defaultPosition,
-    positionThreshold,
-    hoverDelay,
-    focusDelay,
-    touchTimeout,
+    disableSwapping,
+    disableHoverMode,
+    disableAutoSpacing,
+    onFocus,
+    onBlur,
+    onKeyDown,
     onMouseEnter,
     onMouseLeave,
     onTouchStart,
-    onTouchMove,
     onContextMenu,
-    onFocus,
-    onKeyDown,
-    onShow,
-    onHide,
-  });
-
-  const labelledBy = useRef(visible);
-
-  const currentSpacing = useMemo(
-    () => unitToNumber(dense ? denseSpacing : spacing),
-    [spacing, denseSpacing, dense]
-  );
-  let getOptions;
-  if (!disableAutoSpacing) {
-    getOptions = (node: HTMLElement) => {
-      const spacing = unitToNumber(
-        window.getComputedStyle(node).getPropertyValue("--rmd-tooltip-spacing")
-      );
-
-      return { xMargin: spacing, yMargin: spacing };
-    };
-  }
-
-  const isHorizontal = position === "left" || position === "right";
-
-  const {
-    style,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExited,
-  } = useFixedPositioning({
-    anchor: {
-      x: isHorizontal ? (position as HorizontalPosition) : "center",
-      y: isHorizontal ? "center" : (position as VerticalPosition),
-    },
-    disableSwapping:
-      typeof disableSwapping === "boolean" ? disableSwapping : !!propPosition,
-    fixedTo: () => document.getElementById(id),
-    vhMargin,
-    vwMargin,
-    yMargin: currentSpacing,
-    xMargin: currentSpacing,
-    onResize: hide,
-    onScroll: hide,
-    getOptions,
+    threshold,
   });
 
   if (!tooltipChildren) {
@@ -271,64 +194,29 @@ export function Tooltipped({
     return cloneElement(child, { id, "aria-describedby": describedBy });
   }
 
-  let { tooltipId } = props;
-  if (!tooltipId) {
-    tooltipId = `${id}-tooltip`;
-  }
-
   const tooltip = (
-    <ConditionalPortal
-      portal={portal}
-      portalInto={portalInto}
-      portalIntoId={portalIntoId}
+    <Tooltip
+      {...tooltipProps}
+      {...props}
+      mountOnEnter={mountOnEnter}
+      unmountOnExit={unmountOnExit}
     >
-      <Tooltip
-        id={tooltipId}
-        {...props}
-        dense={dense}
-        position={position}
-        mountOnEnter={mountOnEnter}
-        unmountOnExit={unmountOnExit}
-        style={style}
-        onEnter={(node, appear) => {
-          if (onEnter) {
-            onEnter(node, appear);
-          }
-
-          labelledBy.current = true;
-        }}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExited={(node) => {
-          if (onExited) {
-            onExited(node);
-          }
-
-          labelledBy.current = false;
-        }}
-        visible={visible}
-      >
-        {tooltipChildren}
-      </Tooltip>
-    </ConditionalPortal>
+      {tooltipChildren}
+    </Tooltip>
   );
 
-  const config = {
-    id,
-    "aria-describedby":
-      cn(labelledBy.current && tooltipId, describedBy) || undefined,
-    ...handlers,
-  };
-
   if (typeof children === "function") {
-    return children({ ...config, tooltip });
+    return children({ ...elementProps, tooltip });
   }
 
   const child = Children.only(children);
+  // TODO: remove this mess since you should provide handlers to the
+  // `Tooltipped` component instead of the child element.
+  /* istanbul ignore next */
   const merged = MERGABLE_PROPS.reduce(
     (result, propName) => {
       const propHandler = child.props[propName];
-      const configHandler = config[propName];
+      const configHandler = elementProps[propName];
       if (!propHandler) {
         (result as R)[propName] = configHandler;
       } else if (!configHandler) {
@@ -344,7 +232,7 @@ export function Tooltipped({
 
       return result;
     },
-    { ...config }
+    { ...elementProps }
   );
 
   return (

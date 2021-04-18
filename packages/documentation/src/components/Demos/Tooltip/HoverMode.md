@@ -5,8 +5,7 @@ and the initial hover delay will be used again. This feature is actually enabled
 throughout the app but disabled for these demos to help show the default tooltip
 behavior.
 
-To hook into the hover mode, all you need to do is use the
-`TooltipHoverModeConfig` component as a parent of all the elements that have
-tooltips. The component can either be at the root of your app, or a small
-section so that only a few tooltips are "linked together" with this hover mode
-flow.
+To hook into the hover mode, all you need to do is use the `HoverModeProvider`
+component from #utils as a parent of all the elements that have tooltips. The
+component can either be at the root of your app, or a small section so that only
+a few tooltips are "linked together" with this hover mode flow.

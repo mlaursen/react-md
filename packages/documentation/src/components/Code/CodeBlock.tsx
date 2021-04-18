@@ -25,13 +25,21 @@ export default forwardRef<HTMLPreElement, CodeBlockProps>(function CodeBlock(
     children: propChildren,
     highlight = true,
     lineNumbers = false,
+    suppressHydrationWarning = false,
     ...props
   },
   ref
 ) {
   const children = useMemo(() => {
     if (!highlight || typeof propChildren !== "string") {
-      return <Code inline={false}>{propChildren}</Code>;
+      return (
+        <Code
+          inline={false}
+          suppressHydrationWarning={suppressHydrationWarning}
+        >
+          {propChildren}
+        </Code>
+      );
     }
 
     return (
@@ -40,9 +48,11 @@ export default forwardRef<HTMLPreElement, CodeBlockProps>(function CodeBlock(
         dangerouslySetInnerHTML={{
           __html: highlightCode(propChildren, language),
         }}
+        suppressHydrationWarning={suppressHydrationWarning}
       />
     );
-  }, [propChildren, highlight, language]);
+  }, [highlight, propChildren, language, suppressHydrationWarning]);
+
   return (
     <pre
       {...props}

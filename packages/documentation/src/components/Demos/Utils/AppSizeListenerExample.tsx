@@ -9,7 +9,9 @@ function CurrentSize(): ReactElement {
   return (
     <TextContainer>
       <Text type="headline-6">The current app size is:</Text>
-      <CodeBlock language="json">{JSON.stringify(context, null, 2)}</CodeBlock>
+      <CodeBlock language="json" suppressHydrationWarning>
+        {JSON.stringify(context, null, 2)}
+      </CodeBlock>
     </TextContainer>
   );
 }

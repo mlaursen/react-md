@@ -13,7 +13,6 @@ export default function Button({
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
-  onTouchMove,
   onFocus,
   onKeyDown,
   children,
@@ -26,7 +25,6 @@ export default function Button({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
     >

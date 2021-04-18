@@ -48,9 +48,9 @@ This component will initialize:
 
 - `AppSizeListener` - see #utils
 - `InteractionModeListener` - see #utils
+- `HoverModeProvider` - see #utils
 - `StatesConfig` - see #states
 - `NestedDialogContextProvider` - see #dialog
-- `TooltipHoverModeConfig` - see #tooltip
 
 The three most important Providers that are included are the `AppSizeListener`,
 `InteractionModeListener` and `StatesConfig`. The `AppSizeListener` is in the

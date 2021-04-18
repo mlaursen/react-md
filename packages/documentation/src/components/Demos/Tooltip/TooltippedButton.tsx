@@ -14,7 +14,6 @@ export default function TooltippedButton({
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
-  onTouchMove,
   onFocus,
   onKeyDown,
   children,
@@ -31,7 +30,6 @@ export default function TooltippedButton({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
     >
