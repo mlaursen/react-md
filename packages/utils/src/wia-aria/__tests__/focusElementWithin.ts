@@ -192,4 +192,11 @@ describe("focusElementWithin", () => {
     );
     expect(scrollIntoView).not.toBeCalled();
   });
+
+  it("should fallback to focusing the container element if it is focusable", () => {
+    const div = document.createElement("div");
+    div.tabIndex = -1;
+
+    expect(() => focusElementWithin(div, "first", true)).not.toThrow();
+  });
 });
