@@ -195,7 +195,7 @@ export interface HoverModeReturnValue<E extends HTMLElement>
  *       onRequestClose={() => setVisible(false)}
  *       fixedTo={buttonRef}
  *       overlay={!stuck && active ? false : undefined}
- *       disableFocusOnMount={active}
+ *       disableScrollLock={active}
  *     >
  *       <YourDialogContent />
  *    </FixedDialog>
