@@ -13,15 +13,19 @@ import {
 import cn from "classnames";
 import { TransitionHooks, useFixedPositioning } from "@react-md/transition";
 import {
-  HorizontalPosition,
+  ABOVE_CENTER_ANCHOR,
+  BELOW_CENTER_ANCHOR,
+  CENTER_LEFT_ANCHOR,
+  CENTER_RIGHT_ANCHOR,
   HoverModeEventHandlers,
   HoverModeOnlyReturnValue,
+  PositionAnchor,
+  SimplePosition,
   unitToNumber,
   useHoverMode,
   useOnUnmount,
   UserInteractionMode,
   useUserInteractionMode,
-  VerticalPosition,
 } from "@react-md/utils";
 
 import {
@@ -39,11 +43,27 @@ import {
   useTooltipPosition,
 } from "./useTooltipPosition";
 
+/** @internal */
+function getAnchor(position: SimplePosition): PositionAnchor {
+  switch (position) {
+    case "above":
+      return ABOVE_CENTER_ANCHOR;
+    case "below":
+      return BELOW_CENTER_ANCHOR;
+    case "left":
+      return CENTER_LEFT_ANCHOR;
+    case "right":
+      return CENTER_RIGHT_ANCHOR;
+    default:
+      throw new Error(`Invalid position: ${position}`);
+  }
+}
+
 /**
  * @internal
  * @remarks \@since 2.8.0
  */
-export type TooltipInitiated = UserInteractionMode | null;
+export type TooltipInitiatedBy = UserInteractionMode | null;
 
 /** @remarks \@since 2.8.0 */
 export type TooltipTouchEventHandlers<E extends HTMLElement> = Pick<
@@ -302,7 +322,7 @@ export function useTooltip<E extends HTMLElement>({
   onEntered,
   onExited,
   disableSwapping,
-  disableHoverMode,
+  disableHoverMode: disabled,
   disableAutoSpacing = process.env.NODE_ENV === "test",
 }: TooltipHookOptions<E>): TooltipHookReturnValue<E> {
   const containerRef = useRef<E | null>(null);
@@ -311,54 +331,52 @@ export function useTooltip<E extends HTMLElement>({
     defaultPosition,
     threshold,
   });
-  const horizontal = position === "left" || position === "right";
   const mode = useUserInteractionMode();
-  const [touched, setTouched] = useState(false);
-  const initiated = useRef<TooltipInitiated>(null);
+  const [initiatedBy, setInitiatedBy] = useState<TooltipInitiatedBy>(null);
   const windowFocusEvent = useRef(false);
   const timeout = useRef<number | undefined>(undefined);
   const {
     visible,
     setVisible,
     handlers: mouseHandlers,
+    disableHoverMode,
     ...others
   } = useHoverMode<E>({
-    disabled: disableHoverMode,
+    disabled,
     onMouseEnter: (event) => {
       onMouseEnter?.(event);
-      if (initiated.current !== null) {
+      if (initiatedBy !== null) {
         event.stopPropagation();
         return;
       }
 
-      initiated.current = "mouse";
       containerRef.current = event.currentTarget;
       updatePosition(event.currentTarget);
+      setInitiatedBy("mouse");
     },
     onMouseLeave: (event) => {
       onMouseLeave?.(event);
-      if (initiated.current !== "mouse") {
+      if (initiatedBy !== "mouse") {
         event.stopPropagation();
         return;
       }
 
-      initiated.current = null;
+      setInitiatedBy(null);
     },
   });
   const hide = useCallback(() => {
-    initiated.current = null;
     window.clearTimeout(timeout.current);
     setVisible(false);
+    setInitiatedBy(null);
   }, [setVisible]);
 
   const onBlur = (event: FocusEvent<E>): void => {
     propOnBlur?.(event);
 
-    if (initiated.current !== "keyboard") {
+    if (initiatedBy !== "keyboard") {
       return;
     }
 
-    window.clearTimeout(timeout.current);
     hide();
   };
   const onFocus = (event: FocusEvent<E>): void => {
@@ -371,11 +389,11 @@ export function useTooltip<E extends HTMLElement>({
       return;
     }
 
-    if (mode !== "keyboard" || initiated.current !== null) {
+    if (mode !== "keyboard" || initiatedBy !== null) {
       return;
     }
 
-    initiated.current = "keyboard";
+    setInitiatedBy("keyboard");
     window.clearTimeout(timeout.current);
     containerRef.current = event.currentTarget;
     updatePosition(event.currentTarget);
@@ -387,11 +405,10 @@ export function useTooltip<E extends HTMLElement>({
   const onKeyDown = (event: KeyboardEvent<E>): void => {
     propOnKeyDown?.(event);
 
-    if (initiated.current !== "keyboard" || event.key !== "Escape") {
+    if (initiatedBy !== "keyboard" || event.key !== "Escape") {
       return;
     }
 
-    window.clearTimeout(timeout.current);
     hide();
   };
 
@@ -402,8 +419,7 @@ export function useTooltip<E extends HTMLElement>({
       return;
     }
 
-    initiated.current = "touch";
-    setTouched(true);
+    setInitiatedBy("touch");
     window.clearTimeout(timeout.current);
     timeout.current = window.setTimeout(() => {
       setVisible(true);
@@ -453,43 +469,27 @@ export function useTooltip<E extends HTMLElement>({
     };
   }, [hide, mode]);
   useEffect(() => {
-    if (mode !== "touch") {
+    if (initiatedBy !== "touch") {
       return;
     }
 
+    window.addEventListener("touchmove", hide);
     window.addEventListener("touchend", hide);
     return () => {
+      window.removeEventListener("touchmove", hide);
       window.removeEventListener("touchend", hide);
     };
-  }, [hide, mode]);
-  useEffect(() => {
-    if (!touched) {
-      return;
-    }
+  }, [hide, initiatedBy, setVisible]);
 
-    // need to cancel the tooltip appearance if a touchmove event occurs before
-    // the tooltip appears since it means the page will scroll
-    const handler = (): void => {
-      initiated.current = null;
-      window.clearTimeout(timeout.current);
-      setTouched(false);
-      setVisible(false);
-    };
-
-    window.addEventListener("touchmove", handler);
-    return () => {
-      window.removeEventListener("touchmove", handler);
-    };
-  }, [setVisible, touched]);
+  useOnUnmount(() => {
+    window.clearTimeout(timeout.current);
+  });
 
   const { updateStyle: _u, ...positionProps } = useFixedPositioning({
     style,
-    anchor: {
-      x: horizontal ? (position as HorizontalPosition) : "center",
-      y: horizontal ? "center" : (position as VerticalPosition),
-    },
+    anchor: getAnchor(position),
     disableSwapping: disableSwapping ?? !!determinedPosition,
-    fixedTo: containerRef.current,
+    fixedTo: containerRef,
     getOptions: (node) => {
       let tooltipSpacing = dense ? denseSpacing : spacing;
       /* istanbul ignore next */
@@ -514,10 +514,6 @@ export function useTooltip<E extends HTMLElement>({
     onEntering,
     onEntered,
     onExited,
-  });
-
-  useOnUnmount(() => {
-    window.clearTimeout(timeout.current);
   });
 
   const tooltipHandlers: Required<TooltippedElementEventHandlers<E>> = {
@@ -550,5 +546,6 @@ export function useTooltip<E extends HTMLElement>({
     handlers: tooltipHandlers,
     elementProps,
     tooltipProps,
+    disableHoverMode,
   };
 }
