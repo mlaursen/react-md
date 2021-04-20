@@ -313,6 +313,7 @@ export function useTooltip<E extends HTMLElement>({
   onFocus: propOnFocus,
   onBlur: propOnBlur,
   onKeyDown: propOnKeyDown,
+  onClick,
   onMouseEnter,
   onMouseLeave,
   onTouchStart: propOnTouchStart,
@@ -343,6 +344,15 @@ export function useTooltip<E extends HTMLElement>({
     ...others
   } = useHoverMode<E>({
     disabled,
+    onClick: (event) => {
+      onClick?.(event);
+      if (event.isPropagationStopped()) {
+        return;
+      }
+
+      setVisible(false);
+      setInitiatedBy(null);
+    },
     onMouseEnter: (event) => {
       onMouseEnter?.(event);
       if (initiatedBy !== null) {
@@ -473,11 +483,11 @@ export function useTooltip<E extends HTMLElement>({
       return;
     }
 
-    window.addEventListener("touchmove", hide);
-    window.addEventListener("touchend", hide);
+    window.addEventListener("touchmove", hide, true);
+    window.addEventListener("touchend", hide, true);
     return () => {
-      window.removeEventListener("touchmove", hide);
-      window.removeEventListener("touchend", hide);
+      window.removeEventListener("touchmove", hide, true);
+      window.removeEventListener("touchend", hide, true);
     };
   }, [hide, initiatedBy, setVisible]);
 

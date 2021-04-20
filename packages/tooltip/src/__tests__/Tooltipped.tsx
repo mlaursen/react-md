@@ -258,6 +258,10 @@ describe("Tooltipped", () => {
     const { getByRole } = render(<Test />);
     const button = getByRole("button");
 
+    // force into "touch mode"
+    fireEvent.touchStart(document);
+    fireEvent.touchEnd(document);
+
     fireEvent.touchStart(button);
     expect(() => getByRole("tooltip")).toThrow();
 

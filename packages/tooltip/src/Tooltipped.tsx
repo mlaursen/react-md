@@ -36,6 +36,7 @@ type ChildProps = Partial<Omit<TooltippedProvidedProps, "tooltip">>;
 type ChildElement = ReactElement<ChildProps>;
 
 const MERGABLE_PROPS: (keyof TooltippedElementEventHandlers<HTMLElement>)[] = [
+  "onClick",
   "onMouseEnter",
   "onMouseLeave",
   "onTouchStart",
@@ -140,6 +141,7 @@ export function Tooltipped({
   position: propPosition,
   positionThreshold,
   threshold = positionThreshold ?? DEFAULT_TOOLTIP_THRESHOLD,
+  onClick,
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
@@ -178,6 +180,7 @@ export function Tooltipped({
     onFocus,
     onBlur,
     onKeyDown,
+    onClick,
     onMouseEnter,
     onMouseLeave,
     onTouchStart,

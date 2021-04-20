@@ -27,6 +27,13 @@ export interface HoverModeEventHandlers<E extends HTMLElement> {
    * If this function calls `event.stopPropagation()`, the hover mode behavior
    * will be disabled.
    */
+  onClick?: MouseEventHandler<E>;
+
+  /**
+   * An optional event handler to merge with the hover mode visibility hander.
+   * If this function calls `event.stopPropagation()`, the hover mode behavior
+   * will be disabled.
+   */
   onMouseEnter?: MouseEventHandler<E>;
 
   /**
@@ -35,21 +42,6 @@ export interface HoverModeEventHandlers<E extends HTMLElement> {
    * will be disabled.
    */
   onMouseLeave?: MouseEventHandler<E>;
-}
-
-/**
- * Event handlers that should be used when the {@link HoverModeOptions.sticky}
- * is enabled to temporarily disable the mouse leave behavior.
- *
- * @remarks \@since 2.8.0
- */
-export interface StickyHoverModeEventHandlers<E extends HTMLElement>
-  extends HoverModeEventHandlers<E> {
-  /**
-   * An optional event handler to merge with the "sticky" mode's `onClick`
-   * behavior.
-   */
-  onClick?: MouseEventHandler<E>;
 }
 
 /** @remarks \@since 2.8.0 */
@@ -83,7 +75,7 @@ export interface HoverModeOnlyOptions<E extends HTMLElement>
 /** @remarks \@since 2.8.0 */
 export interface HoverModeOptions<E extends HTMLElement>
   extends HoverModeOnlyOptions<E>,
-    StickyHoverModeEventHandlers<E> {
+    HoverModeEventHandlers<E> {
   /**
    * Boolean if the hover mode should also provide a "sticky" mode which allows
    * the exit behavior to be disabled if the element is clicked.
@@ -124,7 +116,7 @@ export interface HoverModeReturnValue<E extends HTMLElement>
   stuck?: boolean;
 
   /** {@inheritDoc StickyHoverModeEventHandlers} */
-  stickyHandlers?: Required<StickyHoverModeEventHandlers<E>>;
+  stickyHandlers?: Required<HoverModeEventHandlers<E>>;
 }
 
 /**
@@ -225,7 +217,7 @@ export function useHoverMode<E extends HTMLElement>(
   options: HoverModeOptions<E> & { sticky: true }
 ): HoverModeReturnValue<E> & {
   stuck: boolean;
-  stickyHandlers: Required<StickyHoverModeEventHandlers<E>>;
+  stickyHandlers: Required<HoverModeEventHandlers<E>>;
 };
 export function useHoverMode<E extends HTMLElement>({
   disabled = false,
@@ -321,7 +313,19 @@ export function useHoverMode<E extends HTMLElement>({
   const onClick = useCallback(
     (event: MouseEvent<E>) => {
       propOnClick?.(event);
-      if (disabled || event.isPropagationStopped()) {
+      if (event.isPropagationStopped() || disabled) {
+        return;
+      }
+
+      startDisableTimer();
+    },
+    [disabled, propOnClick, startDisableTimer]
+  );
+
+  const onStickyClick = useCallback(
+    (event: MouseEvent<E>) => {
+      propOnClick?.(event);
+      if (event.isPropagationStopped() || disabled) {
         return;
       }
 
@@ -338,13 +342,17 @@ export function useHoverMode<E extends HTMLElement>({
   );
 
   const handlers: Required<HoverModeEventHandlers<E>> = {
+    onClick,
     onMouseEnter,
     onMouseLeave,
   };
 
-  let stickyHandlers: Required<StickyHoverModeEventHandlers<E>> | undefined;
+  let stickyHandlers: Required<HoverModeEventHandlers<E>> | undefined;
   if (sticky) {
-    stickyHandlers = { ...handlers, onClick };
+    stickyHandlers = {
+      ...handlers,
+      onClick: onStickyClick,
+    };
   }
 
   return {
