@@ -11,6 +11,15 @@ import {
 } from "./constants";
 import { clean, getDependencies, getPackages, glob } from "./utils";
 
+const TSCONFIG = {
+  extends: "../../tsconfig.base.json",
+  compilerOptions: {
+    noEmit: true,
+    composite: false,
+  },
+  include: ["src"],
+};
+
 const BASE_ESJ_CONFIG = {
   extends: "../../tsconfig.base.json",
   compilerOptions: {
@@ -113,6 +122,7 @@ export async function configs(): Promise<void> {
         const ejsConfig = createTSConfig("ejs", rmdTsDependencies);
         const cjsConfig = createTSConfig("cjs", rmdTsDependencies);
         promises.push(
+          writeJson(join(path, "tsconfig.json"), TSCONFIG),
           writeJson(join(path, "tsconfig.ejs.json"), ejsConfig),
           writeJson(join(path, "tsconfig.cjs.json"), cjsConfig)
         );
