@@ -3,6 +3,7 @@
 ////
 
 @import '~@react-md/button/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
 @import '~@react-md/progress/dist/mixins';
 @import '~@react-md/states/dist/mixins';
 @import '~@react-md/theme/dist/mixins';
@@ -101,16 +102,9 @@
 @mixin rmd-toggle-icon {
   @include rmd-icon-theme(height, size);
   @include rmd-icon-theme(width, size);
-
-  .rmd-icon {
-    color: inherit;
-    fill: currentColor;
-    height: inherit;
-    width: inherit;
-  }
+  @include rmd-icon-theme-update-var(color, $rmd-toggle-inactive-color);
 
   align-items: center;
-  color: $rmd-toggle-inactive-color;
   display: inline-flex;
   justify-content: center;
   pointer-events: none;
