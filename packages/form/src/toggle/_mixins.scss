@@ -209,18 +209,39 @@
 
 ///
 /// @access private
+@mixin rmd-switch-ball-disabled {
+  @include rmd-states-theme-update-var(hover-color, transparent);
+
+  cursor: auto;
+
+  &::after {
+    @include rmd-form-theme(background-color, disabled-color);
+  }
+}
+
+///
+/// @access private
+@mixin rmd-switch-ball-checked {
+  $offset: $rmd-switch-ball-size + $rmd-switch-ball-offset;
+
+  @include rmd-utils-rtl {
+    transform: translateX(-$offset);
+  }
+  transform: translateX($offset);
+
+  &::after {
+    @include rmd-form-theme(background-color, active-color);
+  }
+}
+
+///
+/// @access private
 @mixin rmd-switch-input {
   @include rmd-input-hidden;
   @include rmd-states-focus-shadow('&:focus + .rmd-switch__ball');
 
   &:disabled + .rmd-switch__ball {
-    @include rmd-states-theme-update-var(hover-color, transparent);
-
-    cursor: auto;
-
-    &::after {
-      @include rmd-form-theme(background-color, disabled-color);
-    }
+    @include rmd-switch-ball-disabled;
   }
 
   @include rmd-utils-keyboard-only {
@@ -247,16 +268,7 @@
   }
 
   &:checked + .rmd-switch__ball {
-    $offset: $rmd-switch-ball-size + $rmd-switch-ball-offset;
-
-    @include rmd-utils-rtl {
-      transform: translateX(-$offset);
-    }
-    transform: translateX($offset);
-
-    &::after {
-      @include rmd-form-theme(background-color, active-color);
-    }
+    @include rmd-switch-ball-checked;
   }
 
   &:checked:disabled + .rmd-switch__ball::after {
