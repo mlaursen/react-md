@@ -158,6 +158,16 @@
     @include rmd-form-theme(top, toggle-dense-inset);
     @include rmd-form-theme(height, indeterminate-dense-height);
   }
+
+  &--checked {
+    @if $rmd-toggle-active-color != $rmd-toggle-inactive-color {
+      @include rmd-icon-theme-update-var(color, $rmd-toggle-active-color);
+    }
+
+    &::before {
+      opacity: 0;
+    }
+  }
 }
 
 /// Updates the checkbox and radio components to have a dense theme by updating
@@ -324,6 +334,10 @@
     top: 25%;
     width: $rmd-switch-ball-size;
     z-index: 1;
+  }
+
+  &--checked {
+    @include rmd-switch-ball-checked;
   }
 }
 

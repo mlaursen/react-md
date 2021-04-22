@@ -14,6 +14,7 @@ import { bem } from "@react-md/utils";
 import { Label } from "../label/Label";
 import { useFocusState } from "../useFocusState";
 import { ToggleContainer } from "./ToggleContainer";
+import { InputToggleIcon } from "./InputToggleIcon";
 
 /**
  * The props for a checkbox or radio input element.
@@ -261,20 +262,16 @@ export const InputToggle = forwardRef<HTMLInputElement, Props>(
             onBlur={onBlur}
             className={cn(block("input"), inputClassName)}
           />
-          <span
+          <InputToggleIcon
+            circle={!disableIconOverlay && type === "radio"}
+            disabled={disabled}
+            overlay={!disableIconOverlay}
+            indeterminate={indeterminate}
             style={iconStyle}
-            className={cn(
-              block("icon", {
-                circle: !disableIconOverlay && type === "radio",
-                disabled,
-                overlay: !disableIconOverlay,
-                indeterminate,
-              }),
-              iconClassName
-            )}
+            className={iconClassName}
           >
             {icon}
-          </span>
+          </InputToggleIcon>
           {ripples}
           {children}
         </span>

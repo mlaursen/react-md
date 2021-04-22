@@ -6,10 +6,10 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
-import { bem } from "@react-md/utils";
 
 import { Label } from "../label/Label";
 import { ToggleContainer } from "./ToggleContainer";
+import { SwitchTrack } from "./SwitchTrack";
 
 export interface SwitchProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "readOnly"> {
@@ -97,8 +97,6 @@ export interface SwitchProps
   children?: ReactNode;
 }
 
-const block = bem("rmd-switch");
-
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   {
     style,
@@ -137,32 +135,24 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
             className={labelClassName}
             htmlFor={id}
             error={error}
-            disabled={
-              typeof labelDisabled === "boolean" ? labelDisabled : disabled
-            }
+            disabled={labelDisabled ?? disabled}
           >
             {label}
           </Label>
         }
         iconAfter={!iconAfter}
       >
-        <span style={trackStyle} className={cn(block(), trackClassName)}>
-          <input
-            {...props}
-            ref={ref}
-            type="checkbox"
-            className={cn(block("input"))}
-            disabled={disabled}
-          />
-          <label
-            htmlFor={id}
-            aria-hidden
-            style={ballStyle}
-            className={cn(block("ball"), ballClassName)}
-          >
-            {children}
-          </label>
-        </span>
+        <SwitchTrack
+          {...props}
+          ref={ref}
+          style={trackStyle}
+          className={trackClassName}
+          disabled={disabled}
+          ballStyle={ballStyle}
+          ballClassName={ballClassName}
+        >
+          {children}
+        </SwitchTrack>
       </TextIconSpacing>
     </ToggleContainer>
   );
