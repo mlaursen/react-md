@@ -66,6 +66,9 @@ import discreteSliders from "./DiscreteSliders.md";
 import ConfigurableSlider from "./ConfigurableSlider";
 import configurableSlider from "./ConfigurableSlider.md";
 
+import MenusWithFormControls from "./MenusWithFormControls";
+import menusWithFormControls from "./MenusWithFormControls.md";
+
 import ExampleForm from "./ExampleForm";
 import exampleForm from "./ExampleForm.md";
 
@@ -172,6 +175,11 @@ const demos = [
     name: "Configurable Slider",
     description: configurableSlider,
     children: <ConfigurableSlider />,
+  },
+  {
+    name: "Menus with Form Controls",
+    description: menusWithFormControls,
+    children: <MenusWithFormControls />,
   },
   {
     name: "Example Form",
