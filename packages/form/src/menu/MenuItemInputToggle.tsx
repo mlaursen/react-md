@@ -178,13 +178,9 @@ export const MenuItemInputToggle = forwardRef<
       disableRipple
       aria-disabled={disabled || undefined}
       aria-checked={checked}
-      role={type === "radio" ? "radio" : "menuitemcheckbox"}
+      role={type === "radio" ? "menuitemradio" : "menuitemcheckbox"}
       onClick={(event) => {
         onClick?.(event);
-        if (event.isPropagationStopped()) {
-          return;
-        }
-
         onCheckedChange(!checked, event);
       }}
       ref={ref}
