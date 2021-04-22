@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/mlaursen/react-md/compare/v2.7.1...v2.8.0) (2021-04-22)
+
+
+### Documentation
+
+* **react-md.dev:** Added `Menu` With `Form` Controls Demo ([dbc2d21](https://github.com/mlaursen/react-md/commit/dbc2d21c147c355fcde5c354312cf7cc4ce05111))
+* **react-md.dev:** Added `Tooltip` Hook Example ([9783c44](https://github.com/mlaursen/react-md/commit/9783c4412bccbce6ce43b7f59d9167be9bb3ebc1))
+* **react-md.dev:** Added a new Hover Mode demo ([1e0e783](https://github.com/mlaursen/react-md/commit/1e0e783bbbf7659a4de4a8803e57366f5681cbd4))
+* **react-md.dev:** Added Sticky Hover Mode Example ([1a94a31](https://github.com/mlaursen/react-md/commit/1a94a3174540d0f99029972a2c180fd9015c511b))
+* **react-md.dev:** additional `Tooltip` Hook documentation ([5447f64](https://github.com/mlaursen/react-md/commit/5447f64f8944fcc74fadf6e381a3dbdfc984b399))
+* **react-md.dev:** fix documentation site deployment ([9588c37](https://github.com/mlaursen/react-md/commit/9588c371d7541dcfafab8e35e697b65b2558ef01))
+* **react-md.dev:** removed custom nextjs server ([8389b68](https://github.com/mlaursen/react-md/commit/8389b68325aff0ec79565d86b2cc35414fb755f3))
+* **react-md.dev:** Suppress hydration warning for App Size ([c5a08da](https://github.com/mlaursen/react-md/commit/c5a08da7d386eb1e3395b5928457ffa6fb076870))
+* **react-md.dev:** Updated documentation site after new tooltip behavior ([5db9a9b](https://github.com/mlaursen/react-md/commit/5db9a9b409535d8d9f2cc4e475a6fade58dc327c))
+* **react-md.dev:** Updated documentation site for new `HoverModeProvider` documentation ([f42c65c](https://github.com/mlaursen/react-md/commit/f42c65cea024c6b1c5353fca4790908d3297a82c))
+* **seo:** Added missing description meta tag ([3fd9e9f](https://github.com/mlaursen/react-md/commit/3fd9e9fedfdbdf6413e99491a444be1d15669c17))
+
+
+### Other Internal Changes
+
+* Moved documentation gitignore values to root ([633a586](https://github.com/mlaursen/react-md/commit/633a586d15e4e4b633fca83f5626adb4a08adde6))
+* **@react-md/form:** Updated `MenuItemRadio` usage to be wrapped in a group for a11y ([01caa0b](https://github.com/mlaursen/react-md/commit/01caa0bc95a7e1984f141cad4d435d59dfbb4cf2))
+* **tsconfig:** separate tsconfig by package instead of a single root ([b278230](https://github.com/mlaursen/react-md/commit/b2782303b2a2db07eeaa25b6a3d04337976cffaa))
+
+
+
+
+
+
 ## [2.7.1](https://github.com/mlaursen/react-md/compare/v2.7.0...v2.7.1) (2021-03-23)
 
 

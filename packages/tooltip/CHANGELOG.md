@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/mlaursen/react-md/compare/v2.7.1...v2.8.0) (2021-04-22)
+
+
+### Bug Fixes
+
+* **@react-md/utils:** Click Behavior for Hover Mode ([d0fda80](https://github.com/mlaursen/react-md/commit/d0fda80332406e3323df457d9822d9dd6df3f8da))
+
+
+### Other Internal Changes
+
+* **@react-md/tooltip:** Cleaned up some `useTooltip` code ([0a6aed9](https://github.com/mlaursen/react-md/commit/0a6aed906f76690f8a6e3e026cd30dbf991ef148))
+* **@react-md/tooltip:** Updated `Tooltip` to use new Hover Mode ([386f47b](https://github.com/mlaursen/react-md/commit/386f47ba4e0976a3f5727a714710914bb5968987))
+* **tsconfig:** separate tsconfig by package instead of a single root ([b278230](https://github.com/mlaursen/react-md/commit/b2782303b2a2db07eeaa25b6a3d04337976cffaa))
+
+
+
+
+
+
 ## [2.7.1](https://github.com/mlaursen/react-md/compare/v2.7.0...v2.7.1) (2021-03-23)
 
 

@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/mlaursen/react-md/compare/v2.7.1...v2.8.0) (2021-04-22)
+
+
+### Bug Fixes
+
+* **@react-md/dialog:** `FixedDialog` applies `style` prop ([bb4ad2f](https://github.com/mlaursen/react-md/commit/bb4ad2f8771f4635aa0b99f548573bc16593a569))
+* **@react-md/utils:** Click Behavior for Hover Mode ([d0fda80](https://github.com/mlaursen/react-md/commit/d0fda80332406e3323df457d9822d9dd6df3f8da))
+* **@react-md/utils:** focusElementsWithin correctly focuses container element as a fallback ([cff46c4](https://github.com/mlaursen/react-md/commit/cff46c4b86c2d6091a7cf7e4326fe2aaa1e1b728))
+
+
+### Features
+
+* **@react-md/form:** Implemented `Form` `Menu` Item Components ([fed2b9f](https://github.com/mlaursen/react-md/commit/fed2b9f737810ed2d14bc48a291882653ac565c9))
+* **@react-md/transition:** Updated `useFixedPositioning` to merge style objects ([1ab84d7](https://github.com/mlaursen/react-md/commit/1ab84d7e86ed911cb263bb1b25e1085fab3fc2e5))
+* **@react-md/transition:** updated `useFixedPositioning` to support fixedTo ref ([ced550a](https://github.com/mlaursen/react-md/commit/ced550a6ae8525e02d8ce20dde1cf448454ac9ec))
+* **@react-md/utils:** Added `isFocusable` util ([1d92472](https://github.com/mlaursen/react-md/commit/1d92472f688d9fc1f4359a1f0aab60d861b23760))
+* **@react-md/utils:** implemented a reusable hover mode API ([4f5ce2f](https://github.com/mlaursen/react-md/commit/4f5ce2fafa9269e3b6627b5166ff76f456a1d681))
+* **typescript:** bump `typescript` version to v4.2.3 ([b094b36](https://github.com/mlaursen/react-md/commit/b094b364cb43c4db33a112db3feab6e138a3c41c))
+
+
+### Documentation
+
+* **@react-md/form:** Updated form menu components for better documentation and examples in code ([d9695b7](https://github.com/mlaursen/react-md/commit/d9695b7f548adf867ad89e069da1459361149bfc))
+* **react-md.dev:** Added `Menu` With `Form` Controls Demo ([dbc2d21](https://github.com/mlaursen/react-md/commit/dbc2d21c147c355fcde5c354312cf7cc4ce05111))
+* **react-md.dev:** Added `Tooltip` Hook Example ([9783c44](https://github.com/mlaursen/react-md/commit/9783c4412bccbce6ce43b7f59d9167be9bb3ebc1))
+* **react-md.dev:** Added a new Hover Mode demo ([1e0e783](https://github.com/mlaursen/react-md/commit/1e0e783bbbf7659a4de4a8803e57366f5681cbd4))
+* **react-md.dev:** Added Sticky Hover Mode Example ([1a94a31](https://github.com/mlaursen/react-md/commit/1a94a3174540d0f99029972a2c180fd9015c511b))
+* **react-md.dev:** additional `Tooltip` Hook documentation ([5447f64](https://github.com/mlaursen/react-md/commit/5447f64f8944fcc74fadf6e381a3dbdfc984b399))
+* **react-md.dev:** fix documentation site deployment ([9588c37](https://github.com/mlaursen/react-md/commit/9588c371d7541dcfafab8e35e697b65b2558ef01))
+* **react-md.dev:** removed custom nextjs server ([8389b68](https://github.com/mlaursen/react-md/commit/8389b68325aff0ec79565d86b2cc35414fb755f3))
+* **react-md.dev:** Suppress hydration warning for App Size ([c5a08da](https://github.com/mlaursen/react-md/commit/c5a08da7d386eb1e3395b5928457ffa6fb076870))
+* **react-md.dev:** Updated documentation site after new tooltip behavior ([5db9a9b](https://github.com/mlaursen/react-md/commit/5db9a9b409535d8d9f2cc4e475a6fade58dc327c))
+* **react-md.dev:** Updated documentation site for new `HoverModeProvider` documentation ([f42c65c](https://github.com/mlaursen/react-md/commit/f42c65cea024c6b1c5353fca4790908d3297a82c))
+* **seo:** Added missing description meta tag ([3fd9e9f](https://github.com/mlaursen/react-md/commit/3fd9e9fedfdbdf6413e99491a444be1d15669c17))
+
+
+### Other Internal Changes
+
+* Moved documentation gitignore values to root ([633a586](https://github.com/mlaursen/react-md/commit/633a586d15e4e4b633fca83f5626adb4a08adde6))
+* **@react-md/form:** Added new for menu item tests ([5cf4f8a](https://github.com/mlaursen/react-md/commit/5cf4f8a0f8a2f5f097198c20a3caae8615a159bd))
+* **@react-md/form:** Created `SwitchTrack` and `InputToggleIcon` components ([d9278b3](https://github.com/mlaursen/react-md/commit/d9278b3d8a92920d5bd58edff573f6d575ef3a25))
+* **@react-md/form:** moved some toggle styles into separate mixins ([517f199](https://github.com/mlaursen/react-md/commit/517f199efbb08e96b5aee69526b581453874195c))
+* **@react-md/form:** simplified toggle icon styles ([adb6b06](https://github.com/mlaursen/react-md/commit/adb6b0607218520ba5de362f07662b8fbe26a680))
+* **@react-md/form:** Updated `MenuItemRadio` usage to be wrapped in a group for a11y ([01caa0b](https://github.com/mlaursen/react-md/commit/01caa0bc95a7e1984f141cad4d435d59dfbb4cf2))
+* **@react-md/form:** Updated SliderValue to use non-portalled tooltip for existing test ([b41136f](https://github.com/mlaursen/react-md/commit/b41136f6cf6d4bfc58a2c688b28a38c911cba29d))
+* **@react-md/layout:** Updated `Configuration` to use new `HoverModeProvider` ([357f2bf](https://github.com/mlaursen/react-md/commit/357f2bf35a1c2749aa5767bf124ad2d3521ebdb2))
+* **@react-md/tooltip:** Cleaned up some `useTooltip` code ([0a6aed9](https://github.com/mlaursen/react-md/commit/0a6aed906f76690f8a6e3e026cd30dbf991ef148))
+* **@react-md/tooltip:** Updated `Tooltip` to use new Hover Mode ([386f47b](https://github.com/mlaursen/react-md/commit/386f47ba4e0976a3f5727a714710914bb5968987))
+* **@react-md/transition:** bump @types/react-transitition-group from v4.2.4 to v4.4.1 ([f3f5c7b](https://github.com/mlaursen/react-md/commit/f3f5c7be571e87a13f67442a673feb2807cb96ba))
+* **@react-md/utils:** added missing since annotation to `useOnUnmount` ([c758982](https://github.com/mlaursen/react-md/commit/c758982c3e4d36f61ac39699f3bcd9efaf9acda4))
+* **eslint:** updated eslintignore so I can jump through errors quickly ([7bfe9f3](https://github.com/mlaursen/react-md/commit/7bfe9f3a75b4f5d954c97a2be01162548bf5c29e))
+* **react-md.dev:** Fixed sandboxes to no longer require @types/classnames ([32f6f0f](https://github.com/mlaursen/react-md/commit/32f6f0f08a6ee7b054fa4ddf767648e2921abd57))
+* **tsconfig:** separate tsconfig by package instead of a single root ([b278230](https://github.com/mlaursen/react-md/commit/b2782303b2a2db07eeaa25b6a3d04337976cffaa))
+
+
+
+
+
+
 ## [2.7.1](https://github.com/mlaursen/react-md/compare/v2.7.0...v2.7.1) (2021-03-23)
 
 

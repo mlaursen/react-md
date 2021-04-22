@@ -1,3 +1,91 @@
+Title: react-md 2.8.0
+
+Date: 04/22/2021
+
+Summary:
+
+This release was mostly targeted around exposing the tooltip's "Hover Mode API"
+as well as the other tooltip behavior. See #1113 and the new demos for more
+information:
+
+- [Hover Mode Example](/packages/utils/demos#hover-mode)
+- [Sticky Hover Mode Example](/packages/utils/demos#sticky-hover-mode)
+- [Tooltip Hook Example](/packages/tooltip/demos#tooltip-hook-example)
+
+The #form package was also updated to include new components for rendering
+checkbox, radio, and switch components within menus. See #1123 and
+[Menus with Form Controls Example](/packages/form/demos#menus-with-form-controls)
+for more information.
+
+Finally, `react-md` was updated to support `typescript@4.2.3` by removing the
+`resize-observer-polyfill` dependency since it has conflicting types with the
+now provided type definitions around resize observers. If you are a typescript
+user, see #1099 for more information around this change.
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/dialog:** `FixedDialog` applies `style` prop (bb4ad2f)
+- **@react-md/utils:** Click Behavior for Hover Mode (d0fda80)
+- **@react-md/utils:** `focusElementsWithin` correctly focuses container element
+  as a fallback (cff46c4)
+
+##### Features<!-- no-margin -->
+
+- **@react-md/form:** Implemented Form Menu Item Components (fed2b9f)
+- **@react-md/transition:** Updated `useFixedPositioning` to merge style objects
+  (1ab84d7)
+- **@react-md/transition:** updated `useFixedPositioning` to support fixedTo ref
+  (ced550a)
+- **@react-md/utils:** Added `isFocusable` util (1d92472)
+- **@react-md/utils:** implemented a reusable hover mode API (4f5ce2f)
+- **typescript:** bump `typescript` version to v4.2.3 (b094b36)
+
+##### Documentation<!-- no-margin -->
+
+- **@react-md/form:** Updated form menu components for better documentation and
+  examples in code (d9695b7)
+- **react-md.dev:** Added Menu With Form Controls Demo (dbc2d21)
+- **react-md.dev:** Added Tooltip Hook Example (9783c44)
+- **react-md.dev:** Added a new Hover Mode demo (1e0e783)
+- **react-md.dev:** Added Sticky Hover Mode Example (1a94a31)
+- **react-md.dev:** additional Tooltip Hook documentation (5447f64)
+- **react-md.dev:** fix documentation site deployment (9588c37)
+- **react-md.dev:** removed custom nextjs server (8389b68)
+- **react-md.dev:** Suppress hydration warning for App Size (c5a08da)
+- **react-md.dev:** Updated documentation site after new tooltip behavior
+  (5db9a9b)
+- **react-md.dev:** Updated documentation site for new `HoverModeProvider`
+  documentation (f42c65c)
+- **seo:** Added missing description meta tag (3fd9e9f)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- Moved documentation gitignore values to root (633a586)
+- **@react-md/form:** Added new for menu item tests (5cf4f8a)
+- **@react-md/form:** Created `SwitchTrack` and `InputToggleIcon` components
+  (d9278b3)
+- **@react-md/form:** moved some toggle styles into separate mixins (517f199)
+- **@react-md/form:** simplified toggle icon styles (adb6b06)
+- **@react-md/form:** Updated `MenuItemRadio` usage to be wrapped in a group for
+  a11y (01caa0b)
+- **@react-md/form:** Updated `SliderValue` to use non-portalled tooltip for
+  existing test (b41136f)
+- **@react-md/layout:** Updated `Configuration` to use new `HoverModeProvider`
+  (357f2bf)
+- **@react-md/tooltip:** Cleaned up some `useTooltip` code (0a6aed9)
+- **@react-md/tooltip:** Updated `Tooltip` to use new Hover Mode (386f47b)
+- **@react-md/transition:** bump `@types/react-transitition-group` from v4.2.4
+  to v4.4.1 (f3f5c7b)
+- **@react-md/utils:** added missing since annotation to `useOnUnmount`
+  (c758982)
+- **eslint:** updated eslintignore so I can jump through errors quickly
+  (7bfe9f3)
+- **react-md.dev:** Fixed sandboxes to no longer require `@types/classnames`
+  (32f6f0f)
+- **tsconfig:** separate tsconfig by package instead of a single root (b278230)
+
+---
+
 Title: react-md 2.7.1
 
 Date: 03/22/2021

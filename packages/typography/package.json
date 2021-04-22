@@ -1,6 +1,6 @@
 {
   "name": "@react-md/typography",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "description": "The base package for including typography for react-md.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -35,8 +35,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/theme": "^2.7.1",
-    "@react-md/utils": "^2.7.1",
+    "@react-md/theme": "^2.8.0",
+    "@react-md/utils": "^2.8.0",
     "classnames": "^2.3.1"
   },
   "devDependencies": {

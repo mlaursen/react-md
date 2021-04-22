@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/mlaursen/react-md/compare/v2.7.1...v2.8.0) (2021-04-22)
+
+
+### Features
+
+* **@react-md/transition:** Updated `useFixedPositioning` to merge style objects ([1ab84d7](https://github.com/mlaursen/react-md/commit/1ab84d7e86ed911cb263bb1b25e1085fab3fc2e5))
+* **@react-md/transition:** updated `useFixedPositioning` to support fixedTo ref ([ced550a](https://github.com/mlaursen/react-md/commit/ced550a6ae8525e02d8ce20dde1cf448454ac9ec))
+
+
+### Other Internal Changes
+
+* **@react-md/transition:** bump @types/react-transitition-group from v4.2.4 to v4.4.1 ([f3f5c7b](https://github.com/mlaursen/react-md/commit/f3f5c7be571e87a13f67442a673feb2807cb96ba))
+* **tsconfig:** separate tsconfig by package instead of a single root ([b278230](https://github.com/mlaursen/react-md/commit/b2782303b2a2db07eeaa25b6a3d04337976cffaa))
+
+
+
+
+
+
 ## [2.7.1](https://github.com/mlaursen/react-md/compare/v2.7.0...v2.7.1) (2021-03-23)
 
 
