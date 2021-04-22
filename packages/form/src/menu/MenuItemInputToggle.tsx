@@ -103,6 +103,15 @@ export interface BaseMenuItemInputToggleProps
 export interface MenuItemInputToggleProps extends BaseMenuItemInputToggleProps {
   /**
    * The input toggle type to render.
+   *
+   * Note for the `radio` type:
+   * If a `menu` or `menubar` contains more than one group of `menuitemradio`
+   * elements, or if the `menu` contains one group and other, unrelated menu
+   * items, authors **SHOULD** nest each set of related `menuitemradio` elements
+   * in an element using the `group` role, and authors **SHOULD** delimit the
+   * group from other menu items with an element using the separator role.
+   *
+   * @see {@link https://www.w3.org/TR/wai-aria-1.1/#menuitemradio}
    */
   type: "checkbox" | "radio" | "switch";
 }
@@ -112,6 +121,9 @@ export interface MenuItemInputToggleProps extends BaseMenuItemInputToggleProps {
  * instead the `MenuItemCheckbox`, `MenuItemRadio`, or `MenuItemSwitch` should
  * be used instead.
  *
+ * @see {@link MenuItemCheckbox} for checkbox examples
+ * @see {@link MenuItemRadio} for radio examples
+ * @see {@link MenuItemSwitch} for switch examples
  * @remarks \@since 2.8.0
  */
 export const MenuItemInputToggle = forwardRef<
