@@ -42,15 +42,20 @@ export default function MenusWithFormControls(): ReactElement | null {
           Italic
         </MenuItemCheckbox>,
         <MenuItemSeparator />,
-        ...decorations.map((dec) => (
-          <MenuItemRadio
-            id={`decoration-${dec}`}
-            checked={decoration === dec}
-            onCheckedChange={() => setDecoration(dec)}
-          >
-            {dec}
-          </MenuItemRadio>
-        )),
+        // see https://www.w3.org/TR/wai-aria-1.1/#menuitemradio why this is
+        // wrapped in a group
+        <div role="group" aria-label="Font Decoration">
+          {decorations.map((dec) => (
+            <MenuItemRadio
+              key={dec}
+              id={`decoration-${dec}`}
+              checked={decoration === dec}
+              onCheckedChange={() => setDecoration(dec)}
+            >
+              {dec}
+            </MenuItemRadio>
+          ))}
+        </div>,
         <MenuItemSwitch
           id="toggle-thing"
           checked={checked}

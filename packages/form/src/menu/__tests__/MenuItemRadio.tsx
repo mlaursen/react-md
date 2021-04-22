@@ -13,26 +13,26 @@ describe("MenuItemRadio", () => {
         <DropdownMenu
           id="menu-id"
           items={[
-            <MenuItemRadio
-              key="item-1"
-              id="menu-id-1"
-              checked={selectedIndex === 0}
-              onCheckedChange={() => {
-                setSelectedIndex(0);
-              }}
-            >
-              Radio 1
-            </MenuItemRadio>,
-            <MenuItemRadio
-              key="item-2"
-              id="menu-id-2"
-              checked={selectedIndex === 1}
-              onCheckedChange={() => {
-                setSelectedIndex(1);
-              }}
-            >
-              Radio 2
-            </MenuItemRadio>,
+            <div role="group" aria-label="Radio Group" key="group">
+              <MenuItemRadio
+                id="menu-id-1"
+                checked={selectedIndex === 0}
+                onCheckedChange={() => {
+                  setSelectedIndex(0);
+                }}
+              >
+                Radio 1
+              </MenuItemRadio>
+              <MenuItemRadio
+                id="menu-id-2"
+                checked={selectedIndex === 1}
+                onCheckedChange={() => {
+                  setSelectedIndex(1);
+                }}
+              >
+                Radio 2
+              </MenuItemRadio>
+            </div>,
           ]}
         >
           Button

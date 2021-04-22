@@ -36,38 +36,38 @@ function Test({
         >
           Checkbox
         </MenuItemInputToggle>,
-        <MenuItemInputToggle
-          type="radio"
-          key="radio-1"
-          id="menu-id-2"
-          onClick={onClick}
-          checked={selectedIndex === 0}
-          onCheckedChange={() => {
-            setSelectedIndex(0);
-          }}
-          iconAfter={iconAfter}
-          addon={addon}
-          addonType={addonType}
-          addonPosition={addonPosition}
-        >
-          Radio 1
-        </MenuItemInputToggle>,
-        <MenuItemInputToggle
-          type="radio"
-          key="radio-2"
-          id="menu-id-3"
-          onClick={onClick}
-          checked={selectedIndex === 1}
-          onCheckedChange={() => {
-            setSelectedIndex(1);
-          }}
-          iconAfter={iconAfter}
-          addon={addon}
-          addonType={addonType}
-          addonPosition={addonPosition}
-        >
-          Radio 2
-        </MenuItemInputToggle>,
+        <div role="group" aria-label="Radio Group" key="radio">
+          <MenuItemInputToggle
+            type="radio"
+            id="menu-id-2"
+            onClick={onClick}
+            checked={selectedIndex === 0}
+            onCheckedChange={() => {
+              setSelectedIndex(0);
+            }}
+            iconAfter={iconAfter}
+            addon={addon}
+            addonType={addonType}
+            addonPosition={addonPosition}
+          >
+            Radio 1
+          </MenuItemInputToggle>
+          <MenuItemInputToggle
+            type="radio"
+            id="menu-id-3"
+            onClick={onClick}
+            checked={selectedIndex === 1}
+            onCheckedChange={() => {
+              setSelectedIndex(1);
+            }}
+            iconAfter={iconAfter}
+            addon={addon}
+            addonType={addonType}
+            addonPosition={addonPosition}
+          >
+            Radio 2
+          </MenuItemInputToggle>
+        </div>,
         <MenuItemInputToggle
           key="switch"
           type="switch"
