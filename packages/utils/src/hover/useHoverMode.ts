@@ -318,6 +318,8 @@ export function useHoverMode<E extends HTMLElement>({
       }
 
       startDisableTimer();
+      window.clearTimeout(enterTimeoutRef.current);
+      window.clearTimeout(exitTimeoutRef.current);
     },
     [disabled, propOnClick, startDisableTimer]
   );
