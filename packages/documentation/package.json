@@ -74,7 +74,7 @@
     "react-virtualized": "^9.22.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.15",
+    "@babel/core": "^7.13.16",
     "@react-md/dev-utils": "^2.8.0",
     "@types/gtag.js": "^0.0.4",
     "@types/js-cookie": "^2.2.6",
@@ -82,7 +82,7 @@
     "@types/prismjs": "^1.16.5",
     "@types/qs": "^6.9.6",
     "@types/react-virtualized": "^9.21.11",
-    "babel-plugin-inline-react-svg": "^1.1.2",
+    "babel-plugin-inline-react-svg": "^2.0.1",
     "babel-plugin-prismjs": "^2.0.1",
     "cross-env": "^7.0.3",
     "next-images": "^1.7.0",
