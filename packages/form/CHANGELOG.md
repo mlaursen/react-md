@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/mlaursen/react-md/compare/v2.8.0...v2.8.1) (2021-04-23)
+
+
+### Bug Fixes
+
+* **@react-md/form:** `MenuItemSwitch` spacing styles ([8ac8299](https://github.com/mlaursen/react-md/commit/8ac82999841c87aef307c56266fd29095e36c868)), closes [#1126](https://github.com/mlaursen/react-md/issues/1126)
+* **@react-md/form:** Checkbox, Radio, and `Switch` color ([9315eff](https://github.com/mlaursen/react-md/commit/9315efffa1a6f9b1e4e5d4a7932995467d626bc9))
+
+
+
+
+
+
 # [2.8.0](https://github.com/mlaursen/react-md/compare/v2.7.1...v2.8.0) (2021-04-22)
 
 

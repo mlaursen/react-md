@@ -1,3 +1,16 @@
+Title: react-md 2.8.1
+
+Date: 04/22/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** `MenuItemSwitch` spacing styles (8ac8299), closes #1126
+- **@react-md/form:** Checkbox, Radio, and `Switch` color (9315eff)
+
+---
+
 Title: react-md 2.8.0
 
 Date: 04/22/2021
