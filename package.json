@@ -37,9 +37,6 @@
     "clean-all": "npm-run-all clean clean-dev-utils",
     "watch": "dev-utils watch"
   },
-  "engines": {
-    "node": ">= 10"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git"
