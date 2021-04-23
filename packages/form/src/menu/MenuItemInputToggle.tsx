@@ -196,7 +196,7 @@ export const MenuItemInputToggle = forwardRef<
         onCheckedChange(!checked, event);
       }}
       ref={ref}
-      className={cn(styles(), className)}
+      className={cn(styles({ switch: type === "switch" }), className)}
       tabIndex={tabIndex}
       leftAddon={leftAddon}
       leftAddonType={leftAddonType}

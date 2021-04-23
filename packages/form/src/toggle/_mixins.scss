@@ -370,6 +370,11 @@
   .rmd-input-toggle-menu-item {
     // shrink the checkbox/radio icon size to just be an icon
     @include rmd-button-theme-update-var(icon-size, rmd-icon-theme-var(size));
+
+    &--switch {
+      // this makes the spacing correct between the switch and the text
+      @include rmd-icon-theme-update-var(size, $rmd-switch-track-width);
+    }
   }
 
   .rmd-switch-container {
