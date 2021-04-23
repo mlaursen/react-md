@@ -56,7 +56,11 @@ async function rollback(): Promise<never> {
   return process.exit(1);
 }
 
-async function verify(): Promise<void> {
+async function verify(autoConfirm: boolean): Promise<void> {
+  if (autoConfirm) {
+    return;
+  }
+
   const { complete } = await prompts({
     type: "confirm",
     name: "complete",
@@ -139,7 +143,7 @@ A token can be created at:
 
   if (blog) {
     log.info("Update the blog...");
-    await verify();
+    await verify(autoYes);
   }
 
   git("add -u");
@@ -151,7 +155,7 @@ A token can be created at:
   }
 
   run(`npx lerna publish from-package${distTag}${yes}`);
-  await verify();
+  await verify(autoYes);
 
   git("push origin main");
   git("push --tags");
