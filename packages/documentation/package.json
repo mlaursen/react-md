@@ -82,7 +82,7 @@
     "@types/prismjs": "^1.16.5",
     "@types/qs": "^6.9.6",
     "@types/react-virtualized": "^9.21.11",
-    "babel-plugin-inline-react-svg": "^1.1.2",
+    "babel-plugin-inline-react-svg": "^2.0.1",
     "babel-plugin-prismjs": "^2.0.1",
     "cross-env": "^7.0.3",
     "next-images": "^1.7.0",
