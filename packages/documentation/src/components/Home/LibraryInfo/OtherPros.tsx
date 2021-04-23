@@ -17,7 +17,7 @@ export default function OtherPros(): ReactElement {
           <li>
             Default Production CSS Bundles:
             <br />
-            <b>17.31 KB</b> - <b>17.38 KB</b>
+            <b>17.44 KB</b> - <b>17.51 KB</b>
           </li>
         </ul>
       </li>

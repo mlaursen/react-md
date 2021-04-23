@@ -1,6 +1,6 @@
 {
   "name": "@react-md/avatar",
-  "version": "2.8.0",
+  "version": "2.8.2",
   "description": "This package is used to avatars which are used to symbolize people or objects.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -36,9 +36,9 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/icon": "^2.8.0",
-    "@react-md/theme": "^2.8.0",
-    "@react-md/utils": "^2.8.0",
+    "@react-md/icon": "^2.8.2",
+    "@react-md/theme": "^2.8.2",
+    "@react-md/utils": "^2.8.2",
     "classnames": "^2.3.1"
   },
   "devDependencies": {

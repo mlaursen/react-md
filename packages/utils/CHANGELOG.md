@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/mlaursen/react-md/compare/v2.8.1...v2.8.2) (2021-04-23)
+
+
+### Bug Fixes
+
+* **@react-md/utils:** Cancel hover mode timers on click ([892dc24](https://github.com/mlaursen/react-md/commit/892dc2413ef2811d6aa5ad9d569bcaeaed6d6423))
+
+
+
+
+
+
 # [2.8.0](https://github.com/mlaursen/react-md/compare/v2.7.1...v2.8.0) (2021-04-22)
 
 

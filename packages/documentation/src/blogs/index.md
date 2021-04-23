@@ -1,3 +1,19 @@
+Title: react-md 2.8.2
+
+Date: 04/22/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/utils:** Cancel hover mode timers on click (892dc24)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- removed engines from root package.json (1165471)
+
+---
+
 Title: react-md 2.8.1
 
 Date: 04/22/2021

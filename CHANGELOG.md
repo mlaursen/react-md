@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/mlaursen/react-md/compare/v2.8.1...v2.8.2) (2021-04-23)
+
+
+### Bug Fixes
+
+* **@react-md/utils:** Cancel hover mode timers on click ([892dc24](https://github.com/mlaursen/react-md/commit/892dc2413ef2811d6aa5ad9d569bcaeaed6d6423))
+
+
+### Other Internal Changes
+
+* removed engines from root package.json ([1165471](https://github.com/mlaursen/react-md/commit/1165471e233c7b75680ab14487807167c256c8b5))
+
+
+
+
+
+
 ## [2.8.1](https://github.com/mlaursen/react-md/compare/v2.8.0...v2.8.1) (2021-04-23)
 
 
