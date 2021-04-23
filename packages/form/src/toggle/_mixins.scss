@@ -102,9 +102,10 @@
 @mixin rmd-toggle-icon {
   @include rmd-icon-theme(height, size);
   @include rmd-icon-theme(width, size);
-  @include rmd-icon-theme-update-var(color, $rmd-toggle-inactive-color);
+  @include rmd-icon-theme-update-var(color, currentColor);
 
   align-items: center;
+  color: $rmd-toggle-inactive-color;
   display: inline-flex;
   justify-content: center;
   pointer-events: none;
