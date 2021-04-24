@@ -63,7 +63,7 @@ export function toBreadcrumbPageTitle(
     title = parts.map((p) => toTitle(p)).join(" - ");
   }
 
-  return `react-md@v2${title ? ` - ${title}` : ""}`;
+  return `react-md${title ? ` - ${title}` : ""}`;
 }
 
 /**
