@@ -181,7 +181,8 @@ Theme Guide] instead using the [prefers-color-scheme media query].
 
 [theme values]: /packages/theme/sassdoc#theme-variable-rmd-theme-values
 [theme builder]: /colors-and-theming/theme-builder
-[v1 theme builder]: /v1/customization/theme-builder
+[v1 theme builder]:
+  https://mlaursen.github.io/react-md-v1-docs/#/customization/theme-builder
 [react context api]: https://reactjs.org/docs/context.html
 [theme builder github folder]:
   {{GITHUB_FILE_URL}}/packages/documentation/src/components/ColorsAndTheming/ThemeBuilder

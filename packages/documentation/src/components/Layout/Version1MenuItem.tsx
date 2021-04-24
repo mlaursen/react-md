@@ -18,7 +18,7 @@ export default forwardRef<HTMLAnchorElement, Props>(function Version1MenuItem(
       ref={ref}
       id="version-1-link"
       leftAddon={!small && <LinkSVGIcon />}
-      href="https://react-md.dev/v1"
+      href="https://mlaursen.github.io/react-md-v1-docs/"
       onClick={(event) => {
         if (onClick) {
           onClick(event);
