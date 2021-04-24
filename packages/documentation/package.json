@@ -4,9 +4,7 @@
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
-    "prebuild": "npm-run-all sandbox sassdoc run-indexer update-env",
-    "sandbox": "dev-utils sandbox",
-    "sassdoc": "dev-utils sassdoc",
+    "prebuild": "npm-run-all run-indexer update-env",
     "run-indexer": "dev-utils doc-index",
     "update-env": "node updateProdEnv.js",
     "dev": "cross-env NEXT_TELEMETRY_DISABLED=1 next dev",
