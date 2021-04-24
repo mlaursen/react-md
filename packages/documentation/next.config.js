@@ -10,7 +10,6 @@ const withCustomConfig = (nextConfig = {}) => {
       webpack5: true,
       strictPostcssConfiguration: true,
     },
-    distDir: 'build',
     poweredByHeader: false,
     compress: false,
     webpack(config, options) {

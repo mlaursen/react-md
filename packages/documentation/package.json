@@ -4,13 +4,15 @@
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
-    "prebuild": "npm-run-all -p index update-env",
-    "index": "dev-utils doc-index",
+    "prebuild": "npm-run-all sandbox sassdoc run-indexer update-env",
+    "sandbox": "dev-utils sandbox",
+    "sassdoc": "dev-utils sassdoc",
+    "run-indexer": "dev-utils doc-index",
     "update-env": "node updateProdEnv.js",
     "dev": "cross-env NEXT_TELEMETRY_DISABLED=1 next dev",
     "build": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
     "start": "cross-env NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production next start",
-    "start-dev": "npm-run-all index dev",
+    "start-dev": "npm-run-all run-indexer dev",
     "start-prod": "npm-run-all build start"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
