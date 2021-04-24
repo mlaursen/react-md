@@ -24,8 +24,6 @@ Create an accessible React application with the
 - [Library Size](#library-size) - The UMD bundle size for the entire `react-md`
   library and sizes for some of the pre-built css files.
 
-#### If you are still on v1, please see the [v1 documentation site](https://mlaursen.github.io/react-md-v1-docs/) and [branch](https://github.com/mlaursen/react-md-v1-docs) instead
-
 <!-- rmd-readme-replace -->
 
 ### Highlights/Features
