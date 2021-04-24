@@ -16,7 +16,7 @@
     "force-install": "yarn --force",
     "styles": "dev-utils styles",
     "variables": "dev-utils variables",
-    "run-indexer": "dev-utils-doc-index",
+    "run-indexer": "dev-utils doc-index",
     "prebuild-docs": "npm-run-all sandbox sassdoc run-indexer",
     "build-docs": "yarn workspace documentation build",
     "build-website": "npm-run-all prebuild-docs build-docs",
