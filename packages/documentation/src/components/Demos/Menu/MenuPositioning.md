@@ -4,7 +4,7 @@ automatically try to position itself within the viewport using the
 top-right of the `MenuButton` and animate downwards. If there isn't enough room
 within the viewport to render the entire menu, it'll swap the horizontal and
 vertical positions as needed. There's a great write up on the
-[useFixedPositioning example](/packages/transition/demos#use-fixed-positioning-title)
+[useFixedPositioning example](/packages/transition/demos#fixed-positioning-example)
 that goes into details about this positioning logic, so feel free to read up on
 it there.
 
