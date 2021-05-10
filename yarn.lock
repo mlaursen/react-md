@@ -1946,9 +1946,9 @@
   integrity sha512-nSU7U6FQDJJCraFNwaHmH5YDsd/VA9rTnJ7B7AGFdn+m+VSt3FjLWN7+AbqxZ67dbFazqtrDFUto3HK4ljrHIg==
 
 "@types/prompts@^2.0.10":
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/@types/prompts/-/prompts-2.0.10.tgz#48cf7b5a5bf31723beb804f3927e510af1a96a27"
-  integrity sha512-W3PEl3l4vmxdgfY6LUG7ysh+mLJOTOFYmSpiLe6MCo1OdEm8b5s6ZJfuTQgEpYNwcMiiaRzJespPS5Py2tqLlQ==
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/@types/prompts/-/prompts-2.0.11.tgz#0cef3d1c7e5144c74abd71691287613b7514b03a"
+  integrity sha512-dcF5L3rU9VfpLEJIV++FEyhGhuIpJllNEwllVuJ5g8eoVqjf048tW9+spivIwjzgPbtaGAl7mIZW3cmhDAq2UQ==
   dependencies:
     "@types/node" "*"
 
