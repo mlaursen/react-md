@@ -15,7 +15,7 @@
     "watch": "npm-run-all -p \"compile -w\" watcher"
   },
   "dependencies": {
-    "@babel/core": "^7.13.16",
+    "@babel/core": "^7.14.0",
     "@octokit/core": "^3.4.0",
     "chokidar": "^3.5.0",
     "commander": "^7.2.0",
@@ -32,7 +32,7 @@
     "markdown-toc": "^1.2.0",
     "node-sass": "^5.0.0",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.2.12",
+    "postcss": "^8.2.14",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.2.1",
