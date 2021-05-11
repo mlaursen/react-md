@@ -83,18 +83,17 @@ export type TooltipKeyboardEventHandlers<E extends HTMLElement> = Pick<
  *
  * @remarks \@since 2.8.0
  */
-export type TooltippedElementEventHandlers<
-  E extends HTMLElement
-> = HoverModeEventHandlers<E> &
-  TooltipTouchEventHandlers<E> &
-  TooltipKeyboardEventHandlers<E>;
+export type TooltippedElementEventHandlers<E extends HTMLElement> =
+  HoverModeEventHandlers<E> &
+    TooltipTouchEventHandlers<E> &
+    TooltipKeyboardEventHandlers<E>;
 
 /** @remarks \@since 2.8.0 */
 export interface TooltipHookProvidedElementProps<E extends HTMLElement>
   extends Required<TooltippedElementEventHandlers<E>> {
   /**
    * The DOM `id` required for a11y that is based off of the
-   * {@link AllTooltipHookOptions.baseId}.
+   * {@link TooltipHookOptions.baseId}.
    */
   id: string;
 

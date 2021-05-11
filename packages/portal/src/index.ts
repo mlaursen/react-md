@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/portal
+ */
 export { PortalInto } from "./getContainer";
 
 export * from "./Portal";

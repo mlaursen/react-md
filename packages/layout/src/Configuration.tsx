@@ -37,24 +37,24 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
   /**
    * Boolean if the default tooltip hover mode should be disabled.
    *
-   * @deprecated \@since 2.8.0 Use the {@link ConfigurationProps#hoverMode}
-   * configuration object instead.
+   * @deprecated \@since 2.8.0 Use the {@link hoverMode} configuration object
+   * instead.
    */
   disableTooltipHoverMode?: boolean;
 
   /**
    * The default delay before the tooltip hover mode is enabled.
    *
-   * @deprecated \@since 2.8.0 Use the {@link ConfigurationProps#hoverMode}
-   * configuration object instead.
+   * @deprecated \@since 2.8.0 Use the {@link hoverMode} configuration object
+   * instead.
    */
   tooltipDefaultDelay?: number;
 
   /**
    * The delay before the tooltip should become visible.
    *
-   * @deprecated \@since 2.8.0 Use the {@link ConfigurationProps#hoverMode}
-   * configuration object instead.
+   * @deprecated \@since 2.8.0 Use the {@link hoverMode} configuration object
+   * instead.
    */
   tooltipDelayTimeout?: number;
 

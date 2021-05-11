@@ -20,7 +20,7 @@ export interface SliderProps extends SliderRequiredProps, BaseSliderProps {
    * An optional label to apply to the slider's thumb. This should normally be a
    * short (1-4 word) description for this slider.
    *
-   * @see {@link SliderLabelProps#label}
+   * @see {@link SliderLabelProps.label}
    * @see {@link thumbLabelledBy}
    */
   thumbLabel?: string;
@@ -29,7 +29,7 @@ export interface SliderProps extends SliderRequiredProps, BaseSliderProps {
    * An optional id point to a label describing the slider's thumb. This should
    * normally be a short (1-4 word) description for this slider.
    *
-   * @see {@link SliderLabelProps#label}
+   * @see {@link SliderLabelProps.label}
    * @see {@link thumbLabel}
    */
   thumbLabelledBy?: string;

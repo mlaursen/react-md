@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/menu
+ */
 export * from "./MenuButton";
 export * from "./Menu";
 export * from "./MenuItem";

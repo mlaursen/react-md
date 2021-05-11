@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/table
+ */
 export * from "./TableContainer";
 export * from "./Table";
 export * from "./TableHeader";

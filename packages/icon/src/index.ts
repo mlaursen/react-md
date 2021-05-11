@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/icon
+ */
 export * from "./FontIcon";
 export * from "./SVGIcon";
 export * from "./TextIconSpacing";

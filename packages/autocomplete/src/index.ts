@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/autocomplete
+ */
 export * from "./AutoComplete";
 export * from "./HighlightedResult";
 export * from "./useAutoComplete";

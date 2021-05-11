@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/transition
+ */
 export * from "./Collapse";
 export * from "./CrossFade";
 export * from "./ScaleTransition";
