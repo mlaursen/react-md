@@ -63,10 +63,8 @@ export interface BaseMenuItemInputToggleProps
 
   /**
    * The icon will default to:
-   * - {@link @react-md/icon#ConfigurableIcons.radio} when the `type` is set to
-   *   `"radio"`
-   * - {@link @react-md/icon#ConfigurableIcons.checkbox} when the `type` is set
-   *   to `"checkbox"`
+   * - {@link ConfigurableIcons.radio} when the `type` is set to `"radio"`
+   * - {@link ConfigurableIcons.checkbox} when the `type` is set to `"checkbox"`
    * - {@link SwitchTrack} when the `type` is set to `"switch"`
    *
    * If this behavior isn't preferred, you can provide your own icon with this
@@ -81,20 +79,20 @@ export interface BaseMenuItemInputToggleProps
   iconAfter?: boolean;
 
   /**
-   * An optional {@link @react-md/list#ListItem} addon to display on the
-   * opposite side of the `icon`. So if the `iconAfter` prop is `false`, the
-   * `addon` will appear to the `right` while setting `iconAfter` to `true` will
-   * render the `addon` to the `left` instead.
+   * An optional {@link ListItem} addon to display on the opposite side of the
+   * `icon`. So if the `iconAfter` prop is `false`, the `addon` will appear to
+   * the `right` while setting `iconAfter` to `true` will render the `addon` to
+   * the `left` instead.
    */
   addon?: ReactNode;
 
   /**
-   * The {@link @react-md/list#ListItemAddonType} for the `addon`.
+   * The {@link ListItemAddonType} for the `addon`.
    */
   addonType?: ListItemAddonType;
 
   /**
-   * The {@link @react-md/list#ListItemAddonPosition} for the `addon`.
+   * The {@link ListItemAddonPosition} for the `addon`.
    */
   addonPosition?: ListItemAddonPosition;
 }

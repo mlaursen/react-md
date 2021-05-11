@@ -111,7 +111,7 @@ export interface NumberFieldHookControls {
 /**
  * An ordered list containing:
  * - the current `number` value of the field which will be updated based on the
- *   {@link NumberFieldHookOptions#updateOnChange} option
+ *   {@link NumberFieldHookOptions.updateOnChange} option
  *
  * @remarks \@since 2.5.0
  */

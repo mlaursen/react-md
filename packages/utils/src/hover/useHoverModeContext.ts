@@ -17,7 +17,7 @@ export interface HoverModeActions {
   /**
    * A function that will enable the hover mode for all connected components.
    * This should normally be called after hovering over an element for the
-   * {@link HoverModeContext#visibleInTime}.
+   * {@link HoverModeContext.visibleInTime}.
    */
   enableHoverMode(): void;
 

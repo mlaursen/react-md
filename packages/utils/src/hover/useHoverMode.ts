@@ -200,10 +200,8 @@ export interface HoverModeReturnValue<E extends HTMLElement>
  *
  * @remarks \@since 2.8.0
  * @param options - An optional object of options to use. See
- * {@link HoverModeOnlyOptions} and {@link StickyHoverModeOptions} for more
- * details.
- * @returns either the {@link HoverModeReturnValue} or
- * {@link StickyHoverModeReturnValue}
+ * {@link HoverModeOnlyOptions} and {@link HoverModeOptions} for more details.
+ * @returns either the {@link HoverModeReturnValue} or {@link HoverModeReturnValue}
  */
 export function useHoverMode<E extends HTMLElement>(
   options?: HoverModeOnlyOptions<E>

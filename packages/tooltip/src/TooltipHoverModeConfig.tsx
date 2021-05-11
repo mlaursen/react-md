@@ -16,8 +16,7 @@ interface TooltipHoverModeConfigProps {
  * functionality in that once a tooltip has become visible by hover, all other
  * tooltips will become visible immediately until 3 seconds have passed.
  *
- * @deprecated \@since 2.8.0 Use the {@link @react-md/utils#HoverModeProvider}
- * instead.
+ * @deprecated \@since 2.8.0 Use the {@link HoverModeProvider} instead.
  */
 export function TooltipHoverModeConfig({
   defaultDelay = DEFAULT_TOOLTIP_DELAY,

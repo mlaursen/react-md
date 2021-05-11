@@ -14,12 +14,12 @@ export interface RenderConditionalPortalProps {
   portal?: boolean;
 
   /**
-   * @see {@link Portal#into}
+   * @see {@link PortalProps.into}
    */
   portalInto?: PortalInto;
 
   /**
-   * @see {@link Portal#intoId}
+   * @see {@link PortalProps.intoId}
    */
   portalIntoId?: string;
 }
