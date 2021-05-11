@@ -27,5 +27,12 @@ module.exports = {
         '@typescript-eslint/no-unsafe-member-access': 0,
       },
     },
+    {
+      files: ['packages/*/src/index.ts'],
+      rules: {
+        // I don't know how to get @module to work but it's supported by typedoc
+        'tsdoc/syntax': 0,
+      },
+    },
   ],
 };

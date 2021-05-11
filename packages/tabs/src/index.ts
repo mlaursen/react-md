@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/tabs
+ */
 export * from "./TabsList";
 export * from "./Tabs";
 export * from "./Tab";

@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/layout
+ */
 export * from "./Configuration";
 export * from "./constants";
 export * from "./defaultMiniNavigationItemRenderer";

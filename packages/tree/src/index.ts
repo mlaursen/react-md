@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/tree
+ */
 export * from "./useTreeItemExpansion";
 export * from "./useTreeItemSelection";
 export * from "./types";

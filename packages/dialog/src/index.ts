@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/dialog
+ */
 export * from "./Dialog";
 export * from "./DialogHeader";
 export * from "./DialogTitle";

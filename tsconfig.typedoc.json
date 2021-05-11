@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false
+  },
+  "include": ["packages/*/src"],
+  "exclude": [
+    "packages/dev-utils/**",
+    "packages/documentation/**",
+    "**/__tests__/**",
+    "**/__mocks__/**"
+  ]
+}

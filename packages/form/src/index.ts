@@ -1,3 +1,6 @@
+/**
+ * @module @react-md/form
+ */
 export * from "./Form";
 export * from "./Fieldset";
 export * from "./FormThemeProvider";
