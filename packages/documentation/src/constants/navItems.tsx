@@ -4,6 +4,7 @@ import {
   BuildSVGIcon,
   ColorLensSVGIcon,
   DescriptionSVGIcon,
+  FunctionsSVGIcon,
   HomeSVGIcon,
   InfoOutlineSVGIcon,
   LibraryBooksSVGIcon,
@@ -147,6 +148,11 @@ const routes: NavItem[] = [
     })),
   },
   {
+    href: "/tsdocs/index.html",
+    children: "API (typedoc)",
+    leftAddon: <FunctionsSVGIcon />,
+  },
+  {
     href: "/blog",
     children: "Blog",
     leftAddon: <LibraryBooksSVGIcon />,
@@ -223,7 +229,7 @@ function createNavItem(
 
   let href: string | undefined = itemId;
   let parentId: string | null = null;
-  if (lastSlashIndex > 0) {
+  if (lastSlashIndex > 0 && !itemId.endsWith("/index.html")) {
     parentId = itemId.slice(0, lastSlashIndex);
   }
 
