@@ -148,7 +148,7 @@ const routes: NavItem[] = [
     })),
   },
   {
-    href: "/tsdocs/react-md/index.html",
+    href: "/tsdocs/index.html",
     children: "API (typedoc)",
     leftAddon: <FunctionsSVGIcon />,
   },
@@ -229,7 +229,7 @@ function createNavItem(
 
   let href: string | undefined = itemId;
   let parentId: string | null = null;
-  if (lastSlashIndex > 0 && !itemId.startsWith("/tsdocs/")) {
+  if (lastSlashIndex > 0 && !itemId.endsWith("/index.html")) {
     parentId = itemId.slice(0, lastSlashIndex);
   }
 
