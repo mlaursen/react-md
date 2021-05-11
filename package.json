@@ -73,7 +73,7 @@
     "@types/react-test-renderer": "^17.0.1",
     "@types/react-transition-group": "^4.4.1",
     "chokidar": "^3.5.0",
-    "commitizen": "^4.2.3",
+    "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.26.0",
     "husky": "^6.0.0",
@@ -109,5 +109,8 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "resolutions": {
+    "merge": "^2.1.0"
   }
 }
