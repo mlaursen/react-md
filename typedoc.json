@@ -1,0 +1,7 @@
+{
+  "out": "./packages/documentation/public/tsdocs/react-md",
+  "entryPoints": ["./packages/react-md/src/index.ts"],
+  "tsconfig": "./packages/react-md/tsconfig.json",
+  "includeVersion": true,
+  "listInvalidSymbolLinks": true
+}
