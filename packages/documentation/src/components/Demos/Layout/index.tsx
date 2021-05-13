@@ -9,6 +9,9 @@ import configurableLayout from "./ConfigurableLayout.md";
 import ControllingTheLayout from "./ControllingTheLayout";
 import controllingTheLayout from "./ControllingTheLayout.md";
 
+import NonFixedAppBarLayouts from "./NonFixedAppBarLayouts";
+import nonFixedAppBarLayouts from "./NonFixedAppBarLayouts.md";
+
 const modalProps = {
   fullPage: true,
   fullPageFAB: true,
@@ -31,6 +34,12 @@ const demos = [
     name: "Controlling the Layout",
     description: controllingTheLayout,
     children: <ControllingTheLayout />,
+  },
+  {
+    ...modalProps,
+    name: "Non-Fixed App Bar Layouts",
+    description: nonFixedAppBarLayouts,
+    children: <NonFixedAppBarLayouts />,
   },
 ];
 
