@@ -10,6 +10,10 @@ to help add typography throughout your app. There is also an accessibility
 helper component named `SrOnly` that allows you to display text to screen
 readers only.
 
+If you'd like to change the typography values, check out the
+[SassDoc page](https://react-md.dev/packages/typography/sassdoc) on the
+documentation site.
+
 ## Installation
 
 ```sh

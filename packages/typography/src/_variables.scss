@@ -222,7 +222,64 @@ $rmd-typography-google-font-weight-suffixes: (
   black: '-Black',
 ) !default;
 
-/// A Map of all the typography styles in react-md
+/// A Map containing of all the typography styles in react-md with reasonable
+/// defaults. Unlike most variables within react-md, this Map is not
+/// configurable itself and instead you can create global variables to override
+/// the styles for all the different typography styles. The global variables
+/// should be a Map of styles to apply, merge, and override the default styles
+/// with the name format of: `rmd-typography-styles-{{NAME}}`. Here's a list of
+/// all the possible variables:
+///
+/// - `$rmd-typography-styles-headline-1`
+/// - `$rmd-typography-styles-headline-2`
+/// - `$rmd-typography-styles-headline-3`
+/// - `$rmd-typography-styles-headline-4`
+/// - `$rmd-typography-styles-headline-5`
+/// - `$rmd-typography-styles-headline-6`
+/// - `$rmd-typography-styles-body-1`
+/// - `$rmd-typography-styles-body-2`
+/// - `$rmd-typography-styles-button`
+/// - `$rmd-typography-styles-caption`
+/// - `$rmd-typography-styles-overline`
+///
+/// @example scss - Default Typography Values
+///   @each $style in map-keys($rmd-typography-styles) {
+///     .#{$style} {
+///       @include rmd-typography($style);
+///     }
+///   }
+///
+/// @example scss - Overriding Typography Values
+///   $rmd-typography-styles-headline-1: (
+///     font-size: 4rem,
+///     line-height: 4rem,
+///     margin: 0,
+///   );
+///   $rmd-typography-styles-headline-2: (
+///     font-size: 3.5rem,
+///     line-height: 3.5rem,
+///     margin: 0,
+///   );
+///   $rmd-typography-styles-headline-3: (
+///     margin: 0,
+///   );
+///   $rmd-typography-styles-headline-4: (
+///     margin: 0,
+///   );
+///   $rmd-typography-styles-headline-5: (
+///     margin: 0,
+///   );
+///   $rmd-typography-styles-headline-6: (
+///     margin: 0,
+///   );
+///   // OVERRIDE_VARIABLES
+///
+///   @each $style in map-keys($rmd-typography-styles) {
+///     .#{$style} {
+///       @include rmd-typography($style);
+///     }
+///   }
+///
 ///
 /// @type Map
 /// @prop {Map} headline-1 - The styles for a headline-1
