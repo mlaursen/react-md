@@ -14,7 +14,7 @@ import {
   TreeData,
   useTreeItemExpansion,
 } from "@react-md/tree";
-import { MobileOnly, useIsUserInteractionMode } from "@react-md/utils";
+import { PhoneOnly, useIsUserInteractionMode } from "@react-md/utils";
 
 import CssIcon from "icons/CssIcon";
 import FileSVGIcon from "icons/FileSVGIcon";
@@ -122,7 +122,7 @@ export default function SandboxFileTree({
       position="left"
       overlay={!inline}
       portal={false}
-      className={cn({
+      className={cn(styles.sheet, {
         [styles.inline]: inline,
       })}
       mountOnEnter={!inline}
@@ -131,11 +131,11 @@ export default function SandboxFileTree({
       disableTransition={disableTransition}
       disableTabFocusWrap={isKeyboard}
     >
-      <MobileOnly>
+      <PhoneOnly>
         <AppBar theme="default">
           <NavigationActions from={from} onRequestClose={onRequestClose} />
         </AppBar>
-      </MobileOnly>
+      </PhoneOnly>
       <Tree
         id="code-previewer-files"
         className={styles.tree}

@@ -24,8 +24,7 @@ export default function SandboxNavigation({
   onRequestFiles,
   onRequestClose,
 }: SandboxNavigationProps): ReactElement {
-  const { isPhone, isTablet } = useAppSize();
-  const mobile = isPhone || isTablet;
+  const { isPhone } = useAppSize();
 
   return (
     <AppBar height="prominent-dense" theme="default" className={styles.header}>
@@ -43,7 +42,7 @@ export default function SandboxNavigation({
         <AppBarTitle id="sandbox-dialog-title" noWrap>
           {name}
         </AppBarTitle>
-        {!mobile && (
+        {!isPhone && (
           <NavigationActions from={from} onRequestClose={onRequestClose} />
         )}
       </AppBar>
