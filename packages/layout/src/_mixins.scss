@@ -110,6 +110,10 @@
 
     flex: 1 1 auto;
     height: 100%;
+
+    &__mini-item {
+      justify-content: center;
+    }
   }
 
   .rmd-layout-tree {

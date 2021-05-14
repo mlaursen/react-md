@@ -206,7 +206,7 @@ exports[`Layout mini variant should display only valid nav items at the root in 
         tabindex="-1"
       >
         <span
-          class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected"
+          class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected rmd-layout-nav__mini-item"
         >
           <svg
             aria-hidden="true"
@@ -239,7 +239,7 @@ exports[`Layout mini variant should display only valid nav items at the root in 
         tabindex="-1"
       >
         <span
-          class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-layout-nav__mini-item"
         >
           <svg
             aria-hidden="true"
@@ -276,7 +276,7 @@ exports[`Layout mini variant should display only valid nav items at the root in 
         tabindex="-1"
       >
         <span
-          class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-layout-nav__mini-item"
         >
           <svg
             aria-hidden="true"
