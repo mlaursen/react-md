@@ -249,6 +249,9 @@ export function Layout({
   return (
     <LayoutProvider
       baseId={id}
+      fixedAppBar={
+        props.appBarProps?.fixed ?? typeof props.appBar === "undefined"
+      }
       phoneLayout={phoneLayout}
       tabletLayout={tabletLayout}
       landscapeTabletLayout={landscapeTabletLayout}

@@ -60,6 +60,14 @@ export interface LayoutContext {
    * A function that will set the `visible` state to `false`.
    */
   hideNav(): void;
+
+  /**
+   * Boolean if the layout is currently using a fixed app bar which can be
+   * useful for determining specific scroll or layout behavior.
+   *
+   * @remarks \@since 2.8.3
+   */
+  fixedAppBar: boolean;
 }
 
 const context = createContext<LayoutContext>({
@@ -68,6 +76,7 @@ const context = createContext<LayoutContext>({
   visible: false,
   showNav: notInitialized("showNav"),
   hideNav: notInitialized("hideNav"),
+  fixedAppBar: true,
 });
 
 /**
@@ -90,6 +99,9 @@ export interface LayoutProviderProps extends LayoutConfiguration {
    * The children to render that can inherit the current layout.
    */
   children: ReactNode;
+
+  /** {@inheritDoc LayoutContext.fixedAppBar} */
+  fixedAppBar?: boolean;
 }
 
 /**
@@ -119,6 +131,7 @@ export function LayoutProvider({
   desktopLayout = DEFAULT_DESKTOP_LAYOUT,
   largeDesktopLayout,
   defaultToggleableVisible = false,
+  fixedAppBar = true,
   children,
 }: LayoutProviderProps): ReactElement {
   const appSize = useAppSize();
@@ -165,8 +178,9 @@ export function LayoutProvider({
       visible,
       showNav,
       hideNav,
+      fixedAppBar,
     }),
-    [baseId, layout, visible, showNav, hideNav]
+    [baseId, layout, visible, showNav, hideNav, fixedAppBar]
   );
 
   return <Provider value={value}>{children}</Provider>;

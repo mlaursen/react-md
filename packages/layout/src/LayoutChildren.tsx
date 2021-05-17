@@ -103,8 +103,7 @@ export function LayoutChildren({
   children,
 }: LayoutChildrenProps): ReactElement {
   const mainId = mainProps?.id || `${id}-main`;
-  const fixedAppBar = appBarProps?.fixed ?? typeof propAppBar === "undefined";
-  const { layout, visible } = useLayoutConfig();
+  const { layout, visible, fixedAppBar } = useLayoutConfig();
   const mini = isMiniLayout(layout);
   const [miniHidden, setMiniHidden] = useState(visible);
   // when the layout changes, the hidden state for the mini drawer must also be
