@@ -96,9 +96,9 @@ behavior to start with.
    return (
 -    <div className="App">
 +    <Layout
-+      {...useLayoutNavigation(navItems, window.location.pathname)}
 +      appBarTitle="react-md App"
 +      navHeaderTitle="My App"
++      treeProps={useLayoutNavigation(navItems, window.location.pathname)}
 +    >
 +      <div className="App">
          <header className="App-header">
