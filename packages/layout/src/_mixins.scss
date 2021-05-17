@@ -214,7 +214,7 @@
 
     &--mini {
       @include rmd-layout-theme-update-var(
-        nav-width,
+        main-offset,
         rmd-layout-theme-var(mini-nav-width)
       );
     }
