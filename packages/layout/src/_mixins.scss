@@ -103,13 +103,26 @@
 
       z-index: $rmd-layout-navigation-mini-z-index;
     }
+
+    &--sticky {
+      overflow: visible;
+      position: initial;
+    }
   }
 
   .rmd-layout-nav {
     @include rmd-utils-scroll;
 
-    flex: 1 1 auto;
-    height: 100%;
+    &--grow {
+      flex: 1 1 auto;
+      height: 100%;
+    }
+
+    &--sticky {
+      position: sticky;
+      top: 0;
+      will-change: transform;
+    }
 
     &__mini-item {
       justify-content: center;
@@ -153,6 +166,11 @@
     }
   }
 
+  .rmd-layout-mini-wrapper {
+    display: grid;
+    grid-template-columns: rmd-layout-theme-var(mini-nav-width) 1fr;
+  }
+
   .rmd-layout-main {
     // going to replace the default focus outline with the custom box-shadow
     // instead
@@ -188,15 +206,10 @@
     }
 
     &--nav-offset {
-      @include rmd-utils-rtl {
-        @include rmd-layout-theme(margin-right, nav-width);
-
-        margin-left: auto;
-      }
-
-      // might need to change to just left and right instead of margin-left and
-      // margin-right for some browser support
-      @include rmd-layout-theme(margin-left, nav-width);
+      @include rmd-utils-rtl-auto(
+        margin-left,
+        rmd-layout-theme-var(main-offset)
+      );
     }
 
     &--mini {
@@ -204,6 +217,12 @@
         nav-width,
         rmd-layout-theme-var(mini-nav-width)
       );
+    }
+
+    &--mini-offset {
+      $distance: '#{rmd-layout-theme-var(nav-width)} - #{rmd-layout-theme-var(mini-nav-width)}';
+
+      @include rmd-layout-theme-update-var(main-offset, calc(#{$distance}));
     }
   }
 }

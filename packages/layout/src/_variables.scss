@@ -64,4 +64,5 @@ $rmd-layout-mini-navigation-width: 3.5rem !default;
 $rmd-layout-theme-values: (
   nav-width: $rmd-layout-navigation-width,
   mini-nav-width: $rmd-layout-mini-navigation-width,
+  main-offset: var(--rmd-layout-nav-width, $rmd-layout-navigation-width),
 ) !default;

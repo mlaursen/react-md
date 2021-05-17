@@ -1,6 +1,12 @@
 import React, { CSSProperties, forwardRef, useEffect, useRef } from "react";
 import cn from "classnames";
-import { BaseTreeItem, Tree, TreeData, TreeProps } from "@react-md/tree";
+import {
+  BaseTreeItem,
+  Tree,
+  TreeData,
+  TreeItemRenderer,
+  TreeProps,
+} from "@react-md/tree";
 import { bem } from "@react-md/utils";
 
 import { defaultMiniNavigationItemRenderer } from "./defaultMiniNavigationItemRenderer";
@@ -11,9 +17,8 @@ import { isTemporaryLayout } from "./utils";
 
 const styles = bem("rmd-layout-nav");
 
-export type BaseLayoutTreeProps<
-  T extends BaseTreeItem = LayoutNavigationItem
-> = Omit<TreeProps<T>, "id" | "data" | "aria-label" | "aria-labelledby">;
+export type BaseLayoutTreeProps<T extends BaseTreeItem = LayoutNavigationItem> =
+  Omit<TreeProps<T>, "id" | "data" | "aria-label" | "aria-labelledby">;
 
 export interface LayoutTreeProps<T extends BaseTreeItem = LayoutNavigationItem>
   extends BaseLayoutTreeProps<T> {
@@ -46,6 +51,22 @@ export interface LayoutTreeProps<T extends BaseTreeItem = LayoutNavigationItem>
    * @remarks \@since 2.7.0
    */
   mini?: boolean;
+
+  /**
+   * Boolean if the mini navigation should be treated as a "sticky" element.
+   * This should really only be `true` if disabling the fixed `AppBar` behavior
+   * in the `Layout`.
+   *
+   * @remarks \@since 2.8.3
+   */
+  sticky?: boolean;
+
+  /**
+   * The {@link TreeItemRenderer} to use if the `mini` prop is enabled.
+   *
+   * @remarks \@since 2.8.3
+   */
+  miniItemRenderer?: TreeItemRenderer<T>;
 
   /**
    * Optional style to provide to the `<nav>` element surrounding the tree
@@ -84,14 +105,14 @@ export const LayoutTree = forwardRef<HTMLUListElement, LayoutTreeProps>(
       "aria-label": ariaLabel = ariaLabelledBy ? undefined : "Navigation",
       className,
       mini = false,
+      sticky = false,
       navStyle,
       navClassName,
       navItems,
       labelKey = "children",
       valueKey = "children",
-      itemRenderer = mini
-        ? defaultMiniNavigationItemRenderer
-        : defaultNavigationItemRenderer,
+      itemRenderer = defaultNavigationItemRenderer,
+      miniItemRenderer = defaultMiniNavigationItemRenderer,
       selectedIds,
       disableTemporaryAutoclose = false,
       ...props
@@ -127,7 +148,7 @@ export const LayoutTree = forwardRef<HTMLUListElement, LayoutTreeProps>(
       <nav
         id={`${id}-nav`}
         style={navStyle}
-        className={cn(styles({ mini }), navClassName)}
+        className={cn(styles({ sticky, grow: !sticky }), navClassName)}
       >
         <Tree
           {...props}
@@ -139,7 +160,7 @@ export const LayoutTree = forwardRef<HTMLUListElement, LayoutTreeProps>(
           labelKey={labelKey}
           valueKey={valueKey}
           selectedIds={selectedIds}
-          itemRenderer={itemRenderer}
+          itemRenderer={mini ? miniItemRenderer : itemRenderer}
           className={cn("rmd-layout-tree", className)}
         />
       </nav>

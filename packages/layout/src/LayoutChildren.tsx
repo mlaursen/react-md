@@ -1,4 +1,10 @@
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import React, {
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
 import { SkipToMainContent, SkipToMainContentProps } from "@react-md/link";
 import { BaseTreeItem, TreeData } from "@react-md/tree";
 import { PropsWithRef } from "@react-md/utils";
@@ -8,6 +14,7 @@ import { LayoutAppBar } from "./LayoutAppBar";
 import { LayoutMain, LayoutMainProps } from "./LayoutMain";
 import { LayoutNavigation } from "./LayoutNavigation";
 import { useLayoutConfig } from "./LayoutProvider";
+import { MiniLayoutWrapper } from "./MiniLayoutWrapper";
 import { LayoutNavigationItem } from "./types";
 import { isMiniLayout } from "./utils";
 
@@ -61,6 +68,23 @@ export interface LayoutChildrenProps<
   miniNavItems?: TreeData<T>;
 
   /**
+   * This prop allows you to provide additional props to the `<div>` surrounding
+   * the `LayoutMain` and mini `LayoutNavigation` components.
+   *
+   * Note: This additional `<div>` will only be rendered if:
+   * - the current layout is one of the `mini` types
+   * - the layout is not using a fixed app bar
+   * - the `miniNav` prop has not been defined
+   * - `treeProps` have been provided
+   *
+   * @remarks \@since 2.8.3
+   */
+  miniWrapperProps?: PropsWithRef<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  >;
+
+  /**
    * The children to display within the layout. This is pretty much required
    * since you'll have an empty app otherwise, but it's left as optional just
    * for prototyping purposes.
@@ -88,8 +112,9 @@ export function LayoutChildren({
   navToggleProps,
   navAfterAppBar = false,
   nav: propNav,
-  miniNav: propMiniNav,
+  miniNav,
   miniNavItems,
+  miniWrapperProps,
   navHeader,
   navHeaderProps,
   navHeaderTitle,
@@ -151,48 +176,36 @@ export function LayoutChildren({
     );
   }
 
-  let miniNav = propMiniNav;
-  if (mini && treeProps && typeof miniNav === "undefined") {
-    let miniTreeProps = treeProps;
-    if (miniNavItems) {
-      miniTreeProps = {
-        ...miniTreeProps,
-        navItems: miniNavItems,
-      };
-    }
-
-    miniNav = (
-      <LayoutNavigation
-        header={navHeader}
-        headerProps={navHeaderProps}
-        headerTitle={navHeaderTitle}
-        headerTitleProps={navHeaderTitleProps}
-        closeNav={closeNav}
-        closeNavProps={closeNavProps}
-        treeProps={miniTreeProps}
-        {...navProps}
-        mini
-        hidden={miniHidden}
-      />
-    );
-  }
-
   return (
     <>
       <SkipToMainContent {...skipProps} mainId={mainId} />
       {navAfterAppBar && appBar}
       {nav}
       {!navAfterAppBar && appBar}
-      {/* mini nav should always be in tab index after app bar */}
-      {miniNav}
-      <LayoutMain
-        headerOffset={fixedAppBar}
-        {...mainProps}
-        id={mainId}
+      <MiniLayoutWrapper
         mini={mini}
+        miniNav={miniNav}
+        miniHidden={miniHidden}
+        containerProps={miniWrapperProps}
+        miniNavItems={miniNavItems}
+        treeProps={treeProps}
+        header={navHeader}
+        headerProps={navHeaderProps}
+        headerTitle={navHeaderTitle}
+        headerTitleProps={navHeaderTitleProps}
+        closeNav={closeNav}
+        closeNavProps={closeNavProps}
       >
-        {children}
-      </LayoutMain>
+        <LayoutMain
+          headerOffset={fixedAppBar}
+          mini={mini}
+          miniHidden={miniHidden}
+          {...mainProps}
+          id={mainId}
+        >
+          {children}
+        </LayoutMain>
+      </MiniLayoutWrapper>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode } from "react";
 import cn from "classnames";
 import { Sheet, SheetProps } from "@react-md/sheet";
-import { BaseTreeItem } from "@react-md/tree";
+import { BaseTreeItem, TreeItemRenderer } from "@react-md/tree";
 import { bem, PropsWithRef } from "@react-md/utils";
 
 import { LayoutCloseNavigationButtonProps } from "./LayoutCloseNavigationButton";
@@ -17,6 +17,7 @@ import {
   isTemporaryLayout,
   isToggleableLayout,
 } from "./utils";
+import { defaultMiniNavigationItemRenderer } from "./defaultMiniNavigationItemRenderer";
 
 export type LayoutNavigationSheetProps = Omit<
   SheetProps,
@@ -94,6 +95,18 @@ export interface LayoutNavigationProps<
    * @remarks \@since 2.7.0
    */
   mini?: boolean;
+
+  /**
+   * Boolean if the mini navigation should be treated as a "sticky" element.
+   * This should really only be `true` if disabling the fixed `AppBar` behavior
+   * in the `Layout`.
+   *
+   * @remarks \@since 2.8.3
+   */
+  sticky?: boolean;
+
+  /** @remarks \@since 2.8.3 */
+  miniNavItemRenderer?: TreeItemRenderer<T>;
 }
 
 const styles = bem("rmd-layout-navigation");
@@ -120,6 +133,8 @@ export const LayoutNavigation = forwardRef<
     closeNav,
     closeNavProps,
     treeProps,
+    sticky = false,
+    miniNavItemRenderer = defaultMiniNavigationItemRenderer,
     ...props
   },
   ref
@@ -172,6 +187,7 @@ export const LayoutNavigation = forwardRef<
       className={cn(
         styles({
           mini,
+          sticky,
           floating,
           "header-offset": layout === "clipped" || floating,
         }),
@@ -179,7 +195,14 @@ export const LayoutNavigation = forwardRef<
       )}
     >
       {header}
-      {treeProps && <LayoutTree {...treeProps} mini={mini} />}
+      {treeProps && (
+        <LayoutTree
+          miniItemRenderer={miniNavItemRenderer}
+          sticky={mini && sticky}
+          {...treeProps}
+          mini={mini}
+        />
+      )}
       {children}
     </Sheet>
   );

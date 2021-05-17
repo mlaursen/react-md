@@ -7,7 +7,7 @@ import { bem, useIsUserInteractionMode } from "@react-md/utils";
 
 import { DEFAULT_LAYOUT_MAIN_CLASSNAMES } from "./constants";
 import { useLayoutConfig } from "./LayoutProvider";
-import { isTemporaryLayout } from "./utils";
+import { isTemporaryLayout, isToggleableLayout } from "./utils";
 
 export interface LayoutMainProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -37,6 +37,16 @@ export interface LayoutMainProps extends HTMLAttributes<HTMLDivElement> {
    * @remarks \@since 2.7.0
    */
   mini?: boolean;
+
+  /**
+   * Boolean if the mini layout is currently hidden to help determine if
+   * specific mini styles should be applied when the {@link LayoutContext.fixedAppBar}
+   * config is `false`.
+   *
+   * @internal
+   * @remarks \@since 2.8.3
+   */
+  miniHidden?: boolean;
 
   /**
    * The transition timeout to use for the toggleable `LayoutNavigation` either
@@ -69,6 +79,7 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       timeout: propTimeout = DEFAULT_SHEET_TIMEOUT,
       classNames = DEFAULT_LAYOUT_MAIN_CLASSNAMES,
       mini = false,
+      miniHidden = false,
       ...props
     },
     forwardedRef
@@ -88,7 +99,7 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       tabIndex = -1;
     }
 
-    const { layout, visible } = useLayoutConfig();
+    const { layout, visible, fixedAppBar } = useLayoutConfig();
     let navOffset = propNavOffset;
     if (typeof navOffset === "undefined") {
       navOffset = visible && !isTemporaryLayout(layout);
@@ -120,6 +131,14 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       },
     });
 
+    const isMini = mini && (fixedAppBar || miniHidden);
+    const isMiniOffset =
+      mini &&
+      navOffset &&
+      !fixedAppBar &&
+      visible &&
+      isToggleableLayout(layout);
+
     return (
       <Component
         {...props}
@@ -127,8 +146,9 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
         tabIndex={tabIndex}
         className={cn(
           styles({
-            mini: mini && (isTemporaryLayout(layout) || !visible),
-            "nav-offset": mini,
+            mini: isMini && (isTemporaryLayout(layout) || !visible),
+            "nav-offset": isMini,
+            "mini-offset": isMiniOffset,
             "header-offset": headerOffset,
           }),
           className

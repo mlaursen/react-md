@@ -185,7 +185,7 @@ exports[`Layout mini variant should display only valid nav items at the root in 
   tabindex="-1"
 >
   <nav
-    class="rmd-layout-nav rmd-layout-nav--mini"
+    class="rmd-layout-nav rmd-layout-nav--grow"
     id="layout-navigation-tree-nav"
   >
     <ul
