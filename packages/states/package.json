@@ -38,6 +38,7 @@
     "@react-md/theme": "^2.8.2",
     "@react-md/transition": "^2.8.2",
     "@react-md/utils": "^2.8.2",
+    "classnames": "^2.3.1",
     "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
