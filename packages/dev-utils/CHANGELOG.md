@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/mlaursen/react-md/compare/v2.8.2...v2.8.3) (2021-05-18)
+
+
+### Documentation
+
+* **react-md.dev:** Added simple API documentation with `typedoc` ([84739af](https://github.com/mlaursen/react-md/commit/84739afe9f727863f2131f374739f3ac94f93e9f))
+* **react-md.dev:** don't include version for latest `react-md` ([a69359b](https://github.com/mlaursen/react-md/commit/a69359bf28a622571dd001628f3c81822470ba51))
+* **react-md.dev:** Fix `typedoc` source links when deployed through vercel ([a4eed1b](https://github.com/mlaursen/react-md/commit/a4eed1b6688dc6a3aa6ee092dc82fcad154b4838))
+
+
+### Other Internal Changes
+
+* **@react-md/dev-utils:** Removed old `typedoc` WIP ([a7d7429](https://github.com/mlaursen/react-md/commit/a7d742980d59648aad51f28d99a8a34c9f307e9d))
+
+
+
+
+
+
 ## [2.8.2](https://github.com/mlaursen/react-md/compare/v2.8.1...v2.8.2) (2021-04-23)
 
 **Note:** Version bump only for package @react-md/dev-utils

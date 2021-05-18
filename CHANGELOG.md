@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/mlaursen/react-md/compare/v2.8.2...v2.8.3) (2021-05-18)
+
+
+### Bug Fixes
+
+* **@react-md/layout:** Added fixedAppBar flag into the `useLayoutConfig` ([14e6587](https://github.com/mlaursen/react-md/commit/14e65875b295a1143587908ac170983e277269b5))
+* **@react-md/layout:** Mini Layouts Align Icons with Hamburger `Menu` in Dense Mode ([abbe9a9](https://github.com/mlaursen/react-md/commit/abbe9a9fb407cac8407abba978a35bbaa15adf72))
+* **@react-md/layout:** non-fixed `AppBar` mini layouts ([84313fc](https://github.com/mlaursen/react-md/commit/84313fc20f9ffb46314573fc62fa54925fe6c631)), closes [#1101](https://github.com/mlaursen/react-md/issues/1101)
+* **@react-md/layout:** Offset for temporary mini layouts ([86e75bf](https://github.com/mlaursen/react-md/commit/86e75bf9abb8c5b09ad8bdd81f27642f622a8168))
+* **@react-md/states:** Added missing `classnames` dependency ([a7a2012](https://github.com/mlaursen/react-md/commit/a7a2012d59724ad381109898e9ee64a8b31d81a6)), closes [#1155](https://github.com/mlaursen/react-md/issues/1155)
+
+
+### Documentation
+
+* **@react-md/layout:** Added demo for non-fixed `AppBar` layouts ([d217ac1](https://github.com/mlaursen/react-md/commit/d217ac1538eb0df6d9a053a16f9e1526aba75837))
+* **@react-md/typography:** Added examples for overriding typography styles ([57033bd](https://github.com/mlaursen/react-md/commit/57033bd9e9837a0985c35c66fdbb1f08d74f7c85)), closes [#1147](https://github.com/mlaursen/react-md/issues/1147)
+* **react-md.dev:** Added simple API documentation with `typedoc` ([84739af](https://github.com/mlaursen/react-md/commit/84739afe9f727863f2131f374739f3ac94f93e9f))
+* **react-md.dev:** don't include version for latest `react-md` ([a69359b](https://github.com/mlaursen/react-md/commit/a69359bf28a622571dd001628f3c81822470ba51))
+* **react-md.dev:** Light Theme Code Preview Colors ([c9cc6a7](https://github.com/mlaursen/react-md/commit/c9cc6a722eeb019a7d483d4d2cf7f7a1dabf2757))
+* **react-md.dev:** redirect to v1 website ([5d9ee71](https://github.com/mlaursen/react-md/commit/5d9ee71e18494b38e26a7478fd54bf40de49a023))
+* **react-md.dev:** small updates after switching to free hosting ([96e2dcd](https://github.com/mlaursen/react-md/commit/96e2dcd9317fe96b1cfad867ac7d13d005b08809))
+* **react-md.dev:** update v1 links to new repo and static hosting ([92801bb](https://github.com/mlaursen/react-md/commit/92801bb457c30540551bc3dbfcc0a7f692044d84))
+* **react-md.dev:** updated tsdoc to work with `typedoc` ([cf54c35](https://github.com/mlaursen/react-md/commit/cf54c359268332245d1dad8a8d91e0476cd8cb33))
+* **react-md.dev:** Fix `typedoc` source links when deployed through vercel ([a4eed1b](https://github.com/mlaursen/react-md/commit/a4eed1b6688dc6a3aa6ee092dc82fcad154b4838))
+* **react-md.dev:** Fixed `useLayoutNavigation` hook example in creating a new app ([1cde856](https://github.com/mlaursen/react-md/commit/1cde856d979edbde1578f7837ccc048a94f70fa0))
+
+
+### Other Internal Changes
+
+* no longer build,lint,test node 10 since I upgraded some dependencies ([1d3f889](https://github.com/mlaursen/react-md/commit/1d3f8898464e87193dd94236d4110e6da773c014))
+* fix anchor link to useFixedPositioning example docs ([eb5a9fc](https://github.com/mlaursen/react-md/commit/eb5a9fc15a558879bac574ebc8e4dc931d2a8427))
+* fixed typo ([ef3f9e4](https://github.com/mlaursen/react-md/commit/ef3f9e4e7a09c69ea0439234e95389f9f1a7d19d))
+* removed v1 info from README ([b0e8ccb](https://github.com/mlaursen/react-md/commit/b0e8ccbfdb47befb39eacd98804f50ec30ae372e))
+* **@react-md/dev-utils:** Removed old `typedoc` WIP ([a7d7429](https://github.com/mlaursen/react-md/commit/a7d742980d59648aad51f28d99a8a34c9f307e9d))
+* **deployment:** Fixed deploy script ([4072b93](https://github.com/mlaursen/react-md/commit/4072b931d062ded1bdbeefd83a7349c68e202ae1))
+* **workflow:** dropped node 10 since I upgraded some dependencies ([fd81950](https://github.com/mlaursen/react-md/commit/fd81950e4b354da67538830ecd2bb1e0215cb852))
+
+
+
+
+
+
 ## [2.8.2](https://github.com/mlaursen/react-md/compare/v2.8.1...v2.8.2) (2021-04-23)
 
 

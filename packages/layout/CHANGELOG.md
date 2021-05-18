@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/mlaursen/react-md/compare/v2.8.2...v2.8.3) (2021-05-18)
+
+
+### Bug Fixes
+
+* **@react-md/layout:** Added fixedAppBar flag into the `useLayoutConfig` ([14e6587](https://github.com/mlaursen/react-md/commit/14e65875b295a1143587908ac170983e277269b5))
+* **@react-md/layout:** Mini Layouts Align Icons with Hamburger `Menu` in Dense Mode ([abbe9a9](https://github.com/mlaursen/react-md/commit/abbe9a9fb407cac8407abba978a35bbaa15adf72))
+* **@react-md/layout:** non-fixed `AppBar` mini layouts ([84313fc](https://github.com/mlaursen/react-md/commit/84313fc20f9ffb46314573fc62fa54925fe6c631)), closes [#1101](https://github.com/mlaursen/react-md/issues/1101)
+* **@react-md/layout:** Offset for temporary mini layouts ([86e75bf](https://github.com/mlaursen/react-md/commit/86e75bf9abb8c5b09ad8bdd81f27642f622a8168))
+
+
+### Documentation
+
+* **react-md.dev:** updated tsdoc to work with `typedoc` ([cf54c35](https://github.com/mlaursen/react-md/commit/cf54c359268332245d1dad8a8d91e0476cd8cb33))
+
+
+
+
+
+
 ## [2.8.2](https://github.com/mlaursen/react-md/compare/v2.8.1...v2.8.2) (2021-04-23)
 
 **Note:** Version bump only for package @react-md/layout

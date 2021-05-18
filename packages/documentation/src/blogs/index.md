@@ -1,3 +1,49 @@
+Title: react-md 2.8.3
+
+Date: 05/17/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/layout:** Added fixedAppBar flag into the `useLayoutConfig`
+  (14e6587)
+- **@react-md/layout:** Mini Layouts Align Icons with Hamburger `Menu` in Dense
+  Mode (abbe9a9)
+- **@react-md/layout:** non-fixed `AppBar` mini layouts (84313fc), closes #1101
+- **@react-md/layout:** Offset for temporary mini layouts (86e75bf)
+- **@react-md/states:** Added missing `classnames` dependency (a7a2012), closes
+  #1155
+
+##### Documentation<!-- no-margin -->
+
+- **@react-md/layout:** Added demo for non-fixed `AppBar` layouts (d217ac1)
+- **@react-md/typography:** Added examples for overriding typography styles
+  (57033bd), closes #1147
+- **react-md.dev:** Added simple API documentation with `typedoc` (84739af)
+- **react-md.dev:** don't include version for latest `react-md` (a69359b)
+- **react-md.dev:** Light Theme Code Preview Colors (c9cc6a7)
+- **react-md.dev:** redirect to v1 website (5d9ee71)
+- **react-md.dev:** small updates after switching to free hosting (96e2dcd)
+- **react-md.dev:** update v1 links to new repo and static hosting (92801bb)
+- **react-md.dev:** updated tsdoc to work with `typedoc` (cf54c35)
+- **react-md.dev:** Fix `typedoc` source links when deployed through vercel
+  (a4eed1b)
+- **react-md.dev:** Fixed `useLayoutNavigation` hook example in creating a new
+  app (1cde856)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- no longer build,lint,test node 10 since I upgraded some dependencies (1d3f889)
+- fix anchor link to useFixedPositioning example docs (eb5a9fc)
+- fixed typo (ef3f9e4)
+- removed v1 info from README (b0e8ccb)
+- **@react-md/dev-utils:** Removed old `typedoc` WIP (a7d7429)
+- **deployment:** Fixed deploy script (4072b93)
+- **workflow:** dropped node 10 since I upgraded some dependencies (fd81950)
+
+---
+
 Title: react-md 2.8.2
 
 Date: 04/22/2021

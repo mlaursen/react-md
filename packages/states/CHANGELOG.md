@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/mlaursen/react-md/compare/v2.8.2...v2.8.3) (2021-05-18)
+
+
+### Bug Fixes
+
+* **@react-md/states:** Added missing `classnames` dependency ([a7a2012](https://github.com/mlaursen/react-md/commit/a7a2012d59724ad381109898e9ee64a8b31d81a6)), closes [#1155](https://github.com/mlaursen/react-md/issues/1155)
+
+
+### Documentation
+
+* **react-md.dev:** updated tsdoc to work with `typedoc` ([cf54c35](https://github.com/mlaursen/react-md/commit/cf54c359268332245d1dad8a8d91e0476cd8cb33))
+
+
+
+
+
+
 ## [2.8.2](https://github.com/mlaursen/react-md/compare/v2.8.1...v2.8.2) (2021-04-23)
 
 **Note:** Version bump only for package @react-md/states

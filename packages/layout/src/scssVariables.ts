@@ -15,5 +15,6 @@ export default {
   "rmd-layout-theme-values": {
     "nav-width": "16rem",
     "mini-nav-width": "3.5rem",
+    "main-offset": "var(--rmd-layout-nav-width, 16rem)",
   },
 };

@@ -521,16 +521,7 @@ export default {
     "rmd-white-base": "#fff",
   },
   "rmd-theme-primary-suffixes": [
-    50,
-    100,
-    200,
-    300,
-    400,
-    500,
-    600,
-    700,
-    800,
-    900,
+    50, 100, 200, 300, 400, 500, 600, 700, 800, 900,
   ],
   "rmd-theme-accent-suffixes": [100, 200, 400, 700],
   "rmd-theme-colors": [
