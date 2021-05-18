@@ -13,6 +13,7 @@ import { sandbox } from "./sandbox";
 import { sassdoc } from "./sassdoc";
 import { shared } from "./shared";
 import { themes } from "./themes";
+import { typedoc } from "./typedoc";
 import { umd } from "./umd";
 import { copyStyles } from "./utils";
 import { variables } from "./variables";
@@ -200,5 +201,11 @@ createCommand("watch")
     "A custom watch script that handles copying all changed scss files as well as starting tsc watchers."
   )
   .action(({ cjs = false }) => watch(cjs));
+
+createCommand("typedoc")
+  .description(
+    "A wrapper for the typedoc cli that is really used to just work with vercel deployments"
+  )
+  .action(() => typedoc());
 
 commander.parse(process.argv);

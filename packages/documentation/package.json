@@ -4,9 +4,8 @@
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
-    "prebuild": "npm-run-all run-indexer update-env",
+    "prebuild": "node updateProdEnv.js",
     "run-indexer": "dev-utils doc-index",
-    "update-env": "node updateProdEnv.js",
     "dev": "cross-env NEXT_TELEMETRY_DISABLED=1 next dev",
     "build": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
     "start": "cross-env NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production next start",
