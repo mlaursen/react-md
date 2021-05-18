@@ -17,7 +17,7 @@
     "styles": "dev-utils styles",
     "variables": "dev-utils variables",
     "run-indexer": "dev-utils doc-index",
-    "generate-typedoc": "typedoc",
+    "generate-typedoc": "dev-utils typedoc",
     "prebuild-docs": "npm-run-all sandbox sassdoc run-indexer generate-typedoc",
     "build-docs": "yarn workspace documentation build",
     "build-website": "npm-run-all prebuild-docs build-docs",
