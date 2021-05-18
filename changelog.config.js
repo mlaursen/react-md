@@ -52,6 +52,7 @@ function getCommitScope({ scope }) {
     case 'blog':
     case 'indexer':
     case 'guides':
+    case 'website':
       return 'react-md.dev';
     case 'slider':
       return '@react-md/form';
