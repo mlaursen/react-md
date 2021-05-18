@@ -115,18 +115,13 @@ export const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
     const { id } = props;
     const dropdownIcon = useIcon("dropdown", propDropdownIcon);
 
-    const {
-      visible,
-      defaultFocus,
-      onClick,
-      onKeyDown,
-      hide,
-    } = useButtonVisibility({
-      onClick: propOnClick,
-      onKeyDown: propOnKeyDown,
-      defaultVisible,
-      onVisibilityChange,
-    });
+    const { visible, defaultFocus, onClick, onKeyDown, hide } =
+      useButtonVisibility({
+        onClick: propOnClick,
+        onKeyDown: propOnKeyDown,
+        defaultVisible,
+        onVisibilityChange,
+      });
 
     let labelledBy = menuLabelledBy;
     if (!menuLabel && !menuLabelledBy) {

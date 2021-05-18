@@ -197,13 +197,8 @@ describe("Layout", () => {
         appBarProps: { children: <span>Other Children</span> },
       };
 
-      const {
-        rerender,
-        container,
-        getByText,
-        queryByText,
-        queryByLabelText,
-      } = render(<Layout {...props} />);
+      const { rerender, container, getByText, queryByText, queryByLabelText } =
+        render(<Layout {...props} />);
 
       expect(queryByText(props.title)).toBeInTheDocument();
       expect(queryByText("Other Children")).toBeInTheDocument();

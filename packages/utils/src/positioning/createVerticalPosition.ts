@@ -119,13 +119,8 @@ export function createAnchoredAbove(config: FixConfig): YPosition {
  * @internal
  */
 export function createAnchoredTop(config: FixConfig): YPosition {
-  const {
-    vhMargin,
-    screenBottom,
-    elHeight,
-    disableSwapping,
-    disableVHBounds,
-  } = config;
+  const { vhMargin, screenBottom, elHeight, disableSwapping, disableVHBounds } =
+    config;
   let top = getTopCoord(config);
   let actualY: VerticalPosition = "top";
 
@@ -179,13 +174,8 @@ export function createAnchoredCenter(config: FixConfig): YPosition {
  * @internal
  */
 export function createAnchoredBottom(config: FixConfig): YPosition {
-  const {
-    vhMargin,
-    screenBottom,
-    elHeight,
-    disableSwapping,
-    disableVHBounds,
-  } = config;
+  const { vhMargin, screenBottom, elHeight, disableSwapping, disableVHBounds } =
+    config;
   let top = getBottomCoord(config);
   let actualY: VerticalPosition = "bottom";
   if (disableVHBounds || top > vhMargin) {

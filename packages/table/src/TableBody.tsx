@@ -26,19 +26,14 @@ export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
     ref
   ) {
     // update the table configuration with the custom overrides for the `<thead>`
-    const {
-      hAlign,
-      vAlign,
-      lineWrap,
-      disableHover,
-      disableBorders,
-    } = useTableConfig({
-      hAlign: propHAlign,
-      vAlign: propVAlign,
-      lineWrap: propLineWrap,
-      disableHover: propDisableHover,
-      disableBorders: propDisableBorders,
-    });
+    const { hAlign, vAlign, lineWrap, disableHover, disableBorders } =
+      useTableConfig({
+        hAlign: propHAlign,
+        vAlign: propVAlign,
+        lineWrap: propLineWrap,
+        disableHover: propDisableHover,
+        disableBorders: propDisableBorders,
+      });
 
     const configuration = useMemo(
       () => ({

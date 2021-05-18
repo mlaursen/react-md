@@ -210,33 +210,28 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
     }
   }
 
-  const {
-    style,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExited,
-  } = useFixedPositioning({
-    ...positionOptions,
-    fixedTo: () => document.getElementById(controlId),
-    onScroll(_event, { visible }) {
-      if (!closeOnScroll && visible) {
-        return;
-      }
+  const { style, onEnter, onEntering, onEntered, onExited } =
+    useFixedPositioning({
+      ...positionOptions,
+      fixedTo: () => document.getElementById(controlId),
+      onScroll(_event, { visible }) {
+        if (!closeOnScroll && visible) {
+          return;
+        }
 
-      if (!visible) {
-        setCancelled(true);
-      }
-      onRequestClose();
-    },
-    onResize: closeOnResize ? onRequestClose : undefined,
-    anchor,
-    onEnter: propOnEnter,
-    onEntering: propOnEntering,
-    onEntered: propOnEntered,
-    onExited: propOnExited,
-    transformOrigin: true,
-  });
+        if (!visible) {
+          setCancelled(true);
+        }
+        onRequestClose();
+      },
+      onResize: closeOnResize ? onRequestClose : undefined,
+      anchor,
+      onEnter: propOnEnter,
+      onEntering: propOnEntering,
+      onEntered: propOnEntered,
+      onExited: propOnExited,
+      transformOrigin: true,
+    });
 
   const orientation = horizontal ? "horizontal" : "vertical";
   return (

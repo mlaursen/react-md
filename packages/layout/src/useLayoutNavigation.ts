@@ -80,11 +80,8 @@ export function useLayoutNavigation<
   linkComponent: ElementType = Link
 ): LayoutNavigationState<T> {
   const itemId = pathname.replace(/\?.*$/, "");
-  const {
-    expandedIds,
-    onItemExpansion,
-    onMultiItemExpansion,
-  } = useTreeItemExpansion(() => getParentIds(itemId, navItems));
+  const { expandedIds, onItemExpansion, onMultiItemExpansion } =
+    useTreeItemExpansion(() => getParentIds(itemId, navItems));
 
   const prevItemId = useRef(itemId);
   const prevNavItems = useRef(navItems);

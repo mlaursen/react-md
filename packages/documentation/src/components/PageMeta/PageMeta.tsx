@@ -18,8 +18,7 @@ const defaultDescription =
   "Create fully accessible React components using the material design specifications.";
 const defaultImage = {
   src: home,
-  alt:
-    "The landing page for react-md. It describes the purpose of the library and what it tries to accomplish",
+  alt: "The landing page for react-md. It describes the purpose of the library and what it tries to accomplish",
 };
 
 export default function PageMeta({

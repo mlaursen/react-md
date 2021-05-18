@@ -13,9 +13,8 @@ import {
   transformKeys,
 } from "./utils";
 
-export type MovementHandler<
-  E extends HTMLElement
-> = React.KeyboardEventHandler<E>;
+export type MovementHandler<E extends HTMLElement> =
+  React.KeyboardEventHandler<E>;
 
 /**
  * A mutable ref object that must be applied to each DOM node within the
@@ -26,9 +25,8 @@ export type MovementHandler<
  */
 export type ItemRef<E extends HTMLElement> = MutableRefObject<E | null>;
 
-export type ItemRefList<
-  E extends HTMLElement = HTMLElement
-> = readonly ItemRef<E>[];
+export type ItemRefList<E extends HTMLElement = HTMLElement> =
+  readonly ItemRef<E>[];
 
 export interface BaseKeyboardMovementOptions<
   D = unknown,

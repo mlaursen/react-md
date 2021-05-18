@@ -133,9 +133,9 @@ export function useTabIndicatorStyle({
     ref: propRef,
   });
 
-  const mergedStyle = useMemo(() => ({ ...style, ...cssVars }), [
-    style,
-    cssVars,
-  ]);
+  const mergedStyle = useMemo(
+    () => ({ ...style, ...cssVars }),
+    [style, cssVars]
+  );
   return [mergedStyle, tabsRefHandler, tabsRef, updateStyles];
 }

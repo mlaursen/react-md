@@ -26,16 +26,13 @@ export default function ConfigurableCollapseExample(): ReactElement {
       defaultValue: 0,
     }
   );
-  const [
-    minPaddingTop,
-    minPaddingTopProps,
-    { reset: resetMinPaddingTop },
-  ] = useNumberField({
-    id: "collapse-min-padding-top",
-    min: 0,
-    max: 80,
-    defaultValue: 0,
-  });
+  const [minPaddingTop, minPaddingTopProps, { reset: resetMinPaddingTop }] =
+    useNumberField({
+      id: "collapse-min-padding-top",
+      min: 0,
+      max: 80,
+      defaultValue: 0,
+    });
   const [
     minPaddingBottom,
     minPaddingBottomProps,

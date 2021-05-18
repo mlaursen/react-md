@@ -224,9 +224,8 @@ describe("Slider", () => {
 
       const slider = getByRole("slider");
       expect(slider).toHaveAttribute("aria-valuenow", "0");
-      const track = container.querySelector<HTMLSpanElement>(
-        ".rmd-slider-track"
-      );
+      const track =
+        container.querySelector<HTMLSpanElement>(".rmd-slider-track");
       if (!track) {
         throw new Error();
       }
@@ -282,9 +281,8 @@ describe("Slider", () => {
       );
       const slider = getByRole("slider");
       expect(slider).toHaveAttribute("aria-valuenow", "0");
-      const track = container.querySelector<HTMLSpanElement>(
-        ".rmd-slider-track"
-      );
+      const track =
+        container.querySelector<HTMLSpanElement>(".rmd-slider-track");
       if (!track) {
         throw new Error();
       }
@@ -458,9 +456,8 @@ describe("Slider", () => {
     it("should wait the animationDuration before enabling the visibility for mouse mode", () => {
       jest.useFakeTimers();
       const { container, getByRole } = render(<DiscreteTest />);
-      const track = container.querySelector<HTMLSpanElement>(
-        ".rmd-slider-track"
-      );
+      const track =
+        container.querySelector<HTMLSpanElement>(".rmd-slider-track");
       if (!track) {
         throw new Error();
       }
@@ -493,9 +490,8 @@ describe("Slider", () => {
       jest.useFakeTimers();
       const { container, getByRole } = render(<DiscreteTest />);
       const slider = getByRole("slider");
-      const track = container.querySelector<HTMLSpanElement>(
-        ".rmd-slider-track"
-      );
+      const track =
+        container.querySelector<HTMLSpanElement>(".rmd-slider-track");
       if (!track) {
         throw new Error();
       }

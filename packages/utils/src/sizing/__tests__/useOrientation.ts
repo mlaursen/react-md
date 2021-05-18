@@ -34,7 +34,7 @@ describe("getOrientationType", () => {
       ...window.screen,
       availHeight: 0,
       availWidth: 0,
-      orientation: (undefined as unknown) as ScreenOrientation,
+      orientation: undefined as unknown as ScreenOrientation,
     };
     const screen = jest.spyOn(window, "screen", "get");
     screen.mockImplementation(() => mock);

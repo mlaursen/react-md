@@ -87,11 +87,8 @@ export default function useConfiguration(): TabConfiguration {
 
   // TabPanel config
   const [persistent, handlePersistentChange] = useChecked(false);
-  const [
-    transition,
-    handleTransitionChange,
-    setTransition,
-  ] = useChoice<TransitionBehavior>("enabled");
+  const [transition, handleTransitionChange, setTransition] =
+    useChoice<TransitionBehavior>("enabled");
   const disableTransition = transition === "disabled";
   const customTransition = transition === "custom";
   if (customTransition && persistent) {

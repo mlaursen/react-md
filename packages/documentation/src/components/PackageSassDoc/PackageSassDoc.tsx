@@ -28,15 +28,15 @@ export default function PackageSassDoc({
     [variableRecord]
   );
   const mixins = useMemo(() => Object.values(mixinRecord), [mixinRecord]);
-  const functions = useMemo(() => Object.values(functionRecord), [
-    functionRecord,
-  ]);
+  const functions = useMemo(
+    () => Object.values(functionRecord),
+    [functionRecord]
+  );
 
-  const items = useMemo(() => [...variables, ...mixins, ...functions], [
-    variables,
-    mixins,
-    functions,
-  ]);
+  const items = useMemo(
+    () => [...variables, ...mixins, ...functions],
+    [variables, mixins, functions]
+  );
 
   return (
     <div className={styles.container}>

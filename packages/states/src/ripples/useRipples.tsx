@@ -24,14 +24,8 @@ export function useRipples<E extends HTMLElement = HTMLElement>({
   disableSpacebarClick,
   ...options
 }: RipplesOptions<E>): ReturnValue<E> {
-  const {
-    create,
-    state,
-    release,
-    entered,
-    remove,
-    cancel,
-  } = useRippleTransition(disableSpacebarClick);
+  const { create, state, release, entered, remove, cancel } =
+    useRippleTransition(disableSpacebarClick);
   const handlers = useRippleHandlers({
     create,
     release,

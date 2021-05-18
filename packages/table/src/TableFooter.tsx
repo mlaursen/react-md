@@ -46,16 +46,11 @@ export const TableFooter = forwardRef<
   ref
 ) {
   // update the table configuration with the custom overrides for the `<tfoot>`
-  const {
-    hAlign,
-    vAlign,
-    lineWrap,
-    disableHover,
-    disableBorders,
-  } = useTableConfig({
-    lineWrap: propLineWrap,
-    disableHover: !hoverable,
-  });
+  const { hAlign, vAlign, lineWrap, disableHover, disableBorders } =
+    useTableConfig({
+      lineWrap: propLineWrap,
+      disableHover: !hoverable,
+    });
 
   const configuration = useMemo(
     () => ({

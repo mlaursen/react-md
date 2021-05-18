@@ -42,8 +42,7 @@ describe("DemoSandbox", () => {
       ...router,
       query: {
         ...router.query,
-        from:
-          "http://im-a-bad-website.com/packages/tree/demos#single-select-tree-demo-title",
+        from: "http://im-a-bad-website.com/packages/tree/demos#single-select-tree-demo-title",
       },
     };
     rerender(<DemoSandbox sandbox={sandbox} />, { router: badRouter });

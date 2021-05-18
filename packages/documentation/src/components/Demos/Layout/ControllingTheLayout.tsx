@@ -20,9 +20,8 @@ const options: SupportedWideLayout[] = [
 
 export default function ControllingTheLayout(): ReactElement {
   const [defaultVisible, setDefaultVisible] = useState(false);
-  const [desktopLayout, setDesktopLayout] = useState<SupportedWideLayout>(
-    "full-height"
-  );
+  const [desktopLayout, setDesktopLayout] =
+    useState<SupportedWideLayout>("full-height");
 
   return (
     <Layout

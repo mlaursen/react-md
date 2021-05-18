@@ -90,10 +90,10 @@ export function FormThemeProvider({
   underlineDirection = "left",
   children,
 }: FormThemeProviderProps): ReactElement {
-  const value = useMemo(() => ({ theme, underlineDirection }), [
-    theme,
-    underlineDirection,
-  ]);
+  const value = useMemo(
+    () => ({ theme, underlineDirection }),
+    [theme, underlineDirection]
+  );
 
   return <Provider value={value}>{children}</Provider>;
 }

@@ -290,78 +290,73 @@ export const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
     [handleChange, onRequestClose, temporary]
   );
 
-  const {
-    activeId,
-    itemRefs,
-    onKeyDown,
-    focusedIndex,
-    setFocusedIndex,
-  } = useActiveDescendantMovement<ListboxOption, ListElement, HTMLLIElement>({
-    ...MovementPresets.VERTICAL_LISTBOX,
-    defaultFocusedIndex: getIndex,
-    items: options,
-    baseId: id,
-    valueKey: labelKey,
-    getId: getOptionId,
-    getItemValue(option, key) {
-      if (!isListboxOptionProps(option)) {
-        return `${option}`;
-      }
-
-      const search = option[key];
-      if (typeof search === "number" || typeof search === "string") {
-        return `${search}`;
-      }
-
-      if (process.env.NODE_ENV !== "production") {
-        if (!warned) {
-          warned = new Set();
+  const { activeId, itemRefs, onKeyDown, focusedIndex, setFocusedIndex } =
+    useActiveDescendantMovement<ListboxOption, ListElement, HTMLLIElement>({
+      ...MovementPresets.VERTICAL_LISTBOX,
+      defaultFocusedIndex: getIndex,
+      items: options,
+      baseId: id,
+      valueKey: labelKey,
+      getId: getOptionId,
+      getItemValue(option, key) {
+        if (!isListboxOptionProps(option)) {
+          return `${option}`;
         }
 
-        if (!warned.has(id)) {
-          /* eslint-disable no-console */
-          console.warn(
-            `A listbox with an id of "${id}" has an option that does not have a searchable label string. ` +
-              "Users will be unable to use the typeahead feature in the Listbox component until this is fixed. " +
-              "To fix this warning, you can use the `labelKey` prop on the `Listbox`/`Select` component to point " +
-              "to a string on the following option:",
-            option
-          );
-
-          warned.add(id);
+        const search = option[key];
+        if (typeof search === "number" || typeof search === "string") {
+          return `${search}`;
         }
-      }
-      return "";
-    },
-    onChange(data) {
-      if (disableMovementChange) {
-        return;
-      }
 
-      handleChange(data.index);
-    },
-    onEnter: handleKeyboardClick,
-    onSpace: handleKeyboardClick,
-    onKeyDown(event) {
-      if (propOnKeyDown) {
-        propOnKeyDown(event);
-      }
-
-      switch (event.key) {
-        case "Tab":
-        case "Escape":
-          if (event.key === "Escape") {
-            event.stopPropagation();
+        if (process.env.NODE_ENV !== "production") {
+          if (!warned) {
+            warned = new Set();
           }
 
-          if (temporary && onRequestClose) {
-            onRequestClose();
+          if (!warned.has(id)) {
+            /* eslint-disable no-console */
+            console.warn(
+              `A listbox with an id of "${id}" has an option that does not have a searchable label string. ` +
+                "Users will be unable to use the typeahead feature in the Listbox component until this is fixed. " +
+                "To fix this warning, you can use the `labelKey` prop on the `Listbox`/`Select` component to point " +
+                "to a string on the following option:",
+              option
+            );
+
+            warned.add(id);
           }
-          break;
-        // no default
-      }
-    },
-  });
+        }
+        return "";
+      },
+      onChange(data) {
+        if (disableMovementChange) {
+          return;
+        }
+
+        handleChange(data.index);
+      },
+      onEnter: handleKeyboardClick,
+      onSpace: handleKeyboardClick,
+      onKeyDown(event) {
+        if (propOnKeyDown) {
+          propOnKeyDown(event);
+        }
+
+        switch (event.key) {
+          case "Tab":
+          case "Escape":
+            if (event.key === "Escape") {
+              event.stopPropagation();
+            }
+
+            if (temporary && onRequestClose) {
+              onRequestClose();
+            }
+            break;
+          // no default
+        }
+      },
+    });
 
   const prevVisible = useRef(visible);
   if (visible !== prevVisible.current) {

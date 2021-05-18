@@ -62,20 +62,14 @@ export default function ThemeConfiguration({
   primaryColor,
   secondaryColor,
 }: ThemeConfigurationProps): ReactElement {
-  const {
-    setPrimary,
-    setSecondary,
-    setAccent,
-    toggleTheme,
-    reset,
-  } = useThemeActions();
+  const { setPrimary, setSecondary, setAccent, toggleTheme, reset } =
+    useThemeActions();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => () => reset(), []);
   const variables = useThemeVariables(primaryColor, secondaryColor);
-  const [compliance, setCompliance] = useState<ContrastRatioCompliance>(
-    "large"
-  );
+  const [compliance, setCompliance] =
+    useState<ContrastRatioCompliance>("large");
   const handleComplianceChange = useCallback(
     (compliance: string) =>
       setCompliance(compliance as ContrastRatioCompliance),

@@ -33,13 +33,10 @@ const verticalSizes: SheetVerticalSize[] = ["none", "touch", "recommended"];
 export default function SheetSizing(): ReactElement {
   const [visible, show, hide] = useToggle(false);
   const [position, setPosition] = useSelectState<SheetPosition>("left");
-  const [
-    horizontalSize,
-    setHorizontalSize,
-  ] = useSelectState<SheetHorizontalSize>("media");
-  const [verticalSize, setVerticalSize] = useSelectState<SheetVerticalSize>(
-    "recommended"
-  );
+  const [horizontalSize, setHorizontalSize] =
+    useSelectState<SheetHorizontalSize>("media");
+  const [verticalSize, setVerticalSize] =
+    useSelectState<SheetVerticalSize>("recommended");
 
   const isHorizontal = position === "left" || position === "right";
   const [emulate, setEmulate] = useState(false);

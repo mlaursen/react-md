@@ -81,23 +81,18 @@ const navItems: LayoutNavigationTree = {
 };
 
 export default function ConfigurableLayout(): ReactElement {
-  const [phoneLayout, setPhoneLayout] = useState<SupportedPhoneLayout>(
-    DEFAULT_PHONE_LAYOUT
-  );
+  const [phoneLayout, setPhoneLayout] =
+    useState<SupportedPhoneLayout>(DEFAULT_PHONE_LAYOUT);
   const [tabletLayout, setTabletLayout] = useState<SupportedTabletLayout>(
     DEFAULT_TABLET_LAYOUT
   );
-  const [
-    landscapeTabletLayout,
-    setLandscapeTabletLayout,
-  ] = useState<SupportedTabletLayout>(DEFAULT_LANDSCAPE_TABLET_LAYOUT);
+  const [landscapeTabletLayout, setLandscapeTabletLayout] =
+    useState<SupportedTabletLayout>(DEFAULT_LANDSCAPE_TABLET_LAYOUT);
   const [desktopLayout, setDesktopLayout] = useState<SupportedWideLayout>(
     DEFAULT_DESKTOP_LAYOUT
   );
-  const [
-    largeDesktopLayout,
-    setLargeDesktopLayout,
-  ] = useState<SupportedWideLayout>(DEFAULT_DESKTOP_LAYOUT);
+  const [largeDesktopLayout, setLargeDesktopLayout] =
+    useState<SupportedWideLayout>(DEFAULT_DESKTOP_LAYOUT);
 
   const [selectedId, setSelectedId] = useState("/");
 

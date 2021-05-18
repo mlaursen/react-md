@@ -22,7 +22,8 @@ interface State {
   data: ExampleFormData | null;
 }
 
-const EMAIL_PATTERN = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const EMAIL_PATTERN =
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const titles = ["Mr", "Mrs", "Miss", "Dr", "Other"];
 
 /**

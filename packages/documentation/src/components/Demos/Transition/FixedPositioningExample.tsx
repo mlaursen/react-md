@@ -98,40 +98,35 @@ export default function FixedPositioningExample(): ReactElement {
     setWidth(nextWidth as PositionWidth);
   }, []);
 
-  const {
-    style,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExited,
-  } = useFixedPositioning({
-    fixedTo: buttonRef.current,
-    anchor: { x: anchor.x, y: anchor.y },
-    width,
-    transformOrigin,
-    disableSwapping,
-    onScroll(_event, { fixedTo: button }) {
-      if (hideOnScroll) {
-        hide();
-        return;
-      }
+  const { style, onEnter, onEntering, onEntered, onExited } =
+    useFixedPositioning({
+      fixedTo: buttonRef.current,
+      anchor: { x: anchor.x, y: anchor.y },
+      width,
+      transformOrigin,
+      disableSwapping,
+      onScroll(_event, { fixedTo: button }) {
+        if (hideOnScroll) {
+          hide();
+          return;
+        }
 
-      if (!button) {
-        return;
-      }
-      // hide when the button isn't in the viewport anymore if the
-      // hideOnScroll behavior is disabled
-      const { top } = button.getBoundingClientRect();
-      if (top < 0 || top > window.innerHeight) {
-        hide();
-      }
-    },
-    onResize(_event) {
-      if (hideOnResize) {
-        hide();
-      }
-    },
-  });
+        if (!button) {
+          return;
+        }
+        // hide when the button isn't in the viewport anymore if the
+        // hideOnScroll behavior is disabled
+        const { top } = button.getBoundingClientRect();
+        if (top < 0 || top > window.innerHeight) {
+          hide();
+        }
+      },
+      onResize(_event) {
+        if (hideOnResize) {
+          hide();
+        }
+      },
+    });
 
   return (
     <>

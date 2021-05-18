@@ -12,7 +12,7 @@ interface TestProps extends TransitionOptions<HTMLDivElement> {
   result: TestResult;
 }
 
-const createResultRef = (): TestResult => (({} as unknown) as TestResult);
+const createResultRef = (): TestResult => ({} as unknown as TestResult);
 
 function Test({ result, nodeRef, ...options }: TestProps): ReactElement {
   const hookResult = useTransition({ ...options, ref: nodeRef });

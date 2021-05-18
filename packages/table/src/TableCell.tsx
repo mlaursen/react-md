@@ -148,7 +148,7 @@ export const TableCell = forwardRef<TableCellElement, TableCellProps>(
     ref
   ) {
     // have to double cast to get the `100%` value to work.
-    const colSpan = (propColSpan as unknown) as number;
+    const colSpan = propColSpan as unknown as number;
     const sortIcon = useIcon("sort", propSortIcon);
     const isNoPadding = disablePadding ?? (sortIcon && sortOrder);
 

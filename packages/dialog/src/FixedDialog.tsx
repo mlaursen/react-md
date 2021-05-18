@@ -70,25 +70,20 @@ export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
   ) {
     const { onRequestClose } = props;
 
-    const {
-      style,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExited,
-    } = useFixedPositioning({
-      style: propStyle,
-      transformOrigin: true,
-      ...options,
-      onScroll: (_event, { visible }) => {
-        if (!visible) {
-          onRequestClose();
-        }
-      },
-      fixedTo,
-      anchor,
-      getOptions,
-    });
+    const { style, onEnter, onEntering, onEntered, onExited } =
+      useFixedPositioning({
+        style: propStyle,
+        transformOrigin: true,
+        ...options,
+        onScroll: (_event, { visible }) => {
+          if (!visible) {
+            onRequestClose();
+          }
+        },
+        fixedTo,
+        anchor,
+        getOptions,
+      });
 
     return (
       <Dialog

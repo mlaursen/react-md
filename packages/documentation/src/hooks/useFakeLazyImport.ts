@@ -28,9 +28,8 @@ export default function useFakeLazyImport<P = {}>(
 ): LazyExoticComponent<FC<P>> {
   // disabled since this is really hacky and want it to also update if the key changes
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  return useMemo(() => lazy(() => fakeImport(Component, delay)), [
-    Component,
-    key,
-    delay,
-  ]);
+  return useMemo(
+    () => lazy(() => fakeImport(Component, delay)),
+    [Component, key, delay]
+  );
 }

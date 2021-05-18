@@ -277,9 +277,8 @@ describe("RangeSlider", () => {
         bottom: 1000,
         toJSON: () => "",
       }));
-      const track = container.querySelector<HTMLSpanElement>(
-        ".rmd-slider-track"
-      );
+      const track =
+        container.querySelector<HTMLSpanElement>(".rmd-slider-track");
       if (!track) {
         throw new Error();
       }
@@ -346,9 +345,8 @@ describe("RangeSlider", () => {
         bottom: 1000,
         toJSON: () => "",
       }));
-      const track = container.querySelector<HTMLSpanElement>(
-        ".rmd-slider-track"
-      );
+      const track =
+        container.querySelector<HTMLSpanElement>(".rmd-slider-track");
       if (!track) {
         throw new Error();
       }
@@ -419,9 +417,8 @@ describe("RangeSlider", () => {
         bottom: 952,
         toJSON: () => "",
       }));
-      const track = container.querySelector<HTMLSpanElement>(
-        ".rmd-slider-track"
-      );
+      const track =
+        container.querySelector<HTMLSpanElement>(".rmd-slider-track");
       if (!track) {
         throw new Error();
       }

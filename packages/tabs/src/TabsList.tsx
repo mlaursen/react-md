@@ -82,19 +82,15 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
       onActiveIndexChange,
       automatic,
     });
-    const [
-      mergedStyle,
-      tabsRefHandler,
-      tabsRef,
-      updateIndicatorStyles,
-    ] = useTabIndicatorStyle({
-      style,
-      ref: forwardedRef,
-      align,
-      itemRefs,
-      totalTabs: tabs.length,
-      activeIndex,
-    });
+    const [mergedStyle, tabsRefHandler, tabsRef, updateIndicatorStyles] =
+      useTabIndicatorStyle({
+        style,
+        ref: forwardedRef,
+        align,
+        itemRefs,
+        totalTabs: tabs.length,
+        activeIndex,
+      });
     const isKeyboard = useIsUserInteractionMode("keyboard");
 
     const prevActiveIndex = useRef(activeIndex);

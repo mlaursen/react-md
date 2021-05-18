@@ -15,17 +15,8 @@ export default function DessertTable({
     return null;
   }
 
-  const {
-    name,
-    type,
-    calories,
-    fat,
-    carbs,
-    protein,
-    sodium,
-    calcium,
-    iron,
-  } = dessert;
+  const { name, type, calories, fat, carbs, protein, sodium, calcium, iron } =
+    dessert;
 
   return (
     <CrossFade key={name}>

@@ -47,16 +47,11 @@ export const TableHeader = forwardRef<
   ref
 ) {
   // update the table configuration with the custom overrides for the `<thead>`
-  const {
-    hAlign,
-    vAlign,
-    lineWrap,
-    disableHover,
-    disableBorders,
-  } = useTableConfig({
-    lineWrap: propLineWrap,
-    disableHover: !hoverable,
-  });
+  const { hAlign, vAlign, lineWrap, disableHover, disableBorders } =
+    useTableConfig({
+      lineWrap: propLineWrap,
+      disableHover: !hoverable,
+    });
 
   const configuration = useMemo(
     () => ({

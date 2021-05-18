@@ -46,9 +46,10 @@ export function useTabsMovement({
 }: Options): ReturnValue {
   // first filter out all "nulled" or falsish elements since it's possible to do:
   // {!thing && <Tab />}
-  const tabs = useMemo(() => Children.toArray(children).filter(Boolean), [
-    children,
-  ]);
+  const tabs = useMemo(
+    () => Children.toArray(children).filter(Boolean),
+    [children]
+  );
   // now filter out any other invalid elements (text nodes for some reason) and
   // disabled tabs since they shouldn't be keyboard focusable
   const visibleTabs = useMemo(

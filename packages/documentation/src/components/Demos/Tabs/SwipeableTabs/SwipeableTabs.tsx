@@ -7,13 +7,8 @@ import useSwipeableIndexes from "./useSwipeableIndexes";
 const tabs = ["Tab One", "Tab Two", "Tab Three", "Tab Four"];
 
 export default function SwipeableTabs(): ReactElement {
-  const {
-    activeIndex,
-    distance,
-    handlers,
-    swiping,
-    onActiveIndexChange,
-  } = useSwipeableIndexes(tabs.length - 1);
+  const { activeIndex, distance, handlers, swiping, onActiveIndexChange } =
+    useSwipeableIndexes(tabs.length - 1);
 
   return (
     <TabsManager

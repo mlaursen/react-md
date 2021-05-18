@@ -98,20 +98,16 @@ export const SliderThumb = forwardRef<HTMLSpanElement, SliderThumbProps>(
   ) {
     const id = propId || `${baseId}-thumb-${index + 1}`;
     const isFirst = index === 0;
-    const {
-      onBlur,
-      onFocus,
-      animateValue,
-      visible,
-    } = useDiscreteValueVisibility({
-      active,
-      animate,
-      discrete,
-      disabled,
-      onBlur: propOnBlur,
-      onFocus: propOnFocus,
-      animationDuration,
-    });
+    const { onBlur, onFocus, animateValue, visible } =
+      useDiscreteValueVisibility({
+        active,
+        animate,
+        discrete,
+        disabled,
+        onBlur: propOnBlur,
+        onFocus: propOnFocus,
+        animationDuration,
+      });
 
     const styleOptions = {
       h: !vertical,

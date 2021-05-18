@@ -54,18 +54,8 @@ export function createRippleAction<E extends HTMLElement>(
   event: RippleEvent<E>,
   disableSpacebarClick: boolean
 ): CreateAction<E> {
-  const {
-    type,
-    target,
-    currentTarget,
-    touches,
-    pageX,
-    pageY,
-    button,
-    key,
-  } = event as React.MouseEvent<E> &
-    React.TouchEvent<E> &
-    React.KeyboardEvent<E>;
+  const { type, target, currentTarget, touches, pageX, pageY, button, key } =
+    event as React.MouseEvent<E> & React.TouchEvent<E> & React.KeyboardEvent<E>;
 
   return {
     type: CREATE,

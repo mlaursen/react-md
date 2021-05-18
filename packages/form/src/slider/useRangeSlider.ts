@@ -98,12 +98,10 @@ export function useRangeSlider(
     onChange = noop,
   }: UseRangeSliderOptions = {}
 ): RangeSliderValueReturnType {
-  const jump = useMemo(() => getJumpValue(min, max, step, propJump), [
-    min,
-    max,
-    step,
-    propJump,
-  ]);
+  const jump = useMemo(
+    () => getJumpValue(min, max, step, propJump),
+    [min, max, step, propJump]
+  );
 
   // since the `currentValue` is a ref, this state is used to force a re-render
   // to get the updated value from the ref.

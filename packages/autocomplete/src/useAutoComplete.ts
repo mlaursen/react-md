@@ -418,32 +418,26 @@ export function useAutoComplete({
     onOutsideClick: hide,
   });
 
-  const {
-    style,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExited,
-    updateStyle,
-  } = useFixedPositioning({
-    fixedTo: () => ref.current,
-    anchor,
-    onScroll(_event, { visible }) {
-      if (closeOnScroll || !visible) {
-        hide();
-      }
-    },
-    onResize: closeOnResize ? hide : undefined,
-    width: listboxWidth,
-    xMargin,
-    yMargin,
-    vwMargin,
-    vhMargin,
-    transformOrigin,
-    preventOverlap,
-    disableSwapping,
-    disableVHBounds,
-  });
+  const { style, onEnter, onEntering, onEntered, onExited, updateStyle } =
+    useFixedPositioning({
+      fixedTo: () => ref.current,
+      anchor,
+      onScroll(_event, { visible }) {
+        if (closeOnScroll || !visible) {
+          hide();
+        }
+      },
+      onResize: closeOnResize ? hide : undefined,
+      width: listboxWidth,
+      xMargin,
+      yMargin,
+      vwMargin,
+      vhMargin,
+      transformOrigin,
+      preventOverlap,
+      disableSwapping,
+      disableVHBounds,
+    });
 
   useEffect(() => {
     if (!focused.current || autocompleted.current) {

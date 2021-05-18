@@ -297,23 +297,25 @@ describe("getOrigin", () => {
       toJSON: () => "",
     }));
 
-    const makeGetItem = ({ pageX = 0, pageY = 0 } = {}) => () => ({
-      identifier: 0,
-      altitudeAngle: 0,
-      azimuthAngle: 0,
-      clientX: 0,
-      clientY: 0,
-      force: 0,
-      pageX,
-      pageY,
-      radiusX: 0,
-      radiusY: 0,
-      rotationAngle: 0,
-      screenX: 0,
-      screenY: 0,
-      target: element,
-      touchType: "direct",
-    });
+    const makeGetItem =
+      ({ pageX = 0, pageY = 0 } = {}) =>
+      () => ({
+        identifier: 0,
+        altitudeAngle: 0,
+        azimuthAngle: 0,
+        clientX: 0,
+        clientY: 0,
+        force: 0,
+        pageX,
+        pageY,
+        radiusX: 0,
+        radiusY: 0,
+        rotationAngle: 0,
+        screenX: 0,
+        screenY: 0,
+        target: element,
+        touchType: "direct",
+      });
 
     const createTouches = ({ pageX = 0, pageY = 0 } = {}) => ({
       length: 1,
@@ -422,23 +424,25 @@ describe("createRippleState", () => {
       target,
       currentTarget: target,
     };
-    const makeGetItem = ({ pageX = 0, pageY = 0 } = {}) => () => ({
-      identifier: 0,
-      altitudeAngle: 0,
-      azimuthAngle: 0,
-      clientX: 0,
-      clientY: 0,
-      force: 0,
-      pageX,
-      pageY,
-      radiusX: 0,
-      radiusY: 0,
-      rotationAngle: 0,
-      screenX: 0,
-      screenY: 0,
-      target,
-      touchType: "direct",
-    });
+    const makeGetItem =
+      ({ pageX = 0, pageY = 0 } = {}) =>
+      () => ({
+        identifier: 0,
+        altitudeAngle: 0,
+        azimuthAngle: 0,
+        clientX: 0,
+        clientY: 0,
+        force: 0,
+        pageX,
+        pageY,
+        radiusX: 0,
+        radiusY: 0,
+        rotationAngle: 0,
+        screenX: 0,
+        screenY: 0,
+        target,
+        touchType: "direct",
+      });
 
     const createTouches = ({ pageX = 0, pageY = 0 } = {}) => ({
       length: 1,

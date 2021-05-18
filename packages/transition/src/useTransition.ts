@@ -109,17 +109,19 @@ const INITIAL_STATE: TransitionState = {
  *
  * @internal
  */
-const getInitialState = (
-  transitionIn: boolean,
-  temporary: boolean,
-  appear: boolean
-): (() => TransitionState) => () => {
-  return {
-    rendered: !temporary || transitionIn,
-    appearing: appear && transitionIn,
-    stage: transitionIn && !appear ? ENTERED : EXITED,
+const getInitialState =
+  (
+    transitionIn: boolean,
+    temporary: boolean,
+    appear: boolean
+  ): (() => TransitionState) =>
+  () => {
+    return {
+      rendered: !temporary || transitionIn,
+      appearing: appear && transitionIn,
+      stage: transitionIn && !appear ? ENTERED : EXITED,
+    };
   };
-};
 
 /**
  * This is heavily inspired by the `Transition` component from
@@ -236,14 +238,8 @@ export function useTransition<E extends HTMLElement = HTMLDivElement>({
         node.scrollTop;
       }
 
-      const {
-        onEnter,
-        onEntering,
-        onEntered,
-        onExit,
-        onExiting,
-        onExited,
-      } = handlers.current;
+      const { onEnter, onEntering, onEntered, onExit, onExiting, onExited } =
+        handlers.current;
       switch (stage) {
         case ENTER:
           if (onEnter) {

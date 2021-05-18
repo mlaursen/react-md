@@ -103,9 +103,8 @@ export interface KeyboardSearchOptions<
   searchIndex: number;
 }
 
-type ReturnValue<
-  E extends HTMLElement = HTMLElement
-> = React.KeyboardEventHandler<E>;
+type ReturnValue<E extends HTMLElement = HTMLElement> =
+  React.KeyboardEventHandler<E>;
 
 /**
  * Adds the accessibility functionality to search a list of items as the user

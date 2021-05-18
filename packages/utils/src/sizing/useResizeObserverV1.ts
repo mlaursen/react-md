@@ -7,9 +7,8 @@ import { ResizeObserver } from "@juggle/resize-observer";
  */
 type GetTarget<E extends HTMLElement = HTMLElement> = () => E | null;
 
-type RefTarget<
-  E extends HTMLElement = HTMLElement
-> = MutableRefObject<E | null>;
+type RefTarget<E extends HTMLElement = HTMLElement> =
+  MutableRefObject<E | null>;
 
 /**
  * The target element for the resize obsever. This can be one of:

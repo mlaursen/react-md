@@ -25,7 +25,8 @@ export async function indexer(): Promise<void> {
   const { tocs, metadata } = await generate(routes);
   const meta = join(documentationRoot, src, "constants", "meta");
   const tocsPath = join(meta, "tocs.ts");
-  const tocsContents = format(`${COPY_BANNER}import { TOCRecord } from "./types";
+  const tocsContents =
+    format(`${COPY_BANNER}import { TOCRecord } from "./types";
 
 const tocs: TOCRecord = ${JSON.stringify(tocs, null, 2)};
 
@@ -33,7 +34,8 @@ export default tocs`);
   await writeFile(tocsPath, tocsContents);
 
   const searchPath = join(meta, "search.ts");
-  const searchContents = format(`${COPY_BANNER}import { RouteMetadata } from "./types";
+  const searchContents =
+    format(`${COPY_BANNER}import { RouteMetadata } from "./types";
 
 const metadata: readonly RouteMetadata[] = ${JSON.stringify(metadata, null, 2)};
 
