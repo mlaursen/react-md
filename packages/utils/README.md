@@ -8,38 +8,22 @@ generating styles for packages that have been installed.
 
 Check out the usage section below for more details.
 
-Exported components:
-
-- `AppSizeListener`
-- `ResizeListener`
-- `ResizeObserver`
-- `ScrollListener`
-- `MobileOnly`
-- `PhoneOnly`
-- `TabletOnly`
-- `DesktopOnly`
-- `FocusContainer`
-
-Export hooks:
-
-- `useAppSize`
-- `useMediaQuery`
-- `useOrientation`
-- `useResizeListener`
-- `useResizeObserver`
-- `useCloseOnEscape`
-- `useFocusOnMount`
-- `useKeyboardMovement`
-- `useKeyboardSearch`
-- `usePreviousFocus`
-- `useScrollLock`
-- `useTabFocusWrap`
-
 ## Installation
 
 ```sh
 npm install --save @react-md/utils
 ```
+
+<!-- DOCS_REMOVE -->
+
+## Documentation
+
+You should check out the
+[full documentation](https://react-md.dev/packages/utils/demos) for live
+examples and more customization information, but an example usage is shown
+below.
+
+<!-- DOCS_REMOVE_END -->
 
 ## Usage
 

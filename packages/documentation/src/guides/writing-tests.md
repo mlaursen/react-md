@@ -1,26 +1,27 @@
 ## Writing Tests
 
-Testing with `react-md` should not much more difficult than any other component
-testing you are used to for the majority of your tests. The only times you might
-encounter errors are when you use components that rely one one of the
-configuration providers and determining the current app size. Since I am the
-most familiar with [jest] as the test runner and [react-testing-library] as the
-test renderer, this guide will be targeted towards these two libraries
+Testing an app with `react-md` components should not require many changes to
+your normal testing flow. The only times weird issues might occur are when using
+components that rely on one of the providers included by the [Configuration
+component].
+
+This guide will provide a few suggestions for setting up an app with [jest] and
+[react-testing-library].
 
 ### Initializing window.matchMedia
 
-If one of your components or a component from `react-md` uses the `useAppSize`
-or `useMediaQuery` hooks, your tests might fail due to `window.matchMedia` being
+If a component from your app or `react-md` uses the `useAppSize` or
+`useMediaQuery` hooks, your tests might fail due to `window.matchMedia` being
 `undefined`. In this case, you'll want to create or update a `testSetup.ts` (or
 `testSetup.js`) to include a very simple polyfill.
 
 Edit `testSetup.ts`:
 
 ```diff
-+const {
++import {
 +  DEFAULT_DESKTOP_MIN_WIDTH,
 +  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
-+} = require('@react-md/utils/lib/sizing/constants');
++} from '@react-md/utils';
 +
 +if (typeof window.matchMedia !== 'function') {
 +  window.matchMedia = (query) => ({
@@ -49,7 +50,7 @@ Edit `jest.config.js`:
  }
 ```
 
-This default polyfill will make all your tests run in desktop mode by default.
+This polyfill will make all your tests run in desktop mode by default.
 
 ### Testing different app sizes
 
@@ -140,3 +141,4 @@ Edit `src/components/__tests__/Component.tsx`:
   https://testing-library.com/docs/react-testing-library/intro
 [custom renderer]:
   https://testing-library.com/docs/react-testing-library/setup#custom-render
+[configuration component]: /guides/configuring-your-app

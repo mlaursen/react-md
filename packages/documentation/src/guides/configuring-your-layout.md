@@ -46,22 +46,25 @@ render(
 
 This component will initialize:
 
+- `Dir` - see #utils
 - `AppSizeListener` - see #utils
-- `InteractionModeListener` - see #utils
-- `HoverModeProvider` - see #utils
-- `StatesConfig` - see #states
 - `NestedDialogContextProvider` - see #dialog
+- `UserInteractionModeListener` - see #utils
+- `StatesConfig` - see #utils
+- `HoverModeProvider` - see #utils
+- `IconProvider` - see #icons
+- `FormThemeProvider` - see #form
 
 The three most important Providers that are included are the `AppSizeListener`,
-`InteractionModeListener` and `StatesConfig`. The `AppSizeListener` is in the
-#utils package that helps determine how your app is being viewed based on media
-queries. The `InteractionModeListener` also comes from the #utils package and
-helps determine if your app is being interacted by touch, mouse, or keyboard to
-customize the styles for that experience. Finally, the `StatesConfig` is the
-general configuration for how different interactable elements gain different
-states based on the interaction mode. This also globally controls the "ripple"
-effect when elements are clicked so allows for a quick opt-out if you don't like
-that effect.
+`UserInteractionModeListener`, and `StatesConfig`. The `AppSizeListener` is in
+the #utils package that helps determine how your app is being viewed based on
+media queries. The `UserInteractionModeListener` also comes from the #utils
+package and helps determine if your app is being interacted by touch, mouse, or
+keyboard to customize the styles for that experience. Finally, the
+`StatesConfig` is the general configuration for how different interactable
+elements gain different states based on the interaction mode. This also globally
+controls the "ripple" effect when elements are clicked so allows for a quick
+opt-out if you don't like that effect.
 
 ## Creating a Layout
 
