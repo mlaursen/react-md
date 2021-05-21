@@ -52,7 +52,7 @@
   },
   "homepage": "https://react-md.dev",
   "devDependencies": {
-    "@babel/plugin-transform-typescript": "^7.13.0",
+    "@babel/plugin-transform-typescript": "^7.14.3",
     "@mlaursen/eslint-config": "^1.1.3",
     "@testing-library/dom": "^7.30.4",
     "@testing-library/jest-dom": "^5.12.0",
@@ -110,8 +110,5 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  },
-  "resolutions": {
-    "merge": "^2.1.0"
   }
 }
