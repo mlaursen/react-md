@@ -5,7 +5,7 @@
   "main": "./lib/index.js",
   "module": "./es/index.js",
   "types": "./types/index.d.ts",
-  "sass": "./dist/_utils.scss",
+  "sass": "./dist/_rmd-utils.scss",
   "sideEffects": [
     "dist/**/*"
   ],
