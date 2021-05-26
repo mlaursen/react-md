@@ -1,6 +1,6 @@
 import { VariableItem } from "sassdoc";
 import log from "loglevel";
-import { renderSync } from "node-sass";
+import { renderSync } from "sass";
 import { tempStylesDir, Primative, SimplePrimative } from "../../constants";
 
 export type VariableValue =

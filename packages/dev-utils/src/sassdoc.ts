@@ -1,7 +1,7 @@
 import { writeFile } from "fs-extra";
 import { omit } from "lodash";
 import log from "loglevel";
-import { renderSync } from "node-sass";
+import { renderSync } from "sass";
 import { join } from "path";
 import { BuiltInParserName } from "prettier";
 import {
