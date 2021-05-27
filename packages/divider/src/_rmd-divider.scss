@@ -1,0 +1,185 @@
+////
+/// @group divider
+////
+
+@use '@react-md/utils';
+@use '@react-md/theme';
+
+/// The size for the divider. This really just modifies the border-width.
+/// @type Number
+$size: 1px !default;
+
+/// The max size for the divider. This can be used to center a horizontal
+/// divider within the page since the divider applies `margin-left: auto` and
+/// `margin-right: auto`.
+///
+/// This also applies to vertical dividers... sort of? If the divider's
+/// containing element has a static defined height, the vertical dividers will
+/// be sized correctly. Otherwise the vertical divider will set the height to
+/// `auto` which almost always resolves to `0` which will make your divider not
+/// appear.
+/// @type Number
+$max-size: 100% !default;
+
+/// The amount of inset to apply to the divider. This should not be changed to
+/// create centered dividers. Its only purpose is to had spacing to the left (or
+/// right in rtl languages) of the divider. See the `$max-size`
+/// variable for more information about centering.
+///
+/// @see max-size
+/// @type Number
+$inset: 4rem !default;
+
+/// The amount of margin to apply to horizontal dividers.
+/// @type Number
+$spacing: 0.25rem auto !default;
+
+/// The amount of margin to apply to vertical dividers.
+/// @type Number
+$vertical-spacing: auto 0.25rem !default;
+
+/// The divider color to use on light backgrounds.
+///
+/// @require theme.$black-base
+/// @type Color
+$background-color-on-light: rgba(theme.$black-base, 0.12) !default;
+
+/// The divider color to use on dark backgrounds.
+///
+/// @require theme.$white-base
+/// @type Color
+$background-color-on-dark: rgba(theme.$white-base, 0.12) !default;
+
+/// The default divider background color to use.
+///
+/// @require theme.tone
+/// @require theme.$background
+/// @type Color
+$background-color: if(
+  theme.tone(theme.$background) == light,
+  $background-color-on-light,
+  $background-color-on-dark
+) !default;
+
+/// A Map of all the "themeable" parts of the divider package. Every key in this
+/// map will be used to create a css variable to dynamically update the values
+/// of the icon as needed.
+/// @type Map
+$theme: (
+  background-color: $background-color,
+  background-color-on-light: $background-color-on-light,
+  background-color-on-dark: $background-color-on-dark,
+  size: $size,
+  inset: $inset,
+  spacing: $spacing,
+  vertical-spacing: $vertical-spacing,
+  max-size: $max-size,
+) !default;
+
+/// This function is used to quickly get one of the divider's theme values. This
+/// is really just for the `rmd-divider-theme` mixin to provide some validation
+/// that a correct style key is used, but might be useful in other cases.
+///
+/// @param {String} theme-style - One of the `rmd-divider.$theme` map
+/// keys to get a value for.
+/// @return {Color|String|Number} one of the divider's theme values.
+@function get-var-value($theme-style) {
+  @return theme.helpers-get-var-value($theme-style, $theme, divider);
+}
+
+/// This function is used to get one of the divider's theme variables as a CSS
+/// Variable to be applied as a style attribute. By default, the CSS Variable
+/// will have a fallback of the current `rmd-divider.$theme`
+///
+/// This function is used to create a CSS Variable declaration with an optional
+/// fallback value if the CSS Variable has not been declared somehow.
+///
+/// @param {String} theme-style - One of the `rmd-divider.theme` map
+/// keys to set a value for.
+/// @param {Color|String|Number} fallback [null] - An optional fallback color to
+/// apply. This is set to `null` by default and not used since the link's theme
+/// variables should always exist.
+/// @return {String} one of the divider's theme values as a css variable.
+@function get-var($theme-style, $fallback: null) {
+  @return theme.helpers-get-var($theme-style, $theme, divider, $fallback);
+}
+
+/// Creates the styles for one of the divider's theme values. This is mostly
+/// going to be an internal helper mixin util.
+///
+/// @param {String} property - The property to set a `rmd-divider.$theme`
+/// value to.
+/// @param {String} theme-style - One of the keys of `rmd-divider.$theme`
+/// to extract a value from.
+/// @param {Color|String|Number} fallback [null] - A fallback value to use if
+/// the css variable isn't set somehow. This will default to automatically
+/// retrieving the default value from the `rmd-divider.$theme` map when
+/// `null`.
+@mixin use-var($property, $theme-style: $property, $fallback: null) {
+  @include theme.helpers-use-var($property, $theme-style, $theme, divider);
+}
+
+/// Updates one of the divider's theme variables with the new value for the
+/// section of your app.
+///
+/// @param {String} theme-style - The divider theme style type to update. This
+/// should be one of the `rmd-divider$.theme` keys.
+/// @param {Color|String|Number} value - The new value to use.
+@mixin update-var($theme-style, $value) {
+  @include theme.helpers-update-var($value, $theme-style, $theme, divider);
+}
+
+/// This mixin allows you to add a custom border to any element if you don't
+/// want to add an extra element within your page for a divider.
+///
+/// @param {String} position - The border position to use. This should be one of
+/// `top`, `right`, `bottom`, or `left`
+@mixin border($position) {
+  @include use-var(border-color, background-color);
+  @include use-var(border-width, size);
+  @include use-var('border-#{$position}-width', size);
+
+  border-#{$position}-style: solid;
+}
+
+/// @access private
+@mixin divider {
+  @include use-var(border-color, background-color);
+  @include use-var(border-width, size);
+  @include use-var(margin, spacing);
+  @include use-var(width, max-size);
+
+  display: block;
+  flex-shrink: 0;
+
+  &--vertical {
+    @include use-var(border-left-width, size);
+    @include use-var(border-left-color, background-color);
+    @include use-var(height, max-size);
+    @include use-var(margin, vertical-spacing);
+    @include use-var(width, size);
+
+    border-bottom-style: none;
+    border-left-style: inset;
+    display: inline-block;
+  }
+
+  &--inset {
+    @include use-var(margin-left, inset);
+    @include utils.rtl {
+      @include use-var(margin-right, inset);
+
+      margin-left: auto;
+    }
+
+    width: calc(#{get-var(max-size)} - #{get-var(inset)});
+  }
+}
+
+@mixin styles {
+  @include theme.helpers-create-root-theme($theme, divider);
+
+  .rmd-divider {
+    @include divider;
+  }
+}
