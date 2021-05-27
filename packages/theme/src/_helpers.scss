@@ -1,10 +1,121 @@
 ////
-/// @access private
 /// @group theme
 ////
 
-@import '@react-md/utils';
-@import './variables';
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+
+@use '@react-md/utils';
+@use 'color-palette' as *;
+@use 'variables';
+
+/// A theme utility function to convert a material design color to the same
+/// color but with a different swatch. If your app is not using material design
+/// colors, this utility function is useless but you will need to define
+/// fallback colors so compliation does not fail.
+///
+/// @example scss - Example Material Design Color Usage
+///   .something {
+///     color: get-swatch($primary, 200);
+///   }
+///
+///   .something-2 {
+///     color: get-swatch($primary, 200, true);
+///   }
+///
+/// @example scss - Example Non-Material Design Color Usage
+///   $my-theme-color: #3498db;
+///   // START_NO_COMPILE
+///   .something-failed {
+///     color: get-swatch($my-theme-color, 200);
+///   }
+///   // END_NO_COMPILE
+///
+///   .something-failed--fixed {
+///     color: get-swatch($my-theme-color, 200, false, rgba($my-theme-color, .32));
+///   }
+///
+/// @param {Color} color - The material design color to create a new color for
+/// with the provided swatch.
+/// @param {Number} swatch - The swatch to apply. This should be one of
+/// `$primary-suffixes` or `$accent-suffixes` if the
+/// `$accent` param is enabled.
+/// @param {Boolean} accent [false] - Boolean if the swatch is an accent color
+/// instead of a primary color.
+/// @param {Color} fallback-color [null] - The color to fallback to if the
+/// `$color` is not a valid material design color. Since this is null by
+/// default, the complilation will fail until a valid fallback is provided.
+/// @param {String} fallback-name [null] - The name of a variable or global
+/// variable that should be set to automatically fix the compilation error.
+/// @return {Color} the new color within the same color family with the provided
+/// swatch and optional accent.
+@function get-swatch(
+  $color,
+  $swatch,
+  $accent: false,
+  $fallback-color: null,
+  $fallback-name: null
+) {
+  $current-color-index: list.index(map.values($color-map), $color);
+
+  @if not $current-color-index or $current-color-index < 1 {
+    @if $fallback-color == null {
+      $fallback: if(
+        $fallback-name,
+        "the '$#{$fallback-name}' variable",
+        'a fallback color'
+      );
+
+      $error-msg: "Invalid material design color: '#{$color}'. If this was intentional because your app does " +
+        'not use material design colors, set #{$fallback} instead to get a correct color for the provided swatch: ' +
+        '#{$swatch}.';
+      @error $error-msg;
+    } @else if meta.type-of($fallback-color) != 'color' {
+      @error "Invalid fallback color: '#{$fallback-color}'. This must be a valid color.";
+    }
+
+    @return $fallback-color;
+  }
+
+  $suffixes: utils.validate(
+    if($accent, $accent-suffixes, $primary-suffixes),
+    $swatch,
+    'material design color swatch'
+  );
+
+  $current-color-name: list.nth(map.keys($color-map), $current-color-index);
+  $accent-index: string.index($current-color-name, '-a-');
+  @if $accent-index {
+    $current-color-name: string.slice(
+      $current-color-name,
+      1,
+      $accent-index - 1
+    );
+  } @else {
+    $index: 1;
+    $found: false;
+    @while not $found and $index < list.length($colors) {
+      $suffix: list.nth($colors, $index);
+      $suffix-index: string.index($current-color-name, $suffix);
+      @if $suffix-index {
+        $found: true;
+        $current-color-name: string.slice(
+          $current-color-name,
+          1,
+          $suffix-index - 1 + string.length($suffix)
+        );
+      }
+
+      $index: $index + 1;
+    }
+  }
+
+  $color-name: '#{$current-color-name}#{if($accent, '-a', '')}-#{$swatch}';
+
+  @return map.get($color-map, $color-name);
+}
 
 /// @access private
 /// @param {String} theme-name - The name of the theme to extract from the
@@ -13,36 +124,18 @@
 /// @param {String} theme-group - The group/package that the theme exists in.
 /// This should be one of the react-md packages.
 /// @return {Color|String|Number} The value from the theme map.
-@function rmd-theme-get-var-value($theme-name, $theme-map, $theme-group) {
-  @if type-of($theme-name) == 'color' or $theme-name == 'currentColor' {
+@function get-var-value($theme-name, $theme-map, $theme-group) {
+  @if meta.type-of($theme-name) == 'color' or $theme-name == 'currentColor' {
     @return $theme-name;
   }
 
-  @return rmd-utils-validate(
-    $theme-map,
-    $theme-name,
-    '#{$theme-group} property'
-  );
+  @return utils.validate($theme-map, $theme-name, '#{$theme-group} property');
 }
 
 /// This function is used behind the scenes of react-md to help get css
 /// variables from different packages with some built in validation. This is
 /// generally used to create the helper function within each package to get the
 /// css var string.
-///
-/// @example scss - Example Usage SCSS
-///   $rmd-example-theme-values: (
-///     background-color: #303030,
-///     color: $rmd-red-500,
-///   );
-///
-///   @function rmd-example-get-var($theme-name) {
-///     @return rmd-theme-get-var($theme-name, $rmd-example-theme-values, example);
-///   }
-///
-///   .example-class {
-///     color: rmd-example-get-var(color);
-///   }
 ///
 /// @access private
 /// @param {String} theme-name - The name of the theme to extract from the
@@ -55,17 +148,8 @@
 /// is set to `null`, it will automatically use the value from the `theme-map`
 /// instead.
 /// @return {String} a css var string to apply to a css property.
-@function rmd-theme-get-var(
-  $theme-name,
-  $theme-map,
-  $theme-group,
-  $fallback: null
-) {
-  $validated-fallback: rmd-theme-get-var-value(
-    $theme-name,
-    $theme-map,
-    $theme-group
-  );
+@function get-var($theme-name, $theme-map, $theme-group, $fallback: null) {
+  $validated-fallback: get-var-value($theme-name, $theme-map, $theme-group);
   $fallback: if($fallback == null, $validated-fallback, $fallback);
 
   @if $fallback == null {
@@ -75,54 +159,42 @@
   @return var(--rmd-#{$theme-group}-#{$theme-name}, #{$fallback});
 }
 
-///
 /// @access private
-@mixin rmd-theme-apply-rmd-var(
+@mixin use-var(
   $property,
   $theme-name,
   $theme-map,
   $theme-group,
   $fallback: null
 ) {
-  @if not $rmd-theme-no-css-variables-fallback {
+  @if not variables.$no-css-variables-fallback {
     // Apply the base property and color-value for browsers that do not support css-variables.
-    #{$property}: rmd-theme-get-var-value(
-      $theme-name,
-      $theme-map,
-      $theme-group
-    );
+    #{$property}: get-var-value($theme-name, $theme-map, $theme-group);
   }
 
-  #{$property}: rmd-theme-get-var(
-    $theme-name,
-    $theme-map,
-    $theme-group,
-    $fallback
-  );
+  #{$property}: get-var($theme-name, $theme-map, $theme-group, $fallback);
 }
 
-///
 /// @access private
-@mixin rmd-theme-update-rmd-var($value, $theme-name, $theme-map, $theme-group) {
-  $validated: rmd-utils-validate(
+@mixin update-var($value, $theme-name, $theme-map, $theme-group) {
+  $validated: utils.validate(
     $theme-map,
     $theme-name,
     '#{$theme-name} property'
   );
 
-  #{--rmd-#{$theme-group}-#{$theme-name}}: $value;
+  #{--rmd-#{$theme-group}-#{$theme-name}}: #{$value};
 }
 
-///
 /// @access private
-@mixin rmd-theme-create-root-theme($theme-map, $theme-group, $exclude: null) {
+@mixin create-root-theme($theme-map, $theme-group, $exclude: null) {
   :root {
     @each $theme-name, $theme-value in $theme-map {
       @if $theme-value !=
         null and
         ($exclude == null or not index($exclude, $theme-name))
       {
-        @include rmd-theme-update-rmd-var(
+        @include update-var(
           $theme-value,
           $theme-name,
           $theme-map,

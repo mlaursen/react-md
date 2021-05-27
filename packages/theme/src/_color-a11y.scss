@@ -2,7 +2,11 @@
 /// @group theme
 ////
 
-@import './color-palette';
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
+
+@use 'color-palette' as *;
 
 /// This is the default contrast ratio to use for color accessibility between
 /// background and foreground colors. This number should be at least:
@@ -12,54 +16,15 @@
 ///
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
 /// @type Number
-$rmd-theme-default-contrast-ratio: 3 !default;
+$default-contrast-ratio: 3 !default;
 
 /// Boolean if the newer contrast ration defaults should be used. This basically
 /// will try to choose colors with a higher aspect ratio for all the default
 /// color variables in react md.
 ///
-/// @example scss - Better Contrast Enabled
-///   $rmd-theme-better-contrast-colors: true;
-///   $rmd-theme-primary: $rmd-teal-500;
-///   $rmd-theme-secondary: $rmd-pink-a-200;
-///   // OVERRIDE_VARIABLES
-///
-///   // these are the rmd-defaults
-///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
-///   // $rmd-theme-on-secondary: rmd-theme-best-contrast-color($rmd-theme-secondary) !default;
-///
-///   .output {
-///     --p: #{$rmd-theme-primary};
-///     --s: #{$rmd-theme-secondary};
-///
-///     // since black has a ~5.3 color ratio as compared to white with ~3.6
-///     --op: #{$rmd-theme-on-primary};
-///     --os: #{$rmd-theme-on-secondary};
-///   }
-///
-/// @example scss - Better Contrast Disabled
-///   $rmd-theme-better-contrast-colors: false;
-///   $rmd-theme-primary: $rmd-teal-500;
-///   $rmd-theme-secondary: $rmd-pink-a-200;
-///   // OVERRIDE_VARIABLES
-///
-///   // these are the rmd-defaults
-///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
-///   // $rmd-theme-on-secondary: rmd-theme-best-contrast-color($rmd-theme-secondary) !default;
-///
-///   .output {
-///     --p: #{$rmd-theme-primary};
-///     --s: #{$rmd-theme-secondary};
-///
-///     // white has a ~3.6 color ratio so it _is_ contrast compliant with the
-///     // minimal contrast ratios even though black would be ~5.6
-///     --op: #{$rmd-theme-on-primary};
-///     --os: #{$rmd-theme-on-secondary};
-///   }
-///
 /// @since 2.4.0
 /// @type Boolean
-$rmd-theme-better-contrast-colors: true !default;
+$better-contrast-colors: true !default;
 
 /// Precomputed linear color channel values, for use in contrast calculations.
 /// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
@@ -81,7 +46,7 @@ $rmd-theme-better-contrast-colors: true !default;
 ///
 /// @access private
 /// @type List
-$rmd-theme-linear-channel-values: (
+$linear-channel-values: (
   0 0.0003035269835488375 0.000607053967097675 0.0009105809506465125
     0.00121410793419535 0.0015176349177441874 0.001821161901293025
     0.0021246888848418626 0.0024282158683907 0.0027317428519395373
@@ -167,12 +132,12 @@ $rmd-theme-linear-channel-values: (
 /// @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 /// @param {Color} color - The color to check
 /// @returns {Number} A number representing the luminance for the color.
-@function rmd-theme-luminance($color) {
-  $red: nth($rmd-theme-linear-channel-values, red($color) + 1);
+@function luminance($color) {
+  $red: list.nth($linear-channel-values, color.red($color) + 1);
   $red-multiplier: 0.2126;
-  $green: nth($rmd-theme-linear-channel-values, green($color) + 1);
+  $green: list.nth($linear-channel-values, color.green($color) + 1);
   $green-multiplier: 0.7152;
-  $blue: nth($rmd-theme-linear-channel-values, blue($color) + 1);
+  $blue: list.nth($linear-channel-values, color.blue($color) + 1);
   $blue-multiplier: 0.0722;
 
   @return ($red * $red-multiplier) + ($green * $green-multiplier) +
@@ -186,33 +151,32 @@ $rmd-theme-linear-channel-values: (
 /// @param {Color} front - The foreground color that should be compared to
 /// the background color for contrast ratio.
 /// @returns {Number} The contrast ratio between the background and foreground colors
-@function rmd-theme-contrast($back, $front) {
-  $back-luminance: rmd-theme-luminance($back) + 0.05;
-  $front-luminance: rmd-theme-luminance($front) + 0.05;
+@function contrast($back, $front) {
+  $back-luminance: luminance($back) + 0.05;
+  $front-luminance: luminance($front) + 0.05;
 
-  @return max($back-luminance, $front-luminance) /
-    min($back-luminance, $front-luminance);
+  @return math.div(
+    math.max($back-luminance, $front-luminance),
+    math.min($back-luminance, $front-luminance)
+  );
 }
 
 /// Determines if a provided color is considered light or dark.
 ///
 /// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [$rmd-theme-default-contrast-ratio] - The
+/// @param {Number} min-contrast [$default-contrast-ratio] - The
 /// minimum contrast that should be applied. The min contrast for normal text
 /// should be 4.5 while large or 14px bold text should be 3.1. See the link for
 /// contrasts for more information.
 /// @returns {String} - The string 'light' if the color is considered light, otherwise 'dark'.
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-@function rmd-theme-tone(
-  $color,
-  $min-contrast: $rmd-theme-default-contrast-ratio
-) {
+@function tone($color, $min-contrast: $default-contrast-ratio) {
   @if $color == 'dark' or $color == 'light' {
     @return $color;
   }
 
-  $light-contrast: rmd-theme-contrast($color, $rmd-white-base);
-  $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, 0.87));
+  $light-contrast: contrast($color, $white-base);
+  $dark-contrast: contrast($color, rgba($black-base, 0.87));
 
   @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {
     @return 'light';
@@ -226,93 +190,45 @@ $rmd-theme-linear-channel-values: (
 /// accessibility.
 ///
 /// @param {Color} color - The color to test.
-/// @param {Number} min-contrast [$rmd-theme-default-contrast-ratio] - The
+/// @param {Number} min-contrast [$default-contrast-ratio] - The
 /// minimum contrast that should be applied. The min contrast for normal text
 /// should be 4.5 while large or 14px bold text should be 3.1. See the link for
 /// contrasts for more information.
 /// @returns {String} - The string 'dark' if the color is considered light, or
 /// 'light' if the color is considered dark.
 /// @link https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-@function rmd-theme-contrast-tone(
-  $color,
-  $min-contrast: $rmd-theme-default-contrast-ratio
-) {
-  @return if(rmd-theme-tone($color) == 'dark', 'light', 'dark');
+@function contrast-tone($color, $min-contrast: $default-contrast-ratio) {
+  @return if(tone($color) == 'dark', 'light', 'dark');
 }
 
 /// Compares a color to a provided light and dark color. If the
-/// `$rmd-theme-better-contrast-colors` variable is `true`, the color with the
+/// `$better-contrast-colors` variable is `true`, the color with the
 /// bigger contrast ratio will be chosen. If the variable is `false`, the light
 /// color will be returned when it meets the minimum contrast ratio and fallback
 /// to the dark color.
 ///
-/// @example scss - Better Contrast Enabled
-///   $rmd-theme-better-contrast-colors: true;
-///   $rmd-theme-primary: $rmd-teal-500;
-///   $rmd-theme-secondary: $rmd-pink-a-200;
-///   // OVERRIDE_VARIABLES
-///
-///   // these are the rmd-defaults
-///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
-///   // $rmd-theme-on-secondary: rmd-theme-best-contrast-color($rmd-theme-secondary) !default;
-///
-///   .output {
-///     --p: #{$rmd-theme-primary};
-///     --s: #{$rmd-theme-secondary};
-///
-///     // this should be `#000` once compiled since `#000` has a 5.3 contrast
-///     // ratio compared to teal while `#fff` has a 3.6 contrast ratio.
-///     --op: #{$rmd-theme-on-primary};
-///     --os: #{$rmd-theme-on-secondary};
-///   }
-///
-/// @example scss - Better Contrast Disabled
-///   $rmd-theme-better-contrast-colors: false;
-///   $rmd-theme-primary: $rmd-teal-500;
-///   $rmd-theme-secondary: $rmd-pink-a-200;
-///   // OVERRIDE_VARIABLES
-///
-///   // these are the rmd-defaults
-///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
-///   // $rmd-theme-on-secondary: rmd-theme-best-contrast-color($rmd-theme-secondary) !default;
-///
-///   .output {
-///     --p: #{$rmd-theme-primary};
-///     --s: #{$rmd-theme-secondary};
-///
-///     // this should be `#fff` once compiled since the light color (`#fff`)
-///     // is checked first and meets the minimum contrast ratio requirements
-///     // at `3.6`
-///     --op: #{$rmd-theme-on-primary};
-///     --os: #{$rmd-theme-on-secondary};
-///   }
-///
 /// @param {Color} color - The color to check against
-/// @param {Color} light-color [$rmd-white-base] - A light color to try to use
-/// @param {Color} dark-color [$rmd-white-base] - A dark color to try to use
-/// @param {Boolean} enabled [$rmd-theme-better-contrast-colors] - Boolean if
+/// @param {Color} light-color [$white-base] - A light color to try to use
+/// @param {Color} dark-color [$white-base] - A dark color to try to use
+/// @param {Boolean} enabled [$better-contrast-colors] - Boolean if
 /// the new/better contrast ratios should be used. When this is false, it will
 /// return the lighter color as long as it meets the minimum contrast ratio even
 /// if the darker color would have a greater contrast ratio.
 /// @since 2.4.0
 /// @returns {Color} Either the `$light-color` or `$dark-color` depending on
 /// contrast ratios.
-@function rmd-theme-best-contrast-color(
+@function best-contrast-color(
   $color,
-  $light-color: $rmd-white-base,
-  $dark-color: $rmd-black-base,
-  $enabled: $rmd-theme-better-contrast-colors
+  $light-color: $white-base,
+  $dark-color: $black-base,
+  $enabled: $better-contrast-colors
 ) {
   @if not $enabled {
-    @return if(
-      rmd-theme-tone($color) == light,
-      $rmd-black-base,
-      $rmd-white-base
-    );
+    @return if(tone($color) == light, $black-base, $white-base);
   }
 
-  $light-contrast: rmd-theme-contrast($color, $light-color);
-  $dark-contrast: rmd-theme-contrast($color, $dark-color);
+  $light-contrast: contrast($color, $light-color);
+  $dark-contrast: contrast($color, $dark-color);
 
   @return if($light-contrast > $dark-contrast, $light-color, $dark-color);
 }
