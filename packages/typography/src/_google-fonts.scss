@@ -1,0 +1,188 @@
+////
+/// @group typography
+////
+
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:string';
+
+@use '@react-md/utils';
+
+@use 'variables';
+
+/// Gets the Google font suffix for the provided font weight.
+///
+/// @param {String} weight - The font weight to get a font suffix string for.
+/// This should be one of the `$google-font-weight-suffixes`
+/// keys.
+/// @return {String} the suffix for the provided font weight.
+/// @access private
+@function -google-font-suffix($weight) {
+  @return utils.validate(
+    variables.$google-font-weight-suffixes,
+    $weight,
+    'Google font weight suffix'
+  );
+}
+
+/// Creates the font face declaration for a Google font with a provided font
+/// weight. This will need to be called multiple times if you are including
+/// multiple font weights.
+///
+/// This should only be used if you are hosting the Google font locally instead
+/// of through the Google fonts service.
+///
+/// @example scss - Example Usage SCSS
+///   @include google-font-face(Roboto, regular, null);
+///   @include google-font-face('Source Code Pro', regular, null);
+///
+///
+/// @param {String} font-name [Roboto] - The font name to use.
+/// @param {String} font-weight [map-get($font-weights, regular)] - The
+/// font weight to use.
+/// @param {String} font-url-or-prefix [null] - This is either a font url prefix
+/// for the folder containing the font on your server or a url string to the
+/// font icon file on your server. If you are using create-react-app, you
+/// **must** use the url string approach for it to be correctly included in the
+/// build process. If this value is null, it will default to have '/fonts/'
+/// prefix and then a caterpillar-cased string. See the examples above for more
+/// details.
+@mixin google-font-face(
+  $font-name: Roboto,
+  $font-weight: map.get(variables.$font-weights, regular),
+  $font-url-or-prefix: null
+) {
+  $full-font-name: utils.str-replace($font-name, ' ', '') +
+    -google-font-suffix($font-weight);
+
+  $font-url-prefix: '';
+  $font-url: null;
+  @if $font-url-or-prefix ==
+    null or
+    meta.type-of($font-url-or-prefix) ==
+    'string'
+  {
+    $font-url: if(
+      $font-url-or-prefix == null,
+      '/fonts/' + string.to-lower-case(utils.str-replace($font-name, ' ', '-')),
+      $font-url-or-prefix
+    );
+    $font-url: if(char-at($font-url) != '/', $font-url + '/', $font-url);
+    $font-url: url($font-url + $full-font-name + '.ttf');
+  } @else {
+    $font-url: $font-url-or-prefix;
+  }
+
+  @font-face {
+    font-family: string.quote($font-name);
+    font-style: normal;
+    font-weight: $font-weight;
+    src: local(#{string.quote($font-name)}),
+      local(#{string.quote($full-font-name)}), #{$font-url} format('truetype');
+  }
+}
+
+/// Generates all the font faces (with font weights) for a Google font. This
+/// should only be used if you are hosting the Google font on your own servers
+/// instead of through the Google fonts service.
+///
+/// If you are using create-react-app, you must provide the
+/// `$font-url-prefix-or-url-map` as a Map of urls to have the font files
+/// correctly included and bundled during your build. See the examples for more
+/// details.
+///
+/// @example scss - Using Absolute Paths
+///   // This example will assume that your fonts have been downloaded and
+///   // copied into a `public/fonts` directory within create-react-app.
+///   // The fonts will not be bundled with your normal build process and just
+///   // will be static assets.
+///
+///   // The next 3 lines are equivalent
+///   @include host-google-font;
+///   @include host-google-font(Roboto, $default-font-weights, null);
+///   @include host-google-font(Roboto, $default-font-weights, '/fonts/roboto');
+///
+///   @include host-google-font('Source Code Pro');
+///
+/// @example scss - Using Relative Paths
+///   // Since it might be useful to include the font in the normal build
+///   // process to hash and prefix the urls as needed, you can also use
+///   // relative paths instead of absolute paths.
+///   // This example will assume you are working within a `src/fonts.scss` file
+///   // and have copied your fonts into a `src/fonts` directory
+///
+///   // Note the `~./`. This will resolve this import to the `src` directory
+///   // within create-react-app
+///   @include host-google-font(
+///     Roboto,
+///     $default-font-weights,
+///     './fonts/roboto'
+///   );
+///
+///   @include host-google-font(
+///     'Source Code Pro',
+///     regular,
+///     './fonts/source-code-pro'
+///   );
+///
+/// @example scss - Custom Font Map Declarations
+///   // This is going to assume you have downloaded the material-icons zip with
+///   // all the icon font files and copied it into `src/fonts/material-icons` and
+///   // you are including the fonts in `src/index.scss`
+///   @include host-google-font(Roboto, $default-font-weights, (
+///     light: url(/fonts/roboto/Roboto-Light.ttf),
+///     regular: url(/fonts/roboto/Roboto-Regular.ttf),
+///     medium: url(/fonts/roboto/Roboto-Medium.ttf),
+///     bold: url(/fonts/roboto/Roboto-Bold.ttf),
+///   ));
+///
+///   @include host-google-font(SourceCodePro, $default-font-weights, (
+///     light: url(/fonts/source-code-pro/SourceCodePro-Light.ttf),
+///     regular: url(/fonts/source-code-pro/SourceCodePro-Regular.ttf),
+///     medium: url(/fonts/source-code-pro/SourceCodePro-Medium.ttf),
+///     bold: url(/fonts/source-code-pro/SourceCodePro-Bold.ttf),
+///   ));
+///
+/// @param {String} font-name [Roboto] - The font name to use.
+/// @param {List} weights [$default-font-weights] - A list of
+/// font weights to use. These should be one of the
+/// `$font-weights` keys.
+/// @param {Map|String} font-url-prefix-or-url-map [null] - This is either a
+/// font url prefix for the folder containing the font on your server or a url
+/// string to the font icon file on your server. If you are using
+/// create-react-app, you **must** use the url string approach for it to be
+/// correctly included in the build process. If this value is null, it will
+/// default to have '/fonts/' prefix and then a caterpillar-cased string. See
+/// the `google-font-face` mixin for more details.
+/// @see google-font-face
+/// @link https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-images-fonts-and-files Adding Images, Fonts, and Files
+@mixin host-google-font(
+  $font-name: Roboto,
+  $weights: variables.$default-font-weights,
+  $font-url-prefix-or-url-map: null
+) {
+  @each $weight in $weights {
+    @if meta.type-of($font-url-prefix-or-url-map) ==
+      'string' or
+      $font-url-prefix-or-url-map ==
+      null
+    {
+      @include google-font-face(
+        $font-name,
+        $weight,
+        $font-url-prefix-or-url-map
+      );
+    } @else {
+      @include google-font-face(
+        $font-name,
+        $weight,
+        utils.validate(
+          $font-url-prefix-or-url-map,
+          $weight,
+          'Google font weight'
+        )
+      );
+    }
+  }
+}
