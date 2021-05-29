@@ -12,7 +12,7 @@ interface CSSVariable {
   value: CSSVariableValue;
 }
 
-function isBestColorWhite(color: HexString): boolean {
+function isWhiteHighestContrast(color: HexString): boolean {
   const lightRatio = getContrastRatio(color, "#fff");
   const darkRatio = getContrastRatio(color, "#000");
 
@@ -43,7 +43,7 @@ export default function useThemeVariables(
     ];
 
     if (primaryColor) {
-      if (isBestColorWhite(primaryColor)) {
+      if (isWhiteHighestContrast(primaryColor)) {
         variables.push({
           name: "--rmd-theme-on-primary",
           value: "#fff",
@@ -52,7 +52,7 @@ export default function useThemeVariables(
     }
 
     if (secondaryColor) {
-      if (isBestColorWhite(secondaryColor)) {
+      if (isWhiteHighestContrast(secondaryColor)) {
         variables.push({
           name: "--rmd-theme-on-secondary",
           value: "#fff",
