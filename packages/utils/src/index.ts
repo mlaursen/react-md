@@ -23,6 +23,7 @@ export * from "./throttle";
 export * from "./types";
 export * from "./unitToNumber";
 export * from "./useCloseOnOutsideClick";
+export * from "./useDropzone";
 export * from "./useEnsuredRef";
 export * from "./useInterval";
 export * from "./useIsomorphicLayoutEffect";
