@@ -9,12 +9,7 @@
     "target": "esnext",
     "rootDir": "src",
     "baseUrl": "src",
-    "isolatedModules": true,
-    "paths": {
-      "@react-md/*": [
-        "../*"
-      ]
-    }
+    "isolatedModules": true
   },
   "include": [
     "next-env.d.ts",
