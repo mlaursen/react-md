@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.4](https://github.com/mlaursen/react-md/compare/v2.8.3...v2.8.4) (2021-06-10)
+
+
+### Bug Fixes
+
+* **@react-md/form:** Pass checked prop to component ([bffae6f](https://github.com/mlaursen/react-md/commit/bffae6f6186f9bb1a9c219d8c3f728fa469b1471))
+* **@react-md/form:** Fixed controlled behavior for `Switch` components ([8c65df6](https://github.com/mlaursen/react-md/commit/8c65df67d72c73df759e1a27d9472d9f708bd81f)), closes [#1175](https://github.com/mlaursen/react-md/issues/1175)
+* **@react-md/utils:** `omit` uses readonly prefix for key list ([d3e1ee8](https://github.com/mlaursen/react-md/commit/d3e1ee8659b156b7ff70e373904024bd38cd66b9))
+* **@react-md/utils:** Slightly better tooltip behavior after clicking somewhere on the page ([4d3fc16](https://github.com/mlaursen/react-md/commit/4d3fc164cbb24c8d8824f7dcd5794595ac2a6e77))
+
+
+### Documentation
+
+* **react-md.dev:** Updated general documentation ([9bc8a0d](https://github.com/mlaursen/react-md/commit/9bc8a0dc3a513e4c1131523ee3bc6a10f61fdfed))
+* **react-md.dev:** Update `next` and build deps to fix font loading issues ([e528617](https://github.com/mlaursen/react-md/commit/e52861739ca4d1ac5ec8b1c935bab2327391074d))
+
+
+### Other Internal Changes
+
+* updated doc tsconfig for better autocompletion ([7fb8b94](https://github.com/mlaursen/react-md/commit/7fb8b94aaf47dffcdd7ae1da7b55b8d98e5b21c1))
+* Renamed contrast check function ([97c1ad7](https://github.com/mlaursen/react-md/commit/97c1ad71fb37290d4d5083adc2fe1f4e797cdc1e))
+* add website alias to changelog config ([d98bf51](https://github.com/mlaursen/react-md/commit/d98bf51c42f2e2ba45e211582546c302f4579fd6))
+* ran `prettier` after upgrading to v2.3.0 ([3ce236a](https://github.com/mlaursen/react-md/commit/3ce236a6008ff3d57f16cf3f6ab8e85fcce1dd4d))
+
+
+
+
+
+
 ## [2.8.3](https://github.com/mlaursen/react-md/compare/v2.8.2...v2.8.3) (2021-05-18)
 
 

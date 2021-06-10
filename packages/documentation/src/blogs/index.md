@@ -1,3 +1,35 @@
+Title: react-md 2.8.4
+
+Date: 06/10/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** Pass checked prop to component
+  ([bffae6f](https://github.com/mlaursen/react-md/commit/bffae6f6186f9bb1a9c219d8c3f728fa469b1471))
+
+* **@react-md/form:** Fixed controlled behavior for `Switch` components
+  (8c65df6), closes #1175
+* **@react-md/utils:** `omit` uses readonly prefix for key list (d3e1ee8)
+* **@react-md/utils:** Slightly better tooltip behavior after clicking somewhere
+  on the page (4d3fc16)
+
+##### Documentation<!-- no-margin -->
+
+- **react-md.dev:** Updated general documentation (9bc8a0d)
+- **react-md.dev:** Update `next` and build deps to fix font loading issues
+  (e528617)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- updated doc tsconfig for better autocompletion (7fb8b94)
+- Renamed contrast check function (97c1ad7)
+- add website alias to changelog config (d98bf51)
+- ran `prettier` after upgrading to v2.3.0 (3ce236a)
+
+---
+
 Title: react-md 2.8.3
 
 Date: 05/17/2021
