@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 
-import { useIsUserInteractionMode } from "../mode";
+import { useUserInteractionMode } from "../mode";
 import { useOnUnmount } from "../useOnUnmount";
 import { DEFAULT_HOVER_MODE_STICKY_EXIT_TIME } from "./constants";
 import { HoverModeActions, useHoverModeContext } from "./useHoverModeContext";
@@ -226,11 +226,12 @@ export function useHoverMode<E extends HTMLElement>({
   defaultVisible = false,
   exitVisibilityDelay = sticky ? DEFAULT_HOVER_MODE_STICKY_EXIT_TIME : 0,
 }: HoverModeOptions<E> = {}): HoverModeReturnValue<E> {
-  const isTouch = useIsUserInteractionMode("touch");
+  const mode = useUserInteractionMode();
+  const isTouch = mode === "touch";
   const [visible, setVisible] = useState(defaultVisible);
   const [stuck, setStuck] = useState(false);
-  const enterTimeoutRef = useRef<number>();
-  const exitTimeoutRef = useRef<number>();
+  const timeoutRef = useRef<number>();
+  const skipReset = useRef(defaultVisible);
   const {
     visibleInTime,
     enableHoverMode,
@@ -246,15 +247,31 @@ export function useHoverMode<E extends HTMLElement>({
   }, [visible, sticky]);
 
   useOnUnmount(() => {
-    window.clearTimeout(enterTimeoutRef.current);
-    window.clearTimeout(exitTimeoutRef.current);
+    window.clearTimeout(timeoutRef.current);
   });
 
   useEffect(() => {
-    if (isTouch || disabled) {
-      disableHoverMode();
+    if (disabled) {
+      return;
     }
-  }, [disableHoverMode, isTouch, disabled]);
+
+    const reset = (): void => {
+      setVisible(false);
+      disableHoverMode();
+      window.clearTimeout(timeoutRef.current);
+    };
+
+    // this is just used so the `defaultOption` can be used
+    if (!skipReset.current) {
+      reset();
+    }
+    skipReset.current = false;
+
+    window.addEventListener("mousedown", reset);
+    return () => {
+      window.removeEventListener("mousedown", reset);
+    };
+  }, [disableHoverMode, mode, disabled]);
 
   const onMouseEnter = useCallback(
     (event: MouseEvent<E>) => {
@@ -263,15 +280,14 @@ export function useHoverMode<E extends HTMLElement>({
         return;
       }
 
-      window.clearTimeout(enterTimeoutRef.current);
-      window.clearTimeout(exitTimeoutRef.current);
+      window.clearTimeout(timeoutRef.current);
       if (visibleInTime === 0) {
         enableHoverMode();
         setVisible(true);
         return;
       }
 
-      enterTimeoutRef.current = window.setTimeout(() => {
+      timeoutRef.current = window.setTimeout(() => {
         enableHoverMode();
         setVisible(true);
       }, visibleInTime);
@@ -287,14 +303,13 @@ export function useHoverMode<E extends HTMLElement>({
       }
 
       startDisableTimer();
-      window.clearTimeout(enterTimeoutRef.current);
-      window.clearTimeout(exitTimeoutRef.current);
+      window.clearTimeout(timeoutRef.current);
       if (exitVisibilityDelay === 0) {
         setVisible(false);
         return;
       }
 
-      exitTimeoutRef.current = window.setTimeout(() => {
+      timeoutRef.current = window.setTimeout(() => {
         setVisible(false);
       }, exitVisibilityDelay);
     },
@@ -316,8 +331,7 @@ export function useHoverMode<E extends HTMLElement>({
       }
 
       startDisableTimer();
-      window.clearTimeout(enterTimeoutRef.current);
-      window.clearTimeout(exitTimeoutRef.current);
+      window.clearTimeout(timeoutRef.current);
     },
     [disabled, propOnClick, startDisableTimer]
   );
