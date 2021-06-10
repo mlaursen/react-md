@@ -1,5 +1,5 @@
-import React from "react";
-import { render } from "@testing-library/react";
+import React, { useState } from "react";
+import { fireEvent, render } from "@testing-library/react";
 
 import { Switch } from "../Switch";
 
@@ -59,5 +59,28 @@ describe("Switch", () => {
     );
 
     expect(container).toMatchSnapshot();
+  });
+
+  it("should work as a controlled component", () => {
+    function Test() {
+      const [checked, setChecked] = useState(false);
+
+      return (
+        <Switch
+          id="switch"
+          label="Label"
+          checked={checked}
+          onChange={(event) => setChecked(event.currentTarget.checked)}
+        />
+      );
+    }
+
+    const { getByRole } = render(<Test />);
+
+    const checkbox = getByRole("checkbox", { name: "Label" });
+    expect(checkbox).not.toBeChecked();
+
+    fireEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
   });
 });

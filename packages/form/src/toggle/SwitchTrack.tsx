@@ -53,7 +53,6 @@ export const SwitchTrack = forwardRef<HTMLInputElement, SwitchTrackProps>(
     {
       id,
       disabled = false,
-      checked = false,
       className,
       ballStyle,
       ballClassName,
@@ -63,6 +62,7 @@ export const SwitchTrack = forwardRef<HTMLInputElement, SwitchTrackProps>(
     },
     ref
   ) {
+    const { checked = false } = props;
     return (
       <span
         {...containerProps}
@@ -76,7 +76,6 @@ export const SwitchTrack = forwardRef<HTMLInputElement, SwitchTrackProps>(
               ref={ref}
               type="checkbox"
               className={cn(styles("input"))}
-              checked={checked}
               disabled={disabled}
             />
             <label
