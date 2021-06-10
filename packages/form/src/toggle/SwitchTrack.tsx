@@ -76,6 +76,7 @@ export const SwitchTrack = forwardRef<HTMLInputElement, SwitchTrackProps>(
               ref={ref}
               type="checkbox"
               className={cn(styles("input"))}
+              checked={checked}
               disabled={disabled}
             />
             <label
