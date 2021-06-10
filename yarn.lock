@@ -1867,6 +1867,13 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
+"@types/formidable@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@types/formidable/-/formidable-1.2.2.tgz#e690d60732ee9d3f0a441bc572c17409785b283c"
+  integrity sha512-8RDAMnMHOh7QrY1xuQ7s6/Xre9pMvJ2zT2VgATiz5cIE71Q/6N3+P8sr3z/dNWNmvX5/aX9x8uJlG0MZiMZXoA==
+  dependencies:
+    "@types/node" "*"
+
 "@types/fs-extra@^9.0.11":
   version "9.0.11"
   resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.11.tgz#8cc99e103499eab9f347dbc6ca4e99fb8d2c2b87"
@@ -6330,6 +6337,11 @@ form-data@~2.3.2:
     asynckit "^0.4.0"
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
+
+formidable@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.2.tgz#bf69aea2972982675f00865342b982986f6b8dd9"
+  integrity sha512-V8gLm+41I/8kguQ4/o1D3RIHRmhYFG4pnNyonvua+40rqcEmT4+V71yaZ3B457xbbgCsCfjSPi65u/W6vK1U5Q==
 
 fragment-cache@^0.2.1:
   version "0.2.1"
