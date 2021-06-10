@@ -56,6 +56,7 @@
     "classnames": "^2.3.1",
     "codesandbox": "^2.2.3",
     "date-fns": "^2.22.1",
+    "formidable": "^1.2.2",
     "fuse.js": "6.4.6",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.21",
@@ -75,6 +76,7 @@
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@react-md/dev-utils": "^2.8.5",
+    "@types/formidable": "^1.2.2",
     "@types/gtag.js": "^0.0.6",
     "@types/js-cookie": "^2.2.6",
     "@types/marked": "^2.0.3",
