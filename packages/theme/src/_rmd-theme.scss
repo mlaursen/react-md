@@ -1,0 +1,84 @@
+@forward 'color-palette';
+@forward 'color-a11y';
+@forward 'variables';
+@forward 'helpers' as helpers-*;
+
+@use 'helpers';
+@use 'variables';
+
+/// A small utility function to get a color from the current theme. This is
+/// normally used along with the `rmd-theme-var` function so that both css
+/// variables and a fallback can be applied. If the provided style prop is a
+/// color or 'currentColor', the provided style prop will be returned instead.
+///
+/// @param {String} theme-name - The theme style to get. This should be one of
+/// the keys from `$rmd-theme-values`.
+/// @return {Color} the theme color.
+@function get-var-value($theme-name) {
+  @return helpers.get-var-value(theme-name);
+}
+
+/// A small utility function to get a color from the current theme as a css
+/// variable. This is normally used along with the `rmd-theme` function so that
+/// both css variables and a fallback can be applied.
+///
+/// @param {String} theme-name - The theme style to get. This should be one of
+/// the keys from `$rmd-theme-values`.
+/// @return {Color} the theme color.
+@function get-var($theme-name, $fallback-color: null) {
+  @return helpers.get-var(
+    $theme-name,
+    variables.$theme,
+    theme,
+    $fallback-color
+  );
+}
+
+/// Applies one of theme values to the provided property.
+///
+/// @example scss - Example Theme Application
+///   html {
+///     @include rmd-theme.use-var(background-color, background);
+///     @include rmd-theme.use-var(color, text-primary-on-background);
+///   }
+///
+///   .primary-bg {
+///     @include rmd-theme.use-var(background-color, primary);
+///   }
+///
+///   .primary-text {
+///     @include rmd-theme.use-var(color, primary);
+///   }
+///
+/// @param {String} property - This is normally `color` or `background-color`,
+/// but any valid CSS property that accepts color values can be used.
+/// @param {String} theme-style - The type of theme style to use. This should be
+/// one of the `$rmd-theme-values` or a literal color value.
+@mixin use-var($property, $theme-style) {
+  @include helpers.use-var($property, $theme-style, variables.$theme, theme);
+}
+
+/// This is an extremely simple mixin that will allow you to quickly set or
+/// update the value of a theme css variable with the new provided value.
+///
+/// @example scss - Example Usage SCSS
+///   $primary: $blue-500;
+///   $secondary: $pink-a-200;
+///
+///   .some-class-with-different-themes {
+///     // no idea if these colors go together...
+///     @include rmd-theme.update-var(primary, $orange-500);
+///     @include rmd-theme.update-var(secondary, $brown-700);
+///   }
+///
+/// @param {String} theme-style - The react-md theme style to update. This
+/// should be one of the keys of `$rmd-theme-values` map.
+/// @param {Color} value - The updated color value to apply.
+@mixin update-var($theme-style, $value) {
+  @include helpers.update-var($value, $theme-style, variables.$theme, theme);
+}
+
+/// Creates the theme styles.
+@mixin styles {
+  @include helpers.create-root-theme(variables.$theme, theme);
+}
