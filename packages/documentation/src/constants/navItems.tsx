@@ -28,10 +28,24 @@ const uuid = createIdGenerator("nav");
 const getPackageRoutes = (name: string): RouteNavItem[] => {
   const routes: RouteNavItem[] = [];
 
-  routes.push({
-    href: "/demos",
-    children: "Demos",
-  });
+  if (name === "form") {
+    routes.push(
+      { href: "/text-field-demos", children: "Text Field Demos" },
+      { href: "/select-field-demos", children: "Select Field Demos" },
+      {
+        href: "/selection-control-demos",
+        children: "Selection Control Demos",
+      },
+      { href: "/file-input-demos", children: "File Input Demos" },
+      { href: "/slider-demos", children: "Slider Demos" },
+      { href: "/validation-demos", children: "Validation Demos" }
+    );
+  } else {
+    routes.push({
+      href: "/demos",
+      children: "Demos",
+    });
+  }
 
   routes.push({
     href: "/installation",

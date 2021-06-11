@@ -10,6 +10,7 @@ import { getAliases } from "./aliases";
 import {
   DEMO_INDEX,
   DEMO_INDEX_HTML,
+  FORM_PARTS,
   SANDBOXES_PATH,
   VARIABLES_SCSS_FILE,
 } from "./constants";
@@ -53,6 +54,7 @@ function transformFileContents(
     .replace(/<CodeBlock[^>]*>/g, "<pre><code>")
     .replace(/<\/CodeBlock>/g, "</code></pre>")
     .replace(/<(\/)?Code/g, "<$1code")
+    .replace(/\.(\.\/TextFieldThemeConfig)/, "$1")
     .replace(aliasRegExp, `"${aliasReplacement}`);
 
   if (demoName) {
@@ -168,6 +170,7 @@ export function createSandbox(
     const fileName = aliasedFileName
       .replace(aliasRegExp, "")
       .replace(`${demoName}${sep}`, "")
+      .replace(new RegExp(`\\/(${FORM_PARTS.join("|")})`), "")
       .replace(/\/?Demos\/[A-z]+\/?/, "");
 
     const key = join("src", `${fileName}${getExtension(fileName)}`);

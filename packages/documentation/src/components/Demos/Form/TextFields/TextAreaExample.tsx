@@ -9,7 +9,7 @@ import {
   useChoice,
 } from "@react-md/form";
 
-import TextFieldThemeConfig from "./TextFieldThemeConfig";
+import TextFieldThemeConfig from "../TextFieldThemeConfig";
 import styles from "./TextAreaExample.module.scss";
 
 const MAX_ROWS = [-1, 4, 5, 6, 7, 8, 9, 10];

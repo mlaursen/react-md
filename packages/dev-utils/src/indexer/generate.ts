@@ -4,7 +4,7 @@ import { join, sep } from "path";
 
 import { documentationRoot, src } from "../constants";
 import { toId, toTitle } from "../utils";
-import { parseDemoIndex } from "./parseDemoIndex";
+import { parseDemoRenderer } from "./parseDemoIndex";
 import { parseMarkdown } from "./parseMarkdown";
 import { parseSassDocAnchors } from "./parseSassDocAnchors";
 import {
@@ -62,6 +62,10 @@ function getTitleForRoute(route: string): string {
     .replace("Api", "API")
     .replace("Sassdoc", "SassDoc");
 
+  if (/Demos$/.test(title) && route.includes("form")) {
+    return title;
+  }
+
   if (
     /SassDoc|API|Demos|Changelog/.test(title) ||
     (title === "Installation" && route.startsWith("/packages"))
@@ -104,9 +108,9 @@ export async function generate(
       type = "theme";
       summary =
         "Create a custom theme for your app and this documentation site using the live preview. The theme builder supports changing the theme colors using the material design color palette as well as warning when there are contrast ratio problems.";
-    } else if (route.endsWith("/demos")) {
+    } else if (/(\/|-)demos$/.test(route)) {
       type = "demos";
-      ({ anchors, summary, demos } = parseDemoIndex(route));
+      ({ anchors, summary, demos } = parseDemoRenderer(route));
     } else if (/\/(api|sassdoc)$/.test(route)) {
       const [routeType, pkgName] = route.split("/").reverse();
       switch (routeType) {
