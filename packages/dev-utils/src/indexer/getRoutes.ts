@@ -21,11 +21,13 @@ export async function getRoutes({
   const pagesFolder = join(documentationRoot, src, "pages");
   const paths = await glob("**/*.+(ts|tsx)", {
     cwd: pagesFolder,
-    ignore: ["api/**/*", "index.ts", "_*"],
+    ignore: ["api/**/*", "index.ts", "**/form/demos.tsx", "_*"],
   });
 
   const apiablePackages = getPackages("typescript");
-  const demoablePackages = apiablePackages.filter((name) => name !== "layout");
+  const demoablePackages = apiablePackages.filter(
+    (name) => name !== "layout" && name !== "form"
+  );
   const sassdocablePackages = getPackages("scss");
   const packages = getPackages();
 

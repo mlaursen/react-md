@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { TextField } from "@react-md/form";
 
-import TextFieldThemeConfig from "./TextFieldThemeConfig";
+import TextFieldThemeConfig from "../TextFieldThemeConfig";
 
 export default function TextFieldExample(): ReactElement {
   return (

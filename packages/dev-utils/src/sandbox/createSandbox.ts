@@ -10,6 +10,7 @@ import { getAliases } from "./aliases";
 import {
   DEMO_INDEX,
   DEMO_INDEX_HTML,
+  FORM_PARTS,
   SANDBOXES_PATH,
   VARIABLES_SCSS_FILE,
 } from "./constants";
@@ -53,6 +54,7 @@ function transformFileContents(
     .replace(/<CodeBlock[^>]*>/g, "<pre><code>")
     .replace(/<\/CodeBlock>/g, "</code></pre>")
     .replace(/<(\/)?Code/g, "<$1code")
+    .replace(/\.(\.\/TextFieldThemeConfig)/, "$1")
     .replace(aliasRegExp, `"${aliasReplacement}`);
 
   if (demoName) {
@@ -119,11 +121,23 @@ function createJsxSandbox(
   writeJsonSync(sandboxPath.replace(".json", "-js.json"), files, { spaces: 2 });
 }
 
+const FORM_PARTS_REGEXP = new RegExp(`\\/(${FORM_PARTS.join("|")})`);
+const FORM_PART_REGEXP = new RegExp(
+  `(${FORM_PARTS.reduce<string>(
+    (s, part) => `${s ? `${s}|` : ""}${part.replace(/s$/, "")}`,
+    ""
+  )})`
+);
+
 export function createSandbox(
   demo: ImportDeclaration,
   project: Project,
   parentFolder: string
 ): void {
+  const formPart = demo
+    .getSourceFile()
+    .getFilePath()
+    .match(FORM_PART_REGEXP)?.[0];
   const importName = demo.getModuleSpecifierValue();
   const sourceFile = getDemoSourceFile(importName, parentFolder, project);
   const [dependencies, resolvedFiles] = getAllDependencies(sourceFile, project);
@@ -148,12 +162,13 @@ export function createSandbox(
     "src/_variables.scss": {
       content: VARIABLES_SCSS_FILE,
     },
-    "package.json": createPackageJson(
+    "package.json": createPackageJson({
       demoTitle,
-      fullDemoTitle,
+      formPart,
       packageName,
-      dependencies
-    ),
+      dependencies,
+      fullDemoTitle,
+    }),
     "src/Demo.tsx": {
       content: transformFileContents(
         sourceFile.getFullText(),
@@ -168,6 +183,7 @@ export function createSandbox(
     const fileName = aliasedFileName
       .replace(aliasRegExp, "")
       .replace(`${demoName}${sep}`, "")
+      .replace(FORM_PARTS_REGEXP, "")
       .replace(/\/?Demos\/[A-z]+\/?/, "");
 
     const key = join("src", `${fileName}${getExtension(fileName)}`);

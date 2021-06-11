@@ -1,5 +1,5 @@
 The `TextField` component also has some limited support for rendering as other
-text input tyes:
+text input types:
 
 - `password`
 - `number`

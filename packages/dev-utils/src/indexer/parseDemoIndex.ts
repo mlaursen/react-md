@@ -19,18 +19,28 @@ interface ReduceResult {
   demos: DemoMetadata[];
 }
 
-export function parseDemoIndex(demoRoute: string): MarkdownResult {
-  const [, pkgName] = demoRoute.split("/").reverse();
-  const demoFolder = join(
+export function parseDemoRenderer(demoRoute: string): MarkdownResult {
+  const [fileName, pkgName] = demoRoute.split("/").reverse();
+  let demoFolder = join(
     documentationRoot,
     src,
     "components",
     "Demos",
     toTitle(pkgName, "")
   );
-  const demoIndexPath = join(demoFolder, "index.tsx");
 
-  const contents = readFileSync(demoIndexPath, "utf8");
+  let demoRendererPath = join(demoFolder, "index.tsx");
+  if (fileName.endsWith("-demos")) {
+    // I really need to redo this...
+    const partName = toTitle(
+      fileName.replace("-demos", fileName.startsWith("validation") ? "" : "s"),
+      ""
+    );
+    demoFolder = join(demoFolder, partName);
+    demoRendererPath = join(demoFolder, `${partName}.tsx`);
+  }
+
+  const contents = readFileSync(demoRendererPath, "utf8");
   const lines = contents.split(/\r?\n/);
 
   const { anchors, demos } = lines.reduce<ReduceResult>(

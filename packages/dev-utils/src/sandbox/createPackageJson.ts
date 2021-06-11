@@ -1,6 +1,6 @@
 import { JSONObject } from "../constants";
 import { toId } from "../utils";
-import { DEV_DEPENDENCIES } from "./constants";
+import { DEV_DEPENDENCIES, FORM_PARTS } from "./constants";
 import { ReferencedDependencies } from "./getAllDependencies";
 
 function toDependencyJson(
@@ -48,19 +48,33 @@ function toDevDependencyJson(
   return toDependencyJson(deps);
 }
 
-export function createPackageJson(
-  demoTitle: string,
-  fullDemoTitle: string,
-  packageName: string,
-  dependencies: ReferencedDependencies
-): JSONObject {
+interface CreatePackageJsonOptions {
+  demoTitle: string;
+  formPart: typeof FORM_PARTS[number] | undefined;
+  packageName: string;
+  dependencies: ReferencedDependencies;
+  fullDemoTitle: string;
+}
+
+export function createPackageJson({
+  demoTitle,
+  formPart,
+  packageName,
+  dependencies,
+  fullDemoTitle,
+}: CreatePackageJsonOptions): JSONObject {
   const allDeps = Array.from(dependencies);
+  let demoPrefix = `${toId(packageName)}/demos`;
+  if (formPart) {
+    demoPrefix = demoPrefix.replace("/demos", `/${toId(formPart)}-demos`);
+  }
+
+  const demoId = toId(demoTitle);
+  const packageDemoUrl = `https://react-md.dev/packages/${demoPrefix}#${demoId}`;
 
   const packageJson: JSONObject = {
     title: fullDemoTitle,
-    description: `Example from https://react-md.dev/packages/${toId(
-      packageName
-    )}/demos#${toId(demoTitle)}`,
+    description: `Example from ${packageDemoUrl}`,
     main: "src/index.tsx",
     dependencies: toDependencyJson(allDeps),
     devDependencies: toDevDependencyJson(allDeps, DEV_DEPENDENCIES),

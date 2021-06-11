@@ -10,7 +10,7 @@ import {
 
 import states from "constants/states";
 
-import TextFieldThemeConfig from "./TextFieldThemeConfig";
+import TextFieldThemeConfig from "../TextFieldThemeConfig";
 
 interface State {
   name: string;
