@@ -9,6 +9,7 @@ import { ConfiguredIcons } from "@react-md/icon";
 import {
   Configuration,
   Layout as RMDLayout,
+  LayoutConfiguration,
   useLayoutNavigation,
 } from "@react-md/layout";
 import {
@@ -67,6 +68,15 @@ const icons: ConfiguredIcons = {
   sort: <ArrowUpwardSVGIcon />,
 };
 
+let devLayoutConf: LayoutConfiguration | undefined;
+if (process.env.NODE_ENV !== "production") {
+  devLayoutConf = {
+    landscapeTabletLayout: "temporary",
+    desktopLayout: "temporary",
+    largeDesktopLayout: "temporary",
+  };
+}
+
 export default function Layout({
   children,
   title,
@@ -120,6 +130,7 @@ export default function Layout({
                 LinkUnstyled
               )}
               navHeaderProps={{ children: <NavHeaderTitle /> }}
+              {...devLayoutConf}
             >
               <TableOfContents pathname={pathname} />
               <Provider value={setElevated}>{children}</Provider>
