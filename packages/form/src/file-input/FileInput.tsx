@@ -38,7 +38,11 @@ export interface FileInputProps extends ButtonThemeProps, InputAttributes {
    * Boolean if the children should not have some spacing between the icon and
    * itself.  The default behavior is to use the `<TextIconSpacing>` component
    * for text styled input buttons, but this can be disabled if you want to use
-   * a screenreader only accessible label.
+   * a screen-reader only accessible label.
+   *
+   * Note: This will default to `false` if {@link children} are provided.
+   *
+   * @defaultValue `true`
    */
   disableIconSpacing?: boolean;
 
@@ -48,6 +52,14 @@ export interface FileInputProps extends ButtonThemeProps, InputAttributes {
    * selected.
    */
   disableRepeatableFiles?: boolean;
+
+  /**
+   * Children should generally be provided when the {@link buttonType} is
+   * set to `"text"`. This defaults to a screen-reader only accessible text.
+   *
+   * @defaultValue `<SrOnly>Upload</SrOnly>`
+   */
+  children?: ReactNode;
 }
 
 const block = bem("rmd-file-input");
@@ -63,12 +75,12 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       className: propClassName,
       icon: propIcon,
       iconAfter = false,
-      children = <SrOnly>Upload</SrOnly>,
+      children: propChildren,
       theme = "primary",
       themeType = "contained",
       buttonType = "icon",
       multiple = false,
-      disableIconSpacing = false,
+      disableIconSpacing: propDisableIconSpacing,
       disableRepeatableFiles = false,
       onKeyDown,
       onKeyUp,
@@ -86,6 +98,13 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
   ) {
     const { id, disabled } = props;
     const icon = useIcon("download", propIcon);
+    const disableIconSpacing =
+      propDisableIconSpacing ?? typeof propChildren === "undefined";
+
+    let children = propChildren;
+    if (typeof propChildren === "undefined") {
+      children = <SrOnly>Upload</SrOnly>;
+    }
 
     const { ripples, className, handlers } = useInteractionStates({
       handlers: {
