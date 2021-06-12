@@ -78,7 +78,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       children: propChildren,
       theme = "primary",
       themeType = "contained",
-      buttonType = "icon",
+      buttonType = propChildren ? "text" : "icon",
       multiple = false,
       disableIconSpacing: propDisableIconSpacing,
       disableRepeatableFiles = false,
