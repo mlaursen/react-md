@@ -39,7 +39,7 @@ exports[`FileInput should render correctly 2`] = `
     value=""
   />
   <label
-    class="rmd-file-input-label rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+    class="rmd-file-input-label rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
     for="input"
   >
     <i
@@ -65,7 +65,7 @@ exports[`FileInput should render correctly 3`] = `
     value=""
   />
   <label
-    class="rmd-file-input-label rmd-button rmd-button--icon rmd-button--contained rmd-button--primary"
+    class="rmd-file-input-label rmd-button rmd-button--text rmd-button--contained rmd-button--primary"
     for="input"
   >
     Custom children and no Icon
