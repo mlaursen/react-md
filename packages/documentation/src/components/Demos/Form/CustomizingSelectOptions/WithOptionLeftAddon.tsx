@@ -23,7 +23,7 @@ const states: ListboxOption[] = immutableStates.map(
         {name} (<span className="rmd-typography--italic">{abbreviation}</span>)
       </span>
     ),
-    rightIcon: <CloseSVGIcon />,
+    rightAddon: <CloseSVGIcon />,
   })
 );
 
