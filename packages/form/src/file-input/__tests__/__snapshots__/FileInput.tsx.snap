@@ -14,7 +14,7 @@ exports[`FileInput should render correctly 1`] = `
   >
     <i
       aria-hidden="true"
-      class="rmd-icon rmd-icon--font material-icons rmd-icon--before"
+      class="rmd-icon rmd-icon--font material-icons"
     >
       file_download
     </i>
