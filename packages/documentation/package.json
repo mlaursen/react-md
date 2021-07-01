@@ -69,7 +69,7 @@
     "react-hook-form": "^6.15.5",
     "react-router-dom": "^5.2.0",
     "react-swipeable": "^6.1.0",
-    "react-transition-group": "^4.4.1",
+    "react-transition-group": "^4.4.2",
     "react-virtualized": "^9.22.3"
   },
   "devDependencies": {
