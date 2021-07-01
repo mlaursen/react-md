@@ -13,6 +13,8 @@ import {
   SimpleListItemProps,
 } from "@react-md/list";
 import { bem } from "@react-md/utils";
+
+import { IndeterminateCheckboxProps } from "../toggle/Checkbox";
 import { InputToggleIcon } from "../toggle/InputToggleIcon";
 import { SwitchTrack } from "../toggle/SwitchTrack";
 
@@ -114,6 +116,13 @@ export interface MenuItemInputToggleProps extends BaseMenuItemInputToggleProps {
   type: "checkbox" | "radio" | "switch";
 }
 
+/** @remarks \@since 2.8.5 */
+export type StrictMenuItemInputToggleProps = BaseMenuItemInputToggleProps &
+  (
+    | ({ type: "checkbox" } & IndeterminateCheckboxProps)
+    | { type: "radio" | "switch"; indeterminate?: never }
+  );
+
 /**
  * This is a low-level component that should probably not be used externally and
  * instead the `MenuItemCheckbox`, `MenuItemRadio`, or `MenuItemSwitch` should
@@ -126,7 +135,7 @@ export interface MenuItemInputToggleProps extends BaseMenuItemInputToggleProps {
  */
 export const MenuItemInputToggle = forwardRef<
   HTMLLIElement,
-  MenuItemInputToggleProps
+  StrictMenuItemInputToggleProps
 >(function MenuItemInputToggle(
   {
     children,
@@ -142,6 +151,7 @@ export const MenuItemInputToggle = forwardRef<
     onCheckedChange,
     disabled = false,
     className,
+    indeterminate = false,
     ...props
   },
   ref
@@ -157,6 +167,7 @@ export const MenuItemInputToggle = forwardRef<
           disabled={disabled}
           overlay
           checked={checked}
+          indeterminate={indeterminate}
         >
           {icon}
         </InputToggleIcon>

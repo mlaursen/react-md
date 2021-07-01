@@ -9,7 +9,7 @@ exports[`MenuItemCheckbox should update the state and close the menu once clicke
   tabindex="-1"
 >
   <span
-    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle"
+    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle rmd-input-toggle-menu-item__toggle"
   >
     <span
       class="rmd-toggle__icon rmd-toggle__icon--overlay"
@@ -39,7 +39,7 @@ exports[`MenuItemCheckbox should update the state and close the menu once clicke
   tabindex="-1"
 >
   <span
-    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle"
+    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle rmd-input-toggle-menu-item__toggle"
   >
     <span
       class="rmd-toggle__icon rmd-toggle__icon--overlay rmd-toggle__icon--checked"

@@ -9,7 +9,7 @@ exports[`MenuItemRadio should update the state and close the menu once clicked 1
   tabindex="-1"
 >
   <span
-    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle"
+    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle rmd-input-toggle-menu-item__toggle"
   >
     <span
       class="rmd-toggle__icon rmd-toggle__icon--circle rmd-toggle__icon--overlay rmd-toggle__icon--checked"
@@ -39,7 +39,7 @@ exports[`MenuItemRadio should update the state and close the menu once clicked 2
   tabindex="-1"
 >
   <span
-    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle"
+    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle rmd-input-toggle-menu-item__toggle"
   >
     <span
       class="rmd-toggle__icon rmd-toggle__icon--circle rmd-toggle__icon--overlay"
@@ -69,7 +69,7 @@ exports[`MenuItemRadio should update the state and close the menu once clicked 3
   tabindex="-1"
 >
   <span
-    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle"
+    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle rmd-input-toggle-menu-item__toggle"
   >
     <span
       class="rmd-toggle__icon rmd-toggle__icon--circle rmd-toggle__icon--overlay"
@@ -99,7 +99,7 @@ exports[`MenuItemRadio should update the state and close the menu once clicked 4
   tabindex="-1"
 >
   <span
-    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle"
+    class="rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before rmd-toggle rmd-input-toggle-menu-item__toggle"
   >
     <span
       class="rmd-toggle__icon rmd-toggle__icon--circle rmd-toggle__icon--overlay rmd-toggle__icon--checked"

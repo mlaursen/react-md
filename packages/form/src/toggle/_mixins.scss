@@ -170,6 +170,16 @@
       opacity: 0;
     }
   }
+
+  &--indeterminate-checked {
+    @if $rmd-toggle-active-color != $rmd-toggle-inactive-color {
+      @include rmd-icon-theme-update-var(color, $rmd-toggle-active-color);
+    }
+
+    &::after {
+      opacity: 1;
+    }
+  }
 }
 
 /// Updates the checkbox and radio components to have a dense theme by updating

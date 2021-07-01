@@ -3,7 +3,8 @@ import { useIcon } from "@react-md/icon";
 
 import { InputToggle, InputToggleProps } from "./InputToggle";
 
-export interface CheckboxProps extends InputToggleProps {
+/** @remarks \@since 2.8.5 */
+export interface IndeterminateCheckboxProps {
   /**
    * If the indeterminate prop is enabled, the this prop must be a
    * space-delimited string of **all** the checkboxes that it controls.
@@ -18,6 +19,10 @@ export interface CheckboxProps extends InputToggleProps {
    */
   indeterminate?: boolean;
 }
+
+export interface CheckboxProps
+  extends InputToggleProps,
+    IndeterminateCheckboxProps {}
 
 /**
  * The `Checkbox` component is just a wrapper for the `InputToggle` that

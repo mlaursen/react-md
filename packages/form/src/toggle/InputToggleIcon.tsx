@@ -53,7 +53,7 @@ export const InputToggleIcon = forwardRef<
     ...props
   }: InputToggleIconProps,
   ref
-): ReactElement | null {
+): ReactElement {
   return (
     <span
       {...props}
@@ -63,8 +63,9 @@ export const InputToggleIcon = forwardRef<
           circle,
           disabled,
           overlay,
-          checked,
+          checked: !indeterminate && checked,
           indeterminate,
+          "indeterminate-checked": checked && indeterminate,
         }),
         className
       )}
