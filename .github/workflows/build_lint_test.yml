@@ -21,23 +21,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
 
-    - name: Get yarn cache directory
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-
-    - name: Cache node_modules
-      uses: actions/cache@v2.1.6
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-${{ matrix.node-version }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2.1.5
+      uses: actions/setup-node@v2.2.0
       with:
         node-version: ${{ matrix.node-version }}
+        cache: yarn
     - run: yarn
     - run: yarn setup
     - run: yarn dev-utils doc-index
@@ -52,23 +40,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
 
-    - name: Get yarn cache directory
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-
-    - name: Cache node_modules
-      uses: actions/cache@v2.1.6
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-14
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-
     - name: Use Node.js 14
-      uses: actions/setup-node@v2.1.5
+      uses: actions/setup-node@v2.2.0
       with:
         node-version: 14
+        cache: yarn
     - run: yarn
     - run: yarn setup
     - run: yarn dev-utils doc-index
