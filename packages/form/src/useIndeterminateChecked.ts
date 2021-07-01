@@ -7,7 +7,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 export interface ProvidedIndeterminateCheckboxProps {
   "aria-checked"?: "mixed";
   checked: boolean;
-  onChange: () => void;
+  onChange(): void;
   indeterminate: boolean;
 }
 
@@ -20,7 +20,7 @@ export interface ProvidedIndeterminateControlledCheckboxProps<
 > {
   value: T;
   checked: boolean;
-  onChange: () => void;
+  onChange(): void;
 }
 
 /**
@@ -34,8 +34,8 @@ export type GetIndeterminateControlledCheckboxProps<T extends string> = (
 export interface IndeterminateCheckedReturnValue<T extends string> {
   getProps: GetIndeterminateControlledCheckboxProps<T>;
   rootProps: ProvidedIndeterminateCheckboxProps;
-  checkedValues: T[];
-  setCheckedValues: Dispatch<SetStateAction<T[]>>;
+  checkedValues: readonly T[];
+  setCheckedValues: Dispatch<SetStateAction<readonly T[]>>;
 }
 
 /**
@@ -48,8 +48,8 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  * #### Simple value list with labels lookup:
  *
  * ```tsx
- * const values = ["a", "b", "c", "d"];
- * const LABELS = { a: "Label 1", b: "Label 2", c: "Label 3", d: "Label 4" };
+ * const values = ["a", "b", "c", "d"] as const;
+ * const LABELS = { a: "Label 1", b: "Label 2", c: "Label 3", d: "Label 4" } as const;
  * const { getProps, rootProps } = useIndeterminateChecked(values);
  *
  * return (
@@ -127,15 +127,16 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  * the list of values can be changed from external sources as well.
  */
 export function useIndeterminateChecked<T extends string>(
-  values: T[],
-  defaultCheckedValues: T[] | (() => T[]) = [],
-  onChange?: (checkedValues: T[]) => void
+  values: readonly T[],
+  defaultCheckedValues: readonly T[] | (() => readonly T[]) = [],
+  onChange?: (checkedValues: readonly T[]) => void
 ): IndeterminateCheckedReturnValue<T> {
-  const [checkedValues, setCheckedValues] = useState<T[]>(defaultCheckedValues);
+  const [checkedValues, setCheckedValues] =
+    useState<readonly T[]>(defaultCheckedValues);
   const checked = checkedValues.length > 0;
   const indeterminate = checked && checkedValues.length < values.length;
 
-  const updateCheckedValues = (values: T[]): void => {
+  const updateCheckedValues = (values: readonly T[]): void => {
     if (onChange) {
       onChange(values);
     }
