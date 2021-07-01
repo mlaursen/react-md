@@ -4,6 +4,7 @@ import {
   MenuItemCheckbox,
   MenuItemRadio,
   MenuItemSwitch,
+  useIndeterminateChecked,
 } from "@react-md/form";
 import React, { ReactElement, useState } from "react";
 
@@ -16,17 +17,52 @@ const decorations: readonly Decoration[] = [
   "strike-through",
 ];
 
+const values = ["a", "b", "c", "d"] as const;
+const labels = {
+  a: "Label 1",
+  b: "Label 2",
+  c: "Label 3",
+  d: "Label 4",
+} as const;
+
+function toCheckedChange<P extends { onChange(): void }>({
+  onChange,
+  ...props
+}: P): Omit<P, "onChange"> & { onCheckedChange(): void } {
+  return {
+    ...props,
+    onCheckedChange: onChange,
+  };
+}
+
 export default function MenusWithFormControls(): ReactElement | null {
   const [bold, setBold] = useState(false);
   const [italic, setItalic] = useState(false);
   const [decoration, setDecoration] = useState<Decoration>("none");
   const [checked, setChecked] = useState(false);
+  const { rootProps, getProps } = useIndeterminateChecked(values);
 
   return (
     <DropdownMenu
       id="some-id"
       items={[
         <MenuItem id="item-1">Item 1</MenuItem>,
+        <MenuItemCheckbox
+          id="some-group-id-root"
+          {...toCheckedChange(rootProps)}
+        >
+          Toggle All
+        </MenuItemCheckbox>,
+        ...values.map((value, i) => (
+          <MenuItemCheckbox
+            id={`some-group-id-${i + 1}`}
+            {...toCheckedChange(getProps(value))}
+            key={value}
+          >
+            {labels[value]}
+          </MenuItemCheckbox>
+        )),
+        <MenuItemSeparator />,
         <MenuItemCheckbox
           id="font-bold"
           checked={bold}
