@@ -11,12 +11,22 @@ declare module "*.scss" {
   export default content;
 }
 
-declare module "*.md" {
-  const content: string;
+declare module "*.png" {
+  // this is copy/pasted from next/image-types/global since it'll cause the
+  // `yarn typecheck` command to fail otherwise
+  interface StaticImageData {
+    src: string;
+    height: number;
+    width: number;
+    placeholder?: string;
+  }
+
+  const content: StaticImageData;
+
   export default content;
 }
 
-declare module "*.png" {
+declare module "*.md" {
   const content: string;
   export default content;
 }

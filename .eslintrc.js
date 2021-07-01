@@ -10,6 +10,22 @@ module.exports = {
   },
   overrides: [
     {
+      files: [
+        'packages/documentation/src/**/*.ts',
+        'packages/documentation/src/**/*.tsx',
+      ],
+      extends: 'plugin:@next/next/recommended',
+      rules: {
+        '@next/next/no-html-link-for-pages': [
+          1,
+          'packages/documentation/src/pages',
+        ],
+        // I don't really want the image optimizations for the documentation site
+        // since I use random images from other services
+        '@next/next/no-img-element': 0,
+      },
+    },
+    {
       files: ['packages/documentation/src/components/Demos/**/*.tsx'],
       rules: {
         // normally don't care about these for demos

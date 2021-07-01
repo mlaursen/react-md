@@ -7,19 +7,16 @@ import home from "./home.png";
 interface PageMetaProps {
   title?: string;
   description?: string;
-  image?: {
-    src: string;
-    alt: string;
-  };
+  image?: { src: string; alt: string };
 }
 
 const defaultTitle = "react-md - Accessible React Material Design Components";
 const defaultDescription =
   "Create fully accessible React components using the material design specifications.";
 const defaultImage = {
-  src: home,
+  src: home.src,
   alt: "The landing page for react-md. It describes the purpose of the library and what it tries to accomplish",
-};
+} as const;
 
 export default function PageMeta({
   title = defaultTitle,

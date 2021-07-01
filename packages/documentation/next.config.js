@@ -1,47 +1,38 @@
-const withImages = require('next-images');
+/**
+ * @type import('next/dist/next-server/server/config-shared').NextConfig
+ */
+const config = {
+  future: {
+    strictPostcssConfiguration: true,
+  },
+  eslint: {
+    // I have already run lint before this step...
+    ignoreDuringBuilds: true,
+  },
+  poweredByHeader: false,
+  webpack(config) {
+    config.module.rules.unshift({
+      test: /\.md$/,
+      use: 'raw-loader',
+      exclude: /node_modules/,
+    });
 
-const withCustomConfig = (nextConfig = {}) => {
-  /**
-   * @type import('next/dist/next-server/server/config-shared').NextConfig
-   */
-  const config = {
-    ...nextConfig,
-    future: {
-      webpack5: true,
-      strictPostcssConfiguration: true,
-    },
-    poweredByHeader: false,
-    compress: false,
-    webpack(config, options) {
-      config.module.rules.unshift({
-        test: /\.md$/,
-        use: 'raw-loader',
-        exclude: /node_modules/,
-      });
-
-      if (typeof nextConfig.webpack === 'function') {
-        return nextConfig.webpack(config, options);
-      }
-
-      return config;
-    },
-    async redirects() {
-      return [
-        {
-          source: '/v1/',
-          destination: 'https://mlaursen.github.io/react-md-v1-docs/#/',
-          permanent: false,
-        },
-        {
-          source: '/v1/:paths*',
-          destination: 'https://mlaursen.github.io/react-md-v1-docs/#/:paths*',
-          permanent: false,
-        },
-      ];
-    },
-  };
-
-  return config;
+    return config;
+  },
+  async redirects() {
+    return [
+      {
+        source: '/v1/',
+        destination: 'https://mlaursen.github.io/react-md-v1-docs/#/',
+        permanent: false,
+      },
+      {
+        source: '/v1/:paths*',
+        destination: 'https://mlaursen.github.io/react-md-v1-docs/#/:paths*',
+        permanent: false,
+      },
+    ];
+  },
 };
 
-module.exports = withImages(withCustomConfig());
+module.exports = config;
