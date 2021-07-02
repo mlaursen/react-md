@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import commander from "commander";
+import { Command, program } from "commander";
 import loglevel from "loglevel";
 
 import { clean } from "./clean";
@@ -29,11 +29,8 @@ if (argv.includes(DEBUG)) {
   loglevel.setLevel("info");
 }
 
-const createCommand = (
-  command: string,
-  cleanable = false
-): commander.Command => {
-  const instance = commander
+const createCommand = (command: string, cleanable = false): Command => {
+  const instance = program
     .command(command)
     .option(DEBUG, "Enables the verbose logging to help debug errors.")
     .option(SILENT, "Disables all logging.");
@@ -208,4 +205,4 @@ createCommand("typedoc")
   )
   .action(() => typedoc());
 
-commander.parse(process.argv);
+program.parse(process.argv);

@@ -128,9 +128,8 @@ function SnackbarQueueT<M extends ToastMessage = ToastMessage>(
   );
 }
 
-export const SnackbarQueue =
-  forwardRef<
-    HTMLDivElement,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    SnackbarQueueProps<any>
-  >(SnackbarQueueT);
+export const SnackbarQueue = forwardRef<
+  HTMLDivElement,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  SnackbarQueueProps<any>
+>(SnackbarQueueT);
