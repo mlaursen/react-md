@@ -2,7 +2,6 @@ import { Octokit } from "@octokit/core";
 import dotenv from "dotenv";
 import log from "loglevel";
 import { join } from "path";
-import prompts from "prompts";
 
 import { changelogData } from "./changelogData";
 import { clean } from "./clean";
@@ -14,6 +13,7 @@ import {
   replaceTag,
   run,
   uncommittedFiles,
+  verify,
 } from "./utils";
 import { initBlog } from "./utils/initBlog";
 import { variables } from "./variables";
@@ -56,17 +56,8 @@ async function rollback(): Promise<never> {
   return process.exit(1);
 }
 
-async function verify(autoConfirm: boolean): Promise<void> {
-  if (autoConfirm) {
-    return;
-  }
-
-  const { complete } = await prompts({
-    type: "confirm",
-    name: "complete",
-    message: "Continue the release?",
-    initial: false,
-  });
+async function continueOrRollback(autoConfirm: boolean): Promise<void> {
+  const complete = await verify("Continue the release?", autoConfirm);
 
   if (!complete) {
     await rollback();
@@ -143,7 +134,7 @@ A token can be created at:
 
   if (blog) {
     log.info("Update the blog...");
-    await verify(autoYes);
+    await continueOrRollback(autoYes);
   }
 
   git("add -u");
@@ -155,7 +146,7 @@ A token can be created at:
   }
 
   run(`npx lerna publish from-package${distTag}${yes}`);
-  await verify(autoYes);
+  await continueOrRollback(autoYes);
 
   git("push origin main");
   git("push --tags");

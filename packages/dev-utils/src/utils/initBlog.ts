@@ -1,25 +1,25 @@
 import { readFile, writeFile } from "fs-extra";
-import { join } from "path";
 import log from "loglevel";
+import { join } from "path";
+
 import { documentationRoot, projectRoot, src } from "../constants";
-import { getPackageJson } from "./packages";
 import { format } from "./format";
+import { getPackageJson } from "./packages";
+import { verify } from "./verify";
 
 const NEW_ENTRY = /^#{1,2}\s+\[\d/;
 
-/**
- *
- * @returns the current release markdown that can be used to generate a github
- * release for the current tag.
- */
-export async function initBlog(): Promise<string> {
-  const blogPath = join(documentationRoot, src, "blogs", "index.md");
-  const version = (await getPackageJson("react-md")).version;
+async function getCurrentReleaseNotes(): Promise<string> {
+  log.info("Update the root CHANGELOG.md with any additional changes.");
+  if (!(await verify("Continue with the release?"))) {
+    process.exit(1);
+  }
+
   const changelog = await readFile(join(projectRoot, "CHANGELOG.md"), "utf8");
-  const blog = await readFile(blogPath, "utf-8");
   const lines = changelog.split(/\r?\n/);
   let lastEntryStart = -1;
   let nextEntryStart = -1;
+
   for (let i = 0; i < lines.length; i += 1) {
     if (NEW_ENTRY.test(lines[i])) {
       if (lastEntryStart === -1) {
@@ -36,8 +36,21 @@ export async function initBlog(): Promise<string> {
     process.exit(1);
   }
 
-  const currentRelease = lines.slice(lastEntryStart, nextEntryStart).join("\n");
-  const blogMarkdown = currentRelease
+  return lines.slice(lastEntryStart, nextEntryStart).join("\n");
+}
+
+/**
+ *
+ * @returns the current release markdown that can be used to generate a github
+ * release for the current tag.
+ */
+export async function initBlog(): Promise<string> {
+  const blogPath = join(documentationRoot, src, "blogs", "index.md");
+  const version = (await getPackageJson("react-md")).version;
+  const blog = await readFile(blogPath, "utf-8");
+
+  const currentReleaseNotes = await getCurrentReleaseNotes();
+  const blogMarkdown = currentReleaseNotes
     // create smaller headings and remove margin
     .replace(/^(###)\s+(.+)$/gm, "##### $2<!-- no-margin -->")
     // replace issue/pr references with super-shorthand syntax.  they can
@@ -65,5 +78,5 @@ ${blog}
 
   await writeFile(blogPath, format(contents, "markdown"));
 
-  return currentRelease;
+  return currentReleaseNotes;
 }
