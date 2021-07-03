@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.5](https://github.com/mlaursen/react-md/compare/v2.8.4...v2.8.5) (2021-07-03)
+
+
+### Other Internal Changes
+
+* **@react-md/dev-utils:** Updated release script to allow custom CHANGELOG updates ([dde151b](https://github.com/mlaursen/react-md/commit/dde151bdaf3f9872bf2c4a33abc03910337da083))
+
+
+
+
+
+
 ## [2.8.4](https://github.com/mlaursen/react-md/compare/v2.8.3...v2.8.4) (2021-06-10)
 
 

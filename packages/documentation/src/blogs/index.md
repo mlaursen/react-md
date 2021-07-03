@@ -1,3 +1,35 @@
+Title: react-md 2.8.5
+
+Date: 07/03/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** `MenuItemCheckbox` added missing indeterminate state
+  (aa2c552), closes #1186
+- **@react-md/form:** `useIndeterminateChecked` correctly uses readonly prefix
+  (7f69a71)
+- **@react-md/form:** `useIndeterminateChecked` supports `MenuItemCheckbox` with
+  new option (9ab67bf)
+- **@react-md/form:** `MenuItemCheckbox`, `MenuItemRadio`, and `MenuItemSwitch`
+  styles on light themes (fc4dcd9)
+
+##### Documentation<!-- no-margin -->
+
+- **@react-md/form:** Updated documentation for `useIndeterminateChecked`
+  (8646c28)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- **@react-md/dev-utils:** Updated release script to allow custom CHANGELOG
+  updates (dde151b)
+- **@react-md/form:** Added tests for `useIndeterminateChecked` (cc2a422)
+- **react-md.dev:** Updated `MenuWithFormControls` example for indeterminate
+  checkboxes (2d20848)
+
+---
+
 Title: react-md 2.8.4
 
 Date: 06/10/2021

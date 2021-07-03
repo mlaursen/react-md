@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.5](https://github.com/mlaursen/react-md/compare/v2.8.4...v2.8.5) (2021-07-03)
+
+
+### Bug Fixes
+
+* **@react-md/form:** `useIndeterminateChecked` supports `MenuItemCheckbox` with new option ([9ab67bf](https://github.com/mlaursen/react-md/commit/9ab67bffe5cad01991452bd35fefd2fa0724701e))
+
+
+### Other Internal Changes
+
+* **react-md.dev:** Updated MenuWithFormControls example for indeterminate checkboxes ([2d20848](https://github.com/mlaursen/react-md/commit/2d208485c75eb9c717b10a771e291b38fd2cd11b))
+
+
+
+
+
+
 ## [2.8.4](https://github.com/mlaursen/react-md/compare/v2.8.3...v2.8.4) (2021-06-10)
 
 

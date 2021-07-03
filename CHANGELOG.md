@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.5](https://github.com/mlaursen/react-md/compare/v2.8.4...v2.8.5) (2021-07-03)
+
+
+### Bug Fixes
+
+* **@react-md/form:** `MenuItemCheckbox` added missing indeterminate state ([aa2c552](https://github.com/mlaursen/react-md/commit/aa2c55215812de2052b3af691ac16405806f3952)), closes [#1186](https://github.com/mlaursen/react-md/issues/1186)
+* **@react-md/form:** `useIndeterminateChecked` correctly uses readonly prefix ([7f69a71](https://github.com/mlaursen/react-md/commit/7f69a719affbe6d15542225b94ba4b0dc5ea5fa4))
+* **@react-md/form:** `useIndeterminateChecked` supports `MenuItemCheckbox` with new option ([9ab67bf](https://github.com/mlaursen/react-md/commit/9ab67bffe5cad01991452bd35fefd2fa0724701e))
+* **@react-md/form:** `MenuItemCheckbox`, `MenuItemRadio`, and `MenuItemSwitch` styles on light themes ([fc4dcd9](https://github.com/mlaursen/react-md/commit/fc4dcd9a2b687f5cee6a62efefc6ad5d2a87b6cc))
+
+
+### Documentation
+
+* **@react-md/form:** Updated documentation for `useIndeterminateChecked` ([8646c28](https://github.com/mlaursen/react-md/commit/8646c2819e9c6d03a4635f5813f8f3c93ff6bdd3))
+
+
+### Other Internal Changes
+
+* **@react-md/dev-utils:** Updated release script to allow custom CHANGELOG updates ([dde151b](https://github.com/mlaursen/react-md/commit/dde151bdaf3f9872bf2c4a33abc03910337da083))
+* **@react-md/form:** Added tests for `useIndeterminateChecked` ([cc2a422](https://github.com/mlaursen/react-md/commit/cc2a4220a964fe128c020bdea058316081092a87))
+* **react-md.dev:** Updated `MenuWithFormControls` example for indeterminate checkboxes ([2d20848](https://github.com/mlaursen/react-md/commit/2d208485c75eb9c717b10a771e291b38fd2cd11b))
+
+
+
+
+
+
 ## [2.8.4](https://github.com/mlaursen/react-md/compare/v2.8.3...v2.8.4) (2021-06-10)
 
 
