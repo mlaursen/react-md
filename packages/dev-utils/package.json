@@ -40,10 +40,10 @@
     "prompts": "^2.4.1",
     "rimraf": "^3.0.2",
     "sassdoc": "^2.7.2",
-    "ts-morph": "^10.0.2",
-    "typedoc": "^0.20.36",
+    "ts-morph": "^11.0.0",
+    "typedoc": "^0.21.2",
     "typedoc-plugin-sourcefile-url": "^1.0.6",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.5"
   },
   "devDependencies": {
     "@types/cssnano": "^4.0.0",
