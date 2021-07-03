@@ -25,38 +25,27 @@ const labels = {
   d: "Label 4",
 } as const;
 
-function toCheckedChange<P extends { onChange(): void }>({
-  onChange,
-  ...props
-}: P): Omit<P, "onChange"> & { onCheckedChange(): void } {
-  return {
-    ...props,
-    onCheckedChange: onChange,
-  };
-}
-
 export default function MenusWithFormControls(): ReactElement | null {
   const [bold, setBold] = useState(false);
   const [italic, setItalic] = useState(false);
   const [decoration, setDecoration] = useState<Decoration>("none");
   const [checked, setChecked] = useState(false);
-  const { rootProps, getProps } = useIndeterminateChecked(values);
+  const { rootProps, getProps } = useIndeterminateChecked(values, {
+    menu: true,
+  });
 
   return (
     <DropdownMenu
       id="some-id"
       items={[
         <MenuItem id="item-1">Item 1</MenuItem>,
-        <MenuItemCheckbox
-          id="some-group-id-root"
-          {...toCheckedChange(rootProps)}
-        >
+        <MenuItemCheckbox id="some-group-id-root" {...rootProps}>
           Toggle All
         </MenuItemCheckbox>,
         ...values.map((value, i) => (
           <MenuItemCheckbox
             id={`some-group-id-${i + 1}`}
-            {...toCheckedChange(getProps(value))}
+            {...getProps(value)}
             key={value}
           >
             {labels[value]}

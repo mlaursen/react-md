@@ -1,41 +1,142 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
 /**
- * All the props that will be provided from the `useIndeterminateChecked` hook
- * for the root indeterminate checkbox.
+ * This is the `useState` initializer that can be used if some checkboxes should
+ * be checked by default.
+ *
+ * @internal
+ * @remarks \@since 2.8.5
  */
-export interface ProvidedIndeterminateCheckboxProps {
+type Initializer<V extends string> = readonly V[] | (() => readonly V[]);
+
+/**
+ * The change handler for indeterminate checkboxes.
+ *
+ * @param values - The current list of checked values.
+ * @typeParam V - The values allowed for the list of checkboxes.
+ * @internal
+ * @remarks \@since 2.8.5
+ */
+type OnChange<V extends string> = (values: readonly V[]) => void;
+
+/**
+ * @remarks \@since 2.8.5
+ * @typeParam V - The values allowed for the list of checkboxes.
+ */
+export interface IndeterminateCheckedHookOptions<V extends string> {
+  /**
+   * Enabling this option will update the returned props to rename `onChange` to
+   * `onCheckedChange` to work with the {@link MenuItemCheckbox} component.
+   *
+   * @defaultValue `false`
+   */
+  menu?: boolean;
+
+  /** {@inheritDoc OnChange} */
+  onChange?: OnChange<V>;
+
+  /** {@inheritDoc Initializer} */
+  defaultCheckedValues?: Initializer<V>;
+}
+
+/** @remarks \@since 2.8.5 */
+export interface BaseProvidedIndeterminateCheckboxProps {
+  /**
+   * Note: This will only be provided when the {@link indeterminate} prop is
+   * `true`.
+   */
   "aria-checked"?: "mixed";
+
+  /**
+   * Boolean if the root checkbox is currently checked.
+   */
   checked: boolean;
-  onChange(): void;
+
+  /**
+   * This will be set to `true` when at least one checkbox has been checked but
+   * not every checkbox to enable the {@link CheckboxProps.indeterminate} state.
+   */
   indeterminate: boolean;
 }
 
 /**
- * All the props that will be provided for all the checkboxes that are
- * controlled by the root indeterminate checkbox.
+ * @remarks \@since 2.8.5
+ * @typeParam V - The values allowed for the list of checkboxes.
  */
-export interface ProvidedIndeterminateControlledCheckboxProps<
-  T extends string
+export interface BaseProvidedIndeterminateControlledCheckboxProps<
+  V extends string
 > {
-  value: T;
+  /**
+   * One of the values provided to the {@link useIndeterminateChecked} hook.
+   */
+  value: V;
+
+  /**
+   * Boolean if the current checkbox is checked.
+   */
   checked: boolean;
-  onChange(): void;
 }
 
 /**
- * The function that provides the props for each checkbox that is controlled by
- * the root indeterminate checkbox.
+ * @remarks \@since 2.8.5
+ * @typeParam V - The values allowed for the list of checkboxes.
  */
-export type GetIndeterminateControlledCheckboxProps<T extends string> = (
-  value: T
-) => ProvidedIndeterminateControlledCheckboxProps<T>;
+export interface BaseIndeterminateCheckedHookReturnValue<V extends string> {
+  /**
+   * A list of all the values that are currently checked.
+   */
+  checkedValues: readonly V[];
 
-export interface IndeterminateCheckedReturnValue<T extends string> {
-  getProps: GetIndeterminateControlledCheckboxProps<T>;
-  rootProps: ProvidedIndeterminateCheckboxProps;
-  checkedValues: readonly T[];
-  setCheckedValues: Dispatch<SetStateAction<readonly T[]>>;
+  /**
+   * A function to manually override the {@link checkedValues} if the default
+   * hook's implementation does not work for your use-case.
+   */
+  setCheckedValues: Dispatch<SetStateAction<readonly V[]>>;
+}
+
+/**
+ * @remarks \@since 2.8.5
+ * @typeParam V - The values allowed for the list of checkboxes.
+ * @internal
+ */
+interface OnChangeReturnValue<V extends string>
+  extends BaseIndeterminateCheckedHookReturnValue<V> {
+  rootProps: BaseProvidedIndeterminateCheckboxProps & { onChange(): void };
+  getProps(
+    value: V
+  ): BaseProvidedIndeterminateControlledCheckboxProps<V> & { onChange(): void };
+}
+
+/**
+ * @remarks \@since 2.8.5
+ * @typeParam V - The values allowed for the list of checkboxes.
+ * @internal
+ */
+interface OnCheckedChangeReturnValue<V extends string>
+  extends BaseIndeterminateCheckedHookReturnValue<V> {
+  rootProps: BaseProvidedIndeterminateCheckboxProps & {
+    onCheckedChange(): void;
+  };
+  getProps(value: V): BaseProvidedIndeterminateControlledCheckboxProps<V> & {
+    onCheckedChange(): void;
+  };
+}
+
+/**
+ * @remarks \@since 2.8.5
+ * @typeParam V - The values allowed for the list of checkboxes.
+ * @internal
+ */
+interface CombinedReturnValue<V extends string>
+  extends BaseIndeterminateCheckedHookReturnValue<V> {
+  rootProps: BaseProvidedIndeterminateCheckboxProps & {
+    onChange?(): void;
+    onCheckedChange?(): void;
+  };
+  getProps(value: V): BaseProvidedIndeterminateControlledCheckboxProps<V> & {
+    onChange?(): void;
+    onCheckedChange?(): void;
+  };
 }
 
 /**
@@ -43,13 +144,16 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  * place along with an indeterminate checkbox that can check/uncheck all
  * checkboxes at once.
  *
- * ### Examples:
- *
- * #### Simple value list with labels lookup:
- *
+ * @example
+ * Simple value list with labels lookup:
  * ```tsx
  * const values = ["a", "b", "c", "d"] as const;
- * const LABELS = { a: "Label 1", b: "Label 2", c: "Label 3", d: "Label 4" } as const;
+ * const LABELS = {
+ *   a: "Label 1",
+ *   b: "Label 2",
+ *   c: "Label 3",
+ *   d: "Label 4",
+ * } as const;
  * const { getProps, rootProps } = useIndeterminateChecked(values);
  *
  * return (
@@ -66,7 +170,8 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  * );
  * ```
  *
- * #### Fetch Data From Server and check first result
+ * @example
+ * Fetch Data From Server and check first result
  * ```tsx
  * interface ServerFetchedData {
  *   id: Guid;
@@ -110,69 +215,122 @@ export interface IndeterminateCheckedReturnValue<T extends string> {
  * );
  * ```
  *
- * @param values - All the checkbox values that the indeterminate checkbox can
- * control. The values will **need** to be unique as they are passed to each
- * checkbox to determine if it is checked or not. This will directly map to
- * the `value` attribute for each checkbox.
- * @param defaultCheckedValues - An optional list of all the values that are
- * checked on first render. Changing this value will not update the checked
- * values.
- * @param onChange - An optional function to call whenever the checked values
- * list updates that will provide the next list of all the checked values. This
- * isn't a super helpful prop since this hook will always return the checked
- * values anyways.
- * @returns An object containing a function to get the props for each controlled
- * checkbox, the props for the root indeterminate checkbox, a list of all the
- * checked values, and a general `setCheckboxValues` function from `useState` if
- * the list of values can be changed from external sources as well.
+ * @example
+ * With MenuItemCheckbox
+ * ```tsx
+ * const values = ["a", "b", "c", "d"] as const;
+ * const LABELS = {
+ *   a: "Label 1",
+ *   b: "Label 2",
+ *   c: "Label 3",
+ *   d: "Label 4",
+ * } as const;
+ * const { getProps, rootProps } = useIndeterminateChecked(values, {
+ *   menu: true,
+ * });
+ *
+ * return (
+ *   <DropdownMenu
+ *     id="dropdown-menu-id"
+ *     items={[
+ *       <MenuItemCheckbox
+ *         id="dropdown-menu-id-toggle-all"
+ *         {...rootProps}
+ *       >
+ *         Toggle All
+ *       </MenuItemCheckbox>,
+ *       ...values.map((value, i) => (
+ *         <MenuItemCheckbox
+ *           id={`dropdown-menu-id-${i + 1}`}
+ *           {...getProps(value)}
+ *         >
+ *           {LABELS[value]}
+ *         </MenuItemCheckbox>
+ *       ))
+ *     ]}
+ *   >
+ *     Button
+ *   </DropdownMenu>
+ * );
+ * ```
  */
-export function useIndeterminateChecked<T extends string>(
-  values: readonly T[],
-  defaultCheckedValues: readonly T[] | (() => readonly T[]) = [],
-  onChange?: (checkedValues: readonly T[]) => void
-): IndeterminateCheckedReturnValue<T> {
+export function useIndeterminateChecked<V extends string>(
+  values: readonly V[],
+  defaultCheckedValues: Initializer<V>,
+  onChange?: OnChange<V>
+): OnChangeReturnValue<V>;
+export function useIndeterminateChecked<V extends string>(
+  values: readonly V[],
+  options?: IndeterminateCheckedHookOptions<V> & { menu?: false }
+): OnChangeReturnValue<V>;
+export function useIndeterminateChecked<V extends string>(
+  values: readonly V[],
+  options: IndeterminateCheckedHookOptions<V> & { menu: true }
+): OnCheckedChangeReturnValue<V>;
+export function useIndeterminateChecked<V extends string>(
+  values: readonly V[],
+  defaultOrOptions?: IndeterminateCheckedHookOptions<V> | Initializer<V>,
+  optionalOnChange?: OnChange<V>
+): CombinedReturnValue<V> {
+  let menu = false;
+  let propOnChange: OnChange<V> | undefined = optionalOnChange;
+  let defaultCheckedValues: Initializer<V>;
+  if (
+    typeof defaultOrOptions === "undefined" ||
+    !("length" in defaultOrOptions)
+  ) {
+    ({
+      menu = false,
+      onChange: propOnChange,
+      defaultCheckedValues = [],
+    } = defaultOrOptions ?? {});
+  } else {
+    defaultCheckedValues = defaultOrOptions;
+  }
+
   const [checkedValues, setCheckedValues] =
-    useState<readonly T[]>(defaultCheckedValues);
+    useState<readonly V[]>(defaultCheckedValues);
   const checked = checkedValues.length > 0;
   const indeterminate = checked && checkedValues.length < values.length;
-
-  const updateCheckedValues = (values: readonly T[]): void => {
-    if (onChange) {
-      onChange(values);
-    }
-
+  const updateCheckedValues = (values: readonly V[]): void => {
+    propOnChange?.(values);
     setCheckedValues(values);
   };
 
-  const rootProps: ProvidedIndeterminateCheckboxProps = {
-    "aria-checked": indeterminate ? "mixed" : undefined,
-    checked,
-    indeterminate,
-    onChange: () =>
-      updateCheckedValues(
-        checkedValues.length === 0 || indeterminate ? values : []
-      ),
+  const onChange = (): void => {
+    updateCheckedValues(
+      checkedValues.length === 0 || indeterminate ? values : []
+    );
   };
 
-  const getProps: GetIndeterminateControlledCheckboxProps<T> = (value) => ({
-    value,
-    checked: checkedValues.includes(value),
-    onChange: () => {
-      const i = checkedValues.indexOf(value);
-      const nextChecked = checkedValues.slice();
-      if (i === -1) {
-        nextChecked.push(value);
-      } else {
-        nextChecked.splice(i, 1);
-      }
-
-      updateCheckedValues(nextChecked);
-    },
-  });
-
   return {
-    getProps,
-    rootProps,
+    rootProps: {
+      "aria-checked": indeterminate ? "mixed" : undefined,
+      checked,
+      indeterminate,
+      onChange: menu ? undefined : onChange,
+      onCheckedChange: menu ? onChange : undefined,
+    },
+    getProps: (value) => {
+      const onChange = (): void => {
+        const i = checkedValues.indexOf(value);
+        const nextChecked = checkedValues.slice();
+        if (i === -1) {
+          nextChecked.push(value);
+        } else {
+          nextChecked.splice(i, 1);
+        }
+
+        updateCheckedValues(nextChecked);
+      };
+
+      return {
+        value,
+        checked: checkedValues.includes(value),
+        onChange: menu ? undefined : onChange,
+        onCheckedChange: menu ? onChange : undefined,
+      };
+    },
     checkedValues,
     setCheckedValues,
   };
