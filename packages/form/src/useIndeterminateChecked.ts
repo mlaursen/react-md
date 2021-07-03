@@ -1,9 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
 /**
- * This is the `useState` initializer that can be used if some checkboxes should
- * be checked by default.
- *
  * @internal
  * @remarks \@since 2.8.5
  */
@@ -32,10 +29,17 @@ export interface IndeterminateCheckedHookOptions<V extends string> {
    */
   menu?: boolean;
 
-  /** {@inheritDoc OnChange} */
+  /**
+   * This is the `useState` initializer that can be used if some checkboxes should
+   * be checked by default.
+   */
   onChange?: OnChange<V>;
 
-  /** {@inheritDoc Initializer} */
+  /**
+   * The change handler for indeterminate checkboxes.
+   *
+   * @param values - The current list of checked values.
+   */
   defaultCheckedValues?: Initializer<V>;
 }
 
@@ -181,11 +185,29 @@ interface OnCheckedChangeReturnValue<V extends string>
  * @typeParam V - The values allowed for the list of checkboxes.
  * @internal
  */
-interface CombinedReturnValue<V extends string>
+export interface CombinedIndeterminateCheckedHookReturnValue<V extends string>
   extends BaseIndeterminateCheckedHookReturnValue<V> {
   rootProps: ProvidedCombinedIndeterminateProps;
   getProps(value: V): ProvidedCombinedIndeterminateControlledProps<V>;
 }
+
+/**
+ * @deprecated \@since 2.8.5 Use the implementation that accepts options as the
+ * second argument.
+ */
+export function useIndeterminateChecked<V extends string>(
+  values: readonly V[],
+  defaultCheckedValues: Initializer<V>,
+  onChange?: OnChange<V>
+): OnChangeReturnValue<V>;
+export function useIndeterminateChecked<V extends string>(
+  values: readonly V[],
+  options?: IndeterminateCheckedHookOptions<V> & { menu?: false }
+): OnChangeReturnValue<V>;
+export function useIndeterminateChecked<V extends string>(
+  values: readonly V[],
+  options: IndeterminateCheckedHookOptions<V> & { menu: true }
+): OnCheckedChangeReturnValue<V>;
 
 /**
  * This hook allows you to toggle the state of multiple checkboxes in a single
@@ -301,25 +323,25 @@ interface CombinedReturnValue<V extends string>
  *   </DropdownMenu>
  * );
  * ```
+ *
+ * @typeParam V - The allowed values for the checkboxes
+ * @param values - The allowed values for the checkboxes which is used to
+ * control the checked states.
+ * @param defaultOrOptions - The {@link IndeterminateCheckedHookOptions} or a
+ * `useState` initializer callback/default value for backwards compatibility
+ * @param optionalOnChange - This is really just for backwards compatibility and
+ * should not be used. Use {@link IndeterminateCheckedHookOptions.onChange}
+ * instead.
+ * @returns an object containing the `rootProps` to pass to the indeterminate
+ * checkbox, a `getProps` function to provide the controlled behavior for the
+ * additional `values` in the checkbox list, a list of `checkedValues`, and a
+ * `setCheckedValues` function to manually override the state if needed.
  */
-export function useIndeterminateChecked<V extends string>(
-  values: readonly V[],
-  defaultCheckedValues: Initializer<V>,
-  onChange?: OnChange<V>
-): OnChangeReturnValue<V>;
-export function useIndeterminateChecked<V extends string>(
-  values: readonly V[],
-  options?: IndeterminateCheckedHookOptions<V> & { menu?: false }
-): OnChangeReturnValue<V>;
-export function useIndeterminateChecked<V extends string>(
-  values: readonly V[],
-  options: IndeterminateCheckedHookOptions<V> & { menu: true }
-): OnCheckedChangeReturnValue<V>;
 export function useIndeterminateChecked<V extends string>(
   values: readonly V[],
   defaultOrOptions?: IndeterminateCheckedHookOptions<V> | Initializer<V>,
   optionalOnChange?: OnChange<V>
-): CombinedReturnValue<V> {
+): CombinedIndeterminateCheckedHookReturnValue<V> {
   let menu = false;
   let propOnChange: OnChange<V> | undefined = optionalOnChange;
   let defaultCheckedValues: Initializer<V>;
