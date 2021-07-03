@@ -151,7 +151,7 @@ export const MenuItemInputToggle = forwardRef<
     icon = <SwitchTrack checked={checked} />;
   } else if (icon && type !== "switch") {
     icon = (
-      <span className="rmd-toggle">
+      <span className={cn("rmd-toggle", styles("toggle"))}>
         <InputToggleIcon
           circle={type === "radio"}
           disabled={disabled}

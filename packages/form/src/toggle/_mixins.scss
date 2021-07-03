@@ -4,6 +4,7 @@
 
 @import '~@react-md/button/dist/mixins';
 @import '~@react-md/icon/dist/mixins';
+@import '~@react-md/menu/dist/mixins';
 @import '~@react-md/progress/dist/mixins';
 @import '~@react-md/states/dist/mixins';
 @import '~@react-md/theme/dist/mixins';
@@ -374,6 +375,19 @@
     &--switch {
       // this makes the spacing correct between the switch and the text
       @include rmd-icon-theme-update-var(size, $rmd-switch-track-width);
+    }
+
+    &__toggle {
+      // this disables some weird background color borders that gets applied
+      // during `:hover` and `:focus`
+      @include rmd-menu-theme(background-color);
+    }
+
+    // disable the interaction states since they are handled by the main menu
+    // item. has to override both behaviors for `:focus` and `:hover` changes.
+    .rmd-switch__ball,
+    .rmd-switch__ball:hover {
+      @include rmd-states-theme-update-var(background-color, transparent);
     }
   }
 
