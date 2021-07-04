@@ -29,7 +29,7 @@ import {
  * {@link FilesValidator}.
  * @remarks \@since 2.9.0
  */
-export interface FileUploadState<CustomError = Error> {
+export interface FileUploadState<CustomError = never> {
   /**
    * All the files that have been validated and are either:
    * - pending upload
@@ -59,7 +59,7 @@ export interface FileUploadState<CustomError = Error> {
  * @remarks \@since 2.9.0
  * @internal
  */
-export interface FileUploadHookState<CustomError = Error>
+export interface FileUploadHookState<CustomError = never>
   extends FileUploadState<CustomError> {
   /**
    * All the current readers used for uploading files to the browser.
@@ -77,7 +77,7 @@ export interface FileUploadHookState<CustomError = Error>
  * {@link FilesValidator}.
  * @remarks \@since 2.9.0
  */
-export interface FileUploadOptions<E extends HTMLElement, CustomError = Error>
+export interface FileUploadOptions<E extends HTMLElement, CustomError = never>
   extends FileUploadHandlers<E>,
     FileValidationOptions {
   /**
@@ -97,7 +97,7 @@ export interface FileUploadOptions<E extends HTMLElement, CustomError = Error>
 }
 
 /** @internal */
-type Action<E = Error> =
+type Action<E = never> =
   | {
       type: "queue";
       errors: readonly FileValidationError<E>[];
@@ -144,7 +144,7 @@ export interface FileUploadActions {
  */
 export interface FileUploadHookReturnValue<
   E extends HTMLElement = HTMLElement,
-  CustomError = Error
+  CustomError = never
 > extends FileUploadActions,
     Required<FileUploadHandlers<E>> {
   /** {@inheritDoc FileUploadState.errors} */
@@ -207,7 +207,7 @@ const DEFAULT_EXTENSIONS = [] as const;
  * @returns the {@link FileUploadHookReturnValue}
  * @remarks \@since 2.9.0
  */
-export function useFileUpload<E extends HTMLElement, CustomError = Error>({
+export function useFileUpload<E extends HTMLElement, CustomError = never>({
   maxFiles = -1,
   extensions = DEFAULT_EXTENSIONS,
   minFileSize = -1,

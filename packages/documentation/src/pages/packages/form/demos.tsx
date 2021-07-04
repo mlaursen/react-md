@@ -11,7 +11,7 @@ one of the following pages:
 
 - [Text Field Demos](./text-field-demos)
 - [Select Field Demos](./select-field-demos)
-- [Selection Control Demos](./selection-control--demos)
+- [Selection Control Demos](./selection-control-demos)
 - [File Input Demos](./file-input-demos)
 - [Slider Demos](./slider-demos)
 - [Validation Demos](./validation-demos)
