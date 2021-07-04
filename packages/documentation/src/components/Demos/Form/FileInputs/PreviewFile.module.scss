@@ -1,0 +1,28 @@
+@import '~@react-md/card/dist/mixins';
+@import '~@react-md/icon/dist/mixins';
+@import '~@react-md/progress/dist/mixins';
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  align-items: center;
+  flex: 1 1 auto;
+  justify-content: center;
+  min-height: 0;
+  position: relative;
+}
+
+.icon {
+  @include rmd-icon-theme-update-var(size, 4rem);
+
+  margin-top: 10%;
+}
+
+.progress {
+  @include rmd-progress-theme-update-var(linear-size, 0.5rem);
+
+  margin-top: auto;
+}

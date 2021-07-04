@@ -1,0 +1,15 @@
+@import '~@react-md/icon/dist/mixins';
+
+.responsive {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.overlay {
+  @include rmd-icon-theme-update-var(size, 2rem);
+  @include rmd-icon-theme-update-var(color, $rmd-theme-error);
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

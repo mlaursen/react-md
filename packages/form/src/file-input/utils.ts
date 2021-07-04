@@ -373,7 +373,7 @@ export interface ValidatedFilesResult<CustomError> {
  * @see {@link validateFiles} for the default implementation
  * @remarks \@since 2.9.0
  */
-export type FilesValidator<CustomError = GenericFileError> = (
+export type FilesValidator<CustomError = never> = (
   files: readonly File[],
   options: FilesValidationOptions
 ) => ValidatedFilesResult<CustomError>;
