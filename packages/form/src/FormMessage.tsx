@@ -3,6 +3,7 @@ import cn from "classnames";
 import { bem } from "@react-md/utils";
 
 import { FormTheme, useFormTheme } from "./FormThemeProvider";
+import { FormMessageCounter } from "./FormMessageCounter";
 
 const block = bem("rmd-form-message");
 
@@ -81,8 +82,12 @@ export interface FormMessageProps
  * ```
  *
  * Note: this should not be used alongside form-level messages.
+ *
+ * @remarks \@since 2.9.0 Renamed from `FormMessageCounterProps` to
+ * `FormMessageInputLengthCounterProps` since a `FormMessageCounter` component
+ * was added
  */
-export interface FormMessageCounterProps {
+export interface FormMessageInputLengthCounterProps {
   /**
    * The current length of the value in the related text field.
    */
@@ -106,7 +111,7 @@ export interface FormMessageCounterProps {
 
 export interface FormMessageWithCounterProps
   extends FormMessageProps,
-    FormMessageCounterProps {}
+    FormMessageInputLengthCounterProps {}
 
 /**
  * The `FormMessage` component is used to create additional helper messages or
@@ -119,7 +124,7 @@ export interface FormMessageWithCounterProps
  */
 export const FormMessage = forwardRef<
   HTMLDivElement,
-  FormMessageProps & Partial<FormMessageCounterProps>
+  FormMessageProps & Partial<FormMessageInputLengthCounterProps>
 >(function FormMessage(
   {
     id,
@@ -170,13 +175,13 @@ export const FormMessage = forwardRef<
     >
       {message}
       {typeof length === "number" && typeof maxLength === "number" && (
-        <span
+        <FormMessageCounter
           id={`${id}-counter`}
           style={counterStyle}
-          className={cn(block("counter"), counterClassName)}
+          className={counterClassName}
         >
           {`${length} / ${maxLength}`}
-        </span>
+        </FormMessageCounter>
       )}
     </div>
   );
