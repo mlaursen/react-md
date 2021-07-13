@@ -50,6 +50,22 @@ const noop = (): void => {
 };
 
 /**
+ * This used to just be `pathname.replace(/\?.*$/, "")` but that can apparently
+ * cause performance issues or a DoS attack if the pathname contains multiple
+ * ?`?` (shouldn't really be possible though)
+ *
+ * @remarks \@since 2.9.0
+ */
+const removeQueryParams = (pathname: string): string => {
+  const i = pathname.indexOf("?");
+  if (i === -1) {
+    return pathname;
+  }
+
+  return pathname.substring(0, i);
+};
+
+/**
  * This is a pretty reasonable default implementation for having a navigation
  * tree within the Layout component. The way it'll work is that the current
  * route will be the only selected item within the tree. When the pathname
@@ -79,7 +95,7 @@ export function useLayoutNavigation<
   pathname: string,
   linkComponent: ElementType = Link
 ): LayoutNavigationState<T> {
-  const itemId = pathname.replace(/\?.*$/, "");
+  const itemId = removeQueryParams(pathname);
   const { expandedIds, onItemExpansion, onMultiItemExpansion } =
     useTreeItemExpansion(() => getParentIds(itemId, navItems));
 
