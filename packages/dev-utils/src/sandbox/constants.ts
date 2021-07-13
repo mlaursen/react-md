@@ -10,6 +10,15 @@ export const SANDBOXES_PATH = join(
   "sandboxes"
 );
 
+export const FORM_PARTS = [
+  "FileInputs",
+  "SelectFields",
+  "SelectionControls",
+  "Sliders",
+  "TextFields",
+  "Validation",
+];
+
 export const DEPENDENCIES = [
   "@react-md/layout",
   "@react-md/states",

@@ -25,8 +25,8 @@ export function createSandboxes(
 
     const sourceFile = project.getSourceFileOrThrow(demoFilePath);
     const imports = sourceFile.getImportDeclarations();
-    const i =
-      imports.findIndex((imp) => imp.getText().endsWith('../DemoPage";')) + 1;
+    let i =
+      imports.findIndex((imp) => imp.getText().endsWith('/DemoPage";')) + 1;
     if (i === 0) {
       log.error(
         "Unable to find a `DemoPage` token for the current source file:"
@@ -35,6 +35,10 @@ export function createSandboxes(
       log.error(new Error().stack);
       process.exit(1);
     }
+    if (imports[i].getText().endsWith('Demos/types";')) {
+      i += 1;
+    }
+
     const demos = imports
       .slice(i)
       .filter(

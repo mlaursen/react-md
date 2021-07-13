@@ -11,7 +11,10 @@ import {
 } from "react";
 import { useIcon } from "@react-md/icon";
 
-import { FormMessageCounterProps, FormMessageProps } from "../FormMessage";
+import {
+  FormMessageInputLengthCounterProps,
+  FormMessageProps,
+} from "../FormMessage";
 import { defaultGetErrorIcon, GetErrorIcon } from "./getErrorIcon";
 import {
   ChangeValidationBehavior,
@@ -157,7 +160,7 @@ export interface TextFieldHookOptions
 export interface ProvidedFormMessageProps
   extends Pick<FormMessageProps, "id" | "theme" | "children">,
     Required<Pick<TextFieldProps, "error">>,
-    Partial<Pick<FormMessageCounterProps, "length" | "maxLength">> {}
+    Partial<Pick<FormMessageInputLengthCounterProps, "length" | "maxLength">> {}
 
 /**
  * All the props that will be generated and returned by the `useTextField` hook

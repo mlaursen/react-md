@@ -3,7 +3,12 @@ import log from "loglevel";
 import { join } from "path";
 
 import { clean, format, glob } from "../utils";
-import { DEMOS_FOLDER, SANDBOXES_FILE, SANDBOXES_PATH } from "./constants";
+import {
+  FORM_PARTS,
+  DEMOS_FOLDER,
+  SANDBOXES_FILE,
+  SANDBOXES_PATH,
+} from "./constants";
 import { createSandboxes } from "./createSandboxes";
 
 type Lookups = Record<string, Record<string, string>>;
@@ -43,7 +48,17 @@ export async function sandbox({
 
   const fullPattern = `${DEMOS_FOLDER}/${pattern}/index.tsx`;
   const demoFiles = await glob(fullPattern);
-  if (!demoFiles.length) {
+  if (
+    pattern === "*" ||
+    /form/.test(pattern) ||
+    new RegExp(FORM_PARTS.join("|"), "i").test(pattern)
+  ) {
+    const FORM_FILES = FORM_PARTS.map(
+      (part) => `${DEMOS_FOLDER}/Form/${part}/${part}.tsx`
+    );
+    demoFiles.push(...FORM_FILES);
+  }
+  if (!demoFiles.length && pattern !== "*") {
     log.error("No demos found with the following pattern:");
     log.error(pattern);
     log.error(new Error().stack);

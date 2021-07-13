@@ -6,6 +6,7 @@ export * from "./Fieldset";
 export * from "./FormThemeProvider";
 export * from "./FormMessage";
 export * from "./FormMessageContainer";
+export * from "./FormMessageCounter";
 
 export * from "./file-input";
 export * from "./label";

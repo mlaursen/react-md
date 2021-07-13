@@ -7,7 +7,7 @@ import {
   useChecked,
 } from "@react-md/form";
 
-import TextFieldThemeConfig from "./TextFieldThemeConfig";
+import TextFieldThemeConfig from "../TextFieldThemeConfig";
 
 const options = Array.from({ length: 8 }, (_, i) => `Option ${i + 1}`);
 
