@@ -1902,9 +1902,9 @@
   integrity sha512-QLE3WrQFBw4+E4E1om9aEVXlcnkSGAlWmU2Jc6G0bTMhuWPkBruv2o2bKhcM5GNnEMnz3vjjuOPg5Xe6ogevYA==
 
 "@types/he@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@types/he/-/he-1.1.1.tgz#19e14033c4ee8f1a702c74dcc6182664839ac2b7"
-  integrity sha512-jpzrsR1ns0n3kyWt92QfOUQhIuJGQ9+QGa7M62rO6toe98woQjnsnzjdMtsQXCdvjjmqjS2ZBCC7xKw0cdzU+Q==
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@types/he/-/he-1.1.2.tgz#0c8b275f36d2b8b651104638e4d45693349c3953"
+  integrity sha512-kSJPcLO1x+oolc0R89pUl2kozldQ/fVQ1C1p5mp8fPoLdF/ZcBvckaTC2M8xXh3GYendXvCpy5m/a2eSbfgNgw==
 
 "@types/history@*":
   version "4.7.5"
