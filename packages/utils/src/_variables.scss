@@ -50,6 +50,17 @@ $rmd-utils-skip-validation: false !default;
 /// @type Boolean
 $rmd-utils-fix-moz-focus: true !default;
 
+/// This feature flag will make it so that all the rmd css variables are grouped
+/// together under the same `:root` element to make debugging easier through the
+/// dev-tools. If this causes issues for some reason, set this value to `false`
+/// to have the existing behavior.
+///
+/// Note: If no bugs are reported, this will be the default behavior in the next
+/// major release and no longer a feature flag.
+/// @type Boolean
+/// @since 2.7.2
+$rmd-utils-group-css-variables: true !default;
+
 /// The max width for a phone when in portrait or landscape mode.
 /// @type Number
 $rmd-utils-phone-max-width: 47.9375em !default;
