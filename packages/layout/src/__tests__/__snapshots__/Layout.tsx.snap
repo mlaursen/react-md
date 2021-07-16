@@ -177,6 +177,57 @@ exports[`Layout header behavior should render the \`title\` prop as the main tit
 </div>
 `;
 
+exports[`Layout item render behavior should be able to render links, subheaders, and dividers 1`] = `
+<nav
+  class="rmd-layout-nav rmd-layout-nav--grow"
+  id="layout-navigation-tree-nav"
+>
+  <ul
+    aria-activedescendant=""
+    aria-label="Navigation"
+    class="rmd-list rmd-tree rmd-layout-tree"
+    id="layout-navigation-tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      class="rmd-tree-item"
+      role="none"
+    >
+      <a
+        aria-level="1"
+        aria-posinset="1"
+        aria-setsize="3"
+        class="rmd-link rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--clickable rmd-tree-item__content--selected"
+        href="/"
+        id="layout-navigation-tree-item-1"
+        role="treeitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Home
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </a>
+    </li>
+    <hr
+      class="rmd-divider"
+      role="separator"
+    />
+    <li
+      class="rmd-list-subheader"
+      role="none"
+    >
+      Subheader
+    </li>
+  </ul>
+</nav>
+`;
+
 exports[`Layout mini variant should display only valid nav items at the root in the mini variant 1`] = `
 <div
   aria-label="Navigation"
@@ -197,16 +248,18 @@ exports[`Layout mini variant should display only valid nav items at the root in 
       tabindex="0"
     >
       <li
-        aria-level="1"
-        aria-posinset="1"
-        aria-setsize="6"
         class="rmd-tree-item"
-        id="layout-navigation-tree-item-1"
-        role="treeitem"
-        tabindex="-1"
+        role="none"
       >
-        <span
-          class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected rmd-layout-nav__mini-item"
+        <a
+          aria-level="1"
+          aria-posinset="1"
+          aria-setsize="6"
+          class="rmd-link rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--clickable rmd-tree-item__content--selected rmd-layout-nav__mini-item"
+          id="layout-navigation-tree-item-1"
+          role="treeitem"
+          tabindex="-1"
+          to="/"
         >
           <svg
             aria-hidden="true"
@@ -227,19 +280,21 @@ exports[`Layout mini variant should display only valid nav items at the root in 
           <span
             class="rmd-ripple-container"
           />
-        </span>
+        </a>
       </li>
       <li
-        aria-level="1"
-        aria-posinset="2"
-        aria-setsize="6"
         class="rmd-tree-item"
-        id="layout-navigation-tree-item-2"
-        role="treeitem"
-        tabindex="-1"
+        role="none"
       >
-        <span
-          class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-layout-nav__mini-item"
+        <a
+          aria-level="1"
+          aria-posinset="2"
+          aria-setsize="6"
+          class="rmd-link rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--clickable rmd-layout-nav__mini-item"
+          id="layout-navigation-tree-item-2"
+          role="treeitem"
+          tabindex="-1"
+          to="/route-1"
         >
           <svg
             aria-hidden="true"
@@ -260,23 +315,25 @@ exports[`Layout mini variant should display only valid nav items at the root in 
           <span
             class="rmd-ripple-container"
           />
-        </span>
+        </a>
       </li>
       <hr
         class="rmd-divider"
         role="separator"
       />
       <li
-        aria-level="1"
-        aria-posinset="5"
-        aria-setsize="6"
         class="rmd-tree-item"
-        id="layout-navigation-tree-item-5"
-        role="treeitem"
-        tabindex="-1"
+        role="none"
       >
-        <span
-          class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-layout-nav__mini-item"
+        <a
+          aria-level="1"
+          aria-posinset="5"
+          aria-setsize="6"
+          class="rmd-link rmd-tree-item__content rmd-tree-item__content--link rmd-tree-item__content--clickable rmd-layout-nav__mini-item"
+          id="layout-navigation-tree-item-5"
+          role="treeitem"
+          tabindex="-1"
+          to="/route-3"
         >
           <svg
             aria-hidden="true"
@@ -297,7 +354,7 @@ exports[`Layout mini variant should display only valid nav items at the root in 
           <span
             class="rmd-ripple-container"
           />
-        </span>
+        </a>
       </li>
     </ul>
   </nav>

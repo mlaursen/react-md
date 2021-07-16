@@ -1,8 +1,17 @@
 import React, { ReactElement } from "react";
 import {
-  fireEvent,
-  render as baseRender,
+  Link,
+  BrowserRouter,
+  useLocation,
+  Switch,
+  Route,
+} from "react-router-dom";
+import {
   RenderOptions,
+  fireEvent,
+  getByRole as getByRoleGlobal,
+  getByText as getByTextGlobal,
+  render as baseRender,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import {
@@ -17,14 +26,11 @@ import {
 } from "@react-md/material-icons";
 import { AppBarAction } from "@react-md/app-bar";
 import {
-  AppSizeListener,
-  // DEFAULT_PHONE_MAX_WIDTH,
-  // DEFAULT_TABLET_MIN_WIDTH,
-  // DEFAULT_TABLET_MAX_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
 } from "@react-md/utils";
 
+import { Configuration } from "../Configuration";
 import { Layout, LayoutProps } from "../Layout";
 import { useLayoutConfig } from "../LayoutProvider";
 import { useLayoutNavigation } from "../useLayoutNavigation";
@@ -33,7 +39,7 @@ import { LayoutNavigationTree } from "../types";
 const render = (ui: ReactElement, options?: RenderOptions) =>
   baseRender(ui, {
     ...options,
-    wrapper: ({ children }) => <AppSizeListener>{children}</AppSizeListener>,
+    wrapper: ({ children }) => <Configuration>{children}</Configuration>,
   });
 
 const getById = (id: string) => {
@@ -45,33 +51,71 @@ const getById = (id: string) => {
   return el;
 };
 
+const MULTIPLE_ROUTES_NAV_ITEMS: LayoutNavigationTree = {
+  "/": {
+    to: "/",
+    itemId: "/",
+    parentId: null,
+    children: "Home",
+    leftAddon: <HomeSVGIcon />,
+  },
+  "/route-1": {
+    to: "/route-1",
+    itemId: "/route-1",
+    parentId: null,
+    children: "Route 1",
+    leftAddon: <StarSVGIcon />,
+  },
+  "/divider-1": {
+    itemId: "/divider-1",
+    parentId: null,
+    divider: true,
+    isCustom: true,
+  },
+  "/route-2": {
+    to: "/route-2",
+    itemId: "/route-2",
+    parentId: null,
+    children: "Route 2",
+    leftAddon: <ShareSVGIcon />,
+  },
+  "/route-2/1": {
+    to: "/route-2/1",
+    itemId: "/route-2/1",
+    parentId: "/route-2",
+    children: "Route 2-1",
+    leftAddon: <SettingsSVGIcon />,
+  },
+  "/route-2/2": {
+    to: "/route-2/2",
+    itemId: "/route-2/2",
+    parentId: "/route-2",
+    children: "Route 2-2",
+    leftAddon: <StorageSVGIcon />,
+  },
+  "/route-2/3": {
+    to: "/route-2/3",
+    itemId: "/route-2/3",
+    parentId: "/route-2",
+    children: "Route 2-3",
+    leftAddon: <SecuritySVGIcon />,
+  },
+  "/route-3": {
+    to: "/route-3",
+    itemId: "/route-3",
+    parentId: null,
+    children: "Route 3",
+    leftAddon: <SnoozeSVGIcon />,
+  },
+  "/route-4": {
+    to: "/route-4",
+    itemId: "/route-4",
+    parentId: null,
+    children: "Route 4",
+  },
+};
+
 const matchMedia = jest.spyOn(window, "matchMedia");
-
-// const mockMobile = () =>
-//   matchMedia.mockImplementation((query) => ({
-//     media: query,
-//     matches: query.includes(`${DEFAULT_PHONE_MAX_WIDTH}`),
-//     onchange: () => {},
-//     addListener: () => {},
-//     removeListener: () => {},
-//     addEventListener: () => {},
-//     removeEventListener: () => {},
-//     dispatchEvent: () => false,
-//   }));
-
-// const mockTablet = () =>
-//   matchMedia.mockImplementation((query) => ({
-//     media: query,
-//     matches:
-//       query.includes(`${DEFAULT_TABLET_MIN_WIDTH}`) &&
-//       query.includes(`${DEFAULT_TABLET_MAX_WIDTH}`),
-//     onchange: () => {},
-//     addListener: () => {},
-//     removeListener: () => {},
-//     addEventListener: () => {},
-//     removeEventListener: () => {},
-//     dispatchEvent: () => false,
-//   }));
 
 const mockDesktop = () =>
   matchMedia.mockImplementation((query) => ({
@@ -86,18 +130,6 @@ const mockDesktop = () =>
     removeEventListener: () => {},
     dispatchEvent: () => false,
   }));
-
-// const mockLargeDesktop = () =>
-//   matchMedia.mockImplementation((query) => ({
-//     media: query,
-//     matches: query.includes(`${DEFAULT_DESKTOP_LARGE_MIN_WIDTH}`),
-//     onchange: () => {},
-//     addListener: () => {},
-//     removeListener: () => {},
-//     addEventListener: () => {},
-//     removeEventListener: () => {},
-//     dispatchEvent: () => false,
-//   }));
 
 describe("Layout", () => {
   it("should render a typical layout with an AppBar, <main> element, and a skip to main content link with no additional props with ids", () => {
@@ -223,6 +255,49 @@ describe("Layout", () => {
       expect(queryByText("Updated Title")).toBeInTheDocument();
       expect(queryByLabelText("Light Theme")).toBeInTheDocument();
       expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe("item render behavior", () => {
+    interface TestProps {
+      navItems: LayoutNavigationTree;
+    }
+
+    function Test({ navItems }: TestProps): ReactElement {
+      return <Layout treeProps={useLayoutNavigation(navItems, "/")} />;
+    }
+
+    it("should be able to render links, subheaders, and dividers", () => {
+      const navItems: LayoutNavigationTree = {
+        "/": {
+          href: "/",
+          itemId: "/",
+          parentId: null,
+          children: "Home",
+        },
+        "/divider-1": {
+          divider: true,
+          isCustom: true,
+          itemId: "/divider-1",
+          parentId: null,
+        },
+        "/subheader-1": {
+          subheader: true,
+          isCustom: true,
+          itemId: "/subheader-1",
+          parentId: null,
+          children: "Subheader",
+        },
+      };
+
+      const { getByRole } = render(<Test navItems={navItems} />);
+      const nav = getByRole("navigation");
+      expect(nav).toMatchSnapshot();
+      expect(() =>
+        getByRoleGlobal(nav, "treeitem", { name: "Home" })
+      ).not.toThrow();
+      expect(() => getByTextGlobal(nav, "Subheader")).not.toThrow();
+      expect(() => getByRoleGlobal(nav, "separator")).not.toThrow();
     });
   });
 
@@ -368,67 +443,11 @@ describe("Layout", () => {
 
   describe("mini variant", () => {
     it("should display only valid nav items at the root in the mini variant", () => {
-      const navItems: LayoutNavigationTree = {
-        "/": {
-          itemId: "/",
-          parentId: null,
-          children: "Home",
-          leftAddon: <HomeSVGIcon />,
-        },
-        "/route-1": {
-          itemId: "/route-1",
-          parentId: null,
-          children: "Route 1",
-          leftAddon: <StarSVGIcon />,
-        },
-        "/divider-1": {
-          itemId: "/divider-1",
-          parentId: null,
-          divider: true,
-          isCustom: true,
-        },
-        "/route-2": {
-          itemId: "/route-2",
-          parentId: null,
-          children: "Route 2",
-          leftAddon: <ShareSVGIcon />,
-        },
-        "/route-2-1": {
-          itemId: "/route-2-1",
-          parentId: "/route-2",
-          children: "Route 2-1",
-          leftAddon: <SettingsSVGIcon />,
-        },
-        "/route-2-2": {
-          itemId: "/route-2-2",
-          parentId: "/route-2",
-          children: "Route 2-2",
-          leftAddon: <StorageSVGIcon />,
-        },
-        "/route-2-3": {
-          itemId: "/route-2-3",
-          parentId: "/route-2",
-          children: "Route 2-3",
-          leftAddon: <SecuritySVGIcon />,
-        },
-        "/route-3": {
-          itemId: "/route-3",
-          parentId: null,
-          children: "Route 3",
-          leftAddon: <SnoozeSVGIcon />,
-        },
-        "/route-4": {
-          itemId: "/route-4",
-          parentId: null,
-          children: "Route 4",
-        },
-      };
-
       function Test(): ReactElement {
         return (
           <Layout
             desktopLayout="temporary-mini"
-            treeProps={useLayoutNavigation(navItems, "/")}
+            treeProps={useLayoutNavigation(MULTIPLE_ROUTES_NAV_ITEMS, "/")}
           />
         );
       }
@@ -457,6 +476,149 @@ describe("Layout", () => {
       fireEvent.click(getByRole("button", { name: "Show Navigation" }));
       expect(getNav).not.toThrow();
       expect(getMiniNav).not.toThrow();
+    });
+  });
+
+  describe("navigation behavior", () => {
+    it("should work with react-router", () => {
+      function Test(): ReactElement {
+        const { pathname } = useLocation();
+        return (
+          <Layout
+            treeProps={useLayoutNavigation(
+              MULTIPLE_ROUTES_NAV_ITEMS,
+              pathname,
+              Link
+            )}
+          >
+            <Switch>
+              <Route path="/" exact>
+                <h1>Home</h1>
+              </Route>
+              <Route path="/route-1">
+                <h1>Route 1</h1>
+              </Route>
+              <Route path="/route-2">
+                <h1>Route 2</h1>
+                <Switch>
+                  <Route path="/route-2/1">
+                    <h2>Route 2-1</h2>
+                  </Route>
+                  <Route path="/route-2/2">
+                    <h2>Route 2-2</h2>
+                  </Route>
+                  <Route path="/route-2/3">
+                    <h2>Route 2-3</h2>
+                  </Route>
+                </Switch>
+              </Route>
+              <Route path="/route-3">
+                <h1>Route 3</h1>
+              </Route>
+              <Route path="/route-4">
+                <h1>Route 4</h1>
+              </Route>
+            </Switch>
+          </Layout>
+        );
+      }
+
+      const { getByRole } = baseRender(<Test />, {
+        wrapper: ({ children }) => (
+          <Configuration>
+            <BrowserRouter>{children}</BrowserRouter>
+          </Configuration>
+        ),
+      });
+
+      expect(() => getByRole("heading", { name: "Home" })).not.toThrow();
+      expect(() => getByRole("heading", { name: "Route 1" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 2" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 2-1" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 2-2" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 2-3" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 3" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 4" })).toThrow();
+
+      const home = getByRole("treeitem", { name: "Home" });
+      const route1 = getByRole("treeitem", { name: "Route 1" });
+      const route2 = getByRole("treeitem", { name: "Route 2" });
+      const route3 = getByRole("treeitem", { name: "Route 3" });
+      const route4 = getByRole("treeitem", { name: "Route 4" });
+
+      expect(home).toHaveClass("rmd-tree-item__content--selected");
+      expect(route1).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route2).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route3).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route4).not.toHaveClass("rmd-tree-item__content--selected");
+
+      fireEvent.click(route2);
+      const route21 = getByRole("treeitem", { name: "Route 2-1" });
+      const route22 = getByRole("treeitem", { name: "Route 2-2" });
+      const route23 = getByRole("treeitem", { name: "Route 2-3" });
+
+      expect(() => getByRole("heading", { name: "Home" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 1" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 2" })).not.toThrow();
+      expect(() => getByRole("heading", { name: "Route 2-1" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 2-2" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 2-3" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 3" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 4" })).toThrow();
+
+      expect(home).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route1).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route2).toHaveClass("rmd-tree-item__content--selected");
+      expect(route3).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route4).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route21).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route22).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route23).not.toHaveClass("rmd-tree-item__content--selected");
+
+      fireEvent.click(route22);
+      expect(() => getByRole("heading", { name: "Home" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 1" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 2" })).not.toThrow();
+      expect(() => getByRole("heading", { name: "Route 2-1" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 2-2" })).not.toThrow();
+      expect(() => getByRole("heading", { name: "Route 2-3" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 3" })).toThrow();
+      expect(() => getByRole("heading", { name: "Route 4" })).toThrow();
+      expect(home).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route1).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route2).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route3).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route4).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route21).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route22).toHaveClass("rmd-tree-item__content--selected");
+      expect(route23).not.toHaveClass("rmd-tree-item__content--selected");
+    });
+
+    it("should ignore query params in the path names", () => {
+      function Test(): ReactElement {
+        return (
+          <Layout
+            treeProps={useLayoutNavigation(
+              MULTIPLE_ROUTES_NAV_ITEMS,
+              "/route-3?some&query&params=3"
+            )}
+          />
+        );
+      }
+
+      const { getByRole } = render(<Test />);
+
+      const home = getByRole("treeitem", { name: "Home" });
+      const route1 = getByRole("treeitem", { name: "Route 1" });
+      const route2 = getByRole("treeitem", { name: "Route 2" });
+      const route3 = getByRole("treeitem", { name: "Route 3" });
+      const route4 = getByRole("treeitem", { name: "Route 4" });
+
+      expect(home).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route1).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route2).not.toHaveClass("rmd-tree-item__content--selected");
+      expect(route3).toHaveClass("rmd-tree-item__content--selected");
+      expect(route4).not.toHaveClass("rmd-tree-item__content--selected");
     });
   });
 });
