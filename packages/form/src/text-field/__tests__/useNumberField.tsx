@@ -186,7 +186,8 @@ describe("useNumberField", () => {
       fireEvent.blur(field);
       expect(field.value).toBe("1");
 
-      userEvent.type(field, "00");
+      userEvent.clear(field);
+      userEvent.type(field, "100");
       expect(field.value).toBe("100");
 
       userEvent.clear(field);
