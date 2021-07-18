@@ -1,4 +1,4 @@
-import { writeJson as fsWriteJson } from "fs-extra";
+import { writeFile, writeJson as fsWriteJson } from "fs-extra";
 import { flatMap, merge } from "lodash";
 import { join } from "path";
 
@@ -10,6 +10,14 @@ import {
   TSConfigType,
 } from "./constants";
 import { clean, getDependencies, getPackages, glob } from "./utils";
+
+const NPM_IGNORE_CONTENTS = `src/**/__tests__
+src/**/*.scss
+tsconfig.json
+tsconfig.*.json
+*tsbuildinfo
+CHANGELOG.md
+`;
 
 const TSCONFIG = {
   extends: "../../tsconfig.base.json",
@@ -124,7 +132,8 @@ export async function configs(): Promise<void> {
         promises.push(
           writeJson(join(path, "tsconfig.json"), TSCONFIG),
           writeJson(join(path, "tsconfig.ejs.json"), ejsConfig),
-          writeJson(join(path, "tsconfig.cjs.json"), cjsConfig)
+          writeJson(join(path, "tsconfig.cjs.json"), cjsConfig),
+          writeFile(join(path, ".npmignore"), NPM_IGNORE_CONTENTS)
         );
       }
 

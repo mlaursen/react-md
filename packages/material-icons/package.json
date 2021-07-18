@@ -15,13 +15,6 @@
   "sideEffects": [
     "dist/**/*"
   ],
-  "files": [
-    "es/*",
-    "lib/*",
-    "types/*",
-    "src/*",
-    "svgs/*"
-  ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",

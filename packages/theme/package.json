@@ -8,10 +8,6 @@
   "sideEffects": [
     "dist/**/*"
   ],
-  "files": [
-    "src/*",
-    "dist/*"
-  ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",

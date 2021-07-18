@@ -67,7 +67,7 @@ createCommand("variables")
 
 createCommand("configs")
   .description(
-    "Re-generates all the `tsconfig.*` files for the Typescript project references."
+    "Re-generates all the `tsconfig.*` files for the Typescript project references and any publishing shared data"
   )
   .action(() => configs());
 
