@@ -29,22 +29,32 @@ export interface ControllerTextFieldProps
 export default function ControllerTextField({
   id,
   message,
+  control,
+  rules,
+  name,
   ...props
 }: ControllerTextFieldProps): ReactElement | null {
   const { error } = props;
   const messageId = `${id}-message`;
   return (
     <Controller
-      {...props}
-      as={TextFieldWithMessage}
-      id={id}
-      aria-describedby={messageId}
+      control={control}
+      rules={rules}
+      name={name}
       defaultValue=""
-      messageProps={{
-        id: messageId,
-        error,
-        children: message,
-      }}
+      render={({ field }) => (
+        <TextFieldWithMessage
+          {...field}
+          {...props}
+          id={id}
+          aria-describedby={messageId}
+          messageProps={{
+            id: messageId,
+            error,
+            children: message,
+          }}
+        />
+      )}
     />
   );
 }

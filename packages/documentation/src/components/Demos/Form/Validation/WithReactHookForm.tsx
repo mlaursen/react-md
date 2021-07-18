@@ -52,7 +52,9 @@ export default function WithReactHookForm(): ReactElement {
     control,
     reset,
     handleSubmit,
-    errors: { firstName, lastName, email, phone, title, developer },
+    formState: {
+      errors: { firstName, lastName, email, phone, title, developer },
+    },
   } = useForm<ExampleFormData>({ mode: "onChange" });
 
   const [{ data, loading }, setState] = useState<State>({
@@ -163,11 +165,11 @@ export default function WithReactHookForm(): ReactElement {
           name="title"
           defaultValue=""
           rules={{ required: "Cannot be blank" }}
-          render={(props) => (
+          render={({ field }) => (
             <Select
+              {...field}
               id="rhf-title"
               aria-describedby="rhf-title-error"
-              {...props}
               label="Title"
               placeholder="Title"
               options={titles}
@@ -183,11 +185,9 @@ export default function WithReactHookForm(): ReactElement {
             control={control}
             name="developer"
             rules={{ required: "Required" }}
-            defaultValue=""
-            defaultChecked={false}
-            render={(props) => (
+            render={({ field }) => (
               <Radio
-                {...props}
+                {...field}
                 id="rhf-developer-yes"
                 label="Yes"
                 error={!!developer}
@@ -199,11 +199,9 @@ export default function WithReactHookForm(): ReactElement {
             control={control}
             name="developer"
             rules={{ required: "Required" }}
-            defaultValue=""
-            defaultChecked={false}
-            render={(props) => (
+            render={({ field }) => (
               <Radio
-                {...props}
+                {...field}
                 id="rhf-developer-no"
                 label="No"
                 error={!!developer}
@@ -213,22 +211,18 @@ export default function WithReactHookForm(): ReactElement {
           />
         </Fieldset>
         <Controller
-          as={Checkbox}
           control={control}
-          id="rhf-cool"
           name="cool"
-          label="Are you cool?"
-          defaultValue=""
-          defaultChecked={false}
+          render={({ field }) => (
+            <Checkbox {...field} id="rhf-cool" label="Are you cool?" />
+          )}
         />
         <Controller
-          as={Switch}
           control={control}
-          id="rhf-save"
           name="save"
-          label="Save?"
-          defaultValue=""
-          defaultChecked
+          render={({ field }) => (
+            <Switch {...field} id="rhf-save" label="Save?" defaultChecked />
+          )}
         />
         <DialogFooter align="end">
           <Button
