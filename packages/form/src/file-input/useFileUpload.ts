@@ -263,6 +263,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = Error>({
           };
         case "start": {
           const { key, reader } = action;
+          /* istanbul ignore next */
           if (!state.stats[key]) {
             throw new Error(`Missing file with key "${key}"`);
           }
@@ -288,6 +289,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = Error>({
         }
         case "progress": {
           const { key, progress } = action;
+          /* istanbul ignore next */
           if (!state.stats[key]) {
             throw new Error(`Missing file with key "${key}"`);
           }
@@ -305,6 +307,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = Error>({
         }
         case "complete": {
           const { key, result } = action;
+          /* istanbul ignore next */
           if (!state.stats[key]) {
             throw new Error(`Missing file with key "${key}"`);
           }
@@ -330,6 +333,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = Error>({
         case "clearErrors":
           return { ...state, errors: [] };
         default:
+          /* istanbul ignore next */
           return state;
       }
     },
@@ -400,6 +404,8 @@ export function useFileUpload<E extends HTMLElement, CustomError = Error>({
         const files = event.currentTarget.files;
         if (files) {
           queueFiles(Array.from(files));
+        } else {
+          throw new Error();
         }
       } catch (e) {
         dispatch({
@@ -476,14 +482,16 @@ export function useFileUpload<E extends HTMLElement, CustomError = Error>({
       const { key, file } = stats;
       const reader = new FileReader();
 
-      reader.onprogress = createProgressEventHandler(key);
-
-      reader.onload = () => {
+      // using `addEventListener` instead of directly setting to
+      // `reader.progress`/`reader.load` so it's easier to test
+      reader.addEventListener("progress", createProgressEventHandler(key));
+      reader.addEventListener("load", () => {
         complete(key, reader.result);
-      };
+      });
 
       start(key, reader);
       const parser = getFileParser(file);
+      /* istanbul ignore next */
       if (
         process.env.NODE_ENV !== "production" &&
         ![

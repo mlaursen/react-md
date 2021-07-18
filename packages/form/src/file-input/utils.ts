@@ -488,7 +488,7 @@ export function validateFiles<CustomError>(
  * @remarks \@since 2.9.0
  */
 export function isTextFile(file: File): boolean {
-  return /\.((j|t)sx?|json|lock|hbs|ya?ml|log)$/i.test(file.name);
+  return /\.((j|t)sx?|json|lock|hbs|ya?ml|log|txt|md)$/i.test(file.name);
 }
 
 /**
@@ -643,6 +643,7 @@ export function getSplitFileUploads(
     } else if (stat.status === "complete") {
       complete.push(stat);
     } else {
+      /* istanbul ignore next */
       throw new Error("Invalid upload stat");
     }
   });
