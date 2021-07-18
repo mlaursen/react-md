@@ -1,6 +1,6 @@
 {
   "name": "@react-md/badge",
-  "version": "2.8.5",
+  "version": "2.9.0",
   "description": "Create a badge that is fixed to another element. This is generally used for notification counts.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -37,11 +37,11 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/button": "^2.8.5",
-    "@react-md/icon": "^2.8.4",
-    "@react-md/theme": "^2.8.4",
-    "@react-md/typography": "^2.8.4",
-    "@react-md/utils": "^2.8.4",
+    "@react-md/button": "^2.9.0",
+    "@react-md/icon": "^2.9.0",
+    "@react-md/theme": "^2.9.0",
+    "@react-md/typography": "^2.9.0",
+    "@react-md/utils": "^2.9.0",
     "classnames": "^2.3.1"
   },
   "devDependencies": {

@@ -1,3 +1,54 @@
+Title: react-md 2.9.0
+
+Date: 07/17/2021
+
+Summary:
+
+This release is focused around the `FileInput` component in the `@react-md/form`
+package and implementing a `useFileUpload` hook to handle uploading/previewing
+files in the browser. However, there is a notable change in this release for the
+form documentation since the demos have been split into the following pages:
+
+- [Text Field Demos](https://react-md/dev/packages/form/text-field-demos)
+- [Select Field Demos](https://react-md/dev/packages/form/select-field-demos)
+- [Selection Control Demos](https://react-md/dev/packages/form/selection-control-demos)
+- [File Input Demos](https://react-md/dev/packages/form/file-input-demos)
+- [Slider Demos](https://react-md/dev/packages/form/slider-demos)
+- [Validation Demos](https://react-md/dev/packages/form/validation-demos)
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** `FileInput` correctly center the icon when children aren't
+  provided (3a6ab33)
+- **@react-md/layout:** `useLayoutNavigation` possible perf fix (3d65e4e)
+
+##### Features<!-- no-margin -->
+
+- **@react-md/form:** `FileInput` automatically swaps button type to text if
+  children exist (e5585e1)
+- **@react-md/form:** `FormMessageCounter` component added to public API
+  (1508812)
+- **@react-md/form:** Added a `useFileUpload` hook to upload files to the
+  browser (efb3f2f), closes #1159
+- **@react-md/utils:** added `useDropzone` hook (bc07a1f)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- Added CodeQL Workflow for code analysis (9b4a279)
+- **@react-md/form:** Added tests for `useFileUpload` (49ce4d9)
+- **@react-md/layout:** Added additional test coverage (7c123ef)
+- **react-md.dev:** Added an endpoint for uploading files that acts like a
+  /dev/null (9663ae8)
+- **react-md.dev:** Added examples for `useFileUpload` (8f9002e)
+- **react-md.dev:** fix `eslint` error after updating `prettier` (75a9b0f)
+- **react-md.dev:** Fixed rightAddon for Customizing `Select` Options Demo
+  (367cc0d)
+- **react-md.dev:** Split form demos into separate pages (8594930)
+- **react-md.dev:** Use temporary layout on desktop in dev mode to get more
+  screen space (53b20c4)
+
+---
+
 Title: react-md 2.8.5
 
 Date: 07/03/2021

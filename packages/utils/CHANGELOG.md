@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/mlaursen/react-md/compare/v2.8.5...v2.9.0) (2021-07-18)
+
+
+### Features
+
+* **@react-md/utils:** added `useDropzone` hook ([bc07a1f](https://github.com/mlaursen/react-md/commit/bc07a1f56673b14bf4941971cc50ebeb0a298a51))
+
+
+
+
+
+
 ## [2.8.4](https://github.com/mlaursen/react-md/compare/v2.8.3...v2.8.4) (2021-06-10)
 
 

@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/mlaursen/react-md/compare/v2.8.5...v2.9.0) (2021-07-18)
+
+
+### Bug Fixes
+
+* **@react-md/form:** `FileInput` correctly center the icon when children aren't provided ([3a6ab33](https://github.com/mlaursen/react-md/commit/3a6ab3361e91879a9ecbdaaa71aa084508414b11))
+
+
+### Features
+
+* **@react-md/form:** `FileInput` automatically swaps button type to text if children exist ([e5585e1](https://github.com/mlaursen/react-md/commit/e5585e1309d4bde0dcd8ed0afc6b737a12863011))
+* **@react-md/form:** `FormMessageCounter` component added to public API ([1508812](https://github.com/mlaursen/react-md/commit/15088122c3607730fdc52ff706d1d9ea56a6e32c))
+* **@react-md/form:** Added a `useFileUpload` hook to upload files to the browser ([efb3f2f](https://github.com/mlaursen/react-md/commit/efb3f2f2e3f4b848097c42d58da32e42887c541b)), closes [#1159](https://github.com/mlaursen/react-md/issues/1159)
+
+
+### Other Internal Changes
+
+* **@react-md/form:** Added tests for `useFileUpload` ([49ce4d9](https://github.com/mlaursen/react-md/commit/49ce4d9812a3a854a256c36b7e7ef7fcdb696ba4))
+* **react-md.dev:** Added examples for `useFileUpload` ([8f9002e](https://github.com/mlaursen/react-md/commit/8f9002ea95e2562e0d04291c2acc972953eca09e))
+
+
+
+
+
+
 ## [2.8.5](https://github.com/mlaursen/react-md/compare/v2.8.4...v2.8.5) (2021-07-03)
 
 

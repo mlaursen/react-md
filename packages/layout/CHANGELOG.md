@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/mlaursen/react-md/compare/v2.8.5...v2.9.0) (2021-07-18)
+
+
+### Bug Fixes
+
+* **@react-md/layout:** `useLayoutNavigation` possible perf fix ([3d65e4e](https://github.com/mlaursen/react-md/commit/3d65e4eb3aec446d1d821fc9d86896d9758ab4fc))
+
+
+### Other Internal Changes
+
+* **@react-md/layout:** Added additional test coverage ([7c123ef](https://github.com/mlaursen/react-md/commit/7c123ef14e76e0bd74eab32c38a7c2cb58ae0c02))
+
+
+
+
+
+
 ## [2.8.5](https://github.com/mlaursen/react-md/compare/v2.8.4...v2.8.5) (2021-07-03)
 
 **Note:** Version bump only for package @react-md/layout

@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/mlaursen/react-md/compare/v2.8.5...v2.9.0) (2021-07-18)
+
+This release is focused around the `FileInput` component in the `@react-md/form` package and implementing a `useFileUpload` hook to handle uploading/previewing files in the browser. However, there is a notable change in this release for the form documentation since the demos have been split into the following pages:
+
+- [Text Field Demos](https://react-md/dev/packages/form/text-field-demos)
+- [Select Field Demos](https://react-md/dev/packages/form/select-field-demos)
+- [Selection Control Demos](https://react-md/dev/packages/form/selection-control-demos)
+- [File Input Demos](https://react-md/dev/packages/form/file-input-demos)
+- [Slider Demos](https://react-md/dev/packages/form/slider-demos)
+- [Validation Demos](https://react-md/dev/packages/form/validation-demos)
+
+
+### Bug Fixes
+
+* **@react-md/form:** `FileInput` correctly center the icon when children aren't provided ([3a6ab33](https://github.com/mlaursen/react-md/commit/3a6ab3361e91879a9ecbdaaa71aa084508414b11))
+* **@react-md/layout:** `useLayoutNavigation` possible perf fix ([3d65e4e](https://github.com/mlaursen/react-md/commit/3d65e4eb3aec446d1d821fc9d86896d9758ab4fc))
+
+
+### Features
+
+* **@react-md/form:** `FileInput` automatically swaps button type to text if children exist ([e5585e1](https://github.com/mlaursen/react-md/commit/e5585e1309d4bde0dcd8ed0afc6b737a12863011))
+* **@react-md/form:** `FormMessageCounter` component added to public API ([1508812](https://github.com/mlaursen/react-md/commit/15088122c3607730fdc52ff706d1d9ea56a6e32c))
+* **@react-md/form:** Added a `useFileUpload` hook to upload files to the browser ([efb3f2f](https://github.com/mlaursen/react-md/commit/efb3f2f2e3f4b848097c42d58da32e42887c541b)), closes [#1159](https://github.com/mlaursen/react-md/issues/1159)
+* **@react-md/utils:** added `useDropzone` hook ([bc07a1f](https://github.com/mlaursen/react-md/commit/bc07a1f56673b14bf4941971cc50ebeb0a298a51))
+
+
+### Other Internal Changes
+
+* Added CodeQL Workflow for code analysis ([9b4a279](https://github.com/mlaursen/react-md/commit/9b4a279af044ae949bbf1318a9b023e21b076953))
+* **@react-md/form:** Added tests for `useFileUpload` ([49ce4d9](https://github.com/mlaursen/react-md/commit/49ce4d9812a3a854a256c36b7e7ef7fcdb696ba4))
+* **@react-md/layout:** Added additional test coverage ([7c123ef](https://github.com/mlaursen/react-md/commit/7c123ef14e76e0bd74eab32c38a7c2cb58ae0c02))
+* **react-md.dev:** Added an endpoint for uploading files that acts like a /dev/null ([9663ae8](https://github.com/mlaursen/react-md/commit/9663ae8f5524839a2217d4e52bf384b7304d771c))
+* **react-md.dev:** Added examples for `useFileUpload` ([8f9002e](https://github.com/mlaursen/react-md/commit/8f9002ea95e2562e0d04291c2acc972953eca09e))
+* **react-md.dev:** fix `eslint` error after updating `prettier` ([75a9b0f](https://github.com/mlaursen/react-md/commit/75a9b0f18b533e2037567e932d3cbf8be5f8e9aa))
+* **react-md.dev:** Fixed rightAddon for Customizing `Select` Options Demo ([367cc0d](https://github.com/mlaursen/react-md/commit/367cc0d227dcd08e16b3e3893121f2bb57ed79d2))
+* **react-md.dev:** Split form demos into separate pages ([8594930](https://github.com/mlaursen/react-md/commit/85949300c8f3c0150812885c44348d09c649e9b0))
+* **react-md.dev:** Use temporary layout on desktop in dev mode to get more screen space ([53b20c4](https://github.com/mlaursen/react-md/commit/53b20c43ee4f6a6a11cb84cda51e806a9d333ad1))
+
+
+
+
+
+
 ## [2.8.5](https://github.com/mlaursen/react-md/compare/v2.8.4...v2.8.5) (2021-07-03)
 
 
