@@ -40,15 +40,15 @@
     "prompts": "^2.4.1",
     "rimraf": "^3.0.2",
     "sassdoc": "^2.7.2",
-    "ts-morph": "^11.0.0",
-    "typedoc": "^0.21.2",
+    "ts-morph": "^11.0.3",
+    "typedoc": "^0.21.4",
     "typedoc-plugin-sourcefile-url": "^1.0.6",
     "typescript": "^4.3.5"
   },
   "devDependencies": {
-    "@types/cssnano": "^4.0.0",
-    "@types/he": "^1.1.1",
-    "@types/prompts": "^2.0.13",
+    "@types/cssnano": "^4.0.1",
+    "@types/he": "^1.1.2",
+    "@types/prompts": "^2.0.14",
     "chokidar-cli": "^2.1.0"
   }
 }

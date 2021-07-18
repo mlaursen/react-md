@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@types/adm-zip": "^0.4.34",
-    "@types/download": "^8.0.0",
+    "@types/download": "^8.0.1",
     "adm-zip": "^0.5.5",
     "commander": "^8.0.0",
     "download": "^8.0.0",
