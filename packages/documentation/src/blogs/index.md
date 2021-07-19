@@ -9,12 +9,12 @@ package and implementing a `useFileUpload` hook to handle uploading/previewing
 files in the browser. However, there is a notable change in this release for the
 form documentation since the demos have been split into the following pages:
 
-- [Text Field Demos](https://react-md/dev/packages/form/text-field-demos)
-- [Select Field Demos](https://react-md/dev/packages/form/select-field-demos)
-- [Selection Control Demos](https://react-md/dev/packages/form/selection-control-demos)
-- [File Input Demos](https://react-md/dev/packages/form/file-input-demos)
-- [Slider Demos](https://react-md/dev/packages/form/slider-demos)
-- [Validation Demos](https://react-md/dev/packages/form/validation-demos)
+- [Text Field Demos](/packages/form/text-field-demos)
+- [Select Field Demos](/packages/form/select-field-demos)
+- [Selection Control Demos](/packages/form/selection-control-demos)
+- [File Input Demos](/packages/form/file-input-demos)
+- [Slider Demos](/packages/form/slider-demos)
+- [Validation Demos](/packages/form/validation-demos)
 
 ##### Bug Fixes<!-- no-margin -->
 
