@@ -30,14 +30,14 @@ $rmd-theme-dark-elevation: true;
 }
 
 .list {
+  @include rmd-utils-desktop-media {
+    height: $rmd-list-item-dense-extra-large-height * 5;
+  }
+
   display: flex;
   flex-direction: column;
   height: $rmd-list-item-extra-large-height * 5;
   margin-bottom: 1rem;
-
-  @include rmd-utils-desktop-media {
-    height: $rmd-list-item-dense-extra-large-height * 5;
-  }
 }
 
 .upload {

@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { useFileUpload, FileInput, Form } from "@react-md/form";
+import { GridList } from "@react-md/utils";
 
 import PreviewFile from "./PreviewFile";
-import { GridList } from "@react-md/utils";
 import ErrorModal from "./ErrorModal";
 
 const extensions = [
