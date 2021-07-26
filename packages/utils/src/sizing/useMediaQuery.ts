@@ -45,13 +45,15 @@ export function useMediaQuery(
     const updater = ({ matches }: MediaQueryListEvent): void =>
       setMatches(matches);
 
-    mq.addListener(updater);
+    mq.addEventListener("change", updater);
 
     if (mq.matches !== matches) {
       setMatches(mq.matches);
     }
 
-    return () => mq.removeListener(updater);
+    return () => {
+      mq.removeEventListener("change", updater);
+    };
   }, [disabled, matches, query]);
 
   return matches;
