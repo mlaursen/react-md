@@ -1,4 +1,5 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   Link,
   BrowserRouter,
@@ -6,6 +7,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { mocked } from "ts-jest/utils";
 import {
   RenderOptions,
   fireEvent,
@@ -24,10 +26,12 @@ import {
   SecuritySVGIcon,
   SnoozeSVGIcon,
 } from "@react-md/material-icons";
+import { Checkbox } from "@react-md/form";
 import { AppBarAction } from "@react-md/app-bar";
 import {
-  DEFAULT_DESKTOP_MIN_WIDTH,
-  DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+  AppSizeListener,
+  AppSizeContext,
+  DEFAULT_APP_SIZE,
 } from "@react-md/utils";
 
 import { Configuration } from "../Configuration";
@@ -35,6 +39,41 @@ import { Layout, LayoutProps } from "../Layout";
 import { useLayoutConfig } from "../LayoutProvider";
 import { useLayoutNavigation } from "../useLayoutNavigation";
 import { LayoutNavigationTree } from "../types";
+
+jest.mock("@react-md/utils", () => ({
+  ...jest.requireActual("@react-md/utils"),
+  AppSizeListener: jest.fn(),
+}));
+
+mocked(AppSizeListener).mockImplementation(
+  ({ children, defaultSize = DEFAULT_APP_SIZE }) => {
+    const [value, setValue] = useState({ ...defaultSize, __initialized: true });
+    return (
+      <AppSizeContext.Provider value={value}>
+        {children}
+        {createPortal(
+          // portal so it doesn't affect existing snapshots
+          <button
+            type="button"
+            onClick={() =>
+              setValue({
+                isPhone: true,
+                isTablet: false,
+                isDesktop: false,
+                isLandscape: false,
+                isLargeDesktop: false,
+                __initialized: true,
+              })
+            }
+          >
+            Mobile
+          </button>,
+          document.body
+        )}
+      </AppSizeContext.Provider>
+    );
+  }
+);
 
 const render = (ui: ReactElement, options?: RenderOptions) =>
   baseRender(ui, {
@@ -50,6 +89,9 @@ const getById = (id: string) => {
 
   return el;
 };
+
+const getMiniNav = () => getById("layout-mini-nav-container");
+const getNav = () => getById("layout-nav-container");
 
 const MULTIPLE_ROUTES_NAV_ITEMS: LayoutNavigationTree = {
   "/": {
@@ -115,22 +157,6 @@ const MULTIPLE_ROUTES_NAV_ITEMS: LayoutNavigationTree = {
   },
 };
 
-const matchMedia = jest.spyOn(window, "matchMedia");
-
-const mockDesktop = () =>
-  matchMedia.mockImplementation((query) => ({
-    media: query,
-    matches:
-      query.includes(`${DEFAULT_DESKTOP_MIN_WIDTH}`) &&
-      query.includes(`${DEFAULT_DESKTOP_LARGE_MIN_WIDTH}`),
-    onchange: () => {},
-    addListener: () => {},
-    removeListener: () => {},
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    dispatchEvent: () => false,
-  }));
-
 describe("Layout", () => {
   it("should render a typical layout with an AppBar, <main> element, and a skip to main content link with no additional props with ids", () => {
     render(<Layout />);
@@ -149,8 +175,6 @@ describe("Layout", () => {
     const clipped: LayoutProps = { desktopLayout: "clipped" };
     const fullHeight: LayoutProps = { desktopLayout: "full-height" };
 
-    // just always use desktop config since it allows all options
-    mockDesktop();
     const { rerender } = render(<Layout {...temporary} />);
     expect(getById("layout-nav-toggle")).toBeInTheDocument();
 
@@ -336,10 +360,6 @@ describe("Layout", () => {
       );
     }
 
-    beforeAll(() => {
-      mockDesktop();
-    });
-
     it("should default the toggleable layout visibility correctly", () => {
       let { getByRole, unmount } = render(<Test />);
       expect(() => getByRole("navigation")).toThrow();
@@ -451,9 +471,6 @@ describe("Layout", () => {
           />
         );
       }
-
-      const getMiniNav = () => getById("layout-mini-nav-container");
-      const getNav = () => getById("layout-nav-container");
 
       const { getByRole, queryAllByRole } = render(<Test />);
       expect(getNav).toThrow();
@@ -620,5 +637,66 @@ describe("Layout", () => {
       expect(route3).toHaveClass("rmd-tree-item__content--selected");
       expect(route4).not.toHaveClass("rmd-tree-item__content--selected");
     });
+  });
+
+  it("should maintain state while switching between static and mini layouts", () => {
+    const navItems: LayoutNavigationTree = {
+      "/": {
+        href: "/",
+        itemId: "/",
+        parentId: null,
+        children: "Home",
+      },
+    };
+
+    function App(): ReactElement {
+      const [checked, setChecked] = useState(false);
+
+      return (
+        <Checkbox
+          id="main-checkbox"
+          name="checkbox"
+          checked={checked}
+          label="Checkbox"
+          onChange={(event) => setChecked(event.currentTarget.checked)}
+        />
+      );
+    }
+
+    function Test(): ReactElement {
+      const [selectedId, setSelectedId] = useState("/");
+      return (
+        <Layout
+          title="Non-fixed AppBar Layout Title"
+          navHeaderTitle="Another Title"
+          phoneLayout="temporary-mini"
+          tabletLayout="toggleable-mini"
+          landscapeTabletLayout="full-height"
+          desktopLayout="full-height"
+          appBarProps={{ fixed: false }}
+          treeProps={{
+            ...useLayoutNavigation(navItems, selectedId),
+            onItemSelect: setSelectedId,
+          }}
+        >
+          <App />
+        </Layout>
+      );
+    }
+
+    const { getByRole } = render(<Test />);
+    expect(getNav).not.toThrow();
+    expect(getMiniNav).toThrow();
+    const checkbox = getByRole("checkbox", { name: "Checkbox" });
+    expect(checkbox).not.toBeChecked();
+
+    fireEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
+
+    fireEvent.click(getByRole("button", { name: "Mobile" }));
+    expect(getNav).toThrow();
+    expect(getMiniNav).not.toThrow();
+    expect(checkbox).toBeInTheDocument();
+    expect(checkbox).toBeChecked();
   });
 });

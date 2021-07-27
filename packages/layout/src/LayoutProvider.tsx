@@ -17,7 +17,12 @@ import {
   DEFAULT_TABLET_LAYOUT,
 } from "./constants";
 import { LayoutConfiguration, SupportedWideLayout } from "./types";
-import { getLayoutType, isPersistentLayout, isToggleableLayout } from "./utils";
+import {
+  getLayoutType,
+  isMiniLayout,
+  isPersistentLayout,
+  isToggleableLayout,
+} from "./utils";
 
 /**
  * @internal
@@ -68,6 +73,15 @@ export interface LayoutContext {
    * @remarks \@since 2.8.3
    */
   fixedAppBar: boolean;
+
+  /**
+   * Boolean if one of the layout types are mini. This is mostly used internally
+   * to prevent the `<main>` element from unmounting (and losing state) for
+   * non-fixed app bar layouts.
+   *
+   * @remarks \@since 2.9.1
+   */
+  isMiniable: boolean;
 }
 
 const context = createContext<LayoutContext>({
@@ -77,6 +91,7 @@ const context = createContext<LayoutContext>({
   showNav: notInitialized("showNav"),
   hideNav: notInitialized("hideNav"),
   fixedAppBar: true,
+  isMiniable: false,
 });
 
 /**
@@ -143,6 +158,13 @@ export function LayoutProvider({
     desktopLayout,
     largeDesktopLayout,
   });
+  const isMiniable = [
+    phoneLayout,
+    tabletLayout,
+    landscapeTabletLayout,
+    desktopLayout,
+    largeDesktopLayout,
+  ].some((layout) => !!layout && isMiniLayout(layout));
 
   const isPersistent = isPersistentLayout(layout);
 
@@ -171,7 +193,7 @@ export function LayoutProvider({
     }
   }, [layout]);
 
-  const value = useMemo(
+  const value = useMemo<LayoutContext>(
     () => ({
       baseId,
       layout,
@@ -179,8 +201,9 @@ export function LayoutProvider({
       showNav,
       hideNav,
       fixedAppBar,
+      isMiniable,
     }),
-    [baseId, layout, visible, showNav, hideNav, fixedAppBar]
+    [baseId, layout, visible, showNav, hideNav, fixedAppBar, isMiniable]
   );
 
   return <Provider value={value}>{children}</Provider>;

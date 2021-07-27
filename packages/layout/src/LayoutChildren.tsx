@@ -72,12 +72,13 @@ export interface LayoutChildrenProps<
    * the `LayoutMain` and mini `LayoutNavigation` components.
    *
    * Note: This additional `<div>` will only be rendered if:
-   * - the current layout is one of the `mini` types
+   * - at least one of the provided layout types are `mini`
    * - the layout is not using a fixed app bar
    * - the `miniNav` prop has not been defined
    * - `treeProps` have been provided
    *
    * @remarks \@since 2.8.3
+   * @remarks \@since 2.9.1 This will render if any provided layout type is `mini`.
    */
   miniWrapperProps?: PropsWithRef<
     HTMLAttributes<HTMLDivElement>,
