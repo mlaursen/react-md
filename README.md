@@ -65,10 +65,10 @@ cd my-app
 > NOTE: You can also add the `--typescript` flag to bootstrap a react-app with
 > typescript support
 
-Next, install `react-md` and `node-sass`:
+Next, install `react-md` and `sass`:
 
 ```sh
-npm install --save react-md node-sass
+npm install --save react-md sass
 ```
 
 Next, create a `src/App.scss` file to include all the `react-md` styles and

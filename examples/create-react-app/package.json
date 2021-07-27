@@ -12,12 +12,12 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
-    "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-md": "latest",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "sass": "^1.36.0",
     "web-vitals": "^0.2.4"
   },
   "eslintConfig": {
