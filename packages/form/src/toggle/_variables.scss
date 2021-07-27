@@ -128,7 +128,7 @@ $rmd-switch-container-vertical-padding: 0.5rem !default;
 /// enough so that the ball does not overlap the label or other elements.
 ///
 /// @type Number
-$rmd-switch-container-horizontal-padding: $rmd-switch-ball-size / 2 !default;
+$rmd-switch-container-horizontal-padding: $rmd-switch-ball-size * 0.5 !default;
 
 /// The color to use for the switch's ball when it is toggled on and disabled.
 ///

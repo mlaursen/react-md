@@ -2,6 +2,8 @@
 /// @group media
 ////
 
+@use "sass:math";
+
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/utils/dist/functions';
 @import './variables';
@@ -25,7 +27,7 @@
 /// @param {Number} width - The width to enforce for the responsive media
 /// @param {Number} height - The height to enforce for the responsive media
 @mixin rmd-media-aspect-ratio($width, $height) {
-  padding-bottom: percentage($height / $width);
+  padding-bottom: percentage(math.div($height, $width));
 }
 
 /// Creates the styles for a media container that should enforce a specific

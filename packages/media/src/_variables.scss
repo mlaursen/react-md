@@ -2,6 +2,8 @@
 /// @group media
 ////
 
+@use "sass:math";
+
 @import '~@react-md/theme/dist/color-palette';
 
 /// The background color for a media overlay.
@@ -21,7 +23,7 @@ $rmd-media-selectors: (img '>svg' iframe video embed object) !default;
 /// enforced.
 ///
 /// @type Number
-$rmd-media-default-aspect-ratio: percentage(9 / 16) !default;
+$rmd-media-default-aspect-ratio: percentage(math.div(9, 16)) !default;
 
 /// A Map including the default aspect ratios to create for responsive media
 /// with a forced aspect ratio. Each key must be a string for a class name

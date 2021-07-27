@@ -242,7 +242,7 @@ $rmd-circular-progress-start-offset: $rmd-circular-progress-dasharray !default;
 /// The ending dashoffset for the ciruclar progress animation. This will be used
 /// for the `50%` value in the animation keyframes by default.
 /// @type Number
-$rmd-circular-progress-end-offset: $rmd-circular-progress-dasharray / 4 !default;
+$rmd-circular-progress-end-offset: $rmd-circular-progress-dasharray * 0.25 !default;
 
 /// The circular progress styles to apply for the rotation transition. Each key
 /// in this map will be set immediately at the root of the `keyframes` and then
