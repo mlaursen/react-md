@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
+
+
+### Bug Fixes
+
+* **@react-md/layout:** Do not unmount children when swapping to non-fixed appbar mini layouts ([64103c8](https://github.com/mlaursen/react-md/commit/64103c8f3cc87cd5684cc354f4976d6034262ee4)), closes [#1207](https://github.com/mlaursen/react-md/issues/1207)
+* **@react-md/utils:** `useMediaQuery` uses addEventListener/removeEventListener ([b889a9e](https://github.com/mlaursen/react-md/commit/b889a9e38b311cffda849a33dd6953c49993bcbc))
+
+
+### Other Internal Changes
+
+* fixed sass-lint error ([58f614b](https://github.com/mlaursen/react-md/commit/58f614b38b5a7dcca6a84319275320b9863cba87))
+* **install:** slighly reduce install size by excluding tests in publish ([9d01a44](https://github.com/mlaursen/react-md/commit/9d01a44b81b619d6ac1c4d458005c99838fc6894))
+* **react-md.dev:** fix links to form demos in blog ([b1626b5](https://github.com/mlaursen/react-md/commit/b1626b5a4ef77a1dda2863bbed9fe1379a0e9513))
+
+
+
+
+
+
 # [2.9.0](https://github.com/mlaursen/react-md/compare/v2.8.5...v2.9.0) (2021-07-18)
 
 This release is focused around the `FileInput` component in the `@react-md/form` package and implementing a `useFileUpload` hook to handle uploading/previewing files in the browser. However, there is a notable change in this release for the form documentation since the demos have been split into the following pages:

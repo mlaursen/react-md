@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
+
+
+### Bug Fixes
+
+* **@react-md/layout:** Do not unmount children when swapping to non-fixed appbar mini layouts ([64103c8](https://github.com/mlaursen/react-md/commit/64103c8f3cc87cd5684cc354f4976d6034262ee4)), closes [#1207](https://github.com/mlaursen/react-md/issues/1207)
+
+
+### Other Internal Changes
+
+* **install:** slighly reduce install size by excluding tests in publish ([9d01a44](https://github.com/mlaursen/react-md/commit/9d01a44b81b619d6ac1c4d458005c99838fc6894))
+
+
+
+
+
+
 # [2.9.0](https://github.com/mlaursen/react-md/compare/v2.8.5...v2.9.0) (2021-07-18)
 
 

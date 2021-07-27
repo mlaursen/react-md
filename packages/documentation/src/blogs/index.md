@@ -1,3 +1,25 @@
+Title: react-md 2.9.1
+
+Date: 07/26/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/layout:** Do not unmount children when swapping to non-fixed
+  appbar mini layouts (64103c8), closes #1207
+- **@react-md/utils:** `useMediaQuery` uses addEventListener/removeEventListener
+  (b889a9e)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- fixed sass-lint error (58f614b)
+- **install:** slighly reduce install size by excluding tests in publish
+  (9d01a44)
+- **react-md.dev:** fix links to form demos in blog (b1626b5)
+
+---
+
 Title: react-md 2.9.0
 
 Date: 07/17/2021
