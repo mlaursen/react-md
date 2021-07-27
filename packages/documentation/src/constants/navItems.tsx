@@ -15,15 +15,17 @@ import ReactSVGIcon from "icons/ReactSVGIcon";
 import createIdGenerator from "utils/createIdGenerator";
 import { toTitle } from "utils/toTitle";
 
-import { PACKAGE_NAMES, SCSS_PACKAGES } from "./packages";
+import { PACKAGE_NAMES, SCSS_PACKAGES, TYPESCRIPT_PACKAGES } from "./packages";
 import {
   RouteNavItem,
   NavItem,
   DividerNavItem,
   SubheaderNavItem,
 } from "./meta/types";
+import { snakeCase } from "lodash";
 
 const uuid = createIdGenerator("nav");
+const TSDOCS_PREFIX = "/tsdocs/modules/_react_md_";
 
 const getPackageRoutes = (name: string): RouteNavItem[] => {
   const routes: RouteNavItem[] = [];
@@ -51,6 +53,13 @@ const getPackageRoutes = (name: string): RouteNavItem[] => {
     href: "/installation",
     children: "Installation",
   });
+
+  if (name !== "material-icons" && TYPESCRIPT_PACKAGES.includes(name)) {
+    routes.push({
+      href: `${TSDOCS_PREFIX}${snakeCase(name)}.html`,
+      children: "API (typedoc)",
+    });
+  }
 
   if (SCSS_PACKAGES.includes(name)) {
     routes.push({
@@ -226,7 +235,7 @@ function createNavItem(
     return tree;
   }
 
-  if (!navItem.href.startsWith("/")) {
+  if (!navItem.href.startsWith("/") || navItem.href.startsWith(TSDOCS_PREFIX)) {
     const itemId = navItem.href;
     tree[itemId] = {
       ...navItem,
