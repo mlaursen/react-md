@@ -116,7 +116,7 @@ A token can be created at:
 
   await changelogData();
   run(`npx lerna version ${type} --no-push${yes}`);
-  const changelog = await initBlog();
+  const changelog = await initBlog(autoYes);
 
   const percentChanged = await libsize({
     umd: true,

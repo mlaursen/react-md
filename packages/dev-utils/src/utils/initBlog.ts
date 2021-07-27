@@ -9,9 +9,9 @@ import { verify } from "./verify";
 
 const NEW_ENTRY = /^#{1,2}\s+\[\d/;
 
-async function getCurrentReleaseNotes(): Promise<string> {
+async function getCurrentReleaseNotes(autoConfirm: boolean): Promise<string> {
   log.info("Update the root CHANGELOG.md with any additional changes.");
-  if (!(await verify("Continue with the release?"))) {
+  if (!(await verify("Continue with the release?", autoConfirm))) {
     process.exit(1);
   }
 
@@ -44,12 +44,12 @@ async function getCurrentReleaseNotes(): Promise<string> {
  * @returns the current release markdown that can be used to generate a github
  * release for the current tag.
  */
-export async function initBlog(): Promise<string> {
+export async function initBlog(autoConfirm: boolean): Promise<string> {
   const blogPath = join(documentationRoot, src, "blogs", "index.md");
   const version = (await getPackageJson("react-md")).version;
   const blog = await readFile(blogPath, "utf-8");
 
-  const currentReleaseNotes = await getCurrentReleaseNotes();
+  const currentReleaseNotes = await getCurrentReleaseNotes(autoConfirm);
   const blogMarkdown = currentReleaseNotes
     // create smaller headings and remove margin
     .replace(/^(###)\s+(.+)$/gm, "##### $2<!-- no-margin -->")
