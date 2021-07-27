@@ -90,8 +90,8 @@ export function MiniLayoutWrapper({
   containerProps,
   ...props
 }: MiniLayoutWrapperProps): ReactElement {
-  const { fixedAppBar } = useLayoutConfig();
-  if (!mini || !treeProps || typeof miniNav !== "undefined") {
+  const { fixedAppBar, isMiniable } = useLayoutConfig();
+  if ((!mini && !isMiniable) || !treeProps || typeof miniNav !== "undefined") {
     return (
       <>
         {miniNav}
@@ -136,9 +136,9 @@ export function MiniLayoutWrapper({
   return (
     <div
       {...containerProps}
-      className={cn(!miniHidden && styles(), containerProps?.className)}
+      className={cn(!miniHidden && mini && styles(), containerProps?.className)}
     >
-      {miniNavigation}
+      {mini && miniNavigation}
       {children}
     </div>
   );
