@@ -72,7 +72,8 @@
     "react-router-dom": "^5.2.0",
     "react-swipeable": "^6.1.2",
     "react-transition-group": "^4.4.2",
-    "react-virtualized": "^9.22.3"
+    "react-virtualized": "^9.22.3",
+    "sass": "^1.37.5"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -88,7 +89,6 @@
     "babel-plugin-prismjs": "^2.1.0",
     "cross-env": "^7.0.3",
     "eslint-config-next": "^11.1.0",
-    "node-sass": "^5.0.0",
     "npm-run-all": "^4.1.5",
     "raw-loader": "^4.0.2",
     "typescript": "^4.3.5",

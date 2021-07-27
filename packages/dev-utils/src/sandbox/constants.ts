@@ -34,7 +34,7 @@ export const DEV_DEPENDENCIES = [
   "@types/node",
   "@types/react",
   "@types/react-dom",
-  "node-sass",
+  "sass",
   "react-scripts",
   "typescript",
 ];
