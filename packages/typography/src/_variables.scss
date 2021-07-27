@@ -2,6 +2,8 @@
 /// @group typography
 ////
 
+@use "sass:math";
+
 /// Gets the global variable value for a provided typography style name. This
 /// assumes that the global variable exists already.
 ///
@@ -76,7 +78,7 @@
 /// @param {Number} font-size - The font size to use
 /// @return {Number} the letter spacing value in em
 @function rmd-typography-get-letter-spacing($tracking, $font-size) {
-  @return $tracking / ($font-size * 16) * 1em;
+  @return math.div($tracking, $font-size * 16) * 1em;
 }
 
 /// The font family to use throughout the entire application.

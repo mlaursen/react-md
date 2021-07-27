@@ -2,6 +2,8 @@
 /// @group theme
 ////
 
+@use "sass:math";
+
 @import './color-palette';
 
 /// This is the default contrast ratio to use for color accessibility between
@@ -190,8 +192,10 @@ $rmd-theme-linear-channel-values: (
   $back-luminance: rmd-theme-luminance($back) + 0.05;
   $front-luminance: rmd-theme-luminance($front) + 0.05;
 
-  @return max($back-luminance, $front-luminance) /
-    min($back-luminance, $front-luminance);
+  @return math.div(
+    max($back-luminance, $front-luminance),
+    min($back-luminance, $front-luminance)
+  );
 }
 
 /// Determines if a provided color is considered light or dark.

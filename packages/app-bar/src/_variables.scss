@@ -48,7 +48,7 @@ $rmd-app-bar-keyline: 1rem !default;
 /// @require $rmd-button-icon-size
 /// @type Number
 $rmd-app-bar-nav-margin: $rmd-app-bar-keyline -
-  (($rmd-button-icon-size - $rmd-icon-size) / 2);
+  (($rmd-button-icon-size - $rmd-icon-size) * 0.5);
 
 /// The keyline for the `AppBarTitle` to use when used with the `AppBarNav` or
 /// the `offset` prop is enabled.
