@@ -72,7 +72,7 @@ export default {
   "rmd-slider-vertical-size": "15rem",
   "rmd-slider-active-track-size": "0.375rem",
   "rmd-slider-active-track-color": "var(--rmd-theme-secondary, #f50057)",
-  "rmd-slider-active-track-opacity": "",
+  "rmd-slider-active-track-opacity": null,
   "rmd-slider-inactive-track-size": "0.25rem",
   "rmd-slider-inactive-track-color": "var(--rmd-theme-secondary, #f50057)",
   "rmd-slider-disabled-track-color":
@@ -122,7 +122,7 @@ export default {
   "rmd-text-field-underline-label-padding-top": "1rem",
   "rmd-text-field-underline-label-left-offset": "0.5rem",
   "rmd-text-field-underline-dense-padding-top": "0.25rem",
-  "rmd-text-field-underline-padding": "",
+  "rmd-text-field-underline-padding": null,
   "rmd-text-field-filled-padding": "0.75rem",
   "rmd-text-field-filled-light-background-color": "#f5f5f5",
   "rmd-text-field-filled-dark-background-color": "#616161",

@@ -23,7 +23,7 @@ export default {
   "rmd-grid-cell-size-var": "--rmd-cell-size",
   "rmd-grid-padding": "1rem",
   "rmd-grid-cell-margin": "1rem",
-  "rmd-grid-columns": "",
+  "rmd-grid-columns": null,
   "rmd-grid-phone-columns": 4,
   "rmd-grid-tablet-columns": 8,
   "rmd-grid-desktop-columns": 12,

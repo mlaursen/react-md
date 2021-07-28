@@ -33,16 +33,20 @@ function toJSONValue(value: VariableValue): JSONValue {
 
 export async function createScssVariables(): Promise<void> {
   const items = await getSassdoc();
-  const variables = items.reduce<PackageVariables>((collection, variable) => {
-    if (isVariableItem(variable) && isPublic(variable)) {
-      const group = variable.group[0].replace(/^(form)-.+$/, "$1");
-      collection[group] = collection[group] || {};
+  const variables = items.reduce<PackageVariables>(
+    (collection, variable, i) => {
+      if (isVariableItem(variable) && isPublic(variable)) {
+        const group = variable.group[0].replace(/^(form)-.+$/, "$1");
+        collection[group] = collection[group] || {};
 
-      const { name, value } = getCompiledValue(variable);
-      collection[group][name] = toJSONValue(value);
-    }
-    return collection;
-  }, {});
+        const { name, value } = getCompiledValue(variable, i);
+        collection[group][name] = toJSONValue(value);
+      }
+
+      return collection;
+    },
+    {}
+  );
 
   const promises = Object.entries(variables).map(([packageName, json]) => {
     const contents = format(
