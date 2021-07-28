@@ -10,18 +10,18 @@ instead.
 
 ## Installing Dependencies
 
-First, let's install `react-md` and `node-sass`:
+First, let's install `react-md` and `sass`:
 
 ```sh
 npm install --save react-md
-npm install --save-dev node-sass
+npm install --save-dev sass
 ```
 
 Or if you prefer [yarn]:
 
 ```sh
 yarn add react-md
-yarn add --dev node-sass
+yarn add --dev sass
 ```
 
 > Since `react-md` requires [hook support], you'll also need to ensure that
@@ -29,8 +29,8 @@ yarn add --dev node-sass
 
 ## Adding Base Styles
 
-Once `react-md` and `node-sass` have been installed, you'll want to include the
-base `react-md` styles. First, create a `src/index.scss` file and generate the
+Once `react-md` and `sass` have been installed, you'll want to include the base
+`react-md` styles. First, create a `src/index.scss` file and generate the
 styles:
 
 ```scss
