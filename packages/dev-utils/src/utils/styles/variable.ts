@@ -48,126 +48,186 @@ function parseValue(value: VariableValue): VariableValue {
     return number;
   }
 
-  return value;
+  // remove additional quotes around strings
+  if (/^('|").+\1$/.test(value)) {
+    value = value.substring(1, value.length - 1);
+  }
+
+  // remove additional spaces that get added to css functions somtimes
+  return value.replace(/((\()\s+)|(\s+(\)))/g, "$2$4");
 }
 
-function matchParen(s: string, count = 0): string {
+function consumeMatchingParens(s: string, totalParens = 0): string {
   const match = s.match(/\(|\)/);
   if (!match || typeof match.index === "undefined") {
     return s;
   }
 
   const i = match.index + 1;
+  let addition = 1;
   if (match[0] === ")") {
-    if (count === 1) {
+    if (totalParens === 1) {
       return s.substring(0, i);
     }
 
-    return s.substring(0, i) + matchParen(s.substring(i), count - 1);
+    addition = -1;
   }
 
-  return s.substring(0, i) + matchParen(s.substring(i), count + 1);
+  return (
+    s.substring(0, i) +
+    consumeMatchingParens(s.substring(i), totalParens + addition)
+  );
 }
 
-function parseMap(mapValue: string): ValuedVariable[] {
-  let remaining = mapValue.substring(1, mapValue.length - 1);
+function isCssFunction(remaining: string, endIndex: number): boolean {
+  return /(var|calc|rgba?|rotate(3d)?|translate(X|Y|3d)?|cubic-bezier)\(/.test(
+    remaining.substring(0, endIndex + 1)
+  );
+}
+
+const VALUE_SEP = ": ";
+
+function parseMap(mapString: string): ValuedVariable[] {
   const values: ValuedVariable[] = [];
+
+  if (mapString[0] !== "(" || mapString[mapString.length - 1] !== ")") {
+    throw new Error("INVALID MAP FORMAT");
+  }
+
+  let remaining = mapString.substring(1, mapString.length - 1);
   while (remaining.length) {
-    const i = remaining.indexOf(": ");
-    if (i === -1) {
-      log.error(
-        "Unable to hack a css variable correctly since no valid key/value split was found."
-      );
-      log.error("Original Map Value: ", mapValue);
-      log.error("Remaining string: ", remaining);
-      process.exit(1);
+    const sepIndex = remaining.indexOf(VALUE_SEP);
+    if (sepIndex === -1) {
+      throw new Error("Unable to find a name");
     }
 
-    const name = remaining.substring(0, i);
-    remaining = remaining.substring(i + 2);
-    let j =
-      name === "font-family"
-        ? remaining.search(/, [-a-z]+: /)
-        : remaining.indexOf(",");
-    if (j === -1) {
-      j = remaining.length;
+    const name = remaining.substring(0, sepIndex);
+    remaining = remaining.substring(sepIndex + VALUE_SEP.length);
+    if (name === "font-family") {
+      const tokenIndex = remaining.search(/, [-a-z]+: /);
+      if (tokenIndex !== -1) {
+        const value = remaining.substring(0, tokenIndex);
+        values.push({
+          name,
+          value: parseValue(value),
+        });
+        remaining = remaining.substring(tokenIndex + 1).trim();
+        continue;
+      } else {
+        throw new Error("unsupported font-family value");
+      }
     }
 
-    const remainingString = remaining.substring(0, j);
-    let value: VariableValue = remainingString;
-    if (remainingString.startsWith("(")) {
-      const mapString = matchParen(remaining);
-      j = mapString.length;
-      value = parseMap(mapString);
-    } else if (remainingString.includes("(")) {
-      const matched = matchParen(remaining);
-      j = matched.length;
-      value = matched;
+    const nextMatch = remaining.match(/\(|\)|,/);
+    if (!nextMatch) {
+      values.push({
+        name,
+        value: parseValue(remaining),
+      });
+      break;
     }
 
-    value = parseValue(value);
-    remaining = remaining.substring(j + 1).trim();
-    values.push({ name, value });
+    const nextMatchIndex = nextMatch.index;
+    if (typeof nextMatchIndex !== "number") {
+      throw new Error("NO MATCHINDEX");
+    }
+
+    const token = remaining[nextMatchIndex];
+    if (token === ",") {
+      values.push({
+        name,
+        value: parseValue(remaining.substring(0, nextMatchIndex)),
+      });
+
+      remaining = remaining.substring(nextMatchIndex + 1);
+    } else if (token === ")") {
+      throw new Error(`token: "${token}"`);
+    } else if (isCssFunction(remaining, nextMatchIndex)) {
+      const variableValue = consumeMatchingParens(remaining);
+      values.push({
+        name,
+        value: parseValue(variableValue),
+      });
+      remaining = remaining.substring(variableValue.length + 1);
+    } else {
+      const nextMap = consumeMatchingParens(remaining);
+      values.push({
+        name,
+        value: parseMap(nextMap),
+      });
+
+      remaining = remaining.substring(nextMap.length).replace(/^,\s+/, "");
+    }
+
+    remaining = remaining.trim();
   }
 
   return values;
 }
 
-export function getCompiledValue(variable: VariableItem): ValuedVariable {
+export function getCompiledValue(
+  variable: VariableItem,
+  index?: number
+): ValuedVariable {
   const {
     file: { path },
-    context: { name, value },
+    context: { name, value: originalValue },
     type,
   } = variable;
 
-  const prefix = `$${name}: `;
-  const data = `@import '${path}';
-@error '${prefix}#{${value}}'`;
-
-  try {
-    renderSync({
-      data,
-      outputStyle: "expanded",
-      includePaths: [tempStylesDir],
-    });
-    throw new Error("Should never happen");
-  } catch (e) {
-    const { message } = e as Error;
-    if (/Undefined variable |File to import not found/.test(message)) {
-      log.error(`Unable to hackily generate the value for "${name}"`);
-      log.error();
-      log.error(message);
-      process.exit(1);
-    }
-
-    let value: VariableValue = message.substring(prefix.length);
-    switch (type) {
-      case "List": {
-        const parsed = value
-          .split(/\s|,/)
-          .map((part) => parseValue(part)) as SimplePrimative[];
-
-        value = parsed;
-        break;
-      }
-      case "Map":
-        value = parseMap(value);
-        break;
-      default:
-        // sanity check for typos since sassdoc doesn't have any validation for this
-        if (!isValidType(type || "")) {
-          log.error(
-            `${name} variable has an invalid @type declaration: "${type}"`
-          );
-          log.error();
-          process.exit(1);
-        }
-        value = parseValue(value);
-    }
-
-    return {
-      name,
-      value,
-    };
+  // sanity check for typos since sassdoc doesn't have any validation for this
+  if (!isValidType(type || "")) {
+    log.error(`${name} variable has an invalid @type declaration: "${type}"`);
+    log.error(`index is: "${index}"`);
+    log.error();
+    process.exit(1);
   }
+
+  const output = renderSync({
+    data: `@use 'sass:meta';
+@use 'sass:math';
+
+@import '${path}';
+
+.output {
+  --value: #{meta.inspect(${originalValue})};
+}
+`,
+    outputStyle: "expanded",
+    includePaths: [tempStylesDir],
+  }).css.toString();
+  // since the `rmd-option-selected-content` is unicode, an `@charset` value
+  // might also be rendered in the output
+  const compiledValue = output
+    .substring(output.indexOf("--value") + "--value: ".length)
+    .replace(";\n}", "");
+
+  let value: VariableValue;
+  switch (type) {
+    case "List":
+      value = compiledValue
+        .split(/\s|,/)
+        .map((part) => parseValue(part)) as SimplePrimative[];
+      break;
+    case "Map":
+      try {
+        value = parseMap(compiledValue);
+      } catch (e) {
+        log.error(`Unable to parse the map: ${name}`);
+        log.error(`index is: "${index}"`);
+        log.error(compiledValue);
+        if ("message" in e) {
+          log.error(e.message);
+        }
+        process.exit(1);
+      }
+      break;
+    default:
+      value = parseValue(compiledValue);
+  }
+
+  return {
+    name,
+    value,
+  };
 }
