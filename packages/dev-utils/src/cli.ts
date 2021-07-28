@@ -11,6 +11,7 @@ import { libsize } from "./libsize";
 import { release, RELEASE_TYPES, toReleaseType } from "./release";
 import { sandbox } from "./sandbox";
 import { sassdoc } from "./sassdoc";
+import { sassMigrator } from "./sassMigrator";
 import { shared } from "./shared";
 import { themes } from "./themes";
 import { typedoc } from "./typedoc";
@@ -204,5 +205,7 @@ createCommand("typedoc")
     "A wrapper for the typedoc cli that is really used to just work with vercel deployments"
   )
   .action(() => typedoc());
+
+createCommand("migrate").action(() => sassMigrator());
 
 program.parse(process.argv);
