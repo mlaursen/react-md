@@ -1,3 +1,4 @@
+export * from "./combineAllFiles";
 export * from "./createScssVariables";
 export * from "./getSassdoc";
 export * from "./helpers";

@@ -24,6 +24,9 @@ export const dist = "dist";
 export const nonWebpackDist = join(dist, "scss");
 export const tempStylesDir = "tempStyles";
 
+export const reactMdDist = join(packagesRoot, "react-md", dist);
+export const everythingScss = join(reactMdDist, "_everything.scss");
+
 // common files
 export const stylesScss = "styles.scss";
 export const scssVariables = "scssVariables.ts";
