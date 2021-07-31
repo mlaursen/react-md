@@ -1,9 +1,9 @@
 import { writeFile } from "fs-extra";
 import { omit } from "lodash";
 import log from "loglevel";
-import { renderSync } from "sass";
 import { join } from "path";
 import { BuiltInParserName } from "prettier";
+import { renderSync } from "sass";
 import {
   ExampleType,
   FunctionItem,
@@ -14,8 +14,9 @@ import {
   VariableItem,
 } from "sassdoc";
 
-import { nonWebpackDist, packagesRoot, src, tempStylesDir } from "./constants";
+import { nonWebpackDist, packagesRoot, src } from "./constants";
 import {
+  combineAllFiles,
   CompiledExample,
   format,
   FormattedFunctionItem,
@@ -23,8 +24,9 @@ import {
   FormattedItemLink,
   FormattedMixinItem,
   FormattedVariableItem,
+  getColorVariables,
   getCompiledValue,
-  getPackages,
+  getEverythingScss,
   getSassdoc,
   isFunctionItem,
   isMixinItem,
@@ -100,37 +102,33 @@ function getCompiledValueString(value: VariableValue): string {
     .substring(prefix.length);
 }
 
-function compileExampleCode(code: string): string {
-  const i = code.indexOf(OVERRIDE_VARIABLES_TOKEN);
+function compileExampleCode(code: string, path: string, name: string): string {
+  let data = code;
   let prefix = "";
+  const i = code.indexOf(OVERRIDE_VARIABLES_TOKEN);
   if (i !== -1) {
-    prefix = `@import '@react-md/theme/${nonWebpackDist}/color-palette';
-${code.substring(0, i)}
-`;
-    code = code.substring(i + OVERRIDE_VARIABLES_TOKEN.length);
+    prefix = code.substring(0, i);
+    data = code.substring(i + OVERRIDE_VARIABLES_TOKEN.length);
   }
 
-  const imports = getPackages("scss")
-    .map((p) => `@import '@react-md/${p}/${nonWebpackDist}/mixins';`)
-    .join("\n");
+  // since everything is part of the same stylesheet to prevent the `@import` IO
+  // slowdown, have to update variables to be `!global` so that they will be
+  // overridden/found correctly. (mostly typography)
+  data = `${getColorVariables()}
+${prefix.replace(/;$/g, " !global;")}
 
-  const data = `${prefix}${imports}
-@import '@react-md/icon/${nonWebpackDist}/material-icons';
+${getEverythingScss()}
 
-${code}
-`;
+${data}`;
 
   try {
-    return format(
-      renderSync({
-        data,
-        includePaths: [tempStylesDir],
-      }).css.toString(),
-      "css"
-    );
+    return format(renderSync({ data }).css.toString(), "css");
   } catch (e) {
     log.error("Unable to compile an example with the following code:");
     log.error(code);
+    log.error();
+    log.error(`path: ${path}`);
+    log.error(`name: ${name}`);
     log.error();
     log.error(e.message);
     process.exit(1);
@@ -235,7 +233,7 @@ function formatItem(
       const exampleCode = removeUncompilableCode(code);
       let compiled: string | undefined;
       if (type === "scss" && !description.includes(NO_COMPILE_TOKEN)) {
-        compiled = compileExampleCode(exampleCode);
+        compiled = compileExampleCode(exampleCode, path, name);
       }
 
       return {
@@ -396,6 +394,7 @@ function getPackageRecord(
 }
 
 export async function sassdoc(): Promise<void> {
+  combineAllFiles();
   const documentationSassdoc = join(
     packagesRoot,
     "documentation",

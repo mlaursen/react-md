@@ -1,7 +1,9 @@
-import { VariableItem } from "sassdoc";
 import log from "loglevel";
 import { renderSync } from "sass";
-import { tempStylesDir, Primative, SimplePrimative } from "../../constants";
+import { VariableItem } from "sassdoc";
+
+import { Primative, SimplePrimative } from "../../constants";
+import { getEverythingScss } from "./combineAllFiles";
 
 export type VariableValue =
   | SimplePrimative
@@ -48,8 +50,8 @@ function parseValue(value: VariableValue): VariableValue {
     return number;
   }
 
-  // remove additional quotes around strings
-  if (/^('|").+\1$/.test(value)) {
+  // remove additional quotes around strings and remove parens around font-family
+  if (/^('|").+\1$/.test(value) || /^\(.+\)$/.test(value)) {
     value = value.substring(1, value.length - 1);
   }
 
@@ -170,7 +172,6 @@ export function getCompiledValue(
   index?: number
 ): ValuedVariable {
   const {
-    file: { path },
     context: { name, value: originalValue },
     type,
   } = variable;
@@ -183,19 +184,34 @@ export function getCompiledValue(
     process.exit(1);
   }
 
-  const output = renderSync({
-    data: `@use 'sass:meta';
-@use 'sass:math';
+  // this causes the `meta.inspect` to fail since it thinks there are two arguments.
+  if (originalValue === "Roboto, sans-serif") {
+    return { name, value: originalValue };
+  }
 
-@import '${path}';
+  const data = `@use 'sass:meta';
+${getEverythingScss()}
 
 .output {
   --value: #{meta.inspect(${originalValue})};
 }
-`,
-    outputStyle: "expanded",
-    includePaths: [tempStylesDir],
-  }).css.toString();
+`;
+
+  let output = "";
+  try {
+    output = renderSync({
+      data,
+      outputStyle: "expanded",
+    }).css.toString();
+  } catch (e) {
+    log.error(`name: ${name}`);
+    log.error(`value: ${originalValue}`);
+    log.error("");
+
+    log.error(e.message);
+    process.exit(1);
+  }
+
   // since the `rmd-option-selected-content` is unicode, an `@charset` value
   // might also be rendered in the output
   const compiledValue = output
