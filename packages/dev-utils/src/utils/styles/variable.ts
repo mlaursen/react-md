@@ -1,4 +1,3 @@
-import { writeFileSync } from "fs";
 import log from "loglevel";
 import { renderSync } from "sass";
 import { VariableItem } from "sassdoc";
@@ -173,7 +172,6 @@ export function getCompiledValue(
   index?: number
 ): ValuedVariable {
   const {
-    file: { path },
     context: { name, value: originalValue },
     type,
   } = variable;
