@@ -1,6 +1,7 @@
-import { copyStylesTemp, createScssVariables } from "./utils";
+import { combineAllFiles, copyStylesTemp, createScssVariables } from "./utils";
 
 export async function variables(): Promise<void> {
+  combineAllFiles();
   await copyStylesTemp();
   await createScssVariables();
 }

@@ -1,7 +1,10 @@
-import { VariableItem } from "sassdoc";
+import { writeFileSync } from "fs";
 import log from "loglevel";
 import { renderSync } from "sass";
-import { tempStylesDir, Primative, SimplePrimative } from "../../constants";
+import { VariableItem } from "sassdoc";
+
+import { Primative, SimplePrimative } from "../../constants";
+import { getEverythingScss } from "./combineAllFiles";
 
 export type VariableValue =
   | SimplePrimative
@@ -183,19 +186,19 @@ export function getCompiledValue(
     process.exit(1);
   }
 
-  const output = renderSync({
-    data: `@use 'sass:meta';
-@use 'sass:math';
-
-@import '${path}';
+  const data = `@use 'sass:meta';
+${getEverythingScss()}
 
 .output {
   --value: #{meta.inspect(${originalValue})};
 }
-`,
+`;
+
+  const output = renderSync({
+    data,
     outputStyle: "expanded",
-    includePaths: [tempStylesDir],
   }).css.toString();
+
   // since the `rmd-option-selected-content` is unicode, an `@charset` value
   // might also be rendered in the output
   const compiledValue = output
