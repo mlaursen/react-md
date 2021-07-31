@@ -16,7 +16,7 @@ import { shared } from "./shared";
 import { themes } from "./themes";
 import { typedoc } from "./typedoc";
 import { umd } from "./umd";
-import { copyStyles } from "./utils";
+import { combineAllFiles, copyStyles } from "./utils";
 import { variables } from "./variables";
 import { watch } from "./watch";
 
@@ -55,6 +55,12 @@ createCommand("styles")
     "Copies all the SCSS files into the dist folder as well as creating non-webpack specific versions."
   )
   .action(() => copyStyles());
+
+createCommand("combine-styles")
+  .description(
+    "Combines all the .scss files into a single file in the react-md package."
+  )
+  .action(() => combineAllFiles());
 
 createCommand("sassdoc")
   .description(
