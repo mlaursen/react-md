@@ -37,8 +37,10 @@
 ///
 ///
 /// @example scss - Updating the base icon size with a media query
-///   @media (min-width: 75rem)  {
-///     @include rmd-icon-theme-update-var(size, rmd-icon-theme(dense-size));
+///   :root {
+///     @media (min-width: 75rem)  {
+///       @include rmd-icon-theme-update-var(size, rmd-icon-theme(dense-size));
+///     }
 ///   }
 ///
 /// @param {String} theme-style - The icon theme style type to update. This

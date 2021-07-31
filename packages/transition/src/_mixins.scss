@@ -56,8 +56,6 @@
 /// A mixin that allows you to animate box shadow performantly.
 ///
 /// @example scss - Simple Usage
-///   @import '~@react-md/theme/dist/color-palette';
-///
 ///   .my-class {
 ///     $start-shadow: inset 0 0 1px $rmd-blue-500;
 ///     $end-shadow: inset 0 0 4px $rmd-blue-500;
@@ -66,9 +64,6 @@
 ///   }
 ///
 /// @example scss - Merging with elevation
-///   @import '~@react-md/elevation/dist/functions';
-///   @import '~@react-md/theme/dist/color-palette';
-///
 ///   .my-class {
 ///     $start-shadow: rmd-elevation(2);
 ///     $end-shadow: rmd-elevation(4), inset 0 0 4px $rmd-blue-500;
