@@ -5,7 +5,7 @@
 
 $page-margin: 1rem;
 $button-size: 2rem;
-$size-difference: ($rmd-button-icon-size - $button-size) / 2;
+$size-difference: ($rmd-button-icon-size - $button-size) * 0.5;
 $margin: $size-difference + $rmd-app-bar-lr-margin;
 $toc-z-index: 9;
 
