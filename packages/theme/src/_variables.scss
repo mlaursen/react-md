@@ -23,10 +23,9 @@ $rmd-theme-define-colors-with-rgba: false !default;
 /// Boolean if the dark theme should gain different background colors based on
 /// the current elevation instead of a static surface color.
 ///
-/// Note: This will be set to `true` by default with the next major release.
 /// @since 2.1.0
 /// @type Boolean
-$rmd-theme-dark-elevation: false !default;
+$rmd-theme-dark-elevation: true !default;
 
 /// Boolean if the light theme **default** colors should be used. This means
 /// that the background-color, surface, and text colors will be updated to their
