@@ -13,7 +13,8 @@ export type ReferencedFiles = Map<string, string>;
 
 // since I don't want to include markdown stuff
 const IGNORED_MODULES = ["marked", "prismjs"];
-const IGNORED_FILE_REGEXP = /Markdown|Code|constants\/(github|packages)/;
+const IGNORED_FILE_REGEXP =
+  /Markdown|Code|constants\/(github|packages)|@react-md/;
 
 function isIgnoredDependency(name: string): boolean {
   return (

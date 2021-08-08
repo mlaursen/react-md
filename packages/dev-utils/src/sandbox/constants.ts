@@ -10,7 +10,7 @@ export const SANDBOXES_PATH = join(
   "sandboxes"
 );
 
-export const FORM_PARTS = [
+export const FORM_PARTS: readonly string[] = [
   "FileInputs",
   "SelectFields",
   "SelectionControls",
@@ -19,17 +19,13 @@ export const FORM_PARTS = [
   "Validation",
 ];
 
-export const DEPENDENCIES = [
-  "@react-md/layout",
-  "@react-md/states",
-  "@react-md/theme",
-  "@react-md/typography",
-  "@react-md/utils",
+export const DEPENDENCIES: readonly string[] = [
+  "react-md",
   "react",
   "react-dom",
 ];
 
-export const DEV_DEPENDENCIES = [
+export const DEV_DEPENDENCIES: readonly string[] = [
   "@types/jest",
   "@types/node",
   "@types/react",
@@ -86,11 +82,17 @@ export const DEMO_INDEX_HTML = `<!DOCTYPE html>
 </html>
 `;
 
-export const VARIABLES_SCSS_FILE = `@import "~@react-md/theme/dist/color-palette";
+export const VARIABLES_SCSS_FILE = `@import "@react-md/theme/dist/color-palette";
 
 $rmd-theme-light: true;
 $rmd-theme-primary: $rmd-teal-500;
 $rmd-theme-secondary: $rmd-pink-a-200;
+`;
+
+export const STYLES_SCSS_FILE = `@import "./variables";
+@import "react-md/dist/everything";
+
+@include react-md-utils";
 `;
 
 export const PHONE_INDEX_FILE = `export { default } from "./Phone";
