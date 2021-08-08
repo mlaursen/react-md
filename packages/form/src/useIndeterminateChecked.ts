@@ -191,15 +191,6 @@ export interface CombinedIndeterminateCheckedHookReturnValue<V extends string>
   getProps(value: V): ProvidedCombinedIndeterminateControlledProps<V>;
 }
 
-/**
- * @deprecated \@since 2.8.5 Use the implementation that accepts options as the
- * second argument.
- */
-export function useIndeterminateChecked<V extends string>(
-  values: readonly V[],
-  defaultCheckedValues: Initializer<V>,
-  onChange?: OnChange<V>
-): OnChangeReturnValue<V>;
 export function useIndeterminateChecked<V extends string>(
   values: readonly V[],
   options?: IndeterminateCheckedHookOptions<V> & { menu?: false }
@@ -339,25 +330,12 @@ export function useIndeterminateChecked<V extends string>(
  */
 export function useIndeterminateChecked<V extends string>(
   values: readonly V[],
-  defaultOrOptions?: IndeterminateCheckedHookOptions<V> | Initializer<V>,
-  optionalOnChange?: OnChange<V>
+  {
+    menu = false,
+    onChange: propOnChange,
+    defaultCheckedValues = [],
+  }: IndeterminateCheckedHookOptions<V> = {}
 ): CombinedIndeterminateCheckedHookReturnValue<V> {
-  let menu = false;
-  let propOnChange: OnChange<V> | undefined = optionalOnChange;
-  let defaultCheckedValues: Initializer<V>;
-  if (
-    typeof defaultOrOptions === "undefined" ||
-    !("length" in defaultOrOptions)
-  ) {
-    ({
-      menu = false,
-      onChange: propOnChange,
-      defaultCheckedValues = [],
-    } = defaultOrOptions ?? {});
-  } else {
-    defaultCheckedValues = defaultOrOptions;
-  }
-
   const [checkedValues, setCheckedValues] =
     useState<readonly V[]>(defaultCheckedValues);
   const checked = checkedValues.length > 0;

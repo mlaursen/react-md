@@ -9,7 +9,9 @@ export default function IndeterminateCheckboxes(): ReactElement {
     rootProps,
     // checkedValues,
     // setCheckedValues,
-  } = useIndeterminateChecked(condiments, ["Sprouts"]);
+  } = useIndeterminateChecked(condiments, {
+    defaultCheckedValues: ["Sprouts"],
+  });
 
   return (
     <Fieldset legend="Sandwich Condiments" unstyled={false}>
