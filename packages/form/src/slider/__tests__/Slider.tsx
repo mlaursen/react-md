@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import { Dir, InteractionModeListener } from "@react-md/utils";
+import { Dir, UserInteractionModeListener } from "@react-md/utils";
 
 import { Slider, SliderProps } from "../Slider";
 import { SliderStepOptions, SliderValue } from "../types";
@@ -395,9 +395,9 @@ describe("Slider", () => {
   describe("discrete sliders", () => {
     function DiscreteTest({ disabled }: { disabled?: boolean }): ReactElement {
       return (
-        <InteractionModeListener>
+        <UserInteractionModeListener>
           <Test discrete disabled={disabled} />
-        </InteractionModeListener>
+        </UserInteractionModeListener>
       );
     }
 
