@@ -12,9 +12,9 @@ import {
   DEMO_INDEX_HTML,
   FORM_PARTS,
   SANDBOXES_PATH,
+  STYLES_SCSS_FILE,
   VARIABLES_SCSS_FILE,
 } from "./constants";
-import { createDemoStyles } from "./createDemoStyles";
 import { createPackageJson } from "./createPackageJson";
 import { getAllDependencies } from "./getAllDependencies";
 import { getDemoSourceFile } from "./getSourceFile";
@@ -157,7 +157,7 @@ export function createSandbox(
       content: DEMO_INDEX,
     },
     "src/styles.scss": {
-      content: createDemoStyles(dependencies),
+      content: STYLES_SCSS_FILE,
     },
     "src/_variables.scss": {
       content: VARIABLES_SCSS_FILE,
