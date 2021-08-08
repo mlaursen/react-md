@@ -178,11 +178,10 @@ describe("useIndeterminateChecked", () => {
     const onChange = jest.fn();
     const defaultCheckedValues = ["b"] as const;
     function Test() {
-      const { rootProps, getProps } = useIndeterminateChecked(
-        values,
+      const { rootProps, getProps } = useIndeterminateChecked(values, {
+        onChange,
         defaultCheckedValues,
-        onChange
-      );
+      });
       return (
         <>
           <Checkbox id="checkbox-1" label="Toggle All" {...rootProps} />
