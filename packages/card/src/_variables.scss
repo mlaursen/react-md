@@ -28,11 +28,6 @@ $rmd-card-dark-elevation-background-color: map-get(
   $rmd-card-elevation
 );
 
-/// @type Color
-/// @since 2.5.4
-/// @deprecated Use `$rmd-card-dark-elevation-color` instead starting with `v2.7.0`
-$rmd-card-dark-elevation-bordered-background-color: $rmd-card-dark-elevation-background-color;
-
 /// The background color for a card in dark themes.
 ///
 /// @type Color
