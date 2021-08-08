@@ -3,10 +3,6 @@ import { ResizeObserver } from "@juggle/resize-observer";
 
 import { EnsuredRefs, useEnsuredRef } from "../useEnsuredRef";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
-import {
-  useResizeObserverV1,
-  UseResizeObserverV1Options,
-} from "./useResizeObserverV1";
 
 /**
  * @remarks \@since 2.3.0
@@ -238,17 +234,6 @@ function unsubscribe<E extends HTMLElement>(
 }
 
 /**
- * This uses the deprecated v1 behavior of providing a `target` element for the
- * resize observer. It is recommended to use the newer API that returns a ref
- * handler instead.
- *
- * @deprecated 2.3.0
- */
-export function useResizeObserver<E extends HTMLElement>(
-  options: UseResizeObserverV1Options<E>
-): void;
-
-/**
  * The new resize observer API that returns a `refHandler` to attach to a DOM
  * node instead of using the weird `target` API.
  *
@@ -260,32 +245,9 @@ export function useResizeObserver<E extends HTMLElement>(
  */
 export function useResizeObserver<E extends HTMLElement>(
   onResize: OnResizeObserverChange<E>,
-  options?: UseResizeObserverOptions<E>
-): EnsuredRefs<E>;
-
-/**
- * This is currently a version that supports the "v1" and "v2" behavior of the
- * resize observer. **This hook with crash if you switch between the v1 and v2
- * behavior** during runtime.
- *
- * Please migrate to the v2 behavior with the ref handler when possible.
- *
- * @remarks \@since 2.3.0
- */
-export function useResizeObserver<E extends HTMLElement>(
-  arg1: UseResizeObserverV1Options<E> | OnResizeObserverChange<E>,
-  arg2: UseResizeObserverOptions<E> = {}
-): EnsuredRefs<E> | void {
-  // the app **should** crash if the user is switching between v1 and v2 behavior
-  /* eslint-disable react-hooks/rules-of-hooks */
-  if (typeof arg1 !== "function") {
-    useResizeObserverV1(arg1);
-    return;
-  }
-
-  const onResize = arg1;
-  const { ref: propRef, disableHeight = false, disableWidth = false } = arg2;
-
+  options: UseResizeObserverOptions<E> = {}
+): EnsuredRefs<E> {
+  const { ref: propRef, disableWidth = false, disableHeight = false } = options;
   const [ref, refHandler] = useEnsuredRef<E>(propRef);
 
   useIsomorphicLayoutEffect(() => {
