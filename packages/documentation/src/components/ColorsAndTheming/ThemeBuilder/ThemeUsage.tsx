@@ -36,7 +36,7 @@ export default function ThemeUsage({
         {`##### SCSS Usage<!-- no-margin-bottom -->
 
 \`\`\`scss
-@import '~@react-md/theme/dist/color-palette';
+@import '@react-md/theme/dist/color-palette';
 ${theme === "light" ? "" : DARK_OVERRIDE}
 $rmd-theme-primary: $rmd-${primary}-500;
 $rmd-theme-secondary: $rmd-${secondary}-a-${accent};

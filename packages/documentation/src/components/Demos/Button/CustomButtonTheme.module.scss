@@ -1,7 +1,4 @@
-@import '~@react-md/theme/dist/color-palette';
-@import '~@react-md/button/dist/mixins';
-@import '~@react-md/icon/dist/mixins';
-@import '~@react-md/theme/dist/mixins';
+@import 'react-md/dist/everything';
 
 .container {
   @include rmd-button-theme-update-var(outline-width, 4px);

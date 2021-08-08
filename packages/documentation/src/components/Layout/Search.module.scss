@@ -1,8 +1,4 @@
-@import '~@react-md/icon/dist/variables';
-@import '~@react-md/list/dist/mixins';
-@import '~@react-md/form/dist/mixins';
-@import '~@react-md/transition/dist/mixins';
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 .container {
   @include rmd-utils-rtl-auto(margin-left, auto);

@@ -1,5 +1,4 @@
-@import '~@react-md/list/dist/mixins';
-@import '~@react-md/dialog/dist/variables';
+@import 'react-md/dist/everything';
 
 .list {
   @include rmd-list-theme-update-var(

@@ -1,5 +1,4 @@
-@import '~@react-md/theme/dist/color-palette';
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 .on {
   @include rmd-utils-mouse-only(true) {

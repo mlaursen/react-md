@@ -1,7 +1,7 @@
 $rmd-utils-desktop-min-width: 92em;
 $rmd-utils-large-desktop-min-width: 120em;
 
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 .container {
   @include rmd-grid(

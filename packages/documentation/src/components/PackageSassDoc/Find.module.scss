@@ -1,6 +1,4 @@
-@import '~@react-md/button/dist/variables';
-@import '~@react-md/dialog/dist/variables';
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 .dialog {
   $distance: $rmd-button-floating-margin + $rmd-button-icon-size + 1rem;

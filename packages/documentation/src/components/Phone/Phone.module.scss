@@ -1,13 +1,7 @@
 // sass-lint:disable class-name-format
 $rmd-theme-dark-elevation: true;
 
-@import '~@react-md/app-bar/dist/mixins';
-@import '~@react-md/elevation/dist/mixins';
-@import '~@react-md/icon/dist/mixins';
-@import '~@react-md/sheet/dist/mixins';
-@import '~@react-md/theme/dist/mixins';
-@import '~@react-md/typography/dist/mixins';
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 $phone-height: 35.5rem;
 $phone-width: 20rem;

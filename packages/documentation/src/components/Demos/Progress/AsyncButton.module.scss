@@ -1,9 +1,4 @@
-@import '~@react-md/button/dist/mixins';
-@import '~@react-md/card/dist/variables';
-@import '~@react-md/icon/dist/mixins';
-@import '~@react-md/progress/dist/mixins';
-@import '~@react-md/theme/dist/mixins';
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 $rmd-theme-dark-elevation: true;
 

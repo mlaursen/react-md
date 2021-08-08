@@ -1,4 +1,4 @@
-@import '~@react-md/transition/dist/mixins';
+@import 'react-md/dist/everything';
 
 .blinds {
   @include rmd-transition(deceleration);

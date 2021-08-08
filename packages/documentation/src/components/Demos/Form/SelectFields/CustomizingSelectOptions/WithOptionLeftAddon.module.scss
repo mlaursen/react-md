@@ -1,4 +1,4 @@
-@import '~@react-md/avatar/dist/mixins';
+@import 'react-md/dist/everything';
 
 .label {
   @include rmd-avatar-theme-update-var(size, 1.5rem);

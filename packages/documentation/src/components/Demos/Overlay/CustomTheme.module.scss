@@ -1,7 +1,4 @@
-@import '~@react-md/theme/dist/color-palette';
-@import '~@react-md/theme/dist/mixins';
-@import '~@react-md/elevation/dist/mixins';
-@import '~@react-md/overlay/dist/mixins';
+@import 'react-md/dist/everything';
 
 .overlay {
   @include rmd-overlay-theme-update-var(

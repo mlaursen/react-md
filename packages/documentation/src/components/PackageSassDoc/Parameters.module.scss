@@ -1,6 +1,4 @@
-@import '~@react-md/table/dist/variables';
-@import '~@react-md/typography/dist/mixins';
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 .caption {
   @include rmd-typography(headline-6);

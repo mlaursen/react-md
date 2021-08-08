@@ -1,5 +1,4 @@
-@import '~@react-md/states/dist/mixins';
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 .row {
   @include rmd-utils-hide-focus-outline;
