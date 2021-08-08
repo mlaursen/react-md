@@ -24,6 +24,7 @@ import {
   FormattedItemLink,
   FormattedMixinItem,
   FormattedVariableItem,
+  getColorVariables,
   getCompiledValue,
   getEverythingScss,
   getSassdoc,
@@ -103,12 +104,20 @@ function getCompiledValueString(value: VariableValue): string {
 
 function compileExampleCode(code: string, path: string, name: string): string {
   let data = code;
+  let prefix = "";
   const i = code.indexOf(OVERRIDE_VARIABLES_TOKEN);
   if (i !== -1) {
+    prefix = code.substring(0, i);
     data = code.substring(i + OVERRIDE_VARIABLES_TOKEN.length);
   }
 
-  data = `${getEverythingScss()}
+  // since everything is part of the same stylesheet to prevent the `@import` IO
+  // slowdown, have to update variables to be `!global` so that they will be
+  // overridden/found correctly. (mostly typography)
+  data = `${getColorVariables()}
+${prefix.replace(/;$/g, " !global;")}
+
+${getEverythingScss()}
 
 ${data}`;
 

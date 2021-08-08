@@ -178,6 +178,19 @@ ${files.join("\n")}
   writeFileSync(everythingScss, formatted);
 }
 
+let cachedColorVariables = "";
+
+export function getColorVariables(): string {
+  if (!cachedColorVariables) {
+    cachedColorVariables = readFileSync(
+      join(packagesRoot, "theme", "src", "_color-palette.scss"),
+      "utf8"
+    );
+  }
+
+  return cachedColorVariables;
+}
+
 let cachedEverythingScss = "";
 
 /**
