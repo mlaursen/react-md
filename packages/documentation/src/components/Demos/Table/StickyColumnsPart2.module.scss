@@ -1,5 +1,4 @@
-@import '~@react-md/app-bar/dist/functions';
-@import '~@react-md/table/dist/mixins';
+@import 'react-md/dist/everything';
 
 .container {
   @include rmd-table-theme-update-var(

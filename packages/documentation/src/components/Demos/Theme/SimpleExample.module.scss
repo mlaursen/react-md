@@ -1,6 +1,5 @@
 // sass-lint:disable class-name-format
-@import '~@react-md/divider/dist/mixins';
-@import '~@react-md/theme/dist/mixins';
+@import 'react-md/dist/everything';
 
 $rmd-theme-primary: $rmd-teal-500;
 $rmd-theme-secondary: $rmd-pink-a-200;

@@ -1,4 +1,4 @@
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 .submit {
   @include rmd-utils-rtl-auto(margin-right, 1rem);

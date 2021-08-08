@@ -1,5 +1,4 @@
-@import '~@react-md/utils/dist/mixins';
-@import '~@react-md/app-bar/dist/mixins';
+@import 'react-md/dist/everything';
 
 .logo {
   @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-lr-margin, 0);

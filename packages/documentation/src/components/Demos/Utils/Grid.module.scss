@@ -1,9 +1,7 @@
 // sass-lint:disable class-name-format
 $rmd-theme-dark-elevation: true;
 
-@import '~@react-md/elevation/dist/mixins';
-@import '~@react-md/theme/dist/mixins';
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 .grid {
   background-color: $rmd-theme-light-background;

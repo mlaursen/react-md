@@ -1,4 +1,4 @@
-@import '~@react-md/typography/dist/mixins';
+@import 'react-md/dist/everything';
 
 .container {
   @include rmd-typography(subtitle-1);

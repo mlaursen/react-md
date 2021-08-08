@@ -1,7 +1,4 @@
-@import '~@react-md/button/dist/mixins';
-@import '~@react-md/states/dist/mixins';
-@import '~@react-md/theme/dist/mixins';
-@import '~@react-md/typography/dist/mixins';
+@import 'react-md/dist/everything';
 
 .button {
   @include rmd-button-unstyled(true);

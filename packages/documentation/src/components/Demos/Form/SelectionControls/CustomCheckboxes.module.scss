@@ -1,6 +1,4 @@
-@import '~@react-md/button/dist/mixins';
-@import '~@react-md/icon/dist/mixins';
-@import '~@react-md/form/dist/mixins';
+@import 'react-md/dist/everything';
 
 .small {
   @include rmd-button-theme-update-var(icon-size, 2rem);

@@ -1,6 +1,5 @@
 // sass-lint:disable class-name-format
-@import '~@react-md/app-bar/dist/mixins';
-@import '~@react-md/table/dist/mixins';
+@import 'react-md/dist/everything';
 
 .container {
   @include rmd-table-theme-update-var(cell-v-padding, 1rem);

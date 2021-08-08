@@ -1,4 +1,4 @@
-@import '~@react-md/theme/dist/mixins';
+@import 'react-md/dist/everything';
 
 .banner {
   @include rmd-theme(background-color, primary);

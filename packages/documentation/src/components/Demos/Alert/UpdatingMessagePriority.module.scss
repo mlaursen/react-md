@@ -1,5 +1,4 @@
-@import '~@react-md/elevation/dist/mixins';
-@import '~@react-md/utils/dist/mixins';
+@import 'react-md/dist/everything';
 
 .output {
   @include rmd-elevation(4);

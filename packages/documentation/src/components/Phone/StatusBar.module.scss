@@ -1,6 +1,4 @@
-@import '~@react-md/app-bar/dist/mixins';
-@import '~@react-md/icon/dist/mixins';
-@import '~@react-md/theme/dist/mixins';
+@import 'react-md/dist/everything';
 
 .container {
   @include rmd-app-bar-theme-update-var(dense-height, rmd-icon-theme-var(size));
