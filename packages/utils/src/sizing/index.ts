@@ -1,5 +1,4 @@
 export * from "./AppSizeListener";
-export * from "./ResizeObserver";
 export * from "./ResizeListener";
 export * from "./MediaOnly";
 export * from "./constants";
