@@ -35,30 +35,6 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
   onAppResize?: AppSizeListenerProps["onChange"];
 
   /**
-   * Boolean if the default tooltip hover mode should be disabled.
-   *
-   * @deprecated \@since 2.8.0 Use the {@link hoverMode} configuration object
-   * instead.
-   */
-  disableTooltipHoverMode?: boolean;
-
-  /**
-   * The default delay before the tooltip hover mode is enabled.
-   *
-   * @deprecated \@since 2.8.0 Use the {@link hoverMode} configuration object
-   * instead.
-   */
-  tooltipDefaultDelay?: number;
-
-  /**
-   * The delay before the tooltip should become visible.
-   *
-   * @deprecated \@since 2.8.0 Use the {@link hoverMode} configuration object
-   * instead.
-   */
-  tooltipDelayTimeout?: number;
-
-  /**
    * The children that should gain this configuration. This is required since
    * there's really no reason to use this component if you don't have children
    * that consume the React context.
@@ -112,9 +88,6 @@ export function Configuration({
   rippleClassNames = DEFAULT_RIPPLE_CLASSNAMES,
   disableRipple = false,
   disableProgrammaticRipple = false,
-  disableTooltipHoverMode,
-  tooltipDefaultDelay,
-  tooltipDelayTimeout,
   hoverMode,
 }: ConfigurationProps): ReactElement {
   return (
@@ -136,12 +109,7 @@ export function Configuration({
               rippleTimeout={rippleTimeout}
               rippleClassNames={rippleClassNames}
             >
-              <HoverModeProvider
-                disabled={disableTooltipHoverMode}
-                defaultVisibleInTime={tooltipDefaultDelay}
-                deactivateTime={tooltipDelayTimeout}
-                {...hoverMode}
-              >
+              <HoverModeProvider {...hoverMode}>
                 <IconProvider {...icons}>
                   <FormThemeProvider {...formTheme}>
                     {children}
@@ -196,9 +164,6 @@ if (process.env.NODE_ENV !== "production") {
       ]),
       disableRipple: PropTypes.bool,
       disableProgrammaticRipple: PropTypes.bool,
-      tooltipDelayTimeout: PropTypes.number,
-      tooltipDefaultDelay: PropTypes.number,
-      disableTooltipHoverMode: PropTypes.bool,
       icons: PropTypes.shape({
         back: PropTypes.node,
         checkbox: PropTypes.node,
