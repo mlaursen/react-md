@@ -1,7 +1,5 @@
 @import 'react-md/dist/everything';
 
-$rmd-theme-dark-elevation: true;
-
 .button {
   @include rmd-progress-theme-update-var(
     circular-size,

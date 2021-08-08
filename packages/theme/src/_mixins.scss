@@ -70,9 +70,6 @@
 /// instead of using this mixin.
 ///
 /// @example scss - Simple Example
-///   $rmd-theme-dark-elevation: true;
-///   // OVERRIDE_VARIABLES
-///
 ///   .container {
 ///     @include rmd-theme-dark-elevation-styles {
 ///       background-color: red;
@@ -92,7 +89,6 @@
 ///   }
 ///
 /// @example scss - Simple Prefers Color Scheme
-///   $rmd-theme-dark-elevation: true;
 ///   $rmd-theme-dark-class: 'prefers-color-scheme';
 ///   // OVERRIDE_VARIABLES
 ///
@@ -115,9 +111,6 @@
 ///   }
 ///
 /// @example scss - CSS Module Example
-///   $rmd-theme-dark-elevation: true;
-///   // OVERRIDE_VARIABLES
-///
 ///   .container {
 ///     @include rmd-theme-dark-elevation-styles(true) {
 ///       background-color: red;
@@ -137,7 +130,6 @@
 ///   }
 ///
 /// @example scss - CSS Module Prefers Color Scheme Example
-///   $rmd-theme-dark-elevation: true;
 ///   $rmd-theme-dark-class: 'prefers-color-scheme';
 ///   // OVERRIDE_VARIABLES
 ///
@@ -201,9 +193,6 @@
 /// instead of using this mixin.
 ///
 /// @example scss - All z-values
-///   $rmd-theme-dark-elevation: true;
-///   // OVERRIDE_VARIABLES
-///
 ///   .container {
 ///     @for $i from 0 to 24 {
 ///       @include rmd-theme-dark-elevation($i);
@@ -211,9 +200,6 @@
 ///   }
 ///
 /// @example scss - All z-values with CSS Modules
-///   $rmd-theme-dark-elevation: true;
-///   // OVERRIDE_VARIABLES
-///
 ///   .container {
 ///     @for $i from 0 to 24 {
 ///       @include rmd-theme-dark-elevation($i, true);
