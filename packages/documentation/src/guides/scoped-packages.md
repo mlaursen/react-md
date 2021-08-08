@@ -65,11 +65,11 @@ into your `.scss` file and use the `react-md-{{PACKAGE_NAME}}` mixin to generate
 the styles:
 
 ```scss
-@import "~@react-md/theme/dist/mixins";
-@import "~@react-md/typography/dist/mixins";
+@import "@react-md/theme/dist/mixins";
+@import "@react-md/typography/dist/mixins";
 
 @include react-md-theme;
-@include react-md/typography;
+@include react-md-typography;
 ```
 
 Please read the [using the Sass exports] guide for more information about these

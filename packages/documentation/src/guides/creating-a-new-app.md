@@ -131,7 +131,7 @@ Let's fix that by adding the base styles. Create a new file `src/App.scss` that
 will import the `react-md` scss library as well as generate the default styles:
 
 ```scss
-@import "~react-md/dist/react-md";
+@import "react-md/dist/react-md";
 
 @include react-md-utils;
 ```

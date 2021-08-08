@@ -34,7 +34,7 @@ Once `react-md` and `sass` have been installed, you'll want to include the base
 styles:
 
 ```scss
-@import "~react-md/dist/react-md";
+@import "react-md/dist/react-md";
 
 @include react-md-utils;
 ```

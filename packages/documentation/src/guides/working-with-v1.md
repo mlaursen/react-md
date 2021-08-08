@@ -65,7 +65,7 @@ the styles from `react-md@v1`:
 ```scss
 $md-typography-extended: false;
 
-@import "~react-md/src/scss/react-md";
+@import "react-md/src/scss/react-md";
 
 // instead of calling `@include react-md-everything`, make sure
 // to include everything you need except for the
@@ -208,11 +208,11 @@ $rmd-theme-light-background: $md-light-theme-background-color;
 $rmd-theme-dark-background: $md-dark-theme-background-color;
 
 // import all the installed @react-md/* packages in your app:
-@import "~@react-md/icon/dist/mixins";
-@import "~@react-md/states/dist/mixins";
-@import "~@react-md/theme/dist/mixins";
-@import "~@react-md/typography/dist/mixins";
-@import "~@react-md/utils/dist/mixins";
+@import "@react-md/icon/dist/mixins";
+@import "@react-md/states/dist/mixins";
+@import "@react-md/theme/dist/mixins";
+@import "@react-md/typography/dist/mixins";
+@import "@react-md/utils/dist/mixins";
 
 // this is kind of the new `react-md-everything`. it conditionally does `@include react-md-PACKAGE`
 // for all the mixins that have been imported
