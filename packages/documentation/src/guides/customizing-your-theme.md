@@ -24,7 +24,7 @@ to create a `_variables.scss` file that can be imported into any of your other
 `src/_variables.scss`
 
 ```scss
-@import "~@react-md/theme/dist/color-palette";
+@import "@react-md/theme/dist/color-palette";
 
 $rmd-theme-primary: $rmd-teal-500;
 $rmd-theme-secondary: $rmd-deep-orange-a-400;
@@ -34,7 +34,7 @@ $rmd-theme-secondary: $rmd-deep-orange-a-400;
 
 ```scss
 @import "./variables";
-@import "~react-md/dist/react-md";
+@import "react-md/dist/react-md";
 
 @include react-md-utils;
 ```
@@ -53,7 +53,7 @@ app.
 `src/_variables.scss`
 
 ```scss
-@import "~@react-md/theme/dist/color-palette";
+@import "@react-md/theme/dist/color-palette";
 
 $rmd-theme-light: false;
 $rmd-theme-primary: $rmd-teal-500;
@@ -64,7 +64,7 @@ $rmd-theme-secondary: $rmd-deep-orange-a-400;
 
 ```scss
 @import "./variables";
-@import "~react-md/dist/react-md";
+@import "react-md/dist/everything";
 
 @include react-md-utils;
 ```
@@ -86,7 +86,7 @@ theme in their OS? Luckily, `react-md` provides `rmd-theme-light` and
 conditionally apply the dark theme.
 
 ```scss
-@import "~react-md/dist/react-md";
+@import "react-md/dist/everything";
 
 @media (prefers-color-scheme: dark) {
   :root {

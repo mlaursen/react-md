@@ -130,7 +130,7 @@ Next, create a `src/App.scss` file to include all the `react-md` styles and
 import the `App.scss` file in the `src/App.js`:
 
 ```scss
-@import "~react-md/dist/scss/react-md";
+@import "react-md/dist/react-md";
 
 // this will include all the styles from react-md
 @include react-md-utils;

@@ -34,7 +34,7 @@ base `react-md` styles. First, create a `src/index.scss` file and generate the
 styles:
 
 ```scss
-@import "~react-md/dist/react-md";
+@import "react-md/dist/react-md";
 
 @include react-md-utils;
 ```

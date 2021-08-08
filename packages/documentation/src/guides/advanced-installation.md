@@ -227,7 +227,7 @@ Next, include the font with the weights by using the
 `rmd-typography-host-google-font` mixin:
 
 ```scss
-@import "~@react-md/typography/dist/mixins";
+@import "@react-md/typography/dist/mixins";
 
 @include rmd-typography-host-google-font;
 ```
@@ -256,7 +256,7 @@ mv ~/Downloads/roboto src/fonts/roboto
 ```
 
 ```scss
-@import "~@react-md/typography/dist/mixins";
+@import "@react-md/typography/dist/mixins";
 
 @include rmd-typography-host-google-font(
   Roboto,
@@ -283,7 +283,7 @@ you'll use the `rmd-icon-host-material-icons` mixin from the #icon package
 instead.
 
 ```scss
-@import "~@react-md/icon/dist/mixins";
+@import "@react-md/icon/dist/mixins";
 
 // if material icons are in `public/fonts/material-icons`
 @include rmd-icon-host-material-icons;

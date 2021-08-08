@@ -708,7 +708,7 @@ variable:
 ```scss
 $rmd-utils-enable-rtl: false;
 
-@import "~react-md/dist/react-md";
+@import "react-md/dist/react-md";
 ```
 
 #### Convenience Configuration and Context Provider Components

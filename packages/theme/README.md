@@ -71,12 +71,12 @@ the existing SCSS variables to update your theme.
 Example:
 
 ```scss
-@import "~@react-md/theme/dist/color-palette";
+@import "@react-md/theme/dist/color-palette";
 
 $rmd-theme-primary: $rmd-blue-500;
 $rmd-theme-secondary: $rmd-orange-a-400;
 
-@import "~@react-md/theme/dist/mixins";
+@import "@react-md/theme/dist/mixins";
 
 @include react-md-theme;
 ```
@@ -97,7 +97,7 @@ $my-awesome-company-orange: #e67e22;
 $rmd-theme-primary: $my-awesome-company-purple;
 $rmd-theme-secondary: $my-awesome-company-orange;
 
-@import "~@react-md/theme/dist/mixins";
+@import "@react-md/theme/dist/mixins";
 
 @include react-md-theme;
 ```
@@ -137,7 +137,7 @@ $rmd-theme-secondary: $my-awesome-company-orange;
 @import "my-awesome-company-branding";
 @import "my-awesome-company-react-md-overrides";
 
-@import "~@react-md/theme/dist/mixins";
+@import "@react-md/theme/dist/mixins";
 ```
 
 ```scss
