@@ -6,7 +6,6 @@ import React, {
   ReactNode,
 } from "react";
 import { RenderConditionalPortalProps } from "@react-md/portal";
-import { UserInteractionMode } from "@react-md/utils";
 
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
@@ -101,21 +100,6 @@ export interface TooltippedProps
    * `aria-describedby` and the event handlers will be omitted.
    */
   children: ChildElement | ChildrenRenderer;
-
-  /** @deprecated \@since 2.8.0 Use `threshold` instead.  */
-  positionThreshold?: number;
-  /** @deprecated \@since 2.8.0 */
-  tooltipId?: string;
-  /** @deprecated \@since 2.8.0 */
-  hoverDelay?: number;
-  /** @deprecated \@since 2.8.0 */
-  focusDelay?: number;
-  /** @deprecated \@since 2.8.0 */
-  touchTimeout?: number;
-  /** @deprecated \@since 2.8.0 */
-  onShow?(mode: UserInteractionMode): void;
-  /** @deprecated \@since 2.8.0 */
-  onHide?(): void;
 }
 
 /**
@@ -139,8 +123,7 @@ export function Tooltipped({
   spacing = DEFAULT_TOOLTIP_SPACING,
   denseSpacing = DEFAULT_TOOLTIP_DENSE_SPACING,
   position: propPosition,
-  positionThreshold,
-  threshold = positionThreshold ?? DEFAULT_TOOLTIP_THRESHOLD,
+  threshold = DEFAULT_TOOLTIP_THRESHOLD,
   onClick,
   onMouseEnter,
   onMouseLeave,
@@ -156,12 +139,6 @@ export function Tooltipped({
   disableSwapping,
   disableHoverMode,
   disableAutoSpacing = process.env.NODE_ENV === "test",
-  tooltipId: _tooltipId,
-  hoverDelay: _hoverDelay,
-  focusDelay: _focusDelay,
-  touchTimeout: _touchTimeout,
-  onShow: _onShow,
-  onHide: _onHide,
   ...props
 }: TooltippedProps): ReactElement {
   const { elementProps, tooltipProps } = useTooltip({
