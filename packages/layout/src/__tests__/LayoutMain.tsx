@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { InteractionModeListener } from "@react-md/utils";
+import { UserInteractionModeListener } from "@react-md/utils";
 import {
   act,
   render as baseRender,
@@ -12,7 +12,7 @@ const render = (ui: ReactElement, options?: RenderOptions) =>
   baseRender(ui, {
     ...options,
     wrapper: ({ children }) => (
-      <InteractionModeListener>{children}</InteractionModeListener>
+      <UserInteractionModeListener>{children}</UserInteractionModeListener>
     ),
   });
 

@@ -87,12 +87,6 @@ export function UserInteractionModeListener({
   );
 }
 
-/**
- * @deprecated Use the `UserInteractionModeListener` component instead.
- * @remarks \@since 2.6.0
- */
-export const InteractionModeListener = UserInteractionModeListener;
-
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   modeContext.displayName = "UserInteractionMode";
