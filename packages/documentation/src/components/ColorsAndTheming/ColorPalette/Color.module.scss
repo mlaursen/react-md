@@ -1,9 +1,9 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  color: $rmd-black-base;
+  color: react-md.$rmd-black-base;
   display: flex;
-  font-weight: map-get($rmd-typography-font-weights, bold);
+  font-weight: map-get(react-md.$rmd-typography-font-weights, bold);
   justify-content: space-between;
   padding: 1rem;
 }
@@ -21,14 +21,14 @@
   margin-top: 0.5rem;
 }
 
-@each $name, $color in $rmd-theme-color-map {
-  $name: str-replace($name, 'rmd-', '');
+@each $name, $color in react-md.$rmd-theme-color-map {
+  $name: react-md.str-replace($name, 'rmd-', '');
 
   .#{$name} {
     background-color: $color;
 
-    @if rmd-theme-tone($color, 4.5) == dark {
-      color: $rmd-white-base;
+    @if react-md.rmd-theme-tone($color, 4.5) == dark {
+      color: react-md.$rmd-white-base;
     }
   }
 }

@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
   display: block;
@@ -7,30 +7,42 @@
 }
 
 .success {
-  @include rmd-icon-theme-update-var(color, $rmd-theme-success);
+  @include react-md.rmd-icon-theme-update-var(
+    color,
+    react-md.$rmd-theme-success
+  );
 }
 
 .yellow {
-  @include rmd-progress-theme-update-var(color, $rmd-orange-400);
-  @include rmd-progress-theme-update-var(background-color, $rmd-orange-100);
+  @include react-md.rmd-progress-theme-update-var(
+    color,
+    react-md.$rmd-orange-400
+  );
+  @include react-md.rmd-progress-theme-update-var(
+    background-color,
+    react-md.$rmd-orange-100
+  );
 }
 
 .warning {
-  @include rmd-progress-theme-update-var(color, $rmd-theme-warning);
-  @include rmd-progress-theme-update-var(
+  @include react-md.rmd-progress-theme-update-var(
+    color,
+    react-md.$rmd-theme-warning
+  );
+  @include react-md.rmd-progress-theme-update-var(
     background-color,
-    rmd-theme-get-swatch($rmd-theme-warning, 200, false)
+    react-md.rmd-theme-get-swatch(react-md.$rmd-theme-warning, 200, false)
   );
 }
 
 .list {
-  @include rmd-utils-desktop-media {
-    height: $rmd-list-item-dense-extra-large-height * 5;
+  @include react-md.rmd-utils-desktop-media {
+    height: react-md.$rmd-list-item-dense-extra-large-height * 5;
   }
 
   display: flex;
   flex-direction: column;
-  height: $rmd-list-item-extra-large-height * 5;
+  height: react-md.$rmd-list-item-extra-large-height * 5;
   margin-bottom: 1rem;
 }
 
@@ -40,5 +52,5 @@
 }
 
 .dropzone {
-  box-shadow: $rmd-states-focus-shadow;
+  box-shadow: react-md.$rmd-states-focus-shadow;
 }

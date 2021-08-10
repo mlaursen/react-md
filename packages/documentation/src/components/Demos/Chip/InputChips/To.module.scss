@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 $spacing: 0.5rem;
 $padding: 1rem;
@@ -11,7 +11,7 @@ $padding: 1rem;
 }
 
 .emails {
-  @include rmd-utils-scroll(x);
+  @include react-md.rmd-utils-scroll(x);
 
   align-items: center;
   display: flex;
@@ -20,7 +20,7 @@ $padding: 1rem;
 }
 
 .spacing {
-  @include rmd-utils-rtl-auto(margin-right, $spacing);
+  @include react-md.rmd-utils-rtl-auto(margin-right, $spacing);
 }
 
 .email {
@@ -36,13 +36,13 @@ $padding: 1rem;
 // that aren't configurable right now that have to be changed for the hacky phone "emulation"
 // sass-lint:disable no-important
 .listbox {
-  @include rmd-utils-tablet-media {
+  @include react-md.rmd-utils-tablet-media {
     bottom: auto !important;
     max-height: 30rem;
     position: absolute !important;
 
     // status bar height + autocomplete height
-    top: calc(#{rmd-icon-theme-var(size)} + 3.5rem) !important;
+    top: calc(#{react-md.rmd-icon-theme-var(size)} + 3.5rem) !important;
   }
 
   left: 0 !important;

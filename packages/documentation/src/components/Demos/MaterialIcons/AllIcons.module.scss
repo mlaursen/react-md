@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
   align-items: center;
@@ -8,7 +8,7 @@
 }
 
 .icon {
-  @include rmd-icon-theme-update-var(size, 2.5rem);
+  @include react-md.rmd-icon-theme-update-var(size, 2.5rem);
 
   align-items: center;
   display: inline-flex;
@@ -18,7 +18,7 @@
 }
 
 .name {
-  @include rmd-typography-text-overflow-ellipsis;
+  @include react-md.rmd-typography-text-overflow-ellipsis;
 
   margin-top: 0.5rem;
   text-align: center;

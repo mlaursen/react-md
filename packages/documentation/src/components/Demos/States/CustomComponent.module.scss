@@ -1,11 +1,11 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .button {
-  @include rmd-button-unstyled(true);
-  @include rmd-typography(button);
-  @include rmd-theme(background-color, primary);
-  @include rmd-theme(color, on-primary);
-  @include rmd-states-surface($css-modules: true);
+  @include react-md.rmd-button-unstyled(true);
+  @include react-md.rmd-typography(button);
+  @include react-md.rmd-theme(background-color, primary);
+  @include react-md.rmd-theme(color, on-primary);
+  @include react-md.rmd-states-surface($css-modules: true);
 
   position: relative;
 }

@@ -1,9 +1,9 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-elevation(6);
-  @include rmd-utils-block-centered;
-  @include rmd-utils-phone-media {
+  @include react-md.rmd-elevation(6);
+  @include react-md.rmd-utils-block-centered;
+  @include react-md.rmd-utils-phone-media {
     margin: 2rem 0.5rem;
     max-width: none;
   }
@@ -15,13 +15,13 @@
   // it'll cover the main app bar of this app
   :global .rmd-app-bar--fixed {
     position: absolute;
-    z-index: $rmd-app-bar-z-index - 1;
+    z-index: react-md.$rmd-app-bar-z-index - 1;
   }
 
   // you'd normally wrap these examples in another AppBar to get correct
   // styling
   :global .rmd-app-bar--wrap {
-    @include rmd-app-bar-theme(padding-bottom, height);
+    @include react-md.rmd-app-bar-theme(padding-bottom, height);
   }
 
   + .container {
@@ -30,18 +30,21 @@
 }
 
 .title {
-  @include rmd-typography-text-overflow-ellipsis;
+  @include react-md.rmd-typography-text-overflow-ellipsis;
 
   // just a reminder that you don't need to use the `rmd-PACKAGE-theme-var` stuff if
   // you will have mostly static variables. You can instead use the corresponding
   // SCSS variable instead. I'm just using them since the documentation site can be
   // fully configured
-  $offset: $rmd-app-bar-title-keyline + $rmd-app-bar-lr-margin * 2;
-  width: calc(100% - #{$offset} - #{rmd-button-theme-var(icon-size)} * 2);
+  $offset: react-md.$rmd-app-bar-title-keyline + react-md.$rmd-app-bar-lr-margin *
+    2;
+  width: calc(
+    100% - #{$offset} - #{react-md.rmd-button-theme-var(icon-size)} * 2
+  );
 }
 
 .content {
-  @include rmd-utils-scroll;
+  @include react-md.rmd-utils-scroll;
 
   height: 35rem;
 }

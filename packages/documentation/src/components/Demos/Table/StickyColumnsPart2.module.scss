@@ -1,8 +1,8 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-table-theme-update-var(
+  @include react-md.rmd-table-theme-update-var(
     sticky-header,
-    rmd-app-bar-theme-var(height)
+    react-md.rmd-app-bar-theme-var(height)
   );
 }

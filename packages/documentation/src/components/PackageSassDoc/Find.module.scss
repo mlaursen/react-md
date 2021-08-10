@@ -1,15 +1,16 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .dialog {
-  $distance: $rmd-button-floating-margin + $rmd-button-icon-size + 1rem;
-  @include rmd-utils-rtl-auto(right, $distance);
+  $distance: react-md.$rmd-button-floating-margin +
+    react-md.$rmd-button-icon-size + 1rem;
+  @include react-md.rmd-utils-rtl-auto(right, $distance);
 
-  bottom: $rmd-button-floating-margin;
+  bottom: react-md.$rmd-button-floating-margin;
   position: fixed;
   width: 25rem;
-  z-index: $rmd-dialog-z-index;
+  z-index: react-md.$rmd-dialog-z-index;
 }
 
 .listbox {
-  z-index: $rmd-dialog-z-index;
+  z-index: react-md.$rmd-dialog-z-index;
 }

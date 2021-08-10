@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
   align-items: center;
@@ -11,6 +11,6 @@
 }
 
 .chevron {
-  @include rmd-icon-theme-update-var(rotate-from, rotate(90deg));
-  @include rmd-icon-theme-update-var(rotate-to, rotate(270deg));
+  @include react-md.rmd-icon-theme-update-var(rotate-from, rotate(90deg));
+  @include react-md.rmd-icon-theme-update-var(rotate-to, rotate(270deg));
 }

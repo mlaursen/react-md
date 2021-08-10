@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 $blind-height: 1.5rem;
 $blind-margin: 2px;
@@ -7,7 +7,7 @@ $blind-rotation: 12deg;
 $blind-rotation-extra: 24deg;
 
 .container {
-  @include rmd-utils-block-centered;
+  @include react-md.rmd-utils-block-centered;
   @media screen and (min-width: 23.4375em) {
     width: 19rem;
   }
@@ -18,7 +18,7 @@ $blind-rotation-extra: 24deg;
 }
 
 .content {
-  @include rmd-utils-scroll(x);
+  @include react-md.rmd-utils-scroll(x);
 
   display: flex;
 }

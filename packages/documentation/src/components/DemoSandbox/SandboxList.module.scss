@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 $card-margin: 0.5rem;
 $doubled-card-margin: $card-margin * 2;
@@ -11,7 +11,7 @@ $doubled-card-margin: $card-margin * 2;
 }
 
 .card {
-  @include rmd-utils-tablet-media {
+  @include react-md.rmd-utils-tablet-media {
     width: calc(50% - #{$doubled-card-margin});
   }
 

@@ -1,8 +1,11 @@
-@import '../../variables';
-@import 'react-md/dist/everything';
+@use '../../variables';
+@use 'react-md';
 
 .container {
-  background-color: rmd-theme-get-swatch($rmd-theme-primary, 800);
+  background-color: react-md.rmd-theme-get-swatch(
+    variables.$primary-color,
+    800
+  );
   display: block;
   min-height: 95vh;
   position: relative;
@@ -16,7 +19,7 @@
 }
 
 .message {
-  @include rmd-utils-phone-media {
+  @include react-md.rmd-utils-phone-media {
     top: 50%;
   }
 
@@ -27,7 +30,7 @@
 }
 
 .link {
-  @include rmd-utils-phone-media {
+  @include react-md.rmd-utils-phone-media {
     top: 90%;
   }
 

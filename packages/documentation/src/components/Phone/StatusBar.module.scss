@@ -1,18 +1,25 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-app-bar-theme-update-var(dense-height, rmd-icon-theme-var(size));
-  background-color: rgba($rmd-black-base, 0.12);
+  @include react-md.rmd-app-bar-theme-update-var(
+    dense-height,
+    react-md.rmd-icon-theme-var(size)
+  );
+  background-color: rgba(react-md.$rmd-black-base, 0.12);
 
   width: 100%;
 }
 
 .icon {
-  @include rmd-icon-dense-theme;
+  @include react-md.rmd-icon-dense-theme;
 
-  margin: 0 $rmd-app-bar-lr-margin;
+  margin: 0 react-md.$rmd-app-bar-lr-margin;
 }
 
 .first {
-  @include rmd-utils-rtl-auto(margin-left, auto, $rmd-app-bar-lr-margin);
+  @include react-md.rmd-utils-rtl-auto(
+    margin-left,
+    auto,
+    react-md.$rmd-app-bar-lr-margin
+  );
 }

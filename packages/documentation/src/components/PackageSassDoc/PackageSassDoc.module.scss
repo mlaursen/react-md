@@ -1,10 +1,10 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 $mobile-padding: 2rem;
 $desktop-padding: 4rem;
 
 .container {
-  @include rmd-utils-desktop-media {
+  @include react-md.rmd-utils-desktop-media {
     padding: 0 $desktop-padding;
   }
 
@@ -12,10 +12,10 @@ $desktop-padding: 4rem;
 }
 
 .title {
-  @include rmd-utils-phone-media {
-    @include rmd-typography(headline-2);
+  @include react-md.rmd-utils-phone-media {
+    @include react-md.rmd-typography(headline-2);
   }
-  @include rmd-utils-desktop-media {
+  @include react-md.rmd-utils-desktop-media {
     margin: 0 #{-$desktop-padding};
     padding-left: $desktop-padding;
   }

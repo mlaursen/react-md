@@ -1,15 +1,21 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-button-theme-update-var(outline-width, 4px);
-  @include rmd-button-theme-update-var(text-height, 4rem);
-  @include rmd-button-theme-update-var(text-min-width, 8rem);
-  @include rmd-button-theme-update-var(text-horizontal-padding, 4rem);
-  @include rmd-button-theme-update-var(text-border-radius, 2rem);
-  @include rmd-button-theme-update-var(icon-border-radius, 1rem);
+  @include react-md.rmd-button-theme-update-var(outline-width, 4px);
+  @include react-md.rmd-button-theme-update-var(text-height, 4rem);
+  @include react-md.rmd-button-theme-update-var(text-min-width, 8rem);
+  @include react-md.rmd-button-theme-update-var(text-horizontal-padding, 4rem);
+  @include react-md.rmd-button-theme-update-var(text-border-radius, 2rem);
+  @include react-md.rmd-button-theme-update-var(icon-border-radius, 1rem);
 }
 
 .large {
-  @include rmd-button-theme-update-var(icon-size, $rmd-button-icon-size * 2);
-  @include rmd-icon-theme-update-var(size, $rmd-icon-size * 2);
+  @include react-md.rmd-button-theme-update-var(
+    icon-size,
+    react-md.$rmd-button-icon-size * 2
+  );
+  @include react-md.rmd-icon-theme-update-var(
+    size,
+    react-md.$rmd-icon-size * 2
+  );
 }

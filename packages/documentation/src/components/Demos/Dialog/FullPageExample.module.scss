@@ -1,11 +1,11 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .button {
-  @include rmd-utils-keyboard-only(true) {
+  @include react-md.rmd-utils-keyboard-only(true) {
     $start-shadow: none;
-    $end-shadow: inset 0 0 0 2px $rmd-black-base;
+    $end-shadow: inset 0 0 0 2px react-md.$rmd-black-base;
 
-    @include rmd-transition-shadow-transition(
+    @include react-md.rmd-transition-shadow-transition(
       $start-shadow,
       $end-shadow,
       '&:focus',
@@ -26,14 +26,14 @@
   }
 
   img {
-    @include rmd-transition(standard);
+    @include react-md.rmd-transition(standard);
 
     transition: transform 0.15s;
   }
 }
 
 .preview {
-  @include rmd-app-bar-theme(margin-top, height);
+  @include react-md.rmd-app-bar-theme(margin-top, height);
 
-  max-height: calc(100% - #{rmd-app-bar-theme-var(height)});
+  max-height: calc(100% - #{react-md.rmd-app-bar-theme-var(height)});
 }

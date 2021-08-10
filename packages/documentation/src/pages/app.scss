@@ -1,6 +1,13 @@
-@import '../mixins';
+@use '../variables' as *;
 
-@include react-md-utils;
+@use '@react-md/theme/dist/color-palette' as *;
+@use 'react-md' with (
+  $rmd-theme-primary: $primary-color,
+  $rmd-theme-secondary: $secondary-color,
+  $rmd-utils-auto-dense: true,
+);
+
+@include react-md.react-md-utils;
 
 // sass-lint:disable no-duplicate-properties
 :root {
@@ -10,7 +17,7 @@
 }
 
 .dark-theme {
-  @include rmd-theme-dark;
+  @include react-md.rmd-theme-dark;
 
   #{--code-color}: #{$rmd-pink-400};
   #{--sass-bg}: #{rgba($rmd-black-base, 0.42)};
@@ -27,11 +34,11 @@
 }
 
 .blockquote {
-  $border-style: 0.25em solid rmd-divider-theme-var(background-color);
+  $border-style: 0.25em solid react-md.rmd-divider-theme-var(background-color);
 
-  @include rmd-theme(color, text-secondary-on-background);
-  @include rmd-typography(subtitle-1);
-  @include rmd-utils-rtl-auto(border-left, $border-style);
+  @include react-md.rmd-theme(color, text-secondary-on-background);
+  @include react-md.rmd-typography(subtitle-1);
+  @include react-md.rmd-utils-rtl-auto(border-left, $border-style);
 
   font-style: italic;
   margin: 1em 0;
@@ -48,15 +55,19 @@
 }
 
 .heading {
-  @include rmd-utils-phone-media {
+  @include react-md.rmd-utils-phone-media {
     // decrease font size and line-height so it can fit on mobile screens. this
     // should match the size in Markdown.module.scss
     &.rmd-typography--headline-2 {
-      @include rmd-typography-value(headline-4, font-size, line-height);
+      @include react-md.rmd-typography-value(
+        headline-4,
+        font-size,
+        line-height
+      );
     }
   }
 
-  @include rmd-utils-tablet-media {
+  @include react-md.rmd-utils-tablet-media {
     margin-left: -1em;
     padding-left: 1em;
   }
@@ -72,15 +83,15 @@
   }
 
   &__link {
-    @include rmd-icon-theme(color);
-    @include rmd-utils-hide-focus-outline;
-    @include rmd-utils-desktop-media {
+    @include react-md.rmd-icon-theme(color);
+    @include react-md.rmd-utils-hide-focus-outline;
+    @include react-md.rmd-utils-desktop-media {
       display: block;
     }
-    @include rmd-states-focus-shadow;
+    @include react-md.rmd-states-focus-shadow;
 
     &::before {
-      @include rmd-states-surface-base;
+      @include react-md.rmd-states-surface-base;
 
       margin: -0.25rem;
     }
@@ -90,7 +101,7 @@
     opacity: 0;
     position: absolute;
     text-decoration: none;
-    transition: opacity $rmd-transition-standard-time;
+    transition: opacity react-md.$rmd-transition-standard-time;
 
     &:hover,
     &:focus {
@@ -115,14 +126,14 @@
 
       a,
       li {
-        @include rmd-typography(headline-6);
+        @include react-md.rmd-typography(headline-6);
       }
     }
   }
 }
 
 .code {
-  @include rmd-typography(body-1);
+  @include react-md.rmd-typography(body-1);
 
   font-family: 'Source Code Pro', Consolas, Monaco, monospace;
 
@@ -246,7 +257,7 @@
 
   &.important,
   &.bold {
-    font-weight: map-get($rmd-typography-font-weights, bold);
+    font-weight: map-get(react-md.$rmd-typography-font-weights, bold);
   }
 
   &.italic {

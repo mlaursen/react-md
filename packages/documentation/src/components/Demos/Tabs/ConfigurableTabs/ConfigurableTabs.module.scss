@@ -1,28 +1,34 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-utils-tablet-media {
-    @include rmd-utils-block-centered;
-    @include rmd-elevation(4);
-    @include rmd-theme-dark-elevation(4, true);
+  @include react-md.rmd-utils-tablet-media {
+    @include react-md.rmd-utils-block-centered;
+    @include react-md.rmd-elevation(4);
+    @include react-md.rmd-theme-dark-elevation(4, true);
 
     max-width: 40rem;
   }
 }
 
 .tabs {
-  @include rmd-app-bar-theme(background-color, default-background-color);
+  @include react-md.rmd-app-bar-theme(
+    background-color,
+    default-background-color
+  );
 }
 
 .themed {
-  @include rmd-theme(background-color, primary);
-  @include rmd-theme(color, on-primary);
-  @include rmd-tabs-theme-update-var(active, inherit);
-  @include rmd-tabs-theme-update-var(
+  @include react-md.rmd-theme(background-color, primary);
+  @include react-md.rmd-theme(color, on-primary);
+  @include react-md.rmd-tabs-theme-update-var(active, inherit);
+  @include react-md.rmd-tabs-theme-update-var(
     inactive,
-    $rmd-theme-secondary-text-on-dark-color
+    react-md.$rmd-theme-secondary-text-on-dark-color
   );
-  @include rmd-tabs-theme-update-var(indicator-color, rmd-theme-var(secondary));
+  @include react-md.rmd-tabs-theme-update-var(
+    indicator-color,
+    react-md.rmd-theme-var(secondary)
+  );
 }
 
 .content {

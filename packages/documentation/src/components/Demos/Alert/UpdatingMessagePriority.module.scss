@@ -1,8 +1,8 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .output {
-  @include rmd-elevation(4);
-  @include rmd-utils-scroll;
+  @include react-md.rmd-elevation(4);
+  @include react-md.rmd-utils-scroll;
 
   height: 25rem;
   margin-bottom: 2rem;

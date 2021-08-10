@@ -1,9 +1,9 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .example {
-  @include rmd-theme(color, on-surface);
-  @include rmd-button-unstyled;
-  @include rmd-typography(body-1);
+  @include react-md.rmd-theme(color, on-surface);
+  @include react-md.rmd-button-unstyled;
+  @include react-md.rmd-typography(body-1);
 
   margin: 2rem;
   padding: 2rem 4rem;
@@ -14,16 +14,16 @@
 }
 
 .simple {
-  @include rmd-elevation-transition(4, 16, ('&:focus' '&:hover'));
+  @include react-md.rmd-elevation-transition(4, 16, ('&:focus' '&:hover'));
 }
 
 .merging {
-  $focus-box-shadow: inset 0 0 0 1px $rmd-blue-500;
+  $focus-box-shadow: inset 0 0 0 1px react-md.$rmd-blue-500;
   $start-shadow: none;
-  $end-shadow: rmd-elevation(8), $focus-box-shadow;
+  $end-shadow: react-md.rmd-elevation(8), $focus-box-shadow;
 
   // create a shadow using the :;before pseudo element for the focus effect
-  @include rmd-transition-shadow-transition(
+  @include react-md.rmd-transition-shadow-transition(
     $start-shadow,
     $end-shadow,
     '&:focus'
@@ -32,7 +32,7 @@
   // create a shadow using the ::after pseudo element for the hover effect. They can't
   // be done on the same one as the hover effect has a different box shadow value
   // than the focus effect and would override the focus shadow.
-  @include rmd-elevation-transition(
+  @include react-md.rmd-elevation-transition(
     none,
     8,
     '&:not(:focus):hover',

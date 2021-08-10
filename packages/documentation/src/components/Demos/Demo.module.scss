@@ -1,24 +1,31 @@
 // sass-lint:disable class-name-format
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .preview {
-  @include rmd-elevation(2);
-  @include rmd-theme-dark-elevation(2, true);
-  @include rmd-theme(background-color, background);
-  @include rmd-theme-update-var(background, rmd-theme-var(surface));
-  @include rmd-app-bar-theme-update-var(color, rmd-theme-var(on-surface));
+  @include react-md.rmd-elevation(2);
+  @include react-md.rmd-theme-dark-elevation(2, true);
+  @include react-md.rmd-theme(background-color, background);
+  @include react-md.rmd-theme-update-var(
+    background,
+    react-md.rmd-theme-var(surface)
+  );
+  @include react-md.rmd-app-bar-theme-update-var(
+    color,
+    react-md.rmd-theme-var(on-surface)
+  );
 
   padding: 2rem;
 }
 
 .divider {
-  @include rmd-divider-theme-update-var(spacing, 6rem auto 2rem);
+  @include react-md.rmd-divider-theme-update-var(spacing, 6rem auto 2rem);
 }
 
 // copied from Phone.module.scss
 .fabOffset {
   :global .rmd-fab--tl,
   :global .rmd-fab--tr {
-    top: $rmd-app-bar-height + $rmd-button-floating-margin + $rmd-icon-size;
+    top: react-md.$rmd-app-bar-height + react-md.$rmd-button-floating-margin +
+      react-md.$rmd-icon-size;
   }
 }

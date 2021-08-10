@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .header {
   align-items: flex-start;
@@ -6,22 +6,29 @@
 }
 
 .breadcrumbs {
-  @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-keyline);
-  @include rmd-utils-phone-media {
-    @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-title-keyline);
+  @include react-md.rmd-utils-rtl-auto(
+    margin-left,
+    react-md.$rmd-app-bar-keyline
+  );
+  @include react-md.rmd-utils-phone-media {
+    @include react-md.rmd-utils-rtl-auto(
+      margin-left,
+      react-md.$rmd-app-bar-title-keyline
+    );
 
     max-width: calc(
-      100% - #{$rmd-app-bar-title-keyline + $rmd-app-bar-keyline}
+      100% - #{react-md.$rmd-app-bar-title-keyline +
+        react-md.$rmd-app-bar-keyline}
     );
   }
-  @include rmd-theme(color, text-secondary-on-dark);
-  @include rmd-typography(subtitle-2);
+  @include react-md.rmd-theme(color, text-secondary-on-dark);
+  @include react-md.rmd-typography(subtitle-2);
 
   bottom: 0.5rem;
   font-family: 'Source Code Pro', Consolas, Monaco, monospace;
   margin-bottom: 0;
   margin-top: 0;
-  max-width: calc(100% - #{$rmd-app-bar-keyline * 2});
+  max-width: calc(100% - #{react-md.$rmd-app-bar-keyline * 2});
   overflow: hidden;
   position: absolute;
   text-overflow: ellipsis;

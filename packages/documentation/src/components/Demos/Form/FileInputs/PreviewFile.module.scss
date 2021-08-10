@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
   display: flex;
@@ -14,13 +14,13 @@
 }
 
 .icon {
-  @include rmd-icon-theme-update-var(size, 4rem);
+  @include react-md.rmd-icon-theme-update-var(size, 4rem);
 
   margin-top: 10%;
 }
 
 .progress {
-  @include rmd-progress-theme-update-var(linear-size, 0.5rem);
+  @include react-md.rmd-progress-theme-update-var(linear-size, 0.5rem);
 
   margin-top: auto;
 }

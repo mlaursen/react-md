@@ -1,10 +1,10 @@
-$rmd-utils-desktop-min-width: 92em;
-$rmd-utils-large-desktop-min-width: 120em;
-
-@import 'react-md/dist/everything';
+@use 'react-md' with (
+  $rmd-utils-desktop-min-width: 92em,
+  $rmd-utils-large-desktop-min-width: 120em,
+);
 
 .container {
-  @include rmd-grid(
+  @include react-md.rmd-grid(
     $phone-columns: 1,
     $tablet-columns: 2,
     $desktop-columns: 3,
@@ -12,14 +12,14 @@ $rmd-utils-large-desktop-min-width: 120em;
   );
 
   fieldset {
-    @include rmd-utils-tablet-media {
-      @include rmd-grid-cell-full;
+    @include react-md.rmd-utils-tablet-media {
+      @include react-md.rmd-grid-cell-full;
     }
   }
 
   :global .rmd-divider {
-    @include rmd-utils-tablet-media {
-      @include rmd-grid-cell-full;
+    @include react-md.rmd-utils-tablet-media {
+      @include react-md.rmd-grid-cell-full;
     }
   }
 

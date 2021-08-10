@@ -1,23 +1,26 @@
 // sass-lint:disable class-name-format
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .grid {
-  background-color: $rmd-theme-light-background;
+  background-color: react-md.$rmd-theme-light-background;
 
   + .grid {
     margin-top: 1rem;
   }
 
-  @include rmd-utils-optional-css-modules($rmd-theme-dark-class, true) {
-    background-color: $rmd-theme-dark-background;
+  @include react-md.rmd-utils-optional-css-modules(
+    react-md.$rmd-theme-dark-class,
+    true
+  ) {
+    background-color: react-md.$rmd-theme-dark-background;
   }
 }
 
 .item {
-  @include rmd-elevation(2);
-  @include rmd-theme-dark-elevation(2, true);
-  @include rmd-theme(background-color, surface);
-  @include rmd-theme(color, text-primary-on-background);
+  @include react-md.rmd-elevation(2);
+  @include react-md.rmd-theme-dark-elevation(2, true);
+  @include react-md.rmd-theme(background-color, surface);
+  @include react-md.rmd-theme(color, text-primary-on-background);
 
   align-items: center;
   display: flex;

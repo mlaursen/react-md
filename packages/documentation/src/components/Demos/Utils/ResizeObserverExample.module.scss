@@ -1,8 +1,8 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-elevation(4);
-  @include rmd-theme-dark-elevation(4, true);
+  @include react-md.rmd-elevation(4);
+  @include react-md.rmd-theme-dark-elevation(4, true);
 
   margin-top: 1rem;
   overflow: hidden;

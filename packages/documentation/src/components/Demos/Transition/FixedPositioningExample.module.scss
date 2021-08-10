@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .form {
   display: flex;
@@ -26,11 +26,11 @@
 }
 
 .div {
-  @include rmd-elevation(2);
-  @include rmd-theme(background-color, surface);
+  @include react-md.rmd-elevation(2);
+  @include react-md.rmd-theme(background-color, surface);
 
   padding: 1rem;
-  z-index: $rmd-overlay-z-index + 1;
+  z-index: react-md.$rmd-overlay-z-index + 1;
 }
 
 .enter {
@@ -38,14 +38,14 @@
 }
 
 .entering {
-  @include rmd-transition(deceleration);
+  @include react-md.rmd-transition(deceleration);
 
   transform: scale(1);
   transition: transform 0.2s;
 }
 
 .exit {
-  @include rmd-transition(acceleration);
+  @include react-md.rmd-transition(acceleration);
 
   opacity: 1;
   transform: scale(1);

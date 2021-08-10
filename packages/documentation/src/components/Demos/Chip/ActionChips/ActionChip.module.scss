@@ -1,9 +1,9 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .chip {
   margin: 0.25rem;
 }
 
 .yellow {
-  @include rmd-icon-theme-update-var(color, $rmd-yellow-300);
+  @include react-md.rmd-icon-theme-update-var(color, react-md.$rmd-yellow-300);
 }

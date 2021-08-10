@@ -1,5 +1,5 @@
 // sass-lint:disable class-name-format
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 $phone-height: 35.5rem;
 $phone-width: 20rem;
@@ -18,32 +18,36 @@ $fixed-classes: (
 .fabOffset {
   :global .rmd-fab--tl,
   :global .rmd-fab--tr {
-    top: $rmd-app-bar-height + $rmd-button-floating-margin + $rmd-icon-size;
+    top: react-md.$rmd-app-bar-height + react-md.$rmd-button-floating-margin +
+      react-md.$rmd-icon-size;
   }
 }
 
 .emulated {
-  @include rmd-elevation(4);
-  @include rmd-theme-dark-elevation(4, true);
-  @include rmd-utils-block-centered(1rem);
-  @include rmd-theme(background-color, background);
-  @include rmd-icon-theme-update-var(size, $rmd-icon-size);
-  @include rmd-app-bar-theme-update-var(height, $rmd-app-bar-height);
-  @include rmd-app-bar-theme-update-var(
+  @include react-md.rmd-elevation(4);
+  @include react-md.rmd-theme-dark-elevation(4, true);
+  @include react-md.rmd-utils-block-centered(1rem);
+  @include react-md.rmd-theme(background-color, background);
+  @include react-md.rmd-icon-theme-update-var(size, react-md.$rmd-icon-size);
+  @include react-md.rmd-app-bar-theme-update-var(
+    height,
+    react-md.$rmd-app-bar-height
+  );
+  @include react-md.rmd-app-bar-theme-update-var(
     dense-height,
-    $rmd-app-bar-height + $rmd-icon-size
+    react-md.$rmd-app-bar-height + react-md.$rmd-icon-size
   );
-  @include rmd-app-bar-theme-update-var(
+  @include react-md.rmd-app-bar-theme-update-var(
     prominent-dense-height,
-    $rmd-app-bar-prominent-height + $rmd-icon-size
+    react-md.$rmd-app-bar-prominent-height + react-md.$rmd-icon-size
   );
-  @include rmd-sheet-theme-update-var(
+  @include react-md.rmd-sheet-theme-update-var(
     touch-width,
-    calc(100% - #{$rmd-sheet-touch-margin})
+    calc(100% - #{react-md.$rmd-sheet-touch-margin})
   );
-  @include rmd-typography-theme-update-var(
+  @include react-md.rmd-typography-theme-update-var(
     line-width,
-    $rmd-typography-mobile-max-line-length
+    react-md.$rmd-typography-mobile-max-line-length
   );
 
   height: $phone-height;
@@ -60,7 +64,7 @@ $fixed-classes: (
 }
 
 .content {
-  @include rmd-utils-scroll;
+  @include react-md.rmd-utils-scroll;
 
   height: 100%;
 }

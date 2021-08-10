@@ -1,11 +1,11 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .card {
-  @include rmd-utils-tablet-media {
+  @include react-md.rmd-utils-tablet-media {
     width: calc(50% - 2rem);
   }
 
-  @include rmd-utils-desktop-media {
+  @include react-md.rmd-utils-desktop-media {
     width: calc(#{100% / 3} - 2rem);
   }
 

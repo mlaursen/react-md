@@ -1,15 +1,15 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-typography(subtitle-1);
-  @include rmd-typography-theme(max-width, line-width);
+  @include react-md.rmd-typography(subtitle-1);
+  @include react-md.rmd-typography-theme(max-width, line-width);
 
   p {
     font: inherit;
   }
 
   strong {
-    font-weight: map-get($rmd-typography-font-weights, bold);
+    font-weight: map-get(react-md.$rmd-typography-font-weights, bold);
   }
 
   em {

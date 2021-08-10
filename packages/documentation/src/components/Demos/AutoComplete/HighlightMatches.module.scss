@@ -1,17 +1,19 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 // all the importants are really just required to override the useFixedPositioning styles
 // that aren't configurable right now that have to be changed for the hacky phone "emulation"
 // sass-lint:disable no-important
 .listbox {
-  @include rmd-utils-tablet-media {
+  @include react-md.rmd-utils-tablet-media {
     bottom: auto !important;
     max-height: 30rem;
     position: absolute !important;
 
     // status bar height + app-bar height
     top: calc(
-      #{rmd-app-bar-theme-var(height)} + #{rmd-icon-theme-var(size)}
+      #{react-md.rmd-app-bar-theme-var(height)} + #{react-md.rmd-icon-theme-var(
+          size
+        )}
     ) !important;
   }
 
@@ -20,7 +22,7 @@
 }
 
 .container {
-  @include rmd-utils-phone-media {
-    @include rmd-app-bar-theme(padding-top, height);
+  @include react-md.rmd-utils-phone-media {
+    @include react-md.rmd-app-bar-theme(padding-top, height);
   }
 }

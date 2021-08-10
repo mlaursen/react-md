@@ -1,6 +1,6 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .label {
-  @include rmd-avatar-theme-update-var(size, 1.5rem);
-  @include rmd-avatar-theme-update-var(font-size, 0.75rem);
+  @include react-md.rmd-avatar-theme-update-var(size, 1.5rem);
+  @include react-md.rmd-avatar-theme-update-var(font-size, 0.75rem);
 }

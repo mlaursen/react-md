@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 // just to make it really visible...
 $duration: 5s;
@@ -17,7 +17,7 @@ $duration: 5s;
 }
 
 .exiting {
-  @include rmd-transition(standard);
+  @include react-md.rmd-transition(standard);
 
   opacity: 0;
   transition: opacity $duration;

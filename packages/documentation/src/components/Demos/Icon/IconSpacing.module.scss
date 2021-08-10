@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .button {
   margin: 1rem;
@@ -6,10 +6,10 @@
 }
 
 .list {
-  @include rmd-list-unstyled;
+  @include react-md.rmd-list-unstyled;
 
   li {
-    @include rmd-typography(subtitle-1);
+    @include react-md.rmd-typography(subtitle-1);
 
     align-items: center;
     display: flex;

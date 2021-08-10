@@ -1,21 +1,21 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .on {
-  @include rmd-utils-mouse-only(true) {
+  @include react-md.rmd-utils-mouse-only(true) {
     &:hover {
       color: inherit;
     }
   }
 
-  color: $rmd-yellow-500;
+  color: react-md.$rmd-yellow-500;
   // only needed for the menu-item implementation
   fill: currentColor;
 }
 
 .off {
-  @include rmd-utils-mouse-only(true) {
+  @include react-md.rmd-utils-mouse-only(true) {
     &:hover {
-      color: $rmd-yellow-500;
+      color: react-md.$rmd-yellow-500;
     }
   }
 }

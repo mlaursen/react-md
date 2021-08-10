@@ -1,5 +1,5 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .submit {
-  @include rmd-utils-rtl-auto(margin-right, 1rem);
+  @include react-md.rmd-utils-rtl-auto(margin-right, 1rem);
 }

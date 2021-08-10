@@ -1,24 +1,26 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 $page-margin: 1rem;
 $toc-width: 15rem;
 $toc-z-index: 9;
 
 .dialog {
-  @include rmd-utils-rtl {
+  @include react-md.rmd-utils-rtl {
     left: $page-margin;
     right: auto;
-    transform-origin: 2% ($rmd-icon-size * 0.5);
+    transform-origin: 2% (react-md.$rmd-icon-size * 0.5);
   }
-  @include rmd-elevation(2);
-  @include rmd-theme-dark-elevation(2, true);
+  @include react-md.rmd-elevation(2);
+  @include react-md.rmd-theme-dark-elevation(2, true);
 
-  max-height: calc(100% - #{$rmd-app-bar-height + $page-margin + $page-margin});
+  max-height: calc(
+    100% - #{react-md.$rmd-app-bar-height + $page-margin + $page-margin}
+  );
   position: fixed;
-  right: $rmd-app-bar-lr-margin;
-  top: calc(#{rmd-app-bar-theme-var(height)} + #{$page-margin});
-  transform-origin: 98% ($rmd-icon-size * 0.5);
-  width: calc(100% - #{$rmd-app-bar-lr-margin * 2});
+  right: react-md.$rmd-app-bar-lr-margin;
+  top: calc(#{react-md.rmd-app-bar-theme-var(height)} + #{$page-margin});
+  transform-origin: 98% (react-md.$rmd-icon-size * 0.5);
+  width: calc(100% - #{react-md.$rmd-app-bar-lr-margin * 2});
   z-index: $toc-z-index;
 
   @media (min-width: 40rem) {
@@ -31,8 +33,8 @@ $toc-z-index: 9;
 }
 
 .overlay {
-  @include rmd-utils-tablet-only-media {
-    @include rmd-overlay-theme-update-var(active-opacity, 0);
+  @include react-md.rmd-utils-tablet-only-media {
+    @include react-md.rmd-overlay-theme-update-var(active-opacity, 0);
   }
 
   z-index: $toc-z-index;
@@ -44,12 +46,12 @@ $toc-z-index: 9;
 }
 
 .entering {
-  @include rmd-transition(acceleration);
+  @include react-md.rmd-transition(acceleration);
 
   opacity: 1;
   transform: scale(1);
-  transition: opacity $rmd-dialog-enter-duration,
-    transform $rmd-dialog-enter-duration;
+  transition: opacity react-md.$rmd-dialog-enter-duration,
+    transform react-md.$rmd-dialog-enter-duration;
 }
 
 .exit {
@@ -58,12 +60,12 @@ $toc-z-index: 9;
 }
 
 .exiting {
-  @include rmd-transition(deceleration);
+  @include react-md.rmd-transition(deceleration);
 
   opacity: 0;
   transform: scale(0);
-  transition: opacity $rmd-dialog-leave-duration,
-    transform $rmd-dialog-leave-duration;
+  transition: opacity react-md.$rmd-dialog-leave-duration,
+    transform react-md.$rmd-dialog-leave-duration;
 }
 
 .header {

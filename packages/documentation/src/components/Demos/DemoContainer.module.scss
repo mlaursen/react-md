@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 // duplicated from TableOfContents.scss
 $toc-width: 15rem;
@@ -6,8 +6,8 @@ $demo-padding: 2rem;
 $demo-padding-extra: 6rem;
 
 .container {
-  @include rmd-utils-tablet-media {
-    @include rmd-utils-rtl-auto(margin-right, $toc-width, auto);
+  @include react-md.rmd-utils-tablet-media {
+    @include react-md.rmd-utils-rtl-auto(margin-right, $toc-width, auto);
 
     padding: 0 $demo-padding-extra;
 
@@ -16,9 +16,10 @@ $demo-padding-extra: 6rem;
     }
   }
 
-  @include rmd-utils-desktop-media {
+  @include react-md.rmd-utils-desktop-media {
     :global .code--counted {
-      $offset: $rmd-sheet-static-width + $toc-width + ($demo-padding-extra * 2);
+      $offset: react-md.$rmd-sheet-static-width + $toc-width +
+        ($demo-padding-extra * 2);
 
       width: calc(100vw - #{$offset});
     }

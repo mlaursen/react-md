@@ -1,7 +1,7 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-utils-phone-media {
+  @include react-md.rmd-utils-phone-media {
     max-width: 100%;
     padding: 0 2rem;
   }

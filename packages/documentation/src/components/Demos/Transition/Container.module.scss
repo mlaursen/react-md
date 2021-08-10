@@ -1,7 +1,7 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-utils-scroll;
+  @include react-md.rmd-utils-scroll;
 
   height: 20rem;
 }

@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .goals {
   @media (min-width: 37.5625rem) {
@@ -6,6 +6,6 @@
   }
 
   p {
-    @include rmd-typography(headline-6);
+    @include react-md.rmd-typography(headline-6);
   }
 }

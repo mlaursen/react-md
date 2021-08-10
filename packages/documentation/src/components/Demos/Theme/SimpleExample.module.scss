@@ -1,26 +1,30 @@
 // sass-lint:disable class-name-format
-@import 'react-md/dist/everything';
-
-$rmd-theme-primary: $rmd-teal-500;
-$rmd-theme-secondary: $rmd-pink-a-200;
+@use '@react-md/theme/dist/color-palette' as *;
+@use 'react-md' with (
+  $rmd-theme-primary: $rmd-teal-500,
+  $rmd-theme-secondary: $rmd-pink-a-200,
+);
 
 .container {
-  @include rmd-theme-update-var(background, $rmd-white-base);
-  @include rmd-theme-update-var(
+  @include react-md.rmd-theme-update-var(background, react-md.$rmd-white-base);
+  @include react-md.rmd-theme-update-var(
     text-primary-on-background,
-    rgba($rmd-black-base, 0.87)
+    rgba(react-md.$rmd-black-base, 0.87)
   );
-  @include rmd-theme-update-var(primary, $rmd-blue-grey-500);
-  @include rmd-theme-update-var(on-primary, $rmd-white-base);
-  @include rmd-theme-update-var(secondary, $rmd-orange-a-200);
-  @include rmd-theme-update-var(on-secondary, $rmd-black-base);
-  @include rmd-divider-theme-update-var(
+  @include react-md.rmd-theme-update-var(primary, react-md.$rmd-blue-grey-500);
+  @include react-md.rmd-theme-update-var(on-primary, react-md.$rmd-white-base);
+  @include react-md.rmd-theme-update-var(secondary, react-md.$rmd-orange-a-200);
+  @include react-md.rmd-theme-update-var(
+    on-secondary,
+    react-md.$rmd-black-base
+  );
+  @include react-md.rmd-divider-theme-update-var(
     background-color,
-    rmd-divider-theme-var(background-color-on-light)
+    react-md.rmd-divider-theme-var(background-color-on-light)
   );
 
-  @include rmd-theme(background-color, background);
-  @include rmd-theme(color, text-primary-on-background);
+  @include react-md.rmd-theme(background-color, background);
+  @include react-md.rmd-theme(color, text-primary-on-background);
 
   padding: 2rem 1.5rem;
   text-align: center;
@@ -32,21 +36,21 @@ $rmd-theme-secondary: $rmd-pink-a-200;
 }
 
 .defaultPrimary {
-  background-color: $rmd-theme-primary;
-  color: $rmd-theme-on-primary;
+  background-color: react-md.$rmd-theme-primary;
+  color: react-md.$rmd-theme-on-primary;
 }
 
 .defaultSecondary {
-  background-color: $rmd-theme-secondary;
-  color: $rmd-theme-on-secondary;
+  background-color: react-md.$rmd-theme-secondary;
+  color: react-md.$rmd-theme-on-secondary;
 }
 
 .themePrimary {
-  @include rmd-theme(background-color, primary);
-  @include rmd-theme(color, on-primary);
+  @include react-md.rmd-theme(background-color, primary);
+  @include react-md.rmd-theme(color, on-primary);
 }
 
 .themeSecondary {
-  @include rmd-theme(background-color, secondary);
-  @include rmd-theme(color, on-secondary);
+  @include react-md.rmd-theme(background-color, secondary);
+  @include react-md.rmd-theme(color, on-secondary);
 }

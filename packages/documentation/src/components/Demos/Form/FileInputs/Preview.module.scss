@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .responsive {
   max-height: 100%;
@@ -6,8 +6,8 @@
 }
 
 .overlay {
-  @include rmd-icon-theme-update-var(size, 2rem);
-  @include rmd-icon-theme-update-var(color, $rmd-theme-error);
+  @include react-md.rmd-icon-theme-update-var(size, 2rem);
+  @include react-md.rmd-icon-theme-update-var(color, react-md.$rmd-theme-error);
 
   align-items: center;
   display: flex;

@@ -1,7 +1,7 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .blinds {
-  @include rmd-transition(deceleration);
+  @include react-md.rmd-transition(deceleration);
 
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
 }
 
 .animate {
-  @include rmd-transition(deceleration);
+  @include react-md.rmd-transition(deceleration);
 
   transition: transform 1.5s;
 }

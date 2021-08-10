@@ -1,13 +1,13 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .small {
-  @include rmd-button-theme-update-var(icon-size, 2rem);
-  @include rmd-icon-theme-update-var(size, 1rem);
-  @include rmd-form-theme-update-var(toggle-inset, 0.25rem);
+  @include react-md.rmd-button-theme-update-var(icon-size, 2rem);
+  @include react-md.rmd-icon-theme-update-var(size, 1rem);
+  @include react-md.rmd-form-theme-update-var(toggle-inset, 0.25rem);
 }
 
 .large {
-  @include rmd-button-theme-update-var(icon-size, 5rem);
-  @include rmd-icon-theme-update-var(size, 4rem);
-  @include rmd-form-theme-update-var(toggle-inset, 0.85rem);
+  @include react-md.rmd-button-theme-update-var(icon-size, 5rem);
+  @include react-md.rmd-icon-theme-update-var(size, 4rem);
+  @include react-md.rmd-form-theme-update-var(toggle-inset, 0.85rem);
 }

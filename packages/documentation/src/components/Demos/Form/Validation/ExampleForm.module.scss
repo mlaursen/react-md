@@ -1,10 +1,10 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .form {
   align-items: center;
   display: grid;
   grid-row-gap: 1rem;
-  grid-template-columns: calc(#{rmd-icon-theme-var(size)} + 1rem) 1fr;
+  grid-template-columns: calc(#{react-md.rmd-icon-theme-var(size)} + 1rem) 1fr;
   margin: 1rem;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .first {
-  @include rmd-utils-rtl-auto(margin-right, 0.5rem);
+  @include react-md.rmd-utils-rtl-auto(margin-right, 0.5rem);
 }
 
 .inline {

@@ -1,12 +1,12 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-utils-optional-css-modules('.rmd-list', true, false) {
-    @include rmd-theme-dark-elevation(6, true);
+  @include react-md.rmd-utils-optional-css-modules('.rmd-list', true, false) {
+    @include react-md.rmd-theme-dark-elevation(6, true);
   }
 
   :global .rmd-list {
-    @include rmd-elevation(4);
+    @include react-md.rmd-elevation(4);
 
     margin: 2rem auto;
     max-width: 25rem;

@@ -1,13 +1,13 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .dialog {
-  @include rmd-app-bar-theme-update-var(prominent-dense-height, 5rem);
+  @include react-md.rmd-app-bar-theme-update-var(prominent-dense-height, 5rem);
 
   :global .light-theme :local & {
-    @include rmd-theme-dark;
-    @include rmd-button-theme-update-var(
+    @include react-md.rmd-theme-dark;
+    @include react-md.rmd-button-theme-update-var(
       color,
-      rmd-app-bar-theme-var(default-color)
+      react-md.rmd-app-bar-theme-var(default-color)
     );
   }
 }

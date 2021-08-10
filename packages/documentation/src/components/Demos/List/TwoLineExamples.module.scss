@@ -1,9 +1,9 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 $start-shadow: none;
-$end-shadow: 0 0 2px $rmd-blue-300;
+$end-shadow: 0 0 2px react-md.$rmd-blue-300;
 
 .icon {
-  @include rmd-icon-theme(height, size);
-  @include rmd-utils-hide-focus-outline;
+  @include react-md.rmd-icon-theme(height, size);
+  @include react-md.rmd-utils-hide-focus-outline;
 }

@@ -1,9 +1,9 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .list {
-  @include rmd-list-theme-update-var(
+  @include react-md.rmd-list-theme-update-var(
     item-horizontal-padding,
-    $rmd-dialog-header-padding
+    react-md.$rmd-dialog-header-padding
   );
 
   padding-top: 0;

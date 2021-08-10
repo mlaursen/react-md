@@ -1,23 +1,23 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .p,
 .list {
-  @include rmd-typography(subtitle-1);
+  @include react-md.rmd-typography(subtitle-1);
 }
 
 .container {
-  @include rmd-utils-phone-media {
+  @include react-md.rmd-utils-phone-media {
     @each $headline in (1 2 3) {
       :global .rmd-typography--headline-#{$headline} {
         $name: 'headline-' + ($headline + 2);
-        @include rmd-typography($name);
+        @include react-md.rmd-typography($name);
       }
     }
   }
 
   ul,
   ol {
-    @include rmd-utils-scroll;
+    @include react-md.rmd-utils-scroll;
   }
 }
 

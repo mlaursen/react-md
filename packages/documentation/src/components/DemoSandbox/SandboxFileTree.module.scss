@@ -1,11 +1,11 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .sheet {
-  background-color: $rmd-sheet-dark-elevation-background-color;
+  background-color: react-md.$rmd-sheet-dark-elevation-background-color;
 }
 
 .tree {
-  @include rmd-tree-depths(
+  @include react-md.rmd-tree-depths(
     $selector-prefix: ':global ',
     $max: 4,
     $base-padding: 2rem
@@ -13,10 +13,10 @@
 }
 
 .icon {
-  @include rmd-icon-theme-update-var(text-spacing, 0.5rem);
-  @include rmd-icon-theme-update-var(size, 1rem);
+  @include react-md.rmd-icon-theme-update-var(text-spacing, 0.5rem);
+  @include react-md.rmd-icon-theme-update-var(size, 1rem);
 }
 
 .inline {
-  @include rmd-app-bar-offset(top, prominent-dense-height);
+  @include react-md.rmd-app-bar-offset(top, prominent-dense-height);
 }

@@ -1,7 +1,7 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .link {
-  @include rmd-theme(color, text-icon-on-background);
+  @include react-md.rmd-theme(color, text-icon-on-background);
 
   flex-shrink: 0;
 }

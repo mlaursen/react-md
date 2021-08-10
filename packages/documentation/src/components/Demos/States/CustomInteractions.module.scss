@@ -1,16 +1,19 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .button {
-  @include rmd-elevation-transition(
+  @include react-md.rmd-elevation-transition(
     8,
     12,
-    '&#{$rmd-states-pressed-class-name}',
+    '&#{react-md.$rmd-states-pressed-class-name}',
     false
   );
-  @include rmd-states-pressed-styles(true) {
+  @include react-md.rmd-states-pressed-styles(true) {
     // disable normal pressed states background color change since we want
     // to use elevation as the interaction instead
-    @include rmd-states-theme-update-var(background-color, transparent);
+    @include react-md.rmd-states-theme-update-var(
+      background-color,
+      transparent
+    );
   }
 
   margin: 1rem;

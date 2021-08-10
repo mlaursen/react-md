@@ -1,7 +1,7 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .list {
-  @include rmd-utils-rtl-auto(padding-left, 1rem);
+  @include react-md.rmd-utils-rtl-auto(padding-left, 1rem);
 
   margin: 0;
 }

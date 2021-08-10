@@ -1,7 +1,7 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-list-unstyled;
+  @include react-md.rmd-list-unstyled;
 
   display: flex;
   flex-wrap: wrap;
@@ -9,7 +9,7 @@
 }
 
 .example {
-  @include rmd-theme(background-color, background);
+  @include react-md.rmd-theme(background-color, background);
 
   display: inline-flex;
   height: 10rem;
@@ -20,8 +20,8 @@
 
 @for $i from 0 through 24 {
   .elevation#{$i} {
-    @include rmd-elevation($i);
-    @include rmd-theme-dark-elevation($i, true);
+    @include react-md.rmd-elevation($i);
+    @include react-md.rmd-theme-dark-elevation($i, true);
   }
 }
 

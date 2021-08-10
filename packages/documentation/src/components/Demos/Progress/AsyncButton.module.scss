@@ -1,9 +1,9 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .button {
-  @include rmd-progress-theme-update-var(
+  @include react-md.rmd-progress-theme-update-var(
     circular-size,
-    rmd-icon-theme-var(size)
+    react-md.rmd-icon-theme-var(size)
   );
 
   // just to make the demos look a bit nicer
@@ -17,9 +17,12 @@
   // background is instead. You'll probably also want to add additional styles for
   // maintaining the "containted" styles since the contained button turns into
   // an "unstyled" button when disabled
-  @include rmd-theme(background-color, surface);
-  @include rmd-utils-full-screen(absolute);
-  @include rmd-theme-dark-elevation($rmd-card-elevation, true);
+  @include react-md.rmd-theme(background-color, surface);
+  @include react-md.rmd-utils-full-screen(absolute);
+  @include react-md.rmd-theme-dark-elevation(
+    react-md.$rmd-card-elevation,
+    true
+  );
 
   align-items: center;
   border-radius: inherit;

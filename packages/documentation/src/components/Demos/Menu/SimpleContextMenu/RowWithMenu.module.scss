@@ -1,14 +1,14 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .row {
-  @include rmd-utils-hide-focus-outline;
+  @include react-md.rmd-utils-hide-focus-outline;
 
-  @include rmd-utils-keyboard-only(true) {
+  @include react-md.rmd-utils-keyboard-only(true) {
     &:focus {
       // Note: box-shadow does not work on `<tr>` in safari (well anything that
       // isn't `display: block`). You should handle focus behavior differently
       // in a real app
-      @include rmd-states-theme(box-shadow, focus-shadow);
+      @include react-md.rmd-states-theme(box-shadow, focus-shadow);
     }
   }
 }

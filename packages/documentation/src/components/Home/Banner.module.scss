@@ -1,7 +1,7 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .banner {
-  @include rmd-theme(background-color, primary);
+  @include react-md.rmd-theme(background-color, primary);
 
   align-items: center;
   display: flex;
@@ -9,7 +9,7 @@
 }
 
 .title {
-  @include rmd-theme(color, on-primary);
+  @include react-md.rmd-theme(color, on-primary);
 }
 
 .logo {

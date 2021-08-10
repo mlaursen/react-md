@@ -1,25 +1,25 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-utils-desktop-media {
-    @include rmd-app-bar-theme-update-var(
+  @include react-md.rmd-utils-desktop-media {
+    @include react-md.rmd-app-bar-theme-update-var(
       height,
-      rmd-app-bar-theme-var(dense-height)
+      react-md.rmd-app-bar-theme-var(dense-height)
     );
 
     .prominent {
-      @include rmd-app-bar-theme-update-var(
+      @include react-md.rmd-app-bar-theme-update-var(
         prominent-height,
-        rmd-app-bar-theme-var(prominent-dense-height)
+        react-md.rmd-app-bar-theme-var(prominent-dense-height)
       );
     }
   }
 }
 
 .prominent {
-  @include rmd-app-bar-theme-update-var(
+  @include react-md.rmd-app-bar-theme-update-var(
     prominent-height,
-    rmd-app-bar-theme-var(prominent-dense-height)
+    react-md.rmd-app-bar-theme-var(prominent-dense-height)
   );
 
   // just because I don't want to create 2 rows of data for this example

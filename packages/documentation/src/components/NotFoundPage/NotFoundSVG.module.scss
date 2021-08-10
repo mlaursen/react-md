@@ -1,18 +1,18 @@
-@import '../../variables';
-@import 'react-md/dist/everything';
+@use '../../variables';
+@use 'react-md';
 
 .oval {
-  @include rmd-theme(fill, secondary);
+  @include react-md.rmd-theme(fill, secondary);
 }
 
 .circle1 {
-  fill: rmd-theme-get-swatch($rmd-theme-primary, 700);
+  fill: react-md.rmd-theme-get-swatch(variables.$primary-color, 700);
 }
 
 .circle2 {
-  fill: rmd-theme-get-swatch($rmd-theme-primary, 600);
+  fill: react-md.rmd-theme-get-swatch(variables.$primary-color, 600);
 }
 
 .circle3 {
-  @include rmd-theme(fill, primary);
+  @include react-md.rmd-theme(fill, primary);
 }

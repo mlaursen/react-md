@@ -1,10 +1,10 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .link {
-  @include rmd-button-theme(color);
+  @include react-md.rmd-button-theme(color);
 
   &:visited,
   &:hover {
-    @include rmd-button-theme(color);
+    @include react-md.rmd-button-theme(color);
   }
 }

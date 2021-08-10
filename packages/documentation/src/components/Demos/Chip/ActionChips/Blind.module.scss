@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 $blind-height: 1.5rem;
 $blind-margin: 2px;
@@ -7,9 +7,9 @@ $blind-rotation: 12deg;
 $blind-rotation-extra: 24deg;
 
 .blind {
-  @include rmd-elevation(8);
+  @include react-md.rmd-elevation(8);
 
-  background-color: rgba($rmd-white-base, 0.94);
+  background-color: rgba(react-md.$rmd-white-base, 0.94);
   flex-shrink: 0;
   height: $blind-height;
   margin-bottom: $blind-margin-extra;
@@ -18,7 +18,7 @@ $blind-rotation-extra: 24deg;
 }
 
 .animate {
-  @include rmd-transition(standard);
+  @include react-md.rmd-transition(standard);
   $duration: 2s;
 
   transition: margin-bottom $duration, transform $duration;

@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
   display: inline-block;
@@ -6,8 +6,8 @@
 }
 
 .menu {
-  @include rmd-theme(background-color, surface);
-  @include rmd-elevation(8);
+  @include react-md.rmd-theme(background-color, surface);
+  @include react-md.rmd-elevation(8);
 
   position: absolute;
   right: 0;

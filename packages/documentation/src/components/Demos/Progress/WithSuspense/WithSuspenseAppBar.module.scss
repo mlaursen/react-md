@@ -1,18 +1,18 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 $size: 2rem;
 
 .button {
-  @include rmd-button-theme-update-var(icon-size, $size);
+  @include react-md.rmd-button-theme-update-var(icon-size, $size);
 
   bottom: -$size * 0.5;
   left: 1rem;
   z-index: 300;
 
   &.button {
-    @include rmd-theme(color, text-primary-on-light);
+    @include react-md.rmd-theme(color, text-primary-on-light);
 
-    background-color: $rmd-white-base;
+    background-color: react-md.$rmd-white-base;
     position: absolute;
   }
 }

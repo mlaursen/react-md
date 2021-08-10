@@ -1,5 +1,5 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .link {
-  @include rmd-typography-text-overflow-ellipsis;
+  @include react-md.rmd-typography-text-overflow-ellipsis;
 }

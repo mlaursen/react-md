@@ -1,5 +1,5 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .sheet {
-  padding: $rmd-list-vertical-padding 0;
+  padding: react-md.$rmd-list-vertical-padding 0;
 }

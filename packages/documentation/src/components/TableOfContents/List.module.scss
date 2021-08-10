@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .list {
   margin: 0;
@@ -7,20 +7,20 @@
 }
 
 .item {
-  @include rmd-link-theme-update-var(
+  @include react-md.rmd-link-theme-update-var(
     color,
-    rmd-theme-var(text-primary-on-background)
+    react-md.rmd-theme-var(text-primary-on-background)
   );
-  @include rmd-link-theme-update-var(
+  @include react-md.rmd-link-theme-update-var(
     visited-color,
-    rmd-theme-var(text-primary-on-background)
+    react-md.rmd-theme-var(text-primary-on-background)
   );
-  @include rmd-link-theme-update-var(
+  @include react-md.rmd-link-theme-update-var(
     hover-color,
-    rmd-theme-var(text-secondary-on-background)
+    react-md.rmd-theme-var(text-secondary-on-background)
   );
-  @include rmd-typography(subtitle-1);
-  @include rmd-typography-value(body-1, line-height);
+  @include react-md.rmd-typography(subtitle-1);
+  @include react-md.rmd-typography-value(body-1, line-height);
 
   margin: 0.25rem 0;
 }

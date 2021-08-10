@@ -1,8 +1,8 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
-  @include rmd-elevation(6);
-  @include rmd-utils-block-centered;
+  @include react-md.rmd-elevation(6);
+  @include react-md.rmd-utils-block-centered;
 
   max-width: 20rem;
   position: relative;
@@ -25,8 +25,11 @@
 }
 
 .header {
-  @include rmd-button-theme-update-var(color, $rmd-white-base);
-  @include rmd-theme(color, $rmd-white-base);
+  @include react-md.rmd-button-theme-update-var(
+    color,
+    react-md.$rmd-white-base
+  );
+  @include react-md.rmd-theme(color, react-md.$rmd-white-base);
 
   // 20rem
   $width: 20 * 16;
@@ -50,8 +53,8 @@
 }
 
 .content {
-  @include rmd-utils-scroll;
+  @include react-md.rmd-utils-scroll;
 
   height: 35rem;
-  padding-top: calc(#{rmd-app-bar-theme-var(height)} + var(--offset));
+  padding-top: calc(#{react-md.rmd-app-bar-theme-var(height)} + var(--offset));
 }

@@ -1,23 +1,23 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 .container {
   position: relative;
 }
 
 .temporary {
-  @include rmd-elevation(8);
-  @include rmd-theme(background-color, surface);
-  @include rmd-theme(color, on-surface);
+  @include react-md.rmd-elevation(8);
+  @include react-md.rmd-theme(background-color, surface);
+  @include react-md.rmd-theme(color, on-surface);
 
   left: 0;
   padding: 1rem;
   position: absolute;
   top: 100%;
-  z-index: $rmd-overlay-z-index + 1;
+  z-index: react-md.$rmd-overlay-z-index + 1;
 }
 
 .close {
-  @include rmd-utils-rtl-auto(right, 0);
+  @include react-md.rmd-utils-rtl-auto(right, 0);
 
   position: absolute;
 }

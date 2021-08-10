@@ -1,9 +1,9 @@
-@import 'react-md/dist/everything';
+@use 'react-md';
 
 @mixin transition {
-  @include rmd-transition(standard);
+  @include react-md.rmd-transition(standard);
 
-  transition-duration: $rmd-transition-standard-time;
+  transition-duration: react-md.$rmd-transition-standard-time;
   transition-property: background-color, color;
 }
 
