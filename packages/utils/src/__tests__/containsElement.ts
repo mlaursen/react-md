@@ -1,3 +1,5 @@
+import { MutableRefObject } from "react";
+
 import { containsElement } from "../containsElement";
 
 describe("containsElement", () => {
@@ -23,5 +25,20 @@ describe("containsElement", () => {
     expect(containsElement(parent, parent)).toBe(true);
     expect(containsElement(child, parent)).toBe(false);
     expect(containsElement(parent, outside)).toBe(false);
+  });
+
+  it("should work for RefObject", () => {
+    const container = document.createElement("div");
+    const child = document.createElement("div");
+    const containerRef: MutableRefObject<HTMLElement | null> = {
+      current: null,
+    };
+    expect(containsElement(containerRef, child)).toBe(false);
+
+    containerRef.current = container;
+    expect(containsElement(containerRef, child)).toBe(false);
+
+    container.appendChild(child);
+    expect(containsElement(containerRef, child)).toBe(true);
   });
 });

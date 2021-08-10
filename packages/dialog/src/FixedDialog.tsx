@@ -75,7 +75,7 @@ export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
         style: propStyle,
         transformOrigin: true,
         ...options,
-        onScroll: (_event, { visible }) => {
+        onScroll: /* istanbul ignore next */ (_event, { visible }) => {
           if (!visible) {
             onRequestClose();
           }
