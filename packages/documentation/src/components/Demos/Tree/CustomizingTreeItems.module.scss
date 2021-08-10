@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 .tree {
   // want to decrease the padding-left for each tree item for a more

@@ -1,4 +1,4 @@
-@import '../mixins';
+@use '../everything' as *;
 
 @include react-md-utils;
 

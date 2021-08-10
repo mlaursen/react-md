@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 .dialog {
   @include rmd-app-bar-theme-update-var(prominent-dense-height, 5rem);

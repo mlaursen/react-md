@@ -1,16 +1,15 @@
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 .type {
   &::after {
+    $horizontal-padding: rmd-list-theme-var(item-horizontal-padding);
+    $media-size: rmd-list-theme-var(media-size);
+
     @include rmd-divider-theme(background-color);
     @include rmd-divider-theme(width, size);
     @include rmd-utils-rtl-auto(
       left,
-      calc(
-        #{rmd-list-theme-var(item-horizontal-padding)} + #{rmd-list-theme-var(
-            media-size
-          )}
-      )
+      calc(#{$horizontal-padding} + #{$media-size})
     );
 
     bottom: 10%;

@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 .example {
   @include rmd-theme(color, on-surface);

@@ -1,5 +1,4 @@
-@import '../../variables';
-@import 'react-md/dist/everything';
+@use '../../everything';
 
 .container {
   background-color: rmd-theme-get-swatch($rmd-theme-primary, 800);

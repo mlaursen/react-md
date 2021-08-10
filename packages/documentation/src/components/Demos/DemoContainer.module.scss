@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 // duplicated from TableOfContents.scss
 $toc-width: 15rem;

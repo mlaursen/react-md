@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 .dialog {
   $distance: $rmd-button-floating-margin + $rmd-button-icon-size + 1rem;

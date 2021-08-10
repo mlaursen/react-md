@@ -1,8 +1,9 @@
-@import '@react-md/theme/dist/color-palette';
-
-$rmd-theme-primary: $rmd-teal-500;
-$rmd-theme-secondary: $rmd-pink-a-200;
-$rmd-utils-auto-dense: true;
+@use '@react-md/theme/dist/color-palette' as *;
+@forward 'react-md' with (
+  $rmd-theme-primary: $rmd-teal-500,
+  $rmd-theme-secondary: $rmd-pink-a-200,
+  $rmd-utils-auto-dense: true,
+);
 
 $solarized-base-03: #002b36;
 $solarized-base-02: #073642;

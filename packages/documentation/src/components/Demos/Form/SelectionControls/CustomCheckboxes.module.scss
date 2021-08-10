@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 .small {
   @include rmd-button-theme-update-var(icon-size, 2rem);

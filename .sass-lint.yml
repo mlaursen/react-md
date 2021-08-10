@@ -1,5 +1,6 @@
 files:
   include: 'packages/*/src/**/*.scss'
+  ignore: 'packages/documentation/src/**/*'
 options:
   formatter: stylish
   merge-default-rules: false

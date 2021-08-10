@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 .row {
   @include rmd-utils-hide-focus-outline;

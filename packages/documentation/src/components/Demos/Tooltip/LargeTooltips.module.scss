@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 .link {
   @include rmd-typography-text-overflow-ellipsis;

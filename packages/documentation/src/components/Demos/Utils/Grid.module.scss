@@ -1,5 +1,5 @@
 // sass-lint:disable class-name-format
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 .grid {
   background-color: $rmd-theme-light-background;

@@ -1,5 +1,5 @@
 // sass-lint:disable class-name-format
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 $phone-height: 35.5rem;
 $phone-width: 20rem;

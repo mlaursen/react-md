@@ -1,4 +1,4 @@
-@import 'react-md/dist/everything';
+@use 'react-md' as *;
 
 .goals {
   @media (min-width: 37.5625rem) {
