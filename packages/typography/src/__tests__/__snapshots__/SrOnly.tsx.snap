@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SrOnly should render correctly 1`] = `
+<div>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Some Text
+  </span>
+</div>
+`;
+
+exports[`SrOnly should render correctly 2`] = `
+<div>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only rmd-sr-only--focusable"
+    tabindex="0"
+  >
+    Some Text
+  </span>
+</div>
+`;
+
+exports[`SrOnly should render correctly 3`] = `
+<div>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+    tabindex="-1"
+  >
+    Some Text
+  </span>
+</div>
+`;
+
+exports[`SrOnly should render correctly 4`] = `
+<div>
+  <span
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only rmd-sr-only--focusable"
+    tabindex="-1"
+  >
+    Some Text
+  </span>
+</div>
+`;
+
+exports[`SrOnly should render correctly 5`] = `
+<div>
+  <div
+    class="rmd-typography rmd-typography--body-1 rmd-sr-only"
+  >
+    Some Text
+  </div>
+</div>
+`;
