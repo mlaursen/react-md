@@ -93,7 +93,7 @@ const writerOpts = {
     const issues = [];
     let isBreaking = false;
     commit.notes.forEach((note) => {
-      isBreaking = false;
+      isBreaking = true;
       note.title = 'BREAKING CHANGES';
     });
 

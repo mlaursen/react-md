@@ -79,6 +79,7 @@ export async function release({
   clean: enableClean,
   type,
 }: Options): Promise<void> {
+  const prerelease = type.startsWith("pre");
   const localDotEnv = join(projectRoot, ".env.local");
   dotenv.config({ path: localDotEnv });
   const { GITHUB_TOKEN } = process.env;
@@ -141,14 +142,19 @@ A token can be created at:
   await replaceTag();
 
   let distTag = "";
-  if (type.startsWith("pre")) {
+  if (prerelease) {
     distTag = " --dist-tag next";
   }
 
   run(`npx lerna publish from-package${distTag}${yes}`);
   await continueOrRollback(autoYes);
 
-  git("push origin main");
+  if (!prerelease) {
+    git("push origin main");
+  } else {
+    // assuming I already have a branch for the prelease
+    git("push");
+  }
   git("push --tags");
 
   log.info("Creating github release");
@@ -169,7 +175,7 @@ ${percentChanged}
       repo: "react-md",
       tag_name: `v${version}`,
       body,
-      prerelease: type.startsWith("pre"),
+      prerelease,
     }
   );
 
