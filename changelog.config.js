@@ -6,13 +6,18 @@ const { tokens, packages } = require('./changelogData');
 const PACKAGE_REGEXP = new RegExp(`${packages.join('|')}`);
 
 const GROUPS = [
+  'Breaking Changes',
   'Bug Fixes',
   'Features',
   'Documentation',
   'Performance Improvements',
   'Other Internal Changes',
 ];
+const BREAKING_CHANGES = 'Breaking Changes';
 
+/**
+ * @param commit {import("conventional-commits-parser").Commit}
+ */
 function getCommitType({ type, scope, revert }) {
   if (type === 'revert' || revert) {
     return 'Reverts';
@@ -74,6 +79,9 @@ function tokenize(subject) {
     .replace(/([a-z][A-z]+Props)/g, '`$1`');
 }
 
+/**
+ * @type {import("conventional-changelog-core").ParserOptions}
+ */
 const parserOpts = {
   headerPattern: /^(\w*)(?:\((.*)\))?: (.*)$/,
   headerCorrespondence: ['type', 'scope', 'subject'],
@@ -83,6 +91,9 @@ const parserOpts = {
   revertCorrespondence: ['header', 'hash'],
 };
 
+/**
+ * @type {import("conventional-changelog-core").WriterOptions}
+ */
 const writerOpts = {
   transform: (commit, context) => {
     // don't want to show the release tag in changelog
@@ -93,8 +104,8 @@ const writerOpts = {
     const issues = [];
     let isBreaking = false;
     commit.notes.forEach((note) => {
-      isBreaking = false;
-      note.title = 'BREAKING CHANGES';
+      isBreaking = true;
+      note.title = BREAKING_CHANGES;
     });
 
     commit.type = getCommitType(commit);
@@ -165,6 +176,8 @@ const writerOpts = {
  * This is basically the conventional-changelog-angular with a few changes to
  * allow more commit messages to appear. I also "tokenize" known packages and
  * exports from react-md in the changelogs.
+ *
+ * @type {import("conventional-changelog-core").Options.Config}
  */
 module.exports = {
   parserOpts,
