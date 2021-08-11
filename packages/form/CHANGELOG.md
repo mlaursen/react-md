@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0-alpha.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **sass:** use math.div instead of division since it's deprecated ([f88aca2](https://github.com/mlaursen/react-md/commit/f88aca24113ce27582d7de02b14de26f56eb6846))
+
+
+### Other Internal Changes
+
+* **@react-md/dev-utils:** updated variables command to work with `sass` ([d95f55a](https://github.com/mlaursen/react-md/commit/d95f55a78846726debe9f4ac4daeaefd6036c8d8))
+* **@react-md/form:** removed deprecated implementation in `useIndeterminateChecked` ([5853b13](https://github.com/mlaursen/react-md/commit/5853b1329bd34406755f4c2680291b02e063598d))
+* **@react-md/utils:** removed InteractionModeListener alias ([5528589](https://github.com/mlaursen/react-md/commit/5528589563a27b46eedf54c9142d0ed9dace7bea))
+
+
+### BREAKING CHANGES
+
+* **@react-md/utils:** Removed `InteractionModeListener` since it was an alias for `UserInteractionModeListener`
+* **@react-md/form:** The second argument for `useIndeterminateChecked` is now an object of options
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

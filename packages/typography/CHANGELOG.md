@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0-alpha.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **sass:** use math.div instead of division since it's deprecated ([f88aca2](https://github.com/mlaursen/react-md/commit/f88aca24113ce27582d7de02b14de26f56eb6846))
+
+
+### Other Internal Changes
+
+* Added additional tests to bump test coverage ([e78f668](https://github.com/mlaursen/react-md/commit/e78f668d28ad0e1ff99feb9538c6a6b9e765d72c))
+* **@react-md/dev-utils:** updated variables command to work with `sass` ([d95f55a](https://github.com/mlaursen/react-md/commit/d95f55a78846726debe9f4ac4daeaefd6036c8d8))
+* **@react-md/typography:** fixed invalid font-family at compile time ([3ef77a1](https://github.com/mlaursen/react-md/commit/3ef77a1c3ef4bf6549e7628622a30a09c004157a))
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

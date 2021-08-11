@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0-alpha.0) (2021-08-11)
+
+
+### Other Internal Changes
+
+* **@react-md/tooltip:** removed TooltipHoverModeConfig component ([2ee53da](https://github.com/mlaursen/react-md/commit/2ee53da6ce91a87c25d56e07785d084652321e9c))
+* **@react-md/utils:** removed InteractionModeListener alias ([5528589](https://github.com/mlaursen/react-md/commit/5528589563a27b46eedf54c9142d0ed9dace7bea))
+
+
+### BREAKING CHANGES
+
+* **@react-md/utils:** Removed `InteractionModeListener` since it was an alias for `UserInteractionModeListener`
+* **@react-md/tooltip:** Removed `TooltipHoverModeConfig` component
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

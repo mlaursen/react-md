@@ -7,7 +7,7 @@ export default {
   "rmd-dialog-elevation": 16,
   "rmd-dialog-light-background-color": "var(--rmd-theme-surface, #fff)",
   "rmd-dialog-dark-elevation-background-color": "#353535",
-  "rmd-dialog-dark-background-color": "var(--rmd-theme-surface, #fff)",
+  "rmd-dialog-dark-background-color": "#353535",
   "rmd-dialog-background-color": "var(--rmd-theme-surface, #fff)",
   "rmd-dialog-z-index": 30,
   "rmd-dialog-vertical-margin": "1.5rem",

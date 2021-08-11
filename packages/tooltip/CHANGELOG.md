@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0-alpha.0) (2021-08-11)
+
+
+### Other Internal Changes
+
+* **@react-md/tooltip:** removed deprecated props from `Tooltipped` component ([9083171](https://github.com/mlaursen/react-md/commit/9083171344f6c917c34680264fbad24cdb3fb4a8))
+* **@react-md/tooltip:** removed TooltipHoverModeConfig component ([2ee53da](https://github.com/mlaursen/react-md/commit/2ee53da6ce91a87c25d56e07785d084652321e9c))
+
+
+### BREAKING CHANGES
+
+* **@react-md/tooltip:** Removed `TooltipHoverModeConfig` component
+* **@react-md/tooltip:** Removed deprecated props from `Tooltipped` component
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

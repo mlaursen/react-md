@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0-alpha.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **sass:** drop node-sass in favor of `sass` since it's deprecated ([1f2a1b0](https://github.com/mlaursen/react-md/commit/1f2a1b04238f1a3b5547995d0022b19c30d1cb04))
+
+
+### Other Internal Changes
+
+* **@react-md/form:** removed deprecated implementation in `useIndeterminateChecked` ([5853b13](https://github.com/mlaursen/react-md/commit/5853b1329bd34406755f4c2680291b02e063598d))
+* **react-md.dev:** Each package includes a link to `typedoc` API in navigation tree ([c388ba6](https://github.com/mlaursen/react-md/commit/c388ba6f33a7f693562e693351d242a175d5e6e8))
+* **react-md.dev:** ran migrator for deprecated division ([acb90a7](https://github.com/mlaursen/react-md/commit/acb90a77ae31fef5533edab3b5db31471b1aa5d4))
+* **react-md.dev:** removed tilde from imports ([f0e5dee](https://github.com/mlaursen/react-md/commit/f0e5dee0c7da49792ac66dd04e78e1608a1867d5))
+* **react-md.dev:** update all scss files for `@use` imports ([3b66cfa](https://github.com/mlaursen/react-md/commit/3b66cfac54eb7b637a29968c96ba538cc3c8dc96))
+* **react-md.dev:** update all styles to use react-md/dist/everything ([d7c7bbf](https://github.com/mlaursen/react-md/commit/d7c7bbfd8d359bc4a5892338b65c77f285e86dd8))
+* **react-md.dev:** updated creating-a-new-app ([d9b6819](https://github.com/mlaursen/react-md/commit/d9b68198fba588c47dc77edfe2c48b37eceac96e))
+* **react-md.dev:** updated docs for new rmd-theme-dark-elevation `defaults` ([45ffc9d](https://github.com/mlaursen/react-md/commit/45ffc9d757db2095104fab34e819dd583edb80f2))
+
+
+### BREAKING CHANGES
+
+* **sass:** `node-sass` is no longer supported and users must switch to `sass`
+* **@react-md/form:** The second argument for `useIndeterminateChecked` is now an object of options
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

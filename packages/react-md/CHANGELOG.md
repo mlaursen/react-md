@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0-alpha.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **sass:** drop node-sass in favor of `sass` since it's deprecated ([1f2a1b0](https://github.com/mlaursen/react-md/commit/1f2a1b04238f1a3b5547995d0022b19c30d1cb04))
+
+
+### Features
+
+* **react-md:** Simplify `sass` usage with: `@use 'react-md';` ([8603d7f](https://github.com/mlaursen/react-md/commit/8603d7f5da2d40ed1216e2f55458d9ce79933722))
+
+
+### Other Internal Changes
+
+* **react-md.dev:** removed tilde from imports ([f0e5dee](https://github.com/mlaursen/react-md/commit/f0e5dee0c7da49792ac66dd04e78e1608a1867d5))
+
+
+### BREAKING CHANGES
+
+* **sass:** `node-sass` is no longer supported and users must switch to `sass`
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

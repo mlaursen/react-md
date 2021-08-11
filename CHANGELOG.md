@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0-alpha.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **sass:** drop `node-sass` in favor of `sass` since it's deprecated ([1f2a1b0](https://github.com/mlaursen/react-md/commit/1f2a1b04238f1a3b5547995d0022b19c30d1cb04))
+* **sass:** use `math.div` instead of division since it's deprecated ([f88aca2](https://github.com/mlaursen/react-md/commit/f88aca24113ce27582d7de02b14de26f56eb6846))
+
+
+### Features
+
+* **@react-md/theme:** `$rmd-theme-dark-elevation` defaults to `true` ([709d34c](https://github.com/mlaursen/react-md/commit/709d34ca1f7c138b96e5aa17aba5344ff131fb39))
+* **react-md:** Simplify `sass` usage with: `@use 'react-md';` ([8603d7f](https://github.com/mlaursen/react-md/commit/8603d7f5da2d40ed1216e2f55458d9ce79933722))
+
+
+### Other Internal Changes
+
+* Added additional tests to bump test coverage ([e78f668](https://github.com/mlaursen/react-md/commit/e78f668d28ad0e1ff99feb9538c6a6b9e765d72c))
+* **@react-md/card:** removed deprecated $rmd-card-dark-elevation-bordered-background-color variable ([a99df44](https://github.com/mlaursen/react-md/commit/a99df4410fb992f46002627815ad7f426a77efd1))
+* **@react-md/dev-utils:** Added simple sass-migrator command ([68cd615](https://github.com/mlaursen/react-md/commit/68cd615593cbbdf9063fed98e57fd6e46b3f61b7))
+* **@react-md/dev-utils:** autoConfirm flag passed to initBlog ([dec09b8](https://github.com/mlaursen/react-md/commit/dec09b88312eccdfd824c8525afd5539d39c7f4c))
+* **@react-md/dev-utils:** Combine all scss files into `react-md/dist/_everything.scss` ([1ec6b3e](https://github.com/mlaursen/react-md/commit/1ec6b3ec5ab6e380c68918d97ca6e550210ff329))
+* **@react-md/dev-utils:** Examples correctly override variables ([67ac5fb](https://github.com/mlaursen/react-md/commit/67ac5fb79981f62fad83b0f306e5098fe8adcf14))
+* **@react-md/dev-utils:** fixed `eslint` error ([ec30900](https://github.com/mlaursen/react-md/commit/ec30900813f30b285ae0659e3655aaa1f854eead))
+* **@react-md/dev-utils:** Update release script to hopefully work with prereleases ([07d837e](https://github.com/mlaursen/react-md/commit/07d837e0c612ebd874ca45d095c834efc6ce3847))
+* **@react-md/dev-utils:** updated `sassdoc` and variables to use everything.scss ([4fbb9c8](https://github.com/mlaursen/react-md/commit/4fbb9c863d6765e159f6da5aa5bee179a2701066))
+* **@react-md/dev-utils:** updated variables command to work with `sass` ([d95f55a](https://github.com/mlaursen/react-md/commit/d95f55a78846726debe9f4ac4daeaefd6036c8d8))
+* **@react-md/form:** removed deprecated implementation in `useIndeterminateChecked` ([5853b13](https://github.com/mlaursen/react-md/commit/5853b1329bd34406755f4c2680291b02e063598d))
+* **@react-md/tooltip:** removed deprecated props from `Tooltipped` component ([9083171](https://github.com/mlaursen/react-md/commit/9083171344f6c917c34680264fbad24cdb3fb4a8))
+* **@react-md/tooltip:** removed TooltipHoverModeConfig component ([2ee53da](https://github.com/mlaursen/react-md/commit/2ee53da6ce91a87c25d56e07785d084652321e9c))
+* **@react-md/typography:** fixed invalid font-family at compile time ([3ef77a1](https://github.com/mlaursen/react-md/commit/3ef77a1c3ef4bf6549e7628622a30a09c004157a))
+* **@react-md/utils:** remove ResizeObserver component and useResizeObserverV1 implementation ([ce55dbc](https://github.com/mlaursen/react-md/commit/ce55dbc129d415219d8e839c57e216f4d85775b5))
+* **@react-md/utils:** removed InteractionModeListener alias ([5528589](https://github.com/mlaursen/react-md/commit/5528589563a27b46eedf54c9142d0ed9dace7bea))
+* **react-md.dev:** ignore documentation for `sass-lint` ([02ebd43](https://github.com/mlaursen/react-md/commit/02ebd4391d100e606c937ec77bac04698e60559f))
+* **react-md.dev:** Each package includes a link to `typedoc` API in navigation tree ([c388ba6](https://github.com/mlaursen/react-md/commit/c388ba6f33a7f693562e693351d242a175d5e6e8))
+* **react-md.dev:** ran migrator for deprecated division ([acb90a7](https://github.com/mlaursen/react-md/commit/acb90a77ae31fef5533edab3b5db31471b1aa5d4))
+* **react-md.dev:** removed tilde from imports ([f0e5dee](https://github.com/mlaursen/react-md/commit/f0e5dee0c7da49792ac66dd04e78e1608a1867d5))
+* **react-md.dev:** update all scss files for `@use` imports ([3b66cfa](https://github.com/mlaursen/react-md/commit/3b66cfac54eb7b637a29968c96ba538cc3c8dc96))
+* **react-md.dev:** update all styles to use react-md/dist/everything ([d7c7bbf](https://github.com/mlaursen/react-md/commit/d7c7bbfd8d359bc4a5892338b65c77f285e86dd8))
+* **react-md.dev:** updated creating-a-new-app ([d9b6819](https://github.com/mlaursen/react-md/commit/d9b68198fba588c47dc77edfe2c48b37eceac96e))
+* **react-md.dev:** updated docs for new rmd-theme-dark-elevation `defaults` ([45ffc9d](https://github.com/mlaursen/react-md/commit/45ffc9d757db2095104fab34e819dd583edb80f2))
+* **react-md.dev:** updated examples to work with `sass` instead of node-sass ([b2857b0](https://github.com/mlaursen/react-md/commit/b2857b0bf427ce5388ba525000d8c32d6237b37c))
+* **react-md.dev:** updated sandboxes to use root `react-md` ([78a81a5](https://github.com/mlaursen/react-md/commit/78a81a53543858eae06f85a834a6f0f35df97d94))
+
+
+### BREAKING CHANGES
+
+* **@react-md/theme:** `$rmd-theme-dark-elevation` now defaults to `true` instead of `false`
+* **sass:** `node-sass` is no longer supported and users must switch to `sass`
+* **@react-md/utils:** Removed `InteractionModeListener` since it was an alias for `UserInteractionModeListener`
+* **@react-md/utils:** Removed `ResizeObserver` component and `useResizeObserverV1` implementation
+* **@react-md/tooltip:** Removed `TooltipHoverModeConfig` component
+* **@react-md/card:** Removed deprecated `$rmd-card-dark-elevation-bordered-background-color` variable
+* **@react-md/tooltip:** Removed deprecated props from `Tooltipped` component
+* **@react-md/form:** The second argument for `useIndeterminateChecked` is now an object of options
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

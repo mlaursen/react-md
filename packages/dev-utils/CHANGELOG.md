@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0-alpha.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **sass:** drop node-sass in favor of `sass` since it's deprecated ([1f2a1b0](https://github.com/mlaursen/react-md/commit/1f2a1b04238f1a3b5547995d0022b19c30d1cb04))
+
+
+### Other Internal Changes
+
+* **@react-md/dev-utils:** Added simple sass-migrator command ([68cd615](https://github.com/mlaursen/react-md/commit/68cd615593cbbdf9063fed98e57fd6e46b3f61b7))
+* **@react-md/dev-utils:** autoConfirm flag passed to initBlog ([dec09b8](https://github.com/mlaursen/react-md/commit/dec09b88312eccdfd824c8525afd5539d39c7f4c))
+* **@react-md/dev-utils:** Combine all scss files into `react-md/dist/_everything.scss` ([1ec6b3e](https://github.com/mlaursen/react-md/commit/1ec6b3ec5ab6e380c68918d97ca6e550210ff329))
+* **@react-md/dev-utils:** Examples correctly override variables ([67ac5fb](https://github.com/mlaursen/react-md/commit/67ac5fb79981f62fad83b0f306e5098fe8adcf14))
+* **@react-md/dev-utils:** fixed `eslint` error ([ec30900](https://github.com/mlaursen/react-md/commit/ec30900813f30b285ae0659e3655aaa1f854eead))
+* **@react-md/dev-utils:** Update release script to hopefully work with prereleases ([07d837e](https://github.com/mlaursen/react-md/commit/07d837e0c612ebd874ca45d095c834efc6ce3847))
+* **@react-md/dev-utils:** updated `sassdoc` and variables to use everything.scss ([4fbb9c8](https://github.com/mlaursen/react-md/commit/4fbb9c863d6765e159f6da5aa5bee179a2701066))
+* **@react-md/dev-utils:** updated variables command to work with `sass` ([d95f55a](https://github.com/mlaursen/react-md/commit/d95f55a78846726debe9f4ac4daeaefd6036c8d8))
+* **@react-md/typography:** fixed invalid font-family at compile time ([3ef77a1](https://github.com/mlaursen/react-md/commit/3ef77a1c3ef4bf6549e7628622a30a09c004157a))
+* **react-md.dev:** updated sandboxes to use root `react-md` ([78a81a5](https://github.com/mlaursen/react-md/commit/78a81a53543858eae06f85a834a6f0f35df97d94))
+
+
+### BREAKING CHANGES
+
+* **sass:** `node-sass` is no longer supported and users must switch to `sass`
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

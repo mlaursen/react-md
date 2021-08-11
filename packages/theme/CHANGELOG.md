@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0-alpha.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **sass:** use math.div instead of division since it's deprecated ([f88aca2](https://github.com/mlaursen/react-md/commit/f88aca24113ce27582d7de02b14de26f56eb6846))
+
+
+### Features
+
+* **@react-md/theme:** $rmd-theme-dark-elevation `defaults` to true ([709d34c](https://github.com/mlaursen/react-md/commit/709d34ca1f7c138b96e5aa17aba5344ff131fb39))
+
+
+### Other Internal Changes
+
+* **react-md.dev:** removed tilde from imports ([f0e5dee](https://github.com/mlaursen/react-md/commit/f0e5dee0c7da49792ac66dd04e78e1608a1867d5))
+* **react-md.dev:** updated docs for new rmd-theme-dark-elevation `defaults` ([45ffc9d](https://github.com/mlaursen/react-md/commit/45ffc9d757db2095104fab34e819dd583edb80f2))
+
+
+### BREAKING CHANGES
+
+* **@react-md/theme:** `$rmd-theme-dark-elevation` now defaults to `true` instead of `false`
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

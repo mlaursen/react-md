@@ -11,7 +11,7 @@ export default {
   "rmd-toast-light-background-color": "#323232",
   "rmd-toast-light-color": "#fff",
   "rmd-toast-dark-elevation-background-color": "#2c2c2c",
-  "rmd-toast-dark-background-color": "#323232",
+  "rmd-toast-dark-background-color": "#2c2c2c",
   "rmd-toast-dark-color": "#fff",
   "rmd-toast-background-color": "#323232",
   "rmd-toast-color": "#fff",
@@ -29,7 +29,7 @@ export default {
     color: "#fff",
     "light-background-color": "#323232",
     "light-color": "#fff",
-    "dark-background-color": "#323232",
+    "dark-background-color": "#2c2c2c",
     "dark-color": "#fff",
   },
 };
