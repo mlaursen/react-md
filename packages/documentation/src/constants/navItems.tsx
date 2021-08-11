@@ -112,10 +112,6 @@ const routes: NavItem[] = [
         children: "Customizing Your Theme",
       },
       {
-        href: "/including-styles-without-webpack",
-        children: "Including Styles without Webpack",
-      },
-      {
         href: "/using-the-sass-exports",
         children: "Using the Sass Exports",
       },

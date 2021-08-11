@@ -6,6 +6,7 @@ soon as possible since I'm terrible at colors and just chose two random ones.
 The default theme is:
 
 - `$rmd-theme-light: true`
+- `$rmd-theme-dark-elevation: true`
 - `$rmd-theme-primary: $rmd-purple-500`
 - `$rmd-theme-secondary: $rmd-pink-a-400`
 - `$rmd-theme-warning: $rmd-deep-orange-a-200`
@@ -16,25 +17,23 @@ The default theme is:
 - `$rmd-theme-dark-background: #303030`
 - `$rmd-theme-dark-surface: $rmd-grey-800`
 
-To change your default theme, you'll want to define these variables before the
-main `react-md` import in your base `.scss` file. My general recommendation is
-to create a `_variables.scss` file that can be imported into any of your other
-`.scss` files for your general theme and overrides:
+My recommendation is to create a `src/_everything.scss` file that `@forward`s
+everything from `react-md` with the overrides required for your app.
 
-`src/_variables.scss`
+`src/_everything.scss`
 
 ```scss
-@import "@react-md/theme/dist/color-palette";
-
-$rmd-theme-primary: $rmd-teal-500;
-$rmd-theme-secondary: $rmd-deep-orange-a-400;
+@use "@react-md/theme/dist/color-palette" as *;
+@forward "react-md" with (
+  $rmd-theme-primary: $rmd-teal-500,
+  $rmd-theme-secondary: $rmd-deep-orange-a-400,
+);
 ```
 
 `src/index.scss`
 
 ```scss
-@import "./variables";
-@import "react-md/dist/react-md";
+@use "./everything" as *;
 
 @include react-md-utils;
 ```
@@ -50,21 +49,21 @@ Implementing a dark theme for your app is as simple as changing the
 `$rmd-theme-light` variable to be `false` if it should be applied to your entire
 app.
 
-`src/_variables.scss`
+`src/_everything.scss`
 
 ```scss
-@import "@react-md/theme/dist/color-palette";
-
-$rmd-theme-light: false;
-$rmd-theme-primary: $rmd-teal-500;
-$rmd-theme-secondary: $rmd-deep-orange-a-400;
+@use "@react-md/theme/dist/color-palette" as *;
+@forward "react-md" with (
+  $rmd-theme-light: false,
+  $rmd-theme-primary: $rmd-teal-500,
+  $rmd-theme-secondary: $rmd-deep-orange-a-400,
+);
 ```
 
 `src/index.scss`
 
 ```scss
-@import "./variables";
-@import "react-md/dist/everything";
+@use "./everything";
 
 @include react-md-utils;
 ```
@@ -86,7 +85,7 @@ theme in their OS? Luckily, `react-md` provides `rmd-theme-light` and
 conditionally apply the dark theme.
 
 ```scss
-@import "react-md/dist/everything";
+@use "react-md" as *;
 
 @media (prefers-color-scheme: dark) {
   :root {

@@ -16,9 +16,6 @@ export interface ThemeUsageProps {
   theme: ThemeMode;
 }
 
-const DARK_OVERRIDE = `
-$rmd-theme-light: false;`;
-
 const toCSSName = (name: string): string => name.replace("-", "_");
 
 export default function ThemeUsage({
@@ -36,13 +33,14 @@ export default function ThemeUsage({
         {`##### SCSS Usage<!-- no-margin-bottom -->
 
 \`\`\`scss
-@import '@react-md/theme/dist/color-palette';
-${theme === "light" ? "" : DARK_OVERRIDE}
-$rmd-theme-primary: $rmd-${primary}-500;
-$rmd-theme-secondary: $rmd-${secondary}-a-${accent};
-// other variable overrides
+@use '@react-md/theme/dist/color-palette' as *;
+@use 'react-md' as * with (
+  $rmd-theme-light: ${theme === "light"},
+  $rmd-theme-primary: $rmd-${primary}-500,
+  $rmd-theme-secondary: $rmd-${secondary}-a-${accent},
+  // other variable overrides
+);
 
-@import '~react-md/dist/react-md';
 @include react-md-utils;
 \`\`\`
 

@@ -136,7 +136,7 @@ Next, include the font with the weights by using the
 `rmd-typography-host-google-font` mixin:
 
 ```scss
-@import "@react-md/typography/dist/mixins";
+@use "react-md" as *;
 
 @include rmd-typography-host-google-font;
 ```
@@ -165,11 +165,11 @@ mv ~/Downloads/roboto src/fonts/roboto
 ```
 
 ```scss
-@import "@react-md/typography/dist/mixins";
+@use "react-md" as *;
 
-@include rmd-typography-host-google-font(
+@include .rmd-typography-host-google-font(
   Roboto,
-  $rmd-typography-default-font-weights,
+  react-md.$rmd-typography-default-font-weights,
   "~./fonts/roboto"
 );
 ```
@@ -192,7 +192,7 @@ you'll use the `rmd-icon-host-material-icons` mixin from the #icon package
 instead.
 
 ```scss
-@import "@react-md/icon/dist/mixins";
+@use "react-md" as *;
 
 // if material icons are in `public/fonts/material-icons`
 @include rmd-icon-host-material-icons;
@@ -223,7 +223,6 @@ import {
   KeyboardArrowLeftSVGIcon,
   KeyboardArrowRightSVGIcon,
 } from "@react-md/material-icons";
-
 
 const overrides: ConfiguredIcons = {
   // and/or any other configurable icons
@@ -273,5 +272,3 @@ render(
 [unpkg.com]: https://unpkg.com
 [umd bundle]: https://github.com/umdjs/umd
 [configuring externals]: https://webpack.js.org/configuration/externals/#object
-[npm-run-all]: https://www.npmjs.com/package/npm-run-all
-[including styles without webpack]: /guides/inlucding-styles-without-webpack

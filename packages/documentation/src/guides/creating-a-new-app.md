@@ -27,18 +27,18 @@ yarn create react-app my-app
 ```
 
 Once the command has completed, `cd` into the `my-app` directory and install
-`react-md` and `node-sass`:
+`react-md` and `sass`:
 
 ```sh
 npm install --save react-md
-npm install --save-dev node-sass
+npm install --save-dev sass
 ```
 
 Or with `yarn`:
 
 ```sh
 yarn add react-md
-yarn add --dev node-sass
+yarn add --dev sass
 ```
 
 Now that we've initialized our project, we can go ahead and start up the app
@@ -68,15 +68,17 @@ general `Configuration` and `Layout` to our app. Start by editing the main
 +import { Configuration } from 'react-md';
  import './index.css';
  import App from './App';
- import * as serviceWorker from './serviceWorker';
+ import reportWebVitals from './reportWebVitals';
 
--ReactDOM.render(<App />, document.getElementById('root'));
-+ReactDOM.render(
-+  <Configuration>
-+    <App />
-+  </Configuration>,
-+  document.getElementById('root')
-+);
+ ReactDOM.render(
+   <React.StrictMode>
+-    <App />
++    <Configuration>
++      <App />
++    </Configuration>
+   </React.StrictMode>,
+   document.getElementById('root')
+ );
 ```
 
 Next, update the `src/App.js` to include the `Layout` component. Since the
@@ -85,22 +87,21 @@ Next, update the `src/App.js` to include the `Layout` component. Since the
 behavior to start with.
 
 ```diff
- import React from 'react';
- import logo from './logo.svg';
 +import { Layout, useLayoutNavigation } from 'react-md';
- import './App.css';
 +
-+const navItems = {};
+ import logo from './logo.svg';
+ import './App.css';
 
++const navItems = {};
++
  function App() {
    return (
--    <div className="App">
 +    <Layout
-+      appBarTitle="react-md App"
++      title="react-md App"
 +      navHeaderTitle="My App"
 +      treeProps={useLayoutNavigation(navItems, window.location.pathname)}
 +    >
-+      <div className="App">
+       <div className="App">
          <header className="App-header">
            <img src={logo} className="App-logo" alt="logo" />
            <p>
@@ -115,13 +116,10 @@ behavior to start with.
              Learn React
            </a>
          </header>
--    </div>
-+      </div>
+       </div>
 +    </Layout>
    );
  }
-
- export default App;
 ```
 
 When you hit save, you'll be presented with this beauty:
@@ -133,7 +131,7 @@ Let's fix that by adding the base styles. Create a new file `src/App.scss` that
 will import the `react-md` scss library as well as generate the default styles:
 
 ```scss
-@import "react-md/dist/react-md";
+@use "react-md" as *;
 
 @include react-md-utils;
 ```
@@ -157,8 +155,8 @@ with the default color scheme.
 
 > If you get an error like this:
 >
-> ![Missing node-sass error](/creating-a-new-app-node-sass-error.png) you can
-> fix it by ensuring to install `node-sass` and restarting your dev server.
+> ![Missing sass error](/creating-a-new-app-sass-error.png) you can fix it by
+> ensuring to install `sass` and restarting your dev server.
 
 We're getting close, but if you resize your browser, you'll notice something
 weird in the layout:
