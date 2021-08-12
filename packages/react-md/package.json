@@ -63,12 +63,12 @@
     "@react-md/utils": "^2.9.1"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^19.0.1",
-    "@rollup/plugin-node-resolve": "^13.0.2",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-replace": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.1",
-    "rollup": "^2.53.2",
+    "rollup": "^2.56.2",
     "rollup-plugin-terser": "^7.0.0"
   },
   "peerDependencies": {

@@ -52,7 +52,7 @@
   },
   "homepage": "https://react-md.dev",
   "devDependencies": {
-    "@babel/plugin-transform-typescript": "^7.14.6",
+    "@babel/plugin-transform-typescript": "^7.15.0",
     "@mlaursen/eslint-config": "^1.1.4",
     "@testing-library/dom": "^8.1.0",
     "@testing-library/jest-dom": "^5.14.1",
