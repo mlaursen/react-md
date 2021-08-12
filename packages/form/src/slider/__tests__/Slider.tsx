@@ -218,6 +218,10 @@ describe("Slider", () => {
   });
 
   describe("drag behavior", () => {
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
     it("should work correctly", () => {
       jest.useFakeTimers();
       const { container, getByRole } = render(<Test />);
@@ -246,7 +250,6 @@ describe("Slider", () => {
       expect(container).toMatchSnapshot();
       expect(track.className).toContain("rmd-slider-track--animate");
       expect(slider).toHaveAttribute("aria-valuenow", "20");
-      expect(setTimeout).toBeCalledTimes(1);
       act(() => {
         jest.runAllTimers();
       });
@@ -262,14 +265,9 @@ describe("Slider", () => {
       expect(track.className).toContain("rmd-slider-track--animate");
       expect(slider).toHaveAttribute("aria-valuenow", "50");
 
-      expect(setTimeout).toBeCalledTimes(1);
-
       fireEvent.mouseMove(window, { clientX: 200, clientY: 10 });
       expect(slider).toHaveAttribute("aria-valuenow", "50");
       expect(container).toMatchSnapshot();
-
-      jest.clearAllTimers();
-      jest.useRealTimers();
     });
 
     it("should reverse the drag value for RTL languages", () => {
@@ -303,7 +301,6 @@ describe("Slider", () => {
       expect(container).toMatchSnapshot();
       expect(track.className).toContain("rmd-slider-track--animate");
       expect(slider).toHaveAttribute("aria-valuenow", "80");
-      expect(setTimeout).toBeCalledTimes(1);
       act(() => {
         jest.runAllTimers();
       });
@@ -319,14 +316,9 @@ describe("Slider", () => {
       expect(track.className).toContain("rmd-slider-track--animate");
       expect(slider).toHaveAttribute("aria-valuenow", "50");
 
-      expect(setTimeout).toBeCalledTimes(1);
-
       fireEvent.mouseMove(window, { clientX: 200, clientY: 10 });
       expect(slider).toHaveAttribute("aria-valuenow", "50");
       expect(container).toMatchSnapshot();
-
-      jest.clearAllTimers();
-      jest.useRealTimers();
     });
   });
 

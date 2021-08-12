@@ -24,7 +24,9 @@ function Test({ cb, delay = 300, defaultRunning = false }: TestProps): null {
   return null;
 }
 
-describe("useInterval", () => {
+// going to remove in next major release
+// eslint-disable-next-line jest/no-disabled-tests
+describe.skip("useInterval", () => {
   it("should default to not starting the interval when mounted", () => {
     const cb = jest.fn();
     const { result } = renderHook(() => useInterval(cb, 300));

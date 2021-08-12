@@ -13,7 +13,9 @@ afterEach(() => {
   jest.clearAllTimers();
 });
 
-describe("useTimeout", () => {
+// going to remove in next major release
+// eslint-disable-next-line jest/no-disabled-tests
+describe.skip("useTimeout", () => {
   it("should automatically clear the timeout once completed", () => {
     const cb = jest.fn();
     const { result } = renderHook(() => useTimeout(cb, 300));
