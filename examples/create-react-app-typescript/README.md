@@ -8,7 +8,7 @@ This example will setup an example Create React App + ReactMD app that has the f
 
 - [tsconfig.json](./tsconfig.json) to allow absolute imports instead of relative imports from the `"src"` directory
   - `import MyComponent from "components/MyComponent"` instead of `import MyComponent from "../../components/MyComponent"`
-- [\_variables.scss](./src/_variables.scss) to override the default `react-md` theme and feature toggles
+- [\_everything.scss](./src/_everything.scss) to override the default `react-md` theme and feature toggles
 - a reusable [Layout.tsx](./src/components/Layout/Layout.tsx) that:
   - updates all the icons to use `SVGIcon`s instead of `FontIcon`s
   - initializes the `Layout` component from `react-md` with navigation items

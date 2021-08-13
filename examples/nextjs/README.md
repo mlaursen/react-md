@@ -13,7 +13,7 @@ features:
   imports from the `"src"` directory
   - `import MyComponent from "components/MyComponent"` instead of
     `import MyComponent from "../../components/MyComponent"`
-- [\_variables.scss](./src/_variables.scss) to override the default `react-md`
+- [\_everything.scss](./src/_everything.scss) to override the default `react-md`
   theme and feature toggles
 - a custom [\_app.jsx](./src/pages/_app.jsx) that imports the Roboto font from
   [Google Fonts](https://fonts.google.com)

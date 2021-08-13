@@ -8,7 +8,7 @@ This is a [Gatsby](https://www.gatsbyjs.org/) project using
 This example will setup an example Gatsby + ReactMD app that has the following
 features:
 
-- [\_variables.scss](./src/styles/_variables.scss) to override the default
+- [\_everything.scss](./src/styles/_everything.scss) to override the default
   `react-md` theme and feature toggles
 - [gatsby-browser.js](./gatsby-browser.js) to import global `react-md` styles
   and the Roboto font

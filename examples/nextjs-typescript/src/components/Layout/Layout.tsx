@@ -1,22 +1,23 @@
 import React, { ReactElement, ReactNode } from "react";
 import { useRouter } from "next/router";
 import {
-  Layout as RMDLayout,
-  Configuration,
-  ConfigurableIcons,
-  useLayoutNavigation,
   ArrowDropDownSVGIcon,
+  ArrowUpwardSVGIcon,
   CheckBoxSVGIcon,
+  CheckSVGIcon,
+  ConfigurableIcons,
+  Configuration,
+  ErrorOutlineSVGIcon,
   FileDownloadSVGIcon,
   KeyboardArrowDownSVGIcon,
   KeyboardArrowLeftSVGIcon,
   KeyboardArrowRightSVGIcon,
+  Layout as RMDLayout,
   MenuSVGIcon,
   NotificationsSVGIcon,
   RadioButtonCheckedSVGIcon,
   RemoveRedEyeSVGIcon,
-  ArrowUpwardSVGIcon,
-  CheckSVGIcon,
+  useLayoutNavigation,
 } from "react-md";
 
 import LinkUnstyled from "components/LinkUnstyled";
@@ -25,14 +26,15 @@ import navItems from "./navItems";
 const icons: ConfigurableIcons = {
   back: <KeyboardArrowLeftSVGIcon />,
   checkbox: <CheckBoxSVGIcon />,
-  dropdown: <ArrowDropDownSVGIcon />,
   download: <FileDownloadSVGIcon />,
+  dropdown: <ArrowDropDownSVGIcon />,
+  error: <ErrorOutlineSVGIcon />,
   expander: <KeyboardArrowDownSVGIcon />,
   forward: <KeyboardArrowRightSVGIcon />,
   menu: <MenuSVGIcon />,
   notification: <NotificationsSVGIcon />,
-  radio: <RadioButtonCheckedSVGIcon />,
   password: <RemoveRedEyeSVGIcon />,
+  radio: <RadioButtonCheckedSVGIcon />,
   selected: <CheckSVGIcon />,
   sort: <ArrowUpwardSVGIcon />,
 };
