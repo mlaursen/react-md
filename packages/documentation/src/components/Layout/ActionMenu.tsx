@@ -1,6 +1,6 @@
 // keys aren't required for the dropdown menu items
 /* eslint-disable react/jsx-key */
-import React, { ReactElement, useMemo } from "react";
+import React, { ReactElement } from "react";
 import scssVariables from "@react-md/app-bar/dist/scssVariables";
 import { MoreVertSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu } from "@react-md/menu";
@@ -12,7 +12,7 @@ import ToggleTheme from "./ToggleTheme";
 import ToggleRTL from "./ToggleRTL";
 import GithubLink from "./GithubLink";
 import TableOfContentsMenuItem from "./TableOfContentsMenuItem";
-import Version1MenuItem from "./Version1MenuItem";
+import VersionMenuItem from "./VersionMenuItem";
 
 const margin = unitToNumber(scssVariables["rmd-app-bar-lr-margin"]);
 const options = {
@@ -21,25 +21,21 @@ const options = {
 };
 
 export default function ActionMenu(): ReactElement {
-  const items = useMemo(
-    () => [
-      <ToggleTheme as="menuitem" />,
-      <ToggleRTL as="menuitem" />,
-      <CodePreferenceToggle as="menuitem" />,
-      <Version1MenuItem />,
-      <GithubLink as="menuitem" />,
-      <TableOfContentsMenuItem />,
-    ],
-    []
-  );
-
   return (
     <DropdownMenu
       id="main-app-actions"
       aria-label="Actions"
       menuLabel="Actions"
       buttonType="icon"
-      items={items}
+      items={[
+        <ToggleTheme as="menuitem" />,
+        <ToggleRTL as="menuitem" />,
+        <CodePreferenceToggle as="menuitem" />,
+        <VersionMenuItem version="v2" />,
+        <VersionMenuItem version="v1" />,
+        <GithubLink as="menuitem" />,
+        <TableOfContentsMenuItem />,
+      ]}
       last
       positionOptions={options}
     >

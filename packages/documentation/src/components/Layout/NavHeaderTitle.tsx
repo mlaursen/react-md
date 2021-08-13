@@ -8,7 +8,7 @@ import { DropdownMenu } from "@react-md/menu";
 import { BELOW_INNER_RIGHT_ANCHOR } from "@react-md/utils";
 
 import styles from "./NavHeaderTitle.module.scss";
-import Version1MenuItem from "./Version1MenuItem";
+import VersionMenuItem from "./VersionMenuItem";
 
 export default function NavHeaderTitle(): ReactElement {
   const { layout } = useLayoutConfig();
@@ -17,12 +17,15 @@ export default function NavHeaderTitle(): ReactElement {
       <AppBarTitle keyline={!isToggleableLayout(layout)}>react-md</AppBarTitle>
       <DropdownMenu
         id="version-picker"
-        items={[<Version1MenuItem small />]}
+        items={[
+          <VersionMenuItem small version="v2" />,
+          <VersionMenuItem small version="v1" />,
+        ]}
         dropdownIcon={<ArrowDropDownSVGIcon />}
         anchor={BELOW_INNER_RIGHT_ANCHOR}
         className={styles.menu}
       >
-        @v2
+        @v3
       </DropdownMenu>
     </>
   );
