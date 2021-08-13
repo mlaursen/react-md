@@ -54,7 +54,7 @@ If you override variables within `react-md`:
 +@include react-md-utils;
 ```
 
-> Check out the updated [customizing your theme documentation](https://react-md.dev/guides/customizing-your-theme), [#1214](https://github.com/mlaursen/react-md/pulls/1214), or [958f34f](https://github.com/mlaursen/react-md/commit/958f34f82152f55803b0693b490cd9a344eb70b3) for more in-depth examples.
+> Check out the updated [customizing your theme documentation](https://react-md.dev/guides/customizing-your-theme), [#1214](https://github.com/mlaursen/react-md/pull/1214), or [958f34f](https://github.com/mlaursen/react-md/commit/958f34f82152f55803b0693b490cd9a344eb70b3) for more in-depth examples.
 
 
 ### BREAKING CHANGES

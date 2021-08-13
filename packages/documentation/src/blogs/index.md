@@ -60,8 +60,8 @@ If you override variables within `react-md`:
 ```
 
 > Check out the updated
-> [customizing your theme documentation](/guides/customizing-your-theme), #1214,
-> or (958f34f) for more in-depth examples.
+> [customizing your theme documentation](/guides/customizing-your-theme),
+> (958f34f), or #1214 for more in-depth examples.
 
 ##### BREAKING CHANGES<!-- no-margin -->
 
