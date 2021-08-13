@@ -13,7 +13,7 @@ import {
   FORM_PARTS,
   SANDBOXES_PATH,
   STYLES_SCSS_FILE,
-  VARIABLES_SCSS_FILE,
+  EVERYTHING_SCSS_FILE,
 } from "./constants";
 import { createPackageJson } from "./createPackageJson";
 import { getAllDependencies } from "./getAllDependencies";
@@ -159,8 +159,8 @@ export function createSandbox(
     "src/styles.scss": {
       content: STYLES_SCSS_FILE,
     },
-    "src/_variables.scss": {
-      content: VARIABLES_SCSS_FILE,
+    "src/_everything.scss": {
+      content: EVERYTHING_SCSS_FILE,
     },
     "package.json": createPackageJson({
       demoTitle,

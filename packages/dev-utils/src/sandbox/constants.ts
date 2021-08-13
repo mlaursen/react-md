@@ -82,17 +82,17 @@ export const DEMO_INDEX_HTML = `<!DOCTYPE html>
 </html>
 `;
 
-export const VARIABLES_SCSS_FILE = `@import "@react-md/theme/dist/color-palette";
-
-$rmd-theme-light: true;
-$rmd-theme-primary: $rmd-teal-500;
-$rmd-theme-secondary: $rmd-pink-a-200;
+export const EVERYTHING_SCSS_FILE = `@use "@react-md/theme/dist/color-palette" as *;
+@forward "react-md" with (
+  $rmd-theme-light: true,
+  $rmd-theme-primary: $rmd-teal-500,
+  $rmd-theme-secondary: $rmd-pink-a-200,
+);
 `;
 
-export const STYLES_SCSS_FILE = `@import "./variables";
-@import "react-md/dist/everything";
+export const STYLES_SCSS_FILE = `@use "./everything" as *;
 
-@include react-md-utils";
+@include react-md-utils;
 `;
 
 export const PHONE_INDEX_FILE = `export { default } from "./Phone";

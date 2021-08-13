@@ -33,11 +33,12 @@ export default function ThemeUsage({
         {`##### SCSS Usage<!-- no-margin-bottom -->
 
 \`\`\`scss
-@use '@react-md/theme/dist/color-palette' as *;
+// Note: have to rename to color since react-md also exports these variables which causes an error
+@use '@react-md/theme/dist/color-palette' as color;
 @use 'react-md' as * with (
   $rmd-theme-light: ${theme === "light"},
-  $rmd-theme-primary: $rmd-${primary}-500,
-  $rmd-theme-secondary: $rmd-${secondary}-a-${accent},
+  $rmd-theme-primary: color.$rmd-${primary}-500,
+  $rmd-theme-secondary: color.$rmd-${secondary}-a-${accent},
   // other variable overrides
 );
 

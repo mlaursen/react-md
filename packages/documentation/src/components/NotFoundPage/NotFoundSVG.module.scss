@@ -1,15 +1,15 @@
-@use '../../everything';
+@use '../../everything' as *;
 
 .oval {
   @include rmd-theme(fill, secondary);
 }
 
 .circle1 {
-  fill: rmd-theme-get-swatch(variables.$primary-color, 700);
+  fill: rmd-theme-get-swatch($rmd-theme-primary, 700);
 }
 
 .circle2 {
-  fill: rmd-theme-get-swatch(variables.$primary-color, 600);
+  fill: rmd-theme-get-swatch($rmd-theme-primary, 600);
 }
 
 .circle3 {

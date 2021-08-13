@@ -19,6 +19,10 @@ function getVersion(packageName: string): string {
     return "latest";
   }
 
+  if (name.includes("react-md")) {
+    return RMD_VERSION;
+  }
+
   const version = versions[name];
   if (!versions[name]) {
     throw new Error(`${name} does not have a version available`);
@@ -67,7 +71,7 @@ export default function getSandbox(
           content = content
             .replace(/{{RMD_VERSION}}/g, RMD_VERSION)
             .replace(/{{THEME}}/g, theme);
-          if (theme === "dark" && fileName === "src/_variables.scss") {
+          if (theme === "dark" && fileName === "src/_everything.scss") {
             content = content.replace(
               "$rmd-theme-light: true",
               "$rmd-theme-light: false"
