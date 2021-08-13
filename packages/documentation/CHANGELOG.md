@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0) (2021-08-13)
+
+
+### Bug Fixes
+
+* **sass:** drop node-sass in favor of `sass` since it's deprecated ([126fb5a](https://github.com/mlaursen/react-md/commit/126fb5aa1ad53cd12f183d5eaa349b70af4fceb3))
+
+
+### Documentation
+
+* **react-md.dev:** removed documentation around pre-compiling styles ([29b5d74](https://github.com/mlaursen/react-md/commit/29b5d74aacf973a5cf9cd2197097df4461c459a0))
+* **react-md.dev:** Update Sass Documentation for `@use` ([68e8c6b](https://github.com/mlaursen/react-md/commit/68e8c6bb718b3e60c23519cff0dab1c265181379))
+* **react-md.dev:** Updated sandboxes for new Sass module system ([095ae97](https://github.com/mlaursen/react-md/commit/095ae97c1d75e152c6fbe1bfce9c809d15cd4985))
+
+
+### Other Internal Changes
+
+* **@react-md/form:** removed deprecated implementation in `useIndeterminateChecked` ([6b7871f](https://github.com/mlaursen/react-md/commit/6b7871f9f0372916ac9b13cb12b49d6d2b52e564))
+* **react-md.dev:** Each package includes a link to `typedoc` API in navigation tree ([c388ba6](https://github.com/mlaursen/react-md/commit/c388ba6f33a7f693562e693351d242a175d5e6e8))
+* **react-md.dev:** ran migrator for deprecated division ([98d2c58](https://github.com/mlaursen/react-md/commit/98d2c5878da797d32ff3a05ad4abdbb123b17579))
+* **react-md.dev:** removed tilde from imports ([6081e14](https://github.com/mlaursen/react-md/commit/6081e145c13ab4f86c2f84da3dbc1988986ffdd2))
+* **react-md.dev:** update all scss files for `@use` imports ([958f34f](https://github.com/mlaursen/react-md/commit/958f34f82152f55803b0693b490cd9a344eb70b3))
+* **react-md.dev:** update all styles to use react-md/dist/everything ([2da5033](https://github.com/mlaursen/react-md/commit/2da5033c765286377dfbe735fcd61ba29196e735))
+* **react-md.dev:** Update links for previous versions ([2d0a0e6](https://github.com/mlaursen/react-md/commit/2d0a0e62b7c3c3238809f4b76fecb6f272bf1cec))
+* **react-md.dev:** updated docs for new rmd-theme-dark-elevation `defaults` ([b2269ff](https://github.com/mlaursen/react-md/commit/b2269ffe2699a9eaf375dc9dd3957796dd313c8e))
+
+
+### Breaking Changes
+
+* **sass:** `node-sass` is no longer supported and users must switch to `sass`
+* **@react-md/form:** The second argument for `useIndeterminateChecked` is now an object of options
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

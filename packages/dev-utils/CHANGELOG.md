@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0) (2021-08-13)
+
+
+### Bug Fixes
+
+* **sass:** drop node-sass in favor of `sass` since it's deprecated ([126fb5a](https://github.com/mlaursen/react-md/commit/126fb5aa1ad53cd12f183d5eaa349b70af4fceb3))
+
+
+### Documentation
+
+* **react-md.dev:** Updated sandboxes for new Sass module system ([095ae97](https://github.com/mlaursen/react-md/commit/095ae97c1d75e152c6fbe1bfce9c809d15cd4985))
+
+
+### Other Internal Changes
+
+* **@react-md/dev-utils:** Added simple sass-migrator command ([a8e8df3](https://github.com/mlaursen/react-md/commit/a8e8df38a110d3c8b1d62adc4c449b8b9808ab44))
+* **@react-md/dev-utils:** autoConfirm flag passed to initBlog ([dec09b8](https://github.com/mlaursen/react-md/commit/dec09b88312eccdfd824c8525afd5539d39c7f4c))
+* **@react-md/dev-utils:** Combine all scss files into `react-md/dist/_everything.scss` ([c7177e6](https://github.com/mlaursen/react-md/commit/c7177e6e2f338754a28fbff7dbee13075e2da3f3))
+* **@react-md/dev-utils:** Update release script to hopefully work with prereleases ([e0ef881](https://github.com/mlaursen/react-md/commit/e0ef88145765bd1414649ddb60d0662db9549fe5))
+* **@react-md/dev-utils:** updated `sassdoc` and variables to use everything.scss ([a0f0699](https://github.com/mlaursen/react-md/commit/a0f06996c44ee88e1fc3ba4d24ec11c13f204d88))
+* **@react-md/dev-utils:** updated variables command to work with `sass` ([5376be1](https://github.com/mlaursen/react-md/commit/5376be11f3499afafd3ddde363178e1aa270cb9c))
+* **react-md.dev:** updated sandboxes to use root `react-md` ([c0f25f7](https://github.com/mlaursen/react-md/commit/c0f25f7ff314f5e9442e41c865b664e84b62f9de))
+
+
+### Breaking Changes
+
+* **sass:** `node-sass` is no longer supported and users must switch to `sass`
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

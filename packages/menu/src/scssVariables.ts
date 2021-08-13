@@ -7,7 +7,7 @@ export default {
   "rmd-menu-elevation": 8,
   "rmd-menu-light-background-color": "var(--rmd-theme-surface, #fff)",
   "rmd-menu-dark-elevation-background-color": "#2f2f2f",
-  "rmd-menu-dark-background-color": "var(--rmd-theme-surface, #fff)",
+  "rmd-menu-dark-background-color": "#2f2f2f",
   "rmd-menu-background-color": "var(--rmd-theme-surface, #fff)",
   "rmd-menu-color": "var(--rmd-theme-on-surface, #000)",
   "rmd-menu-z-index": 30,

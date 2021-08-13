@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0) (2021-08-13)
+
+
+### Other Internal Changes
+
+* Added additional tests to bump test coverage ([4d0371c](https://github.com/mlaursen/react-md/commit/4d0371c9e21ab8449a5036a001d302e14a076b7c))
+* **@react-md/dev-utils:** updated variables command to work with `sass` ([5376be1](https://github.com/mlaursen/react-md/commit/5376be11f3499afafd3ddde363178e1aa270cb9c))
+* **@react-md/utils:** remove ResizeObserver component and useResizeObserverV1 implementation ([6a6b109](https://github.com/mlaursen/react-md/commit/6a6b109cc54257b151dde75f6109faa391c07a76))
+* **@react-md/utils:** removed InteractionModeListener alias ([216c8ef](https://github.com/mlaursen/react-md/commit/216c8efe62a12e031414d94c17f97cb4c12c4b8e))
+* **react-md.dev:** removed tilde from imports ([6081e14](https://github.com/mlaursen/react-md/commit/6081e145c13ab4f86c2f84da3dbc1988986ffdd2))
+
+
+### Breaking Changes
+
+* **@react-md/utils:** Removed `InteractionModeListener` since it was an alias for `UserInteractionModeListener`
+* **@react-md/utils:** Removed `ResizeObserver` component and `useResizeObserverV1` implementation
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

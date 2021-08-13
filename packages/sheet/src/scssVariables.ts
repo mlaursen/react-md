@@ -12,15 +12,13 @@ export default {
   "rmd-sheet-light-background-color":
     "var(--rmd-dialog-background-color, var(--rmd-theme-surface, #fff))",
   "rmd-sheet-dark-elevation-background-color": "#242424",
-  "rmd-sheet-dark-background-color":
-    "var(--rmd-dialog-background-color, var(--rmd-theme-surface, #fff))",
+  "rmd-sheet-dark-background-color": "#242424",
   "rmd-sheet-background-color":
     "var(--rmd-dialog-background-color, var(--rmd-theme-surface, #fff))",
   "rmd-sheet-raised-light-background-color":
     "var(--rmd-dialog-background-color, var(--rmd-theme-surface, #fff))",
   "rmd-sheet-raised-dark-elevation-background-color": "#353535",
-  "rmd-sheet-raised-dark-background-color":
-    "var(--rmd-dialog-background-color, var(--rmd-theme-surface, #fff))",
+  "rmd-sheet-raised-dark-background-color": "#353535",
   "rmd-sheet-raised-background-color":
     "var(--rmd-dialog-background-color, var(--rmd-theme-surface, #fff))",
   "rmd-sheet-enter-duration": "0.2s",

@@ -1,3 +1,139 @@
+Title: react-md 3.0.0
+
+Date: 08/13/2021
+
+Summary:
+
+This release should be relatively simple for most consumers of this library
+since the main breaking change is dropping support for `node-sass` and requiring
+`sass` since
+[node sass has been deprecated](https://github.com/sass/node-sass#node-sass) as
+well as removing deprecated variables, hooks, and components. Most users should
+be able to run the following commands to upgrade to v3.0.0:
+
+```sh
+npm update react-md
+npm uninstall node-sass
+npm install sass
+```
+
+Or with `yarn`
+
+```sh
+yarn add react-md
+yarn remove node-sass
+yarn add sass
+```
+
+In addition, there is now partial support for the
+[new Sass module system](https://sass-lang.com/blog/the-module-system-is-launched)
+with the `react-md` package which also simplifies the import usage and has a
+slight build performance improvement for large projects. To start using the new
+module system, update all the `@import` statements as shown below:
+
+```diff
+-@import '~@react-md/theme/dist/mixins';
+-@import '~@react-md/utils/dist/mixins';
+-// other react-md imports
++@use 'react-md' as *;
+
+ // No other changes required!
+```
+
+If you override variables within `react-md`:
+
+```diff
+-@import '~@react-md/theme/dist/color-palette';
+-$rmd-theme-light: false;
+-$rmd-theme-primary: $rmd-purple-500;
+-$rmd-theme-secondary: $rmd-pink-a-200;
+-
+-@import '~react-md/dist/styles';
++@use '@react-md/theme/dist/color-palette' as color;
++@use 'react-md' as * with (
++  $rmd-theme-light: false,
++  $rmd-theme-primary: color.$rmd-theme-purple-500,
++  $rmd-theme-secondary: color.$rmd-theme-pink-a-200,
++);
++
++@include react-md-utils;
+```
+
+> Check out the updated
+> [customizing your theme documentation](/guides/customizing-your-theme), #1214,
+> or (958f34f) for more in-depth examples.
+
+##### BREAKING CHANGES<!-- no-margin -->
+
+- **@react-md/theme:** `$rmd-theme-dark-elevation` now defaults to `true`
+  instead of `false`
+- **sass:** `node-sass` is no longer supported and users must switch to `sass`
+- **@react-md/utils:** Removed `InteractionModeListener` since it was an alias
+  for `UserInteractionModeListener`
+- **@react-md/utils:** Removed `ResizeObserver` component and
+  `useResizeObserverV1` implementation
+- **@react-md/tooltip:** Removed `TooltipHoverModeConfig` component
+- **@react-md/card:** Removed deprecated
+  `$rmd-card-dark-elevation-bordered-background-color` variable
+- **@react-md/tooltip:** Removed deprecated props from `Tooltipped` component
+- **@react-md/form:** The second argument for `useIndeterminateChecked` is now
+  an object of options
+
+##### Bug Fixes<!-- no-margin -->
+
+- **sass:** drop node-sass in favor of `sass` since it's deprecated (126fb5a)
+- **sass:** use math.div instead of division since it's deprecated (d8c3f12)
+
+##### Features<!-- no-margin -->
+
+- **@react-md/theme:** $rmd-theme-dark-elevation `defaults` to true (b371337)
+- **react-md:** Simplify `sass` usage with: `@use 'react-md';` (787bfb5)
+
+##### Documentation<!-- no-margin -->
+
+- **react-md.dev:** removed documentation around pre-compiling styles (29b5d74)
+- **react-md.dev:** Update Sass Documentation for `@use` (68e8c6b)
+- **react-md.dev:** Updated sandboxes for new Sass module system (095ae97)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- Added additional tests to bump test coverage (4d0371c)
+- **@react-md/card:** removed deprecated
+  $rmd-card-dark-elevation-bordered-background-color variable (01c9350)
+- **@react-md/dev-utils:** Added simple sass-migrator command (a8e8df3)
+- **@react-md/dev-utils:** autoConfirm flag passed to initBlog (dec09b8)
+- **@react-md/dev-utils:** Combine all scss files into
+  `react-md/dist/_everything.scss` (c7177e6)
+- **@react-md/dev-utils:** Update release script to hopefully work with
+  prereleases (e0ef881)
+- **@react-md/dev-utils:** updated `sassdoc` and variables to use
+  everything.scss (a0f0699)
+- **@react-md/dev-utils:** updated variables command to work with `sass`
+  (5376be1)
+- **@react-md/form:** removed deprecated implementation in
+  `useIndeterminateChecked` (6b7871f)
+- **@react-md/tooltip:** removed deprecated props from `Tooltipped` component
+  (6dca9b1)
+- **@react-md/tooltip:** removed TooltipHoverModeConfig component (664ec30)
+- **@react-md/utils:** remove ResizeObserver component and useResizeObserverV1
+  implementation (6a6b109)
+- **@react-md/utils:** removed InteractionModeListener alias (216c8ef)
+- **examples:** updated examples to latest dependencies (f2eb07a)
+- **react-md.dev:** Each package includes a link to `typedoc` API in navigation
+  tree (c388ba6)
+- **react-md.dev:** ran migrator for deprecated division (98d2c58)
+- **react-md.dev:** removed tilde from imports (6081e14)
+- **react-md.dev:** update all scss files for `@use` imports (958f34f)
+- **react-md.dev:** update all styles to use react-md/dist/everything (2da5033)
+- **react-md.dev:** Update links for previous versions (2d0a0e6)
+- **react-md.dev:** updated docs for new rmd-theme-dark-elevation `defaults`
+  (b2269ff)
+- **react-md.dev:** updated examples to work with `sass` instead of node-sass
+  (d8ddf51)
+- **react-md.dev:** updated sandboxes to use root `react-md` (c0f25f7)
+
+---
+
 Title: react-md 2.9.1
 
 Date: 07/26/2021

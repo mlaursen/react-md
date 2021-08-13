@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0) (2021-08-13)
+
+
+### Other Internal Changes
+
+* **react-md.dev:** updated examples to work with `sass` instead of node-sass ([d8ddf51](https://github.com/mlaursen/react-md/commit/d8ddf517eb5d5a5b83388da2cf72a61b51c74556))
+
+
+
+
+
+
 ## [2.9.1](https://github.com/mlaursen/react-md/compare/v2.9.0...v2.9.1) (2021-07-27)
 
 

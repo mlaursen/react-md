@@ -1,6 +1,6 @@
 {
   "name": "@react-md/states",
-  "version": "2.9.1",
+  "version": "3.0.0",
   "description": "A package for adding the different focus, hover, selected, active, etc states to elements",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -28,9 +28,9 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/theme": "^2.9.1",
-    "@react-md/transition": "^2.9.1",
-    "@react-md/utils": "^2.9.1",
+    "@react-md/theme": "^3.0.0",
+    "@react-md/transition": "^3.0.0",
+    "@react-md/utils": "^3.0.0",
     "classnames": "^2.3.1",
     "react-transition-group": "^4.4.2"
   },
