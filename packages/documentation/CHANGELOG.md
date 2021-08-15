@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/mlaursen/react-md/compare/v3.0.0...v3.0.1) (2021-08-15)
+
+
+### Other Internal Changes
+
+* Fixed link to v3.0.0 PR ([ff221cc](https://github.com/mlaursen/react-md/commit/ff221cc7438ff62dacc36b33356f4464497b4ae5))
+
+
+
+
+
+
 # [3.0.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0) (2021-08-13)
 
 

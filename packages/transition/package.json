@@ -1,6 +1,6 @@
 {
   "name": "@react-md/transition",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A package for working with react-md to use some simple transitions.",
   "main": "./lib/index.js",
   "module": "./es/index.js",

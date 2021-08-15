@@ -1,3 +1,20 @@
+Title: react-md 3.0.1
+
+Date: 08/14/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- Updated peerDependencies to fix yarn berry peer requirements (250efcd), closes
+  #1224
+
+##### Other Internal Changes<!-- no-margin -->
+
+- Fixed link to v3.0.0 PR (ff221cc)
+
+---
+
 Title: react-md 3.0.0
 
 Date: 08/13/2021

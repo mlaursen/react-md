@@ -1,6 +1,6 @@
 {
   "name": "@react-md/chip",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -30,9 +30,9 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/elevation": "^3.0.0",
+    "@react-md/elevation": "^3.0.1",
     "@react-md/icon": "^3.0.0",
-    "@react-md/states": "^3.0.0",
+    "@react-md/states": "^3.0.1",
     "@react-md/theme": "^3.0.0",
     "@react-md/typography": "^3.0.0",
     "@react-md/utils": "^3.0.0",
