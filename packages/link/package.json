@@ -43,7 +43,8 @@
     "react-router-dom": "^5.2.0"
   },
   "peerDependencies": {
-    "react": ">= 16.8"
+    "react": ">= 16.8",
+    "react-dom": ">= 16.8"
   },
   "optionalDependencies": {
     "prop-types": "^15.6.2"

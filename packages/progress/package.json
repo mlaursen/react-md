@@ -38,7 +38,8 @@
     "react-dom": "^17.0.1"
   },
   "peerDependencies": {
-    "react": ">= 16.8"
+    "react": ">= 16.8",
+    "react-dom": ">= 16.8"
   },
   "optionalDependencies": {
     "prop-types": ">= 15.6"
