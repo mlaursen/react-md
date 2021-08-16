@@ -1,17 +1,12 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "command": {
     "version": {
       "message": "chore(release): publish %s",
       "conventionalCommits": true
     }
   },
-  "ignoreChanges": [
-    "**/__tests__/**",
-    "**/*.md"
-  ],
+  "ignoreChanges": ["**/__tests__/**", "**/*.md"],
   "changelogPreset": {
     "name": "./changelog.config.js"
   },

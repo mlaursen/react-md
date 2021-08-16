@@ -13,8 +13,5 @@
       "utils/*": ["packages/documentation/src/utils/*"]
     }
   },
-  "include": [
-    "packages/*/src/**/*",
-    "packages/dev-utils/@types"
-  ]
+  "include": ["packages/*/src/**/*", "packages/dev-utils/@types"]
 }

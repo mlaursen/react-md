@@ -1,6 +1,6 @@
 files:
-  include: 'packages/*/src/**/*.scss'
-  ignore: 'packages/documentation/src/**/*'
+  include: "packages/*/src/**/*.scss"
+  ignore: "packages/documentation/src/**/*"
 options:
   formatter: stylish
   merge-default-rules: false
@@ -106,7 +106,7 @@ rules:
         - dpi
         - dpcm
         - dppx
-        - '%'
+        - "%"
       per-property: {}
   shorthand-values:
     - 1
@@ -144,4 +144,3 @@ rules:
     - allow-leading-underscore: true
       convention: hyphenatedlowercase
   zero-unit: 1
-

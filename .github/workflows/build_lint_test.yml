@@ -5,9 +5,9 @@ name: Build, Lint, and Test
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build_node_matrix:
@@ -19,18 +19,18 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2.4.0
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: yarn
-    - run: yarn
-    - run: yarn setup
-    - run: yarn dev-utils doc-index
-    - run: yarn lint
-    - run: yarn test -i
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2.4.0
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+      - run: yarn
+      - run: yarn setup
+      - run: yarn dev-utils doc-index
+      - run: yarn lint
+      - run: yarn test -i
 
   build_node_14:
     # only want to use codecov for node 14
@@ -38,16 +38,16 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     steps:
-    - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.4
 
-    - name: Use Node.js 14
-      uses: actions/setup-node@v2.4.0
-      with:
-        node-version: 14
-        cache: yarn
-    - run: yarn
-    - run: yarn setup
-    - run: yarn dev-utils doc-index
-    - run: yarn lint
-    - run: yarn test -i --coverage
-    - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2.4.0
+        with:
+          node-version: 14
+          cache: yarn
+      - run: yarn
+      - run: yarn setup
+      - run: yarn dev-utils doc-index
+      - run: yarn lint
+      - run: yarn test -i --coverage
+      - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}

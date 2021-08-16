@@ -6,25 +6,12 @@
     "declaration": true,
     "declarationDir": "types",
     "baseUrl": ".",
-    "paths": {
-      "@react-md/*": [
-        "../*"
-      ]
-    }
+    "paths": { "@react-md/*": ["../*"] }
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "**/__tests__/*",
-    "**/scssVariables.ts"
-  ],
+  "include": ["src"],
+  "exclude": ["**/__tests__/*", "**/scssVariables.ts"],
   "references": [
-    {
-      "path": "../portal/tsconfig.ejs.json"
-    },
-    {
-      "path": "../utils/tsconfig.ejs.json"
-    }
+    { "path": "../portal/tsconfig.ejs.json" },
+    { "path": "../utils/tsconfig.ejs.json" }
   ]
 }

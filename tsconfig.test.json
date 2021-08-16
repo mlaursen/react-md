@@ -18,10 +18,6 @@
     "packages/documentation/src/types/next.d.ts",
     "packages/documentation/src/types/custom.d.ts"
   ],
-  "include": [
-    "packages/*/src"
-  ],
-  "exclude": [
-    "packages/dev-utils"
-  ]
+  "include": ["packages/*/src"],
+  "exclude": ["packages/dev-utils"]
 }

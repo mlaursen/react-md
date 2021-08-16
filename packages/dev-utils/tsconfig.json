@@ -8,14 +8,7 @@
     "module": "commonjs",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ]
+    "lib": ["dom", "dom.iterable", "esnext"]
   },
-  "include": [
-    "@types",
-    "src"
-  ]
+  "include": ["@types", "src"]
 }
