@@ -9,7 +9,7 @@ import {
   packagesRoot,
   TSConfigType,
 } from "./constants";
-import { clean, getDependencies, getPackages, glob } from "./utils";
+import { clean, getDependencies, getPackages, glob, format } from "./utils";
 
 const NPM_IGNORE_CONTENTS = `src/**/__tests__
 src/**/*.scss
@@ -123,16 +123,30 @@ export async function configs(): Promise<void> {
       const promises: Promise<void>[] = [];
       if (!NO_STYLES_PACKAGES.test(name) && name !== "react-md") {
         const varConfig = createTSConfig("var", []);
-        promises.push(writeJson(join(path, "tsconfig.var.json"), varConfig));
+        promises.push(
+          writeFile(
+            join(path, "tsconfig.var.json"),
+            format(JSON.stringify(varConfig))
+          )
+        );
       }
 
       if (!NO_SCRIPT_PACKAGES.test(name)) {
         const ejsConfig = createTSConfig("ejs", rmdTsDependencies);
         const cjsConfig = createTSConfig("cjs", rmdTsDependencies);
         promises.push(
-          writeJson(join(path, "tsconfig.json"), TSCONFIG),
-          writeJson(join(path, "tsconfig.ejs.json"), ejsConfig),
-          writeJson(join(path, "tsconfig.cjs.json"), cjsConfig),
+          writeFile(
+            join(path, "tsconfig.json"),
+            format(JSON.stringify(TSCONFIG))
+          ),
+          writeFile(
+            join(path, "tsconfig.ejs.json"),
+            format(JSON.stringify(ejsConfig))
+          ),
+          writeFile(
+            join(path, "tsconfig.cjs.json"),
+            format(JSON.stringify(cjsConfig))
+          ),
           writeFile(join(path, ".npmignore"), NPM_IGNORE_CONTENTS)
         );
       }
