@@ -2,3 +2,16 @@ examples/create-react-app/README.md
 examples/create-react-app-typescript/README.md
 CHANGELOG.md
 **/CHANGELOG.md
+
+coverage
+node_modules
+
+/themes/*
+packages/*/es
+packages/*/lib
+packages/*/bin
+packages/*/dist
+packages/*/types
+packages/*/.next
+packages/documentation/src/constants/sassdoc
+packages/documentation/src/constants/sandboxes
