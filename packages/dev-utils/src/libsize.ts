@@ -259,7 +259,7 @@ export async function libsize({
 
   let message = LIBSIZE_TOKEN;
   if (umds.length) {
-    message = `${message}The gizipped UMD bundle sizes are:
+    message = `${message}The gzipped UMD bundle sizes are:
 ${list(umds)}
 `;
   }
