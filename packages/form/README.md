@@ -104,7 +104,7 @@ const App = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useChecked(false);
-  const [errors, setErrors] = useState<string[]>([]);
+  const [errors, setErrors] = useState<readonly string[]>([]);
 
   const handleSubmit = async () => {
     const response = await fetch("/login", {

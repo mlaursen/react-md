@@ -86,7 +86,9 @@ export type TreeData<T extends BaseTreeItem> = Record<TreeItemId, T>;
  * - `[c1, c2, c3]`
  * - `[a, b, c]`
  */
-export type TreeItemSorter<T extends BaseTreeItem> = (items: T[]) => T[];
+export type TreeItemSorter<T extends BaseTreeItem> = (
+  items: readonly T[]
+) => readonly T[];
 
 /**
  * A render function that allows you to add additional functionality to or

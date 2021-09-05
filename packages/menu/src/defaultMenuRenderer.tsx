@@ -54,7 +54,7 @@ export type InjectedMenuProps = LabelRequiredForA11y<AllInjectedMenuProps>;
  */
 export type MenuRenderer = (
   props: InjectedMenuProps,
-  items: ValidMenuItem[]
+  items: readonly ValidMenuItem[]
 ) => ReactNode;
 
 /**

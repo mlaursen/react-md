@@ -35,7 +35,7 @@ export function getItemId(id: string, i: number): string {
 export function transformKeys(
   keys: readonly MovementKey[],
   type: FocusType
-): KeyConfig[] {
+): readonly KeyConfig[] {
   return keys.map<KeyConfig>((key) => ({
     shiftKey: key.includes("Shift+"),
     metaKey: key.includes("Meta+"),

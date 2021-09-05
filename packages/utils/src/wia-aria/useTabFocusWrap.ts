@@ -36,7 +36,7 @@ export function useTabFocusWrap<E extends HTMLElement>({
   disableFocusCache = false,
   onKeyDown,
 }: Options<E>): React.KeyboardEventHandler<E> | undefined {
-  const focusables = useRef<HTMLElement[]>([]);
+  const focusables = useRef<readonly HTMLElement[]>([]);
 
   const handleKeyDown = useCallback<React.KeyboardEventHandler<E>>(
     (event): void => {

@@ -19,17 +19,18 @@ export function useTreeItemExpansion(
   const onItemExpansion = useCallback(
     (itemId: TreeItemId, expanded: boolean) => {
       setExpandedIds((expandedIds) => {
-        let nextExpandedIds = expandedIds as string[];
         const i = expandedIds.indexOf(itemId);
         if (i === -1 && expanded) {
-          nextExpandedIds = expandedIds.slice();
-          nextExpandedIds.push(itemId);
-        } else if (i !== -1 && !expanded) {
-          nextExpandedIds = expandedIds.slice();
-          nextExpandedIds.splice(i, 1);
+          return [...expandedIds, itemId];
         }
 
-        return nextExpandedIds;
+        if (i !== -1 && !expanded) {
+          const nextIds = expandedIds.slice();
+          nextIds.splice(i, 1);
+          return nextIds;
+        }
+
+        return expandedIds;
       });
     },
     []

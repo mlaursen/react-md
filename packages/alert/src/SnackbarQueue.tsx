@@ -22,7 +22,7 @@ export type ActionEventHandler<M extends ToastMessage> = (
 
 export interface SnackbarQueueProps<M extends ToastMessage>
   extends SnackbarProps {
-  queue: M[];
+  queue: readonly M[];
   onActionClick?: ActionEventHandler<M>;
 }
 

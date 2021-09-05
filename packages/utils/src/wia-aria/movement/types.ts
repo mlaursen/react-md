@@ -82,22 +82,22 @@ export interface MovementConfig {
    * is enabled, this will loop to the first item if the last item is currently
    * "focused".
    */
-  incrementKeys: IncrementMovementKey[];
+  incrementKeys: readonly IncrementMovementKey[];
 
   /**
    * The keys that can trigger a move to the previous item. If the `loopable`
    * config is enabled, this will loop to the last item if the first item is
    * currently "focused".
    */
-  decrementKeys: IncrementMovementKey[];
+  decrementKeys: readonly IncrementMovementKey[];
 
   /**
    * The keys that can trigger a move to the first item.
    */
-  jumpToFirstKeys: JumpMovementKey[];
+  jumpToFirstKeys: readonly JumpMovementKey[];
 
   /**
    * The keys that can trigger a move to the last item.
    */
-  jumpToLastKeys: JumpMovementKey[];
+  jumpToLastKeys: readonly JumpMovementKey[];
 }

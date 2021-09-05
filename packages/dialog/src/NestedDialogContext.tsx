@@ -10,7 +10,7 @@ import React, {
 } from "react";
 
 interface NestedDialogContext {
-  stack: string[];
+  stack: readonly string[];
   add: (dialogId: string) => void;
   remove: (dialogId: string) => void;
 }
@@ -47,7 +47,7 @@ export interface NestedDialogContextProviderProps {
 export function NestedDialogContextProvider({
   children,
 }: NestedDialogContextProviderProps): ReactElement {
-  const [stack, setStack] = useState<string[]>([]);
+  const [stack, setStack] = useState<readonly string[]>([]);
   const add = useCallback((dialogId: string) => {
     setStack((prevStack) => {
       /* istanbul ignore next */

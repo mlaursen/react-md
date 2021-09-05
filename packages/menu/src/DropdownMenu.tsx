@@ -59,7 +59,7 @@ export interface BaseDropdownMenuProps
    * A list of menu items to render. Each item will be passed to the
    * `menuItemRenderer` function.
    */
-  items: ValidMenuItem[];
+  items: readonly ValidMenuItem[];
 
   /**
    * A function to call for each `item` in the `items` list to render a

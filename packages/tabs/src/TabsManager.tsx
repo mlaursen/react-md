@@ -45,7 +45,7 @@ export interface TabsManagerContext {
   /**
    * The list of tabs that should be controlled by the tabs manager.
    */
-  tabs: InitializedTabConfig[];
+  tabs: readonly InitializedTabConfig[];
 }
 
 export type InitializedTabsManagerContext = Required<TabsManagerContext>;

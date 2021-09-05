@@ -27,7 +27,7 @@ import { snakeCase } from "lodash";
 const uuid = createIdGenerator("nav");
 const TSDOCS_PREFIX = "/tsdocs/modules/_react_md_";
 
-const getPackageRoutes = (name: string): RouteNavItem[] => {
+const getPackageRoutes = (name: string): readonly RouteNavItem[] => {
   const routes: RouteNavItem[] = [];
 
   if (name === "form") {
@@ -76,7 +76,7 @@ const getPackageRoutes = (name: string): RouteNavItem[] => {
   return routes;
 };
 
-const routes: NavItem[] = [
+const routes: readonly NavItem[] = [
   {
     href: "/",
     children: "Home",

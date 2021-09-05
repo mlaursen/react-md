@@ -69,7 +69,7 @@ async function parseSVGFileAndCreateComponents(
   ]);
 }
 
-async function createIndexFile(components: string[]): Promise<void> {
+async function createIndexFile(components: readonly string[]): Promise<void> {
   const contents = `// This is a generated file from running the "createIcons" script. This file should not be updated manually.
 ${components.reduce(
   (s, c) => `${s ? `${s}\n` : ""}export * from "./${c}";`,

@@ -79,7 +79,7 @@ export interface NativeSelectProps
    *
    * If the `multiple` prop is enabled, this **must** be a list of strings.
    */
-  value?: string | string[];
+  value?: string | readonly string[];
 
   /**
    * The default value for the text field which will make it uncontrolled. If
@@ -89,7 +89,7 @@ export interface NativeSelectProps
    *
    * If the `multiple` prop is enabled, this **must** be a list of strings.
    */
-  defaultValue?: string | string[];
+  defaultValue?: string | readonly string[];
 }
 
 const block = bem("rmd-native-select");

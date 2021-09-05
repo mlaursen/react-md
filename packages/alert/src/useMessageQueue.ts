@@ -75,10 +75,10 @@ export type MessageActions<M extends Message = ToastMessage> =
  * @internal
  */
 export function handleAddMessage<M extends Message = ToastMessage>(
-  state: M[],
+  state: readonly M[],
   message: M,
   duplicates: DuplicateBehavior
-): M[] {
+): readonly M[] {
   if (state.length === 0) {
     return [message];
   }
@@ -132,7 +132,7 @@ export function handleAddMessage<M extends Message = ToastMessage>(
 }
 
 type MessageQueueReducer<M extends Message = ToastMessage> = Reducer<
-  M[],
+  readonly M[],
   MessageActions<M>
 >;
 
@@ -140,9 +140,9 @@ type MessageQueueReducer<M extends Message = ToastMessage> = Reducer<
  * @internal
  */
 export function reducer<M extends Message = ToastMessage>(
-  state: M[],
+  state: readonly M[],
   action: MessageActions<M>
-): M[] {
+): readonly M[] {
   switch (action.type) {
     case ADD_MESSAGE:
       return handleAddMessage(state, action.message, action.duplicates);
@@ -158,12 +158,12 @@ export function reducer<M extends Message = ToastMessage>(
 export interface MessageQueueOptions<M extends Message = ToastMessage> {
   timeout?: number;
   duplicates?: DuplicateBehavior;
-  defaultQueue?: M[];
+  defaultQueue?: readonly M[];
 }
 
 export interface MessageQueueResult<M extends Message = ToastMessage>
   extends MessageQueueActions<M> {
-  queue: M[];
+  queue: readonly M[];
   visible: boolean;
   addMessage: AddMessage<M>;
 }

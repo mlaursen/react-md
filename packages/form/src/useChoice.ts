@@ -5,8 +5,8 @@ type ChangeEventHandler<E extends InputElement> = React.ChangeEventHandler<E>;
 type DefaultValue =
   | string
   | number
-  | string[]
-  | (() => string | number | string[]);
+  | readonly string[]
+  | (() => string | number | readonly string[]);
 type SetValue<T extends DefaultValue> = Dispatch<SetStateAction<T>>;
 
 /**
@@ -26,7 +26,7 @@ export function useChoice<
 >(
   defaultValue: T,
   onChange?: ChangeEventHandler<E>
-): [T, ChangeEventHandler<E>, SetValue<T>] {
+): readonly [T, ChangeEventHandler<E>, SetValue<T>] {
   const [value, setValue] = useState<T>(defaultValue);
   const handleChange = useCallback<ChangeEventHandler<E>>(
     (event) => {

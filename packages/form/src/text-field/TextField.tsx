@@ -117,7 +117,7 @@ export interface TextFieldProps
 
 const block = bem("rmd-text-field");
 
-const SPECIAL_TYPES: SupportedInputTypes[] = [
+const SPECIAL_TYPES: readonly SupportedInputTypes[] = [
   "date",
   "time",
   "datetime-local",

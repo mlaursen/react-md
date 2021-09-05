@@ -27,7 +27,7 @@ export function focusElementWithin(
   focus: Focus,
   programmatic = false,
   preventScroll = false,
-  elements?: HTMLElement[]
+  elements?: readonly HTMLElement[]
 ): void {
   if (!elements || !elements.length) {
     elements = getFocusableElements(container, programmatic);

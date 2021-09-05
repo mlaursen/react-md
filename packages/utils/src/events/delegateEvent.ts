@@ -42,7 +42,7 @@ const delegatedEvents: DelegatableEvent[] = [];
  */
 function createEventHandler<K extends keyof WindowEventMap>(
   throttle: boolean,
-  callbacks: EventListener[]
+  callbacks: readonly EventListener[]
 ) {
   let running = false;
   const runCallbacks = (event: WindowEventMap[K]) => () => {

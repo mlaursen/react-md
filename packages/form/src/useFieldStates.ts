@@ -29,8 +29,8 @@ interface EventHandlers<E extends FormElement> {
  * @remarks \@since 2.5.2
  */
 interface FieldStatesOptions<E extends FormElement> extends EventHandlers<E> {
-  value?: string | string[];
-  defaultValue?: string | string[];
+  value?: string | readonly string[];
+  defaultValue?: string | readonly string[];
 }
 
 /**

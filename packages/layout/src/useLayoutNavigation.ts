@@ -36,7 +36,8 @@ export interface LayoutNavigationState<
 const getParentIds = (
   itemId: TreeItemId,
   navItems: TreeData<BaseTreeItem>
-): TreeItemId[] => getItemsFrom(navItems, itemId).map(({ itemId }) => itemId);
+): readonly TreeItemId[] =>
+  getItemsFrom(navItems, itemId).map(({ itemId }) => itemId);
 
 /**
  * This is used to disable the item select and multi item select functionality

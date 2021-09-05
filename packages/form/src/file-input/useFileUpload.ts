@@ -39,7 +39,7 @@ export interface FileUploadState<CustomError = never> {
    * Each key in this object is the {@link BaseFileUploadStats.key} generated
    * once the upload starts pending.
    */
-  stats: Record<string, FileUploadStats>;
+  stats: Readonly<Record<string, Readonly<FileUploadStats>>>;
 
   /**
    * A list of validation errors that have occurred before starting the upload
@@ -66,7 +66,7 @@ export interface FileUploadHookState<CustomError = never>
    *
    * Note: Once an upload has completed, the reader will be removed.
    */
-  readers: Record<string, FileReader>;
+  readers: Readonly<Record<string, FileReader>>;
 }
 
 /**
@@ -155,7 +155,7 @@ export interface FileUploadHookReturnValue<
    *
    * @see {@link getSplitFileUploads} for separating by status
    */
-  stats: readonly FileUploadStats[];
+  stats: readonly Readonly<FileUploadStats>[];
 
   /**
    * The total number of bytes for all the files that exist in the
@@ -218,9 +218,8 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
   onChange: propOnChange,
   validateFiles = defaultValidateFiles,
   getFileParser = defaultGetFileParser,
-}: FileUploadOptions<E, CustomError> = {}): FileUploadHookReturnValue<
-  E,
-  CustomError
+}: FileUploadOptions<E, CustomError> = {}): Readonly<
+  FileUploadHookReturnValue<E, CustomError>
 > {
   const [state, dispatch] = useReducer(
     function reducer(

@@ -7,7 +7,7 @@ export interface RadioProps extends InputToggleProps {
   /**
    * A value is required for a radio button unlike a checkbox.
    */
-  value: string[] | string | number;
+  value: readonly string[] | string | number;
 }
 
 /**

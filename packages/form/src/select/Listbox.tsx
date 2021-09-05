@@ -62,7 +62,7 @@ export interface ListboxOptions extends RenderConditionalPortalProps {
   /**
    * The list of options to display within the listbox.
    */
-  options: ListboxOption[];
+  options: readonly ListboxOption[];
 
   /**
    * A key to use that extracts the display label for an option from the options

@@ -141,7 +141,7 @@ export type RestartVisibilityTimer = () => void;
  * notifications. This will return the current queue at the time of reset if you
  * would like to do some manual logic for adding items to the queue.
  */
-export type ResetQueue<M extends Message> = () => M[];
+export type ResetQueue<M extends Message> = () => readonly M[];
 
 /**
  * @internal
@@ -207,12 +207,12 @@ export function useMessageQueueActions<
 /**
  * @internal
  */
-export const MessageQueueContext = createContext<Message[]>([]);
+export const MessageQueueContext = createContext<readonly Message[]>([]);
 
 /**
  * This hook will allow you to get the current queue. This probably shouldn't be
  * used that much.
  */
-export function useQueue<M extends Message>(): M[] {
-  return useContext(MessageQueueContext) as M[];
+export function useQueue<M extends Message>(): readonly M[] {
+  return useContext(MessageQueueContext) as readonly M[];
 }

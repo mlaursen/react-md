@@ -26,7 +26,7 @@ interface Options {
 }
 
 interface ReturnValue {
-  tabs: ReactNode[];
+  tabs: readonly ReactNode[];
   itemRefs: ItemRefList;
   handleClick: MouseEventHandler<HTMLDivElement>;
   handleKeyDown: KeyboardEventHandler<HTMLDivElement>;

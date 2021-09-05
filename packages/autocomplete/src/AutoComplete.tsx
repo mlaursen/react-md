@@ -27,7 +27,7 @@ const DEFAULT_FILTER_OPTIONS = {
   ignoreWhitespace: true,
 };
 
-const EMPTY_LIST: string[] = [];
+const EMPTY_LIST: readonly string[] = [];
 
 /**
  * An AutoComplete is an accessible combobox widget that allows for real-time

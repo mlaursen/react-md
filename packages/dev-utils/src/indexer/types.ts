@@ -92,7 +92,7 @@ export interface RouteNavItem {
   href: string;
   children: string;
   leftAddon?: ReactNode;
-  routes?: NavItem[];
+  routes?: readonly NavItem[];
 }
 
 export interface DividerNavItem {

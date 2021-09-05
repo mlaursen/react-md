@@ -6,7 +6,7 @@ import { BaseTreeItem, TreeData, TreeItemId, TreeItemSorter } from "./types";
  * @internal
  */
 export type NestedTreeItem<T extends BaseTreeItem> = T & {
-  childItems?: NestedTreeItem<T>[];
+  childItems?: readonly NestedTreeItem<T>[];
 };
 
 /**
@@ -25,7 +25,7 @@ export function buildTree<T extends BaseTreeItem>(
   parentId: null | TreeItemId,
   items: T[],
   sort?: TreeItemSorter<T>
-): NestedTreeItem<T>[] | undefined {
+): readonly NestedTreeItem<T>[] | undefined {
   const childItems: NestedTreeItem<T>[] = [];
 
   // doing a "reverse" order filter/move so that the items array shrinks while

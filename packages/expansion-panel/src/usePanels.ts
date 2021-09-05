@@ -46,7 +46,7 @@ export interface UsePanelsOptions {
    * When this is omitted and `undefined`, no panels will be expanded by
    * default.
    */
-  defaultExpandedIndex?: number | number[];
+  defaultExpandedIndex?: number | readonly number[];
 }
 
 /**
@@ -91,13 +91,13 @@ export interface ProvidedPanelProps {
   onExpandClick(): void;
 }
 
-type ExpandedIds = string[];
+type ExpandedIds = readonly string[];
 type CreateExpandById = (panelId: string) => () => void;
 type ExpansionDispatcher = Dispatch<SetStateAction<ExpandedIds>>;
 type ExpansionPanelKeyDownHandler = KeyboardEventHandler<HTMLDivElement>;
 
 type ReturnValue = [
-  ProvidedPanelProps[],
+  readonly ProvidedPanelProps[],
   ExpansionPanelKeyDownHandler,
   ExpandedIds,
   ExpansionDispatcher,
@@ -109,7 +109,7 @@ type PanelMemo = Pick<ProvidedPanelProps, "id" | "headerRef">;
 /**
  * @internal
  */
-const attemptFocus = (index: number, panels: PanelMemo[]): void => {
+const attemptFocus = (index: number, panels: readonly PanelMemo[]): void => {
   const panel = panels[index]?.headerRef.current;
   if (panel) {
     panel.focus();
@@ -217,7 +217,7 @@ export function usePanels({
     }
   }
 
-  const panels = useMemo<PanelMemo[]>(
+  const panels = useMemo<readonly PanelMemo[]>(
     () =>
       Array.from({ length: count }, (_, i) => ({
         id: `${idPrefix}-${i + 1}`,

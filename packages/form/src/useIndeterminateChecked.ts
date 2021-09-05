@@ -240,7 +240,7 @@ export function useIndeterminateChecked<V extends string>(
  * }
  *
  *
- * const [data, setData] = useState<ServerFetchedData[]>([]);
+ * const [data, setData] = useState<readonly ServerFetchedData[]>([]);
  * const { getProps, rootProps, setCheckedValues } = useIndeterminateChecked(
  *   data.map(({ id }) => id),
  * );
@@ -252,7 +252,7 @@ export function useIndeterminateChecked<V extends string>(
  *     const json = await response.json();
  *     if (!cancelled) {
  *       // pretend validation and sanity checks
- *       setData(json as ServerFetchedData[]);
+ *       setData(json);
  *       setCheckedValues(json[0].id);
  *     }
  *   })();

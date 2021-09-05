@@ -24,7 +24,7 @@ export interface RippleState {
   exiting: boolean;
   entered: boolean;
 }
-export type RipplesState = RippleState[];
+export type RipplesState = readonly RippleState[];
 
 export type MergableRippleHandlerNames =
   | "onKeyDown"
