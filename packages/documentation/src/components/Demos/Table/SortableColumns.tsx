@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import { upperFirst } from "lodash";
 import {
+  SortOrder,
   TableContainer,
   Table,
   TableHeader,
@@ -11,7 +12,6 @@ import {
 import desserts, { Dessert } from "constants/desserts";
 
 type DessertKey = keyof Dessert;
-type SortOrder = "ascending" | "descending";
 
 interface SortState {
   data: readonly Dessert[];
