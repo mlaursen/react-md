@@ -11,8 +11,6 @@ import React, {
 import cn from "classnames";
 import { useRouter } from "next/router";
 
-import GoogleFont from "components/GoogleFont";
-
 import styles from "./Markdown.module.scss";
 import { markdownToHTML } from "./utils";
 
@@ -116,7 +114,6 @@ export default function Markdown({
 
   return (
     <>
-      <GoogleFont font="Source Code Pro" />
       <div
         {...props}
         ref={ref}

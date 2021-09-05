@@ -42,7 +42,16 @@ export default class MyDocument extends Document<MyDocumentProps> {
     const { theme } = this.props;
     return (
       <Html lang="en" dir="ltr" className={`${theme}-theme`}>
-        <Head />
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap"
+          />
+        </Head>
         <body>
           <Main />
           <script dangerouslySetInnerHTML={{ __html: PRISM_MANUAL_MODE }} />

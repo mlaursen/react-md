@@ -13,7 +13,6 @@ import {
   DEFAULT_TABLET_MIN_WIDTH,
 } from "@react-md/utils";
 import MobileDetect from "mobile-detect";
-import GoogleFont from "components/GoogleFont";
 import Layout from "components/Layout";
 import Theme, { getDefaultTheme, ThemeMode } from "components/Theme";
 import { GA_CODE } from "constants/github";
@@ -168,8 +167,6 @@ export default class App extends NextApp<AppProps> {
 
     return (
       <>
-        <GoogleFont font="Roboto:400,500,700" />
-        <GoogleFont font="Source Code Pro" />
         <Head>
           <meta
             name="viewport"

@@ -1,12 +1,12 @@
 import React, { ReactElement } from "react";
 import cn from "classnames";
 import { defaults } from "lodash";
+import Head from "next/head";
 
 import { toId } from "utils/toTitle";
 
 import Demo from "./Demo";
 import DemoPageHeader from "./DemoPageHeader";
-import DemoPageFont from "./DemoPageFont";
 import { DemoPageConfig, DemoProps, DemoConfig } from "./types";
 
 import styles from "./DemoPage.module.scss";
@@ -47,9 +47,20 @@ export default function DemoPage(props: DemoPageProps): ReactElement {
   } = props;
   return (
     <div id="demo-page-container" className={cn(styles.container, className)}>
-      {fonts.map((font) => (
-        <DemoPageFont font={font} key={font} />
-      ))}
+      <Head>
+        {fonts.map((font) => {
+          let href: string;
+          if (font === "Font Awesome") {
+            href =
+              "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css";
+          } else {
+            const name = font.replace(/\s+/g, "+");
+            href = `https://fonts.googleapis.com/css2?family=${name}&display=swap`;
+          }
+
+          return <link key={font} rel="stylesheet" href={href} />;
+        })}
+      </Head>
       <DemoPageHeader packageName={packageName}>{description}</DemoPageHeader>
       {demos.map((demo, index) => (
         // eslint-disable-next-line react/jsx-key
