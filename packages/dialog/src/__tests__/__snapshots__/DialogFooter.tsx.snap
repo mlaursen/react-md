@@ -1,241 +1,190 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DialogFooter should render correctly (with snapshots) 1`] = `
-<footer
-  className="rmd-dialog__footer"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
+exports[`DialogFooter should render correctly 1`] = `
+<div>
+  <footer
+    class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
   >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      First Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      Second Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </footer>
+</div>
 `;
 
-exports[`DialogFooter should render correctly (with snapshots) 2`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
+exports[`DialogFooter should render correctly 2`] = `
+<div>
+  <footer
+    class="rmd-dialog__footer"
   >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      First Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      Second Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </footer>
+</div>
 `;
 
-exports[`DialogFooter should render correctly (with snapshots) 3`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--start"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
+exports[`DialogFooter should render correctly 3`] = `
+<div>
+  <footer
+    class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--start"
   >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      First Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      Second Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </footer>
+</div>
 `;
 
-exports[`DialogFooter should render correctly (with snapshots) 4`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
+exports[`DialogFooter should render correctly 4`] = `
+<div>
+  <footer
+    class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
   >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      First Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      Second Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </footer>
+</div>
 `;
 
-exports[`DialogFooter should render correctly (with snapshots) 5`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
+exports[`DialogFooter should render correctly 5`] = `
+<div>
+  <footer
+    class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--between"
   >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      First Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      Second Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </footer>
+</div>
 `;
 
-exports[`DialogFooter should render correctly (with snapshots) 6`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
+exports[`DialogFooter should render correctly 6`] = `
+<div>
+  <footer
+    class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--flex-v rmd-dialog__footer--start"
   >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      First Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      Second Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </footer>
+</div>
 `;
 
-exports[`DialogFooter should render correctly (with snapshots) 7`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--between"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
+exports[`DialogFooter should render correctly 7`] = `
+<div>
+  <footer
+    class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--flex-v rmd-dialog__footer--end"
   >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
-`;
-
-exports[`DialogFooter should render correctly (with snapshots) 8`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
-  >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
-`;
-
-exports[`DialogFooter should render correctly (with snapshots) 9`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--stacked-start"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
-  >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
-`;
-
-exports[`DialogFooter should render correctly (with snapshots) 10`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
-  >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
-`;
-
-exports[`DialogFooter should render correctly (with snapshots) 11`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--stacked-end"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
-  >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
-`;
-
-exports[`DialogFooter should render correctly (with snapshots) 12`] = `
-<footer
-  className="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end custom-class names-here"
-  id="dialog-footer"
->
-  <button
-    id="close-dialog"
-    type="button"
-  >
-    Close
-  </button>
-  <button
-    id="confirm-dialog"
-    type="button"
-  >
-    Confirm
-  </button>
-</footer>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      First Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      Second Button
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </footer>
+</div>
 `;
