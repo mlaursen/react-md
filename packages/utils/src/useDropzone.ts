@@ -91,7 +91,14 @@ export function useDropzone<E extends HTMLElement>(
       propOnDragLeave?.(event);
       event.preventDefault();
       event.stopPropagation();
-      setOver(false);
+
+      if (
+        !event.target ||
+        event.currentTarget === event.target ||
+        !event.currentTarget.contains(event.target as HTMLElement)
+      ) {
+        setOver(false);
+      }
     },
     [propOnDragLeave]
   );
