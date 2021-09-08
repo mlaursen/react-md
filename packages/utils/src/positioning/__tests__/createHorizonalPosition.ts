@@ -14,24 +14,29 @@ import {
   getLeftCoord,
   getRightCoord,
 } from "../getCoord";
-import { HorizontalPosition } from "../types";
 
-const containerRect1: ClientRect = {
+const containerRect1: DOMRect = {
   left: 100,
   right: 50,
   top: 25,
   bottom: 75,
   height: 200,
   width: 100,
+  x: 100,
+  y: 25,
+  toJSON() {},
 };
 
-const containerRect2: ClientRect = {
+const containerRect2: DOMRect = {
   left: 50,
   right: 100,
   top: 75,
   bottom: 25,
   height: 100,
   width: 200,
+  x: 200,
+  y: 75,
+  toJSON() {},
 };
 const config1: FixConfig = {
   xMargin: 0,
@@ -83,10 +88,13 @@ const leftBoundsConfig1: FixConfig = {
     // pretending an icon button
     height: 40,
     width: 40,
+    x: 0,
+    y: 0,
+    toJSON() {},
   },
 };
 const leftBoundsConfig2: FixConfig = { ...leftBoundsConfig1, vwMargin: 8 };
-const rightBoundsConfig1 = {
+const rightBoundsConfig1: FixConfig = {
   xMargin: 0,
   vwMargin: 0,
   elWidth: 475,
@@ -101,9 +109,12 @@ const rightBoundsConfig1 = {
     // pretending an icon button
     height: 40,
     width: 40,
+    x: vw - 40,
+    y: 0,
+    toJSON() {},
   },
 };
-const rightBoundsConfig2 = { ...rightBoundsConfig1, vwMargin: 8 };
+const rightBoundsConfig2: FixConfig = { ...rightBoundsConfig1, vwMargin: 8 };
 
 describe("createAnchoredLeft", () => {
   it("should return the calcualted left coord and an actualX value of left", () => {
@@ -481,7 +492,7 @@ describe("createAnchoredRight", () => {
   });
 
   it("should return the left coord as the left value if the position can be swapped within the viewport", () => {
-    const config1 = {
+    const config1: FixConfig = {
       xMargin: 0,
       vwMargin: 0,
       elWidth: 50,
@@ -494,9 +505,12 @@ describe("createAnchoredRight", () => {
         right: 0,
         height: 40,
         width: 40,
+        x: 160,
+        y: 0,
+        toJSON() {},
       },
     };
-    const config2 = { ...config1, xMargin: 8 };
+    const config2: FixConfig = { ...config1, xMargin: 8 };
 
     expect(createAnchoredRight(config2)).toEqual({
       left: getLeftCoord(config2),
@@ -507,7 +521,7 @@ describe("createAnchoredRight", () => {
 
 describe("createEqualWidth", () => {
   const options1 = {
-    x: "center" as HorizontalPosition,
+    x: "center",
     vw: 1000,
     vwMargin: 0,
     xMargin: 0,
@@ -519,9 +533,12 @@ describe("createEqualWidth", () => {
       bottom: 200,
       height: 200,
       width: 400,
+      x: 300,
+      y: 0,
+      toJSON() {},
     },
     isMinWidth: false,
-  };
+  } as const;
   const options2 = { ...options1, vwMargin: 16 };
   const options3 = { ...options1, xMargin: 5 };
   const options4 = { ...options2, xMargin: 5 };

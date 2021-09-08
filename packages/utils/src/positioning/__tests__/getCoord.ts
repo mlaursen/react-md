@@ -11,22 +11,28 @@ import {
   getTopCoord,
 } from "../getCoord";
 
-const containerRect1: ClientRect = {
+const containerRect1: DOMRect = {
   left: 100,
   right: 50,
   top: 25,
   bottom: 75,
   height: 200,
   width: 100,
+  x: 100,
+  y: 25,
+  toJSON() {},
 };
 
-const containerRect2: ClientRect = {
+const containerRect2: DOMRect = {
   left: 50,
   right: 100,
   top: 75,
   bottom: 25,
   height: 100,
   width: 200,
+  x: 60,
+  y: 75,
+  toJSON() {},
 };
 
 describe("getLeftCoord", () => {

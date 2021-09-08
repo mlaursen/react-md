@@ -2,14 +2,14 @@ export interface XCoordConfig {
   xMargin: number;
   elWidth: number;
   initialX?: number;
-  containerRect: DOMRect | ClientRect;
+  containerRect: DOMRect;
 }
 
 export interface YCoordConfig {
   yMargin: number;
   elHeight: number;
   initialY?: number;
-  containerRect: DOMRect | ClientRect;
+  containerRect: DOMRect;
 }
 
 type Left = number;

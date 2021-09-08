@@ -47,7 +47,7 @@ interface Options
   vh: number;
   initialY?: number;
   elHeight: number;
-  containerRect: DOMRect | ClientRect;
+  containerRect: DOMRect;
 }
 
 /**

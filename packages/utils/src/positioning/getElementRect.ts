@@ -13,13 +13,13 @@ function applyCoords(coord: number | undefined): string {
  * @param coords - An optional object of coordinates to apply to the positioning
  * styles. This should be used when the coords might resize the element since it
  * needs to try to fit within the viewport.
- * @returns either a DOMRect or ClientRect for the element
+ * @returns either a DOMRect for the element
  * @internal
  */
 export function getElementRect(
   element: HTMLElement,
   coords: Coords = {}
-): DOMRect | ClientRect {
+): DOMRect {
   const cloned = element.cloneNode(true) as HTMLElement;
   // remove the id so there won't be two elements with the same id on the page
   cloned.removeAttribute("id");

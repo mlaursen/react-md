@@ -42,7 +42,7 @@ interface Options
   vw: number;
   elWidth: number;
   initialX?: number;
-  containerRect: DOMRect | ClientRect;
+  containerRect: DOMRect;
 }
 
 /**

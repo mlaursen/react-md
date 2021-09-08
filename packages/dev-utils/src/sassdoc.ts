@@ -130,7 +130,9 @@ ${data}`;
     log.error(`path: ${path}`);
     log.error(`name: ${name}`);
     log.error();
-    log.error(e.message);
+    if (e instanceof Error) {
+      log.error(e.message);
+    }
     process.exit(1);
   }
 }

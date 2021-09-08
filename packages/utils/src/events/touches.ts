@@ -35,10 +35,10 @@ export function setTouchEvent(
    */
   options?: AddEventListenerOptions
 ): void {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   el[`${add ? "add" : "remove"}EventListener`](
     `touch${eventType}`,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     callback,
     isSupported ? { passive: true, capture, ...options } : capture
   );

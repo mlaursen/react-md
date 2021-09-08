@@ -208,7 +208,9 @@ ${getEverythingScss()}
     log.error(`value: ${originalValue}`);
     log.error("");
 
-    log.error(e.message);
+    if (e instanceof Error) {
+      log.error(e.message);
+    }
     process.exit(1);
   }
 
@@ -232,7 +234,7 @@ ${getEverythingScss()}
         log.error(`Unable to parse the map: ${name}`);
         log.error(`index is: "${index}"`);
         log.error(compiledValue);
-        if ("message" in e) {
+        if (e instanceof Error) {
           log.error(e.message);
         }
         process.exit(1);

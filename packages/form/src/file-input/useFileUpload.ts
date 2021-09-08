@@ -390,7 +390,9 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
         dispatch({
           type: "queue",
           files: [],
-          errors: [new FileAccessError(e)],
+          errors: [
+            new FileAccessError(e instanceof Error ? e.message : undefined),
+          ],
         });
       }
     },
@@ -410,7 +412,9 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
         dispatch({
           type: "queue",
           files: [],
-          errors: [new FileAccessError(e)],
+          errors: [
+            new FileAccessError(e instanceof Error ? e.message : undefined),
+          ],
         });
       }
     },

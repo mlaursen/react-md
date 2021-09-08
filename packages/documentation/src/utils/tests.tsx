@@ -1,3 +1,4 @@
+/* eslint-disable import/export */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { ReactElement, ReactNode } from "react";
 import { RouterContext } from "next/dist/shared/lib/router-context";
