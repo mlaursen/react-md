@@ -1,11 +1,9 @@
 import React, { ReactElement } from "react";
 import { Switch, useChecked } from "@react-md/form";
-import { Text } from "@react-md/typography";
 
+import Heading from "components/Heading";
 import CodeBlock from "components/Code/CodeBlock";
 import { CompiledExample } from "utils/sassdoc";
-
-import styles from "./Example.module.scss";
 
 interface ExampleProps extends CompiledExample {
   id: string;
@@ -22,12 +20,12 @@ export default function Example({
 
   return (
     <>
-      <Text type="headline-6" className={styles.description}>
+      <Heading id={id} level={6} margin="small">
         {description}
-      </Text>
+      </Heading>
       {compiled && (
         <Switch
-          id={id}
+          id={`${id}-compiled`}
           name="compiledToggle"
           checked={enabled}
           onChange={handleChange}

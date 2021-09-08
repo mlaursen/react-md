@@ -27,7 +27,7 @@ export default function Examples({
         <Example
           key={`${example.type}-${example.description}`}
           {...example}
-          id={`${baseId}-example-${i + 1}-compiled`}
+          id={`${baseId}-example-${i + 1}`}
         />
       ))}
     </>

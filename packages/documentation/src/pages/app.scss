@@ -71,6 +71,11 @@
     margin-top: 0;
   }
 
+  &--small-margin {
+    margin-bottom: 0.5em;
+    margin-top: 0.25em;
+  }
+
   &__link {
     @include rmd-icon-theme(color);
     @include rmd-utils-hide-focus-outline;
