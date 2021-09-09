@@ -11,6 +11,8 @@
 /// @param {String} style - The typography style name to return a variable for
 /// @return {Map} a map of the style properties from the global typography
 /// variable.
+/// @deprecated Since v3.1.0 use the `$rmd-typography-{{TYPE}}-styles` variables
+/// instead.
 @function rmd-typography-get-global-variable($style) {
   @if $style == 'headline-1' {
     @return $rmd-typography-styles-headline-1;
@@ -54,12 +56,43 @@
   @each $style, $style-props in $additional-styles {
     $style-props: map-merge($base-styles, $style-props);
 
+    // TODO: Remove in next major release
     @if global-variable-exists(rmd-typography-styles-#{$style}) {
       $style-props: map-merge(
         $style-props,
         rmd-typography-get-global-variable(#{$style})
       );
     }
+
+    $override: ();
+    @if $style == 'headline-1' {
+      $override: $rmd-typography-headline-1-styles;
+    } @else if $style == 'headline-2' {
+      $override: $rmd-typography-headline-2-styles;
+    } @else if $style == 'headline-3' {
+      $override: $rmd-typography-headline-3-styles;
+    } @else if $style == 'headline-4' {
+      $override: $rmd-typography-headline-4-styles;
+    } @else if $style == 'headline-5' {
+      $override: $rmd-typography-headline-5-styles;
+    } @else if $style == 'headline-6' {
+      $override: $rmd-typography-headline-6-styles;
+    } @else if $style == 'subtitle-1' {
+      $override: $rmd-typography-subtitle-1-styles;
+    } @else if $style == 'subtitle-2' {
+      $override: $rmd-typography-subtitle-2-styles;
+    } @else if $style == 'body-1' {
+      $override: $rmd-typography-body-1-styles;
+    } @else if $style == 'body-2' {
+      $override: $rmd-typography-body-2-styles;
+    } @else if $style == 'button' {
+      $override: $rmd-typography-button-styles;
+    } @else if $style == 'caption' {
+      $override: $rmd-typography-caption-styles;
+    } @else if $style == 'overline' {
+      $override: $rmd-typography-overline-styles;
+    }
+    $style-props: map-merge($style-props, $override);
 
     $additional-styles: map-merge(
       $additional-styles,
@@ -224,25 +257,319 @@ $rmd-typography-google-font-weight-suffixes: (
   black: '-Black',
 ) !default;
 
-/// A Map containing of all the typography styles in react-md with reasonable
-/// defaults. Unlike most variables within react-md, this Map is not
-/// configurable itself and instead you can create global variables to override
-/// the styles for all the different typography styles. The global variables
-/// should be a Map of styles to apply, merge, and override the default styles
-/// with the name format of: `rmd-typography-styles-{{NAME}}`. Here's a list of
-/// all the possible variables:
+/// The default styles for the `headline-1` typography type. These styles can be
+/// overridden by the `$rmd-typography-headline-1-styles` variable.
 ///
-/// - `$rmd-typography-styles-headline-1`
-/// - `$rmd-typography-styles-headline-2`
-/// - `$rmd-typography-styles-headline-3`
-/// - `$rmd-typography-styles-headline-4`
-/// - `$rmd-typography-styles-headline-5`
-/// - `$rmd-typography-styles-headline-6`
-/// - `$rmd-typography-styles-body-1`
-/// - `$rmd-typography-styles-body-2`
-/// - `$rmd-typography-styles-button`
-/// - `$rmd-typography-styles-caption`
-/// - `$rmd-typography-styles-overline`
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-headline-1-styles
+$rmd-typography-default-headline-1-styles: (
+  font-size: 6rem,
+  line-height: 6rem,
+  font-weight: map-get($rmd-typography-font-weights, light),
+  letter-spacing: rmd-typography-get-letter-spacing(-1.5, 6),
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-headline-1-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-headline-1-styles
+$rmd-typography-headline-1-styles: () !default;
+
+/// The default styles for the `headline-2` typography type. These styles can be
+/// overridden by the `$rmd-typography-headline-2-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-headline-2-styles
+$rmd-typography-default-headline-2-styles: (
+  font-size: 3.75rem,
+  line-height: 3.75rem,
+  font-weight: map-get($rmd-typography-font-weights, light),
+  letter-spacing: rmd-typography-get-letter-spacing(-0.5, 3.75),
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-headline-2-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-headline-2-styles
+$rmd-typography-headline-2-styles: () !default;
+
+/// The default styles for the `headline-3` typography type. These styles can be
+/// overridden by the `$rmd-typography-headline-3-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-headline-3-styles
+$rmd-typography-default-headline-3-styles: (
+  font-size: 3rem,
+  line-height: 3.125rem,
+  font-weight: map-get($rmd-typography-font-weights, regular),
+  letter-spacing: normal,
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-headline-3-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-headline-3-styles
+$rmd-typography-headline-3-styles: () !default;
+
+/// The default styles for the `headline-4` typography type. These styles can be
+/// overridden by the `$rmd-typography-headline-4-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-headline-4-styles
+$rmd-typography-default-headline-4-styles: (
+  font-size: 2.125rem,
+  line-height: 2.5rem,
+  font-weight: map-get($rmd-typography-font-weights, regular),
+  letter-spacing: rmd-typography-get-letter-spacing(0.25, 2.125),
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-headline-4-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-headline-4-styles
+$rmd-typography-headline-4-styles: () !default;
+
+/// The default styles for the `headline-5` typography type. These styles can be
+/// overridden by the `$rmd-typography-headline-5-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-headline-5-styles
+$rmd-typography-default-headline-5-styles: (
+  font-size: 1.5rem,
+  line-height: 2rem,
+  font-weight: map-get($rmd-typography-font-weights, regular),
+  letter-spacing: normal,
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-headline-5-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-headline-5-styles
+$rmd-typography-headline-5-styles: () !default;
+
+/// The default styles for the `headline-6` typography type. These styles can be
+/// overridden by the `$rmd-typography-headline-6-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-headline-6-styles
+$rmd-typography-default-headline-6-styles: (
+  font-size: 1.25rem,
+  line-height: 2rem,
+  font-weight: map-get($rmd-typography-font-weights, medium),
+  letter-spacing: rmd-typography-get-letter-spacing(0.25, 1.25),
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-headline-6-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-headline-6-styles
+$rmd-typography-headline-6-styles: () !default;
+
+/// The default styles for the `subtitle-1` typography type. These styles can be
+/// overridden by the `$rmd-typography-subtitle-1-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-subtitle-1-styles
+$rmd-typography-default-subtitle-1-styles: (
+  font-size: 1rem,
+  line-height: 1.75rem,
+  font-weight: map-get($rmd-typography-font-weights, regular),
+  letter-spacing: rmd-typography-get-letter-spacing(0.15, 1),
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-subtitle-1-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-subtitle-1-styles
+$rmd-typography-subtitle-1-styles: () !default;
+
+/// The default styles for the `subtitle-2` typography type. These styles can be
+/// overridden by the `$rmd-typography-subtitle-2-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-subtitle-2-styles
+$rmd-typography-default-subtitle-2-styles: (
+  font-size: 0.875rem,
+  line-height: 1.375rem,
+  font-weight: map-get($rmd-typography-font-weights, medium),
+  letter-spacing: rmd-typography-get-letter-spacing(0.1, 0.875),
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-subtitle-2-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-subtitle-2-styles
+$rmd-typography-subtitle-2-styles: () !default;
+
+/// The default styles for the `body-1` typography type. These styles can be
+/// overridden by the `$rmd-typography-body-1-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-body-1-styles
+$rmd-typography-default-body-1-styles: (
+  font-size: 1rem,
+  line-height: 1.5rem,
+  font-weight: map-get($rmd-typography-font-weights, regular),
+  letter-spacing: rmd-typography-get-letter-spacing(0.5, 0.875),
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-body-1-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-body-1-styles
+$rmd-typography-body-1-styles: () !default;
+
+/// The default styles for the `body-2` typography type. These styles can be
+/// overridden by the `$rmd-typography-body-2-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-body-2-styles
+$rmd-typography-default-body-2-styles: (
+  font-size: 0.875rem,
+  line-height: 1.25rem,
+  font-weight: map-get($rmd-typography-font-weights, regular),
+  letter-spacing: rmd-typography-get-letter-spacing(0.25, 0.875),
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-body-2-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-body-2-styles
+$rmd-typography-body-2-styles: () !default;
+
+/// The default styles for the `caption` typography type. These styles can be
+/// overridden by the `$rmd-typography-caption-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-caption-styles
+$rmd-typography-default-caption-styles: (
+  font-size: 0.75rem,
+  line-height: 1.25rem,
+  font-weight: map-get($rmd-typography-font-weights, regular),
+  letter-spacing: rmd-typography-get-letter-spacing(0.4, 0.75),
+  text-decoration: inherit,
+  text-transform: inherit,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-caption-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-caption-styles
+$rmd-typography-caption-styles: () !default;
+
+/// The default styles for the `button` typography type. These styles can be
+/// overridden by the `$rmd-typography-button-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-button-styles
+$rmd-typography-default-button-styles: (
+  font-size: 0.875rem,
+  line-height: 2.25rem,
+  font-weight: map-get($rmd-typography-font-weights, medium),
+  letter-spacing: rmd-typography-get-letter-spacing(1.25, 0.875),
+  text-decoration: none,
+  text-transform: uppercase,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-button-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-button-styles
+$rmd-typography-button-styles: () !default;
+
+/// The default styles for the `overline` typography type. These styles can be
+/// overridden by the `$rmd-typography-overline-styles` variable.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-overline-styles
+$rmd-typography-default-overline-styles: (
+  font-size: 0.75rem,
+  line-height: 2rem,
+  font-weight: map-get($rmd-typography-font-weights, medium),
+  letter-spacing: rmd-typography-get-letter-spacing(2, 0.75),
+  text-decoration: none,
+  text-transform: uppercase,
+);
+
+/// A map of styles that will be merged with and override any of the
+/// `$rmd-typography-default-overline-styles`.
+///
+/// @since 3.1.0
+/// @type Map
+/// @see $rmd-typography-default-overline-styles
+$rmd-typography-overline-styles: () !default;
+
+/// A Map containing of all the typography styles in react-md with reasonable
+/// defaults.
+///
+/// - `$rmd-typography-headline-1-styles`
+/// - `$rmd-typography-headline-2-styles`
+/// - `$rmd-typography-headline-3-styles`
+/// - `$rmd-typography-headline-4-styles`
+/// - `$rmd-typography-headline-5-styles`
+/// - `$rmd-typography-headline-6-styles`
+/// - `$rmd-typography-body-1-styles`
+/// - `$rmd-typography-body-2-styles`
+/// - `$rmd-typography-button-styles`
+/// - `$rmd-typography-caption-styles`
+/// - `$rmd-typography-overline-styles`
 ///
 /// @example scss - Default Typography Values
 ///   @each $style in map-keys($rmd-typography-styles) {
@@ -300,110 +627,19 @@ $rmd-typography-google-font-weight-suffixes: (
 $rmd-typography-styles: rmd-typography-set-styles(
   $rmd-typography-base,
   (
-    headline-1: (
-      font-size: 6rem,
-      line-height: 6rem,
-      font-weight: map-get($rmd-typography-font-weights, light),
-      letter-spacing: rmd-typography-get-letter-spacing(-1.5, 6),
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    headline-2: (
-      font-size: 3.75rem,
-      line-height: 3.75rem,
-      font-weight: map-get($rmd-typography-font-weights, light),
-      letter-spacing: rmd-typography-get-letter-spacing(-0.5, 3.75),
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    headline-3: (
-      font-size: 3rem,
-      line-height: 3.125rem,
-      font-weight: map-get($rmd-typography-font-weights, regular),
-      letter-spacing: normal,
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    headline-4: (
-      font-size: 2.125rem,
-      line-height: 2.5rem,
-      font-weight: map-get($rmd-typography-font-weights, regular),
-      letter-spacing: rmd-typography-get-letter-spacing(0.25, 2.125),
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    headline-5: (
-      font-size: 1.5rem,
-      line-height: 2rem,
-      font-weight: map-get($rmd-typography-font-weights, regular),
-      letter-spacing: normal,
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    headline-6: (
-      font-size: 1.25rem,
-      line-height: 2rem,
-      font-weight: map-get($rmd-typography-font-weights, medium),
-      letter-spacing: rmd-typography-get-letter-spacing(0.25, 1.25),
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    subtitle-1: (
-      font-size: 1rem,
-      line-height: 1.75rem,
-      font-weight: map-get($rmd-typography-font-weights, regular),
-      letter-spacing: rmd-typography-get-letter-spacing(0.15, 1),
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    subtitle-2: (
-      font-size: 0.875rem,
-      line-height: 1.375rem,
-      font-weight: map-get($rmd-typography-font-weights, medium),
-      letter-spacing: rmd-typography-get-letter-spacing(0.1, 0.875),
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    body-1: (
-      font-size: 1rem,
-      line-height: 1.5rem,
-      font-weight: map-get($rmd-typography-font-weights, regular),
-      letter-spacing: rmd-typography-get-letter-spacing(0.5, 0.875),
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    body-2: (
-      font-size: 0.875rem,
-      line-height: 1.25rem,
-      font-weight: map-get($rmd-typography-font-weights, regular),
-      letter-spacing: rmd-typography-get-letter-spacing(0.25, 0.875),
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    caption: (
-      font-size: 0.75rem,
-      line-height: 1.25rem,
-      font-weight: map-get($rmd-typography-font-weights, regular),
-      letter-spacing: rmd-typography-get-letter-spacing(0.4, 0.75),
-      text-decoration: inherit,
-      text-transform: inherit,
-    ),
-    button: (
-      font-size: 0.875rem,
-      line-height: 2.25rem,
-      font-weight: map-get($rmd-typography-font-weights, medium),
-      letter-spacing: rmd-typography-get-letter-spacing(1.25, 0.875),
-      text-decoration: none,
-      text-transform: uppercase,
-    ),
-    overline: (
-      font-size: 0.75rem,
-      line-height: 2rem,
-      font-weight: map-get($rmd-typography-font-weights, medium),
-      letter-spacing: rmd-typography-get-letter-spacing(2, 0.75),
-      text-decoration: none,
-      text-transform: uppercase,
-    ),
+    headline-1: $rmd-typography-default-headline-1-styles,
+    headline-2: $rmd-typography-default-headline-2-styles,
+    headline-3: $rmd-typography-default-headline-3-styles,
+    headline-4: $rmd-typography-default-headline-4-styles,
+    headline-5: $rmd-typography-default-headline-5-styles,
+    headline-6: $rmd-typography-default-headline-6-styles,
+    subtitle-1: $rmd-typography-default-subtitle-1-styles,
+    subtitle-2: $rmd-typography-default-subtitle-2-styles,
+    body-1: $rmd-typography-default-body-1-styles,
+    body-2: $rmd-typography-default-body-2-styles,
+    caption: $rmd-typography-default-caption-styles,
+    button: $rmd-typography-default-button-styles,
+    overline: $rmd-typography-default-overline-styles,
   )
 );
 
