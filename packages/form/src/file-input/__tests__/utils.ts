@@ -10,6 +10,7 @@ import {
   isFileExtensionError,
   isGenericFileError,
   isValidFileName,
+  TooManyFilesError,
   validateFiles,
 } from "../utils";
 
@@ -167,6 +168,38 @@ describe("validateFiles", () => {
     expect(result2).toEqual({
       pending: [file1],
       errors: [new FileSizeError([file3], "total", 2000)],
+    });
+  });
+
+  it("should only return the TooManyFilesError if all the other validation succeeded", () => {
+    const file1 = createFile("file1.txt", 1024);
+    const file2 = createFile("file2.txt", 1024);
+    const file3 = createFile("file3.txt", 1000);
+    const file4 = createFile("file3.txt", 8000);
+    const file5 = createFile("file4.png", 1024);
+    const file6 = createFile("file6.txt", 1024);
+
+    const extensions = ["txt"];
+    const files = [file1, file2, file3, file4, file5, file6];
+
+    const result = validateFiles(files, {
+      maxFiles: 1,
+      extensions,
+      minFileSize: 1024,
+      maxFileSize: 2048,
+      totalBytes: 0,
+      totalFiles: 0,
+      totalFileSize: -1,
+      isValidFileName,
+    });
+    expect(result).toEqual({
+      pending: [file1],
+      errors: [
+        new FileExtensionError([file5], extensions),
+        new FileSizeError([file3], "min", 1024),
+        new FileSizeError([file4], "max", 2048),
+        new TooManyFilesError([file2, file6], 1),
+      ],
     });
   });
 });
