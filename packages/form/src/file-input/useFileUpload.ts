@@ -19,6 +19,7 @@ import {
   FilesValidator,
   GetFileParser,
   ProcessingFileUploadStats,
+  isValidFileName as defaultIsValidFileName,
   validateFiles as defaultValidateFiles,
   FileValidationOptions,
 } from "./utils";
@@ -220,6 +221,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
   onChange: propOnChange,
   validateFiles = defaultValidateFiles,
   getFileParser = defaultGetFileParser,
+  isValidFileName = defaultIsValidFileName,
 }: FileUploadOptions<E, CustomError> = {}): Readonly<
   FileUploadHookReturnValue<E, CustomError>
 > {
@@ -364,6 +366,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
         totalBytes,
         totalFiles,
         totalFileSize,
+        isValidFileName,
       });
 
       dispatch({ type: "queue", errors, files: pending });
@@ -377,6 +380,7 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
       totalBytes,
       totalFiles,
       totalFileSize,
+      isValidFileName,
     ]
   );
   const onDrop = useCallback(

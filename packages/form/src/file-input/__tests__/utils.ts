@@ -9,6 +9,7 @@ import {
   isFileAccessError,
   isFileExtensionError,
   isGenericFileError,
+  isValidFileName,
   validateFiles,
 } from "../utils";
 
@@ -145,6 +146,7 @@ describe("validateFiles", () => {
       totalBytes: 0,
       totalFiles: 0,
       totalFileSize: 1024,
+      isValidFileName,
     });
 
     const result2 = validateFiles([file1, file3], {
@@ -155,6 +157,7 @@ describe("validateFiles", () => {
       totalBytes: 0,
       totalFiles: 0,
       totalFileSize: 2000,
+      isValidFileName,
     });
 
     expect(result1).toEqual({
