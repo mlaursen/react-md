@@ -406,7 +406,7 @@ export function validateFiles<CustomError>(
   const extraFiles: File[] = [];
   const nameRegExp =
     extensions.length > 0
-      ? new RegExp(`.(${extensions.join("|")})$`, "i")
+      ? new RegExp(`\\.(${extensions.join("|")})$`, "i")
       : undefined;
 
   let maxFilesReached = maxFiles > 0 && totalFiles >= maxFiles;
