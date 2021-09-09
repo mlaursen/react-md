@@ -534,6 +534,8 @@ describe("useFileUpload", () => {
     expect(input).toHaveAttribute("accept", ".svg,.png");
 
     userEvent.upload(input, createFile("Invalid.txt", 1000));
+    userEvent.upload(input, createFile("Invalidpng", 1000));
+    userEvent.upload(input, createFile("Invalidsvg", 1000));
 
     expect(readAsArrayBuffer).not.toBeCalled();
 
