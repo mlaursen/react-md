@@ -14,7 +14,7 @@ import {
   VariableItem,
 } from "sassdoc";
 
-import { nonWebpackDist, packagesRoot, src } from "./constants";
+import { nonWebpackDist, packagesRoot, src, tempStylesDir } from "./constants";
 import {
   combineAllFiles,
   CompiledExample,
@@ -24,9 +24,7 @@ import {
   FormattedItemLink,
   FormattedMixinItem,
   FormattedVariableItem,
-  getColorVariables,
   getCompiledValue,
-  getEverythingScss,
   getSassdoc,
   isFunctionItem,
   isMixinItem,
@@ -46,7 +44,7 @@ export interface FullItemReferenceLink extends ItemReferenceLink {
 }
 
 const NO_COMPILE_TOKEN = "<!-- no-compile -->";
-const OVERRIDE_VARIABLES_TOKEN = "// OVERRIDE_VARIABLES";
+const OVERRIDE_USE_TOKEN = "// OVERRIDE_USE";
 const isCompileable = (value: string): boolean =>
   /\$?rmd|if\(/.test(value) && !/^--rmd/.test(value);
 
@@ -102,30 +100,45 @@ function getCompiledValueString(value: VariableValue): string {
     .substring(prefix.length);
 }
 
-function compileExampleCode(code: string, path: string, name: string): string {
-  let data = code;
-  let prefix = "";
-  const i = code.indexOf(OVERRIDE_VARIABLES_TOKEN);
-  if (i !== -1) {
-    prefix = code.substring(0, i);
-    data = code.substring(i + OVERRIDE_VARIABLES_TOKEN.length);
+interface CompiledExampleOptions {
+  /**
+   * A custom `@use` statement.
+   */
+  use: string;
+  path: string;
+  name: string;
+  code: string;
+}
+
+function compileExampleCode({
+  use,
+  name,
+  path,
+  code,
+}: CompiledExampleOptions): string {
+  let useModules: string;
+  if (use) {
+    useModules = use.replace('"react-md"', '"react-md/dist/scss/everything"');
+  } else {
+    useModules = '@use "react-md/dist/scss/everything" as *;\n';
   }
 
-  // since everything is part of the same stylesheet to prevent the `@import` IO
-  // slowdown, have to update variables to be `!global` so that they will be
-  // overridden/found correctly. (mostly typography)
-  data = `${getColorVariables()}
-${prefix.replace(/;$/g, " !global;")}
+  const data = `${useModules}
 
-${getEverythingScss()}
-
-${data}`;
+${code}
+`;
 
   try {
-    return format(renderSync({ data }).css.toString(), "css");
+    return format(
+      renderSync({
+        data,
+        includePaths: [tempStylesDir],
+      }).css.toString(),
+      "css"
+    );
   } catch (e) {
     log.error("Unable to compile an example with the following code:");
-    log.error(code);
+    log.error(data);
     log.error();
     log.error(`path: ${path}`);
     log.error(`name: ${name}`);
@@ -178,6 +191,26 @@ function removeUncompilableCode(code: string): string {
 
   return code;
 }
+
+interface FormattedExampleCodeOptions {
+  use: string;
+  code: string;
+  type: ExampleType;
+}
+
+function getFormattedExampleCode({
+  use,
+  code,
+  type,
+}: FormattedExampleCodeOptions): string {
+  return format(
+    `${use || '@use "react-md" as *;\n'}
+${code}
+`,
+    getFormatParser(type)
+  );
+}
+
 const isItemRequire = (
   item: ItemReference | ItemRequire
 ): item is ItemRequire => typeof (item as ItemRequire).name === "string";
@@ -231,18 +264,24 @@ function formatItem(
 
   let examples: CompiledExample[] | undefined;
   if (example) {
-    examples = example.map(({ code, type, description }) => {
-      const exampleCode = removeUncompilableCode(code);
+    examples = example.map(({ code: rawCode, type, description }) => {
+      const parts = removeUncompilableCode(rawCode).split(OVERRIDE_USE_TOKEN);
+
+      let use = "";
+      let code: string;
+      if (parts.length === 2) {
+        [use, code] = parts;
+      } else {
+        [code] = parts;
+      }
+
       let compiled: string | undefined;
       if (type === "scss" && !description.includes(NO_COMPILE_TOKEN)) {
-        compiled = compileExampleCode(exampleCode, path, name);
+        compiled = compileExampleCode({ use, code, name, path });
       }
 
       return {
-        code: format(
-          exampleCode.replace(OVERRIDE_VARIABLES_TOKEN, ""),
-          getFormatParser(type)
-        ),
+        code: getFormattedExampleCode({ use, code, type }),
         compiled,
         type,
         description: formatDescription(description),

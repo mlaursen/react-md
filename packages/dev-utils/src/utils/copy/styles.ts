@@ -12,6 +12,7 @@ import { join, sep } from "path";
 
 import {
   dist,
+  everythingScss,
   nonWebpackDist,
   packagesRoot,
   projectRoot,
@@ -89,6 +90,7 @@ function cleanTempStyles(): void {
 
 export async function copyStylesTemp(): Promise<void> {
   const files = await glob(PATTERN);
+  files.push(everythingScss.replace(`${projectRoot}${sep}`, ""));
   await Promise.all(
     files.map(async (filePath) => {
       const contents = getNonTildedContents(filePath);

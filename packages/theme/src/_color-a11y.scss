@@ -21,10 +21,13 @@ $rmd-theme-default-contrast-ratio: 3 !default;
 /// color variables in react md.
 ///
 /// @example scss - Better Contrast Enabled
-///   $rmd-theme-better-contrast-colors: true;
-///   $rmd-theme-primary: $rmd-teal-500;
-///   $rmd-theme-secondary: $rmd-pink-a-200;
-///   // OVERRIDE_VARIABLES
+///   @use "@react-md/theme/dist/color-palette" as colors;
+///   @use "react-md" as * with (
+///     $rmd-theme-better-contrast-colors: true,
+///     $rmd-theme-primary: colors.$rmd-teal-500,
+///     $rmd-theme-secondary: colors.$rmd-pink-a-200,
+///   );
+///   // OVERRIDE_USE
 ///
 ///   // these are the rmd-defaults
 ///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
@@ -40,10 +43,13 @@ $rmd-theme-default-contrast-ratio: 3 !default;
 ///   }
 ///
 /// @example scss - Better Contrast Disabled
-///   $rmd-theme-better-contrast-colors: false;
-///   $rmd-theme-primary: $rmd-teal-500;
-///   $rmd-theme-secondary: $rmd-pink-a-200;
-///   // OVERRIDE_VARIABLES
+///   @use "@react-md/theme/dist/color-palette" as colors;
+///   @use "react-md" as * with (
+///     $rmd-theme-better-contrast-colors: false,
+///     $rmd-theme-primary: colors.$rmd-teal-500,
+///     $rmd-theme-secondary: colors.$rmd-pink-a-200,
+///   );
+///   // OVERRIDE_USE
 ///
 ///   // these are the rmd-defaults
 ///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
@@ -251,10 +257,13 @@ $rmd-theme-linear-channel-values: (
 /// to the dark color.
 ///
 /// @example scss - Better Contrast Enabled
-///   $rmd-theme-better-contrast-colors: true;
-///   $rmd-theme-primary: $rmd-teal-500;
-///   $rmd-theme-secondary: $rmd-pink-a-200;
-///   // OVERRIDE_VARIABLES
+///   @use "@react-md/theme/dist/color-palette" as colors;
+///   @use "react-md" as * with (
+///     $rmd-theme-better-contrast-colors: true,
+///     $rmd-theme-primary: colors.$rmd-teal-500,
+///     $rmd-theme-secondary: colors.$rmd-pink-a-200,
+///   );
+///   // OVERRIDE_USE
 ///
 ///   // these are the rmd-defaults
 ///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
@@ -264,17 +273,19 @@ $rmd-theme-linear-channel-values: (
 ///     --p: #{$rmd-theme-primary};
 ///     --s: #{$rmd-theme-secondary};
 ///
-///     // this should be `#000` once compiled since `#000` has a 5.3 contrast
-///     // ratio compared to teal while `#fff` has a 3.6 contrast ratio.
+///     // since black has a ~5.3 color ratio as compared to white with ~3.6
 ///     --op: #{$rmd-theme-on-primary};
 ///     --os: #{$rmd-theme-on-secondary};
 ///   }
 ///
 /// @example scss - Better Contrast Disabled
-///   $rmd-theme-better-contrast-colors: false;
-///   $rmd-theme-primary: $rmd-teal-500;
-///   $rmd-theme-secondary: $rmd-pink-a-200;
-///   // OVERRIDE_VARIABLES
+///   @use "@react-md/theme/dist/color-palette" as colors;
+///   @use "react-md" as * with (
+///     $rmd-theme-better-contrast-colors: false,
+///     $rmd-theme-primary: colors.$rmd-teal-500,
+///     $rmd-theme-secondary: colors.$rmd-pink-a-200,
+///   );
+///   // OVERRIDE_USE
 ///
 ///   // these are the rmd-defaults
 ///   // $rmd-theme-on-primary: rmd-theme-best-contrast-color($rmd-theme-primary) !default;
@@ -284,9 +295,8 @@ $rmd-theme-linear-channel-values: (
 ///     --p: #{$rmd-theme-primary};
 ///     --s: #{$rmd-theme-secondary};
 ///
-///     // this should be `#fff` once compiled since the light color (`#fff`)
-///     // is checked first and meets the minimum contrast ratio requirements
-///     // at `3.6`
+///     // white has a ~3.6 color ratio so it _is_ contrast compliant with the
+///     // minimal contrast ratios even though black would be ~5.6
 ///     --op: #{$rmd-theme-on-primary};
 ///     --os: #{$rmd-theme-on-secondary};
 ///   }

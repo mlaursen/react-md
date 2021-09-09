@@ -579,36 +579,37 @@ $rmd-typography-overline-styles: () !default;
 ///   }
 ///
 /// @example scss - Overriding Typography Values
-///   $rmd-typography-styles-headline-1: (
-///     font-size: 4rem,
-///     line-height: 4rem,
-///     margin: 0,
+///   @use "react-md" as * with (
+///     $rmd-typography-headline-1-styles: (
+///       font-size: 4rem,
+///       line-height: 4rem,
+///       margin: 0,
+///     ),
+///     $rmd-typography-headline-2-styles: (
+///       font-size: 3.5rem,
+///       line-height: 3.5rem,
+///       margin: 0,
+///     ),
+///     $rmd-typography-headline-3-styles: (
+///       margin: 0,
+///     ),
+///     $rmd-typography-headline-4-styles: (
+///       margin: 0,
+///     ),
+///     $rmd-typography-headline-5-styles: (
+///       margin: 0,
+///     ),
+///     $rmd-typography-headline-6-styles: (
+///       margin: 0,
+///     ),
 ///   );
-///   $rmd-typography-styles-headline-2: (
-///     font-size: 3.5rem,
-///     line-height: 3.5rem,
-///     margin: 0,
-///   );
-///   $rmd-typography-styles-headline-3: (
-///     margin: 0,
-///   );
-///   $rmd-typography-styles-headline-4: (
-///     margin: 0,
-///   );
-///   $rmd-typography-styles-headline-5: (
-///     margin: 0,
-///   );
-///   $rmd-typography-styles-headline-6: (
-///     margin: 0,
-///   );
-///   // OVERRIDE_VARIABLES
+///   // OVERRIDE_USE
 ///
 ///   @each $style in map-keys($rmd-typography-styles) {
 ///     .#{$style} {
 ///       @include rmd-typography($style);
 ///     }
 ///   }
-///
 ///
 /// @type Map
 /// @prop {Map} headline-1 - The styles for a headline-1
@@ -624,6 +625,19 @@ $rmd-typography-overline-styles: () !default;
 /// @prop {Map} button - The styles for a button
 /// @prop {Map} caption - The styles for a caption
 /// @prop {Map} overline - The styles for a overline
+/// @require $rmd-typography-headline-1-styles
+/// @require $rmd-typography-headline-2-styles
+/// @require $rmd-typography-headline-3-styles
+/// @require $rmd-typography-headline-4-styles
+/// @require $rmd-typography-headline-5-styles
+/// @require $rmd-typography-headline-6-styles
+/// @require $rmd-typography-subtitle-1-styles
+/// @require $rmd-typography-subtitle-2-styles
+/// @require $rmd-typography-body-1-styles
+/// @require $rmd-typography-body-2-styles
+/// @require $rmd-typography-button-styles
+/// @require $rmd-typography-caption-styles
+/// @require $rmd-typography-overline-styles
 $rmd-typography-styles: rmd-typography-set-styles(
   $rmd-typography-base,
   (

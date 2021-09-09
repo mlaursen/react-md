@@ -89,8 +89,10 @@
 ///   }
 ///
 /// @example scss - Simple Prefers Color Scheme
-///   $rmd-theme-dark-class: 'prefers-color-scheme';
-///   // OVERRIDE_VARIABLES
+///   @use "react-md" as * with (
+///     $rmd-theme-dark-class: 'prefers-color-scheme',
+///   );
+///   // OVERRIDE_USE
 ///
 ///   .container {
 ///     @include rmd-theme-dark-elevation-styles {
@@ -130,8 +132,10 @@
 ///   }
 ///
 /// @example scss - CSS Module Prefers Color Scheme Example
-///   $rmd-theme-dark-class: 'prefers-color-scheme';
-///   // OVERRIDE_VARIABLES
+///   @use "react-md" as * with (
+///     $rmd-theme-dark-class: 'prefers-color-scheme',
+///   );
+///   // OVERRIDE_USE
 ///
 ///   .container {
 ///     @include rmd-theme-dark-elevation-styles(true) {
