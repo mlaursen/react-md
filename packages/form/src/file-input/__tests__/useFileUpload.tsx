@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from "react";
+import React, { Fragment, ReactElement, useEffect } from "react";
 import filesize from "filesize";
 import {
   act,
@@ -434,6 +434,24 @@ describe("useFileUpload", () => {
     expect(progress).toHaveTextContent("");
     expect(result).toHaveTextContent("");
     expect(() => getAllByRole("listitem")).toThrow();
+  });
+
+  it("should not cause infinite rerenders if the reset function is added to a useEffect's dependency array", () => {
+    let renders = 0;
+    function Test(): null {
+      const { reset } = useFileUpload();
+      renders += 1;
+      useEffect(() => {
+        if (renders < 10) {
+          reset();
+        }
+      }, [reset]);
+
+      return null;
+    }
+
+    render(<Test />);
+    expect(renders).toBe(2);
   });
 
   it("should abort any FileReaders when the reset function is called", () => {

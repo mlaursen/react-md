@@ -188,7 +188,9 @@ export interface FileUploadHookReturnValue<
 }
 
 /** @internal */
-const DEFAULT_EXTENSIONS = [] as const;
+const EMPTY_LIST = [] as const;
+/** @internal */
+const EMPTY_OBJECT = {} as const;
 
 /**
  * This hook is generally used to upload files **to the browser** in different
@@ -209,7 +211,7 @@ const DEFAULT_EXTENSIONS = [] as const;
  */
 export function useFileUpload<E extends HTMLElement, CustomError = never>({
   maxFiles = -1,
-  extensions = DEFAULT_EXTENSIONS,
+  extensions = EMPTY_LIST,
   minFileSize = -1,
   maxFileSize = -1,
   totalFileSize = -1,
@@ -228,10 +230,12 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
     ) {
       switch (action.type) {
         case "reset":
+          // need to reuse constants so that calling reset doesn't cause an
+          // infinite loop in an effect
           return {
-            stats: {},
-            errors: [],
-            readers: {},
+            stats: EMPTY_OBJECT,
+            errors: EMPTY_LIST,
+            readers: EMPTY_OBJECT,
           };
         case "remove":
           return {
@@ -337,9 +341,9 @@ export function useFileUpload<E extends HTMLElement, CustomError = never>({
       }
     },
     {
-      stats: {},
-      errors: [],
-      readers: {},
+      stats: EMPTY_OBJECT,
+      errors: EMPTY_LIST,
+      readers: EMPTY_OBJECT,
     }
   );
   const { stats, errors, readers } = state;
