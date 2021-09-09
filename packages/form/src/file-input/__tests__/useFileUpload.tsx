@@ -36,6 +36,8 @@ import {
   FileValidationError,
   isFileSizeError,
   isTooManyFilesError,
+  IsValidFileName,
+  isValidFileName,
   TooManyFilesError,
 } from "../utils";
 
@@ -633,7 +635,67 @@ describe("useFileUpload", () => {
       totalBytes: 0,
       totalFiles: 0,
       totalFileSize: MAX_UPLOAD_SIZE,
+      isValidFileName,
     });
+  });
+
+  it("should allow for a custom isValidFileName so that files without extensions can be uploaded", () => {
+    const allowExtensionsAndLicense: IsValidFileName = (
+      file,
+      extensionRegExp,
+      extensions
+    ) =>
+      isValidFileName(file, extensionRegExp, extensions) ||
+      /^LICENSE$/i.test(file.name);
+
+    const customIsValidFileName = jest.fn(allowExtensionsAndLicense);
+    const extensions = ["md", "txt"];
+    const extensionRegExp = new RegExp("\\.(md|txt)$", "i");
+
+    const { getByLabelText } = renderComplex({
+      extensions,
+      isValidFileName: customIsValidFileName,
+    });
+
+    const input = getByLabelText(/Upload/) as HTMLInputElement;
+    expect(customIsValidFileName).not.toBeCalled();
+
+    const md = createFile("file2.md", 1024);
+    userEvent.upload(input, md);
+    expect(customIsValidFileName).toBeCalledWith(
+      md,
+      extensionRegExp,
+      extensions
+    );
+    expect(getErrorDialog).toThrow();
+
+    const txt = createFile("file2.txt", 1024);
+    userEvent.upload(input, txt);
+    expect(customIsValidFileName).toBeCalledWith(
+      txt,
+      extensionRegExp,
+      extensions
+    );
+    expect(getErrorDialog).toThrow();
+
+    const license = createFile("LICENSE", 1024);
+    userEvent.upload(input, license);
+    expect(customIsValidFileName).toBeCalledWith(
+      license,
+      extensionRegExp,
+      extensions
+    );
+    expect(getErrorDialog).toThrow();
+
+    const png = createFile("file1.png", 1024);
+    userEvent.upload(input, png);
+    expect(customIsValidFileName).toBeCalledWith(
+      png,
+      extensionRegExp,
+      extensions
+    );
+    expect(getErrorDialog).not.toThrow();
+    fireEvent.click(getByRoleGlobal(document.body, "button", { name: "Okay" }));
   });
 
   it("should throw a TooManyFilesError if too many files are uploaded", () => {

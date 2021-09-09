@@ -250,6 +250,33 @@ export function isFileExtensionError<CustomError>(
   return "name" in error && error.name === "FileExtensionError";
 }
 
+/**
+ * This function is used to determine if a file should be added to the
+ * {@link FileExtensionError}. The default implementation should work for most
+ * use cases except when files that do not have extensions can be uploaded. i.e.
+ * LICENSE files.
+ *
+ * @param file - The file being checked
+ * @param extensionRegExp - A regex that will only be defined if the
+ * `extensions` list had at least one value.
+ * @param extensions - The list of extensions allowed
+ * @returns true if the file has a valid name.
+ * @remarks \@since 3.1.0
+ */
+export type IsValidFileName = (
+  file: File,
+  extensionRegExp: RegExp | undefined,
+  extendsions: readonly string[]
+) => boolean;
+
+/**
+ *
+ * @defaultValue `matcher?.test(file.name) ?? true`
+ * @remarks \@since 3.1.0
+ */
+export const isValidFileName: IsValidFileName = (file, matcher) =>
+  matcher?.test(file.name) ?? true;
+
 /** @remarks \@since 2.9.0 */
 export interface FileValidationOptions {
   /**
@@ -292,6 +319,9 @@ export interface FileValidationOptions {
    * ```
    */
   extensions?: readonly string[];
+
+  /** {@inheritDoc IsValidFileName} */
+  isValidFileName?: IsValidFileName;
 
   /**
    * An optional total file size to enforce when the {@link maxFiles} option is
@@ -399,12 +429,13 @@ export function validateFiles<CustomError>(
     totalBytes,
     totalFiles,
     totalFileSize,
+    isValidFileName,
   }: FilesValidationOptions
 ): ValidatedFilesResult<CustomError> {
   const errors: FileValidationError<CustomError>[] = [];
   const pending: File[] = [];
   const extraFiles: File[] = [];
-  const nameRegExp =
+  const extensionRegExp =
     extensions.length > 0
       ? new RegExp(`\\.(${extensions.join("|")})$`, "i")
       : undefined;
@@ -423,8 +454,8 @@ export function validateFiles<CustomError>(
     }
 
     let valid = true;
-    const { name, size } = file;
-    if (nameRegExp && !nameRegExp.test(name)) {
+    const { size } = file;
+    if (!isValidFileName(file, extensionRegExp, extensions)) {
       valid = false;
       extensionErrors.push(file);
     }
