@@ -448,10 +448,6 @@ export function validateFiles<CustomError>(
   const totalSizeErrors: File[] = [];
   for (let i = 0; i < files.length; i += 1) {
     const file = files[i];
-    if (maxFilesReached) {
-      extraFiles.push(file);
-      continue;
-    }
 
     let valid = true;
     const { size } = file;
@@ -474,7 +470,9 @@ export function validateFiles<CustomError>(
       totalSizeErrors.push(file);
     }
 
-    if (valid) {
+    if (maxFilesReached && valid) {
+      extraFiles.push(file);
+    } else if (!maxFilesReached && valid) {
       pending.push(file);
       remainingBytes -= file.size;
       maxFilesReached =
