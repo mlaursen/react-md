@@ -1,3 +1,48 @@
+Title: react-md 3.1.0
+
+Date: 09/10/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/dialog:** `DialogFooter` align prop applies correct classes
+  (644971d)
+- **@react-md/form:** `TooManyFilesError` is only used if all the other
+  validation has passed (6ed3f54)
+- **@react-md/form:** ensure file names end with a period for `useFileUpload`
+  extensions (9238140)
+- **@react-md/form:** prevent infinite rerenders when calling useFileUpload's
+  reset in useEffect (b2875b1)
+- **@react-md/utils:** `useDropzone` fix around onDragLeave behavior (fdff9f2)
+- **typescript:** updated all array types to be readonly (8f71bcb)
+
+##### Features<!-- no-margin -->
+
+- **@react-md/form:** add `isValidFileName` option to `useFileUpload` (dbd0375)
+- **@react-md/typography:** override default typography without globals
+  (ce89374), closes #1239
+
+##### Documentation<!-- no-margin -->
+
+- **react-md.dev:** updated `sassdoc` for new module system (4746d26)
+- **react-md.dev:** updated SortableColumns example to import SortOrder type
+  (b629e3e)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- ran `yarn format` to include new files (48d3d7f)
+- Simplifying format and covering json and yml files #1227 (045ba5e)
+- **@react-md/dev-utils:** fixed spelling of gzipped (baad174)
+- **examples:** updated nextjs examples to latest version of `next` (b50d745)
+- **react-md.dev:** added `sassdoc` hot-reloading (9d58e09)
+- **react-md.dev:** updated `sassdoc` examples to be linkable (9ed096e)
+- **react-md.dev:** Updated fonts for latest nextjs build optimizations
+  (ca9ecbd)
+- **typescript:** support typescript@v4.4.2 (5a9dd72)
+
+---
+
 Title: react-md 3.0.1
 
 Date: 08/14/2021

@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/mlaursen/react-md/compare/v3.0.1...v3.1.0) (2021-09-10)
+
+
+### Bug Fixes
+
+* **@react-md/form:** `TooManyFilesError` is only used if all the other validation has passed ([6ed3f54](https://github.com/mlaursen/react-md/commit/6ed3f545fd292ff9d8dfe0c8d554c1dfe3450a01))
+* **@react-md/form:** ensure file names end with a period for `useFileUpload` extensions ([9238140](https://github.com/mlaursen/react-md/commit/9238140311c0f27048cd634971bc98fddd531df2))
+* **@react-md/form:** prevent infinite rerenders when calling useFileUpload's reset in useEffect ([b2875b1](https://github.com/mlaursen/react-md/commit/b2875b17634651ec26365268658445260cd675ca))
+* **typescript:** updated all array types to be readonly ([8f71bcb](https://github.com/mlaursen/react-md/commit/8f71bcbde12928434975c6836079c3dda7c6ab1f))
+
+
+### Features
+
+* **@react-md/form:** add `isValidFileName` option to `useFileUpload` ([dbd0375](https://github.com/mlaursen/react-md/commit/dbd03756b1b21c528fc0fdee250672e3f52a5997))
+
+
+### Other Internal Changes
+
+* ran `yarn format` to include new files ([48d3d7f](https://github.com/mlaursen/react-md/commit/48d3d7fddb0435edf7dec9d0ba38cf3f0f251709))
+* **typescript:** support typescript@v4.4.2 ([5a9dd72](https://github.com/mlaursen/react-md/commit/5a9dd729e1f34df326aee20eca9a7436bb152cd4))
+
+
+
+
+
+
 ## [3.0.1](https://github.com/mlaursen/react-md/compare/v3.0.0...v3.0.1) (2021-08-15)
 
 

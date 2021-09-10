@@ -1,6 +1,6 @@
 {
   "name": "@react-md/list",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "This package is used to create lists with the material design specs.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -31,13 +31,13 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/avatar": "^3.0.0",
-    "@react-md/divider": "^3.0.0",
-    "@react-md/icon": "^3.0.0",
-    "@react-md/states": "^3.0.1",
-    "@react-md/theme": "^3.0.0",
-    "@react-md/typography": "^3.0.0",
-    "@react-md/utils": "^3.0.0",
+    "@react-md/avatar": "^3.1.0",
+    "@react-md/divider": "^3.1.0",
+    "@react-md/icon": "^3.1.0",
+    "@react-md/states": "^3.1.0",
+    "@react-md/theme": "^3.1.0",
+    "@react-md/typography": "^3.1.0",
+    "@react-md/utils": "^3.1.0",
     "classnames": "^2.3.1"
   },
   "devDependencies": {

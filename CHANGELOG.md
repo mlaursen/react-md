@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/mlaursen/react-md/compare/v3.0.1...v3.1.0) (2021-09-10)
+
+
+### Bug Fixes
+
+* **@react-md/dialog:** `DialogFooter` align prop applies correct classes ([644971d](https://github.com/mlaursen/react-md/commit/644971da4f84994028a59f7a1d2518c469a3b71b))
+* **@react-md/form:** `TooManyFilesError` is only used if all the other validation has passed ([6ed3f54](https://github.com/mlaursen/react-md/commit/6ed3f545fd292ff9d8dfe0c8d554c1dfe3450a01))
+* **@react-md/form:** ensure file names end with a period for `useFileUpload` extensions ([9238140](https://github.com/mlaursen/react-md/commit/9238140311c0f27048cd634971bc98fddd531df2))
+* **@react-md/form:** prevent infinite rerenders when calling useFileUpload's reset in useEffect ([b2875b1](https://github.com/mlaursen/react-md/commit/b2875b17634651ec26365268658445260cd675ca))
+* **@react-md/utils:** `useDropzone` fix around onDragLeave behavior ([fdff9f2](https://github.com/mlaursen/react-md/commit/fdff9f25f259d02fe8a039cc5f2ae94ed86e82f9))
+* **typescript:** updated all array types to be readonly ([8f71bcb](https://github.com/mlaursen/react-md/commit/8f71bcbde12928434975c6836079c3dda7c6ab1f))
+
+
+### Features
+
+* **@react-md/form:** add `isValidFileName` option to `useFileUpload` ([dbd0375](https://github.com/mlaursen/react-md/commit/dbd03756b1b21c528fc0fdee250672e3f52a5997))
+* **@react-md/typography:** override default typography without globals ([ce89374](https://github.com/mlaursen/react-md/commit/ce893741e3ca950d38c6808f31b1e3549a3f3410)), closes [#1239](https://github.com/mlaursen/react-md/issues/1239)
+
+
+### Documentation
+
+* **react-md.dev:** updated `sassdoc` for new module system ([4746d26](https://github.com/mlaursen/react-md/commit/4746d265adcc2dcaffb260a565462b9d9c28805e))
+* **react-md.dev:** updated SortableColumns example to import SortOrder type ([b629e3e](https://github.com/mlaursen/react-md/commit/b629e3e3873ecc34ac334ff560269c4177616afa))
+
+
+### Other Internal Changes
+
+* ran `yarn format` to include new files ([48d3d7f](https://github.com/mlaursen/react-md/commit/48d3d7fddb0435edf7dec9d0ba38cf3f0f251709))
+* Simplifying format and covering json and yml files ([#1227](https://github.com/mlaursen/react-md/issues/1227)) ([045ba5e](https://github.com/mlaursen/react-md/commit/045ba5e2ade2b6926af32c5a530c1fc81d739d97))
+* **@react-md/dev-utils:** fixed spelling of gzipped ([baad174](https://github.com/mlaursen/react-md/commit/baad1747480e2b11129f7992571e6b72641436e3))
+* **examples:** updated nextjs examples to latest version of `next` ([b50d745](https://github.com/mlaursen/react-md/commit/b50d7456094ac3aad7b42be5c50a7b04490bed62))
+* **react-md.dev:** added `sassdoc` hot-reloading ([9d58e09](https://github.com/mlaursen/react-md/commit/9d58e09265216c76352c0d9c4d66aad494b34220))
+* **react-md.dev:** updated `sassdoc` examples to be linkable ([9ed096e](https://github.com/mlaursen/react-md/commit/9ed096ed3d4912dc6075472a5bb27038d6bf16a5))
+* **react-md.dev:** Updated fonts for latest nextjs build optimizations ([ca9ecbd](https://github.com/mlaursen/react-md/commit/ca9ecbdd03813722fda1fc097676d051329c8539))
+* **typescript:** support typescript@v4.4.2 ([5a9dd72](https://github.com/mlaursen/react-md/commit/5a9dd729e1f34df326aee20eca9a7436bb152cd4))
+
+
+
+
+
+
 ## [3.0.1](https://github.com/mlaursen/react-md/compare/v3.0.0...v3.0.1) (2021-08-15)
 
 

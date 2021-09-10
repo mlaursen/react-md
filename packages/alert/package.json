@@ -1,6 +1,6 @@
 {
   "name": "@react-md/alert",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Create accessible alerts through snackbars and banners.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -31,13 +31,13 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/button": "^3.0.1",
-    "@react-md/elevation": "^3.0.1",
-    "@react-md/portal": "^3.0.0",
-    "@react-md/theme": "^3.0.0",
-    "@react-md/transition": "^3.0.1",
-    "@react-md/typography": "^3.0.0",
-    "@react-md/utils": "^3.0.0",
+    "@react-md/button": "^3.1.0",
+    "@react-md/elevation": "^3.1.0",
+    "@react-md/portal": "^3.1.0",
+    "@react-md/theme": "^3.1.0",
+    "@react-md/transition": "^3.1.0",
+    "@react-md/typography": "^3.1.0",
+    "@react-md/utils": "^3.1.0",
     "classnames": "^2.3.1",
     "react-transition-group": "^4.4.2"
   },

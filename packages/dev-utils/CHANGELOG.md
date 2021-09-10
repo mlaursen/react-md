@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/mlaursen/react-md/compare/v3.0.1...v3.1.0) (2021-09-10)
+
+
+### Bug Fixes
+
+* **typescript:** updated all array types to be readonly ([8f71bcb](https://github.com/mlaursen/react-md/commit/8f71bcbde12928434975c6836079c3dda7c6ab1f))
+
+
+### Documentation
+
+* **react-md.dev:** updated `sassdoc` for new module system ([4746d26](https://github.com/mlaursen/react-md/commit/4746d265adcc2dcaffb260a565462b9d9c28805e))
+
+
+### Other Internal Changes
+
+* ran `yarn format` to include new files ([48d3d7f](https://github.com/mlaursen/react-md/commit/48d3d7fddb0435edf7dec9d0ba38cf3f0f251709))
+* Simplifying format and covering json and yml files ([#1227](https://github.com/mlaursen/react-md/issues/1227)) ([045ba5e](https://github.com/mlaursen/react-md/commit/045ba5e2ade2b6926af32c5a530c1fc81d739d97))
+* **@react-md/dev-utils:** fixed spelling of gzipped ([baad174](https://github.com/mlaursen/react-md/commit/baad1747480e2b11129f7992571e6b72641436e3))
+* **typescript:** support typescript@v4.4.2 ([5a9dd72](https://github.com/mlaursen/react-md/commit/5a9dd729e1f34df326aee20eca9a7436bb152cd4))
+
+
+
+
+
+
 # [3.0.0](https://github.com/mlaursen/react-md/compare/v2.9.1...v3.0.0) (2021-08-13)
 
 

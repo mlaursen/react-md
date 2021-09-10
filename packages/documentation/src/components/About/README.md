@@ -19,10 +19,10 @@ estimated size for this library, check out the results below:
 ```sh
 yarn dev-utils libsize
 
-The gizipped UMD bundle sizes are:
- - dist/umd/react-md.production.min.js 86.41 KB
- - dist/umd/react-md-with-font-icons.production.min.js 110.68 KB
- - dist/umd/react-md-with-svg-icons.production.min.js 176.46 KB
+The gzipped UMD bundle sizes are:
+ - dist/umd/react-md.production.min.js 86.75 KB
+ - dist/umd/react-md-with-font-icons.production.min.js 111.03 KB
+ - dist/umd/react-md-with-svg-icons.production.min.js 176.83 KB
 
 The min and max gzipped CSS bundle sizes are:
  - themes/react-md.grey-red-700-light.min.css 17.63 KB
