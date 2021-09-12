@@ -99,7 +99,7 @@ export interface TabsManagerProps
   /**
    * The list of tabs that should be controlled by the tabs manager.
    */
-  tabs: (TabConfig | ReactElement | string)[];
+  tabs: readonly (TabConfig | ReactElement | string)[];
 
   /**
    * The children to render that should eventually have the `Tabs` component and
