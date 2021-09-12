@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/mlaursen/react-md/compare/v3.1.0...v3.1.1) (2021-09-12)
+
+
+### Bug Fixes
+
+* **typescript:** added missing readonly prefix to `TabsManager` tabs prop ([45d9458](https://github.com/mlaursen/react-md/commit/45d9458ad01e30be1364357f2f78c1aa4c685dfd))
+
+
+
+
+
+
 # [3.1.0](https://github.com/mlaursen/react-md/compare/v3.0.1...v3.1.0) (2021-09-10)
 
 

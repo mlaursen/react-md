@@ -1,6 +1,6 @@
 {
   "name": "documentation",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
@@ -36,7 +36,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.1",
     "react-hook-form": "^7.12.2",
-    "react-md": "^3.1.0",
+    "react-md": "^3.1.1",
     "react-router-dom": "^5.2.0",
     "react-swipeable": "^6.1.2",
     "react-transition-group": "^4.4.2",

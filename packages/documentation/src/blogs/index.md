@@ -1,3 +1,16 @@
+Title: react-md 3.1.1
+
+Date: 09/11/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **typescript:** added missing readonly prefix to `TabsManager` tabs prop
+  (45d9458)
+
+---
+
 Title: react-md 3.1.0
 
 Date: 09/10/2021

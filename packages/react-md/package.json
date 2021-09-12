@@ -1,6 +1,6 @@
 {
   "name": "react-md",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "This is the full react-md library bundled together for convenience.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -55,7 +55,7 @@
     "@react-md/sheet": "^3.1.0",
     "@react-md/states": "^3.1.0",
     "@react-md/table": "^3.1.0",
-    "@react-md/tabs": "^3.1.0",
+    "@react-md/tabs": "^3.1.1",
     "@react-md/theme": "^3.1.0",
     "@react-md/tooltip": "^3.1.0",
     "@react-md/transition": "^3.1.0",

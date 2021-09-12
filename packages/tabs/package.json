@@ -1,6 +1,6 @@
 {
   "name": "@react-md/tabs",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Create accessible tabs to organize data across multiple screens or interactions.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
