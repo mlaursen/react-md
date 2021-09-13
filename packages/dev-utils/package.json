@@ -41,8 +41,7 @@
     "sass": "^1.37.5",
     "sassdoc": "^2.7.2",
     "ts-morph": "^12.0.0",
-    "typedoc": "^0.21.9",
-    "typedoc-plugin-sourcefile-url": "^1.0.6",
+    "typedoc": "^0.22.3",
     "typescript": "^4.4.2"
   },
   "devDependencies": {
