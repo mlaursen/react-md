@@ -22,7 +22,7 @@
     "gatsby-plugin-layout": "^2.11.0",
     "gatsby-plugin-sass": "^4.11.0",
     "gatsby-plugin-typescript": "^3.11.0",
-    "prettier": "2.3.2",
+    "prettier": "^2.4.0",
     "sass": "^1.36.0"
   }
 }
