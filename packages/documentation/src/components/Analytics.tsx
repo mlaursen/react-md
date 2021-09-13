@@ -5,13 +5,12 @@ import { GA_CODE } from "constants/github";
 
 const GA_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_CODE}`;
 
-const html = {
-  __html: `window.dataLayer = window.dataLayer || [];
+const GA_HTML = `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
-gtag('config', '${GA_CODE}');`,
-};
+gtag('config', '${GA_CODE}');
+`;
 
 export default function Analytics(): ReactElement | null {
   if (process.env.NODE_ENV !== "production" && !GA_CODE) {
@@ -21,7 +20,7 @@ export default function Analytics(): ReactElement | null {
   return (
     <>
       <script src={GA_SRC} async />
-      <script dangerouslySetInnerHTML={html} />
+      <script dangerouslySetInnerHTML={{ __html: GA_HTML }} />
     </>
   );
 }
