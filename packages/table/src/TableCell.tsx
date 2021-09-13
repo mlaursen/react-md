@@ -13,13 +13,9 @@ import { useTableFooter } from "./footer";
 import { useSticky } from "./sticky";
 import { SortOrder, TableCellContent } from "./TableCellContent";
 
-export type TableCellElement =
-  | HTMLTableDataCellElement
-  | HTMLTableHeaderCellElement;
-
 export type TableCellAttributes = Omit<
-  | TdHTMLAttributes<HTMLTableDataCellElement>
-  | ThHTMLAttributes<HTMLTableHeaderCellElement>,
+  | TdHTMLAttributes<HTMLTableCellElement>
+  | ThHTMLAttributes<HTMLTableCellElement>,
   "colSpan" | "scope"
 >;
 
@@ -124,7 +120,7 @@ const block = bem("rmd-table-cell");
  * it is invalid to have a `<th>` without any readable content for screen
  * readers.
  */
-export const TableCell = forwardRef<TableCellElement, TableCellProps>(
+export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
   function TableCell(
     {
       "aria-sort": sortOrder,

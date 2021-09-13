@@ -21,7 +21,7 @@ type WantedCheckboxProps =
 
 export interface TableCheckboxProps
   extends Omit<
-      TdHTMLAttributes<HTMLTableDataCellElement>,
+      TdHTMLAttributes<HTMLTableCellElement>,
       "onChange" | "scope" | "aria-sort"
     >,
     Pick<CheckboxProps, WantedCheckboxProps>,
@@ -80,7 +80,7 @@ const DEFAULT_ARIA_LABEL = "Toggle Row Selection";
  * it's more for selection.
  */
 export const TableCheckbox = forwardRef<
-  HTMLTableDataCellElement,
+  HTMLTableCellElement,
   TableCheckboxProps
 >(function TableCheckbox(
   {
