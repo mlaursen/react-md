@@ -34,28 +34,26 @@ First, create or update `src/_everything.scss`:
 
 ```scss
 @use "@react-md/theme/dist/color-palette" as *;
-@forward "react-md" with (
-  $rmd-theme-light: false,
-  // I am bad at colors and chose 2 random ones from https://flatuicolors.com/palette/defo
-  // probably looks terrible so wouldn't recommend copying this example
-  $rmd-theme-primary: #3498db,
-  $rmd-theme-secondary: #d35400,
-
-  // make buttons bigger
-  $rmd-button-text-horizontal-padding: 1.5rem,
-  $rmd-button-text-border-radius: 0.25rem,
-  $rmd-button-text-height: 3rem,
-
-  // add more padding to the base list
-  $rmd-list-vertical-padding: 1rem,
-  $rmd-list-dense-vertical-padding: 0.75rem,
-
-  // make each list item a bit more dense
-  $rmd-list-item-height: 2.5rem,
-  $rmd-list-item-dense-height: 2rem,
-  $rmd-list-item-medium-height: 3rem,
-  $rmd-list-item-dense-medium-height: 2.75rem,
-);
+@forward "react-md" with
+  (
+    $rmd-theme-light: false,
+    // I am bad at colors and chose 2 random ones from https://flatuicolors.com/palette/defo
+    // probably looks terrible so wouldn't recommend copying this example
+    $rmd-theme-primary: #3498db,
+    $rmd-theme-secondary: #d35400,
+    // make buttons bigger
+    $rmd-button-text-horizontal-padding: 1.5rem,
+    $rmd-button-text-border-radius: 0.25rem,
+    $rmd-button-text-height: 3rem,
+    // add more padding to the base list
+    $rmd-list-vertical-padding: 1rem,
+    $rmd-list-dense-vertical-padding: 0.75rem,
+    // make each list item a bit more dense
+    $rmd-list-item-height: 2.5rem,
+    $rmd-list-item-dense-height: 2rem,
+    $rmd-list-item-medium-height: 3rem,
+    $rmd-list-item-dense-medium-height: 2.75rem
+  );
 ```
 
 Finally, update the root styles to import the react-md packages and generate the

@@ -1,4 +1,4 @@
-@use './everything' as *;
+@use "./everything" as *;
 
 // generate all react-md styles with the custom theme
 @include react-md-utils;

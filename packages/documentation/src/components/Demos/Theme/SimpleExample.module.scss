@@ -1,9 +1,10 @@
 // sass-lint:disable class-name-format
 @use '@react-md/theme/dist/color-palette' as color;
-@use 'react-md' as * with (
-  $rmd-theme-primary: color.$rmd-teal-500,
-  $rmd-theme-secondary: color.$rmd-pink-a-200,
-);
+@use 'react-md' as * with
+  (
+    $rmd-theme-primary: color.$rmd-teal-500,
+    $rmd-theme-secondary: color.$rmd-pink-a-200
+  );
 
 .container {
   @include rmd-theme-update-var(background, $rmd-white-base);

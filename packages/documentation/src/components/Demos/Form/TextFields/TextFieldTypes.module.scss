@@ -1,7 +1,8 @@
-@use 'react-md' as * with (
-  $rmd-utils-desktop-min-width: 92em,
-  $rmd-utils-large-desktop-min-width: 120em,
-);
+@use 'react-md' as * with
+  (
+    $rmd-utils-desktop-min-width: 92em,
+    $rmd-utils-large-desktop-min-width: 120em
+  );
 
 .container {
   @include rmd-grid(
