@@ -23,7 +23,7 @@
     "classnames": "^2.3.1",
     "codesandbox": "^2.2.3",
     "date-fns": "^2.23.0",
-    "filesize": "^7.0.0",
+    "filesize": "^8.0.2",
     "formidable": "^1.2.2",
     "fuse.js": "6.4.6",
     "js-cookie": "^3.0.0",
