@@ -119,7 +119,7 @@ export function combineAllFiles(): void {
 
       const contents = readFileSync(filePath, "utf8");
 
-      const fileUses = contents.match(/^@use "(.+)";/gm);
+      const fileUses = contents.match(/^@use ('|")(.+)\1;/gm);
       const imports = contents.match(/^@import.+$/gm);
       files.push(
         contents
