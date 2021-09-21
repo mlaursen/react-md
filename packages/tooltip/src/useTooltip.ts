@@ -351,6 +351,7 @@ export function useTooltip<E extends HTMLElement>({
 
       setVisible(false);
       setInitiatedBy(null);
+      window.clearTimeout(timeout.current);
     },
     onMouseEnter: (event) => {
       onMouseEnter?.(event);

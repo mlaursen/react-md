@@ -261,7 +261,7 @@ export function useHoverMode<E extends HTMLElement>({
       window.clearTimeout(timeoutRef.current);
     };
 
-    // this is just used so the `defaultOption` can be used
+    // this is just used so the `defaultVisible` option can be used
     if (!skipReset.current) {
       reset();
     }

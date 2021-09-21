@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { MouseEvent, ReactNode } from "react";
 import { render, fireEvent, act } from "@testing-library/react";
 import { SimplePosition, UserInteractionModeListener } from "@react-md/utils";
 
@@ -7,6 +7,7 @@ import { Tooltipped } from "../Tooltipped";
 jest.useFakeTimers();
 
 interface TestProps {
+  onClick?(event: MouseEvent): void;
   position?: SimplePosition;
   defaultPosition?: SimplePosition;
 }
@@ -118,6 +119,7 @@ describe("Tooltipped", () => {
     const onBlur = jest.fn();
     const onFocus = jest.fn();
     const onKeyDown = jest.fn();
+    const onClick = jest.fn();
     const onTouchStart = jest.fn();
     const onContextMenu = jest.fn();
     const onMouseEnter = jest.fn();
@@ -129,6 +131,7 @@ describe("Tooltipped", () => {
         tooltip="Look at me!"
         onBlur={onBlur}
         onFocus={onFocus}
+        onClick={onClick}
         onKeyDown={onKeyDown}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
@@ -157,6 +160,9 @@ describe("Tooltipped", () => {
 
     fireEvent.touchStart(button);
     expect(onTouchStart).toBeCalledTimes(1);
+
+    fireEvent.click(button);
+    expect(onClick).toBeCalledTimes(1);
 
     fireEvent.contextMenu(button);
     expect(onContextMenu).toBeCalledTimes(1);
@@ -451,6 +457,58 @@ describe("Tooltipped", () => {
     expect(getByRole("tooltip")).toHaveClass("rmd-tooltip--above");
 
     fireEvent.mouseLeave(button);
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(() => getByRole("tooltip")).toThrow();
+  });
+
+  it("should throw an error if a javascript user provides an invalid position", () => {
+    const error = jest.spyOn(console, "error").mockImplementation(() => {
+      // do nothing
+    });
+
+    // @ts-expect-error
+    expect(() => render(<Test position="abvoe" />)).toThrow(
+      "Invalid position: abvoe"
+    );
+
+    error.mockRestore();
+  });
+
+  it("should cancel the tooltip timer if the element is clicked", () => {
+    const onClick = jest.fn().mockImplementationOnce((event: MouseEvent) => {
+      event.stopPropagation();
+    });
+    const { getByRole } = render(<Test onClick={onClick} />);
+
+    const button = getByRole("button");
+    fireEvent.mouseEnter(button);
+    fireEvent.click(button);
+
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
+    // event.stopPropagation was called
+    expect(() => getByRole("tooltip")).not.toThrow();
+
+    fireEvent.mouseLeave(button);
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(() => getByRole("tooltip")).toThrow();
+
+    fireEvent.mouseEnter(button);
+    act(() => {
+      jest.advanceTimersByTime(500);
+    });
+    expect(() => getByRole("tooltip")).toThrow();
+
+    fireEvent.click(button);
+    act(() => {
+      jest.advanceTimersByTime(500);
+    });
+    expect(() => getByRole("tooltip")).toThrow();
     act(() => {
       jest.runAllTimers();
     });
