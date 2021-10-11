@@ -44,7 +44,6 @@ const BASE_CJS_CONFIG = {
   ...BASE_ESJ_CONFIG,
   compilerOptions: {
     module: "commonjs",
-    skipLibCheck: true,
     rootDir: "src",
     outDir: "lib",
   },

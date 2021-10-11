@@ -5,6 +5,7 @@
     "sourceMap": true,
     "composite": true,
     "jsx": "react",
+    "skipLibCheck": true,
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
