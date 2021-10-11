@@ -77,6 +77,13 @@ export default function getSandbox(
               "$rmd-theme-light: false"
             );
           }
+
+          if (fileName.endsWith(".scss")) {
+            content = content.replace(
+              /^@(use|forward) ('|")react-md\2(.*)$/gm,
+              "// Note: Outside of codesandbox, this can be `@$1 $2react-md$2$3`\n@$1 $2react-md/dist/everything$2$3"
+            );
+          }
         } else if (
           typeof content === "object" &&
           content &&
