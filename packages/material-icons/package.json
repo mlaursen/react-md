@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/adm-zip": "^0.4.34",
     "@types/download": "^8.0.1",
-    "adm-zip": "^0.5.6",
+    "adm-zip": "^0.5.9",
     "commander": "^8.2.0",
     "download": "^8.0.0",
     "react": "^17.0.2",
