@@ -1,6 +1,7 @@
 import React, { HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
-import { Text } from "@react-md/typography";
+
+import styles from "./Blockquote.module.scss";
 
 export default function Blockquote({
   className,
@@ -8,8 +9,8 @@ export default function Blockquote({
   ...props
 }: HTMLAttributes<HTMLDivElement>): ReactElement {
   return (
-    <blockquote {...props} className={cn("blockquote", className)}>
-      <Text>{children}</Text>
+    <blockquote {...props} className={cn(styles.blockquote, className)}>
+      {children}
     </blockquote>
   );
 }

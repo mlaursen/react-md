@@ -1962,7 +1962,7 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.175.tgz#b78dfa959192b01fae0ad90e166478769b215f45"
   integrity sha512-XmdEOrKQ8a1Y/yxQFOMbC47G/V2VDO1GvMRnl4O75M4GW/abC5tnfzadQYkqEveqRM1dEJGFFegfPNA2vvx2iw==
 
-"@types/marked@^3.0.1":
+"@types/marked@^3.0.0":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@types/marked/-/marked-3.0.1.tgz#748645ecde30d8cf7861c3e1c360c6f694172f92"
   integrity sha512-jry/WUAC511P2NBCeiCkfTRCN2VXobeeQa8p8gImOYsRfnuIVfeEsqOJ1pk+CzCwfMCdv3dkTQRCYaNkkFGtxw==
@@ -9481,7 +9481,7 @@ marked@^0.6.2:
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.6.3.tgz#79babad78af638ba4d522a9e715cdfdd2429e946"
   integrity sha512-Fqa7eq+UaxfMriqzYLayfqAE40WN03jf+zHjT18/uXNuzjq3TY0XTbrAoPeqSJrAmPz11VuUA+kBPYOhHt9oOQ==
 
-marked@^3.0.4, marked@^3.0.7:
+marked@^3.0.3, marked@^3.0.4:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/marked/-/marked-3.0.7.tgz#343aad9e91b96249b495c99c512ea09cfe06de1e"
   integrity sha512-ctKqbnLuNbsHbI26cfMyOlKgXGfl1orOv1AvWWDX7AkgfMOwCWvmuYc+mVLeWhQ9W6hdWVBynOs96VkcscKo0Q==
@@ -12028,6 +12028,14 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-marked-renderer@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/react-marked-renderer/-/react-marked-renderer-0.2.1.tgz#154ed8a802ab3e6d36651f868a00a17660c246c3"
+  integrity sha512-P3DW/6JJ3I9tbq9EMLXQ5kUoChzO4Zud6iQld9BbCxtZ2N5a6tlUXIAbA1GkexpA1IUOef3uEaGQtwXyEX55mg==
+  dependencies:
+    "@types/marked" "^3.0.0"
+    marked "^3.0.3"
 
 react-refresh@0.8.3:
   version "0.8.3"

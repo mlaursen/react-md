@@ -37,6 +37,8 @@ export default function CodePreview({
     if (typeof content !== "string") {
       content = `${JSON.stringify(content, null, 2)}\n`;
     }
+
+    content = content.trim();
   }
 
   const code = useRef<HTMLPreElement | null>(null);

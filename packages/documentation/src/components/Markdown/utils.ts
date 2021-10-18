@@ -1,7 +1,3 @@
-import Prism from "prismjs";
-import marked from "marked";
-import cn from "classnames";
-
 import {
   RMD_VERSION,
   GITHUB_URL,
@@ -9,140 +5,6 @@ import {
   GITHUB_FILE_URL,
 } from "constants/github";
 import { PACKAGE_NAMES, SCSS_PACKAGES } from "constants/packages";
-
-import styles from "./Markdown.module.scss";
-
-export function getLanguage(language: string): string {
-  switch (language) {
-    case "":
-    case "markdown":
-      return "markup";
-    case "sh":
-      return "shell";
-    default:
-      return language;
-  }
-}
-
-export function highlightCode(code: string, lang = ""): string {
-  const language = getLanguage(lang);
-  try {
-    return Prism.highlight(code, Prism.languages[language], language);
-  } catch (e) {
-    if (process.env.NODE_ENV === "development") {
-      /* eslint-disable no-console */
-      console.error(
-        `Error trying to parse code with the following language: '${lang}' as '${language}'`
-      );
-      console.error(e);
-    }
-
-    return "";
-  }
-}
-
-const NO_MARGIN_COMMENT = "<!-- no-margin -->";
-const NO_MARGIN_BOTTOM_COMMENT = "<!-- no-margin-bottom -->";
-const FORCE_HEADING_COMMENT = "<!-- force-heading -->";
-const removeComments = (text: string): string =>
-  text.replace(/<!-- ([A-z]+(-[A-z]+)*) -->/g, "");
-
-/**
- * The custom markdown renderer. This just adds some additional styles to
- * existing elements, and does some fun stuff with code blocks.
- */
-const renderer = new marked.Renderer();
-
-renderer.code = (rawCode, language) => {
-  language = getLanguage(language || "");
-  const code = highlightCode(rawCode, language);
-  const lines = (rawCode.match(/\r?\n/g) || []).length + 1;
-  let lineNumbers = "";
-  if (lines > 3 && !/markup|shell/.test(language) && language) {
-    lineNumbers = Array.from({ length: lines })
-      .map((_, i) => `<span class="code__line-number">${i + 1}</span>`)
-      .join("");
-    lineNumbers = `<span class="code__lines">${lineNumbers}</span>`;
-  }
-
-  const className = cn(
-    "code code--block",
-    {
-      "code--counted": lineNumbers,
-    },
-    `language-${language}`
-  );
-  return `<pre class="${className}">${lineNumbers}<code class="code">${code}</code></pre>`;
-};
-
-renderer.codespan = (code) => `<code class="code code--inline">${code}</code>`;
-
-renderer.heading = (text, level, _raw, slugger) => {
-  // if it is over 60 characters, it is probably not really a title
-  const isNoMargin = text.includes(NO_MARGIN_COMMENT);
-  const isNoMarginBottom = text.includes(NO_MARGIN_BOTTOM_COMMENT);
-  const isForcedHeading = text.includes(FORCE_HEADING_COMMENT);
-  // replace comments since they will be slugged :/
-  text = removeComments(text);
-
-  const isValidHeading = isForcedHeading || (text.length <= 60 && !isNoMargin);
-  // `'t` gets slugged as 39t
-  const id = slugger.slug(text.replace("🎉", "")).replace(/39t/g, "t");
-  const className = cn(`rmd-typography rmd-typography--headline-${level}`, {
-    heading: isValidHeading,
-    heading__toc: text.includes("Table of Contents"),
-    "rmd-typography--no-margin": isNoMargin,
-    "rmd-typography--no-margin-bottom": isNoMarginBottom,
-  });
-
-  return `<h${level} id="${id}" class="${className}">
-  ${
-    isValidHeading
-      ? `<a href="#${id}" class="heading__link" aria-hidden="true">#</a>`
-      : ""
-  }
-  ${text}
-</h${level}>`;
-};
-
-renderer.blockquote = (quote) =>
-  `<blockquote class="blockquote">${quote}</blockquote>`;
-
-renderer.link = (href, title, text) => {
-  title = title ? ` title="${title}"` : "";
-
-  return `<a class="rmd-link" href="${href}"${title}>${text}</a>`;
-};
-
-renderer.paragraph = (text: string) =>
-  `<p class="${styles.p}">${removeComments(text)}</p>`;
-
-renderer.image = (href, title, alt) => {
-  let content = `<img src="${href}" alt="${alt}" title="${title || alt}" />`;
-  if (href?.endsWith(".mp4")) {
-    content =
-      "<video autoplay loop muted>" +
-      `<source src="${href}" type="video/mp4">${title || alt}` +
-      "</video>";
-  }
-
-  return (
-    `<a href="${href}">` +
-    '<div class="rmd-media-container rmd-media-container--auto">' +
-    `${content}</div>` +
-    "</a>"
-  );
-};
-
-renderer.list = (body, ordered) => {
-  const tag = ordered ? "ol" : "ul";
-  return `<${tag} class="${styles.list}">${body}</${tag}>`;
-};
-
-renderer.hr = () => '<hr class="rmd-divider">';
-
-// ///////////////////////////////////////////////////
-// MARKDOWN TRANSFORMATIONS
 
 type Transformer = (markdown: string) => string;
 const joinedNames = PACKAGE_NAMES.join("|");
@@ -257,7 +119,7 @@ export const linkToGithubIssues: Transformer = (md) =>
  * ```
  */
 export const linkToGithubCommit: Transformer = (md) =>
-  md.replace(/(\b[0-9a-f]{7}\b)/g, `[$1](${GITHUB_URL}/commit/$1)`);
+  md.replace(/([^[])(\b[0-9a-f]{7}\b)/g, `$1[$2](${GITHUB_URL}/commit/$2)`);
 
 /**
  * A _super_ important transformer that replaces emojis in the markdown if the
@@ -304,6 +166,6 @@ const transforms: Transformer[] = [
 const transform = (markdown: string): string =>
   transforms.reduce((updated, fn) => fn(updated), markdown);
 
-export function markdownToHTML(markdown: string): string {
-  return marked.parse(transform(markdown), { renderer });
+export function transformMarkdown(markdown: string): string {
+  return transform(markdown);
 }

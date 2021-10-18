@@ -6,11 +6,10 @@ import React, {
 } from "react";
 import cn from "classnames";
 
-import { highlightCode } from "components/Markdown/utils";
-
 import styles from "./CodeBlock.module.scss";
 import Code from "./Code";
 import LineNumbers from "./LineNumbers";
+import { highlightCode } from "./utils";
 
 export interface CodeBlockProps extends HTMLAttributes<HTMLPreElement> {
   /**
@@ -64,13 +63,18 @@ export default forwardRef<HTMLPreElement, CodeBlockProps>(function CodeBlock(
     language = "markdown",
     children,
     highlight = true,
-    lineNumbers = false,
+    lineNumbers: propLineNumbers,
     suppressHydrationWarning = false,
     ...props
   },
   ref
 ) {
   const code = typeof children === "string" ? children : "";
+
+  const lineNumbers =
+    propLineNumbers ??
+    (!/markup|markdown|shell/.test(language) &&
+      (code.match(/\r?\n/g) || []).length + 1 > 3);
 
   let dangerouslySetInnerHTML: DOMAttributes<HTMLElement>["dangerouslySetInnerHTML"];
   if (code && highlight) {
@@ -82,6 +86,7 @@ export default forwardRef<HTMLPreElement, CodeBlockProps>(function CodeBlock(
   return (
     <pre
       {...props}
+      data-linenumbers={lineNumbers || undefined}
       ref={ref}
       className={cn(
         styles.block,

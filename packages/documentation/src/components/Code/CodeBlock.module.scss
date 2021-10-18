@@ -25,7 +25,7 @@
   }
 
   // prismjs custom theme
-  // this is _basically_ my current vim theme, but not aas good since
+  // this is _basically_ my current vim theme, but not as good since
   // Prism doesn't have as many tokenizers
   :global {
     .token {
@@ -95,8 +95,7 @@
     color: $solarized-blue;
   }
 
-  &:global(.language-ts) :global .token + .class-name,
-  &:global(.language-tsx) :global .token + .class-name {
+  &:global(.language-ts) :global .token + .class-name {
     color: $solarized-base-1;
   }
 

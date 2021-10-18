@@ -1,10 +1,5 @@
 @use 'react-md' as *;
 
-.p,
-.list {
-  @include rmd-typography(subtitle-1);
-}
-
 .container {
   @include rmd-utils-phone-media {
     @each $headline in (1 2 3) {
