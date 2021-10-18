@@ -1,0 +1,23 @@
+@use '../../everything' as *;
+
+.code {
+  @include rmd-typography(body-1);
+
+  font-family: 'Source Code Pro', Consolas, Monaco, monospace;
+}
+
+.inline {
+  color: var(--code-color);
+  white-space: pre-wrap;
+}
+
+.ticked {
+  &::before,
+  &::after {
+    content: '\`';
+  }
+}
+
+.oneline {
+  white-space: nowrap;
+}

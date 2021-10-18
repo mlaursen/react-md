@@ -1,0 +1,112 @@
+@use '../../everything' as *;
+
+.block {
+  @include rmd-typography(body-1);
+
+  background-color: $solarized-base-03;
+  color: $solarized-base-1;
+
+  // always enforce ltr for blocked code
+  direction: ltr;
+  font-family: 'Source Code Pro', Consolas, Monaco, monospace;
+  margin: 0.5em 0;
+  overflow: auto;
+  padding: 1em;
+
+  &::selection,
+  *::selection {
+    background-color: $solarized-base-02;
+  }
+
+  // to help with the collapse transition on expandable code, update it so
+  // that only the vertical overflow is hidden.
+  &.rmd-collapse--no-overflow {
+    overflow-y: hidden;
+  }
+
+  // prismjs custom theme
+  // this is _basically_ my current vim theme, but not aas good since
+  // Prism doesn't have as many tokenizers
+  :global {
+    .token {
+      position: relative;
+      z-index: 1;
+
+      &.comment,
+      &.doctype {
+        color: $solarized-base-01;
+      }
+
+      &.keyword {
+        color: $solarized-green;
+      }
+
+      &.punctuation {
+        color: $solarized-base-01;
+      }
+
+      &.inserted,
+      &.string,
+      .language-tsx &.attr-value {
+        color: $solarized-cyan;
+      }
+
+      &.tag,
+      &.selector,
+      &.class-name {
+        color: $solarized-blue;
+      }
+
+      &.attr-name,
+      &.property,
+      &.builtin {
+        color: $solarized-yellow;
+      }
+
+      &.script,
+      &.interpolation {
+        color: $solarized-base-1;
+      }
+
+      &.deleted,
+      &.boolean,
+      &.number,
+      &.interpolation-punctuation {
+        color: $solarized-red;
+      }
+
+      &.important,
+      &.bold {
+        font-weight: map-get($rmd-typography-font-weights, bold);
+      }
+
+      &.italic {
+        font-style: italic;
+      }
+
+      &.entity {
+        cursor: help;
+      }
+    }
+  }
+
+  &:global(.language-scss) :global .token.function,
+  &:global(.language-scss) :global .token.variable {
+    color: $solarized-blue;
+  }
+
+  &:global(.language-ts) :global .token + .class-name,
+  &:global(.language-tsx) :global .token + .class-name {
+    color: $solarized-base-1;
+  }
+
+  &:global(.language-scss) :global .token.function,
+  &:global(.language-shell) :global .token.function {
+    color: $solarized-orange;
+  }
+}
+
+.counted {
+  padding-left: 3em;
+  position: relative;
+}

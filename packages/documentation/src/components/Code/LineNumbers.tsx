@@ -1,30 +1,19 @@
-/* eslint-disable react/no-array-index-key */
 import React, { ReactElement } from "react";
-import { bem } from "@react-md/utils";
+
+import styles from "./LineNumbers.module.scss";
 
 export interface LineNumbersProps {
   code: string;
-  enabled: boolean;
 }
 
-const block = bem("code");
-
-export default function LineNumbers({
-  code,
-  enabled,
-}: LineNumbersProps): ReactElement | null {
-  if (!enabled) {
-    return null;
-  }
-
-  const lines = (code.match(/\r?\n/g) || []).length;
+export default function LineNumbers({ code }: LineNumbersProps): ReactElement {
+  const lineCount = code.match(/\r?\n/g)?.length;
+  const lines = typeof lineCount === "number" ? lineCount + 1 : 1;
 
   return (
-    <span className={block("lines")}>
+    <span className={styles.container}>
       {Array.from({ length: lines }).map((_, i) => (
-        <span key={i} className={block("line-number")}>
-          {i + 1}
-        </span>
+        <span key={i} className={styles.counter} />
       ))}
     </span>
   );

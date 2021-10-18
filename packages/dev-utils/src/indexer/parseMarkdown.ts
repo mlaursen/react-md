@@ -1,5 +1,5 @@
 import { decode } from "he";
-import marked from "marked";
+import { parse, Renderer } from "marked";
 
 import { getPackages } from "../utils";
 import { TOCAnchor } from "./types";
@@ -16,7 +16,7 @@ const whitespace = "(?=\r?\n| |[^/])";
 export function parseMarkdown(markdown: string): MarkdownResult {
   const joinedNames = getPackages().join("|");
   const anchors: TOCAnchor[] = [];
-  const renderer = new marked.Renderer({ gfm: true, sanitize: false });
+  const renderer = new Renderer({ gfm: true, sanitize: false });
   renderer.heading = (text, _level, _raw, slugger) => {
     // if it is over 60 characters, it is probably not really a title
     const isNoMargin = text.includes("<!-- no-margin -->");
@@ -106,7 +106,7 @@ export function parseMarkdown(markdown: string): MarkdownResult {
       /#customizing-your-theme/g,
       "[customizing your theme](/guides/customizing-your-theme)"
     );
-  marked.parse(updated, { renderer });
+  parse(updated, { renderer });
 
   return {
     anchors,
