@@ -16,7 +16,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [12.x, 14.x]
 
     steps:
       - uses: actions/checkout@v2.3.5
@@ -30,24 +30,24 @@ jobs:
       - run: yarn setup
       - run: yarn dev-utils doc-index
       - run: yarn lint
-      - run: yarn test -i
+      - run: yarn test
 
   build_node_14:
-    # only want to use codecov for node 14
-    name: Build Using Node 14
+    # only want to use codecov for node 16
+    name: Build Using Node 16
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     steps:
       - uses: actions/checkout@v2.3.5
 
-      - name: Use Node.js 14
+      - name: Use Node.js 16
         uses: actions/setup-node@v2.4.1
         with:
-          node-version: 14
+          node-version: 16
           cache: yarn
       - run: yarn
       - run: yarn setup
       - run: yarn dev-utils doc-index
       - run: yarn lint
-      - run: yarn test -i --coverage
+      - run: yarn test --coverage
       - run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
