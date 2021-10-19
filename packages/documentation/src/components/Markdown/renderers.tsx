@@ -18,8 +18,8 @@ import {
 } from "react-md";
 
 import Blockquote from "components/Blockquote";
-import Code from "components/Code/Code";
-import CodeBlock from "components/Code/CodeBlock";
+import Code from "components/Code";
+import CodeBlock from "components/CodeBlock";
 import Link from "components/Link";
 
 import styles from "./renderers.module.scss";

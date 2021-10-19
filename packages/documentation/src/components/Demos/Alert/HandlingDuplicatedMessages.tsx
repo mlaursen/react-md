@@ -10,7 +10,7 @@ import { Divider } from "@react-md/divider";
 import { Fieldset, Form, NativeSelect, Radio, useChoice } from "@react-md/form";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 interface Props {
   duplicates: DuplicateBehavior;

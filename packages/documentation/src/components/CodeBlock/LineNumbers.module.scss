@@ -1,7 +1,7 @@
-@use '../../everything' as *;
+@use './solarized';
 
 .container {
-  border-right: 1px solid $solarized-base-01;
+  border-right: 1px solid solarized.$base-01;
   counter-reset: line-numbers;
   display: flex;
   flex-direction: column;

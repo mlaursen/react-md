@@ -7,7 +7,7 @@ import React, {
 import cn from "classnames";
 import { Markdown as MarkdownRenderer } from "react-marked-renderer";
 
-import { getLanguage, highlightCode } from "components/Code/utils";
+import { getLanguage, highlightCode } from "components/CodeBlock/utils";
 
 import styles from "./Markdown.module.scss";
 import { renderers } from "./renderers";

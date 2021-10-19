@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 
-import { Code } from "components/Code";
+import Code from "components/Code";
 import Link from "components/Link";
 
 import { UNPKG } from "./constants";

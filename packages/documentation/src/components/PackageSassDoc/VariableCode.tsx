@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { Switch, useChecked } from "@react-md/form";
 
-import { CodeBlock } from "components/Code";
+import CodeBlock from "components/CodeBlock";
 import { FormattedVariableItem } from "utils/sassdoc";
 
 export interface VariableCodeProps

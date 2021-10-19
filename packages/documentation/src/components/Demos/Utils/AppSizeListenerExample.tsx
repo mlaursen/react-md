@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { TextContainer, Text } from "@react-md/typography";
 import { AppSizeListener, useAppSize } from "@react-md/utils";
 
-import CodeBlock from "components/Code/CodeBlock";
+import CodeBlock from "components/CodeBlock";
 
 function CurrentSize(): ReactElement {
   const context = useAppSize();

@@ -5,7 +5,7 @@ import { AddSVGIcon, ShareSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu, MenuItem, MenuItemProps } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 function Share(props: MenuItemProps): ReactElement {
   return (

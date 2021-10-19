@@ -3,8 +3,8 @@ import { Button } from "@react-md/button";
 import { isPersistentLayout, useLayoutConfig } from "@react-md/layout";
 import { Text } from "@react-md/typography";
 
-import CodeBlock from "components/Code/CodeBlock";
 import Blockquote from "components/Blockquote";
+import CodeBlock from "components/CodeBlock";
 
 export default function LayoutVisibility(): ReactElement {
   const { showNav, hideNav, ...remaining } = useLayoutConfig();

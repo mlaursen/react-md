@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
 import { Text } from "@react-md/typography";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 import CrossFadeExamplesAsync from "./CrossFadeExamplesAsync";
 import CrossFadeExamplesStatic from "./CrossFadeExamplesStatic";

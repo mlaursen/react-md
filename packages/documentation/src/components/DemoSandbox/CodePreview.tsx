@@ -3,7 +3,7 @@ import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { CircularProgress } from "@react-md/progress";
 
-import { CodeBlock } from "components/Code";
+import CodeBlock from "components/CodeBlock";
 
 import FileNotFound from "./FileNotFound";
 

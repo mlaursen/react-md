@@ -8,7 +8,7 @@ import {
 import { Text } from "@react-md/typography";
 import { Grid } from "@react-md/utils";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 export default function NumberHookExamples(): ReactElement | null {
   const [value1, field1Props] = useNumberField({

@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from "react";
 import { UnstyledButton } from "@react-md/button";
 import { Collapse } from "@react-md/transition";
 
-import { CodeBlock } from "components/Code";
+import CodeBlock from "components/CodeBlock";
 
 import styles from "./ExpandableCode.module.scss";
 

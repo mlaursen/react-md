@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import * as MaterialIcons from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 import styles from "./AllIcons.module.scss";
 

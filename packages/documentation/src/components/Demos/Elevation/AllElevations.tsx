@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import cn from "classnames";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 import styles from "./AllElevations.module.scss";
 

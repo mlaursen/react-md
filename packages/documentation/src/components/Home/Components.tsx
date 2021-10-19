@@ -9,7 +9,8 @@ import { Divider } from "@react-md/divider";
 import { MediaContainer } from "@react-md/media";
 import { Text } from "@react-md/typography";
 
-import { Code, CodeBlock } from "components/Code";
+import Code from "components/Code";
+import CodeBlock from "components/CodeBlock";
 import LinkButton from "components/LinkButton";
 
 import { Component as SVG } from "./components.svg";

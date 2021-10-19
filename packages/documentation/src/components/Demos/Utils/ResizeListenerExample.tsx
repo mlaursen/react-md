@@ -3,7 +3,7 @@ import { Checkbox, useChecked } from "@react-md/form";
 import { Text } from "@react-md/typography";
 import { ResizeListener } from "@react-md/utils";
 
-import CodeBlock from "components/Code/CodeBlock";
+import CodeBlock from "components/CodeBlock";
 
 export default function ResizeListenerExample(): ReactElement {
   const [size, setSize] = useState(() => {

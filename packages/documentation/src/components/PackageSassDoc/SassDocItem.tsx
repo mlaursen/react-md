@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { Text } from "@react-md/typography";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 import { Markdown } from "components/Markdown";
 import GithubLink from "components/GithubLink";
 import Link from "components/Link";

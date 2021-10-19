@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@react-md/table";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 import { Markdown } from "components/Markdown";
 import { M_DASH } from "constants/unicode";
 import { ParameterizedItemParameter } from "utils/sassdoc";

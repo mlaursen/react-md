@@ -7,7 +7,7 @@ import { List, ListItem } from "@react-md/list";
 import { Text, TextContainer } from "@react-md/typography";
 import { bem } from "@react-md/utils";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 import styles from "./CodePreview.module.scss";
 

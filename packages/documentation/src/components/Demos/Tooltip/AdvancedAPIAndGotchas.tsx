@@ -3,7 +3,7 @@ import { Button } from "@react-md/button";
 import { Tooltipped } from "@react-md/tooltip";
 import { Text } from "@react-md/typography";
 
-import CodeBlock from "components/Code/CodeBlock";
+import CodeBlock from "components/CodeBlock";
 
 function BrokenButton(): ReactElement {
   return <Button>No go</Button>;

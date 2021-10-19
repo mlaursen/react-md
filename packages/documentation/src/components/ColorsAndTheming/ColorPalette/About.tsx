@@ -1,9 +1,10 @@
 import React, { ReactElement } from "react";
 import { Text, TextContainer } from "@react-md/typography";
-
-import Heading from "components/Heading";
 import { Link } from "@react-md/link";
-import { Code, CodeBlock } from "components/Code";
+
+import Code from "components/Code";
+import CodeBlock from "components/CodeBlock";
+import Heading from "components/Heading";
 
 export default function About(): ReactElement {
   return (

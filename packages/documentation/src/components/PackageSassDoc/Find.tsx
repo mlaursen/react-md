@@ -16,7 +16,7 @@ import {
   useAppSize,
 } from "@react-md/utils";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 import { FormattedSassDocItem, FormattedVariableItem } from "utils/sassdoc";
 
 import getId from "./getId";

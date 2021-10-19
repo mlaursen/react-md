@@ -1,7 +1,8 @@
+import React, { ReactElement } from "react";
 import { Text } from "@react-md/typography";
 import { Grid } from "@react-md/utils";
-import Code from "components/Code/Code";
-import React, { ReactElement } from "react";
+
+import Code from "components/Code";
 
 export interface CurrentChildrenProps {
   route: string;

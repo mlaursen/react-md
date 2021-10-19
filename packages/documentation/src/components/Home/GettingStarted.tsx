@@ -9,7 +9,7 @@ import { Divider } from "@react-md/divider";
 import { MediaContainer } from "@react-md/media";
 import { Text } from "@react-md/typography";
 
-import { Code } from "components/Code";
+import Code from "components/Code";
 import LinkButton from "components/LinkButton";
 
 import JumpStartCard from "./JumpStartCard";

@@ -1,4 +1,4 @@
-@use '../../everything' as *;
+@use 'react-md' as *;
 
 .code {
   @include rmd-typography(body-1);

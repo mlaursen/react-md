@@ -6,8 +6,8 @@ import React, {
 } from "react";
 import cn from "classnames";
 
+import Code from "../Code";
 import styles from "./CodeBlock.module.scss";
-import Code from "./Code";
 import LineNumbers from "./LineNumbers";
 import { highlightCode } from "./utils";
 

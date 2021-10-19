@@ -8,7 +8,8 @@ import {
 } from "@react-md/layout";
 import { Text } from "@react-md/typography";
 import { Grid, useAppSize } from "@react-md/utils";
-import Code from "components/Code/Code";
+
+import Code from "components/Code";
 
 interface ConfigurationFormProps {
   phoneLayout: SupportedPhoneLayout;

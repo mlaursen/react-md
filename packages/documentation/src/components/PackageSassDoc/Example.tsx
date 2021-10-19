@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { Switch, useChecked } from "@react-md/form";
 
 import Heading from "components/Heading";
-import CodeBlock from "components/Code/CodeBlock";
+import CodeBlock from "components/CodeBlock";
 import { CompiledExample } from "utils/sassdoc";
 
 interface ExampleProps extends CompiledExample {

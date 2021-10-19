@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { Link } from "@react-md/link";
 import { Text } from "@react-md/typography";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 export default function SimpleExamples(): ReactElement {
   return (

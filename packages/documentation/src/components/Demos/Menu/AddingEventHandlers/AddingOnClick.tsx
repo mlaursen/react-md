@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from "react";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 export default function AddingOnClick(): ReactElement {
   const [value, setValue] = useState("None");

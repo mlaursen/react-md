@@ -13,7 +13,7 @@ import {
 import { Text } from "@react-md/typography";
 import { Grid, GridCell } from "@react-md/utils";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 import { NfcSVGIcon, SyncSVGIcon } from "@react-md/material-icons";
 
 interface ConfiguredSliderProps extends UseSliderOptions {

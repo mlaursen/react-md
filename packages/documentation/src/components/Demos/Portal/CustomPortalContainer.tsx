@@ -3,7 +3,7 @@ import { Radio, useChoice } from "@react-md/form";
 import { Portal } from "@react-md/portal";
 import { Text } from "@react-md/typography";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 import styles from "./CustomPortalContainer.module.scss";
 

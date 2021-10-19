@@ -6,7 +6,7 @@ import { DropdownMenu, Menu, MenuItem, MenuRenderer } from "@react-md/menu";
 import { Text } from "@react-md/typography";
 import { unitToNumber, useAppSize } from "@react-md/utils";
 
-import Code from "components/Code/Code";
+import Code from "components/Code";
 
 const mobileHeight = unitToNumber(scssVariables["rmd-list-item-large-height"]);
 const desktopHeight = unitToNumber(

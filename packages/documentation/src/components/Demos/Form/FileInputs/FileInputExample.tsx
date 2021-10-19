@@ -12,7 +12,7 @@ import {
 } from "@react-md/form";
 import { SrOnly, Text } from "@react-md/typography";
 
-import CodeBlock from "components/Code/CodeBlock";
+import CodeBlock from "components/CodeBlock";
 
 import styles from "./FileInputExample.module.scss";
 
