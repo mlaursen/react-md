@@ -11,17 +11,10 @@ import { getSourceFile } from "./getSourceFile";
 export type ReferencedDependencies = Set<string>;
 export type ReferencedFiles = Map<string, string>;
 
-// since I don't want to include markdown stuff
-const IGNORED_MODULES = ["marked", "prismjs"];
-const IGNORED_FILE_REGEXP =
-  /Markdown|Code|constants\/(github|packages)|@react-md/;
+const IGNORED_FILE_REGEXP = /constants\/(github|packages)|@react-md/;
 
 function isIgnoredDependency(name: string): boolean {
-  return (
-    IGNORED_MODULES.includes(name) ||
-    IGNORED_FILE_REGEXP.test(name) ||
-    /dist\/scssVariables/.test(name)
-  );
+  return IGNORED_FILE_REGEXP.test(name) || /dist\/scssVariables/.test(name);
 }
 
 const SCSS_IMPORT = /@import '(.+)';/g;

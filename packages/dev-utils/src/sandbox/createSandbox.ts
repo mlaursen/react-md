@@ -50,10 +50,6 @@ function transformFileContents(
   }
 
   let transformed = contents
-    .replace(/^import Code(Block)?.+;$/gm, "")
-    .replace(/<CodeBlock[^>]*>/g, "<pre><code>")
-    .replace(/<\/CodeBlock>/g, "</code></pre>")
-    .replace(/<(\/)?Code/g, "<$1code")
     .replace(/\.(\.\/TextFieldThemeConfig)/, "$1")
     .replace(aliasRegExp, `"${aliasReplacement}`);
 
