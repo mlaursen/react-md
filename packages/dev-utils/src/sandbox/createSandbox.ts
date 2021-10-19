@@ -34,7 +34,7 @@ function getExtension(filePath: string): string {
 function transformFileContents(
   contents: string,
   filePath: string,
-  demoName?: string
+  isDemoFile = false
 ): string {
   const parentFolders = filePath.replace("src/", "").split("/").length - 1;
 
@@ -53,10 +53,11 @@ function transformFileContents(
     .replace(/\.(\.\/TextFieldThemeConfig)/, "$1")
     .replace(aliasRegExp, `"${aliasReplacement}`);
 
-  if (demoName) {
-    transformed = transformed
-      .replace(`default function ${demoName}`, "default function Demo")
-      .replace(new RegExp(`<${demoName}(\\s+)`, "g"), "<Demo$1");
+  if (isDemoFile) {
+    transformed = transformed.replace(
+      /export default function [A-Z][A-z0-9]+\(/,
+      "export default function Demo("
+    );
   }
 
   return format(transformed);
@@ -169,7 +170,7 @@ export function createSandbox(
       content: transformFileContents(
         sourceFile.getFullText(),
         "src/Demo.tsx",
-        demoName
+        true
       ),
     },
   };
