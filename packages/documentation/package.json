@@ -41,7 +41,7 @@
     "react-swipeable": "^6.2.0",
     "react-transition-group": "^4.4.2",
     "react-virtualized": "^9.22.3",
-    "sass": "^1.42.1"
+    "sass": "^1.43.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -58,7 +58,7 @@
     "eslint-config-next": "^11.1.2",
     "npm-run-all": "^4.1.5",
     "raw-loader": "^4.0.2",
-    "typescript": "^4.4.3",
+    "typescript": "^4.4.4",
     "webpack": "^5.58.1"
   },
   "browerlist": [

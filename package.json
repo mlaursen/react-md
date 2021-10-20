@@ -86,8 +86,8 @@
     "react-dom": "^17.0.1",
     "react-test-renderer": "^17.0.2",
     "sass-lint": "^1.13.1",
-    "ts-jest": "^27.0.5",
-    "typescript": "^4.4.3"
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4"
   },
   "lint-staged": {
     "**/*.{ts,tsx,scss,js,jsx,md,yml,json}": [
