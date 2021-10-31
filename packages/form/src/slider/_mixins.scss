@@ -156,7 +156,6 @@
       );
 
       &::after {
-        // sass-lint:disable zero-unit
         @include rmd-slider-theme-update-var(active-size, 0px);
       }
 

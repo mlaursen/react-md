@@ -2,7 +2,6 @@
 
 @include react-md-utils;
 
-// sass-lint:disable no-duplicate-properties
 :root {
   #{--code-color}: #{$rmd-pink-600};
   #{--sass-bg}: #{$rmd-grey-200};

@@ -30,8 +30,7 @@
     "build": "npm-run-all styles combine-styles build-ejs build-cjs build-var",
     "typecheck": "tsc -p tsconfig.check.json",
     "lint-scripts": "eslint \"packages/*/src/**/*.{ts,tsx,js,jsx}\"",
-    "lint-styles": "sass-lint -c .sass-lint.yml -v",
-    "lint": "npm-run-all lint-scripts lint-styles typecheck",
+    "lint": "npm-run-all lint-scripts typecheck",
     "test": "jest",
     "format": "prettier --write \"**/*.{ts,tsx,scss,js,jsx,md,yml,json}\"",
     "clean": "dev-utils clean",
@@ -85,7 +84,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.1",
     "react-test-renderer": "^17.0.2",
-    "sass-lint": "^1.13.1",
     "ts-jest": "^27.0.7",
     "typescript": "^4.4.4"
   },

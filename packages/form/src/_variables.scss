@@ -52,8 +52,6 @@ $rmd-form-placeholder-color: rmd-theme-var(
   text-secondary-on-background
 ) !default;
 
-// sass-lint:disable zero-unit
-
 /// A Map of all the "themeable" parts of the form package. Every key in this map will
 /// be used to create a css variable to dynamically update the values of the icon as
 /// needed.

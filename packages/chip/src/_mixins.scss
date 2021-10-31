@@ -89,7 +89,6 @@
       // because the rmd-states-surface mixin uses
       // `:not(:disabled):not([aria-disabled='true'])`, have to use important or
       // an even more specific selector
-      // sass-lint:disable no-important
       cursor: initial !important;
     }
   }

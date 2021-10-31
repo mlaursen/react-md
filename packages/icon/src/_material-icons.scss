@@ -100,7 +100,6 @@
 /// class name should include the default icon font size.
 @mixin rmd-icon-material-icons-class($include-font-size: false) {
   .material-icons {
-    // sass-lint:disable-block property-sort-order,no-vendor-prefixes
     @if $include-font-size {
       @include rmd-icon-theme(font-size, size);
     }
