@@ -61,6 +61,8 @@
 ///
 /// @access private
 @mixin rmd-slider-container {
+  $directions: (right, left);
+
   @if $rmd-slider-container-addon-spacing != $rmd-icon-spacing-with-text {
     @include rmd-icon-theme-update-var(
       text-spacing,
@@ -74,7 +76,6 @@
     display: flex;
   }
 
-  $directions: (right, left);
   @if $rmd-slider-include-vertical {
     $directions: (top, right, bottom, left);
 
@@ -285,6 +286,7 @@
   );
   @include rmd-slider-theme(height, thumb-size);
   @include rmd-slider-theme(width, thumb-size);
+  @include rmd-slider-thumb-horizontal;
   @include rmd-utils-mouse-only {
     &:hover::after {
       transform: scale($rmd-slider-thumb-focus-scale);
@@ -304,7 +306,7 @@
       transform: scale($rmd-slider-thumb-active-scale);
     }
   }
-  @include rmd-slider-thumb-horizontal;
+
   @if $rmd-slider-include-vertical {
     @include rmd-slider-thumb-vertical;
   }

@@ -5,6 +5,7 @@ $blind-margin: 2px;
 $blind-margin-extra: 8px;
 $blind-rotation: 12deg;
 $blind-rotation-extra: 24deg;
+$blind-transition-duration: 2s;
 
 .blind {
   @include rmd-elevation(8);
@@ -19,9 +20,9 @@ $blind-rotation-extra: 24deg;
 
 .animate {
   @include rmd-transition(standard);
-  $duration: 2s;
 
-  transition: margin-bottom $duration, transform $duration;
+  transition: margin-bottom $blind-transition-duration,
+    transform $blind-transition-duration;
 }
 
 .enter {

@@ -232,6 +232,10 @@
 /// @param {String|Number} lines [2] - The number of lines that the text should be
 /// clamped to.
 @mixin rmd-typography-line-clamp($lines: 2) {
+  // stylelint-disable order/properties-alphabetical-order
+  // stylelint-disable property-no-vendor-prefix
+  // stylelint-disable value-no-vendor-prefix
+
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $lines;
   display: -webkit-box;

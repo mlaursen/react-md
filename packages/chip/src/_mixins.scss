@@ -86,6 +86,7 @@
     @include rmd-states-theme-update-var(hover-color, transparent);
 
     &:hover {
+      // stylelint-disable declaration-no-important
       // because the rmd-states-surface mixin uses
       // `:not(:disabled):not([aria-disabled='true'])`, have to use important or
       // an even more specific selector
@@ -135,31 +136,28 @@
   }
 
   &--leading-icon {
+    @include rmd-chip-theme(padding-left, small-spacing);
     @include rmd-utils-rtl {
       @include rmd-chip-theme(padding-left, large-spacing);
       @include rmd-chip-theme(padding-right, small-spacing);
     }
-
-    @include rmd-chip-theme(padding-left, small-spacing);
   }
 
   &--trailing-icon {
+    @include rmd-chip-theme(padding-right, medium-spacing);
     @include rmd-utils-rtl {
       @include rmd-chip-theme(padding-left, medium-spacing);
       @include rmd-chip-theme(padding-right, large-spacing);
     }
-
-    @include rmd-chip-theme(padding-right, medium-spacing);
   }
 
   &--surrounded {
+    @include rmd-chip-theme(padding-left, small-spacing);
+    @include rmd-chip-theme(padding-right, medium-spacing);
     @include rmd-utils-rtl {
       @include rmd-chip-theme(padding-left, medium-spacing);
       @include rmd-chip-theme(padding-right, small-spacing);
     }
-
-    @include rmd-chip-theme(padding-left, small-spacing);
-    @include rmd-chip-theme(padding-right, medium-spacing);
   }
 
   &__content {

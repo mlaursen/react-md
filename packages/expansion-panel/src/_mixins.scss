@@ -64,6 +64,7 @@
   }
 
   &__icon {
+    @include rmd-expansion-panel-theme(padding-left, icon-spacing);
     @include rmd-utils-rtl {
       @include rmd-expansion-panel-theme(padding-right, icon-spacing);
 
@@ -71,7 +72,6 @@
       margin-right: auto;
       padding-left: 0;
     }
-    @include rmd-expansion-panel-theme(padding-left, icon-spacing);
 
     // flexing (💪) makes it align nicer with text content
     align-items: center;

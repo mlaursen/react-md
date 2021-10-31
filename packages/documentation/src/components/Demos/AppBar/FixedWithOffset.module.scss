@@ -29,14 +29,15 @@
   }
 }
 
+// just a reminder that you don't need to use the `rmd-PACKAGE-theme-var` stuff if
+// you will have mostly static variables. You can instead use the corresponding
+// SCSS variable instead. I'm just using them since the documentation site can be
+// fully configured
+$offset: $rmd-app-bar-title-keyline + $rmd-app-bar-lr-margin * 2;
+
 .title {
   @include rmd-typography-text-overflow-ellipsis;
 
-  // just a reminder that you don't need to use the `rmd-PACKAGE-theme-var` stuff if
-  // you will have mostly static variables. You can instead use the corresponding
-  // SCSS variable instead. I'm just using them since the documentation site can be
-  // fully configured
-  $offset: $rmd-app-bar-title-keyline + $rmd-app-bar-lr-margin * 2;
   width: calc(100% - #{$offset} - #{rmd-button-theme-var(icon-size)} * 2);
 }
 

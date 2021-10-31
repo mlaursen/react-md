@@ -75,6 +75,8 @@
 ///   </div>
 ///
 @mixin rmd-app-bar-fixed {
+  $positions: top right bottom left;
+
   &--fixed {
     @include rmd-theme-update-var(
       surface,
@@ -91,7 +93,6 @@
     @include rmd-elevation($rmd-app-bar-fixed-elevation);
   }
 
-  $positions: top right bottom left;
   @each $position in $positions {
     &--#{$position} {
       #{$position}: 0;
@@ -190,6 +191,7 @@
       margin-right: $rmd-app-bar-title-nav-margin,
     )
   );
+
   flex-shrink: 0;
 
   &--inherit {
@@ -384,5 +386,6 @@
     }
   }
 
+  // stylelint-disable order/order
   @include rmd-app-bar-offsets;
 }

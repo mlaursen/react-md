@@ -146,6 +146,7 @@
     text-align: left;
   }
 
+  // stylelint-disable order/order
   // want this to come after the header since the "default" should be
   // `text-align: left` but browser have `<th>` defaulted to `text-align:
   // center`. If this is included before the `--header` state, it won't be
@@ -158,10 +159,6 @@
 
   &--no-wrap {
     @include rmd-typography-text-overflow-ellipsis;
-  }
-
-  &--no-padding {
-    padding: 0;
   }
 
   &--checkbox {

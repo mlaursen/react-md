@@ -93,9 +93,12 @@
   $duration: $rmd-transition-standard-time,
   $pseudo-z-index: 0
 ) {
-  @include rmd-transition-parent-shadow($start-shadow);
-
   $shadow-target: if($before, '&::before', '&::after');
+  // remove the leading '&'
+  $suffix: string.slice($shadow-target, 2);
+  $active-string: '';
+
+  @include rmd-transition-parent-shadow($start-shadow);
 
   #{$shadow-target} {
     @include rmd-transition-pseudo-shadow(
@@ -105,9 +108,6 @@
     );
   }
 
-  // remove the leading '&'
-  $suffix: string.slice($shadow-target, 2);
-  $active-string: '';
   @if type-of($active-selectors) == string {
     $active-string: $active-selectors + $suffix;
   } @else if type-of($active-selectors) == list {

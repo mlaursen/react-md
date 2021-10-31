@@ -483,8 +483,7 @@
   }
 
   display: grid;
-  grid-column-gap: var(#{$rmd-grid-gutter-var}, #{$gutter});
-  grid-row-gap: var(#{$rmd-grid-gutter-var}, #{$gutter});
+  grid-gap: var(#{$rmd-grid-gutter-var}, #{$gutter});
   grid-template-columns: repeat(
     var(#{$rmd-grid-columns-var}, #{$phone-columns}),
     1fr
@@ -688,6 +687,7 @@
     }
   }
 
+  // stylelint-disable declaration-no-important
   // this is required since this _should_ be the default behavior, but if you've
   // manually set a `display` value on an element, it will override this
   // behavior.
@@ -695,6 +695,8 @@
     display: none !important;
   }
 
+  // stylelint-disable selector-no-qualifying-type
+  // stylelint-disable order/properties-alphabetical-order
   body {
     &.rmd-utils--touch {
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

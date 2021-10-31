@@ -89,15 +89,15 @@
   }
 
   &__value {
-    @include rmd-utils-rtl {
-      @include rmd-form-theme(padding-left, text-padding-right);
-      @include rmd-form-theme(padding-right, text-padding-left);
-    }
     @include rmd-form-theme(padding-left, text-padding-left);
     @include rmd-form-theme(padding-right, text-padding-right);
     @include rmd-form-theme(padding-top, text-padding-top);
     @include rmd-typography(body-1, font-size);
     @include rmd-typography-text-overflow-ellipsis;
+    @include rmd-utils-rtl {
+      @include rmd-form-theme(padding-left, text-padding-right);
+      @include rmd-form-theme(padding-right, text-padding-left);
+    }
 
     &--placeholder {
       @include rmd-transition(standard);
@@ -129,6 +129,12 @@
 
 /// @access private
 @mixin rmd-option {
+  @include rmd-utils-keyboard-only {
+    &--focused {
+      @include rmd-utils-map-to-styles($rmd-option-focused-styles);
+    }
+  }
+
   @if $rmd-option-selected-content {
     @include rmd-list-theme-update-var(item-horizontal-padding, 1.5rem);
   }
@@ -143,12 +149,6 @@
         content: $rmd-option-selected-content;
         position: absolute;
       }
-    }
-  }
-
-  @include rmd-utils-keyboard-only {
-    &--focused {
-      @include rmd-utils-map-to-styles($rmd-option-focused-styles);
     }
   }
 }

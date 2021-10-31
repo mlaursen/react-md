@@ -71,6 +71,7 @@ $rmd-theme-default-contrast-ratio: 3 !default;
 /// @type Boolean
 $rmd-theme-better-contrast-colors: true !default;
 
+// stylelint-disable number-max-precision
 /// Precomputed linear color channel values, for use in contrast calculations.
 /// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 ///
@@ -226,7 +227,7 @@ $rmd-theme-linear-channel-values: (
   $light-contrast: rmd-theme-contrast($color, $rmd-white-base);
   $dark-contrast: rmd-theme-contrast($color, rgba($rmd-black-base, 0.87));
 
-  @if ($light-contrast < $min-contrast) and ($dark-contrast > $light-contrast) {
+  @if $light-contrast < $min-contrast and $dark-contrast > $light-contrast {
     @return 'light';
   } @else {
     @return 'dark';

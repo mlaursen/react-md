@@ -249,6 +249,7 @@
 
 /// A simple mixin that applies placeholder styles to an input/textarea element.
 @mixin rmd-text-field-placeholder {
+  // stylelint-disable selector-no-vendor-prefix
   &::-webkit-input-placeholder {
     @content;
   }
@@ -323,14 +324,14 @@
 
 /// @access private
 @mixin rmd-text-field {
-  @include rmd-utils-rtl {
-    @include rmd-form-theme(padding-left, text-padding-right);
-    @include rmd-form-theme(padding-right, text-padding-left);
-  }
   @include rmd-form-theme(padding-left, text-padding-left);
   @include rmd-form-theme(padding-right, text-padding-right);
   @include rmd-form-theme(padding-top, text-padding-top);
   @include rmd-text-field-base;
+  @include rmd-utils-rtl {
+    @include rmd-form-theme(padding-left, text-padding-right);
+    @include rmd-form-theme(padding-right, text-padding-left);
+  }
 
   flex: 1 1 auto;
   height: 100%;
@@ -398,14 +399,14 @@
 /// @access private
 @mixin rmd-textarea {
   @include rmd-transition(standard);
-  @include rmd-utils-rtl {
-    @include rmd-form-theme(padding-left, text-padding-right);
-    @include rmd-form-theme(padding-right, text-padding-left);
-  }
   @include rmd-form-theme(padding-left, text-padding-left);
   @include rmd-form-theme(padding-right, text-padding-right);
   @include rmd-form-theme(min-height, text-height);
   @include rmd-text-field-base;
+  @include rmd-utils-rtl {
+    @include rmd-form-theme(padding-left, text-padding-right);
+    @include rmd-form-theme(padding-right, text-padding-left);
+  }
 
   flex: 1 1 auto;
   height: 100%;

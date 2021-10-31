@@ -115,9 +115,11 @@
   @return math.div($tracking, $font-size * 16) * 1em;
 }
 
+// stylelint-disable value-keyword-case
 /// The font family to use throughout the entire application.
 /// @type String
 $rmd-typography-font-family: Roboto, sans-serif !default;
+// stylelint-enable value-keyword-case
 
 /// The max length a line of text can be on mobile devices.
 /// @type Number

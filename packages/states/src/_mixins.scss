@@ -200,6 +200,12 @@
 ) {
   @include rmd-utils-hide-focus-outline;
   @include rmd-states-focus-shadow($focus-selector, $css-modules: $css-modules);
+  @include rmd-utils-touch-only($css-modules) {
+    &:focus,
+    &:hover {
+      @include rmd-states-theme-update-var(background-color, transparent);
+    }
+  }
 
   &::before {
     @include rmd-states-surface-base;
@@ -210,17 +216,17 @@
     @include rmd-states-theme-update-var(hover-color, transparent);
   }
 
-  @if $clickable {
-    &:not(:disabled):not([aria-disabled='true']):hover {
-      cursor: pointer;
-    }
-  }
-
   &:hover {
     @include rmd-states-theme-update-var(
       background-color,
       rmd-states-theme-var(hover-color)
     );
+  }
+
+  @if $clickable {
+    &:not(:disabled):not([aria-disabled='true']):hover {
+      cursor: pointer;
+    }
   }
 
   @if $rmd-states-use-focus-background and not $no-focus-state {
@@ -238,13 +244,6 @@
           );
         }
       }
-    }
-  }
-
-  @include rmd-utils-touch-only($css-modules) {
-    &:focus,
-    &:hover {
-      @include rmd-states-theme-update-var(background-color, transparent);
     }
   }
 

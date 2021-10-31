@@ -2,8 +2,8 @@
 
 .container {
   @include rmd-app-bar-theme-update-var(dense-height, rmd-icon-theme-var(size));
-  background-color: rgba($rmd-black-base, 0.12);
 
+  background-color: rgba($rmd-black-base, 0.12);
   width: 100%;
 }
 

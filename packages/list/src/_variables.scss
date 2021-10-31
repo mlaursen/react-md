@@ -119,11 +119,13 @@ $rmd-list-item-three-line-height: 5.5rem !default;
 /// @type Number
 $rmd-list-item-dense-three-line-height: 5rem !default;
 
+// stylelint-disable number-max-precision
 /// The line-height to use for the secondary text within the list item. This is
 /// different than the primary text since this can span multiple lines by
 /// default.
 /// @type Number
 $rmd-list-item-secondary-text-line-height: 1.42857 !default;
+// stylelint-enable number-max-precision
 
 /// The max allowed height for the three-line list item's secondary text. You
 /// probably don't want to change this value unless you changed the other list

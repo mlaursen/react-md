@@ -63,6 +63,8 @@
     text-secondary-on-background,
     rmd-card-theme-var(secondary-color)
   );
+  @include rmd-card-theme(background-color);
+  @include rmd-card-theme(color);
   @include rmd-utils-mouse-only {
     &--raiseable {
       // Note: Only worthwhile with the `--shadowed` class
@@ -73,8 +75,6 @@
       );
     }
   }
-  @include rmd-card-theme(background-color);
-  @include rmd-card-theme(color);
 
   border-radius: $rmd-card-border-radius;
   display: inline-block;

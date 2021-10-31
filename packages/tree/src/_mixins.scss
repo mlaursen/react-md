@@ -83,6 +83,7 @@
     @error 'Invalid max value: \'#{$max}\'! The max must be a number greater than the min value: \'#{$min}\'';
   }
 
+  // stylelint-disable order/order
   $index: $min;
   @while $index < $max {
     @include rmd-tree-item-at-depth(

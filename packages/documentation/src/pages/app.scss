@@ -56,16 +56,10 @@
 
   &__link {
     @include rmd-icon-theme(color);
+    @include rmd-states-focus-shadow;
     @include rmd-utils-hide-focus-outline;
     @include rmd-utils-desktop-media {
       display: block;
-    }
-    @include rmd-states-focus-shadow;
-
-    &::before {
-      @include rmd-states-surface-base;
-
-      margin: -0.25rem;
     }
 
     display: none;
@@ -74,6 +68,12 @@
     position: absolute;
     text-decoration: none;
     transition: opacity $rmd-transition-standard-time;
+
+    &::before {
+      @include rmd-states-surface-base;
+
+      margin: -0.25rem;
+    }
 
     &:hover,
     &:focus {

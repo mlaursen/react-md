@@ -213,6 +213,7 @@
       }
     }
 
+    // stylelint-disable declaration-no-important
     // when other icon libraries don't have consistent sizes...
     &--forced-font {
       font-size: rmd-icon-theme-var(size) !important;
@@ -222,6 +223,7 @@
       height: rmd-icon-theme-var(size) !important;
       width: rmd-icon-theme-var(size) !important;
     }
+    // stylelint-enable declaration-no-important
 
     @if $rmd-icon-include-dense {
       &--dense {
@@ -248,6 +250,7 @@
       }
     }
 
+    // stylelint-disable order/order
     @include rmd-icon-spaced-with-text;
   }
 }

@@ -1,14 +1,14 @@
 @use 'react-md' as *;
 
 .grid {
+  @include rmd-utils-optional-css-modules($rmd-theme-dark-class, true) {
+    background-color: $rmd-theme-dark-background;
+  }
+
   background-color: $rmd-theme-light-background;
 
   + .grid {
     margin-top: 1rem;
-  }
-
-  @include rmd-utils-optional-css-modules($rmd-theme-dark-class, true) {
-    background-color: $rmd-theme-dark-background;
   }
 }
 

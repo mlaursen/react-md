@@ -147,8 +147,7 @@
 
   align-items: flex-start;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   height: 100%;
   overflow-x: hidden;
 

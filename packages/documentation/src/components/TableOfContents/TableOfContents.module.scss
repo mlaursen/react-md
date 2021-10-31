@@ -5,13 +5,13 @@ $toc-width: 15rem;
 $toc-z-index: 9;
 
 .dialog {
+  @include rmd-elevation(2);
+  @include rmd-theme-dark-elevation(2, true);
   @include rmd-utils-rtl {
     left: $page-margin;
     right: auto;
     transform-origin: 2% ($rmd-icon-size * 0.5);
   }
-  @include rmd-elevation(2);
-  @include rmd-theme-dark-elevation(2, true);
 
   max-height: calc(100% - #{$rmd-app-bar-height + $page-margin + $page-margin});
   position: fixed;

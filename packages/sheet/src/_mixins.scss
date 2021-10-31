@@ -57,27 +57,27 @@
 
       &--#{$position} {
         @if $position == left {
+          @include rmd-sheet-theme-update-var(
+            transform-offscreen,
+            translate3d(-100%, 0, 0)
+          );
           @include rmd-utils-rtl-auto(left, 0) {
             @include rmd-sheet-theme-update-var(
               transform-offscreen,
               translate3d(100%, 0, 0)
             );
           }
+        } @else if $position == right {
           @include rmd-sheet-theme-update-var(
             transform-offscreen,
-            translate3d(-100%, 0, 0)
+            translate3d(100%, 0, 0)
           );
-        } @else if $position == right {
           @include rmd-utils-rtl-auto(right, 0) {
             @include rmd-sheet-theme-update-var(
               transform-offscreen,
               translate3d(-100%, 0, 0)
             );
           }
-          @include rmd-sheet-theme-update-var(
-            transform-offscreen,
-            translate3d(100%, 0, 0)
-          );
         } @else if $position == top {
           @include rmd-sheet-theme-update-var(
             transform-offscreen,
@@ -146,16 +146,16 @@
   }
 
   &--media-width {
+    @include rmd-sheet-theme-update-var(
+      width,
+      rmd-sheet-theme-var(touch-width)
+    );
     @include rmd-utils-tablet-media {
       @include rmd-sheet-theme-update-var(
         width,
         rmd-sheet-theme-var(static-width)
       );
     }
-    @include rmd-sheet-theme-update-var(
-      width,
-      rmd-sheet-theme-var(touch-width)
-    );
   }
 
   &--vertical {
