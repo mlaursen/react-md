@@ -2,6 +2,8 @@
 /// @group card
 ////
 
+@use 'sass:map';
+
 @import '~@react-md/divider/dist/functions';
 @import '~@react-md/divider/dist/variables';
 @import '~@react-md/theme/dist/functions';
@@ -23,7 +25,7 @@ $rmd-card-light-background-color: rmd-theme-var(surface) !default;
 /// @require $rmd-theme-dark-elevation-colors
 /// @type Color
 /// @since 2.7.0
-$rmd-card-dark-elevation-background-color: map-get(
+$rmd-card-dark-elevation-background-color: map.get(
   $rmd-theme-dark-elevation-colors,
   $rmd-card-elevation
 );

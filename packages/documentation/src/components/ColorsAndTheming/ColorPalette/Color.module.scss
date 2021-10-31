@@ -1,9 +1,10 @@
+@use 'sass:map';
 @use 'react-md' as *;
 
 .container {
   color: $rmd-black-base;
   display: flex;
-  font-weight: map-get($rmd-typography-font-weights, bold);
+  font-weight: map.get($rmd-typography-font-weights, bold);
   justify-content: space-between;
   padding: 1rem;
 }

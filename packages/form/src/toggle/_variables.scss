@@ -2,6 +2,9 @@
 /// @group form-toggle
 ////
 
+@use 'sass:map';
+@use 'sass:color';
+
 @import '~@react-md/theme/dist/color-palette';
 @import '~@react-md/theme/dist/functions';
 
@@ -97,7 +100,7 @@ $rmd-switch-track-width: 2.25rem !default;
 /// @type Color
 $rmd-switch-track-background-color: if(
   $rmd-theme-dark-elevation,
-  map-get($rmd-theme-dark-elevation-colors, 24),
+  map.get($rmd-theme-dark-elevation-colors, 24),
   rgba($rmd-black-base, 0.38)
 ) !default;
 
@@ -139,7 +142,7 @@ $rmd-switch-ball-disabled-color: rmd-theme-get-swatch(
   $rmd-theme-secondary,
   200,
   false,
-  darken($rmd-theme-secondary, 5%),
+  color.adjust($rmd-theme-secondary, $lightness: -5%),
   rmd-switch-ball-disabled-color
 ) !default;
 

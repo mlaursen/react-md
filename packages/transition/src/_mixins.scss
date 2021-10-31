@@ -2,6 +2,9 @@
 /// @group transition
 ////
 
+@use 'sass:list';
+@use 'sass:string';
+
 @import '~@react-md/utils/dist/mixins';
 @import './variables';
 
@@ -103,13 +106,13 @@
   }
 
   // remove the leading '&'
-  $suffix: str-slice($shadow-target, 2);
+  $suffix: string.slice($shadow-target, 2);
   $active-string: '';
   @if type-of($active-selectors) == string {
     $active-string: $active-selectors + $suffix;
   } @else if type-of($active-selectors) == list {
     @for $i from 1 to length($active-selectors) + 1 {
-      $selector: nth($active-selectors, $i);
+      $selector: list.nth($active-selectors, $i);
 
       $prefix: $active-string + if($i > 1, ', ', '');
       $active-string: $prefix + $selector + $suffix;

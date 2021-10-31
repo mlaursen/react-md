@@ -2,6 +2,10 @@
 /// @group theme
 ////
 
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+
 @import '~@react-md/utils/dist/functions';
 @import './color-palette';
 @import './helpers';
@@ -54,7 +58,7 @@
   $fallback-color: null,
   $fallback-name: null
 ) {
-  $current-color-index: index(map-values($rmd-theme-color-map), $color);
+  $current-color-index: list.index(map.values($rmd-theme-color-map), $color);
 
   @if not $current-color-index or $current-color-index < 1 {
     @if $fallback-color == null {
@@ -81,25 +85,29 @@
     'material design color swatch'
   );
 
-  $current-color-name: nth(
-    map-keys($rmd-theme-color-map),
+  $current-color-name: list.nth(
+    map.keys($rmd-theme-color-map),
     $current-color-index
   );
-  $accent-index: str-index($current-color-name, '-a-');
+  $accent-index: string.index($current-color-name, '-a-');
   @if $accent-index {
-    $current-color-name: str-slice($current-color-name, 1, $accent-index - 1);
+    $current-color-name: string.slice(
+      $current-color-name,
+      1,
+      $accent-index - 1
+    );
   } @else {
     $index: 1;
     $found: false;
     @while not $found and $index < length($rmd-theme-colors) {
-      $suffix: nth($rmd-theme-colors, $index);
-      $suffix-index: str-index($current-color-name, $suffix);
+      $suffix: list.nth($rmd-theme-colors, $index);
+      $suffix-index: string.index($current-color-name, $suffix);
       @if $suffix-index {
         $found: true;
-        $current-color-name: str-slice(
+        $current-color-name: string.slice(
           $current-color-name,
           1,
-          $suffix-index - 1 + str-length($suffix)
+          $suffix-index - 1 + string.length($suffix)
         );
       }
 

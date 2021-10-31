@@ -2,6 +2,8 @@
 /// @group form-toggle
 ////
 
+@use 'sass:color';
+
 @import '~@react-md/button/dist/mixins';
 @import '~@react-md/icon/dist/mixins';
 @import '~@react-md/menu/dist/mixins';
@@ -336,7 +338,7 @@
   &::after {
     @include rmd-elevation(1);
 
-    background-color: darken($rmd-white-base, 5%);
+    background-color: color.adjust($rmd-white-base, $lightness: -5%);
     border-radius: inherit;
     content: '';
     height: $rmd-switch-ball-size;

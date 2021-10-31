@@ -2,6 +2,8 @@
 /// @group elevation
 ////
 
+@use 'sass:map';
+
 @import '~@react-md/theme/dist/functions';
 @import './variables';
 
@@ -40,19 +42,19 @@
   }
 
   $color: rmd-theme($color);
-  $shadow-1-value: map-get($rmd-elevation-shadow-1-map, $z-value);
+  $shadow-1-value: map.get($rmd-elevation-shadow-1-map, $z-value);
   $shadow-1-color: rgba(
     $color,
     $rmd-elevation-shadow-1-opacity + $opacity-boost
   );
 
-  $shadow-2-value: map-get($rmd-elevation-shadow-2-map, $z-value);
+  $shadow-2-value: map.get($rmd-elevation-shadow-2-map, $z-value);
   $shadow-2-color: rgba(
     $color,
     $rmd-elevation-shadow-2-opacity + $opacity-boost
   );
 
-  $shadow-3-value: map-get($rmd-elevation-shadow-3-map, $z-value);
+  $shadow-3-value: map.get($rmd-elevation-shadow-3-map, $z-value);
   $shadow-3-color: rgba(
     $color,
     $rmd-elevation-shadow-3-opacity + $opacity-boost

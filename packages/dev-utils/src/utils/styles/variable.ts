@@ -189,8 +189,7 @@ export function getCompiledValue(
     return { name, value: originalValue };
   }
 
-  const data = `@use 'sass:meta';
-${getEverythingScss()}
+  const data = `${getEverythingScss()}
 
 .output {
   --value: #{meta.inspect(${originalValue})};

@@ -2,6 +2,9 @@
 /// @group utils
 ////
 
+@use 'sass:map';
+@use 'sass:string';
+
 @import './functions';
 @import './variables';
 
@@ -61,7 +64,7 @@
       $swapped-value: auto;
 
       @each $prefix in $rmd-utils-swappable-position-prefixes {
-        @if str-index($property, '#{$prefix}-') {
+        @if string.index($property, '#{$prefix}-') {
           $swapped-value: 0;
         }
       }
@@ -91,9 +94,9 @@
       $inversed-property: rmd-utils-swap-position($property);
       $inversed-value: auto;
       @if map-has-key($swapped-styles, $property) {
-        $inversed-value: map-get($swapped-styles, $property);
+        $inversed-value: map.get($swapped-styles, $property);
       } @else if map-has-key($styles, $inversed-property) {
-        $inversed-value: map-get($swapped-styles, $inversed-property);
+        $inversed-value: map.get($swapped-styles, $inversed-property);
       }
 
       #{$property}: #{$inversed-value};

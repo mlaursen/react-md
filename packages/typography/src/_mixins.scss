@@ -2,6 +2,10 @@
 /// @group typography
 ////
 
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+
 @import '~@react-md/theme/dist/helpers';
 @import '~@react-md/theme/dist/mixins';
 @import '~@react-md/utils/dist/mixins';
@@ -71,7 +75,7 @@
 /// `font-size`.
 @mixin rmd-typography-value($style, $properties...) {
   @if length($properties) == 0 {
-    $properties: append($properties, font-size);
+    $properties: list.append($properties, font-size);
   }
 
   @each $property in $properties {
@@ -251,7 +255,7 @@
 
     @each $weight in $rmd-typography-default-font-weights {
       &--#{$weight} {
-        font-weight: map-get($rmd-typography-font-weights, $weight);
+        font-weight: map.get($rmd-typography-font-weights, $weight);
       }
     }
 
@@ -345,7 +349,7 @@
   @if $font-url-or-prefix == null or type-of($font-url-or-prefix) == 'string' {
     $font-url: if(
       $font-url-or-prefix == null,
-      '/fonts/' + to-lower-case(str-replace($font-name, ' ', '-')),
+      '/fonts/' + string.to-lower-case(str-replace($font-name, ' ', '-')),
       $font-url-or-prefix
     );
     $font-url: if(char-at($font-url) != '/', $font-url + '/', $font-url);
@@ -355,11 +359,11 @@
   }
 
   @font-face {
-    font-family: quote($font-name);
+    font-family: string.quote($font-name);
     font-style: normal;
     font-weight: $font-weight;
-    src: local(#{quote($font-name)}), local(#{quote($full-font-name)}),
-      #{$font-url} format('truetype');
+    src: local(#{string.quote($font-name)}),
+      local(#{string.quote($full-font-name)}), #{$font-url} format('truetype');
   }
 }
 

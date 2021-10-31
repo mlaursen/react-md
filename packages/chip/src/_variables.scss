@@ -2,6 +2,9 @@
 /// @group chip
 ////
 
+@use 'sass:color';
+@use 'sass:map';
+
 @import '~@react-md/states/dist/variables';
 @import '~@react-md/transition/dist/variables';
 @import '~@react-md/theme/dist/functions';
@@ -70,7 +73,7 @@ $rmd-chip-themed-background-color: rmd-theme-get-swatch(
   $rmd-theme-primary,
   300,
   false,
-  darken($rmd-theme-primary, 20%),
+  color.adjust($rmd-theme-primary, $lightness: -20%),
   rmd-chip-themed-background-color
 ) !default;
 
@@ -121,7 +124,7 @@ $rmd-chip-solid-light-disabled-background-color: $rmd-grey-100 !default;
 /// @type Color
 $rmd-chip-solid-dark-background-color: if(
   $rmd-theme-dark-elevation,
-  map-get($rmd-theme-dark-elevation-colors, 12),
+  map.get($rmd-theme-dark-elevation-colors, 12),
   $rmd-grey-900
 ) !default;
 
@@ -142,9 +145,9 @@ $rmd-chip-solid-dark-color: if(
 ///
 /// @require $rmd-grey-900
 /// @type Color
-$rmd-chip-solid-dark-disabled-background-color: lighten(
+$rmd-chip-solid-dark-disabled-background-color: color.adjust(
   $rmd-grey-900,
-  2%
+  $lightness: 2%
 ) !default;
 
 /// The background color to use for "solid" themed chips.
@@ -206,7 +209,7 @@ $rmd-chip-outline-light-color: if(
 /// @type Color
 $rmd-chip-outline-dark-background-color: if(
   $rmd-theme-dark-elevation,
-  map-get($rmd-theme-dark-elevation-colors, 8),
+  map.get($rmd-theme-dark-elevation-colors, 8),
   $rmd-theme-dark-surface
 ) !default;
 

@@ -2,6 +2,8 @@
 /// @group theme
 ////
 
+@use 'sass:color';
+
 @import './color-palette';
 @import './color-a11y';
 
@@ -205,7 +207,7 @@ $rmd-theme-on-surface: if(
 $rmd-theme-light-primary-text-color: if(
   $rmd-theme-define-colors-with-rgba,
   rgba($rmd-black-base, 0.87),
-  lighten($rmd-black-base, 13%)
+  color.adjust($rmd-black-base, $lightness: 13%)
 ) !default;
 
 /// The default light theme's secondary text color. This default value changes
@@ -214,7 +216,7 @@ $rmd-theme-light-primary-text-color: if(
 $rmd-theme-light-secondary-text-color: if(
   $rmd-theme-define-colors-with-rgba,
   rgba($rmd-black-base, 0.54),
-  lighten($rmd-black-base, 46%)
+  color.adjust($rmd-black-base, $lightness: 46%)
 ) !default;
 
 /// The default light theme's hint text color. This default value changes
@@ -223,7 +225,7 @@ $rmd-theme-light-secondary-text-color: if(
 $rmd-theme-light-hint-text-color: if(
   $rmd-theme-define-colors-with-rgba,
   rgba($rmd-black-base, 0.34),
-  lighten($rmd-black-base, 66%)
+  color.adjust($rmd-black-base, $lightness: 66%)
 ) !default;
 
 /// The default light theme's disabled text color. This default value changes
@@ -232,7 +234,7 @@ $rmd-theme-light-hint-text-color: if(
 $rmd-theme-light-disabled-text-color: if(
   $rmd-theme-define-colors-with-rgba,
   rgba($rmd-black-base, 0.38),
-  lighten($rmd-black-base, 62%)
+  color.adjust($rmd-black-base, $lightness: 62%)
 ) !default;
 
 /// The default light theme's icon text color. This default value changes
@@ -241,33 +243,48 @@ $rmd-theme-light-disabled-text-color: if(
 $rmd-theme-light-icon-color: if(
   $rmd-theme-define-colors-with-rgba,
   rgba($rmd-black-base, 0.54),
-  lighten($rmd-black-base, 46%)
+  color.adjust($rmd-black-base, $lightness: 46%)
 ) !default;
 
 /// The default dark theme's primary text color. This default value changes
 /// between the result of `rgba` or `darken` with `$rmd-white-base`.
 /// @type Color
-$rmd-theme-dark-primary-text-color: darken($rmd-white-base, 15%) !default;
+$rmd-theme-dark-primary-text-color: color.adjust(
+  $rmd-white-base,
+  $lightness: -15%
+) !default;
 
 /// The default dark theme's secondary text color. This default value changes
 /// between the result of `rgba` or `darken` with `$rmd-white-base`.
 /// @type Color
-$rmd-theme-dark-secondary-text-color: darken($rmd-white-base, 30%) !default;
+$rmd-theme-dark-secondary-text-color: color.adjust(
+  $rmd-white-base,
+  $lightness: -30%
+) !default;
 
 /// The default dark theme's hint text color. This default value changes between
 /// the result of `rgba` or `darken` with `$rmd-white-base`.
 /// @type Color
-$rmd-theme-dark-hint-text-color: darken($rmd-white-base, 50%) !default;
+$rmd-theme-dark-hint-text-color: color.adjust(
+  $rmd-white-base,
+  $lightness: -50%
+) !default;
 
 /// The default dark theme's disabled text color. This default value changes
 /// between the result of `rgba` or `darken` with `$rmd-white-base`.
 /// @type Color
-$rmd-theme-dark-disabled-text-color: darken($rmd-white-base, 50%) !default;
+$rmd-theme-dark-disabled-text-color: color.adjust(
+  $rmd-white-base,
+  $lightness: -50%
+) !default;
 
 /// The default dark theme's icon text color. This default value changes between
 /// the result of `rgba` or `darken` with `$rmd-white-base`.
 /// @type Color
-$rmd-theme-dark-icon-color: darken($rmd-white-base, 30%) !default;
+$rmd-theme-dark-icon-color: color.adjust(
+  $rmd-white-base,
+  $lightness: -30%
+) !default;
 
 /// A Map of all the light theme text colors for quick loopups.
 /// @type Map

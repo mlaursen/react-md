@@ -2,6 +2,10 @@
 /// @group utils
 ////
 
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+
 @import './variables';
 
 /// Replace `$search` with `$replace` in `$string`
@@ -14,12 +18,12 @@
 /// @return {String} - Updated string
 /// @link https://css-tricks.com/snippets/sass/str-replace-function Source from CSS Tricks
 @function str-replace($string, $search, $replace) {
-  $index: str-index($string, $search);
+  $index: string.index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace +
+    @return string.slice($string, 1, $index - 1) + $replace +
       str-replace(
-        str-slice($string, $index + str-length($search)),
+        string.slice($string, $index + string.length($search)),
         $search,
         $replace
       );
@@ -41,7 +45,7 @@
 /// @return {String|Null} - Either the map's value for the provided key or the
 /// provided value for a list when there is no error.
 @function rmd-utils-validate($list-or-map, $key-or-value, $error-message) {
-  $type: type-of($list-or-map);
+  $type: meta.type-of($list-or-map);
   $is-map: $type == map;
   $is-list: $type == list;
 
@@ -53,7 +57,7 @@
     @error 'Unable to validate anything except for lists and maps at this time. Received: #{$list-or-map}.';
   }
 
-  $choices: if($is-map, map-keys($list-or-map), $list-or-map);
+  $choices: if($is-map, map.keys($list-or-map), $list-or-map);
   @if not index($choices, $key-or-value) {
     @error "Invalid #{$error-message}: '#{$key-or-value}'. Choose one of: #{$choices}";
   }
@@ -70,7 +74,7 @@
   $prefix: '';
   $position: $style;
   @each $valid-prefix in $rmd-utils-swappable-position-prefixes {
-    @if str-index($style, '#{$valid-prefix}-') {
+    @if string.index($style, '#{$valid-prefix}-') {
       $prefix: '#{$valid-prefix}-';
       $position: str-replace($style, $prefix, '');
     }

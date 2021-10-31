@@ -2,6 +2,8 @@
 /// @group form
 ////
 
+@use 'sass:color';
+
 @import '~@react-md/theme/dist/color-palette';
 @import '~@react-md/theme/dist/helpers';
 @import '~@react-md/theme/dist/functions';
@@ -27,7 +29,7 @@ $rmd-form-error-hover-color: rmd-theme-get-swatch(
   $rmd-form-error-color,
   700,
   true,
-  darken($rmd-form-error-color, 10%),
+  color.adjust($rmd-form-error-color, $lightness: -10%),
   rmd-form-error-color
 ) !default;
 

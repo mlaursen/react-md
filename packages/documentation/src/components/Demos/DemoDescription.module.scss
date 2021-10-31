@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'react-md' as *;
 
 .container {
@@ -9,7 +10,7 @@
   }
 
   strong {
-    font-weight: map-get($rmd-typography-font-weights, bold);
+    font-weight: map.get($rmd-typography-font-weights, bold);
   }
 
   em {

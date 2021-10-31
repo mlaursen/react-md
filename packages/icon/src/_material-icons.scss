@@ -2,6 +2,8 @@
 /// @group icon
 ////
 
+@use 'sass:map';
+
 @import '~@react-md/typography/dist/variables';
 @import './mixins';
 
@@ -61,13 +63,13 @@
   @font-face {
     font-family: $font-family;
     font-style: normal;
-    font-weight: map-get($rmd-typography-font-weights, normal);
+    font-weight: map.get($rmd-typography-font-weights, normal);
 
     @if $old-ie-support {
       @if $font-map == null {
         src: url($font-url + '.eot');
       } @else {
-        src: #{map-get($font-map, eot)};
+        src: #{map.get($font-map, eot)};
       }
     }
 
@@ -79,9 +81,9 @@
           url($font-url + '.ttf')
           format('truetype');
     } @else {
-      $woff2: map-get($font-url-or-map, woff2);
-      $woff: map-get($font-url-or-map, woff);
-      $truetype: map-get($font-url-or-map, truetype);
+      $woff2: map.get($font-url-or-map, woff2);
+      $woff: map.get($font-url-or-map, woff);
+      $truetype: map.get($font-url-or-map, truetype);
 
       $src: local($font-family), local($font-name);
       $src: "local(#{$font-family}), local(#{$font-name}), #{$woff2} format('woff2'), #{$woff} format('woff'), #{$truetype} format('truetype')";
