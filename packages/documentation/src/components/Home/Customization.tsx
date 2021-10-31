@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import Image from "next/image";
 import {
   CardHeader,
   CardTitle,
@@ -12,7 +13,7 @@ import { Text } from "@react-md/typography";
 import Code from "components/Code";
 import LinkButton from "components/LinkButton";
 
-import { Component as SVG } from "./customization.svg";
+import customization from "./customization.svg";
 import JumpStartCard from "./JumpStartCard";
 
 export default function GettingStarted(): ReactElement {
@@ -22,7 +23,7 @@ export default function GettingStarted(): ReactElement {
         <CardTitle>Customization and Themes</CardTitle>
       </CardHeader>
       <MediaContainer fullWidth>
-        <SVG role="presentation" />
+        <Image src={customization} />
       </MediaContainer>
       <CardContent disableSecondaryColor>
         <Text>

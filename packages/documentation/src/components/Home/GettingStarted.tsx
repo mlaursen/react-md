@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import Image from "next/image";
 import {
   CardHeader,
   CardTitle,
@@ -13,7 +14,7 @@ import Code from "components/Code";
 import LinkButton from "components/LinkButton";
 
 import JumpStartCard from "./JumpStartCard";
-import { Component as SVG } from "./getting-started.svg";
+import gettingStarted from "./getting-started.svg";
 
 export default function GettingStarted(): ReactElement {
   return (
@@ -22,7 +23,7 @@ export default function GettingStarted(): ReactElement {
         <CardTitle>Getting Started</CardTitle>
       </CardHeader>
       <MediaContainer fullWidth>
-        <SVG role="presentation" />
+        <Image src={gettingStarted} />
       </MediaContainer>
       <CardContent disableSecondaryColor>
         <Text>

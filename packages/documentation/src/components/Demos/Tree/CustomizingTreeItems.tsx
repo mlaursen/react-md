@@ -15,7 +15,7 @@ import {
 } from "@react-md/tree";
 
 import FileSVGIcon from "icons/FileSVGIcon";
-import HTML5SVGIcon from "icons/HTML5SVGIcon";
+import Html5SVGIcon from "icons/Html5SVGIcon";
 import SassSVGIcon from "icons/SassSVGIcon";
 import TypescriptSVGIcon from "icons/TypescriptSVGIcon";
 import createIdGenerator from "utils/createIdGenerator";
@@ -72,7 +72,7 @@ const getItemProps: GetItemProps<Item> = (item) => {
       leftAddon = expanded ? <FolderOpenSVGIcon /> : <FolderSVGIcon />;
       break;
     case "html":
-      leftAddon = <HTML5SVGIcon />;
+      leftAddon = <Html5SVGIcon />;
       break;
     case "text":
       leftAddon = <FileSVGIcon />;

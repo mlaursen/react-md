@@ -1,15 +1,11 @@
 // source: https://ionicons.com/
 import React, { ReactElement } from "react";
-import cn from "classnames";
-import { SVGIconProps } from "@react-md/icon";
+import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
-import { Component as FileSVG } from "./file.svg";
-
-export default function FileSVGIcon({
-  className,
-  ...props
-}: SVGIconProps): ReactElement {
+export default function FileSVGIcon(props: SVGIconProps): ReactElement {
   return (
-    <FileSVG {...props} className={cn("rmd-icon rmd-icon--svg", className)} />
+    <SVGIcon {...props} viewBox="0 0 512 512">
+      <path d="M288 48H136c-22.092 0-40 17.908-40 40v336c0 22.092 17.908 40 40 40h240c22.092 0 40-17.908 40-40V176L288 48zm-16 144V80l112 112H272z" />
+    </SVGIcon>
   );
 }

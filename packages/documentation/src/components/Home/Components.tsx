@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import Image from "next/image";
 import {
   CardHeader,
   CardTitle,
@@ -13,7 +14,7 @@ import Code from "components/Code";
 import CodeBlock from "components/CodeBlock";
 import LinkButton from "components/LinkButton";
 
-import { Component as SVG } from "./components.svg";
+import components from "./components.svg";
 import JumpStartCard from "./JumpStartCard";
 
 export default function Components(): ReactElement {
@@ -23,7 +24,7 @@ export default function Components(): ReactElement {
         <CardTitle>Components and Styles</CardTitle>
       </CardHeader>
       <MediaContainer fullWidth>
-        <SVG role="presentation" />
+        <Image src={components} />
       </MediaContainer>
       <CardContent disableSecondaryColor>
         <Text>
