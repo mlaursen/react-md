@@ -11,7 +11,7 @@ export const getLanguage: GetCodeLanguage = (lang, _rawCode) => {
   // if the Prism doesn't support the language, default to nothing instead
   // of crashing
   if (!languages[lang]) {
-    return "none";
+    return "markup";
   }
 
   return lang;
