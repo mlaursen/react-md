@@ -9,14 +9,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "11.1.2",
+    "next": "12.0.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-md": "latest"
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
-    "sass": "^1.37.5"
+    "eslint-config-next": "12.0.2",
+    "sass": "^1.43.4"
   }
 }
