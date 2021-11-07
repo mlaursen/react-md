@@ -67,6 +67,8 @@ export type SimplePosition = "above" | "below" | "left" | "right";
  *
  * If this is set to `"equal"` or `"min"` and the horizontal anchor is not set
  * to `"center"`, an error will be thrown.
+ *
+ * @defaultValue `"auto"`
  */
 export type PositionWidth = "auto" | "equal" | "min";
 
@@ -88,7 +90,88 @@ export interface InitialCoords {
   initialY?: number;
 }
 
-export interface FixedPositionOptions extends InitialCoords {
+/** @remarks \@since 4.0.0 */
+export interface CalculateFixedPositionOptions extends InitialCoords {
+  /**
+   * The configuration to anchor the fixed element to the container element.
+   *
+   * @defaultValue `BELOW_CENTER_ANCHOR`
+   */
+  anchor?: PositionAnchor;
+
+  /**
+   * The viewwidth margin to apply so that the element doesn't need to be
+   * directly on the screen edge.
+   *
+   * @defaultValue `16`
+   */
+  vwMargin?: number;
+
+  /**
+   * The viewwidth margin to apply so that the element doesn't need to be
+   * directly on the screen edge.
+   *
+   * @defaultValue `16`
+   */
+  vhMargin?: number;
+
+  /**
+   * The container width margin to apply so that the element doesn't need to be
+   * directly on the container's edge.
+   *
+   * @defaultValue `0`
+   */
+  xMargin?: number;
+
+  /**
+   * The container height margin to apply so that the element doesn't need to be
+   * directly on the container's edge
+   *
+   * @defaultValue `0`
+   */
+  yMargin?: number;
+
+  /** {@inheritDoc PositionWidth} */
+  width?: PositionWidth;
+
+  /**
+   * Boolean if the style object should include the `transformOrigin` value
+   * based on the x and y positions.
+   *
+   * @defaultValue `false`
+   */
+  transformOrigin?: boolean;
+
+  /**
+   * Boolean if the fixed element should no longer be able to overlap the
+   * container element. This is useful for autocomplete menus or other
+   * components that retain focus on the container element while the fixed
+   * element becomes visible.
+   *
+   * @defaultValue `false`
+   */
+  preventOverlap?: boolean;
+
+  /**
+   * Boolean if the auto-swapping behavior should be disabled. It's normally
+   * recommended to not disable this since it'll allow elements to appear off
+   * screen.
+   *
+   * @defaultValue `false`
+   */
+  disableSwapping?: boolean;
+
+  /**
+   * Boolean if the fixed positioning should no longer prevent the fixed element
+   * to be positioned within the viewport. This is nice if you want to allow for
+   * full page scrolling instead and manually set a max-height on your element.
+   *
+   * @defaultValue `false`
+   */
+  disableVHBounds?: boolean;
+}
+
+export interface FixedPositionOptions extends CalculateFixedPositionOptions {
   /**
    * The container element that the `element` should be fixed to.
    */
@@ -98,68 +181,6 @@ export interface FixedPositionOptions extends InitialCoords {
    * The element that is fixed to a `container` element.
    */
   element: HTMLElement | null;
-
-  /**
-   * The configuration to anchor the fixed element to the container element.
-   */
-  anchor?: Partial<PositionAnchor>;
-
-  /**
-   * The viewwidth margin to apply so that the element doesn't need to be
-   * directly on the screen edge.
-   */
-  vwMargin?: number;
-
-  /**
-   * The viewwidth margin to apply so that the element doesn't need to be
-   * directly on the screen edge.
-   */
-  vhMargin?: number;
-
-  /**
-   * The container width margin to apply so that the element doesn't need to be
-   * directly on the container's edge.
-   */
-  xMargin?: number;
-
-  /**
-   * The container height margin to apply so that the element doesn't need to be
-   * directly on the container's edge
-   */
-  yMargin?: number;
-
-  /**
-   * @see PositionWidth
-   */
-  width?: PositionWidth;
-
-  /**
-   * Boolean if the style object should include the `transformOrigin` value
-   * based on the x and y positions.
-   */
-  transformOrigin?: boolean;
-
-  /**
-   * Boolean if the fixed element should no longer be able to overlap the
-   * container element. This is useful for autocomplete menus or other
-   * components that retain focus on the container element while the fixed
-   * element becomes visible.
-   */
-  preventOverlap?: boolean;
-
-  /**
-   * Boolean if the auto-swapping behavior should be disabled. It's normally
-   * recommended to not disable this since it'll allow elements to appear off
-   * screen.
-   */
-  disableSwapping?: boolean;
-
-  /**
-   * Boolean if the fixed positioning should no longer prevent the fixed element
-   * to be positioned within the viewport. This is nice if you want to allow for
-   * full page scrolling instead and manually set a max-height on your element.
-   */
-  disableVHBounds?: boolean;
 }
 
 /**
@@ -183,6 +204,30 @@ export interface Coords {
 }
 
 /**
+ * The style object that should be applied to the fixed element so it will be
+ * fixed to the container element. This will be `undefined` if the container
+ * element doesn't exist within the DOM.
+ *
+ * Note: The fixed element styles **will not** contain styles for `z-index` or
+ * `background-color` so you'll need to add that manually.
+ *
+ * @remarks \@since 4.0.0
+ */
+export interface FixedPositionStyle extends Coords {
+  /**
+   * This will be `"fixed"` unless
+   * {@link CalculateFixedPositionOptions.disableVHBounds} is set to `true`.
+   */
+  position: "fixed" | "absolute";
+
+  /**
+   * This will be `undefined` unless
+   * {@link CalculateFixedPositionOptions.transformOrigin} is set to `true`
+   */
+  transformOrigin?: string;
+}
+
+/**
  * Since the position can be "swapped" to help fit the fixed element within the
  * viewport, this interface is used to contain the calculated positions as well
  * as an optional style object to apply.
@@ -201,17 +246,6 @@ export interface FixedPosition {
    * applied.
    */
   actualY: VerticalPosition;
-
-  /**
-   * The style object that should be applied to the fixed element so it will be
-   * fixed to the container element. This will be `undefined` if the container
-   * element doesn't exist within the DOM.
-   *
-   * Note: The fixed element styles **will not** contain styles for `z-index` or
-   * `background-color` so you'll need to add that manually.
-   */
-  style?: Coords & {
-    position: "fixed" | "absolute";
-    transformOrigin?: string;
-  };
+  /** {@inheritDoc FixedPositionStyle} */
+  style?: FixedPositionStyle;
 }

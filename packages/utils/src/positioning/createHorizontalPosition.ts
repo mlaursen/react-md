@@ -6,7 +6,7 @@ import {
   getRightCoord,
   XCoordConfig,
 } from "./getCoord";
-import { FixedPositionOptions, HorizontalPosition } from "./types";
+import type { FixedPositionOptions, HorizontalPosition } from "./types";
 
 /**
  * @internal

@@ -1,10 +1,11 @@
+import { BELOW_CENTER_ANCHOR } from "./constants";
 import { createHorizontalPosition } from "./createHorizontalPosition";
 import { createVerticalPosition } from "./createVerticalPosition";
 import { findSizingContainer } from "./findSizingContainer";
 import { getElementRect } from "./getElementRect";
 import { getTransformOrigin } from "./getTransformOrigin";
 import { getViewportSize } from "./getViewportSize";
-import { FixedPosition, FixedPositionOptions } from "./types";
+import type { FixedPosition, FixedPositionOptions } from "./types";
 
 /**
  * One of the most complicated functions in this project that will attempt to
@@ -40,7 +41,7 @@ import { FixedPosition, FixedPositionOptions } from "./types";
 export function getFixedPosition({
   container,
   element,
-  anchor: propAnchor = {},
+  anchor = BELOW_CENTER_ANCHOR,
   initialX,
   initialY,
   vwMargin = 16,
@@ -54,10 +55,6 @@ export function getFixedPosition({
   disableVHBounds = false,
 }: FixedPositionOptions): FixedPosition {
   container = findSizingContainer(container);
-  const anchor = {
-    x: propAnchor.x || "center",
-    y: propAnchor.y || "below",
-  };
 
   if (process.env.NODE_ENV !== "production") {
     if (widthType !== "auto" && anchor.x !== "center") {

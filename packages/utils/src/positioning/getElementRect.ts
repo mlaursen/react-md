@@ -1,4 +1,4 @@
-import { Coords } from "./types";
+import type { Coords } from "./types";
 
 function applyCoords(coord: number | undefined): string {
   return typeof coord === "number" ? `${coord}px` : "";

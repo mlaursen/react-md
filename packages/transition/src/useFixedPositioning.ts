@@ -7,6 +7,7 @@ import {
 } from "react";
 import { TransitionProps } from "react-transition-group/Transition";
 import {
+  BELOW_CENTER_ANCHOR,
   FixedPositionOptions,
   getFixedPosition,
   getViewportSize,
@@ -164,7 +165,7 @@ export function useFixedPositioning({
   getOptions,
   onResize,
   onScroll,
-  anchor: currentAnchor = {},
+  anchor = BELOW_CENTER_ANCHOR,
   initialX,
   initialY,
   xMargin = 0,
@@ -192,10 +193,6 @@ export function useFixedPositioning({
         return;
       }
 
-      const anchor = {
-        x: currentAnchor.x || "center",
-        y: currentAnchor.y || "below",
-      };
       const overrides =
         typeof getOptions === "function" ? getOptions(node) : {};
       const opts: FixedPositionOptions = {
@@ -229,23 +226,22 @@ export function useFixedPositioning({
       setStyle(style);
     },
     [
-      currentAnchor.x,
-      currentAnchor.y,
-      disableSwapping,
-      disableVHBounds,
-      fixedTo,
+      element,
       getOptions,
       initialX,
       initialY,
-      onPositionChange,
-      preventOverlap,
-      transformOrigin,
-      vhMargin,
-      vwMargin,
-      width,
       xMargin,
+      vwMargin,
       yMargin,
-      element,
+      vhMargin,
+      width,
+      transformOrigin,
+      preventOverlap,
+      disableSwapping,
+      disableVHBounds,
+      anchor,
+      fixedTo,
+      onPositionChange,
     ]
   );
 

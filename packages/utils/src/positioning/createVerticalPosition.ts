@@ -7,7 +7,7 @@ import {
   YCoordConfig,
 } from "./getCoord";
 import { getViewportSize } from "./getViewportSize";
-import { FixedPositionOptions, VerticalPosition } from "./types";
+import type { FixedPositionOptions, VerticalPosition } from "./types";
 
 /**
  * @internal

@@ -1,4 +1,4 @@
-import { PositionAnchor } from "./types";
+import type { PositionAnchor } from "./types";
 
 /**
  * This is a simple util that'll generate a css `transform-origin` string so
