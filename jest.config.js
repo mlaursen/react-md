@@ -7,6 +7,21 @@ const packages = fs
 
 const docsSrc = '<rootDir>/packages/documentation/src';
 
+const isWatchMode = /(-w|--watch)(\s?.+)?$/.test(process.argv);
+
+let collectCoverageFrom = [];
+if (!isWatchMode) {
+  collectCoverageFrom = [
+    '<rootDir>/packages/*/src/**/*.{ts,tsx}',
+    // internal usage and don't matter for the library coverage reports
+    '!<rootDir>/packages/{dev-utils,documentation,material-icons,react-md}/src/**/*',
+    // these are generated files
+    '!<rootDir>/packages/*/src/scssVariables.ts',
+    // index.ts files are always `export * from "./fileOrFolder"`
+    '!<rootDir>/packages/**/index.ts',
+  ];
+}
+
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
@@ -31,15 +46,7 @@ module.exports = {
     '^pages/(.*)$': `${docsSrc}/pages/$1`,
     '^utils/(.*)$': `${docsSrc}/utils/$1`,
   },
-  collectCoverageFrom: [
-    '<rootDir>/packages/*/src/**/*.{ts,tsx}',
-    // internal usage and don't matter for the library coverage reports
-    '!<rootDir>/packages/{dev-utils,documentation,material-icons,react-md}/src/**/*',
-    // these are generated files
-    '!<rootDir>/packages/*/src/scssVariables.ts',
-    // index.ts files are always `export * from "./fileOrFolder"`
-    '!<rootDir>/packages/**/index.ts',
-  ],
+  collectCoverageFrom,
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
