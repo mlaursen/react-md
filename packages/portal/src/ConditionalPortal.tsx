@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import type { ReactElement, ReactNode } from "react";
 
 import type { PortalInto } from "./getContainer";
 import { Portal } from "./Portal";
@@ -27,8 +27,10 @@ export interface RenderConditionalPortalProps {
 export interface ConditionalPortalProps extends RenderConditionalPortalProps {
   /**
    * This children to render.
+   *
+   * @remarks \@since 4.0.0 Allows `ReactNode` instead of `ReactElement | null`
    */
-  children: ReactElement | null;
+  children: ReactNode;
 }
 
 /**
@@ -41,9 +43,9 @@ export function ConditionalPortal({
   portalInto,
   portalIntoId,
   children,
-}: ConditionalPortalProps): ReactElement | null {
+}: ConditionalPortalProps): ReactElement {
   if (!portal && !portalInto && !portalIntoId) {
-    return children;
+    return <>{children}</>;
   }
 
   return (
