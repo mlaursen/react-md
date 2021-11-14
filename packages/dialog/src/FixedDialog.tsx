@@ -1,19 +1,20 @@
-import { forwardRef } from "react";
+import { forwardRef, RefObject } from "react";
 import cn from "classnames";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import {
-  FixedTo,
-  GetFixedPositionOptions,
-  OptionalFixedPositionOptions,
+  CSSTransitionClassNames,
   useFixedPositioning,
 } from "@react-md/transition";
-import { LabelRequiredForA11y, TOP_INNER_RIGHT_ANCHOR } from "@react-md/utils";
+import {
+  CalculateFixedPositionOptions,
+  LabelRequiredForA11y,
+  TOP_INNER_RIGHT_ANCHOR,
+} from "@react-md/utils";
 
 import { BaseDialogProps, Dialog } from "./Dialog";
 
 export interface BaseFixedDialogProps
   extends Omit<BaseDialogProps, "type">,
-    Pick<OptionalFixedPositionOptions, "anchor"> {
+    Pick<CalculateFixedPositionOptions, "anchor"> {
   /**
    * The element the dialog should be fixed to. This can either be:
    * - a query selector string to get an element
@@ -21,18 +22,18 @@ export interface BaseFixedDialogProps
    * - a function that returns an HTMLElement or null
    * - null
    */
-  fixedTo: FixedTo;
+  fixedTo: RefObject<HTMLElement>;
 
   /**
    * Any additional options to apply to the fixed positioning logic. The
    * `transformOrigin` option will be enabled by default.
    */
-  options?: OptionalFixedPositionOptions;
+  options?: CalculateFixedPositionOptions;
 
   /**
    * An optional function to call to get the fixed positioning options.
    */
-  getOptions?: GetFixedPositionOptions;
+  getOptions?(): CalculateFixedPositionOptions;
 }
 
 export type FixedDialogProps = LabelRequiredForA11y<BaseFixedDialogProps>;
@@ -64,30 +65,39 @@ export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
       classNames = DEFAULT_CLASSNAMES,
       overlayHidden = true,
       disableScrollLock = true,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExited,
       ...props
     },
-    ref
+    nodeRef
   ) {
     const { onRequestClose } = props;
 
-    const { style, onEnter, onEntering, onEntered, onExited } =
-      useFixedPositioning({
-        style: propStyle,
-        transformOrigin: true,
-        ...options,
-        onScroll: /* istanbul ignore next */ (_event, { visible }) => {
-          if (!visible) {
-            onRequestClose();
-          }
-        },
-        fixedTo,
-        anchor,
-        getOptions,
-      });
+    const { ref, style, callbacks } = useFixedPositioning({
+      nodeRef,
+      style: propStyle,
+      transformOrigin: true,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExited,
+      anchor,
+      fixedTo,
+      onScroll: /* istanbul ignore next */ (_event, { visible }) => {
+        if (!visible) {
+          onRequestClose();
+        }
+      },
+      ...options,
+      getFixedPositionOptions: getOptions,
+    });
 
     return (
       <Dialog
         {...props}
+        {...callbacks}
         ref={ref}
         type="custom"
         style={style}
@@ -95,10 +105,6 @@ export const FixedDialog = forwardRef<HTMLDivElement, FixedDialogProps>(
         classNames={classNames}
         overlayHidden={overlayHidden}
         disableScrollLock={disableScrollLock}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExited={onExited}
       >
         {children}
       </Dialog>

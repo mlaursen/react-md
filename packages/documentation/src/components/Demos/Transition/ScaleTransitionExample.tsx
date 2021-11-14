@@ -33,7 +33,7 @@ export default function ScaleTransitionExample(): ReactElement {
         />
         <Button onClick={() => setVisible(!visible)}>Toggle</Button>
       </Form>
-      <ScaleTransition visible={visible} vertical={vertical}>
+      <ScaleTransition transitionIn={visible} vertical={vertical}>
         <FocusContainer
           className={cn({ [styles.temporary]: temporary })}
           disableFocusOnMount={!temporary}

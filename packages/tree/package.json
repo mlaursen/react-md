@@ -22,10 +22,9 @@
     "react-md",
     "material design",
     "react",
-    "transition",
     "component",
     "components",
-    "collapse"
+    "tree"
   ],
   "license": "MIT",
   "dependencies": {

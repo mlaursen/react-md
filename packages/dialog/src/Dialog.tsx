@@ -1,12 +1,17 @@
 import { CSSProperties, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
-import CSSTransition from "react-transition-group/CSSTransition";
 import { Overlay } from "@react-md/overlay";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { OverridableCSSTransitionProps } from "@react-md/transition";
+import {
+  CSSTransitionClassNames,
+  CSSTransitionComponentProps,
+  TransitionActions,
+  TransitionTimeout,
+  useCSSTransition,
+} from "@react-md/transition";
 import {
   bem,
   FocusContainer,
@@ -19,7 +24,8 @@ import {
 import { useNestedDialogFixes } from "./useNestedDialogFixes";
 
 export interface BaseDialogProps
-  extends OverridableCSSTransitionProps,
+  extends CSSTransitionComponentProps,
+    TransitionActions,
     RenderConditionalPortalProps,
     FocusContainerOptionsProps,
     HTMLAttributes<HTMLDivElement> {
@@ -190,7 +196,9 @@ const noop = (): void => {
   // do nothing
 };
 const block = bem("rmd-dialog");
-const DEFAULT_DIALOG_CLASSNAMES = {
+
+/** @remarks \@since 4.0.0 */
+export const DEFAULT_DIALOG_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
   appear: "rmd-dialog--enter",
   appearActive: "rmd-dialog--enter-active",
   enter: "rmd-dialog--enter",
@@ -198,11 +206,75 @@ const DEFAULT_DIALOG_CLASSNAMES = {
   exit: "rmd-dialog--exit",
   exitActive: "rmd-dialog--exit-active",
 };
-const DEFAULT_DIALOG_TIMEOUT = {
+
+/** @remarks \@since 4.0.0 */
+export const DEFAULT_DIALOG_TIMEOUT: Readonly<TransitionTimeout> = {
   enter: 200,
   exit: 150,
 };
 
+/**
+ * A dialog is used to show important content above all other elements within
+ * the page. This is normally used for alerts, confirmations, or just temporary
+ * content. The dialog within react-md also has the additional features for
+ * accessibility:
+ *
+ * - automatically focus the dialog on mount for keyboard users
+ * - prevent elements outside of the dialog to be focused
+ * - close via the escape key
+ * - prevent the page outside of the dialog from being scrolled
+ *
+ * To complete the dialog accessibility requirements, every dialog **must**
+ * provide an `id` and either an `aria-label` describing the dialog or an
+ * `aria-labelledby` id that points to an element describing this dialog.
+ *
+ * @example
+ * Simple Example
+ * ```tsx
+ * import { ReactElement, useState } from "react";
+ * import { Button } from "@react-md/button";
+ * import {
+ *   Dialog,
+ *   DialogHeader,
+ *   DialogTitle,
+ *   DialogContent,
+ *   DialogFooter,
+ * } from "@react-md/dialog";
+ *
+ * function Example(): ReactElement {
+ *   const [visible, setVisible] = useState(false);
+ *   const hide = (): void => {
+ *     setVisible(false);
+ *   };
+ *
+ *   return (
+ *     <>
+ *       <Button onClick={() => setVisible(!visible)}>
+ *         Show Dialog
+ *       </Button>
+ *       <Dialog
+ *         aria-labelledby="dialog-title"
+ *         id="simple-dialog"
+ *         visible={visible}
+ *         onRequestClose={hide}
+ *       >
+ *         <DialogHeader>
+ *           <DialogTitle id="dialog-title">Simple Dialog</DialogTitle>
+ *         </DialogHeader>
+ *         <DialogContent>
+ *           <Text margin="none">This is some text in a dialog.</Text>
+ *         </DialogContent>
+ *         <DialogFooter>
+ *           <Button onClick={hide}>
+ *             Close
+ *           </Button>
+ *         </DialogFooter>
+ *       </Dialog>
+ *     </>
+ *   );
+ * }
+ * ```
+ */
 export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
   {
     component = "div",
@@ -228,8 +300,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     disableTransition = false,
     classNames = DEFAULT_DIALOG_CLASSNAMES,
     timeout = DEFAULT_DIALOG_TIMEOUT,
-    mountOnEnter = true,
-    unmountOnExit = true,
+    temporary = true,
     onEnter,
     onEntering,
     onEntered,
@@ -249,7 +320,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     onKeyDown,
     ...props
   },
-  ref
+  nodeRef
 ) {
   const { id } = props;
   const isNoneRole = role === "none";
@@ -283,10 +354,34 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     );
   }
 
+  const { elementProps, rendered } = useCSSTransition({
+    nodeRef,
+    transitionIn: visible,
+    timeout,
+    classNames,
+    className: cn(
+      block({
+        centered: isCentered,
+        "full-page": isFullPage,
+      }),
+      className
+    ),
+    appear: !disableTransition && appear,
+    enter: !disableTransition && enter,
+    exit: !disableTransition && exit,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    temporary,
+  });
+
   let dialog = (
     <FocusContainer
       {...props}
-      ref={ref}
+      {...elementProps}
       role={isNoneRole ? undefined : role}
       aria-modal={(!isNoneRole && !!overlayEl) || undefined}
       tabIndex={tabIndex}
@@ -306,13 +401,6 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
         onRequestClose,
         disableEscapeClose || isNoneRole,
         onKeyDown
-      )}
-      className={cn(
-        block({
-          centered: isCentered,
-          "full-page": isFullPage,
-        }),
-        className
       )}
     >
       {children}
@@ -339,27 +427,8 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
       portalInto={portalInto}
       portalIntoId={portalIntoId}
     >
-      <>
-        {overlayEl}
-        <CSSTransition
-          appear={!disableTransition && appear}
-          enter={!disableTransition && enter}
-          exit={!disableTransition && exit}
-          in={visible}
-          classNames={classNames}
-          timeout={timeout}
-          onEnter={onEnter}
-          onEntering={onEntering}
-          onEntered={onEntered}
-          onExit={onExit}
-          onExiting={onExiting}
-          onExited={onExited}
-          mountOnEnter={mountOnEnter}
-          unmountOnExit={unmountOnExit}
-        >
-          {dialog}
-        </CSSTransition>
-      </>
+      {overlayEl}
+      {rendered && dialog}
     </ConditionalPortal>
   );
 });
@@ -380,8 +449,7 @@ if (process.env.NODE_ENV !== "production") {
       modal: PropTypes.bool,
       visible: PropTypes.bool.isRequired,
       onRequestClose: PropTypes.func.isRequired,
-      mountOnEnter: PropTypes.bool,
-      unmountOnExit: PropTypes.bool,
+      temporary: PropTypes.bool,
       overlay: PropTypes.bool,
       overlayStyle: PropTypes.object,
       overlayClassName: PropTypes.string,

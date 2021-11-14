@@ -18,13 +18,13 @@ exports[`Dialog should render correctly (with snapshots) 2`] = `
     tabindex="-1"
   />
   <span
-    class="rmd-dialog-container rmd-dialog--enter rmd-dialog--enter-active"
+    class="rmd-dialog-container"
     id="dialog-1-container"
   >
     <div
       aria-label="Dialog"
       aria-modal="true"
-      class="rmd-dialog rmd-dialog--centered"
+      class="rmd-dialog rmd-dialog--centered rmd-dialog--enter rmd-dialog--enter-active"
       id="dialog-1"
       role="dialog"
       tabindex="-1"
@@ -44,13 +44,13 @@ exports[`Dialog should render correctly (with snapshots) 3`] = `
     tabindex="-1"
   />
   <span
-    class="rmd-dialog-container rmd-dialog--exit rmd-dialog--exit-active"
+    class="rmd-dialog-container"
     id="dialog-1-container"
   >
     <div
       aria-label="Dialog"
       aria-modal="true"
-      class="rmd-dialog rmd-dialog--centered"
+      class="rmd-dialog rmd-dialog--centered rmd-dialog--exit rmd-dialog--exit-active"
       id="dialog-1"
       role="dialog"
       tabindex="-1"

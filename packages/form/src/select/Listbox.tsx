@@ -1,10 +1,13 @@
 import { forwardRef, HTMLAttributes, useCallback, useRef } from "react";
 import cn from "classnames";
 import { List, ListElement } from "@react-md/list";
-import { RenderConditionalPortalProps } from "@react-md/portal";
 import {
-  OverridableCSSTransitionProps,
-  ScaleTransition,
+  ConditionalPortal,
+  RenderConditionalPortalProps,
+} from "@react-md/portal";
+import {
+  CSSTransitionComponentProps,
+  useScaleTransition,
 } from "@react-md/transition";
 import {
   bem,
@@ -135,7 +138,7 @@ export interface ListboxProps
       "value" | "defaultValue" | "onChange"
     >,
     ListboxOptions,
-    OverridableCSSTransitionProps {
+    CSSTransitionComponentProps {
   /**
    * The id for the listbox. This is required for a11y and is used to generate
    * unique ids for each option within the listbox for `aria-activedescendant`
@@ -183,7 +186,7 @@ let warned: Set<string> | undefined;
  */
 export const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
   {
-    className,
+    className: propClassName,
     visible = true,
     temporary = false,
     labelKey = "label",
@@ -207,8 +210,6 @@ export const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
     timeout,
     readOnly,
     classNames,
-    mountOnEnter,
-    unmountOnExit,
     onEnter,
     onEntering,
     onEntered,
@@ -217,7 +218,7 @@ export const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
     onExited,
     ...props
   },
-  ref
+  nodeRef
 ) {
   const { id } = props;
   let tabIndex = propTabIndex;
@@ -382,70 +383,73 @@ export const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
     [focusedIndex, itemRefs, onFocus]
   );
 
+  const { elementProps, rendered } = useScaleTransition({
+    nodeRef,
+    timeout,
+    className: cn(block({ temporary }), propClassName),
+    classNames,
+    transitionIn: visible,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+  });
+
   return (
-    <ScaleTransition
+    <ConditionalPortal
       portal={portal}
       portalInto={portalInto}
       portalIntoId={portalIntoId}
-      visible={!temporary || visible}
-      vertical
-      timeout={timeout}
-      classNames={classNames}
-      mountOnEnter={mountOnEnter}
-      unmountOnExit={unmountOnExit}
-      onEnter={onEnter}
-      onEntering={onEntering}
-      onEntered={onEntered}
-      onExit={onExit}
-      onExiting={onExiting}
-      onExited={onExited}
     >
-      <List
-        {...props}
-        aria-activedescendant={activeId}
-        ref={ref}
-        role="listbox"
-        tabIndex={tabIndex}
-        className={cn(block({ temporary }), className)}
-        onFocus={handleFocus}
-        onKeyDown={onKeyDown}
-      >
-        {options.map((option, i) => {
-          const optionId = getOptionId(id, i);
-          const optionValue = getOptionValue(option, valueKey);
-          const optionLabel = getOptionLabel(option, labelKey);
-          let optionProps: ListboxOptionProps | undefined;
-          if (isListboxOptionProps(option)) {
-            optionProps = omit(option, [labelKey, valueKey]);
-          }
+      {rendered && (
+        <List
+          {...props}
+          {...elementProps}
+          aria-activedescendant={activeId}
+          role="listbox"
+          tabIndex={tabIndex}
+          onFocus={handleFocus}
+          onKeyDown={onKeyDown}
+        >
+          {options.map((option, i) => {
+            const optionId = getOptionId(id, i);
+            const optionValue = getOptionValue(option, valueKey);
+            const optionLabel = getOptionLabel(option, labelKey);
+            let optionProps: ListboxOptionProps | undefined;
+            if (isListboxOptionProps(option)) {
+              optionProps = omit(option, [labelKey, valueKey]);
+            }
 
-          const disabled = isOptionDisabled(option);
+            const disabled = isOptionDisabled(option);
 
-          let onClick;
-          if (!readOnly && !disabled) {
-            onClick = () => {
-              handleChange(i);
-              setFocusedIndex(i);
-            };
-          }
+            let onClick;
+            if (!readOnly && !disabled) {
+              onClick = () => {
+                handleChange(i);
+                setFocusedIndex(i);
+              };
+            }
 
-          return (
-            <Option
-              key={optionValue}
-              id={optionId}
-              disabled={disabled}
-              {...optionProps}
-              ref={itemRefs[i]}
-              focused={optionId === activeId}
-              selected={value === optionValue}
-              onClick={onClick}
-            >
-              {optionLabel}
-            </Option>
-          );
-        })}
-      </List>
-    </ScaleTransition>
+            return (
+              <Option
+                key={optionValue}
+                id={optionId}
+                disabled={disabled}
+                {...optionProps}
+                ref={itemRefs[i]}
+                focused={optionId === activeId}
+                selected={value === optionValue}
+                onClick={onClick}
+              >
+                {optionLabel}
+              </Option>
+            );
+          })}
+        </List>
+      )}
+    </ConditionalPortal>
   );
 });
 
@@ -490,8 +494,6 @@ if (process.env.NODE_ENV !== "production") {
         }),
       ]),
       readOnly: PropTypes.bool,
-      mountOnEnter: PropTypes.bool,
-      unmountOnExit: PropTypes.bool,
       onEnter: PropTypes.func,
       onEntering: PropTypes.func,
       onEntered: PropTypes.func,

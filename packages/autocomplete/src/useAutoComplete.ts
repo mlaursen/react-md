@@ -5,7 +5,6 @@ import {
   HTMLAttributes,
   KeyboardEventHandler,
   MouseEventHandler,
-  MutableRefObject,
   Ref,
   useCallback,
   useEffect,
@@ -13,7 +12,10 @@ import {
   useState,
 } from "react";
 import { ListElement } from "@react-md/list";
-import { TransitionHooks, useFixedPositioning } from "@react-md/transition";
+import {
+  FixedPositioningTransitionCallbacks,
+  useFixedPositioning,
+} from "@react-md/transition";
 import {
   ItemRefList,
   MovementPresets,
@@ -77,7 +79,7 @@ export interface AutoCompleteReturnValue {
   activeId: string;
   itemRefs: ItemRefList<HTMLLIElement>;
   filteredData: readonly AutoCompleteData[];
-  listboxRef: MutableRefObject<ListElement | null>;
+  listboxRef: Ref<ListElement>;
   handleBlur: FocusEventHandler<HTMLInputElement>;
   handleFocus: FocusEventHandler<HTMLInputElement>;
   handleClick: MouseEventHandler<HTMLInputElement>;
@@ -85,7 +87,7 @@ export interface AutoCompleteReturnValue {
   handleKeyDown: KeyboardEventHandler<HTMLInputElement>;
   handleAutoComplete: (index: number) => void;
   fixedStyle: CSSProperties | undefined;
-  transitionHooks: Required<TransitionHooks>;
+  transitionHooks: Required<FixedPositioningTransitionCallbacks>;
 }
 
 /**
@@ -308,7 +310,7 @@ export function useAutoComplete({
     ]
   );
 
-  const listboxRef = useRef<ListElement | null>(null);
+  const nodeRef = useRef<ListElement | null>(null);
   const {
     activeId,
     itemRefs,
@@ -330,7 +332,7 @@ export function useAutoComplete({
       // the input element instead of the listbox. So need to implement the
       // scroll into view behavior manually from the listbox instead.
       const item = itemRefs[index] && itemRefs[index].current;
-      const { current: listbox } = listboxRef;
+      const { current: listbox } = nodeRef;
       if (item && listbox && listbox.scrollHeight > listbox.offsetHeight) {
         scrollIntoView(listbox, item);
       }
@@ -418,26 +420,31 @@ export function useAutoComplete({
     onOutsideClick: hide,
   });
 
-  const { style, onEnter, onEntering, onEntered, onExited, updateStyle } =
-    useFixedPositioning({
-      fixedTo: () => ref.current,
-      anchor,
-      onScroll(_event, { visible }) {
-        if (closeOnScroll || !visible) {
-          hide();
-        }
-      },
-      onResize: closeOnResize ? hide : undefined,
-      width: listboxWidth,
-      xMargin,
-      yMargin,
-      vwMargin,
-      vhMargin,
-      transformOrigin,
-      preventOverlap,
-      disableSwapping,
-      disableVHBounds,
-    });
+  const {
+    ref: listboxRef,
+    style,
+    callbacks,
+    updateStyle,
+  } = useFixedPositioning({
+    fixedTo: ref,
+    nodeRef,
+    anchor,
+    onScroll(_event, { visible }) {
+      if (closeOnScroll || !visible) {
+        hide();
+      }
+    },
+    onResize: closeOnResize ? hide : undefined,
+    width: listboxWidth,
+    xMargin,
+    yMargin,
+    vwMargin,
+    vhMargin,
+    transformOrigin,
+    preventOverlap,
+    disableSwapping,
+    disableVHBounds,
+  });
 
   useEffect(() => {
     if (!focused.current || autocompleted.current) {
@@ -477,12 +484,7 @@ export function useAutoComplete({
     itemRefs,
     filteredData,
     fixedStyle: { ...style, ...listboxStyle },
-    transitionHooks: {
-      onEnter,
-      onEntering,
-      onEntered,
-      onExited,
-    },
+    transitionHooks: callbacks,
     listboxRef,
     handleBlur,
     handleFocus,

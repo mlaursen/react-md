@@ -42,7 +42,7 @@ exports[`DropdownMenu should render correctly with a list of strings, numbers, L
       class="rmd-ripple-container"
     >
       <span
-        class="rmd-ripple"
+        class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
         style="left: 0px; top: 0px; height: 0px; width: 0px;"
       />
     </span>
@@ -127,7 +127,7 @@ exports[`DropdownMenu should render correctly with a list of strings, numbers, L
       class="rmd-ripple-container"
     >
       <span
-        class="rmd-ripple"
+        class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
         style="left: 0px; top: 0px; height: 0px; width: 0px;"
       />
     </span>
@@ -240,7 +240,7 @@ exports[`DropdownMenu should render correctly with a list of strings, numbers, L
       class="rmd-ripple-container"
     >
       <span
-        class="rmd-ripple"
+        class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
         style="left: 0px; top: 0px; height: 0px; width: 0px;"
       />
     </span>
@@ -335,7 +335,7 @@ exports[`DropdownMenu should render correctly with a list of strings, numbers, L
       class="rmd-ripple-container"
     >
       <span
-        class="rmd-ripple"
+        class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
         style="left: 0px; top: 0px; height: 0px; width: 0px;"
       />
     </span>

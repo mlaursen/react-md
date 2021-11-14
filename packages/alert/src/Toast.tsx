@@ -1,14 +1,16 @@
 import { forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
-import CSSTransition from "react-transition-group/CSSTransition";
-import { OverridableCSSTransitionProps } from "@react-md/transition";
+import {
+  CSSTransition,
+  CSSTransitionComponentProps,
+} from "@react-md/transition";
 import { bem } from "@react-md/utils";
 
 import { DEFAULT_TOAST_CLASSNAMES, DEFAULT_TOAST_TIMEOUT } from "./constants";
 
 export interface ToastProps
   extends HTMLAttributes<HTMLDivElement>,
-    Omit<OverridableCSSTransitionProps, "mountOnEnter" | "unmountOnExit"> {
+    Omit<CSSTransitionComponentProps, "temporary"> {
   /**
    * Boolean if the main message content should be stacked above the action
    * button.  This prop is invalid if an `action` is not provided.
@@ -62,12 +64,14 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
     visible,
     ...props
   },
-  ref
+  nodeRef
 ) {
   return (
     <CSSTransition
-      in={visible}
       appear
+      nodeRef={nodeRef}
+      temporary
+      transitionIn={visible}
       onEnter={onEnter}
       onEntering={onEntering}
       onEntered={onEntered}
@@ -76,12 +80,9 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(function Toast(
       onExited={onExited}
       timeout={timeout}
       classNames={classNames}
-      mountOnEnter
-      unmountOnExit
     >
       <div
         {...props}
-        ref={ref}
         className={cn(
           block({
             stacked,

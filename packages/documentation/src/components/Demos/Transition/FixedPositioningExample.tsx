@@ -1,11 +1,4 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-// disabled the no-non-null-assertions since the refs are guarenteed to not be
-// null by the time of running and this will eventually be re-written once I
-// updated the `@react-md/transition` package for the new `nodeRef` API
 import { ReactElement, useCallback, useRef, useState } from "react";
-import CSSTransition, {
-  CSSTransitionClassNames,
-} from "react-transition-group/CSSTransition";
 import { Button } from "@react-md/button";
 import {
   Checkbox,
@@ -17,7 +10,11 @@ import {
 } from "@react-md/form";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
-import { useFixedPositioning } from "@react-md/transition";
+import {
+  CSSTransition,
+  CSSTransitionClassNames,
+  useFixedPositioning,
+} from "@react-md/transition";
 import { Text } from "@react-md/typography";
 import {
   HorizontalPosition,
@@ -80,7 +77,6 @@ const CLASSNAMES: CSSTransitionClassNames = {
 export default function FixedPositioningExample(): ReactElement {
   const [visible, show, hide] = useToggle(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const divRef = useRef<HTMLDivElement>(null);
   const [disableSwapping, handleSwapCange] = useChecked(false);
   const [transformOrigin, handleOriginChange] = useChecked(false);
   const [hideOnScroll, handleScrollChange] = useChecked(true);
@@ -98,35 +94,34 @@ export default function FixedPositioningExample(): ReactElement {
     setWidth(nextWidth as PositionWidth);
   }, []);
 
-  const { style, onEnter, onEntering, onEntered, onExited } =
-    useFixedPositioning({
-      fixedTo: buttonRef.current,
-      anchor: { x: anchor.x, y: anchor.y },
-      width,
-      transformOrigin,
-      disableSwapping,
-      onScroll(_event, { fixedTo: button }) {
-        if (hideOnScroll) {
-          hide();
-          return;
-        }
+  const { style, transitionOptions } = useFixedPositioning({
+    fixedTo: buttonRef,
+    anchor: { x: anchor.x, y: anchor.y },
+    width,
+    transformOrigin,
+    disableSwapping,
+    onScroll(_event, { fixedToElement: button }) {
+      if (hideOnScroll) {
+        hide();
+        return;
+      }
 
-        if (!button) {
-          return;
-        }
-        // hide when the button isn't in the viewport anymore if the
-        // hideOnScroll behavior is disabled
-        const { top } = button.getBoundingClientRect();
-        if (top < 0 || top > window.innerHeight) {
-          hide();
-        }
-      },
-      onResize(_event) {
-        if (hideOnResize) {
-          hide();
-        }
-      },
-    });
+      if (!button) {
+        return;
+      }
+      // hide when the button isn't in the viewport anymore if the
+      // hideOnScroll behavior is disabled
+      const { top } = button.getBoundingClientRect();
+      if (top < 0 || top > window.innerHeight) {
+        hide();
+      }
+    },
+    onResize(_event) {
+      if (hideOnResize) {
+        hide();
+      }
+    },
+  });
 
   return (
     <>
@@ -207,23 +202,14 @@ export default function FixedPositioningExample(): ReactElement {
         visible={visible}
       />
       <CSSTransition
-        in={visible}
-        nodeRef={divRef}
-        mountOnEnter
-        unmountOnExit
-        classNames={CLASSNAMES}
+        {...transitionOptions}
+        className={styles.div}
+        temporary
         timeout={{ enter: 200, exit: 150 }}
-        onEnter={(isAppearing) => onEnter(divRef.current!, isAppearing)}
-        onEntering={(isAppearing) => onEntering(divRef.current!, isAppearing)}
-        onEntered={(isAppearing) => onEntered(divRef.current!, isAppearing)}
-        onExited={() => onExited(divRef.current!)}
+        classNames={CLASSNAMES}
+        transitionIn={visible}
       >
-        <div
-          id="fixed-position-div"
-          ref={divRef}
-          style={style}
-          className={styles.div}
-        >
+        <div id="fixed-position-div" style={style}>
           <Text>This is some amazing text in a fixed element!</Text>
         </div>
       </CSSTransition>

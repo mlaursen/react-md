@@ -1,10 +1,10 @@
-import { ReactElement, useCallback } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
-import CSSTransition, {
+import {
   CSSTransitionClassNames,
-} from "react-transition-group/CSSTransition";
-import { TransitionTimeout } from "@react-md/transition";
-import { useRefCache } from "@react-md/utils";
+  TransitionTimeout,
+  useCSSTransition,
+} from "@react-md/transition";
 
 import { useStatesConfigContext } from "../StatesConfig";
 import { RippleState } from "./types";
@@ -25,7 +25,7 @@ export function Ripple({
   ripple,
   entered,
   exited,
-}: RippleProps): ReactElement {
+}: RippleProps): ReactElement | null {
   const { exiting, style } = ripple;
 
   let timeout = propTimeout;
@@ -41,30 +41,23 @@ export function Ripple({
     }
   }
 
-  const ref = useRefCache({ ripple, entered, exited });
-  const onEntered = useCallback(() => {
-    const { ripple, entered } = ref.current;
-    entered(ripple);
-    // disabled since useRefCache
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const onExited = useCallback(() => {
-    const { ripple, exited } = ref.current;
-    exited(ripple);
-    // disabled since useRefCache
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { elementProps, rendered } = useCSSTransition({
+    appear: true,
+    transitionIn: !exiting,
+    timeout,
+    className: cn("rmd-ripple", className),
+    classNames,
+    onEntered() {
+      entered(ripple);
+    },
+    onExited() {
+      exited(ripple);
+    },
+  });
 
-  return (
-    <CSSTransition
-      in={!exiting}
-      appear
-      classNames={classNames}
-      timeout={timeout}
-      onEntered={onEntered}
-      onExited={onExited}
-    >
-      <span style={style} className={cn("rmd-ripple", className)} />
-    </CSSTransition>
-  );
+  if (!rendered) {
+    return null;
+  }
+
+  return <span {...elementProps} style={style} />;
 }

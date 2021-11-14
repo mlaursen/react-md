@@ -1,15 +1,14 @@
 import { CSSProperties, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
-import CSSTransition, {
-  CSSTransitionClassNames,
-} from "react-transition-group/CSSTransition";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
 import {
-  OverridableTransitionProps,
+  CSSTransitionClassNames,
+  CSSTransitionComponentProps,
   TransitionTimeout,
+  useCSSTransition,
 } from "@react-md/transition";
 import { bem, SimplePosition } from "@react-md/utils";
 
@@ -19,19 +18,6 @@ import {
   DEFAULT_TOOLTIP_TIMEOUT,
 } from "./constants";
 
-/** @remarks \@since 2.8.0 */
-export type TooltipTransitionProps = Pick<
-  OverridableTransitionProps,
-  | "onEnter"
-  | "onEntering"
-  | "onEntered"
-  | "onExit"
-  | "onExiting"
-  | "onExited"
-  | "mountOnEnter"
-  | "unmountOnExit"
->;
-
 /**
  * The base props for the `Tooltip` component. This can be extended when
  * creating custom tooltip implementations.
@@ -39,9 +25,9 @@ export type TooltipTransitionProps = Pick<
  * @remarks \@since 2.8.0 Supports the {@link RenderConditionalPortalProps}
  */
 export interface TooltipProps
-  extends TooltipTransitionProps,
-    HTMLAttributes<HTMLSpanElement>,
-    RenderConditionalPortalProps {
+  extends HTMLAttributes<HTMLSpanElement>,
+    RenderConditionalPortalProps,
+    CSSTransitionComponentProps {
   /**
    * An id for the tooltip. This is required for accessibility and finding an
    * element to attach event listeners to show and hide the tooltip.
@@ -163,48 +149,45 @@ export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
       portal = true,
       portalInto,
       portalIntoId,
-      mountOnEnter = true,
-      unmountOnExit = true,
+      temporary = true,
       ...props
     },
-    ref
+    nodeRef
   ) {
+    const { elementProps, rendered } = useCSSTransition({
+      nodeRef,
+      timeout,
+      className: cn(
+        block({
+          dense,
+          "line-wrap": lineWrap,
+          "dense-line-wrap": dense && lineWrap,
+          [position]: true,
+        }),
+        className
+      ),
+      classNames,
+      transitionIn: visible,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      temporary,
+    });
+
     return (
       <ConditionalPortal
         portal={portal}
         portalInto={portalInto}
         portalIntoId={portalIntoId}
       >
-        <CSSTransition
-          classNames={classNames}
-          in={visible}
-          timeout={timeout}
-          onEnter={onEnter}
-          onEntering={onEntering}
-          onEntered={onEntered}
-          onExit={onExit}
-          onExiting={onExiting}
-          onExited={onExited}
-          mountOnEnter={mountOnEnter}
-          unmountOnExit={unmountOnExit}
-        >
-          <span
-            {...props}
-            ref={ref}
-            role="tooltip"
-            className={cn(
-              block({
-                dense,
-                "line-wrap": lineWrap,
-                "dense-line-wrap": dense && lineWrap,
-                [position]: true,
-              }),
-              className
-            )}
-          >
+        {rendered && (
+          <span {...props} {...elementProps} role="tooltip">
             {children}
           </span>
-        </CSSTransition>
+        )}
       </ConditionalPortal>
     );
   }
@@ -248,8 +231,7 @@ if (process.env.NODE_ENV !== "production") {
       onExit: PropTypes.func,
       onExiting: PropTypes.func,
       onExited: PropTypes.func,
-      mountOnEnter: PropTypes.bool,
-      unmountOnExit: PropTypes.bool,
+      temporary: PropTypes.bool,
       position: PropTypes.oneOf(["above", "below", "left", "right"]),
       visible: PropTypes.bool.isRequired,
     };

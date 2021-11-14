@@ -1,135 +1,113 @@
-import {
-  Children,
-  cloneElement,
-  forwardRef,
-  HTMLAttributes,
-  isValidElement,
-} from "react";
+import { Children, cloneElement, ReactElement } from "react";
 import cn from "classnames";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 
-import { TransitionTimeout } from "./types";
-import { CrossFadeOptions, useCrossFade } from "./useCrossFade";
+import type { CSSTransitionComponentImplementation } from "./types";
+import {
+  CrossFadeTransitionHookOptions,
+  useCrossFadeTransition,
+} from "./useCrossFadeTransition";
 
-export interface CrossFadeProps
-  extends CrossFadeOptions<HTMLDivElement>,
-    HTMLAttributes<HTMLDivElement> {
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 2.0.0
+ * @remarks \@since 4.0.0 Updated for the new CSS Transition API
+ */
+export interface CrossFadeProps<E extends HTMLElement>
+  extends CrossFadeTransitionHookOptions<E>,
+    CSSTransitionComponentImplementation<E> {
   /**
-   * The default behavior for the `CrossFade` is to clone a `ref` and
-   * `className` into the `children` if it is a single element to keep unneeded
-   * `<div>`s from being rendered in the DOM just for transition purposes.
-   * However, this means that the `children` must be a single element that
-   * forwards the `ref` correctly to a DOM node which might be a hassle.
+   * Unlike the {@link useCrossFadeTransition}, the `appear` value is defaulted
+   * to `true` so that the transition can occur when the `key` changes.
    *
-   * Enabling this prop will just update the `CrossFade` to wrap the `children`
-   * in a `<div>` and apply that transition to that instead.
-   *
-   * Note: The `HTMLAttributes` for the `HTMLDivElement` other than the
-   * `className` are only valid for this component when this prop is set to
-   * `true`.
+   * @see {@link CrossFadeTransitionHookOptions.appear}
+   * @defaultValue `true`
    */
-  wrap?: boolean;
-
-  /**
-   * The timeout to use for the cross fade animation. This should not be
-   * changed unless the `classNames` prop is also changed.
-   */
-  timeout?: TransitionTimeout;
-
-  /**
-   * The transition class names to use for the cross fade animation.
-   */
-  classNames?: CSSTransitionClassNames;
+  appear?: boolean;
 }
 
 /**
- * The `Collapse` is really just a convenience wrapper for the `useCrossFade`
- * hook that triggers the transition by cloning the `ref` and `className` into
- * the `children` of this component.
+ * This is a component implementation of the {@link useCrossFadeTransition} hook
+ * that implements the `temporary` behavior. Since this component uses the
+ * `React.cloneElement` to inject the `ref` and `className` into the `children`,
+ * it is recommended to use the hook instead.
  *
- * This transition will only fire on mount and when the `appear` prop is set to
- * `true`, so the way to trigger new animations is by changing the `key` for
- * this component so it re-mounts. However it is generally not recommended to
- * fire this transition on first page load especially when dealing with server
- * side rendering. A simple way to work around this is have the `CrossFade` near
- * the root of the app and just disable the `appear` prop until the first
- * render.
+ * @example
+ * Appear transitions with a React `key`
+ * ```tsx
+ * import { ReactElement, useState } from "react";
+ * import { CrossFade } from "@react-md/transition";
  *
- * If you want more fine-grain control over the transition, it is recommended to
- * use the `useCrossFade` hook instead.
+ * import Page1 from "./Page1";
+ * import Page2 from "./Page2";
+ * import Page3 from "./Page3";
+ *
+ * function Example(): ReactElement {
+ *   const [page, setPage] = useState(0):
+ *
+ *   let content: ReactNode;
+ *   switch (page) {
+ *     case 0:
+ *       content = <Page1 />
+ *       break:
+ *     case 1:
+ *       content = <Page2 />
+ *       break;
+ *     case 2:
+ *       content = <Page3 />
+ *       break;
+ *     default:
+ *       content = null;
+ *   }
+ *
+ *   return (
+ *     <>
+ *       <Button
+ *         onClick={() => {
+ *           setPage(prevPage => {
+ *             const nextPage = prevPage + 1;
+ *             if (nextPage > 2) {
+ *               return 0;
+ *             }
+ *
+ *             return nextPage;
+ *           })
+ *         }}
+ *       >
+ *         Change Page
+ *       </Button>
+ *       <CrossFade key={page}>
+ *         <div>{content}</div>
+ *       </CrossFade>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 2.0.0
+ * @remarks \@since 4.0.0 Updated for the new CSS Transition API and no longer
+ * supports wrapping children in a `<div>`.
  */
-export const CrossFade = forwardRef<HTMLDivElement, CrossFadeProps>(
-  function CrossFade(
-    {
-      wrap = false,
-      appear = true,
-      temporary = false,
-      className: propClassName,
-      transitionIn = true,
-      children,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      ...props
-    },
-    forwardedRef
-  ) {
-    const [rendered, { ref, className }] = useCrossFade({
-      ref: forwardedRef,
-      appear,
-      className: propClassName,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      temporary,
-      transitionIn,
-    });
+export function CrossFade<E extends HTMLElement>({
+  appear = true,
+  transitionIn = appear,
+  children,
+  className,
+  ...options
+}: CrossFadeProps<E>): ReactElement | null {
+  const child = Children.only(children);
+  const { elementProps, rendered } = useCrossFadeTransition({
+    ...options,
+    appear,
+    className: cn(child.props.className, className),
+    transitionIn,
+  });
 
-    if (!rendered) {
-      return null;
-    }
-
-    if (!wrap && isValidElement(children)) {
-      const child = Children.only(children);
-      return cloneElement(child, {
-        ref,
-        className: cn(child.props.className, className),
-      });
-    }
-
-    return (
-      <div {...props} className={className} ref={ref}>
-        {children}
-      </div>
-    );
+  if (!rendered) {
+    return null;
   }
-);
 
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    CrossFade.propTypes = {
-      wrap: PropTypes.bool,
-      appear: PropTypes.bool,
-      temporary: PropTypes.bool,
-      style: PropTypes.object,
-      className: PropTypes.string,
-      transitionIn: PropTypes.bool,
-      onEnter: PropTypes.func,
-      onEntering: PropTypes.func,
-      onEntered: PropTypes.func,
-      onExit: PropTypes.func,
-      onExiting: PropTypes.func,
-      onExited: PropTypes.func,
-      children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
-    };
-  } catch (e) {}
+  return cloneElement(children, elementProps);
 }

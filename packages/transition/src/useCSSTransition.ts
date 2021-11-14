@@ -1,161 +1,218 @@
-import { Dispatch } from "react";
 import cn from "classnames";
 
-import {
-  ENTER,
-  ENTERED,
-  ENTERING,
-  EXIT,
-  EXITED,
-  EXITING,
-  TransitionAction,
-  TransitionStage,
-} from "./constants";
-import { getClassNames } from "./getClassNames";
-import { getTimeout } from "./getTimeout";
-import { CSSTransitionOptions, CSSTransitionProvidedProps } from "./types";
+import type {
+  CSSTransitionHookOptions,
+  CSSTransitionHookReturnValue,
+  CSSTransitionElementProps,
+} from "./types";
 import { useTransition } from "./useTransition";
-
-type Rendered = boolean;
-
-export type CSSTransitionReturnValue<E extends HTMLElement> = [
-  Rendered,
-  CSSTransitionProvidedProps<E>,
-  Dispatch<TransitionAction>,
-  TransitionStage
-];
+import { getTransitionClassNames } from "./utils";
 
 /**
- * This hook is heavily inspired by the `CSSTransition` component from
- * `react-transition-group` since it's really just a hook version for it.
+ * This hook is used to create CSS transitions for different components whenever
+ * a {@link TransitionHookOptions.transitionIn} flag is changed.
  *
- * This hook allows you to transition class names for an element for enter and
- * exit transitions.
+ * @example
+ * Simple Transition
+ * ```tsx
+ * import { ReactElement, useState } from "react";
+ * import { Button } from "@react-md/button";
+ * import { useCSSTransition } from "@react-md/transition";
+ * import { Text } from "@react-md/typography";
  *
- * There are two different ways to create an "appear-only"/"on-mount-only"
- * transition: use the `onEntered` callback to reset the `transitionIn` to
- * false, or manually fire the `ENTERED` action with the returned `dispatch`
- * function when it should be fired again.
+ * // Pretend styles
+ * // .enter {
+ * //   opacity: 0.5;
+ * //   transition: opacity .15s;
+ * // }
+ * //
+ * // .enter--active {
+ * //   opacity: 1;
+ * // }
+ * //
+ * // .exit {
+ * //   opacity: 1;
+ * //   transition: opacity .15s;
+ * // }
+ * //
+ * // .exit--active {
+ * //   opacity: 0.5;
+ * // }
  *
- * Example changing `transitionIn` for pathname changes:
- * ```ts
- * const [transitionIn, setTransitionIn] = useState(true);
- * const [rendered, transitionProps] = useCSSTransition({
- *   appear: true,
- *   timeout: { enter: 200 },
- *   transitionIn,
- *   onEntered: () => setTransitionIn(false),
- * });
+ * function Example(): ReactElement {
+ *   const [transitionIn, setTransitionIn] = useState(false);
+ *   const { elementProps } = useCSSTransition({
+ *     timeout: 150,
+ *     classNames: {
+ *       enter: "enter",
+ *       enterActive: "enter--active",
+ *       exit: "exit",
+ *       exitActive: "exit--active",
+ *     },
+ *     transitionIn,
+ *   });
  *
- * const prevPathname = useRef(pathname);
- * if (pathname !== prevPathname.current) {
- *   prevPathname.current = pathname;
- *   setTransitionIn(true)
+ *   return (
+ *     <>
+ *       <Button onClick={() => setTransitionIn(!transitionIn)}>
+ *         Toggle
+ *       </Button>
+ *       <Text {...elementProps}>
+ *         Some Opacity Changing Text
+ *       </Text>
+ *     </>
+ *   );
  * }
- *
- * return (
- *   <div {...transitionProps}>
- *     <Routes>
- *       <Route path="/" element={<Home />} />
- *       <Route path="other" element={<Other />} />
- *    </Routes>
- *   </div>
- * );
  * ```
  *
- * Example with `dispatch` for pathname changes:
- * ```ts
- * const [rendered, transitionProps, dispatch] = useCSSTransition({
- *   appear: true,
- *   timeout: { enter: 200 },
- *   transitionIn: true,
- * });
+ * @example
+ * Visibility Transition
+ * ```tsx
+ * import { ReactElement, useState } from "react";
+ * import { Button } from "@react-md/button";
+ * import { useCSSTransition } from "@react-md/transition";
+ * import { Text } from "@react-md/typography";
  *
- * const prevPathname = useRef(pathname);
- * if (pathname !== prevPathname.current) {
- *   prevPathname.current = pathname;
- *   dispatch(ENTERED);
+ * // Pretend styles
+ * // .enter {
+ * //   opacity: 0;
+ * //   transition: opacity .2s;
+ * // }
+ * //
+ * // .enter--active {
+ * //   opacity: 1;
+ * // }
+ * //
+ * // .exit {
+ * //   opacity: 1;
+ * //   transition: opacity .15s;
+ * // }
+ * //
+ * // .exit--active {
+ * //   opacity: 0;
+ * // }
+ *
+ * function Example(): ReactElement {
+ *   const [transitionIn, setTransitionIn] = useState(false);
+ *   const { elementProps, rendered } = useCSSTransition({
+ *     timeout: {
+ *       enter: 200,
+ *       exit: 150,
+ *     },
+ *     classNames: {
+ *       enter: "enter",
+ *       enterActive: "enter--active",
+ *       exit: "exit",
+ *       exitActive: "exit--active",
+ *     },
+ *     transitionIn,
+ *     temporary: true,
+ *   });
+ *
+ *   return (
+ *     <>
+ *       <Button onClick={() => setTransitionIn(!transitionIn)}>
+ *         Toggle
+ *       </Button>
+ *       {rendered && (
+ *         <Text {...elementProps}>
+ *           Some Opacity Changing Text
+ *         </Text>
+ *       )}
+ *     </>
+ *   );
  * }
- *
- * return (
- *   <div {...transitionProps}>
- *     <Routes>
- *       <Route path="/" element={<Home />} />
- *       <Route path="other" element={<Other />} />
- *    </Routes>
- *   </div>
- * );
  * ```
  *
- * @see useCrossFade The `useCrossFade` is a good example of using this hook for
- * a custom CSS Transition.
- * @param options - The transition options
- * @returns An ordered list of a boolean if the component should be rendered,
- * transition props to provide to the transitioning element, a dispatch function
- * for triggering the transition manually (should not be used much), and the
- * current transition stage.
+ * @example
+ * Mount Transition
+ * ```tsx
+ * import type { ReactElement } from "react";
+ * import { useCSSTransition } from "@react-md/transition";
+ *
+ * // Pretend styles
+ * // .opacity {
+ * //   opacity: 0;
+ * //   transition: opacity .3s;
+ * // }
+ * //
+ * // .opacity--active {
+ * //   opacity: 1;
+ * // }
+ * //
+ *
+ * function Example(): ReactElement {
+ *   const { elementProps } = useCSSTransition({
+ *     appear: true,
+ *     transitionIn: true,
+ *     timeout: 300,
+ *     classNames: "opacity",
+ *   })
+ *
+ *   return <div {...elementProps}>Some Content!</div>;
+ * }
+ * ```
+ *
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
  */
-export function useCSSTransition<E extends HTMLElement = HTMLDivElement>({
-  appear = false,
-  temporary = false,
-  timeout,
-  transitionIn,
-  onEnter,
-  onEntering,
-  onEntered,
-  onExit,
-  onExiting,
-  onExited,
+export function useCSSTransition<E extends HTMLElement>({
   className,
-  classNames: propClassNames,
-  ref: propRef,
-}: CSSTransitionOptions<E>): CSSTransitionReturnValue<E> {
-  const { rendered, stage, ref, appearing, dispatch } = useTransition<E>({
-    ref: propRef,
+  classNames,
+  appear = false,
+  enter = true,
+  exit = true,
+  timeout,
+  ...options
+}: CSSTransitionHookOptions<E>): CSSTransitionHookReturnValue<E> {
+  const { ref, stage, rendered, appearing, transitionTo } = useTransition({
+    ...options,
     appear,
-    repaint: true,
+    enter,
+    exit,
     timeout,
-    temporary,
-    transitionIn,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
+    reflow: true,
+  });
+  const isEntering = stage === "entering";
+  const isEnter = isEntering || stage === "enter";
+  const isEntered = stage === "entered";
+  const isExiting = stage === "exiting";
+  const isExit = isExiting || stage === "exit";
+  const isExited = stage === "exited";
+  const transitionClassNames = getTransitionClassNames({
+    timeout,
+    appear,
+    enter,
+    exit,
+    classNames,
   });
 
-  const classNames = getClassNames(propClassNames, getTimeout(timeout, appear));
+  const elementProps: CSSTransitionElementProps<E> = {
+    ref,
+    className:
+      cn(
+        // always apply the provided className first since it makes snapshot
+        // tests easier to parse if dynamic classes come afterwards
+        className,
+        appearing && isEnter && transitionClassNames.appear,
+        appearing && isEntering && transitionClassNames.appearActive,
+        appearing && isEntered && transitionClassNames.appearDone,
+        !appearing && isEnter && transitionClassNames.enter,
+        !appearing && isEntering && transitionClassNames.enterActive,
+        !appearing && isEntered && transitionClassNames.enterDone,
+        isExit && transitionClassNames.exit,
+        isExiting && transitionClassNames.exitActive,
+        isExited && transitionClassNames.exitDone
+      ) || undefined,
+  };
 
-  const isEntering = stage === ENTERING;
-  const isEnter = isEntering || stage === ENTER;
-  const isEntered = stage === ENTERED;
-  const isExiting = stage === EXITING;
-  const isExit = isExiting || stage === EXIT;
-  const isExited = stage === EXITED;
-
-  return [
-    rendered,
-    {
-      ref,
-      className:
-        cn(
-          className,
-          // Note: can't use the object syntax for classNames since it'll fail
-          // if the same classes are used for different phases since they'd have
-          // the same key in the object...
-          appearing && classNames.appear,
-          appearing && isEntering && classNames.appearActive,
-          appearing && isEntered && classNames.appearDone,
-          !appearing && isEnter && classNames.enter,
-          !appearing && isEntering && classNames.enterActive,
-          !appearing && isEntered && classNames.enterDone,
-          isExit && classNames.exit,
-          isExiting && classNames.exitActive,
-          isExited && classNames.exitDone
-        ) || undefined,
-    },
-    dispatch,
+  return {
+    ...elementProps,
     stage,
-  ];
+    rendered,
+    appearing,
+    elementProps,
+    transitionTo,
+  };
 }

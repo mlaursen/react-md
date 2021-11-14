@@ -1,9 +1,20 @@
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
-import { TransitionTimeout } from "@react-md/transition";
+import type {
+  CSSTransitionClassNamesObject,
+  TransitionTimeout,
+} from "@react-md/transition";
 
+/**
+ * @remarks \@since 2.4.0
+ */
 export const DEFAULT_OVERLAY_TIMEOUT: TransitionTimeout = 150;
-export const DEFAULT_OVERLAY_CLASSNAMES: CSSTransitionClassNames = {
-  appearActive: "rmd-overlay--active",
-  enterActive: "rmd-overlay--active",
-  enterDone: "rmd-overlay--active",
-};
+
+/**
+ * @remarks \@since 2.4.0
+ */
+export const DEFAULT_OVERLAY_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> =
+  {
+    appearActive: "rmd-overlay--active",
+    appearDone: "rmd-overlay--active",
+    enterActive: "rmd-overlay--active",
+    enterDone: "rmd-overlay--active",
+  };

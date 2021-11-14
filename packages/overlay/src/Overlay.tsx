@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 import { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import CSSTransition from "react-transition-group/CSSTransition";
 import {
   ConditionalPortal,
   RenderConditionalPortalProps,
 } from "@react-md/portal";
-import { OverridableCSSTransitionProps } from "@react-md/transition";
+import {
+  CSSTransitionComponentProps,
+  CSSTransition,
+} from "@react-md/transition";
 import { bem } from "@react-md/utils";
 
 import {
@@ -15,9 +17,9 @@ import {
 } from "./constants";
 
 export interface OverlayProps
-  extends OverridableCSSTransitionProps,
-    RenderConditionalPortalProps,
-    HTMLAttributes<HTMLSpanElement> {
+  extends HTMLAttributes<HTMLSpanElement>,
+    CSSTransitionComponentProps,
+    RenderConditionalPortalProps {
   /**
    * Boolean if the overlay is currently visible. When this prop changes, the
    * overlay will enter/exit with an opacity transition.
@@ -28,7 +30,7 @@ export interface OverlayProps
    * A function that should change the `visible` prop to `false`. This is used
    * so that clicking the overlay can hide the overlay.
    */
-  onRequestClose: () => void;
+  onRequestClose(): void;
 
   /**
    * Boolean if the overlay should still be "hidden" from the user while
@@ -65,8 +67,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
       timeout = DEFAULT_OVERLAY_TIMEOUT,
       classNames = DEFAULT_OVERLAY_CLASSNAMES,
       children,
-      mountOnEnter = true,
-      unmountOnExit = true,
+      temporary = true,
       onRequestClose,
       onEnter,
       onEntering,
@@ -80,7 +81,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
       tabIndex = -1,
       ...props
     },
-    ref
+    nodeRef
   ) {
     return (
       <ConditionalPortal
@@ -90,11 +91,11 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
       >
         <CSSTransition
           appear
-          in={visible}
+          nodeRef={nodeRef}
+          transitionIn={visible}
           classNames={hidden ? "" : classNames}
           timeout={hidden ? 0 : timeout}
-          mountOnEnter={mountOnEnter}
-          unmountOnExit={unmountOnExit}
+          temporary={temporary}
           onEnter={onEnter}
           onEntering={onEntering}
           onEntered={onEntered}
@@ -102,27 +103,20 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
           onExiting={onExiting}
           onExited={onExited}
         >
-          {(state) => (
-            <span
-              {...props}
-              ref={ref}
-              className={cn(
-                block({
-                  // have to manually set the active state here since react-transition-group doesn't
-                  // clone in the transition `classNames` and if the overlay re-renders while the
-                  // animation has finished, the active className will disappear
-                  active: !hidden && state === "entered",
-                  visible,
-                  clickable,
-                }),
-                className
-              )}
-              onClick={onRequestClose}
-              tabIndex={tabIndex}
-            >
-              {children}
-            </span>
-          )}
+          <span
+            {...props}
+            className={cn(
+              block({
+                visible,
+                clickable,
+              }),
+              className
+            )}
+            onClick={onRequestClose}
+            tabIndex={tabIndex}
+          >
+            {children}
+          </span>
         </CSSTransition>
       </ConditionalPortal>
     );
@@ -156,8 +150,7 @@ if (process.env.NODE_ENV !== "production") {
           exit: PropTypes.number,
         }),
       ]),
-      mountOnEnter: PropTypes.bool,
-      unmountOnExit: PropTypes.bool,
+      temporary: PropTypes.bool,
       onEnter: PropTypes.func,
       onEntering: PropTypes.func,
       onEntered: PropTypes.func,

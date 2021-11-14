@@ -47,10 +47,7 @@ const MERGABLE_PROPS: (keyof TooltippedElementEventHandlers<HTMLElement>)[] = [
 export interface TooltippedProps
   extends RenderConditionalPortalProps,
     BaseTooltipHookOptions<HTMLElement>,
-    Pick<
-      TooltipProps,
-      "dense" | "lineWrap" | "mountOnEnter" | "unmountOnExit"
-    > {
+    Pick<TooltipProps, "dense" | "lineWrap" | "temporary"> {
   /**
    * The id for the element that has a tooltip. This is always required since it
    * will be passed down to the `containerProps` in the children renderer
@@ -134,8 +131,7 @@ export function Tooltipped({
   onKeyDown,
   "aria-describedby": describedBy,
   defaultPosition = DEFAULT_TOOLTIP_POSITION,
-  mountOnEnter = true,
-  unmountOnExit = true,
+  temporary = true,
   disableSwapping,
   disableHoverMode,
   disableAutoSpacing = process.env.NODE_ENV === "test",
@@ -175,12 +171,7 @@ export function Tooltipped({
   }
 
   const tooltip = (
-    <Tooltip
-      {...tooltipProps}
-      {...props}
-      mountOnEnter={mountOnEnter}
-      unmountOnExit={unmountOnExit}
-    >
+    <Tooltip {...tooltipProps} {...props} temporary={temporary}>
       {tooltipChildren}
     </Tooltip>
   );

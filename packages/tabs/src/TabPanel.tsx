@@ -1,14 +1,18 @@
 import { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
-import CSSTransition, {
+import {
   CSSTransitionClassNames,
-} from "react-transition-group/CSSTransition";
-import { OverridableCSSTransitionProps } from "@react-md/transition";
+  CSSTransitionComponentProps,
+  TransitionActions,
+  TransitionTimeout,
+  useCSSTransition,
+} from "@react-md/transition";
 import { bem } from "@react-md/utils";
 
 export interface TabPanelProps
   extends HTMLAttributes<HTMLDivElement>,
-    OverridableCSSTransitionProps {
+    CSSTransitionComponentProps,
+    TransitionActions {
   /**
    * The id for the tab panel. This is required for a11y but will automatically
    * be provided by the `TabPanels` component by cloning the `id` in.
@@ -28,12 +32,21 @@ export interface TabPanelProps
    * implementation will use the `aria-labelledby` automatically.
    */
   "aria-labelledby"?: string;
+
+  /**
+   * @see {@link TransitionOptions.transitionIn}
+   */
+  transitionIn?: boolean;
 }
 
 const block = bem("rmd-tab-panel");
 const prefix = "rmd-tab-panel";
 
-const DEFAULT_TABPANEL_CLASSNAMES: CSSTransitionClassNames = {
+/** @remarks \@since 4.0.0 */
+export const DEFAULT_TABPANEL_TIMEOUT: TransitionTimeout = 150;
+
+/** @remarks \@since 4.0.0 */
+export const DEFAULT_TABPANEL_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
   enter: `${prefix}--enter`,
   enterActive: `${prefix}--enter-active ${prefix}--animate`,
   exit: `${prefix}--exit`,
@@ -49,8 +62,7 @@ const DEFAULT_TABPANEL_CLASSNAMES: CSSTransitionClassNames = {
 export const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>(
   function TabPanel(
     {
-      className,
-      in: transitionIn,
+      className: propClassName,
       appear,
       enter,
       exit,
@@ -60,39 +72,41 @@ export const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>(
       onExit,
       onExiting,
       onExited,
-      timeout = 150,
+      timeout = DEFAULT_TABPANEL_TIMEOUT,
       classNames = DEFAULT_TABPANEL_CLASSNAMES,
+      transitionIn = true,
+      temporary,
       children,
       hidden,
       ...props
     },
-    ref
+    nodeRef
   ) {
+    const { elementProps, rendered } = useCSSTransition({
+      nodeRef,
+      timeout,
+      classNames,
+      className: cn(block(), propClassName),
+      transitionIn: transitionIn && !hidden,
+      appear,
+      enter,
+      exit,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      temporary,
+    });
+    if (!rendered) {
+      return null;
+    }
+
     return (
-      <CSSTransition
-        in={transitionIn && !hidden}
-        appear={appear}
-        enter={enter}
-        exit={exit}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExiting={onExiting}
-        onExited={onExited}
-        timeout={timeout}
-        classNames={classNames}
-      >
-        <div
-          {...props}
-          ref={ref}
-          role="tabpanel"
-          hidden={hidden}
-          className={cn(block(), className)}
-        >
-          {children}
-        </div>
-      </CSSTransition>
+      <div {...props} {...elementProps} role="tabpanel" hidden={hidden}>
+        {children}
+      </div>
     );
   }
 );
@@ -111,7 +125,7 @@ if (process.env.NODE_ENV !== "production") {
           exit: PropTypes.number,
         }),
       ]),
-      in: PropTypes.bool,
+      transitionIn: PropTypes.bool,
       appear: PropTypes.bool,
       enter: PropTypes.bool,
       exit: PropTypes.bool,

@@ -2,122 +2,84 @@ import { Children, cloneElement, ReactElement } from "react";
 import cn from "classnames";
 
 import {
-  COLLAPSE_TIMEOUT,
-  DEFAULT_COLLAPSE_MIN_HEIGHT,
-  DEFAULT_COLLAPSE_MIN_PADDING_BOTTOM,
-  DEFAULT_COLLAPSE_MIN_PADDING_TOP,
-} from "./constants";
-import { CollapseOptions } from "./types";
-import { useCollapse } from "./useCollapse";
+  CollapseElementProps,
+  CollapseTransitionHookOptions,
+  useCollapseTransition,
+} from "./useCollapseTransition";
 
-export interface CollapseProps extends CollapseOptions<HTMLElement> {
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 2.0.0
+ * @remarks \@since 4.0.0 Updated for the new CSS Transition API.
+ */
+export interface CollapseProps<E extends HTMLElement>
+  extends Omit<CollapseTransitionHookOptions<E>, "transitionIn"> {
   /**
-   * Boolean if the the child is currently collapsed.
+   * The child element that should have a `ref` and the `style`, `className` and
+   * `hidden` props cloned into using the `cloneElement` API. If the child is a
+   * custom component, you **must** use `React.forwardRef` and pass the `ref`
+   * and the other props for the transition to work correctly.
+   */
+  children: ReactElement<CollapseElementProps<E>>;
+
+  /**
+   * Boolean if the element should be collapsed.
+   *
+   * @see {@link CollapseTransitionHookOptions.transitionIn}
    */
   collapsed: boolean;
-
-  /**
-   * The child element to trigger an animation for. This child **must**
-   * either be an HTMLElement or a component that:
-   *
-   * - forwards the ref to a DOM element
-   * - applies the `style`, `className`, and `hidden` attributes correctly.
-   */
-  children: ReactElement;
 }
 
 /**
- * The `Collapse` component is used to transition a child element in and
- * out of view by animating it's `max-height`. This means that the child must
- * either be an HTMLElement or a component that forwards the `ref` to an
- * HTMLElement and applies the `style`, `className`, and `hidden` props to an
- * HTMLElement.
+ * This is a component implementation of the {@link useCollapseTransition} hook
+ * that implements the `temporary` behavior. Since this component uses the
+ * `React.cloneElement` to inject the `ref` and `className` into the `children`,
+ * it is recommended to use the hook instead.
  *
- * Note: This component **should not be used for `position: absolute` or
- * `position: fixed` elements**. Instead, the `ScaleTransition` or just a simple
- * `transform` transition should be used instead. Animating `max-height`,
- * `padding-top`, and `padding-bottom` is much less performant than `transform`
- * transition since it forces DOM repaints.
+ * @example
+ * Simple Example
+ * ```tsx
+ * function Example(): ReactElement {
+ *   const [collapsed, setCollapsed] = useState(true);
+ *
+ *   return (
+ *     <>
+ *       <Button onClick={() => setCollapsed(!collapsed)}>
+ *         Toggle
+ *       </Button>
+ *       <Collapse collapsed={collapsed}>
+ *         <div>
+ *           Some content that should only be bisible while not collapsed.
+ *         </div>
+ *       </Collapse>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * @see {@link useCollapseTransition} for additional examples
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 2.0.0
+ * @remarks \@since 4.0.0 Updated for the new CSS Transition API.
  */
-export function Collapse({
+export function Collapse<E extends HTMLElement>({
   children,
   collapsed,
   className,
-  appear = false,
-  timeout = COLLAPSE_TIMEOUT,
-  onEnter,
-  onEntering,
-  onEntered,
-  onExit,
-  onExiting,
-  onExited,
-  minHeight = DEFAULT_COLLAPSE_MIN_HEIGHT,
-  minPaddingTop = DEFAULT_COLLAPSE_MIN_PADDING_TOP,
-  minPaddingBottom = DEFAULT_COLLAPSE_MIN_PADDING_BOTTOM,
-  temporary = minHeight === 0 && minPaddingTop === 0 && minPaddingBottom === 0,
-}: CollapseProps): ReactElement | null {
-  const [rendered, transitionProps] = useCollapse<HTMLElement>(collapsed, {
-    appear,
-    temporary,
-    className,
-    timeout,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    minHeight,
-    minPaddingBottom,
-    minPaddingTop,
+  ...options
+}: CollapseProps<E>): ReactElement | null {
+  const child = Children.only(children);
+  const { elementProps, rendered } = useCollapseTransition({
+    ...options,
+    className: cn(child.props.className, className),
+    transitionIn: !collapsed,
   });
 
   if (!rendered) {
     return null;
   }
 
-  const child = Children.only(children);
-  const transitionStyle = transitionProps.style;
-  const childStyle = child.props.style;
-  return cloneElement(child, {
-    ...transitionProps,
-    style: transitionStyle ? { ...transitionStyle, ...childStyle } : childStyle,
-    className: cn(transitionProps.className, child.props.className),
-  });
-}
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Collapse.propTypes = {
-      style: PropTypes.object,
-      className: PropTypes.string,
-      collapsed: PropTypes.bool.isRequired,
-      minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      minPaddingTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      minPaddingBottom: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]),
-      timeout: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.shape({
-          appear: PropTypes.number,
-          enter: PropTypes.number,
-          exit: PropTypes.number,
-        }),
-      ]),
-      temporary: PropTypes.bool,
-      children: PropTypes.oneOfType([PropTypes.func, PropTypes.element])
-        .isRequired,
-      onEnter: PropTypes.func,
-      onEntering: PropTypes.func,
-      onEntered: PropTypes.func,
-      onExit: PropTypes.func,
-      onExiting: PropTypes.func,
-      onExited: PropTypes.func,
-    };
-  } catch (e) {}
+  return cloneElement(children, elementProps);
 }

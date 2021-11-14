@@ -1,8 +1,11 @@
 import { forwardRef, HTMLAttributes, useRef } from "react";
 import cn from "classnames";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";
-import { TransitionTimeout, useCSSTransition } from "@react-md/transition";
+import {
+  CSSTransitionClassNames,
+  TransitionTimeout,
+  useCSSTransition,
+} from "@react-md/transition";
 import { bem, useIsUserInteractionMode } from "@react-md/utils";
 
 import { DEFAULT_LAYOUT_MAIN_CLASSNAMES } from "./constants";
@@ -71,7 +74,7 @@ const styles = bem("rmd-layout-main");
 export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
   function LayoutMain(
     {
-      className: propClassName,
+      className,
       tabIndex: propTabIndex,
       component: Component = "main",
       navOffset: propNavOffset,
@@ -82,7 +85,7 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       miniHidden = false,
       ...props
     },
-    forwardedRef
+    nodeRef
   ) {
     // this makes it so that the SkipToMainContent button can still
     // focus the `<main>` element, but the `<main>` will no longer be
@@ -116,11 +119,27 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       timeout = 0;
     }
 
-    const [, { ref, className }] = useCSSTransition<HTMLDivElement>({
-      ref: forwardedRef,
+    const isMini = mini && (fixedAppBar || miniHidden);
+    const isMiniOffset =
+      mini &&
+      navOffset &&
+      !fixedAppBar &&
+      visible &&
+      isToggleableLayout(layout);
+
+    const { elementProps } = useCSSTransition<HTMLDivElement>({
+      nodeRef,
       transitionIn: !!navOffset,
       temporary: false,
-      className: propClassName,
+      className: cn(
+        styles({
+          mini: isMini && (isTemporaryLayout(layout) || !visible),
+          "nav-offset": isMini,
+          "mini-offset": isMiniOffset,
+          "header-offset": headerOffset,
+        }),
+        className
+      ),
       timeout,
       classNames,
       onEntered: () => {
@@ -131,30 +150,7 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
       },
     });
 
-    const isMini = mini && (fixedAppBar || miniHidden);
-    const isMiniOffset =
-      mini &&
-      navOffset &&
-      !fixedAppBar &&
-      visible &&
-      isToggleableLayout(layout);
-
-    return (
-      <Component
-        {...props}
-        ref={ref}
-        tabIndex={tabIndex}
-        className={cn(
-          styles({
-            mini: isMini && (isTemporaryLayout(layout) || !visible),
-            "nav-offset": isMini,
-            "mini-offset": isMiniOffset,
-            "header-offset": headerOffset,
-          }),
-          className
-        )}
-      />
-    );
+    return <Component {...props} {...elementProps} tabIndex={tabIndex} />;
   }
 );
 

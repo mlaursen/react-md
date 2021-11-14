@@ -1,24 +1,59 @@
-import { createRef, MutableRefObject, ReactElement, Ref } from "react";
-import { act, render } from "@testing-library/react";
+import {
+  MutableRefObject,
+  ReactElement,
+  useEffect,
+  useState,
+} from "react";
+import { act, fireEvent, render } from "@testing-library/react";
 
-import { ENTERED, ENTERING, EXITED, EXITING } from "../constants";
-import { TransitionOptions } from "../types";
-import { TransitionReturnValue, useTransition } from "../useTransition";
+import {
+  TransitionHookOptions,
+  TransitionStage,
+  TransitionTimeout,
+} from "../types";
+import { useTransition } from "../useTransition";
 
-type TestResult = MutableRefObject<TransitionReturnValue<HTMLDivElement>>;
+const createStageRef = (): MutableRefObject<TransitionStage[]> => ({
+  current: [],
+});
 
-interface TestProps extends TransitionOptions<HTMLDivElement> {
-  nodeRef?: Ref<HTMLDivElement>;
-  result: TestResult;
+interface TestProps
+  extends Omit<
+    TransitionHookOptions<HTMLLIElement>,
+    "transitionIn" | "timeout"
+  > {
+  timeout?: TransitionTimeout;
+  stageRef?: MutableRefObject<TransitionStage[]>;
+  defaultTransitionIn?: boolean;
 }
 
-const createResultRef = (): TestResult => ({} as unknown as TestResult);
+function Test({
+  stageRef,
+  timeout = 1000,
+  defaultTransitionIn = false,
+  ...options
+}: TestProps): ReactElement {
+  const [transitionIn, setTransitionIn] = useState(defaultTransitionIn);
+  const { ref, stage, appearing, rendered } = useTransition({
+    ...options,
+    timeout,
+    transitionIn,
+  });
+  useEffect(() => {
+    stageRef?.current.push(stage);
+  }, [stage, stageRef]);
 
-function Test({ result, nodeRef, ...options }: TestProps): ReactElement {
-  const hookResult = useTransition({ ...options, ref: nodeRef });
-  result.current = hookResult;
-
-  return <div ref={hookResult.ref} />;
+  return (
+    <>
+      <button type="button" onClick={() => setTransitionIn((p) => !p)}>
+        Toggle
+      </button>
+      <ul role="log">
+        {rendered && <li ref={ref}>{`The current stage is: "${stage}"`}</li>}
+        <li>{`Appearing: ${appearing}`}</li>
+      </ul>
+    </>
+  );
 }
 
 describe("useTransition", () => {
@@ -30,142 +65,106 @@ describe("useTransition", () => {
     jest.clearAllTimers();
   });
 
-  it("should return the correct initial stage, rendered, and appearing state for non-temporary transitions", () => {
-    const result = createResultRef();
-    render(
-      <Test
-        result={result}
-        transitionIn={false}
-        timeout={200}
-        appear={false}
-        temporary={false}
-      />
-    );
+  it("should default to enabling enter and exit transitions and non-temporary", () => {
+    const stageRef = createStageRef();
+    const stages = stageRef.current;
+    const { getByRole, getByText } = render(<Test stageRef={stageRef} />);
+    const toggle = getByRole("button", { name: "Toggle" });
 
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(EXITED);
-
-    render(
-      <Test
-        result={result}
-        transitionIn
-        timeout={200}
-        appear={false}
-        temporary={false}
-      />
-    );
-
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(ENTERED);
-  });
-
-  it("should default the appear and temporary options to false", () => {
-    const result = createResultRef();
-    render(<Test result={result} transitionIn={false} timeout={200} />);
-
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(EXITED);
-
-    render(<Test result={result} transitionIn timeout={200} />);
-
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(ENTERED);
-  });
-
-  it("should correctly transition from EXITED -> ENTERED and ENTERED -> EXITED for non-temporary transitions", () => {
-    const result = createResultRef();
-    const props = { result, timeout: 200 };
-    const { rerender } = render(<Test {...props} transitionIn={false} />);
-
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(EXITED);
-
-    rerender(<Test {...props} transitionIn />);
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(ENTERING);
+    expect(() => getByText(`The current stage is: "exited"`)).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
+    expect(stages).toEqual(["exited"]);
 
     act(() => {
-      jest.advanceTimersByTime(200);
+      jest.runAllTimers();
     });
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(ENTERED);
+    expect(() => getByText(`The current stage is: "exited"`)).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
 
-    rerender(<Test {...props} transitionIn={false} />);
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(EXITING);
+    fireEvent.click(toggle);
+    expect(stages).toEqual(["exited", "enter", "entering"]);
+    expect(() => getByText(`The current stage is: "entering"`)).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
 
     act(() => {
-      jest.advanceTimersByTime(200);
+      jest.runAllTimers();
     });
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(EXITED);
+
+    expect(stages).toEqual(["exited", "enter", "entering", "entered"]);
+    expect(() => getByText(`The current stage is: "entered"`)).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
+
+    // Exit flow
+    fireEvent.click(toggle);
+    expect(stages).toEqual([
+      "exited",
+      "enter",
+      "entering",
+      "entered",
+      "exit",
+      "exiting",
+    ]);
+    expect(() => getByText(`The current stage is: "exiting"`)).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
+
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(stages).toEqual([
+      "exited",
+      "enter",
+      "entering",
+      "entered",
+      "exit",
+      "exiting",
+      "exited",
+    ]);
+    expect(() => getByText(`The current stage is: "exited"`)).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
   });
 
-  it("should correctly transition from EXITED -> ENTERED and ENTERED -> EXITED for temporary transitions", () => {
-    const result = createResultRef();
-    const props = { result, timeout: 200, temporary: true };
-    const { rerender } = render(<Test {...props} transitionIn={false} />);
+  it("should mount and unmount the component if the temporary option is enabled", () => {
+    const { getByRole, getByText } = render(<Test temporary />);
 
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(false);
-    expect(result.current.stage).toBe(EXITED);
+    const toggle = getByRole("button");
+    expect(() => getByText(/^The current stage/)).toThrow();
 
-    rerender(<Test {...props} transitionIn />);
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(ENTERING);
+    fireEvent.click(toggle);
+    expect(() => getByText(/^The current stage/)).not.toThrow();
 
     act(() => {
-      jest.advanceTimersByTime(200);
+      jest.runAllTimers();
     });
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(ENTERED);
+    expect(() => getByText(/^The current stage/)).not.toThrow();
 
-    rerender(<Test {...props} transitionIn={false} />);
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(EXITING);
+    fireEvent.click(toggle);
+    expect(() => getByText(/^The current stage/)).not.toThrow();
 
     act(() => {
-      jest.advanceTimersByTime(200);
+      jest.runAllTimers();
     });
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(false);
-    expect(result.current.stage).toBe(EXITED);
+    expect(() => getByText(/^The current stage/)).toThrow();
   });
 
-  it("should correctly call the transition handlers during the transitions (no appear)", () => {
+  it("should trigger the callbacks at each stage", () => {
     const onEnter = jest.fn();
     const onEntering = jest.fn();
     const onEntered = jest.fn();
     const onExit = jest.fn();
     const onExiting = jest.fn();
     const onExited = jest.fn();
-    const result = createResultRef();
-    const nodeRef = createRef<HTMLDivElement>();
-    const props = {
-      nodeRef,
+    const props: TestProps = {
       onEnter,
       onEntering,
       onEntered,
       onExit,
       onExiting,
       onExited,
-      timeout: 200,
-      result,
     };
 
-    const { rerender } = render(<Test {...props} transitionIn={false} />);
+    const { getByRole } = render(<Test {...props} />);
+    const toggle = getByRole("button");
+
     expect(onEnter).not.toBeCalled();
     expect(onEntering).not.toBeCalled();
     expect(onEntered).not.toBeCalled();
@@ -173,208 +172,236 @@ describe("useTransition", () => {
     expect(onExiting).not.toBeCalled();
     expect(onExited).not.toBeCalled();
 
-    rerender(<Test {...props} transitionIn />);
-    expect(onEnter).toBeCalledWith(nodeRef.current, false);
-    expect(onEntering).toBeCalledWith(nodeRef.current, false);
+    fireEvent.click(toggle);
+    expect(onEnter).toBeCalledTimes(1);
+    expect(onEntering).toBeCalledTimes(1);
     expect(onEntered).not.toBeCalled();
     expect(onExit).not.toBeCalled();
     expect(onExiting).not.toBeCalled();
     expect(onExited).not.toBeCalled();
 
     act(() => {
-      jest.advanceTimersByTime(200);
+      jest.runAllTimers();
     });
-    expect(onEnter).toBeCalledWith(nodeRef.current, false);
-    expect(onEntering).toBeCalledWith(nodeRef.current, false);
-    expect(onEntered).toBeCalledWith(nodeRef.current, false);
+    expect(onEnter).toBeCalledTimes(1);
+    expect(onEntering).toBeCalledTimes(1);
+    expect(onEntered).toBeCalledTimes(1);
     expect(onExit).not.toBeCalled();
     expect(onExiting).not.toBeCalled();
     expect(onExited).not.toBeCalled();
 
-    rerender(<Test {...props} transitionIn={false} />);
+    fireEvent.click(toggle);
     expect(onEnter).toBeCalledTimes(1);
     expect(onEntering).toBeCalledTimes(1);
     expect(onEntered).toBeCalledTimes(1);
-    expect(onExit).toBeCalledWith(nodeRef.current);
-    expect(onExiting).toBeCalledWith(nodeRef.current);
+    expect(onExit).toBeCalledTimes(1);
+    expect(onExiting).toBeCalledTimes(1);
     expect(onExited).not.toBeCalled();
 
     act(() => {
-      jest.advanceTimersByTime(200);
+      jest.runAllTimers();
     });
     expect(onEnter).toBeCalledTimes(1);
     expect(onEntering).toBeCalledTimes(1);
     expect(onEntered).toBeCalledTimes(1);
-    expect(onExit).toBeCalledWith(nodeRef.current);
-    expect(onExiting).toBeCalledWith(nodeRef.current);
-    expect(onExited).toBeCalledWith(nodeRef.current);
+    expect(onExit).toBeCalledTimes(1);
+    expect(onExiting).toBeCalledTimes(1);
+    expect(onExited).toBeCalledTimes(1);
   });
 
-  it("should only access the `node.scrollTop` if the repaint option is enabled only on the ENTER, ENTERING, EXIT, EXITING phases", () => {
-    // this test is probably a terrible test and shouldn't have been written
-    const div = document.createElement("div");
-    let accessCount = 0;
-    Object.defineProperty(div, "scrollTop", {
-      get(): number {
-        accessCount += 1;
-        return 0;
-      },
+  it("should handle non-temporary appear transitions correctly", () => {
+    const { getByText, getByRole, rerender } = render(<Test appear />);
+    expect(() => getByText('The current stage is: "exited"')).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
+    act(() => {
+      jest.runAllTimers();
     });
+    expect(() => getByText('The current stage is: "exited"')).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
 
-    interface ScrollTopTestProps {
-      transitionIn: boolean;
-      repaint: boolean;
-    }
+    rerender(<Test appear defaultTransitionIn key="new-key" />);
+    expect(() => getByText('The current stage is: "entering"')).not.toThrow();
+    expect(() => getByText("Appearing: true")).not.toThrow();
 
-    function ScrollTopTest(props: ScrollTopTestProps): null {
-      const { ref } = useTransition({ timeout: 200, ...props });
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(() => getByText('The current stage is: "entered"')).not.toThrow();
+    expect(() => getByText("Appearing: true")).not.toThrow();
 
-      ref(div);
+    fireEvent.click(getByRole("button"));
+    expect(() => getByText('The current stage is: "exiting"')).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
 
-      return null;
-    }
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(() => getByText('The current stage is: "exited"')).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
+  });
 
-    const { rerender } = render(
-      <ScrollTopTest repaint={false} transitionIn={false} />
+  it("should handle temporary appear transitions correctly", () => {
+    const { getByRole, getByText, rerender } = render(
+      <Test appear temporary />
     );
-    rerender(<ScrollTopTest repaint={false} transitionIn />);
-    act(() => {
-      jest.advanceTimersByTime(200);
-    });
-    expect(accessCount).toBe(0);
-
-    rerender(<ScrollTopTest repaint={false} transitionIn={false} />);
+    expect(() => getByText(/^The current stage is/)).toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
     act(() => {
       jest.runAllTimers();
     });
-    expect(accessCount).toBe(0);
+    expect(() => getByText(/^The current stage is/)).toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
 
-    rerender(<ScrollTopTest repaint transitionIn />);
-    expect(accessCount).toBe(2);
-    act(() => {
-      jest.advanceTimersByTime(200);
-    });
-    expect(accessCount).toBe(2);
+    rerender(<Test appear temporary defaultTransitionIn key="new-key" />);
+    expect(() => getByText('The current stage is: "entering"')).not.toThrow();
+    expect(() => getByText("Appearing: true")).not.toThrow();
 
-    rerender(<ScrollTopTest repaint transitionIn={false} />);
-    expect(accessCount).toBe(4);
     act(() => {
       jest.runAllTimers();
     });
-    expect(accessCount).toBe(4);
+    expect(() => getByText('The current stage is: "entered"')).not.toThrow();
+    expect(() => getByText("Appearing: true")).not.toThrow();
+
+    fireEvent.click(getByRole("button"));
+    expect(() => getByText('The current stage is: "exiting"')).not.toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
+
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(() => getByText(/^The current stage is/)).toThrow();
+    expect(() => getByText("Appearing: false")).not.toThrow();
   });
 
-  it("should automatically trigger the ENTER transition on mount if the appear and transitionIn options are true", () => {
-    const result = createResultRef();
-    const props = { appear: true, result, timeout: 200 };
-    const { unmount } = render(<Test transitionIn={false} {...props} />);
+  it("should access the element's scrollTop attribute to trigger a reflow when the reflow option is enabled and the stage is not entered or exited", () => {
+    const scrollTop = jest.spyOn(Element.prototype, "scrollTop", "get");
+    const { getByRole } = render(<Test reflow />);
+    const toggle = getByRole("button", { name: "Toggle" });
 
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.stage).toBe(EXITED);
-    unmount();
+    expect(scrollTop).not.toBeCalled();
 
-    const { rerender } = render(<Test transitionIn {...props} />);
-    expect(result.current.appearing).toBe(true);
-    expect(result.current.stage).toBe(ENTERING);
-
+    fireEvent.click(toggle);
+    expect(scrollTop).toBeCalledTimes(2);
     act(() => {
       jest.runAllTimers();
     });
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.stage).toBe(ENTERED);
+    expect(scrollTop).toBeCalledTimes(2);
 
-    rerender(<Test transitionIn={false} {...props} />);
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.stage).toBe(EXITING);
-
+    fireEvent.click(toggle);
+    expect(scrollTop).toBeCalledTimes(4);
     act(() => {
       jest.runAllTimers();
     });
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.stage).toBe(EXITED);
-
-    // should keep appearing false for all remaining transitions
-    rerender(<Test transitionIn {...props} />);
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.stage).toBe(ENTERING);
-
-    act(() => {
-      jest.runAllTimers();
-    });
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.stage).toBe(ENTERED);
+    expect(scrollTop).toBeCalledTimes(4);
   });
 
-  it("should trigger the correct transition for a temporary appearing transition", () => {
-    const result = createResultRef();
-    const props = { appear: true, temporary: true, timeout: 200, result };
-    const { rerender } = render(<Test transitionIn {...props} />);
+  it("should cancel the timeouts and immediately switch to the new transition if a new transition starts before the previous has been completed", () => {
+    const stageRef = createStageRef();
+    const stages = stageRef.current;
+    const { getByRole, getByText } = render(<Test stageRef={stageRef} />);
+    const toggle = getByRole("button", { name: "Toggle" });
 
-    expect(result.current.appearing).toBe(true);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(ENTERING);
+    expect(() => getByText(`The current stage is: "exited"`)).not.toThrow();
+    expect(stages).toEqual(["exited"]);
+
+    fireEvent.click(toggle);
+    expect(stages).toEqual(["exited", "enter", "entering"]);
+    expect(() => getByText(`The current stage is: "entering"`)).not.toThrow();
+
+    act(() => {
+      jest.advanceTimersByTime(300);
+    });
+    expect(stages).toEqual(["exited", "enter", "entering"]);
+    expect(() => getByText(`The current stage is: "entering"`)).not.toThrow();
+
+    fireEvent.click(toggle);
+    expect(stages).toEqual(["exited", "enter", "entering", "exit", "exiting"]);
+    expect(() => getByText(`The current stage is: "exiting"`)).not.toThrow();
 
     act(() => {
       jest.runAllTimers();
     });
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(ENTERED);
+    expect(stages).toEqual([
+      "exited",
+      "enter",
+      "entering",
+      "exit",
+      "exiting",
+      "exited",
+    ]);
+    expect(() => getByText(`The current stage is: "exited"`)).not.toThrow();
 
-    rerender(<Test transitionIn={false} {...props} />);
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(true);
-    expect(result.current.stage).toBe(EXITING);
-
+    fireEvent.click(toggle);
+    act(() => {
+      jest.advanceTimersByTime(300);
+    });
+    fireEvent.click(toggle);
+    act(() => {
+      jest.advanceTimersByTime(300);
+    });
+    fireEvent.click(toggle);
     act(() => {
       jest.runAllTimers();
     });
-    expect(result.current.appearing).toBe(false);
-    expect(result.current.rendered).toBe(false);
-    expect(result.current.stage).toBe(EXITED);
+    expect(stages).toEqual([
+      "exited",
+      "enter",
+      "entering",
+      "exit",
+      "exiting",
+      "exited",
+      "enter",
+      "entering",
+      "exit",
+      "exiting",
+      "enter",
+      "entering",
+      "entered",
+    ]);
+    expect(() => getByText(`The current stage is: "entered"`)).not.toThrow();
   });
 
-  it("should transition correctly if the timeout is an object", () => {
-    const timeout = {
-      enter: 200,
-      exit: 150,
+  it("should skip the enter, entering, exit, and exiting stages if the transition in disabled", () => {
+    const onEnter = jest.fn();
+    const onEntering = jest.fn();
+    const onEntered = jest.fn();
+    const onExit = jest.fn();
+    const onExiting = jest.fn();
+    const onExited = jest.fn();
+    const props: TestProps = {
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      timeout: 0,
     };
-    const result = createResultRef();
-    const props = { timeout, result };
-    const { rerender } = render(<Test {...props} transitionIn={false} />);
-    expect(result.current.stage).toBe(EXITED);
 
-    rerender(<Test {...props} transitionIn />);
-    expect(result.current.stage).toBe(ENTERING);
+    const { getByRole } = render(<Test {...props} />);
+    const toggle = getByRole("button");
 
-    act(() => {
-      jest.advanceTimersByTime(150);
-    });
-    // should not restart the timer
-    rerender(<Test {...props} transitionIn />);
-    expect(jest.getTimerCount()).toBe(1);
-    expect(result.current.stage).toBe(ENTERING);
+    expect(onEnter).not.toBeCalled();
+    expect(onEntering).not.toBeCalled();
+    expect(onEntered).not.toBeCalled();
+    expect(onExit).not.toBeCalled();
+    expect(onExiting).not.toBeCalled();
+    expect(onExited).not.toBeCalled();
 
-    act(() => {
-      jest.advanceTimersToNextTimer();
-    });
-    expect(jest.getTimerCount()).toBe(0);
-    expect(result.current.stage).toBe(ENTERED);
+    fireEvent.click(toggle);
+    expect(onEnter).not.toBeCalled();
+    expect(onEntering).not.toBeCalled();
+    expect(onEntered).toBeCalledTimes(1);
+    expect(onExit).not.toBeCalled();
+    expect(onExiting).not.toBeCalled();
+    expect(onExited).not.toBeCalled();
 
-    rerender(<Test {...props} transitionIn={false} />);
-    expect(jest.getTimerCount()).toBe(1);
-    expect(result.current.stage).toBe(EXITING);
-
-    act(() => {
-      jest.advanceTimersByTime(50);
-    });
-    expect(jest.getTimerCount()).toBe(1);
-    expect(result.current.stage).toBe(EXITING);
-
-    act(() => {
-      jest.runAllTimers();
-    });
-    expect(jest.getTimerCount()).toBe(0);
-    expect(result.current.stage).toBe(EXITED);
+    fireEvent.click(toggle);
+    expect(onEnter).not.toBeCalled();
+    expect(onEntering).not.toBeCalled();
+    expect(onEntered).toBeCalledTimes(1);
+    expect(onExit).not.toBeCalled();
+    expect(onExiting).not.toBeCalled();
+    expect(onExited).toBeCalledTimes(1);
   });
 });

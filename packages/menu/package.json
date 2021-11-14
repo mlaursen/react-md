@@ -39,6 +39,7 @@
     "@react-md/list": "^3.1.0",
     "@react-md/states": "^3.1.0",
     "@react-md/theme": "^3.1.0",
+    "@react-md/transition": "^3.1.0",
     "@react-md/typography": "^3.1.0",
     "@react-md/utils": "^3.1.0",
     "classnames": "^2.3.1"

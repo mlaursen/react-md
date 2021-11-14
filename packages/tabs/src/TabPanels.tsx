@@ -12,8 +12,8 @@ import {
 import cn from "classnames";
 import { bem, useEnsuredRef } from "@react-md/utils";
 
-import { PanelGroup } from "./PanelGroup";
 import { useTabs } from "./TabsManager";
+import type { TabPanelProps } from "./TabPanel";
 
 export interface TabPanelsProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -112,60 +112,35 @@ export const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(
         ref={refHandler}
         className={cn(
           block({
-            "slide-left": incrementing && !persistent,
-            "slide-left-persistent": incrementing && persistent,
+            "slide-left": incrementing,
             "slide-right": !incrementing,
           }),
           className
         )}
       >
-        <PanelGroup
-          persistent={persistent}
-          disableTransition={disableTransition}
-        >
-          {Children.map(children, (child, index) => {
-            if (!persistent && index !== activeIndex) {
-              return null;
-            }
+        {Children.map(children, (child, index) => {
+          if (!isValidElement<TabPanelProps>(child)) {
+            return child;
+          }
 
-            if (!isValidElement(child)) {
-              return child;
-            }
+          const panel = Children.only(child);
+          let labelledBy = panel.props["aria-labelledby"];
+          if (!labelledBy && !panel.props["aria-label"] && tabs[index]) {
+            // generally guaranteed to be defined by this point since the TabsManager
+            // will add ids if missing.
+            labelledBy = tabs[index].id;
+          }
 
-            const panel = Children.only(child);
-            let labelledBy = panel.props["aria-labelledby"];
-            if (!labelledBy && !panel.props["aria-label"] && tabs[index]) {
-              // generally guaranteed to be defined by this point since the TabsManager
-              // will add ids if missing.
-              labelledBy = tabs[index].id;
-            }
-
-            let key = panel.key || undefined;
-            if (index === activeIndex && transitionable.current) {
-              key = `${activeIndex}`;
-            }
-
-            let { in: animateIn } = panel.props;
-            if (animimatable.current) {
-              // when the persistent flag is in, I have too handle the TransitionGroup
-              // `in` behavior manually based on activeIndex
-              animateIn = index === activeIndex;
-            }
-
-            let hidden = index !== activeIndex;
-            if (persistent) {
-              hidden = hidden && index !== previous;
-            }
-            return cloneElement(child, {
-              key,
-              in: animateIn,
-              id: `${tabsId}-panel-${index + 1}`,
-              "aria-labelledby": labelledBy,
-              hidden,
-              onEntered: disableTransition ? undefined : onEntered,
-            });
-          })}
-        </PanelGroup>
+          return cloneElement(child, {
+            "aria-labelledby": labelledBy,
+            id: `${tabsId}-panel-${index + 1}`,
+            hidden: persistent && index !== activeIndex && index !== previous,
+            temporary: !persistent,
+            transitionIn: index === activeIndex,
+            timeout: disableTransition ? 0 : panel.props.timeout,
+            onEntered: disableTransition ? undefined : onEntered,
+          });
+        })}
       </div>
     );
   }

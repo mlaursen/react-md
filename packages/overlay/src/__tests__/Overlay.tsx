@@ -4,20 +4,35 @@ import { Overlay } from "../Overlay";
 
 describe("Overlay", () => {
   it("should render correctly", () => {
-    const props = { onRequestClose: () => {} };
-    const { container, rerender } = render(
+    const props = { "data-testid": "overlay", onRequestClose: () => {} };
+    const { container, getByTestId, rerender } = render(
       <Overlay {...props} visible={false} />
     );
 
+    const getOverlay = (): HTMLElement => getByTestId("overlay");
+
+    expect(getOverlay).toThrow();
     expect(container).toMatchSnapshot();
 
     rerender(<Overlay {...props} visible />);
+    expect(getOverlay()).toHaveClass("rmd-overlay");
+    expect(getOverlay()).toHaveClass("rmd-overlay--visible");
+    expect(getOverlay()).toHaveClass("rmd-overlay--clickable");
+    expect(getOverlay()).toHaveClass("rmd-overlay--active");
     expect(container).toMatchSnapshot();
 
     rerender(<Overlay {...props} visible hidden />);
+    expect(getOverlay()).toHaveClass("rmd-overlay");
+    expect(getOverlay()).toHaveClass("rmd-overlay--visible");
+    expect(getOverlay()).toHaveClass("rmd-overlay--clickable");
+    expect(getOverlay()).not.toHaveClass("rmd-overlay--active");
     expect(container).toMatchSnapshot();
 
     rerender(<Overlay {...props} visible clickable={false} />);
+    expect(getOverlay()).toHaveClass("rmd-overlay");
+    expect(getOverlay()).toHaveClass("rmd-overlay--visible");
+    expect(getOverlay()).not.toHaveClass("rmd-overlay--clickable");
+    expect(getOverlay()).toHaveClass("rmd-overlay--active");
     expect(container).toMatchSnapshot();
   });
 

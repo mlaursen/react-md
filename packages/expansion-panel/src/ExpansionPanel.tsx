@@ -7,7 +7,7 @@ import {
 } from "react";
 import cn from "classnames";
 import { Card, CardContent, CardContentProps, CardProps } from "@react-md/card";
-import { Collapse } from "@react-md/transition";
+import { useCollapseTransition } from "@react-md/transition";
 import { bem } from "@react-md/utils";
 
 import { ExpansionPanelHeader } from "./ExpansionPanelHeader";
@@ -150,6 +150,13 @@ export const ExpansionPanel = forwardRef<HTMLDivElement, ExpansionPanelProps>(
   ) {
     const { id } = props;
     const contentId = `${id}-content`;
+    const { elementProps, rendered } = useCollapseTransition({
+      style: contentStyle,
+      className: contentClassName,
+      timeout: disableTransition ? 0 : undefined,
+      transitionIn: expanded,
+      temporary: !persistent,
+    });
 
     return (
       <Card
@@ -174,24 +181,19 @@ export const ExpansionPanel = forwardRef<HTMLDivElement, ExpansionPanelProps>(
             {header}
           </ExpansionPanelHeader>
         )}
-        <Collapse
-          collapsed={!expanded}
-          timeout={disableTransition ? 0 : undefined}
-          temporary={!persistent}
-        >
+        {rendered && (
           <CardContent
+            {...elementProps}
             id={contentId}
             aria-labelledby={id}
             role="region"
-            style={contentStyle}
-            className={contentClassName}
             disableSecondaryColor={disableSecondaryColor}
             disablePadding={disablePadding}
             disableExtraPadding
           >
             {children}
           </CardContent>
-        </Collapse>
+        )}
       </Card>
     );
   }

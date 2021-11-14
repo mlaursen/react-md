@@ -173,20 +173,16 @@ export const AutoComplete = forwardRef<HTMLInputElement, AutoCompleteProps>(
           }}
         />
         <ScaleTransition
+          nodeRef={listboxRef}
           portal={portal}
           portalInto={portalInto}
           portalIntoId={portalIntoId}
           vertical
-          visible={visible}
+          transitionIn={visible}
           {...transitionHooks}
+          className={cn(listbox({ temporary: true }), listboxClassName)}
         >
-          <List
-            id={suggestionsId}
-            role="listbox"
-            ref={listboxRef}
-            style={fixedStyle}
-            className={cn(listbox({ temporary: true }), listboxClassName)}
-          >
+          <List id={suggestionsId} role="listbox" style={fixedStyle}>
             {beforeResultsChildren}
             {filteredData.map((datum, i) => {
               const resultId = getResultId(suggestionsId, i);

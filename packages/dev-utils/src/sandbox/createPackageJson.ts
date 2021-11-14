@@ -17,7 +17,10 @@ function toDependencyJson(
   );
 }
 
-const SIMPLE_AT_TYPES = ["qs", "react-transition-group", "react-virtualized"];
+const SIMPLE_AT_TYPES = [
+  "qs",
+  "react-virtualized",
+];
 
 function getTypesPackage(packageName: string): string | null {
   if (SIMPLE_AT_TYPES.includes(packageName)) {

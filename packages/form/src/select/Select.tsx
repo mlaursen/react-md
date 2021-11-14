@@ -5,6 +5,7 @@ import {
   ReactNode,
   useCallback,
   useMemo,
+  useRef,
 } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
@@ -35,6 +36,7 @@ import {
   getOptionId as DEFAULT_GET_OPTION_ID,
   getOptionLabel as DEFAULT_GET_OPTION_LABEL,
 } from "./utils";
+import { ListElement } from "@react-md/list";
 
 type FakeSelectAttributes = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -285,27 +287,27 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
     onOutsideClick: hide,
   });
 
+  const nodeRef = useRef<ListElement | null>(null);
   const {
+    ref: listboxRef,
     style: listboxStyle,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExited,
+    callbacks: transitionOptions,
   } = useFixedPositioning({
     style: propListboxStyle,
-    fixedTo: () => ref.current,
+    fixedTo: ref,
+    nodeRef,
     anchor,
     onScroll: closeOnScroll ? hide : undefined,
     onResize: closeOnResize ? hide : undefined,
     transformOrigin: true,
     width: listboxWidth,
-    onEntering(node) {
+    onEntering() {
       // can't do onEnter since the positioning styles haven't been applied to the
       // dom node at this time. this means the list is the last element in the DOM
       // when portalled, which causes the page to scroll to the end. Moving it to
       // onEntering will ensure the styles have been applied and won't cause page
       // scrolling
-      node.focus();
+      nodeRef.current?.focus();
     },
   });
 
@@ -393,6 +395,8 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
       </TextFieldContainer>
       <Listbox
         id={listboxId}
+        ref={listboxRef}
+        {...transitionOptions}
         aria-labelledby={id}
         style={listboxStyle}
         className={listboxClassName}
@@ -401,10 +405,6 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
         portal={portal}
         portalInto={portalInto}
         portalIntoId={portalIntoId}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExited={onExited}
         value={value}
         onChange={onChange}
         visible={visible}

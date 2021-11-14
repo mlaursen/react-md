@@ -44,7 +44,7 @@ export default function WikipediaPreviewLink({
         visible={visible}
         onRequestClose={() => setVisible(false)}
         {...handlers}
-        fixedTo={linkRef.current}
+        fixedTo={linkRef}
         onClick={() => {
           window.location.href = href;
         }}

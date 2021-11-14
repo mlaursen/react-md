@@ -2,7 +2,6 @@
 import { ReactElement, useEffect, useState } from "react";
 import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { CircularProgress } from "@react-md/progress";
-import { TabPanel, TabPanelProps } from "@react-md/tabs";
 import { Text } from "@react-md/typography";
 import { GridList, GridListCell } from "@react-md/utils";
 
@@ -29,7 +28,7 @@ interface PicsumPhotoItem {
   post_url: string;
 }
 
-export default function Content2(props: TabPanelProps): ReactElement {
+export default function Content2(): ReactElement {
   const [{ loading, data }, setState] = useState<State>({
     loading: false,
     data: [],
@@ -63,7 +62,7 @@ export default function Content2(props: TabPanelProps): ReactElement {
   }, []);
 
   return (
-    <TabPanel {...props}>
+    <>
       <Text type="headline-4">Tab 2 Content</Text>
       <GridList maxCellSize={250}>
         {loading && <CircularProgress id="loading-tab-2" />}
@@ -78,6 +77,6 @@ export default function Content2(props: TabPanelProps): ReactElement {
           </GridListCell>
         ))}
       </GridList>
-    </TabPanel>
+    </>
   );
 }

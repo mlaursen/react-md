@@ -7,7 +7,7 @@ import {
 } from "@react-md/states";
 import { bem, useResizeObserver } from "@react-md/utils";
 
-import { TabConfig } from "./types";
+import type { TabConfig } from "./types";
 import { useUpdateIndicatorStyles } from "./useTabIndicatorStyle";
 
 export interface TabProps

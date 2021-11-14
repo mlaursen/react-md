@@ -1,10 +1,13 @@
 import { forwardRef, ReactNode } from "react";
 import cn from "classnames";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { AppBarNav, AppBarNavProps } from "@react-md/app-bar";
 import { useIcon } from "@react-md/icon";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";
-import { TransitionTimeout, useCSSTransition } from "@react-md/transition";
+import {
+  CSSTransitionClassNames,
+  TransitionTimeout,
+  useCSSTransition,
+} from "@react-md/transition";
 import { PropsWithRef } from "@react-md/utils";
 
 import { DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";
@@ -82,7 +85,7 @@ export const LayoutNavToggle = forwardRef<
     "aria-label": propAriaLabel,
     "aria-pressed": propAriaPressed,
     children: propChildren,
-    className: propClassName,
+    className,
     buttonType = "icon",
     onClick,
     offset: propOffset,
@@ -92,7 +95,7 @@ export const LayoutNavToggle = forwardRef<
     classNames = DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES,
     ...props
   },
-  forwardedRef
+  nodeRef
 ) {
   const icon = useIcon("menu");
   const { baseId, layout, showNav, hideNav, visible } = useLayoutConfig();
@@ -109,13 +112,13 @@ export const LayoutNavToggle = forwardRef<
     offset = isToggleable && visible;
   }
 
-  const [, { ref, className }] = useCSSTransition<HTMLButtonElement>({
-    ref: forwardedRef,
+  const { elementProps } = useCSSTransition<HTMLButtonElement>({
+    nodeRef,
     transitionIn: offset,
     temporary: false,
-    className: propClassName,
     timeout,
     classNames,
+    className: cn("rmd-layout-nav-toggle", className),
   });
 
   if (!isRendered) {
@@ -151,9 +154,9 @@ export const LayoutNavToggle = forwardRef<
     <AppBarNav
       id={`${baseId}-nav-toggle`}
       {...props}
+      {...elementProps}
       aria-label={ariaLabel}
       aria-pressed={ariaPressed}
-      ref={ref}
       onClick={(event) => {
         if (onClick) {
           onClick(event);
@@ -167,7 +170,6 @@ export const LayoutNavToggle = forwardRef<
       }}
       buttonType={buttonType}
       tabIndex={tabIndex}
-      className={cn("rmd-layout-nav-toggle", className)}
     >
       {children}
     </AppBarNav>

@@ -1,7 +1,9 @@
 import { ReactElement } from "react";
 import cn from "classnames";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
-import { TransitionTimeout } from "@react-md/transition";
+import type {
+  CSSTransitionClassNames,
+  TransitionTimeout,
+} from "@react-md/transition";
 
 import { Ripple } from "./Ripple";
 import { RipplesState, RippleState } from "./types";

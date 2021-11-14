@@ -7,19 +7,18 @@ new page transition named cross fade.
 
 Provided components and hooks:
 
-- `Collapse` or `useCollapse` - transition an element in and out of view based
-  on the height of the element
-- `CrossFade` or `useCrossFade` - a transition generally used for a full page
-  transition that fades and slightly moves a child component into view
-- `ScaleTransition` - transition an element in and out of view with a `scale`
-  transform that can be updated to just be `scaleY`
+- `Collapse` or `useCollapseTransition` - transition an element in and out of
+  view based on the height of the element
+- `CrossFade` or `useCrossFadeTransition` - a transition generally used for a
+  full page transition that fades and slightly moves a child component into view
+- `ScaleTransition` or `useScaleTransition` - transition an element in and out
+  of view with a `scale` transform that can be updated to just be `scaleY`
 - `useTransition` - a hook implementation of the `Transition` component from
   `react-transition-group`
-- `useCSSTransition` -a hook implementation of the `CSSTransition` component
-  from `react-transition-group`
-- `useFixedPositioning` - hooks into the `CSSTransition` component from
-  `react-transition-group` to fix an element to another element within the
-  viewport
+- `CSSTransition` or `useCSSTransition` - allows for a CSS transition that was
+  heavily inspired by `react-transition-group`
+- `useFixedPositioning` - hooks into the `CSSTransition` component from to fix
+  an element to another element within the viewport
 
 The `rmd-transition-shadow-transition` mixin allows you to "performantly"
 transition between two box shadow values using the

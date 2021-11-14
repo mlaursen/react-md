@@ -1,11 +1,11 @@
 import { forwardRef } from "react";
 import cn from "classnames";
 import { List, ListElement, ListProps } from "@react-md/list";
-import { Collapse, CollapseProps } from "@react-md/transition";
+import { CollapseProps, useCollapseTransition } from "@react-md/transition";
 
 export interface TreeGroupProps
   extends ListProps,
-    Omit<CollapseProps, "children"> {}
+    Omit<CollapseProps<ListElement>, "children"> {}
 
 /**
  * The `TreeGroup` component is used to render a tree item's nested items
@@ -33,29 +33,34 @@ export const TreeGroup = forwardRef<ListElement, TreeGroupProps>(
       temporary,
       ...props
     },
-    ref
+    nodeRef
   ) {
+    const { elementProps, rendered } = useCollapseTransition({
+      style,
+      className: cn("rmd-tree-group", className),
+      nodeRef,
+      minHeight,
+      minPaddingBottom,
+      minPaddingTop,
+      timeout,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
+      temporary,
+      transitionIn: !collapsed,
+    });
+
+    if (!rendered) {
+      return null;
+    }
+
     return (
-      <Collapse
-        style={style}
-        className={cn("rmd-tree-group", className)}
-        collapsed={collapsed}
-        minHeight={minHeight}
-        minPaddingBottom={minPaddingBottom}
-        minPaddingTop={minPaddingTop}
-        timeout={timeout}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExiting={onExiting}
-        onExited={onExited}
-        temporary={temporary}
-      >
-        <List {...props} ref={ref} role="group">
-          {children}
-        </List>
-      </Collapse>
+      <List {...props} {...elementProps} role="group">
+        {children}
+      </List>
     );
   }
 );

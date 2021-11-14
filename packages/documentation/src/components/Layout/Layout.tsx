@@ -21,7 +21,7 @@ import {
   RadioButtonCheckedSVGIcon,
   RemoveRedEyeSVGIcon,
 } from "@react-md/material-icons";
-import { ENTER, useCrossFade } from "@react-md/transition";
+import { useCrossFadeTransition } from "@react-md/transition";
 import { AppSizeListenerProps } from "@react-md/utils";
 
 import {
@@ -90,8 +90,12 @@ export default function Layout({
   }, [pathname]);
 
   const prevPathname = useRef(pathname);
-  const [, transitionProps, dispatch] = useCrossFade();
-  if (prevPathname.current !== pathname) {
+  const { elementProps, transitionTo } = useCrossFadeTransition();
+  useEffect(() => {
+    if (prevPathname.current === pathname) {
+      return;
+    }
+
     // since the sandbox route is a full page modal, don't want to transition
     // to make it appear smoother between the two
     const isTransitionable =
@@ -100,12 +104,12 @@ export default function Layout({
 
     prevPathname.current = pathname;
     if (isTransitionable) {
-      dispatch(ENTER);
+      transitionTo("enter");
     }
-  }
+  }, [pathname, transitionTo]);
 
   return (
-    <Configuration defaultSize={defaultSize} icons={icons}>
+    <Configuration defaultSize={defaultSize} icons={icons} disableRipple>
       <TOCVisibilityProvider pathname={pathname}>
         <IdProvider>
           <CodePreferenceProvider defaultPreference={defaultPreference}>
@@ -115,7 +119,7 @@ export default function Layout({
                 children: <Actions />,
               }}
               title={title.replace("react-md@v2 - ", "")}
-              mainProps={transitionProps}
+              mainProps={elementProps}
               treeProps={useLayoutNavigation(
                 navItems,
                 // I don't add each blog to the navigation tree, but still want to

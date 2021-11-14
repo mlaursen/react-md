@@ -1,7 +1,9 @@
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
-import { TransitionTimeout } from "@react-md/transition";
+import type {
+  CSSTransitionClassNames,
+  TransitionTimeout,
+} from "@react-md/transition";
 
-export const DEFAULT_RIPPLE_CLASSNAMES: CSSTransitionClassNames = {
+export const DEFAULT_RIPPLE_CLASSNAMES: Readonly<CSSTransitionClassNames> = {
   enter: "rmd-ripple--animating",
   enterActive: "rmd-ripple--scaling",
   enterDone: "rmd-ripple--animating rmd-ripple--scaling",
@@ -9,7 +11,7 @@ export const DEFAULT_RIPPLE_CLASSNAMES: CSSTransitionClassNames = {
   exitActive: "rmd-ripple--fading",
 };
 
-export const DEFAULT_RIPPLE_TIMEOUT: TransitionTimeout = {
+export const DEFAULT_RIPPLE_TIMEOUT: Readonly<TransitionTimeout> = {
   enter: 150,
   exit: 300,
 };

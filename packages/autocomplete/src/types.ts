@@ -1,8 +1,11 @@
-import { CSSProperties, ReactNode } from "react";
-import { ListboxOptionProps, TextFieldProps } from "@react-md/form";
-import { RenderConditionalPortalProps } from "@react-md/portal";
-import { OptionalFixedPositionOptions } from "@react-md/transition";
-import { CaseInsensitiveOptions, PositionWidth } from "@react-md/utils";
+import type { CSSProperties, ReactNode } from "react";
+import type { ListboxOptionProps, TextFieldProps } from "@react-md/form";
+import type { RenderConditionalPortalProps } from "@react-md/portal";
+import type {
+  CalculateFixedPositionOptions,
+  CaseInsensitiveOptions,
+  PositionWidth,
+} from "@react-md/utils";
 
 /**
  * The supported autocompletion types.
@@ -102,7 +105,7 @@ export interface AutoCompleteResult {
 export type AutoCompleteHandler = (result: AutoCompleteResult) => void;
 
 export interface AutoCompleteListboxPositionOptions
-  extends Omit<OptionalFixedPositionOptions, "width"> {
+  extends Omit<CalculateFixedPositionOptions, "width"> {
   /**
    * The sizing behavior for the listbox. It will default to have the same width
    * as the select button, but it is also possible to either have the

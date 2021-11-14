@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 
-import { TabConfig } from "./types";
+import type { TabConfig } from "./types";
 
 export type InitializedTabConfig = TabConfig & Required<Pick<TabConfig, "id">>;
 

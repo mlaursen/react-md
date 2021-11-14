@@ -1,11 +1,20 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { forwardRef, HTMLAttributes, useRef, useState } from "react";
-import cn from "classnames";
-import { RenderConditionalPortalProps } from "@react-md/portal";
 import {
-  OverridableCSSTransitionProps,
-  ScaleTransition,
+  forwardRef,
+  HTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import cn from "classnames";
+import {
+  ConditionalPortal,
+  RenderConditionalPortalProps,
+} from "@react-md/portal";
+import {
+  CSSTransitionComponentProps,
   useFixedPositioning,
+  useScaleTransition,
 } from "@react-md/transition";
 import {
   bem,
@@ -27,7 +36,7 @@ export type MenuPositionOptions = Omit<
 
 export interface BaseMenuProps
   extends HTMLAttributes<HTMLDivElement>,
-    OverridableCSSTransitionProps,
+    CSSTransitionComponentProps,
     RenderConditionalPortalProps {
   /**
    * The id for the menu. This is required for a11y.
@@ -158,14 +167,13 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
     portal,
     portalInto,
     portalIntoId,
-    mountOnEnter = true,
-    unmountOnExit = true,
-    onEnter: propOnEnter,
-    onEntering: propOnEntering,
-    onEntered: propOnEntered,
+    temporary = true,
+    onEnter,
+    onEntering,
+    onEntered,
     onExit,
     onExiting,
-    onExited: propOnExited,
+    onExited,
     timeout,
     classNames,
     anchor: propAnchor,
@@ -188,7 +196,12 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
 
   // TODO: Refactor all the menu functionality since I made this when I had no
   // idea what I was doing with hooks
-  const { ref, menuRef, onClick, onKeyDown } = useMenu({
+  const {
+    ref: nodeRef,
+    menuRef,
+    onClick,
+    onKeyDown,
+  } = useMenu({
     ref: forwardedRef,
     visible,
     controlId,
@@ -210,69 +223,75 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
     }
   }
 
-  const { style, onEnter, onEntering, onEntered, onExited } =
-    useFixedPositioning({
-      ...positionOptions,
-      fixedTo: () => document.getElementById(controlId),
-      onScroll(_event, { visible }) {
-        if (!closeOnScroll && visible) {
-          return;
-        }
+  const fixedTo = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    fixedTo.current = document.getElementById(controlId);
+  }, [controlId]);
 
-        if (!visible) {
-          setCancelled(true);
-        }
-        onRequestClose();
-      },
-      onResize: closeOnResize ? onRequestClose : undefined,
-      anchor,
-      onEnter: propOnEnter,
-      onEntering: propOnEntering,
-      onEntered: propOnEntered,
-      onExited: propOnExited,
-      transformOrigin: true,
-    });
+  const { style, transitionOptions } = useFixedPositioning({
+    ...positionOptions,
+    nodeRef,
+    fixedTo,
+    onScroll(_event, { visible }) {
+      if (!closeOnScroll && visible) {
+        return;
+      }
+
+      if (!visible) {
+        setCancelled(true);
+      }
+      onRequestClose();
+    },
+    onResize: closeOnResize ? onRequestClose : undefined,
+    anchor,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExited,
+    transformOrigin: true,
+  });
+
+  const { elementProps, rendered } = useScaleTransition({
+    ...transitionOptions,
+    appear: temporary,
+    className: cn(block({ horizontal }), className),
+    onExit,
+    onExiting,
+    timeout,
+    classNames,
+    transitionIn: visible,
+    temporary,
+  });
 
   const orientation = horizontal ? "horizontal" : "vertical";
   return (
-    <ScaleTransition
+    <ConditionalPortal
       portal={portal}
       portalInto={portalInto}
       portalIntoId={portalIntoId}
-      appear={mountOnEnter}
-      visible={visible}
-      classNames={classNames}
-      timeout={timeout}
-      onEnter={onEnter}
-      onEntering={onEntering}
-      onEntered={onEntered}
-      onExit={onExit}
-      onExiting={onExiting}
-      onExited={onExited}
-      mountOnEnter={mountOnEnter}
-      unmountOnExit={unmountOnExit}
     >
-      <OrientationProvider orientation={orientation}>
-        <div
-          {...props}
-          aria-orientation={orientation}
-          ref={ref}
-          role={role}
-          tabIndex={tabIndex}
-          style={{ ...propStyle, ...style }}
-          className={cn(block({ horizontal }), className)}
-          onClick={onClick}
-          onKeyDown={onKeyDown}
-        >
-          {children}
-          <MenuEvents
-            menuRef={menuRef}
-            cancelled={cancelled}
-            defaultFocus={defaultFocus}
-          />
-        </div>
-      </OrientationProvider>
-    </ScaleTransition>
+      {rendered && (
+        <OrientationProvider orientation={orientation}>
+          <div
+            {...props}
+            {...elementProps}
+            aria-orientation={orientation}
+            role={role}
+            tabIndex={tabIndex}
+            style={{ ...propStyle, ...style }}
+            onClick={onClick}
+            onKeyDown={onKeyDown}
+          >
+            {children}
+            <MenuEvents
+              menuRef={menuRef}
+              cancelled={cancelled}
+              defaultFocus={defaultFocus}
+            />
+          </div>
+        </OrientationProvider>
+      )}
+    </ConditionalPortal>
   );
 });
 
@@ -308,8 +327,7 @@ if (process.env.NODE_ENV !== "production") {
         vhMargin: PropTypes.number,
         disableSwapping: PropTypes.bool,
       }),
-      mountOnEnter: PropTypes.bool,
-      unmountOnExit: PropTypes.bool,
+      temporary: PropTypes.bool,
       defaultFocus: PropTypes.oneOf(["first", "last"]),
       classNames: PropTypes.oneOfType([
         PropTypes.string,

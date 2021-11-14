@@ -1,8 +1,8 @@
 import { render, waitFor } from "@testing-library/react";
 
-import { Sheet } from "../Sheet";
+import { Sheet, SheetProps } from "../Sheet";
 
-const PROPS = {
+const PROPS: SheetProps = {
   id: "sheet",
   "aria-label": "Label",
   children: <button type="button">Close</button>,
@@ -39,13 +39,12 @@ describe("Sheet", () => {
     expect(baseElement).toMatchSnapshot();
   });
 
-  it("should correctly enable the hidden prop if the mountOnEnter and unmountOnExit props are disabled", async () => {
+  it("should correctly enable the hidden prop if the temporary prop is `false`", async () => {
     const onExited = jest.fn();
-    const props = {
+    const props: SheetProps = {
       ...PROPS,
       onExited,
-      mountOnEnter: false,
-      unmountOnExit: false,
+      temporary: false,
     };
 
     const { getByRole, rerender } = render(

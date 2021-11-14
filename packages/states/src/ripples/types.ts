@@ -1,6 +1,8 @@
 import type { CSSProperties, HTMLAttributes } from "react";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
-import { TransitionTimeout } from "@react-md/transition";
+import type {
+  CSSTransitionClassNames,
+  TransitionTimeout,
+} from "@react-md/transition";
 
 export type RippleType = "mouse" | "touch" | "keyboard" | "programmatic";
 export type RippleEvent<E extends HTMLElement> = Pick<

@@ -1,361 +1,631 @@
-import { CSSProperties, Ref, RefCallback } from "react";
-import {
-  CSSTransitionClassNames,
-  CSSTransitionProps,
-} from "react-transition-group/CSSTransition";
-import {
-  TransitionActions,
-  TransitionProps,
-} from "react-transition-group/Transition";
+// This is pretty much `react-transition-group` since I liked the API wanted a
+// hook implementation. I also had to redo most of the types for v4.0.0 due to
+// the new `nodeRef` stuff, so it made it easier to create the types and hooks
+// here.
 
-// Convenience Types since I reuse the react-transition-group package a decent
-// amount in other `react-md` packages
-
-export type TransitionTimeout = Required<TransitionProps>["timeout"];
-
-// Don't want the children stuff when overriding/reusing in react-md components
-// as well as the [prop: string]: any, so pick the reusable ones
-type TransitionKeys =
-  | "in"
-  | "mountOnEnter"
-  | "unmountOnExit"
-  | "onEnter"
-  | "onEntering"
-  | "onEntering"
-  | "onEntered"
-  | "onExit"
-  | "onExiting"
-  | "onExited";
-
-// timeout is required in the Transition props, but 99% of the time it'll be
-// added with defaultProps in overrides
-export interface OverridableTransitionProps
-  extends TransitionActions,
-    Pick<TransitionProps, TransitionKeys> {
-  timeout?: TransitionTimeout;
-}
-
-export type OverridableCSSTransitionProps = OverridableTransitionProps &
-  Pick<CSSTransitionProps, "classNames">;
-
-// ============================================================================
-// `react-md` specific types below
+import type { ReactElement, Ref, RefCallback } from "react";
 
 /**
- * This is basically the same as the `EnterHandler` from
- * `react-transition-group` except that this allows for the element type to be
- * provided.
+ * @remarks \@since 4.0.0
  */
-export type EnterHandler<E extends HTMLElement = HTMLDivElement> = (
-  node: E,
-  isAppearing: boolean
-) => void;
-
-/**
- * This is basically the same as the `ExitHandler` from `react-transition-group`
- * except that this allows for the element type to be provided.
- */
-export type ExitHandler<E extends HTMLElement = HTMLDivElement> = (
-  node: E
-) => void;
-
-export interface TransitionCallbacks<E extends HTMLElement = HTMLDivElement> {
+export interface TransitionActions {
   /**
-   * An optional enter handler that can be used to determine additional
-   * transition styles if you need access to the DOM node to calculate those
-   * styles. This will also be fired for `appear` transitions.
+   * Boolean if the transition should occur immediately once the component
+   * mounts if the {@link TransitionOptions.transitionIn} is `true`
    *
-   * This will be fired right after the `transitionIn` is set to `true`.
-   */
-  onEnter?: EnterHandler<E>;
-
-  /**
-   * An optional entering handler that can be used to determine additional
-   * transition styles if you need access to the DOM node to calculate those
-   * styles. This will also be fired for `appear` transitions.
-   *
-   * This will be fired almost immediately after the `onEnter` callback.
-   * However, if the `repaint` option was enabled, it will ensure the DOM as
-   * been repainted before firing to help with CSS transitions.
-   */
-  onEntering?: EnterHandler<E>;
-
-  /**
-   * An optional entered handler that can be used to determine additional
-   * transition styles if you need access to the DOM node to calculate those
-   * styles. This will also be fired for `appear` transitions.
-   *
-   * This will be fired once the transition has finished.
-   */
-  onEntered?: EnterHandler<E>;
-
-  /**
-   * An optional exit handler that can be used to determine additional
-   * transition styles if you need access to the DOM node to calculate those
-   * styles.
-   *
-   * This will be fired right after the `transitionIn` is set to `false`.
-   */
-  onExit?: ExitHandler<E>;
-
-  /**
-   * An optional exit handler that can be used to determine additional
-   * transition styles if you need access to the DOM node to calculate those
-   * styles.
-   *
-   * This will be fired almost immdiately after the `onExit` callback. However,
-   * if the `repaint` option was enabled, it will ensure the DOM as been
-   * repainted before firing to help with CSS transitions.
-   */
-  onExiting?: ExitHandler<E>;
-
-  /**
-   * An optional entered handler that can be used to determine additional
-   * transition styles if you need access to the DOM node to calculate those
-   * styles. This will also be fired for `appear` transitions.
-   *
-   * This will be fired once the transition has finished.
-   *
-   * Note: If the `temporary` option was enabled, the `rendered` result will be
-   * `false` and the node actually won't exist in the DOM anymore.
-   */
-  onExited?: ExitHandler<E>;
-}
-
-/**
- * The options availabe for the `useTransition` hook. This was once again
- * heavily inspired by the `Transition` and `CSSTransition` components from
- * `react-transition-group`.
- */
-export interface TransitionOptions<E extends HTMLElement = HTMLDivElement>
-  extends TransitionCallbacks<E> {
-  /**
-   * Changing this boolean will trigger a transition between the six stagees:
-   *
-   * - `ENTER`
-   * - `ENTERING`
-   * - `ENTERED`
-   * - `EXIT`
-   * - `EXITING`
-   * - `EXITED`
-   *
-   * Changing from `false` to `true`, the stagees will change in this order:
-   * `EXITED -> ENTER -> ENTERING -> ENTERED`
-   *
-   * Changing from `true` to `false`, the stagees will change in this order:
-   * `ENTERED -> EXIT -> EXITING -> EXITED`
-   */
-  transitionIn: boolean;
-
-  /**
-   * Boolean if the transition should also be triggered immediately once the
-   * component mounts. This is generally not recommended for server side
-   * rendering/initial page load so it is set to `false` by default.
+   * @defaultValue `false`
    */
   appear?: boolean;
 
   /**
-   * Boolean if the transition should allow for an enter animation once the
-   * `transitionIn` booleanis set to `true`.
+   * Boolean if the transition should occur whenever the
+   * {@link TransitionOptions.transitionIn} is switch to `true` after the
+   * component has been rendered in the DOM.
+   *
+   * @defaultValue `true`
    */
   enter?: boolean;
 
   /**
-   * Boolean if the transition should allow for an exit animation once the
-   * `transitionIn` booleanis set to `false`.
+   * Boolean if the transition should occur whenever the
+   * {@link TransitionOptions.transitionIn} is switch to `false` after the
+   * component has been rendered in the DOM.
+   *
+   * @defaultValue `true`
    */
   exit?: boolean;
+}
+
+/**
+ * An object timeout values that would be used for each
+ * {@link TransitionActions}. If a value is set to `0` or `undefined`, the
+ * transition will not occur.
+ *
+ * @remarks \@since 4.0.0
+ */
+export type TransitionTimeoutObject = {
+  [action in keyof TransitionActions]?: number;
+};
+
+/**
+ * Either a single timeout duration in milliseconds to use for each of the
+ * {@link TransitionActions} stages, or an object of transition durations.
+ *
+ * @see {@link TransitionTimeout}
+ * @remarks \@since 4.0.0
+ */
+export type TransitionTimeout = number | Readonly<TransitionTimeoutObject>;
+
+/**
+ * The way the transition works is by flowing through the different stages and
+ * assigning waiting for a timeout to occur. Setting the `stage` to `enter` will
+ * begin the enter transition going from `enter -> entering -> entered` while
+ * setting the stage to `exit` will transition from `exit -> exiting -> exited`.
+ *
+ * @remarks \@since 4.0.0
+ */
+export type TransitionStage =
+  | "enter"
+  | "entering"
+  | "entered"
+  | "exit"
+  | "exiting"
+  | "exited";
+
+/**
+ * This function is called at each `"enter"` {@link TransitionStage}. If a
+ * {@link TransitionOptions.nodeRef} was provided, the DOM node should be
+ * available in `nodeRef.current` by this point if the transition requires DOM
+ * calculations.
+ *
+ * @param appearing - Boolean if this is the initial `appear` flow.
+ * @remarks \@since 4.0.0
+ */
+export type TransitionEnterHandler = (appearing: boolean) => void;
+
+/**
+ * THis function is called at each `"exit"` {@link TransitionStage}. If a {@link
+ * TransitionOptions.nodeRef} was provided, the DOM node should be available in
+ * `nodeRef.current` by this point if the transition requires DOM calculations.
+ *
+ * @remarks \@since 4.0.0
+ */
+export type TransitionExitHandler = () => void;
+
+/**
+ * @remarks \@since 4.0.0
+ */
+export interface TransitionCallbacks {
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"enter"`.
+   *
+   * @see {@link TransitionEnterHandler}
+   */
+  onEnter?: TransitionEnterHandler;
 
   /**
-   * Boolean if the component should mount and unmount based on the current
-   * `transitionIn` stage with a default value of `false`. When this is
-   * `false`, the first result (`rendered`) in the return value array will
-   * always be `true`.
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"enter"`.
    *
-   * When this is set to `true`, the first result (`rendered`) in the return
-   * value array will be `true` only while the `transitionIn` option is `true`
-   * or the transition is still happening.
+   * @see {@link TransitionEnterHandler}
+   */
+  onEntering?: TransitionEnterHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"entering"`.
    *
-   * Note: **Changing this option while the hook/component is mounted will not
-   * do anything**. If you want to dynamically change the component's temporary
-   * state, you will need to also change the `key` to get the component to
-   * re-mount.
+   * @see {@link TransitionEnterHandler}
+   */
+  onEntered?: TransitionEnterHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"entered"`.
+   *
+   * @see {@link TransitionEnterHandler}
+   */
+  onExit?: TransitionExitHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"exiting"`.
+   *
+   * @see {@link TransitionExitHandler}
+   */
+  onExiting?: TransitionExitHandler;
+
+  /**
+   * This function will be called once the {@link TransitionStage} has been set
+   * to `"exited"`.
+   *
+   * @see {@link TransitionExitHandler}
+   */
+  onExited?: TransitionExitHandler;
+}
+
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface PreconfiguredTransitionInDefaultedOptions<
+  E extends HTMLElement
+> extends TransitionActions,
+    TransitionCallbacks {
+  /**
+   * An optional ref that will be merged with the
+   * {@link TransitionHookReturnValue.ref}
+   */
+  nodeRef?: Ref<E>;
+
+  /**
+   * Boolean if the element should mount and unmount based on the
+   * {@link transitionIn} value.
+   *
+   * @defaultValue `false`
    */
   temporary?: boolean;
 
   /**
-   * Boolean if the transition should force a DOM repaint before triggering the
-   * next stage. Defaults to `false` since it's only really recommended for DOM
-   * and CSS transitions.
-   */
-  repaint?: boolean;
-
-  /**
-   * The transition timeout to use for each stage. Just like in
-   * `react-transition-group`, this can either be a `number` which will a static
-   * duration to use for each stage. Otherwise, this can be an object of
-   * timeouts for the `appear`, `enter`, and `exit` stages which default to `0`
-   * if omitted.
+   * This boolean controls the transition by activating flowing through the
+   * {@link TransitionStage}.
    *
-   * Note: If any of the timeout values are set to `0`, the transition will be
-   * considered disabled and skip the `ENTERING`/`EXITING` stages.
-   *
-   * Note: If the `appear` stage is omitted in the timeout object but the
-   * `appear` option was enabled for the transition, it will instead default to
-   * the `enter` duration.
+   * @see {@link TransitionActions} for a description around the transitions.
    */
-  timeout: TransitionTimeout;
-
-  /**
-   * An optional ref that will get merged with the required ref for the
-   * transition to work.
-   */
-  ref?: Ref<E>;
+  transitionIn?: boolean;
+  /** {@inheritDoc TransitionTimeout} */
+  timeout?: TransitionTimeout;
 }
 
-export interface CSSTransitionOptions<E extends HTMLElement>
-  extends Omit<TransitionOptions<E>, "repaint"> {
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface PreconfiguredTransitionOptions<E extends HTMLElement>
+  extends PreconfiguredTransitionInDefaultedOptions<E> {
+  /** {@inheritDoc PreconfiguredTransitionInDefaultedOptions.transitionIn} */
+  transitionIn: boolean;
+}
+
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface TransitionOptions<E extends HTMLElement>
+  extends PreconfiguredTransitionOptions<E> {
+  /** {@inheritDoc TransitionTimeout} */
+  timeout: TransitionTimeout;
+}
+
+/**
+ * An object of classnames that will be applied based on the
+ * {@link TransitionStage} where all the classes in the previous stages will
+ * also be applied.
+ *
+ * @example
+ * Explaining className application
+ * ```ts
+ * const { ref, className, stage, appearing } = useCSSTransition({
+ *   appear: true,
+ *   enter: true,
+ *   exit: true,
+ *   timeout: 300,
+ *   classNames: {
+ *     appear: "appear",
+ *     appearEnter: "appear--enter",
+ *     appearDone: "appear--done appear--complete",
+ *     enter: "enter",
+ *     enterEnter: "",
+ *     enterDone: "enter--done enter--complete",
+ *     exit: "",
+ *     exitEnter: "",
+ *     exitDone: "exit--done exit--complete",
+ *   }
+ * });
+ *
+ * // stage === "enter" && appearing
+ * // className === "appear"
+ * //
+ * // stage === "entering" && appearing
+ * // className === "appear appear--enter"
+ * //
+ * // stage === "entered" && appearing
+ * // className === "appear--done appear--complete"
+ * //
+ * //
+ * // stage === "enter" && !appearing
+ * // className === "enter"
+ * //
+ * // stage === "entering" && !appearing
+ * // className === "enter"
+ * //
+ * // stage === "entered" && !appearing
+ * // className === "enter--done enter--complete"
+ * //
+ * //
+ * // stage === "exit"
+ * // className === ""
+ * //
+ * // stage === "exiting"
+ * // className === ""
+ * //
+ * // stage === "exited"
+ * // className === "exit--done exit--complete"
+ * ```
+ *
+ * @remarks \@since 4.0.0
+ */
+export interface CSSTransitionClassNamesObject {
   /**
-   * An optional className that should ge merged with the CSS transition class
-   * name based on the current transition stage.
+   * The class name to apply starting at the `"enter"` {@link TransitionStage}
+   * while {@link TransitionState.appearing}.
+   *
+   * @defaultValue `""`
+   */
+  appear?: string;
+
+  /**
+   * The class name to apply starting at the `"entering"` {@link TransitionStage}
+   * while {@link TransitionState.appearing}.
+   *
+   * @defaultValue `""`
+   */
+  appearActive?: string;
+
+  /**
+   * The class name to apply starting at the `"entered"` {@link TransitionStage}
+   * while {@link TransitionState.appearing}.
+   *
+   * @defaultValue `""`
+   */
+  appearDone?: string;
+
+  /**
+   * The class name to apply starting at the `"enter"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  enter?: string;
+
+  /**
+   * The class name to apply starting at the `"entering"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  enterActive?: string;
+
+  /**
+   * The class name to apply starting at the `"entered"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  enterDone?: string;
+
+  /**
+   * The class name to apply starting at the `"exit"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  exit?: string;
+
+  /**
+   * The class name to apply starting at the `"exiting"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  exitActive?: string;
+
+  /**
+   * The class name to apply starting at the `"exited"` {@link TransitionStage}
+   *
+   * @defaultValue `""`
+   */
+  exitDone?: string;
+}
+
+/**
+ * @remarks \@since 4.0.0
+ */
+export type CSSTransitionClassNames =
+  | string
+  | Readonly<CSSTransitionClassNamesObject>;
+
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface PreconfiguredCSSTransitionInDefaultedOptions<
+  E extends HTMLElement
+> extends PreconfiguredTransitionInDefaultedOptions<E> {
+  /**
+   * An optional className to be merged with the transition classes.
    */
   className?: string;
-
-  /**
-   * The transition class names to apply. Unlike in `react-transition-group`, if
-   * this is a `string` instead of an object, the different states will be
-   * `--{state}` instead of `-{state}`.
-   *
-   * Example:
-   *
-   * ```ts
-   * const options = {
-   *   classNames: "scale"
-   * }
-   *
-   * // creates
-   * const classNames = {
-   *   enter: "scale--enter",
-   *   enterActive: "scale--enter-active",
-   *   exit: "scale--exit",
-   *   exitActive: "scale--exit-active",
-   * }
-   * ```
-   *
-   * ```ts
-   * const options = {
-   *   classNames: "scale"
-   *   appear: true,
-   * }
-   *
-   * // creates
-   * const classNames = {
-   *   appear: "scale--enter",
-   *   appearActive: "scale--enter-active",
-   *   enter: "scale--enter",
-   *   enterActive: "scale--enter-active",
-   *   exit: "scale--exit",
-   *   exitActive: "scale--exit-active",
-   * }
-   * ```
-   */
-  classNames: CSSTransitionClassNames | string;
 }
 
-export interface CSSTransitionProvidedProps<E extends HTMLElement> {
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface PreconfiguredCSSTransitionOptions<E extends HTMLElement>
+  extends PreconfiguredCSSTransitionInDefaultedOptions<E> {
+  /** {@inheritDoc PreconfiguredTransitionInDefaultedOptions.transitionIn} */
+  transitionIn: boolean;
+}
+
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface TransitionHookOptions<E extends HTMLElement>
+  extends TransitionOptions<E> {
   /**
-   * A ref that **must** be passed to the element that is triggering a CSS
-   * transition change. An error will be thrown if the transition starts, but
-   * the ref is still `null` or the `ref` was passed to a component instance
-   * instead of a DOM node.
+   * Boolean if the DOM should forcefully be reflow each time a transition
+   * change occurs. This is generally required for any CSS transition and is
+   * set to `true` for the {@link useCSSTransition} hook.
+   *
+   * @defaultValue `false`
+   */
+  reflow?: boolean;
+}
+
+/**
+ * @remarks \@since 4.0.0
+ */
+export interface TransitionState {
+  /** {@inheritDoc TransitionStage} */
+  stage: TransitionStage;
+
+  /**
+   * Boolean if the element should be rendered or not. This will always be
+   * `true` if the {@link TransitionOptions.temporary} is `false`. Otherwise, it
+   * will be `true` when not the `"exited"` {@link TransitionStage}.
+   */
+  rendered: boolean;
+
+  /**
+   * Boolean if this is the first {@link TransitionAction.appear} transition.
+   * This will be `true` during the first transition if
+   * {@link TransitionAction.appear} was also `true`. Otherwise it will be
+   * `false`.
+   */
+  appearing: boolean;
+}
+
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface TransitionHookReturnValue<E extends HTMLElement>
+  extends TransitionState {
+  /**
+   * A ref that is required for the transition to occur and should be passed to
+   * the element affected by the transition.
    */
   ref: RefCallback<E>;
 
   /**
-   * The current class name based on the provided `className` options and the
-   * state in the transition.
+   * A function that can be used to specifically set the transition to a
+   * specific stage. This shouldn't really be used too much and is really just
+   * useful for "appear only transitions" that do not unmount the child
+   * elements.
+   *
+   * @example
+   * Simple Example
+   * ```tsx
+   *
+   * function Example(): ReactElement {
+   *   const { pathname } = useRouter();
+   *   const { elementProps, transitionTo } = useCSSTransition({
+   *     transitionIn: true,
+   *     timeout: 1000,
+   *     classNames: "some-enter-transition",
+   *   });
+   *
+   *   const prevPathname = useRef(pathname);
+   *   if (pathname !== prevPathname.current) {
+   *     prevPathname.current = pathname;
+   *     transitionTo("enter");
+   *   }
+   *
+   *   return <div {...elementProps}>{content}</div>;
+   * }
+   * ```
+   *
+   * @param stage - The {@link TransitionStage} to set to
+   */
+  transitionTo(stage: TransitionStage): void;
+}
+
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface CSSTransitionHookOptions<E extends HTMLElement>
+  extends PreconfiguredCSSTransitionOptions<E> {
+  /** {@inheritDoc TransitionTimeout} */
+  timeout: TransitionTimeout;
+  /** {@inheritDoc CSSTransitionClassNames} */
+  classNames: CSSTransitionClassNames;
+}
+
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface CSSTransitionElementProps<E extends HTMLElement> {
+  /** {@inheritDoc TransitionHookReturnValue.ref} */
+  ref: RefCallback<E>;
+
+  /**
+   * The current transition class name or `undefined`.
    */
   className: string | undefined;
 }
 
-export interface CollapseOptions<E extends HTMLElement>
-  extends Omit<TransitionOptions<E>, "repaint" | "transitionIn" | "timeout"> {
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface CSSTransitionHookReturnValue<E extends HTMLElement>
+  extends TransitionHookReturnValue<E>,
+    CSSTransitionElementProps<E> {
   /**
-   * An optional className to merge with the current collapse transition
-   * className.
+   * This can be used so that you don't need to destructure multiple props from
+   * the hook return value to pass to the transitioning component.
+   *
+   * @example
+   * Simple Example
+   * ```tsx
+   * import type { ReactElement } from "react";
+   * import { useCSSTransition } from "@react-md/transition";
+   *
+   * interface ExampleProps {
+   *   transitionIn: boolean;
+   *   children: ReactNode;
+   * }
+   *
+   * function Example({ transitionIn, children }: ExampleProps): ReactElement | null {
+   *   const { elementPRops, rendered } = useCSSTransition({
+   *     timeout: 150,
+   *     classNames: "example",
+   *     transitionIn,
+   *   });
+   *
+   *   if (!rendered) {
+   *     return null;
+   *   }
+   *
+   *   return <div {...elementProps}>{children}</div>
+   * }
+   * ```
+   *
+   * @example
+   * Verbose Version
+   * ```tsx
+   * import type { ReactElement } from "react";
+   * import { useCSSTransition } from "@react-md/transition";
+   *
+   * interface ExampleProps {
+   *   transitionIn: boolean;
+   *   children: ReactNode;
+   * }
+   *
+   * function Example({ transitionIn, children }: ExampleProps): ReactElement | null {
+   *   const { ref, className, rendered } = useCSSTransition({
+   *     timeout: 150,
+   *     classNames: "example",
+   *     transitionIn,
+   *   });
+   *
+   *   if (!rendered) {
+   *     return null;
+   *   }
+   *
+   *   return <div ref={ref} className={className}>{children}</div>
+   * }
+   * ```
    */
-  className?: string;
+  elementProps: CSSTransitionElementProps<E>;
+}
 
-  /**
-   * The timeout for the collapse transition. This will default to 250ms enter
-   * and 200ms exit.
-   */
+/**
+ * This is mostly an internal type that can be used to help with transitionable
+ * components.
+ *
+ * @remarks \@since 4.0.0
+ */
+export interface CSSTransitionComponentProps extends TransitionCallbacks {
+  /** {@inheritDoc CSSTransitionHookOptions.temporary} */
+  temporary?: boolean;
+  /** {@inheritDoc TransitionTimeout} */
   timeout?: TransitionTimeout;
-
-  /**
-   * The minimum height that the collapsed element can be which defaults to `0`.
-   * This can either be a number of pixels or a string CSS height value.
-   *
-   * Setting this value to any non-zero value will allow for the element to
-   * shrink to the defined min-height, and then expand to the full height once
-   * no longer collapsed.
-   *
-   * Note: If the `minHeight`, `minPaddingTop`, and `minPaddingBottom` options
-   * are all set to `0` (default), the child will be removed from the DOM while
-   * collapsed.
-   */
-  minHeight?: number | string;
-
-  /**
-   * The minimum padding-top that the collapsed element can be which defaults to
-   * `0`. This can either be a number of pixels or a string CSS `padding-top`
-   * value.
-   *
-   * Note: If the `minHeight`, `minPaddingTop`, and `minPaddingBottom` options
-   * are all set to `0` (default), the child will be removed from the DOM while
-   * collapsed.
-   */
-  minPaddingTop?: number | string;
-
-  /**
-   * The minimum padding-bottom that the collapsed element can be which defaults
-   * to `0`. This can either be a number of pixels or a string CSS
-   * `padding-bottom` value.
-   *
-   * Note: If the `minHeight`, `minPaddingTop`, and `minPaddingBottom` options
-   * are all set to `0` (default), the child will be removed from the DOM while
-   * collapsed.
-   */
-  minPaddingBottom?: number | string;
+  /** {@inheritDoc CSSTransitionClassNames} */
+  classNames?: CSSTransitionClassNames;
 }
 
-export interface CollapseTransitionProvidedProps<
-  E extends HTMLElement = HTMLDivElement
+/**
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface CSSTransitionComponentImplementation<E extends HTMLElement> {
+  /**
+   * The child element that should have a `ref` and `className` cloned into
+   * using the `cloneElement` API. If the child is a custom component, you
+   * **must** use `React.forwardRef` and pass both of these to a DOM element for
+   * the transition to work.
+   */
+  children: ReactElement<{ ref: Ref<E>; className: string | undefined }>;
+}
+
+/**
+ * @remarks \@since 4.0.0
+ */
+export type FixedPositioningTransitionCallbacks = Pick<
+  TransitionCallbacks,
+  "onEnter" | "onEntering" | "onEntered" | "onExited"
+>;
+
+/**
+ * This options should be passed to the {@link useCSSTransition} for the styling
+ * and positioning to work correctly.
+ *
+ * @typeParam E - An HTMLElement type used for the ref required for the
+ * transition.
+ * @remarks \@since 4.0.0
+ */
+export interface FixedPositioningTransitionOptions<E extends HTMLElement>
+  extends FixedPositioningTransitionCallbacks {
+  /** {@inheritDoc TransitionOptions.nodeRef} */
+  nodeRef?: Ref<E>;
+}
+
+/**
+ * @typeParam FixedToElement - An HTMLElement type for the static element.
+ * @typeParam FixedElement - An HTMLElement type for the fixed element.
+ * @remarks \@since 4.0.0
+ */
+export interface FixedPositioningScrollData<
+  FixedToElement extends HTMLElement,
+  FixedElement extends HTMLElement
 > {
-  /**
-   * A ref that **must** be passed to the element that is triggering a CSS
-   * transition change. An error will be thrown if the transition starts, but
-   * the ref is still `null` or the `ref` was passed to a component instance
-   * instead of a DOM node.
-   */
-  ref: RefCallback<E>;
+  fixedElement: FixedElement;
+  fixedToElement: FixedToElement;
 
   /**
-   * The `hidden` DOM attribute that will be enabled if the component is fully
-   * collapsed with no height and padding but still rendered within the DOM.
+   * Boolean if the {@link fixedToElement} is visible within the viewport.
    */
-  hidden: boolean;
-
-  /**
-   * A conditional style that will provide the required `max-height`,
-   * `padding-top`, `padding-bottom`, and `transition-duration` styles required
-   * for the collapse transition.
-   */
-  style?: CSSProperties;
-
-  /**
-   * The class name to apply that will allow for the element to transition
-   * between collapsed states.
-   */
-  className: string;
+  visible: boolean;
 }
+
+/**
+ * This function is called when the page is scrolled while the fixed element is
+ * visible. This is generally used to reposition the fixed element or hide it if
+ * it is no longer visible within the viewport.
+ *
+ * @typeParam FixedToElement - An HTMLElement type for the static element.
+ * @typeParam FixedElement - An HTMLElement type for the fixed element.
+ * @param event - The scroll event
+ * @param data - The {@link FixedPositioningScrollData} that can be used for
+ * custom scroll behavior.
+ * @remarks \@since 4.0.0
+ */
+export type TransitionScrollCallback<
+  FixedToElement extends HTMLElement,
+  FixedElement extends HTMLElement
+> = (
+  event: Event,
+  data: Readonly<FixedPositioningScrollData<FixedToElement, FixedElement>>
+) => void;

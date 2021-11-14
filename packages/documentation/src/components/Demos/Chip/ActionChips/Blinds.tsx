@@ -1,8 +1,9 @@
-import { ReactElement, useState, useRef } from "react";
+import { ReactElement, useState } from "react";
 import cn from "classnames";
-import CSSTransition, {
+import {
   CSSTransitionClassNames,
-} from "react-transition-group/CSSTransition";
+  useCSSTransition,
+} from "@react-md/transition";
 
 import Blind from "./Blind";
 import styles from "./Blinds.module.scss";
@@ -18,8 +19,7 @@ const CLASSNAMES: CSSTransitionClassNames = {
   exitActive: cn(styles.exiting, styles.animate),
 };
 
-export default function Blinds({ visible }: BlindsProps): ReactElement {
-  const ref = useRef<HTMLDivElement | null>(null);
+export default function Blinds({ visible }: BlindsProps): ReactElement | null {
   const [exited, setExited] = useState(true);
   if (visible && exited) {
     setExited(false);
@@ -28,27 +28,27 @@ export default function Blinds({ visible }: BlindsProps): ReactElement {
   const hide = (): void => setExited(true);
 
   const isVisible = visible || !exited;
+  const { elementProps, rendered, stage } = useCSSTransition({
+    className: styles.blinds,
+    transitionIn: isVisible,
+    temporary: true,
+    timeout: 1500,
+    classNames: CLASSNAMES,
+  });
+
+  if (!rendered) {
+    return null;
+  }
 
   return (
-    <CSSTransition
-      in={isVisible}
-      nodeRef={ref}
-      mountOnEnter
-      unmountOnExit
-      timeout={1500}
-      classNames={CLASSNAMES}
-    >
-      {(state) => (
-        <div ref={ref} className={styles.blinds}>
-          {Array.from({ length: 11 }, (_, i) => (
-            <Blind
-              key={i}
-              visible={visible && state === "entered"}
-              onExited={i === 10 ? hide : undefined}
-            />
-          ))}
-        </div>
-      )}
-    </CSSTransition>
+    <div {...elementProps}>
+      {Array.from({ length: 11 }, (_, i) => (
+        <Blind
+          key={i}
+          visible={visible && stage === "entered"}
+          onExited={i === 10 ? hide : undefined}
+        />
+      ))}
+    </div>
   );
 }

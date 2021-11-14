@@ -6,8 +6,10 @@ import {
   useEffect,
   useState,
 } from "react";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
-import { SCALE_Y_CLASSNAMES } from "@react-md/transition";
+import {
+  CSSTransitionClassNames,
+  SCALE_Y_CLASSNAMES,
+} from "@react-md/transition";
 import {
   containsElement,
   InitialCoords,

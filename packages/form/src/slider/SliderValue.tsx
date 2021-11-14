@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import cn from "classnames";
-import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
+import { CSSTransitionClassNames } from "@react-md/transition";
 import { Tooltip, TooltipProps } from "@react-md/tooltip";
 import { bem } from "@react-md/utils";
 

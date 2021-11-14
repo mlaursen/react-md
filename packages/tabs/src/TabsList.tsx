@@ -12,7 +12,7 @@ import {
 import cn from "classnames";
 import { applyRef, bem, useIsUserInteractionMode } from "@react-md/utils";
 
-import { TabsConfig } from "./types";
+import type { TabsConfig } from "./types";
 import {
   UpdateIndicatorStylesProvider,
   useTabIndicatorStyle,

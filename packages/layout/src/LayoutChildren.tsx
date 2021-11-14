@@ -165,12 +165,12 @@ export function LayoutChildren({
         closeNavProps={closeNavProps}
         treeProps={treeProps}
         {...navProps}
-        onEntered={(node, isAppearing) => {
-          navProps?.onEntered?.(node, isAppearing);
+        onEntered={(appearing) => {
+          navProps?.onEntered?.(appearing);
           setMiniHidden(true);
         }}
-        onExit={(node) => {
-          navProps?.onExit?.(node);
+        onExit={() => {
+          navProps?.onExit?.();
           setMiniHidden(false);
         }}
       />

@@ -7,7 +7,7 @@ import styles from "./UseCSSTransition.module.scss";
 
 export default function UseCSSTransition(): ReactElement {
   const [transitionIn, setTransitionIn] = useState(false);
-  const [rendered, transitionProps] = useCSSTransition({
+  const { elementProps, rendered } = useCSSTransition({
     // changing this value causes the transition behavior to change
     transitionIn,
 
@@ -36,7 +36,7 @@ export default function UseCSSTransition(): ReactElement {
   return (
     <>
       <Button onClick={() => setTransitionIn(!transitionIn)}>Toggle</Button>
-      {rendered && <Page1 {...transitionProps} />}
+      {rendered && <Page1 {...elementProps} />}
     </>
   );
 }

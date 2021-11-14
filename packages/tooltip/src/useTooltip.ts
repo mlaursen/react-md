@@ -4,6 +4,7 @@ import {
   HTMLAttributes,
   KeyboardEvent,
   MouseEvent,
+  Ref,
   TouchEvent,
   useCallback,
   useEffect,
@@ -11,7 +12,11 @@ import {
   useState,
 } from "react";
 import cn from "classnames";
-import { TransitionHooks, useFixedPositioning } from "@react-md/transition";
+import {
+  FixedPositioningTransitionCallbacks,
+  TransitionCallbacks,
+  useFixedPositioning,
+} from "@react-md/transition";
 import {
   ABOVE_CENTER_ANCHOR,
   BELOW_CENTER_ANCHOR,
@@ -172,7 +177,7 @@ export interface TooltipPositioningOptions {
 
 /** @remarks \@since 2.8.0 */
 export interface BaseTooltipHookOptions<E extends HTMLElement>
-  extends TransitionHooks,
+  extends TransitionCallbacks,
     TooltipPositionHookOptions,
     TooltipPositioningOptions,
     TooltippedElementEventHandlers<E> {
@@ -228,19 +233,10 @@ export interface TooltipHookOptions<E extends HTMLElement>
  * @remarks \@since 2.8.0
  */
 export type TooltipHookProvidedTooltipProps = Pick<TooltipProps, "style"> &
-  Required<
-    Pick<
-      TooltipProps,
-      | "id"
-      | "dense"
-      | "position"
-      | "visible"
-      | "onEnter"
-      | "onEntering"
-      | "onEntered"
-      | "onExited"
-    >
-  >;
+  Required<FixedPositioningTransitionCallbacks> &
+  Required<Pick<TooltipProps, "id" | "dense" | "position" | "visible">> & {
+    ref: Ref<HTMLSpanElement>;
+  };
 
 /**
  * Note: This is _really_ an internal type since this is handled automatically
@@ -297,7 +293,7 @@ export interface TooltipHookReturnValue<E extends HTMLElement>
  */
 export function useTooltip<E extends HTMLElement>({
   baseId,
-  style,
+  style: propStyle,
   describedBy,
   dense = false,
   spacing = DEFAULT_TOOLTIP_SPACING,
@@ -495,15 +491,22 @@ export function useTooltip<E extends HTMLElement>({
     window.clearTimeout(timeout.current);
   });
 
-  const { updateStyle: _u, ...positionProps } = useFixedPositioning({
+  const nodeRef = useRef<HTMLSpanElement>(null);
+  const {
+    ref,
     style,
+    callbacks: transitionOptions,
+  } = useFixedPositioning({
+    style: propStyle,
+    nodeRef,
     anchor: getAnchor(position),
     disableSwapping: disableSwapping ?? !!determinedPosition,
     fixedTo: containerRef,
-    getOptions: (node) => {
+    getFixedPositionOptions() {
       let tooltipSpacing = dense ? denseSpacing : spacing;
+      const node = nodeRef.current;
       /* istanbul ignore next */
-      if (!disableAutoSpacing) {
+      if (!disableAutoSpacing && node) {
         tooltipSpacing = window
           .getComputedStyle(node)
           .getPropertyValue(TOOLTIP_SPACING_VAR);
@@ -543,10 +546,12 @@ export function useTooltip<E extends HTMLElement>({
   };
   const tooltipProps: TooltipHookProvidedTooltipProps = {
     id: tooltipId,
+    ref,
     dense,
     visible,
     position,
-    ...positionProps,
+    style,
+    ...transitionOptions,
   };
 
   return {

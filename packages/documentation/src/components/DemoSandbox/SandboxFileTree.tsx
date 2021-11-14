@@ -125,8 +125,7 @@ export default function SandboxFileTree({
       className={cn(styles.sheet, {
         [styles.inline]: inline,
       })}
-      mountOnEnter={!inline}
-      unmountOnExit={!inline}
+      temporary={!inline}
       disableScrollLock
       disableTransition={disableTransition}
       disableTabFocusWrap={isKeyboard}

@@ -1,7 +1,7 @@
 import { ReactElement, useState } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { TabsManager, Tabs, TabPanel } from "@react-md/tabs";
-import { useCrossFade, ENTER } from "@react-md/transition";
+import { useCrossFadeTransition } from "@react-md/transition";
 
 import Container from "./Container";
 import Page1 from "./Page1";
@@ -12,9 +12,9 @@ const tabs = ["Page 1", "Page 2", "Page 3"];
 
 export default function CrossFadeHookExample(): ReactElement {
   const [page, setPage] = useState(0);
-  const [, transitionProps, dispatch] = useCrossFade({ appear: false });
+  const { elementProps, transitionTo } = useCrossFadeTransition();
   const onActiveIndexChange = (page: number): void => {
-    dispatch(ENTER);
+    transitionTo("enter");
     setPage(page);
   };
 
@@ -28,7 +28,7 @@ export default function CrossFadeHookExample(): ReactElement {
       <AppBar theme="default">
         <Tabs />
       </AppBar>
-      <Container {...transitionProps}>
+      <Container {...elementProps}>
         {page === 0 && (
           <TabPanel>
             <Page1 />

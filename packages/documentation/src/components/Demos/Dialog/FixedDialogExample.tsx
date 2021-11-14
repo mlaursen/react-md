@@ -15,7 +15,7 @@ import { Text } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 export default function FixedDialogExample(): ReactElement {
-  const actionRef = useRef<HTMLButtonElement | null>(null);
+  const fixedTo = useRef<HTMLButtonElement>(null);
   const [visible, show, hide] = useToggle(false);
   return (
     <AppBar>
@@ -25,7 +25,7 @@ export default function FixedDialogExample(): ReactElement {
       <AppBarTitle>Title</AppBarTitle>
       <AppBarAction
         id="fixed-to-action"
-        ref={actionRef}
+        ref={fixedTo}
         onClick={show}
         first
         last
@@ -37,7 +37,7 @@ export default function FixedDialogExample(): ReactElement {
         visible={visible}
         aria-labelledby="fixed-dialog-1-title"
         onRequestClose={hide}
-        fixedTo={actionRef.current}
+        fixedTo={fixedTo}
         options={{ xMargin: 12, yMargin: 12 }}
       >
         <AppBar>

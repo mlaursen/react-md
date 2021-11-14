@@ -329,13 +329,13 @@ to the main content after a pathname changes. A recommended transition is the
 "cross fade" transition from #transition that is just a simple opacity change
 and a slight vertical movement, but any transition can be added if desired. To
 keep things simple, let's update the `src/Layout.tsx` component to apply the
-cross fade transition on route changes with the `useCrossFade` hook.
+cross fade transition on route changes with the `useCrossFadeTransition` hook.
 
 ```diff
 -import { ReactElement } from "react";
 +import { ReactElement, useRef } from "react";
  import { Layout, useLayoutNavigation } from "@react-md/layout";
-+import { ENTER, useCrossFade } from "@react-md/transition";
++import { useCrossFadeTransition } from "@react-md/transition";
  import { useLocation, Link } from "react-router-dom";
 
  import navItems from "./navItems";
@@ -344,102 +344,29 @@ cross fade transition on route changes with the `useCrossFade` hook.
 
  export default function MyLayout(): ReactElement {
    const { pathname } = useLocation();
-+  const [_rendered, transitionProps, dispatch] = useCrossFade();
-+
 +  const prevPathname = useRef(pathname);
-+  if (pathname !== prevPathname.current) {
-+    prevPathname.current = pathname;
-+    dispatch(ENTER);
-+  }
-
-   return (
-     <Layout
-       title="My Title"
-       navHeaderTitle="My Nav Title"
-       treeProps={useLayoutNavigation(navItems, pathname, Link)}
-+      mainProps={transitionProps}
-     >
-       <App />
-     </Layout>
-   );
- };
-```
-
-So how does this work? The
-[useCrossFade hook](/packages/transition/demos#cross-fade-hook-example-title)
-returns an ordered list containing:
-
-- a `boolean` if the content should be rendered
-- an object containing a `ref` and `className` to pass to the transitionable
-  element (`transitionProps`)
-- a `dispatch` function that can be used to trigger an animation
-
-Since the children should always be rendered, the rendered `boolean` can be
-ignored and just provide the `transitionProps` to the `<main>` element in the
-`Layout` with the `mainProps` prop. Next, a `ref` is created to store the
-previous `pathname` so that it is possible to check for `pathname` changes.
-Finally, if there is a `pathname` change, the `pathname` ref is updated to store
-the new `pathname` and then the `ENTER` stage of the transition is triggered
-with the `dispatch` function.
-
-You might be wondering...
-
-> "Why is the `dispatch` triggered during the render phase instead of in
-> `useEffect` or `useLayoutEffect`?"
-
-There isn't really a big reason other than I prefer handling transitions this
-way instead of having a custom `useEffect` that skips the first callback. If the
-first callback for this effect isn't cancelled, the "appear" transition will
-still be triggered.
-
-If you prefer using `useEffect`, here's an example of this pattern instead.
-
-```diff
--import { ReactElement, useRef } from "react";
-+import { ReactElement, useEffect, useRef } from "react";
- import { Layout, useLayoutNavigation } from "@react-md/layout";
- import { ENTER, useCrossFade } from "@react-md/transition";
- import { useLocation, Link } from "react-router-dom";
-
- import navItems from "./navItems";
-
- import App from "./App";
-
- export default function MyLayout(): ReactElement {
-   const { pathname } = useLocation();
-   const [_rendered, transitionProps, dispatch] = useCrossFade();
-   const { ref: mainRef, className: mainClassName } = transitionProps;
-
--  const prevPathname = useRef(pathname);
--  if (pathname !== prevPathname.current) {
--    prevPathname.current = pathname;
--    dispatch(ENTER);
--  }
-+  const renderedOnce = useRef(false);
++  const { elementProps, transitionTo } = useCrossFadeTransition();
 +  useEffect(() => {
-+    if (!renderedOnce.current) {
-+      renderedOnce.current = true;
-+      return;
++    if (pathname === prevPathname.current) {
++      return
 +    }
 +
-+    dispatch(ENTER);
-+  }, [dispatch, pathname])
++    prevPathname.current = pathname;
++    transitionTo('enter');
++  }, [pathname, transitionTo])
 
    return (
      <Layout
        title="My Title"
        navHeaderTitle="My Nav Title"
        treeProps={useLayoutNavigation(navItems, pathname, Link)}
-       mainProps={transitionProps}
++      mainProps={elementProps}
      >
        <App />
      </Layout>
    );
  };
 ```
-
-However this _is_ opinionated, so feel free to handle transitions however you
-prefer.
 
 You can check out the completed sandbox here:
 https://codesandbox.io/s/react-md-creating-a-layout-c1g8c

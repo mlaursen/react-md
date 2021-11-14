@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 import cn from "classnames";
 import { BaseDialogProps, Dialog } from "@react-md/dialog";
 import { bem, LabelRequiredForA11y } from "@react-md/utils";
@@ -91,8 +91,7 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
     timeout = DEFAULT_SHEET_TIMEOUT,
     classNames = DEFAULT_SHEET_CLASSNAMES,
     disableTransition = false,
-    mountOnEnter = true,
-    unmountOnExit = true,
+    temporary = true,
     portal = true,
     overlayHidden = false,
     defaultFocus = "first",
@@ -110,28 +109,17 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
   // if the sheet mounts while not visible and the conditional mounting isn't
   // enabled, need to default to the offscreen state which is normally handled
   // by the CSSTransition's exit state.
-  const offscreen = useRef(!visible && !unmountOnExit && !mountOnEnter);
+  const offscreen = useRef(!visible && !temporary);
   if (offscreen.current && visible) {
     offscreen.current = false;
   }
 
   // when sheets are not unmounted on exit, need to set it to hidden so that
   // tabbing no longer focuses any of the elements inside
-  const [hidden, setHidden] = useState(!visible && !mountOnEnter);
+  const [hidden, setHidden] = useState(!visible && !temporary);
   if (hidden && visible) {
     setHidden(false);
   }
-
-  const handleExited = useCallback(
-    (node: HTMLElement) => {
-      if (onExited) {
-        onExited(node);
-      }
-
-      setHidden(true);
-    },
-    [onExited]
-  );
 
   return (
     <Dialog
@@ -165,9 +153,11 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
       timeout={timeout}
       classNames={classNames}
       disableTransition={disableTransition}
-      mountOnEnter={mountOnEnter}
-      unmountOnExit={unmountOnExit}
-      onExited={handleExited}
+      temporary={temporary}
+      onExited={() => {
+        onExited?.();
+        setHidden(true);
+      }}
       portal={portal}
       overlayHidden={overlayHidden}
       defaultFocus={defaultFocus}
@@ -194,8 +184,7 @@ if (process.env.NODE_ENV !== "production") {
       tabIndex: PropTypes.number,
       visible: PropTypes.bool.isRequired,
       onRequestClose: PropTypes.func.isRequired,
-      mountOnEnter: PropTypes.bool,
-      unmountOnExit: PropTypes.bool,
+      temporary: PropTypes.bool,
       overlay: PropTypes.bool,
       overlayStyle: PropTypes.object,
       overlayClassName: PropTypes.string,
