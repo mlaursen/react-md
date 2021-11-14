@@ -11,6 +11,7 @@ import {
   src,
 } from "../../constants";
 import { format } from "../format";
+import { list } from "../list";
 import { getPackages } from "../packages";
 
 const getFileOrder = (packageName: string): readonly string[] => {
@@ -91,6 +92,10 @@ function assertAllPackages(): void {
   const packages = getPackages("scss");
   const diff = difference(packages, PACKAGE_ORDER);
   if (diff.length) {
+    log.error(
+      "Unkown scss packages were found but have not been included in the `PACKAGE_ORDER`"
+    );
+    log.error(list(diff));
     process.exit(1);
   }
 }
