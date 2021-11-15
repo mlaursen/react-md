@@ -231,7 +231,8 @@ function getReferenceLinks(
     );
 
     if (!link) {
-      throw new Error(`Unable to find a reference for ${name} ${type}`);
+      log.error(`Unable to find a reference for ${name} ${type}`);
+      process.exit(1);
     }
 
     const key = `${name}-${type}`;
@@ -428,7 +429,10 @@ function getPackageRecord(
 
   const record = lookup[packageName];
   if (!record) {
-    throw new Error();
+    log.error(
+      `This should never happen. No PackageSassDocMap for "${packageName}"`
+    );
+    process.exit(1);
   }
 
   return record;
@@ -454,9 +458,8 @@ export async function sassdoc(): Promise<void> {
       const variable = formatVariableItem(item, references);
       const { name } = variable;
       if (packageDoc.variables[name]) {
-        throw new Error(
-          `${name} already exists in ${packageName}'s variables...`
-        );
+        log.error(`${name} already exists in ${packageName}'s variables...`);
+        process.exit(1);
       }
 
       packageDoc.variables[name] = variable;
@@ -466,9 +469,8 @@ export async function sassdoc(): Promise<void> {
       const func = formatFunctionItem(item, references);
       const { name } = func;
       if (packageDoc.functions[name]) {
-        throw new Error(
-          `${name} already exists in ${packageName}'s functions...`
-        );
+        log.error(`${name} already exists in ${packageName}'s functions...`);
+        process.exit(1);
       }
 
       packageDoc.functions[name] = func;
@@ -478,7 +480,8 @@ export async function sassdoc(): Promise<void> {
       const mixin = formatMixinItem(item, references);
       const { name } = mixin;
       if (packageDoc.mixins[name]) {
-        throw new Error(`${name} already exists in ${packageName}'s mixins...`);
+        log.error(`${name} already exists in ${packageName}'s mixins...`);
+        process.exit(1);
       }
 
       packageDoc.mixins[name] = mixin;
