@@ -44,7 +44,7 @@ export const DEBUG = "--debug";
 export const SILENT = "--silent";
 export const CLEAN = "--clean";
 
-export const NO_STYLES_PACKAGES = /autocomplete|material-icons|portal/;
+export const NO_STYLES_PACKAGES = /autocomplete|material-icons|portal|menu2/;
 // Note: this ignores the scssVariables file
 export const NO_SCRIPT_PACKAGES = /elevation|theme/;
 

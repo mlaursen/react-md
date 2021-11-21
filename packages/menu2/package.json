@@ -1,0 +1,61 @@
+{
+  "name": "@react-md/menu2",
+  "version": "4.0.0",
+  "description": "Create menus that auto-position themselves within the viewport and adhere to the accessibility guidelines",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./types/index.d.ts",
+  "sideEffects": [
+    "dist/**/*"
+  ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/menu"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev/packages/menu/demos",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "react-md",
+    "material design",
+    "react",
+    "menu",
+    "dropdown",
+    "component",
+    "components"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@react-md/app-bar": "^4.0.0",
+    "@react-md/button": "^4.0.0",
+    "@react-md/divider": "^4.0.0",
+    "@react-md/elevation": "^4.0.0",
+    "@react-md/icon": "^4.0.0",
+    "@react-md/list": "^4.0.0",
+    "@react-md/states": "^4.0.0",
+    "@react-md/theme": "^4.0.0",
+    "@react-md/transition": "^4.0.0",
+    "@react-md/typography": "^4.0.0",
+    "@react-md/utils": "^4.0.0",
+    "classnames": "^2.3.1"
+  },
+  "devDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.1"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8",
+    "react-dom": ">= 16.8.0"
+  },
+  "optionalDependencies": {
+    "prop-types": ">= 15.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

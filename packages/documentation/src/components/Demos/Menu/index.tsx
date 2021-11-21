@@ -3,6 +3,9 @@ import { IconProvider } from "@react-md/icon";
 
 import DemoPage from "../DemoPage";
 
+import Menu2Examples from "./Menu2Examples";
+import menu2Examples from "./Menu2Examples.md";
+
 import SimpleExamples from "./SimpleExamples";
 import simpleExamples from "./SimpleExamples.md";
 
@@ -29,6 +32,11 @@ import nestedDropdownMenus from "./NestedDropdownMenus.md";
 import { CustomRenderers, customRenderers } from "./CustomRenderers";
 
 const demos = [
+  {
+    name: "Menu2 Examples",
+    description: menu2Examples,
+    children: <Menu2Examples />,
+  },
   {
     name: "Simple Examples",
     description: simpleExamples,

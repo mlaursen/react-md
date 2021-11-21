@@ -59,6 +59,9 @@
       "path": "./packages/menu/tsconfig.cjs.json"
     },
     {
+      "path": "./packages/menu2/tsconfig.cjs.json"
+    },
+    {
       "path": "./packages/overlay/tsconfig.cjs.json"
     },
     {
