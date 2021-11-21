@@ -12,7 +12,6 @@ import simpleTwoPageTab from "./SimpleTwoPageTab.md";
 
 import { ConfigurableTabs, configurableTabs } from "./ConfigurableTabs";
 import { PersistentTabs, persistentTabs } from "./PersistentTabs";
-import { swipeableTabs, SwipeableTabs } from "./SwipeableTabs";
 
 const demos = [
   {
@@ -40,13 +39,6 @@ const demos = [
     description: configurableTabs,
     children: <ConfigurableTabs />,
     phoneFullPage: true,
-  },
-  {
-    name: "Swipeable Tabs",
-    description: swipeableTabs,
-    children: <SwipeableTabs />,
-    emulated: { appBar: null, contentStacked: true },
-    fullPageFAB: true,
   },
 ];
 
