@@ -5,9 +5,9 @@ name: Build, Lint, and Test
 
 on:
   push:
-    branches: [main, develop]
-  pull_request:
     branches: [main]
+  pull_request:
+    branches: [main, next, develop]
 
 jobs:
   build_node_matrix:
