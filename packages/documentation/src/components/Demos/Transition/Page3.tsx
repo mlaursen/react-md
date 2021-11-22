@@ -1,12 +1,12 @@
 import { forwardRef, HTMLAttributes } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 export default forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   function Page3(props, ref) {
     return (
       <div {...props} ref={ref}>
-        <Text type="headline-4">Page 3</Text>
-        <Text>
+        <Typography type="headline-4">Page 3</Typography>
+        <Typography>
           Donec lacinia velit ac est finibus malesuada. Mauris arcu dui, euismod
           quis erat et, iaculis molestie orci. Nullam efficitur felis non
           feugiat tincidunt. Etiam sed tellus eu nunc fermentum vestibulum.
@@ -16,7 +16,7 @@ export default forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
           lorem, eu consectetur augue tristique sit amet. Vestibulum fringilla
           auctor eros, at consectetur libero hendrerit id. Interdum et malesuada
           fames ac ante ipsum primis in faucibus.
-        </Text>
+        </Typography>
       </div>
     );
   }

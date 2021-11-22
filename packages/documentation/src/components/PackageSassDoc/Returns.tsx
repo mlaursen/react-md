@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Code from "components/Code";
 import { M_DASH } from "constants/unicode";
@@ -22,11 +22,11 @@ export default function Returns({
 
   return (
     <>
-      <Text type="headline-6" margin="none" className={styles.caption}>
+      <Typography type="headline-6" margin="none" className={styles.caption}>
         {`Returns ${M_DASH} `}
         <Code>{type}</Code>
-      </Text>
-      <Text className={styles.returns}>{description}</Text>
+      </Typography>
+      <Typography className={styles.returns}>{description}</Typography>
     </>
   );
 }

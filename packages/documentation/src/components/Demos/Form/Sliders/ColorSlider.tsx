@@ -5,7 +5,7 @@ import {
   TextField,
   useNumberField,
 } from "@react-md/form";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./ColorSlider.module.scss";
 
@@ -61,9 +61,9 @@ export default function ColorSlider({
       {...controls}
       className={styles.slider}
       beforeAddon={
-        <Text id={labelId} component="span">
+        <Typography id={labelId} component="span">
           {type.toUpperCase()}
-        </Text>
+        </Typography>
       }
       afterAddon={
         <TextField

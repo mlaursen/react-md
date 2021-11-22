@@ -3,7 +3,7 @@ import { Button } from "@react-md/button";
 import { Divider } from "@react-md/divider";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloseSVGIcon, HomeSVGIcon } from "@react-md/material-icons";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./IconSpacing.module.scss";
 
@@ -14,7 +14,7 @@ function CustomIcon(): ReactElement {
 export default function IconSpacing(): ReactElement {
   return (
     <>
-      <Text type="headline-5">Within buttons</Text>
+      <Typography type="headline-5">Within buttons</Typography>
       <Button id="icon-button-1" className={styles.button}>
         <TextIconSpacing icon={<HomeSVGIcon />}>Button</TextIconSpacing>
       </Button>
@@ -40,7 +40,7 @@ export default function IconSpacing(): ReactElement {
           </TextIconSpacing>
         </TextIconSpacing>
       </Button>
-      <Text type="headline-5">Normal usage</Text>
+      <Typography type="headline-5">Normal usage</Typography>
       <ul className={styles.list}>
         <li>
           <TextIconSpacing icon={<HomeSVGIcon />}>Icon Before</TextIconSpacing>

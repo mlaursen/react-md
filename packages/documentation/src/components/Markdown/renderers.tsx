@@ -13,7 +13,7 @@ import {
   TableContainer,
   TableHeader,
   TableRow,
-  Text,
+  Typography,
 } from "react-md";
 
 import Blockquote from "components/Blockquote";
@@ -41,9 +41,9 @@ export const renderers: MarkdownRenderers = {
 
   paragraph: function Paragraph({ children }) {
     return (
-      <Text type="subtitle-1" component="p">
+      <Typography type="subtitle-1" component="p">
         {children}
-      </Text>
+      </Typography>
     );
   },
 
@@ -79,9 +79,9 @@ export const renderers: MarkdownRenderers = {
 
     const id = useSluggedId(tokens);
     return (
-      <Text id={id} type={type}>
+      <Typography id={id} type={type}>
         {children}
-      </Text>
+      </Typography>
     );
   },
 
@@ -95,9 +95,9 @@ export const renderers: MarkdownRenderers = {
 
   listitem: function ListItem({ children }) {
     return (
-      <Text component="li" type="subtitle-1">
+      <Typography component="li" type="subtitle-1">
         {children}
-      </Text>
+      </Typography>
     );
   },
 

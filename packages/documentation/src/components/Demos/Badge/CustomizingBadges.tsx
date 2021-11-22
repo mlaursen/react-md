@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { Badge, BadgeContainer } from "@react-md/badge";
 import { Button } from "@react-md/button";
 import { NotificationsSVGIcon } from "@react-md/material-icons";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import { COPYRIGHT } from "constants/unicode";
 
@@ -13,7 +13,7 @@ export default function CustomizingBadges(): ReactElement {
     <>
       <BadgeContainer className={styles.container}>
         {/* since the badge is presentational, don't add the `aria-describedby` value */}
-        <Text>Some amazing product</Text>
+        <Typography>Some amazing product</Typography>
         <Badge id="copyright-badge" theme="clear">
           {COPYRIGHT}
         </Badge>

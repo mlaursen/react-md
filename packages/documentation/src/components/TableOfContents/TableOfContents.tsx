@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { useAppSize } from "@react-md/utils";
 
 import tocs from "constants/meta/tocs";
@@ -59,9 +59,13 @@ export default function TableOfContents({
         disableFocusContainer
       >
         <DialogHeader className={styles.header}>
-          <Text id="table-of-contents-title" type="headline-6" margin="none">
+          <Typography
+            id="table-of-contents-title"
+            type="headline-6"
+            margin="none"
+          >
             Table of Contents
-          </Text>
+          </Typography>
         </DialogHeader>
         <DialogContent className={styles.content}>
           <List

@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode, useMemo, useState } from "react";
 import { ListItemAddonType } from "@react-md/list";
 import { DropdownMenu } from "@react-md/menu";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Code from "components/Code";
 
@@ -28,9 +28,9 @@ export default function NonVirtualizedMenu({
 
   return (
     <>
-      <Text>
+      <Typography>
         Last clicked value: <Code>{value}</Code>
-      </Text>
+      </Typography>
       <DropdownMenu
         id="non-virtualized-example"
         menuLabel="Large Menu"

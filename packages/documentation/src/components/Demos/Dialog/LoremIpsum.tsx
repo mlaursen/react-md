@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
-import { Text, TextContainer } from "@react-md/typography";
+import { Typography, TextContainer } from "@react-md/typography";
 
 export default function LoremIpsum(): ReactElement {
   return (
     <TextContainer>
-      <Text>
+      <Typography>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum
         sodales sem, non molestie nunc mollis at. Morbi sed lobortis lorem.
         Vivamus nisi turpis, blandit eu dolor a, tincidunt eleifend odio.
@@ -16,8 +16,8 @@ export default function LoremIpsum(): ReactElement {
         at velit quis posuere. Phasellus est sem, auctor in mattis ut, rhoncus
         eu metus. In turpis sem, fermentum a elementum eu, lobortis ut massa.
         Suspendisse a urna enim.
-      </Text>
-      <Text>
+      </Typography>
+      <Typography>
         Proin sit amet tortor gravida, blandit turpis a, elementum nulla.
         Praesent quis nisl vel eros tincidunt ultrices. Integer tristique, nulla
         eget pharetra sagittis, quam nisl feugiat felis, at lobortis dui purus
@@ -31,15 +31,15 @@ export default function LoremIpsum(): ReactElement {
         augue ut cursus. Proin vehicula nulla quis orci lacinia, et fermentum mi
         vestibulum. Etiam facilisis mi nec ante porta venenatis. Integer
         pulvinar quis neque eu consectetur.
-      </Text>
-      <Text>
+      </Typography>
+      <Typography>
         Nam consectetur aliquam volutpat. Phasellus imperdiet nibh diam, vitae
         gravida tellus convallis ut. Donec at varius magna. Ut euismod in enim
         sed aliquet. Integer egestas commodo lorem, id pellentesque ex aliquet
         nec. Nulla non nisl orci. Ut blandit ex vel maximus pharetra. Quisque et
         eleifend odio.
-      </Text>
-      <Text>
+      </Typography>
+      <Typography>
         Vestibulum interdum arcu eu dui volutpat, ut fringilla ipsum pharetra.
         Aenean at venenatis ligula. Quisque cursus aliquet purus, ut fermentum
         metus rhoncus in. Suspendisse tortor ante, varius sit amet massa at,
@@ -51,8 +51,8 @@ export default function LoremIpsum(): ReactElement {
         vel. In vitae massa odio. Donec vehicula, ante quis luctus varius, dui
         lacus dapibus ligula, quis placerat metus leo ut nisl. Phasellus
         scelerisque scelerisque velit ac euismod.
-      </Text>
-      <Text>
+      </Typography>
+      <Typography>
         Fusce eget cursus purus. Nullam nisi sapien, congue a diam non, suscipit
         maximus eros. Nulla lectus neque, congue sit amet lorem vitae, lacinia
         tempus urna. Nullam in rhoncus ligula. Integer rhoncus a quam quis
@@ -62,7 +62,7 @@ export default function LoremIpsum(): ReactElement {
         nisi. Maecenas lobortis lacus ipsum, id laoreet nisl hendrerit
         consectetur. Fusce fringilla tempus convallis. Donec fermentum nibh at
         tincidunt interdum. Etiam egestas mauris eget egestas rhoncus.
-      </Text>
+      </Typography>
     </TextContainer>
   );
 }

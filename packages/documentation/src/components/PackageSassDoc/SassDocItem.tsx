@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Code from "components/Code";
 import { Markdown } from "components/Markdown";
@@ -62,10 +62,10 @@ export default function SassDocItem(props: FormattedSassDocItem): ReactElement {
         {name}
       </Heading>
       {since && (
-        <Text margin="none" type="body-2" color="secondary">
+        <Typography margin="none" type="body-2" color="secondary">
           Since{" "}
           <Link href={`${GITHUB_URL}/releases/tag/v${since}`}>v{since}</Link>
-        </Text>
+        </Typography>
       )}
       <div className={styles.row}>
         <Code>{type}</Code>

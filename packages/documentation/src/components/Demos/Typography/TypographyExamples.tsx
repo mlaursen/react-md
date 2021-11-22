@@ -1,18 +1,18 @@
 import { ReactElement } from "react";
-import { Text, TextContainer } from "@react-md/typography";
+import { Typography, TextContainer } from "@react-md/typography";
 
-export default function TextExamples(): ReactElement {
+export default function TypographyExamples(): ReactElement {
   return (
     <TextContainer>
-      <Text type="headline-1">Headline 1</Text>
-      <Text type="headline-2">Headline 2</Text>
-      <Text type="headline-3">Headline 3</Text>
-      <Text type="headline-4">Headline 4</Text>
-      <Text type="headline-5">Headline 5</Text>
-      <Text type="headline-6">Headline 6</Text>
-      <Text type="subtitle-1">Subtitle 1</Text>
-      <Text type="subtitle-2">Subtitle 2</Text>
-      <Text type="body-1">
+      <Typography type="headline-1">Headline 1</Typography>
+      <Typography type="headline-2">Headline 2</Typography>
+      <Typography type="headline-3">Headline 3</Typography>
+      <Typography type="headline-4">Headline 4</Typography>
+      <Typography type="headline-5">Headline 5</Typography>
+      <Typography type="headline-6">Headline 6</Typography>
+      <Typography type="subtitle-1">Subtitle 1</Typography>
+      <Typography type="subtitle-2">Subtitle 2</Typography>
+      <Typography type="body-1">
         Body 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Phasellus accumsan auctor neque, eu dignissim ex. Etiam vitae nisl ex.
         Maecenas ut elit risus. In consequat augue quis dui ultrices, nec
@@ -20,8 +20,8 @@ export default function TextExamples(): ReactElement {
         mattis ut. Fusce id lacinia sem, nec volutpat nunc. Suspendisse nec sem
         libero. Pellentesque diam eros, ornare ut nunc vitae, finibus feugiat
         purus. Mauris finibus aliquam consequat.
-      </Text>
-      <Text type="body-2">
+      </Typography>
+      <Typography type="body-2">
         Body 2: Cras condimentum facilisis augue vel porta. Proin eget aliquam
         libero. Class aptent taciti sociosqu ad litora torquent per conubia
         nostra, per inceptos himenaeos. Donec elementum imperdiet erat, sed
@@ -35,16 +35,16 @@ export default function TextExamples(): ReactElement {
         ipsum euismod id. Morbi vulputate ac sapien nec bibendum. Interdum et
         malesuada fames ac ante ipsum primis in faucibus. Cras ipsum massa,
         tristique tincidunt finibus vitae, aliquam vitae est.
-      </Text>
-      <Text type="caption" component="h5">
+      </Typography>
+      <Typography type="caption" component="h5">
         Caption text
-      </Text>
-      <Text type="overline" component="h5">
+      </Typography>
+      <Typography type="overline" component="h5">
         Overline text
-      </Text>
-      <Text type="button" component="h5">
+      </Typography>
+      <Typography type="button" component="h5">
         Button text
-      </Text>
+      </Typography>
     </TextContainer>
   );
 }

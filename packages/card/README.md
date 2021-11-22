@@ -39,7 +39,7 @@ import { Fragment } from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 import { Card, CardHeader, CardTitle, CardSubtitle, CardActions } from "@react-md/card"
-import { Text } from "@react-md/typography"
+import { Typography } from "@react-md/typography"
 
 const App = () => (
   <Card>
@@ -47,7 +47,7 @@ const App = () => (
       <CardTitle>Card Title</CardTitle>
     </CardHeader>
     <CardContent>
-      <Text>Here is some text to display in the card. It is
+      <Typography>Here is some text to display in the card. It is
     </CardContent>
     <CardActions>
       <Button>Action 1</Button>

@@ -3,7 +3,7 @@ import { Button } from "@react-md/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
 import { Chip } from "@react-md/chip";
 import { Divider } from "@react-md/divider";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./ChoiceChips.module.scss";
 
@@ -20,15 +20,15 @@ export default function ChoiceChips(): ReactElement {
         <CardTitle>Curabitur dictum non.</CardTitle>
       </CardHeader>
       <CardContent disableSecondaryColor>
-        <Text>
+        <Typography>
           Nulla convallis consectetur dictum. Nunc pellentesque ex eu nulla
           aliquet, eget posuere mi aliquam. Nam gravida nisl eleifend, faucibus
           mauris vitae, accumsan nulla.
-        </Text>
+        </Typography>
         <Divider />
-        <Text type="subtitle-1" weight="bold" className={styles.subtitle}>
+        <Typography type="subtitle-1" weight="bold" className={styles.subtitle}>
           Select size
-        </Text>
+        </Typography>
         <div className={styles.content}>
           {sizes.map((size) => (
             <Chip

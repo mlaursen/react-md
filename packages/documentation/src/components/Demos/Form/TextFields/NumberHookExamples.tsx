@@ -5,7 +5,7 @@ import {
   TextFieldWithMessage,
   useNumberField,
 } from "@react-md/form";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { Grid } from "@react-md/utils";
 
 import Code from "components/Code";
@@ -40,37 +40,37 @@ export default function NumberHookExamples(): ReactElement | null {
   return (
     <Form>
       <Grid columns={1} clone>
-        <Text margin="none">
+        <Typography margin="none">
           value1: <Code inline>{`${value1}`}</Code>
-        </Text>
+        </Typography>
         <TextField {...field1Props} label="Field 1" placeholder="0" />
-        <Text margin="top">
+        <Typography margin="top">
           value2: <Code inline>{`${value2}`}</Code>
-        </Text>
+        </Typography>
         <TextFieldWithMessage
           {...field2Props}
           label="Field 2"
           placeholder="0"
         />
-        <Text margin="none">
+        <Typography margin="none">
           value3: <Code inline>{`${value3}`}</Code>
-        </Text>
+        </Typography>
         <TextFieldWithMessage
           {...field3Props}
           label="Field 3"
           placeholder="0"
         />
-        <Text margin="none">
+        <Typography margin="none">
           value4: <Code inline>{`${value4}`}</Code>
-        </Text>
+        </Typography>
         <TextFieldWithMessage
           {...field4Props}
           label="Field 4"
           placeholder="0"
         />
-        <Text margin="none">
+        <Typography margin="none">
           value5: <Code inline>{`${value5}`}</Code>
-        </Text>
+        </Typography>
         <TextFieldWithMessage
           {...field5Props}
           label="Field 5"

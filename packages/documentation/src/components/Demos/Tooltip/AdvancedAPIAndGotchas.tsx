@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { Tooltipped } from "@react-md/tooltip";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import CodeBlock from "components/CodeBlock";
 
@@ -12,7 +12,7 @@ function BrokenButton(): ReactElement {
 export default function AdvancedAPIGotchas(): ReactElement {
   return (
     <>
-      <Text type="headline-6">Broken Tooltip</Text>
+      <Typography type="headline-6">Broken Tooltip</Typography>
       <Tooltipped id="broken-tooltip" tooltip="I will never appear :(">
         <BrokenButton />
       </Tooltipped>
@@ -20,12 +20,12 @@ export default function AdvancedAPIGotchas(): ReactElement {
         id="keyboard-broken-tooltip"
         tooltip="I am inaccessible to keyboard users :("
       >
-        <Text>
+        <Typography>
           This text will have a tooltip, but it will be inaccessible for
           keyboard users.
-        </Text>
+        </Typography>
       </Tooltipped>
-      <Text type="headline-6">Children Renderer</Text>
+      <Typography type="headline-6">Children Renderer</Typography>
       <Tooltipped
         id="toolip-children-renderer"
         tooltip="This is a tooltip!"

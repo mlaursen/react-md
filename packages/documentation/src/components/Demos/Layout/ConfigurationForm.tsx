@@ -6,7 +6,7 @@ import {
   SupportedWideLayout,
   useLayoutConfig,
 } from "@react-md/layout";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { Grid, useAppSize } from "@react-md/utils";
 
 import Code from "components/Code";
@@ -63,15 +63,15 @@ export function ConfigurationForm({
   return (
     <>
       <Grid cloneStyles columns={1}>
-        <Text type="headline-3" margin="top">
+        <Typography type="headline-3" margin="top">
           Configuration
-        </Text>
-        <Text margin="none">
+        </Typography>
+        <Typography margin="none">
           The current app size is: <Code>{size}</Code>
-        </Text>
-        <Text margin="none">
+        </Typography>
+        <Typography margin="none">
           The current layout is: <Code>{layout}</Code>
-        </Text>
+        </Typography>
       </Grid>
       <Grid cloneStyles columns={2} desktopColumns={4}>
         <Form>

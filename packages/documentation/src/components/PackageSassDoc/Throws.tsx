@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { ItemThrow } from "utils/sassdoc";
 
 export interface ThrowsProps {
@@ -13,9 +13,9 @@ export default function Throws({ throws }: ThrowsProps): ReactElement | null {
 
   return (
     <>
-      <Text type="headline-6" margin="top">
+      <Typography type="headline-6" margin="top">
         Throws
-      </Text>
+      </Typography>
       <ul>
         {throws.map((message) => (
           <li key={message}>{message}</li>

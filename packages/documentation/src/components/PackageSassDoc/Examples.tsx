@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import { CompiledExample } from "utils/sassdoc";
 
@@ -20,9 +20,9 @@ export default function Examples({
 
   return (
     <>
-      <Text type="headline-4" margin="top">
+      <Typography type="headline-4" margin="top">
         Examples
-      </Text>
+      </Typography>
       {examples.map((example, i) => (
         <Example
           key={`${example.type}-${example.description}`}

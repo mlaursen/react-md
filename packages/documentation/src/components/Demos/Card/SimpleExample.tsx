@@ -7,7 +7,7 @@ import {
   CardSubtitle,
   CardHeader,
 } from "@react-md/card";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Container from "./Container";
 
@@ -19,14 +19,14 @@ export default function SimpleExample(): ReactElement {
           <CardTitle>Main Title</CardTitle>
         </CardHeader>
         <CardContent>
-          <Text>
+          <Typography>
             Duis lacinia lectus sed enim placerat, non consequat arcu tincidunt.
             Pellentesque vel condimentum lorem. Cras et arcu nibh. Cras euismod
             lectus commodo finibus facilisis. Sed ullamcorper odio sed
             scelerisque semper. Donec sollicitudin lorem eget tincidunt
             efficitur. Aenean sit amet tempus lacus, sit amet semper justo. Sed
             quis suscipit ante. Etiam aliquam risus eu laoreet placerat.
-          </Text>
+          </Typography>
         </CardContent>
       </Card>
       <Card>
@@ -35,14 +35,14 @@ export default function SimpleExample(): ReactElement {
           <CardSubtitle>Subtitle</CardSubtitle>
         </CardHeader>
         <CardContent>
-          <Text>
+          <Typography>
             Duis pellentesque, ligula vel convallis tincidunt, arcu enim cursus
             leo, sit amet euismod eros tellus vel nisi. Quisque ultrices
             elementum nisi id pulvinar. Vivamus ac posuere mauris, vitae aliquet
             massa. Donec semper vestibulum odio sit amet aliquam. Nullam sed
             pellentesque risus, condimentum vulputate quam. Donec sed lacinia
             nisl. Donec convallis risus a placerat pellentesque.
-          </Text>
+          </Typography>
         </CardContent>
       </Card>
       <Card>
@@ -51,7 +51,7 @@ export default function SimpleExample(): ReactElement {
           <CardSubtitle>Card subtitle</CardSubtitle>
         </CardHeader>
         <CardContent>
-          <Text>
+          <Typography>
             Proin eget lacinia sem. Curabitur viverra, ex ac vulputate
             malesuada, risus justo pharetra lectus, id gravida metus diam et
             nisi. Fusce semper eu magna sit amet interdum. Phasellus fringilla
@@ -65,7 +65,7 @@ export default function SimpleExample(): ReactElement {
             orci laoreet at. Quisque libero erat, ultricies quis neque ut,
             blandit laoreet nibh. Phasellus sagittis lobortis ipsum, vitae
             maximus quam auctor sit amet. Quisque ut lobortis purus.
-          </Text>
+          </Typography>
         </CardContent>
       </Card>
       <Card bordered>
@@ -73,7 +73,7 @@ export default function SimpleExample(): ReactElement {
           <CardTitle>Bordered Card</CardTitle>
         </CardHeader>
         <CardContent>
-          <Text>
+          <Typography>
             Maecenas eleifend, ligula rhoncus blandit molestie, magna nulla
             aliquet neque, non efficitur felis mi sed lorem. Suspendisse sed
             pharetra nulla, mattis cursus odio. Proin molestie augue quis
@@ -86,7 +86,7 @@ export default function SimpleExample(): ReactElement {
             habitasse platea dictumst. Proin nibh massa, scelerisque sed mauris
             vel, dictum faucibus tortor. Cras elit eros, scelerisque a accumsan
             eget, vulputate sed nisi.
-          </Text>
+          </Typography>
         </CardContent>
       </Card>
     </Container>

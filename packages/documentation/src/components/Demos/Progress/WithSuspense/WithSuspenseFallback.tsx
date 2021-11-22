@@ -1,6 +1,6 @@
 import { ReactElement, useEffect } from "react";
 import { LinearProgress } from "@react-md/progress";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./WithSuspenseFallback.module.scss";
 
@@ -17,9 +17,9 @@ export default function WithSuspenseFallback({
 
   return (
     <div className={styles.container}>
-      <Text type="headline-6" className={styles.title}>
+      <Typography type="headline-6" className={styles.title}>
         Getting your files
-      </Text>
+      </Typography>
       <LinearProgress id="with-suspense-loading" />
     </div>
   );

@@ -148,7 +148,7 @@ components from react-md. It is generally recommended to update your base
 +  Configuration,
 +  Layout,
 +  useLayoutNavigation,
-+  Text,
++  Typography,
 +  Button,
 +} from 'react-md';
 +
@@ -162,7 +162,7 @@ components from react-md. It is generally recommended to update your base
 +        navHeaderTitle="My Nav Title"
 +        treeProps={...useLayoutNavigation(routes, pathname)}
 +      >
-+        <Text type="headline-4">Hello, world!</Text>
++        <Typography type="headline-4">Hello, world!</Typography>
 +        <Button theme="primary">Example button</Button>
 +      </Layout>
 +    </Configuration>

@@ -1,11 +1,11 @@
 import { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
-import { Text, TextContainer } from "@react-md/typography";
+import { Typography, TextContainer } from "@react-md/typography";
 
 export default function HorizontalDividers(): ReactElement {
   return (
     <TextContainer>
-      <Text>
+      <Typography>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mollis
         nunc et maximus consectetur. Nunc posuere sem ex, quis vulputate lacus
         iaculis non. Nulla facilisi. Proin at lacus suscipit, interdum justo eu,
@@ -15,9 +15,9 @@ export default function HorizontalDividers(): ReactElement {
         eu dictum. Nam eu ante eu orci rhoncus dapibus. Nulla facilisi. Nullam
         sed justo massa. Sed consequat efficitur est, vel dignissim purus
         ultricies non. Ut et cursus metus. Sed sagittis mattis nisl ac pulvinar.
-      </Text>
+      </Typography>
       <Divider />
-      <Text>
+      <Typography>
         Nunc nec eleifend est. Nulla elit massa, condimentum a sollicitudin id,
         ullamcorper sed tortor. Sed quis congue mauris, at posuere elit. Cras ut
         nibh vel lacus varius consequat in a velit. Aenean convallis, turpis et
@@ -30,7 +30,7 @@ export default function HorizontalDividers(): ReactElement {
         Phasellus pharetra fringilla sapien id feugiat. Vestibulum auctor eget
         nisi eu lacinia. Proin sit amet justo nec turpis consectetur
         scelerisque.
-      </Text>
+      </Typography>
     </TextContainer>
   );
 }

@@ -11,7 +11,7 @@ import {
   MenuSVGIcon,
   MoreVertSVGIcon,
 } from "@react-md/material-icons";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 export default function FixedDialogExample(): ReactElement {
@@ -47,7 +47,7 @@ export default function FixedDialogExample(): ReactElement {
           </AppBarAction>
         </AppBar>
         <DialogContent>
-          <Text>Here&apos;s some content.</Text>
+          <Typography>Here&apos;s some content.</Typography>
         </DialogContent>
       </FixedDialog>
     </AppBar>

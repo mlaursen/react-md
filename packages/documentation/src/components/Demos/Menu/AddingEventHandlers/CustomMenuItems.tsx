@@ -3,7 +3,7 @@
 import { ReactElement, useCallback, useState } from "react";
 import { AddSVGIcon, ShareSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu, MenuItem, MenuItemProps } from "@react-md/menu";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Code from "components/Code";
 
@@ -30,12 +30,12 @@ export default function CustomMenuItems(): ReactElement {
   }, []);
   return (
     <>
-      <Text type="headline-6">
+      <Typography type="headline-6">
         Custom <Code>MenuItem</Code>
-      </Text>
-      <Text>
+      </Typography>
+      <Typography>
         Last clicked value: <Code>{value}</Code>
-      </Text>
+      </Typography>
       <DropdownMenu
         id="custom-menu-items"
         items={[<Share onClick={onClick} />, <New onClick={onClick} />]}

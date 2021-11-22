@@ -1,10 +1,10 @@
 import type { ReactElement } from "react";
-import { TextContainer, Text } from "react-md";
+import { TextContainer, Typography } from "react-md";
 
 export default function Home(): ReactElement {
   return (
     <TextContainer>
-      <Text type="headline-4">Hello, world!</Text>
+      <Typography type="headline-4">Hello, world!</Typography>
     </TextContainer>
   );
 }

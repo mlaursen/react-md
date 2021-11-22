@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { SimplePosition } from "@react-md/utils";
 
 import Container from "./Container";
@@ -10,9 +10,9 @@ const positions: SimplePosition[] = ["above", "right", "below", "left"];
 export default function DenseTooltips(): ReactElement {
   return (
     <>
-      <Text type="headline-6" margin="none">
+      <Typography type="headline-6" margin="none">
         Normal
-      </Text>
+      </Typography>
       <Container>
         {positions.map((position) => (
           <TooltippedButton
@@ -25,9 +25,9 @@ export default function DenseTooltips(): ReactElement {
           </TooltippedButton>
         ))}
       </Container>
-      <Text type="headline-6" margin="top">
+      <Typography type="headline-6" margin="top">
         Dense
-      </Text>
+      </Typography>
       <Container>
         {positions.map((position) => (
           <TooltippedButton

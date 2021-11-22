@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { TabsManager, Tabs, TabPanels, TabPanel } from "@react-md/tabs";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 const tabs = ["Tab 1", "Tab 2", "Tab 3"];
 
@@ -10,13 +10,13 @@ export default function BasicUsage(): ReactElement {
       <Tabs />
       <TabPanels>
         <TabPanel>
-          <Text type="headline-4">Panel 1</Text>
+          <Typography type="headline-4">Panel 1</Typography>
         </TabPanel>
         <TabPanel>
-          <Text type="headline-4">Panel 2</Text>
+          <Typography type="headline-4">Panel 2</Typography>
         </TabPanel>
         <TabPanel>
-          <Text type="headline-4">Panel 3</Text>
+          <Typography type="headline-4">Panel 3</Typography>
         </TabPanel>
       </TabPanels>
     </TabsManager>

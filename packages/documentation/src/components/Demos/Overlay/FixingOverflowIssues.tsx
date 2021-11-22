@@ -3,7 +3,7 @@ import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Checkbox, useChecked } from "@react-md/form";
 import { Overlay } from "@react-md/overlay";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 import styles from "./FixingOverflowIssues.module.scss";
@@ -23,7 +23,7 @@ export default function FixingOverflowIssues(): ReactElement {
         />
       </AppBar>
       <div className={styles.container}>
-        <Text>
+        <Typography>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
           eros in augue fermentum tempus. Aliquam ullamcorper ullamcorper
           bibendum. Etiam finibus, ante a mattis semper, quam orci porttitor
@@ -35,7 +35,7 @@ export default function FixingOverflowIssues(): ReactElement {
           cursus, neque eget auctor pretium, felis nisi semper mi, elementum
           vehicula libero lectus et felis. Cras magna orci, pellentesque non
           lectus at, luctus rhoncus lorem. Nam varius eleifend eros non mollis.
-        </Text>
+        </Typography>
         <Button
           id="fixing-overflow-button"
           theme="secondary"
@@ -52,13 +52,13 @@ export default function FixingOverflowIssues(): ReactElement {
             portal={portal}
           />
         </div>
-        <Text>
+        <Typography>
           Vestibulum at feugiat eros. Maecenas commodo sapien quis dignissim
           elementum. Duis id magna sit amet purus tempus luctus eleifend eget
           risus. Duis efficitur orci ut est luctus, eu molestie velit sagittis.
           Duis faucibus varius fringilla. Vestibulum congue tempor felis
           placerat gravida. Cras id est purus.
-        </Text>
+        </Typography>
       </div>
     </>
   );

@@ -3,7 +3,7 @@ import { AppBar } from "@react-md/app-bar";
 import { CircularProgress } from "@react-md/progress";
 import { Tabs, TabsManager } from "@react-md/tabs";
 import { CrossFade } from "@react-md/transition";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import useFakeLazyImport from "hooks/useFakeLazyImport";
 
@@ -46,9 +46,9 @@ export default function CrossFadeExamplesAsync(): ReactElement {
       </TabsManager>
       <Container>
         {page === -1 && (
-          <Text type="headline-6">
+          <Typography type="headline-6">
             {'Click on "Page 2" or "Page 3" to start the demo'}
-          </Text>
+          </Typography>
         )}
         {page !== -1 && (
           <Suspense fallback={<CircularProgress id="async-loading-progress" />}>

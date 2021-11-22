@@ -20,7 +20,7 @@ import {
   WatchSVGIcon,
 } from "@react-md/material-icons";
 import { LinearProgress } from "@react-md/progress";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { useAppSize, useDropzone } from "@react-md/utils";
 
 import { MAX_UPLOAD_SIZE } from "constants/constraints";
@@ -213,7 +213,7 @@ export default function ServerUploadExample(): ReactElement {
           {typeof progress === "number" && (
             <LinearProgress id="upload-progress" value={progress} />
           )}
-          {progress === 100 && <Text>Upload Complete!</Text>}
+          {progress === 100 && <Typography>Upload Complete!</Typography>}
         </Form>
       </CardContent>
       <UnknownErrorDialog

@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Link from "components/Link";
 import { FormattedItemLink, ItemReferenceLink } from "utils/sassdoc";
@@ -21,9 +21,9 @@ export default function Links({
 
   return (
     <>
-      <Text type="headline-6" margin="top">
+      <Typography type="headline-6" margin="top">
         See also
-      </Text>
+      </Typography>
       <ul>
         {links.map(({ name, href }) => (
           <li key={href}>

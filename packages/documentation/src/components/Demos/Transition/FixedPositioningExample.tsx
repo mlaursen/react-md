@@ -15,7 +15,7 @@ import {
   CSSTransitionClassNames,
   useFixedPositioning,
 } from "@react-md/transition";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import {
   HorizontalPosition,
   PositionAnchor,
@@ -210,7 +210,7 @@ export default function FixedPositioningExample(): ReactElement {
         transitionIn={visible}
       >
         <div id="fixed-position-div" style={style}>
-          <Text>This is some amazing text in a fixed element!</Text>
+          <Typography>This is some amazing text in a fixed element!</Typography>
         </div>
       </CSSTransition>
     </>

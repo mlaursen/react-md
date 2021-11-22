@@ -39,6 +39,7 @@ have `aria-buys="true"` and `aria-describedby="PROGRESS_ID"`:
 ```tsx
 import { render } from "react-dom";
 import { CircularProgress, LinearProgress } from "@react-md/progress";
+import { Typography } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 const App = () => {
@@ -70,7 +71,9 @@ const App = () => {
         aria-describedby={loadingCircle ? "circular-progress" : undefined}
       >
         {loadingCircle && <CircularProgress id="circular-progress" />}
-        {!loadingCircle && <Text type="headline-2">Hello from circle div</Text>}
+        {!loadingCircle && (
+          <Typography type="headline-2">Hello from circle div</Typography>
+        )}
       </div>
       <div
         id="linear-content"
@@ -78,7 +81,9 @@ const App = () => {
         aria-describedby={loadingCircle ? "circular-progress" : undefined}
       >
         {loadingLinear && <CircularProgress id="linear-progress" />}
-        {!loadingLinear && <Text type="headline-2">Hello from linear div</Text>}
+        {!loadingLinear && (
+          <Typography type="headline-2">Hello from linear div</Typography>
+        )}
       </div>
     </>
   );

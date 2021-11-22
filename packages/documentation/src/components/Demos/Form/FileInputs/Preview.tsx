@@ -3,7 +3,7 @@ import { FileReaderResult, isImageFile, isVideoFile } from "@react-md/form";
 import { ErrorSVGIcon } from "@react-md/material-icons";
 import { MediaOverlay } from "@react-md/media";
 import { TextIconSpacing } from "@react-md/icon";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./Preview.module.scss";
 
@@ -25,11 +25,11 @@ export default function Preview({ file, result }: PreviewProps): ReactElement {
       {(typeof result !== "string" || error) && (
         <MediaOverlay position="middle" className={styles.overlay}>
           <TextIconSpacing stacked icon={<ErrorSVGIcon />}>
-            <Text>
+            <Typography>
               {!error
                 ? "I did not set up a preview for this file type."
                 : "Your Browser is unable to preview this file."}
-            </Text>
+            </Typography>
           </TextIconSpacing>
         </MediaOverlay>
       )}

@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
 import { Link } from "@react-md/link";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 export default function MaliciousTarget(): ReactElement {
   return (
-    <Text type="body-2">
+    <Typography type="body-2">
       This link to{" "}
       <Link href="https://google.com" target="_blank">
         google.com
@@ -19,6 +19,6 @@ export default function MaliciousTarget(): ReactElement {
         w3.org
       </Link>{" "}
       will not.
-    </Text>
+    </Typography>
   );
 }

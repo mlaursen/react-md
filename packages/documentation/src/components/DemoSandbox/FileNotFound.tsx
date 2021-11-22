@@ -4,7 +4,7 @@ import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
 import { DialogContent } from "@react-md/dialog";
 import { List, ListItem } from "@react-md/list";
-import { Text, TextContainer } from "@react-md/typography";
+import { Typography, TextContainer } from "@react-md/typography";
 import { bem } from "@react-md/utils";
 
 import Code from "components/Code";
@@ -33,9 +33,9 @@ export default function FileNotFound({
       })}
     >
       <TextContainer>
-        <Text color="theme-error" type="headline-4">
+        <Typography color="theme-error" type="headline-4">
           Unable to find a file with a file name of: <Code>{fileName}</Code>
-        </Text>
+        </Typography>
         {sandbox && (
           <Card>
             <CardHeader>

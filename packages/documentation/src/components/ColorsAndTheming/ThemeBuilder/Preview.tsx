@@ -4,7 +4,7 @@ import { Button } from "@react-md/button";
 import { List, ListItem } from "@react-md/list";
 import { MenuSVGIcon, FavoriteSVGIcon } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { useToggle, GridCell } from "@react-md/utils";
 
 import styles from "./Preview.module.scss";
@@ -37,9 +37,9 @@ export default function Preview(): ReactElement {
           </List>
         </Sheet>
         <div className={styles.content}>
-          <Text type="headline-4" margin="bottom">
+          <Typography type="headline-4" margin="bottom">
             Look at this
-          </Text>
+          </Typography>
           <Button themeType="contained" theme="primary">
             Primary Button
           </Button>

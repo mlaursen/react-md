@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react";
 import { Checkbox, useChecked } from "@react-md/form";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { ResizeListener } from "@react-md/utils";
 
 import CodeBlock from "components/CodeBlock";
@@ -39,7 +39,7 @@ export default function ResizeListenerExample(): ReactElement {
           onResize={() => setSize(window.innerWidth)}
         />
       )}
-      <Text>The current app size is:</Text>
+      <Typography>The current app size is:</Typography>
       <CodeBlock suppressHydrationWarning>{size}px</CodeBlock>
     </>
   );

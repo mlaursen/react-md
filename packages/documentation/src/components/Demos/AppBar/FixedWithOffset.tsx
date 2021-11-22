@@ -15,7 +15,7 @@ import {
   MoreVertSVGIcon,
   SearchSVGIcon,
 } from "@react-md/material-icons";
-import { Text, TextContainer } from "@react-md/typography";
+import { Typography, TextContainer } from "@react-md/typography";
 
 import AppBarTitle from "components/AppBarTitle";
 
@@ -64,8 +64,8 @@ function Example({ height }: ExampleProps): ReactElement {
         })}
       >
         <TextContainer size="mobile">
-          <Text type="headline-4">Content!</Text>
-          <Text>
+          <Typography type="headline-4">Content!</Typography>
+          <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
             accumsan, mi eget rutrum ornare, turpis lacus congue dolor, vitae
             rhoncus orci augue vitae mauris. Curabitur consequat dui nisi.
@@ -75,8 +75,8 @@ function Example({ height }: ExampleProps): ReactElement {
             eu. Nullam scelerisque velit in velit commodo, id eleifend urna
             mollis. Orci varius natoque penatibus et magnis dis parturient
             montes, nascetur ridiculus mus.
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             Duis hendrerit felis ut ante varius, eu faucibus neque maximus.
             Suspendisse nunc nibh, suscipit non molestie vulputate, vestibulum
             non lectus. Proin eget purus sollicitudin nunc tristique semper.
@@ -84,8 +84,8 @@ function Example({ height }: ExampleProps): ReactElement {
             dolor vel ex laoreet vulputate. In consequat metus id velit
             ullamcorper, eget tempor nisi vestibulum. Curabitur egestas
             ultricies tincidunt.
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             Phasellus et mauris tristique, dictum sapien vel, consectetur enim.
             Maecenas volutpat mi eros, ultrices ultrices est placerat sit amet.
             Nullam rutrum ipsum a nisi maximus ullamcorper ac eu massa. In
@@ -98,7 +98,7 @@ function Example({ height }: ExampleProps): ReactElement {
             felis vel finibus. Donec eget est metus. Donec vehicula sem elit,
             sed pharetra nisl eleifend ac. Vestibulum eget dolor in est
             condimentum consequat.
-          </Text>
+          </Typography>
         </TextContainer>
       </div>
     </div>

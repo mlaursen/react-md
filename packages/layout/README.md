@@ -84,7 +84,7 @@ import {
   MenuSVGIcon,
   TVSVGIcon,
 } from "@react-md/material-icons";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import {
   BrowserRouter,
   Link,
@@ -125,19 +125,19 @@ const navItems: LayoutNavigationTree = {
 };
 
 function Home(): ReactElement {
-  return <Text>Home Page</Text>;
+  return <Typography>Home Page</Typography>;
 }
 
 function Route1(): ReactElement {
-  return <Text>First Route</Text>;
+  return <Typography>First Route</Typography>;
 }
 
 function Route2(): ReactElement {
-  return <Text>Second Route</Text>;
+  return <Typography>Second Route</Typography>;
 }
 
 function Route3(): ReactElement {
-  return <Text>Third Route</Text>;
+  return <Typography>Third Route</Typography>;
 }
 
 function App(): ReactElement {

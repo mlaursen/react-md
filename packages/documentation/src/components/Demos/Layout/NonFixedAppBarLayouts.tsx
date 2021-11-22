@@ -10,7 +10,7 @@ import {
   useLayoutNavigation,
 } from "@react-md/layout";
 import { CrossFade } from "@react-md/transition";
-import { Text, TextContainer } from "@react-md/typography";
+import { Typography, TextContainer } from "@react-md/typography";
 
 const navItems: LayoutNavigationTree = {
   "/": {
@@ -62,7 +62,7 @@ export default function NonFixedAppBarLayouts(): ReactElement | null {
       {/* just add an animation so it _looks_ like something happens */}
       <CrossFade key={selectedId}>
         <TextContainer>
-          <Text>
+          <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -70,8 +70,8 @@ export default function NonFixedAppBarLayouts(): ReactElement | null {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem
             accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
             quae ab illo inventore veritatis et quasi architecto beatae vitae
@@ -86,8 +86,8 @@ export default function NonFixedAppBarLayouts(): ReactElement | null {
             reprehenderit qui in ea voluptate velit esse quam nihil molestiae
             consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
             pariatur?
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             At vero eos et accusamus et iusto odio dignissimos ducimus qui
             blanditiis praesentium voluptatum deleniti atque corrupti quos
             dolores et quas molestias excepturi sint occaecati cupiditate non
@@ -101,8 +101,8 @@ export default function NonFixedAppBarLayouts(): ReactElement | null {
             et molestiae non recusandae. Itaque earum rerum hic tenetur a
             sapiente delectus, ut aut reiciendis voluptatibus maiores alias
             consequatur aut perferendis doloribus asperiores repellat.
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -110,8 +110,8 @@ export default function NonFixedAppBarLayouts(): ReactElement | null {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem
             accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
             quae ab illo inventore veritatis et quasi architecto beatae vitae
@@ -126,8 +126,8 @@ export default function NonFixedAppBarLayouts(): ReactElement | null {
             reprehenderit qui in ea voluptate velit esse quam nihil molestiae
             consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
             pariatur?
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             At vero eos et accusamus et iusto odio dignissimos ducimus qui
             blanditiis praesentium voluptatum deleniti atque corrupti quos
             dolores et quas molestias excepturi sint occaecati cupiditate non
@@ -141,8 +141,8 @@ export default function NonFixedAppBarLayouts(): ReactElement | null {
             et molestiae non recusandae. Itaque earum rerum hic tenetur a
             sapiente delectus, ut aut reiciendis voluptatibus maiores alias
             consequatur aut perferendis doloribus asperiores repellat.
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -150,8 +150,8 @@ export default function NonFixedAppBarLayouts(): ReactElement | null {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem
             accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
             quae ab illo inventore veritatis et quasi architecto beatae vitae
@@ -166,8 +166,8 @@ export default function NonFixedAppBarLayouts(): ReactElement | null {
             reprehenderit qui in ea voluptate velit esse quam nihil molestiae
             consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
             pariatur?
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             At vero eos et accusamus et iusto odio dignissimos ducimus qui
             blanditiis praesentium voluptatum deleniti atque corrupti quos
             dolores et quas molestias excepturi sint occaecati cupiditate non
@@ -181,7 +181,7 @@ export default function NonFixedAppBarLayouts(): ReactElement | null {
             et molestiae non recusandae. Itaque earum rerum hic tenetur a
             sapiente delectus, ut aut reiciendis voluptatibus maiores alias
             consequatur aut perferendis doloribus asperiores repellat.
-          </Text>
+          </Typography>
         </TextContainer>
       </CrossFade>
     </Layout>

@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Text, TextContainer } from "@react-md/typography";
+import { Typography, TextContainer } from "@react-md/typography";
 import { Link } from "@react-md/link";
 
 import Code from "components/Code";
@@ -12,15 +12,15 @@ export default function About(): ReactElement {
       <Heading id="color-palette" level={2}>
         Color Palette
       </Heading>
-      <Text type="headline-6" component="p">
+      <Typography type="headline-6" component="p">
         I recommend reading{" "}
         <Link href="https://material.io/design/color/the-color-system.html">
           the color system
         </Link>{" "}
         documentation from the main material design website for a better
         understanding of the color system.
-      </Text>
-      <Text>
+      </Typography>
+      <Typography>
         Material design provides a default color palette that has 256 colors for
         you to pick and choose from, but you are not required to use this color
         palette within <Code>react-md</Code>. This number might seem
@@ -30,12 +30,12 @@ export default function About(): ReactElement {
         but they will also be included in the <Code>scssVariables</Code> bundle
         at <Code>@react-md/theme/dist/scssVariables</Code> if you&apos;d like to
         access them in javascript.
-      </Text>
-      <Text>
+      </Typography>
+      <Typography>
         All the colors will be available below showing their Sass variable name
         as well as the hex value. When accessing the colors in javascript, you
         can extract all the colors with the following snippet:
-      </Text>
+      </Typography>
       <CodeBlock language="ts">
         {`import scssVariables from "@react-md/theme/dist/scssVariables";
 

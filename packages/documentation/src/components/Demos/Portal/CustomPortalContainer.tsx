@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Radio, useChoice } from "@react-md/form";
 import { Portal } from "@react-md/portal";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Code from "components/Code";
 
@@ -46,9 +46,9 @@ export default function CustomPortalContainer(): ReactElement {
         onChange={handleChange}
       />
       <Portal {...values[parseInt(selected, 10)]}>
-        <Text type="subtitle-1" margin="none">
+        <Typography type="subtitle-1" margin="none">
           Portal content!
-        </Text>
+        </Typography>
       </Portal>
       <div id="example-portal-container-1" className={styles.container}>
         <Code>&quot;example-portal-container-1&quot;</Code>

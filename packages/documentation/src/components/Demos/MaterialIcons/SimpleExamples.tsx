@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import {
   AccessAlarmFontIcon,
   AccessAlarmSVGIcon,
@@ -16,12 +16,12 @@ import styles from "./SimpleExamples.module.scss";
 export default function SimpleExamples(): ReactElement {
   return (
     <div className={styles.container}>
-      <Text type="headline-4">Font Icon Versions</Text>
+      <Typography type="headline-4">Font Icon Versions</Typography>
       <AccessAlarmFontIcon />
       <Rotation3DFontIcon />
       <HomeFontIcon />
       <TvFontIcon />
-      <Text type="headline-4">SVG Icon Versions</Text>
+      <Typography type="headline-4">SVG Icon Versions</Typography>
       <AccessAlarmSVGIcon />
       <Rotation3DSVGIcon />
       <HomeSVGIcon />

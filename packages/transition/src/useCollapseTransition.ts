@@ -217,7 +217,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  * import { ReactElement, useState } from "react";
  * import { Button } from "@react-md/button";
  * import { useCollapseTransition } from "@react-md/transition";
- * import { Text } from "@react-md/typography";
+ * import { Typography } from "@react-md/typography";
  *
  * function Example(): ReactElement {
  *   const [collapsed, setCollapsed] = useState(true);
@@ -236,7 +236,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  *       </Button>
  *       {rendered && (
  *         <div {...elementProps}>
- *           <Text>Stuff that should be collapsed</Text>
+ *           <Typography>Stuff that should be collapsed</Typography>
  *           <div>Whatever content...</div>
  *         </div>
  *       )}
@@ -253,7 +253,7 @@ export interface CollapseTransitionHookReturnValue<E extends HTMLElement>
  * import { IconRotator } from "@react-md/icon";
  * import { KeyboardArrowDownSVGIcon } from "@react-md/material-icons";
  * import { useCollapseTransition } from "@react-md/transition";
- * import { Text } from "@react-md/typography";
+ * import { Typography } from "@react-md/typography";
  *
  * import styles from "./Example.module.scss";
  * // pretend styles:

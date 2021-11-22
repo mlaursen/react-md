@@ -10,7 +10,7 @@ import {
   useSlider,
   UseSliderOptions,
 } from "@react-md/form";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { Grid, GridCell } from "@react-md/utils";
 
 import Code from "components/Code";
@@ -42,7 +42,7 @@ function ConfiguredSlider({
 
   return (
     <>
-      <Text>{`Current value: ${value}`}</Text>
+      <Typography>{`Current value: ${value}`}</Typography>
       <Slider
         baseId="configured-slider"
         {...controls}

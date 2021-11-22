@@ -10,7 +10,7 @@ import {
   useChecked,
   useChoice,
 } from "@react-md/form";
-import { SrOnly, Text } from "@react-md/typography";
+import { SrOnly, Typography } from "@react-md/typography";
 
 import CodeBlock from "components/CodeBlock";
 
@@ -43,9 +43,9 @@ export default function SimpleFileInputs(): ReactElement {
 
   return (
     <>
-      <Text type="subtitle-1" margin="none">
+      <Typography type="subtitle-1" margin="none">
         Last selected file:
-      </Text>
+      </Typography>
       <CodeBlock aria-live="polite">{file || "None"}</CodeBlock>
       <Form className={styles.container}>
         <Fieldset legend="Theme">

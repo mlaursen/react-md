@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Code from "components/Code";
 
@@ -10,14 +10,14 @@ import CrossFadeExamplesStatic from "./CrossFadeExamplesStatic";
 export default function CrossFadeExamples(): ReactElement {
   return (
     <>
-      <Text type="headline-6" margin="bottom">
+      <Typography type="headline-6" margin="bottom">
         Static Transitions
-      </Text>
+      </Typography>
       <CrossFadeExamplesStatic />
       <Divider />
-      <Text type="headline-6">
+      <Typography type="headline-6">
         Async with <Code>Suspense</Code>
-      </Text>
+      </Typography>
       <CrossFadeExamplesAsync />
       <Divider />
     </>

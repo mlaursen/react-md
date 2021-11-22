@@ -18,7 +18,7 @@ import { getTransitionClassNames } from "./utils";
  * import { ReactElement, useState } from "react";
  * import { Button } from "@react-md/button";
  * import { useCSSTransition } from "@react-md/transition";
- * import { Text } from "@react-md/typography";
+ * import { Typography } from "@react-md/typography";
  *
  * // Pretend styles
  * // .enter {
@@ -57,9 +57,9 @@ import { getTransitionClassNames } from "./utils";
  *       <Button onClick={() => setTransitionIn(!transitionIn)}>
  *         Toggle
  *       </Button>
- *       <Text {...elementProps}>
+ *       <Typography {...elementProps}>
  *         Some Opacity Changing Text
- *       </Text>
+ *       </Typography>
  *     </>
  *   );
  * }
@@ -71,7 +71,7 @@ import { getTransitionClassNames } from "./utils";
  * import { ReactElement, useState } from "react";
  * import { Button } from "@react-md/button";
  * import { useCSSTransition } from "@react-md/transition";
- * import { Text } from "@react-md/typography";
+ * import { Typography } from "@react-md/typography";
  *
  * // Pretend styles
  * // .enter {
@@ -115,9 +115,9 @@ import { getTransitionClassNames } from "./utils";
  *         Toggle
  *       </Button>
  *       {rendered && (
- *         <Text {...elementProps}>
+ *         <Typography {...elementProps}>
  *           Some Opacity Changing Text
- *         </Text>
+ *         </Typography>
  *       )}
  *     </>
  *   );

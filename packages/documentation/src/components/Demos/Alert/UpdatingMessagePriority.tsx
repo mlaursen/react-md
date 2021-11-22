@@ -8,7 +8,7 @@ import {
 } from "@react-md/alert";
 import { Button } from "@react-md/button";
 import { Fieldset, Form, Radio, useChoice } from "@react-md/form";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./UpdatingMessagePriority.module.scss";
 
@@ -67,9 +67,9 @@ function UpdatingMessagePriority(): ReactElement {
   return (
     <>
       <div className={styles.output}>
-        <Text type="headline-6" margin="bottom">
+        <Typography type="headline-6" margin="bottom">
           Message queue:
-        </Text>
+        </Typography>
         {queue.map((message, i) => (
           // actually want to disable it since when the immediate flow is triggered, there will be two messageId
           // with "message-1" for a few milliseconds

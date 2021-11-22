@@ -47,24 +47,24 @@ to animate an icon rotation such as expander or collapse icons.
 ```tsx
 import { render } from "react-dom";
 import { FontIcon, TextIconSpacing } from "@react-md/icon";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
-// the Text component is optional, it'll just add better typography
+// the Typography component is optional, it'll just add better typography
 // than normal text.
 const App = () => (
   <>
     // creates an icon spaced before the "Go Home" text
     <TextIconSpacing icon={<FontIcon>home</FontIcon>}>
-      <Text>Go Home</Text>
+      <Typography>Go Home</Typography>
     </TextIconSpacing>
     // creates an icon spaced after the "Go Home" text
     <TextIconSpacing icon={<FontIcon>home</FontIcon>} iconAfter>
-      <Text>Go Home</Text>
+      <Typography>Go Home</Typography>
     </TextIconSpacing>
     // it can also be combined
     <TextIconSpacing icon={<FontIcon>arrow_back</FontIcon>}>
       <TextIconSpacing icon={<FontIcon>home</FontIcon>} iconAfter>
-        <Text>Go Home</Text>
+        <Typography>Go Home</Typography>
       </TextIconSpacing>
     </TextIconSpacing>
   </>

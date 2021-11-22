@@ -2,18 +2,18 @@ import { ReactElement } from "react";
 
 import DemoPage from "../DemoPage";
 
-import TextExamples from "./TextExamples";
-import textExamples from "./TextExamples.md";
+import TypographyExamples from "./TypographyExamples";
+import typographyExamples from "./TypographyExamples.md";
 
 import TextContainerExamples from "./TextContainerExamples";
 import textContainerExamples from "./TextContainerExamples.md";
 
 const demos = [
   {
-    name: "Text Examples",
-    description: textExamples,
+    name: "Typography Examples",
+    description: typographyExamples,
     phoneFullPage: true,
-    children: <TextExamples />,
+    children: <TypographyExamples />,
   },
   {
     name: "Text Container Examples",

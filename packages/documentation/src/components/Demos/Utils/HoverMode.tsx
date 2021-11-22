@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { HoverModeProvider } from "@react-md/utils";
 
 import Markdown from "components/Markdown/Markdown";
@@ -32,7 +32,7 @@ export default function HoverMode(): ReactElement {
     // Note: this can be ignored if you are using the `Configuration` component
     // from `@react-md/utils`
     <HoverModeProvider>
-      <Text>
+      <Typography>
         {/* copy/pasted from https://en.wikipedia.org/wiki/Material_Design */}
         <strong>Material Design</strong> (codenamed{" "}
         <strong>Quantum Paper</strong>){" "}
@@ -53,7 +53,7 @@ export default function HoverMode(): ReactElement {
         and transitions, padding, and depth effects such as lighting and
         shadows. Google announced Material Design on June 25, 2014, at the 2014
         Google I/O conference.
-      </Text>
+      </Typography>
     </HoverModeProvider>
   );
 }

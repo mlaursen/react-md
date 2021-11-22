@@ -7,7 +7,7 @@ import {
   isTooManyFilesError,
   TooManyFilesError,
 } from "@react-md/form";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 interface ErrorHeaderProps {
   error: TooManyFilesError | FileSizeError | FileExtensionError;
@@ -19,32 +19,32 @@ export default function ErrorHeader({ error }: ErrorHeaderProps): ReactElement {
     const limit = filesize(error.limit);
     if (type === "total") {
       return (
-        <Text type="subtitle-2" margin="none">
+        <Typography type="subtitle-2" margin="none">
           {`Unable to upload the following files due to total upload size limit (${limit})`}
-        </Text>
+        </Typography>
       );
     }
 
     const range = type === "min" ? "greater" : "less";
     return (
-      <Text type="subtitle-2" margin="none">
+      <Typography type="subtitle-2" margin="none">
         {`Unable to upload the following files because files must be ${range} than ${limit}`}
-      </Text>
+      </Typography>
     );
   }
   if (isTooManyFilesError(error)) {
     const { limit } = error;
     return (
-      <Text type="subtitle-2" margin="none">
+      <Typography type="subtitle-2" margin="none">
         {`Unable to upload the following files due to total files allowed limit (${limit})`}
-      </Text>
+      </Typography>
     );
   }
 
   const { extensions } = error;
   return (
-    <Text type="subtitle-2" margin="none">
+    <Typography type="subtitle-2" margin="none">
       {`Invalid file extension. Must be one of ${extensions.join(", ")}`}
-    </Text>
+    </Typography>
   );
 }

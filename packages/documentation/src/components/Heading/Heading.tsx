@@ -1,15 +1,19 @@
 import { ReactElement } from "react";
 import cn from "classnames";
-import { Text, TextProps, TextTypes } from "@react-md/typography";
+import {
+  Typography,
+  TypographyProps,
+  TypographyType,
+} from "@react-md/typography";
 
 import HeadingLink from "./HeadingLink";
 
 export type Level = 1 | 2 | 3 | 4 | 5 | 6;
 
-export interface HeadingProps extends Omit<TextProps, "type" | "margin"> {
+export interface HeadingProps extends Omit<TypographyProps, "type" | "margin"> {
   id: string;
   level: Level;
-  margin?: TextProps["margin"] | "small";
+  margin?: TypographyProps["margin"] | "small";
 }
 
 export default function Heading({
@@ -21,11 +25,11 @@ export default function Heading({
   ...props
 }: HeadingProps): ReactElement {
   return (
-    <Text
+    <Typography
       id={id}
       {...props}
       margin={margin === "small" ? undefined : margin}
-      type={`headline-${level}` as TextTypes}
+      type={`headline-${level}` as TypographyType}
       className={cn(
         "heading",
         {
@@ -37,6 +41,6 @@ export default function Heading({
     >
       <HeadingLink idRef={id} />
       {children}
-    </Text>
+    </Typography>
   );
 }

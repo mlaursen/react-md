@@ -1,26 +1,28 @@
 import { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./SimpleExample.module.scss";
 
 export default function SimpleExample(): ReactElement {
   return (
     <div className={styles.container}>
-      <Text>This is a new surface and defining some new theme colors.</Text>
-      <Text className={styles.defaultPrimary} type="subtitle-1">
+      <Typography>
+        This is a new surface and defining some new theme colors.
+      </Typography>
+      <Typography className={styles.defaultPrimary} type="subtitle-1">
         This is the pre-compiled primary color.
-      </Text>
-      <Text className={styles.defaultSecondary} type="subtitle-1">
+      </Typography>
+      <Typography className={styles.defaultSecondary} type="subtitle-1">
         This is the pre-compiled secondary color.
-      </Text>
+      </Typography>
       <Divider />
-      <Text className={styles.themePrimary} type="subtitle-1">
+      <Typography className={styles.themePrimary} type="subtitle-1">
         This is the new primary color.
-      </Text>
-      <Text className={styles.themeSecondary} type="subtitle-1">
+      </Typography>
+      <Typography className={styles.themeSecondary} type="subtitle-1">
         This is the new secondary color.
-      </Text>
+      </Typography>
     </div>
   );
 }

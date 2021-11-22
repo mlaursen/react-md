@@ -2,11 +2,11 @@ import { Component } from "react";
 import cn from "classnames";
 import { render } from "@testing-library/react";
 
-import { Text, TextTypes } from "../Text";
+import { Typography, TypographyType } from "../Typography";
 
-describe("Text", () => {
+describe("Typography", () => {
   it("should render corrrrectly based on the type prop", () => {
-    const tests: { type: TextTypes; expected: string }[] = [
+    const tests: { type: TypographyType; expected: string }[] = [
       { type: "headline-1", expected: "h1" },
       { type: "headline-2", expected: "h2" },
       { type: "headline-3", expected: "h3" },
@@ -23,7 +23,7 @@ describe("Text", () => {
 
     tests.forEach(({ type, expected }) => {
       const { getByTestId, unmount } = render(
-        <Text type={type} data-testid="text" />
+        <Typography type={type} data-testid="text" />
       );
       const text = getByTestId("text");
       expect(text.tagName.toLowerCase()).toBe(expected);
@@ -33,7 +33,7 @@ describe("Text", () => {
 
     const { getByTestId } = render(
       <table>
-        <Text type="caption" data-testid="text" />
+        <Typography type="caption" data-testid="text" />
       </table>
     );
     const text = getByTestId("text");
@@ -42,7 +42,7 @@ describe("Text", () => {
   });
 
   it("should default to rendering as a <p> tag with the body-1 styles", () => {
-    const { getByTestId } = render(<Text data-testid="p" />);
+    const { getByTestId } = render(<Typography data-testid="p" />);
     const p = getByTestId("p");
     expect(p.tagName).toBe("P");
     expect(p.className).toBe("rmd-typography rmd-typography--body-1");
@@ -50,9 +50,9 @@ describe("Text", () => {
 
   it("should be able to render as a string component prop", () => {
     const { getByTestId } = render(
-      <Text data-testid="text" component="section">
+      <Typography data-testid="text" component="section">
         Hello, world!
-      </Text>
+      </Typography>
     );
     const text = getByTestId("text");
 
@@ -68,7 +68,7 @@ describe("Text", () => {
     );
 
     const { getByTestId } = render(
-      <Text component={Component}>Hello, world!</Text>
+      <Typography component={Component}>Hello, world!</Typography>
     );
     const text = getByTestId("text");
     expect(text.tagName).toBe("SECTION");
@@ -88,7 +88,7 @@ describe("Text", () => {
     }
 
     const { getByTestId } = render(
-      <Text component={TestComponent}>Hello, world!</Text>
+      <Typography component={TestComponent}>Hello, world!</Typography>
     );
     const text = getByTestId("text");
     expect(text.tagName).toBe("SECTION");
@@ -97,11 +97,11 @@ describe("Text", () => {
 
   it("should be able to use a children render function", () => {
     const { container } = render(
-      <Text>
+      <Typography>
         {({ className }) => (
           <span className={cn("span", className)}>Content</span>
         )}
-      </Text>
+      </Typography>
     );
     expect(container).toMatchSnapshot();
   });

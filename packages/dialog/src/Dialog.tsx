@@ -240,6 +240,7 @@ export const DEFAULT_DIALOG_TIMEOUT: Readonly<TransitionTimeout> = {
  *   DialogContent,
  *   DialogFooter,
  * } from "@react-md/dialog";
+ * import { Typography } from "@react-md/typography";
  *
  * function Example(): ReactElement {
  *   const [visible, setVisible] = useState(false);
@@ -262,7 +263,7 @@ export const DEFAULT_DIALOG_TIMEOUT: Readonly<TransitionTimeout> = {
  *           <DialogTitle id="dialog-title">Simple Dialog</DialogTitle>
  *         </DialogHeader>
  *         <DialogContent>
- *           <Text margin="none">This is some text in a dialog.</Text>
+ *           <Typography margin="none">This is some text in a dialog.</Typography>
  *         </DialogContent>
  *         <DialogFooter>
  *           <Button onClick={hide}>

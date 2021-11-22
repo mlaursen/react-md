@@ -7,7 +7,7 @@ import {
   AppBarTitle,
 } from "@react-md/app-bar";
 import { SearchSVGIcon, KeyboardVoiceSVGIcon } from "@react-md/material-icons";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { PhoneOnly, useAppSize } from "@react-md/utils";
 
 import dessertList, { Dessert } from "constants/desserts";
@@ -61,9 +61,9 @@ export default function HighlightMatches(): ReactElement {
         </PhoneAppBar>
       }
     >
-      <Text type="headline-6" style={{ margin: "1rem" }}>
+      <Typography type="headline-6" style={{ margin: "1rem" }}>
         {dessert ? "Nutrition" : "No Dessert Chosen"}
-      </Text>
+      </Typography>
       <DessertTable dessert={dessert} />
       <PhoneOnly>
         <ClosePhone id="phone-close" floating />

@@ -4,7 +4,7 @@ import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogProps } from "@react-md/dialog";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloseSVGIcon, LaunchSVGIcon } from "@react-md/material-icons";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import AppBarTitle from "components/AppBarTitle";
 
@@ -43,10 +43,10 @@ export default function ConditionalFullPageDialog({
 
   return (
     <>
-      <Text type="headline-6">
+      <Typography type="headline-6">
         This example requires a more screen real estate than what is available
         so you will need to open it in a full page dialog.
-      </Text>
+      </Typography>
       <Button
         id={`${id}-dialog-toggle`}
         themeType="contained"

@@ -2,7 +2,7 @@ import { ReactElement, useState } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogFooter } from "@react-md/dialog";
 import { TextArea } from "@react-md/form";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./AlertDialogsAndModals.module.scss";
 
@@ -63,14 +63,14 @@ export default function AlertDialogsAndModals(): ReactElement {
         aria-labelledby="dialog-title"
       >
         <DialogContent>
-          <Text
+          <Typography
             id="dialog-title"
             type="subtitle-1"
             margin="none"
             color="secondary"
           >
             {!modal ? "Discard draft?" : "Are you sure?"}
-          </Text>
+          </Typography>
         </DialogContent>
         <DialogFooter>
           <Button id="dialog-cancel" onClick={hide}>

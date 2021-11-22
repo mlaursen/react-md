@@ -8,7 +8,7 @@ import {
 } from "@react-md/card";
 import { Divider } from "@react-md/divider";
 import { MediaContainer } from "@react-md/media";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Code from "components/Code";
 import CodeBlock from "components/CodeBlock";
@@ -27,10 +27,10 @@ export default function Components(): ReactElement {
         <Image src={components} />
       </MediaContainer>
       <CardContent disableSecondaryColor>
-        <Text>
+        <Typography>
           Once you&apos;ve installed <Code>react-md</Code>, it&apos;s time to
           check out all the components that are available and how to use them.
-        </Text>
+        </Typography>
       </CardContent>
       <CodeBlock language="tsx">
         {`<Button id="example-button" onClick={() => console.log("I was clicked!")}>

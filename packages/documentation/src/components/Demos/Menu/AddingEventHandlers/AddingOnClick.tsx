@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react";
 import { DropdownMenu } from "@react-md/menu";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Code from "components/Code";
 
@@ -12,12 +12,12 @@ export default function AddingOnClick(): ReactElement {
   };
   return (
     <>
-      <Text type="headline-6" margin="none">
+      <Typography type="headline-6" margin="none">
         Adding <Code>onClick</Code>
-      </Text>
-      <Text>
+      </Typography>
+      <Typography>
         Last clicked value: <Code>{value}</Code>
-      </Text>
+      </Typography>
       <DropdownMenu
         id="event-handler-menu-1"
         items={[

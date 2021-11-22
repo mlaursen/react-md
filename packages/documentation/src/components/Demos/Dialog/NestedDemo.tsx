@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogFooter,
 } from "@react-md/dialog";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 interface NestedDemoProps {
@@ -48,7 +48,7 @@ export default function NestedDemo({
           </DialogTitle>
         </DialogHeader>
         <DialogContent>
-          <Text>This is some content within the dialog.</Text>
+          <Typography>This is some content within the dialog.</Typography>
           <NestedDemo depth={depth + 1} />
         </DialogContent>
         <DialogFooter>

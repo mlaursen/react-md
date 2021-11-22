@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
-import { Text, TextContainer } from "@react-md/typography";
+import { Typography, TextContainer } from "@react-md/typography";
 
 import Post, { BlogPost } from "./Post";
 
@@ -62,7 +62,7 @@ export default function Blog({ children }: BlogProps): ReactElement {
     <>
       <TextContainer>
         {({ className }) => (
-          <Text
+          <Typography
             id="latest-news"
             align="center"
             type="headline-4"
@@ -70,7 +70,7 @@ export default function Blog({ children }: BlogProps): ReactElement {
             className={className}
           >
             The latest news about react-md
-          </Text>
+          </Typography>
         )}
       </TextContainer>
       <Divider />

@@ -4,7 +4,7 @@ import {
   MediaOverlay,
   MediaOverlayPosition,
 } from "@react-md/media";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./Container.module.scss";
 
@@ -38,7 +38,7 @@ export default function WithOverlay(): ReactElement {
             id={`overlay-container-overlay-${i}`}
             position={position}
           >
-            <Text
+            <Typography
               type="headline-5"
               margin="none"
               align={
@@ -48,7 +48,7 @@ export default function WithOverlay(): ReactElement {
               }
             >
               This is a random picture!
-            </Text>
+            </Typography>
           </MediaOverlay>
         </MediaContainer>
       ))}

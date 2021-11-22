@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { Table, TableBody } from "@react-md/table";
-import { Text, TextContainer } from "@react-md/typography";
+import { Typography, TextContainer } from "@react-md/typography";
 
 import Header from "./Header";
 import ResponsiveBlock from "./ResponsiveBlock";
@@ -22,10 +22,10 @@ export default function LibraryInfo(): ReactElement | null {
   return (
     <>
       <TextContainer>
-        <Text type="headline-6" component="p">
+        <Typography type="headline-6" component="p">
           Before you choosing this library, it is highly recommended to check
           out the pros and cons list below.
-        </Text>
+        </Typography>
       </TextContainer>
       <Table fullWidth className={styles.container} disableHover>
         <Header />

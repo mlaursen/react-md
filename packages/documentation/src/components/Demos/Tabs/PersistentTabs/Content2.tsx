@@ -2,7 +2,7 @@
 import { ReactElement, useEffect, useState } from "react";
 import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { CircularProgress } from "@react-md/progress";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { GridList, GridListCell } from "@react-md/utils";
 
 import { randomInt } from "utils/random";
@@ -63,7 +63,7 @@ export default function Content2(): ReactElement {
 
   return (
     <>
-      <Text type="headline-4">Tab 2 Content</Text>
+      <Typography type="headline-4">Tab 2 Content</Typography>
       <GridList maxCellSize={250}>
         {loading && <CircularProgress id="loading-tab-2" />}
         {data.map(({ name, url }) => (
@@ -71,7 +71,7 @@ export default function Content2(): ReactElement {
             <MediaContainer>
               <img src={url} alt="" />
               <MediaOverlay>
-                <Text margin="none">{name}</Text>
+                <Typography margin="none">{name}</Typography>
               </MediaOverlay>
             </MediaContainer>
           </GridListCell>

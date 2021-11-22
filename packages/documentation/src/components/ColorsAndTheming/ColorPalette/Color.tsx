@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import cn from "classnames";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./Color.module.scss";
 
@@ -40,18 +40,18 @@ export default function Color({
       )}
     >
       {primary && (
-        <Text
+        <Typography
           type="headline-6"
           className={styles.header}
           transform="capitalize"
         >
           {primary.replace("-", " ")}
-        </Text>
+        </Typography>
       )}
-      <Text component="span" weight="bold">{`$${name}`}</Text>
-      <Text component="span" weight="bold" transform="uppercase">
+      <Typography component="span" weight="bold">{`$${name}`}</Typography>
+      <Typography component="span" weight="bold" transform="uppercase">
         {hexValue}
-      </Text>
+      </Typography>
     </li>
   );
 }

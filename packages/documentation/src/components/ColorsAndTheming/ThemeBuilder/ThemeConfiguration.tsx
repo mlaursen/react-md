@@ -1,7 +1,7 @@
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import { Button } from "@react-md/button";
 import { Checkbox, Form, Select } from "@react-md/form";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import {
   ContrastRatioCompliance,
   Grid,
@@ -99,9 +99,9 @@ export default function ThemeConfiguration({
       <Form>
         <Grid columns={1} tabletColumns={2} largeDesktopColumns={3}>
           <ConfigurationCell fullWidth>
-            <Text type="headline-4" margin="bottom">
+            <Typography type="headline-4" margin="bottom">
               Configuration
-            </Text>
+            </Typography>
           </ConfigurationCell>
           <ConfigurationCell>
             <Select

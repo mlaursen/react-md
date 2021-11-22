@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Card, CardContent, CardTitle } from "@react-md/card";
 import { MediaContainer, MediaOverlay } from "@react-md/media";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Container from "./Container";
 
@@ -16,7 +16,7 @@ export default function WithMedia(): ReactElement {
           </MediaOverlay>
         </MediaContainer>
         <CardContent>
-          <Text>
+          <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut
             eleifend odio. Vivamus quis quam eget augue facilisis laoreet.
             Aliquam egestas turpis pellentesque cursus porta. Vivamus nisl odio,
@@ -31,8 +31,8 @@ export default function WithMedia(): ReactElement {
             diam nunc non lectus. Sed elementum, risus eget fermentum accumsan,
             nunc ante commodo diam, eget pulvinar risus velit eu sapien. Nunc
             vitae pellentesque nisl.
-          </Text>
-          <Text>
+          </Typography>
+          <Typography>
             Maecenas lacinia enim ut risus pellentesque euismod. Vestibulum
             gravida, risus non condimentum volutpat, orci elit laoreet elit, in
             auctor eros orci non quam. Proin ut tellus et est dignissim
@@ -40,7 +40,7 @@ export default function WithMedia(): ReactElement {
             libero auctor aliquet. Donec scelerisque erat in magna sagittis
             hendrerit. Sed pulvinar enim mattis mauris sodales semper. Mauris eu
             urna at arcu dapibus pretium et in ligula. Sed vel vestibulum nunc.
-          </Text>
+          </Typography>
         </CardContent>
       </Card>
     </Container>

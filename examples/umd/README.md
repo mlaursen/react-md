@@ -10,7 +10,7 @@ A super simple `index.html` file that:
 - loads the Material Icons and Roboto fonts
 - loads the `React`, `ReactDOM`, and `ReactMD` UMD bundles
 - creates a simple [index.html](./index.html) that uses the `TextContainer` and
-  `Text` components from `ReactMD`
+  `Typography` components from `ReactMD`
 
 ## How to Use
 

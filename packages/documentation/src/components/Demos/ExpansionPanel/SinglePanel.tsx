@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react";
 import { usePanels, ExpansionPanel } from "@react-md/expansion-panel";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { Grid } from "@react-md/utils";
 
 export default function SinglePanel(): ReactElement {
@@ -9,7 +9,7 @@ export default function SinglePanel(): ReactElement {
   return (
     <Grid columns={1}>
       <ExpansionPanel {...panelProps} header="With usePanels">
-        <Text>
+        <Typography>
           Suspendisse malesuada vitae ipsum quis faucibus. Interdum et malesuada
           fames ac ante ipsum primis in faucibus. Nam accumsan turpis non
           efficitur vehicula. Aenean egestas lobortis fermentum. Integer a purus
@@ -24,7 +24,7 @@ export default function SinglePanel(): ReactElement {
           sit amet finibus. Donec porttitor, justo nec viverra interdum, mi
           lacus pulvinar justo, elementum faucibus lectus nisi at turpis.
           Phasellus a ultricies ipsum, vel sodales orci.
-        </Text>
+        </Typography>
       </ExpansionPanel>
       <ExpansionPanel
         id="single-panel-own-props"
@@ -32,7 +32,7 @@ export default function SinglePanel(): ReactElement {
         onExpandClick={() => setExpanded(!expanded)}
         header="Custom Props"
       >
-        <Text>
+        <Typography>
           Suspendisse malesuada vitae ipsum quis faucibus. Interdum et malesuada
           fames ac ante ipsum primis in faucibus. Nam accumsan turpis non
           efficitur vehicula. Aenean egestas lobortis fermentum. Integer a purus
@@ -47,7 +47,7 @@ export default function SinglePanel(): ReactElement {
           sit amet finibus. Donec porttitor, justo nec viverra interdum, mi
           lacus pulvinar justo, elementum faucibus lectus nisi at turpis.
           Phasellus a ultricies ipsum, vel sodales orci.
-        </Text>
+        </Typography>
       </ExpansionPanel>
     </Grid>
   );

@@ -8,7 +8,7 @@ import {
   TextArea,
 } from "@react-md/form";
 import { ListItemAddonPosition, ListItemAddonType } from "@react-md/list";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { Grid } from "@react-md/utils";
 import { upperFirst } from "lodash";
 
@@ -78,7 +78,7 @@ export default function ConfigurationForm({
 }: ConfigurationFormProps): ReactElement {
   return (
     <Form>
-      <Text type="headline-4">Customization</Text>
+      <Typography type="headline-4">Customization</Typography>
       <Fieldset legend="Disabled Behavior">
         <Checkbox
           id="configurable-disabled"

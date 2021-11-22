@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogFooter,
 } from "@react-md/dialog";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { useToggle } from "@react-md/utils";
 
 export default function SimpleExample(): ReactElement {
@@ -27,7 +27,7 @@ export default function SimpleExample(): ReactElement {
           <DialogTitle id="dialog-title">Simple Dialog</DialogTitle>
         </DialogHeader>
         <DialogContent>
-          <Text margin="none">This is some text in a dialog.</Text>
+          <Typography margin="none">This is some text in a dialog.</Typography>
         </DialogContent>
         <DialogFooter>
           <Button id="dialog-close" onClick={disable}>

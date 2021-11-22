@@ -3,7 +3,7 @@ import { Button } from "@react-md/button";
 import { IconRotator } from "@react-md/icon";
 import { ChevronLeftSVGIcon } from "@react-md/material-icons";
 import { Collapse } from "@react-md/transition";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import { ItemReferenceLink } from "utils/sassdoc";
 
@@ -26,7 +26,7 @@ export default function ReferenceLinkSection({
 
   return (
     <>
-      <Text type="headline-6" margin="top" className={styles.container}>
+      <Typography type="headline-6" margin="top" className={styles.container}>
         {children}
         <Button
           aria-label="Expand"
@@ -38,7 +38,7 @@ export default function ReferenceLinkSection({
             <ChevronLeftSVGIcon className={styles.chevron} />
           </IconRotator>
         </Button>
-      </Text>
+      </Typography>
       <Collapse collapsed={collapsed}>
         <ul>
           <ReferenceLinkList links={links} />

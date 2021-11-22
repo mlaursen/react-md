@@ -1,5 +1,5 @@
 import { ReactElement, useRef, useEffect } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import { useFixedAppBarContext } from "components/Layout/fixedAppBarContext";
 
@@ -34,9 +34,9 @@ export default function Banner(): ReactElement {
   }, [setElevation]);
   return (
     <div ref={ref} className={styles.banner}>
-      <Text type="headline-2" className={styles.title}>
+      <Typography type="headline-2" className={styles.title}>
         react-md
-      </Text>
+      </Typography>
       <Logo className={styles.logo} />
     </div>
   );

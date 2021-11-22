@@ -256,13 +256,13 @@ const Example = () => (
     <Tabs />
     <TabPanels>
       <TabPanel>
-        <Text type="headline-4">Panel 1</Text>
+        <Typography type="headline-4">Panel 1</Typography>
       </TabPanel>
       <TabPanel>
-        <Text type="headline-4">Panel 2</Text>
+        <Typography type="headline-4">Panel 2</Typography>
       </TabPanel>
       <TabPanel>
-        <Text type="headline-4">Panel 3</Text>
+        <Typography type="headline-4">Panel 3</Typography>
       </TabPanel>
     </TabPanels>
   </TabsManager>

@@ -40,15 +40,16 @@ dividers or to add dividers between page elements:
 import { render } from "react-dom";
 import { Divider } from "@react-md/divider";
 import { List, ListItem } from "@react-md/list";
+import { Typography } from "@react-m/typography";
 
 const App = () => (
   <main>
     <div className="section-1">
-      <Text>Here is some text.</Text>
+      <Typography>Here is some text.</Typography>
     </div>
     <Divider />
     <div className="section-2">
-      <Text>Here is some more text.</Text>
+      <Typography>Here is some more text.</Typography>
     </div>
     <List>
       <ListItem id="item-1">Item 1</ListItem>

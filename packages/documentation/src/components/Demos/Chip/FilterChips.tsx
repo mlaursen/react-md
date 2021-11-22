@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react";
 import { Chip } from "@react-md/chip";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./FilterChips.module.scss";
 
@@ -17,9 +17,9 @@ export default function FilterChips(): ReactElement {
   const [selectedAmenities, setSelected] = useState<string[]>([]);
   return (
     <>
-      <Text type="headline-5" className={styles.header}>
+      <Typography type="headline-5" className={styles.header}>
         Choose amenities
-      </Text>
+      </Typography>
       <div className={styles.container}>
         {amenities.map((amenity) => {
           const selected = selectedAmenities.includes(amenity);

@@ -8,7 +8,7 @@ import {
 } from "@react-md/card";
 import { Divider } from "@react-md/divider";
 import { MediaContainer } from "@react-md/media";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Code from "components/Code";
 import LinkButton from "components/LinkButton";
@@ -26,12 +26,12 @@ export default function GettingStarted(): ReactElement {
         <Image src={customization} />
       </MediaContainer>
       <CardContent disableSecondaryColor>
-        <Text>
+        <Typography>
           Now that you&apos;ve gotten the hang of using components from{" "}
           <Code>react-md</Code>, it&apos;s time to make your app feel unique!
           There&apos;s no point in having every app look exactly the same
           especially when you need to add your company&apos;s branding.
-        </Text>
+        </Typography>
       </CardContent>
       <Divider />
       <CardActions>

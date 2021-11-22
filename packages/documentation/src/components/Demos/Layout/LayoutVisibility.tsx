@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { isPersistentLayout, useLayoutConfig } from "@react-md/layout";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import Blockquote from "components/Blockquote";
 import CodeBlock from "components/CodeBlock";
@@ -23,10 +23,10 @@ export default function LayoutVisibility(): ReactElement {
       <CodeBlock language="typescript">{code}</CodeBlock>
       {isPersistentLayout(remaining.layout) && (
         <Blockquote>
-          <Text>
+          <Typography>
             The visibility cannot be changed for persistent layouts so the
             buttons will do nothing.
-          </Text>
+          </Typography>
         </Blockquote>
       )}
       <Button onClick={showNav}>Show</Button>

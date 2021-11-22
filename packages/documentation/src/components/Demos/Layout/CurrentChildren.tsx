@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { Grid } from "@react-md/utils";
 
 import Code from "components/Code";
@@ -13,12 +13,12 @@ export function CurrentChildren({
 }: CurrentChildrenProps): ReactElement | null {
   return (
     <Grid columns={1}>
-      <Text type="headline-3" margin="none">
+      <Typography type="headline-3" margin="none">
         Contents
-      </Text>
-      <Text margin="none">
+      </Typography>
+      <Typography margin="none">
         The current route is: <Code>{route}</Code>
-      </Text>
+      </Typography>
     </Grid>
   );
 }

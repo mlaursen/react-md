@@ -11,7 +11,7 @@ import {
   CheckBoxSVGIcon,
   ArrowDropDownFontIcon,
 } from "@react-md/material-icons";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { Grid } from "@react-md/utils";
 
 // Note: If you want to enforce all icons should be updated, you can
@@ -30,7 +30,7 @@ function PulledFromContext(): ReactElement {
   return (
     <div className="rmd-text-icon-spacing">
       <TextIconSpacing icon={icon} iconAfter>
-        <Text>Dropdown Icon</Text>
+        <Typography>Dropdown Icon</Typography>
       </TextIconSpacing>
     </div>
   );

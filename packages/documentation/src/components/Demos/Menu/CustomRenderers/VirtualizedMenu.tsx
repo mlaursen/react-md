@@ -3,7 +3,7 @@ import { List, ListRowRenderer } from "react-virtualized";
 import scssVariables from "@react-md/list/dist/scssVariables";
 import { ListItemAddonType } from "@react-md/list";
 import { DropdownMenu, Menu, MenuItem, MenuRenderer } from "@react-md/menu";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { unitToNumber, useAppSize } from "@react-md/utils";
 
 import Code from "components/Code";
@@ -62,9 +62,9 @@ export default function VirtualizedMenu({
 
   return (
     <>
-      <Text>
+      <Typography>
         Last clicked value: <Code>{value}</Code>
-      </Text>
+      </Typography>
       <DropdownMenu
         id="virtualized-example"
         items={items}

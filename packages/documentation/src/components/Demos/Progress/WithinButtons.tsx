@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from "react";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import AsyncButton, { AsyncButtonProps } from "./AsyncButton";
 import Container from "./Container";
@@ -14,9 +14,9 @@ function Example({ children, ...props }: ExampleProps): ReactElement {
 
   return (
     <Container>
-      <Text type="headline-6" margin="none">
+      <Typography type="headline-6" margin="none">
         {children}
-      </Text>
+      </Typography>
       <AsyncButton {...props} onClick={toggle} loading={toggled} />
       <AsyncButton
         {...props}

@@ -11,10 +11,12 @@ import { bem, ClassNameCloneableChild } from "@react-md/utils";
 
 /**
  * A union of all the material design provided typography styles. When used with
- * the Text component, this will generate the correct typography className to
- * apply and determine what component to be rendered as if none was provided.
+ * the Typography component, this will generate the correct typography className
+ * to apply and determine what component to be rendered as if none was provided.
+ *
+ * @remarks \@since 4.0.0
  */
-export type TextTypes =
+export type TypographyType =
   | "headline-1"
   | "headline-2"
   | "headline-3"
@@ -50,11 +52,13 @@ export type TextColor =
 export type FontStyle = "italic" | "oblique" | "normal";
 
 /**
- * A union of the default supported elements that the `Text` component can be
- * rendered as. This is mostly used for adding the correct HTMLAttributes and
- * enabling the forward ref.
+ * A union of the default supported elements that the `Typography` component can
+ * be rendered as. This is mostly used for adding the correct `HTMLAttributes`
+ * and enabling the forward ref.
+ *
+ * @remarks \@since 4.0.0
  */
-export type TextElement =
+export type TypographyHTMLElement =
   | HTMLHeadingElement
   | HTMLParagraphElement
   | HTMLSpanElement
@@ -64,9 +68,12 @@ export type TextElement =
   | HTMLBodyElement
   | HTMLHtmlElement;
 
-export type TextRenderFunction = (props: { className: string }) => ReactElement;
+/** @remarks \@since 4.0.0 */
+export type TypographyRenderFunction = (props: {
+  className: string;
+}) => ReactElement;
 
-export interface TextProps extends HTMLAttributes<TextElement> {
+export interface TypographyProps extends HTMLAttributes<TypographyHTMLElement> {
   /**
    * An optional className to merge into typography styles.
    */
@@ -99,14 +106,14 @@ export interface TextProps extends HTMLAttributes<TextElement> {
    * a className that can be applied to any element and have the correct
    * typography.
    */
-  type?: TextTypes;
+  type?: TypographyType;
 
   /**
    * Either a child render function or a react node. If this is not the child
    * render function, a different wrapper component can be provided using the
    * `component` prop.
    */
-  children?: ReactNode | ClassNameCloneableChild | TextRenderFunction;
+  children?: ReactNode | ClassNameCloneableChild | TypographyRenderFunction;
 
   /**
    * An optional text alignment to apply.
@@ -156,7 +163,7 @@ export interface TextProps extends HTMLAttributes<TextElement> {
 
 function getComponent(
   component: ElementType | null,
-  type: TextTypes
+  type: TypographyType
 ): ElementType {
   if (component) {
     return component;
@@ -192,7 +199,7 @@ function getComponent(
 const block = bem("rmd-typography");
 
 /**
- * The `Text` component is used to render text with the material design
+ * The `Typography` component is used to render text with the material design
  * typography styles applied.  By default, everything will be rendered in a
  * `<p>` tag with the normal paragraph styles.
  *
@@ -217,57 +224,59 @@ const block = bem("rmd-typography");
  * NOTE: if the `component` prop is not `null`, this logic will be ignored and
  * the provided `component` will be used instead.
  */
-export const Text = forwardRef<TextElement, TextProps>(function Text(
-  {
-    className: propClassName,
-    children,
-    type = "body-1",
-    component = null,
-    align,
-    color,
-    decoration,
-    transform,
-    weight,
-    fontStyle,
-    margin = "initial",
-    ...props
-  },
-  ref
-) {
-  const className = cn(
-    block({
-      [type]: true,
-      "no-margin": margin === "none",
-      "no-margin-top": margin === "bottom",
-      "no-margin-bottom": margin === "top",
-      [align || ""]: align,
-      [decoration || ""]: decoration && decoration !== "overline",
-      [color || ""]: color,
-      // only because "overline" is technically one of the valid material design types :/
-      "overline-decoration": decoration === "overline",
-      [transform || ""]: transform,
-      [weight || ""]: weight,
-      [fontStyle || ""]: fontStyle,
-    }),
-    propClassName
-  );
-  if (typeof children === "function") {
-    return (children as TextRenderFunction)({ className });
-  }
+export const Typography = forwardRef<TypographyHTMLElement, TypographyProps>(
+  function Typography(
+    {
+      className: propClassName,
+      children,
+      type = "body-1",
+      component = null,
+      align,
+      color,
+      decoration,
+      transform,
+      weight,
+      fontStyle,
+      margin = "initial",
+      ...props
+    },
+    ref
+  ) {
+    const className = cn(
+      block({
+        [type]: true,
+        "no-margin": margin === "none",
+        "no-margin-top": margin === "bottom",
+        "no-margin-bottom": margin === "top",
+        [align || ""]: align,
+        [decoration || ""]: decoration && decoration !== "overline",
+        [color || ""]: color,
+        // only because "overline" is technically one of the valid material design types :/
+        "overline-decoration": decoration === "overline",
+        [transform || ""]: transform,
+        [weight || ""]: weight,
+        [fontStyle || ""]: fontStyle,
+      }),
+      propClassName
+    );
+    if (typeof children === "function") {
+      return (children as TypographyRenderFunction)({ className });
+    }
 
-  return createElement(
-    getComponent(component, type),
-    { ...props, className, ref },
-    children
-  );
-});
+    return createElement(
+      getComponent(component, type),
+      { ...props, className, ref },
+      children
+    );
+  }
+);
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "production") {
   try {
     const PropTypes = require("prop-types");
 
-    Text.propTypes = {
+    Typography.propTypes = {
       className: PropTypes.string,
       type: PropTypes.oneOf([
         "headline-1",

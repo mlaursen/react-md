@@ -7,7 +7,7 @@ import {
   CardActions,
   CardHeader,
 } from "@react-md/card";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import Container from "./Container";
 
 export default function WithActions(): ReactElement {
@@ -18,7 +18,7 @@ export default function WithActions(): ReactElement {
           <CardTitle>This is a title</CardTitle>
         </CardHeader>
         <CardContent>
-          <Text>
+          <Typography>
             Sed molestie finibus varius. Maecenas tincidunt eu quam eget
             sodales. Fusce ut lacus luctus, aliquam erat eu, fringilla libero.
             Nulla rhoncus mi nec orci ultricies ultricies. Aenean et hendrerit
@@ -30,7 +30,7 @@ export default function WithActions(): ReactElement {
             efficitur turpis. In non suscipit tellus. Vivamus ac volutpat velit,
             sit amet faucibus nisi. Pellentesque condimentum dignissim augue,
             sit amet porta ipsum feugiat nec.
-          </Text>
+          </Typography>
         </CardContent>
         <CardActions>
           <Button>Action 1</Button>

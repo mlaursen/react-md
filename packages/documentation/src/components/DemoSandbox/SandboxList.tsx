@@ -9,7 +9,7 @@ import {
 } from "@react-md/card";
 import { TextIconSpacing } from "@react-md/icon";
 import { CodeSVGIcon, OpenInBrowserSVGIcon } from "@react-md/material-icons";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import LinkButton from "components/LinkButton";
 import sandboxes from "constants/sandboxes";
@@ -44,9 +44,9 @@ export default function SandboxList(): ReactElement {
                 return (
                   <Fragment key={name}>
                     <CardContent>
-                      <Text type="headline-6" margin="none">
+                      <Typography type="headline-6" margin="none">
                         {name}
-                      </Text>
+                      </Typography>
                     </CardContent>
                     <CardActions>
                       <LinkButton href={href}>

@@ -10,7 +10,7 @@ import { TextIconSpacing } from "@react-md/icon";
 import { List, ListItem } from "@react-md/list";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 import { getFixedPosition, ScrollListener, useToggle } from "@react-md/utils";
 
 import styles from "./SimpleExample.module.scss";
@@ -80,7 +80,7 @@ export default function SimpleExample(): ReactElement {
           ))}
         </List>
       </Overlay>
-      <Text>
+      <Typography>
         In condimentum ultrices metus ut viverra. In faucibus erat eu massa
         tincidunt finibus. Donec eget quam venenatis, venenatis arcu sed, mollis
         tellus. Mauris massa nunc, condimentum quis nisi vel, fermentum
@@ -89,7 +89,7 @@ export default function SimpleExample(): ReactElement {
         consectetur ipsum finibus. Aenean est ligula, aliquet ut nunc vitae,
         volutpat pharetra tortor. Cras ipsum mi, posuere eu diam a, cursus
         euismod mi. Ut vitae eros nibh.
-      </Text>
+      </Typography>
     </div>
   );
 }

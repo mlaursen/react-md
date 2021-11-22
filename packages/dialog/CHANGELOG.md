@@ -419,7 +419,7 @@ import {
   DialogContent,
   DialogFooter,
 } from "@react-md/dialog";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 const App = () => (
   <Dialog {...props}>
@@ -427,7 +427,7 @@ const App = () => (
       <DialogHeader>
         <DialogTitle>Title</DialogTitle>
       </DialogHeader>
-      <Text>Here is some text that should go in the dialog.</Text>
+      <Typography>Here is some text that should go in the dialog.</Typography>
       <DialogFooter>
         <Button id="close-dialog">Close</Button>
       </DialogFooter>

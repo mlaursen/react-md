@@ -2,7 +2,7 @@ import { Fragment, ReactElement } from "react";
 import filesize from "filesize";
 import { FileValidationError, isFileSizeError } from "@react-md/form";
 import { List, SimpleListItem } from "@react-md/list";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import ErrorHeader from "./ErrorHeader";
 
@@ -34,8 +34,8 @@ export default function ErrorRenderer({
   // error
   /* ^ is a {@link FileAccessError} */
   return (
-    <Text margin="none">
+    <Typography margin="none">
       File access is restricted. Try a different file or folder.
-    </Text>
+    </Typography>
   );
 }

@@ -1,7 +1,7 @@
 import { Fragment, ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { CrossFade } from "@react-md/transition";
-import { Text } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import styles from "./PanelContent.module.scss";
 
@@ -19,9 +19,9 @@ export default function PanelContent({
   return (
     <Container>
       <div className={styles.container}>
-        <Text type="headline-4" className={styles.block}>
+        <Typography type="headline-4" className={styles.block}>
           {`Panel ${i + 1}`}
-        </Text>
+        </Typography>
         <Button
           id={`panel-content-button-${i + 1}-1`}
           themeType="contained"
