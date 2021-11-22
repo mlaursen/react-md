@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Layout from "components/Layout";

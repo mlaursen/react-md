@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react"
+import type { ReactElement } from "react"
 import { Text, TextContainer } from "react-md"
 
 export default function index(): ReactElement {

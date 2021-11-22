@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   ArrowDropDownSVGIcon,

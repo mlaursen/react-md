@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { TextContainer, Text } from "react-md";
 
 export default function Home(): ReactElement {
