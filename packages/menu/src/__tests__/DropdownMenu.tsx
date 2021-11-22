@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React, { CSSProperties } from "react";
+import { CSSProperties } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import { DropdownMenu } from "../DropdownMenu";

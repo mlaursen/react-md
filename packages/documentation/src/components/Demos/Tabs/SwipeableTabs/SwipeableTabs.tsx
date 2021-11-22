@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { TabPanels, Tabs, TabsManager } from "@react-md/tabs";
 
 import SwipeablePanel from "./SwipeablePanel";

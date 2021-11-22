@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
 import {
   ConditionalPortal,

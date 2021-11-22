@@ -37,7 +37,7 @@ and more customization information, but an example usage is shown below.
 ### Usage with react-router
 
 ```tsx
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { render } from "react-dom";
 import {
   Link as ReactRouterLink,
@@ -82,7 +82,7 @@ built-in to help out! However, this component can also be used within full page
 dialogs or custom screens to be able to jump to a specific element in the page.
 
 ```tsx
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { render } from "react-dom";
 import {
   Dialog,

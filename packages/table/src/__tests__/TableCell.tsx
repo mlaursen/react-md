@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { render, RenderResult } from "@testing-library/react";
 
 import { TableCell } from "../TableCell";

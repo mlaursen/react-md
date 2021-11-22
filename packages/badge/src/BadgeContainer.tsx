@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
+import { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 

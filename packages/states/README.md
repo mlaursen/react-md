@@ -45,7 +45,6 @@ tree since this component will modify the base `document.body` element with a
 different `className` to help determine the current interaction mode.
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { StatesConfig } from "@react-md/states";
 
@@ -66,7 +65,6 @@ fallback to the default "pressed" states which will just change background color
 temporarily instead.
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { StatesConfig } from "@react-md/states";
 
@@ -95,7 +93,7 @@ return an object containing:
   to the DOM element so all the interaction states can happen.
 
 ```tsx
-import React, { HTMLAttributes, ReactElement } from "react";
+import type { HTMLAttributes, ReactElement } from "react";
 import { render } from "react-dom";
 import {
   StatesConfig,

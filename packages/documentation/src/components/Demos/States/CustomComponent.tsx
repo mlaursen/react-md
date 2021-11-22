@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, ReactElement } from "react";
+import { ButtonHTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 import {
   InteractionStatesOptions,

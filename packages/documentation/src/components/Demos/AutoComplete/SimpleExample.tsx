@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { AutoComplete } from "@react-md/autocomplete";
 
 import ExampleGrid from "./ExampleGrid";

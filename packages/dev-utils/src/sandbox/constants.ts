@@ -35,8 +35,7 @@ export const DEV_DEPENDENCIES: readonly string[] = [
   "typescript",
 ];
 
-export const DEMO_INDEX = `import React from "react";
-import { render } from "react-dom";
+export const DEMO_INDEX = `import { render } from "react-dom";
 import { Configuration } from "@react-md/layout";
 
 // the styles are actually loaded as the pre-compiled themes in the index.html

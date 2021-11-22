@@ -1,4 +1,4 @@
-import React, { ReactElement, HTMLAttributes } from "react";
+import { ReactElement, HTMLAttributes } from "react";
 import cn from "classnames";
 
 import styles from "./Logo.module.scss";

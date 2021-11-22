@@ -32,7 +32,7 @@ below.
 ## Usage
 
 ```tsx
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 import { Tooltipped } from "@react-md/tooltip";

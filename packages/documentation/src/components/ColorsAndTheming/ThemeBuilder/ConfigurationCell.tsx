@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { GridCell } from "@react-md/utils";
 
 export interface ConfigurationCellProps {

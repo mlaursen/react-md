@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactElement } from "react";
+import { HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 
 import styles from "./Container.module.scss";

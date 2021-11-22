@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";

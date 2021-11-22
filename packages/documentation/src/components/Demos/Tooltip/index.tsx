@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { HoverModeProvider } from "@react-md/utils";
 
 import description from "./README.md";

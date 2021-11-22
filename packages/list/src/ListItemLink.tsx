@@ -1,4 +1,4 @@
-import React, { AnchorHTMLAttributes, ElementType, forwardRef } from "react";
+import { AnchorHTMLAttributes, ElementType, forwardRef } from "react";
 import cn from "classnames";
 import {
   InteractionStatesOptions,

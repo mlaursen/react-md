@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Switch, useChecked } from "@react-md/form";
 
 import Heading from "components/Heading";

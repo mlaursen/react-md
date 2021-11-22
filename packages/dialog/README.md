@@ -49,7 +49,6 @@ This package exports multiple components to create your dialog as well as a
 context component for handling multiple dialogs at once within your page.
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 import {

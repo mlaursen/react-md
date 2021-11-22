@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Link } from "@react-md/link";
 import { TextIconSpacing } from "@react-md/icon";
 

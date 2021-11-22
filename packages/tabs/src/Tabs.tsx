@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 import { Tab } from "./Tab";
 import { TabsList, TabsListProps } from "./TabsList";

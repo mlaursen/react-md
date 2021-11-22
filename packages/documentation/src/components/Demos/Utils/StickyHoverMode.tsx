@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from "react";
+import { ReactElement, useRef } from "react";
 import { Button } from "@react-md/button";
 import { DialogContent, FixedDialog } from "@react-md/dialog";
 import { BELOW_CENTER_ANCHOR, useHoverMode } from "@react-md/utils";

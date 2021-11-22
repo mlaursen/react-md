@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Card, CardContent, CardTitle } from "@react-md/card";
 import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { Text } from "@react-md/typography";

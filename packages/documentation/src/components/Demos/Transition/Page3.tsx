@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes } from "react";
+import { forwardRef, HTMLAttributes } from "react";
 import { Text } from "@react-md/typography";
 
 export default forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(

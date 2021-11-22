@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { MetadataType } from "constants/meta/types";
 import { toTitle } from "utils/toTitle";
 

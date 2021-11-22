@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { render } from "@testing-library/react";
 
 import { useOnUnmount } from "../useOnUnmount";

@@ -63,7 +63,6 @@ general `Configuration` and `Layout` to our app. Start by editing the main
 `src/index.js` to use the `Configuration` component:
 
 ```diff
- import React from 'react';
  import ReactDOM from 'react-dom';
 +import { Configuration } from 'react-md';
  import './index.css';
@@ -139,7 +138,6 @@ will import the `react-md` scss library as well as generate the default styles:
 Next, update `src/App.js` to import this file.
 
 ```diff
- import React from 'react';
  import logo from './logo.svg';
  import { Layout, useLayoutNavigation } from 'react-md';
  import './App.css';

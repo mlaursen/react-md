@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import { createRef } from "react";
 import { render } from "@testing-library/react";
 
 import { Avatar } from "../Avatar";

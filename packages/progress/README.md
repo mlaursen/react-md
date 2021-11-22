@@ -37,7 +37,6 @@ an `id` to the progress component as well as updating the main loading area to
 have `aria-buys="true"` and `aria-describedby="PROGRESS_ID"`:
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { CircularProgress, LinearProgress } from "@react-md/progress";
 import { useToggle } from "@react-md/utils";

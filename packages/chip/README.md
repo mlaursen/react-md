@@ -23,7 +23,7 @@ and more customization information, but an example usage is shown below.
 ## Usage
 
 ```tsx
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Chip } from "@react-md/chip";
 
 export default function Example(): ReactElement {

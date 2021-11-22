@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
-import React, {
+import {
   Children,
   cloneElement,
   forwardRef,

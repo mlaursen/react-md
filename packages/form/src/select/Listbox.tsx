@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, useCallback, useRef } from "react";
+import { forwardRef, HTMLAttributes, useCallback, useRef } from "react";
 import cn from "classnames";
 import { List, ListElement } from "@react-md/list";
 import { RenderConditionalPortalProps } from "@react-md/portal";

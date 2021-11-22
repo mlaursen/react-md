@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement, ReactNode } from "react";
+import { CSSProperties, ReactElement, ReactNode } from "react";
 import cn from "classnames";
 
 export interface HighlightedResultProps {

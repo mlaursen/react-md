@@ -34,7 +34,6 @@ and more customization information, but an example usage is shown below.
 ## Usage
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { Divider } from "@react-md/divider";
 import { List, ListItem } from "@react-md/list";

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { useRippleTransition } from "./reducer";
 import { RippleContainer } from "./RippleContainer";

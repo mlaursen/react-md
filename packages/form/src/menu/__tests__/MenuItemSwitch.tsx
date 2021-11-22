@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { DropdownMenu } from "@react-md/menu";
 

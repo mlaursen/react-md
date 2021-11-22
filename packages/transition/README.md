@@ -56,7 +56,7 @@ below.
 ## Usage
 
 ```tsx
-import React, { useState } from "react";
+import type { useState } from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 import { Collapse } from "@react-md/transition";

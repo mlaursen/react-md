@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import React, { useState } from "react";
+import { useState } from "react";
 import { render, fireEvent } from "@testing-library/react";
 
 import { Select } from "../Select";

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import cn from "classnames";
 import { Text } from "@react-md/typography";
 

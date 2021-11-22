@@ -1,4 +1,3 @@
-import React from "react";
 import { LayoutNavigationTree } from "@react-md/layout";
 import {
   BuildSVGIcon,

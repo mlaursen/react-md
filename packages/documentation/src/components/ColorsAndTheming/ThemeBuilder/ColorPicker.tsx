@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Select, ListboxProps } from "@react-md/form";
 
 interface Color {

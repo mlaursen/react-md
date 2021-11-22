@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { CircularProgress } from "@react-md/progress";
 import { TabPanel, TabPanelProps } from "@react-md/tabs";

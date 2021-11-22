@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { AppBarAction } from "@react-md/app-bar";
 import {
   FormatAlignLeftSVGIcon,

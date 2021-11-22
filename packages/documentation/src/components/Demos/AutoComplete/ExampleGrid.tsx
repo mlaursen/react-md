@@ -1,4 +1,4 @@
-import React, { Children, ReactElement, ReactNode } from "react";
+import { Children, ReactElement, ReactNode } from "react";
 import { GridList, GridListCell } from "@react-md/utils";
 
 export default function ExampleGrid({

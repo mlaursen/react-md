@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { Button, ButtonProps } from "@react-md/button";
 
 import {

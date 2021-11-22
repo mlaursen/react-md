@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement } from "react";
+import { ReactNode, ReactElement } from "react";
 import { BaseTreeItem } from "@react-md/tree";
 import { PropsWithRef } from "@react-md/utils";
 

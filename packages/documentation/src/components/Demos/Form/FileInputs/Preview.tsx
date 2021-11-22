@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import { FileReaderResult, isImageFile, isVideoFile } from "@react-md/form";
 import { ErrorSVGIcon } from "@react-md/material-icons";
 import { MediaOverlay } from "@react-md/media";

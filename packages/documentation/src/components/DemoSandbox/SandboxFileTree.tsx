@@ -1,4 +1,4 @@
-import React, { ElementType, ReactElement, useMemo } from "react";
+import { ElementType, ReactElement, useMemo } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import {

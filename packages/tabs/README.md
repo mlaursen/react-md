@@ -31,7 +31,7 @@ and more customization information, but an example usage is shown below.
 ## Usage
 
 ```tsx
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { render } from "react-dom";
 import { TabsManager, Tabs, TabPanels, TabPanel } from "@react-md/tabs";
 import { Text } from "@react-md/typography";

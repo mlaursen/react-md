@@ -2,7 +2,7 @@
 // disabled the no-non-null-assertions since the refs are guarenteed to not be
 // null by the time of running and this will eventually be re-written once I
 // updated the `@react-md/transition` package for the new `nodeRef` API
-import React, { ReactElement, useCallback, useRef, useState } from "react";
+import { ReactElement, useCallback, useRef, useState } from "react";
 import CSSTransition, {
   CSSTransitionClassNames,
 } from "react-transition-group/CSSTransition";

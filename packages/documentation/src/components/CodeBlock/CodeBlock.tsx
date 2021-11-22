@@ -1,9 +1,4 @@
-import React, {
-  DOMAttributes,
-  forwardRef,
-  HTMLAttributes,
-  ReactNode,
-} from "react";
+import { DOMAttributes, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 
 import Code from "../Code";

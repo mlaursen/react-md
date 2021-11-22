@@ -49,7 +49,6 @@ be mounted near the root of your app as it is a nice wrapper for all the
 required React Context providers to work within `react-md`.
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { Configuration } from "@react-md/layout";
 
@@ -72,7 +71,7 @@ you'll want to get the pathname from your favorite routing library
 that the current route will automatically be selected.
 
 ```tsx
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 import {
   Layout,
   LayoutNavigationTree,

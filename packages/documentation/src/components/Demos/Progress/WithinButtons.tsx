@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { Text } from "@react-md/typography";
 
 import AsyncButton, { AsyncButtonProps } from "./AsyncButton";

@@ -1,4 +1,3 @@
-import React from "react";
 import { NextFC } from "next";
 
 import Blog from "components/Blog";

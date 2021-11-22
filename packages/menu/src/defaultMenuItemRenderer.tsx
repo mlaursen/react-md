@@ -1,4 +1,4 @@
-import React, { cloneElement, isValidElement, ReactNode } from "react";
+import { cloneElement, isValidElement, ReactNode } from "react";
 
 import { MenuItem, MenuItemProps } from "./MenuItem";
 import { MenuItemLink, MenuItemLinkWithComponentProps } from "./MenuItemLink";

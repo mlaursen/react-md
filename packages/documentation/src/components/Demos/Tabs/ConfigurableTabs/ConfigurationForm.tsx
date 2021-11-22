@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Checkbox, Fieldset, Form, Radio } from "@react-md/form";
 import { Grid } from "@react-md/utils";
 

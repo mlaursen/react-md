@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 import cn from "classnames";
 import { render } from "@testing-library/react";
 
@@ -39,7 +39,7 @@ describe("TextContainer", () => {
   });
 
   it("should be able to render as a class component", () => {
-    class Component extends React.Component<any> {
+    class TestComponent extends Component<any> {
       public render() {
         const { children, className } = this.props;
         return (
@@ -51,7 +51,7 @@ describe("TextContainer", () => {
     }
 
     const { getByTestId } = render(
-      <TextContainer component={Component}>Hello, world!</TextContainer>
+      <TextContainer component={TestComponent}>Hello, world!</TextContainer>
     );
     const container = getByTestId("container");
     expect(container.tagName).toBe("SECTION");

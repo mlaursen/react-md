@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import cn from "classnames";
 import { defaults } from "lodash";
 import Head from "next/head";

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";

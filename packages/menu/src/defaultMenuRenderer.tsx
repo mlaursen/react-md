@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement, ReactNode } from "react";
+import { CSSProperties, ReactElement, ReactNode } from "react";
 import { List } from "@react-md/list";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import { LabelRequiredForA11y } from "@react-md/utils";

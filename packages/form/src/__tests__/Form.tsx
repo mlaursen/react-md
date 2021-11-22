@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import { FormEvent } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import { Form } from "../Form";

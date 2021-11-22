@@ -1,4 +1,4 @@
-import React, { ReactElement, Ref } from "react";
+import { createRef, ReactElement, Ref } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
@@ -64,7 +64,7 @@ describe("useKeyboardClickPolyfill", () => {
   });
 
   it("should click the element if the enter key is pressed", () => {
-    const ref = React.createRef<HTMLLIElement>();
+    const ref = createRef<HTMLLIElement>();
     const { getByText } = render(<Test liRef={ref} />);
     expect(ref.current).not.toBeNull();
     const clickSpy = jest.spyOn(ref.current as HTMLLIElement, "click");
@@ -74,7 +74,7 @@ describe("useKeyboardClickPolyfill", () => {
   });
 
   it("should click the element if the space key is pressed as well as call preventDefault", () => {
-    const ref = React.createRef<HTMLLIElement>();
+    const ref = createRef<HTMLLIElement>();
     const { getByText } = render(<Test liRef={ref} />);
     expect(ref.current).not.toBeNull();
     const clickSpy = jest.spyOn(ref.current as HTMLLIElement, "click");
@@ -86,7 +86,7 @@ describe("useKeyboardClickPolyfill", () => {
   });
 
   it("should not click with the space key if the disable spacebar click value is enabled", () => {
-    const ref = React.createRef<HTMLLIElement>();
+    const ref = createRef<HTMLLIElement>();
     const { getByText } = render(<Test liRef={ref} disableSpacebarClick />);
     expect(ref.current).not.toBeNull();
     const clickSpy = jest.spyOn(ref.current as HTMLLIElement, "click");
@@ -115,7 +115,7 @@ describe("useKeyboardClickPolyfill", () => {
         </a>
       );
     }
-    const ref = React.createRef<HTMLAnchorElement>();
+    const ref = createRef<HTMLAnchorElement>();
     const { getByText, rerender } = render(<TestTwo aRef={ref} />);
     expect(ref.current).not.toBeNull();
     const clickSpy = jest.spyOn(ref.current as HTMLAnchorElement, "click");

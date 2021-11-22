@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, {
+import {
   createContext,
   ReactElement,
   ReactNode,

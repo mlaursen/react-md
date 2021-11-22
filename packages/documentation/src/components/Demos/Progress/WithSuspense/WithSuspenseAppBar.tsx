@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { AppBar, AppBarAction, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { AddSVGIcon, ShareSVGIcon } from "@react-md/material-icons";

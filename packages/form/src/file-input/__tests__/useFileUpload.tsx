@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement, useEffect } from "react";
+import { Fragment, ReactElement, useEffect } from "react";
 import filesize from "filesize";
 import {
   act,

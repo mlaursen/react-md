@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactNode } from "react";
+import { MouseEvent, ReactNode } from "react";
 import { render, fireEvent, act } from "@testing-library/react";
 import { SimplePosition, UserInteractionModeListener } from "@react-md/utils";
 

@@ -441,7 +441,6 @@ used to implement all the pre-made icons, so it felt easier to keep the icon
 support omitted.
 
 ```tsx
-import React from "react";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { InfoSVGIcon } from "@react-md/material-icons";

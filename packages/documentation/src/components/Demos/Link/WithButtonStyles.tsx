@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import cn from "classnames";
 import { ButtonThemeProps, buttonThemeClassNames } from "@react-md/button";
 import { Link, LinkProps } from "@react-md/link";

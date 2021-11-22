@@ -1,9 +1,4 @@
-import React, {
-  ElementType,
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-} from "react";
+import { ElementType, forwardRef, HTMLAttributes, ReactElement } from "react";
 
 import { useEnsuredRef } from "../useEnsuredRef";
 import { useFocusOnMount } from "./useFocusOnMount";

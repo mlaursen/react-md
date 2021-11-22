@@ -32,7 +32,6 @@ However, it is recommended to also provide a `label` and `placeholder` text to
 help the user understand this component.
 
 ```tsx
-import React from "react";
 import { AutoComplete } from "@react-md/autocomplete";
 
 const fruits = [

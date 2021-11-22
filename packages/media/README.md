@@ -24,7 +24,6 @@ below.
 ## Usage
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { MediaContainer, MediaOverlay } from "@react-md/media";
 

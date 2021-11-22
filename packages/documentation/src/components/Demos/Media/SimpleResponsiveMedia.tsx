@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { MediaContainer } from "@react-md/media";
 
 import styles from "./Container.module.scss";

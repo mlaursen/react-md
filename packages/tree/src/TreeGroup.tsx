@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { List, ListElement, ListProps } from "@react-md/list";
 import { Collapse, CollapseProps } from "@react-md/transition";

@@ -1,5 +1,5 @@
 /* this file is automatically updated by `yarn dev-utils libsize` and should not be updated manually */
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import TableCellList from "./TableCellList";
 

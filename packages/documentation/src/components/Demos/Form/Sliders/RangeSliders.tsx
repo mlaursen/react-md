@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { RangeSlider, useRangeSlider } from "@react-md/form";
 import { useId } from "components/IdProvider";
 

@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { LinkSVGIcon } from "@react-md/material-icons";
 import { MenuItemLink, MenuItemLinkProps } from "@react-md/menu";
 

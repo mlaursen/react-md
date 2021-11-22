@@ -39,7 +39,6 @@ The primary use of this package is to create a fixed header that includes your
 app's logo, title, mobile navigation, or common actions. Here's a quick example:
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import {
   AppBar,

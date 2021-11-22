@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Checkbox, useChecked } from "@react-md/form";

@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  MouseEvent,
-  ReactNode,
-} from "react";
+import { forwardRef, HTMLAttributes, MouseEvent, ReactNode } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import {

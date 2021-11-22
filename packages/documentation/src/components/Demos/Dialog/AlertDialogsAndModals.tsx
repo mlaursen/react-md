@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogFooter } from "@react-md/dialog";
 import { TextArea } from "@react-md/form";

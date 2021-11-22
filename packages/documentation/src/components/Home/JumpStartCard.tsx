@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { Card } from "@react-md/card";
 
 import styles from "./JumpStartCard.module.scss";

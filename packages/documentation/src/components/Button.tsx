@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { Button as RMDButton, ButtonProps } from "@react-md/button";
 import { Tooltipped } from "@react-md/tooltip";
 

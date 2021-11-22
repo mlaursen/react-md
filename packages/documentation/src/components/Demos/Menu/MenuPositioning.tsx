@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import { upperFirst } from "lodash";
 import { Checkbox, Select, useChecked } from "@react-md/form";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";

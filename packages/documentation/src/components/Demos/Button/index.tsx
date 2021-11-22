@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import description from "./README.md";
 import DemoPage from "../DemoPage";

@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useState } from "react";
+import { ReactElement, useCallback, useState } from "react";
 import { AutoComplete, AutoCompleteHandler } from "@react-md/autocomplete";
 import {
   AppBarNav,

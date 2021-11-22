@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from "react";
+import { forwardRef, useCallback } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import { ListElement, ListItemChildren } from "@react-md/list";

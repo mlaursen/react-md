@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useMemo } from "react";
+import { ReactElement, useCallback, useMemo } from "react";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useRouter } from "next/router";
 

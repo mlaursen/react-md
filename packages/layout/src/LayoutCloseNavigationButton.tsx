@@ -1,4 +1,4 @@
-import React, { forwardRef, MouseEvent, useCallback } from "react";
+import { forwardRef, MouseEvent, useCallback } from "react";
 import { AppBarAction, AppBarActionProps } from "@react-md/app-bar";
 import { useIcon } from "@react-md/icon";
 

@@ -4,7 +4,7 @@
     "module": "esnext",
     "sourceMap": true,
     "composite": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "skipLibCheck": true,
     "strict": true,
     "esModuleInterop": true,

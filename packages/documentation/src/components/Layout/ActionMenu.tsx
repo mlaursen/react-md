@@ -1,6 +1,6 @@
 // keys aren't required for the dropdown menu items
 /* eslint-disable react/jsx-key */
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import scssVariables from "@react-md/app-bar/dist/scssVariables";
 import { MoreVertSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu } from "@react-md/menu";

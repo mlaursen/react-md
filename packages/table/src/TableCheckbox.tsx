@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef, Ref, TdHTMLAttributes } from "react";
+import { CSSProperties, forwardRef, Ref, TdHTMLAttributes } from "react";
 import cn from "classnames";
 import { Checkbox, CheckboxProps } from "@react-md/form";
 

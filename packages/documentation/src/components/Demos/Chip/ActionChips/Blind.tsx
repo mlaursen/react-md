@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from "react";
+import { ReactElement, useRef } from "react";
 import cn from "classnames";
 import CSSTransition, {
   CSSTransitionClassNames,

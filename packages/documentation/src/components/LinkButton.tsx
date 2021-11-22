@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
 import { useInteractionStates } from "@react-md/states";
 

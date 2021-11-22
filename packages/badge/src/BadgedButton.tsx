@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef, ReactNode, Ref } from "react";
+import { CSSProperties, forwardRef, ReactNode, Ref } from "react";
 import cn from "classnames";
 import { Button, ButtonProps } from "@react-md/button";
 import { useIcon } from "@react-md/icon";

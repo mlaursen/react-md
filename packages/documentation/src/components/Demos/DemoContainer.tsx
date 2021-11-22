@@ -1,9 +1,4 @@
-import React, {
-  ElementType,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-} from "react";
+import { ElementType, HTMLAttributes, ReactElement, ReactNode } from "react";
 
 import styles from "./DemoContainer.module.scss";
 

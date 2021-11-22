@@ -1,4 +1,3 @@
-import React from "react";
 import { NextFC } from "next";
 
 import { MarkdownPage } from "components/Markdown";

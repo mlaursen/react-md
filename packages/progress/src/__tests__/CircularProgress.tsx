@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import { CSSProperties } from "react";
 import { render } from "@testing-library/react";
 
 import { CircularProgress } from "../CircularProgress";

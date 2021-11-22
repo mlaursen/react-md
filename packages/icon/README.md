@@ -45,7 +45,6 @@ The `TextIconSpacing` component is used to add spacing between an icon and some
 to animate an icon rotation such as expander or collapse icons.
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { FontIcon, TextIconSpacing } from "@react-md/icon";
 import { Text } from "@react-md/typography";
@@ -79,7 +78,6 @@ components through an external script or using font icons. However, here are a
 few examples of using the `FontIcon` and `SVGIcon` components:
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { FontIcon, SVGIcon } from "@react-md/icon";
 

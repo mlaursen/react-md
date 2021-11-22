@@ -1,5 +1,5 @@
 // source: https://konpa.github.io/devicon/
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
 export default function Html5SVGIcon(props: SVGIconProps): ReactElement {

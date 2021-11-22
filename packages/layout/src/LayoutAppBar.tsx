@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { AppBar, AppBarProps } from "@react-md/app-bar";
 
 import { LayoutAppBarTitle } from "./LayoutAppBarTitle";

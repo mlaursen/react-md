@@ -26,7 +26,7 @@ function createIconFile(
   const element = iconType === "SVG" ? "SVGSVGElement" : "HTMLElement";
   return prettier.format(
     `// This is a generated file from running the "createIcons" script. This file should not be updated manually.
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 import { ${iconType}Icon, ${iconType}IconProps } from "@react-md/icon";
 

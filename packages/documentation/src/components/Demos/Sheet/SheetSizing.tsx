@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { DialogContent } from "@react-md/dialog";

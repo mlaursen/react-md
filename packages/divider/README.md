@@ -37,7 +37,6 @@ One of the main use-cases will probably be to display a list with specific
 dividers or to add dividers between page elements:
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { Divider } from "@react-md/divider";
 import { List, ListItem } from "@react-md/list";

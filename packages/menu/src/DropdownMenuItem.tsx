@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import { IconRotator, useIcon } from "@react-md/icon";
 import { BELOW_INNER_RIGHT_ANCHOR, TOP_RIGHT_ANCHOR } from "@react-md/utils";
 

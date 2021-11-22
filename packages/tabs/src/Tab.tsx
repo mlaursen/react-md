@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes } from "react";
+import { forwardRef, HTMLAttributes } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import {

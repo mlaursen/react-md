@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from "react";
+import { ReactElement, useRef } from "react";
 import { render } from "@testing-library/react";
 import { DATA_RMD_NOSCROLL } from "@react-md/utils";
 

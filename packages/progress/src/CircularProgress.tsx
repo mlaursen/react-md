@@ -1,9 +1,4 @@
-import React, {
-  CSSProperties,
-  forwardRef,
-  HTMLAttributes,
-  useMemo,
-} from "react";
+import { CSSProperties, forwardRef, HTMLAttributes, useMemo } from "react";
 import cn from "classnames";
 import { bem, getPercentage } from "@react-md/utils";
 

@@ -73,8 +73,8 @@
     "rollup-plugin-terser": "^7.0.0"
   },
   "peerDependencies": {
-    "react": ">= 16.8",
-    "react-dom": ">= 16.8"
+    "react": ">= 16.14",
+    "react-dom": ">= 16.14"
   },
   "publishConfig": {
     "access": "public"

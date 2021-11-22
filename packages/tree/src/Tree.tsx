@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  MutableRefObject,
-  ReactElement,
-  ReactNode,
-} from "react";
+import { forwardRef, MutableRefObject, ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import { List, ListElement } from "@react-md/list";

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { FontIcon, SVGIcon } from "@react-md/icon";
 import { Text } from "@react-md/typography";
 

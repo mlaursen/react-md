@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useMemo } from "react";
+import { ReactElement, ReactNode, useMemo } from "react";
 
 import { ThemeMode } from "./colors";
 import { ThemeContext } from "./useTheme";

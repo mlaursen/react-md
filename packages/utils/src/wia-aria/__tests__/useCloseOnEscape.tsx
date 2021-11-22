@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { render, fireEvent } from "@testing-library/react";
 
 import { useCloseOnEscape } from "../useCloseOnEscape";

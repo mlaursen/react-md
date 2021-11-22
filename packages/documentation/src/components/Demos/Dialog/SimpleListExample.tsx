@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { Dialog, DialogHeader, DialogTitle } from "@react-md/dialog";
 import { List, ListItem } from "@react-md/list";

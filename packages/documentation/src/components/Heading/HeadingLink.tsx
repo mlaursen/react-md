@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from "react";
+import { ReactElement, useCallback } from "react";
 import LinkUnstyled from "components/LinkUnstyled";
 import { useRouter } from "next/router";
 

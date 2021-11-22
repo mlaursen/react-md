@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { SimpleListItem, SimpleListItemProps } from "@react-md/list";
 import { bem } from "@react-md/utils";

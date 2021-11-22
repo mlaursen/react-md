@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { NestedDialogContextProvider } from "@react-md/dialog";
 import { FormThemeOptions, FormThemeProvider } from "@react-md/form";
 import { ConfigurableIcons, IconProvider } from "@react-md/icon";

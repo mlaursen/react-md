@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from "react";
+import { ReactElement, useRef } from "react";
 import { AppBar, AppBarNav, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { List, ListItem } from "@react-md/list";

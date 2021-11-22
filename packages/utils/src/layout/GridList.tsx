@@ -1,4 +1,4 @@
-import React, { Children, forwardRef, HTMLAttributes, ReactNode } from "react";
+import { Children, forwardRef, HTMLAttributes, ReactNode } from "react";
 
 import { GridListCell } from "./GridListCell";
 import {

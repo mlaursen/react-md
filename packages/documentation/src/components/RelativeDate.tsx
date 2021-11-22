@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { differenceInDays, parse, isAfter } from "date-fns";
 
 export interface RelativeDateProps {

@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useMemo, useState } from "react";
+import { ReactElement, ReactNode, useMemo, useState } from "react";
 import { ListItemAddonType } from "@react-md/list";
 import { DropdownMenu } from "@react-md/menu";
 import { Text } from "@react-md/typography";

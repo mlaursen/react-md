@@ -1,4 +1,3 @@
-import React from 'react';
 import { HomeSVGIcon, TvSVGIcon } from 'react-md';
 
 /**

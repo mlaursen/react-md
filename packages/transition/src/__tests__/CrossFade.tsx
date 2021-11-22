@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { render, act } from "@testing-library/react";
 
 import { CrossFade } from "../CrossFade";

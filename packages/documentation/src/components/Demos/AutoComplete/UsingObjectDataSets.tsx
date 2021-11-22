@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { AutoComplete, AutoCompleteData } from "@react-md/autocomplete";
 import { Avatar } from "@react-md/avatar";
 

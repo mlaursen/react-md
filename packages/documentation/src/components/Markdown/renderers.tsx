@@ -1,4 +1,3 @@
-import React from "react";
 import {
   DEFAULT_MARKDOWN_RENDERERS,
   getTokensText,

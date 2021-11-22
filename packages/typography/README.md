@@ -34,7 +34,6 @@ below.
 ## Usage
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { Text, TextContainer } from "@react-md/typography";
 

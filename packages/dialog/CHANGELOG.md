@@ -411,7 +411,6 @@ the only children for the `Dialog` and use the `DialogHeader` and `DialogFooter`
 within. The whole dialog will now be scrollable.
 
 ```tsx
-import React from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,

@@ -1,5 +1,5 @@
 import "./app.scss";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import NextApp, { AppContext, AppInitialProps } from "next/app";
 import Head from "next/head";
 import Router from "next/router";

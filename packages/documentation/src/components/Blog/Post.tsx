@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { Divider } from "@react-md/divider";
 import { TextIconSpacing } from "@react-md/icon";
 import { KeyboardArrowRightSVGIcon } from "@react-md/material-icons";

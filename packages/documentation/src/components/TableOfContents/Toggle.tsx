@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactElement, ReactNode } from "react";
+import { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { ViewHeadlineSVGIcon, CloseSVGIcon } from "@react-md/material-icons";
 
 import Button from "components/Button";

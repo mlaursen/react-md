@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import { Link as RMDLink } from "@react-md/link";
 

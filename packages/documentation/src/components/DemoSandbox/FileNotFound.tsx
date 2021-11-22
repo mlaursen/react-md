@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";

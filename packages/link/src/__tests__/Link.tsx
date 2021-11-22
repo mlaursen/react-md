@@ -1,4 +1,3 @@
-import React from "react";
 import { Link as ReachLink } from "@reach/router";
 import { render } from "@testing-library/react";
 import { Link as ReactRouterLink, StaticRouter } from "react-router-dom";

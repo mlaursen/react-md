@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactElement } from "react";
+import { HTMLAttributes, ReactElement } from "react";
 import { Grid } from "@react-md/utils";
 
 export default function Container({

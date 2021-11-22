@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 import { TextIconSpacing } from "@react-md/icon";
 import { Button } from "@react-md/button";
 import { CircularProgress, getProgressA11y } from "@react-md/progress";

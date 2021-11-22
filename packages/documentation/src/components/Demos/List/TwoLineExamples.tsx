@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import cn from "classnames";
 import { Avatar, AvatarProps } from "@react-md/avatar";
 import { FolderSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";

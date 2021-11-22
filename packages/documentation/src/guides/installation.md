@@ -25,7 +25,7 @@ yarn add --dev sass
 ```
 
 > Since `react-md` requires [hook support], you'll also need to ensure that
-> `react` and `react-dom` are at least version **16.8 or higher**.
+> `react` and `react-dom` are at least version **16.14 or higher**.
 
 ## Adding Base Styles
 
@@ -44,7 +44,6 @@ all other imports**:
 
 ```diff
 +import './index.scss';
- import React from 'react';
  import ReactDOM from 'react-dom';
  import './index.css';
  import App from './App';

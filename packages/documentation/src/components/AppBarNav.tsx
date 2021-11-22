@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { AppBarNav as RMDAppBarNav, AppBarNavProps } from "@react-md/app-bar";
 import { Tooltipped } from "@react-md/tooltip";
 

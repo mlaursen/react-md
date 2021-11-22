@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Form, Switch } from "@react-md/form";
 
 export default function SwitchExamples(): ReactElement {

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import * as MaterialIcons from "@react-md/material-icons";
 import { Tooltipped } from "@react-md/tooltip";
 

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import filesize from "filesize";
 import cn from "classnames";
 import { Button } from "@react-md/button";

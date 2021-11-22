@@ -36,7 +36,6 @@ To see a full list of icons, just view the [source folder](./src).
 ### Examples
 
 ```tsx
-import React from "react":
 import { render } from "react-dom";
 
 import {
@@ -59,7 +58,7 @@ const App = () => (
   </main>
 );
 
-render(<App />, document.getElementById("root") );
+render(<App />, document.getElementById("root"));
 ```
 
 ## Creating sprite maps
@@ -113,7 +112,6 @@ include that icon in a sprite map.
 
 ```tsx
 import "svgxuse";
-import React from "react";
 import { render } from "react-dom";
 import { SVGIcon } from "@react-md/icon";
 import homeIcon from "@react-md/material-icons/svgs/home.svg";

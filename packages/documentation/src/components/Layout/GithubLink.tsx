@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { useActionClassName } from "@react-md/app-bar";
 import { MenuItemLink } from "@react-md/menu";
 import { Tooltipped } from "@react-md/tooltip";

@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import { UnstyledButton } from "@react-md/button";
 import { Collapse } from "@react-md/transition";
 

@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  Ref,
-  useCallback,
-  useState,
-} from "react";
+import { forwardRef, HTMLAttributes, Ref, useCallback, useState } from "react";
 import { applyRef } from "@react-md/utils";
 
 import { Divider } from "./Divider";

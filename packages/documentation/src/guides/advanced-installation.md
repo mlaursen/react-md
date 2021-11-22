@@ -215,7 +215,6 @@ icons are available as React components from the #material-icons package for
 convenience.
 
 ```tsx
-import React from "react";
 import { render } = "react-dom";
 import { IconProvider, ConfigurableIcons } from "@react-md/icon";
 import {
@@ -242,7 +241,6 @@ render(
 Or using the `Configuration` component:
 
 ```tsx
-import React from "react";
 import { render } = "react-dom";
 import { Configuration } from "@react-md/layout";
 import { ConfigurableIcons } from "@react-md/icon";

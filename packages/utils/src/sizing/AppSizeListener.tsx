@@ -1,10 +1,4 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react";
+import { ReactElement, ReactNode, useEffect, useMemo, useRef } from "react";
 
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,

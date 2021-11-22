@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, useRef } from "react";
+import { forwardRef, HTMLAttributes, useRef } from "react";
 import cn from "classnames";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";

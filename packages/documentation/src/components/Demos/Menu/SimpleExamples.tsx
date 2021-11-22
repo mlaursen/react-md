@@ -1,6 +1,6 @@
 // keys aren't required for the dropdown menu items
 /* eslint-disable react/jsx-key */
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import {
   ArrowDropDownSVGIcon,
   HomeSVGIcon,

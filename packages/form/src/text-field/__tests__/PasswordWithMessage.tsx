@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable jsx-a11y/aria-role */
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import { PasswordWithMessage } from "../PasswordWithMessage";

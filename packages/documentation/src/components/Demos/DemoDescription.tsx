@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import Markdown, { MarkdownProps } from "components/Markdown/Markdown";
 
 import styles from "./DemoDescription.module.scss";

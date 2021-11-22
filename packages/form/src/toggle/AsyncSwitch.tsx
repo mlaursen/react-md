@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef } from "react";
+import { CSSProperties, forwardRef } from "react";
 import cn from "classnames";
 import { CircularProgress, getProgressA11y } from "@react-md/progress";
 

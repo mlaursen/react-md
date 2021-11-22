@@ -47,7 +47,7 @@ to help out such as the `TreeData`, `BaseTreeItem`, and `TreeItemSorter`.
 Here's a quick example:
 
 ```tsx
-import React, { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import { render } from "react-dom";
 import {
   Tree,

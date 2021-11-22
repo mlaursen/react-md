@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { TabsManager, Tabs, TabPanels, TabPanel } from "@react-md/tabs";
 import { Text } from "@react-md/typography";
 

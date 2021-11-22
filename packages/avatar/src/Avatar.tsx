@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, ImgHTMLAttributes } from "react";
+import { forwardRef, HTMLAttributes, ImgHTMLAttributes } from "react";
 import cn from "classnames";
 import { bem, PropsWithRef } from "@react-md/utils";
 

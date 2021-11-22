@@ -1,4 +1,4 @@
-import React, { MutableRefObject, ReactElement } from "react";
+import { MutableRefObject, ReactElement } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 

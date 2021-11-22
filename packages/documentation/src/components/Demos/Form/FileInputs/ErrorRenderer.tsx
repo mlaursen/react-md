@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from "react";
+import { Fragment, ReactElement } from "react";
 import filesize from "filesize";
 import { FileValidationError, isFileSizeError } from "@react-md/form";
 import { List, SimpleListItem } from "@react-md/list";

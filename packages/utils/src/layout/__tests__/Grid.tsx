@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactElement } from "react";
+import { HTMLAttributes, ReactElement } from "react";
 import { render as renderer, RenderOptions } from "@testing-library/react";
 
 import { AppSizeListener } from "../../sizing/AppSizeListener";

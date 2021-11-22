@@ -1,9 +1,4 @@
-import React, {
-  CSSProperties,
-  forwardRef,
-  HTMLAttributes,
-  ReactNode,
-} from "react";
+import { CSSProperties, forwardRef, HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { Overlay } from "@react-md/overlay";

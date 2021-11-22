@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef, useEffect, useRef } from "react";
+import { CSSProperties, forwardRef, useEffect, useRef } from "react";
 import cn from "classnames";
 import {
   BaseTreeItem,

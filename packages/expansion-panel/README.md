@@ -43,7 +43,6 @@ create such a list, you'll want to use the `ExpansionList` and `ExpansionPanel`
 components and `usePanels` hook:
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import {
   ExpansionList,

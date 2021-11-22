@@ -40,7 +40,7 @@ below.
 ## Usage
 
 ```tsx
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { List, ListItem } from "@react-md/list";
 import { Sheet } from "@react-md/sheet";

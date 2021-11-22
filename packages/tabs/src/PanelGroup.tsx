@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import TransitionGroup from "react-transition-group/TransitionGroup";
 
 export interface PanelGroupProps {

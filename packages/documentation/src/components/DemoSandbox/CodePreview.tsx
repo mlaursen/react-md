@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef } from "react";
+import { ReactElement, useEffect, useRef } from "react";
 import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { CircularProgress } from "@react-md/progress";

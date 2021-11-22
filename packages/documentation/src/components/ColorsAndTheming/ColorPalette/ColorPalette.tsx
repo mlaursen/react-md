@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 
 import About from "./About";

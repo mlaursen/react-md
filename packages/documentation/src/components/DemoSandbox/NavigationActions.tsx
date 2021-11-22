@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { useRouter } from "next/router";
 import AppBarAction from "components/AppBarAction";
 import { useJs, CodePreferenceToggle } from "components/CodePreference";

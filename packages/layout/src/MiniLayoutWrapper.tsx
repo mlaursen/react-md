@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactElement, ReactNode } from "react";
+import { HTMLAttributes, ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { BaseTreeItem, TreeData } from "@react-md/tree";
 import { bem, PropsWithRef } from "@react-md/utils";

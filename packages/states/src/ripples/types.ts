@@ -1,4 +1,4 @@
-import React, { CSSProperties, HTMLAttributes } from "react";
+import type { CSSProperties, HTMLAttributes } from "react";
 import { CSSTransitionClassNames } from "react-transition-group/CSSTransition";
 import { TransitionTimeout } from "@react-md/transition";
 

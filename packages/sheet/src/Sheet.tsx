@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useRef, useState } from "react";
+import { forwardRef, useCallback, useRef, useState } from "react";
 import cn from "classnames";
 import { BaseDialogProps, Dialog } from "@react-md/dialog";
 import { bem, LabelRequiredForA11y } from "@react-md/utils";

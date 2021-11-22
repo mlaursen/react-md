@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import { AppBar, AppBarNav } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent } from "@react-md/dialog";

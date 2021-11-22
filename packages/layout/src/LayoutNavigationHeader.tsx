@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import cn from "classnames";
 import { AppBar, AppBarProps, AppBarTitle } from "@react-md/app-bar";
 import { bem, PropsWithRef } from "@react-md/utils";

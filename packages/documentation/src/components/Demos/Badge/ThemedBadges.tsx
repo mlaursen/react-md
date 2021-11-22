@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { BadgedButton, BadgeTheme } from "@react-md/badge";
 
 import styles from "./SimpleExamples.module.scss";

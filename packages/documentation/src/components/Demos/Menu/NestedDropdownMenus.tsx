@@ -1,6 +1,6 @@
 // keys aren't required for the dropdown menu items
 /* eslint-disable react/jsx-key */
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import { Checkbox } from "@react-md/form";
 import {
   DropdownMenu,

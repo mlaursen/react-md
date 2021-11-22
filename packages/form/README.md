@@ -94,7 +94,7 @@ It is recommended to check out the documentation site for a better example, but
 here's a simple one that you should really not copy:
 
 ```tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 import { Form, TextField, Password, useChecked } from "@react-md/form";

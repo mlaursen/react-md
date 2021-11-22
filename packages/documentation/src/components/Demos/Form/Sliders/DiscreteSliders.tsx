@@ -1,6 +1,6 @@
 import { RangeSlider, Slider, useRangeSlider, useSlider } from "@react-md/form";
 import { useId } from "components/IdProvider";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import SlidersContainer from "./SlidersContainer";
 
 export default function DiscreteSliders(): ReactElement | null {

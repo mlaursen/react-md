@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { AppBarAction, AppBarActionProps } from "@react-md/app-bar";
 import { SearchSVGIcon } from "@react-md/material-icons";
 

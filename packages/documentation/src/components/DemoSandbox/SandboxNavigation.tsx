@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
 import { MobileOnly, useAppSize } from "@react-md/utils";

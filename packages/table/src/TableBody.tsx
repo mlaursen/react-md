@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, useMemo } from "react";
+import { forwardRef, HTMLAttributes, useMemo } from "react";
 import cn from "classnames";
 
 import { TableConfig, TableConfigProvider, useTableConfig } from "./config";

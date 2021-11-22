@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { Tooltipped } from "@react-md/tooltip";
 import { Text } from "@react-md/typography";

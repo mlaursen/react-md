@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/tabindex-no-positive */
-import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 
 import { ListItem } from "../ListItem";

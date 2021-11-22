@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useState } from "react";
+import { ReactElement, ReactNode, useState } from "react";
 import { Button } from "@react-md/button";
 import { IconRotator } from "@react-md/icon";
 import { ChevronLeftSVGIcon } from "@react-md/material-icons";

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/interactive-supports-focus */
-import React, { ReactElement, useEffect, useRef } from "react";
+import { ReactElement, useEffect, useRef } from "react";
 import { Button } from "@react-md/button";
 import { IconRotator, TextIconSpacing } from "@react-md/icon";
 import { List } from "@react-md/list";

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { forwardRef, HTMLAttributes, useRef, useState } from "react";
+import { forwardRef, HTMLAttributes, useRef, useState } from "react";
 import cn from "classnames";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 import {

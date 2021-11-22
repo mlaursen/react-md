@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Checkbox, useChecked } from "@react-md/form";
 import { TabsManager, Tabs, TabPanels } from "@react-md/tabs";

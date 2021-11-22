@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState, useCallback } from "react";
+import { ReactElement, useEffect, useState, useCallback } from "react";
 import Head from "next/head";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Dialog } from "@react-md/dialog";

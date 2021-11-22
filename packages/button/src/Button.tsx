@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import React, { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
+import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 import {
   InteractionStatesOptions,
   useInteractionStates,

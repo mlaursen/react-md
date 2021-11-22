@@ -32,7 +32,7 @@ below.
 ## Usage
 
 ```tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { render } from "react-dom";
 import { Overlay } from "@react-md/overlay";
 

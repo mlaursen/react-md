@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Portal } from "@react-md/portal";
 import { useToggle } from "@react-md/utils";
 

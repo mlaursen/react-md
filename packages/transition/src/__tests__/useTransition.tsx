@@ -1,4 +1,4 @@
-import React, { createRef, MutableRefObject, ReactElement, Ref } from "react";
+import { createRef, MutableRefObject, ReactElement, Ref } from "react";
 import { act, render } from "@testing-library/react";
 
 import { ENTERED, ENTERING, EXITED, EXITING } from "../constants";

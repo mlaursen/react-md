@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Avatar } from "@react-md/avatar";
 import { FontIcon } from "@react-md/icon";
 import { NoteSVGIcon } from "@react-md/material-icons";

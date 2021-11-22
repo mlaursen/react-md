@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Table, TableBody, TableCell, TableRow } from "@react-md/table";
 import { GridList, GridListCell, useGridListSize } from "@react-md/utils";
 

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { Overlay } from "@react-md/overlay";
 import { useToggle } from "@react-md/utils";

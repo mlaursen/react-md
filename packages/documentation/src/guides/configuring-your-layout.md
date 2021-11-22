@@ -21,7 +21,6 @@ The `Configuration` component should normally be at the root of your app and
 will throw an error if you have mounted it multiple times:
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { Configuration, ConfigurationProps } from "@react-md/layout";
 
@@ -141,7 +140,6 @@ Now that your tree has been initialized with routes, you'll want to update your
 app to use the `Layout` component along with this navigation tree:
 
 ```diff
- import React from "react";
  import { render } from "react-dom";
 -import { Configuration, ConfigurationProps } from "@react-md/layout";
 +import {
@@ -203,7 +201,6 @@ Next, let's wrap the app in the `BrowserRouter` and add the `Link` option to the
 `useLayoutNavigation` hook:
 
 ```diff
- import React from "react";
  import { render } from "react-dom";
 +import { BrowserRouter, Link } from "react-router-dom";
  import {
@@ -260,7 +257,7 @@ itself. Let's start by moving the `Layout` component into a new file:
 `src/Layout.tsx`:
 
 ```tsx
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Layout, useLayoutNavigation } from "@react-md/layout";
 import { useLocation, Link } from "react-router-dom";
 
@@ -287,7 +284,6 @@ Finally, update the main `src/index.tsx` file to use the customized `Layout` in
 your app:
 
 ```diff
- import React from "react";
  import { render } from "react-dom";
  import { BrowserRouter, Link } from "react-router-dom";
 +import { Configuration, ConfigurationProps } from "@react-md/layout";
@@ -336,8 +332,8 @@ keep things simple, let's update the `src/Layout.tsx` component to apply the
 cross fade transition on route changes with the `useCrossFade` hook.
 
 ```diff
--import React, { ReactElement } from "react";
-+import React, { ReactElement, useRef } from "react";
+-import { ReactElement } from "react";
++import { ReactElement, useRef } from "react";
  import { Layout, useLayoutNavigation } from "@react-md/layout";
 +import { ENTER, useCrossFade } from "@react-md/transition";
  import { useLocation, Link } from "react-router-dom";
@@ -399,8 +395,8 @@ still be triggered.
 If you prefer using `useEffect`, here's an example of this pattern instead.
 
 ```diff
--import React, { ReactElement, useRef } from "react";
-+import React, { ReactElement, useEffect, useRef } from "react";
+-import { ReactElement, useRef } from "react";
++import { ReactElement, useEffect, useRef } from "react";
  import { Layout, useLayoutNavigation } from "@react-md/layout";
  import { ENTER, useCrossFade } from "@react-md/transition";
  import { useLocation, Link } from "react-router-dom";

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import TooltippedBadgedButton from "./TooltippedBadgedButton";
 
 import styles from "./SimpleExamples.module.scss";

@@ -1,4 +1,4 @@
-import React, { ElementType, ReactElement, ReactNode } from "react";
+import { ElementType, ReactElement, ReactNode } from "react";
 
 import { TreeItem } from "./TreeItem";
 import {

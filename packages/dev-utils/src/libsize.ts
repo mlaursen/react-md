@@ -201,7 +201,7 @@ function updateOtherPros(umd: string[], css: string[]): void {
   );
 
   const content = `/* this file is automatically updated by \`yarn dev-utils libsize\` and should not be updated manually */
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 
 import TableCellList from "./TableCellList";
 

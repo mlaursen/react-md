@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 
-import { PortalInto } from "./getContainer";
+import type { PortalInto } from "./getContainer";
 import { Portal } from "./Portal";
 
 /**

@@ -138,7 +138,6 @@ import the `App.scss` file in the `src/App.js`:
 
 ```diff
 +import './App.scss';
- import React from 'react';
  import logo from './logo.svg';
  import './App.css';
 ```
@@ -178,7 +177,6 @@ components from react-md. It is generally recommended to update your base
 
 ```diff
  import './App.scss';
- import React from 'react';
 -import logo from './logo.svg';
 -import './App.css';
 -

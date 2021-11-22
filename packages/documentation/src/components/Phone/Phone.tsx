@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useMemo, useCallback } from "react";
+import { ReactElement, ReactNode, useMemo, useCallback } from "react";
 import cn from "classnames";
 import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,

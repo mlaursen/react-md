@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactElement } from "react";
+import { HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 import filesize from "filesize";
 import { Button } from "@react-md/button";

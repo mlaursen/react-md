@@ -42,7 +42,7 @@
     "sassdoc": "^2.7.2",
     "ts-morph": "^12.0.0",
     "typedoc": "^0.22.6",
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.2"
   },
   "devDependencies": {
     "@types/cssnano": "^4.0.1",

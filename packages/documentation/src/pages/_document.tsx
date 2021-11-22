@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import Document, {
   Html,
   Head,

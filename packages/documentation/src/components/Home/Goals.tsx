@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { TextContainer } from "@react-md/typography";
 
 import { Markdown } from "components/Markdown";

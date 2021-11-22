@@ -35,7 +35,6 @@ below.
 `src/index.tsx`
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { MessageQueue } from "@react-md/alert";
 
@@ -52,7 +51,7 @@ render(
 `src/App.tsx`
 
 ```tsx
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { useAddMessage } from "@react-md/alert";
 import { Button } from "@react-md/button";
 

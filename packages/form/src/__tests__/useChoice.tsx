@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import { useChoice } from "../useChoice";

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import GettingStarted from "./GettingStarted";
 import Components from "./Components";

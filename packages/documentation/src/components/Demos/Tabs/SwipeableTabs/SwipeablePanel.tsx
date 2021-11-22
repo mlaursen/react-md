@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement } from "react";
+import { CSSProperties, ReactElement } from "react";
 import { TabPanel, TabPanelProps } from "@react-md/tabs";
 import { Text } from "@react-md/typography";
 

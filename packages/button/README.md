@@ -41,7 +41,6 @@ below.
 ### Buttons with Text
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 
@@ -75,7 +74,6 @@ the `@react-md/material-icons` package if you'd like pre-built components for
 every material icon that exists.
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 import { TextIconSpacing, FontIcon } from "@react-md/icon";
@@ -122,7 +120,6 @@ screen readers and generally recommended, but there are no restrictions in place
 at this time to enforce this behavior.
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
 import { TextIconSpacing, FontIcon } from "@react-md/icon";

@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useEffect, useState } from "react";
+import { ReactElement, useCallback, useEffect, useState } from "react";
 import { Button } from "@react-md/button";
 import { Table, TableBody, TableCell, TableRow } from "@react-md/table";
 import { OnResizeObserverChange, useResizeObserver } from "@react-md/utils";

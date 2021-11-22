@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useState } from "react";
+import { ReactElement, ReactNode, useState } from "react";
 import { List, ListRowRenderer } from "react-virtualized";
 import scssVariables from "@react-md/list/dist/scssVariables";
 import { ListItemAddonType } from "@react-md/list";

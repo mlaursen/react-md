@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { Dir, UserInteractionModeListener } from "@react-md/utils";
 

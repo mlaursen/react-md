@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Checkbox, InputToggle, Radio } from "@react-md/form";
 import {
   CheckBoxSVGIcon,

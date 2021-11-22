@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef } from "react";
+import { CSSProperties, forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
 import { RenderConditionalPortalProps } from "@react-md/portal";
 

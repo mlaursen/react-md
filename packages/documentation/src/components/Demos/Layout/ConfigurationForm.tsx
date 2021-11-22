@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Form, Select } from "@react-md/form";
 import {
   SupportedPhoneLayout,

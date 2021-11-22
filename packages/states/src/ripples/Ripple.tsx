@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from "react";
+import { ReactElement, useCallback } from "react";
 import cn from "classnames";
 import CSSTransition, {
   CSSTransitionClassNames,

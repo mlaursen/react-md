@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import { usePanels, ExpansionPanel } from "@react-md/expansion-panel";
 import { Text } from "@react-md/typography";
 import { Grid } from "@react-md/utils";

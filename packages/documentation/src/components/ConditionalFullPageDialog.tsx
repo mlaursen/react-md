@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { Dialog, DialogContent, DialogProps } from "@react-md/dialog";

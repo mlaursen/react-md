@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import cn from "classnames";
 import { Divider } from "@react-md/divider";
 import { TreeItem, TreeItemRenderer } from "@react-md/tree";

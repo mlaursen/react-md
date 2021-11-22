@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
 
 import AddingOnClick from "./AddingOnClick";

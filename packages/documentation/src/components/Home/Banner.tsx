@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useEffect } from "react";
+import { ReactElement, useRef, useEffect } from "react";
 import { Text } from "@react-md/typography";
 
 import { useFixedAppBarContext } from "components/Layout/fixedAppBarContext";

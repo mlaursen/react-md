@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import { NativeSelect } from "../NativeSelect";

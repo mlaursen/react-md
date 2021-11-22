@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Radio, useChoice } from "@react-md/form";
 import { Portal } from "@react-md/portal";
 import { Text } from "@react-md/typography";

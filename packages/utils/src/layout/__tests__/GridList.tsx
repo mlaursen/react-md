@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-import React from "react";
 import { act, render } from "@testing-library/react";
 import { ResizeObserver } from "@juggle/resize-observer";
 import { mocked } from "ts-jest/utils";

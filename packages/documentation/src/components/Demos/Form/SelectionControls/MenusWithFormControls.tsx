@@ -6,7 +6,7 @@ import {
   MenuItemSwitch,
   useIndeterminateChecked,
 } from "@react-md/form";
-import React, { ReactElement, useState } from "react";
+import { ReactElement, useState } from "react";
 
 type Decoration = "none" | "underline" | "overline" | "strike-through";
 

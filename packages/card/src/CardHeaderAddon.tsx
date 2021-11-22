@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { HTMLAttributes, ReactElement } from "react";
+import { HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 

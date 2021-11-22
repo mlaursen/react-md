@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { AppBarActionProps } from "@react-md/app-bar";
 import { MenuItem, MenuItemProps } from "@react-md/menu";
 

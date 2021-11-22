@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useState } from "react";
+import { ReactElement, ReactNode, useState } from "react";
 import { Avatar } from "@react-md/avatar";
 import { List, ListItem, ListItemAddonPosition } from "@react-md/list";
 import { InfoSVGIcon, StyleSVGIcon } from "@react-md/material-icons";

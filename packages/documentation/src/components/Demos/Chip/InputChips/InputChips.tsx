@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
 import { TextArea, TextField, FormThemeProvider } from "@react-md/form";
 import { useIsUserInteractionMode } from "@react-md/utils";

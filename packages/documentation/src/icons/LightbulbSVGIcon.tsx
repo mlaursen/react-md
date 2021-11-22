@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { SVGIcon, SVGIconProps } from "@react-md/icon";
 
 // this one isn't included in material icons for some reason?

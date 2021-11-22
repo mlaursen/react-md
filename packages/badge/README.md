@@ -32,7 +32,6 @@ below.
 ## Usage
 
 ```tsx
-import React from "react";
 import { render } from "react-dom";
 import { BadgedButton } from "@react-md/badge";
 
