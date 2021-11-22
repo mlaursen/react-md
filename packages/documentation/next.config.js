@@ -1,10 +1,6 @@
-/**
- * @type import('next/dist/next-server/server/config-shared').NextConfig
- */
-const config = {
-  future: {
-    strictPostcssConfiguration: true,
-  },
+/** @type {import('next').NextConfig} */
+module.exports = {
+  reactStrictMode: true,
   eslint: {
     // I have already run lint before this step...
     ignoreDuringBuilds: true,
@@ -34,5 +30,3 @@ const config = {
     ];
   },
 };
-
-module.exports = config;
