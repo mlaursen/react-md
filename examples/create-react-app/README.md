@@ -6,10 +6,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This example will setup an example Create React App + ReactMD app that has the following features:
 
-- [jsconfig.json](./jsconfig.json) to allow absolute imports instead of relative imports from the `"src"` directory
-  - `import MyComponent from "components/MyComponent"` instead of `import MyComponent from "../../components/MyComponent"`
 - [\_everything.scss](./src/_everything.scss) to override the default `react-md` theme and feature toggles
-- a reusable [Layout.jsx](./src/components/Layout/Layout.jsx) that:
+- a reusable [Layout.js](./src/components/Layout/Layout.js) that:
   - updates all the icons to use `SVGIcon`s instead of `FontIcon`s
   - initializes the `Layout` component from `react-md` with navigation items
   - uses [react-router-dom](https://www.npmjs.com/package/react-router-dom) as the routing library
