@@ -10,18 +10,6 @@ $demo-padding-extra: 6rem;
     @include rmd-utils-rtl-auto(margin-right, $toc-width, auto);
 
     padding: 0 $demo-padding-extra;
-
-    [data-linenumbers] {
-      width: calc(100vw - #{$demo-padding-extra * 2});
-    }
-  }
-
-  @include rmd-utils-desktop-media {
-    [data-linenumbers] {
-      $offset: $rmd-sheet-static-width + $toc-width + ($demo-padding-extra * 2);
-
-      width: calc(100vw - #{$offset});
-    }
   }
 
   padding: 0 $demo-padding;
