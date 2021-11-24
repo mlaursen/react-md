@@ -23,7 +23,7 @@ function parse(req: NextApiRequest): Promise<readonly File[]> {
       }
 
       const list = Object.values(files).reduce<File[]>((list, fileOrFiles) => {
-        if ("path" in fileOrFiles) {
+        if ("filepath" in fileOrFiles) {
           list.push(fileOrFiles);
         } else {
           list.push(...fileOrFiles);
@@ -53,7 +53,7 @@ export default async function devnull(
   const errors: NodeJS.ErrnoException[] = [];
   await Promise.all(
     files.map((file) =>
-      fs.unlink(file.path).catch((error) => {
+      fs.unlink(file.filepath).catch((error) => {
         errors.push(error);
       })
     )

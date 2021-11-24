@@ -1,5 +1,5 @@
 import { decode } from "he";
-import { parse, Renderer } from "marked";
+import { marked, Renderer } from "marked";
 
 import { getPackages } from "../utils";
 import { TOCAnchor } from "./types";
@@ -106,7 +106,7 @@ export function parseMarkdown(markdown: string): MarkdownResult {
       /#customizing-your-theme/g,
       "[customizing your theme](/guides/customizing-your-theme)"
     );
-  parse(updated, { renderer });
+  marked.parse(updated, { renderer });
 
   return {
     anchors,
