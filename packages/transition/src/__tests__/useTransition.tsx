@@ -1,9 +1,4 @@
-import {
-  MutableRefObject,
-  ReactElement,
-  useEffect,
-  useState,
-} from "react";
+import { MutableRefObject, ReactElement, useEffect, useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 
 import {
