@@ -18,6 +18,10 @@ packages/*/bin
 packages/*/dist
 packages/*/types
 packages/*/.next
+packages/codemod/transforms/**/__testfixtures__/**/*.output.ts
+packages/codemod/transforms/**/__testfixtures__/**/*.output.tsx
+packages/codemod/transforms/**/__testfixtures__/**/*.output.js
+packages/codemod/transforms/**/__testfixtures__/**/*.output.jsx
 packages/documentation/src/constants/sassdoc
 packages/documentation/src/constants/sandboxes
 packages/documentation/public/tsdocs

@@ -11,6 +11,7 @@ packages/*/*.tsbuildinfo
 /packages/*/lib
 /packages/*/dist
 /packages/*/types
+/packages/codemod/bin
 /packages/dev-utils/bin
 /packages/material-icons/bin
 /packages/material-icons/temp

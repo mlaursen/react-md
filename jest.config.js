@@ -3,7 +3,10 @@ const path = require('path');
 
 const packages = fs
   .readdirSync(path.join(process.cwd(), 'packages'))
-  .filter((name) => !['dev-utils'].includes(name));
+  .filter((name) => !['dev-utils', 'codemod'].includes(name));
+
+const roots = packages.map((name) => `<rootDir>/packages/${name}/src`);
+roots.push('<rootDir>/packages/codemod');
 
 const docsSrc = '<rootDir>/packages/documentation/src';
 
@@ -15,6 +18,7 @@ if (!isWatchMode) {
     '<rootDir>/packages/*/src/**/*.{ts,tsx}',
     // internal usage and don't matter for the library coverage reports
     '!<rootDir>/packages/{dev-utils,documentation,material-icons,react-md}/src/**/*',
+    '!<rootDir>/packages/codemod/**/*',
     // these are generated files
     '!<rootDir>/packages/*/src/scssVariables.ts',
     // index.ts files are always `export * from "./fileOrFolder"`
@@ -25,7 +29,7 @@ if (!isWatchMode) {
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  roots: packages.map((name) => `<rootDir>/packages/${name}/src`),
+  roots,
   globals: {
     'ts-jest': {
       tsconfig: './tsconfig.test.json',

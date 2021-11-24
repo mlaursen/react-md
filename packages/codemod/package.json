@@ -1,0 +1,49 @@
+{
+  "name": "@react-md/codemod",
+  "version": "3.1.1",
+  "description": "ReactMD codemod scripts",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "bin": {
+    "rmd-codemod": "./bin/rmd-codemod.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "scripts": {
+    "update-docs": "node updateDocs.js",
+    "build": "tsc --project tsconfig.build.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/codemod"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "keywords": [
+    "react-md",
+    "material design",
+    "react",
+    "codemod",
+    "jscodeshift",
+    "transforms"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^8.3.0",
+    "glob": "^7.2.0",
+    "inquirer": "^8.2.0",
+    "jscodeshift": "^0.13.0"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/inquirer": "^8.1.3",
+    "@types/jscodeshift": "^0.11.3",
+    "typescript": "^4.5.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -109,6 +109,7 @@ A token can be created at:
   // have to run the build before updating the changelog data since it pulls
   // the variables from the react-md package
   run("yarn build");
+  run("yarn workspace @react-md/codemod update-docs");
 
   const updatedVariables = uncommittedFiles();
   if (updatedVariables) {

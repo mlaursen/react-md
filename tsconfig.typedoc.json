@@ -8,6 +8,7 @@
   "exclude": [
     "packages/dev-utils/**",
     "packages/documentation/**",
+    "packages/codemod/**",
     "**/__tests__/**",
     "**/__mocks__/**"
   ]

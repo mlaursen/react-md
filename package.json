@@ -7,6 +7,7 @@
   "scripts": {
     "prepare": "husky install",
     "cz": "cz",
+    "rmd-codemod": "node packages/codemod/bin/rmd-codemod.js",
     "release": "dev-utils release",
     "sandbox": "dev-utils sandbox",
     "sassdoc": "dev-utils sassdoc",
@@ -27,7 +28,8 @@
     "build-cjs": "tsc -b tsconfig.cjs.json",
     "build-var": "tsc -b tsconfig.var.json",
     "build-umd": "yarn workspace react-md umd --silent",
-    "build": "npm-run-all styles combine-styles build-ejs build-cjs build-var",
+    "build-codemod": "yarn workspace @react-md/codemod build",
+    "build": "npm-run-all styles combine-styles build-ejs build-cjs build-var build-codemod",
     "typecheck": "tsc -p tsconfig.check.json",
     "lint-scripts": "eslint \"packages/*/src/**/*.{ts,tsx,js,jsx}\"",
     "lint-styles": "stylelint \"packages/*/src/**/*.scss\"",

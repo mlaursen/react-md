@@ -116,7 +116,7 @@ export function getPackages(type: PackageType = false): readonly string[] {
     packages = readdirSync(packagesRoot).filter(
       (file) =>
         lstatSync(join(packagesRoot, file)).isDirectory() &&
-        !/dev-utils|documentation|react-md/.test(file)
+        !/dev-utils|documentation|react-md|codemod/.test(file)
     );
   }
 
