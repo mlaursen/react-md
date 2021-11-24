@@ -1,6 +1,7 @@
 import { Link as ReachLink } from "@reach/router";
 import { render } from "@testing-library/react";
-import { Link as ReactRouterLink, StaticRouter } from "react-router-dom";
+import { Link as ReactRouterLink } from "react-router-dom";
+import { StaticRouter } from "react-router-dom/server";
 import renderer from "react-test-renderer";
 
 import { Link } from "../Link";
@@ -27,7 +28,7 @@ describe("Link", () => {
       [key: string]: any;
     }) =>
       renderer.create(
-        <StaticRouter context={{}}>
+        <StaticRouter location="/">
           <Link {...props} component={ReactRouterLink}>
             {children}
           </Link>

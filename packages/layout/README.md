@@ -88,8 +88,8 @@ import { Text } from "@react-md/typography";
 import {
   BrowserRouter,
   Link,
+  Routes,
   Route,
-  Switch,
   useLocation,
 } from "react-router-dom";
 
@@ -149,12 +149,12 @@ function App(): ReactElement {
       navHeaderTitle="Example Nav Title"
       treeProps={useLayoutNavigation(navItems, pathname, Link)}
     >
-      <Switch>
-        <Route path="/route-1" component={Route1} />
-        <Route path="/route-2" component={Route2} />
-        <Route path="/route-3" component={Route3} />
-        <Route path="/" component={Home} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="route-1" element={<Route1 />} />
+        <Route path="route-2" element={<Route2 />} />
+        <Route path="route-3" element={<Route3 />} />
+      </Routes>
     </Layout>
   );
 }

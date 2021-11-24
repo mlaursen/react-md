@@ -37,7 +37,7 @@
     "react-hook-form": "^7.20.2",
     "react-marked-renderer": "^1.0.0",
     "react-md": "^3.1.1",
-    "react-router-dom": "^5.3.0",
+    "react-router-dom": "^6.0.2",
     "react-swipeable": "^6.2.0",
     "react-transition-group": "^4.4.2",
     "react-virtualized": "^9.22.3",

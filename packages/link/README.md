@@ -43,6 +43,8 @@ import {
   Link as ReactRouterLink,
   LinkProps as ReactRouterLinkProps,
   BrowserRouter,
+  Routes,
+  Route,
 } from "react-router-dom";
 import { Link as ReactMDLink, LinkProps as RMDLinkProps } from "@react-md/link";
 
@@ -66,8 +68,10 @@ function App(): ReactElement {
       <Link to="/">Home</Link>
       <Link to="/about">About</Link>
 
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
+      </Routes>
     </BrowserRouter>
   );
 }

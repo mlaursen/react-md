@@ -16,7 +16,7 @@ props into the react-md `Link`:
 ```tsx
 import { ReactElement } from "react";
 import { render } from "react-dom";
-import { Link as ReactRouterLink, LinkProps } from "react-router";
+import { Link as ReactRouterLink, LinkProps } from "react-router-dom";
 import { Link as ReactMDLink } from "@react-md/link";
 
 function Link(props: LinkProps): ReactElement {

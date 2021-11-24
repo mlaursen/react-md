@@ -4,7 +4,7 @@ import {
   Link,
   BrowserRouter,
   useLocation,
-  Switch,
+  Routes,
   Route,
 } from "react-router-dom";
 import { mocked } from "ts-jest/utils";
@@ -498,6 +498,18 @@ describe("Layout", () => {
 
   describe("navigation behavior", () => {
     it("should work with react-router", () => {
+      function Route2(): ReactElement {
+        return (
+          <>
+            <h1>Route 2</h1>
+            <Routes>
+              <Route path="1" element={<h2>Route 2-1</h2>} />
+              <Route path="2" element={<h2>Route 2-2</h2>} />
+              <Route path="3" element={<h2>Route 2-3</h2>} />
+            </Routes>
+          </>
+        );
+      }
       function Test(): ReactElement {
         const { pathname } = useLocation();
         return (
@@ -508,34 +520,13 @@ describe("Layout", () => {
               Link
             )}
           >
-            <Switch>
-              <Route path="/" exact>
-                <h1>Home</h1>
-              </Route>
-              <Route path="/route-1">
-                <h1>Route 1</h1>
-              </Route>
-              <Route path="/route-2">
-                <h1>Route 2</h1>
-                <Switch>
-                  <Route path="/route-2/1">
-                    <h2>Route 2-1</h2>
-                  </Route>
-                  <Route path="/route-2/2">
-                    <h2>Route 2-2</h2>
-                  </Route>
-                  <Route path="/route-2/3">
-                    <h2>Route 2-3</h2>
-                  </Route>
-                </Switch>
-              </Route>
-              <Route path="/route-3">
-                <h1>Route 3</h1>
-              </Route>
-              <Route path="/route-4">
-                <h1>Route 4</h1>
-              </Route>
-            </Switch>
+            <Routes>
+              <Route path="/" element={<h1>Home</h1>} />
+              <Route path="route-1" element={<h1>Route 1</h1>} />
+              <Route path="route-2/*" element={<Route2 />} />
+              <Route path="route-3" element={<h1>Route 3</h1>} />
+              <Route path="route-4" element={<h1>Route 4</h1>} />
+            </Routes>
           </Layout>
         );
       }

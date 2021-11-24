@@ -55,10 +55,10 @@ export type CSSTransitionReturnValue<E extends HTMLElement> = [
  *
  * return (
  *   <div {...transitionProps}>
- *     <Switch>
- *       <Route path="/" component={Home} />
- *       <Route path="/other" component={Other} />
- *    </Switch>
+ *     <Routes>
+ *       <Route path="/" element={<Home />} />
+ *       <Route path="other" element={<Other />} />
+ *    </Routes>
  *   </div>
  * );
  * ```
@@ -79,10 +79,10 @@ export type CSSTransitionReturnValue<E extends HTMLElement> = [
  *
  * return (
  *   <div {...transitionProps}>
- *     <Switch>
- *       <Route path="/" component={Home} />
- *       <Route path="/other" component={Other} />
- *    </Switch>
+ *     <Routes>
+ *       <Route path="/" element={<Home />} />
+ *       <Route path="other" element={<Other />} />
+ *    </Routes>
  *   </div>
  * );
  * ```
