@@ -2,7 +2,7 @@
 import { CSSProperties } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
-import { DropdownMenu } from "../DropdownMenu";
+import { DropdownMenu, DropdownMenuProps } from "../DropdownMenu";
 import { MenuItem } from "../MenuItem";
 
 const getById = (id: string) => {
@@ -14,7 +14,7 @@ const getById = (id: string) => {
   return el;
 };
 
-const PROPS = {
+const PROPS: Omit<DropdownMenuProps, "items"> = {
   id: "dropdown",
   children: "Dropdown",
 };
@@ -22,17 +22,15 @@ const PROPS = {
 describe("DropdownMenu", () => {
   it("should render correctly with a list of strings, numbers, ListItemProps, ReactElement, or a mixture of all", () => {
     const items1 = ["Item 1", "Item 2", "Item 3"];
-    const { container, rerender } = render(
-      <DropdownMenu {...PROPS} items={items1} />
-    );
-    expect(container).toMatchSnapshot();
+    const { rerender } = render(<DropdownMenu {...PROPS} items={items1} />);
+    expect(document.body).toMatchSnapshot();
 
     fireEvent.click(getById("dropdown"));
-    expect(container).toMatchSnapshot();
+    expect(document.body).toMatchSnapshot();
 
     const items2 = [0, 1, 2, 3, 4];
     rerender(<DropdownMenu {...PROPS} items={items2} />);
-    expect(container).toMatchSnapshot();
+    expect(document.body).toMatchSnapshot();
 
     const items3 = [
       {
@@ -42,7 +40,7 @@ describe("DropdownMenu", () => {
       { rightAddon: <i>icon</i>, children: "Item 3" },
     ];
     rerender(<DropdownMenu {...PROPS} items={items3} />);
-    expect(container).toMatchSnapshot();
+    expect(document.body).toMatchSnapshot();
 
     // Note: no key required
     const items4 = [
@@ -54,7 +52,7 @@ describe("DropdownMenu", () => {
       4,
     ];
     rerender(<DropdownMenu {...PROPS} items={items4} />);
-    expect(container).toMatchSnapshot();
+    expect(document.body).toMatchSnapshot();
   });
 
   it("should pass the menuStyle and menuClassName props to the menu correctly", () => {

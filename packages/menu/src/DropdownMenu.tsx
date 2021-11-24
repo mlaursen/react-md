@@ -99,7 +99,7 @@ export const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
       itemRenderer = defaultMenuItemRenderer,
       horizontal,
       onVisibilityChange,
-      portal,
+      portal = true,
       portalInto,
       portalIntoId,
       positionOptions,

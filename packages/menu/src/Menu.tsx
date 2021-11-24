@@ -158,7 +158,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
     visible,
     onRequestClose,
     children,
-    portal,
+    portal = true,
     portalInto,
     portalIntoId,
     temporary = true,

@@ -6,9 +6,9 @@ import {
 } from "@testing-library/react";
 
 import { DropdownMenuItem } from "../DropdownMenuItem";
-import { Menu } from "../Menu";
+import { Menu, MenuProps } from "../Menu";
 
-const PROPS = {
+const PROPS: MenuProps = {
   id: "menu",
   controlId: "menu-container",
   visible: false,
@@ -51,16 +51,16 @@ const render = (children: ReactElement): RenderResult =>
 
 describe("Menu", () => {
   it("should render correctly", () => {
-    const { container, rerender } = render(<Menu {...PROPS} />);
-    expect(container).toMatchSnapshot();
+    const { rerender } = render(<Menu {...PROPS} />);
+    expect(document.body).toMatchSnapshot();
 
     rerender(<Menu {...PROPS} visible />);
-    expect(container).toMatchSnapshot();
+    expect(document.body).toMatchSnapshot();
   });
 
   it("should trigger the onRequestClose when an element outside of the menu has been clicked but is not the control element", () => {
     const onRequestClose = jest.fn();
-    const props = {
+    const props: MenuProps = {
       ...PROPS,
       visible: true,
       onRequestClose,
@@ -85,7 +85,7 @@ describe("Menu", () => {
 
   it("should not trigger the onRequestClose prop when a nested dropdown menu is clicked", () => {
     const onRequestClose = jest.fn();
-    const props = {
+    const props: MenuProps = {
       ...PROPS,
       visible: true,
       onRequestClose,
