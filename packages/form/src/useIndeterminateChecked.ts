@@ -191,15 +191,6 @@ export interface CombinedIndeterminateCheckedHookReturnValue<V extends string>
   getProps(value: V): ProvidedCombinedIndeterminateControlledProps<V>;
 }
 
-export function useIndeterminateChecked<V extends string>(
-  values: readonly V[],
-  options?: IndeterminateCheckedHookOptions<V> & { menu?: false }
-): OnChangeReturnValue<V>;
-export function useIndeterminateChecked<V extends string>(
-  values: readonly V[],
-  options: IndeterminateCheckedHookOptions<V> & { menu: true }
-): OnCheckedChangeReturnValue<V>;
-
 /**
  * This hook allows you to toggle the state of multiple checkboxes in a single
  * place along with an indeterminate checkbox that can check/uncheck all
@@ -328,6 +319,14 @@ export function useIndeterminateChecked<V extends string>(
  * additional `values` in the checkbox list, a list of `checkedValues`, and a
  * `setCheckedValues` function to manually override the state if needed.
  */
+export function useIndeterminateChecked<V extends string>(
+  values: readonly V[],
+  options?: IndeterminateCheckedHookOptions<V> & { menu?: false }
+): OnChangeReturnValue<V>;
+export function useIndeterminateChecked<V extends string>(
+  values: readonly V[],
+  options: IndeterminateCheckedHookOptions<V> & { menu: true }
+): OnCheckedChangeReturnValue<V>;
 export function useIndeterminateChecked<V extends string>(
   values: readonly V[],
   {

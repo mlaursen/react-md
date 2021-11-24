@@ -124,49 +124,6 @@ export type NumberFieldHookReturnType = [
 // all the overloads for the `useNumberField` -- not sure if there's an easier
 // way to type these...
 
-export function useNumberField(
-  options: NumberFieldHookOptions & {
-    defaultValue: number | (() => number);
-    disableMessage: true;
-  }
-): [number, ProvidedNumberFieldProps, NumberFieldHookControls];
-export function useNumberField(
-  options: NumberFieldHookOptions & {
-    defaultValue: number | (() => number);
-    disableMessage: false;
-  }
-): [number, ProvidedNumberFieldMessageProps, NumberFieldHookControls];
-export function useNumberField(
-  options: NumberFieldHookOptions & {
-    defaultValue: number | (() => number);
-    disableMessage?: boolean;
-  }
-): [number, ProvidedNumberFieldMessageProps, NumberFieldHookControls];
-
-export function useNumberField(
-  options: NumberFieldHookOptions & {
-    disableMessage: true;
-  }
-): [number | undefined, ProvidedNumberFieldProps, NumberFieldHookControls];
-export function useNumberField(
-  options: NumberFieldHookOptions & {
-    disableMessage: false;
-  }
-): [
-  number | undefined,
-  ProvidedNumberFieldMessageProps,
-  NumberFieldHookControls
-];
-export function useNumberField(
-  options: NumberFieldHookOptions & {
-    disableMessage?: boolean;
-  }
-): [
-  number | undefined,
-  ProvidedNumberFieldMessageProps,
-  NumberFieldHookControls
-];
-
 /**
  * This hook is used to control the value for the `TextField` component acting
  * as an `<input type="number">` and ensuring that a "valid" `number` is
@@ -209,6 +166,48 @@ export function useNumberField(
  * @returns @see {@link NumberFieldHookReturnType}
  * @remarks \@since 2.5.0
  */
+export function useNumberField(
+  options: NumberFieldHookOptions & {
+    defaultValue: number | (() => number);
+    disableMessage: true;
+  }
+): [number, ProvidedNumberFieldProps, NumberFieldHookControls];
+export function useNumberField(
+  options: NumberFieldHookOptions & {
+    defaultValue: number | (() => number);
+    disableMessage: false;
+  }
+): [number, ProvidedNumberFieldMessageProps, NumberFieldHookControls];
+export function useNumberField(
+  options: NumberFieldHookOptions & {
+    defaultValue: number | (() => number);
+    disableMessage?: boolean;
+  }
+): [number, ProvidedNumberFieldMessageProps, NumberFieldHookControls];
+
+export function useNumberField(
+  options: NumberFieldHookOptions & {
+    disableMessage: true;
+  }
+): [number | undefined, ProvidedNumberFieldProps, NumberFieldHookControls];
+export function useNumberField(
+  options: NumberFieldHookOptions & {
+    disableMessage: false;
+  }
+): [
+  number | undefined,
+  ProvidedNumberFieldMessageProps,
+  NumberFieldHookControls
+];
+export function useNumberField(
+  options: NumberFieldHookOptions & {
+    disableMessage?: boolean;
+  }
+): [
+  number | undefined,
+  ProvidedNumberFieldMessageProps,
+  NumberFieldHookControls
+];
 export function useNumberField({
   id,
   defaultValue,

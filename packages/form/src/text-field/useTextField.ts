@@ -238,16 +238,6 @@ export type TextFieldHookReturnType = [
   TextFieldHookControls
 ];
 
-export function useTextField(
-  options: TextFieldHookOptions & { disableMessage: true }
-): [string, ProvidedTextFieldProps, TextFieldHookControls];
-export function useTextField(
-  options: TextFieldHookOptions & { disableMessage: false }
-): [string, ProvidedTextFieldMessageProps, TextFieldHookControls];
-export function useTextField(
-  options: TextFieldHookOptions & { disableMessage?: boolean }
-): [string, ProvidedTextFieldMessageProps, TextFieldHookControls];
-
 /**
  * This hook is used to control the `value` for a `TextField` or `TextArea`
  * component along with some simple validation checks using the browser validity
@@ -264,6 +254,15 @@ export function useTextField(
  * @returns @see {@link TextFieldHookReturnType}
  * @remarks \@since 2.5.0
  */
+export function useTextField(
+  options: TextFieldHookOptions & { disableMessage: true }
+): [string, ProvidedTextFieldProps, TextFieldHookControls];
+export function useTextField(
+  options: TextFieldHookOptions & { disableMessage: false }
+): [string, ProvidedTextFieldMessageProps, TextFieldHookControls];
+export function useTextField(
+  options: TextFieldHookOptions & { disableMessage?: boolean }
+): [string, ProvidedTextFieldMessageProps, TextFieldHookControls];
 export function useTextField({
   id,
   defaultValue = "",
