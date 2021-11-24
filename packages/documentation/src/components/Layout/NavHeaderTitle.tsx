@@ -10,7 +10,7 @@ import { BELOW_INNER_RIGHT_ANCHOR } from "@react-md/utils";
 import { RMD_MAJOR_VERSION } from "constants/rmdVersion";
 
 import styles from "./NavHeaderTitle.module.scss";
-import VersionMenuItem from "./VersionMenuItem";
+import PreviousDocsMenuItems from "./PreviousDocsMenuItems";
 
 export default function NavHeaderTitle(): ReactElement {
   const { layout } = useLayoutConfig();
@@ -19,9 +19,7 @@ export default function NavHeaderTitle(): ReactElement {
       <AppBarTitle keyline={!isToggleableLayout(layout)}>react-md</AppBarTitle>
       <DropdownMenu
         id="version-picker"
-        items={Array.from({ length: RMD_MAJOR_VERSION - 1 }, (_, i) => (
-          <VersionMenuItem small version={`v${i + 1}`} />
-        ))}
+        items={[<PreviousDocsMenuItems small />]}
         dropdownIcon={<ArrowDropDownSVGIcon />}
         anchor={BELOW_INNER_RIGHT_ANCHOR}
         className={styles.menu}

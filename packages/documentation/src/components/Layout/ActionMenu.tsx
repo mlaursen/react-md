@@ -7,13 +7,12 @@ import { DropdownMenu } from "@react-md/menu";
 import { unitToNumber } from "@react-md/utils";
 
 import { CodePreferenceToggle } from "components/CodePreference";
-import { RMD_MAJOR_VERSION } from "constants/rmdVersion";
 
 import ToggleTheme from "./ToggleTheme";
 import ToggleRTL from "./ToggleRTL";
 import GithubLink from "./GithubLink";
 import TableOfContentsMenuItem from "./TableOfContentsMenuItem";
-import VersionMenuItem from "./VersionMenuItem";
+import PreviousDocsMenuItems from "./PreviousDocsMenuItems";
 
 const margin = unitToNumber(scssVariables["rmd-app-bar-lr-margin"]);
 const options = {
@@ -32,9 +31,7 @@ export default function ActionMenu(): ReactElement {
         <ToggleTheme as="menuitem" />,
         <ToggleRTL as="menuitem" />,
         <CodePreferenceToggle as="menuitem" />,
-        ...Array.from({ length: RMD_MAJOR_VERSION - 1 }, (_, i) => (
-          <VersionMenuItem version={`v${i + 1}`} />
-        )),
+        <PreviousDocsMenuItems />,
         <GithubLink as="menuitem" />,
         <TableOfContentsMenuItem />,
       ]}
