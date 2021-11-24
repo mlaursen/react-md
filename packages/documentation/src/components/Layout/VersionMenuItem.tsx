@@ -6,7 +6,7 @@ import { EventName, sendAnalyticsEvent } from "utils/analytics";
 
 export interface VersionMenuItemProps extends MenuItemLinkProps {
   small?: boolean;
-  version: "v1" | "v2" | "latest";
+  version: "v1" | "latest" | string;
 }
 
 export default forwardRef<HTMLAnchorElement, VersionMenuItemProps>(

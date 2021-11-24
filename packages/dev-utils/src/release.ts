@@ -2,6 +2,7 @@ import { Octokit } from "@octokit/core";
 import dotenv from "dotenv";
 import log from "loglevel";
 import { join } from "path";
+import prompts from "prompts";
 
 import { changelogData } from "./changelogData";
 import { clean } from "./clean";
@@ -13,6 +14,7 @@ import {
   replaceTag,
   run,
   uncommittedFiles,
+  updateRmdMajorVersion,
   verify,
 } from "./utils";
 import { initBlog } from "./utils/initBlog";
@@ -64,6 +66,16 @@ async function continueOrRollback(autoConfirm: boolean): Promise<void> {
   }
 
   log.info();
+}
+
+async function getOneTimePassword(): Promise<string> {
+  const { otp } = await prompts({
+    type: "text",
+    name: "otp",
+    message: "Enter the one time password required to publishing to npm",
+  });
+
+  return otp;
 }
 
 interface Options {
@@ -139,6 +151,8 @@ A token can be created at:
     await continueOrRollback(autoYes);
   }
 
+  const version = await updateRmdMajorVersion();
+
   git("add -u");
   await replaceTag();
 
@@ -147,7 +161,9 @@ A token can be created at:
     distTag = " --dist-tag next";
   }
 
-  run(`npx lerna publish from-package${distTag}${yes}`);
+  const otp = await getOneTimePassword();
+
+  run(`npx lerna publish from-package${distTag}${yes} --otp=${otp}`);
   await continueOrRollback(autoYes);
 
   if (!prerelease) {
@@ -167,7 +183,6 @@ A token can be created at:
 ${percentChanged}
 \`\`\`
 `;
-  const version = await getLernaVersion();
   const octokit = new Octokit({ auth: GITHUB_TOKEN });
   const response = await octokit.request(
     "POST /repos/{owner}/{repo}/releases",

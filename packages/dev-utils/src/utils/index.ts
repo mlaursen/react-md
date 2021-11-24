@@ -9,4 +9,5 @@ export * from "./packages";
 export * from "./run";
 export * from "./styles";
 export * from "./titles";
+export * from "./updateRmdMajorVersion";
 export * from "./verify";

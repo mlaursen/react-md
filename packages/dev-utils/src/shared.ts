@@ -15,9 +15,10 @@ import { markdown } from "./markdown";
 import {
   copyFilesWithBanner,
   format,
+  getAllVersions,
   getPackages,
   list,
-  getAllVersions,
+  updateRmdMajorVersion,
 } from "./utils";
 
 const REPLACE_TOKEN = "<!-- rmd-readme-replace -->";
@@ -188,5 +189,6 @@ export async function shared(clean = false): Promise<void> {
     sharedSassdoc(),
     allPackages(),
     createVerions(),
+    updateRmdMajorVersion(),
   ]);
 }

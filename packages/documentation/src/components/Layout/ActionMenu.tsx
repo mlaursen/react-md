@@ -7,6 +7,7 @@ import { DropdownMenu } from "@react-md/menu";
 import { unitToNumber } from "@react-md/utils";
 
 import { CodePreferenceToggle } from "components/CodePreference";
+import { RMD_MAJOR_VERSION } from "constants/rmdVersion";
 
 import ToggleTheme from "./ToggleTheme";
 import ToggleRTL from "./ToggleRTL";
@@ -31,8 +32,9 @@ export default function ActionMenu(): ReactElement {
         <ToggleTheme as="menuitem" />,
         <ToggleRTL as="menuitem" />,
         <CodePreferenceToggle as="menuitem" />,
-        <VersionMenuItem version="v2" />,
-        <VersionMenuItem version="v1" />,
+        ...Array.from({ length: RMD_MAJOR_VERSION - 1 }, (_, i) => (
+          <VersionMenuItem version={`v${i + 1}`} />
+        )),
         <GithubLink as="menuitem" />,
         <TableOfContentsMenuItem />,
       ]}
