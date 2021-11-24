@@ -42,9 +42,6 @@
   "peerDependencies": {
     "react": ">= 16.14"
   },
-  "optionalDependencies": {
-    "prop-types": ">= 15.6"
-  },
   "publishConfig": {
     "access": "public"
   }

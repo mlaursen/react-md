@@ -21,15 +21,3 @@ export const DialogHeader = forwardRef<HTMLDivElement, DialogHeaderProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    DialogHeader.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

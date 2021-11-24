@@ -103,23 +103,3 @@ export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
     </svg>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    SVGIcon.propTypes = {
-      className: PropTypes.string,
-      role: PropTypes.string,
-      "aria-hidden": PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-      "aria-labelledby": PropTypes.string,
-      focusable: PropTypes.oneOf(["true", "false"]),
-      viewBox: PropTypes.string,
-      xmlns: PropTypes.string,
-      use: PropTypes.string,
-      dense: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

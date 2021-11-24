@@ -208,30 +208,3 @@ export function LayoutProvider({
 
   return <Provider value={value}>{children}</Provider>;
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    context.displayName = "Layout";
-
-    const PropTypes = require("prop-types");
-    const phoneLayouts = ["temporary", "temporary-mini"];
-    const tabletLayouts = [...phoneLayouts, "toggleable", "toggleable-mini"];
-    const wideLayouts = [
-      ...tabletLayouts,
-      "clipped",
-      "floating",
-      "full-height",
-    ];
-
-    LayoutProvider.propTypes = {
-      baseId: PropTypes.string.isRequired,
-      children: PropTypes.node.isRequired,
-      phoneLayout: PropTypes.oneOf(phoneLayouts),
-      tabletLayout: PropTypes.oneOf(tabletLayouts),
-      landscapeTabletLayout: PropTypes.oneOf(wideLayouts),
-      desktopLayout: PropTypes.oneOf(wideLayouts),
-      largeDesktopLayout: PropTypes.oneOf(wideLayouts),
-    };
-  } catch (error) {}
-}

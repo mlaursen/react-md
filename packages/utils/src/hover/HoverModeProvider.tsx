@@ -129,17 +129,3 @@ export function HoverModeProvider({
     </HoverModeContextProvider>
   );
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    HoverModeProvider.propTypes = {
-      disabled: PropTypes.bool,
-      defaultVisibleInTime: PropTypes.number,
-      deactivateTime: PropTypes.number,
-      children: PropTypes.node.isRequired,
-    };
-  } catch (e) {}
-}

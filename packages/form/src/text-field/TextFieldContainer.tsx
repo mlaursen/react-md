@@ -157,27 +157,3 @@ export const TextFieldContainer = forwardRef<
     </div>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TextFieldContainer.propTypes = {
-      className: PropTypes.string,
-      disabled: PropTypes.bool,
-      inline: PropTypes.bool,
-      theme: PropTypes.oneOf(["none", "underline", "outline", "filled"]),
-      active: PropTypes.bool,
-      error: PropTypes.bool,
-      underlineDirection: PropTypes.oneOf(["left", "center", "right"]),
-      isLeftAddon: PropTypes.bool,
-      isRightAddon: PropTypes.bool,
-      leftChildren: PropTypes.node,
-      rightChildren: PropTypes.node,
-      label: PropTypes.bool,
-      dense: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

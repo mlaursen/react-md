@@ -121,25 +121,3 @@ export const Link = forwardRef<
     </Component>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Link.propTypes = {
-      className: PropTypes.string,
-      href: PropTypes.string,
-      children: PropTypes.node,
-      component: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.object,
-      ]),
-      target: PropTypes.string,
-      rel: PropTypes.string,
-      preventMaliciousTarget: PropTypes.bool,
-      flexCentered: PropTypes.bool,
-    };
-  } catch (e) {}
-}

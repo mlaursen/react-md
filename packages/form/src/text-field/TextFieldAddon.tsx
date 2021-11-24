@@ -36,16 +36,3 @@ export const TextFieldAddon = forwardRef<HTMLSpanElement, TextFieldAddonProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TextFieldAddon.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      presentational: PropTypes.bool,
-    };
-  } catch (e) {}
-}

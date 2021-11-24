@@ -64,19 +64,3 @@ export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TableRow.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      disableHover: PropTypes.bool,
-      disableBorders: PropTypes.bool,
-      selected: PropTypes.bool,
-      clickable: PropTypes.bool,
-    };
-  } catch (e) {}
-}

@@ -22,15 +22,3 @@ export const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TableContainer.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

@@ -37,16 +37,3 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
     </form>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Form.propTypes = {
-      children: PropTypes.node,
-      onSubmit: PropTypes.func,
-      disablePreventDefault: PropTypes.bool,
-    };
-  } catch (e) {}
-}

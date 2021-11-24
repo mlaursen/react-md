@@ -58,18 +58,3 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
     </div>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Card.propTypes = {
-      className: PropTypes.string,
-      bordered: PropTypes.bool,
-      raiseable: PropTypes.bool,
-      fullWidth: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

@@ -57,18 +57,3 @@ export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    AppBarTitle.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      keyline: PropTypes.bool,
-      noWrap: PropTypes.bool,
-      inheritColor: PropTypes.bool,
-    };
-  } catch (e) {}
-}

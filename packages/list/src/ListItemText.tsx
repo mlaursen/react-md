@@ -61,17 +61,3 @@ export function ListItemText({
     </span>
   );
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    ListItemText.propTypes = {
-      className: PropTypes.string,
-      secondaryTextClassName: PropTypes.string,
-      secondaryText: PropTypes.node,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

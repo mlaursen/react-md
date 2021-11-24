@@ -78,17 +78,3 @@ export function MessageQueue<M extends ToastMessage = ToastMessage>({
     </AddMessageContext.Provider>
   );
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-    MessageQueue.propTypes = {
-      timeout: PropTypes.number,
-      duplicates: PropTypes.oneOf(["allow", "restart", "prevent"]),
-      defaultQueue: PropTypes.array,
-      onActionClick: PropTypes.func,
-      children: PropTypes.node.isRequired,
-    };
-  } catch (e) {}
-}

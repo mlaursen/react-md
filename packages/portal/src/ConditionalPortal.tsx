@@ -54,21 +54,3 @@ export function ConditionalPortal({
     </Portal>
   );
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    ConditionalPortal.propTypes = {
-      portal: PropTypes.bool,
-      portalInto: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.object,
-      ]),
-      portalIntoId: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

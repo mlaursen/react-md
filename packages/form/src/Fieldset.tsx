@@ -79,20 +79,3 @@ export const Fieldset = forwardRef<HTMLFieldSetElement, FieldsetProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Fieldset.propTypes = {
-      className: PropTypes.string,
-      unstyled: PropTypes.bool,
-      legend: PropTypes.node.isRequired,
-      legendStyle: PropTypes.object,
-      legendClassName: PropTypes.string,
-      legendSROnly: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

@@ -184,30 +184,3 @@ export const CircularProgress = forwardRef<
     </span>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    CircularProgress.propTypes = {
-      id: PropTypes.string.isRequired,
-      className: PropTypes.string,
-      min: PropTypes.number,
-      max: PropTypes.number,
-      value: PropTypes.number,
-      animate: PropTypes.bool,
-      svgStyle: PropTypes.object,
-      svgClassName: PropTypes.string,
-      circleStyle: PropTypes.object,
-      circleClassName: PropTypes.string,
-      radius: PropTypes.number,
-      center: PropTypes.number,
-      centered: PropTypes.bool,
-      maxRotation: PropTypes.number,
-      dashoffset: PropTypes.number,
-      small: PropTypes.bool,
-      viewBox: PropTypes.string,
-    };
-  } catch (e) {}
-}

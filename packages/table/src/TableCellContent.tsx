@@ -81,20 +81,3 @@ export const TableCellContent = forwardRef<
     </UnstyledButton>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TableCellContent.propTypes = {
-      id: PropTypes.string,
-      style: PropTypes.object,
-      className: PropTypes.string,
-      icon: PropTypes.node,
-      sortOrder: PropTypes.oneOf(["ascending", "descending", "none", "other"]),
-      rotated: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

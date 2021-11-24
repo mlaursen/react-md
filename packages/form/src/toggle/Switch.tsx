@@ -157,30 +157,3 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
     </ToggleContainer>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Switch.propTypes = {
-      id: PropTypes.string.isRequired,
-      style: PropTypes.object,
-      className: PropTypes.string,
-      ballStyle: PropTypes.object,
-      ballClassName: PropTypes.string,
-      trackStyle: PropTypes.object,
-      trackClassName: PropTypes.string,
-      label: PropTypes.node,
-      labelStyle: PropTypes.object,
-      labelClassName: PropTypes.string,
-      labelDisabled: PropTypes.bool,
-      error: PropTypes.bool,
-      inline: PropTypes.bool,
-      disabled: PropTypes.bool,
-      stacked: PropTypes.bool,
-      iconAfter: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

@@ -167,27 +167,3 @@ export const LayoutTree = forwardRef<HTMLUListElement, LayoutTreeProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    LayoutTree.propTypes = {
-      id: PropTypes.string,
-      "aria-label": PropTypes.string,
-      "aria-labelledby": PropTypes.string,
-      mini: PropTypes.bool,
-      className: PropTypes.string,
-      navStyle: PropTypes.object,
-      navClassName: PropTypes.string,
-      children: PropTypes.node,
-      labelKey: PropTypes.string,
-      valueKey: PropTypes.string,
-      navItems: PropTypes.object.isRequired,
-      selectedIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-      itemRenderer: PropTypes.func,
-      disableTemporaryAutoclose: PropTypes.bool,
-    };
-  } catch (error) {}
-}

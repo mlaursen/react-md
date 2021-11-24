@@ -41,16 +41,3 @@ export const RadioWidget = forwardRef<HTMLSpanElement, RadioWidgetProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    RadioWidget.propTypes = {
-      id: PropTypes.string.isRequired,
-      checked: PropTypes.bool.isRequired,
-      tabIndex: PropTypes.oneOf([0, -1]).isRequired,
-    };
-  } catch (e) {}
-}

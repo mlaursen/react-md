@@ -47,17 +47,3 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    CardTitle.propTypes = {
-      small: PropTypes.bool,
-      noWrap: PropTypes.bool,
-      className: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

@@ -88,29 +88,3 @@ export function AppSizeListener({
     <AppSizeContext.Provider value={value}>{children}</AppSizeContext.Provider>
   );
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    const querySize = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
-
-    AppSizeListener.propTypes = {
-      children: PropTypes.node.isRequired,
-      onChange: PropTypes.func,
-      phoneMaxWidth: querySize,
-      tabletMinWidth: querySize,
-      tabletMaxWidth: querySize,
-      desktopMinWidth: querySize,
-      desktopLargeMinWidth: querySize,
-      defaultSize: PropTypes.shape({
-        isPhone: PropTypes.bool.isRequired,
-        isTablet: PropTypes.bool.isRequired,
-        isDesktop: PropTypes.bool.isRequired,
-        isLargeDesktop: PropTypes.bool.isRequired,
-        isLandscape: PropTypes.bool.isRequired,
-      }),
-    };
-  } catch (e) {}
-}

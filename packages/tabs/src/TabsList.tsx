@@ -158,25 +158,3 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TabsList.propTypes = {
-      style: PropTypes.object,
-      className: PropTypes.string,
-      children: PropTypes.node,
-      onClick: PropTypes.func,
-      onKeyDown: PropTypes.func,
-      align: PropTypes.oneOf(["left", "center", "right"]),
-      automatic: PropTypes.bool,
-      padded: PropTypes.bool,
-      orientation: PropTypes.oneOf(["horizontal", "vertical"]),
-      activeIndex: PropTypes.number.isRequired,
-      onActiveIndexChange: PropTypes.func.isRequired,
-      disableTransition: PropTypes.bool,
-    };
-  } catch (e) {}
-}

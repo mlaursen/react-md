@@ -145,35 +145,3 @@ export const TableCheckbox = forwardRef<
     </TableCell>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TableCheckbox.propTypes = {
-      id: PropTypes.string.isRequired,
-      className: PropTypes.string,
-      "aria-label": PropTypes.string,
-      "aria-labelledby": PropTypes.string,
-      "aria-checked": PropTypes.string,
-      "aria-controls": PropTypes.string,
-      checkboxRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-      checkboxStyle: PropTypes.object,
-      checkboxClassName: PropTypes.string,
-      icon: PropTypes.node,
-      iconStyle: PropTypes.object,
-      iconClassName: PropTypes.string,
-      toggleStyle: PropTypes.object,
-      toggleClassName: PropTypes.string,
-      disableIconOverlay: PropTypes.bool,
-      name: PropTypes.string,
-      value: PropTypes.string,
-      checked: PropTypes.bool,
-      defaultChecked: PropTypes.bool,
-      onChange: PropTypes.func,
-      cellId: PropTypes.string,
-      indeterminate: PropTypes.bool,
-    };
-  } catch (e) {}
-}

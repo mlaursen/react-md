@@ -227,32 +227,3 @@ export const Chip = forwardRef<HTMLButtonElement, ChipProps>(function Chip(
     </Component>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Chip.propTypes = {
-      "aria-pressed": PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(["true", "false"]),
-      ]),
-      className: PropTypes.string,
-      theme: PropTypes.oneOf(["outline", "solid"]),
-      disabled: PropTypes.bool,
-      leftIcon: PropTypes.node,
-      rightIcon: PropTypes.node,
-      raisable: PropTypes.bool,
-      contentStyle: PropTypes.object,
-      contentClassName: PropTypes.string,
-      disableContentWrap: PropTypes.bool,
-      selected: PropTypes.bool,
-      selectedThemed: PropTypes.bool,
-      children: PropTypes.node,
-      selectedIcon: PropTypes.node,
-      noninteractable: PropTypes.bool,
-      disableIconTransition: PropTypes.bool,
-    };
-  } catch (e) {}
-}

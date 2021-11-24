@@ -54,22 +54,3 @@ export const SrOnly = forwardRef<TypographyHTMLElement, SrOnlyProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    SrOnly.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      tabIndex: PropTypes.number,
-      focusable: PropTypes.bool,
-      component: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.object,
-      ]),
-    };
-  } catch (e) {}
-}

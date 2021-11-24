@@ -153,39 +153,3 @@ export const LayoutMain = forwardRef<HTMLDivElement, LayoutMainProps>(
     return <Component {...props} {...elementProps} tabIndex={tabIndex} />;
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    LayoutMain.propTypes = {
-      component: PropTypes.oneOf(["div", "main"]),
-      className: PropTypes.string,
-      tabIndex: PropTypes.number,
-      navOffset: PropTypes.bool,
-      headerOffset: PropTypes.bool,
-      timeout: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.shape({
-          appear: PropTypes.number,
-          enter: PropTypes.number,
-          exit: PropTypes.number,
-        }),
-      ]),
-      classNames: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.shape({
-          appear: PropTypes.string,
-          appearActive: PropTypes.string,
-          enter: PropTypes.string,
-          enterActive: PropTypes.string,
-          enterDone: PropTypes.string,
-          exit: PropTypes.string,
-          exitActive: PropTypes.string,
-          exitDone: PropTypes.string,
-        }),
-      ]),
-    };
-  } catch (error) {}
-}

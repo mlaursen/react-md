@@ -249,27 +249,3 @@ export const RadioGroup = forwardRef<HTMLSpanElement, RadioGroupProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    RadioGroup.propTypes = {
-      id: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-      items: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.shape({
-            value: PropTypes.string.isRequired,
-            children: PropTypes.node,
-          }),
-        ])
-      ).isRequired,
-      onChange: PropTypes.func.isRequired,
-      getRadioStyle: PropTypes.func,
-      getRadioClassName: PropTypes.func,
-    };
-  } catch (e) {}
-}

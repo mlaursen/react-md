@@ -18,16 +18,3 @@ export function ResizeListener({
   useResizeListener({ onResize, options, immediate, enabled: true });
   return null;
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    ResizeListener.propTypes = {
-      onResize: PropTypes.func.isRequired,
-      options: PropTypes.object,
-      immediate: PropTypes.bool,
-    };
-  } catch (e) {}
-}

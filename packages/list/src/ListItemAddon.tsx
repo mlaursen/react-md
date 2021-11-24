@@ -76,20 +76,3 @@ export function ListItemAddon({
     </TextIconSpacing>
   );
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    ListItemAddon.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      addon: PropTypes.node,
-      addonAfter: PropTypes.bool,
-      type: PropTypes.oneOf(["icon", "avatar", "media", "large-media"]),
-      position: PropTypes.oneOf(["top", "middle", "bottom"]),
-      forceAddonWrap: PropTypes.bool,
-    };
-  } catch (e) {}
-}

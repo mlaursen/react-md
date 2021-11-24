@@ -174,35 +174,3 @@ export function ListItemChildren({
     </>
   );
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-    ListItemChildren.propTypes = {
-      textClassName: PropTypes.string,
-      secondaryTextClassName: PropTypes.string,
-      textChildren: PropTypes.bool,
-      primaryText: PropTypes.node,
-      secondaryText: PropTypes.node,
-      leftAddon: PropTypes.node,
-      leftAddonType: PropTypes.oneOf([
-        "icon",
-        "avatar",
-        "media",
-        "large-media",
-      ]),
-      leftAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
-      rightAddon: PropTypes.node,
-      rightAddonType: PropTypes.oneOf([
-        "icon",
-        "avatar",
-        "media",
-        "large-media",
-      ]),
-      rightAddonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
-      forceAddonWrap: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

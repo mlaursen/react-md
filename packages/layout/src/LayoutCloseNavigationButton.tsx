@@ -70,22 +70,3 @@ export const LayoutCloseNavigationButton = forwardRef<
     </AppBarAction>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    LayoutCloseNavigationButton.propTypes = {
-      id: PropTypes.string,
-      "aria-label": PropTypes.string,
-      "aria-labelledby": PropTypes.string,
-      first: PropTypes.bool,
-      last: PropTypes.bool,
-      onClick: PropTypes.func,
-      children: PropTypes.node,
-      buttonType: PropTypes.oneOf(["icon", "text"]),
-      rendered: PropTypes.bool,
-    };
-  } catch (error) {}
-}

@@ -213,29 +213,3 @@ export function Tooltipped({
     </>
   );
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Tooltipped.propTypes = {
-      tooltipId: PropTypes.string,
-      dense: PropTypes.bool,
-      spacing: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      denseSpacing: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      positionThreshold: PropTypes.number,
-      disableAutoSpacing: PropTypes.bool,
-      vwMargin: PropTypes.number,
-      vhMargin: PropTypes.number,
-      portal: PropTypes.bool,
-      lineWrap: PropTypes.bool,
-      focusDelay: PropTypes.number,
-      hoverDelay: PropTypes.number,
-      touchTimeout: PropTypes.number,
-      mountOnEnter: PropTypes.bool,
-      unmountOnExit: PropTypes.bool,
-      defaultPosition: PropTypes.oneOf(["above", "below", "left", "right"]),
-    };
-  } catch (e) {}
-}

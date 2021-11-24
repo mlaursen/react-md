@@ -196,27 +196,3 @@ export function IconProvider({
 
   return <Provider value={value}>{children}</Provider>;
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    IconProvider.propTypes = {
-      children: PropTypes.node,
-      back: PropTypes.node,
-      checkbox: PropTypes.node,
-      download: PropTypes.node,
-      dropdown: PropTypes.node,
-      error: PropTypes.node,
-      expander: PropTypes.node,
-      forward: PropTypes.node,
-      menu: PropTypes.node,
-      notification: PropTypes.node,
-      password: PropTypes.node,
-      radio: PropTypes.node,
-      selected: PropTypes.node,
-      sort: PropTypes.node,
-    };
-  } catch (e) {}
-}

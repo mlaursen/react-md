@@ -163,20 +163,3 @@ export function Dir({
 
   return <Provider value={value}>{child}</Provider>;
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  context.displayName = "WritingDirection";
-
-  try {
-    const PropTypes = require("prop-types");
-
-    Dir.propTypes = {
-      children: PropTypes.element.isRequired,
-      defaultDir: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.oneOf(["ltr", "rtl"]),
-      ]),
-    };
-  } catch (e) {}
-}

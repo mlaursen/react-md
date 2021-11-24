@@ -34,16 +34,3 @@ export const LayoutAppBarTitle = forwardRef<
     </AppBarTitle>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    LayoutAppBarTitle.propTypes = {
-      id: PropTypes.string,
-      className: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (error) {}
-}

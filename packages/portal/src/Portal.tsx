@@ -57,20 +57,3 @@ export function Portal({
 
   return createPortal(children, container);
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Portal.propTypes = {
-      into: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.object,
-      ]),
-      intoId: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

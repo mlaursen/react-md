@@ -89,19 +89,3 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    CardHeader.propTypes = {
-      align: PropTypes.oneOf(["top", "center", "bottom", "none"]),
-      className: PropTypes.string,
-      beforeChildren: PropTypes.node,
-      afterChildren: PropTypes.node,
-      contentClassName: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

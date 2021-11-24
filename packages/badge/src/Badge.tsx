@@ -63,18 +63,3 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
     </span>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Badge.propTypes = {
-      id: PropTypes.string.isRequired,
-      theme: PropTypes.oneOf(["primary", "secondary", "default", "clear"]),
-      className: PropTypes.string,
-      children: PropTypes.node,
-      disableNullOnZero: PropTypes.bool,
-    };
-  } catch (e) {}
-}

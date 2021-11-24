@@ -75,31 +75,3 @@ export const VerticalDivider = forwardRef<HTMLDivElement, VerticalDividerProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    VerticalDivider.propTypes = {
-      style: PropTypes.object,
-      maxHeight: PropTypes.number,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      _validateMaxHeight: (
-        { maxHeight = 1 },
-        _: string,
-        componentName: string
-      ) => {
-        if (maxHeight < 0) {
-          return new Error(
-            `The maxHeight prop for \`${componentName}\` must be a number greater ` +
-              `than 0, but received \`${maxHeight}\`.`
-          );
-        }
-
-        return null;
-      },
-    };
-  } catch (e) {}
-}

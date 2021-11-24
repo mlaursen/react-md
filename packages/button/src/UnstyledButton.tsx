@@ -30,16 +30,3 @@ export const UnstyledButton = forwardRef<
     </button>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    UnstyledButton.propTypes = {
-      className: PropTypes.string,
-      disabled: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

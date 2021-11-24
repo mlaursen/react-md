@@ -104,25 +104,3 @@ export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    MenuButton.propTypes = {
-      "aria-haspopup": PropTypes.oneOf(["menu", "true", true]),
-      id: PropTypes.string.isRequired,
-      visible: PropTypes.bool.isRequired,
-      dropdownIcon: PropTypes.node,
-      disableDropdownIcon: PropTypes.bool,
-      className: PropTypes.string,
-      children: PropTypes.node,
-      buttonType: PropTypes.oneOf(["text", "icon"]),
-      first: PropTypes.bool,
-      last: PropTypes.bool,
-      inheritColor: PropTypes.bool,
-      asAppBarAction: PropTypes.bool,
-    };
-  } catch (e) {}
-}

@@ -130,34 +130,3 @@ export const FocusContainer = forwardRef<HTMLDivElement, FocusContainerProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    FocusContainer.propTypes = {
-      disableFocusCache: PropTypes.bool,
-      disableFocusOnMount: PropTypes.bool,
-      disableFocusOnUnmount: PropTypes.bool,
-      disableTabFocusWrap: PropTypes.bool,
-      defaultFocus: PropTypes.oneOfType([
-        PropTypes.oneOf(["first", "last"]),
-        PropTypes.string,
-      ]),
-      component: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.object,
-      ]),
-      unmountFocusFallback: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.object,
-      ]),
-      children: PropTypes.node,
-      onKeyDown: PropTypes.func,
-      disableFocusOnMountScroll: PropTypes.bool,
-    };
-  } catch (e) {}
-}

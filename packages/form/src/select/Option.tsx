@@ -54,18 +54,3 @@ export const Option = forwardRef<HTMLLIElement, OptionProps>(function Option(
     </SimpleListItem>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Option.propTypes = {
-      className: PropTypes.string,
-      focused: PropTypes.bool.isRequired,
-      selected: PropTypes.bool,
-      children: PropTypes.node,
-      textChildren: PropTypes.bool,
-    };
-  } catch (e) {}
-}

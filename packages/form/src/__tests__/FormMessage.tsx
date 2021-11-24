@@ -49,19 +49,4 @@ describe("FormMessage", () => {
     );
     expect(message).toMatchSnapshot();
   });
-
-  it("should log a validation error if both the length and maxLength are not numbers", () => {
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
-    render(<FormMessage id="id" length={10} maxLength={20} />);
-
-    expect(error).not.toBeCalled();
-
-    render(<FormMessage id="id" length={10} />);
-    expect(error).toBeCalledTimes(1);
-
-    render(<FormMessage id="id" maxLength={10} />);
-    expect(error).toBeCalledTimes(2);
-
-    error.mockRestore();
-  });
 });

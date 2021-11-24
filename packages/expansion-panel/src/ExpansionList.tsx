@@ -33,16 +33,3 @@ export const ExpansionList = forwardRef<HTMLDivElement, ExpansionListProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    ExpansionList.propTypes = {
-      children: PropTypes.node.isRequired,
-      className: PropTypes.string,
-      onKeyDown: PropTypes.func.isRequired,
-    };
-  } catch (e) {}
-}

@@ -165,33 +165,3 @@ export const AppBar = forwardRef<HTMLDivElement, AppBarProps>(function AppBar(
     </ParentContext.Provider>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    AppBar.propTypes = {
-      className: PropTypes.string,
-      component: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.object,
-      ]),
-      height: PropTypes.oneOf([
-        "none",
-        "normal",
-        "dense",
-        "prominent",
-        "prominent-dense",
-      ]),
-      flexWrap: PropTypes.bool,
-      children: PropTypes.node,
-      fixed: PropTypes.bool,
-      fixedPosition: PropTypes.oneOf(["top", "bottom"]),
-      fixedElevation: PropTypes.bool,
-      inheritColor: PropTypes.bool,
-      theme: PropTypes.oneOf(["primary", "secondary", "default", "clear"]),
-    };
-  } catch (e) {}
-}

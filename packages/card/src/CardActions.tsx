@@ -34,16 +34,3 @@ export const CardActions = forwardRef<HTMLDivElement, CardActionsProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    CardActions.propTypes = {
-      align: PropTypes.oneOf(["start", "end", "center"]),
-      className: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

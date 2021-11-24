@@ -169,29 +169,3 @@ export const Password = forwardRef<HTMLInputElement, PasswordProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Password.propTypes = {
-      id: PropTypes.string.isRequired,
-      className: PropTypes.string,
-      inputClassName: PropTypes.string,
-      visibilityIcon: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.shape({
-          visible: PropTypes.node,
-          invisible: PropTypes.node,
-        }),
-      ]),
-      visibilityStyle: PropTypes.object,
-      visibilityClassName: PropTypes.string,
-      visibilityLabel: PropTypes.string,
-      disableVisibility: PropTypes.bool,
-      onVisibilityClick: PropTypes.func,
-      getVisibilityIcon: PropTypes.func,
-    };
-  } catch (e) {}
-}

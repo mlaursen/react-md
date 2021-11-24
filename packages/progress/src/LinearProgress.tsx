@@ -136,25 +136,3 @@ export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    LinearProgress.propTypes = {
-      id: PropTypes.string.isRequired,
-      style: PropTypes.object,
-      className: PropTypes.string,
-      min: PropTypes.number,
-      max: PropTypes.number,
-      value: PropTypes.number,
-      animate: PropTypes.bool,
-      barStyle: PropTypes.object,
-      barClassName: PropTypes.string,
-      reverse: PropTypes.bool,
-      vertical: PropTypes.bool,
-      verticalHeight: PropTypes.number,
-    };
-  } catch (e) {}
-}

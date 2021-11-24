@@ -60,20 +60,3 @@ export const FloatingLabel = forwardRef<HTMLLabelElement, FloatingLabelProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    FloatingLabel.propTypes = {
-      className: PropTypes.string,
-      dense: PropTypes.bool,
-      floating: PropTypes.bool,
-      error: PropTypes.bool,
-      active: PropTypes.bool,
-      disabled: PropTypes.bool,
-      valued: PropTypes.bool.isRequired,
-    };
-  } catch (e) {}
-}

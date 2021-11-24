@@ -56,23 +56,3 @@ export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TableBody.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      lineWrap: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(["padded"]),
-      ]),
-      hAlign: PropTypes.oneOf(["left", "center", "right"]),
-      vAlign: PropTypes.oneOf(["top", "middle", "bottom"]),
-      disableHover: PropTypes.bool,
-      disableBorders: PropTypes.bool,
-    };
-  } catch (e) {}
-}

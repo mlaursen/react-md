@@ -130,30 +130,3 @@ export const GridList = forwardRef<HTMLDivElement, GridListProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    GridList.propTypes = {
-      style: PropTypes.object,
-      clone: PropTypes.bool,
-      wrapOnly: PropTypes.bool,
-      className: PropTypes.string,
-      children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-      cellMargin: PropTypes.string,
-      maxCellSize: PropTypes.number,
-      defaultSize: PropTypes.oneOfType([
-        PropTypes.shape({
-          columns: PropTypes.number.isRequired,
-          cellWidth: PropTypes.number.isRequired,
-        }),
-        PropTypes.func,
-      ]),
-      containerPadding: PropTypes.number,
-      disableHeightObserver: PropTypes.bool,
-      disableWidthObserver: PropTypes.bool,
-    };
-  } catch (e) {}
-}

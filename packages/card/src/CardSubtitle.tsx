@@ -52,17 +52,3 @@ export const CardSubtitle = forwardRef<HTMLHeadingElement, CardSubtitleProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    CardSubtitle.propTypes = {
-      className: PropTypes.string,
-      noWrap: PropTypes.bool,
-      disableSecondaryColor: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

@@ -74,21 +74,3 @@ export const TableFooter = forwardRef<
     </TableConfigProvider>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TableFooter.propTypes = {
-      className: PropTypes.string,
-      lineWrap: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(["padded"]),
-      ]),
-      hoverable: PropTypes.bool,
-      sticky: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

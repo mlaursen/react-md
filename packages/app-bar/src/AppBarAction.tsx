@@ -46,32 +46,3 @@ export const AppBarAction = forwardRef<HTMLButtonElement, AppBarActionProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    AppBarAction.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      first: PropTypes.bool,
-      last: PropTypes.bool,
-      theme: PropTypes.oneOf([
-        "primary",
-        "secondary",
-        "warning",
-        "error",
-        "clear",
-      ]),
-      buttonType: PropTypes.oneOf(["text", "icon"]),
-      floating: PropTypes.oneOf([
-        "top-left",
-        "top-right",
-        "bottom-left",
-        "bottom-right",
-      ]),
-      inheritColor: PropTypes.bool,
-    };
-  } catch (e) {}
-}

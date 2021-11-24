@@ -79,23 +79,3 @@ export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    FontIcon.propTypes = {
-      "aria-hidden": PropTypes.oneOfType([
-        PropTypes.oneOf(["true", "false"]),
-        PropTypes.bool,
-      ]),
-      className: PropTypes.string,
-      iconClassName: PropTypes.string,
-      dense: PropTypes.bool,
-      forceSize: PropTypes.bool,
-      forceFontSize: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

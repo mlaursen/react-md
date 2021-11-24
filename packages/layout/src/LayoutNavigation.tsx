@@ -207,25 +207,3 @@ export const LayoutNavigation = forwardRef<
     </Sheet>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    LayoutNavigation.propTypes = {
-      id: PropTypes.string,
-      "aria-label": PropTypes.string,
-      "aria-labelledby": PropTypes.string,
-      className: PropTypes.string,
-      children: PropTypes.node,
-      treeProps: PropTypes.object,
-      header: PropTypes.node,
-      headerProps: PropTypes.object,
-      headerTitle: PropTypes.node,
-      headerTitleProps: PropTypes.object,
-      closeNav: PropTypes.node,
-      closeNavProps: PropTypes.object,
-    };
-  } catch (error) {}
-}

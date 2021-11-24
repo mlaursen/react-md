@@ -70,19 +70,3 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    CardContent.propTypes = {
-      className: PropTypes.string,
-      disablePadding: PropTypes.bool,
-      disableExtraPadding: PropTypes.bool,
-      disableParagraphMargin: PropTypes.bool,
-      disableSecondaryColor: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

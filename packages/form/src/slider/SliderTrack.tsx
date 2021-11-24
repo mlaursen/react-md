@@ -91,19 +91,3 @@ export const SliderTrack = forwardRef<HTMLSpanElement, SliderTrackProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    SliderTrack.propTypes = {
-      className: PropTypes.string,
-      animate: PropTypes.bool,
-      vertical: PropTypes.bool,
-      disabled: PropTypes.bool,
-      thumb1Percentage: PropTypes.string,
-      thumb2Percentage: PropTypes.string,
-    };
-  } catch (e) {}
-}

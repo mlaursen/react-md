@@ -141,27 +141,3 @@ export function TextIconSpacing({
 
   return <>{content}</>;
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TextIconSpacing.propTypes = {
-      className: PropTypes.string,
-      icon: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.node,
-        PropTypes.object,
-      ]),
-      iconAfter: PropTypes.bool,
-      stacked: PropTypes.bool,
-      children: PropTypes.node,
-      beforeClassName: PropTypes.string,
-      afterClassName: PropTypes.string,
-      aboveClassName: PropTypes.string,
-      belowClassName: PropTypes.string,
-      forceIconWrap: PropTypes.bool,
-    };
-  } catch (e) {}
-}

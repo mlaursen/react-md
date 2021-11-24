@@ -108,19 +108,3 @@ export const SkipToMainContent = forwardRef<
     </Link>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    SkipToMainContent.propTypes = {
-      id: PropTypes.string,
-      mainId: PropTypes.string.isRequired,
-      onClick: PropTypes.func,
-      className: PropTypes.string,
-      children: PropTypes.node,
-      unstyled: PropTypes.bool,
-    };
-  } catch (e) {}
-}

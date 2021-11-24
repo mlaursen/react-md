@@ -39,18 +39,3 @@ export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    MenuItem.propTypes = {
-      id: PropTypes.string,
-      className: PropTypes.string,
-      role: PropTypes.string,
-      tabIndex: PropTypes.number,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

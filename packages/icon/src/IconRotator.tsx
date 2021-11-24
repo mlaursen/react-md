@@ -83,19 +83,3 @@ export const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    IconRotator.propTypes = {
-      style: PropTypes.object,
-      className: PropTypes.string,
-      animate: PropTypes.bool,
-      rotated: PropTypes.bool,
-      forceIconWrap: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

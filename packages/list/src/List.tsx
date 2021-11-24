@@ -61,19 +61,3 @@ export const List = forwardRef<ListElement, ListProps>(function List(
     </Component>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    List.propTypes = {
-      role: PropTypes.string,
-      dense: PropTypes.bool,
-      ordered: PropTypes.bool,
-      className: PropTypes.string,
-      children: PropTypes.node,
-      horizontal: PropTypes.bool,
-    };
-  } catch (e) {}
-}

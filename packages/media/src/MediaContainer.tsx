@@ -76,19 +76,3 @@ export const MediaContainer = forwardRef<
     </div>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    MediaContainer.propTypes = {
-      auto: PropTypes.bool,
-      height: PropTypes.number,
-      width: PropTypes.number,
-      fullWidth: PropTypes.bool,
-      className: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

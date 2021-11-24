@@ -101,22 +101,3 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
     </span>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Avatar.propTypes = {
-      alt: PropTypes.string,
-      src: PropTypes.string,
-      color: PropTypes.string,
-      className: PropTypes.string,
-      children: PropTypes.node,
-      // Note: The MDN website has a lot more values, but this is what Typescript
-      // says is valid at the time of writing this
-      referrerPolicy: PropTypes.oneOf(["no-referrer", "origin", "unsafe-url"]),
-      imgProps: PropTypes.object,
-    };
-  } catch (e) {}
-}

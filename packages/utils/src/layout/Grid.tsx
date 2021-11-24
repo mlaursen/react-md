@@ -195,27 +195,3 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>(function Grid(
     </div>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Grid.propTypes = {
-      style: PropTypes.object,
-      className: PropTypes.string,
-      clone: PropTypes.bool,
-      cloneStyles: PropTypes.bool,
-      wrapOnly: PropTypes.bool,
-      columns: PropTypes.number,
-      phoneColumns: PropTypes.number,
-      tabletColumns: PropTypes.number,
-      desktopColumns: PropTypes.number,
-      largeDesktopColumns: PropTypes.number,
-      padding: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      gutter: PropTypes.string,
-      children: PropTypes.node,
-      minCellWidth: PropTypes.string,
-    };
-  } catch (e) {}
-}

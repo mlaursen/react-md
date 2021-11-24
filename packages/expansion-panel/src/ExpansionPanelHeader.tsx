@@ -90,20 +90,3 @@ export const ExpansionPanelHeader = forwardRef<
     </UnstyledButton>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    ExpansionPanelHeader.propTypes = {
-      id: PropTypes.string.isRequired,
-      icon: PropTypes.node,
-      expanded: PropTypes.bool.isRequired,
-      onClick: PropTypes.func.isRequired,
-      children: PropTypes.node.isRequired,
-      className: PropTypes.string,
-      disableTransition: PropTypes.bool,
-    };
-  } catch (e) {}
-}

@@ -213,23 +213,3 @@ export const MenuItemInputToggle = forwardRef<
     </ListItem>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    MenuItemInputToggle.propTypes = {
-      id: PropTypes.string.isRequired,
-      checked: PropTypes.bool.isRequired,
-      onCheckedChange: PropTypes.func.isRequired,
-      type: PropTypes.oneOf(["checkbox", "radio", "switch"]).isRequired,
-      disabled: PropTypes.bool,
-      icon: PropTypes.node,
-      iconAfter: PropTypes.bool,
-      addon: PropTypes.node,
-      addonType: PropTypes.oneOf(["icon", "avatar", "media", "large-media"]),
-      addonPosition: PropTypes.oneOf(["top", "middle", "bottom"]),
-    };
-  } catch (e) {}
-}

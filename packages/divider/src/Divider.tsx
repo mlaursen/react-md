@@ -55,17 +55,3 @@ export const Divider = forwardRef<DividerElement, DividerProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Divider.propTypes = {
-      role: PropTypes.string,
-      inset: PropTypes.bool,
-      className: PropTypes.string,
-      vertical: PropTypes.bool,
-    };
-  } catch (e) {}
-}

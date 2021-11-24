@@ -154,32 +154,6 @@ describe("Slider", () => {
     expect(slider).toHaveAttribute("aria-valuenow", "50");
   });
 
-  it("should log an error if the slider does not have a valid label", () => {
-    function Test(
-      props: Pick<
-        SliderProps,
-        "label" | "thumbLabel" | "thumbLabelledBy" | "thumbProps"
-      >
-    ): ReactElement {
-      const [, controls] = useSlider();
-
-      return <Slider {...props} {...controls} baseId="slider" />;
-    }
-
-    const error = jest.spyOn(console, "error").mockImplementation(() => {});
-    const { rerender } = render(<Test label="Label" />);
-    rerender(<Test thumbLabel="Label" />);
-    rerender(<Test thumbLabelledBy="some-id" />);
-    rerender(<Test thumbProps={{ "aria-label": "Label" }} />);
-    rerender(<Test thumbProps={{ "aria-labelledby": "some-id" }} />);
-
-    expect(error).not.toBeCalled();
-    rerender(<Test />);
-    expect(error).toBeCalledTimes(1);
-
-    error.mockRestore();
-  });
-
   describe("keyboard behavior", () => {
     it("should update the value correctly with specific keyboard keys", () => {
       const { getByRole } = render(<Test />);

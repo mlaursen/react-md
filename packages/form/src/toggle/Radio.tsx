@@ -22,21 +22,3 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
 
   return <InputToggle {...props} icon={icon} ref={ref} type="radio" />;
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Radio.propTypes = {
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string,
-      icon: PropTypes.node,
-      value: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.string),
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired,
-    };
-  } catch (e) {}
-}

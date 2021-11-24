@@ -145,18 +145,3 @@ export const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TabPanels.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      disableScrollFix: PropTypes.bool,
-      disableTransition: PropTypes.bool,
-      persistent: PropTypes.bool,
-    };
-  } catch (e) {}
-}

@@ -74,20 +74,3 @@ export const AsyncSwitch = forwardRef<HTMLInputElement, AsyncSwitchProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV === "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    AsyncSwitch.propTypes = {
-      id: PropTypes.string.isRequired,
-      className: PropTypes.string,
-      onChange: PropTypes.func,
-      disabled: PropTypes.bool,
-      loading: PropTypes.bool.isRequired,
-      progressStyle: PropTypes.object,
-      progressClassName: PropTypes.string,
-    };
-  } catch (e) {}
-}

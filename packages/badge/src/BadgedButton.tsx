@@ -113,25 +113,3 @@ export const BadgedButton = forwardRef<HTMLButtonElement, BadgedButtonProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    BadgedButton.propTypes = {
-      id: PropTypes.string,
-      "aria-label": PropTypes.string,
-      "aria-describedby": PropTypes.string,
-      buttonType: PropTypes.oneOf(["text", "icon"]),
-      children: PropTypes.node,
-      disableNullOnZero: PropTypes.bool,
-      badgeId: PropTypes.string,
-      badgeRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-      badgeStyle: PropTypes.object,
-      badgeClassName: PropTypes.string,
-      badgeTheme: PropTypes.oneOf(["primary", "secondary", "default", "clear"]),
-      buttonChildren: PropTypes.node,
-    };
-  } catch (e) {}
-}

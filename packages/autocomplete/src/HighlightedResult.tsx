@@ -102,21 +102,3 @@ export function HighlightedResult({
     </>
   );
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    HighlightedResult.propTypes = {
-      id: PropTypes.string,
-      index: PropTypes.number,
-      value: PropTypes.string.isRequired,
-      style: PropTypes.object,
-      className: PropTypes.string,
-      children: PropTypes.node,
-      enabled: PropTypes.bool,
-      repeatable: PropTypes.bool,
-    };
-  } catch (e) {}
-}

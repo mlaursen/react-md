@@ -46,23 +46,3 @@ export const DialogFooter = forwardRef<HTMLDivElement, DialogFooterProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    DialogFooter.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      align: PropTypes.oneOf([
-        "none",
-        "start",
-        "end",
-        "between",
-        "stacked-start",
-        "stacked-end",
-      ]),
-    };
-  } catch (e) {}
-}

@@ -72,25 +72,3 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(function Table(
     </TableConfigProvider>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Table.propTypes = {
-      children: PropTypes.node,
-      className: PropTypes.string,
-      dense: PropTypes.bool,
-      fullWidth: PropTypes.bool,
-      disableHover: PropTypes.bool,
-      disableBorders: PropTypes.bool,
-      hAlign: PropTypes.oneOf(["left", "center", "right"]),
-      vAlign: PropTypes.oneOf(["top", "middle", "bottom"]),
-      lineWrap: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(["padded"]),
-      ]),
-    };
-  } catch (e) {}
-}

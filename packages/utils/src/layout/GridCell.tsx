@@ -174,36 +174,3 @@ export const GridCell = forwardRef<HTMLDivElement, GridCellProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    const gridCSSProperties = PropTypes.shape({
-      rowSpan: PropTypes.number,
-      rowStart: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      rowEnd: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      colSpan: PropTypes.number,
-      colStart: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      colEnd: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    });
-
-    GridCell.propTypes = {
-      style: PropTypes.object,
-      className: PropTypes.string,
-      clone: PropTypes.bool,
-      rowSpan: PropTypes.number,
-      rowStart: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      rowEnd: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      colSpan: PropTypes.number,
-      colStart: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      colEnd: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-      phone: gridCSSProperties,
-      tablet: gridCSSProperties,
-      desktop: gridCSSProperties,
-      largeDesktop: gridCSSProperties,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

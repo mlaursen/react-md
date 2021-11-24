@@ -99,21 +99,3 @@ export const LayoutNavigationHeader = forwardRef<
     </AppBar>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    LayoutNavigationHeader.propTypes = {
-      disableBorderBottom: PropTypes.bool,
-      className: PropTypes.string,
-      closeNav: PropTypes.node,
-      closeNavProps: PropTypes.object,
-      theme: PropTypes.oneOf(["clear", "primary", "secondary", "default"]),
-      children: PropTypes.node,
-      title: PropTypes.node,
-      titleProps: PropTypes.object,
-    };
-  } catch (error) {}
-}

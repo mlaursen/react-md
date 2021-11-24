@@ -101,22 +101,3 @@ export const TextContainer = forwardRef<
     </Component>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TextContainer.propTypes = {
-      className: PropTypes.string,
-      size: PropTypes.oneOf(["auto", "mobile", "desktop"]),
-      component: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func,
-        PropTypes.object,
-      ]),
-      children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-      clone: PropTypes.bool,
-    };
-  } catch (e) {}
-}

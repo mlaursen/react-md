@@ -46,17 +46,3 @@ export const GridListCell = forwardRef<HTMLDivElement, GridListCellProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    GridListCell.propTypes = {
-      clone: PropTypes.bool,
-      square: PropTypes.bool,
-      className: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

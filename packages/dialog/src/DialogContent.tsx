@@ -41,16 +41,3 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    DialogContent.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      disablePadding: PropTypes.bool,
-    };
-  } catch (e) {}
-}

@@ -99,18 +99,3 @@ export const SliderContainer = forwardRef<HTMLDivElement, SliderContainerProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    SliderContainer.propTypes = {
-      className: PropTypes.string,
-      beforeAddon: PropTypes.node,
-      afterAddon: PropTypes.node,
-      children: PropTypes.node,
-      vertical: PropTypes.bool,
-    };
-  } catch (e) {}
-}

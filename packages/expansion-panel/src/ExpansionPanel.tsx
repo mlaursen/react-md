@@ -198,38 +198,3 @@ export const ExpansionPanel = forwardRef<HTMLDivElement, ExpansionPanelProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    ExpansionPanel.propTypes = {
-      id: PropTypes.string.isRequired,
-      className: PropTypes.string,
-      disabled: PropTypes.bool,
-      children: PropTypes.node,
-      headerStyle: PropTypes.object,
-      headerClassName: PropTypes.string,
-      contentStyle: PropTypes.object,
-      contentClassName: PropTypes.string,
-      customHeader: PropTypes.node,
-      fullWidth: PropTypes.bool,
-      header: PropTypes.node,
-      headerRef: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.shape({
-          current: PropTypes.instanceOf(HTMLButtonElement),
-        }),
-      ]),
-      expanderIcon: PropTypes.node,
-      expanded: PropTypes.bool.isRequired,
-      onExpandClick: PropTypes.func.isRequired,
-      persistent: PropTypes.bool,
-      marginTop: PropTypes.bool,
-      disableTransition: PropTypes.bool,
-      disablePadding: PropTypes.bool,
-      disableSecondaryColor: PropTypes.bool,
-    };
-  } catch (e) {}
-}

@@ -99,33 +99,3 @@ export function StatesConfig({
     </StatesConfigContext.Provider>
   );
 }
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    StatesConfig.propTypes = {
-      rippleTimeout: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.shape({
-          enter: PropTypes.number,
-          exit: PropTypes.number,
-        }),
-      ]),
-      rippleClassNames: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.shape({
-          enter: PropTypes.string,
-          enterActive: PropTypes.string,
-          enterDone: PropTypes.string,
-          exit: PropTypes.string,
-          exitActive: PropTypes.string,
-        }),
-      ]),
-      disableRipple: PropTypes.bool,
-      disableProgrammaticRipple: PropTypes.bool,
-      children: PropTypes.node.isRequired,
-    };
-  } catch (e) {}
-}

@@ -92,20 +92,3 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
     </Component>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Label.propTypes = {
-      htmlFor: PropTypes.string.isRequired,
-      className: PropTypes.string,
-      error: PropTypes.bool,
-      active: PropTypes.bool,
-      disabled: PropTypes.bool,
-      component: PropTypes.oneOf(["label", "span"]),
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

@@ -24,16 +24,3 @@ export const ListSubheader = forwardRef<HTMLLIElement, ListSubheaderProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    ListSubheader.propTypes = {
-      className: PropTypes.string,
-      inset: PropTypes.bool,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

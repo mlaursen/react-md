@@ -56,20 +56,3 @@ export const Snackbar = forwardRef<HTMLDivElement, SnackbarProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Snackbar.propTypes = {
-      id: PropTypes.string.isRequired,
-      className: PropTypes.string,
-      children: PropTypes.node,
-      position: PropTypes.oneOf(["bottom", "top"]),
-      portal: PropTypes.bool,
-      portalInto: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-      portalIntoId: PropTypes.string,
-    };
-  } catch (e) {}
-}

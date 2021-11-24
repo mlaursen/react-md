@@ -43,15 +43,3 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    Checkbox.propTypes = {
-      indeterminate: PropTypes.bool,
-      icon: PropTypes.node,
-    };
-  } catch (e) {}
-}

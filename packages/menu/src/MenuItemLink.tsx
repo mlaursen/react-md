@@ -43,17 +43,3 @@ export const MenuItemLink = forwardRef<
     </li>
   );
 });
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    MenuItemLink.propTypes = {
-      className: PropTypes.string,
-      children: PropTypes.node,
-      role: PropTypes.oneOf(["menuitem"]),
-      tabIndex: PropTypes.number,
-    };
-  } catch (e) {}
-}

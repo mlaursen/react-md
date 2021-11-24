@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { ReactElement, ReactNode } from "react";
 import { IconRotator, TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/utils";

@@ -64,38 +64,3 @@ export const TreeGroup = forwardRef<ListElement, TreeGroupProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    TreeGroup.propTypes = {
-      style: PropTypes.object,
-      className: PropTypes.string,
-      collapsed: PropTypes.bool.isRequired,
-      minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      minPaddingTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      minPaddingBottom: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]),
-      timeout: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.shape({
-          appear: PropTypes.number,
-          enter: PropTypes.number,
-          exit: PropTypes.number,
-        }),
-      ]),
-      temporary: PropTypes.bool,
-      children: PropTypes.node,
-      onEnter: PropTypes.func,
-      onEntering: PropTypes.func,
-      onEntered: PropTypes.func,
-      onExit: PropTypes.func,
-      onExiting: PropTypes.func,
-      onExited: PropTypes.func,
-    };
-  } catch (e) {}
-}

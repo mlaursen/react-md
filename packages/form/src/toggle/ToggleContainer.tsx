@@ -40,17 +40,3 @@ export const ToggleContainer = forwardRef<HTMLDivElement, ToggleContainerProps>(
     );
   }
 );
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== "production") {
-  try {
-    const PropTypes = require("prop-types");
-
-    ToggleContainer.propTypes = {
-      inline: PropTypes.bool,
-      stacked: PropTypes.bool,
-      className: PropTypes.string,
-      children: PropTypes.node,
-    };
-  } catch (e) {}
-}

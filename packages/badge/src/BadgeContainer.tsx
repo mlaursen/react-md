@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { forwardRef, HTMLAttributes, ReactElement, Ref } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
