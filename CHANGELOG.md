@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
+
+This release focused on updating the `@react-md/transition` package to no longer log errors in `React.StrictMode` because `react-ransition-group` was using `ReactDOM.findDOMNode` to handle transitions.
+All `react-md` packages will no longer use `react-transition-group` since all that functionality has been built into `@react-md/transition` with a slightly different API.
+
+This release has also included my first attempt at automating upgrading to new major releases by introducing a new [@react-md/codemod](https://github.com/mlaursen/react-md/tree/98a6a9fe4c5c8cf1baf630e5969b760af93e9ad2/packages/codemod) package that is similar to the [react-codemod package](https://github.com/reactjs/react-codemod). You can automate _some_ of this release by running:
+
+```sh
+npx @react-md/codemod v3-to-v4/preset
+```
+
+Since I am still learning how to use [jscodeshift](https://github.com/facebook/jscodeshift), it will not be able to migrate everything but should still help with most changes.
+
+
+
+### Bug Fixes
+
+* **@react-md/menu:** `DropdownMenu` and `Menu` portal by default ([98a6a9f](https://github.com/mlaursen/react-md/commit/98a6a9fe4c5c8cf1baf630e5969b760af93e9ad2)), closes [#1264](https://github.com/mlaursen/react-md/issues/1264)
+* **@react-md/tooltip:** cancel timer when element is clicked ([5416554](https://github.com/mlaursen/react-md/commit/5416554558cc007c31c1510f4bafcf159a3a74d5))
+* **sass:** Do not use legacy global functions ([6159e16](https://github.com/mlaursen/react-md/commit/6159e161af72a6e2d5fe43afb02ef537c3f55c11))
+
+
+### Features
+
+* Update to use new JSX Transform and latest `eslint` ([8111cd3](https://github.com/mlaursen/react-md/commit/8111cd31e45bf60c1b92509264af1b71dfba5696))
+* **@react-md/portal:** `ConditionalPortal` supports ReactNode children ([c83d578](https://github.com/mlaursen/react-md/commit/c83d5784de150ccfa8d2605222b115e94baa35c1))
+* **@react-md/transition:** No longer use findDOMNode for transitions ([cb952da](https://github.com/mlaursen/react-md/commit/cb952da5b0cd0a67b9650e45d1e29896d66f01e1))
+* **@react-md/typography:** Renamed Text to `Typography` ([30cf056](https://github.com/mlaursen/react-md/commit/30cf056fbaf0e3d28e04dd03f1fd37929967f7ab))
+* **@react-md/utils:** Export additional positioning types ([b50a04c](https://github.com/mlaursen/react-md/commit/b50a04c3c3c8dd280fde797a135a60dfbaf5bd33))
+* **codemod:** Created a new @react-md/codemod package to help with new releases ([41c1fa6](https://github.com/mlaursen/react-md/commit/41c1fa66c2bd31b627151922ff387550a1ec66b0))
+
+
+### Documentation
+
+* Hackily fix codesandbox.io not using `sass` resolutions in package.json ([db22cde](https://github.com/mlaursen/react-md/commit/db22cde8006a4f8700c8b1be04dab63d9f65c591)), closes [#1261](https://github.com/mlaursen/react-md/issues/1261)
+* **@react-md/form:** Updated hook overrides so documentation appears correctly ([436fbff](https://github.com/mlaursen/react-md/commit/436fbff934ee1ca20a7bc0dc6855e1ffcaad9edf))
+* **react-md.dev:** Enable rust compiler by removing custom babelrc ([796efd0](https://github.com/mlaursen/react-md/commit/796efd0ea284294ae9b4ca982f9cfcab9dd71009))
+* **react-md.dev:** Fallback code language to markup instead of none ([0efaf9b](https://github.com/mlaursen/react-md/commit/0efaf9bf910a3fbce66da966afb059c3325c2629))
+* **react-md.dev:** Fix alert sandboxes ([8f19297](https://github.com/mlaursen/react-md/commit/8f19297fa1e266dd1d70818babc6528a911cb0dd))
+* **react-md.dev:** Removed SwipeableTabs demo since it didn't really work ([2d79f93](https://github.com/mlaursen/react-md/commit/2d79f93efd896aeb89a04a7ab6358e54637bbeec))
+* **react-md.dev:** Separate Code and CodeBlock into separate folders ([4c492b3](https://github.com/mlaursen/react-md/commit/4c492b3c2d6077f007ff76aa7025c53b3c84eba8))
+* **react-md.dev:** Try to allow custom Code/CodeBlock in sandboxes ([5d494bf](https://github.com/mlaursen/react-md/commit/5d494bf8c0e1f83c763b72cbd80f7e56cc1731b9))
+* **react-md.dev:** update code components to use css modules ([9bdf6ba](https://github.com/mlaursen/react-md/commit/9bdf6ba48f66b4a94e77bbe814dde7f4fad997ff))
+* **react-md.dev:** Use `react-marked-renderer` for markdown stuffs ([93ebaa4](https://github.com/mlaursen/react-md/commit/93ebaa4fee604155a0e15621329470a4ec2eb87c))
+
+
+### Other Internal Changes
+
+* always skip lib check ([229cef1](https://github.com/mlaursen/react-md/commit/229cef1e3d338ea362c1a2eaac06204c84ff21a6))
+* Re-ran `prettier` ([9632d82](https://github.com/mlaursen/react-md/commit/9632d8203f7c6fa96718d0bcfd63ac2475a0efc2))
+* update workflows to include node 16 ([f756b92](https://github.com/mlaursen/react-md/commit/f756b928580bb2d8f3e6b97cc47d8686b4f778a6))
+* updated branches for build, lint, and test ([b5eeae9](https://github.com/mlaursen/react-md/commit/b5eeae9812cc28726df1dc2a7e049defbceb75ee))
+* Updated remaining docs and tests for `react-router-dom` v6 ([e012ef9](https://github.com/mlaursen/react-md/commit/e012ef961b21d2583fe6d34114e36ee31ac042a6))
+* **@react-md/dev-utils:** Added error message for combining styles ([aa5ecfd](https://github.com/mlaursen/react-md/commit/aa5ecfd61d9a9cee759bad0fc69043d7ce651502))
+* **@react-md/dev-utils:** match quotation marks for `sass` files ([98ffe40](https://github.com/mlaursen/react-md/commit/98ffe40af28ea3874a455d6c6cc96ea1fcd3832c))
+* **@react-md/dev-utils:** Update `sassdoc` to not through uncaught exceptions ([8bdf532](https://github.com/mlaursen/react-md/commit/8bdf532a00044105536e0db69a9e8a372b0e36cf))
+* **@react-md/dev-utils:** Update release for new major versions and legacy docs ([86c5c02](https://github.com/mlaursen/react-md/commit/86c5c02bce268dd1b93437607cfc706b99500fc9))
+* **@react-md/format:** ran `prettier` after upgrading to v2.4.0 ([06110af](https://github.com/mlaursen/react-md/commit/06110afb20c2b83bb76a187f21e5edcd975d1147))
+* **codemod:** Added comment about ignoring CodeQL alert ([631d56c](https://github.com/mlaursen/react-md/commit/631d56c6149307445fda852347ec4340ef4a9350))
+* **examples:** `enable` strict mode by default for nextjs-typescript ([83e4c44](https://github.com/mlaursen/react-md/commit/83e4c44b26b442042bb1c8b2ffd9244b414fac9c))
+* **examples:** added lint command to nextjs examples ([788a8b8](https://github.com/mlaursen/react-md/commit/788a8b8e00372522197f5fafaffd69f9ade59905))
+* **examples:** bump nextjs examples from v11.1.2 to v12.0.2 ([be45277](https://github.com/mlaursen/react-md/commit/be45277f9fd6bc92469f704fc7fa305d7a917623))
+* **examples:** fixed prefers-color-scheme in examples ([f799d3a](https://github.com/mlaursen/react-md/commit/f799d3a70630387e91f1750d010c76b81b3d8585))
+* **examples:** Updated `create-react-app` example to use `react-router-dom` v6 ([3c4d1ea](https://github.com/mlaursen/react-md/commit/3c4d1ea1b135c4798ab4f50e8eae4493e31c6489))
+* **examples:** Updated create-react-app-typescript example to use `react-router-dom` v6 ([ae469ef](https://github.com/mlaursen/react-md/commit/ae469ef2c88dcaf29e629865e076f3c34a3d8d98))
+* **examples:** Updated examples to no longer import React ([c0b8cb5](https://github.com/mlaursen/react-md/commit/c0b8cb5f0294daf6d4cdc41aedcad038657e036f))
+* **react-md:** Remove prop-types package and usage ([2637a6f](https://github.com/mlaursen/react-md/commit/2637a6f43d681a06054e3a4518f692cf51baf997))
+* **react-md.dev:** Enable React.StrictMode ([219937e](https://github.com/mlaursen/react-md/commit/219937e989082649317561197368b0852f66c19c))
+* **react-md.dev:** Updated some transition documentation ([44bfa20](https://github.com/mlaursen/react-md/commit/44bfa20f54376ac800b16d4691878ed6627e345b))
+* **stylelint:** Updated to use `stylelint` ([22d1598](https://github.com/mlaursen/react-md/commit/22d15985061df76d827d4ca9319198526e320f11))
+* **test:** Update coverage for watch mode ([74cee51](https://github.com/mlaursen/react-md/commit/74cee51f6230a534ba618a0e47816ad8b24ee9ff))
+* **typescript:** Stopped using deprecated HTMLTable(Data|Header)CellElement ([23ba342](https://github.com/mlaursen/react-md/commit/23ba342ca0d461d08cd649513e7d05216647bd17))
+
+
+### Breaking Changes
+
+* Minimum React version is now 16.14 instead of 16.8
+* **@react-md/menu:** The `DropdownMenu` and `Menu` components portal by
+default. This should really only affect snapshot tests
+* **@react-md/typography:** The Text component has been renamed to Typography to
+help with auto-imports conflicting with the Text element that exists in
+`lib.d.ts`
+* **react-md:** There will no longer be run-time prop validation with
+the `prop-types` package.
+
+
+
+
+
+
 ## [3.1.1](https://github.com/mlaursen/react-md/compare/v3.1.0...v3.1.1) (2021-09-12)
 
 

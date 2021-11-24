@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
+
+
+### Bug Fixes
+
+* **@react-md/menu:** `DropdownMenu` and `Menu` portal by default ([98a6a9f](https://github.com/mlaursen/react-md/commit/98a6a9fe4c5c8cf1baf630e5969b760af93e9ad2)), closes [#1264](https://github.com/mlaursen/react-md/issues/1264)
+* **sass:** Do not use legacy global functions ([6159e16](https://github.com/mlaursen/react-md/commit/6159e161af72a6e2d5fe43afb02ef537c3f55c11))
+
+
+### Features
+
+* Update to use new JSX Transform and latest `eslint` ([8111cd3](https://github.com/mlaursen/react-md/commit/8111cd31e45bf60c1b92509264af1b71dfba5696))
+* **@react-md/transition:** No longer use findDOMNode for transitions ([cb952da](https://github.com/mlaursen/react-md/commit/cb952da5b0cd0a67b9650e45d1e29896d66f01e1))
+
+
+### Other Internal Changes
+
+* always skip lib check ([229cef1](https://github.com/mlaursen/react-md/commit/229cef1e3d338ea362c1a2eaac06204c84ff21a6))
+* **react-md:** Remove prop-types package and usage ([2637a6f](https://github.com/mlaursen/react-md/commit/2637a6f43d681a06054e3a4518f692cf51baf997))
+
+
+### Breaking Changes
+
+* Minimum React version is now 16.14 instead of 16.8
+* **@react-md/menu:** The `DropdownMenu` and `Menu` components portal by
+default. This should really only affect snapshot tests
+* **react-md:** There will no longer be run-time prop validation with
+the `prop-types` package.
+
+
+
+
+
+
 # [3.1.0](https://github.com/mlaursen/react-md/compare/v3.0.1...v3.1.0) (2021-09-10)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@react-md/codemod",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "description": "ReactMD codemod scripts",
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "bin": {

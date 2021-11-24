@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
+
+
+### Features
+
+* Update to use new JSX Transform and latest `eslint` ([8111cd3](https://github.com/mlaursen/react-md/commit/8111cd31e45bf60c1b92509264af1b71dfba5696))
+* **@react-md/typography:** Renamed Text to `Typography` ([30cf056](https://github.com/mlaursen/react-md/commit/30cf056fbaf0e3d28e04dd03f1fd37929967f7ab))
+
+
+### Other Internal Changes
+
+* always skip lib check ([229cef1](https://github.com/mlaursen/react-md/commit/229cef1e3d338ea362c1a2eaac06204c84ff21a6))
+
+
+### Breaking Changes
+
+* Minimum React version is now 16.14 instead of 16.8
+* **@react-md/typography:** The Text component has been renamed to Typography to
+help with auto-imports conflicting with the Text element that exists in
+`lib.d.ts`
+
+
+
+
+
+
 ## [3.1.1](https://github.com/mlaursen/react-md/compare/v3.1.0...v3.1.1) (2021-09-12)
 
 **Note:** Version bump only for package react-md

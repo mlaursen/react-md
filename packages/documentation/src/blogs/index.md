@@ -1,3 +1,109 @@
+Title: react-md 4.0.0
+
+Date: 11/24/2021
+
+Summary:
+
+This release focused on updating the `@react-md/transition` package to no longer
+log errors in `React.StrictMode` because `react-ransition-group` was using
+`ReactDOM.findDOMNode` to handle transitions. All `react-md` packages will no
+longer use `react-transition-group` since all that functionality has been built
+into `@react-md/transition` with a slightly different API.
+
+This release has also included my first attempt at automating upgrading to new
+major releases by introducing a new
+[@react-md/codemod](https://github.com/mlaursen/react-md/tree/98a6a9fe4c5c8cf1baf630e5969b760af93e9ad2/packages/codemod)
+package that is similar to the
+[react-codemod package](https://github.com/reactjs/react-codemod). You can
+automate _some_ of this release by running:
+
+```sh
+npx @react-md/codemod v3-to-v4/preset
+```
+
+Since I am still learning how to use
+[jscodeshift](https://github.com/facebook/jscodeshift), it will not be able to
+migrate everything but should still help with most changes.
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/menu:** `DropdownMenu` and `Menu` portal by default (98a6a9f),
+  closes #1264
+- **@react-md/tooltip:** cancel timer when element is clicked (5416554)
+- **sass:** Do not use legacy global functions (6159e16)
+
+##### Features<!-- no-margin -->
+
+- Update to use new JSX Transform and latest `eslint` (8111cd3)
+- **@react-md/portal:** `ConditionalPortal` supports ReactNode children
+  (c83d578)
+- **@react-md/transition:** No longer use findDOMNode for transitions (cb952da)
+- **@react-md/typography:** Renamed Text to `Typography` (30cf056)
+- **@react-md/utils:** Export additional positioning types (b50a04c)
+- **codemod:** Created a new @react-md/codemod package to help with new releases
+  (41c1fa6)
+
+##### Documentation<!-- no-margin -->
+
+- Hackily fix codesandbox.io not using `sass` resolutions in package.json
+  (db22cde), closes #1261
+- **@react-md/form:** Updated hook overrides so documentation appears correctly
+  (436fbff)
+- **react-md.dev:** Enable rust compiler by removing custom babelrc (796efd0)
+- **react-md.dev:** Fallback code language to markup instead of none (0efaf9b)
+- **react-md.dev:** Fix alert sandboxes (8f19297)
+- **react-md.dev:** Removed SwipeableTabs demo since it didn't really work
+  (2d79f93)
+- **react-md.dev:** Separate Code and CodeBlock into separate folders (4c492b3)
+- **react-md.dev:** Try to allow custom Code/CodeBlock in sandboxes (5d494bf)
+- **react-md.dev:** update code components to use css modules (9bdf6ba)
+- **react-md.dev:** Use `react-marked-renderer` for markdown stuffs (93ebaa4)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- always skip lib check (229cef1)
+- Re-ran `prettier` (9632d82)
+- update workflows to include node 16 (f756b92)
+- updated branches for build, lint, and test (b5eeae9)
+- Updated remaining docs and tests for `react-router-dom` v6 (e012ef9)
+- **@react-md/dev-utils:** Added error message for combining styles (aa5ecfd)
+- **@react-md/dev-utils:** match quotation marks for `sass` files (98ffe40)
+- **@react-md/dev-utils:** Update `sassdoc` to not through uncaught exceptions
+  (8bdf532)
+- **@react-md/dev-utils:** Update release for new major versions and legacy docs
+  (86c5c02)
+- **@react-md/format:** ran `prettier` after upgrading to v2.4.0 (06110af)
+- **codemod:** Added comment about ignoring CodeQL alert (631d56c)
+- **examples:** `enable` strict mode by default for nextjs-typescript (83e4c44)
+- **examples:** added lint command to nextjs examples (788a8b8)
+- **examples:** bump nextjs examples from v11.1.2 to v12.0.2 (be45277)
+- **examples:** fixed prefers-color-scheme in examples (f799d3a)
+- **examples:** Updated `create-react-app` example to use `react-router-dom` v6
+  (3c4d1ea)
+- **examples:** Updated create-react-app-typescript example to use
+  `react-router-dom` v6 (ae469ef)
+- **examples:** Updated examples to no longer import React (c0b8cb5)
+- **react-md:** Remove prop-types package and usage (2637a6f)
+- **react-md.dev:** Enable React.StrictMode (219937e)
+- **react-md.dev:** Updated some transition documentation (44bfa20)
+- **stylelint:** Updated to use `stylelint` (22d1598)
+- **test:** Update coverage for watch mode (74cee51)
+- **typescript:** Stopped using deprecated HTMLTable(Data|Header)CellElement
+  (23ba342)
+
+##### Breaking Changes<!-- no-margin -->
+
+- Minimum React version is now 16.14 instead of 16.8
+- **@react-md/menu:** The `DropdownMenu` and `Menu` components portal by
+  default. This should really only affect snapshot tests
+- **@react-md/typography:** The Text component has been renamed to Typography to
+  help with auto-imports conflicting with the Text element that exists in
+  `lib.d.ts`
+- **react-md:** There will no longer be run-time prop validation with the
+  `prop-types` package.
+
+---
+
 Title: react-md 3.1.1
 
 Date: 09/11/2021

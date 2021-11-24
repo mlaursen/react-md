@@ -1,5 +1,5 @@
 /* this file is automatically updated by `yarn dev-utils libsize` and should not be updated manually */
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
 import TableCellList from "./TableCellList";
 
@@ -12,12 +12,12 @@ export default function OtherPros(): ReactElement {
           <li>
             Production UMD Bundle:
             <br />
-            <b>86.75 KB</b>
+            <b>85.92 kB</b>
           </li>
           <li>
             Default Production CSS Bundles:
             <br />
-            <b>17.63 KB</b> - <b>17.7 KB</b>
+            <b>18.01 kB</b> - <b>18.08 kB</b>
           </li>
         </ul>
       </li>

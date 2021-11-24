@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
+
+
+### Bug Fixes
+
+* **sass:** Do not use legacy global functions ([6159e16](https://github.com/mlaursen/react-md/commit/6159e161af72a6e2d5fe43afb02ef537c3f55c11))
+
+
+### Features
+
+* Update to use new JSX Transform and latest `eslint` ([8111cd3](https://github.com/mlaursen/react-md/commit/8111cd31e45bf60c1b92509264af1b71dfba5696))
+* **@react-md/transition:** No longer use findDOMNode for transitions ([cb952da](https://github.com/mlaursen/react-md/commit/cb952da5b0cd0a67b9650e45d1e29896d66f01e1))
+* **codemod:** Created a new @react-md/codemod package to help with new releases ([41c1fa6](https://github.com/mlaursen/react-md/commit/41c1fa66c2bd31b627151922ff387550a1ec66b0))
+
+
+### Documentation
+
+* **react-md.dev:** Fix alert sandboxes ([8f19297](https://github.com/mlaursen/react-md/commit/8f19297fa1e266dd1d70818babc6528a911cb0dd))
+* **react-md.dev:** Try to allow custom Code/CodeBlock in sandboxes ([5d494bf](https://github.com/mlaursen/react-md/commit/5d494bf8c0e1f83c763b72cbd80f7e56cc1731b9))
+* **react-md.dev:** update code components to use css modules ([9bdf6ba](https://github.com/mlaursen/react-md/commit/9bdf6ba48f66b4a94e77bbe814dde7f4fad997ff))
+
+
+### Other Internal Changes
+
+* always skip lib check ([229cef1](https://github.com/mlaursen/react-md/commit/229cef1e3d338ea362c1a2eaac06204c84ff21a6))
+* Re-ran `prettier` ([9632d82](https://github.com/mlaursen/react-md/commit/9632d8203f7c6fa96718d0bcfd63ac2475a0efc2))
+* Updated remaining docs and tests for `react-router-dom` v6 ([e012ef9](https://github.com/mlaursen/react-md/commit/e012ef961b21d2583fe6d34114e36ee31ac042a6))
+* **@react-md/dev-utils:** Added error message for combining styles ([aa5ecfd](https://github.com/mlaursen/react-md/commit/aa5ecfd61d9a9cee759bad0fc69043d7ce651502))
+* **@react-md/dev-utils:** match quotation marks for `sass` files ([98ffe40](https://github.com/mlaursen/react-md/commit/98ffe40af28ea3874a455d6c6cc96ea1fcd3832c))
+* **@react-md/dev-utils:** Update `sassdoc` to not through uncaught exceptions ([8bdf532](https://github.com/mlaursen/react-md/commit/8bdf532a00044105536e0db69a9e8a372b0e36cf))
+* **@react-md/dev-utils:** Update release for new major versions and legacy docs ([86c5c02](https://github.com/mlaursen/react-md/commit/86c5c02bce268dd1b93437607cfc706b99500fc9))
+
+
+### Breaking Changes
+
+* Minimum React version is now 16.14 instead of 16.8
+
+
+
+
+
+
 # [3.1.0](https://github.com/mlaursen/react-md/compare/v3.0.1...v3.1.0) (2021-09-10)
 
 

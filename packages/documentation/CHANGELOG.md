@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
+
+
+### Bug Fixes
+
+* **sass:** Do not use legacy global functions ([6159e16](https://github.com/mlaursen/react-md/commit/6159e161af72a6e2d5fe43afb02ef537c3f55c11))
+
+
+### Features
+
+* Update to use new JSX Transform and latest `eslint` ([8111cd3](https://github.com/mlaursen/react-md/commit/8111cd31e45bf60c1b92509264af1b71dfba5696))
+* **@react-md/transition:** No longer use findDOMNode for transitions ([cb952da](https://github.com/mlaursen/react-md/commit/cb952da5b0cd0a67b9650e45d1e29896d66f01e1))
+* **@react-md/typography:** Renamed Text to `Typography` ([30cf056](https://github.com/mlaursen/react-md/commit/30cf056fbaf0e3d28e04dd03f1fd37929967f7ab))
+
+
+### Documentation
+
+* Hackily fix codesandbox.io not using `sass` resolutions in package.json ([db22cde](https://github.com/mlaursen/react-md/commit/db22cde8006a4f8700c8b1be04dab63d9f65c591)), closes [#1261](https://github.com/mlaursen/react-md/issues/1261)
+* **react-md.dev:** Enable rust compiler by removing custom babelrc ([796efd0](https://github.com/mlaursen/react-md/commit/796efd0ea284294ae9b4ca982f9cfcab9dd71009))
+* **react-md.dev:** Fallback code language to markup instead of none ([0efaf9b](https://github.com/mlaursen/react-md/commit/0efaf9bf910a3fbce66da966afb059c3325c2629))
+* **react-md.dev:** Removed SwipeableTabs demo since it didn't really work ([2d79f93](https://github.com/mlaursen/react-md/commit/2d79f93efd896aeb89a04a7ab6358e54637bbeec))
+* **react-md.dev:** Separate Code and CodeBlock into separate folders ([4c492b3](https://github.com/mlaursen/react-md/commit/4c492b3c2d6077f007ff76aa7025c53b3c84eba8))
+* **react-md.dev:** update code components to use css modules ([9bdf6ba](https://github.com/mlaursen/react-md/commit/9bdf6ba48f66b4a94e77bbe814dde7f4fad997ff))
+* **react-md.dev:** Use `react-marked-renderer` for markdown stuffs ([93ebaa4](https://github.com/mlaursen/react-md/commit/93ebaa4fee604155a0e15621329470a4ec2eb87c))
+
+
+### Other Internal Changes
+
+* always skip lib check ([229cef1](https://github.com/mlaursen/react-md/commit/229cef1e3d338ea362c1a2eaac06204c84ff21a6))
+* Updated remaining docs and tests for `react-router-dom` v6 ([e012ef9](https://github.com/mlaursen/react-md/commit/e012ef961b21d2583fe6d34114e36ee31ac042a6))
+* **@react-md/dev-utils:** Update release for new major versions and legacy docs ([86c5c02](https://github.com/mlaursen/react-md/commit/86c5c02bce268dd1b93437607cfc706b99500fc9))
+* **@react-md/format:** ran `prettier` after upgrading to v2.4.0 ([06110af](https://github.com/mlaursen/react-md/commit/06110afb20c2b83bb76a187f21e5edcd975d1147))
+* **react-md.dev:** Enable React.StrictMode ([219937e](https://github.com/mlaursen/react-md/commit/219937e989082649317561197368b0852f66c19c))
+* **react-md.dev:** Updated some transition documentation ([44bfa20](https://github.com/mlaursen/react-md/commit/44bfa20f54376ac800b16d4691878ed6627e345b))
+* **stylelint:** Updated to use `stylelint` ([22d1598](https://github.com/mlaursen/react-md/commit/22d15985061df76d827d4ca9319198526e320f11))
+
+
+### Breaking Changes
+
+* Minimum React version is now 16.14 instead of 16.8
+* **@react-md/typography:** The Text component has been renamed to Typography to
+help with auto-imports conflicting with the Text element that exists in
+`lib.d.ts`
+
+
+
+
+
+
 ## [3.1.1](https://github.com/mlaursen/react-md/compare/v3.1.0...v3.1.1) (2021-09-12)
 
 **Note:** Version bump only for package documentation
