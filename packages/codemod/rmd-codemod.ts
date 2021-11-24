@@ -128,6 +128,8 @@ async function handleAction(options: Options): Promise<void> {
   // prefix with `node` because of a bug around: "env: node\r"
   const command = `node ${jscodeshiftExecutable} ${args.join(" ")}`;
   console.log(command);
+  // react-codemod does it... so I'll ignore the security issue fo rnow.
+  // https://github.com/reactjs/react-codemod/blob/b34b92a1f0b8ad333efe5effb50d17d46d66588b/bin/cli.js
   execSync(command, { stdio: "inherit" });
 }
 
