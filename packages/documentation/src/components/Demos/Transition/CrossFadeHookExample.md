@@ -8,7 +8,7 @@ transition.
 The `useCrossFadeTransition` hook is really a hook version of the `CrossFade`
 component that allows a bit more control for when the transition should fire
 since it uses the [useCSSTransition hook](#use-css-transition) behind the
-scenes. To create a transition, all that's required is to trigger the `ENTER`
+scenes. To create a transition, all that's required is to trigger the `'enter'`
 transition when it should be fired. Unlike the `CrossFade` component, the
 `useCrossFadeTransition` hook **does not automatically fire on mount**.
 

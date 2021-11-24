@@ -9,10 +9,10 @@ This is generally used for temporary material instead of the collapse transition
 since it is slightly more performant and that it will not move other items
 within the DOM while transitioning.
 
-This transition can be used with the `ScaleTransition` component or a custom
-usage with the `useCSSTransition` hook. The default transition will transition
-both the x and y values, but enabling the `vertical` prop will change it to only
-be the y value change.
+This transition can be used with the `ScaleTransition` component or the
+`useScaleTransition` hook. The default transition will transition both the x and
+y values, but enabling the `vertical` prop will change it to only be the y value
+change.
 
 > Note: You can also set your own `transform-origin` to modify these transitions
 > even more.
