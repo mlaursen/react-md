@@ -421,6 +421,9 @@ export interface TransitionHookReturnValue<E extends HTMLElement>
    * @example
    * Simple Example
    * ```tsx
+   * import { ReactElement, useEffect, useRef } from "react";
+   * import { useCSSTransition } from "@react-md/transition";
+   * import { useRouter } from "react-router-dom";
    *
    * function Example(): ReactElement {
    *   const { pathname } = useRouter();
@@ -430,11 +433,15 @@ export interface TransitionHookReturnValue<E extends HTMLElement>
    *     classNames: "some-enter-transition",
    *   });
    *
-   *   const prevPathname = useRef(pathname);
-   *   if (pathname !== prevPathname.current) {
+   *   useEffect(() => {
+   *     // Do not trigger transition on first load.
+   *     if (prevPathname.current === pathname) {
+   *       return;
+   *     }
+   *
    *     prevPathname.current = pathname;
    *     transitionTo("enter");
-   *   }
+   *   }, [pathname, transitionTo]);
    *
    *   return <div {...elementProps}>{content}</div>;
    * }
