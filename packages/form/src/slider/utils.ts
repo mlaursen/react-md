@@ -252,6 +252,7 @@ export const getDragPercentage = ({
           min,
           max,
           value: thumb1Value,
+          validate: false,
         });
 
   let thumb2Percentage: number | undefined;
@@ -260,6 +261,7 @@ export const getDragPercentage = ({
       min,
       max,
       value: thumb2Value,
+      validate: false,
     });
     thumb1Percentage = Math.min(thumb1Percentage, percentage);
     thumb2Percentage =

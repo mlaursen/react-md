@@ -48,6 +48,7 @@ exports[`TextArea should handle updating the height correctly based on the resiz
     data-testid="container"
     id="text-area"
     rows="2"
+    style=""
   />
 </div>
 `;

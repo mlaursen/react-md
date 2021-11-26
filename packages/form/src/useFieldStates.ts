@@ -4,6 +4,7 @@ import {
   FocusEvent,
   FocusEventHandler,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -129,10 +130,12 @@ export function useFieldStates<E extends FormElement>({
   // `useNumberField` hook since the `value` will be set back to the empty
   // string on invalid numbers.
   const prevValue = useRef(value);
-  if (prevValue.current !== value && typeof value === "string") {
-    prevValue.current = value;
-    setValued(value.length > 0);
-  }
+  useEffect(() => {
+    if (prevValue.current !== value && typeof value === "string") {
+      prevValue.current = value;
+      setValued(value.length > 0);
+    }
+  }, [value]);
 
   return {
     valued,

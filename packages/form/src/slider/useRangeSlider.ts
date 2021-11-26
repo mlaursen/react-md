@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { nearest } from "@react-md/utils";
 
 import {
@@ -197,23 +197,25 @@ export function useRangeSlider(
   }, [onChange, value]);
 
   const prev = useRef({ min, max, step });
-  if (
-    prev.current.min !== min ||
-    prev.current.max !== max ||
-    prev.current.step !== step
-  ) {
-    // ensure that if the `min`, `max`, or `step` value changes that the value
-    // is updated as well. Without this, there will be a runtime error if the
-    // value is not within the new range.
-    prev.current = { min, max, step };
-    const steps = getSteps(min, max, step);
-    const nextValue: RangeSliderValue = [
-      nearest(value[0], min, max, steps),
-      nearest(value[1], min, max, steps),
-    ];
-    currentValue.current = nextValue;
-    setValue(nextValue);
-  }
+  useEffect(() => {
+    if (
+      prev.current.min !== min ||
+      prev.current.max !== max ||
+      prev.current.step !== step
+    ) {
+      // ensure that if the `min`, `max`, or `step` value changes that the value
+      // is updated as well. Without this, there will be a runtime error if the
+      // value is not within the new range.
+      prev.current = { min, max, step };
+      const steps = getSteps(min, max, step);
+      const nextValue: RangeSliderValue = [
+        nearest(value[0], min, max, steps),
+        nearest(value[1], min, max, steps),
+      ];
+      currentValue.current = nextValue;
+      setValue(nextValue);
+    }
+  }, [min, max, step, value]);
 
   if (updateOn === "change" && currentValue.current !== value) {
     currentValue.current = value;

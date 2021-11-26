@@ -72,14 +72,16 @@ export function useDiscreteValueVisibility({
   // immediately
   const [isModeTransition, setModeTransition] = useState(false);
   const [visible, setVisible] = useState(false);
-  if (discrete && visible && disabled) {
-    setVisible(false);
-  }
 
   useEffect(() => {
     if (!discrete) {
       setVisible(false);
       setModeTransition(false);
+      return;
+    }
+
+    if (discrete && visible && disabled) {
+      setVisible(false);
       return;
     }
 
@@ -96,8 +98,8 @@ export function useDiscreteValueVisibility({
     // the user switch between the modes more easily so if the active element is
     // the current thumb, we're good to go
     setModeTransition(false);
-    setVisible(document.activeElement === ref.current);
-  }, [isKeyboard, visible, discrete]);
+    setVisible(!disabled && document.activeElement === ref.current);
+  }, [isKeyboard, visible, discrete, disabled]);
 
   useEffect(() => {
     if (!discrete) {

@@ -1,4 +1,10 @@
-import { forwardRef, HTMLAttributes, useCallback, useRef } from "react";
+import {
+  forwardRef,
+  HTMLAttributes,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import cn from "classnames";
 import { List, ListElement } from "@react-md/list";
 import {
@@ -360,14 +366,18 @@ export const Listbox = forwardRef<ListElement, ListboxProps>(function Listbox(
     });
 
   const prevVisible = useRef(visible);
-  if (visible !== prevVisible.current) {
+  useEffect(() => {
+    if (prevVisible.current === visible) {
+      return;
+    }
+
     prevVisible.current = visible;
     // whenever it gains visibility, try to set the focused index to the
     // current active value
     if (visible) {
       setFocusedIndex(getIndex());
     }
-  }
+  }, [getIndex, setFocusedIndex, visible]);
 
   const handleFocus = useCallback(
     (event: React.FocusEvent<ListElement>) => {

@@ -7,6 +7,7 @@ import {
   Ref,
   TextareaHTMLAttributes,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -171,9 +172,11 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     });
 
     const [height, setHeight] = useState<number>();
-    if (resize !== "auto" && typeof height === "number") {
-      setHeight(undefined);
-    }
+    useEffect(() => {
+      if (resize !== "auto" && typeof height === "number") {
+        setHeight(undefined);
+      }
+    }, [resize, height]);
 
     const maskRef = useRef<HTMLTextAreaElement | null>(null);
     const [scrollable, setScrollable] = useState(false);
