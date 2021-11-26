@@ -3,7 +3,7 @@ import cn from "classnames";
 import { bem } from "@react-md/utils";
 
 import { THUMB_1_VAR, THUMB_2_VAR } from "./constants";
-import { SliderPresentation } from "./types";
+import type { SliderPresentation } from "./types";
 
 const styles = bem("rmd-slider-track");
 

@@ -3,7 +3,11 @@ import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
-import { SliderAddons, SliderLabelProps, SliderPresentation } from "./types";
+import type {
+  SliderAddons,
+  SliderLabelProps,
+  SliderPresentation,
+} from "./types";
 import { labelStyles } from "../label";
 
 const styles = bem("rmd-slider-container");

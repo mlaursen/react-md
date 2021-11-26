@@ -1,10 +1,10 @@
-import { HTMLAttributes, ReactElement, ReactNode } from "react";
+import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import cn from "classnames";
-import { BaseTreeItem, TreeData } from "@react-md/tree";
+import type { BaseTreeItem, TreeData } from "@react-md/tree";
 import { bem, PropsWithRef } from "@react-md/utils";
 
 import { LayoutNavigation, LayoutNavigationProps } from "./LayoutNavigation";
-import { LayoutNavigationItem } from "./types";
+import type { LayoutNavigationItem } from "./types";
 import { useLayoutConfig } from "./LayoutProvider";
 
 const styles = bem("rmd-layout-mini-wrapper");

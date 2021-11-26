@@ -6,7 +6,7 @@ import {
   useKeyboardSearch,
 } from "../../search/useKeyboardSearch";
 import { DEFAULT_GET_ITEM_VALUE, DEFAULT_VALUE_KEY } from "../../search/utils";
-import { MovementConfig } from "./types";
+import type { MovementConfig } from "./types";
 import {
   getKeyboardConfig,
   getStringifiedKeyConfig,

@@ -9,7 +9,7 @@ import {
   ReactNode,
 } from "react";
 import cn from "classnames";
-import { ClassNameCloneableChild } from "@react-md/utils";
+import type { ClassNameCloneableChild } from "@react-md/utils";
 
 /**
  * A union of the available text container sizes. One of these values must be

@@ -6,16 +6,16 @@ import {
   useState,
 } from "react";
 import { SkipToMainContent, SkipToMainContentProps } from "@react-md/link";
-import { BaseTreeItem, TreeData } from "@react-md/tree";
-import { PropsWithRef } from "@react-md/utils";
+import type { BaseTreeItem, TreeData } from "@react-md/tree";
+import type { PropsWithRef } from "@react-md/utils";
 
-import { FlattenedLayoutComponentConfiguration } from "./Layout";
+import type { FlattenedLayoutComponentConfiguration } from "./Layout";
 import { LayoutAppBar } from "./LayoutAppBar";
 import { LayoutMain, LayoutMainProps } from "./LayoutMain";
 import { LayoutNavigation } from "./LayoutNavigation";
 import { useLayoutConfig } from "./LayoutProvider";
 import { MiniLayoutWrapper } from "./MiniLayoutWrapper";
-import { LayoutNavigationItem } from "./types";
+import type { LayoutNavigationItem } from "./types";
 import { isMiniLayout } from "./utils";
 
 /**

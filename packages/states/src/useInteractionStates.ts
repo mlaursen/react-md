@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import cn from "classnames";
-import { Maybe } from "@react-md/utils";
+import type { Maybe } from "@react-md/utils";
 
-import { MergableRippleHandlers, RipplesOptions } from "./ripples/types";
+import type { MergableRippleHandlers, RipplesOptions } from "./ripples/types";
 import { useRipples } from "./ripples/useRipples";
 import {
   StatesConfigContextType,

@@ -11,7 +11,7 @@ import { ScaleTransition } from "@react-md/transition";
 import { BELOW_CENTER_ANCHOR, bem, omit } from "@react-md/utils";
 
 import { HighlightedResult } from "./HighlightedResult";
-import { AutoCompleteProps } from "./types";
+import type { AutoCompleteProps } from "./types";
 import { useAutoComplete } from "./useAutoComplete";
 import {
   getResultId as DEFAULT_GET_RESULT_ID,

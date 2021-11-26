@@ -11,7 +11,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { ListElement } from "@react-md/list";
+import type { ListElement } from "@react-md/list";
 import {
   FixedPositioningTransitionCallbacks,
   useFixedPositioning,
@@ -27,7 +27,7 @@ import {
   useToggle,
 } from "@react-md/utils";
 
-import {
+import type {
   AutoCompleteData,
   AutoCompleteListboxPositionOptions,
   AutoCompleteProps,

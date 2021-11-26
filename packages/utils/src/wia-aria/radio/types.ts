@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
 
 /**
  * Since the `RadioWidget` modifies the props a bit for the radio widget, these

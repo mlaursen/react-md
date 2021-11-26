@@ -1,6 +1,6 @@
 import { CSSProperties, forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
-import { RenderConditionalPortalProps } from "@react-md/portal";
+import type { RenderConditionalPortalProps } from "@react-md/portal";
 
 import {
   defaultMenuItemRenderer,

@@ -1,5 +1,5 @@
 import { forwardRef, HTMLAttributes } from "react";
-import { PropsWithRef } from "@react-md/utils";
+import type { PropsWithRef } from "@react-md/utils";
 
 import {
   DEFAULT_SLIDER_ANIMATION_TIME,
@@ -8,8 +8,8 @@ import {
 import { SliderContainer } from "./SliderContainer";
 import { SliderThumb } from "./SliderThumb";
 import { SliderTrack } from "./SliderTrack";
-import { BaseSliderProps } from "./types";
-import { SliderRequiredProps } from "./useSlider";
+import type { BaseSliderProps } from "./types";
+import type { SliderRequiredProps } from "./useSlider";
 import { useSliderControls } from "./useSliderControls";
 
 /**

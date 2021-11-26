@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { Message } from "./MessageQueueContext";
+import type { Message } from "./MessageQueueContext";
 
 interface Options {
   startTimer: () => void;

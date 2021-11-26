@@ -1,5 +1,5 @@
 import { getContrastRatio } from "./getContrastRatio";
-import { HexString } from "./hexToRGB";
+import type { HexString } from "./hexToRGB";
 
 /**
  * The type of contrast ratio compliance to confirm to. The ratios in order are:

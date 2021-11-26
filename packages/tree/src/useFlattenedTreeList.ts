@@ -1,8 +1,13 @@
 import { MutableRefObject, useMemo } from "react";
 
 import { getTreeItemId } from "./getTreeItemId";
-import { ExpandedIds, TreeItemId, TreeProps, UnknownTreeItem } from "./types";
-import { NestedTreeItem } from "./useNestedTreeList";
+import type {
+  ExpandedIds,
+  TreeItemId,
+  TreeProps,
+  UnknownTreeItem,
+} from "./types";
+import type { NestedTreeItem } from "./useNestedTreeList";
 
 export interface SearchableTreeItem {
   /**

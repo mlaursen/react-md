@@ -2,7 +2,7 @@ import { Divider } from "@react-md/divider";
 import { ListSubheader } from "@react-md/list";
 import { defaultTreeItemRenderer, TreeItemRenderer } from "@react-md/tree";
 
-import { LayoutNavigationItem } from "./types";
+import type { LayoutNavigationItem } from "./types";
 
 /**
  * This is the default navigation item renderer provided by the layout package

@@ -4,7 +4,7 @@ import { AppBar, AppBarProps } from "@react-md/app-bar";
 import { LayoutAppBarTitle } from "./LayoutAppBarTitle";
 import { LayoutNavToggle, LayoutWithNavToggle } from "./LayoutNavToggle";
 import { useLayoutConfig } from "./LayoutProvider";
-import { LayoutWithTitle } from "./types";
+import type { LayoutWithTitle } from "./types";
 
 export interface BaseLayoutAppBarProps extends Omit<AppBarProps, "title"> {
   /**

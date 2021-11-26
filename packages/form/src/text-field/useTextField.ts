@@ -24,7 +24,7 @@ import {
   TextConstraints,
 } from "./getErrorMessage";
 import { defaultIsErrored, IsErrored } from "./isErrored";
-import { TextFieldProps } from "./TextField";
+import type { TextFieldProps } from "./TextField";
 
 const noop = (): void => {
   // do nothing

@@ -1,6 +1,6 @@
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
-import { RadioItemStyleObject, RadioItem } from "./types";
+import type { RadioItemStyleObject, RadioItem } from "./types";
 
 /**
  * Small util to get the value from a {@link RadioItem}.

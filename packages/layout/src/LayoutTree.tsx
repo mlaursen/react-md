@@ -12,7 +12,7 @@ import { bem } from "@react-md/utils";
 import { defaultMiniNavigationItemRenderer } from "./defaultMiniNavigationItemRenderer";
 import { defaultNavigationItemRenderer } from "./defaultNavigationItemRenderer";
 import { useLayoutConfig } from "./LayoutProvider";
-import { LayoutNavigationItem } from "./types";
+import type { LayoutNavigationItem } from "./types";
 import { isTemporaryLayout } from "./utils";
 
 const styles = bem("rmd-layout-nav");

@@ -1,7 +1,7 @@
-import { ElementType, ReactElement, ReactNode } from "react";
+import type { ElementType, ReactElement, ReactNode } from "react";
 
 import { TreeItem } from "./TreeItem";
-import {
+import type {
   BaseTreeItem,
   ProvidedTreeItemProps,
   ProvidedTreeProps,

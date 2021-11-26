@@ -2,7 +2,7 @@ import { CSSProperties, forwardRef, HTMLAttributes, useMemo } from "react";
 import cn from "classnames";
 import { bem, getPercentage } from "@react-md/utils";
 
-import { ProgressProps } from "./types";
+import type { ProgressProps } from "./types";
 
 export interface LinearProgressProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "id">,

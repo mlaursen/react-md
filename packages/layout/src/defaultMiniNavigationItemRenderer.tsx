@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import cn from "classnames";
 import { Divider } from "@react-md/divider";
 import { TreeItem, TreeItemRenderer } from "@react-md/tree";
 import { SrOnly } from "@react-md/typography";
 
-import { LayoutNavigationItem } from "./types";
+import type { LayoutNavigationItem } from "./types";
 
 /**
  * This is the default mini navigation item renderer provided by the layout

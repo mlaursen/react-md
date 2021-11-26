@@ -1,5 +1,10 @@
-import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from "react";
-import { PropsWithRef } from "@react-md/utils";
+import type {
+  Dispatch,
+  HTMLAttributes,
+  ReactNode,
+  SetStateAction,
+} from "react";
+import type { PropsWithRef } from "@react-md/utils";
 
 /**
  * @remarks \@since 2.5.0

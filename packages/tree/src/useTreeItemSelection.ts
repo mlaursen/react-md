@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { SelectedIds, TreeItemId, TreeItemSelection } from "./types";
+import type { SelectedIds, TreeItemId, TreeItemSelection } from "./types";
 
 /**
  * A hook that implements the base functionality for selecting different tree

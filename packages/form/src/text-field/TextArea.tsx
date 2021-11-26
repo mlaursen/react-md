@@ -15,11 +15,11 @@ import { bem, useEnsuredRef, useResizeObserver } from "@react-md/utils";
 
 import { useFormTheme } from "../FormThemeProvider";
 import { FloatingLabel } from "../label/FloatingLabel";
+import { useFieldStates } from "../useFieldStates";
 import {
   TextFieldContainer,
   TextFieldContainerOptions,
 } from "./TextFieldContainer";
-import { useFieldStates } from "../useFieldStates";
 
 export type TextAreaResize =
   | "none"

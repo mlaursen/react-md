@@ -1,4 +1,4 @@
-import { ErrorMessageOptions } from "./getErrorMessage";
+import type { ErrorMessageOptions } from "./getErrorMessage";
 
 /**
  * @remarks \@since 2.5.0

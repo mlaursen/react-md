@@ -4,7 +4,7 @@ import {
   InteractionStatesOptions,
   useInteractionStates,
 } from "@react-md/states";
-import { PropsWithRef } from "@react-md/utils";
+import type { PropsWithRef } from "@react-md/utils";
 
 import {
   buttonThemeClassNames,

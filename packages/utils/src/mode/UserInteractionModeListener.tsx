@@ -1,6 +1,6 @@
 import { createContext, ReactElement, ReactNode, useContext } from "react";
 
-import { UserInteractionMode } from "./types";
+import type { UserInteractionMode } from "./types";
 import { useInteractionMode } from "./useInteractionMode";
 
 /**

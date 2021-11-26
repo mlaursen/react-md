@@ -1,6 +1,6 @@
 import { forwardRef, HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
-import { PropsWithRef } from "@react-md/utils";
+import type { PropsWithRef } from "@react-md/utils";
 
 import { FormMessage, FormMessageProps } from "./FormMessage";
 

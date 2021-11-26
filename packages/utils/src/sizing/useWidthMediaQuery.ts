@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { QuerySize } from "./constants";
+import type { QuerySize } from "./constants";
 import { useMediaQuery } from "./useMediaQuery";
 
 /**

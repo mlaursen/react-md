@@ -6,7 +6,7 @@ import {
   DEFAULT_SLIDER_MIN,
   DEFAULT_SLIDER_STEP,
 } from "./constants";
-import {
+import type {
   DefinedSliderValueOptions,
   RangeSliderControls,
   RangeSliderDefaultValue,

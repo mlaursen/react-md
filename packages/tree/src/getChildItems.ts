@@ -1,4 +1,9 @@
-import { BaseTreeItem, TreeData, TreeItemId, UnknownTreeItem } from "./types";
+import type {
+  BaseTreeItem,
+  TreeData,
+  TreeItemId,
+  UnknownTreeItem,
+} from "./types";
 
 /**
  * Gets all the child items for a specific parent item id. If the `recursive`

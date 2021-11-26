@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { TextIconSpacing, TextIconSpacingProps } from "@react-md/icon";
 import { bem } from "@react-md/utils";

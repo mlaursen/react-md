@@ -1,4 +1,4 @@
-import { FocusType, KeyConfig, MovementKey } from "./types";
+import type { FocusType, KeyConfig, MovementKey } from "./types";
 
 /**
  * An extremely simple function that is used to generate an id for an item

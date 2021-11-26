@@ -42,7 +42,7 @@ import {
   DEFAULT_TOOLTIP_THRESHOLD,
   TOOLTIP_SPACING_VAR,
 } from "./constants";
-import { TooltipProps } from "./Tooltip";
+import type { TooltipProps } from "./Tooltip";
 import {
   TooltipPositionHookOptions,
   useTooltipPosition,

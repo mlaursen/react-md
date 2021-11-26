@@ -1,17 +1,17 @@
 import { forwardRef, ReactNode } from "react";
 import cn from "classnames";
 import { Sheet, SheetProps } from "@react-md/sheet";
-import { BaseTreeItem, TreeItemRenderer } from "@react-md/tree";
+import type { BaseTreeItem, TreeItemRenderer } from "@react-md/tree";
 import { bem, PropsWithRef } from "@react-md/utils";
 
-import { LayoutCloseNavigationButtonProps } from "./LayoutCloseNavigationButton";
+import type { LayoutCloseNavigationButtonProps } from "./LayoutCloseNavigationButton";
 import {
   LayoutNavigationHeader,
   LayoutNavigationHeaderProps,
 } from "./LayoutNavigationHeader";
 import { useLayoutConfig } from "./LayoutProvider";
 import { LayoutTree, LayoutTreeProps } from "./LayoutTree";
-import { LayoutNavigationItem } from "./types";
+import type { LayoutNavigationItem } from "./types";
 import {
   isPersistentLayout,
   isTemporaryLayout,

@@ -5,7 +5,7 @@ import {
   useContext,
   useMemo,
 } from "react";
-import {
+import type {
   CSSTransitionClassNames,
   TransitionTimeout,
 } from "@react-md/transition";

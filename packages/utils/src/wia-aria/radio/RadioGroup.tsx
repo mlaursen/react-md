@@ -13,10 +13,10 @@ import {
 } from "react";
 
 import { loop } from "../../loop";
-import { LabelRequiredForA11y } from "../../types";
+import type { LabelRequiredForA11y } from "../../types";
 import { tryToSubmitRelatedForm } from "../tryToSubmitRelatedForm";
 import { RadioWidget } from "./RadioWidget";
-import {
+import type {
   RadioWidgetAttributes,
   RadioItemStyleObject,
   RadioItem,

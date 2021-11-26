@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { ExpandedIds, TreeItemExpansion, TreeItemId } from "./types";
+import type { ExpandedIds, TreeItemExpansion, TreeItemId } from "./types";
 
 /**
  * A hook that implements the base functionality for expanding different tree

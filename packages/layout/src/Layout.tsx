@@ -1,6 +1,6 @@
-import { ReactNode, ReactElement } from "react";
-import { BaseTreeItem } from "@react-md/tree";
-import { PropsWithRef } from "@react-md/utils";
+import type { ReactNode, ReactElement } from "react";
+import type { BaseTreeItem } from "@react-md/tree";
+import type { PropsWithRef } from "@react-md/utils";
 
 import {
   DEFAULT_DESKTOP_LAYOUT,
@@ -9,12 +9,12 @@ import {
   DEFAULT_TABLET_LAYOUT,
 } from "./constants";
 import { LayoutChildren, LayoutChildrenProps } from "./LayoutChildren";
-import { LayoutAppBarProps } from "./LayoutAppBar";
-import { LayoutNavigationProps } from "./LayoutNavigation";
+import type { LayoutAppBarProps } from "./LayoutAppBar";
+import type { LayoutNavigationProps } from "./LayoutNavigation";
 import { LayoutWithNavToggle } from "./LayoutNavToggle";
 import { LayoutProvider } from "./LayoutProvider";
-import { LayoutTreeProps } from "./LayoutTree";
-import {
+import type { LayoutTreeProps } from "./LayoutTree";
+import type {
   LayoutConfiguration,
   LayoutNavigationItem,
   LayoutWithTitle,

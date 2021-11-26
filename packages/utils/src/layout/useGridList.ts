@@ -8,7 +8,7 @@ import {
 import cn from "classnames";
 
 import { useResizeObserver } from "../sizing/useResizeObserver";
-import { PropsWithRef } from "../types";
+import type { PropsWithRef } from "../types";
 import { useEnsuredRef } from "../useEnsuredRef";
 import { scrollbarSize } from "./scrollbarSize";
 

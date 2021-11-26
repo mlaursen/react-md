@@ -7,7 +7,7 @@ import { bem } from "@react-md/utils";
 
 import { TreeGroup } from "./TreeGroup";
 import { TreeItemExpanderIcon } from "./TreeItemExpanderIcon";
-import { TreeItemProps, TreeItemWithContentComponentProps } from "./types";
+import type { TreeItemProps, TreeItemWithContentComponentProps } from "./types";
 
 const block = bem("rmd-tree-item");
 

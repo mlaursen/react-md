@@ -7,7 +7,7 @@ import {
 } from "@react-md/transition";
 
 import { useStatesConfigContext } from "../StatesConfig";
-import { RippleState } from "./types";
+import type { RippleState } from "./types";
 
 export interface RippleProps {
   className?: string;

@@ -1,4 +1,4 @@
-import {
+import type {
   CSSProperties,
   ElementType,
   HTMLAttributes,
@@ -7,7 +7,7 @@ import {
   ReactNode,
   Ref,
 } from "react";
-import {
+import type {
   ListItemChildrenProps,
   ListProps,
   SimpleListItemProps,
@@ -141,13 +141,13 @@ export interface TreeItemExpansion {
    * A function to call that will update the `expandedIds` to collapse or expand
    * a clicked item.
    */
-  onItemExpansion: (itemId: TreeItemId, expanded: boolean) => void;
+  onItemExpansion(itemId: TreeItemId, expanded: boolean): void;
 
   /**
    * A function to call when the user presses the asterisk key (*) that will
    * expand all tree items at the same level as the currently focused item.
    */
-  onMultiItemExpansion: (itemIds: ExpandedIds) => void;
+  onMultiItemExpansion(itemIds: ExpandedIds): void;
 }
 
 export interface TreeItemSelection {

@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
 
-import { IndeterminateCheckboxProps } from "../toggle/Checkbox";
+import type { IndeterminateCheckboxProps } from "../toggle/Checkbox";
 import {
   BaseMenuItemInputToggleProps,
   MenuItemInputToggle,

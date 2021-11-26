@@ -1,4 +1,4 @@
-import { ReactElement, Ref } from "react";
+import type { ReactElement, Ref } from "react";
 
 export type Maybe<T, NotFound = null> = T | NotFound;
 

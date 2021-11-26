@@ -1,6 +1,11 @@
 import { useMemo } from "react";
 
-import { BaseTreeItem, TreeData, TreeItemId, TreeItemSorter } from "./types";
+import type {
+  BaseTreeItem,
+  TreeData,
+  TreeItemId,
+  TreeItemSorter,
+} from "./types";
 
 /**
  * @internal

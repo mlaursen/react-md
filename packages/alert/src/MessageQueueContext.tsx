@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext } from "react";
-import { ButtonProps } from "@react-md/button";
+import type { ButtonProps } from "@react-md/button";
 
-import { ToastProps } from "./Toast";
+import type { ToastProps } from "./Toast";
 
 export const DEFAULT_MESSAGE_QUEUE_TIMEOUT = 5000;
 

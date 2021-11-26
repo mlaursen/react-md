@@ -1,5 +1,5 @@
 import { forwardRef, HTMLAttributes, KeyboardEvent, useCallback } from "react";
-import { PropsWithRef } from "@react-md/utils";
+import type { PropsWithRef } from "@react-md/utils";
 
 import {
   DEFAULT_SLIDER_ANIMATION_TIME,
@@ -8,8 +8,8 @@ import {
 import { SliderContainer } from "./SliderContainer";
 import { SliderThumb } from "./SliderThumb";
 import { SliderTrack } from "./SliderTrack";
-import { BaseSliderProps } from "./types";
-import { RangeSliderRequiredProps } from "./useRangeSlider";
+import type { BaseSliderProps } from "./types";
+import type { RangeSliderRequiredProps } from "./useRangeSlider";
 import { useSliderControls } from "./useSliderControls";
 
 /**

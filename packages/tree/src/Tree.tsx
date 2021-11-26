@@ -7,7 +7,7 @@ import { bem } from "@react-md/utils";
 import { defaultGetItemLabel } from "./defaultGetItemLabel";
 import { defaultGetItemValue } from "./defaultGetItemValue";
 import { defaultTreeItemRenderer } from "./defaultTreeItemRenderer";
-import { TreeProps, UnknownTreeItem } from "./types";
+import type { TreeProps, UnknownTreeItem } from "./types";
 import { NestedTreeItem } from "./useNestedTreeList";
 import { useTreeMovement } from "./useTreeMovement";
 

@@ -1,6 +1,6 @@
 import { findSizingContainer } from "@react-md/utils";
 
-import { RippleEvent, RippleState, RippleType } from "./types";
+import type { RippleEvent, RippleState, RippleType } from "./types";
 
 /**
  * Checks if the ripple event should be ignored since it was bubbled

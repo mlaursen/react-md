@@ -1,4 +1,4 @@
-import { UnknownTreeItem } from "./types";
+import type { UnknownTreeItem } from "./types";
 
 let warnedOnce = false;
 

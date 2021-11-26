@@ -1,10 +1,10 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
-import { CSSTransitionClassNames } from "@react-md/transition";
+import type { CSSTransitionClassNames } from "@react-md/transition";
 import { Tooltip, TooltipProps } from "@react-md/tooltip";
 import { bem } from "@react-md/utils";
 
-import { ThumbIndex } from "./types";
+import type { ThumbIndex } from "./types";
 
 const styles = bem("rmd-slider-value");
 

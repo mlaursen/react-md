@@ -4,7 +4,7 @@ import {
   useCallback,
   useRef,
 } from "react";
-import { ListElement } from "@react-md/list";
+import type { ListElement } from "@react-md/list";
 import {
   JumpMovementKey,
   MovementPresets,
@@ -13,7 +13,7 @@ import {
   useIsUserInteractionMode,
 } from "@react-md/utils";
 
-import { TreeItemId, TreeProps, UnknownTreeItem } from "./types";
+import type { TreeItemId, TreeProps, UnknownTreeItem } from "./types";
 import {
   MetadataRecord,
   SearchableTreeItem,

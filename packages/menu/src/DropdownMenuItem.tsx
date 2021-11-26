@@ -4,7 +4,7 @@ import { BELOW_INNER_RIGHT_ANCHOR, TOP_RIGHT_ANCHOR } from "@react-md/utils";
 
 import { defaultMenuItemRenderer } from "./defaultMenuItemRenderer";
 import { defaultMenuRenderer } from "./defaultMenuRenderer";
-import { BaseDropdownMenuProps } from "./DropdownMenu";
+import type { BaseDropdownMenuProps } from "./DropdownMenu";
 import { MenuItem, MenuItemProps } from "./MenuItem";
 import { useItemVisibility } from "./useItemVisibility";
 

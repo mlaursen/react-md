@@ -9,6 +9,7 @@ import {
 } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
+import type { ListElement } from "@react-md/list";
 import { useFixedPositioning } from "@react-md/transition";
 import {
   BELOW_CENTER_ANCHOR,
@@ -36,7 +37,6 @@ import {
   getOptionId as DEFAULT_GET_OPTION_ID,
   getOptionLabel as DEFAULT_GET_OPTION_LABEL,
 } from "./utils";
-import { ListElement } from "@react-md/list";
 
 type FakeSelectAttributes = Omit<
   HTMLAttributes<HTMLDivElement>,

@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+import type { MutableRefObject } from "react";
 
 /**
  * A simple type that can be used to get a DOM node either as a ref object from

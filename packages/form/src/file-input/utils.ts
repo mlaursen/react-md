@@ -1,4 +1,4 @@
-import { ChangeEventHandler, DragEventHandler } from "react";
+import type { ChangeEventHandler, DragEventHandler } from "react";
 import { nanoid } from "nanoid";
 
 /** @remarks \@since 2.9.0 */

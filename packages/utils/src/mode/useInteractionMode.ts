@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import { UserInteractionMode } from "./types";
+import type { UserInteractionMode } from "./types";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 
 /**

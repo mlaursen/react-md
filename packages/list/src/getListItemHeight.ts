@@ -1,6 +1,6 @@
-import { HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
 
-import { ListItemChildrenProps } from "./ListItemChildren";
+import type { ListItemChildrenProps } from "./ListItemChildren";
 
 export type ListItemHeight =
   | "auto"

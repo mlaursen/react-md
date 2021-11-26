@@ -1,7 +1,7 @@
-import { CSSProperties, ReactElement, ReactNode } from "react";
+import type { CSSProperties, ReactElement, ReactNode } from "react";
 import { List } from "@react-md/list";
-import { RenderConditionalPortalProps } from "@react-md/portal";
-import { LabelRequiredForA11y } from "@react-md/utils";
+import type { RenderConditionalPortalProps } from "@react-md/portal";
+import type { LabelRequiredForA11y } from "@react-md/utils";
 
 import { ValidMenuItem } from "./defaultMenuItemRenderer";
 import { Menu, MenuProps } from "./Menu";

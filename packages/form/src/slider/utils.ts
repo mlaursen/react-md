@@ -1,6 +1,6 @@
 import { getPercentage, nearest } from "@react-md/utils";
 
-import {
+import type {
   DefinedSliderValueOptions,
   RangeSliderControls,
   RangeSliderValue,

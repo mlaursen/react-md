@@ -1,4 +1,4 @@
-import { HTMLAttributes, MutableRefObject, Ref } from "react";
+import type { HTMLAttributes, MutableRefObject, Ref } from "react";
 import { useCloseOnOutsideClick, useEnsuredRef } from "@react-md/utils";
 
 import { useMenuClick } from "./useMenuClick";

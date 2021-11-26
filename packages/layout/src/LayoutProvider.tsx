@@ -16,7 +16,7 @@ import {
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
 } from "./constants";
-import { LayoutConfiguration, SupportedWideLayout } from "./types";
+import type { LayoutConfiguration, SupportedWideLayout } from "./types";
 import {
   getLayoutType,
   isMiniLayout,

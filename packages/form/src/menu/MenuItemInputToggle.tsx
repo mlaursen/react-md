@@ -9,7 +9,7 @@ import {
 } from "@react-md/list";
 import { bem } from "@react-md/utils";
 
-import { IndeterminateCheckboxProps } from "../toggle/Checkbox";
+import type { IndeterminateCheckboxProps } from "../toggle/Checkbox";
 import { InputToggleIcon } from "../toggle/InputToggleIcon";
 import { SwitchTrack } from "../toggle/SwitchTrack";
 

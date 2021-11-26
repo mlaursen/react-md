@@ -10,7 +10,7 @@ import {
   useTreeItemExpansion,
 } from "@react-md/tree";
 
-import { LayoutNavigationItem, LayoutNavigationTree } from "./types";
+import type { LayoutNavigationItem, LayoutNavigationTree } from "./types";
 
 export interface LayoutNavigationState<
   T extends BaseTreeItem = LayoutNavigationItem

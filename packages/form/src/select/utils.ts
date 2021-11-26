@@ -1,6 +1,6 @@
 import { createElement, ReactNode } from "react";
 import { TextIconSpacing } from "@react-md/icon";
-import { SimpleListItemProps } from "@react-md/list";
+import type { SimpleListItemProps } from "@react-md/list";
 
 export interface ListboxOptionProps extends SimpleListItemProps {
   [labelKey: string]: ReactNode;

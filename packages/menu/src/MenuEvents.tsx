@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+import type { MutableRefObject } from "react";
 import { useFocusOnMount, usePreviousFocus } from "@react-md/utils";
 
 export interface MenuEventsProps {

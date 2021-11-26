@@ -18,7 +18,7 @@ import {
   useEnsuredRef,
 } from "@react-md/utils";
 
-import { MenuProps } from "./Menu";
+import type { MenuProps } from "./Menu";
 
 type ProvidedPropNames =
   | "id"

@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
-import { UnknownTreeItem } from "./types";
+import type { UnknownTreeItem } from "./types";
 
 /**
  * A "reasonable" default implementation for rendering a label for a tree item.

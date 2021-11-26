@@ -13,7 +13,7 @@ import {
 import { applyRef, useDir, useIsomorphicLayoutEffect } from "@react-md/utils";
 
 import { DEFAULT_SLIDER_ANIMATION_TIME } from "./constants";
-import {
+import type {
   DefinedSliderValueOptions,
   SliderControls,
   SliderDragEvent,

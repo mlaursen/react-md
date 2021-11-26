@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { RadioWidgetAttributes } from "./types";
+import type { RadioWidgetAttributes } from "./types";
 
 /**
  * @remarks \@since 2.7.0

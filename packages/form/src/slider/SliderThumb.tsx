@@ -9,7 +9,7 @@ import {
   DEFAULT_SLIDER_MIN,
 } from "./constants";
 import { SliderValue } from "./SliderValue";
-import { SliderThumbOptions, ThumbIndex } from "./types";
+import type { SliderThumbOptions, ThumbIndex } from "./types";
 import { useDiscreteValueVisibility } from "./useDiscreteValueVisibility";
 
 const styles = bem("rmd-slider-thumb");

@@ -1,7 +1,7 @@
-import { ElementType, ReactNode } from "react";
-import { AppBarTitleProps } from "@react-md/app-bar";
-import { BaseTreeItem, TreeData } from "@react-md/tree";
-import { PropsWithRef } from "@react-md/utils";
+import type { ElementType, ReactNode } from "react";
+import type { AppBarTitleProps } from "@react-md/app-bar";
+import type { BaseTreeItem, TreeData } from "@react-md/tree";
+import type { PropsWithRef } from "@react-md/utils";
 
 /**
  * Due to the limited screen size for phones, the layout only supports having

@@ -1,4 +1,4 @@
-import { MutableRefObject, Ref } from "react";
+import type { MutableRefObject, Ref } from "react";
 
 /**
  * A small utility function that allows me to apply a passed in ref along with

@@ -9,7 +9,7 @@ import {
   MessageVisibilityContext,
   ToastMessage,
 } from "./MessageQueueContext";
-import { SnackbarProps } from "./Snackbar";
+import type { SnackbarProps } from "./Snackbar";
 import { ActionEventHandler, SnackbarQueue } from "./SnackbarQueue";
 import { MessageQueueOptions, useMessageQueue } from "./useMessageQueue";
 

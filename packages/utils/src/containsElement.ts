@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+import type { MutableRefObject } from "react";
 
 type CheckableElement = HTMLElement | null;
 type CheckableThing = CheckableElement | MutableRefObject<CheckableElement>;

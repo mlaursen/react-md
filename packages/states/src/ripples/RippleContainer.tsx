@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
 import type {
   CSSTransitionClassNames,
@@ -6,7 +6,7 @@ import type {
 } from "@react-md/transition";
 
 import { Ripple } from "./Ripple";
-import { RipplesState, RippleState } from "./types";
+import type { RipplesState, RippleState } from "./types";
 
 export interface RippleContainerProps {
   ripples: RipplesState;

@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { caseInsensitiveFilter, fuzzyFilter } from "@react-md/utils";
 
-import {
+import type {
   AutoCompleteData,
   AutoCompleteFilterFunction,
   FilterFunction,

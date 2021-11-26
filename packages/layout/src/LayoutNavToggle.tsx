@@ -8,7 +8,7 @@ import {
   TransitionTimeout,
   useCSSTransition,
 } from "@react-md/transition";
-import { PropsWithRef } from "@react-md/utils";
+import type { PropsWithRef } from "@react-md/utils";
 
 import { DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";
 import { useLayoutConfig } from "./LayoutProvider";

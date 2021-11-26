@@ -1,5 +1,5 @@
 import { getLuminance } from "./getLuminance";
-import { HexString } from "./hexToRGB";
+import type { HexString } from "./hexToRGB";
 
 /**
  * Gets the contrast ratio between a background color and a foreground color.

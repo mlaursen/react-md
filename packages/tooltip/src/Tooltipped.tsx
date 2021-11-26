@@ -5,7 +5,7 @@ import {
   ReactElement,
   ReactNode,
 } from "react";
-import { RenderConditionalPortalProps } from "@react-md/portal";
+import type { RenderConditionalPortalProps } from "@react-md/portal";
 
 import {
   DEFAULT_TOOLTIP_DENSE_SPACING,
