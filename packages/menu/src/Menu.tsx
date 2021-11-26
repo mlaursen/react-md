@@ -210,12 +210,14 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
 
   const [cancelled, setCancelled] = useState(false);
   const prevVisible = useRef(visible);
-  if (prevVisible.current !== visible) {
-    prevVisible.current = visible;
-    if (cancelled) {
-      setCancelled(false);
+  useEffect(() => {
+    if (prevVisible.current !== visible) {
+      prevVisible.current = visible;
+      if (cancelled) {
+        setCancelled(false);
+      }
     }
-  }
+  }, [visible, cancelled]);
 
   const fixedTo = useRef<HTMLElement | null>(null);
   useEffect(() => {
