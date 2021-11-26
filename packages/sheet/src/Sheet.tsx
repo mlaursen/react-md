@@ -1,4 +1,4 @@
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import cn from "classnames";
 import { BaseDialogProps, Dialog } from "@react-md/dialog";
 import { bem, LabelRequiredForA11y } from "@react-md/utils";
@@ -117,9 +117,11 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
   // when sheets are not unmounted on exit, need to set it to hidden so that
   // tabbing no longer focuses any of the elements inside
   const [hidden, setHidden] = useState(!visible && !temporary);
-  if (hidden && visible) {
-    setHidden(false);
-  }
+  useEffect(() => {
+    if (hidden && visible) {
+      setHidden(false);
+    }
+  }, [hidden, visible]);
 
   return (
     <Dialog
