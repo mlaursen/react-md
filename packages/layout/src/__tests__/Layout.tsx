@@ -15,6 +15,7 @@ import {
   getByText as getByTextGlobal,
   render as baseRender,
   waitForElementToBeRemoved,
+  waitFor,
 } from "@testing-library/react";
 import {
   HomeSVGIcon,
@@ -630,7 +631,7 @@ describe("Layout", () => {
     });
   });
 
-  it("should maintain state while switching between static and mini layouts", () => {
+  it("should maintain state while switching between static and mini layouts", async () => {
     const navItems: LayoutNavigationTree = {
       "/": {
         href: "/",
@@ -685,7 +686,9 @@ describe("Layout", () => {
     expect(checkbox).toBeChecked();
 
     fireEvent.click(getByRole("button", { name: "Mobile" }));
-    expect(getNav).toThrow();
+    await waitFor(() => {
+      expect(getNav).toThrow();
+    });
     expect(getMiniNav).not.toThrow();
     expect(checkbox).toBeInTheDocument();
     expect(checkbox).toBeChecked();

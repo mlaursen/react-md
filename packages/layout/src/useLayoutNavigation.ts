@@ -1,4 +1,4 @@
-import { ElementType, useRef } from "react";
+import { ElementType, useEffect } from "react";
 import { Link } from "@react-md/link";
 import {
   BaseTreeItem,
@@ -100,15 +100,23 @@ export function useLayoutNavigation<
   const { expandedIds, onItemExpansion, onMultiItemExpansion } =
     useTreeItemExpansion(() => getParentIds(itemId, navItems));
 
-  const prevItemId = useRef(itemId);
-  const prevNavItems = useRef(navItems);
-  if (prevItemId.current !== itemId || prevNavItems.current !== navItems) {
-    prevItemId.current = itemId;
-    prevNavItems.current = navItems;
-    onMultiItemExpansion(
-      Array.from(new Set([...expandedIds, ...getParentIds(itemId, navItems)]))
-    );
-  }
+  useEffect(() => {
+    onMultiItemExpansion((prevExpandedIds) => {
+      const nextExpandedIds = [
+        ...new Set([...prevExpandedIds, ...getParentIds(itemId, navItems)]),
+      ];
+      if (nextExpandedIds.length !== prevExpandedIds.length) {
+        return nextExpandedIds;
+      }
+
+      const prevSorted = prevExpandedIds.slice().sort();
+      const nextSorted = nextExpandedIds.slice().sort();
+
+      return nextSorted.some((itemId, index) => itemId !== prevSorted[index])
+        ? nextSorted
+        : prevSorted;
+    });
+  }, [itemId, navItems, onMultiItemExpansion]);
 
   return {
     navItems,

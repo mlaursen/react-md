@@ -1,11 +1,13 @@
 import type {
   CSSProperties,
+  Dispatch,
   ElementType,
   HTMLAttributes,
   MutableRefObject,
   ReactElement,
   ReactNode,
   Ref,
+  SetStateAction,
 } from "react";
 import type {
   ListItemChildrenProps,
@@ -146,8 +148,11 @@ export interface TreeItemExpansion {
   /**
    * A function to call when the user presses the asterisk key (*) that will
    * expand all tree items at the same level as the currently focused item.
+   *
+   * @remarks \@since 4.0.1 Allows for callback behavior to get current
+   * `expandedIds`.
    */
-  onMultiItemExpansion(itemIds: ExpandedIds): void;
+  onMultiItemExpansion: Dispatch<SetStateAction<ExpandedIds>>;
 }
 
 export interface TreeItemSelection {

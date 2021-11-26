@@ -1,12 +1,12 @@
 import {
   createContext,
+  ReactElement,
   ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
-  useRef,
-  ReactElement,
 } from "react";
 import { useAppSize } from "@react-md/utils";
 
@@ -166,22 +166,18 @@ export function LayoutProvider({
     largeDesktopLayout,
   ].some((layout) => !!layout && isMiniLayout(layout));
 
-  const isPersistent = isPersistentLayout(layout);
-
   const { isDesktop } = appSize;
   const [visible, setVisible] = useState(
-    (isPersistent && isDesktop) ||
+    (isPersistentLayout(layout) && isDesktop) ||
       isToggleableVisible(defaultToggleableVisible, layout)
   );
-  const prevLayout = useRef(layout);
-  if (prevLayout.current !== layout) {
-    prevLayout.current = layout;
-    const nextVisible =
-      isPersistent || isToggleableVisible(defaultToggleableVisible, layout);
-    if (visible !== nextVisible) {
-      setVisible(nextVisible);
-    }
-  }
+
+  useEffect(() => {
+    setVisible(
+      isPersistentLayout(layout) ||
+        isToggleableVisible(defaultToggleableVisible, layout)
+    );
+  }, [defaultToggleableVisible, layout]);
 
   const showNav = useCallback(() => {
     setVisible(true);

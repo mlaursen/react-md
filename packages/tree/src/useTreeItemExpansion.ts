@@ -36,13 +36,9 @@ export function useTreeItemExpansion(
     []
   );
 
-  const onMultiItemExpansion = useCallback((itemIds: ExpandedIds) => {
-    setExpandedIds(itemIds);
-  }, []);
-
   return {
     expandedIds,
     onItemExpansion,
-    onMultiItemExpansion,
+    onMultiItemExpansion: setExpandedIds,
   };
 }
