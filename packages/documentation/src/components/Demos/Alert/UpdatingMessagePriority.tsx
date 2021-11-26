@@ -25,9 +25,11 @@ function UpdatingMessagePriority(): ReactElement {
   const queue = useQueue<ExampleMessage>();
   const [running, setRunning] = useState(false);
 
-  if (running && !queue.length) {
-    setRunning(false);
-  }
+  useEffect(() => {
+    if (running && !queue.length) {
+      setRunning(false);
+    }
+  }, [running, queue]);
 
   const exampleNextFlow = useCallback(() => {
     addMessage({

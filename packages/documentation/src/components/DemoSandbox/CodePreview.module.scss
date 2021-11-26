@@ -16,10 +16,5 @@
 }
 
 .offset {
-  @include rmd-sheet-theme(margin-left, static-width);
-  @include rmd-utils-rtl {
-    @include rmd-sheet-theme(margin-right, static-width);
-
-    margin-left: auto;
-  }
+  @include rmd-utils-rtl-auto(margin-left, rmd-sheet-theme-var(static-width));
 }

@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import {
   Checkbox,
   Fieldset,
@@ -50,9 +50,11 @@ export default function NativeSelectExample(): ReactElement {
   const [size, handleSizeChange] = useChoice("4");
   const [multiple, handleMultipleChange] = useChecked(false);
   const [optgroup, handleOptgroupChange] = useChecked(false);
-  if (multiple && icon) {
-    setIcon(false);
-  }
+  useEffect(() => {
+    if (multiple && icon) {
+      setIcon(false);
+    }
+  }, [multiple, icon, setIcon]);
 
   return (
     <TextFieldThemeConfig
@@ -77,7 +79,9 @@ export default function NativeSelectExample(): ReactElement {
         >
           {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
           {label && <option key="label" value="" disabled hidden />}
-          {!optgroup && <States states={states} readOnly={readOnly} />}
+          {!optgroup && (
+            <States key="optgroup" states={states} readOnly={readOnly} />
+          )}
           {optgroup &&
             Object.entries(grouped).map(([letter, states]) => (
               <optgroup key={letter} label={letter}>

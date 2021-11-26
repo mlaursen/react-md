@@ -1,4 +1,4 @@
-import { ReactElement, useRef } from "react";
+import { ReactElement, useEffect, useRef } from "react";
 import {
   Slider,
   SliderRequiredProps,
@@ -43,15 +43,17 @@ export default function ColorSlider({
   //   with it, need to also update the slider number value
   const prevValue = useRef(value);
   const prevNumberValue = useRef(numberValue);
-  if (prevValue.current !== value && prevNumberValue.current !== value) {
-    prevValue.current = value;
-    prevNumberValue.current = value;
-    setNumber(value);
-  } else if (prevNumberValue.current !== numberValue) {
-    prevValue.current = numberValue;
-    prevNumberValue.current = numberValue;
-    setValue(numberValue);
-  }
+  useEffect(() => {
+    if (prevValue.current !== value && prevNumberValue.current !== value) {
+      prevValue.current = value;
+      prevNumberValue.current = value;
+      setNumber(value);
+    } else if (prevNumberValue.current !== numberValue) {
+      prevValue.current = numberValue;
+      prevNumberValue.current = numberValue;
+      setValue(numberValue);
+    }
+  }, [value, numberValue, setNumber, setValue]);
 
   return (
     <Slider

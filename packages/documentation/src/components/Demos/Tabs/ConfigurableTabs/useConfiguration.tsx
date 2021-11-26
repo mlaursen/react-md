@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, useEffect } from "react";
 import { useChecked, useChoice } from "@react-md/form";
 import {
   FavoriteSVGIcon,
@@ -91,9 +91,11 @@ export default function useConfiguration(): TabConfiguration {
     useChoice<TransitionBehavior>("enabled");
   const disableTransition = transition === "disabled";
   const customTransition = transition === "custom";
-  if (customTransition && persistent) {
-    setTransition("enabled");
-  }
+  useEffect(() => {
+    if (customTransition && persistent) {
+      setTransition("enabled");
+    }
+  }, [customTransition, persistent, setTransition]);
 
   const noIcon = icons === "none";
   const onlyIcon = icons === "only";

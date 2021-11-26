@@ -1,13 +1,12 @@
 import { ReactElement, useEffect, useRef } from "react";
 import cn from "classnames";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
-import { CircularProgress } from "@react-md/progress";
 
 import CodeBlock from "components/CodeBlock";
 
-import FileNotFound from "./FileNotFound";
-
 import styles from "./CodePreview.module.scss";
+import FileNotFound from "./FileNotFound";
+import { LoadingCode } from "./LoadingCode";
 
 export interface CodePreviewProps {
   loading: boolean;
@@ -49,7 +48,7 @@ export default function CodePreview({
   }, [content]);
 
   if (loading) {
-    return <CircularProgress id="loading-code" />;
+    return <LoadingCode offset={offset} />;
   }
 
   if (!content) {

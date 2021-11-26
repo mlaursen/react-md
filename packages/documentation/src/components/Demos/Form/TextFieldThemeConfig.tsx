@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 import {
   Checkbox,
   Fieldset,
@@ -76,21 +76,34 @@ export default function TextFieldThemeConfig({
     }
   );
   const isUnstyled = currentTheme === "none";
-  if (disabled && error) {
-    setError(false);
-  }
+  useEffect(() => {
+    if (disabled && error) {
+      setError(false);
+    }
 
-  if (disabled && readOnly) {
-    setReadOnly(false);
-  }
+    if (disabled && readOnly) {
+      setReadOnly(false);
+    }
 
-  if (disableDense && dense) {
-    setDense(false);
-  }
+    if (disableDense && dense) {
+      setDense(false);
+    }
+  }, [
+    disabled,
+    error,
+    readOnly,
+    dense,
+    disableDense,
+    setError,
+    setReadOnly,
+    setDense,
+  ]);
 
-  if (disableRightIcon && useRight) {
-    setRightIcon(false);
-  }
+  useEffect(() => {
+    if (disableRightIcon && useRight) {
+      setRightIcon(false);
+    }
+  }, [disableRightIcon, setRightIcon, useRight]);
 
   return (
     <Form className={styles.container}>

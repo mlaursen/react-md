@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { DialogContent } from "@react-md/dialog";
@@ -42,9 +42,11 @@ export default function SheetSizing(): ReactElement {
   const [emulate, setEmulate] = useState(false);
   const { isDesktop } = useAppSize();
 
-  if (emulate && !isDesktop) {
-    setEmulate(false);
-  }
+  useEffect(() => {
+    if (emulate && !isDesktop) {
+      setEmulate(false);
+    }
+  }, [emulate, isDesktop]);
 
   return (
     <Form>

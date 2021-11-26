@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import {
   Checkbox,
   Fieldset,
@@ -21,10 +21,12 @@ export default function TextAreaExample(): ReactElement {
   const [maxRows, handleMaxRowChange, setMaxRows] = useChoice<string>("-1");
   const rowsInt = parseInt(rows, 10);
   const maxRowsInt = parseInt(maxRows, 10);
-  if (maxRowsInt !== -1 && maxRowsInt < rowsInt) {
-    const i = MAX_ROWS.find((value) => value >= rowsInt) || -1;
-    setMaxRows(`${i}`);
-  }
+  useEffect(() => {
+    if (maxRowsInt !== -1 && maxRowsInt < rowsInt) {
+      const i = MAX_ROWS.find((value) => value >= rowsInt) || -1;
+      setMaxRows(`${i}`);
+    }
+  }, [maxRowsInt, rowsInt, setMaxRows]);
 
   return (
     <TextFieldThemeConfig

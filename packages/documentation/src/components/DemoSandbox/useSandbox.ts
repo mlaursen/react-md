@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import { useToggle } from "@react-md/utils";
 import { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { ThemeMode } from "components/Theme";
 import { getSandboxByQuery } from "utils/getSandbox";
@@ -21,43 +20,37 @@ export default function useSandbox(
   { js, pkg, name, theme, pathname }: SandboxQuery
 ): ReturnValue {
   const [sandbox, setSandbox] = useState(defaultSandbox);
-  const [loading, startLoading, stopLoading] = useToggle(!sandbox);
+  const [isLoading, setLoading] = useState(!sandbox);
   const prevJs = useRef(js);
-  if (prevJs.current !== js) {
-    prevJs.current = js;
-    startLoading();
-  }
+  const loading = isLoading || prevJs.current !== js;
 
   useEffect(() => {
-    if (defaultSandbox && !loading) {
+    if (prevJs.current === js) {
       return;
     }
 
+    prevJs.current = js;
     if (!pkg || !name || !pathname.startsWith("/sandbox")) {
-      stopLoading();
-      if (sandbox) {
-        setSandbox(null);
-      }
+      setSandbox(null);
+      setLoading(false);
       return;
     }
 
     let cancelled = false;
-    (async function load() {
-      startLoading();
+    setLoading(true);
+    async function load(): Promise<void> {
       const sandbox = await getSandboxByQuery({ js, pkg, name, theme });
       if (!cancelled) {
+        setLoading(false);
         setSandbox(sandbox);
-        stopLoading();
       }
-    })();
+    }
+    load();
 
     return () => {
       cancelled = true;
-      stopLoading();
     };
-    // only want to run when these dependencies change
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pkg, name, pathname, js, theme]);
+  }, [js, pkg, name, theme, pathname]);
 
   return { sandbox, loading };
 }

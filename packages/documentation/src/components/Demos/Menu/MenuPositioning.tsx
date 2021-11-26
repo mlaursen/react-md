@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { upperFirst } from "lodash";
 import { Checkbox, Select, useChecked } from "@react-md/form";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
@@ -80,9 +80,11 @@ export default function MenuPositioning(): ReactElement {
   );
   const [equalWidth, handleChange, setEqualWidth] = useChecked(false);
   const anchor = anchors[anchorIndex];
-  if (anchor.x !== "center" && equalWidth) {
-    setEqualWidth(false);
-  }
+  useEffect(() => {
+    if (anchor.x !== "center" && equalWidth) {
+      setEqualWidth(false);
+    }
+  }, [anchor.x, equalWidth, setEqualWidth]);
 
   return (
     <>

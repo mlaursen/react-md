@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import cn from "classnames";
 import {
   CSSTransitionClassNames,
@@ -21,9 +21,11 @@ const CLASSNAMES: CSSTransitionClassNames = {
 
 export default function Blinds({ visible }: BlindsProps): ReactElement | null {
   const [exited, setExited] = useState(true);
-  if (visible && exited) {
-    setExited(false);
-  }
+  useEffect(() => {
+    if (visible && exited) {
+      setExited(false);
+    }
+  }, [visible, exited]);
 
   const hide = (): void => setExited(true);
 

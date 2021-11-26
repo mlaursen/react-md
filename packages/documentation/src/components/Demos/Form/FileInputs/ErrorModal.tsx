@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,
@@ -20,17 +20,15 @@ export default function ErrorModal({
   errors,
   clearErrors,
 }: ErrorModalProps): ReactElement {
+  // Having the visibility being derived on the `errors.length > 0` would make
+  // it so the errors are cleared during the exit animation. To fix this, keep a
+  // separate `visible` state and set it to `true` whenever a new error is
+  // added. When the modal is closed, set the `visible` state to false and wait
+  // until the modal has closed before clearing the errors.
   const [visible, setVisible] = useState(false);
-  const prevErrors = useRef(errors);
-
-  // why?
-  // makes it so the errors don't disappear during the exit animation
-  if (errors !== prevErrors.current) {
-    prevErrors.current = errors;
-    if (!visible && errors.length) {
-      setVisible(true);
-    }
-  }
+  useEffect(() => {
+    setVisible(errors.length > 0);
+  }, [errors]);
 
   const onRequestClose = (): void => {
     setVisible(false);
