@@ -248,11 +248,19 @@ export const getDragPercentage = ({
   let thumb1Percentage =
     dragging && draggingIndex === 0
       ? dragValue
-      : getPercentage(min, max, thumb1Value);
+      : getPercentage({
+          min,
+          max,
+          value: thumb1Value,
+        });
 
   let thumb2Percentage: number | undefined;
   if (typeof thumb2Value === "number") {
-    const percentage = getPercentage(min, max, thumb2Value);
+    const percentage = getPercentage({
+      min,
+      max,
+      value: thumb2Value,
+    });
     thumb1Percentage = Math.min(thumb1Percentage, percentage);
     thumb2Percentage =
       dragging && draggingIndex === 1

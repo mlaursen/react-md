@@ -76,7 +76,7 @@ export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
 
     let progress: number | undefined;
     if (typeof value === "number") {
-      progress = getPercentage(min, max, value);
+      progress = getPercentage({ min, max, value });
     }
     const barStyle = useMemo(() => {
       if (typeof progress !== "number") {

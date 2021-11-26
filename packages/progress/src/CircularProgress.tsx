@@ -110,7 +110,7 @@ export const CircularProgress = forwardRef<
 ) {
   let progress: number | undefined;
   if (typeof value === "number") {
-    progress = getPercentage(min, max, value);
+    progress = getPercentage({ min, max, value });
   }
 
   const svgStyle = useMemo<CSSProperties | undefined>(() => {
