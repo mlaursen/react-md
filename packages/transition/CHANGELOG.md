@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/mlaursen/react-md/compare/v4.0.0...v4.0.1) (2021-11-27)
+
+
+### Documentation
+
+* **@react-md/transition:** Fix transitionTo documentation to use useEffect ([31a31da](https://github.com/mlaursen/react-md/commit/31a31da733666e225db4a4af11d19761636073b6))
+
+
+
+
+
+
 # [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
 
 

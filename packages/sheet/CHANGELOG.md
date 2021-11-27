@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/mlaursen/react-md/compare/v4.0.0...v4.0.1) (2021-11-27)
+
+
+### Bug Fixes
+
+* **@react-md/sheet:** Added fixes required for Concurrent Rendering ([75663e4](https://github.com/mlaursen/react-md/commit/75663e42d135ce450cc5cd5d2915f17f21c92695))
+
+
+
+
+
+
 # [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
 
 

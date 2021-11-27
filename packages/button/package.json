@@ -1,6 +1,6 @@
 {
   "name": "@react-md/button",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "This package is used to create buttons with the material design spec. There is built-in support to be able to render accessible clickable divs that look like buttons, or even apply button styles to any element.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -30,13 +30,13 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/elevation": "^4.0.0",
-    "@react-md/icon": "^4.0.0",
-    "@react-md/states": "^4.0.0",
-    "@react-md/theme": "^4.0.0",
-    "@react-md/transition": "^4.0.0",
-    "@react-md/typography": "^4.0.0",
-    "@react-md/utils": "^4.0.0",
+    "@react-md/elevation": "^4.0.1",
+    "@react-md/icon": "^4.0.1",
+    "@react-md/states": "^4.0.1",
+    "@react-md/theme": "^4.0.1",
+    "@react-md/transition": "^4.0.1",
+    "@react-md/typography": "^4.0.1",
+    "@react-md/utils": "^4.0.1",
     "classnames": "^2.3.1"
   },
   "devDependencies": {

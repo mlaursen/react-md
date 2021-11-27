@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/mlaursen/react-md/compare/v4.0.0...v4.0.1) (2021-11-27)
+
+
+### Other Internal Changes
+
+* **react-md.dev:** Fixed demo styles that included CodeBlock ([1f1a04e](https://github.com/mlaursen/react-md/commit/1f1a04e5c28fa1be2ab068dcdc2f7b51cb229521))
+* **react-md.dev:** Fixes for Concurrent Rendering ([5946bd9](https://github.com/mlaursen/react-md/commit/5946bd911a0188348afbdc83ee5760f74d573e97))
+* **react-md.dev:** Update order of previous docs links ([87998b9](https://github.com/mlaursen/react-md/commit/87998b93665e2361e6561afcc264365a19d52879))
+
+
+
+
+
+
 # [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
 
 

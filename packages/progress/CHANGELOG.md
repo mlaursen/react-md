@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/mlaursen/react-md/compare/v4.0.0...v4.0.1) (2021-11-27)
+
+
+### Bug Fixes
+
+* **@react-md/utils:** Update `getPercentage` to optionally not throw errors ([ff8a1d6](https://github.com/mlaursen/react-md/commit/ff8a1d6bbcf4539e5175987f1570699b06cceb09))
+
+
+### Other Internal Changes
+
+* Updated imports to use `import type` when possible ([ba96bb6](https://github.com/mlaursen/react-md/commit/ba96bb62eeddcc0879f6d584aa670850203561e6))
+
+
+
+
+
+
 # [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
 
 

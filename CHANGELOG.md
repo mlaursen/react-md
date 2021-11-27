@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/mlaursen/react-md/compare/v4.0.0...v4.0.1) (2021-11-27)
+
+
+### Bug Fixes
+
+* **@react-md/form:** Added fixes required for Concurrent Rendering ([b4994f4](https://github.com/mlaursen/react-md/commit/b4994f4d927d90c9a5635bdd57464c19ea935100))
+* **@react-md/layout:** Added fixes required for Concurrent Rendering ([c0b29a8](https://github.com/mlaursen/react-md/commit/c0b29a82d5c59acc87ebcd22530fcf093d445705))
+* **@react-md/menu:** Added fixes required for Concurrent Rendering ([05ec620](https://github.com/mlaursen/react-md/commit/05ec620a4447c904f311e5f98a3580ce56ece35f))
+* **@react-md/sheet:** Added fixes required for Concurrent Rendering ([75663e4](https://github.com/mlaursen/react-md/commit/75663e42d135ce450cc5cd5d2915f17f21c92695))
+* **@react-md/utils:** Update `getPercentage` to optionally not throw errors ([ff8a1d6](https://github.com/mlaursen/react-md/commit/ff8a1d6bbcf4539e5175987f1570699b06cceb09))
+
+
+### Documentation
+
+* **@react-md/transition:** Fix transitionTo documentation to use useEffect ([31a31da](https://github.com/mlaursen/react-md/commit/31a31da733666e225db4a4af11d19761636073b6))
+
+
+### Other Internal Changes
+
+* Updated imports to use `import type` when possible ([ba96bb6](https://github.com/mlaursen/react-md/commit/ba96bb62eeddcc0879f6d584aa670850203561e6))
+* **react-md.dev:** Fixed demo styles that included CodeBlock ([1f1a04e](https://github.com/mlaursen/react-md/commit/1f1a04e5c28fa1be2ab068dcdc2f7b51cb229521))
+* **react-md.dev:** Fixes for Concurrent Rendering ([5946bd9](https://github.com/mlaursen/react-md/commit/5946bd911a0188348afbdc83ee5760f74d573e97))
+* **react-md.dev:** Update order of previous docs links ([87998b9](https://github.com/mlaursen/react-md/commit/87998b93665e2361e6561afcc264365a19d52879))
+
+
+
+
+
+
 # [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
 
 This release focused on updating the `@react-md/transition` package to no longer log errors in `React.StrictMode` because `react-ransition-group` was using `ReactDOM.findDOMNode` to handle transitions.

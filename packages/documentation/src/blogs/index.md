@@ -1,3 +1,32 @@
+Title: react-md 4.0.1
+
+Date: 11/26/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** Added fixes required for Concurrent Rendering (b4994f4)
+- **@react-md/layout:** Added fixes required for Concurrent Rendering (c0b29a8)
+- **@react-md/menu:** Added fixes required for Concurrent Rendering (05ec620)
+- **@react-md/sheet:** Added fixes required for Concurrent Rendering (75663e4)
+- **@react-md/utils:** Update `getPercentage` to optionally not throw errors
+  (ff8a1d6)
+
+##### Documentation<!-- no-margin -->
+
+- **@react-md/transition:** Fix transitionTo documentation to use useEffect
+  (31a31da)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- Updated imports to use `import type` when possible (ba96bb6)
+- **react-md.dev:** Fixed demo styles that included CodeBlock (1f1a04e)
+- **react-md.dev:** Fixes for Concurrent Rendering (5946bd9)
+- **react-md.dev:** Update order of previous docs links (87998b9)
+
+---
+
 Title: react-md 4.0.0
 
 Date: 11/24/2021
