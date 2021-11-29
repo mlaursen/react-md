@@ -1,6 +1,7 @@
 import {
   DEFAULT_MARKDOWN_RENDERERS,
   getTokensText,
+  ImageRenderer,
   MarkdownRenderers,
   useSluggedId,
 } from "react-marked-renderer";
@@ -114,6 +115,24 @@ export const renderers: MarkdownRenderers = {
       <li key={`${defaultChecked}`} className={styles.task}>
         <Checkbox id={id} defaultChecked={defaultChecked} label={children} />
       </li>
+    );
+  },
+
+  img: function Img({ href, ...props }) {
+    return (
+      <Link
+        href={href}
+        className="rmd-media-container rmd-media-container--auto"
+      >
+        {href.endsWith(".mp4") ? (
+          <video autoPlay loop muted controls>
+            <source src={href} type="video/mp4" />
+            {props.text || props.title}
+          </video>
+        ) : (
+          <ImageRenderer href={href} {...props} />
+        )}
+      </Link>
     );
   },
 
