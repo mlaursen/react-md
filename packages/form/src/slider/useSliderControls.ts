@@ -170,10 +170,9 @@ export function useSliderControls({
         return;
       }
 
-      // prevent text from being highlighted while dragging the slider
-      // can't do it on touch events due to being passive events in later
-      // versions of React
-      if (!isTouchEvent(event)) {
+      // prevent text from being highlighted on desktop or the page from
+      // scrolling on mobile while dragging
+      if (!isTouchEvent(event) || event.type === "touchmove") {
         event.preventDefault();
       }
       event.stopPropagation();
@@ -273,7 +272,7 @@ export function useSliderControls({
       window.addEventListener("mousemove", drag);
       window.addEventListener("mouseup", stop);
     } else {
-      window.addEventListener("touchmove", drag);
+      window.addEventListener("touchmove", drag, { passive: false });
       window.addEventListener("touchend", stop);
     }
 
