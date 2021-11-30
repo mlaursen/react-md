@@ -1,6 +1,6 @@
 {
   "name": "@react-md/layout",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "This package is used to configure most of react-md as well as create some pre-defined layouts",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -36,7 +36,7 @@
     "@react-md/app-bar": "^4.0.1",
     "@react-md/dialog": "^4.0.1",
     "@react-md/divider": "^4.0.1",
-    "@react-md/form": "^4.0.1",
+    "@react-md/form": "^4.0.2",
     "@react-md/icon": "^4.0.1",
     "@react-md/link": "^4.0.1",
     "@react-md/list": "^4.0.1",

@@ -1,3 +1,24 @@
+Title: react-md 4.0.2
+
+Date: 11/29/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** Prevent scrolling while dragging `Slider` on mobile
+  (7eb6740)
+
+##### Documentation<!-- no-margin -->
+
+- **react-md.dev:** Update images/videos for markdown pages (5e482bb)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- **@react-md/utils:** Additional test coverage (73bc4eb)
+
+---
+
 Title: react-md 4.0.1
 
 Date: 11/26/2021

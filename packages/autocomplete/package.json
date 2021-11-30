@@ -1,6 +1,6 @@
 {
   "name": "@react-md/autocomplete",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -31,7 +31,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/form": "^4.0.1",
+    "@react-md/form": "^4.0.2",
     "@react-md/list": "^4.0.1",
     "@react-md/portal": "^4.0.1",
     "@react-md/states": "^4.0.1",

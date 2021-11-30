@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/mlaursen/react-md/compare/v4.0.1...v4.0.2) (2021-11-30)
+
+
+### Bug Fixes
+
+* **@react-md/form:** Prevent scrolling while dragging `Slider` on mobile ([7eb6740](https://github.com/mlaursen/react-md/commit/7eb674060bae10950007f6666497d6c16a0f3132))
+
+
+### Documentation
+
+* **react-md.dev:** Update images/videos for markdown pages ([5e482bb](https://github.com/mlaursen/react-md/commit/5e482bb925fd99f2bb9b9a973327296b586ac18c))
+
+
+### Other Internal Changes
+
+* **@react-md/utils:** Additional test coverage ([73bc4eb](https://github.com/mlaursen/react-md/commit/73bc4eb93101e2457dfe7b4f3ee47cb2ca5c2a23))
+
+
+
+
+
+
 ## [4.0.1](https://github.com/mlaursen/react-md/compare/v4.0.0...v4.0.1) (2021-11-27)
 
 
