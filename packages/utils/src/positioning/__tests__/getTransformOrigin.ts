@@ -1,3 +1,30 @@
+import {
+  ABOVE_CENTER_ANCHOR,
+  ABOVE_INNER_LEFT_ANCHOR,
+  ABOVE_INNER_RIGHT_ANCHOR,
+  ABOVE_LEFT_ANCHOR,
+  ABOVE_RIGHT_ANCHOR,
+  BELOW_CENTER_ANCHOR,
+  BELOW_INNER_LEFT_ANCHOR,
+  BELOW_INNER_RIGHT_ANCHOR,
+  BELOW_LEFT_ANCHOR,
+  BELOW_RIGHT_ANCHOR,
+  BOTTOM_CENTER_ANCHOR,
+  BOTTOM_INNER_LEFT_ANCHOR,
+  BOTTOM_INNER_RIGHT_ANCHOR,
+  BOTTOM_LEFT_ANCHOR,
+  BOTTOM_RIGHT_ANCHOR,
+  CENTER_CENTER_ANCHOR,
+  CENTER_INNER_LEFT_ANCHOR,
+  CENTER_INNER_RIGHT_ANCHOR,
+  CENTER_LEFT_ANCHOR,
+  CENTER_RIGHT_ANCHOR,
+  TOP_CENTER_ANCHOR,
+  TOP_INNER_LEFT_ANCHOR,
+  TOP_INNER_RIGHT_ANCHOR,
+  TOP_LEFT_ANCHOR,
+  TOP_RIGHT_ANCHOR,
+} from "../constants";
 import { getTransformOrigin } from "../getTransformOrigin";
 
 const TOP_LEFT = "0 0";
@@ -14,72 +41,59 @@ const BOTTOM_RIGHT = "100% 100%";
 
 describe("getTransformOrigin", () => {
   it('should position the "right below", "right top", "inner-left below", and "inner-left top" anchors to the top left origin', () => {
-    expect(getTransformOrigin({ x: "right", y: "below" })).toBe(TOP_LEFT);
-    expect(getTransformOrigin({ x: "right", y: "top" })).toBe(TOP_LEFT);
-    expect(getTransformOrigin({ x: "inner-left", y: "below" })).toBe(TOP_LEFT);
-    expect(getTransformOrigin({ x: "inner-left", y: "top" })).toBe(TOP_LEFT);
+    expect(getTransformOrigin(BELOW_RIGHT_ANCHOR)).toBe(TOP_LEFT);
+    expect(getTransformOrigin(TOP_RIGHT_ANCHOR)).toBe(TOP_LEFT);
+    expect(getTransformOrigin(BELOW_INNER_LEFT_ANCHOR)).toBe(TOP_LEFT);
+    expect(getTransformOrigin(TOP_INNER_LEFT_ANCHOR)).toBe(TOP_LEFT);
   });
 
   it('should position the "center below" and "center top" anchors to the top center origin ("50% 0")', () => {
-    expect(getTransformOrigin({ x: "center", y: "below" })).toBe(TOP_CENTER);
-    expect(getTransformOrigin({ x: "center", y: "top" })).toBe(TOP_CENTER);
+    expect(getTransformOrigin(BELOW_CENTER_ANCHOR)).toBe(TOP_CENTER);
+    expect(getTransformOrigin(TOP_CENTER_ANCHOR)).toBe(TOP_CENTER);
   });
 
   it('should position the "inner-right below", "inner-right top", "left below", and "left top" anchors to the top right origin ("100% 0")', () => {
-    expect(getTransformOrigin({ x: "inner-right", y: "below" })).toBe(
-      TOP_RIGHT
-    );
-    expect(getTransformOrigin({ x: "inner-right", y: "top" })).toBe(TOP_RIGHT);
-    expect(getTransformOrigin({ x: "left", y: "below" })).toBe(TOP_RIGHT);
-    expect(getTransformOrigin({ x: "left", y: "top" })).toBe(TOP_RIGHT);
+    expect(getTransformOrigin(BELOW_INNER_RIGHT_ANCHOR)).toBe(TOP_RIGHT);
+    expect(getTransformOrigin(TOP_INNER_RIGHT_ANCHOR)).toBe(TOP_RIGHT);
+    expect(getTransformOrigin(BELOW_LEFT_ANCHOR)).toBe(TOP_RIGHT);
+    expect(getTransformOrigin(TOP_LEFT_ANCHOR)).toBe(TOP_RIGHT);
   });
 
   it('should position the "right center" and "inner-right center" anchors to the center left origin ("0 50%")', () => {
-    expect(getTransformOrigin({ x: "right", y: "center" })).toBe(CENTER_LEFT);
-    expect(getTransformOrigin({ x: "inner-left", y: "center" })).toBe(
-      CENTER_LEFT
-    );
+    expect(getTransformOrigin(CENTER_RIGHT_ANCHOR)).toBe(CENTER_LEFT);
+    expect(getTransformOrigin(CENTER_INNER_LEFT_ANCHOR)).toBe(CENTER_LEFT);
   });
 
   it('should position the "center center" anchor to the absolute center origin ("50% 50%")', () => {
-    expect(getTransformOrigin({ x: "center", y: "center" })).toBe(
-      CENTER_CENTER
-    );
+    expect(getTransformOrigin(CENTER_CENTER_ANCHOR)).toBe(CENTER_CENTER);
   });
 
   it('should position the "inner-right center" and "left center" anchors to the center right origin ("100% 50%")', () => {
-    expect(getTransformOrigin({ x: "inner-right", y: "center" })).toBe(
-      CENTER_RIGHT
-    );
-    expect(getTransformOrigin({ x: "left", y: "center" })).toBe(CENTER_RIGHT);
+    expect(getTransformOrigin(CENTER_INNER_RIGHT_ANCHOR)).toBe(CENTER_RIGHT);
+    expect(getTransformOrigin(CENTER_LEFT_ANCHOR)).toBe(CENTER_RIGHT);
   });
 
   it('should position the "right above", "right bottom", "inner-left above", and "inner-left bottom" anchors to the bottom left origin ("0 100%")', () => {
-    expect(getTransformOrigin({ x: "right", y: "above" })).toBe(BOTTOM_LEFT);
-    expect(getTransformOrigin({ x: "right", y: "bottom" })).toBe(BOTTOM_LEFT);
-    expect(getTransformOrigin({ x: "inner-left", y: "above" })).toBe(
-      BOTTOM_LEFT
-    );
-    expect(getTransformOrigin({ x: "inner-left", y: "bottom" })).toBe(
-      BOTTOM_LEFT
-    );
+    expect(getTransformOrigin(ABOVE_RIGHT_ANCHOR)).toBe(BOTTOM_LEFT);
+    expect(getTransformOrigin(BOTTOM_RIGHT_ANCHOR)).toBe(BOTTOM_LEFT);
+    expect(getTransformOrigin(ABOVE_INNER_LEFT_ANCHOR)).toBe(BOTTOM_LEFT);
+    expect(getTransformOrigin(BOTTOM_INNER_LEFT_ANCHOR)).toBe(BOTTOM_LEFT);
   });
 
   it('should position the "center above" and "center bottom" anchors to the bottom center origin ("50% 100%")', () => {
-    expect(getTransformOrigin({ x: "center", y: "above" })).toBe(BOTTOM_CENTER);
-    expect(getTransformOrigin({ x: "center", y: "bottom" })).toBe(
-      BOTTOM_CENTER
-    );
+    expect(getTransformOrigin(ABOVE_CENTER_ANCHOR)).toBe(BOTTOM_CENTER);
+    expect(getTransformOrigin(BOTTOM_CENTER_ANCHOR)).toBe(BOTTOM_CENTER);
   });
 
   it('should position the "inner-right above", "inner-right bottom", "left above", and "left bottom" anchors to the bottom right origin ("100% 100%")', () => {
-    expect(getTransformOrigin({ x: "inner-right", y: "above" })).toBe(
-      BOTTOM_RIGHT
-    );
-    expect(getTransformOrigin({ x: "inner-right", y: "bottom" })).toBe(
-      BOTTOM_RIGHT
-    );
-    expect(getTransformOrigin({ x: "left", y: "above" })).toBe(BOTTOM_RIGHT);
-    expect(getTransformOrigin({ x: "left", y: "bottom" })).toBe(BOTTOM_RIGHT);
+    expect(getTransformOrigin(ABOVE_INNER_RIGHT_ANCHOR)).toBe(BOTTOM_RIGHT);
+    expect(getTransformOrigin(BOTTOM_INNER_RIGHT_ANCHOR)).toBe(BOTTOM_RIGHT);
+    expect(getTransformOrigin(ABOVE_LEFT_ANCHOR)).toBe(BOTTOM_RIGHT);
+    expect(getTransformOrigin(BOTTOM_LEFT_ANCHOR)).toBe(BOTTOM_RIGHT);
+  });
+
+  it("should default to 0 0 if an invalid anchor is provided", () => {
+    // @ts-expect-error
+    expect(getTransformOrigin({ x: "invalid", y: "invalid" })).toBe("0 0");
   });
 });

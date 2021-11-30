@@ -1,9 +1,10 @@
 /* eslint-disable no-underscore-dangle */
+import { ReactElement } from "react";
 import { act, render } from "@testing-library/react";
 import { ResizeObserver } from "@juggle/resize-observer";
 import { mocked } from "ts-jest/utils";
 
-import { GridList } from "../GridList";
+import { GridList, GridListProps } from "../GridList";
 import { useGridListSize } from "../useGridList";
 
 jest.mock("@juggle/resize-observer");
@@ -243,5 +244,25 @@ describe("GridList", () => {
         {"columns":-1,"cellWidth":-1}
       </div>
     `);
+  });
+
+  it("should allow for all the children to be wrapped in the GridListCell component", () => {
+    function Test({
+      clone,
+      wrapOnly,
+    }: Omit<GridListProps, "children">): ReactElement {
+      return (
+        <GridList clone={clone} wrapOnly={wrapOnly}>
+          <div>Child 1</div>
+          <div>Child 2</div>
+        </GridList>
+      );
+    }
+
+    const { container, rerender } = render(<Test clone />);
+    expect(container).toMatchSnapshot();
+
+    rerender(<Test wrapOnly />);
+    expect(container).toMatchSnapshot();
   });
 });
