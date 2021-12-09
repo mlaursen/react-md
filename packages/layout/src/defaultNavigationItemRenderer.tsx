@@ -11,21 +11,22 @@ import type { LayoutNavigationItem } from "./types";
  * `@react-md/tree` package that adds in some support for also rendering
  * dividers and subheader elements.
  */
-export const defaultNavigationItemRenderer: TreeItemRenderer<LayoutNavigationItem> =
-  (itemProps, item, treeProps) => {
-    const { key } = itemProps;
-    const { divider, subheader } = item;
-    if (divider) {
-      return <Divider key={key} />;
-    }
+export const defaultNavigationItemRenderer: TreeItemRenderer<
+  LayoutNavigationItem
+> = (itemProps, item, treeProps) => {
+  const { key } = itemProps;
+  const { divider, subheader } = item;
+  if (divider) {
+    return <Divider key={key} />;
+  }
 
-    if (subheader) {
-      return (
-        <ListSubheader key={key} role="none">
-          {item.children}
-        </ListSubheader>
-      );
-    }
+  if (subheader) {
+    return (
+      <ListSubheader key={key} role="none">
+        {item.children}
+      </ListSubheader>
+    );
+  }
 
-    return defaultTreeItemRenderer(itemProps, item, treeProps);
-  };
+  return defaultTreeItemRenderer(itemProps, item, treeProps);
+};

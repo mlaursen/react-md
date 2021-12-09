@@ -24,11 +24,10 @@ everything from `react-md` with the overrides required for your app.
 
 ```scss
 @use "@react-md/theme/dist/color-palette" as *;
-@forward "react-md" with
-  (
-    $rmd-theme-primary: $rmd-teal-500,
-    $rmd-theme-secondary: $rmd-deep-orange-a-400
-  );
+@forward "react-md" with (
+  $rmd-theme-primary: $rmd-teal-500,
+  $rmd-theme-secondary: $rmd-deep-orange-a-400
+);
 ```
 
 `src/index.scss`
@@ -54,12 +53,11 @@ app.
 
 ```scss
 @use "@react-md/theme/dist/color-palette" as *;
-@forward "react-md" with
-  (
-    $rmd-theme-light: false,
-    $rmd-theme-primary: $rmd-teal-500,
-    $rmd-theme-secondary: $rmd-deep-orange-a-400
-  );
+@forward "react-md" with (
+  $rmd-theme-light: false,
+  $rmd-theme-primary: $rmd-teal-500,
+  $rmd-theme-secondary: $rmd-deep-orange-a-400
+);
 ```
 
 `src/index.scss`

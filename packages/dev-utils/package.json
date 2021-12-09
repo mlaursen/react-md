@@ -35,7 +35,7 @@
     "postcss": "^8.4.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^7.0.1",
-    "prettier": "^2.4.1",
+    "prettier": "^2.5.1",
     "pretty-ms": "^7.0.0",
     "prompts": "^2.4.2",
     "rimraf": "^3.0.2",

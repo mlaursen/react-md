@@ -26,74 +26,75 @@ import type { LayoutNavigationItem } from "./types";
  * @see {@link TreeItemRenderer}
  * @see {@link defaultNavigationItemRenderer}
  */
-export const defaultMiniNavigationItemRenderer: TreeItemRenderer<LayoutNavigationItem> =
-  (
-    itemProps,
-    item,
-    { linkComponent, getItemProps, getItemLabel, labelKey }
-  ) => {
-    const { key, renderChildItems, ...props } = itemProps;
-    const {
-      divider,
-      subheader,
-      leftAddon,
-      parentId,
-      style,
-      className,
-      liStyle,
-      liClassName,
-      as,
-      to,
-      href,
-      isLink,
-      contentComponent: propContentComponent,
-    } = item;
+export const defaultMiniNavigationItemRenderer: TreeItemRenderer<
+  LayoutNavigationItem
+> = (
+  itemProps,
+  item,
+  { linkComponent, getItemProps, getItemLabel, labelKey }
+) => {
+  const { key, renderChildItems, ...props } = itemProps;
+  const {
+    divider,
+    subheader,
+    leftAddon,
+    parentId,
+    style,
+    className,
+    liStyle,
+    liClassName,
+    as,
+    to,
+    href,
+    isLink,
+    contentComponent: propContentComponent,
+  } = item;
 
-    if (divider && parentId === null) {
-      return <Divider key={key} />;
-    }
+  if (divider && parentId === null) {
+    return <Divider key={key} />;
+  }
 
-    if (subheader || parentId !== null || !leftAddon || renderChildItems) {
-      return null;
-    }
+  if (subheader || parentId !== null || !leftAddon || renderChildItems) {
+    return null;
+  }
 
-    let contentComponent = propContentComponent;
-    if (!contentComponent && isLink !== false && (to || href || isLink)) {
-      contentComponent = linkComponent;
-    }
+  let contentComponent = propContentComponent;
+  if (!contentComponent && isLink !== false && (to || href || isLink)) {
+    contentComponent = linkComponent;
+  }
 
-    const { focused, selected, expanded } = itemProps;
-    const overrides = getItemProps({
-      ...item,
-      focused,
-      selected,
-      expanded,
-    });
-    let children: ReactNode = (overrides && overrides.children) || undefined;
-    if (typeof children === "undefined") {
-      children = getItemLabel(item, labelKey);
-    }
+  const { focused, selected, expanded } = itemProps;
+  const overrides = getItemProps({
+    ...item,
+    focused,
+    selected,
+    expanded,
+  });
+  let children: ReactNode = (overrides && overrides.children) || undefined;
+  if (typeof children === "undefined") {
+    children = getItemLabel(item, labelKey);
+  }
 
-    return (
-      <TreeItem
-        key={key}
-        {...props}
-        as={as}
-        to={to}
-        href={href}
-        isLink={isLink}
-        contentComponent={contentComponent}
-        style={overrides?.style ?? style}
-        className={cn(
-          "rmd-layout-nav__mini-item",
-          overrides?.className ?? className
-        )}
-        liStyle={overrides?.liStyle ?? liStyle}
-        liClassName={overrides?.liClassName ?? liClassName}
-        textChildren={false}
-      >
-        {leftAddon}
-        <SrOnly>{children}</SrOnly>
-      </TreeItem>
-    );
-  };
+  return (
+    <TreeItem
+      key={key}
+      {...props}
+      as={as}
+      to={to}
+      href={href}
+      isLink={isLink}
+      contentComponent={contentComponent}
+      style={overrides?.style ?? style}
+      className={cn(
+        "rmd-layout-nav__mini-item",
+        overrides?.className ?? className
+      )}
+      liStyle={overrides?.liStyle ?? liStyle}
+      liClassName={overrides?.liClassName ?? liClassName}
+      textChildren={false}
+    >
+      {leftAddon}
+      <SrOnly>{children}</SrOnly>
+    </TreeItem>
+  );
+};
