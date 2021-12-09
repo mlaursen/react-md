@@ -130,6 +130,8 @@ describe("getFilterFunction", () => {
 
   it("should returnt he noFilter result for an invalid fulter function if the NODE_ENV is not production", () => {
     const env = process.env.NODE_ENV;
+    // this is caused by next definigin process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
+    // @ts-expect-error
     process.env.NODE_ENV = "production";
 
     // @ts-expect-error
@@ -137,6 +139,8 @@ describe("getFilterFunction", () => {
     // @ts-expect-error
     expect(getFilterFunction("custom")).toBe(noFilter);
 
+    // this is caused by next definigin process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
+    // @ts-expect-error
     process.env.NODE_ENV = env;
   });
 

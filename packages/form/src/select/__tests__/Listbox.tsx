@@ -275,6 +275,8 @@ describe("Listbox", () => {
 
   it("should throw a warning in a non-production NODE_ENV if there is a non-searchable value", () => {
     const { NODE_ENV } = process.env;
+    // this is caused by next definigin process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
+    // @ts-expect-error
     process.env.NODE_ENV = "production";
     const warn = jest.spyOn(console, "warn");
     // hide warnings
@@ -286,6 +288,8 @@ describe("Listbox", () => {
     unmount();
     expect(warn).not.toBeCalled();
 
+    // this is caused by next definigin process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
+    // @ts-expect-error
     process.env.NODE_ENV = NODE_ENV;
     render(<Listbox {...props} />);
 

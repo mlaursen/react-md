@@ -67,10 +67,14 @@ describe("SkipToMainContent", () => {
   describe("prod", () => {
     const env = process.env.NODE_ENV;
     beforeAll(() => {
+      // this is caused by next definigin process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
+      // @ts-expect-error
       process.env.NODE_ENV = "production";
     });
 
     afterAll(() => {
+      // this is caused by next definigin process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
+      // @ts-expect-error
       process.env.NODE_ENV = env;
     });
 
