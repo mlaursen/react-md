@@ -247,6 +247,22 @@
     font: inherit;
     height: 100%;
     width: 100%;
+
+    @each $alignment in $rmd-table-cell-horizontal-alignments {
+      &--#{$alignment} {
+        @include rmd-utils-rtl {
+          @if $alignment == left {
+            justify-content: right;
+          } @else if $alignment == right {
+            justify-content: left;
+          }
+        }
+
+        @if $alignment != left {
+          justify-content: $alignment;
+        }
+      }
+    }
   }
 }
 

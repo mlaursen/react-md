@@ -17,25 +17,27 @@ export interface TableRowConfiguration {
   disableBorders?: boolean;
 }
 
+/**
+ * The horizontal alignment for the content within a cell.
+ *
+ * Note: Table default behavior is to align to the left.
+ */
 export type TableCellHorizontalAlignment = "left" | "center" | "right";
+
+/**
+ * The vertical alignment for the content within a cell.
+ *
+ * Note: When this is set to `"top"` or `"bottom"`, `padding-top` or
+ * `padding-bottom` will also be applied due to how styling tables work. This
+ * padding can be configured with the `$rmd-table-cell-vertical-padding` or
+ * `$rmd-table-cell-vertical-alignments` variables.
+ */
 export type TableCellVerticalAlignment = "top" | "middle" | "bottom";
 
 export interface TableCellConfiguration {
-  /**
-   * The horizontal alignment for the content within a cell.
-   *
-   * Note: Table default behavior is to align to the left.
-   */
+  /** {@inheritDoc TableCellHorizontalAlignment} */
   hAlign?: TableCellHorizontalAlignment;
-
-  /**
-   * The vertical alignment for the content within a cell.
-   *
-   * Note: When this is set to `"top"` or `"bottom"`, `padding-top` or
-   * `padding-bottom` will also be applied due to how styling tables work. This
-   * padding can be configured with the `$rmd-table-cell-vertical-padding` or
-   * `$rmd-table-cell-vertical-alignments` variables.
-   */
+  /** {@inheritDoc TableCellVerticalAlignment} */
   vAlign?: TableCellVerticalAlignment;
 
   /**

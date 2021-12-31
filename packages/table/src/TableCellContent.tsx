@@ -8,6 +8,8 @@ import {
 } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
+import type { TableCellHorizontalAlignment } from "./config";
+
 export type SortOrder = "ascending" | "descending" | "none" | "other";
 
 export interface TableCellContentProps extends TextIconSpacingProps {
@@ -31,6 +33,12 @@ export interface TableCellContentProps extends TextIconSpacingProps {
    * Boolean if the icon should be rotated.
    */
   rotated?: boolean;
+
+  /**
+   * @remarks \@since 4.0.3
+   * @see {@link TableCellHorizontalAlignment}
+   */
+  hAlign?: TableCellHorizontalAlignment;
 }
 
 const block = bem("rmd-table-cell");
@@ -53,6 +61,7 @@ export const TableCellContent = forwardRef<
     sortOrder,
     children,
     rotated: propRotated,
+    hAlign = "left",
     ...props
   },
   ref
@@ -73,7 +82,12 @@ export const TableCellContent = forwardRef<
       id={id}
       ref={ref}
       style={style}
-      className={cn(block("child"), className)}
+      className={cn(
+        block("child", {
+          [hAlign]: hAlign !== "left",
+        }),
+        className
+      )}
     >
       <TextIconSpacing {...props} icon={icon}>
         {children}

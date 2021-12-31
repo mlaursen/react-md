@@ -214,6 +214,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
           iconAfter={sortIconAfter}
           sortOrder={sortOrder}
           rotated={sortIconRotated}
+          hAlign={hAlign}
         >
           {children}
         </TableCellContent>
