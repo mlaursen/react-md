@@ -1,12 +1,11 @@
 import { ChildProcess, spawn } from "child_process";
 import chokidar from "chokidar";
-import { copyFileSync } from "fs";
 import log from "loglevel";
 import { sep } from "path";
 import { sys } from "typescript";
 
-import { dist, src } from "./constants";
-import { getPackages, list } from "./utils";
+import { everythingScss, packagesRoot, src } from "./constants";
+import { combineAllFiles, getPackages, list } from "./utils";
 
 /**
  * Creates a custom dev watcher for copying styles into dists correctly
@@ -28,7 +27,6 @@ export function watch(cjs: boolean): void {
     const name =
       packageName === "react-md" ? packageName : `@react-md/${packageName}`;
     const { newLine } = sys;
-    const dest = pathname.replace(src, dist);
 
     let output = "";
     if (sys.clearScreen) {
@@ -41,12 +39,11 @@ export function watch(cjs: boolean): void {
     output = `[${name} - ${new Date().toLocaleTimeString()}] `;
     output += `Detected scss file change${newLine}`;
     output += `${pathname.replace(prefix, "")} -> `;
-    output += `${dest.replace(prefix, "")}`;
+    output += `${everythingScss.replace(packagesRoot, "")}`;
     output += newLine + newLine;
     sys.write(output);
 
-    // I don't care about the non-webpack imports for this
-    copyFileSync(pathname, dest);
+    combineAllFiles();
   });
   watcher.on("ready", () => {
     log.info("Started the watcher in the following packages:");
