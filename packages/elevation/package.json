@@ -1,6 +1,6 @@
 {
   "name": "@react-md/elevation",
-  "version": "4.0.1",
+  "version": "4.0.3",
   "description": "This is a small package for react-md that can create the elevation styles in the material design spec.",
   "main": "./dist/scssVariables.js",
   "module": "./dist/scssVariables.js",
@@ -27,9 +27,9 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/theme": "^4.0.1",
-    "@react-md/transition": "^4.0.1",
-    "@react-md/utils": "^4.0.1"
+    "@react-md/theme": "^4.0.3",
+    "@react-md/transition": "^4.0.3",
+    "@react-md/utils": "^4.0.3"
   },
   "devDependencies": {
     "react": "^17.0.2",

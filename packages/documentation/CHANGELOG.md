@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
+
+
+### Bug Fixes
+
+* **@react-md/icon:** `FileInput` default icon changed from `file_download` to `file_upload` ([174d1c1](https://github.com/mlaursen/react-md/commit/174d1c1511387f316b832f3d4e43ac7f53848cbe)), closes [#1325](https://github.com/mlaursen/react-md/issues/1325)
+
+
+### Other Internal Changes
+
+* Update tests to use jest.mocked ([4bb25fb](https://github.com/mlaursen/react-md/commit/4bb25fb3f1c74a6df643aff5e6fc28fa33cff29e))
+
+
+
+
+
+
 ## [4.0.2](https://github.com/mlaursen/react-md/compare/v4.0.1...v4.0.2) (2021-11-30)
 
 

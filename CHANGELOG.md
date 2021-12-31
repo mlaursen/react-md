@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
+
+
+### Bug Fixes
+
+* **@react-md/icon:** `FileInput` default icon changed from `file_download` to `file_upload` ([174d1c1](https://github.com/mlaursen/react-md/commit/174d1c1511387f316b832f3d4e43ac7f53848cbe)), closes [#1325](https://github.com/mlaursen/react-md/issues/1325)
+* **@react-md/table:** Sortable Column Alignment ([e447cc5](https://github.com/mlaursen/react-md/commit/e447cc507e31c2b23fe57f90c536f01f68735999)), closes [#1321](https://github.com/mlaursen/react-md/issues/1321)
+* **@react-md/utils:** `useIsUserInteractionMode` get mode via context ([b5f93ae](https://github.com/mlaursen/react-md/commit/b5f93aea772453d77fd35a2aea38923891199653)), closes [#1322](https://github.com/mlaursen/react-md/issues/1322)
+* **examples:** Updated `create-react-app` README to use correct start command ([37acdc3](https://github.com/mlaursen/react-md/commit/37acdc3899eb49f08a7be961e5293496937cb0a9))
+
+
+### Other Internal Changes
+
+* Update tests to use jest.mocked ([4bb25fb](https://github.com/mlaursen/react-md/commit/4bb25fb3f1c74a6df643aff5e6fc28fa33cff29e))
+* Updated all packages' peerDependenciesMeta ([60fcd71](https://github.com/mlaursen/react-md/commit/60fcd719ac785c2f0b9d27cda82baa3c773c0e5a)), closes [#1319](https://github.com/mlaursen/react-md/issues/1319)
+* **@react-md/dev-utils:** Update watch command for new `sass` modules ([2e7a87a](https://github.com/mlaursen/react-md/commit/2e7a87ae626167f70adec7c00823b6df97824ef6))
+* **examples:** Update `next` to latest version ([3521e9b](https://github.com/mlaursen/react-md/commit/3521e9b4feed1e9dbfa50fa8fd4562bc642993b4))
+
+
+
+
+
+
 ## [4.0.2](https://github.com/mlaursen/react-md/compare/v4.0.1...v4.0.2) (2021-11-30)
 
 

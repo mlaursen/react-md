@@ -1,3 +1,28 @@
+Title: react-md 4.0.3
+
+Date: 12/31/2021
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/icon:** `FileInput` default icon changed from `file_download` to
+  `file_upload` (174d1c1), closes #1325
+- **@react-md/table:** Sortable Column Alignment (e447cc5), closes #1321
+- **@react-md/utils:** `useIsUserInteractionMode` get mode via context
+  (b5f93ae), closes #1322
+- **examples:** Updated `create-react-app` README to use correct start command
+  (37acdc3)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- Update tests to use jest.mocked (4bb25fb)
+- Updated all packages' peerDependenciesMeta (60fcd71), closes #1319
+- **@react-md/dev-utils:** Update watch command for new `sass` modules (2e7a87a)
+- **examples:** Update `next` to latest version (3521e9b)
+
+---
+
 Title: react-md 4.0.2
 
 Date: 11/29/2021
