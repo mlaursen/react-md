@@ -29,9 +29,6 @@
     "safari scroll fix"
   ],
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@juggle/resize-observer": "^3.3.0",
     "classnames": "^2.3.1"
@@ -39,5 +36,20 @@
   "devDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.1"
+  },
+  "peerDependencies": {
+    "react": ">= 16.14",
+    "react-dom": ">= 16.14"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
