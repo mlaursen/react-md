@@ -6,7 +6,7 @@ import {
   CheckSVGIcon,
   Configuration,
   ErrorOutlineSVGIcon,
-  FileDownloadSVGIcon,
+  FileUploadSVGIcon,
   KeyboardArrowDownSVGIcon,
   KeyboardArrowLeftSVGIcon,
   KeyboardArrowRightSVGIcon,
@@ -24,7 +24,7 @@ import navItems from './navItems';
 const icons = {
   back: <KeyboardArrowLeftSVGIcon />,
   checkbox: <CheckBoxSVGIcon />,
-  download: <FileDownloadSVGIcon />,
+  download: <FileUploadSVGIcon />,
   dropdown: <ArrowDropDownSVGIcon />,
   error: <ErrorOutlineSVGIcon />,
   expander: <KeyboardArrowDownSVGIcon />,

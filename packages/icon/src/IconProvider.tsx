@@ -26,7 +26,11 @@ export interface ConfigurableIcons {
   dropdown?: ReactNode;
 
   /**
-   * The general icon to use for downloading content.
+   * The general icon to use for the `FileInput` component (normally file
+   * uploads).
+   *
+   * @remarks \@since 4.0.3 Changed the default icon to be `file_upload` and
+   * this will be renamed to `upload` in the next major release.
    */
   download?: ReactNode;
 
@@ -89,7 +93,7 @@ export type ConfiguredIcons = Required<ConfigurableIcons>;
 const DEFAULT_ICONS: ConfiguredIcons = {
   back: <FontIcon>keyboard_arrow_left</FontIcon>,
   checkbox: <FontIcon>check_box</FontIcon>,
-  download: <FontIcon>file_download</FontIcon>,
+  download: <FontIcon>file_upload</FontIcon>,
   dropdown: <FontIcon>arrow_drop_down</FontIcon>,
   error: <FontIcon>error_outline</FontIcon>,
   expander: <FontIcon>keyboard_arrow_down</FontIcon>,
