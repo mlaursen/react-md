@@ -25,10 +25,10 @@ Install it and run:
 
 ```sh
 npm install
-npm run dev
+npm run start
 # or
 yarn
-yarn dev
+yarn start
 ```
 
 Finally, initialize the git repo and create your first commit:
