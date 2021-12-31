@@ -45,7 +45,7 @@ export function useUserInteractionMode(): UserInteractionMode {
  * mode.
  */
 export function useIsUserInteractionMode(mode: UserInteractionMode): boolean {
-  return useInteractionMode() === mode;
+  return useUserInteractionMode() === mode;
 }
 
 export interface UserInteractionModeListenerProps {
