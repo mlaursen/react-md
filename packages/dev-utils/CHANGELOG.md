@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
+
+
+### Other Internal Changes
+
+* **@react-md/dev-utils:** Update watch command for new `sass` modules ([2e7a87a](https://github.com/mlaursen/react-md/commit/2e7a87ae626167f70adec7c00823b6df97824ef6))
+
+
+
+
+
+
 # [4.0.0](https://github.com/mlaursen/react-md/compare/v3.1.1...v4.0.0) (2021-11-24)
 
 
