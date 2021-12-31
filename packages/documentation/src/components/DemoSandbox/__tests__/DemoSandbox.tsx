@@ -1,4 +1,3 @@
-import { mocked } from "ts-jest/utils";
 import { render, fireEvent } from "utils/tests";
 
 import DemoSandbox from "../DemoSandbox";
@@ -6,7 +5,7 @@ import useSandbox from "../useSandbox";
 
 jest.mock("../useSandbox");
 
-const useSandboxMock = mocked(useSandbox);
+const useSandboxMock = jest.mocked(useSandbox);
 
 beforeEach(() => {
   useSandboxMock.mockImplementation((defaultSandbox) => ({

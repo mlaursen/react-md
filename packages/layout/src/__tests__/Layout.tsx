@@ -7,7 +7,6 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { mocked } from "ts-jest/utils";
 import {
   RenderOptions,
   fireEvent,
@@ -46,8 +45,9 @@ jest.mock("@react-md/utils", () => ({
   AppSizeListener: jest.fn(),
 }));
 
-mocked(AppSizeListener).mockImplementation(
-  ({ children, defaultSize = DEFAULT_APP_SIZE }) => {
+jest
+  .mocked(AppSizeListener)
+  .mockImplementation(({ children, defaultSize = DEFAULT_APP_SIZE }) => {
     const [value, setValue] = useState({ ...defaultSize, __initialized: true });
     return (
       <AppSizeContext.Provider value={value}>
@@ -73,8 +73,7 @@ mocked(AppSizeListener).mockImplementation(
         )}
       </AppSizeContext.Provider>
     );
-  }
-);
+  });
 
 const render = (ui: ReactElement, options?: RenderOptions) =>
   baseRender(ui, {

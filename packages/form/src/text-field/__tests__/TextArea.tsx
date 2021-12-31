@@ -2,14 +2,13 @@
 // tests with cypress
 import { ReactElement, useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
-import { mocked } from "ts-jest/utils";
 import { ResizeObserver } from "@juggle/resize-observer";
 
 import { TextArea } from "../TextArea";
 
 jest.mock("@juggle/resize-observer");
 
-const ResizeObserverMock = mocked(ResizeObserver);
+const ResizeObserverMock = jest.mocked(ResizeObserver);
 const DEFAULT_DOM_RECT: DOMRectReadOnly = {
   x: 0,
   y: 0,

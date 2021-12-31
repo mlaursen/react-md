@@ -1,12 +1,11 @@
 import { render } from "@testing-library/react";
 import { act, renderHook } from "@testing-library/react-hooks";
-import { mocked } from "ts-jest/utils";
 
 import { useInterval } from "../useInterval";
 
 jest.useFakeTimers();
-const setInterval = mocked(window.setInterval);
-const clearInterval = mocked(window.clearInterval);
+const setInterval = jest.mocked(window.setInterval);
+const clearInterval = jest.mocked(window.clearInterval);
 beforeEach(() => {
   setInterval.mockClear();
   clearInterval.mockClear();

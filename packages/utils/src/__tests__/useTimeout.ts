@@ -1,12 +1,11 @@
 import { act, renderHook } from "@testing-library/react-hooks";
-import { mocked } from "ts-jest/utils";
 
 import { useTimeout } from "../useTimeout";
 
 jest.useFakeTimers();
 
-const setTimeout = mocked(window.setTimeout);
-const clearTimeout = mocked(window.clearTimeout);
+const setTimeout = jest.mocked(window.setTimeout);
+const clearTimeout = jest.mocked(window.clearTimeout);
 
 afterEach(() => {
   jest.clearAllMocks();

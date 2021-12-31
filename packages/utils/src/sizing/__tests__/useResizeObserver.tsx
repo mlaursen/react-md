@@ -1,6 +1,5 @@
 import { act, render } from "@testing-library/react";
 import { ResizeObserver } from "@juggle/resize-observer";
-import { mocked } from "ts-jest/utils";
 
 import {
   OnResizeObserverChange,
@@ -10,7 +9,7 @@ import {
 
 jest.mock("@juggle/resize-observer");
 
-const ResizeObserverMock = mocked(ResizeObserver);
+const ResizeObserverMock = jest.mocked(ResizeObserver);
 const observe = jest.fn();
 const unobserve = jest.fn();
 const disconnect = jest.fn();

@@ -2,14 +2,13 @@
 import { ReactElement } from "react";
 import { act, render } from "@testing-library/react";
 import { ResizeObserver } from "@juggle/resize-observer";
-import { mocked } from "ts-jest/utils";
 
 import { GridList, GridListProps } from "../GridList";
 import { useGridListSize } from "../useGridList";
 
 jest.mock("@juggle/resize-observer");
 
-const ResizeObserverMock = mocked(ResizeObserver);
+const ResizeObserverMock = jest.mocked(ResizeObserver);
 
 const DEFAULT_DOM_RECT: DOMRectReadOnly = {
   x: 100,

@@ -1,5 +1,3 @@
-import { mocked } from "ts-jest/utils";
-
 import { scrollIntoView as scrollIntoView_ } from "../../scrollIntoView";
 import { focusElementWithin } from "../focusElementWithin";
 import { getFocusableElements as getFocusableElements_ } from "../getFocusableElements";
@@ -7,8 +5,8 @@ import { getFocusableElements as getFocusableElements_ } from "../getFocusableEl
 jest.mock("../getFocusableElements");
 jest.mock("../../scrollIntoView");
 
-const getFocusableElements = mocked(getFocusableElements_);
-const scrollIntoView = mocked(scrollIntoView_);
+const getFocusableElements = jest.mocked(getFocusableElements_);
+const scrollIntoView = jest.mocked(scrollIntoView_);
 const ELEMENT = document.createElement("div");
 const element1 = document.createElement("button");
 element1.className = "element element--1";
