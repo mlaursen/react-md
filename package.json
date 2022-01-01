@@ -70,8 +70,6 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-test-renderer": "^17.0.1",
     "chokidar": "^3.5.2",
-    "commitizen": "^4.2.4",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.6.0",
     "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
@@ -100,10 +98,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  }
+  ]
 }
