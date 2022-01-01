@@ -4,13 +4,16 @@ This guide will help you create a new app with `react-md` along with
 [create-react-app] as the project bootstrapper. The basic requirements for
 continuing are:
 
-- [node] installed with at least version `10` to make things simple
+- [node] installed with at least version `14` to make things simple
 - [yarn] or [npm]
 - experience in React
 
-> You can also check out the
-> [GitHub examples folder]({{GITHUB_URL}}/tree/main/examples) to see completed
-> examples and other build tools such as [Next.js](https://nextjs.org/).
+> If you want to get started immediately, you can view the
+> [GitHub examples folder]({{GITHUB_URL}}/tree/main/examples) which outlines
+> quick ways to spin up a new project with different build tools. Another
+> alternative is using the
+> [react-md GitHub template](https://github.com/mlaursen/template-rmd) to
+> bootstrap a new repo with Next.js and some reasonable defaults.
 
 ## Bootstrapping a new Project
 

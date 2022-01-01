@@ -13,6 +13,9 @@ Create an accessible React application with the
   application
 - [Creating a new app](https://react-md.dev/guides/creating-a-new-app) - How to
   create a new app with react-md
+- [Using a GitHub template](https://github.com/mlaursen/template-rmd) - Create a
+  new repo from a GitHub template including reasonable react-md defaults and
+  Next.js.
 - [Examples with Build Tools](./examples) - View and download examples of using
   ReactMD with build tools such as [create-react-app], [Next.js], and [Gatsby]
 - [Working from v1](https://react-md.dev/guides/working-with-v1) - How to use
