@@ -12,15 +12,15 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
-    "gatsby": "^3.11.1",
+    "gatsby": "^4.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-md": "latest",
     "typeface-roboto": "^1.1.13"
   },
   "devDependencies": {
-    "gatsby-plugin-layout": "^2.11.0",
-    "gatsby-plugin-sass": "^4.11.0",
+    "gatsby-plugin-layout": "^3.4.0",
+    "gatsby-plugin-sass": "^5.4.0",
     "prettier": "^2.4.0",
     "sass": "^1.36.0"
   }
