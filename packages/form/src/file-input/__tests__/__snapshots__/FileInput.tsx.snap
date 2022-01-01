@@ -16,7 +16,7 @@ exports[`FileInput should render correctly 1`] = `
       aria-hidden="true"
       class="rmd-icon rmd-icon--font material-icons"
     >
-      file_download
+      file_upload
     </i>
     <span
       class="rmd-typography rmd-typography--body-1 rmd-sr-only"
@@ -46,7 +46,7 @@ exports[`FileInput should render correctly 2`] = `
       aria-hidden="true"
       class="rmd-icon rmd-icon--font material-icons rmd-icon--before"
     >
-      file_download
+      file_upload
     </i>
     Custom children
     <span
