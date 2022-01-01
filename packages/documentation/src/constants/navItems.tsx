@@ -123,10 +123,6 @@ const routes: readonly NavItem[] = [
         children: "Writing Tests",
       },
       {
-        href: "/working-with-v1",
-        children: "Working with v1",
-      },
-      {
         href: "/contributing",
         children: "Contributing",
       },

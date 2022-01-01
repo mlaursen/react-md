@@ -643,7 +643,6 @@ following changelogs:
 [autocomplete]: /packages/autocomplete/demos
 [dropdownmenu]: /packages/menu/demos
 [tree]: /packages/tree/demos
-[working with v1]: /guides/working-with-v1
 [creating dynamic themes]: /colors-and-theming/creating-dynamic-themes
 [theme builder]: /colors-and-theming/theme-builder
 [appsizelistener]: /packages/utils/demos#app-size-listener-example-title
