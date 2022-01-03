@@ -1958,9 +1958,9 @@
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
 "@types/formidable@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@types/formidable/-/formidable-2.0.2.tgz#89f727e1d42b19e355963193328b535248558af1"
-  integrity sha512-ymCNFNXwcBCwtjZUUE5Fxcp4/IGH4QX1PGO29tHMu8kFrCRDvwRRB5dlMkbhZGHgmvzmfUaHzX+cffqI3f96kg==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@types/formidable/-/formidable-2.0.3.tgz#6f02143df42851155c4b4f22c84873288cef456e"
+  integrity sha512-u1dFrrhT2XrNzDJ+f/qwxxEU9cGTiQvItSaghiU+sQXX/XU+jsxCGrAuUR7BjkeHHB2P4pR4XUr52TGDNfzhRg==
   dependencies:
     "@types/node" "*"
 
