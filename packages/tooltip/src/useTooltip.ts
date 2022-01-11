@@ -23,7 +23,7 @@ import {
   CENTER_LEFT_ANCHOR,
   CENTER_RIGHT_ANCHOR,
   HoverModeEventHandlers,
-  HoverModeOnlyReturnValue,
+  HoverModeHookReturnValue,
   PositionAnchor,
   SimplePosition,
   unitToNumber,
@@ -89,9 +89,9 @@ export type TooltipKeyboardEventHandlers<E extends HTMLElement> = Pick<
  * @remarks \@since 2.8.0
  */
 export type TooltippedElementEventHandlers<E extends HTMLElement> =
-  HoverModeEventHandlers<E> &
-    TooltipTouchEventHandlers<E> &
-    TooltipKeyboardEventHandlers<E>;
+  TooltipTouchEventHandlers<E> &
+    TooltipKeyboardEventHandlers<E> &
+    Pick<HTMLAttributes<E>, keyof HoverModeEventHandlers>;
 
 /** @remarks \@since 2.8.0 */
 export interface TooltipHookProvidedElementProps<E extends HTMLElement>
@@ -245,7 +245,7 @@ export type TooltipHookProvidedTooltipProps = Pick<TooltipProps, "style"> &
  * @remarks \@since 2.8.0
  */
 export interface TooltipHookReturnValue<E extends HTMLElement>
-  extends Omit<HoverModeOnlyReturnValue<E>, "handlers"> {
+  extends Omit<HoverModeHookReturnValue, "handlers" | "hoverHandlers"> {
   /** {@inheritDoc TooltippedElementEventHandlers} */
   handlers: Required<TooltippedElementEventHandlers<E>>;
 
@@ -334,41 +334,14 @@ export function useTooltip<E extends HTMLElement>({
   const {
     visible,
     setVisible,
-    handlers: mouseHandlers,
+    handlers,
+    hoverHandlers: _hoverHandlers,
     disableHoverMode,
+    clearHoverTimeout,
     ...others
-  } = useHoverMode<E>({
+  } = useHoverMode({
     disabled,
-    onClick: (event) => {
-      onClick?.(event);
-      if (event.isPropagationStopped()) {
-        return;
-      }
-
-      setVisible(false);
-      setInitiatedBy(null);
-      window.clearTimeout(timeout.current);
-    },
-    onMouseEnter: (event) => {
-      onMouseEnter?.(event);
-      if (initiatedBy !== null) {
-        event.stopPropagation();
-        return;
-      }
-
-      containerRef.current = event.currentTarget;
-      updatePosition(event.currentTarget);
-      setInitiatedBy("mouse");
-    },
-    onMouseLeave: (event) => {
-      onMouseLeave?.(event);
-      if (initiatedBy !== "mouse") {
-        event.stopPropagation();
-        return;
-      }
-
-      setInitiatedBy(null);
-    },
+    exitVisibilityDelay: 0,
   });
   const hide = useCallback(() => {
     window.clearTimeout(timeout.current);
@@ -530,12 +503,44 @@ export function useTooltip<E extends HTMLElement>({
   });
 
   const tooltipHandlers: Required<TooltippedElementEventHandlers<E>> = {
-    ...mouseHandlers,
     onFocus,
     onBlur,
     onKeyDown,
     onTouchStart,
     onContextMenu,
+    onClick(event) {
+      onClick?.(event);
+      if (event.isPropagationStopped()) {
+        return;
+      }
+
+      setVisible(false);
+      setInitiatedBy(null);
+      window.clearTimeout(timeout.current);
+      clearHoverTimeout();
+    },
+    onMouseEnter(event) {
+      onMouseEnter?.(event);
+      if (initiatedBy !== null) {
+        event.stopPropagation();
+        return;
+      }
+
+      containerRef.current = event.currentTarget;
+      updatePosition(event.currentTarget);
+      setInitiatedBy("mouse");
+      handlers.onMouseEnter(event);
+    },
+    onMouseLeave(event) {
+      onMouseLeave?.(event);
+      if (initiatedBy !== "mouse") {
+        event.stopPropagation();
+        return;
+      }
+
+      setInitiatedBy(null);
+      handlers.onMouseLeave(event);
+    },
   };
 
   const tooltipId = `${baseId}-tooltip`;
@@ -562,5 +567,6 @@ export function useTooltip<E extends HTMLElement>({
     elementProps,
     tooltipProps,
     disableHoverMode,
+    clearHoverTimeout,
   };
 }

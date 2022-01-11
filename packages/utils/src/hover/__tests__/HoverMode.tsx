@@ -1,9 +1,8 @@
-// comment
 import { MouseEventHandler } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 import {
-  HoverModeOnlyOptions,
   HoverModeOptions,
+  HoverModeEventHandlers,
   useHoverMode,
 } from "../useHoverMode";
 import {
@@ -12,7 +11,7 @@ import {
 } from "../HoverModeProvider";
 import {
   DEFAULT_HOVER_MODE_DEACTIVATION_TIME,
-  DEFAULT_HOVER_MODE_STICKY_EXIT_TIME,
+  DEFAULT_HOVER_MODE_EXIT_TIME,
   DEFAULT_HOVER_MODE_VISIBLE_IN_TIME,
 } from "../constants";
 
@@ -25,14 +24,29 @@ afterEach(() => {
 });
 
 describe("Hover Mode", () => {
-  type Options = HoverModeOnlyOptions<HTMLElement>;
-
-  function Implementation({ options }: { options?: Options }) {
-    const { visible, handlers } = useHoverMode<HTMLElement>(options);
+  interface ImplementationProps extends Partial<HoverModeEventHandlers> {
+    options?: HoverModeOptions;
+  }
+  function Implementation({
+    options,
+    onMouseEnter: propOnMouseEnter,
+    onMouseLeave: propOnMouseLeave,
+  }: ImplementationProps) {
+    const { visible, onMouseEnter, onMouseLeave } = useHoverMode(options);
 
     return (
       <>
-        <button {...handlers} type="button">
+        <button
+          type="button"
+          onMouseEnter={(event) => {
+            propOnMouseEnter?.(event);
+            onMouseEnter(event);
+          }}
+          onMouseLeave={(event) => {
+            propOnMouseLeave?.(event);
+            onMouseLeave(event);
+          }}
+        >
           Button
         </button>
         {visible && <div role="dialog" id="dialog-id" aria-label="Dialog" />}
@@ -40,15 +54,14 @@ describe("Hover Mode", () => {
     );
   }
 
-  interface Props {
+  interface Props extends ImplementationProps {
     config?: HoverModeConfiguration;
-    options?: Options;
   }
 
-  function Test({ config, options }: Props) {
+  function Test({ config, ...props }: Props) {
     return (
       <HoverModeProvider {...config}>
-        <Implementation options={options} />
+        <Implementation {...props} />
       </HoverModeProvider>
     );
   }
@@ -58,7 +71,9 @@ describe("Hover Mode", () => {
       event.stopPropagation();
     const onMouseLeave: MouseEventHandler<HTMLElement> = (event) =>
       event.stopPropagation();
-    const { getByRole, rerender } = render(<Test options={{ onMouseEnter }} />);
+    const { getByRole, rerender } = render(
+      <Test onMouseEnter={onMouseEnter} />
+    );
 
     const button = getByRole("button");
     fireEvent.mouseEnter(button);
@@ -67,7 +82,7 @@ describe("Hover Mode", () => {
     });
     expect(() => getByRole("dialog")).toThrow();
 
-    rerender(<Test options={{ onMouseLeave }} />);
+    rerender(<Test onMouseLeave={onMouseLeave} />);
     fireEvent.mouseEnter(button);
     act(() => {
       jest.runOnlyPendingTimers();
@@ -90,12 +105,19 @@ describe("Hover Mode", () => {
     expect(() => getByRole("dialog")).not.toThrow();
 
     fireEvent.mouseLeave(button);
+    act(() => {
+      jest.advanceTimersByTime(DEFAULT_HOVER_MODE_EXIT_TIME);
+    });
     expect(() => getByRole("dialog")).toThrow();
 
     fireEvent.mouseEnter(button);
     expect(() => getByRole("dialog")).not.toThrow();
 
     fireEvent.mouseLeave(button);
+    expect(() => getByRole("dialog")).not.toThrow();
+    act(() => {
+      jest.advanceTimersByTime(DEFAULT_HOVER_MODE_EXIT_TIME);
+    });
     expect(() => getByRole("dialog")).toThrow();
     act(() => {
       jest.advanceTimersByTime(DEFAULT_HOVER_MODE_DEACTIVATION_TIME);
@@ -119,7 +141,9 @@ describe("Hover Mode", () => {
   });
 
   it("should never enable hover mode if the config is disabled", () => {
-    const { getByRole } = render(<Test config={{ disabled: true }} />);
+    const { getByRole } = render(
+      <Test config={{ disabled: true }} options={{ exitVisibilityDelay: 0 }} />
+    );
 
     const button = getByRole("button", { name: "Button" });
     fireEvent.mouseEnter(button);
@@ -140,25 +164,42 @@ describe("Hover Mode", () => {
 });
 
 describe("Sticky Hover Mode", () => {
-  function Implementation(props: HoverModeOptions<HTMLElement>) {
-    const { visible, handlers, stickyHandlers } = useHoverMode({
+  interface ImplementationProps
+    extends HoverModeOptions,
+      Partial<HoverModeEventHandlers> {}
+  function Implementation({
+    onClick: propOnClick,
+    ...props
+  }: ImplementationProps) {
+    const { visible, onClick, hoverHandlers } = useHoverMode({
       ...props,
-      sticky: true,
     });
 
     return (
       <>
-        <button {...stickyHandlers} type="button">
+        <button
+          {...hoverHandlers}
+          onClick={(event) => {
+            propOnClick?.(event);
+            onClick(event);
+          }}
+          type="button"
+        >
           Button
         </button>
         {visible && (
-          <div role="dialog" id="dialog-id" aria-label="Dialog" {...handlers} />
+          <div
+            {...hoverHandlers}
+            role="dialog"
+            id="dialog-id"
+            aria-label="Dialog"
+          />
         )}
       </>
     );
   }
 
-  function Test(props: HoverModeOptions<HTMLElement>) {
+  function Test(props: ImplementationProps) {
     return (
       <HoverModeProvider>
         <Implementation {...props} />
@@ -200,7 +241,7 @@ describe("Sticky Hover Mode", () => {
 
     fireEvent.mouseLeave(dialog);
     act(() => {
-      jest.advanceTimersByTime(DEFAULT_HOVER_MODE_STICKY_EXIT_TIME);
+      jest.advanceTimersByTime(DEFAULT_HOVER_MODE_EXIT_TIME);
     });
     expect(() => getByRole("dialog")).toThrow();
   });
@@ -224,7 +265,7 @@ describe("Sticky Hover Mode", () => {
 
     fireEvent.mouseLeave(dialog);
     act(() => {
-      jest.advanceTimersByTime(DEFAULT_HOVER_MODE_STICKY_EXIT_TIME);
+      jest.advanceTimersByTime(DEFAULT_HOVER_MODE_EXIT_TIME);
     });
 
     expect(() => getByRole("dialog")).not.toThrow();
@@ -234,49 +275,25 @@ describe("Sticky Hover Mode", () => {
     expect(() => getByRole("dialog")).toThrow();
   });
 
-  it("should do nothing onClick if disabled or the onClick handler calls event.stopPropagation()", () => {
-    const { getByRole, rerender } = render(<Test disabled />);
+  it("should toggle the visibility onClick when the hover mode behavior is disabled", () => {
+    const { getByRole } = render(<Test disabled />);
+    const button = getByRole("button");
+
+    fireEvent.click(button);
+    expect(() => getByRole("dialog")).not.toThrow();
+
+    fireEvent.click(button);
+    expect(() => getByRole("dialog")).toThrow();
+  });
+
+  it("should do nothing onClick if the onClick handler calls event.stopPropagation()", () => {
+    const onClick: MouseEventHandler<HTMLElement> = (event) => {
+      event.stopPropagation();
+    };
+    const { getByRole } = render(<Test onClick={onClick} />);
     const button = getByRole("button");
 
     fireEvent.click(button);
     expect(() => getByRole("dialog")).toThrow();
-
-    const onClick: MouseEventHandler<HTMLElement> = (event) =>
-      event.stopPropagation();
-    rerender(<Test onClick={onClick} />);
-    fireEvent.click(button);
-    expect(() => getByRole("dialog")).toThrow();
-  });
-});
-
-describe("Type Checking", () => {
-  it("should not return the sticky handlers if no options are provided or the sticky option is false", () => {
-    let result: any;
-    function Test1() {
-      const _result = useHoverMode();
-      // @ts-expect-error
-      _result.stuck;
-      // @ts-expect-error
-      _result.stickyHandlers;
-      result = _result;
-      return null;
-    }
-    function Test2() {
-      const _result = useHoverMode({ sticky: false });
-      // @ts-expect-error
-      _result.stuck;
-      // @ts-expect-error
-      _result.stickyHandlers;
-      result = _result;
-      return null;
-    }
-
-    const { rerender } = render(<Test1 />);
-    expect(result.stuck).toBeUndefined();
-    expect(result.stickyHandlers).toBeUndefined();
-
-    rerender(<Test2 />);
-    expect(result.stuck).toBeUndefined();
-    expect(result.stickyHandlers).toBeUndefined();
   });
 });

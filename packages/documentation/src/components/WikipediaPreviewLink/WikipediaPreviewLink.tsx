@@ -30,12 +30,14 @@ export default function WikipediaPreviewLink({
   children,
 }: WikipediaPreviewLinkProps): ReactElement {
   const id = useId("wiki");
-  const { active, handlers, visible, setVisible } = useHoverMode();
+  const { active, hoverHandlers, visible, setVisible } = useHoverMode({
+    exitVisibilityDelay: 0,
+  });
 
   const linkRef = useRef<HTMLAnchorElement>(null);
   return (
     <>
-      <Link ref={linkRef} href={href} {...handlers}>
+      <Link ref={linkRef} href={href} {...hoverHandlers}>
         {children}
       </Link>
       <FixedDialog
@@ -43,7 +45,7 @@ export default function WikipediaPreviewLink({
         id={id}
         visible={visible}
         onRequestClose={() => setVisible(false)}
-        {...handlers}
+        {...hoverHandlers}
         fixedTo={linkRef}
         onClick={() => {
           window.location.href = href;

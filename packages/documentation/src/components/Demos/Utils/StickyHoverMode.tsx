@@ -4,19 +4,17 @@ import { DialogContent, FixedDialog } from "@react-md/dialog";
 import { BELOW_CENTER_ANCHOR, useHoverMode } from "@react-md/utils";
 
 export default function StickyHoverMode(): ReactElement {
-  const { stuck, active, handlers, stickyHandlers, visible, setVisible } =
-    useHoverMode({
-      sticky: true,
-    });
+  const { stuck, active, handlers, hoverHandlers, visible, setVisible } =
+    useHoverMode();
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <>
-      <Button {...stickyHandlers} ref={buttonRef}>
+      <Button {...handlers} ref={buttonRef}>
         Button
       </Button>
       <FixedDialog
-        {...handlers}
+        {...hoverHandlers}
         aria-label="Additional Information"
         id="some-dialog-id"
         visible={visible}

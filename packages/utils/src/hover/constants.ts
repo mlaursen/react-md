@@ -18,6 +18,7 @@ export const DEFAULT_HOVER_MODE_DEACTIVATION_TIME = 1000;
  * The amount of time the user must not hover any element attached to the same
  * instance of the {@link useHoverMode} hook when the using the sticky mode.
  *
- * @remarks \@since 2.8.0
+ * @remarks \@since 5.0.0 This was named the
+ * `DEFAULT_HOVER_MODE_STICKY_EXIT_TIME` before.
  */
-export const DEFAULT_HOVER_MODE_STICKY_EXIT_TIME = 300;
+export const DEFAULT_HOVER_MODE_EXIT_TIME = 300;

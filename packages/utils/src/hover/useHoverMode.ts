@@ -1,7 +1,6 @@
 import {
   Dispatch,
   MouseEvent,
-  MouseEventHandler,
   SetStateAction,
   useCallback,
   useEffect,
@@ -11,8 +10,25 @@ import {
 
 import { useUserInteractionMode } from "../mode";
 import { useOnUnmount } from "../useOnUnmount";
-import { DEFAULT_HOVER_MODE_STICKY_EXIT_TIME } from "./constants";
+import { DEFAULT_HOVER_MODE_EXIT_TIME } from "./constants";
 import { HoverModeActions, useHoverModeContext } from "./useHoverModeContext";
+
+/** @remarks \@since 5.0.0 */
+export interface HoverModeHoverEventHandlers {
+  /**
+   * An optional event handler to merge with the hover mode visibility hander.
+   * If this function calls `event.stopPropagation()`, the hover mode behavior
+   * will be disabled.
+   */
+  onMouseEnter<E extends HTMLElement>(event: MouseEvent<E>): void;
+
+  /**
+   * An optional event handler to merge with the hover mode visibility hander.
+   * If this function calls `event.stopPropagation()`, the hover mode behavior
+   * will be disabled.
+   */
+  onMouseLeave<E extends HTMLElement>(event: MouseEvent<E>): void;
+}
 
 /**
  * An object of event handlers that should be provided to a component to enable
@@ -20,33 +36,23 @@ import { HoverModeActions, useHoverModeContext } from "./useHoverModeContext";
  * component.
  *
  * @remarks \@since 2.8.0
+ * @remarks \@since 5.0.0 The `HTMLElement` type will be correctly inferred when
+ * using them on multiple components.
  */
-export interface HoverModeEventHandlers<E extends HTMLElement> {
+export interface HoverModeEventHandlers extends HoverModeHoverEventHandlers {
   /**
    * An optional event handler to merge with the hover mode visibility hander.
    * If this function calls `event.stopPropagation()`, the hover mode behavior
    * will be disabled.
    */
-  onClick?: MouseEventHandler<E>;
-
-  /**
-   * An optional event handler to merge with the hover mode visibility hander.
-   * If this function calls `event.stopPropagation()`, the hover mode behavior
-   * will be disabled.
-   */
-  onMouseEnter?: MouseEventHandler<E>;
-
-  /**
-   * An optional event handler to merge with the hover mode visibility hander.
-   * If this function calls `event.stopPropagation()`, the hover mode behavior
-   * will be disabled.
-   */
-  onMouseLeave?: MouseEventHandler<E>;
+  onClick<E extends HTMLElement>(event: MouseEvent<E>): void;
 }
 
-/** @remarks \@since 2.8.0 */
-export interface HoverModeOnlyOptions<E extends HTMLElement>
-  extends HoverModeEventHandlers<E> {
+/**
+ * @remarks \@since 2.8.0
+ * @remarks \@since 5.0.0 No longer has event handlers or a separate "sticky" API.
+ */
+export interface HoverModeOptions {
   /**
    * Boolean if the hover mode functionality should be disabled.
    *
@@ -65,58 +71,62 @@ export interface HoverModeOnlyOptions<E extends HTMLElement>
    * The amount of time to wait once the mouse has left the element before
    * setting the visibility to `false`.
    *
-   * This will default to `0` if the `sticky` option is omitted or `false`.
-   *
-   * @defaultValue `0` or {@link DEFAULT_HOVER_MODE_STICKY_EXIT_TIME}
+   * @defaultValue {@link DEFAULT_HOVER_MODE_EXIT_TIME}
    */
   exitVisibilityDelay?: number;
 }
 
-/** @remarks \@since 2.8.0 */
-export interface HoverModeOptions<E extends HTMLElement>
-  extends HoverModeOnlyOptions<E>,
-    HoverModeEventHandlers<E> {
-  /**
-   * Boolean if the hover mode should also provide a "sticky" mode which allows
-   * the exit behavior to be disabled if the element is clicked.
-   */
-  sticky?: boolean;
-}
-
-/** @remarks \@since 2.8.0 */
-export interface HoverModeOnlyReturnValue<E extends HTMLElement>
-  extends HoverModeActions {
+/**
+ * @remarks \@since 5.0.0
+ */
+export interface HoverModeHookReturnValue
+  extends HoverModeActions,
+    HoverModeEventHandlers {
   /**
    * Boolean if the hover mode is currently working.
    */
   active: boolean;
 
   /**
+   * Boolean if the the `visible` state is `true` because the user clicked an
+   * element.
+   */
+  stuck: boolean;
+
+  /**
    * Boolean if the temporary element should be visible.
    */
   visible: boolean;
-
-  /** {@inheritDoc HoverModeEventHandlers} */
-  handlers: Required<HoverModeEventHandlers<E>>;
 
   /**
    * A function to manually set the visibility state if you need even more
    * custom behavior.
    */
   setVisible: Dispatch<SetStateAction<boolean>>;
-}
 
-/** @remarks \@since 2.8.0 */
-export interface HoverModeReturnValue<E extends HTMLElement>
-  extends HoverModeOnlyReturnValue<E> {
   /**
-   * Boolean if the the `visible` state is `true` because the user clicked an
-   * element with the `stickyHandlers`.
+   * A convenience prop that allows you to spread all the hover mode event
+   * handlers onto a single component if no custom functionality is required.
+   *
+   * @remarks \@since 5.0.0
    */
-  stuck?: boolean;
+  handlers: Readonly<HoverModeEventHandlers>;
 
-  /** {@inheritDoc StickyHoverModeEventHandlers} */
-  stickyHandlers?: Required<HoverModeEventHandlers<E>>;
+  /**
+   * A convenience prop that allows you to spread only the `onMouseEnter` and
+   * `onMouseLeave` the hover mode event handlers onto a single component if no
+   * custom functionality is required.
+   *
+   * @remarks \@since 5.0.0
+   */
+  hoverHandlers: Readonly<HoverModeHoverEventHandlers>;
+
+  /**
+   * Clears the current `onMouseEnter` visibility timer.
+   *
+   * @remarks \@since 5.0.0
+   */
+  clearHoverTimeout(): void;
 }
 
 /**
@@ -125,17 +135,23 @@ export interface HoverModeReturnValue<E extends HTMLElement>
  * @example
  * Displaying a Color Preview when hovering a Hex Code
  * ```tsx
+ * import type { ReactElement } from "react";
+ * import { CSSTransition } from "@react-md/transition";
+ * import { useHoverMode } from "@react-md/utils";
+ *
  * interface Props {
  *   value: string;
  * }
  *
  * export default function Color({ value }: Props): ReactElement {
- *   const { visible, handlers } = useHoverMode();
+ *   const { visible, onMouseEnter, onMouseLeave } =
+ *     useHoverMode({ exitVisibilityDelay: 0 });
  *
  *   return (
  *     <>
  *       <span
- *         {...handlers}
+ *         onMouseEnter={onMouseEnter}
+ *         onMouseLeave={onMouseLeave}
  *         style={{
  *           // pretend styles
  *         }}
@@ -143,11 +159,10 @@ export interface HoverModeReturnValue<E extends HTMLElement>
  *         {value}
  *       </span>
  *       <CSSTransition
- *         in={visible}
+ *         transitionIn={visible}
  *         classNames="opacity-change"
  *         timeout={150}
- *         mountOnEnter
- *         unmountOnExit
+ *         temporary
  *       >
  *         <span
  *           style={{
@@ -170,17 +185,17 @@ export interface HoverModeReturnValue<E extends HTMLElement>
  *   visible,
  *   setVisible,
  *   handlers,
- *   stickyHandlers,
- * } = useHoverMode({ sticky: true });
+ *   hoverHandlers,
+ * } = useHoverMode();
  * const buttonRef = useRef<HTMLButtonElement>(null);
  *
  * return (
  *   <>
- *     <Button ref={buttonRef} {...stickyHandlers}>
+ *     <Button {...handlers} ref={buttonRef}>
  *       Click Me
  *     </Button>
  *     <FixedDialog
- *       {...handlers}
+ *       {...hoverHandlers}
  *       aria-labelledby="dialog-title-id"
  *       id="dialog-id"
  *       visible={visible}
@@ -199,39 +214,22 @@ export interface HoverModeReturnValue<E extends HTMLElement>
  * ```
  *
  * @remarks \@since 2.8.0
+ * @remarks \@since 5.0.0 This hook no longer returns `handlers` or
+ * `stickyHandlers` and does not hide when an element on the page is clicked.
  * @param options - An optional object of options to use. See
- * {@link HoverModeOnlyOptions} and {@link HoverModeOptions} for more details.
+ * {@link HoverModeOptions} for more details.
  * @returns either the {@link HoverModeReturnValue} or {@link HoverModeReturnValue}
  */
-export function useHoverMode<E extends HTMLElement>(
-  options?: HoverModeOnlyOptions<E>
-): HoverModeOnlyReturnValue<E>;
-export function useHoverMode<E extends HTMLElement>(
-  options: HoverModeOptions<E> & {
-    sticky?: false;
-  }
-): HoverModeOnlyReturnValue<E>;
-export function useHoverMode<E extends HTMLElement>(
-  options: HoverModeOptions<E> & { sticky: true }
-): HoverModeReturnValue<E> & {
-  stuck: boolean;
-  stickyHandlers: Required<HoverModeEventHandlers<E>>;
-};
-export function useHoverMode<E extends HTMLElement>({
+export function useHoverMode({
   disabled = false,
-  sticky = false,
-  onClick: propOnClick,
-  onMouseEnter: propOnMouseEnter,
-  onMouseLeave: propOnMouseLeave,
   defaultVisible = false,
-  exitVisibilityDelay = sticky ? DEFAULT_HOVER_MODE_STICKY_EXIT_TIME : 0,
-}: HoverModeOptions<E> = {}): HoverModeReturnValue<E> {
+  exitVisibilityDelay = DEFAULT_HOVER_MODE_EXIT_TIME,
+}: HoverModeOptions = {}): HoverModeHookReturnValue {
   const mode = useUserInteractionMode();
   const isTouch = mode === "touch";
   const [visible, setVisible] = useState(defaultVisible);
   const [stuck, setStuck] = useState(false);
   const timeoutRef = useRef<number>();
-  const skipReset = useRef(defaultVisible);
   const {
     visibleInTime,
     enableHoverMode,
@@ -241,46 +239,26 @@ export function useHoverMode<E extends HTMLElement>({
   const active = visibleInTime === 0;
 
   useEffect(() => {
-    if (sticky && !visible) {
+    if (!visible) {
       setStuck(false);
     }
-  }, [visible, sticky]);
+  }, [visible]);
 
   useOnUnmount(() => {
     window.clearTimeout(timeoutRef.current);
   });
 
-  useEffect(() => {
-    if (disabled) {
-      return;
-    }
-
-    const reset = (): void => {
-      setVisible(false);
-      disableHoverMode();
-      window.clearTimeout(timeoutRef.current);
-    };
-
-    // this is just used so the `defaultVisible` option can be used
-    if (!skipReset.current) {
-      reset();
-    }
-    skipReset.current = false;
-
-    window.addEventListener("mousedown", reset);
-    return () => {
-      window.removeEventListener("mousedown", reset);
-    };
-  }, [disableHoverMode, mode, disabled]);
+  const clearHoverTimeout = useCallback(() => {
+    window.clearTimeout(timeoutRef.current);
+  }, []);
 
   const onMouseEnter = useCallback(
-    (event: MouseEvent<E>) => {
-      propOnMouseEnter?.(event);
+    <E extends HTMLElement>(event: MouseEvent<E>) => {
       if (stuck || disabled || isTouch || event.isPropagationStopped()) {
         return;
       }
 
-      window.clearTimeout(timeoutRef.current);
+      clearHoverTimeout();
       if (visibleInTime === 0) {
         enableHoverMode();
         setVisible(true);
@@ -292,18 +270,24 @@ export function useHoverMode<E extends HTMLElement>({
         setVisible(true);
       }, visibleInTime);
     },
-    [disabled, enableHoverMode, isTouch, propOnMouseEnter, stuck, visibleInTime]
+    [
+      clearHoverTimeout,
+      disabled,
+      enableHoverMode,
+      isTouch,
+      stuck,
+      visibleInTime,
+    ]
   );
 
   const onMouseLeave = useCallback(
-    (event: MouseEvent<E>) => {
-      propOnMouseLeave?.(event);
+    <E extends HTMLElement>(event: MouseEvent<E>) => {
       if (stuck || disabled || isTouch || event.isPropagationStopped()) {
         return;
       }
 
       startDisableTimer();
-      window.clearTimeout(timeoutRef.current);
+      clearHoverTimeout();
       if (exitVisibilityDelay === 0) {
         setVisible(false);
         return;
@@ -314,70 +298,54 @@ export function useHoverMode<E extends HTMLElement>({
       }, exitVisibilityDelay);
     },
     [
+      clearHoverTimeout,
       disabled,
       exitVisibilityDelay,
       isTouch,
-      propOnMouseLeave,
       startDisableTimer,
       stuck,
     ]
   );
 
   const onClick = useCallback(
-    (event: MouseEvent<E>) => {
-      propOnClick?.(event);
-      if (event.isPropagationStopped() || disabled) {
+    <E extends HTMLElement>(event: MouseEvent<E>) => {
+      if (event.isPropagationStopped()) {
         return;
       }
 
-      startDisableTimer();
-      window.clearTimeout(timeoutRef.current);
-    },
-    [disabled, propOnClick, startDisableTimer]
-  );
-
-  const onStickyClick = useCallback(
-    (event: MouseEvent<E>) => {
-      propOnClick?.(event);
-      if (event.isPropagationStopped() || disabled) {
-        return;
-      }
-
-      if (!stuck) {
+      // If the hover mode functionality is disabled, just allow this to behave
+      // like a toggle visibility handler.
+      if (!stuck && !disabled) {
         setStuck(true);
         setVisible(true);
-        disableHoverMode();
       } else {
         setStuck(false);
         setVisible((prevVisible) => !prevVisible);
       }
     },
-    [disableHoverMode, disabled, propOnClick, stuck]
+    [disabled, stuck]
   );
-
-  const handlers: Required<HoverModeEventHandlers<E>> = {
-    onClick,
-    onMouseEnter,
-    onMouseLeave,
-  };
-
-  let stickyHandlers: Required<HoverModeEventHandlers<E>> | undefined;
-  if (sticky) {
-    stickyHandlers = {
-      ...handlers,
-      onClick: onStickyClick,
-    };
-  }
 
   return {
     active,
-    stuck: sticky ? stuck : undefined,
+    stuck,
     visible,
     setVisible,
-    handlers,
-    stickyHandlers,
+    onClick,
+    onMouseEnter,
+    onMouseLeave,
     enableHoverMode,
     disableHoverMode,
     startDisableTimer,
+    clearHoverTimeout,
+    handlers: {
+      onClick,
+      onMouseEnter,
+      onMouseLeave,
+    },
+    hoverHandlers: {
+      onMouseEnter,
+      onMouseLeave,
+    },
   };
 }
