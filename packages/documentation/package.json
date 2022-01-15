@@ -29,17 +29,17 @@
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "mobile-detect": "^1.4.5",
-    "next": "12.0.7",
+    "next": "12.0.8",
     "prismjs": "^1.26.0",
     "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.1",
-    "react-hook-form": "^7.22.5",
-    "react-marked-renderer": "^1.0.3",
+    "react-hook-form": "^7.24.0",
+    "react-marked-renderer": "^1.0.4",
     "react-md": "^4.0.3",
     "react-router-dom": "^6.2.1",
     "react-virtualized": "^9.22.3",
-    "sass": "^1.47.0"
+    "sass": "^1.48.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -51,11 +51,11 @@
     "@types/qs": "^6.9.7",
     "@types/react-virtualized": "^9.21.16",
     "cross-env": "^7.0.3",
-    "eslint-config-next": "^12.0.7",
+    "eslint-config-next": "^12.0.8",
     "npm-run-all": "^4.1.5",
     "raw-loader": "^4.0.2",
     "typescript": "^4.5.4",
-    "webpack": "^5.65.0"
+    "webpack": "^5.66.0"
   },
   "browerlist": [
     "not ie 11",
