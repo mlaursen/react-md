@@ -279,7 +279,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}
-        style={{ ...areaStyle, height }}
+        style={{ ...areaStyle, height: height ?? areaStyle?.height }}
         className={cn(
           block({
             scrollable: scrollable || resize === "none",
@@ -334,7 +334,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           ...style,
           height: height
             ? `calc(${PADDING_VARIABLES} + ${height}px)`
-            : undefined,
+            : style?.height,
         }}
         className={cn(
           container({
