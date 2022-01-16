@@ -43,6 +43,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       disableRipple = false,
       disableProgrammaticRipple = false,
       disablePressedFallback = false,
+      disableEnterClick,
       rippleTimeout,
       rippleClassNames,
       rippleClassName,
@@ -66,6 +67,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       rippleContainerClassName,
       disableSpacebarClick,
       disablePressedFallback,
+      disableEnterClick,
     });
 
     const height = getListItemHeight({
