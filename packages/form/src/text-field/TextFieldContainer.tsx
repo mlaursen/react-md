@@ -19,6 +19,15 @@ export interface TextFieldContainerOptions extends FormThemeOptions {
   inline?: boolean;
 
   /**
+   * Boolean if the component should gain `flex: 1 1 auto;` which is useful for
+   * full-width behavior within flex containers.
+   *
+   * @defaultValue `false`
+   * @remarks \@since 5.0.0
+   */
+  stretch?: boolean;
+
+  /**
    * Boolean if the text field should gain the error state and update the
    * colors.
    */
@@ -92,6 +101,7 @@ export const TextFieldContainer = forwardRef<
     active,
     label,
     dense = false,
+    stretch = false,
     disabled = false,
     isLeftAddon = true,
     isRightAddon = true,
@@ -121,6 +131,7 @@ export const TextFieldContainer = forwardRef<
         block({
           error,
           inline,
+          stretch,
           filled,
           outline,
           disabled,

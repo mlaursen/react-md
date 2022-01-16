@@ -146,6 +146,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       dense = false,
       inline = false,
       error = false,
+      stretch = false,
       disabled = false,
       onBlur: propOnBlur,
       onFocus: propOnFocus,
@@ -187,6 +188,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         label={!!label}
         dense={dense}
         inline={inline}
+        stretch={stretch}
         disabled={disabled}
         isLeftAddon={isLeftAddon}
         isRightAddon={isRightAddon}

@@ -29,6 +29,10 @@
     display: inline-flex;
   }
 
+  &--stretch {
+    flex: 1 1 auto;
+  }
+
   &--label {
     @include rmd-form-theme-update-var(
       text-height,

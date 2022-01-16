@@ -113,6 +113,7 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
       theme: propTheme,
       dense = false,
       inline = false,
+      stretch = false,
       error = false,
       disabled = false,
       label,
@@ -163,6 +164,7 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
         label={!!label}
         dense={dense}
         inline={inline}
+        stretch={stretch}
         disabled={disabled}
         isLeftAddon={isLeftAddon}
         isRightAddon={isRightAddon}
