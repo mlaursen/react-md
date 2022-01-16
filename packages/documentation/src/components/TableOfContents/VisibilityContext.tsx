@@ -59,7 +59,10 @@ export function TOCVisibilityProvider({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLargeDesktop]);
 
-  const rendered = !!tocs[pathname]?.length;
+  // I get SSR errors in dev mode since I normally have the dev tools open which
+  // results in different app sizes
+  const rendered =
+    !!tocs[pathname]?.length && process.env.NODE_ENV === "production";
   const actions = useMemo(() => ({ show, hide, toggle }), [hide, show, toggle]);
   const visibility = useMemo(
     () => ({

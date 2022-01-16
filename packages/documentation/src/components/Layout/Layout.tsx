@@ -64,11 +64,11 @@ const icons: ConfiguredIcons = {
 
 let devLayoutConf: LayoutConfiguration | undefined;
 if (process.env.NODE_ENV !== "production") {
-  // devLayoutConf = {
-  //   landscapeTabletLayout: "temporary",
-  //   desktopLayout: "temporary",
-  //   largeDesktopLayout: "temporary",
-  // };
+  devLayoutConf = {
+    landscapeTabletLayout: "temporary",
+    desktopLayout: "temporary",
+    largeDesktopLayout: "temporary",
+  };
 }
 
 export default function Layout({
