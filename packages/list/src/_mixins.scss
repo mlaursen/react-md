@@ -322,6 +322,10 @@
     @include rmd-list;
   }
 
+  .rmd-list-unstyled {
+    @include rmd-list-unstyled;
+  }
+
   .rmd-list-item {
     @include rmd-list-item;
   }
