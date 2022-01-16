@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VerticalDivider should render as a div with the vertical divider class names 1`] = `
+<div>
+  <div
+    class="rmd-divider rmd-divider--vertical"
+    role="separator"
+    style="height: 0px;"
+  />
+</div>
+`;

@@ -1,62 +1,11 @@
-import { forwardRef, HTMLAttributes, Ref, useCallback, useState } from "react";
-import { applyRef } from "@react-md/utils";
+import { forwardRef, HTMLAttributes } from "react";
 
 import { Divider } from "./Divider";
+import { useVerticalDividerHeight } from "./useVerticalDividerHeight";
 
 export interface VerticalDividerProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * The max height for the vertical divider. This number **must** be greater
-   * than 0 to work correctly.
-   *
-   * When the value is between 0 and 1, it will be used as a multiplier with the
-   * parent element's height. When the value is greater than 1, it will be used
-   * in `Math.min(parentElementHeight, maxHeight)`.
-   */
+  /** {@inheritDoc VerticalDividerHookOptions.maxHeight} */
   maxHeight?: number;
-}
-
-interface VerticalDividerHeight {
-  ref: (instance: HTMLDivElement | null) => void;
-  height: number | undefined;
-}
-
-/**
- * This is a small hook that is used to automatically create a vertical divider
- * based on the computed height of its parent element.
- *
- * @param maxHeight - The max height for the vertical divider. When the value is
- * between 0 and 1, it will be used as a percentage. Otherwise the smaller value
- * of parent element height and this will be used.
- */
-export function useVerticalDividerHeight(
-  maxHeight: number,
-  forwardedRef?: Ref<HTMLDivElement | null> | undefined
-): VerticalDividerHeight {
-  if (process.env.NODE_ENV !== "production" && maxHeight < 0) {
-    throw new Error(
-      "The `maxHeight` for a vertical divider height must be greater than 0"
-    );
-  }
-
-  const [height, setHeight] = useState<number | undefined>(undefined);
-  const ref = useCallback(
-    (instance: HTMLDivElement | null) => {
-      applyRef(instance, forwardedRef);
-      if (!instance || !instance.parentElement) {
-        return;
-      }
-
-      const height = instance.parentElement.offsetHeight;
-      if (maxHeight <= 1) {
-        setHeight(height * maxHeight);
-      } else {
-        setHeight(Math.min(height, maxHeight));
-      }
-    },
-    [maxHeight, forwardedRef]
-  );
-
-  return { ref, height };
 }
 
 /**
@@ -68,10 +17,13 @@ export function useVerticalDividerHeight(
  * the time) when it is not set on a parent element.
  */
 export const VerticalDivider = forwardRef<HTMLDivElement, VerticalDividerProps>(
-  function VerticalDivider({ style, maxHeight = 1, ...props }, forwardedRef) {
-    const { ref, height } = useVerticalDividerHeight(maxHeight, forwardedRef);
-    return (
-      <Divider {...props} style={{ ...style, height }} ref={ref} vertical />
-    );
+  function VerticalDivider({ style, maxHeight = 1, ...props }, ref) {
+    const heightProps = useVerticalDividerHeight({
+      ref,
+      style,
+      maxHeight,
+    });
+
+    return <Divider {...props} {...heightProps} vertical />;
   }
 );
