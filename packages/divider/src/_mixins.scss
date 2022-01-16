@@ -58,11 +58,10 @@
 /// Creates all the styles for a divider for a class name selector. This
 /// probably won't be used externally.
 @mixin rmd-divider {
-  @include rmd-divider-theme(border-color, background-color);
-  @include rmd-divider-theme(border-width, size);
   @include rmd-divider-theme(margin, spacing);
   @include rmd-divider-theme(width, max-size);
 
+  border: rmd-divider-theme(size) inset rmd-divider-theme(background-color);
   display: block;
   flex-shrink: 0;
 
