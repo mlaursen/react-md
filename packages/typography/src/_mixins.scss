@@ -282,8 +282,7 @@
     }
 
     @each $decoration in $rmd-typography-decorations {
-      $suffix: $decoration +
-        if($decoration == overline, 'overline-decoration', '');
+      $suffix: $decoration + if($decoration == overline, '-decoration', '');
 
       &--#{$suffix} {
         text-decoration: $decoration;
