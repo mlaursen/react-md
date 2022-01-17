@@ -80,7 +80,7 @@ export const renderers: MarkdownRenderers = {
 
     const id = useSluggedId(tokens);
     return (
-      <Typography id={id} type={type}>
+      <Typography id={id} type={type} suppressHydrationWarning>
         {children}
       </Typography>
     );
@@ -112,7 +112,11 @@ export const renderers: MarkdownRenderers = {
     // checked state instead of clicking the checkbox. Only useful if the
     // preview is persistent while updating the markdown.
     return (
-      <li key={`${defaultChecked}`} className={styles.task}>
+      <li
+        key={`${defaultChecked}`}
+        className={styles.task}
+        suppressHydrationWarning
+      >
         <Checkbox id={id} defaultChecked={defaultChecked} label={children} />
       </li>
     );
