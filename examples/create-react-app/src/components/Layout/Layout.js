@@ -23,7 +23,6 @@ import navItems from './navItems';
 const icons = {
   back: <KeyboardArrowLeftSVGIcon />,
   checkbox: <CheckBoxSVGIcon />,
-  download: <FileUploadSVGIcon />,
   dropdown: <ArrowDropDownSVGIcon />,
   error: <ErrorOutlineSVGIcon />,
   expander: <KeyboardArrowDownSVGIcon />,
@@ -34,6 +33,7 @@ const icons = {
   radio: <RadioButtonCheckedSVGIcon />,
   selected: <CheckSVGIcon />,
   sort: <ArrowUpwardSVGIcon />,
+  upload: <FileUploadSVGIcon />,
 };
 
 export default function Layout({ children }) {

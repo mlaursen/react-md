@@ -8,6 +8,9 @@ import {
 
 import { FontIcon } from "./FontIcon";
 
+/**
+ * @remarks \@since 5.0.0 The `download` icon has been renamed to `upload`.
+ */
 export interface ConfigurableIcons {
   /**
    * The general icon for navigating backwards or closing an item to the left.
@@ -24,15 +27,6 @@ export interface ConfigurableIcons {
    * vertically in a new material instead of inline like the `expander` icon.
    */
   dropdown?: ReactNode;
-
-  /**
-   * The general icon to use for the `FileInput` component (normally file
-   * uploads).
-   *
-   * @remarks \@since 4.0.3 Changed the default icon to be `file_upload` and
-   * this will be renamed to `upload` in the next major release.
-   */
-  download?: ReactNode;
 
   /**
    * The general icon to use when there are form errors.
@@ -86,6 +80,14 @@ export interface ConfigurableIcons {
    * behavior.
    */
   sort?: ReactNode;
+
+  /**
+   * The general icon to use for the `FileInput` component (normally file
+   * uploads).
+   *
+   * @remarks \@since 5.0.0
+   */
+  upload?: ReactNode;
 }
 
 export type ConfiguredIcons = Required<ConfigurableIcons>;
@@ -93,7 +95,7 @@ export type ConfiguredIcons = Required<ConfigurableIcons>;
 const DEFAULT_ICONS: ConfiguredIcons = {
   back: <FontIcon>keyboard_arrow_left</FontIcon>,
   checkbox: <FontIcon>check_box</FontIcon>,
-  download: <FontIcon>file_upload</FontIcon>,
+  upload: <FontIcon>file_upload</FontIcon>,
   dropdown: <FontIcon>arrow_drop_down</FontIcon>,
   error: <FontIcon>error_outline</FontIcon>,
   expander: <FontIcon>keyboard_arrow_down</FontIcon>,
@@ -153,7 +155,6 @@ export function IconProvider({
   children,
   back = DEFAULT_ICONS.back,
   checkbox = DEFAULT_ICONS.checkbox,
-  download = DEFAULT_ICONS.download,
   dropdown = DEFAULT_ICONS.dropdown,
   expander = DEFAULT_ICONS.expander,
   error = DEFAULT_ICONS.error,
@@ -164,12 +165,12 @@ export function IconProvider({
   radio = DEFAULT_ICONS.radio,
   selected = DEFAULT_ICONS.selected,
   sort = DEFAULT_ICONS.sort,
+  upload = DEFAULT_ICONS.upload,
 }: IconProviderProps): ReactElement {
-  const value = useMemo(
+  const value = useMemo<ConfiguredIcons>(
     () => ({
       back,
       checkbox,
-      download,
       dropdown,
       error,
       expander,
@@ -180,11 +181,11 @@ export function IconProvider({
       radio,
       selected,
       sort,
+      upload,
     }),
     [
       back,
       checkbox,
-      download,
       dropdown,
       error,
       expander,
@@ -195,6 +196,7 @@ export function IconProvider({
       radio,
       selected,
       sort,
+      upload,
     ]
   );
 

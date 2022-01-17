@@ -97,7 +97,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     ref
   ) {
     const { id, disabled } = props;
-    const icon = useIcon("download", propIcon);
+    const icon = useIcon("upload", propIcon);
     const disableIconSpacing =
       propDisableIconSpacing ?? typeof propChildren === "undefined";
 

@@ -50,7 +50,6 @@ const icons: ConfiguredIcons = {
   back: <KeyboardArrowLeftSVGIcon />,
   checkbox: <CheckBoxSVGIcon />,
   dropdown: <ArrowDropDownSVGIcon />,
-  download: <FileUploadSVGIcon />,
   expander: <KeyboardArrowDownSVGIcon />,
   error: <ErrorOutlineSVGIcon />,
   forward: <KeyboardArrowRightSVGIcon />,
@@ -60,6 +59,7 @@ const icons: ConfiguredIcons = {
   password: <RemoveRedEyeSVGIcon />,
   selected: <CheckSVGIcon />,
   sort: <ArrowUpwardSVGIcon />,
+  upload: <FileUploadSVGIcon />,
 };
 
 let devLayoutConf: LayoutConfiguration | undefined;

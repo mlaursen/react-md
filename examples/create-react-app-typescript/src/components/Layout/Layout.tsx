@@ -25,7 +25,6 @@ import navItems from "./navItems";
 const icons: ConfigurableIcons = {
   back: <KeyboardArrowLeftSVGIcon />,
   checkbox: <CheckBoxSVGIcon />,
-  download: <FileUploadSVGIcon />,
   dropdown: <ArrowDropDownSVGIcon />,
   error: <ErrorOutlineSVGIcon />,
   expander: <KeyboardArrowDownSVGIcon />,
@@ -36,6 +35,7 @@ const icons: ConfigurableIcons = {
   radio: <RadioButtonCheckedSVGIcon />,
   selected: <CheckSVGIcon />,
   sort: <ArrowUpwardSVGIcon />,
+  upload: <FileUploadSVGIcon />,
 };
 
 interface LayoutProps {
