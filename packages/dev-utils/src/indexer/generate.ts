@@ -25,7 +25,7 @@ function pluralize(s: string): string {
 }
 
 function getMarkdownForRoute(route: string): string | null {
-  const simpleReadmeMatch = route.match(/^\/(blog|guides)\//);
+  const simpleReadmeMatch = route.match(/^\/(blog|guides|migration-guides)\//);
   const packageMarkdownMatch = route.match(/\/(installation|changelog)$/);
 
   let path = "";

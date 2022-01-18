@@ -17,6 +17,7 @@ export function parseMarkdown(markdown: string): MarkdownResult {
   const joinedNames = getPackages().join("|");
   const anchors: TOCAnchor[] = [];
   const renderer = new Renderer({ gfm: true, sanitize: false });
+  const forceAllHeadings = markdown.startsWith("# Migrate from v");
   renderer.heading = (text, _level, _raw, slugger) => {
     // if it is over 60 characters, it is probably not really a title
     const isNoMargin = text.includes("<!-- no-margin -->");
@@ -25,7 +26,7 @@ export function parseMarkdown(markdown: string): MarkdownResult {
     text = text.replace(/<!-- ([A-z]+(-[A-z]+)*) -->/g, "");
 
     const isValidHeading =
-      isForcedHeading || (text.length <= 60 && !isNoMargin);
+      forceAllHeadings || isForcedHeading || (text.length <= 60 && !isNoMargin);
 
     if (
       !isValidHeading ||

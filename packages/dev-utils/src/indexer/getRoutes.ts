@@ -6,6 +6,7 @@ import { getPackages, glob } from "../utils";
 
 interface GetRoutesOptions {
   guides: readonly string[];
+  migrations: readonly string[];
   changelogs: readonly string[];
   blogs: readonly string[];
 }
@@ -15,6 +16,7 @@ const replaceIds = (pathname: string, values: readonly string[]): string[] =>
 
 export async function getRoutes({
   guides,
+  migrations,
   changelogs,
   blogs,
 }: GetRoutesOptions): Promise<string[]> {
@@ -46,6 +48,8 @@ export async function getRoutes({
         return "";
       case "/guides/[id]":
         return replaceIds(pathname, guides);
+      case "/migration-guides/[id]":
+        return replaceIds(pathname, migrations);
       case "/blog/[id]":
         return replaceIds(pathname, blogs);
       case "/packages/[id]/api":

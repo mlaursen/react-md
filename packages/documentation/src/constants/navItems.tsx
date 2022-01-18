@@ -1,3 +1,4 @@
+import { snakeCase } from "lodash";
 import { LayoutNavigationTree } from "@react-md/layout";
 import {
   BuildSVGIcon,
@@ -7,6 +8,7 @@ import {
   HomeSVGIcon,
   InfoOutlineSVGIcon,
   LibraryBooksSVGIcon,
+  TrendingUpSVGIcon,
 } from "@react-md/material-icons";
 
 import MaterialDesignSVGIcon from "icons/MaterialDesignSVGIcon";
@@ -14,14 +16,13 @@ import ReactSVGIcon from "icons/ReactSVGIcon";
 import createIdGenerator from "utils/createIdGenerator";
 import { toTitle } from "utils/toTitle";
 
-import { PACKAGE_NAMES, SCSS_PACKAGES, TYPESCRIPT_PACKAGES } from "./packages";
 import {
-  RouteNavItem,
-  NavItem,
   DividerNavItem,
+  NavItem,
+  RouteNavItem,
   SubheaderNavItem,
 } from "./meta/types";
-import { snakeCase } from "lodash";
+import { PACKAGE_NAMES, SCSS_PACKAGES, TYPESCRIPT_PACKAGES } from "./packages";
 
 const uuid = createIdGenerator("nav");
 const TSDOCS_PREFIX = "/tsdocs/modules/_react_md_";
@@ -125,6 +126,21 @@ const routes: readonly NavItem[] = [
       {
         href: "/contributing",
         children: "Contributing",
+      },
+    ],
+  },
+  {
+    href: "/migration-guides",
+    children: "Migration Guides",
+    leftAddon: <TrendingUpSVGIcon />,
+    routes: [
+      {
+        href: "/v3-to-v4",
+        children: "v3 to v4",
+      },
+      {
+        href: "/v2-to-v3",
+        children: "v2 to v3",
       },
     ],
   },
@@ -238,7 +254,10 @@ function createNavItem(
   }
 
   const { href: currentItemId, routes = [], ...item } = navItem;
-  const itemId = `${parentHref || ""}${currentItemId}`;
+  const itemId = `${(parentHref || "").replace(
+    /\/migration$/,
+    ""
+  )}${currentItemId}`;
   const lastSlashIndex = itemId.lastIndexOf("/");
 
   let href: string | undefined = itemId;

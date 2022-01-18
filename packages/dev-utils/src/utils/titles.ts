@@ -58,6 +58,9 @@ export function toBreadcrumbPageTitle(
       default:
         title = "Server error";
     }
+  } else if (/v\d+-to-v\d+$/.test(pathname)) {
+    const [migration] = pathname.split("/").reverse();
+    title = `Migration Guides - ${migration.replace(/-/g, " ")}`;
   } else {
     const parts = pathname.split("/").filter((p) => !!p && !/packages/.test(p));
     title = parts.map((p) => toTitle(p)).join(" - ");
