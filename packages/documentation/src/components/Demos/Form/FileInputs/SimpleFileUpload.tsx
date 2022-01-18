@@ -45,8 +45,8 @@ export default function SimpleFileUpload(): ReactElement | null {
         {stats.map(({ key, ...uploadStat }, i) => (
           <PreviewFile
             id={`simple-file-upload-preivew-${i + 1}`}
-            {...uploadStat}
             key={key}
+            {...uploadStat}
             fileKey={key}
             remove={remove}
           />

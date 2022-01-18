@@ -45,8 +45,8 @@ export default function MenusWithFormControls(): ReactElement | null {
         ...values.map((value, i) => (
           <MenuItemCheckbox
             id={`some-group-id-${i + 1}`}
-            {...getProps(value)}
             key={value}
+            {...getProps(value)}
           >
             {labels[value]}
           </MenuItemCheckbox>

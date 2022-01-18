@@ -34,8 +34,8 @@ export default function TextAreaExample(): ReactElement {
       renderField={(props) => (
         <TextArea
           id="configurable-textarea"
-          {...props}
           key={`${rows}-${resize}`}
+          {...props}
           rows={rowsInt}
           maxRows={maxRowsInt}
           resize={resize}

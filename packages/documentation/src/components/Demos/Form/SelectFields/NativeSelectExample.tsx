@@ -69,8 +69,8 @@ export default function NativeSelectExample(): ReactElement {
       }) => (
         <NativeSelect
           id="configurable-native-select"
-          {...props}
           key={`${optgroup}-${multiple}`}
+          {...props}
           label={label}
           icon={icon ? undefined : null}
           size={multiple ? parseInt(size, 10) : undefined}
