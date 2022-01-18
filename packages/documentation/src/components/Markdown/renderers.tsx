@@ -80,7 +80,12 @@ export const renderers: MarkdownRenderers = {
 
     const id = useSluggedId(tokens);
     return (
-      <Typography id={id} type={type} suppressHydrationWarning>
+      <Typography
+        id={id}
+        type={type}
+        className={styles.heading}
+        suppressHydrationWarning
+      >
         {children}
       </Typography>
     );
