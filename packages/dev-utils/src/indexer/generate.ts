@@ -56,11 +56,7 @@ function getMarkdownForRoute(route: string): string | null {
 
 function getTitleForRoute(route: string): string {
   const [name, pkgName] = route.split("/").reverse();
-  const title = toTitle(name)
-    .replace("Cdn", "CDN")
-    .replace("V1", "v1")
-    .replace("Api", "API")
-    .replace("Sassdoc", "SassDoc");
+  const title = toTitle(name);
 
   if (/Demos$/.test(title) && route.includes("form")) {
     return title;
@@ -71,6 +67,10 @@ function getTitleForRoute(route: string): string {
     (title === "Installation" && route.startsWith("/packages"))
   ) {
     return `${toTitle(pkgName, "")} ${title}`;
+  }
+
+  if (pkgName === "migration-guides") {
+    return `Migrate from ${title}`;
   }
 
   return title;
@@ -145,6 +145,8 @@ export async function generate(
     let pageUrl = route;
     if (route.startsWith("/guides")) {
       pageUrl = "/guides/[id]";
+    } else if (route.startsWith("/migration-guides")) {
+      pageUrl = "/migration-guides/[id]";
     } else if (route.startsWith("/blog/")) {
       pageUrl = "/blog/[id]";
     } else if (route.startsWith("/packages") && !route.endsWith("demos")) {

@@ -1,5 +1,13 @@
 ## Writing Tests
 
+> If you want to skip reading all the steps, you can check out my
+> [template-rmd](https://github.com/mlaursen/template-rmd) repo for a
+> "real-world" example. Check out the
+> [src/test-utils.tsx](https://github.com/mlaursen/template-rmd/blob/react-md%40v4.0.3/src/test-utils.tsx)
+> and
+> [src/components/\_\_tests\_\_/LinkUnstyled.tsx](https://github.com/mlaursen/template-rmd/blob/react-md%40v4.0.3/src/components/__tests__/LinkUnstyled.tsx)
+> for example usage.
+
 Testing an app with `react-md` components should not require many changes to
 your normal testing flow. The only times weird issues might occur are when using
 components that rely on one of the providers included by the [Configuration

@@ -32,7 +32,21 @@ export function toTitle(s: string, joinWith = " ", capitals = false): string {
 
   return s
     .split(capitals ? /(?=[A-Z])/ : "-")
-    .map(upperFirst)
+    .map((part) => {
+      if (/^((v\d+)|(to))$/.test(part)) {
+        return part;
+      }
+
+      if (/^api$/i.test(part)) {
+        return "API";
+      }
+
+      if (/^cdn$/i.test(part)) {
+        return "CDN";
+      }
+
+      return upperFirst(part);
+    })
     .join(joinWith);
 }
 
