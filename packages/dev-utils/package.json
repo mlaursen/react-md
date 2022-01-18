@@ -17,10 +17,10 @@
   "dependencies": {
     "@babel/core": "^7.16.7",
     "@octokit/core": "^3.5.1",
-    "chokidar": "^3.5.2",
+    "chokidar": "^3.5.3",
     "commander": "^8.3.0",
     "cssnano": "^5.0.15",
-    "dotenv": "^12.0.3",
+    "dotenv": "^14.2.0",
     "filesize": "^8.0.6",
     "fs-extra": "^10.0.0",
     "glob": "^7.2.0",
@@ -38,10 +38,10 @@
     "pretty-ms": "^7.0.0",
     "prompts": "^2.4.2",
     "rimraf": "^3.0.2",
-    "sass": "^1.48.0",
+    "sass": "^1.49.0",
     "sassdoc": "^2.7.2",
     "ts-morph": "^13.0.2",
-    "typedoc": "^0.22.10",
+    "typedoc": "^0.22.11",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
