@@ -79,6 +79,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
       portalInto,
       portalIntoId,
       tabIndex = -1,
+      onClick,
       ...props
     },
     nodeRef
@@ -112,7 +113,14 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
               }),
               className
             )}
-            onClick={onRequestClose}
+            onClick={(event) => {
+              onClick?.(event);
+              if (event.isPropagationStopped()) {
+                return;
+              }
+
+              onRequestClose();
+            }}
             tabIndex={tabIndex}
           >
             {children}

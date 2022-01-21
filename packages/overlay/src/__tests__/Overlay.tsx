@@ -56,4 +56,20 @@ describe("Overlay", () => {
     fireEvent.click(overlay);
     expect(onRequestClose).toBeCalledTimes(1);
   });
+
+  it("should not call onRequestClose if the onClick handler calls event.stopPropagation()", () => {
+    const onRequestClose = jest.fn();
+    const { getByTestId } = render(
+      <Overlay
+        data-testid="overlay"
+        visible
+        onRequestClose={onRequestClose}
+        onClick={(event) => event.stopPropagation()}
+      />
+    );
+
+    const overlay = getByTestId("overlay");
+    fireEvent.click(overlay);
+    expect(onRequestClose).not.toBeCalled();
+  });
 });
