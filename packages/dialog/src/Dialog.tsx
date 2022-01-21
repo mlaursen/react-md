@@ -67,7 +67,7 @@ export interface BaseDialogProps
    * A function used to close the dialog when the overlay is clicked or the
    * escape key is pressed when the `modal` prop is not enabled.
    */
-  onRequestClose: () => void;
+  onRequestClose(): void;
 
   /**
    * The tab index for the sheet. This should normally stay at `-1`.
@@ -187,6 +187,13 @@ export interface BaseDialogProps
    * conditionally render a navigation panel.
    */
   component?: "div" | "nav";
+
+  /**
+   * Any additional props that should be passed to the `Overlay` element.
+   *
+   * @remarks \@since 5.0.0
+   */
+  overlayProps?: Omit<HTMLAttributes<HTMLSpanElement>, "style" | "className">;
 }
 
 export type DialogProps = LabelRequiredForA11y<BaseDialogProps>;
@@ -319,6 +326,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     disableFocusOnUnmount = false,
     disableNestedDialogFixes = false,
     onKeyDown,
+    overlayProps,
     ...props
   },
   nodeRef
@@ -345,6 +353,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     overlayEl = (
       <Overlay
         id={`${id}-overlay`}
+        {...overlayProps}
         style={overlayStyle}
         className={cn("rmd-dialog-overlay", overlayClassName)}
         hidden={overlayHidden || disableOverlay}
