@@ -8,6 +8,28 @@ import { getViewportSize } from "./getViewportSize";
 import type { FixedPosition, FixedPositionOptions } from "./types";
 
 /**
+ * This is used when there is no `container` element so that some styles can
+ * still be created. The main use-case for this is context menus and when the
+ * `initialX` and `initialY` options have been provided.
+ *
+ * @internal
+ * @remarks \@since 5.0.0
+ */
+const FALLBACK_DOM_RECT: DOMRect = {
+  x: 0,
+  y: 0,
+  height: 0,
+  width: 0,
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
+  toJSON() {
+    // do nothing
+  },
+};
+
+/**
  * One of the most complicated functions in this project that will attempt to
  * position an element relative to another container element while still being
  * visible within the viewport. Below is the logical flow for attempting to fix
@@ -51,7 +73,7 @@ export function getFixedPosition({
   width: widthType = "auto",
   preventOverlap = false,
   transformOrigin = false,
-  disableSwapping = false,
+  disableSwapping: propDisableSwapping = false,
   disableVHBounds = false,
 }: FixedPositionOptions): FixedPosition {
   container = findSizingContainer(container);
@@ -70,14 +92,14 @@ export function getFixedPosition({
     }
   }
 
-  if (!container || !element) {
+  if (!element) {
     return {
       actualX: anchor.x,
       actualY: anchor.y,
     };
   }
 
-  const containerRect = container.getBoundingClientRect();
+  const containerRect = container?.getBoundingClientRect() ?? FALLBACK_DOM_RECT;
   const vh = getViewportSize("height");
   const vw = getViewportSize("width");
 
@@ -88,6 +110,8 @@ export function getFixedPosition({
       initialY = (initialY ?? 0) + window.scrollY;
     }
   }
+
+  const disableSwapping = propDisableSwapping || !container;
 
   const { left, right, width, minWidth, actualX } = createHorizontalPosition({
     x: anchor.x,

@@ -21,6 +21,7 @@ import {
   RadioButtonCheckedSVGIcon,
   RemoveRedEyeSVGIcon,
 } from "@react-md/material-icons";
+import { MenuConfiguration } from "@react-md/menu";
 import { useCrossFadeTransition } from "@react-md/transition";
 import { AppSizeListenerProps } from "@react-md/utils";
 
@@ -60,6 +61,10 @@ const icons: ConfiguredIcons = {
   selected: <CheckSVGIcon />,
   sort: <ArrowUpwardSVGIcon />,
   upload: <FileUploadSVGIcon />,
+};
+
+const menuConfiguration: Readonly<MenuConfiguration> = {
+  renderAsSheet: "phone",
 };
 
 let devLayoutConf: LayoutConfiguration | undefined;
@@ -109,7 +114,12 @@ export default function Layout({
   }, [pathname, transitionTo]);
 
   return (
-    <Configuration defaultSize={defaultSize} icons={icons} disableRipple>
+    <Configuration
+      defaultSize={defaultSize}
+      icons={icons}
+      disableRipple
+      menuConfiguration={menuConfiguration}
+    >
       <TOCVisibilityProvider pathname={pathname}>
         <IdProvider>
           <CodePreferenceProvider defaultPreference={defaultPreference}>

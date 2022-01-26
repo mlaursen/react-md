@@ -14,6 +14,7 @@
     { "path": "../button/tsconfig.ejs.json" },
     { "path": "../icon/tsconfig.ejs.json" },
     { "path": "../list/tsconfig.ejs.json" },
+    { "path": "../menu/tsconfig.ejs.json" },
     { "path": "../portal/tsconfig.ejs.json" },
     { "path": "../progress/tsconfig.ejs.json" },
     { "path": "../states/tsconfig.ejs.json" },

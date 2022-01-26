@@ -1,7 +1,5 @@
-// keys aren't required for the dropdown menu items
-/* eslint-disable react/jsx-key */
-import { ReactElement } from "react";
-import { AppBarTitle } from "@react-md/app-bar";
+import type { ReactElement } from "react";
+import { AppBarTitle, useActionClassName } from "@react-md/app-bar";
 import { useLayoutConfig, isToggleableLayout } from "@react-md/layout";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { DropdownMenu } from "@react-md/menu";
@@ -19,12 +17,15 @@ export default function NavHeaderTitle(): ReactElement {
       <AppBarTitle keyline={!isToggleableLayout(layout)}>react-md</AppBarTitle>
       <DropdownMenu
         id="version-picker"
-        items={[<PreviousDocsMenuItems small />]}
-        dropdownIcon={<ArrowDropDownSVGIcon />}
+        icon={<ArrowDropDownSVGIcon />}
         anchor={BELOW_INNER_RIGHT_ANCHOR}
-        className={styles.menu}
+        buttonChildren={`@v${RMD_MAJOR_VERSION}`}
+        className={useActionClassName({
+          last: true,
+          className: styles.menu,
+        })}
       >
-        {`@v${RMD_MAJOR_VERSION}`}
+        <PreviousDocsMenuItems small />
       </DropdownMenu>
     </>
   );

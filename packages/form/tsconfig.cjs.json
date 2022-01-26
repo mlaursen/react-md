@@ -13,6 +13,7 @@
     { "path": "../button/tsconfig.cjs.json" },
     { "path": "../icon/tsconfig.cjs.json" },
     { "path": "../list/tsconfig.cjs.json" },
+    { "path": "../menu/tsconfig.cjs.json" },
     { "path": "../portal/tsconfig.cjs.json" },
     { "path": "../progress/tsconfig.cjs.json" },
     { "path": "../states/tsconfig.cjs.json" },

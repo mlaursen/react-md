@@ -2,6 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 import { NestedDialogContextProvider } from "@react-md/dialog";
 import { FormThemeOptions, FormThemeProvider } from "@react-md/form";
 import { ConfigurableIcons, IconProvider } from "@react-md/icon";
+import { MenuConfiguration, MenuConfigurationProvider } from "@react-md/menu";
 import {
   DEFAULT_RIPPLE_CLASSNAMES,
   DEFAULT_RIPPLE_TIMEOUT,
@@ -66,6 +67,12 @@ export interface ConfigurationProps extends AppSizeOptions, StatesConfigProps {
    * @remarks \@since 2.8.0
    */
   hoverMode?: HoverModeConfiguration;
+
+  /**
+   * @see {@link MenuConfiguration}
+   * @remarks \@since 5.0.0
+   */
+  menuConfiguration?: Readonly<MenuConfiguration>;
 }
 
 /**
@@ -89,6 +96,7 @@ export function Configuration({
   disableRipple = false,
   disableProgrammaticRipple = false,
   hoverMode,
+  menuConfiguration,
 }: ConfigurationProps): ReactElement {
   return (
     <Dir defaultDir={defaultDir}>
@@ -112,7 +120,9 @@ export function Configuration({
               <HoverModeProvider {...hoverMode}>
                 <IconProvider {...icons}>
                   <FormThemeProvider {...formTheme}>
-                    {children}
+                    <MenuConfigurationProvider {...menuConfiguration}>
+                      {children}
+                    </MenuConfigurationProvider>
                   </FormThemeProvider>
                 </IconProvider>
               </HoverModeProvider>

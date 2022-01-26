@@ -17,6 +17,7 @@
     { "path": "../icon/tsconfig.cjs.json" },
     { "path": "../link/tsconfig.cjs.json" },
     { "path": "../list/tsconfig.cjs.json" },
+    { "path": "../menu/tsconfig.cjs.json" },
     { "path": "../sheet/tsconfig.cjs.json" },
     { "path": "../states/tsconfig.cjs.json" },
     { "path": "../tooltip/tsconfig.cjs.json" },

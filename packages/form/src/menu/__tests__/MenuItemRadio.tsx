@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { DropdownMenu } from "@react-md/menu";
+import { AppSizeListener } from "@react-md/utils";
 
 import { MenuItemRadio } from "../MenuItemRadio";
 
@@ -10,33 +11,28 @@ describe("MenuItemRadio", () => {
       const [selectedIndex, setSelectedIndex] = useState(0);
 
       return (
-        <DropdownMenu
-          id="menu-id"
-          items={[
-            <div role="group" aria-label="Radio Group" key="group">
-              <MenuItemRadio
-                id="menu-id-1"
-                checked={selectedIndex === 0}
-                onCheckedChange={() => {
-                  setSelectedIndex(0);
-                }}
-              >
-                Radio 1
-              </MenuItemRadio>
-              <MenuItemRadio
-                id="menu-id-2"
-                checked={selectedIndex === 1}
-                onCheckedChange={() => {
-                  setSelectedIndex(1);
-                }}
-              >
-                Radio 2
-              </MenuItemRadio>
-            </div>,
-          ]}
-        >
-          Button
-        </DropdownMenu>
+        <AppSizeListener>
+          <DropdownMenu id="menu-id" buttonChildren="Button">
+            <MenuItemRadio
+              id="menu-id-1"
+              checked={selectedIndex === 0}
+              onCheckedChange={() => {
+                setSelectedIndex(0);
+              }}
+            >
+              Radio 1
+            </MenuItemRadio>
+            <MenuItemRadio
+              id="menu-id-2"
+              checked={selectedIndex === 1}
+              onCheckedChange={() => {
+                setSelectedIndex(1);
+              }}
+            >
+              Radio 2
+            </MenuItemRadio>
+          </DropdownMenu>
+        </AppSizeListener>
       );
     }
     const { getByRole } = render(<Test />);

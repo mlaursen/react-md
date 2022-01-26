@@ -7,7 +7,7 @@ import {
   ListItemAddonType,
   SimpleListItemProps,
 } from "@react-md/list";
-import { bem } from "@react-md/utils";
+import { bem, useKeyboardFocusableElement } from "@react-md/utils";
 
 import type { IndeterminateCheckboxProps } from "../toggle/Checkbox";
 import { InputToggleIcon } from "../toggle/InputToggleIcon";
@@ -149,8 +149,9 @@ export const MenuItemInputToggle = forwardRef<
     indeterminate = false,
     ...props
   },
-  ref
+  nodeRef
 ) {
+  const ref = useKeyboardFocusableElement(nodeRef);
   let icon = useIcon(type === "radio" ? "radio" : "checkbox", propIcon);
   if (type === "switch" && typeof propIcon === "undefined") {
     icon = <SwitchTrack checked={checked} />;

@@ -15,6 +15,7 @@
     { "path": "../divider/tsconfig.cjs.json" },
     { "path": "../icon/tsconfig.cjs.json" },
     { "path": "../list/tsconfig.cjs.json" },
+    { "path": "../sheet/tsconfig.cjs.json" },
     { "path": "../states/tsconfig.cjs.json" },
     { "path": "../transition/tsconfig.cjs.json" },
     { "path": "../typography/tsconfig.cjs.json" },

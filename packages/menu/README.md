@@ -49,18 +49,13 @@ and more customization information, but an example usage is shown below.
 
 ```tsx
 import { render } from "react-dom";
-import { DropdownMenu } from "@react-md/menu";
+import { DropdownMenu, MenuItem } from "@react-md/menu";
 
 const App = () => (
-  <DropdownMenu
-    id="example-dropdown-menu"
-    items={[
-      { onClick: () => console.log("Clicked Item 1"), children: "Item 1" },
-      { onClick: () => console.log("Clicked Item 2"), children: "Item 2" },
-      { onClick: () => console.log("Clicked Item 3"), children: "Item 3" },
-    ]}
-  >
-    Dropdown
+  <DropdownMenu id="example-dropdown-menu" buttonChildren="Dropdown">
+    <MenuItem onClick={() => console.log("Clicked Item 1")}>Item 1</MenuItem>
+    <MenuItem onClick={() => console.log("Clicked Item 2")}>Item 2</MenuItem>
+    <MenuItem onClick={() => console.log("Clicked Item 3")}>Item 3</MenuItem>
   </DropdownMenu>
 );
 

@@ -40,6 +40,7 @@
     "@react-md/icon": "^4.0.3",
     "@react-md/link": "^4.0.3",
     "@react-md/list": "^4.0.3",
+    "@react-md/menu": "^4.0.3",
     "@react-md/sheet": "^4.0.3",
     "@react-md/states": "^4.0.3",
     "@react-md/theme": "^4.0.3",

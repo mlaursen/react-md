@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { DropdownMenu } from "@react-md/menu";
+import { AppSizeListener } from "@react-md/utils";
 
 import { MenuItemSwitch } from "../MenuItemSwitch";
 
@@ -10,9 +11,8 @@ describe("MenuItemSwitch", () => {
       const [checked, setChecked] = useState(false);
 
       return (
-        <DropdownMenu
-          id="menu-id"
-          items={[
+        <AppSizeListener>
+          <DropdownMenu id="menu-id" buttonChildren="Button">
             <MenuItemSwitch
               key="item-1"
               id="menu-id-1"
@@ -20,11 +20,9 @@ describe("MenuItemSwitch", () => {
               onCheckedChange={(nextChecked) => setChecked(nextChecked)}
             >
               Switch
-            </MenuItemSwitch>,
-          ]}
-        >
-          Button
-        </DropdownMenu>
+            </MenuItemSwitch>
+          </DropdownMenu>
+        </AppSizeListener>
       );
     }
     const { getByRole } = render(<Test />);

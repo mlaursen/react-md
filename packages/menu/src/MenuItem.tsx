@@ -1,31 +1,23 @@
 import { forwardRef } from "react";
 import cn from "classnames";
-import { ListItem, ListItemProps } from "@react-md/list";
+import { ListItem } from "@react-md/list";
+import { useKeyboardFocusableElement } from "@react-md/utils";
 
-export interface MenuItemProps extends ListItemProps {
-  /**
-   * An optional id for the menu item. This is generally recommended, but it can
-   * be ignored.
-   */
-  id?: string;
+import type { MenuItemProps } from "./types";
 
-  /**
-   * The current role for the menu item. This will eventually be updated for
-   * some of the other `menuitem*` widgets.
-   */
-  role?: "menuitem" | "button";
-
-  /**
-   * The tab index for the menu item. This should always stay at `-1`.
-   */
-  tabIndex?: number;
-}
-
+/**
+ * This component is used as an "action" within a `Menu`/`DropdownMenu` that
+ * implements some keyboard focus behavior. This component should generally have
+ * an `onClick` event handler.
+ *
+ * @remarks \@since 5.0.0
+ */
 export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(
   function MenuItem(
     { className, children, role = "menuitem", tabIndex = -1, ...props },
-    ref
+    nodeRef
   ) {
+    const ref = useKeyboardFocusableElement(nodeRef);
     return (
       <ListItem
         {...props}

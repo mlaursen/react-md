@@ -32,33 +32,28 @@ export type MenuItemRadioProps = BaseMenuItemInputToggleProps;
  *   const [value, setValue] = useState("value1");
  *
  *   return (
- *     <DropdownMenu
- *       id="dropdown-menu-id"
- *       items={[
- *         <MenuItemRadio
- *           id="radio-1"
- *           checked={value === "value1"}
- *           onCheckedChange={() => setValue("value1")}
- *         >
- *           Radio 1
- *        </MenuItemRadio>,
- *         <MenuItemRadio
- *           id="radio-2"
- *           checked={value === "value2"}
- *           onCheckedChange={() => setValue("value2")}
- *         >
- *           Radio 2
- *        </MenuItemRadio>,
- *         <MenuItemRadio
- *           id="radio-3"
- *           checked={value === "value3"}
- *           onCheckedChange={() => setValue("value3")}
- *         >
- *           Radio 3
- *        </MenuItemRadio>,
- *       ]}
- *     >
- *       Button
+ *     <DropdownMenu id="dropdown-menu-id" buttonChildren="Button">
+ *       <MenuItemRadio
+ *         id="radio-1"
+ *         checked={value === "value1"}
+ *         onCheckedChange={() => setValue("value1")}
+ *       >
+ *          Radio 1
+ *       </MenuItemRadio>
+ *       <MenuItemRadio
+ *         id="radio-2"
+ *         checked={value === "value2"}
+ *         onCheckedChange={() => setValue("value2")}
+ *       >
+ *         Radio 2
+ *       </MenuItemRadio>
+ *       <MenuItemRadio
+ *         id="radio-3"
+ *         checked={value === "value3"}
+ *         onCheckedChange={() => setValue("value3")}
+ *       >
+ *         Radio 3
+ *       </MenuItemRadio>
  *     </DropdownMenu>
  *   );
  * }
@@ -68,50 +63,45 @@ export type MenuItemRadioProps = BaseMenuItemInputToggleProps;
  * With Other Items
  * ```tsx
  * import { ReactElement, useState } from "react";
- * import { DropdownMenu, MenuItemSeparator } from "@react-md/menu";
+ * import { DropdownMenu, MenuItemGroup, MenuItemSeparator } from "@react-md/menu";
  * import { MenuItemRadio, MenuItemSwitch } from "@react-md/form";
  *
  * function Example(): ReactElement {
  *   const [value, setValue] = useState("value1");
  *
  *   return (
- *     <DropdownMenu
- *       id="dropdown-menu-id"
- *       items={[
- *         <MenuItemSwitch
- *           id="switch-id"
- *           checked={checked}
- *           onCheckedChange={nextChecked => setChecked(nextChecked)}
+ *     <DropdownMenu id="dropdown-menu-id" buttonChildren="Button">
+ *       <MenuItemSwitch
+ *         id="switch-id"
+ *         checked={checked}
+ *         onCheckedChange={nextChecked => setChecked(nextChecked)}
+ *       >
+ *         Light mode
+ *       </MenuItemSwitch>
+ *       <MenuItemSeparator />
+ *       <MenuItemGroup aria-label="My Group Label">
+ *         <MenuItemRadio
+ *           id="radio-1"
+ *           checked={value === "value1"}
+ *           onCheckedChange={() => setValue("value1")}
  *         >
- *           Light mode
- *         </MenuItemSwitch>,
- *         <MenuItemSeparator />,
- *         <div role="group" aria-label="My Group Label">
- *           <MenuItemRadio
- *             id="radio-1"
- *             checked={value === "value1"}
- *             onCheckedChange={() => setValue("value1")}
- *           >
- *             Radio 1
- *           </MenuItemRadio>,
- *           <MenuItemRadio
- *             id="radio-2"
- *             checked={value === "value2"}
- *             onCheckedChange={() => setValue("value2")}
- *           >
- *             Radio 2
- *           </MenuItemRadio>,
- *           <MenuItemRadio
- *             id="radio-3"
- *             checked={value === "value3"}
- *             onCheckedChange={() => setValue("value3")}
- *           >
- *             Radio 3
- *           </MenuItemRadio>
- *         </div>,
- *       ]}
- *     >
- *       Button
+ *           Radio 1
+ *         </MenuItemRadio>
+ *         <MenuItemRadio
+ *           id="radio-2"
+ *           checked={value === "value2"}
+ *           onCheckedChange={() => setValue("value2")}
+ *         >
+ *           Radio 2
+ *         </MenuItemRadio>
+ *         <MenuItemRadio
+ *           id="radio-3"
+ *           checked={value === "value3"}
+ *           onCheckedChange={() => setValue("value3")}
+ *         >
+ *           Radio 3
+ *         </MenuItemRadio>
+ *       </MenuItemGroup>
  *     </DropdownMenu>
  *   );
  * }

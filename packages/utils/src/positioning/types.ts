@@ -158,6 +158,8 @@ export interface CalculateFixedPositionOptions extends InitialCoords {
    * screen.
    *
    * @defaultValue `false`
+   * @remarks \@since 5.0.0 This will always be `true` if the
+   * {@link FixedPositionOptions.container} is `null`.
    */
   disableSwapping?: boolean;
 

@@ -1,46 +1,61 @@
-import { forwardRef } from "react";
+import { forwardRef, HTMLAttributes } from "react";
+import cn from "classnames";
 import {
-  Divider,
-  DividerElement,
   DividerProps,
-  VerticalDivider,
+  useVerticalDividerHeight,
   VerticalDividerProps,
 } from "@react-md/divider";
+import { bem } from "@react-md/utils";
 
-import { useOrientation } from "./Orientation";
+import { useMenuConfiguration } from "./MenuConfigurationProvider";
 
+const styles = bem("rmd-divider");
+
+/** @remarks \@since 5.0.0 */
 export interface MenuItemSeparatorProps
-  extends DividerProps,
-    Pick<VerticalDividerProps, "maxHeight"> {
-  /**
-   * The current orientation of the separator. This is required for a11y, but
-   * will automatically be determined by the `Menu`'s orientation if omitted.
-   */
-  "aria-orientation"?: "horizontal" | "vertical";
-}
+  extends HTMLAttributes<HTMLLIElement>,
+    Pick<DividerProps, "inset" | "vertical">,
+    Pick<VerticalDividerProps, "maxHeight"> {}
 
+/**
+ * This component renders a `<li role="separator">` with the divider styles. It
+ * will also automatically render itself vertically instead of horizontally if
+ * the menu is rendering horizontally.
+ *
+ * @remarks \@since 5.0.0 Renders as an `<li>` instead of a `<div>` or `<hr />`.
+ */
 export const MenuItemSeparator = forwardRef<
-  DividerElement,
+  HTMLLIElement,
   MenuItemSeparatorProps
 >(function MenuItemSeparator(
-  { "aria-orientation": ariaOrientation, maxHeight, ...props },
+  {
+    style,
+    className,
+    maxHeight,
+    inset,
+    vertical: propVertical,
+    children,
+    ...props
+  },
   ref
 ) {
-  const menuOrientation = useOrientation();
-  if (
-    ariaOrientation === "vertical" ||
-    (!ariaOrientation && menuOrientation === "horizontal")
-  ) {
-    return (
-      <VerticalDivider
-        {...props}
-        ref={ref}
-        aria-orientation="vertical"
-        maxHeight={maxHeight}
-        role="separator"
-      />
-    );
-  }
+  const horizontal = useMenuConfiguration().horizontal;
+  const vertical = propVertical ?? horizontal;
+  const heightProps = useVerticalDividerHeight({
+    ref,
+    style,
+    maxHeight: vertical ? maxHeight ?? 1 : 0,
+  });
 
-  return <Divider {...props} ref={ref} role="separator" />;
+  return (
+    <li
+      {...props}
+      {...heightProps}
+      aria-orientation={vertical ? "vertical" : undefined}
+      role="separator"
+      className={cn(styles({ inset: inset && !vertical, vertical }), className)}
+    >
+      {children}
+    </li>
+  );
 });

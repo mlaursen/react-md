@@ -28,19 +28,14 @@ export interface MenuItemCheckboxProps
  *   const [checked, setChecked] = useState(false);
  *
  *   return (
- *     <DropdownMenu
- *       id="dropdown-menu-id"
- *       items={[
- *         <MenuItemCheckbox
- *           id="checkbox-1"
- *           checked={checked}
- *           onCheckedChange={(nextChecked) => setChecked(nextChecked)}
- *         >
- *           Checkbox
- *        </MenuItemCheckbox>,
- *       ]}
- *     >
- *       Button
+ *     <DropdownMenu id="dropdown-menu-id" buttonChildren="Button">
+ *       <MenuItemCheckbox
+ *         id="checkbox-1"
+ *         checked={checked}
+ *         onCheckedChange={(nextChecked) => setChecked(nextChecked)}
+ *       >
+ *         Checkbox
+ *      </MenuItemCheckbox>
  *     </DropdownMenu>
  *   );
  * }

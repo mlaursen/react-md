@@ -23,19 +23,14 @@ export type MenuItemSwitchProps = Omit<BaseMenuItemInputToggleProps, "icon">;
  *   const [checked, setChecked] = useState(false);
  *
  *   return (
- *     <DropdownMenu
- *       id="dropdown-menu-id"
- *       items={[
- *         <MenuItemSwitch
- *           id="switch-1"
- *           checked={checked}
- *           onCheckedChange={(nextChecked) => setChecked(nextChecked)}
- *         >
- *           Switch
- *        </MenuItemSwitch>,
- *       ]}
- *     >
- *       Button
+ *     <DropdownMenu id="dropdown-menu-id" buttonChildren="Button">
+ *       <MenuItemSwitch
+ *         id="switch-1"
+ *         checked={checked}
+ *         onCheckedChange={(nextChecked) => setChecked(nextChecked)}
+ *       >
+ *         Switch
+ *      </MenuItemSwitch>
  *     </DropdownMenu>
  *   );
  * }

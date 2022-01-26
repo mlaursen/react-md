@@ -1,4 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
+import { MenuKeyboardFocusProvider } from "@react-md/menu";
 
 import { useIndeterminateChecked } from "../useIndeterminateChecked";
 import { Checkbox } from "../toggle";
@@ -96,7 +97,7 @@ describe("useIndeterminateChecked", () => {
         menu: true,
       });
       return (
-        <>
+        <MenuKeyboardFocusProvider>
           <MenuItemCheckbox id="checkbox-1" {...rootProps}>
             Toggle All
           </MenuItemCheckbox>
@@ -109,7 +110,7 @@ describe("useIndeterminateChecked", () => {
               {LABELS[value]}
             </MenuItemCheckbox>
           ))}
-        </>
+        </MenuKeyboardFocusProvider>
       );
     }
 

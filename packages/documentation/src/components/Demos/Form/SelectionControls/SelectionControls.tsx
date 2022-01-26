@@ -19,9 +19,6 @@ import switchExamples from "./SwitchExamples.md";
 import AsyncSwitchExample from "./AsyncSwitchExample";
 import asyncSwitchExample from "./AsyncSwitchExample.md";
 
-import MenusWithFormControls from "./MenusWithFormControls";
-import menusWithFormControls from "./MenusWithFormControls.md";
-
 const demos: DemoConfig[] = [
   {
     name: "Checkbox and Radio Examples",
@@ -47,11 +44,6 @@ const demos: DemoConfig[] = [
     name: "Async Switch Example",
     description: asyncSwitchExample,
     children: <AsyncSwitchExample />,
-  },
-  {
-    name: "Menus with Form Controls",
-    description: menusWithFormControls,
-    children: <MenusWithFormControls />,
   },
 ];
 

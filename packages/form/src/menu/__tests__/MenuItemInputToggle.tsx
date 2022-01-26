@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import { DropdownMenu } from "@react-md/menu";
+import { DropdownMenu, MenuItemGroup } from "@react-md/menu";
+import { AppSizeListener } from "@react-md/utils";
 
 import {
   BaseMenuItemInputToggleProps,
@@ -19,9 +20,8 @@ function Test({
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <DropdownMenu
-      id="menu-id"
-      items={[
+    <AppSizeListener>
+      <DropdownMenu id="menu-id" buttonChildren="Button">
         <MenuItemInputToggle
           key="checkbox-1"
           id="menu-id-1"
@@ -35,8 +35,8 @@ function Test({
           addonPosition={addonPosition}
         >
           Checkbox
-        </MenuItemInputToggle>,
-        <div role="group" aria-label="Radio Group" key="radio">
+        </MenuItemInputToggle>
+        <MenuItemGroup aria-label="Radio Group">
           <MenuItemInputToggle
             type="radio"
             id="menu-id-2"
@@ -67,7 +67,7 @@ function Test({
           >
             Radio 2
           </MenuItemInputToggle>
-        </div>,
+        </MenuItemGroup>
         <MenuItemInputToggle
           key="switch"
           type="switch"
@@ -81,11 +81,9 @@ function Test({
           addonPosition={addonPosition}
         >
           Switch
-        </MenuItemInputToggle>,
-      ]}
-    >
-      Button
-    </DropdownMenu>
+        </MenuItemInputToggle>
+      </DropdownMenu>
+    </AppSizeListener>
   );
 }
 

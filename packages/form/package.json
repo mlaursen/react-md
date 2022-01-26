@@ -38,6 +38,7 @@
     "@react-md/button": "^4.0.3",
     "@react-md/icon": "^4.0.3",
     "@react-md/list": "^4.0.3",
+    "@react-md/menu": "^4.0.3",
     "@react-md/portal": "^4.0.3",
     "@react-md/progress": "^4.0.3",
     "@react-md/states": "^4.0.3",

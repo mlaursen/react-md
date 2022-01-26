@@ -282,26 +282,22 @@ export interface CombinedIndeterminateCheckedHookReturnValue<V extends string>
  * });
  *
  * return (
- *   <DropdownMenu
- *     id="dropdown-menu-id"
- *     items={[
+ *   <DropdownMenu id="dropdown-menu-id" buttonChildren="Button">
+ *     <MenuItemCheckbox
+ *       id="dropdown-menu-id-toggle-all"
+ *       {...rootProps}
+ *     >
+ *       Toggle All
+ *     </MenuItemCheckbox>
+ *     {values.map((value, i) => (
  *       <MenuItemCheckbox
- *         id="dropdown-menu-id-toggle-all"
- *         {...rootProps}
+ *         id={`dropdown-menu-id-${i + 1}`}
+ *         key={value}
+ *         {...getProps(value)}
  *       >
- *         Toggle All
- *       </MenuItemCheckbox>,
- *       ...values.map((value, i) => (
- *         <MenuItemCheckbox
- *           id={`dropdown-menu-id-${i + 1}`}
- *           {...getProps(value)}
- *         >
- *           {LABELS[value]}
- *         </MenuItemCheckbox>
- *       ))
- *     ]}
- *   >
- *     Button
+ *         {LABELS[value]}
+ *       </MenuItemCheckbox>
+ *     ))}
  *   </DropdownMenu>
  * );
  * ```

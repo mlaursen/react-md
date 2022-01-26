@@ -37,6 +37,7 @@
     "@react-md/elevation": "^4.0.3",
     "@react-md/icon": "^4.0.3",
     "@react-md/list": "^4.0.3",
+    "@react-md/sheet": "^4.0.3",
     "@react-md/states": "^4.0.3",
     "@react-md/theme": "^4.0.3",
     "@react-md/transition": "^4.0.3",

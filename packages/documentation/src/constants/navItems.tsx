@@ -135,6 +135,10 @@ const routes: readonly NavItem[] = [
     leftAddon: <TrendingUpSVGIcon />,
     routes: [
       {
+        href: "/v4-to-v5",
+        children: "v4 to v5",
+      },
+      {
         href: "/v3-to-v4",
         children: "v3 to v4",
       },

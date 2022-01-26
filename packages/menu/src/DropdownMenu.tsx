@@ -1,173 +1,267 @@
-import { CSSProperties, forwardRef } from "react";
-import { useIcon } from "@react-md/icon";
-import type { RenderConditionalPortalProps } from "@react-md/portal";
+import { ReactElement, RefObject, useState } from "react";
+import { useUserInteractionMode } from "@react-md/utils";
 
-import {
-  defaultMenuItemRenderer,
-  MenuItemRenderer,
-  ValidMenuItem,
-} from "./defaultMenuItemRenderer";
-import {
-  defaultMenuRenderer,
-  MenuPositionProps,
-  MenuRenderer,
-} from "./defaultMenuRenderer";
-import { MenuButton, MenuButtonProps } from "./MenuButton";
-import { useButtonVisibility } from "./useButtonVisibility";
+import { useMenuBarContext } from "./MenuBarProvider";
+import { MenuButton } from "./MenuButton";
+import { useMenuConfiguration } from "./MenuConfigurationProvider";
+import { MenuItemButton } from "./MenuItemButton";
+import { MenuRenderer } from "./MenuRenderer";
+import { MenuVisibilityProvider } from "./MenuVisibilityProvider";
+import type {
+  DropdownMenuButtonProps,
+  DropdownMenuItemProps,
+  DropdownMenuProps,
+} from "./types";
+import { useMenu } from "./useMenu";
 
-export interface BaseDropdownMenuProps
-  extends MenuPositionProps,
-    RenderConditionalPortalProps {
-  /**
-   * The id to use for the menu button and used to create the id for the menu.
-   * The menu's id will just be `${id}-menu`.
-   */
-  id: string;
+/**
+ * This component is a preset for creating dropdown menus using the
+ * {@link useMenu} hook which provides the visibility behavior and other
+ * functionality for menus. This will render as a `<Button>` by default but can
+ * be rendered as a `<MenuItem>` by existing as a child of another
+ * `DropdownMenu`.
+ *
+ * Most of the top-level props will be passed directly to the `Button` or
+ * `MenuItem` components with the exception for the `children`. The children for
+ * the `Button` or `MenuItem` can be set with the `buttonChildren` prop since
+ * the main `children` should be the `Menu`'s children.
+ *
+ * @example
+ * Simple Example
+ * ```tsx
+ * import type { ReactElement } from "react";
+ * import { DropdownMenu, MenuItem } from "@react-md/menu";
+ *
+ * function Example() {
+ *   return (
+ *     <DropdownMenu id="example-dropdown-menu" buttonChildren="Dropdown">
+ *       <MenuItem onClick={() => console.log('Clicked Item 1')}>
+ *         Item 1
+ *       </MenuItem>
+ *       <MenuItem onClick={() => console.log('Clicked Item 2')}>
+ *         Item 2
+ *       </MenuItem>
+ *     </DropdownMenu>
+ *   );
+ * }
+ * ```
+ *
+ * @example
+ * Nested Dropdown Menus
+ * ```tsx
+ * import type { ReactElement } from "react";
+ * import { DropdownMenu, MenuItem } from "@react-md/menu";
+ *
+ * function Example() {
+ *   return (
+ *     <DropdownMenu id="example-dropdown-menu" buttonChildren="Dropdown">
+ *       <MenuItem onClick={() => console.log('Clicked Item 1')}>
+ *         Item 1
+ *       </MenuItem>
+ *       <MenuItem onClick={() => console.log('Clicked Item 2')}>
+ *         Item 2
+ *       </MenuItem>
+ *       <DropdownMenu
+ *         id="nested-dropdown-menu"
+ *         buttonChildren="Nested Dropdown"
+ *       >
+ *         <MenuItem onClick={() => console.log('Clicked Item 1')}>
+ *           Nested Item 1
+ *         </MenuItem>
+ *         <MenuItem onClick={() => console.log('Clicked Item 2')}>
+ *           Nested Item 2
+ *         </MenuItem>
+ *       </DropdownMenu>
+ *     </DropdownMenu>
+ *   );
+ * }
+ * ```
+ *
+ * @remarks \@since 5.0.0
+ */
+export function DropdownMenu({
+  id,
+  onClick,
+  onKeyDown,
+  onMouseEnter,
+  onMouseLeave,
+  menuLabel,
+  menuProps: propMenuProps,
+  menuStyle,
+  menuClassName,
+  sheetProps,
+  sheetMenuProps,
+  sheetStyle,
+  sheetClassName,
+  sheetHeader: propSheetHeader,
+  sheetFooter: propSheetFooter,
+  renderAsSheet: propRenderAsSheet,
+  sheetPosition: propSheetPosition,
+  sheetVerticalSize: propSheetVerticalSize,
+  appear,
+  enter,
+  exit,
+  timeout: propTimeout,
+  classNames,
+  anchor,
+  fixedPositionOptions,
+  getFixedPositionOptions,
+  temporary,
+  portal,
+  portalInto,
+  portalIntoId,
+  onEnter,
+  onEntering,
+  onEntered,
+  onExit,
+  onExiting,
+  onExited,
+  horizontal: propHorizontal,
+  children,
+  preventScroll,
+  closeOnResize,
+  closeOnScroll,
+  iconRotatorProps: propIconRotatorProps,
+  disableFocusOnMount: propDisableFocusOnMount,
+  disableFocusOnUnmount: propDisableFocusOnUnmount,
+  ...props
+}: DropdownMenuProps): ReactElement {
+  const { disabled } = props;
+  const {
+    horizontal,
+    sheetHeader,
+    sheetFooter,
+    renderAsSheet,
+    sheetPosition,
+    sheetVerticalSize,
+  } = useMenuConfiguration({
+    horizontal: propHorizontal,
+    sheetFooter: propSheetFooter,
+    sheetHeader: propSheetHeader,
+    renderAsSheet: propRenderAsSheet,
+    sheetPosition: propSheetPosition,
+    sheetVerticalSize: propSheetVerticalSize,
+  });
 
-  /**
-   * The label to use for the menu. Either this or the `menuLabelledBy` props
-   * are required for a11y.
-   */
-  menuLabel?: string;
+  const mode = useUserInteractionMode();
+  const mouse = mode === "mouse";
+  const keyboard = mode === "keyboard";
+  const { root, menubar, menuitem, activeId, animatedOnce } =
+    useMenuBarContext();
 
-  /**
-   * The id for an element to label the menu. Either this or the `menuLabel`
-   * props are required for a11y. This will be defaulted to the `id` of the menu
-   * button for convenience since it _should_ normally label the menu but should
-   * be changed if it does not.
-   */
-  menuLabelledBy?: string;
+  const disableTransition =
+    animatedOnce && menubar && !!activeId && (mouse || keyboard);
+  const timeout = propTimeout ?? (disableTransition ? 0 : undefined);
+  const disableFocusOnMount =
+    propDisableFocusOnMount ?? (mouse && timeout === 0);
+  const disableFocusOnUnmount =
+    propDisableFocusOnUnmount ?? (mouse && timeout === 0);
 
-  /**
-   * An optional style object to pass to the `menuRenderer`/`Menu` component.
-   */
-  menuStyle?: CSSProperties;
+  let iconRotatorProps = propIconRotatorProps;
+  if (disableTransition) {
+    iconRotatorProps = {
+      animate: false,
+      ...propIconRotatorProps,
+    };
+  }
 
-  /**
-   * An optional className to pass to the `menuRenderer`/`Menu` component.
-   */
-  menuClassName?: string;
+  const [visible, setVisible] = useState(false);
+  const { menuRef, menuProps, toggleRef, toggleProps } = useMenu<
+    HTMLButtonElement | HTMLLIElement
+  >({
+    baseId: id,
+    visible,
+    setVisible,
+    disabled,
+    menuLabel,
+    horizontal,
+    onToggleClick: onClick,
+    onToggleKeyDown: onKeyDown,
+    onToggleMouseEnter: onMouseEnter,
+    onToggleMouseLeave: onMouseLeave,
+    onMenuClick: propMenuProps?.onClick,
+    onMenuKeyDown: propMenuProps?.onKeyDown,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExited,
+    anchor,
+    style: menuStyle,
+    fixedPositionOptions,
+    getFixedPositionOptions,
+    menuitem: !root && menuitem,
+    preventScroll,
+    closeOnResize,
+    closeOnScroll,
+    disableFocusOnMount,
+    disableFocusOnUnmount,
+  });
 
-  /**
-   * A custom menu renderer to use. This defaults to just rendering the `Menu`
-   * component with the base required props and a generated id from the button
-   * id.
-   */
-  menuRenderer?: MenuRenderer;
-
-  /**
-   * A list of menu items to render. Each item will be passed to the
-   * `menuItemRenderer` function.
-   */
-  items: readonly ValidMenuItem[];
-
-  /**
-   * A function to call for each `item` in the `items` list to render a
-   * ReactElement.
-   */
-  itemRenderer?: MenuItemRenderer;
-
-  /**
-   * Boolean if the menu should be visible immediately once this component
-   * mounts.
-   */
-  defaultVisible?: boolean;
-
-  /**
-   * An optional function to call when the visibility of the menu changes.
-   */
-  onVisibilityChange?: (visible: boolean) => void;
-}
-
-export interface DropdownMenuProps
-  extends Omit<MenuButtonProps, "id" | "visible" | "aria-haspopup">,
-    BaseDropdownMenuProps {}
-
-export const DropdownMenu = forwardRef<HTMLButtonElement, DropdownMenuProps>(
-  function DropdownMenu(
-    {
-      onClick: propOnClick,
-      onKeyDown: propOnKeyDown,
-      children,
-      anchor,
-      menuLabel,
-      menuLabelledBy,
-      menuStyle,
-      menuClassName,
-      menuRenderer = defaultMenuRenderer,
-      items,
-      itemRenderer = defaultMenuItemRenderer,
-      horizontal,
-      onVisibilityChange,
-      portal = true,
-      portalInto,
-      portalIntoId,
-      positionOptions,
-      defaultVisible = false,
-      closeOnScroll,
-      closeOnResize,
-      dropdownIcon: propDropdownIcon,
-      disableDropdownIcon = false,
-      ...props
-    },
-    ref
-  ) {
-    const { id } = props;
-    const dropdownIcon = useIcon("dropdown", propDropdownIcon);
-
-    const { visible, defaultFocus, onClick, onKeyDown, hide } =
-      useButtonVisibility({
-        onClick: propOnClick,
-        onKeyDown: propOnKeyDown,
-        defaultVisible,
-        onVisibilityChange,
-      });
-
-    let labelledBy = menuLabelledBy;
-    if (!menuLabel && !menuLabelledBy) {
-      labelledBy = id;
-    }
-
-    return (
-      <>
-        <MenuButton
-          {...props}
-          ref={ref}
-          aria-haspopup="menu"
-          visible={visible}
-          onClick={onClick}
-          onKeyDown={onKeyDown}
-          dropdownIcon={dropdownIcon}
-          disableDropdownIcon={disableDropdownIcon}
-        >
-          {children}
-        </MenuButton>
-        {menuRenderer(
-          {
-            "aria-label": menuLabel,
-            // ok to typecast since one of these two should be a string by this
-            // line
-            "aria-labelledby": labelledBy as string,
-            id: `${id}-menu`,
-            controlId: id,
-            style: menuStyle,
-            className: menuClassName,
-            anchor,
-            positionOptions,
-            closeOnScroll,
-            closeOnResize,
-            horizontal,
-            visible,
-            defaultFocus,
-            onRequestClose: hide,
-            children: items.map((item, i) => itemRenderer(item, `item-${i}`)),
-            portal,
-            portalInto,
-            portalIntoId,
-          },
-          items
-        )}
-      </>
+  let toggle: ReactElement;
+  if (menuitem) {
+    // see `DropdownMenuProps` about this typecast
+    const { buttonChildren, ...itemProps } = props as DropdownMenuItemProps;
+    toggle = (
+      <MenuItemButton
+        {...itemProps}
+        iconRotatorProps={iconRotatorProps}
+        {...toggleProps}
+        ref={toggleRef as RefObject<HTMLLIElement>}
+        visible={visible}
+      >
+        {buttonChildren}
+      </MenuItemButton>
+    );
+  } else {
+    // see `DropdownMenuProps` about this typecast
+    const { buttonChildren, ...buttonProps } = props as DropdownMenuButtonProps;
+    toggle = (
+      <MenuButton
+        {...buttonProps}
+        iconRotatorProps={iconRotatorProps}
+        {...toggleProps}
+        ref={toggleRef as RefObject<HTMLButtonElement>}
+        visible={visible}
+      >
+        {buttonChildren}
+      </MenuButton>
     );
   }
-);
+
+  return (
+    <MenuVisibilityProvider visible={visible} setVisible={setVisible}>
+      {toggle}
+      <MenuRenderer
+        {...menuProps}
+        menuRef={menuRef}
+        menuProps={propMenuProps}
+        menuStyle={menuProps.style}
+        menuClassName={menuClassName}
+        sheetProps={sheetProps}
+        sheetStyle={sheetStyle}
+        sheetClassName={sheetClassName}
+        sheetMenuProps={sheetMenuProps}
+        sheetHeader={sheetHeader}
+        sheetFooter={sheetFooter}
+        sheetPosition={sheetPosition}
+        sheetVerticalSize={sheetVerticalSize}
+        onRequestClose={() => setVisible(false)}
+        horizontal={horizontal}
+        renderAsSheet={renderAsSheet}
+        temporary={temporary}
+        portal={portal}
+        portalInto={portalInto}
+        portalIntoId={portalIntoId}
+        appear={appear}
+        enter={enter}
+        exit={exit}
+        onExit={onExit}
+        onExiting={onExiting}
+        timeout={timeout}
+        classNames={classNames}
+      >
+        {children}
+      </MenuRenderer>
+    </MenuVisibilityProvider>
+  );
+}

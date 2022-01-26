@@ -16,6 +16,7 @@
     { "path": "../divider/tsconfig.ejs.json" },
     { "path": "../icon/tsconfig.ejs.json" },
     { "path": "../list/tsconfig.ejs.json" },
+    { "path": "../sheet/tsconfig.ejs.json" },
     { "path": "../states/tsconfig.ejs.json" },
     { "path": "../transition/tsconfig.ejs.json" },
     { "path": "../typography/tsconfig.ejs.json" },
