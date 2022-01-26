@@ -10,6 +10,7 @@ export * from "./Dir";
 export * from "./events";
 export * from "./getPercentage";
 export * from "./hover";
+export * from "./keyboardMovement";
 export * from "./layout";
 export * from "./loop";
 export * from "./mode";

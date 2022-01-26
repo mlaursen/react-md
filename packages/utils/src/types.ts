@@ -49,3 +49,11 @@ export type LabelRequiredForA11y<Props extends LabelA11y> = RequireAtLeastOne<
   Props,
   keyof LabelA11y
 >;
+
+/**
+ * @remarks \@since 5.0.0
+ * @internal
+ */
+export interface NonNullRef<T> {
+  readonly current: T;
+}

@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getSearchText should remove font icons, aria-hidden elements, and hidden elements 1`] = `
+<div>
+  <i
+    class="rmd-icon--font"
+  >
+    close
+  </i>
+  some div text
+</div>
+`;
+
+exports[`getSearchText should remove font icons, aria-hidden elements, and hidden elements 2`] = `
+<div>
+  some div text
+  <i
+    class="rmd-icon--font"
+  >
+    close
+  </i>
+</div>
+`;
+
+exports[`getSearchText should remove font icons, aria-hidden elements, and hidden elements 3`] = `
+<div>
+  <div
+    aria-hidden="true"
+  >
+    aria hidden
+  </div>
+  some div text
+</div>
+`;
+
+exports[`getSearchText should remove font icons, aria-hidden elements, and hidden elements 4`] = `
+<div>
+  some div text
+  <div
+    aria-hidden="true"
+  >
+    aria hidden
+  </div>
+</div>
+`;
+
+exports[`getSearchText should remove font icons, aria-hidden elements, and hidden elements 5`] = `
+<div>
+  <div
+    hidden=""
+  >
+    hidden
+  </div>
+  some div text
+</div>
+`;
+
+exports[`getSearchText should remove font icons, aria-hidden elements, and hidden elements 6`] = `
+<div>
+  some div text
+  <div
+    hidden=""
+  >
+    hidden
+  </div>
+</div>
+`;
