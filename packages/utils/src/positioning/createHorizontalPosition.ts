@@ -90,13 +90,26 @@ export function createAnchoredInnerLeft(config: FixConfig): XPosition {
 
   let left = getInnerLeftCoord(config);
   let actualX: HorizontalPosition = "inner-left";
-  if (left + elWidth <= screenRight) {
+  if (left + elWidth <= screenRight && left >= vwMargin) {
+    return { actualX, left };
+  }
+
+  if (disableSwapping) {
+    if (left + elWidth > screenRight) {
+      left = screenRight - elWidth;
+    } else {
+      left = vwMargin;
+    }
+
     return { actualX, left };
   }
 
   const swappedLeft = getInnerRightCoord(config);
-  if (disableSwapping || swappedLeft < vwMargin) {
+  if (swappedLeft < vwMargin) {
     left = vwMargin;
+  } else if (swappedLeft + elWidth > screenRight) {
+    left = screenRight - elWidth;
+    actualX = "inner-right";
   } else {
     left = swappedLeft;
     actualX = "inner-right";
@@ -141,17 +154,15 @@ export function createAnchoredInnerRight(config: FixConfig): XPosition {
 
   let left = getInnerRightCoord(config);
   let actualX: HorizontalPosition = "inner-right";
-
   if (left >= vwMargin) {
-    return { actualX, left };
+    return { actualX, left: Math.min(left, screenRight - elWidth) };
   }
 
   const swappedLeft = getInnerLeftCoord(config);
-
   if (disableSwapping || swappedLeft + elWidth > screenRight) {
-    left = screenRight - elWidth;
+    left = vwMargin;
   } else {
-    left = swappedLeft;
+    left = Math.max(swappedLeft, vwMargin);
     actualX = "inner-left";
   }
 
@@ -300,7 +311,5 @@ export function createHorizontalPosition({
       return createAnchoredInnerRight(config);
     case "right":
       return createAnchoredRight(config);
-    default:
-      throw new Error("This should never happen");
   }
 }

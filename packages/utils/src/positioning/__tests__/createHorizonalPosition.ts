@@ -5,8 +5,10 @@ import {
   createAnchoredLeft,
   createAnchoredRight,
   createEqualWidth,
+  createHorizontalPosition,
   FixConfig,
 } from "../createHorizontalPosition";
+
 import {
   getCenterXCoord,
   getInnerLeftCoord,
@@ -137,10 +139,10 @@ describe("createAnchoredLeft", () => {
   });
 
   it("should ignore the disableSwapping argument", () => {
-    const updatedConfig1 = { ...config1, disableSwapping: true };
-    const updatedConfig2 = { ...config2, disableSwapping: true };
-    const updatedConfig3 = { ...config3, disableSwapping: true };
-    const updatedConfig4 = { ...config4, disableSwapping: true };
+    const updatedConfig1: FixConfig = { ...config1, disableSwapping: true };
+    const updatedConfig2: FixConfig = { ...config2, disableSwapping: true };
+    const updatedConfig3: FixConfig = { ...config3, disableSwapping: true };
+    const updatedConfig4: FixConfig = { ...config4, disableSwapping: true };
 
     expect(createAnchoredLeft(updatedConfig1)).toEqual({
       left: getLeftCoord(updatedConfig1),
@@ -161,10 +163,10 @@ describe("createAnchoredLeft", () => {
   });
 
   it("should return the vwMargin value as the left value if swapping is disabled", () => {
-    const updatedConfig5 = { ...config5, disableSwapping: true };
-    const updatedConfig6 = { ...config6, disableSwapping: true };
-    const updatedConfig7 = { ...config7, disableSwapping: true };
-    const updatedConfig8 = { ...config8, disableSwapping: true };
+    const updatedConfig5: FixConfig = { ...config5, disableSwapping: true };
+    const updatedConfig6: FixConfig = { ...config6, disableSwapping: true };
+    const updatedConfig7: FixConfig = { ...config7, disableSwapping: true };
+    const updatedConfig8: FixConfig = { ...config8, disableSwapping: true };
     expect(createAnchoredLeft(updatedConfig5)).toEqual({
       left: 0,
       actualX: "left",
@@ -184,10 +186,10 @@ describe("createAnchoredLeft", () => {
   });
 
   it("should return the vwMargin value as the left value if swapping to the right will force it out of the viewport right bounds", () => {
-    const updatedConfig5 = { ...config5, screenRight: 200 };
-    const updatedConfig6 = { ...config6, screenRight: 200 };
-    const updatedConfig7 = { ...config7, screenRight: 200 };
-    const updatedConfig8 = { ...config8, screenRight: 200 };
+    const updatedConfig5: FixConfig = { ...config5, screenRight: 200 };
+    const updatedConfig6: FixConfig = { ...config6, screenRight: 200 };
+    const updatedConfig7: FixConfig = { ...config7, screenRight: 200 };
+    const updatedConfig8: FixConfig = { ...config8, screenRight: 200 };
     expect(createAnchoredLeft(updatedConfig5)).toEqual({
       left: 0,
       actualX: "left",
@@ -246,16 +248,35 @@ describe("createAnchoredInnerLeft", () => {
     });
   });
 
-  it("should return the vwMargin if swapping is disabled", () => {
-    const updatedConfig1 = { ...rightBoundsConfig1, disableSwapping: true };
-    const updatedConfig2 = { ...rightBoundsConfig2, disableSwapping: true };
+  it("should just update the position to be within the viewport if swapping is disabled", () => {
+    const leftOutOfBounds1: FixConfig = {
+      ...leftBoundsConfig1,
+      disableSwapping: true,
+      containerRect: {
+        ...leftBoundsConfig1.containerRect,
+        left: -20,
+      },
+    };
+    const leftOutOfBounds2: FixConfig = {
+      ...leftOutOfBounds1,
+      vwMargin: 8,
+    };
 
-    expect(createAnchoredInnerLeft(updatedConfig1)).toEqual({
+    const tooWideConfig1: FixConfig = {
+      ...rightBoundsConfig1,
+      disableSwapping: true,
+    };
+
+    expect(createAnchoredInnerLeft(leftOutOfBounds1)).toEqual({
       left: 0,
       actualX: "inner-left",
     });
-    expect(createAnchoredInnerLeft(updatedConfig2)).toEqual({
+    expect(createAnchoredInnerLeft(leftOutOfBounds2)).toEqual({
       left: 8,
+      actualX: "inner-left",
+    });
+    expect(createAnchoredInnerLeft(tooWideConfig1)).toEqual({
+      left: 25,
       actualX: "inner-left",
     });
   });
@@ -263,14 +284,14 @@ describe("createAnchoredInnerLeft", () => {
   it("should return the vwMargin if the swapped inner right values are less than the vwMargin", () => {
     // need to move the container rect a bit more into the page so that the fixed element will
     // no longer be within the viewport
-    const updatedConfig1 = {
+    const updatedConfig1: FixConfig = {
       ...leftBoundsConfig1,
       containerRect: {
         ...leftBoundsConfig1.containerRect,
         left: 40,
       },
     };
-    const updatedConfig2 = {
+    const updatedConfig2: FixConfig = {
       ...leftBoundsConfig2,
       containerRect: {
         ...leftBoundsConfig2.containerRect,
@@ -294,6 +315,29 @@ describe("createAnchoredInnerLeft", () => {
     });
     expect(createAnchoredInnerLeft(rightBoundsConfig2)).toEqual({
       left: getInnerRightCoord(rightBoundsConfig2),
+      actualX: "inner-right",
+    });
+
+    const scrolledOffscreenRight: FixConfig = {
+      xMargin: 0,
+      vwMargin: 0,
+      elWidth: 100,
+      screenRight: vw,
+      disableSwapping: false,
+      containerRect: {
+        top: 0,
+        bottom: 0,
+        left: vw - 80,
+        right: vw - 40,
+        height: 40,
+        width: 120,
+        x: 0,
+        y: 0,
+        toJSON() {},
+      },
+    };
+    expect(createAnchoredInnerLeft(scrolledOffscreenRight)).toEqual({
+      left: vw - 100,
       actualX: "inner-right",
     });
   });
@@ -379,15 +423,21 @@ describe("createAnchoredInnerRight", () => {
   });
 
   it("should return the screenRight minus the element's width as the left value if swapping is disabled", () => {
-    const updatedConfig1 = { ...leftBoundsConfig1, disableSwapping: true };
-    const updatedConfig2 = { ...leftBoundsConfig2, disableSwapping: true };
+    const updatedConfig1: FixConfig = {
+      ...leftBoundsConfig1,
+      disableSwapping: true,
+    };
+    const updatedConfig2: FixConfig = {
+      ...leftBoundsConfig2,
+      disableSwapping: true,
+    };
 
     expect(createAnchoredInnerRight(updatedConfig1)).toEqual({
-      left: 25,
+      left: 0,
       actualX: "inner-right",
     });
     expect(createAnchoredInnerRight(updatedConfig2)).toEqual({
-      left: 25,
+      left: 8,
       actualX: "inner-right",
     });
   });
@@ -395,14 +445,14 @@ describe("createAnchoredInnerRight", () => {
   it("should return the screenRight minus the element's width as the left value if the swapped inner left values are less than the vwMargin", () => {
     // need to move the container rect a bit more into the page so that the fixed element will
     // no longer be within the viewport
-    const updatedConfig1 = {
+    const updatedConfig1: FixConfig = {
       ...leftBoundsConfig1,
       containerRect: {
         ...leftBoundsConfig1.containerRect,
         left: 40,
       },
     };
-    const updatedConfig2 = {
+    const updatedConfig2: FixConfig = {
       ...leftBoundsConfig2,
       containerRect: {
         ...leftBoundsConfig2.containerRect,
@@ -410,11 +460,11 @@ describe("createAnchoredInnerRight", () => {
       },
     };
     expect(createAnchoredInnerRight(updatedConfig1)).toEqual({
-      left: 25,
+      left: 0,
       actualX: "inner-right",
     });
     expect(createAnchoredInnerRight(updatedConfig2)).toEqual({
-      left: 25,
+      left: 8,
       actualX: "inner-right",
     });
   });
@@ -425,7 +475,7 @@ describe("createAnchoredInnerRight", () => {
       actualX: "inner-left",
     });
     expect(createAnchoredInnerRight(leftBoundsConfig2)).toEqual({
-      left: getInnerLeftCoord(leftBoundsConfig2),
+      left: 8,
       actualX: "inner-left",
     });
   });
@@ -452,10 +502,10 @@ describe("createAnchoredRight", () => {
   });
 
   it("should ignore the disableSwapping argument", () => {
-    const updatedConfig1 = { ...config1, disableSwapping: true };
-    const updatedConfig2 = { ...config2, disableSwapping: true };
-    const updatedConfig3 = { ...config3, disableSwapping: true };
-    const updatedConfig4 = { ...config4, disableSwapping: true };
+    const updatedConfig1: FixConfig = { ...config1, disableSwapping: true };
+    const updatedConfig2: FixConfig = { ...config2, disableSwapping: true };
+    const updatedConfig3: FixConfig = { ...config3, disableSwapping: true };
+    const updatedConfig4: FixConfig = { ...config4, disableSwapping: true };
 
     expect(createAnchoredRight(updatedConfig1)).toEqual({
       left: getRightCoord(updatedConfig1),
@@ -622,6 +672,100 @@ describe("createEqualWidth", () => {
       minWidth: 390,
       right: 16,
       actualX: "center",
+    });
+  });
+
+  it("should use the initialX value instead of the containerRect.left and xMargin if it was provided", () => {
+    expect(createEqualWidth({ ...options1, initialX: 150 })).toEqual({
+      left: 150,
+      width: 400,
+      actualX: "center",
+    });
+  });
+});
+
+describe("createHorizontalPosition", () => {
+  it("should return the correct positions...", () => {
+    const equalWidthOptions = {
+      x: "inner-left",
+      vw: 500,
+      vwMargin: 0,
+      xMargin: 0,
+      width: "equal",
+      elWidth: 120,
+      initialX: undefined,
+      containerRect: containerRect1,
+      disableSwapping: false,
+    } as const;
+
+    expect(createHorizontalPosition(equalWidthOptions)).toEqual({
+      left: containerRect1.left,
+      width: containerRect1.width,
+      actualX: "inner-left",
+    });
+
+    const minWidthOptions = {
+      ...equalWidthOptions,
+      width: "min",
+    } as const;
+    expect(createHorizontalPosition(minWidthOptions)).toEqual({
+      left: containerRect1.left,
+      minWidth: containerRect1.width,
+      actualX: "inner-left",
+    });
+
+    const tooLargeOptions = {
+      ...equalWidthOptions,
+      elWidth: 560,
+      width: "auto",
+    } as const;
+    expect(createHorizontalPosition(tooLargeOptions)).toEqual({
+      left: 0,
+      right: 0,
+      actualX: "inner-left",
+    });
+
+    const simpleLeftOptions = {
+      ...equalWidthOptions,
+      x: "left",
+      width: "auto",
+    } as const;
+    const simpleInnerLeftOptions = {
+      ...simpleLeftOptions,
+      x: "inner-left",
+    } as const;
+    const simpleCenterOptions = {
+      ...simpleInnerLeftOptions,
+      x: "center",
+    } as const;
+    const simpleInnerRightOptions = {
+      ...simpleCenterOptions,
+      x: "inner-right",
+    } as const;
+    const simpleRightOptions = {
+      ...simpleInnerRightOptions,
+      x: "right",
+    } as const;
+
+    expect(createHorizontalPosition(simpleLeftOptions)).toEqual({
+      left: 200,
+      actualX: "right",
+    });
+    expect(createHorizontalPosition(simpleInnerLeftOptions)).toEqual({
+      left: 100,
+      actualX: "inner-left",
+    });
+    expect(createHorizontalPosition(simpleCenterOptions)).toEqual({
+      left: 90,
+      actualX: "center",
+    });
+    expect(createHorizontalPosition(simpleInnerRightOptions)).toEqual({
+      left: 80,
+      actualX: "inner-right",
+    });
+    expect(createHorizontalPosition(simpleRightOptions)).toEqual({
+      left: 200,
+      actualX: "right",
     });
   });
 });

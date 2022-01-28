@@ -9,7 +9,7 @@ exports[`useFixedPositioning should allow for configuring the fixed position 1`]
   </button>
   <div
     data-testid="element"
-    style="left: 0px; top: 0px; position: fixed; transform-origin: 0 0;"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
   >
     Some content.
   </div>

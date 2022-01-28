@@ -89,7 +89,7 @@ export function createAnchoredAbove(config: FixConfig): YPosition {
 
   const swappedTop = getBelowCoord(config);
   if (disableSwapping || swappedTop + elHeight > screenBottom) {
-    top = vhMargin;
+    top = Math.min(top, vhMargin);
   } else {
     actualY = "below";
     top = swappedTop;
@@ -130,7 +130,7 @@ export function createAnchoredTop(config: FixConfig): YPosition {
 
   const swappedTop = getBottomCoord(config);
   if (disableSwapping || swappedTop < vhMargin) {
-    top = vhMargin;
+    top = Math.max(top, vhMargin);
   } else {
     actualY = "bottom";
     top = swappedTop;
@@ -184,7 +184,7 @@ export function createAnchoredBottom(config: FixConfig): YPosition {
 
   const swappedTop = getTopCoord(config);
   if (disableSwapping || swappedTop + elHeight > screenBottom) {
-    top = screenBottom - elHeight;
+    top = Math.min(top, screenBottom - elHeight);
   } else {
     actualY = "top";
     top = swappedTop;
@@ -241,7 +241,7 @@ export function createAnchoredBelow(config: FixConfig): YPosition {
 
   const swappedTop = getAboveCoord(config);
   if (disableSwapping || swappedTop < vhMargin) {
-    top = screenBottom - elHeight;
+    top = Math.max(top, screenBottom - elHeight);
   } else {
     actualY = "above";
     top = swappedTop;
@@ -300,7 +300,5 @@ export function createVerticalPosition({
       return createAnchoredBottom(config);
     case "below":
       return createAnchoredBelow(config);
-    default:
-      throw new Error("This should never happen");
   }
 }
