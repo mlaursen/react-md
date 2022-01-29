@@ -5,6 +5,7 @@ import {
   useEffect,
   useRef,
 } from "react";
+import { FABPosition } from "@react-md/button";
 import { useFixedPositioning } from "@react-md/transition";
 import { containsElement, useScrollLock } from "@react-md/utils";
 
@@ -26,6 +27,14 @@ export interface MenuHookOptions<ToggleEl extends HTMLElement>
    * @defaultValue `false`
    */
   disabled?: boolean;
+
+  /**
+   * This is just used to update the default anchor behavior.
+   *
+   * @see {@link FABPosition}
+   * @defaultValue `null`
+   */
+  floating?: FABPosition;
 
   /**
    * An optional click handler to merge with the
@@ -161,6 +170,7 @@ export function useMenu<ToggleEl extends HTMLElement>(
     menuLabel,
     visible,
     setVisible,
+    floating = null,
     onMenuClick = noop,
     onMenuKeyDown = noop,
     onToggleClick = noop,
@@ -199,7 +209,7 @@ export function useMenu<ToggleEl extends HTMLElement>(
   // interacting with the menu
   const cancelExitFocus = useRef(false);
   const anchor =
-    propAnchor ?? getDefaultAnchor({ menubar, menuitem, horizontal });
+    propAnchor ?? getDefaultAnchor({ menubar, menuitem, floating, horizontal });
   const menuNodeRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<ToggleEl | null>(null);
   const {

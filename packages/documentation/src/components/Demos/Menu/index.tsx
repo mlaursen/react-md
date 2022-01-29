@@ -5,12 +5,16 @@ import {
 } from "@react-md/menu";
 import { IconProvider } from "@react-md/icon";
 
+import { DemoConfig } from "../types";
 import DemoPage from "../DemoPage";
 
 import README from "./README.md";
 
 import SimpleExample from "./SimpleExample";
 import simpleExample from "./SimpleExample.md";
+
+import FloatingActionButtonMenus from "./FloatingActionButtonMenus";
+import floatingActionButtonMenus from "./FloatingActionButtonMenus.md";
 
 import ConfigurableDropdownMenu from "./ConfigurableDropdownMenu";
 import configurableDropdownMenu from "./ConfigurableDropdownMenu.md";
@@ -30,11 +34,17 @@ import menusWithFormComponents from "./MenusWithFormComponents.md";
 import HoverableMenus from "./HoverableMenus";
 import hoverableMenus from "./HoverableMenus.md";
 
-const demos = [
+const demos: DemoConfig[] = [
   {
     name: "Simple Example",
     description: simpleExample,
     children: <SimpleExample />,
+  },
+  {
+    name: "Floating Action Button Menus",
+    description: floatingActionButtonMenus,
+    children: <FloatingActionButtonMenus />,
+    emulated: true,
   },
   {
     name: "Configurable Dropdown Menu",

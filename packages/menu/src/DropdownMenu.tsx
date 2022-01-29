@@ -1,4 +1,5 @@
 import { ReactElement, RefObject, useState } from "react";
+import { FABPosition } from "@react-md/button";
 import { useUserInteractionMode } from "@react-md/utils";
 
 import { useMenuBarContext } from "./MenuBarProvider";
@@ -165,6 +166,11 @@ export function DropdownMenu({
     };
   }
 
+  let floating: FABPosition = null;
+  if (!menuitem) {
+    ({ floating = null } = props as DropdownMenuButtonProps);
+  }
+
   const [visible, setVisible] = useState(false);
   const { menuRef, menuProps, toggleRef, toggleProps } = useMenu<
     HTMLButtonElement | HTMLLIElement
@@ -181,6 +187,7 @@ export function DropdownMenu({
     onToggleMouseLeave: onMouseLeave,
     onMenuClick: propMenuProps?.onClick,
     onMenuKeyDown: propMenuProps?.onKeyDown,
+    floating,
     onEnter,
     onEntering,
     onEntered,

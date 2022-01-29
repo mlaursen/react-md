@@ -31,9 +31,10 @@ export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
       iconAfter = true,
       iconRotatorProps,
       textIconSpacingProps,
-      theme = "clear",
-      themeType = "flat",
-      buttonType = "text",
+      floating,
+      theme = floating ? "secondary" : "clear",
+      themeType = floating ? "contained" : "flat",
+      buttonType = floating ? "icon" : "text",
       disableDropdownIcon = buttonType === "icon",
       children,
       visible,
@@ -58,6 +59,7 @@ export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
         theme={theme}
         themeType={themeType}
         buttonType={buttonType}
+        floating={floating}
       >
         <TextIconSpacing
           icon={icon}

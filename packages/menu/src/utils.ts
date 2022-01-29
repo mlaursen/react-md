@@ -1,8 +1,12 @@
+import { FABPosition } from "@react-md/button";
 import {
   BELOW_CENTER_ANCHOR,
   BELOW_INNER_LEFT_ANCHOR,
+  BOTTOM_INNER_LEFT_ANCHOR,
+  BOTTOM_INNER_RIGHT_ANCHOR,
   CENTER_RIGHT_ANCHOR,
   PositionAnchor,
+  TOP_INNER_LEFT_ANCHOR,
   TOP_INNER_RIGHT_ANCHOR,
   TOP_RIGHT_ANCHOR,
 } from "@react-md/utils";
@@ -22,6 +26,7 @@ export const noop = (): void => {
 interface DefaultAnchorOptions {
   menubar: boolean;
   menuitem: boolean;
+  floating: FABPosition;
   horizontal: boolean;
 }
 
@@ -32,8 +37,20 @@ interface DefaultAnchorOptions {
 export const getDefaultAnchor = ({
   menubar,
   menuitem,
+  floating,
   horizontal,
 }: DefaultAnchorOptions): PositionAnchor => {
+  switch (floating) {
+    case "bottom-left":
+      return BOTTOM_INNER_LEFT_ANCHOR;
+    case "bottom-right":
+      return BOTTOM_INNER_RIGHT_ANCHOR;
+    case "top-left":
+      return TOP_INNER_LEFT_ANCHOR;
+    case "top-right":
+      return TOP_INNER_RIGHT_ANCHOR;
+  }
+
   if (menubar) {
     return menuitem ? CENTER_RIGHT_ANCHOR : BELOW_INNER_LEFT_ANCHOR;
   }
