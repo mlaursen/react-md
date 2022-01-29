@@ -21,6 +21,9 @@ export default function FloatingActionButtonMenus(): ReactElement {
           aria-label="Options..."
           floating={position}
           buttonChildren={<MoreVertSVGIcon />}
+          fixedPositionOptions={{
+            disableSwapping: true,
+          }}
         />
       ))}
     </>

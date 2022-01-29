@@ -2,8 +2,27 @@
 // https://www.w3.org/TR/wai-aria-practices/examples/menubar/menubar-editor.html
 import { ReactElement, useState } from "react";
 import { AppBar } from "@react-md/app-bar";
-import { MenuItemCheckbox, MenuItemRadio, TextArea } from "@react-md/form";
-import { AddSVGIcon, RemoveSVGIcon } from "@react-md/material-icons";
+import { Button } from "@react-md/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@react-md/dialog";
+import {
+  Form,
+  MenuItemCheckbox,
+  MenuItemRadio,
+  TextArea,
+  TextFieldWithMessage,
+  useNumberField,
+} from "@react-md/form";
+import {
+  AddSVGIcon,
+  BuildSVGIcon,
+  RemoveSVGIcon,
+} from "@react-md/material-icons";
 import {
   DropdownMenu,
   MenuBar,
@@ -12,7 +31,10 @@ import {
   MenuItemSeparator,
 } from "@react-md/menu";
 import scssVariables from "@react-md/theme/dist/scssVariables";
+import { Typography } from "@react-md/typography";
 import type { CalculateFixedPositionOptions } from "@react-md/utils";
+
+import Code from "components/Code";
 
 import styles from "./HoverableMenus.module.scss";
 import InfiniteDropdownMenu from "./InfiniteDropdownMenu";
@@ -87,6 +109,13 @@ export default function HoverableMenus(): ReactElement {
       return FONT_SIZES[nextIndex].value;
     });
   };
+  const [visible, setVisible] = useState(false);
+  const onRequestClose = (): void => setVisible(false);
+  const [hoverTimeout, textFieldProps, { reset }] = useNumberField({
+    id: "hoverable-menus-hover-timeout",
+    min: 0,
+    max: 3000,
+  });
 
   return (
     <div className={styles.container}>
@@ -99,7 +128,7 @@ export default function HoverableMenus(): ReactElement {
           // will update the behavior so the "hover mode" behavior will be
           // active after the user has hovered over one of the `DropdownMenu`s
           // for that amount of time in milliseconds
-          // hoverTimeout={0}
+          hoverTimeout={hoverTimeout}
         >
           <DropdownMenu
             id="menubar-item-1"
@@ -240,6 +269,64 @@ export default function HoverableMenus(): ReactElement {
         }}
         defaultValue={EXAMPLE_TEXT}
       />
+      <Button
+        theme="warning"
+        floating="bottom-left"
+        aria-label="Configure"
+        onClick={() => setVisible((prevVisible) => !prevVisible)}
+      >
+        <BuildSVGIcon />
+      </Button>
+      <Dialog
+        id="configure-dialog"
+        aria-labelledby="configure-dialog-title"
+        modal
+        visible={visible}
+        onRequestClose={onRequestClose}
+        className={styles.dialog}
+      >
+        <DialogHeader>
+          <DialogTitle id="configure-dialog-title">
+            Configure Hover Timeout
+          </DialogTitle>
+        </DialogHeader>
+        <DialogContent>
+          <Form
+            id="configure-form"
+            onSubmit={onRequestClose}
+            onReset={() => {
+              reset();
+              onRequestClose();
+            }}
+          >
+            <TextFieldWithMessage
+              {...textFieldProps}
+              label="Hover Timeout"
+              placeholder="0"
+            />
+          </Form>
+          <Typography>
+            The amount of time the user must over over a menu in milliseconds
+            before the hover mode behavior is enabled.
+          </Typography>
+          <Typography>
+            If this is <Code>undefined</Code>, the user must click one of the
+            dropdown buttons before the hover mode is enabled.
+          </Typography>
+          <Typography>
+            If this is set to <Code>0</Code>, the menus will become visible
+            immediately on hover.
+          </Typography>
+        </DialogContent>
+        <DialogFooter>
+          <Button form="configure-form" type="reset" theme="warning">
+            Reset
+          </Button>
+          <Button form="configure-form" type="submit" theme="primary">
+            Confirm
+          </Button>
+        </DialogFooter>
+      </Dialog>
     </div>
   );
 }

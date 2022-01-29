@@ -5,20 +5,19 @@ import {
   MenuItemRadio,
   MenuItemSwitch,
   MenuItemTextField,
+  Select,
   useIndeterminateChecked,
+  useSelectState,
 } from "@react-md/form";
 import { SearchSVGIcon } from "@react-md/material-icons";
-import { DropdownMenu, MenuItemGroup, MenuItemSeparator } from "@react-md/menu";
+import {
+  DropdownMenu,
+  MenuConfigurationProvider,
+  MenuItemGroup,
+  MenuItemSeparator,
+  RenderMenuAsSheet,
+} from "@react-md/menu";
 import { TextDecoration, Typography } from "@react-md/typography";
-
-type Decoration = "none" | "underline" | "overline" | "strike-through";
-
-const decorations: readonly Decoration[] = [
-  "none",
-  "underline",
-  "overline",
-  "strike-through",
-];
 
 const values = ["a", "b", "c", "d"] as const;
 const labels = {
@@ -28,33 +27,19 @@ const labels = {
   d: "Label 4",
 } as const;
 
-const getDecoration = (decoration: Decoration): TextDecoration | undefined => {
-  if (decoration == "none") {
-    return undefined;
-  }
-
-  return decoration === "strike-through" ? "line-through" : decoration;
-};
-
-export default function MenusWithFormComponents(): ReactElement {
+function CheckboxesDropdown(): ReactElement {
   const [bold, setBold] = useState(false);
   const [italic, setItalic] = useState(false);
-  const [decoration, setDecoration] = useState<Decoration>("none");
-  const [checked, setChecked] = useState(false);
   const { rootProps, getProps } = useIndeterminateChecked(values, {
     menu: true,
   });
+
   return (
     <DropdownMenu
-      id="dropdown-menu-with-form-components"
-      buttonChildren="Dropdown"
+      id="dropdown-menu-with-form-components-1"
+      buttonChildren="Checkboxes"
+      themeType="outline"
     >
-      <MenuItemTextField
-        id="dropdown-menu-text-field"
-        placeholder="Search..."
-        rightChildren={<SearchSVGIcon />}
-      />
-      <MenuItemSeparator />
       <MenuItemCheckbox id="some-group-id-root" {...rootProps}>
         Toggle All
       </MenuItemCheckbox>
@@ -82,7 +67,37 @@ export default function MenusWithFormComponents(): ReactElement {
       >
         Italic
       </MenuItemCheckbox>
-      <MenuItemSeparator />
+    </DropdownMenu>
+  );
+}
+
+type Decoration = "none" | "underline" | "overline" | "strike-through";
+
+const decorations: readonly Decoration[] = [
+  "none",
+  "underline",
+  "overline",
+  "strike-through",
+];
+
+const getDecoration = (decoration: Decoration): TextDecoration | undefined => {
+  if (decoration == "none") {
+    return undefined;
+  }
+
+  return decoration === "strike-through" ? "line-through" : decoration;
+};
+
+function RadioAndSwitchDropdown(): ReactElement {
+  const [decoration, setDecoration] = useState<Decoration>("none");
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <DropdownMenu
+      id="dropdown-menu-with-form-components-2"
+      buttonChildren="Switch/Radio"
+      themeType="outline"
+    >
       {/* see https://www.w3.org/TR/wai-aria-1.1/#menuitemradio why this is */}
       {/* wrapped in a group */}
       <MenuItemGroup aria-label="Font Decoration">
@@ -107,6 +122,23 @@ export default function MenusWithFormComponents(): ReactElement {
       >
         Do Stuff?
       </MenuItemSwitch>
+    </DropdownMenu>
+  );
+}
+
+function TextFieldAndFileInputDropdown(): ReactElement {
+  return (
+    <DropdownMenu
+      id="dropdown-menu-with-form-components-3"
+      buttonChildren="Inputs"
+      themeType="outline"
+    >
+      <MenuItemTextField
+        aria-label="Search"
+        id="dropdown-menu-search-field"
+        placeholder="Search..."
+        rightChildren={<SearchSVGIcon />}
+      />
       <MenuItemSeparator />
       <MenuItemFileInput
         id="upload-file-menu-item"
@@ -119,5 +151,35 @@ export default function MenusWithFormComponents(): ReactElement {
         Upload
       </MenuItemFileInput>
     </DropdownMenu>
+  );
+}
+
+const choices = ["phone", "true", "false"] as const;
+type Choices = typeof choices[number];
+
+export default function MenusWithFormComponents(): ReactElement {
+  const [choice, handleChoiceChange] = useSelectState<Choices>("phone");
+  let renderAsSheet: RenderMenuAsSheet;
+  if (choice === "phone") {
+    renderAsSheet = choice;
+  } else {
+    renderAsSheet = choice === "true";
+  }
+  return (
+    <MenuConfigurationProvider renderAsSheet={renderAsSheet}>
+      <Select
+        id="menu-form-component-sheet"
+        options={choices}
+        value={choice}
+        onChange={handleChoiceChange}
+        label="renderAsSheet"
+        style={{ marginBottom: "2rem" }}
+      />
+      <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+        <CheckboxesDropdown />
+        <RadioAndSwitchDropdown />
+        <TextFieldAndFileInputDropdown />
+      </div>
+    </MenuConfigurationProvider>
   );
 }

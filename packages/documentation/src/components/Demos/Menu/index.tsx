@@ -13,11 +13,11 @@ import README from "./README.md";
 import SimpleExample from "./SimpleExample";
 import simpleExample from "./SimpleExample.md";
 
-import FloatingActionButtonMenus from "./FloatingActionButtonMenus";
-import floatingActionButtonMenus from "./FloatingActionButtonMenus.md";
-
 import ConfigurableDropdownMenu from "./ConfigurableDropdownMenu";
 import configurableDropdownMenu from "./ConfigurableDropdownMenu.md";
+
+import FloatingActionButtonMenus from "./FloatingActionButtonMenus";
+import floatingActionButtonMenus from "./FloatingActionButtonMenus.md";
 
 import SimpleContextMenu from "./SimpleContextMenu";
 import simpleContextMenu from "./SimpleContextMenu.md";
@@ -41,15 +41,16 @@ const demos: DemoConfig[] = [
     children: <SimpleExample />,
   },
   {
-    name: "Floating Action Button Menus",
-    description: floatingActionButtonMenus,
-    children: <FloatingActionButtonMenus />,
-    emulated: true,
-  },
-  {
     name: "Configurable Dropdown Menu",
     description: configurableDropdownMenu,
     children: <ConfigurableDropdownMenu />,
+  },
+  {
+    name: "Floating Action Button Menus",
+    description: floatingActionButtonMenus,
+    children: <FloatingActionButtonMenus />,
+    emulated: { fabOffset: true },
+    disableCard: true,
   },
   {
     name: "Simple Context Menu",
