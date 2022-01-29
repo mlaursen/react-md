@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItemFileInput should call the onClick handlers correctly 1`] = `
+<div
+  aria-labelledby="dropdown-menu"
+  class="rmd-menu rmd-menu--elevated"
+  id="dropdown-menu-menu"
+  role="menu"
+  style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+      id="file-input-menuitem"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        file_upload
+      </i>
+      <span
+        class="rmd-list-item__text"
+      >
+        <input
+          aria-label="Upload"
+          class="rmd-file-input"
+          id="file-input"
+          type="file"
+          value=""
+        />
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`MenuItemFileInput should work correctly 1`] = `
+<div
+  aria-labelledby="dropdown-menu"
+  class="rmd-menu rmd-menu--elevated"
+  id="dropdown-menu-menu"
+  role="menu"
+  style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+  tabindex="-1"
+>
+  <ul
+    class="rmd-list"
+    role="none"
+  >
+    <li
+      class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+      id="file-input-menuitem"
+      role="menuitem"
+      tabindex="-1"
+    >
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon--before rmd-list-item__addon rmd-list-item__addon--before"
+      >
+        file_upload
+      </i>
+      <span
+        class="rmd-list-item__text"
+      >
+        <input
+          aria-label="Upload"
+          class="rmd-file-input"
+          id="file-input"
+          type="file"
+          value=""
+        />
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </li>
+  </ul>
+</div>
+`;

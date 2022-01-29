@@ -4,7 +4,6 @@ import { ConditionalPortal } from "@react-md/portal";
 import { useScaleTransition } from "@react-md/transition";
 import type { LabelRequiredForA11y } from "@react-md/utils";
 
-import { MenuBarProvider } from "./MenuBarProvider";
 import { MenuKeyboardFocusProvider } from "./MenuKeyboardFocusProvider";
 import { MenuWidget } from "./MenuWidget";
 import type { MenuProps } from "./types";
@@ -68,29 +67,27 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
         portalIntoId={portalIntoId}
       >
         {rendered && (
-          <MenuBarProvider root={false} defaultActiveId={props.id}>
-            <MenuKeyboardFocusProvider horizontal={horizontal}>
-              <MenuWidget
-                hidden={!temporary && stage === "exited"}
-                {...props}
-                {...elementProps}
+          <MenuKeyboardFocusProvider horizontal={horizontal}>
+            <MenuWidget
+              hidden={!temporary && stage === "exited"}
+              {...props}
+              {...elementProps}
+              horizontal={horizontal}
+            >
+              <List
                 horizontal={horizontal}
+                onClick={(event) => {
+                  // this makes it so you can click on the menu/list without
+                  // closing the menu
+                  if (event.target === event.currentTarget) {
+                    event.stopPropagation();
+                  }
+                }}
               >
-                <List
-                  horizontal={horizontal}
-                  onClick={(event) => {
-                    // this makes it so you can click on the menu/list without
-                    // closing the menu
-                    if (event.target === event.currentTarget) {
-                      event.stopPropagation();
-                    }
-                  }}
-                >
-                  {children}
-                </List>
-              </MenuWidget>
-            </MenuKeyboardFocusProvider>
-          </MenuBarProvider>
+                {children}
+              </List>
+            </MenuWidget>
+          </MenuKeyboardFocusProvider>
         )}
       </ConditionalPortal>
     );

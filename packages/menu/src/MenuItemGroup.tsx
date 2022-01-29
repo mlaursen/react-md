@@ -3,7 +3,9 @@ import { List, ListElement, ListProps } from "@react-md/list";
 import { LabelRequiredForA11y } from "@react-md/utils";
 
 /** @remarks \@since 5.0.0 */
-export type MenuItemGroupProps = LabelRequiredForA11y<ListProps> & {
+export type MenuItemGroupProps = LabelRequiredForA11y<
+  Omit<ListProps, "role">
+> & {
   children: ReactNode;
 };
 
@@ -68,9 +70,9 @@ export type MenuItemGroupProps = LabelRequiredForA11y<ListProps> & {
  * @remarks \@since 5.0.0
  */
 export const MenuItemGroup = forwardRef<ListElement, MenuItemGroupProps>(
-  function MenuItemGroup({ role = "group", children, ...props }, ref) {
+  function MenuItemGroup({ children, ...props }, ref) {
     return (
-      <List role={role} {...props} ref={ref}>
+      <List {...props} ref={ref} role="group">
         {children}
       </List>
     );

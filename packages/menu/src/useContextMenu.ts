@@ -41,13 +41,13 @@ export interface ContextMenuHookOptions
   onContextMenu?<E extends HTMLElement>(event: MouseEvent<E>): void;
 
   /**
-   * Unlike other menus, context menus will default to closing if the page is
-   * scrolled.
+   * Unlike other menus, context menus will default to no longer allowing the
+   * page to be scrolled while visible.
    *
-   * @see {@link BaseMenuHookOptions.closeOnScroll}
+   * @see {@link BaseMenuHookOptions.preventScroll}
    * @defaultValue `true`.
    */
-  closeOnScroll?: boolean;
+  preventScroll?: boolean;
 }
 
 /** @remarks \@since 5.0.0 */
@@ -68,6 +68,13 @@ export interface ContextMenuHookReturnValue extends BaseMenuHookReturnValue {
    * menu when the default behavior does not match your use case.
    */
   setVisible: Dispatch<SetStateAction<boolean>>;
+
+  /**
+   * This function can be used to manually move the context menu to new
+   * coordinates if the default behavior did not work. You probably won't ever
+   * need to use this.
+   */
+  setCoords: Dispatch<SetStateAction<InitialCoords>>;
 }
 
 /**
@@ -107,7 +114,7 @@ export function useContextMenu({
   menuLabel = "Context Menu",
   fixedPositionOptions,
   onContextMenu = noop,
-  closeOnScroll = true,
+  preventScroll = true,
   ...options
 }: ContextMenuHookOptions = {}): ContextMenuHookReturnValue {
   const [visible, setVisible] = useState(false);
@@ -123,7 +130,7 @@ export function useContextMenu({
       ...fixedPositionOptions,
       ...coords,
     },
-    closeOnScroll,
+    preventScroll,
   });
 
   return {
@@ -132,10 +139,15 @@ export function useContextMenu({
     menuNodeRef,
     visible,
     setVisible,
+    setCoords,
     onContextMenu(event) {
       onContextMenu(event);
       if (
         event.isPropagationStopped() ||
+        // make it so that if you right click the custom context menu, the
+        // browser's default context menu can appear (mostly for being able to
+        // inspect your custom context menu)
+        /* istanbul ignore next */
         (event.target instanceof HTMLElement &&
           containsElement(menuNodeRef.current, event.target))
       ) {
@@ -144,13 +156,10 @@ export function useContextMenu({
 
       event.preventDefault();
       event.stopPropagation();
-      const coords: InitialCoords = {};
-      if (event.button !== 0 && event.buttons !== 0) {
-        coords.initialX = event.clientX;
-        coords.initialY = event.clientY;
-      }
-
-      setCoords(coords);
+      setCoords({
+        initialX: event.clientX,
+        initialY: event.clientY,
+      });
       setVisible(true);
     },
   };

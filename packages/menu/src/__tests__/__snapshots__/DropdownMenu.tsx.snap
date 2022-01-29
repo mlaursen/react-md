@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropdownMenu should allow button specific props to be provided 1`] = `
+<div>
+  <button
+    aria-haspopup="menu"
+    aria-label="Options"
+    class="rmd-button rmd-button--icon rmd-button--disabled"
+    disabled=""
+    id="dropdown-menu"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--svg"
+      focusable="false"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`DropdownMenu should allow button specific props to be provided 2`] = `
+<div>
+  <button
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text rmd-button--contained rmd-button--secondary"
+    id="dropdown-menu"
+    type="button"
+  >
+    Dropdown
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after"
+    >
+      arrow_drop_down
+    </i>
+  </button>
+</div>
+`;
+
+exports[`DropdownMenu should allow button specific props to be provided 3`] = `
+<div>
+  <button
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text"
+    id="dropdown-menu"
+    type="button"
+  >
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--before custom-rotator-class"
+    >
+      arrow_drop_down
+    </i>
+    Dropdown
+  </button>
+</div>
+`;
+
+exports[`DropdownMenu should allow button specific props to be provided 4`] = `
+<div>
+  <button
+    aria-haspopup="menu"
+    class="rmd-button rmd-button--text"
+    id="dropdown-menu"
+    type="button"
+  >
+    Dropdown
+    <i
+      aria-hidden="true"
+      class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--below"
+    >
+      arrow_drop_down
+    </i>
+  </button>
+</div>
+`;
+
+exports[`DropdownMenu should render as a Button by default and handle visibility correctly 1`] = `
+<button
+  aria-haspopup="menu"
+  class="rmd-button rmd-button--text"
+  id="dropdown-menu"
+  type="button"
+>
+  Dropdown
+  <i
+    aria-hidden="true"
+    class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after"
+  >
+    arrow_drop_down
+  </i>
+</button>
+`;
+
+exports[`DropdownMenu should work correctly when the temporary prop is set to false 1`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <div
+      data-testid="outside"
+    />
+    <button
+      aria-haspopup="menu"
+      class="rmd-button rmd-button--text"
+      id="dropdown-menu"
+      type="button"
+    >
+      Dropdown
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after"
+      >
+        arrow_drop_down
+      </i>
+    </button>
+    <div
+      aria-label="Menu"
+      class="rmd-menu rmd-menu--elevated"
+      hidden=""
+      id="dropdown-menu-menu"
+      role="menu"
+      tabindex="-1"
+    >
+      <ul
+        class="rmd-list"
+        role="none"
+      >
+        <li
+          class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Item 1
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+        <li
+          class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Item 2
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+        <li
+          class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Item 3
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`DropdownMenu should work correctly when the temporary prop is set to false 2`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <div
+      data-testid="outside"
+    />
+    <button
+      aria-expanded="true"
+      aria-haspopup="menu"
+      class="rmd-button rmd-button--text"
+      id="dropdown-menu"
+      type="button"
+    >
+      Dropdown
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after"
+      >
+        arrow_drop_down
+      </i>
+    </button>
+    <div
+      aria-label="Menu"
+      class="rmd-menu rmd-menu--elevated rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
+      id="dropdown-menu-menu"
+      role="menu"
+      style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+      tabindex="-1"
+    >
+      <ul
+        class="rmd-list"
+        role="none"
+      >
+        <li
+          class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Item 1
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+        <li
+          class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Item 2
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+        <li
+          class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Item 3
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;

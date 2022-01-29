@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItemSeparator should allow for a custom maxHeight for vertical styles 1`] = `
+<li
+  class="rmd-divider"
+  role="separator"
+/>
+`;
+
+exports[`MenuItemSeparator should allow for a custom maxHeight for vertical styles 2`] = `
+<li
+  aria-orientation="vertical"
+  class="rmd-divider rmd-divider--vertical"
+  role="separator"
+  style="height: 0px;"
+/>
+`;
+
+exports[`MenuItemSeparator should allow for the orientation to be overridden by the vertical prop 1`] = `
+<li
+  aria-orientation="vertical"
+  class="rmd-divider rmd-divider--vertical"
+  role="separator"
+  style="height: 0px;"
+/>
+`;
+
+exports[`MenuItemSeparator should render based on the menu's orientation 1`] = `
+<li
+  class="rmd-divider"
+  role="separator"
+/>
+`;
+
+exports[`MenuItemSeparator should render based on the menu's orientation 2`] = `
+<li
+  aria-orientation="vertical"
+  class="rmd-divider rmd-divider--vertical"
+  role="separator"
+  style="height: 0px;"
+/>
+`;

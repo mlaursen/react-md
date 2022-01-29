@@ -20,13 +20,7 @@ export function useMenuBarWidgetFocusId(): string {
 }
 
 /** @remarks \@since 5.0.0 */
-export interface BaseMenuBarWidgetProps extends Omit<ListProps, "role"> {
-  /**
-   * @defaultValue `true`
-   * @see {@link ListProps.horizontal}
-   */
-  horizontal?: boolean;
-}
+export type BaseMenuBarWidgetProps = Omit<ListProps, "role" | "horizontal">;
 
 /** @remarks \@since 5.0.0 */
 export type MenuBarWidgetProps = LabelRequiredForA11y<BaseMenuBarWidgetProps>;
@@ -39,7 +33,6 @@ export type MenuBarWidgetProps = LabelRequiredForA11y<BaseMenuBarWidgetProps>;
  */
 export function MenuBarWidget({
   children,
-  horizontal = true,
   tabIndex,
   onFocus: propOnFocus,
   onKeyDown: propOnKeyDown,
@@ -61,7 +54,8 @@ export function MenuBarWidget({
     <Provider value={focusId}>
       <List
         {...props}
-        horizontal={horizontal}
+        role="menubar"
+        horizontal
         tabIndex={tabIndex ?? (focusId ? -1 : 0)}
         onFocus={onFocus}
         onKeyDown={onKeyDown}

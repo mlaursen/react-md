@@ -111,7 +111,7 @@ export interface MenuWidgetProps
 
   /**
    * Boolean if the menu should not gain the elevation styles and should only be
-   * set to `true` when rendering within a `Sheet`
+   * set to `true` when rendering within a `Sheet`.
    *
    * @defaultValue `false`
    */
@@ -416,7 +416,7 @@ export interface BaseMenuRendererProps
    * including `style` or `className` here.
    */
   menuProps?: Readonly<
-    Omit<MenuWidgetProps, "style" | "className" | "children">
+    Omit<MenuWidgetProps, "id" | "style" | "className" | "children">
   >;
 
   /**
@@ -484,7 +484,7 @@ export interface DropdownMenuButtonProps
 /**
  * @remarks \@since 5.0.0
  */
-export interface MenuItemProps extends ListItemProps {
+export interface MenuItemProps extends Omit<ListItemProps, "role"> {
   /**
    * An optional id for the menu item. This is generally recommended, but it can
    * be ignored.
@@ -497,7 +497,7 @@ export interface MenuItemProps extends ListItemProps {
    *
    * @defaultValue `"menuitem"`
    */
-  role?: "menuitem" | "button";
+  role?: "menuitem";
 
   /**
    * The tab index for the menu item. This should always stay at `-1`.
@@ -506,7 +506,7 @@ export interface MenuItemProps extends ListItemProps {
 }
 
 /** @remarks \@since 5.0.0 */
-export interface BaseMenuItemButtonProps extends Omit<MenuItemProps, "role"> {
+export interface BaseMenuItemButtonProps extends MenuItemProps {
   /**
    * An id required for accessibility and will be passed to the `<MenuItem>`
    * component.

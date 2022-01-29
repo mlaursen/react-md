@@ -58,7 +58,6 @@ export const MenuItemButton = forwardRef<HTMLLIElement, MenuItemButtonProps>(
         {...props}
         id={id}
         ref={ref}
-        role="button"
         rightAddon={rightAddon}
         tabIndex={tabIndex ?? (root && id === focusId ? 0 : -1)}
       >

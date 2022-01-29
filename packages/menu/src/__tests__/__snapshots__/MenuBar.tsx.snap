@@ -1,0 +1,1866 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuBar hover mode should allow for a click-first hover mode 1`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling rmd-ripple--fading"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="menu-1"
+    class="rmd-menu rmd-menu--elevated"
+    id="menu-1-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Roboto
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Sans-serif
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Monospace
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`MenuBar hover mode should allow for a click-first hover mode 2`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="menu-1"
+    class="rmd-menu rmd-menu--elevated"
+    id="menu-1-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Roboto
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Sans-serif
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Monospace
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`MenuBar hover mode should allow for a click-first hover mode 3`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="menu-2"
+    class="rmd-menu rmd-menu--elevated"
+    id="menu-2-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Bold
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Italic
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`MenuBar hover mode should allow for a click-first hover mode 4`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="menu-2"
+    class="rmd-menu rmd-menu--elevated"
+    id="menu-2-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Bold
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Italic
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`MenuBar hover mode should allow for an immediate hover mode by setting the hoverTimeout to 0 1`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="menu-1"
+    class="rmd-menu rmd-menu--elevated rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
+    id="menu-1-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Roboto
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Sans-serif
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Monospace
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`MenuBar hover mode should allow for an immediate hover mode by setting the hoverTimeout to 0 2`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="menu-1"
+    class="rmd-menu rmd-menu--elevated"
+    id="menu-1-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Roboto
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Sans-serif
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Monospace
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`MenuBar hover mode should allow for an immediate hover mode by setting the hoverTimeout to 0 3`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="menu-4"
+    class="rmd-menu rmd-menu--elevated"
+    id="menu-4-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Normal
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Small
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="submenu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Submenu
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          keyboard_arrow_right
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`MenuBar hover mode should allow for an immediate hover mode by setting the hoverTimeout to 0 4`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="menu-4"
+    class="rmd-menu rmd-menu--elevated"
+    id="menu-4-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Normal
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Small
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="submenu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Submenu
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          keyboard_arrow_right
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`MenuBar hover mode should allow for an immediate hover mode by setting the hoverTimeout to 0 5`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="menu-4"
+    class="rmd-menu rmd-menu--elevated"
+    id="menu-4-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Normal
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Small
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="submenu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Submenu
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          keyboard_arrow_right
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="submenu-1"
+    class="rmd-menu rmd-menu--elevated"
+    id="submenu-1-menu"
+    role="menu"
+    style="left: 0px; top: 16px; position: fixed; transform-origin: 0 50%;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 2
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 4
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`MenuBar hover mode should allow for an immediate hover mode by setting the hoverTimeout to 0 6`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="menu-4"
+    class="rmd-menu rmd-menu--elevated"
+    id="menu-4-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Normal
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Small
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-expanded="true"
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="submenu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Submenu
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--rotated rmd-icon--after rmd-list-item__addon"
+        >
+          keyboard_arrow_right
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    aria-labelledby="submenu-1"
+    class="rmd-menu rmd-menu--elevated"
+    id="submenu-1-menu"
+    role="menu"
+    style="left: 0px; top: 16px; position: fixed; transform-origin: 0 50%;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 2
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Item 4
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`MenuBar hover mode should allow for an immediate hover mode by setting the hoverTimeout to 0 7`] = `
+<body
+  class="rmd-utils--mouse"
+>
+  <div>
+    <ul
+      aria-label="Example"
+      class="rmd-list rmd-list--horizontal"
+      role="menubar"
+      tabindex="0"
+    >
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-1"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Font
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-2"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Style
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-3"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Text Align
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="menu-4"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Size
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;

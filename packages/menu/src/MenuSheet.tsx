@@ -67,6 +67,7 @@ export function MenuSheet({
   onRequestClose,
   ...props
 }: LabelRequiredForA11y<MenuSheetProps>): ReactElement {
+  const { "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy } = props;
   const listRef = useRef<ListElement>(null);
 
   // Since there is the possibility of other tab focusable elements within the
@@ -116,7 +117,8 @@ export function MenuSheet({
       {header}
       <MenuKeyboardFocusProvider horizontal={horizontal}>
         <MenuWidget
-          aria-labelledby={id}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy as string}
           id={id}
           ref={menuRef}
           tabIndex={focused ? -1 : 0}

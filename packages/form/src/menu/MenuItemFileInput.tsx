@@ -13,12 +13,17 @@ export type MenuItemAllowedFileInputProps = Pick<
   "id" | "onChange" | "accept" | "multiple" | "disableRepeatableFiles"
 >;
 
-/**
- * @remarks \@since 5.0.0
- */
+/** @remarks \@since 5.0.0 */
 export interface MenuItemFileInputProps
   extends Omit<MenuItemProps, "id" | "onChange">,
     MenuItemAllowedFileInputProps {
+  /**
+   * An `aria-label` to apply to the `<input type="file">`.
+   *
+   * @defaultValue `"Upload"`
+   */
+  inputLabel?: string;
+
   /**
    * Any additional props that should be passed to the `<input type="file">`
    * element. You probably won't ever need to use this.
@@ -50,6 +55,7 @@ export const MenuItemFileInput = forwardRef<
     inputProps,
     disableRepeatableFiles = false,
     leftAddon: propLeftAddon,
+    inputLabel = "Upload",
     ...props
   },
   ref
@@ -68,12 +74,14 @@ export const MenuItemFileInput = forwardRef<
         // `<input type="file">` to select a file and the menu unmounts when
         // hidden.
         event.stopPropagation();
+        /* istanbul-ignore-next */
         inputRef.current?.click();
       }}
       leftAddon={leftAddon}
     >
       {children}
       <input
+        aria-label={inputLabel}
         id={id}
         ref={inputRef}
         type="file"

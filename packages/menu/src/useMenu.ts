@@ -6,7 +6,7 @@ import {
   useRef,
 } from "react";
 import { useFixedPositioning } from "@react-md/transition";
-import { useScrollLock } from "@react-md/utils";
+import { containsElement, useScrollLock } from "@react-md/utils";
 
 import { useMenuBarContext } from "./MenuBarProvider";
 import type {
@@ -216,11 +216,7 @@ export function useMenu<ToggleEl extends HTMLElement>(
       onEntered(appearing);
       setAnimatedOnce(true);
       if (!disableFocusOnMount) {
-        // TODO: Look into focus behavior more. the Raf interferes with exit focus behavior,
-        // this is done in a RAF just in case the transiiton was disabled
-        // window.requestAnimationFrame(() => {
         menuNodeRef.current?.focus();
-        // });
       }
     },
     onExited() {
@@ -229,16 +225,7 @@ export function useMenu<ToggleEl extends HTMLElement>(
       // this has to be done onExited or else the toggle component will be
       // clicked if the user pressed the "Enter" key which makes it look like
       // the menu never closes.
-      if (
-        !disableFocusOnUnmount &&
-        !cancelExitFocus.current &&
-        // the activeElement is generally the document.body when the transition
-        // is disabled
-        (document.activeElement === document.body ||
-          (menuNodeRef.current?.contains(document.activeElement) &&
-            // links should generally move focus themselves
-            document.activeElement?.tagName !== "A"))
-      ) {
+      if (!disableFocusOnUnmount && !cancelExitFocus.current) {
         toggleRef.current?.focus();
       }
     },
@@ -319,6 +306,14 @@ export function useMenu<ToggleEl extends HTMLElement>(
           return;
         }
 
+        // This might be a test only workaround since clicking links move focus
+        // somewhere else
+        if (event.target instanceof HTMLElement) {
+          cancelExitFocus.current = containsElement(
+            event.currentTarget,
+            event.target.closest("a")
+          );
+        }
         setVisible(false);
       },
       onKeyDown(event) {
@@ -369,6 +364,9 @@ export function useMenu<ToggleEl extends HTMLElement>(
       id: baseId,
       onClick(event) {
         onToggleClick(event);
+        if (event.isPropagationStopped()) {
+          return;
+        }
 
         if (menuitem || menubar) {
           // do not allow the default menu close behavior from

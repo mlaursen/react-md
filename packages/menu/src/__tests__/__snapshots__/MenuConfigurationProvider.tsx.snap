@@ -1,0 +1,668 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuConfigurationProvider renderAsSheet="phone" should allow menus to be rendered in a sheet on phones 1`] = `
+<body
+  class="rmd-utils--mouse"
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div>
+    <button
+      aria-expanded="true"
+      aria-haspopup="menu"
+      class="rmd-button rmd-button--text"
+      id="main-menu"
+      type="button"
+    >
+      Dropdown
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after"
+      >
+        arrow_drop_down
+      </i>
+    </button>
+  </div>
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-sheet-overlay rmd-overlay--active"
+    id="main-menu-menu-sheet-overlay"
+    tabindex="-1"
+  />
+  <div
+    aria-labelledby="main-menu"
+    aria-modal="true"
+    class="rmd-dialog rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--bottom rmd-sheet--touchable-height rmd-sheet--offscreen rmd-sheet--enter rmd-sheet--visible"
+    id="main-menu-menu-sheet"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      aria-labelledby="main-menu"
+      class="rmd-menu"
+      id="main-menu-menu"
+      role="menu"
+      tabindex="0"
+    >
+      <ul
+        class="rmd-list"
+        role="none"
+      >
+        <li
+          class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            An Item
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+        <li
+          aria-haspopup="menu"
+          class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+          id="sub-menu"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Submenu
+          </span>
+          <i
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            keyboard_arrow_right
+          </i>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+        <li
+          role="none"
+        >
+          <a
+            class="rmd-list-item rmd-list-item--clickable rmd-list-item--link rmd-menu-item"
+            href="#"
+            role="menuitem"
+            tabindex="-1"
+          >
+            Link
+          </a>
+        </li>
+        <li
+          aria-disabled="true"
+          class="rmd-list-item rmd-list-item--clickable rmd-list-item--disabled rmd-list-item--disabled-color rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Disabled Item
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+        <li
+          class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Delta
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MenuConfigurationProvider renderAsSheet="phone" should allow menus to be rendered in a sheet on phones 2`] = `
+<body
+  class="rmd-utils--mouse"
+  style=""
+>
+  <div>
+    <button
+      aria-haspopup="menu"
+      class="rmd-button rmd-button--text"
+      id="main-menu"
+      type="button"
+    >
+      Dropdown
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after"
+      >
+        arrow_drop_down
+      </i>
+    </button>
+  </div>
+</body>
+`;
+
+exports[`MenuConfigurationProvider should allow for a custom header and footer for the sheet 1`] = `
+<div
+  aria-labelledby="main-menu"
+  aria-modal="true"
+  class="rmd-dialog rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--bottom rmd-sheet--touchable-height"
+  id="main-menu-menu-sheet"
+  role="dialog"
+  tabindex="-1"
+>
+  <header
+    class="rmd-app-bar rmd-app-bar--normal"
+  >
+    <h6
+      class="rmd-app-bar__title rmd-app-bar__title--no-wrap"
+    >
+      Custom
+    </h6>
+    <button
+      class="rmd-button rmd-button--icon rmd-app-bar__action rmd-app-bar__action--first rmd-app-bar__action--last"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--svg"
+        focusable="false"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        />
+      </svg>
+    </button>
+  </header>
+  <div
+    aria-labelledby="main-menu"
+    class="rmd-menu"
+    id="main-menu-menu"
+    role="menu"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          An Item
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="sub-menu"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Submenu
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+        >
+          keyboard_arrow_right
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        role="none"
+      >
+        <a
+          class="rmd-list-item rmd-list-item--clickable rmd-list-item--link rmd-menu-item"
+          href="#"
+          role="menuitem"
+          tabindex="-1"
+        >
+          Link
+        </a>
+      </li>
+      <li
+        aria-disabled="true"
+        class="rmd-list-item rmd-list-item--clickable rmd-list-item--disabled rmd-list-item--disabled-color rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Disabled Item
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Delta
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+  <hr
+    class="rmd-divider"
+    role="separator"
+  />
+  <footer
+    class="rmd-dialog__footer rmd-dialog__footer--flex rmd-dialog__footer--end"
+  >
+    <button
+      class="rmd-button rmd-button--text"
+      type="button"
+    >
+      Cancel
+    </button>
+  </footer>
+</div>
+`;
+
+exports[`MenuConfigurationProvider should allow for a custom header and footer for the sheet 2`] = `
+<div
+  aria-labelledby="main-menu"
+  aria-modal="true"
+  class="rmd-dialog rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--bottom rmd-sheet--touchable-height rmd-sheet--offscreen rmd-sheet--enter rmd-sheet--visible"
+  id="main-menu-menu-sheet"
+  role="dialog"
+  tabindex="-1"
+>
+  <div
+    aria-labelledby="main-menu"
+    class="rmd-menu"
+    id="main-menu-menu"
+    role="menu"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          An Item
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="sub-menu"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Submenu
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+        >
+          keyboard_arrow_right
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        role="none"
+      >
+        <a
+          class="rmd-list-item rmd-list-item--clickable rmd-list-item--link rmd-menu-item"
+          href="#"
+          role="menuitem"
+          tabindex="-1"
+        >
+          Link
+        </a>
+      </li>
+      <li
+        aria-disabled="true"
+        class="rmd-list-item rmd-list-item--clickable rmd-list-item--disabled rmd-list-item--disabled-color rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Disabled Item
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Delta
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`MenuConfigurationProvider should allow menus to be rendered in a sheet by enabling renderAsSheet 1`] = `
+<body
+  class="rmd-utils--mouse"
+  data-rmd-noscroll=""
+  style="overflow: hidden;"
+>
+  <div>
+    <button
+      aria-expanded="true"
+      aria-haspopup="menu"
+      class="rmd-button rmd-button--text"
+      id="main-menu"
+      type="button"
+    >
+      Dropdown
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after"
+      >
+        arrow_drop_down
+      </i>
+    </button>
+  </div>
+  <span
+    class="rmd-overlay rmd-overlay--visible rmd-overlay--clickable rmd-dialog-overlay rmd-sheet-overlay rmd-overlay--active"
+    id="main-menu-menu-sheet-overlay"
+    tabindex="-1"
+  />
+  <div
+    aria-labelledby="main-menu"
+    aria-modal="true"
+    class="rmd-dialog rmd-sheet rmd-sheet--vertical rmd-sheet--raised rmd-sheet--bottom rmd-sheet--touchable-height rmd-sheet--offscreen rmd-sheet--enter rmd-sheet--visible"
+    id="main-menu-menu-sheet"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      aria-labelledby="main-menu"
+      class="rmd-menu"
+      id="main-menu-menu"
+      role="menu"
+      tabindex="0"
+    >
+      <ul
+        class="rmd-list"
+        role="none"
+      >
+        <li
+          class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            An Item
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+        <li
+          aria-haspopup="menu"
+          class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+          id="sub-menu"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Submenu
+          </span>
+          <i
+            aria-hidden="true"
+            class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+          >
+            keyboard_arrow_right
+          </i>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+        <li
+          role="none"
+        >
+          <a
+            class="rmd-list-item rmd-list-item--clickable rmd-list-item--link rmd-menu-item"
+            href="#"
+            role="menuitem"
+            tabindex="-1"
+          >
+            Link
+          </a>
+        </li>
+        <li
+          aria-disabled="true"
+          class="rmd-list-item rmd-list-item--clickable rmd-list-item--disabled rmd-list-item--disabled-color rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Disabled Item
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+        <li
+          class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+          role="menuitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-list-item__text"
+          >
+            Delta
+          </span>
+          <span
+            class="rmd-ripple-container"
+          />
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`MenuConfigurationProvider should allow menus to be rendered in a sheet by enabling renderAsSheet 2`] = `
+<body
+  class="rmd-utils--mouse"
+  style=""
+>
+  <div>
+    <button
+      aria-haspopup="menu"
+      class="rmd-button rmd-button--text"
+      id="main-menu"
+      type="button"
+    >
+      Dropdown
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after"
+      >
+        arrow_drop_down
+      </i>
+    </button>
+  </div>
+</body>
+`;
+
+exports[`MenuConfigurationProvider should allow menus to be rendered in a sheet by enabling renderAsSheet 3`] = `
+<body
+  class="rmd-utils--mouse"
+  style=""
+>
+  <div>
+    <button
+      aria-expanded="true"
+      aria-haspopup="menu"
+      class="rmd-button rmd-button--text"
+      id="main-menu"
+      type="button"
+    >
+      Dropdown
+      <i
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-icon--after"
+      >
+        arrow_drop_down
+      </i>
+    </button>
+  </div>
+  <div
+    aria-labelledby="main-menu"
+    class="rmd-menu rmd-menu--elevated rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
+    id="main-menu-menu"
+    role="menu"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+    tabindex="-1"
+  >
+    <ul
+      class="rmd-list"
+      role="none"
+    >
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          An Item
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        aria-haspopup="menu"
+        class="rmd-list-item rmd-list-item--medium rmd-list-item--clickable rmd-menu-item"
+        id="sub-menu"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Submenu
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon--after rmd-list-item__addon"
+        >
+          keyboard_arrow_right
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        role="none"
+      >
+        <a
+          class="rmd-list-item rmd-list-item--clickable rmd-list-item--link rmd-menu-item"
+          href="#"
+          role="menuitem"
+          tabindex="-1"
+        >
+          Link
+        </a>
+      </li>
+      <li
+        aria-disabled="true"
+        class="rmd-list-item rmd-list-item--clickable rmd-list-item--disabled rmd-list-item--disabled-color rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Disabled Item
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+      <li
+        class="rmd-list-item rmd-list-item--clickable rmd-menu-item"
+        role="menuitem"
+        tabindex="-1"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Delta
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </li>
+    </ul>
+  </div>
+</body>
+`;

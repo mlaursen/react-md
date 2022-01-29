@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import cn from "classnames";
 import { bem, LabelRequiredForA11y, useKeyboardFocus } from "@react-md/utils";
 
+import { MenuBarProvider } from "./MenuBarProvider";
 import type { MenuWidgetProps } from "./types";
 
 const styles = bem("rmd-menu");
@@ -52,20 +53,22 @@ export const MenuWidget = forwardRef<
   });
 
   return (
-    <div
-      aria-orientation={horizontal ? "horizontal" : undefined}
-      {...props}
-      ref={ref}
-      role="menu"
-      onFocus={onFocus}
-      onKeyDown={onKeyDown}
-      tabIndex={tabIndex}
-      className={cn(
-        styles({ horizontal, elevated: !disableElevation }),
-        className
-      )}
-    >
-      {children}
-    </div>
+    <MenuBarProvider root={false} defaultActiveId={props.id}>
+      <div
+        aria-orientation={horizontal ? "horizontal" : undefined}
+        {...props}
+        ref={ref}
+        role="menu"
+        onFocus={onFocus}
+        onKeyDown={onKeyDown}
+        tabIndex={tabIndex}
+        className={cn(
+          styles({ horizontal, elevated: !disableElevation }),
+          className
+        )}
+      >
+        {children}
+      </div>
+    </MenuBarProvider>
   );
 });

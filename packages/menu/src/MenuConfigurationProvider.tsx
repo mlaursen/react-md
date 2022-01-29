@@ -54,8 +54,10 @@ export function useMenuConfiguration({
   return {
     horizontal: horizontal ?? inherited.horizontal,
     renderAsSheet: renderAsSheet ?? inherited.renderAsSheet,
-    sheetHeader: sheetHeader ?? inherited.sheetHeader,
-    sheetFooter: sheetFooter ?? inherited.sheetFooter,
+    sheetHeader:
+      sheetHeader === null ? null : sheetHeader ?? inherited.sheetHeader,
+    sheetFooter:
+      sheetFooter === null ? null : sheetFooter ?? inherited.sheetFooter,
     sheetPosition: sheetPosition ?? inherited.sheetPosition,
     sheetVerticalSize: sheetVerticalSize ?? inherited.sheetVerticalSize,
   };

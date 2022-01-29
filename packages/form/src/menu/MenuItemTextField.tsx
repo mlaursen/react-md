@@ -20,6 +20,10 @@ export interface MenuItemTextFieldProps extends TextFieldProps {
  * This is a wrapper for the `TextField` component that can be used within
  * `Menu`s by updating the `onKeyDown` and `onClick` behavior.
  *
+ * Note: This is **not** the `TextFieldWithMessage` since the message part is
+ * hard to style nicely within menus. You'd most likely want to use another menu
+ * for displaying errors.
+ *
  * @remarks \@since 5.0.0
  */
 export const MenuItemTextField = forwardRef<
@@ -46,10 +50,6 @@ export const MenuItemTextField = forwardRef<
         stretch={stretch}
         onKeyDown={(event) => {
           onKeyDown?.(event);
-          if (event.isPropagationStopped()) {
-            return;
-          }
-
           switch (event.key) {
             case "Tab":
             case "Escape":
