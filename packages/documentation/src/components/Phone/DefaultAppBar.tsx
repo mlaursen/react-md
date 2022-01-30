@@ -10,12 +10,12 @@ import PhoneAppBar from "./PhoneAppBar";
 import SearchAction from "./SearchAction";
 
 export default function DefaultPhoneAppBar(): ReactElement {
-  const { title } = usePhoneContext();
+  const { title, id } = usePhoneContext();
   return (
     <PhoneAppBar>
       <AppBar component="div" theme="clear">
         <ClosePhone />
-        <AppBarTitle>{title}</AppBarTitle>
+        <AppBarTitle id={`${id}-title`}>{title}</AppBarTitle>
         <SearchAction />
         <OptionsAction />
       </AppBar>
