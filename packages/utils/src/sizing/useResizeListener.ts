@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { delegateEvent } from "../events/delegateEvent";
+import { delegateEvent } from "../events/utils";
 import { useRefCache } from "../useRefCache";
 
 export interface ResizeListenerOptions {

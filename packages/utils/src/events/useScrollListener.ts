@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { useRefCache } from "../useRefCache";
-import { delegateEvent } from "./delegateEvent";
+import { delegateEvent } from "./utils";
 
 /**
  * @remarks \@since 5.0.0
