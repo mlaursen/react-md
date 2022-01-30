@@ -4,7 +4,6 @@ import { Avatar } from "@react-md/avatar";
 import avatarVariables from "@react-md/avatar/dist/scssVariables";
 import { List, ListItem } from "@react-md/list";
 import { MenuSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";
-import { useScrollListener } from "@react-md/utils";
 
 import people from "constants/people";
 import AppBarTitle from "components/AppBarTitle";
@@ -33,27 +32,6 @@ const SCROLL_MULTIPLIER = 0.314;
 
 export default function AnimatingAppBar(): ReactElement {
   const [height, setHeight] = useState(`${HEIGHT}px`);
-
-  const [ref, setRef] = useState<HTMLDivElement | null>(null);
-  useScrollListener({
-    element: ref,
-    onScroll: () => {
-      if (!ref) {
-        return;
-      }
-
-      const { scrollTop } = ref;
-      const remaining = Math.min(
-        Math.max(HEIGHT - scrollTop * SCROLL_MULTIPLIER, 0),
-        HEIGHT
-      );
-      const nextHeight = `${remaining}px`;
-      if (height !== nextHeight) {
-        setHeight(nextHeight);
-      }
-    },
-  });
-
   const style: CSSProperties = {
     "--offset": height,
   };
@@ -74,7 +52,20 @@ export default function AnimatingAppBar(): ReactElement {
           <MoreVertSVGIcon />
         </AppBarAction>
       </AppBar>
-      <div className={styles.content} ref={setRef}>
+      <div
+        className={styles.content}
+        onScroll={(event) => {
+          const { scrollTop } = event.currentTarget;
+          const remaining = Math.min(
+            Math.max(HEIGHT - scrollTop * SCROLL_MULTIPLIER, 0),
+            HEIGHT
+          );
+          const nextHeight = `${remaining}px`;
+          if (height !== nextHeight) {
+            setHeight(nextHeight);
+          }
+        }}
+      >
         <List>
           {transformedPeople.map(({ id, name, avatar, color }, i) => (
             <ListItem

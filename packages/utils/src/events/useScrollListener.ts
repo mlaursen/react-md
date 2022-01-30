@@ -2,62 +2,51 @@ import { useEffect } from "react";
 
 import { useRefCache } from "../useRefCache";
 import { delegateEvent } from "./delegateEvent";
-import { isSupported } from "./passiveEvents";
 
-export interface Options<E extends HTMLElement = HTMLElement> {
+/**
+ * @remarks \@since 5.0.0
+ */
+export interface ScrollListenerHookOptions extends AddEventListenerOptions {
   /**
-   * A function that is called whenever the scroll event is triggered.
+   * The event handler that will be fired when the page scrolls or if any child
+   * element scrolls when the {@link capture} option is `true`.
    */
   onScroll: EventListener;
 
-  /**
-   * Any event listener options to use when attaching the event.
-   */
-  options?: AddEventListenerOptions | boolean;
-
-  /**
-   * Boolean if the scroll listener should be enabled. You can swap this boolean
-   * to `true` or `false` to add/remove the event listeners. The event listeners
-   * will *always* be removed when the parent component is unmounted though.
-   */
+  /** @defaultValue `true` */
   enabled?: boolean;
-
-  /**
-   * The element that should gain the focus event. When this is omitted, it will
-   * default to the entire `window`.
-   */
-  element?: E | null;
 }
 
 /**
- * This hook will create a performant scroll listener by enabling passive events
- * if it's supported by the browser and delegating the event as needed.
+ *
+ * @remarks \@since 5.0.0 Moved the `AddEventListenerOptions` to no longer be
+ * part of an `options` object.
  */
-export function useScrollListener<E extends HTMLElement = HTMLElement>({
+export function useScrollListener({
+  once,
+  passive = true,
+  signal,
+  capture,
   enabled = true,
   onScroll,
-  element,
-  options = isSupported ? { passive: true } : false,
-}: Options<E>): void {
-  const callback = useRefCache(onScroll);
-
+}: ScrollListenerHookOptions): void {
+  const scrollHandlerRef = useRefCache(onScroll);
   useEffect(() => {
     if (!enabled) {
       return;
     }
 
-    const eventHandler = delegateEvent(
-      "scroll",
-      element || window,
-      true,
-      options
-    );
-    const handler = (event: Event): void => callback.current(event);
-    eventHandler.add(handler);
+    const eventHandler = delegateEvent("scroll", window, true, {
+      once,
+      passive,
+      signal,
+      capture,
+    });
+    const scrollHandler = scrollHandlerRef.current;
+    eventHandler.add(scrollHandler);
+
     return () => {
-      eventHandler.remove(handler);
+      eventHandler.remove(scrollHandler);
     };
-    // disabled since useRefCache
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enabled, element, options]);
+  }, [capture, enabled, once, passive, scrollHandlerRef, signal]);
 }
