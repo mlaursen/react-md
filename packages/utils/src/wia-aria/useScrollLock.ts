@@ -14,8 +14,9 @@ export const DATA_RMD_NOSCROLL = "data-rmd-noscroll";
  * @param element - Either the `<body>` tag or an element within the page to
  * disable scroll for.
  * @internal
+ * @remarks \@since 5.0.0 Renamed from `enable` to `enableScrollLock`.
  */
-export function enable(element: HTMLElement): void {
+export function enableScrollLock(element: HTMLElement): void {
   element.style.overflow = "hidden";
   element.setAttribute(DATA_RMD_NOSCROLL, "");
 }
@@ -32,8 +33,9 @@ export function enable(element: HTMLElement): void {
  * @param element - Either the `<body>` tag or an element within the page to
  * disable scroll locking for.
  * @internal
+ * @remarks \@since 5.0.0 Renamed from `disable` to `disableScrollLock`.
  */
-export function disable(element: HTMLElement): void {
+export function disableScrollLock(element: HTMLElement): void {
   if (element.getAttribute(DATA_RMD_NOSCROLL) === null) {
     return;
   }
@@ -75,9 +77,9 @@ export function useScrollLock(
       return;
     }
 
-    enable(element);
+    enableScrollLock(element);
     return () => {
-      disable(element as HTMLElement);
+      disableScrollLock(element as HTMLElement);
     };
   }, [enabled, selectorOrElement]);
 }

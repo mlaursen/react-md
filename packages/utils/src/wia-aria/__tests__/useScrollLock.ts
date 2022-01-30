@@ -2,8 +2,8 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import {
   useScrollLock,
-  disable,
-  enable,
+  disableScrollLock,
+  enableScrollLock,
   DATA_RMD_NOSCROLL,
 } from "../useScrollLock";
 
@@ -16,21 +16,21 @@ describe("useScrollLock", () => {
     it("should set the correct styles for an HTMLElement", () => {
       const div = document.createElement("div");
 
-      enable(div);
+      enableScrollLock(div);
       expect(div.style.overflow).toBe("hidden");
     });
 
     it("should apply the data-rmd-noscroll attribute to the element", () => {
       const div = document.createElement("div");
-      enable(div);
+      enableScrollLock(div);
       expect(div.getAttribute(DATA_RMD_NOSCROLL)).toBe("");
 
-      enable(document.body);
+      enableScrollLock(document.body);
       expect(document.body.getAttribute(DATA_RMD_NOSCROLL)).toBe("");
     });
 
     it("should set the correct styles for the body element", () => {
-      enable(document.body);
+      enableScrollLock(document.body);
       expect(document.body.style.overflow).toBe("hidden");
       expect(document.body.getAttribute(DATA_RMD_NOSCROLL)).toBe("");
     });
@@ -40,26 +40,26 @@ describe("useScrollLock", () => {
     it("should not do anything if the element does not have data-rmd-noscroll", () => {
       const div = document.createElement("div");
       div.style.overflow = "auto";
-      disable(div);
+      disableScrollLock(div);
       expect(div.style.overflow).toBe("auto");
 
       document.body.style.overflow = "auto";
-      disable(document.body);
+      disableScrollLock(document.body);
       expect(document.body.style.overflow).toBe("auto");
     });
 
     it("should reset all the styles for a div element", () => {
       const div = document.createElement("div");
-      enable(div);
-      disable(div);
+      enableScrollLock(div);
+      disableScrollLock(div);
 
       expect(div.style.overflow).toBe("");
       expect(div.getAttribute(DATA_RMD_NOSCROLL)).toBeNull();
     });
 
     it("should reset all the styles for the body element", () => {
-      enable(document.body);
-      disable(document.body);
+      enableScrollLock(document.body);
+      disableScrollLock(document.body);
 
       expect(document.body.style.overflow).toBe("");
       expect(document.body.getAttribute(DATA_RMD_NOSCROLL)).toBeNull();
@@ -73,7 +73,7 @@ describe("useScrollLock", () => {
     });
 
     afterEach(() => {
-      disable(document.body);
+      disableScrollLock(document.body);
     });
 
     it("should apply the correct styles when enabled", () => {
@@ -92,7 +92,7 @@ describe("useScrollLock", () => {
       renderHook(() => useScrollLock(true));
       expect(document.body.getAttribute(DATA_RMD_NOSCROLL)).toBe("");
 
-      disable(document.body);
+      disableScrollLock(document.body);
       renderHook(() => useScrollLock(true, null));
       expect(document.body.getAttribute(DATA_RMD_NOSCROLL)).toBe("");
     });
