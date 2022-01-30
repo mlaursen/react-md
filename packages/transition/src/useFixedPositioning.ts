@@ -242,7 +242,7 @@ export function useFixedPositioning<
     });
 
     setStyle(style);
-    setActive(!!element);
+    setActive(!!element && !element.hidden);
 
     // Only changing the initialX and initialY should cause the useEffect below
     // to trigger, which is why everything else is set in a ref.
@@ -274,8 +274,10 @@ export function useFixedPositioning<
   });
 
   useEffect(() => {
-    updateStyle();
-  }, [updateStyle]);
+    if (!ref.current || !ref.current.hidden) {
+      updateStyle();
+    }
+  }, [ref, updateStyle]);
 
   const callbacks: Required<FixedPositioningTransitionCallbacks> = {
     onEnter(appearing) {
