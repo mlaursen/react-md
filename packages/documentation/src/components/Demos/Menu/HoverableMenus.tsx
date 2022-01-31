@@ -14,7 +14,6 @@ import {
   Form,
   MenuItemCheckbox,
   MenuItemRadio,
-  TextArea,
   TextFieldWithMessage,
   useNumberField,
 } from "@react-md/form";
@@ -115,6 +114,8 @@ export default function HoverableMenus(): ReactElement {
     id: "hoverable-menus-hover-timeout",
     min: 0,
     max: 3000,
+    step: 100,
+    fixOnBlur: false,
   });
 
   return (
@@ -254,21 +255,21 @@ export default function HoverableMenus(): ReactElement {
           </DropdownMenu>
         </MenuBar>
       </AppBar>
-      <TextArea
-        aria-label="Text Sample"
-        id="hoverable-menus-textarea"
-        resize="none"
-        areaStyle={{
-          color: color === "" ? undefined : color,
-          fontFamily,
-          fontSize,
-          fontStyle: italic ? "italic" : undefined,
-          fontWeight: bold ? "bold" : undefined,
-          textAlign,
-          textDecoration,
-        }}
-        defaultValue={EXAMPLE_TEXT}
-      />
+      <div className={styles.text}>
+        <Typography
+          style={{
+            color: color === "" ? undefined : color,
+            fontFamily,
+            fontSize,
+            fontStyle: italic ? "italic" : undefined,
+            fontWeight: bold ? "bold" : undefined,
+            textAlign,
+            textDecoration,
+          }}
+        >
+          {EXAMPLE_TEXT}
+        </Typography>
+      </div>
       <Button
         theme="warning"
         floating="bottom-left"
@@ -322,7 +323,12 @@ export default function HoverableMenus(): ReactElement {
           <Button form="configure-form" type="reset" theme="warning">
             Reset
           </Button>
-          <Button form="configure-form" type="submit" theme="primary">
+          <Button
+            form="configure-form"
+            type="submit"
+            theme="primary"
+            disabled={textFieldProps.error}
+          >
             Confirm
           </Button>
         </DialogFooter>

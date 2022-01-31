@@ -1,3 +1,5 @@
+@use 'react-md' as *;
+
 .container {
   display: grid;
   grid-template: max-content 1fr / 1fr;
@@ -7,6 +9,13 @@
 .appbar {
   overflow: auto;
   padding: 0 0.5rem;
+}
+
+.text {
+  @include rmd-typography-theme(max-width, line-width);
+
+  justify-self: center;
+  margin: 1rem;
 }
 
 .dialog {
