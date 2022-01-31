@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Bug Fixes
+
+* **@react-md/typography:** Fixed overline class name ([1e544d0](https://github.com/mlaursen/react-md/commit/1e544d021f33bf80e69fa30c3ca5deeda3e2d2c2))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

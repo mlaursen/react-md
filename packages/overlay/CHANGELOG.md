@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Bug Fixes
+
+* **@react-md/overlay:** Allow for custom onClick behavior ([60dce54](https://github.com/mlaursen/react-md/commit/60dce5482dd39342151eb63f2c64eb39e19b6b45))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Features
+
+* **@react-md/dialog:** Add new `overlayProps` to configure the dialog's overlay ([cfc30f0](https://github.com/mlaursen/react-md/commit/cfc30f0fcf7eeff47ccf4e6d739ae5a6da1d1280))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

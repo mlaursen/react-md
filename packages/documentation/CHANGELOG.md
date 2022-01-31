@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Features
+
+* **@react-md/menu:** Better floating action button default behavior ([0cdeff7](https://github.com/mlaursen/react-md/commit/0cdeff72ac8c6b2f2808714299774fab0d490222))
+
+
+### Documentation
+
+* Added documentation for using a GitHub template to bootstrap a new project ([aac11ba](https://github.com/mlaursen/react-md/commit/aac11baa99640eafee1cff2b977052bfb202d95b))
+* Removed Working with v1 documentation ([8aa71ac](https://github.com/mlaursen/react-md/commit/8aa71ac2bc9eccf261c70f53bbfcd02ee0e8663f))
+* **react-md.dev:** Better migration guide search behavior ([9729269](https://github.com/mlaursen/react-md/commit/97292698a649eb38a624ba3e67b85dc89de2765b))
+* **react-md.dev:** Disable TOCs in dev mode and use temporary layout ([3203af4](https://github.com/mlaursen/react-md/commit/3203af407452c141e3ab3765f9fdd2fd1a1dd4fc))
+* **react-md.dev:** Fixed weird dev error with spreading props and key ([7cd7b8c](https://github.com/mlaursen/react-md/commit/7cd7b8cfb62147b8dc791d2566c090c45be52d19))
+
+
+### Other Internal Changes
+
+* chore!(utils): useScrollListener no longer accepts an element or options ([74a0274](https://github.com/mlaursen/react-md/commit/74a02744f3b7d5070b3f5c0d7b308842026bec72))
+* feat!(menu): Implemented new Menu API ([c27bf55](https://github.com/mlaursen/react-md/commit/c27bf558a950bf2938811a98b2b168efca4055cc))
+* feat!(utils): Updated the HoverMode API ([ac60bdb](https://github.com/mlaursen/react-md/commit/ac60bdb0cd8dc3ba55c8ea080f4ad3886b579033))
+* chore!(icon): Renamed the download icon to upload ([2752a98](https://github.com/mlaursen/react-md/commit/2752a981fe4021636de66f8576fdd8842a7e90af))
+* **@react-md/icon:** Updated docs and examples to use ConfiguredIcons type ([bbfebed](https://github.com/mlaursen/react-md/commit/bbfebedc7902b5f28fca202ba7189b3c1b540f2d))
+* **react-md.dev:** Add migration guides for `react-md` major versions ([78b7396](https://github.com/mlaursen/react-md/commit/78b73969916da433f4a64290a13d1888af3b8302))
+* **react-md.dev:** Add word-break to headings for markdown pages ([03b1301](https://github.com/mlaursen/react-md/commit/03b13015c5840f7d0964cfe31cb169bd6c4e2208))
+* **react-md.dev:** Fixed ids for emulated phones ([10984f5](https://github.com/mlaursen/react-md/commit/10984f55f152642b97c4795e77c4171fbdb13b36))
+* **react-md.dev:** Supress hydration for markdown ([8bb4d51](https://github.com/mlaursen/react-md/commit/8bb4d51b954715a600bc28ffa76a43dd8213259a))
+* **react-md.dev:** Update HoverableMenus example to not use `TextArea` ([5361825](https://github.com/mlaursen/react-md/commit/536182512924b014e5459b8cb81ce7133a1ee5b5))
+* **react-md.dev:** Updated a few menu demos ([c43cd31](https://github.com/mlaursen/react-md/commit/c43cd31b8599a360f9811d03ac1c79587504e54e))
+
+
+### Breaking Changes
+
+* `DEFAULT_HOVER_MODE_STICKY_EXIT_TIME` has been renamed to
+`DEFAULT_HOVER_MODE_EXIT_TIME`.
+* Menu buttons will no longer open by pressing the
+`ArrowUp` or `ArrowDown` keys.
+* The `DropdownMenu` component no longer accepts a list
+of `items` and instead the `children` should be the `MenuItem`
+components.
+* The `DropdownMenu` component no longer supports the
+`menuRenderer` and `itemRenderer` props. Instead, there is built-in
+support for conditionally rendering as a `Sheet` component using the
+`renderAsSheet` prop.
+* The `DropdownMenu` component now requires a parent
+`AppSizeListener` because of the conditional `Sheet` rendering
+functionality. This might require updating your tests to either use the
+`Configuration` component from `@react-md/layout` (recommended) or
+adding the `AppSizeListener` to tests that include `DropdownMenu`s.
+* The `DropdownMenuItem` component is no longer required
+for nested dropdown menus and is an "internal" component instead that
+shouldn't really be used.
+* The `exitVisibilityDelay` always defaults to
+`DEFAULT_HOVER_MODE_EXIT_TIME`.
+* The `MenuItemSeparator` now renders as an `<li>`
+instead of an `<hr>` or `<div>`.
+* The `useContextMenu` now returns an object instead of an
+ordered list.
+* The `useHoverMode` hook no longer accepts an
+`HTMLElement` generic and instead the event handlers will automatically
+infer the `HTMLElement` based on usage.
+* The `useHoverMode` hook no longer returns
+`stickyHandlers` and instead returns `hoverHandlers` that only include
+`onMouseEnter` and `onMouseLeave`. The `handlers` that are returned now
+include `onClick`, `onMouseEnter`, and `onMouseLeave`. This was kind of
+what the `stickyHandlers` was before. In addition, clicking an element
+no longer disabled the hover mode behavior.
+* The following typescript types have been removed:
+`HoverModeOnlyOptions`, `HoverModeOnlyReturnValue`
+* Using any of the `MenuItem` components requires the
+`<MenuKeyboardFocusProvider>` to be mounted as a parent component which
+might affect tests. This will not break anything if you are using the
+`DropdownMenu` or `Menu` components.
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

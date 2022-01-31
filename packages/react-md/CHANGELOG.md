@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Documentation
+
+* Removed Working with v1 documentation ([8aa71ac](https://github.com/mlaursen/react-md/commit/8aa71ac2bc9eccf261c70f53bbfcd02ee0e8663f))
+
+
+### Other Internal Changes
+
+* Removed commitizen since I never use it ([3e738b4](https://github.com/mlaursen/react-md/commit/3e738b4ab14fd7b4aab4f104b0d4120d226b7747))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

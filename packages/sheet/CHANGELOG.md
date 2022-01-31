@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Documentation
+
+* **@react-md/sheet:** Move tsdoc around for easier sharing ([83fcaac](https://github.com/mlaursen/react-md/commit/83fcaacfac29dd867b07bd857fbe17faeea371b2))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

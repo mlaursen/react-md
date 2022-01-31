@@ -1,6 +1,6 @@
 {
   "name": "@react-md/utils",
-  "version": "4.0.3",
+  "version": "5.0.0",
   "description": "General utils for react-md.",
   "main": "./lib/index.js",
   "module": "./es/index.js",

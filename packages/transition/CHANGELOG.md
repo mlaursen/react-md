@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Bug Fixes
+
+* **@react-md/transition:** Do not create styles for hidden elements ([6eff8a8](https://github.com/mlaursen/react-md/commit/6eff8a8d6b3845f0a987d448458fa92d78b4d77e))
+* **@react-md/utils:** Positioning logic for inner-left/inner-right and vertical anchors ([a38abfb](https://github.com/mlaursen/react-md/commit/a38abfb08b1f5569179ccb83fb6fa1ba7054a0d7))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

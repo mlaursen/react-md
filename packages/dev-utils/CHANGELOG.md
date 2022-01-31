@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Documentation
+
+* **react-md.dev:** Better migration guide search behavior ([9729269](https://github.com/mlaursen/react-md/commit/97292698a649eb38a624ba3e67b85dc89de2765b))
+
+
+### Other Internal Changes
+
+* **react-md.dev:** Add migration guides for `react-md` major versions ([78b7396](https://github.com/mlaursen/react-md/commit/78b73969916da433f4a64290a13d1888af3b8302))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

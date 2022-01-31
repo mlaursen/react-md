@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Bug Fixes
+
+* **@react-md/form:** `TextArea` applies custom height style when resize="none" ([e77d939](https://github.com/mlaursen/react-md/commit/e77d939263ed34eb8fea78a1f3698788879401bc))
+
+
+### Features
+
+* **@react-md/form:** Update `TextFieldContainer` to optionally fill all space in flex containers ([2c8e68c](https://github.com/mlaursen/react-md/commit/2c8e68ccb004c9a36da773fd8cd3873df7b4184b))
+
+
+### Other Internal Changes
+
+* feat!(menu): Implemented new Menu API ([c27bf55](https://github.com/mlaursen/react-md/commit/c27bf558a950bf2938811a98b2b168efca4055cc))
+* chore!(icon): Renamed the download icon to upload ([2752a98](https://github.com/mlaursen/react-md/commit/2752a981fe4021636de66f8576fdd8842a7e90af))
+* **@react-md/form:** Updated `FileInput` snapshots for new icon ([f5e43fe](https://github.com/mlaursen/react-md/commit/f5e43fe4bf7ccc7f0387d66ae183a2190ad294cb))
+* **@react-md/menu:** Added tests for the new menu API and fixed a few issues ([7202dd0](https://github.com/mlaursen/react-md/commit/7202dd00a2e734dd1a58d29142b551d8a9411b5a))
+
+
+### Breaking Changes
+
+* Menu buttons will no longer open by pressing the
+`ArrowUp` or `ArrowDown` keys.
+* The `DropdownMenu` component no longer accepts a list
+of `items` and instead the `children` should be the `MenuItem`
+components.
+* The `DropdownMenu` component no longer supports the
+`menuRenderer` and `itemRenderer` props. Instead, there is built-in
+support for conditionally rendering as a `Sheet` component using the
+`renderAsSheet` prop.
+* The `DropdownMenu` component now requires a parent
+`AppSizeListener` because of the conditional `Sheet` rendering
+functionality. This might require updating your tests to either use the
+`Configuration` component from `@react-md/layout` (recommended) or
+adding the `AppSizeListener` to tests that include `DropdownMenu`s.
+* The `DropdownMenuItem` component is no longer required
+for nested dropdown menus and is an "internal" component instead that
+shouldn't really be used.
+* The `MenuItemSeparator` now renders as an `<li>`
+instead of an `<hr>` or `<div>`.
+* The `useContextMenu` now returns an object instead of an
+ordered list.
+* Using any of the `MenuItem` components requires the
+`<MenuKeyboardFocusProvider>` to be mounted as a parent component which
+might affect tests. This will not break anything if you are using the
+`DropdownMenu` or `Menu` components.
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

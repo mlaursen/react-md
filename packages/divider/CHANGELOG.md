@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Features
+
+* **@react-md/divider:** Update `useVerticalDividerHeight` to support any HTMLElement ([edd9287](https://github.com/mlaursen/react-md/commit/edd9287da1d41fb5ec1133b30437a246a6d24c28))
+* **@react-md/divider:** Update divider styles for non-hr elements ([7ccd0a6](https://github.com/mlaursen/react-md/commit/7ccd0a6cf61bbcbf01b7f92645bf74dda0d2f6bf))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

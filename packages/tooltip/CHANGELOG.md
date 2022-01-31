@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Other Internal Changes
+
+* feat!(utils): Updated the HoverMode API ([ac60bdb](https://github.com/mlaursen/react-md/commit/ac60bdb0cd8dc3ba55c8ea080f4ad3886b579033))
+
+
+### Breaking Changes
+
+* `DEFAULT_HOVER_MODE_STICKY_EXIT_TIME` has been renamed to
+`DEFAULT_HOVER_MODE_EXIT_TIME`.
+* The `exitVisibilityDelay` always defaults to
+`DEFAULT_HOVER_MODE_EXIT_TIME`.
+* The `useHoverMode` hook no longer accepts an
+`HTMLElement` generic and instead the event handlers will automatically
+infer the `HTMLElement` based on usage.
+* The `useHoverMode` hook no longer returns
+`stickyHandlers` and instead returns `hoverHandlers` that only include
+`onMouseEnter` and `onMouseLeave`. The `handlers` that are returned now
+include `onClick`, `onMouseEnter`, and `onMouseLeave`. This was kind of
+what the `stickyHandlers` was before. In addition, clicking an element
+no longer disabled the hover mode behavior.
+* The following typescript types have been removed:
+`HoverModeOnlyOptions`, `HoverModeOnlyReturnValue`
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

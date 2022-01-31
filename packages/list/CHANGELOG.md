@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
+
+
+### Bug Fixes
+
+* **@react-md/list:** Pass disableEnterClick in `ListItem` ([b5e8b69](https://github.com/mlaursen/react-md/commit/b5e8b69ae606a7956655fb147f4eb4f8609c196c))
+
+
+### Features
+
+* **@react-md/list:** Created rmd-list-unstyled utility class from the mixin ([6c9b7f4](https://github.com/mlaursen/react-md/commit/6c9b7f45960888790c32840d2228fdb8bf0220ef))
+
+
+
+
+
+
 ## [4.0.3](https://github.com/mlaursen/react-md/compare/v4.0.2...v4.0.3) (2021-12-31)
 
 

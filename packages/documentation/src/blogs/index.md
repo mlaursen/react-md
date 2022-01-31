@@ -1,3 +1,208 @@
+Title: react-md 5.0.0
+
+Date: 01/30/2022
+
+Summary:
+
+> Check out the
+> [v4 to v5 Migration Guide](https://react-md.dev/migration-guides/v4-to-v5) for
+> more information around updating code to this major version.
+
+This release focused on creating a new `Menu` API that should hopefully make
+menus easier to use along with some other new features. The main difference is
+that the `DropdownMenu` no longer accepts a list of `items` that get converted
+to `<MenuItem>`s behind the scenes. Instead, the `children` of the
+`DropdownMenu` should be all the `MenuItem` components that should be used
+inside the menu. The main reason for this change is to make it easier to create
+reusable components for different actions within your app and no longer needed
+to disable the React `eslint` rule around missing `key`s.
+
+Another notable change is that nested dropdown menus no longer require the
+`DropdownMenuItem` component and instead the `DropdownMenu` automatically
+renders as a `<li>` if it appears as a child of another `Menu` component.
+
+Here's a quick example of migrating to the new `DropdownMenu` API:
+
+```diff
+ import type { ReactElement } from "react";
+-import { DropdownMenu, DropdownMenuItem } from "@react-md/menu";
++import { DropdownMenu, MenuItem } from "@react-md/menu";
+
+ export default function Example(): ReactElement (
+-  <DropdownMenu
+-    id="example-dropdown-menu"
+-    items={[
+-      { onClick: () => console.log("Clicked Item 1"), children: "Item 1" },
+-      { onClick: () => console.log("Clicked Item 2"), children: "Item 2" },
+-      { onClick: () => console.log("Clicked Item 3"), children: "Item 3" },
+-      <DropdownMenuItem
+-        id="nested-dropdown-menu"
+-        items={["Subitem 1", "Subitem 2", "Subitem 3"]}
+-      >
+-        Submenu
+-      </DropdownMenuItem>,
+-    ]}
+-  >
+-    Dropdown
++  <DropdownMenu id="example-dropdown-menu" buttonChildren="Dropdown">
++    <MenuItem onClick={() => console.log("Clicked Item 1")}>Item 1</MenuItem>
++    <MenuItem onClick={() => console.log("Clicked Item 2")}>Item 2</MenuItem>
++    <MenuItem onClick={() => console.log("Clicked Item 3")}>Item 3</MenuItem>
++    <DropdownMenu
++      id="nested-dropdown-menu"
++      buttonChildren="Submenu"
++    >
++      <MenuItem>Subitem 1</MenuItem>
++      <MenuItem>Subitem 2</MenuItem>
++      <MenuItem>Subitem 3</MenuItem>
++    </DropdownMenu>
+   </DropdownMenu>
+ );
+```
+
+On top of the new API, two major new features have been integrated into this
+release:
+
+#### Hoverable Menus
+
+Menus can now act like a browser's bookmark folder behavior where the user must
+click one of the dropdowns before all other menus become immediately visible on
+hover by using the new `MenuBar` component. This also implements some new
+keyboard movement behavior matching the
+[menubar spec](https://www.w3.org/TR/wai-aria-practices/#menu).
+
+If the first-click behavior is undesired, the `MenuBar` also accepts a
+`hoverTimeout` prop which can be set to `0` to make the menus appear immediately
+on hover or another time in milliseconds to wait before the "hover mode"
+behavior should begin.
+
+#### Conditionally Rendering Menus within a `Sheet`
+
+Since menus aren't always ideal for small viewports, the `DropdownMenu` has been
+updated to conditionally rendering the `Menu` within a `Sheet` instead of being
+positioned relative to the `Button` element. This feature is **opt-in** by
+either:
+
+- Adding `menuConfiguration={{ renderAsSheet: "phone" }}` on the `Configuration`
+  component from `@react-md/layout`
+- Wrapping a `DropdownMenu` in the `MenuConfigurationProvider` and adding a prop
+  `renderAsSheet="phone"`
+- Directly on a `DropdownMenu` with the `renderAsSheet="phone"` prop
+
+The sheet will default to rendering at the bottom of the viewport and have a max
+height that should allow the user to close the menu by clicking the overlay
+behind the sheet. These defaults can be configured with the `sheetPosition` and
+`sheetVerticalSize` props.
+
+The `Sheet` can also be configured to have an optional header and footer using
+the `sheetHeader` and `sheetFooter` props. If all else fails, the `DropdownMenu`
+accepts `sheetProps` which will be passed to the `Sheet` component.
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/form:** `TextArea` applies custom height style when
+  `resize="none"` (e77d939)
+- **@react-md/list:** Pass `disableEnterClick` in `ListItem` (b5e8b69)
+- **@react-md/overlay:** Allow for custom onClick behavior (60dce54)
+- **@react-md/transition:** Do not create styles for hidden elements (6eff8a8)
+- **@react-md/typography:** Fixed overline class name (1e544d0)
+- **@react-md/utils:** `useRefCache` returns non-mutable object (b696b72)
+- **@react-md/utils:** Positioning logic for inner-left/inner-right and vertical
+  anchors (a38abfb)
+
+##### Features<!-- no-margin -->
+
+- **@react-md/dialog:** Add new `overlayProps` to configure the dialog's overlay
+  (cfc30f0)
+- **@react-md/divider:** Update `useVerticalDividerHeight` to support any
+  HTMLElement (edd9287)
+- **@react-md/divider:** Update divider styles for non-hr elements (7ccd0a6)
+- **@react-md/form:** Update `TextFieldContainer` to optionally fill all space
+  in flex containers (2c8e68c)
+- **@react-md/list:** Created rmd-list-unstyled utility class from the mixin
+  (6c9b7f4)
+- **@react-md/menu:** Better floating action button default behavior (0cdeff7)
+- **@react-md/utils:** export focusable query constants (f9f7955)
+- **@react-md/utils:** Implemented new keyboard focus behavior (77f0d01)
+
+##### Documentation<!-- no-margin -->
+
+- Added documentation for using a GitHub template to bootstrap a new project
+  (aac11ba)
+- Removed Working with v1 documentation (8aa71ac)
+- **@react-md/sheet:** Move tsdoc around for easier sharing (83fcaac)
+- **react-md.dev:** Better migration guide search behavior (9729269)
+- **react-md.dev:** Disable TOCs in dev mode and use temporary layout (3203af4)
+- **react-md.dev:** Fixed weird dev error with spreading props and key (7cd7b8c)
+
+##### Other Internal Changes<!-- no-margin -->
+
+- chore!(utils): Remove touch utils and passive events checks (3597d32)
+- chore!(utils): useScrollListener no longer accepts an element or options
+  (74a0274)
+- feat!(menu): Implemented new Menu API (c27bf55)
+- feat!(utils): Updated the HoverMode API (ac60bdb)
+- chore!(icon): Renamed the download icon to upload (2752a98)
+- Removed commitizen since I never use it (3e738b4)
+- **@react-md/form:** Updated `FileInput` snapshots for new icon (f5e43fe)
+- **@react-md/icon:** Updated docs and examples to use ConfiguredIcons type
+  (bbfebed)
+- **@react-md/menu:** Added tests for the new menu API and fixed a few issues
+  (7202dd0)
+- **@react-md/menu:** Fixed `MenuBar` visibility for touch devices (1288be7)
+- **@react-md/menu:** Fixed keyboard movement in MenuBars with visible menus
+  (5b2494a)
+- **@react-md/utils:** Export `enableScrollLock` and `disableScrollLock` utils
+  (6a95734)
+- **examples:** bump `next` from 12.0.7 to 12.0.9 (04749c6)
+- **examples:** Updated `create-react-app` examples to use v5.0.0 (f7850b8)
+- **examples:** Updated gatsby examples to v4.4.0 (8a12699)
+- **react-md.dev:** Add migration guides for `react-md` major versions (78b7396)
+- **react-md.dev:** Add word-break to headings for markdown pages (03b1301)
+- **react-md.dev:** Fixed ids for emulated phones (10984f5)
+- **react-md.dev:** Supress hydration for markdown (8bb4d51)
+- **react-md.dev:** Update HoverableMenus example to not use `TextArea`
+  (5361825)
+- **react-md.dev:** Updated a few menu demos (c43cd31)
+
+##### Breaking Changes<!-- no-margin -->
+
+- `DEFAULT_HOVER_MODE_STICKY_EXIT_TIME` has been renamed to
+  `DEFAULT_HOVER_MODE_EXIT_TIME`.
+- Menu buttons will no longer open by pressing the `ArrowUp` or `ArrowDown`
+  keys.
+- The `DropdownMenu` component no longer accepts a list of `items` and instead
+  the `children` should be the `MenuItem` components.
+- The `DropdownMenu` component no longer supports the `menuRenderer` and
+  `itemRenderer` props. Instead, there is built-in support for conditionally
+  rendering as a `Sheet` component using the `renderAsSheet` prop.
+- The `DropdownMenu` component now requires a parent `AppSizeListener` because
+  of the conditional `Sheet` rendering functionality. This might require
+  updating your tests to either use the `Configuration` component from
+  `@react-md/layout` (recommended) or adding the `AppSizeListener` to tests that
+  include `DropdownMenu`s.
+- The `DropdownMenuItem` component is no longer required for nested dropdown
+  menus and is an "internal" component instead that shouldn't really be used.
+- The `exitVisibilityDelay` always defaults to `DEFAULT_HOVER_MODE_EXIT_TIME`.
+- The `MenuItemSeparator` now renders as an `<li>` instead of an `<hr>` or
+  `<div>`.
+- The `useContextMenu` now returns an object instead of an ordered list.
+- The `useHoverMode` hook no longer accepts an `HTMLElement` generic and instead
+  the event handlers will automatically infer the `HTMLElement` based on usage.
+- The `useHoverMode` hook no longer returns `stickyHandlers` and instead returns
+  `hoverHandlers` that only include `onMouseEnter` and `onMouseLeave`. The
+  `handlers` that are returned now include `onClick`, `onMouseEnter`, and
+  `onMouseLeave`. This was kind of what the `stickyHandlers` was before. In
+  addition, clicking an element no longer disabled the hover mode behavior.
+- The following typescript types have been removed: `HoverModeOnlyOptions`,
+  `HoverModeOnlyReturnValue`
+- Using any of the `MenuItem` components requires the
+  `<MenuKeyboardFocusProvider>` to be mounted as a parent component which might
+  affect tests. This will not break anything if you are using the `DropdownMenu`
+  or `Menu` components.
+
+---
+
 Title: react-md 4.0.3
 
 Date: 12/31/2021
