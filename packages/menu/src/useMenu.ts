@@ -7,7 +7,11 @@ import {
 } from "react";
 import { FABPosition } from "@react-md/button";
 import { useFixedPositioning } from "@react-md/transition";
-import { containsElement, useScrollLock } from "@react-md/utils";
+import {
+  containsElement,
+  useIsUserInteractionMode,
+  useScrollLock,
+} from "@react-md/utils";
 
 import { useMenuBarContext } from "./MenuBarProvider";
 import type {
@@ -196,6 +200,7 @@ export function useMenu<ToggleEl extends HTMLElement>(
   } = options;
   const { menubar, activeId, setActiveId, hoverTimeout, setAnimatedOnce } =
     useMenuBarContext();
+  const touch = useIsUserInteractionMode("touch");
 
   const timeout = useRef<number | undefined>();
   useEffect(() => {
@@ -423,7 +428,13 @@ export function useMenu<ToggleEl extends HTMLElement>(
       },
       onMouseEnter(event) {
         onToggleMouseEnter(event);
-        if (event.isPropagationStopped() || disabled || !menubar || !activeId) {
+        if (
+          event.isPropagationStopped() ||
+          disabled ||
+          !menubar ||
+          !activeId ||
+          touch
+        ) {
           if (typeof hoverTimeout === "number") {
             timeout.current = window.setTimeout(() => {
               setActiveId(baseId);
