@@ -198,8 +198,14 @@ export function useMenu<ToggleEl extends HTMLElement>(
     disableFocusOnMount = false,
     disableFocusOnUnmount = false,
   } = options;
-  const { menubar, activeId, setActiveId, hoverTimeout, setAnimatedOnce } =
-    useMenuBarContext();
+  const {
+    root,
+    menubar,
+    activeId,
+    setActiveId,
+    hoverTimeout,
+    setAnimatedOnce,
+  } = useMenuBarContext();
   const touch = useIsUserInteractionMode("touch");
 
   const timeout = useRef<number | undefined>();
@@ -290,13 +296,22 @@ export function useMenu<ToggleEl extends HTMLElement>(
       return;
     }
 
+    // this is to fix keyboard movement behavior when navigating between
+    // different root-level menuitems with the `ArrowLeft` and `ArrowRight` keys
+    // while menus are visible. If the exit focus behavior is not cancelled, the
+    // next menu's menu will be visible, but the current menu's menuitem would
+    // be the current focus which breaks everything
+    cancelExitFocus.current =
+      cancelExitFocus.current ||
+      !menuNodeRef.current?.contains(document.activeElement);
+
     setActiveId((prevActiveId) =>
       baseId === prevActiveId ? "" : prevActiveId
     );
-  }, [baseId, setActiveId, visible]);
+  }, [baseId, root, setActiveId, visible]);
   useEffect(() => {
     setVisible(baseId === activeId);
-  }, [activeId, baseId, setVisible]);
+  }, [activeId, baseId, root, setVisible]);
 
   return {
     menuRef: nodeRef,
