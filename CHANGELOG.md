@@ -7,8 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 > Check out the [v4 to v5 Migration Guide](https://react-md.dev/migration-guides/v4-to-v5) for more information around updating code to this major version.
 
-This release focused on creating a new `Menu` API that should hopefully make menus easier to use along with some other new features.
-The main difference is that the `DropdownMenu` no longer accepts a list of `items` that get converted to `<MenuItem>`s behind the scenes. Instead, the `children` of the `DropdownMenu` should be all the `MenuItem` components that should be used inside the menu. The main reason for this change is to make it easier to create reusable components for different actions within your app and no longer needed to disable the React `eslint` rule around missing `key`s.
+This release focused on creating a new `Menu` API that should hopefully make menus easier to use along with some other new features. The main difference is that the `DropdownMenu` no longer accepts a list of `items` that get converted to `MenuItem`s behind the scenes. Instead, the `children` of the `DropdownMenu` should be all the `MenuItem` components that should be used inside the menu. The main reason for this change is to make it easier to create reusable components for different actions within your app and no longer needed to disable the React `eslint` rule around missing `key`s.
 
 Another notable change is that nested dropdown menus no longer require the `DropdownMenuItem` component and instead the `DropdownMenu` automatically renders as a `<li>` if it appears as a child of another `Menu` component.
 
@@ -59,7 +58,9 @@ Menus can now act like a browser's bookmark folder behavior where the user must 
 
 If the first-click behavior is undesired, the `MenuBar` also accepts a `hoverTimeout` prop which can be set to `0` to make the menus appear immediately on hover or another time in milliseconds to wait before the "hover mode" behavior should begin.
 
-#### Conditionally Rendering Menus within a `Sheet`
+> Check out the [Hoverable Menus demo](https://react-md.dev/packages/menu/demos/#hoverable-menus) for more information.
+
+#### Conditionally Rendering Menus within a Sheet
 
 Since menus aren't always ideal for small viewports, the `DropdownMenu` has been updated to conditionally rendering the `Menu` within a `Sheet` instead of being positioned relative to the `Button` element. This feature is **opt-in** by either:
 
@@ -67,10 +68,11 @@ Since menus aren't always ideal for small viewports, the `DropdownMenu` has been
 - Wrapping a `DropdownMenu` in the `MenuConfigurationProvider` and adding a prop `renderAsSheet="phone"`
 - Directly on a `DropdownMenu` with the `renderAsSheet="phone"` prop
 
-The sheet will default to rendering at the bottom of the viewport and have a max height that should allow the user to close the menu by clicking the overlay behind the sheet. These defaults can be configured with the `sheetPosition` and `sheetVerticalSize` props.
+The `Sheet` will default to rendering at the bottom of the viewport and have a max height that should allow the user to close the menu by clicking the overlay behind the sheet. These defaults can be configured with the `sheetPosition` and `sheetVerticalSize` props.
 
 The `Sheet` can also be configured to have an optional header and footer using the `sheetHeader` and `sheetFooter` props. If all else fails, the `DropdownMenu` accepts `sheetProps` which will be passed to the `Sheet` component.
 
+> Check out the [Mobile Action Sheets demo](https://react-md.dev/packages/menu/demos#mobile-action-sheet) for more information.
 
 
 ### Bug Fixes
@@ -91,9 +93,11 @@ The `Sheet` can also be configured to have an optional header and footer using t
 * **@react-md/divider:** Update divider styles for non-hr elements ([7ccd0a6](https://github.com/mlaursen/react-md/commit/7ccd0a6cf61bbcbf01b7f92645bf74dda0d2f6bf))
 * **@react-md/form:** Update `TextFieldContainer` to optionally fill all space in flex containers ([2c8e68c](https://github.com/mlaursen/react-md/commit/2c8e68ccb004c9a36da773fd8cd3873df7b4184b))
 * **@react-md/list:** Created rmd-list-unstyled utility class from the mixin ([6c9b7f4](https://github.com/mlaursen/react-md/commit/6c9b7f45960888790c32840d2228fdb8bf0220ef))
+* **@react-md/menu:** Implemented new Menu API ([c27bf55](https://github.com/mlaursen/react-md/commit/c27bf558a950bf2938811a98b2b168efca4055cc))
 * **@react-md/menu:** Better floating action button default behavior ([0cdeff7](https://github.com/mlaursen/react-md/commit/0cdeff72ac8c6b2f2808714299774fab0d490222))
 * **@react-md/utils:** export focusable query constants ([f9f7955](https://github.com/mlaursen/react-md/commit/f9f7955d7fecb0d96893d2c5db40f753e7f4953f))
 * **@react-md/utils:** Implemented new keyboard focus behavior ([77f0d01](https://github.com/mlaursen/react-md/commit/77f0d012e06b6a00f1b7ee64ef91d43683a703b6))
+* **@react-md/utils:** Updated the HoverMode API ([ac60bdb](https://github.com/mlaursen/react-md/commit/ac60bdb0cd8dc3ba55c8ea080f4ad3886b579033))
 
 
 ### Documentation
@@ -108,25 +112,23 @@ The `Sheet` can also be configured to have an optional header and footer using t
 
 ### Other Internal Changes
 
-* chore!(utils): Remove touch utils and passive events checks ([3597d32](https://github.com/mlaursen/react-md/commit/3597d3289cb4e4f225e978e8134def11ec4ce2bb))
-* chore!(utils): useScrollListener no longer accepts an element or options ([74a0274](https://github.com/mlaursen/react-md/commit/74a02744f3b7d5070b3f5c0d7b308842026bec72))
-* feat!(menu): Implemented new Menu API ([c27bf55](https://github.com/mlaursen/react-md/commit/c27bf558a950bf2938811a98b2b168efca4055cc))
-* feat!(utils): Updated the HoverMode API ([ac60bdb](https://github.com/mlaursen/react-md/commit/ac60bdb0cd8dc3ba55c8ea080f4ad3886b579033))
-* chore!(icon): Renamed the download icon to upload ([2752a98](https://github.com/mlaursen/react-md/commit/2752a981fe4021636de66f8576fdd8842a7e90af))
 * Removed commitizen since I never use it ([3e738b4](https://github.com/mlaursen/react-md/commit/3e738b4ab14fd7b4aab4f104b0d4120d226b7747))
 * **@react-md/form:** Updated `FileInput` snapshots for new icon ([f5e43fe](https://github.com/mlaursen/react-md/commit/f5e43fe4bf7ccc7f0387d66ae183a2190ad294cb))
+* **@react-md/icon:** Renamed the download icon to upload ([2752a98](https://github.com/mlaursen/react-md/commit/2752a981fe4021636de66f8576fdd8842a7e90af))
 * **@react-md/icon:** Updated docs and examples to use ConfiguredIcons type ([bbfebed](https://github.com/mlaursen/react-md/commit/bbfebedc7902b5f28fca202ba7189b3c1b540f2d))
 * **@react-md/menu:** Added tests for the new menu API and fixed a few issues ([7202dd0](https://github.com/mlaursen/react-md/commit/7202dd00a2e734dd1a58d29142b551d8a9411b5a))
 * **@react-md/menu:** Fixed `MenuBar` visibility for touch devices ([1288be7](https://github.com/mlaursen/react-md/commit/1288be768766b885c16f370b90291922be334696))
 * **@react-md/menu:** Fixed keyboard movement in MenuBars with visible menus ([5b2494a](https://github.com/mlaursen/react-md/commit/5b2494a2b2a34f1a53be97d07b1fc959eba8f6c1))
 * **@react-md/utils:** Export `enableScrollLock` and `disableScrollLock` utils ([6a95734](https://github.com/mlaursen/react-md/commit/6a9573474b493fb9bf634063ee19389d1b05c0a9))
+* **@react-md/utils:** Remove touch utils and passive events checks ([3597d32](https://github.com/mlaursen/react-md/commit/3597d3289cb4e4f225e978e8134def11ec4ce2bb))
+* **@react-md/utils:** useScrollListener no longer accepts an element or options ([74a0274](https://github.com/mlaursen/react-md/commit/74a02744f3b7d5070b3f5c0d7b308842026bec72))
 * **examples:** bump `next` from 12.0.7 to 12.0.9 ([04749c6](https://github.com/mlaursen/react-md/commit/04749c6744a5e244e89bb06baf331cc7e7cf9383))
 * **examples:** Updated `create-react-app` examples to use v5.0.0 ([f7850b8](https://github.com/mlaursen/react-md/commit/f7850b87919edbdedb04e70702d5f2c4fa1ec71f))
 * **examples:** Updated gatsby examples to v4.4.0 ([8a12699](https://github.com/mlaursen/react-md/commit/8a12699a279b8a6db39ff2ed4e6fdea5009a2533))
 * **react-md.dev:** Add migration guides for `react-md` major versions ([78b7396](https://github.com/mlaursen/react-md/commit/78b73969916da433f4a64290a13d1888af3b8302))
 * **react-md.dev:** Add word-break to headings for markdown pages ([03b1301](https://github.com/mlaursen/react-md/commit/03b13015c5840f7d0964cfe31cb169bd6c4e2208))
 * **react-md.dev:** Fixed ids for emulated phones ([10984f5](https://github.com/mlaursen/react-md/commit/10984f55f152642b97c4795e77c4171fbdb13b36))
-* **react-md.dev:** Supress hydration for markdown ([8bb4d51](https://github.com/mlaursen/react-md/commit/8bb4d51b954715a600bc28ffa76a43dd8213259a))
+* **react-md.dev:** Suppress hydration for markdown ([8bb4d51](https://github.com/mlaursen/react-md/commit/8bb4d51b954715a600bc28ffa76a43dd8213259a))
 * **react-md.dev:** Update HoverableMenus example to not use `TextArea` ([5361825](https://github.com/mlaursen/react-md/commit/536182512924b014e5459b8cb81ce7133a1ee5b5))
 * **react-md.dev:** Updated a few menu demos ([c43cd31](https://github.com/mlaursen/react-md/commit/c43cd31b8599a360f9811d03ac1c79587504e54e))
 

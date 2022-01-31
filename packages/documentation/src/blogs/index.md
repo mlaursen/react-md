@@ -4,18 +4,17 @@ Date: 01/30/2022
 
 Summary:
 
-> Check out the
-> [v4 to v5 Migration Guide](https://react-md.dev/migration-guides/v4-to-v5) for
-> more information around updating code to this major version.
+> Check out the [v4 to v5 Migration Guide](/migration-guides/v4-to-v5) for more
+> information around updating code to this major version.
 
 This release focused on creating a new `Menu` API that should hopefully make
 menus easier to use along with some other new features. The main difference is
 that the `DropdownMenu` no longer accepts a list of `items` that get converted
-to `<MenuItem>`s behind the scenes. Instead, the `children` of the
-`DropdownMenu` should be all the `MenuItem` components that should be used
-inside the menu. The main reason for this change is to make it easier to create
-reusable components for different actions within your app and no longer needed
-to disable the React `eslint` rule around missing `key`s.
+to `MenuItem`s behind the scenes. Instead, the `children` of the `DropdownMenu`
+should be all the `MenuItem` components that should be used inside the menu. The
+main reason for this change is to make it easier to create reusable components
+for different actions within your app and no longer needed to disable the React
+`eslint` rule around missing `key`s.
 
 Another notable change is that nested dropdown menus no longer require the
 `DropdownMenuItem` component and instead the `DropdownMenu` automatically
@@ -76,7 +75,10 @@ If the first-click behavior is undesired, the `MenuBar` also accepts a
 on hover or another time in milliseconds to wait before the "hover mode"
 behavior should begin.
 
-#### Conditionally Rendering Menus within a `Sheet`
+> Check out the [Hoverable Menus demo](/packages/menu/demos/#hoverable-menus)
+> for more information.
+
+#### Conditionally Rendering Menus within a Sheet
 
 Since menus aren't always ideal for small viewports, the `DropdownMenu` has been
 updated to conditionally rendering the `Menu` within a `Sheet` instead of being
@@ -89,14 +91,18 @@ either:
   `renderAsSheet="phone"`
 - Directly on a `DropdownMenu` with the `renderAsSheet="phone"` prop
 
-The sheet will default to rendering at the bottom of the viewport and have a max
-height that should allow the user to close the menu by clicking the overlay
+The `Sheet` will default to rendering at the bottom of the viewport and have a
+max height that should allow the user to close the menu by clicking the overlay
 behind the sheet. These defaults can be configured with the `sheetPosition` and
 `sheetVerticalSize` props.
 
 The `Sheet` can also be configured to have an optional header and footer using
 the `sheetHeader` and `sheetFooter` props. If all else fails, the `DropdownMenu`
 accepts `sheetProps` which will be passed to the `Sheet` component.
+
+> Check out the
+> [Mobile Action Sheets demo](/packages/menu/demos#mobile-action-sheet) for more
+> information.
 
 ##### Bug Fixes<!-- no-margin -->
 
@@ -121,9 +127,11 @@ accepts `sheetProps` which will be passed to the `Sheet` component.
   in flex containers (2c8e68c)
 - **@react-md/list:** Created rmd-list-unstyled utility class from the mixin
   (6c9b7f4)
+- **@react-md/menu:** Implemented new Menu API (c27bf55)
 - **@react-md/menu:** Better floating action button default behavior (0cdeff7)
 - **@react-md/utils:** export focusable query constants (f9f7955)
 - **@react-md/utils:** Implemented new keyboard focus behavior (77f0d01)
+- **@react-md/utils:** Updated the HoverMode API (ac60bdb)
 
 ##### Documentation<!-- no-margin -->
 
@@ -137,14 +145,9 @@ accepts `sheetProps` which will be passed to the `Sheet` component.
 
 ##### Other Internal Changes<!-- no-margin -->
 
-- chore!(utils): Remove touch utils and passive events checks (3597d32)
-- chore!(utils): useScrollListener no longer accepts an element or options
-  (74a0274)
-- feat!(menu): Implemented new Menu API (c27bf55)
-- feat!(utils): Updated the HoverMode API (ac60bdb)
-- chore!(icon): Renamed the download icon to upload (2752a98)
 - Removed commitizen since I never use it (3e738b4)
 - **@react-md/form:** Updated `FileInput` snapshots for new icon (f5e43fe)
+- **@react-md/icon:** Renamed the download icon to upload (2752a98)
 - **@react-md/icon:** Updated docs and examples to use ConfiguredIcons type
   (bbfebed)
 - **@react-md/menu:** Added tests for the new menu API and fixed a few issues
@@ -154,13 +157,16 @@ accepts `sheetProps` which will be passed to the `Sheet` component.
   (5b2494a)
 - **@react-md/utils:** Export `enableScrollLock` and `disableScrollLock` utils
   (6a95734)
+- **@react-md/utils:** Remove touch utils and passive events checks (3597d32)
+- **@react-md/utils:** `useScrollListener` no longer accepts an element or
+  options (74a0274)
 - **examples:** bump `next` from 12.0.7 to 12.0.9 (04749c6)
 - **examples:** Updated `create-react-app` examples to use v5.0.0 (f7850b8)
 - **examples:** Updated gatsby examples to v4.4.0 (8a12699)
 - **react-md.dev:** Add migration guides for `react-md` major versions (78b7396)
 - **react-md.dev:** Add word-break to headings for markdown pages (03b1301)
 - **react-md.dev:** Fixed ids for emulated phones (10984f5)
-- **react-md.dev:** Supress hydration for markdown (8bb4d51)
+- **react-md.dev:** Suppress hydration for markdown (8bb4d51)
 - **react-md.dev:** Update HoverableMenus example to not use `TextArea`
   (5361825)
 - **react-md.dev:** Updated a few menu demos (c43cd31)
