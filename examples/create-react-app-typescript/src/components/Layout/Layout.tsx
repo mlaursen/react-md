@@ -5,7 +5,7 @@ import {
   ArrowUpwardSVGIcon,
   CheckBoxSVGIcon,
   CheckSVGIcon,
-  ConfigurableIcons,
+  ConfiguredIcons,
   Configuration,
   ErrorOutlineSVGIcon,
   FileUploadSVGIcon,
@@ -22,7 +22,7 @@ import {
 
 import navItems from "./navItems";
 
-const icons: ConfigurableIcons = {
+const icons: ConfiguredIcons = {
   back: <KeyboardArrowLeftSVGIcon />,
   checkbox: <CheckBoxSVGIcon />,
   dropdown: <ArrowDropDownSVGIcon />,

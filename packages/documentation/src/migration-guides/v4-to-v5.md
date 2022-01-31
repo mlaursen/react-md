@@ -6,7 +6,7 @@ If you provide custom icons for `react-md` using the `IconProvider` or
 `Configuration` components, you must rename the `download` icon to be `upload`.
 
 ```diff
- const icons: ConfigurableIcons = {
+ const icons: ConfiguredIcons = {
    back: <KeyboardArrowLeftSVGIcon />,
    checkbox: <CheckBoxSVGIcon />,
 -  download: <FileUploadSVGIcon />,
@@ -231,7 +231,7 @@ update the main `Configuration` component:
    ArrowUpwardSVGIcon,
    CheckBoxSVGIcon,
    CheckSVGIcon,
-   ConfigurableIcons,
+   ConfiguredIcons,
    Configuration,
    ErrorOutlineSVGIcon,
    FileUploadSVGIcon,
@@ -249,7 +249,7 @@ update the main `Configuration` component:
 
  import navItems from "./navItems";
 
- const icons: ConfigurableIcons = {
+ const icons: ConfiguredIcons = {
    back: <KeyboardArrowLeftSVGIcon />,
    checkbox: <CheckBoxSVGIcon />,
    dropdown: <ArrowDropDownSVGIcon />,
