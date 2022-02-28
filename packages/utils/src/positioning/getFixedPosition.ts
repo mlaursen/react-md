@@ -29,6 +29,24 @@ const FALLBACK_DOM_RECT: DOMRect = {
   },
 };
 
+function isScrollable(element: HTMLElement): boolean {
+  const overflow = window.getComputedStyle(element).overflow;
+  return overflow !== "hidden" && overflow !== "visible";
+}
+
+function getScrollableParent(element: HTMLElement | null): HTMLElement | null {
+  let current = element;
+  while (current && current !== document.body) {
+    if (isScrollable(current)) {
+      return current;
+    }
+
+    current = current.parentElement;
+  }
+
+  return null;
+}
+
 /**
  * One of the most complicated functions in this project that will attempt to
  * position an element relative to another container element while still being
@@ -104,11 +122,11 @@ export function getFixedPosition({
   const vw = getViewportSize("width");
 
   const { height, width: elWidth } = getElementRect(element);
-  if (disableVHBounds) {
-    const dialog = element.closest("[role='dialog']");
-    if (!dialog) {
-      initialY = (initialY ?? 0) + window.scrollY;
-    }
+  const scrollParent = getScrollableParent(
+    disableVHBounds ? element.parentElement : null
+  );
+  if (disableVHBounds && !scrollParent) {
+    initialY = (initialY ?? 0) + window.scrollY;
   }
 
   const disableSwapping = propDisableSwapping || !container;
@@ -137,12 +155,24 @@ export function getFixedPosition({
     disableVHBounds,
   });
 
+  let nextLeft = left;
+  let nextTop = top;
+  if (
+    scrollParent &&
+    typeof nextLeft === "number" &&
+    typeof nextTop === "number"
+  ) {
+    const rect = scrollParent.getBoundingClientRect();
+    nextLeft = left - rect.left;
+    nextTop = top - rect.top;
+  }
+
   return {
     actualX,
     actualY,
     style: {
-      left,
-      top,
+      left: nextLeft,
+      top: nextTop,
       right,
       bottom,
       width,
