@@ -9,23 +9,23 @@ interface CSSVariable {
 
 const VARIABLES: CSSVariable[] = [
   {
-    name: "rmd-tooltip-font-size",
+    name: "--rmd-tooltip-font-size",
     value: scssVariables["rmd-tooltip-font-size"],
   },
   {
-    name: "rmd-tooltip-line-height",
+    name: "--rmd-tooltip-line-height",
     value: scssVariables["rmd-tooltip-line-height"],
   },
   {
-    name: "rmd-tooltip-min-height",
+    name: "--rmd-tooltip-min-height",
     value: scssVariables["rmd-tooltip-min-height"],
   },
   {
-    name: "rmd-tooltip-horizontal-padding",
+    name: "--rmd-tooltip-horizontal-padding",
     value: scssVariables["rmd-tooltip-horizontal-padding"],
   },
   {
-    name: "rmd-tooltip-vertical-padding",
+    name: "--rmd-tooltip-vertical-padding",
     value: scssVariables["rmd-tooltip-line-wrap-vertical-padding"],
   },
 ];
@@ -47,9 +47,7 @@ export default function DenseTooltipsWrapper({
   const mode = useUserInteractionMode();
 
   const enableVariables = (): void => {
-    if (!variables.length) {
-      setVariables(VARIABLES);
-    }
+    setVariables(VARIABLES);
   };
 
   useEffect(() => {
@@ -61,7 +59,8 @@ export default function DenseTooltipsWrapper({
       if (
         !container.current ||
         !event.target ||
-        !container.current.contains(event.target as Node)
+        !(event.target instanceof Node) ||
+        !container.current.contains(event.target)
       ) {
         setVariables([]);
       }
