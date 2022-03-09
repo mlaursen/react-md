@@ -33,17 +33,6 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.ts', '**/*.tsx'],
-      rules: {
-        '@typescript-eslint/prefer-reduce-type-parameter': 0,
-        // used for dynamic prop-types and easy to catch otherwise
-        '@typescript-eslint/no-var-requires': 0,
-        '@typescript-eslint/no-unsafe-call': 0,
-        '@typescript-eslint/no-unsafe-assignment': 0,
-        '@typescript-eslint/no-unsafe-member-access': 0,
-      },
-    },
-    {
       files: ['packages/*/src/index.ts'],
       rules: {
         // I don't know how to get @module to work but it's supported by typedoc
