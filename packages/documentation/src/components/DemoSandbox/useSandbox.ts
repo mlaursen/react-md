@@ -20,7 +20,7 @@ export default function useSandbox(
   { js, pkg, name, theme, pathname }: SandboxQuery
 ): ReturnValue {
   const [sandbox, setSandbox] = useState(defaultSandbox);
-  const [isLoading, setLoading] = useState(!sandbox);
+  const [isLoading, setLoading] = useState(false);
   const prevJs = useRef(js);
   const loading = isLoading || prevJs.current !== js;
 

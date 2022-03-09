@@ -7,7 +7,6 @@ import NotFoundPage from "components/NotFoundPage";
 import { useTheme } from "components/Theme";
 import { parseSandbox, SandboxQuery } from "utils/routes";
 
-import SandboxList from "./SandboxList";
 import SandboxModal from "./SandboxModal";
 import useSandbox from "./useSandbox";
 import useFiles from "./useFiles";
@@ -75,8 +74,8 @@ export default function DemoSandbox({
     [folders, router, pkg, name, from, fileName]
   );
 
-  if (!sandbox && !loading && (pkg || name || from)) {
-    if (process.env.NODE_ENV !== "production") {
+  if (!sandbox && !loading) {
+    if (process.env.NODE_ENV !== "production" && (pkg || name || from)) {
       throw new Error(
         "No sandbox found. Run `yarn sandbox` to generate demo sandboxes."
       );
@@ -86,20 +85,17 @@ export default function DemoSandbox({
   }
 
   return (
-    <>
-      <SandboxList />
-      <SandboxModal
-        pkg={pkg}
-        name={name}
-        fileName={fileName}
-        from={from}
-        files={files}
-        loading={loading}
-        folders={folders}
-        sandbox={sandbox}
-        onFileChange={onFileChange}
-        onRequestClose={onRequestClose}
-      />
-    </>
+    <SandboxModal
+      pkg={pkg}
+      name={name}
+      fileName={fileName}
+      from={from}
+      files={files}
+      loading={loading}
+      folders={folders}
+      sandbox={sandbox}
+      onFileChange={onFileChange}
+      onRequestClose={onRequestClose}
+    />
   );
 }
