@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { MenuItem } from "@react-md/menu";
 import { ViewHeadlineSVGIcon } from "@react-md/material-icons";
 import {

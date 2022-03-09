@@ -1,4 +1,5 @@
-import { getPercentage, GetPercentageOptions } from "../getPercentage";
+import type { GetPercentageOptions } from "../getPercentage";
+import { getPercentage } from "../getPercentage";
 
 describe("getPercentage", () => {
   it("should throw a RangeError if the min is greater than the max", () => {

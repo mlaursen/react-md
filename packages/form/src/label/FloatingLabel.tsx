@@ -2,7 +2,8 @@ import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { Label, LabelProps } from "./Label";
+import type { LabelProps } from "./Label";
+import { Label } from "./Label";
 
 export interface FloatingLabelProps extends LabelProps {
   /**

@@ -1,8 +1,9 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { Fieldset, Radio, useChoice } from "@react-md/form";
 import { List, ListItem } from "@react-md/list";
-import { Sheet, SheetPosition } from "@react-md/sheet";
+import type { SheetPosition } from "@react-md/sheet";
+import { Sheet } from "@react-md/sheet";
 import { useToggle } from "@react-md/utils";
 
 const positions: SheetPosition[] = ["top", "right", "bottom", "left"];

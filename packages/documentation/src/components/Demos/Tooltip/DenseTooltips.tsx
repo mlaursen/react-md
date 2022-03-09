@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Typography } from "@react-md/typography";
-import { SimplePosition } from "@react-md/utils";
+import type { SimplePosition } from "@react-md/utils";
 
 import Container from "./Container";
 import TooltippedButton from "./TooltippedButton";

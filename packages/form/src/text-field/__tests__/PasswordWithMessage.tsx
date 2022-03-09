@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable jsx-a11y/aria-role */
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import { PasswordWithMessage } from "../PasswordWithMessage";
-import { TextFieldHookOptions, useTextField } from "../useTextField";
-import { FormMessageProps } from "../../FormMessage";
+import type { TextFieldHookOptions } from "../useTextField";
+import { useTextField } from "../useTextField";
+import type { FormMessageProps } from "../../FormMessage";
 
 function Test({
   id = "field-id",

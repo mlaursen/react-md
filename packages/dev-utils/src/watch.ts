@@ -1,4 +1,5 @@
-import { ChildProcess, spawn } from "child_process";
+import type { ChildProcess } from "child_process";
+import { spawn } from "child_process";
 import chokidar from "chokidar";
 import log from "loglevel";
 import { sep } from "path";

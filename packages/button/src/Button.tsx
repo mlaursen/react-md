@@ -1,16 +1,14 @@
 /* eslint-disable react/button-has-type */
-import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
-import {
-  InteractionStatesOptions,
-  useInteractionStates,
-} from "@react-md/states";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { forwardRef } from "react";
+import type { InteractionStatesOptions } from "@react-md/states";
+import { useInteractionStates } from "@react-md/states";
 import type { PropsWithRef } from "@react-md/utils";
 
-import {
-  buttonThemeClassNames,
-  ButtonThemeProps,
-} from "./buttonThemeClassNames";
-import { FAB, FABPosition, FABProps } from "./FAB";
+import type { ButtonThemeProps } from "./buttonThemeClassNames";
+import { buttonThemeClassNames } from "./buttonThemeClassNames";
+import type { FABPosition, FABProps } from "./FAB";
+import { FAB } from "./FAB";
 
 /**
  * This interface includes all the props that the `Button` component accepts so

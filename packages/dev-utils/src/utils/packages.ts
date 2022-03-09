@@ -2,12 +2,11 @@ import { lstatSync, readdirSync, readJson } from "fs-extra";
 import log from "loglevel";
 import { join } from "path";
 
+import type { PackageJson, PackageType } from "../constants";
 import {
   NO_SCRIPT_PACKAGES,
   NO_STYLES_PACKAGES,
-  PackageJson,
   packagesRoot,
-  PackageType,
   projectRoot,
 } from "../constants";
 

@@ -1,10 +1,11 @@
 import "./app.scss";
-import { ReactElement } from "react";
-import NextApp, { AppContext, AppInitialProps } from "next/app";
+import type { ReactElement } from "react";
+import type { AppContext, AppInitialProps } from "next/app";
+import NextApp from "next/app";
 import Head from "next/head";
 import Router from "next/router";
+import type { AppSize } from "@react-md/utils";
 import {
-  AppSize,
   DEFAULT_APP_SIZE,
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
@@ -14,14 +15,13 @@ import {
 } from "@react-md/utils";
 import MobileDetect from "mobile-detect";
 import Layout from "components/Layout";
-import Theme, { getDefaultTheme, ThemeMode } from "components/Theme";
+import type { ThemeMode } from "components/Theme";
+import Theme, { getDefaultTheme } from "components/Theme";
 import { GA_CODE } from "constants/github";
 import { qsToString } from "utils/routes";
 import { toBreadcrumbPageTitle } from "utils/toTitle";
-import {
-  CodePreference,
-  getDefaultCodePreference,
-} from "components/CodePreference";
+import type { CodePreference } from "components/CodePreference";
+import { getDefaultCodePreference } from "components/CodePreference";
 
 interface NextWebVitalsMetrics {
   id: string;

@@ -1,12 +1,10 @@
 import { useCallback, useMemo } from "react";
 
 import { useTempValue } from "../useTempValue";
+import type { FindMatchIndex } from "./findMatchIndex";
+import { findMatchIndex as DEFAULT_FIND_MATCH_INDEX } from "./findMatchIndex";
+import type { BaseSearchOptions } from "./utils";
 import {
-  findMatchIndex as DEFAULT_FIND_MATCH_INDEX,
-  FindMatchIndex,
-} from "./findMatchIndex";
-import {
-  BaseSearchOptions,
   DEFAULT_GET_ITEM_VALUE,
   DEFAULT_SEARCH_RESET_TIME,
   DEFAULT_VALUE_KEY,

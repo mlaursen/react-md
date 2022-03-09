@@ -1,29 +1,29 @@
-import {
+import type {
   ChangeEvent,
   Dispatch,
   FocusEvent,
   HTMLAttributes,
   ReactNode,
   SetStateAction,
-  useCallback,
-  useRef,
-  useState,
 } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useIcon } from "@react-md/icon";
 
-import {
+import type {
   FormMessageInputLengthCounterProps,
   FormMessageProps,
 } from "../FormMessage";
-import { defaultGetErrorIcon, GetErrorIcon } from "./getErrorIcon";
-import {
+import type { GetErrorIcon } from "./getErrorIcon";
+import { defaultGetErrorIcon } from "./getErrorIcon";
+import type {
   ChangeValidationBehavior,
-  defaultGetErrorMessage,
   ErrorMessageOptions,
   GetErrorMessage,
   TextConstraints,
 } from "./getErrorMessage";
-import { defaultIsErrored, IsErrored } from "./isErrored";
+import { defaultGetErrorMessage } from "./getErrorMessage";
+import type { IsErrored } from "./isErrored";
+import { defaultIsErrored } from "./isErrored";
 import type { TextFieldProps } from "./TextField";
 
 const noop = (): void => {

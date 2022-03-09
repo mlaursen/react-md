@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode, useMemo, useCallback } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useMemo, useCallback } from "react";
 import cn from "classnames";
 import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
@@ -6,9 +7,8 @@ import {
 } from "@react-md/app-bar";
 import { useAppSize, useToggle, PhoneOnly } from "@react-md/utils";
 
-import ConditionalFullPageDialog, {
-  ConditionalFullPageDialogProps,
-} from "components/ConditionalFullPageDialog";
+import type { ConditionalFullPageDialogProps } from "components/ConditionalFullPageDialog";
+import ConditionalFullPageDialog from "components/ConditionalFullPageDialog";
 
 import { PhoneContext } from "./context";
 import DefaultAppBar from "./DefaultAppBar";

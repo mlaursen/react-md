@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
-import { AutoComplete, AutoCompleteData } from "@react-md/autocomplete";
+import type { ReactElement } from "react";
+import type { AutoCompleteData } from "@react-md/autocomplete";
+import { AutoComplete } from "@react-md/autocomplete";
 import { Avatar } from "@react-md/avatar";
 
 import dessertsList from "constants/desserts";

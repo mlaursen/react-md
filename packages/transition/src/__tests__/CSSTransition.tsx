@@ -1,8 +1,10 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 
-import { CSSTransition, CSSTransitionProps } from "../CSSTransition";
-import { CSSTransitionClassNames, TransitionTimeout } from "../types";
+import type { CSSTransitionProps } from "../CSSTransition";
+import { CSSTransition } from "../CSSTransition";
+import type { CSSTransitionClassNames, TransitionTimeout } from "../types";
 
 interface TestProps
   extends Omit<

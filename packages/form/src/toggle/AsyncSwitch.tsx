@@ -1,8 +1,10 @@
-import { CSSProperties, forwardRef } from "react";
+import type { CSSProperties } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { CircularProgress, getProgressA11y } from "@react-md/progress";
 
-import { Switch, SwitchProps } from "./Switch";
+import type { SwitchProps } from "./Switch";
+import { Switch } from "./Switch";
 
 export interface AsyncSwitchProps extends SwitchProps {
   /**

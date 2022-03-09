@@ -1,23 +1,18 @@
-import {
-  ReactElement,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import {
-  AutoComplete,
+import type { ReactElement } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type {
   AutoCompleteHandler,
   AutoCompleteData,
 } from "@react-md/autocomplete";
+import { AutoComplete } from "@react-md/autocomplete";
 import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
 import { Label } from "@react-md/form";
 import { AddCircleSVGIcon } from "@react-md/material-icons";
 import { BELOW_INNER_LEFT_ANCHOR } from "@react-md/utils";
 
-import contacts, { Contact } from "./contacts";
+import type { Contact } from "./contacts";
+import contacts from "./contacts";
 import styles from "./To.module.scss";
 
 export default function To(): ReactElement {

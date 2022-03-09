@@ -1,8 +1,8 @@
 import log from "loglevel";
 import { renderSync } from "sass";
-import { VariableItem } from "sassdoc";
+import type { VariableItem } from "sassdoc";
 
-import { Primative, SimplePrimative } from "../../constants";
+import type { Primative, SimplePrimative } from "../../constants";
 import { getEverythingScss } from "./combineAllFiles";
 
 export type VariableValue =

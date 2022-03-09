@@ -1,4 +1,4 @@
-import { TreeItemIds, TreeData } from "@react-md/tree";
+import type { TreeItemIds, TreeData } from "@react-md/tree";
 
 export interface Folder extends TreeItemIds {
   name: string;

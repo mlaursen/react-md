@@ -1,8 +1,10 @@
-import { CSSProperties, forwardRef, HTMLAttributes } from "react";
+import type { CSSProperties, HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { FormTheme, useFormTheme } from "./FormThemeProvider";
+import type { FormTheme } from "./FormThemeProvider";
+import { useFormTheme } from "./FormThemeProvider";
 import { FormMessageCounter } from "./FormMessageCounter";
 
 const block = bem("rmd-form-message");

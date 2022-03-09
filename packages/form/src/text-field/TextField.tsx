@@ -1,20 +1,18 @@
-import {
+import type {
   CSSProperties,
-  forwardRef,
   HTMLAttributes,
   InputHTMLAttributes,
   ReactNode,
   Ref,
 } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
 import { useFormTheme } from "../FormThemeProvider";
 import { FloatingLabel } from "../label/FloatingLabel";
-import {
-  TextFieldContainer,
-  TextFieldContainerOptions,
-} from "./TextFieldContainer";
+import type { TextFieldContainerOptions } from "./TextFieldContainer";
+import { TextFieldContainer } from "./TextFieldContainer";
 import { useFieldStates } from "../useFieldStates";
 
 /**

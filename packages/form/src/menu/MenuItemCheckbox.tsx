@@ -2,10 +2,8 @@ import { forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
 
 import type { IndeterminateCheckboxProps } from "../toggle/Checkbox";
-import {
-  BaseMenuItemInputToggleProps,
-  MenuItemInputToggle,
-} from "./MenuItemInputToggle";
+import type { BaseMenuItemInputToggleProps } from "./MenuItemInputToggle";
+import { MenuItemInputToggle } from "./MenuItemInputToggle";
 
 /** @remarks \@since 2.8.0 */
 export interface MenuItemCheckboxProps

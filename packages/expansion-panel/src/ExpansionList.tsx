@@ -1,9 +1,5 @@
-import {
-  forwardRef,
-  HTMLAttributes,
-  KeyboardEventHandler,
-  ReactNode,
-} from "react";
+import type { HTMLAttributes, KeyboardEventHandler, ReactNode } from "react";
+import { forwardRef } from "react";
 
 export interface ExpansionListProps extends HTMLAttributes<HTMLDivElement> {
   /**

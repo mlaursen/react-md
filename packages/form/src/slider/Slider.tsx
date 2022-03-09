@@ -1,4 +1,5 @@
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import type { PropsWithRef } from "@react-md/utils";
 
 import {

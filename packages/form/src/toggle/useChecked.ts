@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useCallback, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { useCallback, useState } from "react";
 
 type ChangeEventHandler = React.ChangeEventHandler<HTMLInputElement>;
 type SetChecked = Dispatch<SetStateAction<boolean>>;

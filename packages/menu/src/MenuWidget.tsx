@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import cn from "classnames";
-import { bem, LabelRequiredForA11y, useKeyboardFocus } from "@react-md/utils";
+import type { LabelRequiredForA11y } from "@react-md/utils";
+import { bem, useKeyboardFocus } from "@react-md/utils";
 
 import { MenuBarProvider } from "./MenuBarProvider";
 import type { MenuWidgetProps } from "./types";

@@ -1,5 +1,7 @@
-import { ReactElement, useCallback, useState } from "react";
-import { AutoComplete, AutoCompleteHandler } from "@react-md/autocomplete";
+import type { ReactElement } from "react";
+import { useCallback, useState } from "react";
+import type { AutoCompleteHandler } from "@react-md/autocomplete";
+import { AutoComplete } from "@react-md/autocomplete";
 import {
   AppBarNav,
   AppBar,
@@ -10,7 +12,8 @@ import { SearchSVGIcon, KeyboardVoiceSVGIcon } from "@react-md/material-icons";
 import { Typography } from "@react-md/typography";
 import { PhoneOnly, useAppSize } from "@react-md/utils";
 
-import dessertList, { Dessert } from "constants/desserts";
+import type { Dessert } from "constants/desserts";
+import dessertList from "constants/desserts";
 import Phone, { PhoneAppBar, ClosePhone } from "components/Phone";
 
 import DessertTable from "./DessertTable";

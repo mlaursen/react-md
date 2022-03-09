@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import { TableCell } from "@react-md/table";
 
 import styles from "./TableCellList.module.scss";

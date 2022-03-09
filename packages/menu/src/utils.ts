@@ -1,11 +1,11 @@
-import { FABPosition } from "@react-md/button";
+import type { FABPosition } from "@react-md/button";
+import type { PositionAnchor } from "@react-md/utils";
 import {
   BELOW_CENTER_ANCHOR,
   BELOW_INNER_LEFT_ANCHOR,
   BOTTOM_INNER_LEFT_ANCHOR,
   BOTTOM_INNER_RIGHT_ANCHOR,
   CENTER_RIGHT_ANCHOR,
-  PositionAnchor,
   TOP_INNER_LEFT_ANCHOR,
   TOP_INNER_RIGHT_ANCHOR,
   TOP_RIGHT_ANCHOR,

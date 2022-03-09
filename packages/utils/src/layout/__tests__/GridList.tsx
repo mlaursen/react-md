@@ -1,9 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { act, render } from "@testing-library/react";
 import { ResizeObserver } from "@juggle/resize-observer";
 
-import { GridList, GridListProps } from "../GridList";
+import type { GridListProps } from "../GridList";
+import { GridList } from "../GridList";
 import { useGridListSize } from "../useGridList";
 
 jest.mock("@juggle/resize-observer");

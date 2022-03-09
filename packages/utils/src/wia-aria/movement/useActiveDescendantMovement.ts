@@ -1,13 +1,14 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 
 import { scrollIntoView } from "../../scrollIntoView";
 import { DEFAULT_GET_ITEM_VALUE, DEFAULT_VALUE_KEY } from "../../search/utils";
-import {
+import type {
   BaseKeyboardMovementOptions,
   ItemRefList,
   MovementHandler,
-  useKeyboardMovement,
 } from "./useKeyboardMovement";
+import { useKeyboardMovement } from "./useKeyboardMovement";
 import { getItemId } from "./utils";
 
 export type ActiveDescendantId = string;

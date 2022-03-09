@@ -1,11 +1,5 @@
-import {
-  FocusEvent,
-  FocusEventHandler,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import type { FocusEvent, FocusEventHandler } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useIsUserInteractionMode } from "@react-md/utils";
 
 /**

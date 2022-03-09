@@ -1,14 +1,8 @@
-import {
-  Children,
-  cloneElement,
-  CSSProperties,
-  forwardRef,
-  HTMLAttributes,
-  isValidElement,
-  ReactNode,
-} from "react";
+import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
+import { Children, cloneElement, forwardRef, isValidElement } from "react";
 import cn from "classnames";
-import { bem, ClassNameCloneableChild } from "@react-md/utils";
+import type { ClassNameCloneableChild } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 export interface IconRotatorBaseProps extends HTMLAttributes<HTMLSpanElement> {
   /**

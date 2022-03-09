@@ -1,6 +1,7 @@
-import { ReactElement, useEffect, useRef } from "react";
+import type { ReactElement } from "react";
+import { useEffect, useRef } from "react";
 import cn from "classnames";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import type { IFiles } from "codesandbox-import-utils/lib/api/define";
 
 import CodeBlock from "components/CodeBlock";
 

@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Slider, useSlider } from "@react-md/form";
 import { VolumeOffSVGIcon, VolumeUpSVGIcon } from "@react-md/material-icons";
 

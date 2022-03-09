@@ -1,10 +1,9 @@
 import { forwardRef } from "react";
-import { Button, ButtonProps } from "@react-md/button";
+import type { ButtonProps } from "@react-md/button";
+import { Button } from "@react-md/button";
 
-import {
-  AppBarActionClassNameProps,
-  useActionClassName,
-} from "./useActionClassName";
+import type { AppBarActionClassNameProps } from "./useActionClassName";
+import { useActionClassName } from "./useActionClassName";
 
 export interface AppBarActionProps
   extends ButtonProps,

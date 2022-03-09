@@ -4,7 +4,8 @@
 
 import { renderToString } from "react-dom/server";
 
-import { Dir, useDir, WritingDirection } from "../Dir";
+import type { WritingDirection } from "../Dir";
+import { Dir, useDir } from "../Dir";
 
 describe("Dir", () => {
   it('should default to "ltr" for environments that do not have a document and not crash', () => {

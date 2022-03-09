@@ -1,7 +1,8 @@
-import { MutableRefObject, ReactElement, useEffect, useState } from "react";
+import type { MutableRefObject, ReactElement } from "react";
+import { useEffect, useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 
-import {
+import type {
   TransitionHookOptions,
   TransitionStage,
   TransitionTimeout,

@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import scssVariables from "@react-md/app-bar/dist/scssVariables";
 import { useActionClassName } from "@react-md/app-bar";
 import { LinkSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";

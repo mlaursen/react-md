@@ -1,15 +1,10 @@
 import { Configuration } from "@react-md/layout";
 import { DropdownMenu } from "@react-md/menu";
-import {
-  fireEvent,
-  render as baseRender,
-  RenderResult,
-} from "@testing-library/react";
-import { FC, ReactElement } from "react";
-import {
-  MenuItemFileInput,
-  MenuItemFileInputProps,
-} from "../MenuItemFileInput";
+import type { RenderResult } from "@testing-library/react";
+import { fireEvent, render as baseRender } from "@testing-library/react";
+import type { FC, ReactElement } from "react";
+import type { MenuItemFileInputProps } from "../MenuItemFileInput";
+import { MenuItemFileInput } from "../MenuItemFileInput";
 
 const Wrapper: FC = ({ children }) => (
   <Configuration disableRipple>{children}</Configuration>

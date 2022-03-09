@@ -1,8 +1,10 @@
 import type { ReactElement } from "react";
 import { KeyboardMovementProvider } from "@react-md/utils";
 
-import { HoverableMenuBar, MenuBarProvider } from "./MenuBarProvider";
-import { MenuBarWidget, MenuBarWidgetProps } from "./MenuBarWidget";
+import type { HoverableMenuBar } from "./MenuBarProvider";
+import { MenuBarProvider } from "./MenuBarProvider";
+import type { MenuBarWidgetProps } from "./MenuBarWidget";
+import { MenuBarWidget } from "./MenuBarWidget";
 
 /** @remarks \@since 5.0.0 */
 export type MenuBarProps = MenuBarWidgetProps & HoverableMenuBar;

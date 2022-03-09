@@ -1,12 +1,9 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { render } from "@testing-library/react";
 
-import {
-  DialogFooter,
-  DialogFooterAlignment,
-  DialogFooterProps,
-} from "../DialogFooter";
+import type { DialogFooterAlignment, DialogFooterProps } from "../DialogFooter";
+import { DialogFooter } from "../DialogFooter";
 
 const aligns: readonly DialogFooterAlignment[] = [
   "none",

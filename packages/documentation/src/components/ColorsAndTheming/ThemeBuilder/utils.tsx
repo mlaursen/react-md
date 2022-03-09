@@ -1,14 +1,16 @@
-import { ReactNode } from "react";
-import { ListboxOption } from "@react-md/form";
+import type { ReactNode } from "react";
+import type { ListboxOption } from "@react-md/form";
 
+import type {
+  ColorAccent,
+  PrimaryColor,
+  SecondaryColor,
+} from "components/Theme";
 import {
   accents,
-  ColorAccent,
   DEFAULT_ACCENT,
   DEFAULT_PRIMARY,
   DEFAULT_SECONDARY,
-  PrimaryColor,
-  SecondaryColor,
 } from "components/Theme";
 
 import CustomLabel from "./CustomLabel";

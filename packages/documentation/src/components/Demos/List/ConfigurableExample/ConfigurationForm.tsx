@@ -1,13 +1,7 @@
-import { ReactElement } from "react";
-import {
-  Checkbox,
-  Fieldset,
-  Form,
-  ListboxOption,
-  Select,
-  TextArea,
-} from "@react-md/form";
-import { ListItemAddonPosition, ListItemAddonType } from "@react-md/list";
+import type { ReactElement } from "react";
+import type { ListboxOption } from "@react-md/form";
+import { Checkbox, Fieldset, Form, Select, TextArea } from "@react-md/form";
+import type { ListItemAddonPosition, ListItemAddonType } from "@react-md/list";
 import { Typography } from "@react-md/typography";
 import { Grid } from "@react-md/utils";
 import { upperFirst } from "lodash";

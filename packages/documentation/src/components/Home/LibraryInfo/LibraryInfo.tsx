@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Table, TableBody } from "@react-md/table";
 import { Typography, TextContainer } from "@react-md/typography";
 

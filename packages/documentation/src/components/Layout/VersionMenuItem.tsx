@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { LinkSVGIcon } from "@react-md/material-icons";
-import { MenuItemLink, MenuItemLinkProps } from "@react-md/menu";
+import type { MenuItemLinkProps } from "@react-md/menu";
+import { MenuItemLink } from "@react-md/menu";
 
 import { EventName, sendAnalyticsEvent } from "utils/analytics";
 

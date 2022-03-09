@@ -1,14 +1,8 @@
-import {
-  CSSProperties,
-  forwardRef,
-  InputHTMLAttributes,
-  ReactNode,
-} from "react";
+import type { CSSProperties, InputHTMLAttributes, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import {
-  InteractionStatesOptions,
-  useInteractionStates,
-} from "@react-md/states";
+import type { InteractionStatesOptions } from "@react-md/states";
+import { useInteractionStates } from "@react-md/states";
 import { bem } from "@react-md/utils";
 
 import { Label } from "../label/Label";

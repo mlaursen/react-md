@@ -1,4 +1,5 @@
-import { forwardRef, HTMLAttributes, ReactElement } from "react";
+import type { HTMLAttributes, ReactElement } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 

@@ -2,7 +2,8 @@ import { Component } from "react";
 import cn from "classnames";
 import { render } from "@testing-library/react";
 
-import { Typography, TypographyType } from "../Typography";
+import type { TypographyType } from "../Typography";
+import { Typography } from "../Typography";
 
 describe("Typography", () => {
   it("should render corrrrectly based on the type prop", () => {

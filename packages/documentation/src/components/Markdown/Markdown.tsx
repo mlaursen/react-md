@@ -1,4 +1,5 @@
-import { HTMLAttributes, ReactElement, useEffect, useState } from "react";
+import type { HTMLAttributes, ReactElement } from "react";
+import { useEffect, useState } from "react";
 import cn from "classnames";
 import { Markdown as MarkdownRenderer } from "react-marked-renderer";
 

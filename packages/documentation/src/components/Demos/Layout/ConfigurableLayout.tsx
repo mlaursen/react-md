@@ -1,14 +1,17 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
+import type {
+  LayoutNavigationTree,
+  SupportedPhoneLayout,
+  SupportedTabletLayout,
+  SupportedWideLayout,
+} from "@react-md/layout";
 import {
   DEFAULT_DESKTOP_LAYOUT,
   DEFAULT_LANDSCAPE_TABLET_LAYOUT,
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
   Layout,
-  LayoutNavigationTree,
-  SupportedPhoneLayout,
-  SupportedTabletLayout,
-  SupportedWideLayout,
   useLayoutNavigation,
 } from "@react-md/layout";
 import {

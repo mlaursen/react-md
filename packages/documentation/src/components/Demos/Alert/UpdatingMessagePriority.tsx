@@ -1,11 +1,7 @@
-import { ReactElement, useCallback, useEffect, useState } from "react";
-import {
-  Message,
-  MessagePriority,
-  MessageQueue,
-  useAddMessage,
-  useQueue,
-} from "@react-md/alert";
+import type { ReactElement } from "react";
+import { useCallback, useEffect, useState } from "react";
+import type { Message, MessagePriority } from "@react-md/alert";
+import { MessageQueue, useAddMessage, useQueue } from "@react-md/alert";
 import { Button } from "@react-md/button";
 import { Fieldset, Form, Radio, useChoice } from "@react-md/form";
 import { Typography } from "@react-md/typography";

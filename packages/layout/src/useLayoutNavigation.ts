@@ -1,14 +1,14 @@
-import { ElementType, useEffect } from "react";
+import type { ElementType } from "react";
+import { useEffect } from "react";
 import { Link } from "@react-md/link";
-import {
+import type {
   BaseTreeItem,
-  getItemsFrom,
   TreeData,
   TreeItemExpansion,
   TreeItemId,
   TreeItemSelection,
-  useTreeItemExpansion,
 } from "@react-md/tree";
+import { getItemsFrom, useTreeItemExpansion } from "@react-md/tree";
 
 import type { LayoutNavigationItem, LayoutNavigationTree } from "./types";
 

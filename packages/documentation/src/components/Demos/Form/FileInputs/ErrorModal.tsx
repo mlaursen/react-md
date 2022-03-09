@@ -1,4 +1,5 @@
-import { ReactElement, useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@react-md/button";
 import {
   Dialog,
@@ -7,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@react-md/dialog";
-import { FileValidationError } from "@react-md/form";
+import type { FileValidationError } from "@react-md/form";
 
 import ErrorRenderer from "./ErrorRenderer";
 

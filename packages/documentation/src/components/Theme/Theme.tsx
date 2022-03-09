@@ -1,6 +1,7 @@
-import { ReactElement, ReactNode, useMemo } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useMemo } from "react";
 
-import { ThemeMode } from "./colors";
+import type { ThemeMode } from "./colors";
 import { ThemeContext } from "./useTheme";
 import { ThemeActionsContext } from "./useThemeActions";
 import useThemeConfiguration from "./useThemeConfiguration";

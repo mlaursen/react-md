@@ -1,11 +1,11 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Form, Select } from "@react-md/form";
-import {
+import type {
   SupportedPhoneLayout,
   SupportedTabletLayout,
   SupportedWideLayout,
-  useLayoutConfig,
 } from "@react-md/layout";
+import { useLayoutConfig } from "@react-md/layout";
 import { Typography } from "@react-md/typography";
 import { Grid, useAppSize } from "@react-md/utils";
 

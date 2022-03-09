@@ -1,4 +1,5 @@
-import { ReactElement, useEffect } from "react";
+import type { ReactElement } from "react";
+import { useEffect } from "react";
 import { LinearProgress } from "@react-md/progress";
 import { Typography } from "@react-md/typography";
 

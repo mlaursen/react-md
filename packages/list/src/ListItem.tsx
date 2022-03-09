@@ -1,10 +1,9 @@
 import { forwardRef } from "react";
-import {
-  InteractionStatesOptions,
-  useInteractionStates,
-} from "@react-md/states";
+import type { InteractionStatesOptions } from "@react-md/states";
+import { useInteractionStates } from "@react-md/states";
 
-import { getListItemHeight, SimpleListItemProps } from "./getListItemHeight";
+import type { SimpleListItemProps } from "./getListItemHeight";
+import { getListItemHeight } from "./getListItemHeight";
 import { ListItemChildren } from "./ListItemChildren";
 import { SimpleListItem } from "./SimpleListItem";
 

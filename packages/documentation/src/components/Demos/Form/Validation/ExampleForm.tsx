@@ -1,12 +1,12 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
+import type { FormTheme } from "@react-md/form";
 import {
   Fieldset,
   Form,
   NativeSelect,
   Radio,
   TextField,
-  FormTheme,
   useChoice,
   FormThemeProvider,
 } from "@react-md/form";

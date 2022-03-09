@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Select } from "@react-md/form";
 
 import desserts from "constants/desserts";

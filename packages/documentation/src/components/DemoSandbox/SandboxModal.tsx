@@ -1,8 +1,9 @@
-import { ReactElement, useEffect, useState, useCallback } from "react";
+import type { ReactElement } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Head from "next/head";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import type { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Dialog } from "@react-md/dialog";
-import { TreeData } from "@react-md/tree";
+import type { TreeData } from "@react-md/tree";
 import { useAppSize } from "@react-md/utils";
 
 import { toTitle } from "utils/toTitle";
@@ -10,7 +11,7 @@ import { toTitle } from "utils/toTitle";
 import CodePreview from "./CodePreview";
 import SandboxFileTree from "./SandboxFileTree";
 import SandboxNavigation from "./SandboxNavigation";
-import { FileTreeData } from "./useFiles";
+import type { FileTreeData } from "./useFiles";
 
 import styles from "./SandboxModal.module.scss";
 

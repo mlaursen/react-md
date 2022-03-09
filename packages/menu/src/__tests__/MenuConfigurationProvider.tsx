@@ -10,10 +10,10 @@ import {
   DEFAULT_PHONE_MAX_WIDTH,
   DEFAULT_TABLET_MAX_WIDTH,
 } from "@react-md/utils";
+import type { RenderResult } from "@testing-library/react";
 import {
   fireEvent,
   render as baseRender,
-  RenderResult,
   waitFor,
 } from "@testing-library/react";
 import type { FC, ReactElement } from "react";
@@ -23,7 +23,7 @@ import { MenuConfigurationProvider } from "../MenuConfigurationProvider";
 import { MenuItem } from "../MenuItem";
 import { MenuItemLink } from "../MenuItemLink";
 import { useMenuVisibility } from "../MenuVisibilityProvider";
-import { MenuConfiguration } from "../types";
+import type { MenuConfiguration } from "../types";
 
 const Wrapper: FC = ({ children }) => (
   <Configuration disableRipple>{children}</Configuration>

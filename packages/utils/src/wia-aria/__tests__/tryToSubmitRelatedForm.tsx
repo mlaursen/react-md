@@ -1,4 +1,4 @@
-import { KeyboardEvent, FormHTMLAttributes, ReactElement } from "react";
+import type { KeyboardEvent, FormHTMLAttributes, ReactElement } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
 import { tryToSubmitRelatedForm } from "../tryToSubmitRelatedForm";

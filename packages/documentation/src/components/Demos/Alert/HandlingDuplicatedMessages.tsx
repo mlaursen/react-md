@@ -1,10 +1,6 @@
-import { ReactElement } from "react";
-import {
-  DuplicateBehavior,
-  MessageQueue,
-  ToastMessage,
-  useAddMessage,
-} from "@react-md/alert";
+import type { ReactElement } from "react";
+import type { DuplicateBehavior, ToastMessage } from "@react-md/alert";
+import { MessageQueue, useAddMessage } from "@react-md/alert";
 import { Button } from "@react-md/button";
 import { Divider } from "@react-md/divider";
 import { Fieldset, Form, NativeSelect, Radio, useChoice } from "@react-md/form";

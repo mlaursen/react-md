@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Dialog, DialogContent, DialogHeader } from "@react-md/dialog";
 import { Typography } from "@react-md/typography";
 import { useAppSize } from "@react-md/utils";

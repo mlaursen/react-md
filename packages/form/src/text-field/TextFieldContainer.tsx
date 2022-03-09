@@ -1,8 +1,10 @@
-import { forwardRef, HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { FormThemeOptions, useFormTheme } from "../FormThemeProvider";
+import type { FormThemeOptions } from "../FormThemeProvider";
+import { useFormTheme } from "../FormThemeProvider";
 import { TextFieldAddon } from "./TextFieldAddon";
 
 export interface TextFieldContainerOptions extends FormThemeOptions {

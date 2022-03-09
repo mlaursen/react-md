@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
-import { ThemeMode } from "components/Theme";
+import type { IFiles } from "codesandbox-import-utils/lib/api/define";
+import type { ThemeMode } from "components/Theme";
 import { getSandboxByQuery } from "utils/getSandbox";
 
 interface SandboxQuery {

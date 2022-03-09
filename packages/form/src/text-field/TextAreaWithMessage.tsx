@@ -1,10 +1,10 @@
-import { forwardRef, ReactElement } from "react";
+import type { ReactElement } from "react";
+import { forwardRef } from "react";
 
-import {
-  FieldMessageContainerExtension,
-  FormMessageContainer,
-} from "../FormMessageContainer";
-import { TextArea, TextAreaProps } from "./TextArea";
+import type { FieldMessageContainerExtension } from "../FormMessageContainer";
+import { FormMessageContainer } from "../FormMessageContainer";
+import type { TextAreaProps } from "./TextArea";
+import { TextArea } from "./TextArea";
 
 /**
  * @remarks \@since 2.5.0

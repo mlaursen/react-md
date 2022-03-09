@@ -2,9 +2,9 @@ import { writeFile } from "fs-extra";
 import { omit } from "lodash";
 import log from "loglevel";
 import { join } from "path";
-import { BuiltInParserName } from "prettier";
+import type { BuiltInParserName } from "prettier";
 import { renderSync } from "sass";
-import {
+import type {
   ExampleType,
   FunctionItem,
   Item,
@@ -15,15 +15,23 @@ import {
 } from "sassdoc";
 
 import { nonWebpackDist, packagesRoot, src, tempStylesDir } from "./constants";
-import {
-  combineAllFiles,
+import type {
   CompiledExample,
-  format,
   FormattedFunctionItem,
   FormattedItem,
   FormattedItemLink,
   FormattedMixinItem,
   FormattedVariableItem,
+  ItemReferenceLink,
+  PackageSassDoc,
+  PackageSassDocMap,
+  ParameterizedItem,
+  ValuedVariable,
+  VariableValue,
+} from "./utils";
+import {
+  combineAllFiles,
+  format,
   getCompiledValue,
   getSassdoc,
   isFunctionItem,
@@ -31,12 +39,6 @@ import {
   isPrimitive,
   isPublic,
   isVariableItem,
-  ItemReferenceLink,
-  PackageSassDoc,
-  PackageSassDocMap,
-  ParameterizedItem,
-  ValuedVariable,
-  VariableValue,
 } from "./utils";
 
 export interface FullItemReferenceLink extends ItemReferenceLink {

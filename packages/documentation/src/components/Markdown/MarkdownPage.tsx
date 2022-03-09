@@ -1,8 +1,9 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
 import { TextContainer } from "@react-md/typography";
 
-import Markdown, { MarkdownProps } from "./Markdown";
+import type { MarkdownProps } from "./Markdown";
+import Markdown from "./Markdown";
 
 export interface MarkdownPageProps extends MarkdownProps {
   containerClassName?: string;

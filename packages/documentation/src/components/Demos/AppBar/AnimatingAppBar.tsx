@@ -1,4 +1,5 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { AppBar, AppBarAction, AppBarNav } from "@react-md/app-bar";
 import { Avatar } from "@react-md/avatar";
 import avatarVariables from "@react-md/avatar/dist/scssVariables";

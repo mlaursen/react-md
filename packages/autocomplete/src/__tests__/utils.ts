@@ -1,7 +1,7 @@
 import { createElement } from "react";
 import { fuzzyFilter, caseInsensitiveFilter } from "@react-md/utils";
 
-import { FilterFunction } from "../types";
+import type { FilterFunction } from "../types";
 import {
   getResultId,
   getResultLabel,

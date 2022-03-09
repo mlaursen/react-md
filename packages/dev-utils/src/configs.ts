@@ -2,12 +2,11 @@ import { writeFile, writeJson as fsWriteJson } from "fs-extra";
 import { flatMap, merge } from "lodash";
 import { join } from "path";
 
+import type { JSONObject, TSConfigType } from "./constants";
 import {
-  JSONObject,
   NO_SCRIPT_PACKAGES,
   NO_STYLES_PACKAGES,
   packagesRoot,
-  TSConfigType,
 } from "./constants";
 import { clean, getDependencies, getPackages, glob, format } from "./utils";
 

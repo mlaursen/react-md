@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import Fuse from "fuse.js";
 import { qsToString, qsToInt } from "utils/routes";
 import metadata from "constants/meta/search";

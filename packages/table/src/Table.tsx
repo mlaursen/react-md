@@ -1,8 +1,10 @@
-import { forwardRef, TableHTMLAttributes, useMemo } from "react";
+import type { TableHTMLAttributes } from "react";
+import { forwardRef, useMemo } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { TableConfigProvider, TableConfiguration } from "./config";
+import type { TableConfiguration } from "./config";
+import { TableConfigProvider } from "./config";
 
 /**
  * All the available props for the `Table` component. This allows you to apply

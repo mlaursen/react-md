@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
 import { Provider, useStylesState } from "./context";
 import StyledTable from "./StyledTable";

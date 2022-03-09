@@ -1,6 +1,8 @@
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import { bem, LabelRequiredForA11y } from "@react-md/utils";
+import type { LabelRequiredForA11y } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import {
   DEFAULT_SLIDER_ANIMATION_TIME,

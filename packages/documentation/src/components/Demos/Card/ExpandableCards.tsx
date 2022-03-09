@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Collapse } from "@react-md/transition";
 import { Card, CardHeader, CardTitle, CardSubtitle } from "@react-md/card";
 import { Avatar } from "@react-md/avatar";

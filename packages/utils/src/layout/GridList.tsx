@@ -1,13 +1,13 @@
-import { Children, forwardRef, HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
+import { Children, forwardRef } from "react";
 
 import { GridListCell } from "./GridListCell";
+import type { GridListSize, UseGridListOptions } from "./useGridList";
 import {
   DEFAULT_GRID_LIST_MAX_CELL_SIZE,
   DEFAULT_GRID_LIST_PADDING,
-  GridListSize,
   GridListSizeProvider,
   useGridList,
-  UseGridListOptions,
 } from "./useGridList";
 
 /**

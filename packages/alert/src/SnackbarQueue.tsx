@@ -1,18 +1,15 @@
-import {
-  forwardRef,
-  isValidElement,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
-import { Button, ButtonProps } from "@react-md/button";
+import type { ReactElement, ReactNode, Ref } from "react";
+import { forwardRef, isValidElement } from "react";
+import type { ButtonProps } from "@react-md/button";
+import { Button } from "@react-md/button";
 
+import type { ToastMessage } from "./MessageQueueContext";
 import {
-  ToastMessage,
   useMessageQueueActions,
   useMessageVisibility,
 } from "./MessageQueueContext";
-import { Snackbar, SnackbarProps } from "./Snackbar";
+import type { SnackbarProps } from "./Snackbar";
+import { Snackbar } from "./Snackbar";
 import { Toast } from "./Toast";
 
 export type ActionEventHandler<M extends ToastMessage> = (

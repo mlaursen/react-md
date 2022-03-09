@@ -1,4 +1,5 @@
-import { KeyboardEventHandler, useCallback } from "react";
+import type { KeyboardEventHandler } from "react";
+import { useCallback } from "react";
 
 /**
  * This will conditionally close the dialog when the escape key is pressed.

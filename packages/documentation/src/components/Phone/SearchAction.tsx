@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
-import { AppBarAction, AppBarActionProps } from "@react-md/app-bar";
+import type { ReactElement } from "react";
+import type { AppBarActionProps } from "@react-md/app-bar";
+import { AppBarAction } from "@react-md/app-bar";
 import { SearchSVGIcon } from "@react-md/material-icons";
 
 import { usePhoneContext } from "./context";

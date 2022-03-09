@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode, useMemo, useRef } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useMemo, useRef } from "react";
 
 import {
   DEFAULT_KEYBOARD_MOVEMENT,

@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { BadgedButton } from "@react-md/badge";
 import { NotificationsSVGIcon } from "@react-md/material-icons";
 

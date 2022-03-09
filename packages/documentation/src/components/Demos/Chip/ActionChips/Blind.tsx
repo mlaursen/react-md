@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import cn from "classnames";
-import { CSSTransition, CSSTransitionClassNames } from "@react-md/transition";
+import type { CSSTransitionClassNames } from "@react-md/transition";
+import { CSSTransition } from "@react-md/transition";
 
 import styles from "./Blind.module.scss";
 

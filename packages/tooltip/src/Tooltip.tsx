@@ -1,16 +1,16 @@
-import { CSSProperties, forwardRef, HTMLAttributes, ReactNode } from "react";
+import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import {
-  ConditionalPortal,
-  RenderConditionalPortalProps,
-} from "@react-md/portal";
-import {
+import type { RenderConditionalPortalProps } from "@react-md/portal";
+import { ConditionalPortal } from "@react-md/portal";
+import type {
   CSSTransitionClassNames,
   CSSTransitionComponentProps,
   TransitionTimeout,
-  useCSSTransition,
 } from "@react-md/transition";
-import { bem, SimplePosition } from "@react-md/utils";
+import { useCSSTransition } from "@react-md/transition";
+import type { SimplePosition } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import {
   DEFAULT_TOOLTIP_CLASSNAMES,

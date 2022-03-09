@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Chip } from "@react-md/chip";
 import { Grid } from "@react-md/utils";
 

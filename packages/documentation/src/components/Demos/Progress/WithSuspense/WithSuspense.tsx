@@ -1,11 +1,5 @@
-import {
-  ReactElement,
-  Suspense,
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-} from "react";
+import type { ReactElement } from "react";
+import { Suspense, useState, useRef, useEffect, useCallback } from "react";
 import cn from "classnames";
 import { APP_BAR_OFFSET_PROMINENT_CLASSNAME } from "@react-md/app-bar";
 import { Button } from "@react-md/button";

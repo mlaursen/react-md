@@ -1,9 +1,5 @@
-import {
-  CSSProperties,
-  forwardRef,
-  InputHTMLAttributes,
-  ReactNode,
-} from "react";
+import type { CSSProperties, InputHTMLAttributes, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 

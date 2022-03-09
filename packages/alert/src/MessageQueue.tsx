@@ -1,17 +1,18 @@
-import { ReactElement, ReactNode, useMemo } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useMemo } from "react";
 
+import type { AddMessage, Message, ToastMessage } from "./MessageQueueContext";
 import {
-  AddMessage,
   AddMessageContext,
-  Message,
   MessageQueueActionsContext,
   MessageQueueContext,
   MessageVisibilityContext,
-  ToastMessage,
 } from "./MessageQueueContext";
 import type { SnackbarProps } from "./Snackbar";
-import { ActionEventHandler, SnackbarQueue } from "./SnackbarQueue";
-import { MessageQueueOptions, useMessageQueue } from "./useMessageQueue";
+import type { ActionEventHandler } from "./SnackbarQueue";
+import { SnackbarQueue } from "./SnackbarQueue";
+import type { MessageQueueOptions } from "./useMessageQueue";
+import { useMessageQueue } from "./useMessageQueue";
 
 export interface MessageQueueProps<M extends ToastMessage>
   extends MessageQueueOptions<M>,

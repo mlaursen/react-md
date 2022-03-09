@@ -1,4 +1,5 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import {
   Link,
@@ -7,8 +8,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import type { RenderOptions } from "@testing-library/react";
 import {
-  RenderOptions,
   fireEvent,
   getByRole as getByRoleGlobal,
   getByText as getByTextGlobal,
@@ -35,10 +36,11 @@ import {
 } from "@react-md/utils";
 
 import { Configuration } from "../Configuration";
-import { Layout, LayoutProps } from "../Layout";
+import type { LayoutProps } from "../Layout";
+import { Layout } from "../Layout";
 import { useLayoutConfig } from "../LayoutProvider";
 import { useLayoutNavigation } from "../useLayoutNavigation";
-import { LayoutNavigationTree } from "../types";
+import type { LayoutNavigationTree } from "../types";
 
 jest.mock("@react-md/utils", () => ({
   ...jest.requireActual("@react-md/utils"),

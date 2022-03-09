@@ -1,5 +1,5 @@
 import { snakeCase } from "lodash";
-import { LayoutNavigationTree } from "@react-md/layout";
+import type { LayoutNavigationTree } from "@react-md/layout";
 import {
   BuildSVGIcon,
   ColorLensSVGIcon,
@@ -16,7 +16,7 @@ import ReactSVGIcon from "icons/ReactSVGIcon";
 import createIdGenerator from "utils/createIdGenerator";
 import { toTitle } from "utils/toTitle";
 
-import {
+import type {
   DividerNavItem,
   NavItem,
   RouteNavItem,

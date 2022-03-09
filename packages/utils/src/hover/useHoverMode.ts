@@ -1,17 +1,11 @@
-import {
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import type { Dispatch, MouseEvent, SetStateAction } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useUserInteractionMode } from "../mode";
 import { useOnUnmount } from "../useOnUnmount";
 import { DEFAULT_HOVER_MODE_EXIT_TIME } from "./constants";
-import { HoverModeActions, useHoverModeContext } from "./useHoverModeContext";
+import type { HoverModeActions } from "./useHoverModeContext";
+import { useHoverModeContext } from "./useHoverModeContext";
 
 /** @remarks \@since 5.0.0 */
 export interface HoverModeHoverEventHandlers {

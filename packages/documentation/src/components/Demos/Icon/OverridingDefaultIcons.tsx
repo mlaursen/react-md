@@ -1,11 +1,8 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { Checkbox, Select } from "@react-md/form";
-import {
-  ConfigurableIcons,
-  IconProvider,
-  TextIconSpacing,
-  useIcon,
-} from "@react-md/icon";
+import type { ConfigurableIcons } from "@react-md/icon";
+import { IconProvider, TextIconSpacing, useIcon } from "@react-md/icon";
 import {
   ArrowDropDownSVGIcon,
   CheckBoxSVGIcon,

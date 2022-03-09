@@ -1,4 +1,5 @@
-import { ReactElement, useEffect, useRef, useState } from "react";
+import type { ReactElement } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Tabs, TabsManager } from "@react-md/tabs";
 import { CrossFade } from "@react-md/transition";

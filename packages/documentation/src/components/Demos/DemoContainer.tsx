@@ -1,4 +1,9 @@
-import { ElementType, HTMLAttributes, ReactElement, ReactNode } from "react";
+import type {
+  ElementType,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode,
+} from "react";
 
 import styles from "./DemoContainer.module.scss";
 

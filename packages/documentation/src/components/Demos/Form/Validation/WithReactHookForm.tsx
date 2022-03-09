@@ -1,4 +1,5 @@
-import { ReactElement, useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "@react-md/button";
 import { DialogFooter } from "@react-md/dialog";
@@ -15,7 +16,8 @@ import { CircularProgress } from "@react-md/progress";
 import { useTimeout } from "@react-md/utils";
 
 import CodeBlock from "components/CodeBlock";
-import ControllerTextField, { ExampleFormData } from "./ControllerTextField";
+import type { ExampleFormData } from "./ControllerTextField";
+import ControllerTextField from "./ControllerTextField";
 
 interface State {
   loading: boolean;

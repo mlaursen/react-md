@@ -1,10 +1,10 @@
-import { ReactElement, useCallback, useMemo, useState } from "react";
+import type { ReactElement } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Button } from "@react-md/button";
+import type { ErrorChangeHandler, GetErrorMessage } from "@react-md/form";
 import {
   defaultGetErrorMessage,
-  ErrorChangeHandler,
   Form,
-  GetErrorMessage,
   PasswordWithMessage,
   TextAreaWithMessage,
   TextFieldWithMessage,

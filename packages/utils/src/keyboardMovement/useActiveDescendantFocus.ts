@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import type { ActiveDescendantContext } from "./activeDescendantContext";
-import {
+import type {
   KeyboardFocusCallbacks,
   KeyboardFocusHookReturnValue,
-  useKeyboardFocus,
 } from "./useKeyboardFocus";
+import { useKeyboardFocus } from "./useKeyboardFocus";
 
 /**
  * @internal

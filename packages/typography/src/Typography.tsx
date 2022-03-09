@@ -1,13 +1,13 @@
-import {
-  createElement,
+import type {
   ElementType,
-  forwardRef,
   HTMLAttributes,
   ReactElement,
   ReactNode,
 } from "react";
+import { createElement, forwardRef } from "react";
 import cn from "classnames";
-import { bem, ClassNameCloneableChild } from "@react-md/utils";
+import type { ClassNameCloneableChild } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 /**
  * A union of all the material design provided typography styles. When used with

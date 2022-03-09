@@ -1,6 +1,8 @@
-import { forwardRef, ReactNode } from "react";
-import { List, ListElement, ListProps } from "@react-md/list";
-import { LabelRequiredForA11y } from "@react-md/utils";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
+import type { ListElement, ListProps } from "@react-md/list";
+import { List } from "@react-md/list";
+import type { LabelRequiredForA11y } from "@react-md/utils";
 
 /** @remarks \@since 5.0.0 */
 export type MenuItemGroupProps = LabelRequiredForA11y<

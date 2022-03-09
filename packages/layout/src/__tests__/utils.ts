@@ -4,7 +4,7 @@ import {
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
 } from "../constants";
-import { LayoutConfiguration } from "../types";
+import type { LayoutConfiguration } from "../types";
 import {
   getLayoutType,
   isFullHeightLayout,

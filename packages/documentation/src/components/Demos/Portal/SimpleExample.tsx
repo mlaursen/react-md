@@ -1,10 +1,5 @@
-import {
-  CSSProperties,
-  ReactElement,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
+import type { CSSProperties, ReactElement } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Button } from "@react-md/button";
 import { TextIconSpacing } from "@react-md/icon";
 import { List, ListItem } from "@react-md/list";

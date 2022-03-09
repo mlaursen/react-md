@@ -1,12 +1,13 @@
-import { CSSProperties, forwardRef, useEffect, useRef } from "react";
+import type { CSSProperties } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import cn from "classnames";
-import {
+import type {
   BaseTreeItem,
-  Tree,
   TreeData,
   TreeItemRenderer,
   TreeProps,
 } from "@react-md/tree";
+import { Tree } from "@react-md/tree";
 import { bem } from "@react-md/utils";
 
 import { defaultMiniNavigationItemRenderer } from "./defaultMiniNavigationItemRenderer";

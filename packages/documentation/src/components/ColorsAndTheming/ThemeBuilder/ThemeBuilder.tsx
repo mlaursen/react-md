@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Grid } from "@react-md/utils";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 

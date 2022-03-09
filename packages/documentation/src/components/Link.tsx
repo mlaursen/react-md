@@ -1,5 +1,6 @@
-import { ReactElement, ReactNode } from "react";
-import NextLink, { LinkProps as NextLinkProps } from "next/link";
+import type { ReactElement, ReactNode } from "react";
+import type { LinkProps as NextLinkProps } from "next/link";
+import NextLink from "next/link";
 import { Link as RMDLink } from "@react-md/link";
 
 export interface LinkProps extends Omit<NextLinkProps, "as" | "children"> {

@@ -1,4 +1,4 @@
-import { NextFC } from "next";
+import type { NextFC } from "next";
 import Router from "next/router";
 
 export interface RedirectConfig {

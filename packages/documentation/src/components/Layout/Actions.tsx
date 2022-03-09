@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { useAppSize } from "@react-md/utils";
 
 import { CodePreferenceToggle } from "components/CodePreference";

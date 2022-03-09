@@ -1,20 +1,18 @@
-import {
+import type {
   CSSProperties,
-  forwardRef,
   ReactNode,
   Ref,
   SelectHTMLAttributes,
 } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
 import { useFormTheme } from "../FormThemeProvider";
 import { FloatingLabel } from "../label/FloatingLabel";
-import {
-  TextFieldContainer,
-  TextFieldContainerOptions,
-} from "../text-field/TextFieldContainer";
+import type { TextFieldContainerOptions } from "../text-field/TextFieldContainer";
+import { TextFieldContainer } from "../text-field/TextFieldContainer";
 import { useFieldStates } from "../useFieldStates";
 
 export interface NativeSelectProps

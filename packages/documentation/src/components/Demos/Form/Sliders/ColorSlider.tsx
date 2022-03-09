@@ -1,10 +1,7 @@
-import { ReactElement, useEffect, useRef } from "react";
-import {
-  Slider,
-  SliderRequiredProps,
-  TextField,
-  useNumberField,
-} from "@react-md/form";
+import type { ReactElement } from "react";
+import { useEffect, useRef } from "react";
+import type { SliderRequiredProps } from "@react-md/form";
+import { Slider, TextField, useNumberField } from "@react-md/form";
 import { Typography } from "@react-md/typography";
 
 import styles from "./ColorSlider.module.scss";

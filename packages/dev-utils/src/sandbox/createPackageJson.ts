@@ -1,7 +1,8 @@
-import { JSONObject } from "../constants";
+import type { JSONObject } from "../constants";
 import { toId } from "../utils";
-import { DEV_DEPENDENCIES, FORM_PARTS } from "./constants";
-import { ReferencedDependencies } from "./getAllDependencies";
+import type { FORM_PARTS } from "./constants";
+import { DEV_DEPENDENCIES } from "./constants";
+import type { ReferencedDependencies } from "./getAllDependencies";
 
 function toDependencyJson(
   dependencies: readonly string[]

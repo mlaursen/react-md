@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { IconProvider } from "@react-md/icon";
 
 import DemoPage from "components/Demos/DemoPage";
-import { DemoConfig } from "components/Demos/types";
+import type { DemoConfig } from "components/Demos/types";
 
 import TextFieldExample from "./TextFieldExample";
 import textFieldExample from "./TextFieldExample.md";

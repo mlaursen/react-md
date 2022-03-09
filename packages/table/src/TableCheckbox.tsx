@@ -1,8 +1,11 @@
-import { CSSProperties, forwardRef, Ref, TdHTMLAttributes } from "react";
+import type { CSSProperties, Ref, TdHTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import { Checkbox, CheckboxProps } from "@react-md/form";
+import type { CheckboxProps } from "@react-md/form";
+import { Checkbox } from "@react-md/form";
 
-import { TableCell, TableCellProps } from "./TableCell";
+import type { TableCellProps } from "./TableCell";
+import { TableCell } from "./TableCell";
 
 type WantedCheckboxProps =
   | "name"

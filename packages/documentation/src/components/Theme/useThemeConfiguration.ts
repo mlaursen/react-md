@@ -2,15 +2,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Cookie from "js-cookie";
 import { EventName, sendAnalyticsEvent } from "utils/analytics";
 
-import { ColorAccent, PrimaryColor, SecondaryColor, ThemeMode } from "./colors";
+import type {
+  ColorAccent,
+  PrimaryColor,
+  SecondaryColor,
+  ThemeMode,
+} from "./colors";
 import styles from "./styles.module.scss";
-import {
-  DEFAULT_ACCENT,
-  DEFAULT_PRIMARY,
-  DEFAULT_SECONDARY,
-  Theme,
-} from "./useTheme";
-import { ThemeActions } from "./useThemeActions";
+import type { Theme } from "./useTheme";
+import { DEFAULT_ACCENT, DEFAULT_PRIMARY, DEFAULT_SECONDARY } from "./useTheme";
+import type { ThemeActions } from "./useThemeActions";
 
 export type ThemeConfiguration = Theme & ThemeActions;
 

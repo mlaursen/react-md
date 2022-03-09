@@ -1,11 +1,12 @@
-import { Children, cloneElement, ReactElement } from "react";
+import type { ReactElement } from "react";
+import { Children, cloneElement } from "react";
 import cn from "classnames";
 
-import {
+import type {
   CollapseElementProps,
   CollapseTransitionHookOptions,
-  useCollapseTransition,
 } from "./useCollapseTransition";
+import { useCollapseTransition } from "./useCollapseTransition";
 
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the

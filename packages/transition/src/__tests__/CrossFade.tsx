@@ -1,7 +1,9 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 
-import { CrossFade, CrossFadeProps } from "../CrossFade";
+import type { CrossFadeProps } from "../CrossFade";
+import { CrossFade } from "../CrossFade";
 
 interface TestProps
   extends Omit<CrossFadeProps<HTMLElement>, "transitionIn" | "children"> {

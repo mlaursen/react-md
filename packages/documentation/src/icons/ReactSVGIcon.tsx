@@ -1,6 +1,7 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
-import { SVGIcon, SVGIconProps } from "@react-md/icon";
+import type { SVGIconProps } from "@react-md/icon";
+import { SVGIcon } from "@react-md/icon";
 
 import styles from "./ReactSVGIcon.module.scss";
 

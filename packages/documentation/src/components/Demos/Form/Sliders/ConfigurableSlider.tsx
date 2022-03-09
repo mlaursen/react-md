@@ -1,4 +1,6 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
+import type { UseSliderOptions } from "@react-md/form";
 import {
   Checkbox,
   Form,
@@ -8,7 +10,6 @@ import {
   TextFieldWithMessage,
   useNumberField,
   useSlider,
-  UseSliderOptions,
 } from "@react-md/form";
 import { Typography } from "@react-md/typography";
 import { Grid, GridCell } from "@react-md/utils";

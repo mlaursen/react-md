@@ -1,4 +1,5 @@
-import { MutableRefObject, useMemo } from "react";
+import type { MutableRefObject } from "react";
+import { useMemo } from "react";
 
 import { getTreeItemId } from "./getTreeItemId";
 import type {

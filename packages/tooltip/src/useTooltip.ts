@@ -1,4 +1,4 @@
-import {
+import type {
   CSSProperties,
   FocusEvent,
   HTMLAttributes,
@@ -6,30 +6,29 @@ import {
   MouseEvent,
   Ref,
   TouchEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
 } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import cn from "classnames";
-import {
+import type {
   FixedPositioningTransitionCallbacks,
   TransitionCallbacks,
-  useFixedPositioning,
 } from "@react-md/transition";
+import { useFixedPositioning } from "@react-md/transition";
+import type {
+  HoverModeEventHandlers,
+  HoverModeHookReturnValue,
+  PositionAnchor,
+  SimplePosition,
+  UserInteractionMode,
+} from "@react-md/utils";
 import {
   ABOVE_CENTER_ANCHOR,
   BELOW_CENTER_ANCHOR,
   CENTER_LEFT_ANCHOR,
   CENTER_RIGHT_ANCHOR,
-  HoverModeEventHandlers,
-  HoverModeHookReturnValue,
-  PositionAnchor,
-  SimplePosition,
   unitToNumber,
   useHoverMode,
   useOnUnmount,
-  UserInteractionMode,
   useUserInteractionMode,
 } from "@react-md/utils";
 
@@ -43,10 +42,8 @@ import {
   TOOLTIP_SPACING_VAR,
 } from "./constants";
 import type { TooltipProps } from "./Tooltip";
-import {
-  TooltipPositionHookOptions,
-  useTooltipPosition,
-} from "./useTooltipPosition";
+import type { TooltipPositionHookOptions } from "./useTooltipPosition";
+import { useTooltipPosition } from "./useTooltipPosition";
 
 /** @internal */
 function getAnchor(position: SimplePosition): PositionAnchor {

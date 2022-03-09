@@ -1,8 +1,9 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
 import { Typography, TextContainer } from "@react-md/typography";
 
-import Post, { BlogPost } from "./Post";
+import type { BlogPost } from "./Post";
+import Post from "./Post";
 
 export interface BlogProps {
   children: string;

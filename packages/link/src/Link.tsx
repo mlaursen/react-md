@@ -1,4 +1,5 @@
-import { AnchorHTMLAttributes, ElementType, forwardRef } from "react";
+import type { AnchorHTMLAttributes, ElementType } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 

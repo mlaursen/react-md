@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { IconProvider } from "@react-md/icon";
 
 import DemoPage from "../DemoPage";

@@ -1,9 +1,9 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Switch, useChecked } from "@react-md/form";
 
 import Heading from "components/Heading";
 import CodeBlock from "components/CodeBlock";
-import { CompiledExample } from "utils/sassdoc";
+import type { CompiledExample } from "utils/sassdoc";
 
 interface ExampleProps extends CompiledExample {
   id: string;

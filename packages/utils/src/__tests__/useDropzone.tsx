@@ -1,8 +1,9 @@
-import { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { fireEvent, render } from "@testing-library/react";
 
-import { DropzoneHanders, useDropzone } from "../useDropzone";
+import type { DropzoneHanders } from "../useDropzone";
+import { useDropzone } from "../useDropzone";
 
 function Test({
   children,

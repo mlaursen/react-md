@@ -1,9 +1,11 @@
 import { forwardRef } from "react";
 import cn from "classnames";
-import { Button, ButtonProps } from "@react-md/button";
+import type { ButtonProps } from "@react-md/button";
+import { Button } from "@react-md/button";
 import { bem } from "@react-md/utils";
 
-import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
+import type { AppBarColorInherit } from "./useInheritContext";
+import { useInheritContext } from "./useInheritContext";
 
 export interface AppBarNavProps extends ButtonProps, AppBarColorInherit {}
 

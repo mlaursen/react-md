@@ -1,6 +1,7 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
-import { AppBar, AppBarProps } from "@react-md/app-bar";
+import type { AppBarProps } from "@react-md/app-bar";
+import { AppBar } from "@react-md/app-bar";
 import { useAppSize } from "@react-md/utils";
 
 import { usePhoneContext } from "./context";

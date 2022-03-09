@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode, useEffect, useMemo, useRef } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
@@ -8,12 +9,8 @@ import {
   DEFAULT_TABLET_MIN_WIDTH,
 } from "./constants";
 import { AppSizeContext } from "./useAppSize";
-import {
-  AppSize,
-  AppSizeOptions,
-  DEFAULT_APP_SIZE,
-  useAppSizeMedia,
-} from "./useAppSizeMedia";
+import type { AppSize, AppSizeOptions } from "./useAppSizeMedia";
+import { DEFAULT_APP_SIZE, useAppSizeMedia } from "./useAppSizeMedia";
 
 export interface AppSizeListenerProps extends AppSizeOptions {
   children: ReactNode;

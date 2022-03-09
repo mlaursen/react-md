@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Checkbox, Fieldset, useIndeterminateChecked } from "@react-md/form";
 
 const condiments = ["Lettuce", "Tomato", "Mustard", "Sprouts"];

@@ -1,6 +1,8 @@
-import { ReactElement, ReactNode, useCallback, useMemo, useState } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useRouter } from "next/router";
-import { AutoComplete, FilterFunction } from "@react-md/autocomplete";
+import type { FilterFunction } from "@react-md/autocomplete";
+import { AutoComplete } from "@react-md/autocomplete";
 import { Button } from "@react-md/button";
 import { Dialog } from "@react-md/dialog";
 import { SearchSVGIcon } from "@react-md/material-icons";
@@ -11,7 +13,10 @@ import {
 } from "@react-md/utils";
 
 import Code from "components/Code";
-import { FormattedSassDocItem, FormattedVariableItem } from "utils/sassdoc";
+import type {
+  FormattedSassDocItem,
+  FormattedVariableItem,
+} from "utils/sassdoc";
 
 import getId from "./getId";
 import getType from "./getType";

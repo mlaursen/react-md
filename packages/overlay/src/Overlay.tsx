@@ -1,14 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import {
-  ConditionalPortal,
-  RenderConditionalPortalProps,
-} from "@react-md/portal";
-import {
-  CSSTransitionComponentProps,
-  CSSTransition,
-} from "@react-md/transition";
+import type { RenderConditionalPortalProps } from "@react-md/portal";
+import { ConditionalPortal } from "@react-md/portal";
+import type { CSSTransitionComponentProps } from "@react-md/transition";
+import { CSSTransition } from "@react-md/transition";
 import { bem } from "@react-md/utils";
 
 import {

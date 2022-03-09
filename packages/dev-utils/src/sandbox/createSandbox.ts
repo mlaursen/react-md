@@ -1,10 +1,10 @@
 import { writeJsonSync } from "fs-extra";
 import log from "loglevel";
 import { join, sep } from "path";
-import { ImportDeclaration, Project } from "ts-morph";
+import type { ImportDeclaration, Project } from "ts-morph";
 import { transform } from "@babel/core";
 
-import { JSONObject } from "../constants";
+import type { JSONObject } from "../constants";
 import { format, toTitle } from "../utils";
 import { getAliases } from "./aliases";
 import {

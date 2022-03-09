@@ -1,9 +1,9 @@
-import { Reducer, useCallback, useEffect, useReducer, useRef } from "react";
+import type { Reducer } from "react";
+import { useCallback, useEffect, useReducer, useRef } from "react";
 import { useTimeout, useToggle } from "@react-md/utils";
 
-import {
+import type {
   AddMessage,
-  DEFAULT_MESSAGE_QUEUE_TIMEOUT,
   DuplicateBehavior,
   Message,
   MessageQueueActions,
@@ -11,6 +11,7 @@ import {
   ResetQueue,
   ToastMessage,
 } from "./MessageQueueContext";
+import { DEFAULT_MESSAGE_QUEUE_TIMEOUT } from "./MessageQueueContext";
 import { useWindowBlurPause } from "./useWindowBlurPause";
 
 export const ADD_MESSAGE = "ADD_MESSAGE";

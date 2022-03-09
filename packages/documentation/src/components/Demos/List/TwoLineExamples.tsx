@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
-import { Avatar, AvatarProps } from "@react-md/avatar";
+import type { AvatarProps } from "@react-md/avatar";
+import { Avatar } from "@react-md/avatar";
 import { FolderSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";
 import { List, ListItem, ListSubheader } from "@react-md/list";
-import { SVGIconProps } from "@react-md/icon";
+import type { SVGIconProps } from "@react-md/icon";
 import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 import Container from "./Container";

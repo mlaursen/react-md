@@ -1,15 +1,8 @@
-import {
-  CSSProperties,
-  RefCallback,
-  RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import type { CSSProperties, RefCallback, RefObject } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { CalculateFixedPositionOptions } from "@react-md/utils";
 import {
   BELOW_CENTER_ANCHOR,
-  CalculateFixedPositionOptions,
   getFixedPosition,
   useEnsuredRef,
   useResizeListener,

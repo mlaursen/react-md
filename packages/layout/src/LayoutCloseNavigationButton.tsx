@@ -1,5 +1,7 @@
-import { forwardRef, MouseEvent, useCallback } from "react";
-import { AppBarAction, AppBarActionProps } from "@react-md/app-bar";
+import type { MouseEvent } from "react";
+import { forwardRef, useCallback } from "react";
+import type { AppBarActionProps } from "@react-md/app-bar";
+import { AppBarAction } from "@react-md/app-bar";
 import { useIcon } from "@react-md/icon";
 
 import { useLayoutConfig } from "./LayoutProvider";

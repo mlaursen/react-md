@@ -1,7 +1,9 @@
-import { ReactElement, ReactNode, useEffect, useState } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-import { getContainer, PortalInto } from "./getContainer";
+import type { PortalInto } from "./getContainer";
+import { getContainer } from "./getContainer";
 
 export interface PortalProps {
   /**

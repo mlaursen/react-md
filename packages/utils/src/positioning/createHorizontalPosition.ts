@@ -1,10 +1,10 @@
+import type { XCoordConfig } from "./getCoord";
 import {
   getCenterXCoord,
   getInnerLeftCoord,
   getInnerRightCoord,
   getLeftCoord,
   getRightCoord,
-  XCoordConfig,
 } from "./getCoord";
 import type { FixedPositionOptions, HorizontalPosition } from "./types";
 

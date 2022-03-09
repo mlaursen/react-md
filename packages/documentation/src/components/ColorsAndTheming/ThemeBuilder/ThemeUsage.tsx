@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { GridCell } from "@react-md/utils";
 
 import { Markdown } from "components/Markdown";
-import {
+import type {
   ColorAccent,
   PrimaryColor,
   SecondaryColor,

@@ -1,7 +1,8 @@
 import { forwardRef } from "react";
 import { useIcon } from "@react-md/icon";
 
-import { InputToggle, InputToggleProps } from "./InputToggle";
+import type { InputToggleProps } from "./InputToggle";
+import { InputToggle } from "./InputToggle";
 
 /** @remarks \@since 2.8.5 */
 export interface IndeterminateCheckboxProps {

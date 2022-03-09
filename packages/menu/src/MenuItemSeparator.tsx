@@ -1,10 +1,8 @@
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import {
-  DividerProps,
-  useVerticalDividerHeight,
-  VerticalDividerProps,
-} from "@react-md/divider";
+import type { DividerProps, VerticalDividerProps } from "@react-md/divider";
+import { useVerticalDividerHeight } from "@react-md/divider";
 import { bem } from "@react-md/utils";
 
 import { useMenuConfiguration } from "./MenuConfigurationProvider";

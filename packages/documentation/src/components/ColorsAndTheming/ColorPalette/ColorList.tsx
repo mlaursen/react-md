@@ -1,6 +1,7 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
-import Color, { ColorValue } from "./Color";
+import type { ColorValue } from "./Color";
+import Color from "./Color";
 
 import styles from "./ColorPalette.module.scss";
 

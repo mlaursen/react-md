@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import {
   AppBar,
   AppBarAction,
@@ -12,13 +12,8 @@ import {
   TimerSVGIcon,
 } from "@react-md/material-icons";
 import { MediaContainer } from "@react-md/media";
-import {
-  TabConfig,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  TabsManager,
-} from "@react-md/tabs";
+import type { TabConfig } from "@react-md/tabs";
+import { TabPanel, TabPanels, Tabs, TabsManager } from "@react-md/tabs";
 import { GridList, useAppSize } from "@react-md/utils";
 
 const tabs: TabConfig[] = [

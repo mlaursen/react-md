@@ -1,12 +1,8 @@
-import {
-  CSSProperties,
-  forwardRef,
-  MouseEventHandler,
-  ReactNode,
-  Ref,
-} from "react";
+import type { CSSProperties, MouseEventHandler, ReactNode, Ref } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import { Card, CardContent, CardContentProps, CardProps } from "@react-md/card";
+import type { CardContentProps, CardProps } from "@react-md/card";
+import { Card, CardContent } from "@react-md/card";
 import { useCollapseTransition } from "@react-md/transition";
 import { bem } from "@react-md/utils";
 

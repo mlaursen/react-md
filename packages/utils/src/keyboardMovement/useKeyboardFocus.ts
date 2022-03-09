@@ -1,10 +1,10 @@
-import {
+import type {
   FocusEventHandler,
   KeyboardEvent,
   KeyboardEventHandler,
   MutableRefObject,
-  useRef,
 } from "react";
+import { useRef } from "react";
 import { useUserInteractionMode } from "../mode/UserInteractionModeListener";
 
 import { findMatchIndex } from "../search/findMatchIndex";

@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { isPersistentLayout, useLayoutConfig } from "@react-md/layout";
 import { Typography } from "@react-md/typography";

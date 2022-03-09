@@ -1,7 +1,9 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
-import { ButtonThemeProps, buttonThemeClassNames } from "@react-md/button";
-import { Link, LinkProps } from "@react-md/link";
+import type { ButtonThemeProps } from "@react-md/button";
+import { buttonThemeClassNames } from "@react-md/button";
+import type { LinkProps } from "@react-md/link";
+import { Link } from "@react-md/link";
 
 import styles from "./WithButtonStyles.module.scss";
 

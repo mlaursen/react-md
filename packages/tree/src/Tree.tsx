@@ -1,14 +1,16 @@
-import { forwardRef, MutableRefObject, ReactElement, ReactNode } from "react";
+import type { MutableRefObject, ReactElement, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
-import { List, ListElement } from "@react-md/list";
+import type { ListElement } from "@react-md/list";
+import { List } from "@react-md/list";
 import { bem } from "@react-md/utils";
 
 import { defaultGetItemLabel } from "./defaultGetItemLabel";
 import { defaultGetItemValue } from "./defaultGetItemValue";
 import { defaultTreeItemRenderer } from "./defaultTreeItemRenderer";
 import type { TreeProps, UnknownTreeItem } from "./types";
-import { NestedTreeItem } from "./useNestedTreeList";
+import type { NestedTreeItem } from "./useNestedTreeList";
 import { useTreeMovement } from "./useTreeMovement";
 
 const block = bem("rmd-tree");

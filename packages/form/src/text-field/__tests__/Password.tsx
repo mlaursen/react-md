@@ -1,7 +1,8 @@
 import { render, fireEvent } from "@testing-library/react";
 import { FontIcon } from "@react-md/icon";
 
-import { Password, GetVisibilityIcon } from "../Password";
+import type { GetVisibilityIcon } from "../Password";
+import { Password } from "../Password";
 
 const getById = (id: string) => {
   const el = document.getElementById(id);

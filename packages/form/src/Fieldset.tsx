@@ -1,9 +1,5 @@
-import {
-  CSSProperties,
-  FieldsetHTMLAttributes,
-  forwardRef,
-  ReactNode,
-} from "react";
+import type { CSSProperties, FieldsetHTMLAttributes, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 

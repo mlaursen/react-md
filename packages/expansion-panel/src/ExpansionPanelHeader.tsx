@@ -1,9 +1,5 @@
-import {
-  ButtonHTMLAttributes,
-  forwardRef,
-  MouseEventHandler,
-  ReactNode,
-} from "react";
+import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { UnstyledButton } from "@react-md/button";
 import { IconRotator, useIcon } from "@react-md/icon";

@@ -1,5 +1,7 @@
-import { ReactElement, useState } from "react";
-import { FileReaderResult, isImageFile, isVideoFile } from "@react-md/form";
+import type { ReactElement } from "react";
+import { useState } from "react";
+import type { FileReaderResult } from "@react-md/form";
+import { isImageFile, isVideoFile } from "@react-md/form";
 import { ErrorSVGIcon } from "@react-md/material-icons";
 import { MediaOverlay } from "@react-md/media";
 import { TextIconSpacing } from "@react-md/icon";

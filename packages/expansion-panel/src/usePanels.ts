@@ -1,13 +1,10 @@
-import {
-  createRef,
+import type {
   Dispatch,
   KeyboardEventHandler,
   RefObject,
   SetStateAction,
-  useCallback,
-  useMemo,
-  useState,
 } from "react";
+import { createRef, useCallback, useMemo, useState } from "react";
 import { loop } from "@react-md/utils";
 
 export interface UsePanelsOptions {

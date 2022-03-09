@@ -1,6 +1,8 @@
-import { ReactElement, ReactNode } from "react";
-import { ButtonProps, Button } from "@react-md/button";
-import { Tooltip, TooltipHookOptions, useTooltip } from "@react-md/tooltip";
+import type { ReactElement, ReactNode } from "react";
+import type { ButtonProps } from "@react-md/button";
+import { Button } from "@react-md/button";
+import type { TooltipHookOptions } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 interface TooltippedButtonProps
   extends ButtonProps,

@@ -1,4 +1,4 @@
-import { BaseTreeItem, TreeData } from "../types";
+import type { BaseTreeItem, TreeData } from "../types";
 import { buildTree } from "../useNestedTreeList";
 
 interface TestTreeItem extends BaseTreeItem {

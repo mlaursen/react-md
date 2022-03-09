@@ -1,4 +1,5 @@
-import { FC, useMemo, lazy, LazyExoticComponent } from "react";
+import type { FC, LazyExoticComponent } from "react";
+import { useMemo, lazy } from "react";
 
 function fakeImport<P>(
   Component: FC<P>,

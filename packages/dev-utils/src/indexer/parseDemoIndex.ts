@@ -6,7 +6,7 @@ import { join } from "path";
 import { documentationRoot, src } from "../constants";
 import { toId, toTitle } from "../utils";
 import { parseMarkdown } from "./parseMarkdown";
-import { DemoMetadata, TOCAnchor } from "./types";
+import type { DemoMetadata, TOCAnchor } from "./types";
 
 interface MarkdownResult {
   anchors: readonly TOCAnchor[];

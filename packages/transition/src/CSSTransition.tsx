@@ -1,4 +1,5 @@
-import { Children, cloneElement, ReactElement } from "react";
+import type { ReactElement } from "react";
+import { Children, cloneElement } from "react";
 import cn from "classnames";
 
 import type {

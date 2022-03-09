@@ -1,18 +1,14 @@
-import {
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  Ref,
-  useRef,
-  useState,
-} from "react";
-import { List, ListElement } from "@react-md/list";
-import { BaseSheetProps, Sheet } from "@react-md/sheet";
-import {
+import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
+import { useRef, useState } from "react";
+import type { ListElement } from "@react-md/list";
+import { List } from "@react-md/list";
+import type { BaseSheetProps } from "@react-md/sheet";
+import { Sheet } from "@react-md/sheet";
+import type {
   KeyboardFocusHookOptions,
   LabelRequiredForA11y,
-  useOnUnmount,
 } from "@react-md/utils";
+import { useOnUnmount } from "@react-md/utils";
 
 import { MenuKeyboardFocusProvider } from "./MenuKeyboardFocusProvider";
 import { MenuWidget } from "./MenuWidget";

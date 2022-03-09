@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-import { PrimaryColor, SecondaryColor, ColorAccent } from "./colors";
+import type { PrimaryColor, SecondaryColor, ColorAccent } from "./colors";
 
 export type SetPrimary = (color: PrimaryColor) => void;
 export type SetSecondary = (color: SecondaryColor) => void;

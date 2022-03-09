@@ -1,9 +1,8 @@
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import {
-  ConditionalPortal,
-  RenderConditionalPortalProps,
-} from "@react-md/portal";
+import type { RenderConditionalPortalProps } from "@react-md/portal";
+import { ConditionalPortal } from "@react-md/portal";
 import { bem } from "@react-md/utils";
 
 export type SnackbarPosition = "bottom" | "top";

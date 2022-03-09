@@ -1,20 +1,13 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  FocusEvent,
-  SetStateAction,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
+import type { ChangeEvent, Dispatch, FocusEvent, SetStateAction } from "react";
+import { useCallback, useRef, useState } from "react";
 import { withinRange } from "@react-md/utils";
 
-import {
+import type {
   ProvidedTextFieldMessageProps,
   ProvidedTextFieldProps,
   TextFieldHookOptions,
-  useTextField,
 } from "./useTextField";
+import { useTextField } from "./useTextField";
 
 /**
  * @remarks \@since 2.5.0

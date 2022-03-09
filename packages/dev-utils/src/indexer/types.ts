@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 /**
  * An anchor that can be used for a table of contents.

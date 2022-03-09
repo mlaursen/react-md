@@ -1,13 +1,12 @@
 import { Configuration } from "@react-md/layout";
+import type { RenderResult } from "@testing-library/react";
 import {
   act,
   fireEvent,
   render as baseRender,
-  RenderResult,
   waitFor,
 } from "@testing-library/react";
-import type { FC, ReactElement } from "react";
-import { MouseEventHandler } from "react";
+import type { FC, ReactElement, MouseEventHandler } from "react";
 
 import { DropdownMenu } from "../DropdownMenu";
 import { MenuBar } from "../MenuBar";

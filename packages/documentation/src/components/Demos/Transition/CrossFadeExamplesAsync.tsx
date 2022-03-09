@@ -1,4 +1,5 @@
-import { ReactElement, Suspense, useState } from "react";
+import type { ReactElement } from "react";
+import { Suspense, useState } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { CircularProgress } from "@react-md/progress";
 import { Tabs, TabsManager } from "@react-md/tabs";

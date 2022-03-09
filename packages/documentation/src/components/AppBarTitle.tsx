@@ -1,8 +1,7 @@
-import { ReactElement, ReactNode, useCallback, useState } from "react";
-import {
-  AppBarTitle as RMDAppBarTitle,
-  AppBarTitleProps,
-} from "@react-md/app-bar";
+import type { ReactElement, ReactNode } from "react";
+import { useCallback, useState } from "react";
+import type { AppBarTitleProps } from "@react-md/app-bar";
+import { AppBarTitle as RMDAppBarTitle } from "@react-md/app-bar";
 import { Tooltip, useTooltip } from "@react-md/tooltip";
 import { useResizeObserver } from "@react-md/utils";
 

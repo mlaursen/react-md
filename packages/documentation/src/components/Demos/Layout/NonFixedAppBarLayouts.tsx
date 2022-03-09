@@ -1,14 +1,12 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import {
   HomeSVGIcon,
   ShareSVGIcon,
   StarSVGIcon,
 } from "@react-md/material-icons";
-import {
-  Layout,
-  LayoutNavigationTree,
-  useLayoutNavigation,
-} from "@react-md/layout";
+import type { LayoutNavigationTree } from "@react-md/layout";
+import { Layout, useLayoutNavigation } from "@react-md/layout";
 import { CrossFade } from "@react-md/transition";
 import { Typography, TextContainer } from "@react-md/typography";
 

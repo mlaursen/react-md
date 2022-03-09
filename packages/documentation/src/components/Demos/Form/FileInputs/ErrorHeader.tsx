@@ -1,12 +1,11 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import filesize from "filesize";
-import {
+import type {
   FileExtensionError,
   FileSizeError,
-  isFileSizeError,
-  isTooManyFilesError,
   TooManyFilesError,
 } from "@react-md/form";
+import { isFileSizeError, isTooManyFilesError } from "@react-md/form";
 import { Typography } from "@react-md/typography";
 
 interface ErrorHeaderProps {

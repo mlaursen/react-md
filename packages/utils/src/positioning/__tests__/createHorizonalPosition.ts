@@ -1,3 +1,4 @@
+import type { FixConfig } from "../createHorizontalPosition";
 import {
   createAnchoredCenter,
   createAnchoredInnerLeft,
@@ -6,7 +7,6 @@ import {
   createAnchoredRight,
   createEqualWidth,
   createHorizontalPosition,
-  FixConfig,
 } from "../createHorizontalPosition";
 
 import {

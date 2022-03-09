@@ -1,8 +1,10 @@
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { TableRowConfiguration, useTableConfig } from "./config";
+import type { TableRowConfiguration } from "./config";
+import { useTableConfig } from "./config";
 
 export interface TableRowProps
   extends HTMLAttributes<HTMLTableRowElement>,

@@ -1,11 +1,7 @@
 import { forwardRef } from "react";
 import cn from "classnames";
-import {
-  isListboxOptionProps,
-  ListboxOptionProps,
-  Option,
-  TextField,
-} from "@react-md/form";
+import type { ListboxOptionProps } from "@react-md/form";
+import { isListboxOptionProps, Option, TextField } from "@react-md/form";
 import { List } from "@react-md/list";
 import { ScaleTransition } from "@react-md/transition";
 import { BELOW_CENTER_ANCHOR, bem, omit } from "@react-md/utils";

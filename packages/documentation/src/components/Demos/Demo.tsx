@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import { Divider } from "@react-md/divider";
@@ -16,7 +16,7 @@ import DemoContainer from "./DemoContainer";
 import DemoDescription from "./DemoDescription";
 import GithubDemoLink from "./GithubDemoLink";
 import Sandbox from "./Sandbox";
-import { DemoProps } from "./types";
+import type { DemoProps } from "./types";
 
 const getFileName = (title: string, demoName: string): string => {
   const name = demoName.replace(" and ", "And").replace(/[ -()]/g, "");

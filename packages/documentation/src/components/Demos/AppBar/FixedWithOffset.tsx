@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
+import type { AppBarHeight } from "@react-md/app-bar";
 import {
   AppBar,
   AppBarAction,
@@ -8,7 +9,6 @@ import {
   APP_BAR_OFFSET_DENSE_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_CLASSNAME,
   APP_BAR_OFFSET_PROMINENT_DENSE_CLASSNAME,
-  AppBarHeight,
 } from "@react-md/app-bar";
 import {
   MenuSVGIcon,

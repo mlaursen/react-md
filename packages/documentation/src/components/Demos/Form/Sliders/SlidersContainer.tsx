@@ -1,10 +1,5 @@
-import {
-  Children,
-  cloneElement,
-  isValidElement,
-  ReactElement,
-  ReactNode,
-} from "react";
+import type { ReactElement, ReactNode } from "react";
+import { Children, cloneElement, isValidElement } from "react";
 
 import styles from "./SlidersContainer.module.scss";
 

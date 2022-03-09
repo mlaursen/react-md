@@ -1,8 +1,9 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
-import { RangeSlider, RangeSliderProps } from "../RangeSlider";
-import { RangeSliderValue, SliderStepOptions } from "../types";
+import type { RangeSliderProps } from "../RangeSlider";
+import { RangeSlider } from "../RangeSlider";
+import type { RangeSliderValue, SliderStepOptions } from "../types";
 import { useRangeSlider } from "../useRangeSlider";
 
 interface TestProps

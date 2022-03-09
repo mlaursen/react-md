@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 
-import { AppSize, DEFAULT_APP_SIZE } from "./useAppSizeMedia";
+import type { AppSize } from "./useAppSizeMedia";
+import { DEFAULT_APP_SIZE } from "./useAppSizeMedia";
 
 /**
  * @internal

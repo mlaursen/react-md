@@ -1,4 +1,5 @@
-import { Reducer, useCallback, useReducer } from "react";
+import type { Reducer } from "react";
+import { useCallback, useReducer } from "react";
 import { useRefCache } from "@react-md/utils";
 
 import type { RippleEvent, RipplesState, RippleState } from "./types";

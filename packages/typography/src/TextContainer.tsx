@@ -1,13 +1,10 @@
-import {
-  Children,
-  cloneElement,
+import type {
   ElementType,
-  forwardRef,
   HTMLAttributes,
-  isValidElement,
   ReactElement,
   ReactNode,
 } from "react";
+import { Children, cloneElement, forwardRef, isValidElement } from "react";
 import cn from "classnames";
 import type { ClassNameCloneableChild } from "@react-md/utils";
 

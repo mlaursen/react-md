@@ -4,10 +4,8 @@ import type { Maybe } from "@react-md/utils";
 
 import type { MergableRippleHandlers, RipplesOptions } from "./ripples/types";
 import { useRipples } from "./ripples/useRipples";
-import {
-  StatesConfigContextType,
-  useStatesConfigContext,
-} from "./StatesConfig";
+import type { StatesConfigContextType } from "./StatesConfig";
+import { useStatesConfigContext } from "./StatesConfig";
 import { useKeyboardClickPolyfill } from "./useKeyboardClickPolyfill";
 import { usePressedStates } from "./usePressedStates";
 

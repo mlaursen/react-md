@@ -1,6 +1,7 @@
-import { ReactElement } from "react";
-import { AppBarActionProps } from "@react-md/app-bar";
-import { MenuItem, MenuItemProps } from "@react-md/menu";
+import type { ReactElement } from "react";
+import type { AppBarActionProps } from "@react-md/app-bar";
+import type { MenuItemProps } from "@react-md/menu";
+import { MenuItem } from "@react-md/menu";
 
 import AppBarAction from "components/AppBarAction";
 import JavascriptSVGIcon from "icons/JavascriptSVGIcon";

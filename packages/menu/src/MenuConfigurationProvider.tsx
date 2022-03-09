@@ -1,10 +1,5 @@
-import {
-  createContext,
-  ReactElement,
-  ReactNode,
-  useContext,
-  useMemo,
-} from "react";
+import type { ReactElement, ReactNode } from "react";
+import { createContext, useContext, useMemo } from "react";
 import type { MenuConfiguration, MenuConfigurationContext } from "./types";
 
 /** @remarks \@since 5.0.0 */

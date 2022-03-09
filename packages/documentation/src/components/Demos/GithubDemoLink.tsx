@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 import GithubLink from "components/GithubLink";

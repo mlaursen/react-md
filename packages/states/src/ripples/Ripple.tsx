@@ -1,10 +1,10 @@
 import type { ReactElement } from "react";
 import cn from "classnames";
-import {
+import type {
   CSSTransitionClassNames,
   TransitionTimeout,
-  useCSSTransition,
 } from "@react-md/transition";
+import { useCSSTransition } from "@react-md/transition";
 
 import { useStatesConfigContext } from "../StatesConfig";
 import type { RippleState } from "./types";

@@ -1,15 +1,12 @@
 /* eslint-disable import/export */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import { RouterContext } from "next/dist/shared/lib/router-context";
-import { NextRouter } from "next/router";
+import type { NextRouter } from "next/router";
 import { Configuration } from "@react-md/layout";
-import { AppSize } from "@react-md/utils";
-import {
-  render as baseRender,
-  RenderOptions,
-  RenderResult,
-} from "@testing-library/react";
+import type { AppSize } from "@react-md/utils";
+import type { RenderOptions, RenderResult } from "@testing-library/react";
+import { render as baseRender } from "@testing-library/react";
 
 export * from "@testing-library/react";
 

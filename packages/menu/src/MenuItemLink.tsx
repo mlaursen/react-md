@@ -1,10 +1,11 @@
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import {
-  ListItemLink,
+import type {
   ListItemLinkProps,
   ListItemLinkWithComponentProps,
 } from "@react-md/list";
+import { ListItemLink } from "@react-md/list";
 import { useKeyboardFocusableElement } from "@react-md/utils";
 
 /** @remarks \@since 2.0.0 */

@@ -3,7 +3,8 @@ import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { getListItemHeight, SimpleListItemProps } from "./getListItemHeight";
+import type { SimpleListItemProps } from "./getListItemHeight";
+import { getListItemHeight } from "./getListItemHeight";
 import { ListItemChildren } from "./ListItemChildren";
 
 const block = bem("rmd-list-item");

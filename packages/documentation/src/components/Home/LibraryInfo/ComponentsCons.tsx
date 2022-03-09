@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import TableCellList from "./TableCellList";
 
 export default function ComponentsCons(): ReactElement | null {

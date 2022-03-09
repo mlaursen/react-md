@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import {

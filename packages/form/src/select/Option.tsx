@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import cn from "classnames";
-import { SimpleListItem, SimpleListItemProps } from "@react-md/list";
+import type { SimpleListItemProps } from "@react-md/list";
+import { SimpleListItem } from "@react-md/list";
 import { bem } from "@react-md/utils";
 
 export interface OptionProps extends SimpleListItemProps {

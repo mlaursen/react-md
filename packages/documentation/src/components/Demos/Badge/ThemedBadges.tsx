@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
-import { BadgedButton, BadgeTheme } from "@react-md/badge";
+import type { ReactElement } from "react";
+import type { BadgeTheme } from "@react-md/badge";
+import { BadgedButton } from "@react-md/badge";
 
 import styles from "./SimpleExamples.module.scss";
 

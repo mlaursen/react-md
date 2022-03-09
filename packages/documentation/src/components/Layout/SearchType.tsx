@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import { MetadataType } from "constants/meta/types";
+import type { ReactElement } from "react";
+import type { MetadataType } from "constants/meta/types";
 import { toTitle } from "utils/toTitle";
 
 import styles from "./SearchType.module.scss";

@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactElement } from "react";
+import type { MouseEventHandler, ReactElement } from "react";
 import { ClearAllSVGIcon } from "@react-md/material-icons";
 import ActionChip from "./ActionChip";
 

@@ -1,4 +1,5 @@
-import { Fragment, ReactElement } from "react";
+import type { ReactElement } from "react";
+import { Fragment } from "react";
 import { Button } from "@react-md/button";
 import { CrossFade } from "@react-md/transition";
 import { Typography } from "@react-md/typography";

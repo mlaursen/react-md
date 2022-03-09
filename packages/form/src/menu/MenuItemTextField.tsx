@@ -1,8 +1,11 @@
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import { PropsWithRef, useKeyboardFocusableElement } from "@react-md/utils";
+import type { PropsWithRef } from "@react-md/utils";
+import { useKeyboardFocusableElement } from "@react-md/utils";
 
-import { TextField, TextFieldProps } from "../text-field/TextField";
+import type { TextFieldProps } from "../text-field/TextField";
+import { TextField } from "../text-field/TextField";
 
 /**
  * @remarks \@since 5.0.0

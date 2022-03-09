@@ -1,10 +1,10 @@
+import type { YCoordConfig } from "./getCoord";
 import {
   getAboveCoord,
   getBelowCoord,
   getBottomCoord,
   getCenterYCoord,
   getTopCoord,
-  YCoordConfig,
 } from "./getCoord";
 import { getViewportSize } from "./getViewportSize";
 import type { FixedPositionOptions, VerticalPosition } from "./types";

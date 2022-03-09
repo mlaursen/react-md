@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Avatar } from "@react-md/avatar";
 import { Chip } from "@react-md/chip";
-import { SVGIconProps } from "@react-md/icon";
+import type { SVGIconProps } from "@react-md/icon";
 import { AddCircleSVGIcon, ImageSVGIcon } from "@react-md/material-icons";
 import { Grid } from "@react-md/utils";
 

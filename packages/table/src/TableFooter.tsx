@@ -1,8 +1,10 @@
-import { forwardRef, HTMLAttributes, useMemo } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef, useMemo } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { TableCellConfig, TableConfigProvider, useTableConfig } from "./config";
+import type { TableCellConfig } from "./config";
+import { TableConfigProvider, useTableConfig } from "./config";
 import { TableFooterProvider } from "./footer";
 import { StickyTableProvider } from "./sticky";
 

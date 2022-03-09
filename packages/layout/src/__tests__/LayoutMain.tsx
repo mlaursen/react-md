@@ -1,10 +1,7 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { UserInteractionModeListener } from "@react-md/utils";
-import {
-  act,
-  render as baseRender,
-  RenderOptions,
-} from "@testing-library/react";
+import type { RenderOptions } from "@testing-library/react";
+import { act, render as baseRender } from "@testing-library/react";
 
 import { LayoutMain } from "../LayoutMain";
 

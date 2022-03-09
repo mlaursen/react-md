@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Typography, TextContainer } from "@react-md/typography";
 
 export default function TypographyExamples(): ReactElement {

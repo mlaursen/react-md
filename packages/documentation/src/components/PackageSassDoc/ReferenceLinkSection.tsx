@@ -1,11 +1,12 @@
-import { ReactElement, ReactNode, useState } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useState } from "react";
 import { Button } from "@react-md/button";
 import { IconRotator } from "@react-md/icon";
 import { ChevronLeftSVGIcon } from "@react-md/material-icons";
 import { Collapse } from "@react-md/transition";
 import { Typography } from "@react-md/typography";
 
-import { ItemReferenceLink } from "utils/sassdoc";
+import type { ItemReferenceLink } from "utils/sassdoc";
 
 import ReferenceLinkList from "./ReferenceLinkList";
 import styles from "./ReferenceLinkSection.module.scss";

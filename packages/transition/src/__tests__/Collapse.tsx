@@ -1,7 +1,9 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 
-import { Collapse, CollapseProps } from "../Collapse";
+import type { CollapseProps } from "../Collapse";
+import { Collapse } from "../Collapse";
 
 interface TestProps
   extends Omit<CollapseProps<HTMLElement>, "collapsed" | "children"> {

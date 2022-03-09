@@ -1,10 +1,5 @@
-import {
-  createContext,
-  RefCallback,
-  useCallback,
-  useContext,
-  useState,
-} from "react";
+import type { RefCallback } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 import cn from "classnames";
 
 import { useResizeObserver } from "../sizing/useResizeObserver";

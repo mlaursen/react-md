@@ -1,4 +1,5 @@
-import { Ref, RefCallback, useCallback, useRef } from "react";
+import type { Ref, RefCallback } from "react";
+import { useCallback, useRef } from "react";
 
 import { applyRef } from "../applyRef";
 import { useKeyboardFocusContext } from "./movementContext";

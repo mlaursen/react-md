@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
-import { ChangeEventHandler, useEffect } from "react";
+import type { ChangeEventHandler } from "react";
+import { useEffect } from "react";
 import { useChecked, useChoice } from "@react-md/form";
 import {
   FavoriteSVGIcon,
@@ -13,7 +14,7 @@ import {
   PersonSVGIcon,
 } from "@react-md/material-icons";
 import LightbulbSVGIcon from "icons/LightbulbSVGIcon";
-import { TabConfig } from "@react-md/tabs";
+import type { TabConfig } from "@react-md/tabs";
 
 const ICONS = [
   <WatchLaterSVGIcon />,

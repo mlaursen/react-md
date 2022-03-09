@@ -1,23 +1,18 @@
-import { ReactElement, useCallback, useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@react-md/button";
 import { Checkbox, Form, Select } from "@react-md/form";
 import { Typography } from "@react-md/typography";
-import {
-  ContrastRatioCompliance,
-  Grid,
-  GridCell,
-  HexString,
-} from "@react-md/utils";
+import type { ContrastRatioCompliance, HexString } from "@react-md/utils";
+import { Grid, GridCell } from "@react-md/utils";
 
-import {
+import type {
   ColorAccent,
-  primaries,
   PrimaryColor,
-  secondaries,
   SecondaryColor,
   ThemeMode,
-  useThemeActions,
 } from "components/Theme";
+import { primaries, secondaries, useThemeActions } from "components/Theme";
 import BackgroundWarnings from "./BackgroundWarnings";
 import ConfigurationCell from "./ConfigurationCell";
 import useThemeVariables from "./useThemeVariables";

@@ -1,7 +1,6 @@
+import type { MutableRefObject, Ref } from "react";
 import {
   createContext,
-  MutableRefObject,
-  Ref,
   useCallback,
   useContext,
   useEffect,
@@ -9,7 +8,8 @@ import {
   useRef,
   useState,
 } from "react";
-import { ItemRefList, useResizeObserver } from "@react-md/utils";
+import type { ItemRefList } from "@react-md/utils";
+import { useResizeObserver } from "@react-md/utils";
 
 interface Options {
   style: React.CSSProperties | undefined;

@@ -1,7 +1,9 @@
-import { forwardRef, HTMLAttributes, useMemo } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef, useMemo } from "react";
 import cn from "classnames";
 
-import { TableConfig, TableConfigProvider, useTableConfig } from "./config";
+import type { TableConfig } from "./config";
+import { TableConfigProvider, useTableConfig } from "./config";
 
 export interface TableBodyProps
   extends HTMLAttributes<HTMLTableSectionElement>,

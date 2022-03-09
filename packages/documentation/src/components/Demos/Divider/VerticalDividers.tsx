@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { VerticalDivider } from "@react-md/divider";
 import { Typography } from "@react-md/typography";

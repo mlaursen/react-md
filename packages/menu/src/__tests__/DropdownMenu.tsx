@@ -1,9 +1,9 @@
 import { Configuration } from "@react-md/layout";
 import { MoreVertSVGIcon } from "@react-md/material-icons";
+import type { RenderResult } from "@testing-library/react";
 import {
   fireEvent,
   render as baseRender,
-  RenderResult,
   waitFor,
 } from "@testing-library/react";
 import type {
@@ -18,7 +18,7 @@ import type {
 import { DropdownMenu } from "../DropdownMenu";
 import { MenuItem } from "../MenuItem";
 import { MenuItemLink } from "../MenuItemLink";
-import { BaseMenuButtonProps } from "../types";
+import type { BaseMenuButtonProps } from "../types";
 
 const Wrapper: FC = ({ children }) => (
   <Configuration disableRipple>{children}</Configuration>

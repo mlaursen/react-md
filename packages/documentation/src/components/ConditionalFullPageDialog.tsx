@@ -1,7 +1,8 @@
-import { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import { AppBar, AppBarAction } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
-import { Dialog, DialogContent, DialogProps } from "@react-md/dialog";
+import type { DialogProps } from "@react-md/dialog";
+import { Dialog, DialogContent } from "@react-md/dialog";
 import { TextIconSpacing } from "@react-md/icon";
 import { CloseSVGIcon, LaunchSVGIcon } from "@react-md/material-icons";
 import { Typography } from "@react-md/typography";

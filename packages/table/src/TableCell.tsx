@@ -1,17 +1,15 @@
-import {
-  forwardRef,
-  ReactNode,
-  TdHTMLAttributes,
-  ThHTMLAttributes,
-} from "react";
+import type { ReactNode, TdHTMLAttributes, ThHTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
-import { TableCellConfig, useTableConfig } from "./config";
+import type { TableCellConfig } from "./config";
+import { useTableConfig } from "./config";
 import { useTableFooter } from "./footer";
 import { useSticky } from "./sticky";
-import { SortOrder, TableCellContent } from "./TableCellContent";
+import type { SortOrder } from "./TableCellContent";
+import { TableCellContent } from "./TableCellContent";
 
 export type TableCellAttributes = Omit<
   | TdHTMLAttributes<HTMLTableCellElement>

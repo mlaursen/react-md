@@ -1,4 +1,4 @@
-import { FormattedSassDocItem } from "utils/sassdoc";
+import type { FormattedSassDocItem } from "utils/sassdoc";
 
 export default function getType(
   type: FormattedSassDocItem["type"]

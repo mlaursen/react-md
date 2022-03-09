@@ -1,7 +1,7 @@
-import { Message, ToastMessage } from "../MessageQueueContext";
+import type { Message, ToastMessage } from "../MessageQueueContext";
+import type { AddMessageAction } from "../useMessageQueue";
 import {
   addMessage,
-  AddMessageAction,
   ADD_MESSAGE,
   handleAddMessage,
   popMessage,

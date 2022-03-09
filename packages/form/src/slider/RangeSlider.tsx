@@ -1,4 +1,5 @@
-import { forwardRef, HTMLAttributes, KeyboardEvent, useCallback } from "react";
+import type { HTMLAttributes, KeyboardEvent } from "react";
+import { forwardRef, useCallback } from "react";
 import type { PropsWithRef } from "@react-md/utils";
 
 import {

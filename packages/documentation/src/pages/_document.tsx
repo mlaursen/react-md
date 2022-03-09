@@ -1,17 +1,11 @@
 /* eslint-disable react/no-danger */
-import { ReactElement } from "react";
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentInitialProps,
-  DocumentContext,
-} from "next/document";
+import type { ReactElement } from "react";
+import type { DocumentInitialProps, DocumentContext } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import Cookie from "js-cookie";
 
 import Analytics from "components/Analytics";
-import { ThemeMode } from "components/Theme";
+import type { ThemeMode } from "components/Theme";
 
 interface MyDocumentProps {
   theme: ThemeMode;

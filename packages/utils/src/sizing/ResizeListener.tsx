@@ -1,4 +1,5 @@
-import { ResizeListenerOptions, useResizeListener } from "./useResizeListener";
+import type { ResizeListenerOptions } from "./useResizeListener";
+import { useResizeListener } from "./useResizeListener";
 
 export type ResizeListenerProps = Omit<ResizeListenerOptions, "enabled">;
 

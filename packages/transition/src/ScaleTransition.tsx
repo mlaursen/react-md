@@ -1,15 +1,12 @@
-import { Children, cloneElement, ReactElement } from "react";
+import type { ReactElement } from "react";
+import { Children, cloneElement } from "react";
 import cn from "classnames";
-import {
-  ConditionalPortal,
-  RenderConditionalPortalProps,
-} from "@react-md/portal";
+import type { RenderConditionalPortalProps } from "@react-md/portal";
+import { ConditionalPortal } from "@react-md/portal";
 
 import type { CSSTransitionComponentImplementation } from "./types";
-import {
-  ScaleTransitionHookOptions,
-  useScaleTransition,
-} from "./useScaleTransition";
+import type { ScaleTransitionHookOptions } from "./useScaleTransition";
+import { useScaleTransition } from "./useScaleTransition";
 
 /**
  * @typeParam E - The HTMLElement type used or the ref required for the

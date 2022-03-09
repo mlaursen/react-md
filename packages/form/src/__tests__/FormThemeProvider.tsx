@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 
-import { FormThemeOptions, FormThemeProvider } from "../FormThemeProvider";
+import type { FormThemeOptions } from "../FormThemeProvider";
+import { FormThemeProvider } from "../FormThemeProvider";
 import { TextField } from "../text-field/TextField";
 
 describe("FormThemeProvider", () => {

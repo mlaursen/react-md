@@ -1,15 +1,13 @@
-import { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import {
   ArrowDropDownSVGIcon,
   FolderOpenSVGIcon,
   FolderSVGIcon,
 } from "@react-md/material-icons";
+import type { GetItemProps, TreeData, TreeItemIds } from "@react-md/tree";
 import {
-  GetItemProps,
   Tree,
-  TreeData,
-  TreeItemIds,
   useTreeItemExpansion,
   useTreeItemSelection,
 } from "@react-md/tree";

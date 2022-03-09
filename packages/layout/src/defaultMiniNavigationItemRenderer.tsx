@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import cn from "classnames";
 import { Divider } from "@react-md/divider";
-import { TreeItem, TreeItemRenderer } from "@react-md/tree";
+import type { TreeItemRenderer } from "@react-md/tree";
+import { TreeItem } from "@react-md/tree";
 import { SrOnly } from "@react-md/typography";
 
 import type { LayoutNavigationItem } from "./types";

@@ -1,7 +1,8 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { render, fireEvent } from "@testing-library/react";
 
-import { usePanels, UsePanelsOptions } from "../usePanels";
+import type { UsePanelsOptions } from "../usePanels";
+import { usePanels } from "../usePanels";
 import { ExpansionList } from "../ExpansionList";
 import { ExpansionPanel } from "../ExpansionPanel";
 

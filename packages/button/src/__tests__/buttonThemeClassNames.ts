@@ -1,4 +1,5 @@
-import { ButtonTheme, buttonThemeClassNames } from "../buttonThemeClassNames";
+import type { ButtonTheme } from "../buttonThemeClassNames";
+import { buttonThemeClassNames } from "../buttonThemeClassNames";
 
 describe("buttonThemeClassNames", () => {
   describe("defaults", () => {

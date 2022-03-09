@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
 import { defaults } from "lodash";
 import Head from "next/head";
@@ -7,7 +7,7 @@ import { toId } from "utils/toTitle";
 
 import Demo from "./Demo";
 import DemoPageHeader from "./DemoPageHeader";
-import { DemoPageConfig, DemoProps, DemoConfig } from "./types";
+import type { DemoPageConfig, DemoProps, DemoConfig } from "./types";
 
 import styles from "./DemoPage.module.scss";
 

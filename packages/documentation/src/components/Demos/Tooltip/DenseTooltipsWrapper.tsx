@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import scssVariables from "@react-md/tooltip/dist/scssVariables";
 import { useUserInteractionMode } from "@react-md/utils";
 

@@ -1,11 +1,9 @@
-import { CSSProperties, forwardRef, ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { UnstyledButton } from "@react-md/button";
-import {
-  IconRotator,
-  TextIconSpacing,
-  TextIconSpacingProps,
-} from "@react-md/icon";
+import type { TextIconSpacingProps } from "@react-md/icon";
+import { IconRotator, TextIconSpacing } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
 import type { TableCellHorizontalAlignment } from "./config";

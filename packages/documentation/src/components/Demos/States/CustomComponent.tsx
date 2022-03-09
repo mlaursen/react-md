@@ -1,9 +1,7 @@
-import { ButtonHTMLAttributes, ReactElement } from "react";
+import type { ButtonHTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
-import {
-  InteractionStatesOptions,
-  useInteractionStates,
-} from "@react-md/states";
+import type { InteractionStatesOptions } from "@react-md/states";
+import { useInteractionStates } from "@react-md/states";
 
 import styles from "./CustomComponent.module.scss";
 

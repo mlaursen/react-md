@@ -1,9 +1,7 @@
 import { forwardRef } from "react";
 
-import {
-  BaseMenuItemInputToggleProps,
-  MenuItemInputToggle,
-} from "./MenuItemInputToggle";
+import type { BaseMenuItemInputToggleProps } from "./MenuItemInputToggle";
+import { MenuItemInputToggle } from "./MenuItemInputToggle";
 
 /** @remarks \@since 2.8.0 */
 export type MenuItemSwitchProps = Omit<BaseMenuItemInputToggleProps, "icon">;

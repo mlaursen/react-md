@@ -1,10 +1,9 @@
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
-import {
-  InteractionStatesOptions,
-  useInteractionStates,
-} from "@react-md/states";
+import type { InteractionStatesOptions } from "@react-md/states";
+import { useInteractionStates } from "@react-md/states";
 import { bem, useResizeObserver } from "@react-md/utils";
 
 import type { TabConfig } from "./types";

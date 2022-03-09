@@ -1,4 +1,5 @@
-import { Item, parse } from "sassdoc";
+import type { Item } from "sassdoc";
+import { parse } from "sassdoc";
 
 import { tempStylesDir } from "../../constants";
 import { copyStylesTemp } from "../copy";

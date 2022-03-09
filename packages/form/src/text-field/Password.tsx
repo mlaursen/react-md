@@ -1,19 +1,17 @@
-import {
+import type {
   CSSProperties,
-  forwardRef,
-  isValidElement,
   MouseEvent,
   MouseEventHandler,
   ReactNode,
-  useCallback,
-  useState,
 } from "react";
+import { forwardRef, isValidElement, useCallback, useState } from "react";
 import cn from "classnames";
 import { Button } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
-import { TextField, TextFieldProps } from "./TextField";
+import type { TextFieldProps } from "./TextField";
+import { TextField } from "./TextField";
 
 export interface ConfigurableVisibilityIcon {
   /**

@@ -1,28 +1,20 @@
-import { ReactElement, useCallback, useRef, useState } from "react";
+import type { ReactElement } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Button } from "@react-md/button";
-import {
-  Checkbox,
-  Fieldset,
-  Form,
-  ListboxOption,
-  Select,
-  useChecked,
-} from "@react-md/form";
+import type { ListboxOption } from "@react-md/form";
+import { Checkbox, Fieldset, Form, Select, useChecked } from "@react-md/form";
 import { ArrowDropDownSVGIcon } from "@react-md/material-icons";
 import { Overlay } from "@react-md/overlay";
-import {
-  CSSTransition,
-  CSSTransitionClassNames,
-  useFixedPositioning,
-} from "@react-md/transition";
+import type { CSSTransitionClassNames } from "@react-md/transition";
+import { CSSTransition, useFixedPositioning } from "@react-md/transition";
 import { Typography } from "@react-md/typography";
-import {
+import type {
   HorizontalPosition,
   PositionAnchor,
   PositionWidth,
-  useToggle,
   VerticalPosition,
 } from "@react-md/utils";
+import { useToggle } from "@react-md/utils";
 
 import styles from "./FixedPositioningExample.module.scss";
 

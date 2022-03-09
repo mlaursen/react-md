@@ -1,8 +1,8 @@
 import type { ReactElement } from "react";
 import { HomeSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";
+import type { DropdownMenuProps } from "@react-md/menu";
 import {
   DropdownMenu,
-  DropdownMenuProps,
   MenuItem,
   MenuItemLink,
   MenuItemSeparator,

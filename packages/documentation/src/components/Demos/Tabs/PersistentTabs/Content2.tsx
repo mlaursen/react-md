@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
-import { ReactElement, useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import { useEffect, useState } from "react";
 import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { CircularProgress } from "@react-md/progress";
 import { Typography } from "@react-md/typography";

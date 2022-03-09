@@ -1,5 +1,7 @@
-import { ReactElement, useCallback } from "react";
-import { AppBarNav, AppBarNavProps } from "@react-md/app-bar";
+import type { ReactElement } from "react";
+import { useCallback } from "react";
+import type { AppBarNavProps } from "@react-md/app-bar";
+import { AppBarNav } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import {
   KeyboardArrowLeftSVGIcon,

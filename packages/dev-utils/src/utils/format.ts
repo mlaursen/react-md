@@ -1,5 +1,6 @@
 import log from "loglevel";
-import prettier, { BuiltInParserName } from "prettier";
+import type { BuiltInParserName } from "prettier";
+import prettier from "prettier";
 
 function getParser(
   code: string,

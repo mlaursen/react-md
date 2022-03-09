@@ -1,9 +1,8 @@
-import { ReactElement, ReactNode } from "react";
-import { Control, Controller, RegisterOptions } from "react-hook-form";
-import {
-  TextFieldWithMessage,
-  TextFieldWithMessageProps,
-} from "@react-md/form";
+import type { ReactElement, ReactNode } from "react";
+import type { Control, RegisterOptions } from "react-hook-form";
+import { Controller } from "react-hook-form";
+import type { TextFieldWithMessageProps } from "@react-md/form";
+import { TextFieldWithMessage } from "@react-md/form";
 
 export interface ExampleFormData {
   firstName: string;

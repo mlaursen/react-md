@@ -1,4 +1,5 @@
-import { createRef, ReactElement, Ref } from "react";
+import type { ReactElement, Ref } from "react";
+import { createRef } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 

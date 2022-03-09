@@ -1,10 +1,7 @@
 import type { ReactElement, ReactNode } from "react";
 
-import {
-  ListItemAddon,
-  ListItemAddonPosition,
-  ListItemAddonType,
-} from "./ListItemAddon";
+import type { ListItemAddonPosition, ListItemAddonType } from "./ListItemAddon";
+import { ListItemAddon } from "./ListItemAddon";
 import { ListItemText } from "./ListItemText";
 
 export interface ListItemChildrenProps {

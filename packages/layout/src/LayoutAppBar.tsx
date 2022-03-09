@@ -1,8 +1,10 @@
 import { forwardRef } from "react";
-import { AppBar, AppBarProps } from "@react-md/app-bar";
+import type { AppBarProps } from "@react-md/app-bar";
+import { AppBar } from "@react-md/app-bar";
 
 import { LayoutAppBarTitle } from "./LayoutAppBarTitle";
-import { LayoutNavToggle, LayoutWithNavToggle } from "./LayoutNavToggle";
+import type { LayoutWithNavToggle } from "./LayoutNavToggle";
+import { LayoutNavToggle } from "./LayoutNavToggle";
 import { useLayoutConfig } from "./LayoutProvider";
 import type { LayoutWithTitle } from "./types";
 

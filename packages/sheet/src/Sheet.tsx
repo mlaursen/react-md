@@ -1,7 +1,9 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import cn from "classnames";
-import { BaseDialogProps, Dialog } from "@react-md/dialog";
-import { bem, LabelRequiredForA11y } from "@react-md/utils";
+import type { BaseDialogProps } from "@react-md/dialog";
+import { Dialog } from "@react-md/dialog";
+import type { LabelRequiredForA11y } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 import { DEFAULT_SHEET_CLASSNAMES, DEFAULT_SHEET_TIMEOUT } from "./constants";
 

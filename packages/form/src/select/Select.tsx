@@ -1,22 +1,14 @@
-import {
-  CSSProperties,
-  forwardRef,
-  HTMLAttributes,
-  ReactNode,
-  useCallback,
-  useMemo,
-  useRef,
-} from "react";
+import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
+import { forwardRef, useCallback, useMemo, useRef } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
 import type { ListElement } from "@react-md/list";
 import { useFixedPositioning } from "@react-md/transition";
+import type { PositionAnchor, PositionWidth } from "@react-md/utils";
 import {
   BELOW_CENTER_ANCHOR,
   bem,
   DEFAULT_GET_ITEM_VALUE,
-  PositionAnchor,
-  PositionWidth,
   tryToSubmitRelatedForm,
   useCloseOnOutsideClick,
   useEnsuredRef,
@@ -25,12 +17,11 @@ import {
 
 import { useFormTheme } from "../FormThemeProvider";
 import { FloatingLabel } from "../label/FloatingLabel";
-import {
-  TextFieldContainer,
-  TextFieldContainerOptions,
-} from "../text-field/TextFieldContainer";
+import type { TextFieldContainerOptions } from "../text-field/TextFieldContainer";
+import { TextFieldContainer } from "../text-field/TextFieldContainer";
 import { useFocusState } from "../useFocusState";
-import { Listbox, ListboxOptions } from "./Listbox";
+import type { ListboxOptions } from "./Listbox";
+import { Listbox } from "./Listbox";
 import {
   defaultIsOptionDisabled,
   getDisplayLabel as DEFAULT_GET_DISPLAY_LABEL,

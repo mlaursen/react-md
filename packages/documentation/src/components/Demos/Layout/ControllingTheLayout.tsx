@@ -1,7 +1,9 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import cn from "classnames";
 import { Checkbox, Select } from "@react-md/form";
-import { Layout, SupportedWideLayout } from "@react-md/layout";
+import type { SupportedWideLayout } from "@react-md/layout";
+import { Layout } from "@react-md/layout";
 import { Grid } from "@react-md/utils";
 
 import styles from "./ControllingTheLayout.module.scss";

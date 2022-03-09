@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { AppBar } from "@react-md/app-bar";
 
 import AppBarTitle from "components/AppBarTitle";

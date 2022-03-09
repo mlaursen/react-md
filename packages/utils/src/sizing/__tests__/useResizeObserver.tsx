@@ -1,11 +1,11 @@
 import { act, render } from "@testing-library/react";
 import { ResizeObserver } from "@juggle/resize-observer";
 
-import {
+import type {
   OnResizeObserverChange,
   ResizeObserverElementData,
-  useResizeObserver,
 } from "../useResizeObserver";
+import { useResizeObserver } from "../useResizeObserver";
 
 jest.mock("@juggle/resize-observer");
 

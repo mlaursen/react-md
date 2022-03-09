@@ -1,7 +1,9 @@
 import { forwardRef } from "react";
 import cn from "classnames";
-import { List, ListElement, ListProps } from "@react-md/list";
-import { CollapseProps, useCollapseTransition } from "@react-md/transition";
+import type { ListElement, ListProps } from "@react-md/list";
+import { List } from "@react-md/list";
+import type { CollapseProps } from "@react-md/transition";
+import { useCollapseTransition } from "@react-md/transition";
 
 export interface TreeGroupProps
   extends ListProps,

@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import { PhoneConfiguration } from "components/Phone/Phone";
-import { ConditionalFullPageDialogProps } from "components/ConditionalFullPageDialog";
+import type { ReactNode } from "react";
+import type { PhoneConfiguration } from "components/Phone/Phone";
+import type { ConditionalFullPageDialogProps } from "components/ConditionalFullPageDialog";
 
 export interface DemoOptions {
   /**

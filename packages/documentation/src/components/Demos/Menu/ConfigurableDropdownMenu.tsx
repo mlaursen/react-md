@@ -1,6 +1,11 @@
-import { ReactElement, useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import { useEffect, useState } from "react";
 import { upperFirst } from "lodash";
-import { ButtonTheme, ButtonThemeType, ButtonType } from "@react-md/button";
+import type {
+  ButtonTheme,
+  ButtonThemeType,
+  ButtonType,
+} from "@react-md/button";
 import { Divider } from "@react-md/divider";
 import { Checkbox, Form, Select, useSelectState } from "@react-md/form";
 import {
@@ -8,12 +13,8 @@ import {
   MoreVertSVGIcon,
   StarSVGIcon,
 } from "@react-md/material-icons";
-import {
-  DropdownMenu,
-  MenuItem,
-  MenuItemProps,
-  MenuItemSeparator,
-} from "@react-md/menu";
+import type { MenuItemProps } from "@react-md/menu";
+import { DropdownMenu, MenuItem, MenuItemSeparator } from "@react-md/menu";
 import { Typography } from "@react-md/typography";
 import {
   ABOVE_CENTER_ANCHOR,

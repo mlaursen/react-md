@@ -1,4 +1,5 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { AsyncSwitch, Checkbox, useChecked } from "@react-md/form";
 import { useTimeout } from "@react-md/utils";
 

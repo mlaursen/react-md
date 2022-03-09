@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 
-import { Badge, BadgeTheme } from "../Badge";
+import type { BadgeTheme } from "../Badge";
+import { Badge } from "../Badge";
 
 describe("Badge", () => {
   it("should render as null by default", () => {

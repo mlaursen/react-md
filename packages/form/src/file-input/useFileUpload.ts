@@ -1,17 +1,10 @@
-import {
-  ChangeEvent,
-  DragEvent,
-  useCallback,
-  useEffect,
-  useReducer,
-} from "react";
+import type { ChangeEvent, DragEvent } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import { nanoid } from "nanoid";
 import { omit } from "@react-md/utils";
 
-import {
+import type {
   CompletedFileUploadStats,
-  getFileParser as defaultGetFileParser,
-  FileAccessError,
   FileReaderResult,
   FileUploadHandlers,
   FileUploadStats,
@@ -19,9 +12,13 @@ import {
   FilesValidator,
   GetFileParser,
   ProcessingFileUploadStats,
+  FileValidationOptions,
+} from "./utils";
+import {
+  getFileParser as defaultGetFileParser,
+  FileAccessError,
   isValidFileName as defaultIsValidFileName,
   validateFiles as defaultValidateFiles,
-  FileValidationOptions,
 } from "./utils";
 
 /**

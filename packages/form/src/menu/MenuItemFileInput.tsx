@@ -1,9 +1,11 @@
-import { forwardRef, InputHTMLAttributes, useRef } from "react";
+import type { InputHTMLAttributes } from "react";
+import { forwardRef, useRef } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
-import { MenuItem, MenuItemProps } from "@react-md/menu";
+import type { MenuItemProps } from "@react-md/menu";
+import { MenuItem } from "@react-md/menu";
 
-import { FileInputProps } from "../file-input/FileInput";
+import type { FileInputProps } from "../file-input/FileInput";
 
 /**
  * @remarks \@since 5.0.0

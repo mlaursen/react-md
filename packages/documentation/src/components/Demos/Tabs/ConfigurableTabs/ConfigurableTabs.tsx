@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
 import { TabPanel, TabPanels, Tabs, TabsManager } from "@react-md/tabs";
 

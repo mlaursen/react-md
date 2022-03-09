@@ -1,10 +1,5 @@
-import {
-  Children,
-  cloneElement,
-  CSSProperties,
-  ReactElement,
-  ReactNode,
-} from "react";
+import type { CSSProperties, ReactElement, ReactNode } from "react";
+import { Children, cloneElement } from "react";
 import type { RenderConditionalPortalProps } from "@react-md/portal";
 
 import {
@@ -14,12 +9,13 @@ import {
   DEFAULT_TOOLTIP_SPACING,
   DEFAULT_TOOLTIP_THRESHOLD,
 } from "./constants";
-import { Tooltip, TooltipProps } from "./Tooltip";
-import {
+import type { TooltipProps } from "./Tooltip";
+import { Tooltip } from "./Tooltip";
+import type {
   TooltippedElementEventHandlers,
   BaseTooltipHookOptions,
-  useTooltip,
 } from "./useTooltip";
+import { useTooltip } from "./useTooltip";
 
 interface TooltippedProvidedProps
   extends TooltippedElementEventHandlers<HTMLElement> {

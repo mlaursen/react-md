@@ -1,6 +1,7 @@
-import { MouseEvent, ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import { render, fireEvent, act } from "@testing-library/react";
-import { SimplePosition, UserInteractionModeListener } from "@react-md/utils";
+import type { SimplePosition } from "@react-md/utils";
+import { UserInteractionModeListener } from "@react-md/utils";
 
 import { Tooltipped } from "../Tooltipped";
 

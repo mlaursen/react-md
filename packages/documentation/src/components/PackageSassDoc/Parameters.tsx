@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import {
   Table,
   TableBody,
@@ -11,7 +11,7 @@ import {
 import Code from "components/Code";
 import { Markdown } from "components/Markdown";
 import { M_DASH } from "constants/unicode";
-import { ParameterizedItemParameter } from "utils/sassdoc";
+import type { ParameterizedItemParameter } from "utils/sassdoc";
 
 import styles from "./Parameters.module.scss";
 

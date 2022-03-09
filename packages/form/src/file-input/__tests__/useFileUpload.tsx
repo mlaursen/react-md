@@ -1,4 +1,5 @@
-import { Fragment, ReactElement, useEffect } from "react";
+import type { ReactElement } from "react";
+import { Fragment, useEffect } from "react";
 import filesize from "filesize";
 import {
   act,
@@ -29,16 +30,19 @@ import { Typography } from "@react-md/typography";
 import { useDropzone } from "@react-md/utils";
 
 import { FileInput } from "../FileInput";
-import { FileUploadOptions, useFileUpload } from "../useFileUpload";
-import {
+import type { FileUploadOptions } from "../useFileUpload";
+import { useFileUpload } from "../useFileUpload";
+import type {
   FileExtensionError,
   FileSizeError,
   FileValidationError,
+  IsValidFileName,
+  TooManyFilesError,
+} from "../utils";
+import {
   isFileSizeError,
   isTooManyFilesError,
-  IsValidFileName,
   isValidFileName,
-  TooManyFilesError,
 } from "../utils";
 
 function createFile(name: string, bytes: number): File {

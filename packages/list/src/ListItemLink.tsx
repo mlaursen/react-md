@@ -1,12 +1,13 @@
-import { AnchorHTMLAttributes, ElementType, forwardRef } from "react";
+import type { AnchorHTMLAttributes, ElementType } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import {
-  InteractionStatesOptions,
-  useInteractionStates,
-} from "@react-md/states";
+import type { InteractionStatesOptions } from "@react-md/states";
+import { useInteractionStates } from "@react-md/states";
 
-import { getListItemHeight, SimpleListItemProps } from "./getListItemHeight";
-import { ListItemChildren, ListItemChildrenProps } from "./ListItemChildren";
+import type { SimpleListItemProps } from "./getListItemHeight";
+import { getListItemHeight } from "./getListItemHeight";
+import type { ListItemChildrenProps } from "./ListItemChildren";
+import { ListItemChildren } from "./ListItemChildren";
 
 export interface ListItemLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>,

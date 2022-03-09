@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { FABPosition } from "@react-md/button";
+import type { FABPosition } from "@react-md/button";
 import { MoreVertSVGIcon } from "@react-md/material-icons";
 
 import SimpleExample from "./SimpleExample";

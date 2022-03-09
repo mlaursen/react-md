@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import cn from "classnames";
-import { AppBarTitle, AppBarTitleProps } from "@react-md/app-bar";
+import type { AppBarTitleProps } from "@react-md/app-bar";
+import { AppBarTitle } from "@react-md/app-bar";
 import { bem } from "@react-md/utils";
 
 import { useLayoutConfig } from "./LayoutProvider";

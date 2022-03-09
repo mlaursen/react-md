@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
-import { getViewportSize, SimplePosition } from "@react-md/utils";
+import type { SimplePosition } from "@react-md/utils";
+import { getViewportSize } from "@react-md/utils";
 
 import { DEFAULT_TOOLTIP_THRESHOLD } from "./constants";
 

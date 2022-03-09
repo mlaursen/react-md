@@ -1,10 +1,5 @@
-import {
-  createContext,
-  useContext,
-  useMemo,
-  ReactNode,
-  ReactElement,
-} from "react";
+import type { ReactNode, ReactElement } from "react";
+import { createContext, useContext, useMemo } from "react";
 import createIdGenerator from "utils/createIdGenerator";
 
 type IdGenerator = ReturnType<typeof createIdGenerator>;

@@ -1,4 +1,5 @@
-import { HexString, hexToRGB } from "./hexToRGB";
+import type { HexString } from "./hexToRGB";
+import { hexToRGB } from "./hexToRGB";
 
 const RED_MULTIPLIER = 0.2126;
 const GREEN_MULTIPLIER = 0.7152;

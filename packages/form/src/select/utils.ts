@@ -1,4 +1,5 @@
-import { createElement, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { createElement } from "react";
 import { TextIconSpacing } from "@react-md/icon";
 import type { SimpleListItemProps } from "@react-md/list";
 

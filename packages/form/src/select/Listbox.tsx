@@ -1,20 +1,12 @@
-import {
-  forwardRef,
-  HTMLAttributes,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef, useCallback, useEffect, useRef } from "react";
 import cn from "classnames";
-import { List, ListElement } from "@react-md/list";
-import {
-  ConditionalPortal,
-  RenderConditionalPortalProps,
-} from "@react-md/portal";
-import {
-  CSSTransitionComponentProps,
-  useScaleTransition,
-} from "@react-md/transition";
+import type { ListElement } from "@react-md/list";
+import { List } from "@react-md/list";
+import type { RenderConditionalPortalProps } from "@react-md/portal";
+import { ConditionalPortal } from "@react-md/portal";
+import type { CSSTransitionComponentProps } from "@react-md/transition";
+import { useScaleTransition } from "@react-md/transition";
 import {
   bem,
   DEFAULT_GET_ITEM_VALUE,
@@ -25,13 +17,12 @@ import {
 } from "@react-md/utils";
 
 import { Option } from "./Option";
+import type { ListboxOption, ListboxOptionProps } from "./utils";
 import {
   defaultIsOptionDisabled,
   getOptionId as DEFAULT_GET_OPTION_ID,
   getOptionLabel as DEFAULT_GET_OPTION_LABEL,
   isListboxOptionProps,
-  ListboxOption,
-  ListboxOptionProps,
 } from "./utils";
 
 export type ListboxChangeEventData = Pick<

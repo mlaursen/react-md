@@ -1,7 +1,8 @@
-import { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import { Typography } from "@react-md/typography";
 
-import AsyncButton, { AsyncButtonProps } from "./AsyncButton";
+import type { AsyncButtonProps } from "./AsyncButton";
+import AsyncButton from "./AsyncButton";
 import Container from "./Container";
 import useTemporaryToggle from "./useTemporaryToggle";
 

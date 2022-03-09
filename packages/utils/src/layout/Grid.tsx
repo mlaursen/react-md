@@ -1,10 +1,5 @@
-import {
-  Children,
-  cloneElement,
-  forwardRef,
-  HTMLAttributes,
-  isValidElement,
-} from "react";
+import type { HTMLAttributes } from "react";
+import { Children, cloneElement, forwardRef, isValidElement } from "react";
 import cn from "classnames";
 
 import { bem } from "../bem";

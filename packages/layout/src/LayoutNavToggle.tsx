@@ -1,13 +1,15 @@
-import { forwardRef, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import { AppBarNav, AppBarNavProps } from "@react-md/app-bar";
+import type { AppBarNavProps } from "@react-md/app-bar";
+import { AppBarNav } from "@react-md/app-bar";
 import { useIcon } from "@react-md/icon";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";
-import {
+import type {
   CSSTransitionClassNames,
   TransitionTimeout,
-  useCSSTransition,
 } from "@react-md/transition";
+import { useCSSTransition } from "@react-md/transition";
 import type { PropsWithRef } from "@react-md/utils";
 
 import { DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";

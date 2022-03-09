@@ -2,7 +2,7 @@ import { decode } from "he";
 import { marked, Renderer } from "marked";
 
 import { getPackages } from "../utils";
-import { TOCAnchor } from "./types";
+import type { TOCAnchor } from "./types";
 
 interface MarkdownResult {
   anchors: readonly TOCAnchor[];

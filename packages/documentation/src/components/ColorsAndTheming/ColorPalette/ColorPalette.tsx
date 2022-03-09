@@ -1,8 +1,9 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 
 import About from "./About";
-import Color, { ColorValue } from "./Color";
+import type { ColorValue } from "./Color";
+import Color from "./Color";
 import ColorList from "./ColorList";
 
 import styles from "./ColorPalette.module.scss";

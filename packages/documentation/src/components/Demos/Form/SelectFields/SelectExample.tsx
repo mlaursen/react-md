@@ -1,11 +1,7 @@
-import { ReactElement, useCallback, useState } from "react";
-import {
-  Checkbox,
-  Fieldset,
-  ListboxOption,
-  Select,
-  useChecked,
-} from "@react-md/form";
+import type { ReactElement } from "react";
+import { useCallback, useState } from "react";
+import type { ListboxOption } from "@react-md/form";
+import { Checkbox, Fieldset, Select, useChecked } from "@react-md/form";
 
 import TextFieldThemeConfig from "../TextFieldThemeConfig";
 

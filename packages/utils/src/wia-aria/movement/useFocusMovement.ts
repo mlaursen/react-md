@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import {
+import type {
   BaseKeyboardMovementOptions,
   KeyboardMovementProviders,
-  useKeyboardMovement,
 } from "./useKeyboardMovement";
+import { useKeyboardMovement } from "./useKeyboardMovement";
 
 interface KeyboardFocusOptions<
   D = unknown,

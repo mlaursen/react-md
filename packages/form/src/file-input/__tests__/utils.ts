@@ -1,8 +1,8 @@
+import type { FileUploadStats } from "../utils";
 import {
   FileAccessError,
   FileExtensionError,
   FileSizeError,
-  FileUploadStats,
   GenericFileError,
   getFileParser,
   getSplitFileUploads,

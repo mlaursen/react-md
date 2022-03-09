@@ -1,8 +1,7 @@
-import { ReactElement, ReactNode, useMemo } from "react";
-import {
-  ActiveDescendantContext,
-  ActiveDescendantContextProvider,
-} from "./activeDescendantContext";
+import type { ReactElement, ReactNode } from "react";
+import { useMemo } from "react";
+import type { ActiveDescendantContext } from "./activeDescendantContext";
+import { ActiveDescendantContextProvider } from "./activeDescendantContext";
 
 /**
  * @internal

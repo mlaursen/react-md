@@ -1,4 +1,5 @@
-import { IncrementMovementKey, JumpMovementKey, KeyConfig } from "../types";
+import type { KeyConfig } from "../types";
+import { IncrementMovementKey, JumpMovementKey } from "../types";
 import {
   getItemId,
   getKeyboardConfig,

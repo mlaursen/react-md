@@ -3,10 +3,8 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import { DropdownMenu, MenuItemGroup } from "@react-md/menu";
 import { AppSizeListener } from "@react-md/utils";
 
-import {
-  BaseMenuItemInputToggleProps,
-  MenuItemInputToggle,
-} from "../MenuItemInputToggle";
+import type { BaseMenuItemInputToggleProps } from "../MenuItemInputToggle";
+import { MenuItemInputToggle } from "../MenuItemInputToggle";
 
 function Test({
   iconAfter,

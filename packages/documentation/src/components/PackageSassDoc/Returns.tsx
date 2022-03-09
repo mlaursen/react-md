@@ -1,9 +1,9 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Typography } from "@react-md/typography";
 
 import Code from "components/Code";
 import { M_DASH } from "constants/unicode";
-import { ItemReturn, SupportedItemDataType } from "utils/sassdoc";
+import type { ItemReturn, SupportedItemDataType } from "utils/sassdoc";
 
 import styles from "./Parameters.module.scss";
 

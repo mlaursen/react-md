@@ -1,9 +1,6 @@
 import { defaults } from "../defaults";
-import {
-  DEFAULT_SEARCH_OPTIONS,
-  getSearchString,
-  SearchOptions,
-} from "./utils";
+import type { SearchOptions } from "./utils";
+import { DEFAULT_SEARCH_OPTIONS, getSearchString } from "./utils";
 
 export interface CaseInsensitiveOptions<T = unknown> extends SearchOptions<T> {
   /**

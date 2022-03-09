@@ -1,7 +1,8 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { render } from "@testing-library/react";
 
-import { FocusContainer, FocusContainerProps } from "../FocusContainer";
+import type { FocusContainerProps } from "../FocusContainer";
+import { FocusContainer } from "../FocusContainer";
 
 const requestAnimationFrame = jest.spyOn(window, "requestAnimationFrame");
 

@@ -1,15 +1,16 @@
 import { Configuration } from "@react-md/layout";
+import type { RenderResult } from "@testing-library/react";
 import {
   fireEvent,
   render as baseRender,
-  RenderResult,
   waitFor,
 } from "@testing-library/react";
 import type { FC, ReactElement } from "react";
 
 import { DropdownMenu } from "../DropdownMenu";
 import { MenuItem } from "../MenuItem";
-import { MenuItemLink, MenuItemLinkProps } from "../MenuItemLink";
+import type { MenuItemLinkProps } from "../MenuItemLink";
+import { MenuItemLink } from "../MenuItemLink";
 
 const Wrapper: FC = ({ children }) => (
   <Configuration disableRipple>{children}</Configuration>

@@ -2,7 +2,12 @@ import { createContext, useContext } from "react";
 import Cookie from "js-cookie";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 
-import { PrimaryColor, SecondaryColor, ColorAccent, ThemeMode } from "./colors";
+import type {
+  PrimaryColor,
+  SecondaryColor,
+  ColorAccent,
+  ThemeMode,
+} from "./colors";
 
 export interface Theme {
   primary: PrimaryColor;

@@ -1,14 +1,5 @@
-import {
-  createContext,
-  Dispatch,
-  ReactElement,
-  ReactNode,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import type { Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { noop } from "./utils";
 
 /**

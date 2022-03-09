@@ -1,5 +1,5 @@
 import qs from "qs";
-import { ParsedUrlQuery } from "querystring";
+import type { ParsedUrlQuery } from "querystring";
 
 type QueryParam = string | string[] | undefined;
 

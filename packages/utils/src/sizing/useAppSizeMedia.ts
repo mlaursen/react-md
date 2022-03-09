@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
+import type { QuerySize } from "./constants";
 import {
   DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
   DEFAULT_DESKTOP_MIN_WIDTH,
   DEFAULT_PHONE_MAX_WIDTH,
   DEFAULT_TABLET_MAX_WIDTH,
   DEFAULT_TABLET_MIN_WIDTH,
-  QuerySize,
 } from "./constants";
 import { useOrientation } from "./useOrientation";
 import { useWidthMediaQuery } from "./useWidthMediaQuery";

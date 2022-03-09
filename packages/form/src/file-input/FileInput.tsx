@@ -1,6 +1,8 @@
-import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
+import type { InputHTMLAttributes, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
+import type { ButtonThemeProps } from "@react-md/button";
+import { buttonThemeClassNames } from "@react-md/button";
 import { TextIconSpacing, useIcon } from "@react-md/icon";
 import { useInteractionStates } from "@react-md/states";
 import { SrOnly } from "@react-md/typography";

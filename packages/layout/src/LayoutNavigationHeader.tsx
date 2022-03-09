@@ -1,12 +1,13 @@
-import { forwardRef, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import { AppBar, AppBarProps, AppBarTitle } from "@react-md/app-bar";
-import { bem, PropsWithRef } from "@react-md/utils";
+import type { AppBarProps } from "@react-md/app-bar";
+import { AppBar, AppBarTitle } from "@react-md/app-bar";
+import type { PropsWithRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
-import {
-  LayoutCloseNavigationButton,
-  LayoutCloseNavigationButtonProps,
-} from "./LayoutCloseNavigationButton";
+import type { LayoutCloseNavigationButtonProps } from "./LayoutCloseNavigationButton";
+import { LayoutCloseNavigationButton } from "./LayoutCloseNavigationButton";
 import { useLayoutConfig } from "./LayoutProvider";
 
 export interface LayoutNavigationHeaderProps

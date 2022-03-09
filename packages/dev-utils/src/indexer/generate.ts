@@ -7,7 +7,7 @@ import { toId, toTitle } from "../utils";
 import { parseDemoRenderer } from "./parseDemoIndex";
 import { parseMarkdown } from "./parseMarkdown";
 import { parseSassDocAnchors } from "./parseSassDocAnchors";
-import {
+import type {
   DemoMetadata,
   IndexedResult,
   MetadataType,

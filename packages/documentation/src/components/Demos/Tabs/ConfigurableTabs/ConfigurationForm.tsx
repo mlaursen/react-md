@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Checkbox, Fieldset, Form, Radio } from "@react-md/form";
 import { Grid } from "@react-md/utils";
 
-import { TabConfiguration } from "./useConfiguration";
+import type { TabConfiguration } from "./useConfiguration";
 
 export default function ConfigurationForm({
   // Tabs config

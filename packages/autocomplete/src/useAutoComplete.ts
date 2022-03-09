@@ -1,4 +1,4 @@
-import {
+import type {
   ChangeEventHandler,
   CSSProperties,
   FocusEventHandler,
@@ -6,18 +6,13 @@ import {
   KeyboardEventHandler,
   MouseEventHandler,
   Ref,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
 } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ListElement } from "@react-md/list";
+import type { FixedPositioningTransitionCallbacks } from "@react-md/transition";
+import { useFixedPositioning } from "@react-md/transition";
+import type { ItemRefList } from "@react-md/utils";
 import {
-  FixedPositioningTransitionCallbacks,
-  useFixedPositioning,
-} from "@react-md/transition";
-import {
-  ItemRefList,
   MovementPresets,
   scrollIntoView,
   useActiveDescendantMovement,

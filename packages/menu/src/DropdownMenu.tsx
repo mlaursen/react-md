@@ -1,5 +1,6 @@
-import { ReactElement, RefObject, useState } from "react";
-import { FABPosition } from "@react-md/button";
+import type { ReactElement, RefObject } from "react";
+import { useState } from "react";
+import type { FABPosition } from "@react-md/button";
 import { useUserInteractionMode } from "@react-md/utils";
 
 import { useMenuBarContext } from "./MenuBarProvider";

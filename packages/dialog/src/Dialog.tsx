@@ -1,22 +1,23 @@
-import { CSSProperties, forwardRef, HTMLAttributes, ReactNode } from "react";
+import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { Overlay } from "@react-md/overlay";
-import {
-  ConditionalPortal,
-  RenderConditionalPortalProps,
-} from "@react-md/portal";
-import {
+import type { RenderConditionalPortalProps } from "@react-md/portal";
+import { ConditionalPortal } from "@react-md/portal";
+import type {
   CSSTransitionClassNames,
   CSSTransitionComponentProps,
   TransitionActions,
   TransitionTimeout,
-  useCSSTransition,
 } from "@react-md/transition";
+import { useCSSTransition } from "@react-md/transition";
+import type {
+  FocusContainerOptionsProps,
+  LabelRequiredForA11y,
+} from "@react-md/utils";
 import {
   bem,
   FocusContainer,
-  FocusContainerOptionsProps,
-  LabelRequiredForA11y,
   useCloseOnEscape,
   useScrollLock,
 } from "@react-md/utils";

@@ -1,4 +1,5 @@
-import { ElementType, ReactElement, useMemo } from "react";
+import type { ElementType, ReactElement } from "react";
+import { useMemo } from "react";
 import cn from "classnames";
 import { AppBar } from "@react-md/app-bar";
 import {
@@ -7,13 +8,8 @@ import {
   KeyboardArrowDownSVGIcon,
 } from "@react-md/material-icons";
 import { Sheet } from "@react-md/sheet";
-import {
-  GetItemProps,
-  getItemsFrom,
-  Tree,
-  TreeData,
-  useTreeItemExpansion,
-} from "@react-md/tree";
+import type { GetItemProps, TreeData } from "@react-md/tree";
+import { getItemsFrom, Tree, useTreeItemExpansion } from "@react-md/tree";
 import { PhoneOnly, useIsUserInteractionMode } from "@react-md/utils";
 
 import CssIcon from "icons/CssIcon";
@@ -26,7 +22,7 @@ import ScssIcon from "icons/ScssIcon";
 import TsIcon from "icons/TsIcon";
 
 import NavigationActions from "./NavigationActions";
-import { FileTreeData } from "./useFiles";
+import type { FileTreeData } from "./useFiles";
 
 import styles from "./SandboxFileTree.module.scss";
 

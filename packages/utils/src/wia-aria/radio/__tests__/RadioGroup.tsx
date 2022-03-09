@@ -1,7 +1,9 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
-import { RadioGroup, RadioGroupProps } from "../RadioGroup";
+import type { RadioGroupProps } from "../RadioGroup";
+import { RadioGroup } from "../RadioGroup";
 
 const ITEMS = ["Item 1", "Item 2", "Item 3"];
 

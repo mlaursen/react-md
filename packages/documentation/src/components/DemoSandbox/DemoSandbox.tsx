@@ -1,11 +1,13 @@
-import { ReactElement, useCallback, useMemo } from "react";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import type { ReactElement } from "react";
+import { useCallback, useMemo } from "react";
+import type { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useRouter } from "next/router";
 
 import { useJs } from "components/CodePreference";
 import NotFoundPage from "components/NotFoundPage";
 import { useTheme } from "components/Theme";
-import { parseSandbox, SandboxQuery } from "utils/routes";
+import type { SandboxQuery } from "utils/routes";
+import { parseSandbox } from "utils/routes";
 
 import SandboxModal from "./SandboxModal";
 import useSandbox from "./useSandbox";

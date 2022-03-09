@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
 import Code from "components/Code";
 import Link from "components/Link";

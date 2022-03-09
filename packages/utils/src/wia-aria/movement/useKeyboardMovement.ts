@@ -1,10 +1,11 @@
-import { MutableRefObject, useCallback, useMemo } from "react";
+import type { MutableRefObject } from "react";
+import { useCallback, useMemo } from "react";
 import { loop } from "../../loop";
-import {
+import type {
   BaseKeyboardSearchOptions,
   SearchData,
-  useKeyboardSearch,
 } from "../../search/useKeyboardSearch";
+import { useKeyboardSearch } from "../../search/useKeyboardSearch";
 import { DEFAULT_GET_ITEM_VALUE, DEFAULT_VALUE_KEY } from "../../search/utils";
 import type { MovementConfig } from "./types";
 import {

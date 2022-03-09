@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Checkbox, Fieldset, Select, TextField } from "@react-md/form";
-import {
+import type {
   TableCellHorizontalAlignment,
   TableCellVerticalAlignment,
 } from "@react-md/table";

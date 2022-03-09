@@ -1,5 +1,6 @@
-import { ReactElement, ReactNode } from "react";
-import { Button as RMDButton, ButtonProps } from "@react-md/button";
+import type { ReactElement, ReactNode } from "react";
+import type { ButtonProps } from "@react-md/button";
+import { Button as RMDButton } from "@react-md/button";
 import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 interface Props extends ButtonProps {

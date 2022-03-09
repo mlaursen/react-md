@@ -1,4 +1,5 @@
-import { createContext, Dispatch, SetStateAction, useContext } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { createContext, useContext } from "react";
 
 /**
  * @remarks \@since 5.0.0

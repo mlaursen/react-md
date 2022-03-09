@@ -1,19 +1,14 @@
+import type { KeyboardEventHandler, MouseEventHandler, ReactNode } from "react";
 import {
   Children,
   isValidElement,
-  KeyboardEventHandler,
-  MouseEventHandler,
-  ReactNode,
   useCallback,
   useEffect,
   useMemo,
   useState,
 } from "react";
-import {
-  ItemRefList,
-  MovementPresets,
-  useKeyboardMovement,
-} from "@react-md/utils";
+import type { ItemRefList } from "@react-md/utils";
+import { MovementPresets, useKeyboardMovement } from "@react-md/utils";
 
 interface Options {
   children: ReactNode;

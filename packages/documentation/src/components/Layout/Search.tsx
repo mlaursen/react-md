@@ -1,23 +1,14 @@
-import {
-  ChangeEvent,
-  ReactElement,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import type { ChangeEvent, ReactElement } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import cn from "classnames";
 import { useRouter } from "next/router";
-import {
-  AutoComplete,
-  AutoCompleteHandler,
-  HighlightedResult,
-} from "@react-md/autocomplete";
+import type { AutoCompleteHandler } from "@react-md/autocomplete";
+import { AutoComplete, HighlightedResult } from "@react-md/autocomplete";
 import { SearchSVGIcon } from "@react-md/material-icons";
 import { BELOW_INNER_RIGHT_ANCHOR, useToggle } from "@react-md/utils";
 import { throttle } from "lodash";
 
-import { RouteMetadata } from "constants/meta/types";
+import type { RouteMetadata } from "constants/meta/types";
 
 import styles from "./Search.module.scss";
 import SearchType from "./SearchType";

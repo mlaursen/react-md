@@ -1,11 +1,13 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { upperFirst } from "lodash";
 
-import { Table, TableProps } from "../Table";
+import type { TableProps } from "../Table";
+import { Table } from "../Table";
 import { TableBody } from "../TableBody";
 import { TableCell } from "../TableCell";
-import { SortOrder } from "../TableCellContent";
+import type { SortOrder } from "../TableCellContent";
 import { TableContainer } from "../TableContainer";
 import { TableHeader } from "../TableHeader";
 import { TableRow } from "../TableRow";

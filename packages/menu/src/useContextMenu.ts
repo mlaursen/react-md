@@ -1,9 +1,7 @@
-import { Dispatch, MouseEvent, SetStateAction, useState } from "react";
-import {
-  BELOW_INNER_LEFT_ANCHOR,
-  containsElement,
-  InitialCoords,
-} from "@react-md/utils";
+import type { Dispatch, MouseEvent, SetStateAction } from "react";
+import { useState } from "react";
+import type { InitialCoords } from "@react-md/utils";
+import { BELOW_INNER_LEFT_ANCHOR, containsElement } from "@react-md/utils";
 
 import type { BaseMenuHookOptions, BaseMenuHookReturnValue } from "./types";
 import { useMenu } from "./useMenu";

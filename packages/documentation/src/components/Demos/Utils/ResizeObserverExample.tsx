@@ -1,7 +1,9 @@
-import { ReactElement, useCallback, useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@react-md/button";
 import { Table, TableBody, TableCell, TableRow } from "@react-md/table";
-import { OnResizeObserverChange, useResizeObserver } from "@react-md/utils";
+import type { OnResizeObserverChange } from "@react-md/utils";
+import { useResizeObserver } from "@react-md/utils";
 
 import { randomInt } from "utils/random";
 

@@ -1,10 +1,7 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
-import {
-  Typography,
-  TypographyProps,
-  TypographyType,
-} from "@react-md/typography";
+import type { TypographyProps, TypographyType } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 import HeadingLink from "./HeadingLink";
 

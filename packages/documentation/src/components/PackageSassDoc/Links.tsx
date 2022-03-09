@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Typography } from "@react-md/typography";
 
 import Link from "components/Link";
-import { FormattedItemLink, ItemReferenceLink } from "utils/sassdoc";
+import type { FormattedItemLink, ItemReferenceLink } from "utils/sassdoc";
 
 import ReferenceLinkList from "./ReferenceLinkList";
 

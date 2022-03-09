@@ -1,16 +1,16 @@
-import { forwardRef, RefObject } from "react";
+import type { RefObject } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import {
-  CSSTransitionClassNames,
-  useFixedPositioning,
-} from "@react-md/transition";
-import {
+import type { CSSTransitionClassNames } from "@react-md/transition";
+import { useFixedPositioning } from "@react-md/transition";
+import type {
   CalculateFixedPositionOptions,
   LabelRequiredForA11y,
-  TOP_INNER_RIGHT_ANCHOR,
 } from "@react-md/utils";
+import { TOP_INNER_RIGHT_ANCHOR } from "@react-md/utils";
 
-import { BaseDialogProps, Dialog } from "./Dialog";
+import type { BaseDialogProps } from "./Dialog";
+import { Dialog } from "./Dialog";
 
 export interface BaseFixedDialogProps
   extends Omit<BaseDialogProps, "type">,

@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from "react";
 import cn from "classnames";
-import { IconRotator, IconRotatorBaseProps, useIcon } from "@react-md/icon";
+import type { IconRotatorBaseProps } from "@react-md/icon";
+import { IconRotator, useIcon } from "@react-md/icon";
 import { bem } from "@react-md/utils";
 
 export interface TreeItemExpanderIconProps extends IconRotatorBaseProps {

@@ -1,9 +1,12 @@
-import { ReactElement, ReactNode, useState } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useState } from "react";
 import { Avatar } from "@react-md/avatar";
-import { List, ListItem, ListItemAddonPosition } from "@react-md/list";
+import type { ListItemAddonPosition } from "@react-md/list";
+import { List, ListItem } from "@react-md/list";
 import { InfoSVGIcon, StyleSVGIcon } from "@react-md/material-icons";
 
-import ConfigurationForm, { AddonType } from "./ConfigurationForm";
+import type { AddonType } from "./ConfigurationForm";
+import ConfigurationForm from "./ConfigurationForm";
 
 const LEFT_LOOKUPS: Record<AddonType, ReactNode> = {
   none: null,

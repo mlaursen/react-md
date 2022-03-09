@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { TextContainer, Typography } from "@react-md/typography";
 import { AppSizeListener, useAppSize } from "@react-md/utils";
 

@@ -1,4 +1,4 @@
-import { KeyboardFocusElementData } from "../types";
+import type { KeyboardFocusElementData } from "../types";
 import {
   getFirstFocusableIndex,
   getLastFocusableIndex,

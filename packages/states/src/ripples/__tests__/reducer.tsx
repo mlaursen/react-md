@@ -1,14 +1,14 @@
 import { fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
+import type { CreateAction } from "../reducer";
 import {
   CREATE,
-  CreateAction,
   createRippleAction,
   reducer,
   useRippleTransition,
 } from "../reducer";
-import { RippleEvent, RipplesState } from "../types";
+import type { RippleEvent, RipplesState } from "../types";
 
 describe("createRippleAction", () => {
   const target = document.createElement("span");

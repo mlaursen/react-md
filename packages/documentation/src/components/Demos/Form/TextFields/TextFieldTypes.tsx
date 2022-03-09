@@ -1,11 +1,10 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
+import type { SupportedInputTypes, FormTheme } from "@react-md/form";
 import {
   Form,
-  SupportedInputTypes,
   TextField,
   Password,
-  FormTheme,
   Fieldset,
   Radio,
   useChoice,

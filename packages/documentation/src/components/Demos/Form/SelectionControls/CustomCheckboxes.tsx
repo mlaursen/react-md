@@ -1,6 +1,7 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Divider } from "@react-md/divider";
-import { Checkbox, Form, InputToggleProps, useChecked } from "@react-md/form";
+import type { InputToggleProps } from "@react-md/form";
+import { Checkbox, Form, useChecked } from "@react-md/form";
 import {
   FavoriteBorderFontIcon,
   FavoriteSVGIcon,

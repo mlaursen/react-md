@@ -1,4 +1,5 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { Chip } from "@react-md/chip";
 import { Typography } from "@react-md/typography";
 

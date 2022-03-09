@@ -1,8 +1,10 @@
-import { ReactElement } from "react";
-import { buttonThemeClassNames, ButtonThemeProps } from "@react-md/button";
+import type { ReactElement } from "react";
+import type { ButtonThemeProps } from "@react-md/button";
+import { buttonThemeClassNames } from "@react-md/button";
 import { useInteractionStates } from "@react-md/states";
 
-import LinkUnstyled, { LinkUnstyledProps } from "./LinkUnstyled";
+import type { LinkUnstyledProps } from "./LinkUnstyled";
+import LinkUnstyled from "./LinkUnstyled";
 
 export interface LinkButtonProps extends LinkUnstyledProps, ButtonThemeProps {
   target?: string;

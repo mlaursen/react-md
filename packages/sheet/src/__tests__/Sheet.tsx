@@ -1,6 +1,7 @@
 import { render, waitFor } from "@testing-library/react";
 
-import { Sheet, SheetProps } from "../Sheet";
+import type { SheetProps } from "../Sheet";
+import { Sheet } from "../Sheet";
 
 const PROPS: SheetProps = {
   id: "sheet",

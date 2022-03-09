@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 import log from "loglevel";
 import { join, sep } from "path";
-import { Project, SourceFile } from "ts-morph";
+import type { Project, SourceFile } from "ts-morph";
 
 import { documentationRoot, src } from "../constants";
 import { isAlaised } from "./aliases";

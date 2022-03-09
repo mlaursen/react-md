@@ -1,6 +1,7 @@
 // This example is mostly a port to react-md from:
 // https://www.w3.org/TR/wai-aria-practices/examples/menubar/menubar-editor.html
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import {

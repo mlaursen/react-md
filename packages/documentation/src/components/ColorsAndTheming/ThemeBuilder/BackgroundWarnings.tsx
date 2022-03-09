@@ -1,9 +1,6 @@
-import { ReactElement } from "react";
-import {
-  HexString,
-  isContrastCompliant,
-  ContrastRatioCompliance,
-} from "@react-md/utils";
+import type { ReactElement } from "react";
+import type { HexString, ContrastRatioCompliance } from "@react-md/utils";
+import { isContrastCompliant } from "@react-md/utils";
 import scssVariables from "@react-md/theme/dist/scssVariables";
 
 import { Markdown } from "components/Markdown";

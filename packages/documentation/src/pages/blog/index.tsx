@@ -1,4 +1,4 @@
-import { NextFC } from "next";
+import type { NextFC } from "next";
 
 import Blog from "components/Blog";
 import NotFoundPage from "components/NotFoundPage";

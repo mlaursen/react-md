@@ -1,6 +1,6 @@
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import type { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { useMemo } from "react";
-import { TreeData, TreeItemIds } from "@react-md/tree";
+import type { TreeData, TreeItemIds } from "@react-md/tree";
 
 export type FileType =
   | "css"

@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { AppBar, AppBarAction, AppBarNav } from "@react-md/app-bar";
 import { TextIconSpacing } from "@react-md/icon";
 import {

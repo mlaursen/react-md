@@ -1,7 +1,8 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { upperFirst } from "lodash";
+import type { SortOrder } from "@react-md/table";
 import {
-  SortOrder,
   TableContainer,
   Table,
   TableHeader,
@@ -9,7 +10,8 @@ import {
   TableCell,
   TableBody,
 } from "@react-md/table";
-import desserts, { Dessert } from "constants/desserts";
+import type { Dessert } from "constants/desserts";
+import desserts from "constants/desserts";
 
 type DessertKey = keyof Dessert;
 

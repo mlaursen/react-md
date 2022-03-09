@@ -1,9 +1,8 @@
-import { forwardRef, HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import {
-  CSSTransition,
-  CSSTransitionComponentProps,
-} from "@react-md/transition";
+import type { CSSTransitionComponentProps } from "@react-md/transition";
+import { CSSTransition } from "@react-md/transition";
 import { bem } from "@react-md/utils";
 
 import { DEFAULT_TOAST_CLASSNAMES, DEFAULT_TOAST_TIMEOUT } from "./constants";

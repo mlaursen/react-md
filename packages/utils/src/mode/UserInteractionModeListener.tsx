@@ -1,4 +1,5 @@
-import { createContext, ReactElement, ReactNode, useContext } from "react";
+import type { ReactElement, ReactNode } from "react";
+import { createContext, useContext } from "react";
 
 import type { UserInteractionMode } from "./types";
 import { useInteractionMode } from "./useInteractionMode";

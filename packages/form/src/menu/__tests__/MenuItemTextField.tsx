@@ -1,16 +1,11 @@
 import { Configuration } from "@react-md/layout";
 import { DropdownMenu, MenuItem } from "@react-md/menu";
-import {
-  fireEvent,
-  render as baseRender,
-  RenderResult,
-} from "@testing-library/react";
+import type { RenderResult } from "@testing-library/react";
+import { fireEvent, render as baseRender } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { FC, ReactElement } from "react";
-import {
-  MenuItemTextField,
-  MenuItemTextFieldProps,
-} from "../MenuItemTextField";
+import type { FC, ReactElement } from "react";
+import type { MenuItemTextFieldProps } from "../MenuItemTextField";
+import { MenuItemTextField } from "../MenuItemTextField";
 
 const Wrapper: FC = ({ children }) => (
   <Configuration disableRipple>{children}</Configuration>

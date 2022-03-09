@@ -1,7 +1,8 @@
 import type { ReactElement } from "react";
 import cn from "classnames";
 import type { CSSTransitionClassNames } from "@react-md/transition";
-import { Tooltip, TooltipProps } from "@react-md/tooltip";
+import type { TooltipProps } from "@react-md/tooltip";
+import { Tooltip } from "@react-md/tooltip";
 import { bem } from "@react-md/utils";
 
 import type { ThumbIndex } from "./types";

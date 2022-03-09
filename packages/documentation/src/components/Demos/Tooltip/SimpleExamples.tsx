@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
 import Container from "./Container";
 import TooltippedButton from "./TooltippedButton";

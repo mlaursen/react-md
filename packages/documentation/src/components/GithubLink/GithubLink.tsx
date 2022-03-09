@@ -1,9 +1,10 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
 
 import { GITHUB_URL } from "constants/github";
 import GithubSVGIcon from "icons/GithubSVGIcon";
-import LinkButton, { LinkButtonProps } from "components/LinkButton";
+import type { LinkButtonProps } from "components/LinkButton";
+import LinkButton from "components/LinkButton";
 
 import styles from "./GithubLink.module.scss";
 

@@ -1,4 +1,5 @@
-import { ReactElement, useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import { useEffect, useState } from "react";
 import { getParameters } from "codesandbox/lib/api/define";
 
 import { useCodePreference } from "components/CodePreference";

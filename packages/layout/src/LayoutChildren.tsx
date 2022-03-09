@@ -1,17 +1,14 @@
-import {
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
-import { SkipToMainContent, SkipToMainContentProps } from "@react-md/link";
+import type { HTMLAttributes, ReactElement, ReactNode } from "react";
+import { useEffect, useState } from "react";
+import type { SkipToMainContentProps } from "@react-md/link";
+import { SkipToMainContent } from "@react-md/link";
 import type { BaseTreeItem, TreeData } from "@react-md/tree";
 import type { PropsWithRef } from "@react-md/utils";
 
 import type { FlattenedLayoutComponentConfiguration } from "./Layout";
 import { LayoutAppBar } from "./LayoutAppBar";
-import { LayoutMain, LayoutMainProps } from "./LayoutMain";
+import type { LayoutMainProps } from "./LayoutMain";
+import { LayoutMain } from "./LayoutMain";
 import { LayoutNavigation } from "./LayoutNavigation";
 import { useLayoutConfig } from "./LayoutProvider";
 import { MiniLayoutWrapper } from "./MiniLayoutWrapper";

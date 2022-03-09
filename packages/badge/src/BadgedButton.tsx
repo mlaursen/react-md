@@ -1,9 +1,12 @@
-import { CSSProperties, forwardRef, ReactNode, Ref } from "react";
+import type { CSSProperties, ReactNode, Ref } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import { Button, ButtonProps } from "@react-md/button";
+import type { ButtonProps } from "@react-md/button";
+import { Button } from "@react-md/button";
 import { useIcon } from "@react-md/icon";
 
-import { Badge, BadgeProps, BadgeTheme } from "./Badge";
+import type { BadgeProps, BadgeTheme } from "./Badge";
+import { Badge } from "./Badge";
 import { isEmpty } from "./isEmpty";
 
 export interface BadgedButtonProps

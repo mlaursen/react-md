@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
+import type { HTMLAttributes, Ref } from "react";
 import {
   Children,
   cloneElement,
   forwardRef,
-  HTMLAttributes,
   isValidElement,
-  Ref,
   useEffect,
   useRef,
 } from "react";

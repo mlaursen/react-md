@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactElement } from "react";
+import type { HTMLAttributes, ReactElement } from "react";
 import { SVGIcon } from "@react-md/icon";
 
 export default function TwitterIcon(

@@ -1,4 +1,5 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { Button } from "@react-md/button";
 import { useCSSTransition } from "@react-md/transition";
 

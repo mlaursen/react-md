@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactElement } from "react";
+import type { HTMLAttributes, ReactElement } from "react";
 import cn from "classnames";
 import filesize from "filesize";
 import { Button } from "@react-md/button";
@@ -9,7 +9,7 @@ import {
   CardSubtitle,
   CardTitle,
 } from "@react-md/card";
-import {
+import type {
   FileReaderResult,
   FileUploadActions,
   FileUploadStats,

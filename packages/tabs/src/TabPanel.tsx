@@ -1,12 +1,13 @@
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import {
+import type {
   CSSTransitionClassNames,
   CSSTransitionComponentProps,
   TransitionActions,
   TransitionTimeout,
-  useCSSTransition,
 } from "@react-md/transition";
+import { useCSSTransition } from "@react-md/transition";
 import { bem } from "@react-md/utils";
 
 export interface TabPanelProps

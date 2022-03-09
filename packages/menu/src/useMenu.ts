@@ -1,11 +1,10 @@
-import {
+import type {
   KeyboardEventHandler,
   MouseEventHandler,
   MutableRefObject,
-  useEffect,
-  useRef,
 } from "react";
-import { FABPosition } from "@react-md/button";
+import { useEffect, useRef } from "react";
+import type { FABPosition } from "@react-md/button";
 import { useFixedPositioning } from "@react-md/transition";
 import {
   containsElement,

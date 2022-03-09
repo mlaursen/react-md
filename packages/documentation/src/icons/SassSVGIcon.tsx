@@ -1,6 +1,7 @@
 // source: https://konpa.github.io/devicon/
-import { ReactElement } from "react";
-import { SVGIcon, SVGIconProps } from "@react-md/icon";
+import type { ReactElement } from "react";
+import type { SVGIconProps } from "@react-md/icon";
+import { SVGIcon } from "@react-md/icon";
 
 export default function SassSVGIcon(props: SVGIconProps): ReactElement {
   return (

@@ -1,10 +1,10 @@
-import { forwardRef, ReactElement } from "react";
+import type { ReactElement } from "react";
+import { forwardRef } from "react";
 
-import {
-  FieldMessageContainerExtension,
-  FormMessageContainer,
-} from "../FormMessageContainer";
-import { Password, PasswordProps } from "./Password";
+import type { FieldMessageContainerExtension } from "../FormMessageContainer";
+import { FormMessageContainer } from "../FormMessageContainer";
+import type { PasswordProps } from "./Password";
+import { Password } from "./Password";
 
 /**
  * @remarks \@since 2.5.0

@@ -5,7 +5,7 @@ import { join } from "path";
 
 import { documentationRoot, src } from "../constants";
 import { toTitle } from "../utils";
-import { TOCAnchor } from "./types";
+import type { TOCAnchor } from "./types";
 
 export function parseSassDocAnchors(packageName: string): readonly TOCAnchor[] {
   const sassdocPath = join(

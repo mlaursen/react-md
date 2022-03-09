@@ -1,4 +1,5 @@
-import { DragEvent, HTMLAttributes, useCallback, useState } from "react";
+import type { DragEvent, HTMLAttributes } from "react";
+import { useCallback, useState } from "react";
 
 /** @remarks \@since 2.9.0 */
 export type DropzoneHanders<E extends HTMLElement> = Pick<

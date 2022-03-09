@@ -1,4 +1,5 @@
-import { ReactElement, useEffect } from "react";
+import type { ReactElement } from "react";
+import { useEffect } from "react";
 import { useTimeout, useToggle } from "@react-md/utils";
 import { Button } from "@react-md/button";
 import { CircularProgress } from "@react-md/progress";

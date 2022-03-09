@@ -1,9 +1,6 @@
-import { ReactElement } from "react";
-import {
-  MediaContainer,
-  MediaOverlay,
-  MediaOverlayPosition,
-} from "@react-md/media";
+import type { ReactElement } from "react";
+import type { MediaOverlayPosition } from "@react-md/media";
+import { MediaContainer, MediaOverlay } from "@react-md/media";
 import { Typography } from "@react-md/typography";
 
 import styles from "./Container.module.scss";

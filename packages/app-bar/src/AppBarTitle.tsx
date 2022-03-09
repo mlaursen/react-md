@@ -1,8 +1,10 @@
-import { forwardRef, HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
+import type { AppBarColorInherit } from "./useInheritContext";
+import { useInheritContext } from "./useInheritContext";
 
 export interface AppBarTitleProps
   extends HTMLAttributes<HTMLHeadingElement>,

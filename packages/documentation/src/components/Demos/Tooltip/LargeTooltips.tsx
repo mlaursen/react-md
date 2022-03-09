@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Link } from "@react-md/link";
 import { Tooltip, useTooltip } from "@react-md/tooltip";
 

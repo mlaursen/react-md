@@ -1,6 +1,9 @@
-import { createContext, ReactElement, useContext, useState } from "react";
-import { List, ListProps } from "@react-md/list";
-import { LabelRequiredForA11y, useKeyboardFocus } from "@react-md/utils";
+import type { ReactElement } from "react";
+import { createContext, useContext, useState } from "react";
+import type { ListProps } from "@react-md/list";
+import { List } from "@react-md/list";
+import type { LabelRequiredForA11y } from "@react-md/utils";
+import { useKeyboardFocus } from "@react-md/utils";
 
 import { useMenuBarContext } from "./MenuBarProvider";
 

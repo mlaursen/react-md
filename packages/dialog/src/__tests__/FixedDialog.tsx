@@ -1,8 +1,10 @@
-import { ReactElement, useRef } from "react";
+import type { ReactElement } from "react";
+import { useRef } from "react";
 import { render } from "@testing-library/react";
 import { DATA_RMD_NOSCROLL } from "@react-md/utils";
 
-import { FixedDialog, FixedDialogProps } from "../FixedDialog";
+import type { FixedDialogProps } from "../FixedDialog";
+import { FixedDialog } from "../FixedDialog";
 
 const noop = (): void => {};
 

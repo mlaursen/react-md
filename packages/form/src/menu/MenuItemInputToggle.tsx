@@ -1,12 +1,13 @@
-import { forwardRef, HTMLAttributes, MouseEvent, ReactNode } from "react";
+import type { HTMLAttributes, MouseEvent, ReactNode } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
-import {
-  ListItem,
+import type {
   ListItemAddonPosition,
   ListItemAddonType,
   SimpleListItemProps,
 } from "@react-md/list";
+import { ListItem } from "@react-md/list";
 import { bem, useKeyboardFocusableElement } from "@react-md/utils";
 
 import type { IndeterminateCheckboxProps } from "../toggle/Checkbox";

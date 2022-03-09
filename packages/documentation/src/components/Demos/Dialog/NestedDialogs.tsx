@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { AppBar, AppBarNav } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import {

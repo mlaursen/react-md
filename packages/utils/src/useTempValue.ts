@@ -1,4 +1,5 @@
-import { MutableRefObject, useCallback, useRef } from "react";
+import type { MutableRefObject } from "react";
+import { useCallback, useRef } from "react";
 
 type CurrentValueRef<T> = MutableRefObject<T>;
 type SetValue<T> = (nextValue: T) => void;

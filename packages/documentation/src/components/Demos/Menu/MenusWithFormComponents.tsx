@@ -1,4 +1,5 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import {
   MenuItemCheckbox,
   MenuItemFileInput,
@@ -10,14 +11,15 @@ import {
   useSelectState,
 } from "@react-md/form";
 import { SearchSVGIcon } from "@react-md/material-icons";
+import type { RenderMenuAsSheet } from "@react-md/menu";
 import {
   DropdownMenu,
   MenuConfigurationProvider,
   MenuItemGroup,
   MenuItemSeparator,
-  RenderMenuAsSheet,
 } from "@react-md/menu";
-import { TextDecoration, Typography } from "@react-md/typography";
+import type { TextDecoration } from "@react-md/typography";
+import { Typography } from "@react-md/typography";
 
 const values = ["a", "b", "c", "d"] as const;
 const labels = {

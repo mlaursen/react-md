@@ -1,7 +1,8 @@
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import { AppBarColorInherit, useInheritContext } from "./useInheritContext";
+import type { AppBarColorInherit } from "./useInheritContext";
+import { useInheritContext } from "./useInheritContext";
 
 const block = bem("rmd-app-bar");
 

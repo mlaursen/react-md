@@ -1,7 +1,8 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Avatar } from "@react-md/avatar";
 import scssVariables from "@react-md/avatar/dist/scssVariables";
-import { Checkbox, Select, useChecked, ListboxOption } from "@react-md/form";
+import type { ListboxOption } from "@react-md/form";
+import { Checkbox, Select, useChecked } from "@react-md/form";
 import { CloseSVGIcon } from "@react-md/material-icons";
 
 import immutableStates from "constants/states";

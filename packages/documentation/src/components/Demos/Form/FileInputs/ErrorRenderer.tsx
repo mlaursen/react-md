@@ -1,6 +1,8 @@
-import { Fragment, ReactElement } from "react";
+import type { ReactElement } from "react";
+import { Fragment } from "react";
 import filesize from "filesize";
-import { FileValidationError, isFileSizeError } from "@react-md/form";
+import type { FileValidationError } from "@react-md/form";
+import { isFileSizeError } from "@react-md/form";
 import { List, SimpleListItem } from "@react-md/list";
 import { Typography } from "@react-md/typography";
 

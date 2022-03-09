@@ -1,4 +1,5 @@
-import { FormHTMLAttributes, forwardRef, useCallback } from "react";
+import type { FormHTMLAttributes } from "react";
+import { forwardRef, useCallback } from "react";
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   /**

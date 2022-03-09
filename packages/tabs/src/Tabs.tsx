@@ -1,7 +1,8 @@
 import { forwardRef } from "react";
 
 import { Tab } from "./Tab";
-import { TabsList, TabsListProps } from "./TabsList";
+import type { TabsListProps } from "./TabsList";
+import { TabsList } from "./TabsList";
 import { useTabs } from "./TabsManager";
 
 export type TabsProps = Omit<

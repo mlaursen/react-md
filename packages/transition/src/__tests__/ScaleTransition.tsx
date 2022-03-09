@@ -1,7 +1,9 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 
-import { ScaleTransition, ScaleTransitionProps } from "../ScaleTransition";
+import type { ScaleTransitionProps } from "../ScaleTransition";
+import { ScaleTransition } from "../ScaleTransition";
 
 interface TestProps
   extends Omit<ScaleTransitionProps<HTMLElement>, "transitionIn" | "children"> {

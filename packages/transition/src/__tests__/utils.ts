@@ -1,9 +1,9 @@
-import { CSSTransitionClassNamesObject } from "../types";
+import type { CSSTransitionClassNamesObject } from "../types";
+import type { TransitionTimeoutOptions } from "../utils";
 import {
   getElementSizing,
   getTransitionTimeout,
   getTransitionClassNames,
-  TransitionTimeoutOptions,
   isWithinViewport,
 } from "../utils";
 

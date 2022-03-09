@@ -1,7 +1,8 @@
 import { forwardRef, useCallback } from "react";
 import cn from "classnames";
 import { useIcon } from "@react-md/icon";
-import { ListElement, ListItemChildren } from "@react-md/list";
+import type { ListElement } from "@react-md/list";
+import { ListItemChildren } from "@react-md/list";
 import { useInteractionStates } from "@react-md/states";
 import { bem } from "@react-md/utils";
 

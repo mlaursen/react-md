@@ -1,19 +1,18 @@
 import { fireEvent, render } from "@testing-library/react";
-import { HTMLAttributes, ReactElement, ReactNode, Ref, useEffect } from "react";
+import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
+import { useEffect } from "react";
 
 import { UserInteractionModeListener } from "../../mode/UserInteractionModeListener";
 import { useActiveDescendantContext } from "../activeDescendantContext";
 import { ActiveDescendantMovementProvider } from "../ActiveDescendantMovementProvider";
 import { KeyboardMovementProvider } from "../KeyboardMovementProvider";
-import {
+import type {
   KeyboardMovementBehavior,
   KeyboardMovementConfiguration,
 } from "../types";
 import { useActiveDescendant } from "../useActiveDescendant";
-import {
-  ActiveDescendantFocusHookOptions,
-  useActiveDescendantFocus,
-} from "../useActiveDescendantFocus";
+import type { ActiveDescendantFocusHookOptions } from "../useActiveDescendantFocus";
+import { useActiveDescendantFocus } from "../useActiveDescendantFocus";
 
 function Descendant({
   id,

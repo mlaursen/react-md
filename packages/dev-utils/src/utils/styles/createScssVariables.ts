@@ -1,18 +1,13 @@
 import { writeFile } from "fs-extra";
 import { join } from "path";
 
-import {
-  COPY_BANNER,
-  JSONObject,
-  JSONValue,
-  packagesRoot,
-  scssVariables,
-  src,
-} from "../../constants";
+import type { JSONObject, JSONValue } from "../../constants";
+import { COPY_BANNER, packagesRoot, scssVariables, src } from "../../constants";
 import { format } from "../format";
 import { getSassdoc } from "./getSassdoc";
 import { isPublic, isVariableItem } from "./helpers";
-import { getCompiledValue, isPrimitive, VariableValue } from "./variable";
+import type { VariableValue } from "./variable";
+import { getCompiledValue, isPrimitive } from "./variable";
 
 type PackageVariables = Record<string, JSONObject>;
 

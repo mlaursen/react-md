@@ -1,9 +1,8 @@
-import { ReactElement, useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import { useEffect, useState } from "react";
 import cn from "classnames";
-import {
-  CSSTransitionClassNames,
-  useCSSTransition,
-} from "@react-md/transition";
+import type { CSSTransitionClassNames } from "@react-md/transition";
+import { useCSSTransition } from "@react-md/transition";
 
 import Blind from "./Blind";
 import styles from "./Blinds.module.scss";

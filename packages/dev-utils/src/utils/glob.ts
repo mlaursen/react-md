@@ -1,4 +1,5 @@
-import nodeGlob, { IOptions } from "glob";
+import type { IOptions } from "glob";
+import nodeGlob from "glob";
 import { promisify } from "util";
 
 import { projectRoot } from "../constants";

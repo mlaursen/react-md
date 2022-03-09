@@ -1,6 +1,8 @@
-import { forwardRef, HTMLAttributes, ImgHTMLAttributes } from "react";
+import type { HTMLAttributes, ImgHTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import { bem, PropsWithRef } from "@react-md/utils";
+import type { PropsWithRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 type ImgAttributes = ImgHTMLAttributes<HTMLImageElement>;
 

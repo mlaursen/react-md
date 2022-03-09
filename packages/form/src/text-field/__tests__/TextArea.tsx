@@ -1,6 +1,7 @@
 // TODO: Figure out how to test the resize behavior in jsdom, or just write
 // tests with cypress
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 import { ResizeObserver } from "@juggle/resize-observer";
 

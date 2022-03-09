@@ -1,8 +1,9 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 
 import { useCSSTransition } from "../useCSSTransition";
-import {
+import type {
   CSSTransitionClassNames,
   CSSTransitionHookOptions,
   TransitionTimeout,

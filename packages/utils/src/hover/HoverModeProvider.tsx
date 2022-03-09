@@ -1,22 +1,13 @@
-import {
-  ReactElement,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import type { ReactElement, ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useOnUnmount } from "../useOnUnmount";
 import {
   DEFAULT_HOVER_MODE_DEACTIVATION_TIME,
   DEFAULT_HOVER_MODE_VISIBLE_IN_TIME,
 } from "./constants";
-import {
-  HoverModeContext,
-  HoverModeContextProvider,
-} from "./useHoverModeContext";
+import type { HoverModeContext } from "./useHoverModeContext";
+import { HoverModeContextProvider } from "./useHoverModeContext";
 
 /** @remarks \@since 2.8.0 */
 export interface HoverModeConfiguration {

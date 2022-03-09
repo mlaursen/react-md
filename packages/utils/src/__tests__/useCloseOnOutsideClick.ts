@@ -1,11 +1,8 @@
 import { renderHook } from "@testing-library/react-hooks";
 
 import { containsElement } from "../containsElement";
-import {
-  CloseOnOutsideClickOptions,
-  getElement,
-  useCloseOnOutsideClick,
-} from "../useCloseOnOutsideClick";
+import type { CloseOnOutsideClickOptions } from "../useCloseOnOutsideClick";
+import { getElement, useCloseOnOutsideClick } from "../useCloseOnOutsideClick";
 
 describe("getElement", () => {
   it("should return null when the provided element is null", () => {

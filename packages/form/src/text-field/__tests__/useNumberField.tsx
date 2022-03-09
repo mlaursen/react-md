@@ -1,9 +1,10 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import userEvent from "@testing-library/user-event";
 import { fireEvent, render } from "@testing-library/react";
 import { TextField } from "../TextField";
 
-import { NumberFieldHookOptions, useNumberField } from "../useNumberField";
+import type { NumberFieldHookOptions } from "../useNumberField";
+import { useNumberField } from "../useNumberField";
 
 function NumberField({
   id = "field-id",

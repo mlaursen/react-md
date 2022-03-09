@@ -1,15 +1,12 @@
-import {
+import type {
   KeyboardEventHandler,
   MouseEventHandler,
   FocusEventHandler,
   Ref,
   RefCallback,
   TouchEventHandler,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
 } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { applyRef, useDir, useIsomorphicLayoutEffect } from "@react-md/utils";
 
 import { DEFAULT_SLIDER_ANIMATION_TIME } from "./constants";
@@ -23,14 +20,13 @@ import type {
   SliderThumbIndex,
   ThumbIndex,
 } from "./types";
+import type { CombinedSliderControls, SliderDragValues } from "./utils";
 import {
-  CombinedSliderControls,
   getDragPercentage,
   getDragValue,
   isMouseEvent,
   isRangeSlider,
   isTouchEvent,
-  SliderDragValues,
 } from "./utils";
 
 /**

@@ -8,10 +8,11 @@ import {
   DEFAULT_PHONE_LAYOUT,
   DEFAULT_TABLET_LAYOUT,
 } from "./constants";
-import { LayoutChildren, LayoutChildrenProps } from "./LayoutChildren";
+import type { LayoutChildrenProps } from "./LayoutChildren";
+import { LayoutChildren } from "./LayoutChildren";
 import type { LayoutAppBarProps } from "./LayoutAppBar";
 import type { LayoutNavigationProps } from "./LayoutNavigation";
-import { LayoutWithNavToggle } from "./LayoutNavToggle";
+import type { LayoutWithNavToggle } from "./LayoutNavToggle";
 import { LayoutProvider } from "./LayoutProvider";
 import type { LayoutTreeProps } from "./LayoutTree";
 import type {

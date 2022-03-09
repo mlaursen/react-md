@@ -1,7 +1,7 @@
 /* eslint-disable default-case */
 import { kebabCase } from "lodash";
-import { CodePreference } from "components/CodePreference";
-import { ThemeMode } from "components/Theme";
+import type { CodePreference } from "components/CodePreference";
+import type { ThemeMode } from "components/Theme";
 import { GA_CODE } from "constants/github";
 
 export enum EventName {

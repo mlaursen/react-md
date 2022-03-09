@@ -5,11 +5,11 @@ import { DialogFooter } from "@react-md/dialog";
 import { Divider } from "@react-md/divider";
 import { Select, useSelectState } from "@react-md/form";
 import { CloseSVGIcon } from "@react-md/material-icons";
+import type { RenderMenuAsSheet } from "@react-md/menu";
 import {
   DropdownMenu,
   MenuConfigurationProvider,
   MenuItem,
-  RenderMenuAsSheet,
   useMenuVisibility,
 } from "@react-md/menu";
 

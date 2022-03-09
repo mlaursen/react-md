@@ -13,7 +13,7 @@ import "prismjs/components/prism-git";
 import "prismjs/components/prism-diff";
 import "prismjs/components/prism-json";
 import "prismjs/components/prism-properties";
-import {
+import type {
   DangerouslyHighlightCode,
   GetCodeLanguage,
 } from "react-marked-renderer";

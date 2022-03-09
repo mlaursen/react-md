@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
-import { SVGIcon, SVGIconProps } from "@react-md/icon";
+import type { ReactElement } from "react";
+import type { SVGIconProps } from "@react-md/icon";
+import { SVGIcon } from "@react-md/icon";
 
 // this one isn't included in material icons for some reason?
 export default function LightbulbSVGIcon(props: SVGIconProps): ReactElement {

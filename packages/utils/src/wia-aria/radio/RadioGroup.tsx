@@ -1,16 +1,12 @@
-import {
-  createRef,
+import type {
   CSSProperties,
   FocusEvent,
-  forwardRef,
   HTMLAttributes,
   KeyboardEvent,
   MouseEvent,
   ReactNode,
-  useCallback,
-  useMemo,
-  useState,
 } from "react";
+import { createRef, forwardRef, useCallback, useMemo, useState } from "react";
 
 import { loop } from "../../loop";
 import type { LabelRequiredForA11y } from "../../types";

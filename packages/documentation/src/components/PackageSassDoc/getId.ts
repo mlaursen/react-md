@@ -1,4 +1,4 @@
-import { Item } from "utils/sassdoc";
+import type { Item } from "utils/sassdoc";
 
 type ItemType = Item["context"]["type"];
 

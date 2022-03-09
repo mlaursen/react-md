@@ -1,4 +1,5 @@
-import { HTMLAttributes, useCallback } from "react";
+import type { HTMLAttributes } from "react";
+import { useCallback } from "react";
 import { useToggle } from "@react-md/utils";
 
 type FocusElement =

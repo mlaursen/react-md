@@ -1,10 +1,9 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 
-import {
-  CollapseTransitionHookOptions,
-  useCollapseTransition,
-} from "../useCollapseTransition";
+import type { CollapseTransitionHookOptions } from "../useCollapseTransition";
+import { useCollapseTransition } from "../useCollapseTransition";
 
 interface TestProps
   extends Omit<CollapseTransitionHookOptions<HTMLElement>, "transitionIn"> {

@@ -1,10 +1,10 @@
-import { NextFC } from "next";
+import type { NextFC } from "next";
 
 import NotFoundPage from "components/NotFoundPage";
 import PackageSassDoc from "components/PackageSassDoc";
 import { useHotReload } from "hooks/useHotReload";
 import { qsToString } from "utils/routes";
-import { PackageSassDoc as FoundSassDoc } from "utils/sassdoc";
+import type { PackageSassDoc as FoundSassDoc } from "utils/sassdoc";
 
 interface SassDocProps {
   name: string;

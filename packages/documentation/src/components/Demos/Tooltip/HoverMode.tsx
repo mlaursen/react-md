@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { HoverModeProvider } from "@react-md/utils";
 
 import Container from "./Container";

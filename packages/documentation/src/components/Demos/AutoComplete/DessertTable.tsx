@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Table, TableBody, TableRow, TableCell } from "@react-md/table";
 import { CrossFade } from "@react-md/transition";
 
-import { Dessert } from "constants/desserts";
+import type { Dessert } from "constants/desserts";
 
 export interface DessertTableProps {
   dessert: null | Dessert;

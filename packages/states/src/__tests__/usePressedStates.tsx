@@ -1,8 +1,9 @@
-import { createRef, HTMLAttributes, ReactElement } from "react";
+import type { HTMLAttributes, ReactElement } from "react";
+import { createRef } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
-import { MergableRippleHandlerNames } from "../ripples/types";
+import type { MergableRippleHandlerNames } from "../ripples/types";
 import { usePressedStates } from "../usePressedStates";
 
 interface Props

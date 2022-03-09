@@ -5,16 +5,14 @@ import {
   ContentPasteSVGIcon,
 } from "@react-md/material-icons";
 import { BELOW_CENTER_ANCHOR } from "@react-md/utils";
-import {
-  fireEvent,
-  render as baseRender,
-  RenderResult,
-} from "@testing-library/react";
+import type { RenderResult } from "@testing-library/react";
+import { fireEvent, render as baseRender } from "@testing-library/react";
 import type { FC, MouseEvent, ReactElement } from "react";
 
 import { Menu } from "../Menu";
 import { MenuItem } from "../MenuItem";
-import { ContextMenuHookOptions, useContextMenu } from "../useContextMenu";
+import type { ContextMenuHookOptions } from "../useContextMenu";
+import { useContextMenu } from "../useContextMenu";
 
 const Wrapper: FC = ({ children }) => (
   <Configuration disableRipple>{children}</Configuration>

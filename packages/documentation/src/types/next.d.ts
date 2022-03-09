@@ -1,4 +1,4 @@
-import { NextComponentType, NextPageContext } from "next";
+import type { NextComponentType, NextPageContext } from "next";
 
 declare module "next" {
   export type NextFC<P extends {} = {}> = NextComponentType<

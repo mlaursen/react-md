@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { TableHeader, TableRow, TableCell } from "@react-md/table";
 import { useAppSize } from "@react-md/utils";
 

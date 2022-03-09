@@ -1,4 +1,5 @@
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import { Checkbox, useChecked } from "@react-md/form";
 import { Typography } from "@react-md/typography";
 import { ResizeListener } from "@react-md/utils";

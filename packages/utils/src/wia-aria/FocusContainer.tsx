@@ -1,8 +1,10 @@
-import { ElementType, forwardRef, HTMLAttributes, ReactElement } from "react";
+import type { ElementType, HTMLAttributes, ReactElement } from "react";
+import { forwardRef } from "react";
 
 import { useEnsuredRef } from "../useEnsuredRef";
 import { useFocusOnMount } from "./useFocusOnMount";
-import { FocusFallback, usePreviousFocus } from "./usePreviousFocus";
+import type { FocusFallback } from "./usePreviousFocus";
+import { usePreviousFocus } from "./usePreviousFocus";
 import { useTabFocusWrap } from "./useTabFocusWrap";
 
 export interface FocusContainerOptionsProps {

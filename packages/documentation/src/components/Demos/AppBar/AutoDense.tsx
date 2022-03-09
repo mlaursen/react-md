@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { AppBar, AppBarNav } from "@react-md/app-bar";
 import { MenuSVGIcon } from "@react-md/material-icons";
 

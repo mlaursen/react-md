@@ -1,7 +1,8 @@
-import { Ref } from "react";
+import type { Ref } from "react";
 import { ResizeObserver } from "@juggle/resize-observer";
 
-import { EnsuredRefs, useEnsuredRef } from "../useEnsuredRef";
+import type { EnsuredRefs } from "../useEnsuredRef";
+import { useEnsuredRef } from "../useEnsuredRef";
 import { useIsomorphicLayoutEffect } from "../useIsomorphicLayoutEffect";
 
 /**

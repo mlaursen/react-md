@@ -1,11 +1,11 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import {
   DEFAULT_MENU_CONFIGURATION,
   MenuConfigurationProvider,
 } from "@react-md/menu";
 import { IconProvider } from "@react-md/icon";
 
-import { DemoConfig } from "../types";
+import type { DemoConfig } from "../types";
 import DemoPage from "../DemoPage";
 
 import README from "./README.md";

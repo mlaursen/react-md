@@ -1,4 +1,4 @@
-import { NextFC } from "next";
+import type { NextFC } from "next";
 
 import { MarkdownPage } from "components/Markdown";
 import NotFoundPage from "components/NotFoundPage";

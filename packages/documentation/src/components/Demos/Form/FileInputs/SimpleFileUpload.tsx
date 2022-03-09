@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Button } from "@react-md/button";
 import { useFileUpload, FileInput, Form } from "@react-md/form";
 import { GridList } from "@react-md/utils";

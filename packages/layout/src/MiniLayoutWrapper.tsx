@@ -1,9 +1,11 @@
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import type { BaseTreeItem, TreeData } from "@react-md/tree";
-import { bem, PropsWithRef } from "@react-md/utils";
+import type { PropsWithRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
-import { LayoutNavigation, LayoutNavigationProps } from "./LayoutNavigation";
+import type { LayoutNavigationProps } from "./LayoutNavigation";
+import { LayoutNavigation } from "./LayoutNavigation";
 import type { LayoutNavigationItem } from "./types";
 import { useLayoutConfig } from "./LayoutProvider";
 

@@ -5,7 +5,8 @@ import { flatMap } from "lodash";
 import log from "loglevel";
 import { renderSync } from "sass";
 import { join } from "path";
-import postcss, { AcceptedPlugin } from "postcss";
+import type { AcceptedPlugin } from "postcss";
+import postcss from "postcss";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import postcssPresetEnv from "postcss-preset-env";
 

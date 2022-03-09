@@ -1,6 +1,7 @@
-import { ReactElement, useMemo } from "react";
+import type { ReactElement } from "react";
+import { useMemo } from "react";
 
-import { PackageSassDoc as FoundSassDoc } from "utils/sassdoc";
+import type { PackageSassDoc as FoundSassDoc } from "utils/sassdoc";
 
 import Find from "./Find";
 import Section from "./Section";

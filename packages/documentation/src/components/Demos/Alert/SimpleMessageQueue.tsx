@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
-import { MessageQueue, ToastMessage, useAddMessage } from "@react-md/alert";
+import type { ReactElement } from "react";
+import type { ToastMessage } from "@react-md/alert";
+import { MessageQueue, useAddMessage } from "@react-md/alert";
 import { Button } from "@react-md/button";
 import { Form, Radio, useChoice } from "@react-md/form";
 

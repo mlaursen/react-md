@@ -1,8 +1,8 @@
+import type { MarkdownRenderers } from "react-marked-renderer";
 import {
   DEFAULT_MARKDOWN_RENDERERS,
   getTokensText,
   ImageRenderer,
-  MarkdownRenderers,
   useSluggedId,
 } from "react-marked-renderer";
 import {

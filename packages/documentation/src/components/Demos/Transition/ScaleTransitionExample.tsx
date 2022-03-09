@@ -1,4 +1,5 @@
-import { ReactElement, useCallback, useState } from "react";
+import type { ReactElement } from "react";
+import { useCallback, useState } from "react";
 import cn from "classnames";
 import { Button } from "@react-md/button";
 import { Checkbox, Form, useChecked } from "@react-md/form";

@@ -1,13 +1,13 @@
 import { render, fireEvent } from "@testing-library/react";
 
 import { Button } from "../Button";
-import {
+import type {
   ButtonTheme,
   ButtonThemeType,
   ButtonType,
   ButtonThemeProps,
 } from "../buttonThemeClassNames";
-import { FABPosition } from "../FAB";
+import type { FABPosition } from "../FAB";
 
 const themes: ButtonTheme[] = [
   "clear",

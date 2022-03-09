@@ -1,8 +1,10 @@
-import { forwardRef, HTMLAttributes, ReactElement } from "react";
+import type { HTMLAttributes, ReactElement } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
 import type { PropsWithRef } from "@react-md/utils";
 
-import { FormMessage, FormMessageProps } from "./FormMessage";
+import type { FormMessageProps } from "./FormMessage";
+import { FormMessage } from "./FormMessage";
 
 type DivAttributes = HTMLAttributes<HTMLDivElement>;
 type MessageProps = PropsWithRef<FormMessageProps, HTMLDivElement>;

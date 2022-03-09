@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Avatar } from "@react-md/avatar";
 import { Divider } from "@react-md/divider";
 import { List, ListItem } from "@react-md/list";

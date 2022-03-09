@@ -1,7 +1,5 @@
-import {
-  defaultGetErrorMessage,
-  ErrorMessageOptions,
-} from "../getErrorMessage";
+import type { ErrorMessageOptions } from "../getErrorMessage";
+import { defaultGetErrorMessage } from "../getErrorMessage";
 
 const createValidity = ({
   badInput = false,

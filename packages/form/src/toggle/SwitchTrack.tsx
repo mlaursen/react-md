@@ -1,11 +1,8 @@
-import {
-  CSSProperties,
-  forwardRef,
-  HTMLAttributes,
-  InputHTMLAttributes,
-} from "react";
+import type { CSSProperties, HTMLAttributes, InputHTMLAttributes } from "react";
+import { forwardRef } from "react";
 import cn from "classnames";
-import { bem, PropsWithRef } from "@react-md/utils";
+import type { PropsWithRef } from "@react-md/utils";
+import { bem } from "@react-md/utils";
 
 const styles = bem("rmd-switch");
 

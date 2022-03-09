@@ -1,6 +1,6 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import type { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { Card, CardContent, CardHeader, CardTitle } from "@react-md/card";
 import { DialogContent } from "@react-md/dialog";
 import { List, ListItem } from "@react-md/list";

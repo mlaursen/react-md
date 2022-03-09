@@ -1,6 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { promises as fs } from "fs";
-import { IncomingForm, File } from "formidable";
+import type { File } from "formidable";
+import { IncomingForm } from "formidable";
 
 import { MAX_UPLOAD_SIZE } from "constants/constraints";
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { Command, program } from "commander";
+import type { Command } from "commander";
+import { program } from "commander";
 import loglevel from "loglevel";
 
 import { clean } from "./clean";

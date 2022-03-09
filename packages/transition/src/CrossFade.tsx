@@ -1,11 +1,10 @@
-import { Children, cloneElement, ReactElement } from "react";
+import type { ReactElement } from "react";
+import { Children, cloneElement } from "react";
 import cn from "classnames";
 
 import type { CSSTransitionComponentImplementation } from "./types";
-import {
-  CrossFadeTransitionHookOptions,
-  useCrossFadeTransition,
-} from "./useCrossFadeTransition";
+import type { CrossFadeTransitionHookOptions } from "./useCrossFadeTransition";
+import { useCrossFadeTransition } from "./useCrossFadeTransition";
 
 /**
  * @typeParam E - An HTMLElement type used for the ref required for the

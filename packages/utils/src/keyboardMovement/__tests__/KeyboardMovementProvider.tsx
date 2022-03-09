@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
-import {
+import type {
   FocusEvent,
   HTMLAttributes,
   KeyboardEvent,
@@ -10,15 +10,15 @@ import {
 
 import { UserInteractionModeListener } from "../../mode/UserInteractionModeListener";
 import { KeyboardMovementProvider } from "../KeyboardMovementProvider";
-import {
+import type {
   KeyboardMovementBehavior,
   KeyboardMovementConfiguration,
 } from "../types";
-import {
+import type {
   KeyboardFocusHandler,
   KeyboardFocusHookOptions,
-  useKeyboardFocus,
 } from "../useKeyboardFocus";
+import { useKeyboardFocus } from "../useKeyboardFocus";
 import { useKeyboardFocusableElement } from "../useKeyboardFocusableElement";
 
 function FocusableChild({

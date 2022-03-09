@@ -1,9 +1,10 @@
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import type { IFiles } from "codesandbox-import-utils/lib/api/define";
 import { upperFirst } from "lodash";
 import { RMD_VERSION } from "constants/github";
-import sandboxes, { PackageName, GetSandbox } from "constants/sandboxes";
+import type { PackageName, GetSandbox } from "constants/sandboxes";
+import sandboxes from "constants/sandboxes";
 import { versions } from "constants/versions";
-import { ThemeMode } from "components/Theme";
+import type { ThemeMode } from "components/Theme";
 
 interface PackageJson {
   dependencies: Record<string, string>;

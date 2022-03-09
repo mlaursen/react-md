@@ -1,9 +1,10 @@
-import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
-import { ConfiguredIcons } from "@react-md/icon";
+import type { ReactElement, ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { ConfiguredIcons } from "@react-md/icon";
+import type { LayoutConfiguration } from "@react-md/layout";
 import {
   Configuration,
   Layout as RMDLayout,
-  LayoutConfiguration,
   useLayoutNavigation,
 } from "@react-md/layout";
 import {
@@ -21,14 +22,12 @@ import {
   RadioButtonCheckedSVGIcon,
   RemoveRedEyeSVGIcon,
 } from "@react-md/material-icons";
-import { MenuConfiguration } from "@react-md/menu";
+import type { MenuConfiguration } from "@react-md/menu";
 import { useCrossFadeTransition } from "@react-md/transition";
-import { AppSizeListenerProps } from "@react-md/utils";
+import type { AppSizeListenerProps } from "@react-md/utils";
 
-import {
-  CodePreference,
-  CodePreferenceProvider,
-} from "components/CodePreference";
+import type { CodePreference } from "components/CodePreference";
+import { CodePreferenceProvider } from "components/CodePreference";
 import { IdProvider } from "components/IdProvider";
 import LinkUnstyled from "components/LinkUnstyled";
 import TableOfContents from "components/TableOfContents";

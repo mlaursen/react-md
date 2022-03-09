@@ -1,9 +1,5 @@
-import {
-  FocusEventHandler,
-  KeyboardEventHandler,
-  useCallback,
-  useRef,
-} from "react";
+import type { FocusEventHandler, KeyboardEventHandler } from "react";
+import { useCallback, useRef } from "react";
 import type { ListElement } from "@react-md/list";
 import {
   JumpMovementKey,
@@ -14,12 +10,13 @@ import {
 } from "@react-md/utils";
 
 import type { TreeItemId, TreeProps, UnknownTreeItem } from "./types";
-import {
+import type {
   MetadataRecord,
   SearchableTreeItem,
-  useFlattenedTreeList,
 } from "./useFlattenedTreeList";
-import { NestedTreeItem, useNestedTreeList } from "./useNestedTreeList";
+import { useFlattenedTreeList } from "./useFlattenedTreeList";
+import type { NestedTreeItem } from "./useNestedTreeList";
+import { useNestedTreeList } from "./useNestedTreeList";
 
 type Options = Pick<
   TreeProps<UnknownTreeItem>,

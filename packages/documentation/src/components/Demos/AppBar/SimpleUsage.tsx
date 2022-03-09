@@ -1,10 +1,10 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
+import type { AppBarTheme } from "@react-md/app-bar";
 import {
   AppBar,
   AppBarNav,
   AppBarTitle,
   AppBarAction,
-  AppBarTheme,
 } from "@react-md/app-bar";
 import {
   MenuSVGIcon,

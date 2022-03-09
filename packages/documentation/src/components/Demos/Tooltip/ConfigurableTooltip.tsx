@@ -14,7 +14,8 @@ import {
   GridCell,
   HoverModeProvider,
 } from "@react-md/utils";
-import { ReactElement, useState } from "react";
+import type { ReactElement } from "react";
+import { useState } from "react";
 import styles from "./ConfigurableTooltip.module.scss";
 import TooltippedButton from "./TooltippedButton";
 

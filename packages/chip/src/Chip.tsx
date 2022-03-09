@@ -1,11 +1,5 @@
-import {
-  ButtonHTMLAttributes,
-  cloneElement,
-  CSSProperties,
-  forwardRef,
-  isValidElement,
-  ReactNode,
-} from "react";
+import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from "react";
+import { cloneElement, forwardRef, isValidElement } from "react";
 import cn from "classnames";
 import { TextIconSpacing, useIcon } from "@react-md/icon";
 import { useInteractionStates } from "@react-md/states";

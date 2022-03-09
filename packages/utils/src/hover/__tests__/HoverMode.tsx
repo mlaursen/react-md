@@ -1,14 +1,9 @@
-import { MouseEventHandler } from "react";
+import type { MouseEventHandler } from "react";
 import { act, fireEvent, render } from "@testing-library/react";
-import {
-  HoverModeOptions,
-  HoverModeEventHandlers,
-  useHoverMode,
-} from "../useHoverMode";
-import {
-  HoverModeConfiguration,
-  HoverModeProvider,
-} from "../HoverModeProvider";
+import type { HoverModeOptions, HoverModeEventHandlers } from "../useHoverMode";
+import { useHoverMode } from "../useHoverMode";
+import type { HoverModeConfiguration } from "../HoverModeProvider";
+import { HoverModeProvider } from "../HoverModeProvider";
 import {
   DEFAULT_HOVER_MODE_DEACTIVATION_TIME,
   DEFAULT_HOVER_MODE_EXIT_TIME,

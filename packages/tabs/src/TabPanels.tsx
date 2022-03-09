@@ -1,8 +1,8 @@
+import type { HTMLAttributes } from "react";
 import {
   Children,
   cloneElement,
   forwardRef,
-  HTMLAttributes,
   isValidElement,
   useCallback,
   useEffect,

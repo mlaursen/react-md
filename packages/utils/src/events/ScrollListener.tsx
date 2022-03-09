@@ -1,7 +1,5 @@
-import {
-  useScrollListener,
-  ScrollListenerHookOptions,
-} from "./useScrollListener";
+import type { ScrollListenerHookOptions } from "./useScrollListener";
+import { useScrollListener } from "./useScrollListener";
 
 export type ScrollListenerProps = Omit<ScrollListenerHookOptions, "enabled">;
 

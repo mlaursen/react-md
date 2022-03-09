@@ -2,11 +2,8 @@ import { forwardRef } from "react";
 import cn from "classnames";
 import { bem } from "@react-md/utils";
 
-import {
-  Typography,
-  TypographyHTMLElement,
-  TypographyProps,
-} from "./Typography";
+import type { TypographyHTMLElement, TypographyProps } from "./Typography";
+import { Typography } from "./Typography";
 
 export interface SrOnlyProps extends TypographyProps {
   /**

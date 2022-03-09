@@ -5,7 +5,7 @@ import {
 } from "@testing-library/react";
 
 import { AutoComplete } from "../AutoComplete";
-import { AutoCompleteProps } from "../types";
+import type { AutoCompleteProps } from "../types";
 import states from "../../../documentation/src/constants/states";
 
 function getById<E extends HTMLElement>(id: string): E {

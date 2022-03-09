@@ -6,8 +6,8 @@ import {
   useMemo,
   useState,
 } from "react";
-import { ListboxChangeEventHandler } from "@react-md/form";
-import {
+import type { ListboxChangeEventHandler } from "@react-md/form";
+import type {
   TableCellConfiguration,
   TableCellHorizontalAlignment,
   TableCellVerticalAlignment,

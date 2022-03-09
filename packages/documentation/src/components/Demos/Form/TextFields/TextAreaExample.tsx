@@ -1,10 +1,11 @@
-import { ReactElement, useEffect } from "react";
+import type { ReactElement } from "react";
+import { useEffect } from "react";
+import type { TextAreaResize } from "@react-md/form";
 import {
   Checkbox,
   Fieldset,
   NativeSelect,
   TextArea,
-  TextAreaResize,
   useChecked,
   useChoice,
 } from "@react-md/form";

@@ -1,6 +1,7 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
-import { Chip, ChipProps } from "@react-md/chip";
+import type { ChipProps } from "@react-md/chip";
+import { Chip } from "@react-md/chip";
 
 import styles from "./ActionChip.module.scss";
 

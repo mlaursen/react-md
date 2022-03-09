@@ -1,10 +1,7 @@
 import { defaults } from "../defaults";
 import { getFuzzyRegExp } from "./getFuzzyRegExp";
-import {
-  DEFAULT_SEARCH_OPTIONS,
-  getSearchString,
-  SearchOptions,
-} from "./utils";
+import type { SearchOptions } from "./utils";
+import { DEFAULT_SEARCH_OPTIONS, getSearchString } from "./utils";
 
 /**
  * Filters a list by using a fuzzy search "algorithm" (huge double quotes on

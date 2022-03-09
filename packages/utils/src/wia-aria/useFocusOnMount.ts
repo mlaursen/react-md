@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 
-import { Focus, focusElementWithin } from "./focusElementWithin";
-import { getInstance, RefOrInstance } from "./getInstance";
+import type { Focus } from "./focusElementWithin";
+import { focusElementWithin } from "./focusElementWithin";
+import type { RefOrInstance } from "./getInstance";
+import { getInstance } from "./getInstance";
 
 /**
  * This hook is used to focus an element once a component has mounted. To help

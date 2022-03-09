@@ -1,5 +1,6 @@
-import { HTMLAttributes, ReactElement } from "react";
-import { render as renderer, RenderOptions } from "@testing-library/react";
+import type { HTMLAttributes, ReactElement } from "react";
+import type { RenderOptions } from "@testing-library/react";
+import { render as renderer } from "@testing-library/react";
 
 import { AppSizeListener } from "../../sizing/AppSizeListener";
 import { Grid, GRID_COLUMNS_VAR } from "../Grid";

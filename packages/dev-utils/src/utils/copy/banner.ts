@@ -1,8 +1,9 @@
 import { readFile, writeFile } from "fs-extra";
 import log from "loglevel";
-import { BuiltInParserName } from "prettier";
+import type { BuiltInParserName } from "prettier";
 
-import { CopyConfig, COPY_BANNER } from "../../constants";
+import type { CopyConfig } from "../../constants";
+import { COPY_BANNER } from "../../constants";
 import { format } from "../format";
 
 /**

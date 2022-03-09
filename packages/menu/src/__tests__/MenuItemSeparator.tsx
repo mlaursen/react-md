@@ -1,9 +1,6 @@
 import { Configuration } from "@react-md/layout";
-import {
-  fireEvent,
-  render as baseRender,
-  RenderResult,
-} from "@testing-library/react";
+import type { RenderResult } from "@testing-library/react";
+import { fireEvent, render as baseRender } from "@testing-library/react";
 import type { FC, ReactElement } from "react";
 
 import { DropdownMenu } from "../DropdownMenu";

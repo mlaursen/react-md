@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { HexString, getContrastRatio } from "@react-md/utils";
+import type { HexString } from "@react-md/utils";
+import { getContrastRatio } from "@react-md/utils";
 
 import {
   DEFAULT_PRIMARY_COLOR,

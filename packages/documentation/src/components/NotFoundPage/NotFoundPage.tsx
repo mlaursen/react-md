@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import { HomeSVGIcon } from "@react-md/material-icons";

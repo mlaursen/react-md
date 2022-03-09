@@ -1,11 +1,12 @@
-import { forwardRef, HTMLAttributes, useRef } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef, useRef } from "react";
 import cn from "classnames";
 import { DEFAULT_SHEET_TIMEOUT } from "@react-md/sheet";
-import {
+import type {
   CSSTransitionClassNames,
   TransitionTimeout,
-  useCSSTransition,
 } from "@react-md/transition";
+import { useCSSTransition } from "@react-md/transition";
 import { bem, useIsUserInteractionMode } from "@react-md/utils";
 
 import { DEFAULT_LAYOUT_MAIN_CLASSNAMES } from "./constants";

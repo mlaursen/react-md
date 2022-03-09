@@ -1,4 +1,5 @@
-import { ReactElement, useRef } from "react";
+import type { ReactElement } from "react";
+import { useRef } from "react";
 import {
   AppBar,
   AppBarAction,

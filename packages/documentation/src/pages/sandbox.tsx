@@ -1,5 +1,5 @@
-import { NextFC } from "next";
-import { IFiles } from "codesandbox-import-utils/lib/api/define";
+import type { NextFC } from "next";
+import type { IFiles } from "codesandbox-import-utils/lib/api/define";
 
 import { getDefaultCodePreference } from "components/CodePreference";
 import DemoSandbox from "components/DemoSandbox";

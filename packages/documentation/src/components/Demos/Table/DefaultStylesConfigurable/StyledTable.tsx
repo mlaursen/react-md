@@ -1,14 +1,16 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
+import type {
+  TableCellConfiguration,
+  TableRowConfiguration,
+} from "@react-md/table";
 import {
   Caption,
   Table,
   TableBody,
   TableCell,
-  TableCellConfiguration,
   TableContainer,
   TableHeader,
   TableRow,
-  TableRowConfiguration,
 } from "@react-md/table";
 
 import { useDefaultStylesContext } from "./context";

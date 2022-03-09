@@ -1,9 +1,10 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { Dir, UserInteractionModeListener } from "@react-md/utils";
 
-import { Slider, SliderProps } from "../Slider";
-import { SliderStepOptions, SliderValue } from "../types";
+import type { SliderProps } from "../Slider";
+import { Slider } from "../Slider";
+import type { SliderStepOptions, SliderValue } from "../types";
 import { useSlider } from "../useSlider";
 
 interface TestProps

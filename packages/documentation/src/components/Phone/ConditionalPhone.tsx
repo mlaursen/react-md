@@ -1,6 +1,7 @@
-import { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 
-import Phone, { PhoneProps } from "./Phone";
+import type { PhoneProps } from "./Phone";
+import Phone from "./Phone";
 
 export interface ConditionalPhoneProps extends PhoneProps {
   enabled: boolean;
