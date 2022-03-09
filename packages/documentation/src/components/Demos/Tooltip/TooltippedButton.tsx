@@ -1,40 +1,58 @@
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { ButtonProps, Button } from "@react-md/button";
-import { Tooltipped, TooltippedProps } from "@react-md/tooltip";
+import { Tooltip, TooltipHookOptions, useTooltip } from "@react-md/tooltip";
 
 interface TooltippedButtonProps
   extends ButtonProps,
-    Pick<TooltippedProps, "tooltip" | "defaultPosition" | "dense"> {
+    Pick<
+      TooltipHookOptions<HTMLButtonElement>,
+      "defaultPosition" | "dense" | "position" | "focusTime" | "touchTime"
+    > {
   id: string;
+  tooltip?: ReactNode;
 }
 
 export default function TooltippedButton({
   id,
   tooltip,
+  onClick,
+  onBlur,
+  onFocus,
+  onKeyDown,
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
-  onFocus,
-  onKeyDown,
   children,
   dense,
+  position,
   defaultPosition,
+  focusTime,
+  touchTime,
   ...props
 }: TooltippedButtonProps): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+    dense,
+    onClick,
+    onBlur,
+    onFocus,
+    onKeyDown,
+    onMouseEnter,
+    onMouseLeave,
+    onTouchStart,
+    position,
+    focusTime,
+    touchTime,
+    defaultPosition,
+  });
+
   return (
-    <Tooltipped
-      id={id}
-      tooltip={tooltip}
-      dense={dense}
-      defaultPosition={defaultPosition}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onTouchStart={onTouchStart}
-      onFocus={onFocus}
-      onKeyDown={onKeyDown}
-    >
-      <Button {...props}>{children}</Button>
-    </Tooltipped>
+    <>
+      <Button {...props} {...elementProps}>
+        {children}
+      </Button>
+      <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
+    </>
   );
 }
 

@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { useRouter } from "next/router";
 import { useActionClassName } from "@react-md/app-bar";
 import { CodeSVGIcon } from "@react-md/material-icons";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 import { useCodePreference } from "components/CodePreference";
 import LinkButton from "components/LinkButton";
@@ -22,10 +22,20 @@ export default function CodePreview({
 }: CodePreviewProps): ReactElement {
   const router = useRouter();
   const { pref } = useCodePreference();
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: `${demoId}-show-code`,
+    onClick: sendAnalytics({
+      name: EventName.ViewCode,
+      lang: pref,
+      demoName: demoTitle,
+      packageName: folder,
+    }),
+  });
 
   return (
-    <Tooltipped id={`${demoId}-show-code`} tooltip="Show Code">
+    <>
       <LinkButton
+        {...elementProps}
         buttonType="icon"
         aria-label="Show Code"
         href={toSandbox({
@@ -34,15 +44,10 @@ export default function CodePreview({
           from: `${router.pathname}#${demoId}-title`,
         })}
         className={useActionClassName({ first: true })}
-        onClick={sendAnalytics({
-          name: EventName.ViewCode,
-          lang: pref,
-          demoName: demoTitle,
-          packageName: folder,
-        })}
       >
         <CodeSVGIcon />
       </LinkButton>
-    </Tooltipped>
+      <Tooltip {...tooltipProps}>Show Code</Tooltip>
+    </>
   );
 }

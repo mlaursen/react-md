@@ -3,7 +3,7 @@ Starting with `react-md@2.8.0`, the `@react-md/tooltip` package exports the
 example below will show the most common use case for this hook.
 
 You can also check out the
-[TooltipHookOptions]({{GITHUB_FILE_URL}}/packages/tooltip/src/useTooltip.ts#L206)
+[TooltipHookOptions](/tsdocs/interfaces/_react_md_tooltip.TooltipHookOptions.html)
 and
-[TooltipHookReturnValue]({{GITHUB_FILE_URL}}/packages/tooltip/src/useTooltip.ts#L252)
+[TooltipHookReturnValue](/tsdocs/interfaces/_react_md_tooltip.TooltipHookReturnValue.html)
 for additional documentation.

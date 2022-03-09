@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 import { Button as RMDButton, ButtonProps } from "@react-md/button";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 interface Props extends ButtonProps {
   id: string;
@@ -10,25 +10,35 @@ interface Props extends ButtonProps {
 export default function Button({
   id,
   tooltip,
+  onClick,
+  onBlur,
+  onFocus,
+  onKeyDown,
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
-  onFocus,
-  onKeyDown,
+  onContextMenu,
   children,
   ...props
 }: Props): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+    onClick,
+    onBlur,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
+    onKeyDown,
+    onTouchStart,
+    onContextMenu,
+  });
+
   return (
-    <Tooltipped
-      id={id}
-      tooltip={tooltip}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onTouchStart={onTouchStart}
-      onFocus={onFocus}
-      onKeyDown={onKeyDown}
-    >
-      <RMDButton {...props}>{children}</RMDButton>
-    </Tooltipped>
+    <>
+      <RMDButton {...props} {...(tooltip ? elementProps : { id })}>
+        {children}
+      </RMDButton>
+      <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
+    </>
   );
 }

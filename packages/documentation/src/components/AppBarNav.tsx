@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 import { AppBarNav as RMDAppBarNav, AppBarNavProps } from "@react-md/app-bar";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 interface Props extends AppBarNavProps {
   id: string;
@@ -10,25 +10,35 @@ interface Props extends AppBarNavProps {
 export default function AppBarNav({
   id,
   tooltip,
+  onClick,
+  onBlur,
+  onFocus,
+  onKeyDown,
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
-  onFocus,
-  onKeyDown,
+  onContextMenu,
   children,
   ...props
 }: Props): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+    onClick,
+    onBlur,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
+    onKeyDown,
+    onTouchStart,
+    onContextMenu,
+  });
+
   return (
-    <Tooltipped
-      id={id}
-      tooltip={tooltip}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onTouchStart={onTouchStart}
-      onFocus={onFocus}
-      onKeyDown={onKeyDown}
-    >
-      <RMDAppBarNav {...props}>{children}</RMDAppBarNav>
-    </Tooltipped>
+    <>
+      <RMDAppBarNav {...props} {...(tooltip ? elementProps : { id })}>
+        {children}
+      </RMDAppBarNav>
+      <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
+    </>
   );
 }

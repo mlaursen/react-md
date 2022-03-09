@@ -32,16 +32,25 @@ below.
 ## Usage
 
 ```tsx
-import { Fragment } from "react";
 import { render } from "react-dom";
 import { Button } from "@react-md/button";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 
-const App = () => (
-  <Tooltipped id="button-id" tooltip="I am a tooltip">
-    <Button>Button Text</Button>
-  </Tooltipped>
-);
+function App() {
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: "button-id",
+    onClick(event) {
+      // an optional click handler for the button
+    },
+  });
+
+  return (
+    <>
+      <Button {...elementProps}>Button Text</Button>
+      <Tooltip {...tooltipProps}>I am a tooltip</Tooltip>
+    </>
+  );
+}
 
 render(<App />, document.getElementById("root"));
 ```

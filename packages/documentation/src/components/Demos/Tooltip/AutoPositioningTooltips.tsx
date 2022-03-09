@@ -1,40 +1,39 @@
-import { ReactElement } from "react";
-import { Button } from "@react-md/button";
-import { Tooltipped } from "@react-md/tooltip";
+import type { ReactElement } from "react";
 
 import Container from "./Container";
+import TooltippedButton from "./TooltippedButton";
 
 export default function AutoPositioningTooltips(): ReactElement {
   return (
     <Container stacked>
-      <Tooltipped
+      <TooltippedButton
         id="auto-positioning-above"
         tooltip="This is a tooltip"
         defaultPosition="above"
       >
-        <Button themeType="outline">Above</Button>
-      </Tooltipped>
-      <Tooltipped
+        Above
+      </TooltippedButton>
+      <TooltippedButton
         id="auto-positioning-right"
         tooltip="This is a tooltip"
         defaultPosition="right"
       >
-        <Button themeType="outline">Right</Button>
-      </Tooltipped>
-      <Tooltipped
+        Right
+      </TooltippedButton>
+      <TooltippedButton
         id="auto-positioning-bottom"
         tooltip="This is a tooltip"
         defaultPosition="below"
       >
-        <Button themeType="outline">Below</Button>
-      </Tooltipped>
-      <Tooltipped
+        Below
+      </TooltippedButton>
+      <TooltippedButton
         id="auto-positioning-left"
         tooltip="This is a tooltip"
         defaultPosition="left"
       >
-        <Button themeType="outline">Left</Button>
-      </Tooltipped>
+        Left
+      </TooltippedButton>
     </Container>
   );
 }

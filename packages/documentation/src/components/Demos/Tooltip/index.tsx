@@ -23,11 +23,8 @@ import largeTooltips from "./LargeTooltips.md";
 import HoverMode from "./HoverMode";
 import hoverMode from "./HoverMode.md";
 
-import CommonPatterns from "./CommonPatterns";
-import commonPatterns from "./CommonPatterns.md";
-
-import AdvancedAPIAndGotchas from "./AdvancedAPIAndGotchas";
-import advancedAPIAndGotchas from "./AdvancedAPIAndGotchas.md";
+import ConfigurableTooltip from "./ConfigurableTooltip";
+import configurableTooltip from "./ConfigurableTooltip.md";
 
 const demos = [
   {
@@ -65,14 +62,10 @@ const demos = [
     children: <HoverMode />,
   },
   {
-    name: "Common Patterns",
-    description: commonPatterns,
-    children: <CommonPatterns />,
-  },
-  {
-    name: "Advanced API and Gotchas",
-    description: advancedAPIAndGotchas,
-    children: <AdvancedAPIAndGotchas />,
+    name: "Configurable Tooltip",
+    description: configurableTooltip,
+    children: <ConfigurableTooltip />,
+    disableCard: true,
   },
 ].map(({ children, ...demo }) => ({
   ...demo,

@@ -5,7 +5,7 @@ import {
   FormatAlignRightSVGIcon,
 } from "@react-md/material-icons";
 import { MenuItem } from "@react-md/menu";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 import { useDir } from "@react-md/utils";
 
 export interface ToggleRTLProps {
@@ -19,6 +19,11 @@ export default function ToggleRTL({ as }: ToggleRTLProps): ReactElement {
   if (isRTL) {
     icon = <FormatAlignRightSVGIcon />;
   }
+
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: "toggle-rtl",
+    onClick: toggleDir,
+  });
 
   if (as === "menuitem") {
     return (
@@ -34,15 +39,16 @@ export default function ToggleRTL({ as }: ToggleRTLProps): ReactElement {
   }
 
   return (
-    <Tooltipped id="toggle-rtl" tooltip="Toggle right to left">
+    <>
       <AppBarAction
+        {...elementProps}
         last
-        onClick={toggleDir}
         aria-label="Right to left layout"
         aria-pressed={isRTL}
       >
         {icon}
       </AppBarAction>
-    </Tooltipped>
+      <Tooltip {...tooltipProps}>TOggle right to left</Tooltip>
+    </>
   );
 }

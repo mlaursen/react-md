@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { useActionClassName } from "@react-md/app-bar";
 import { MenuItemLink } from "@react-md/menu";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 import GithubLinkOriginal from "components/GithubLink";
 import { GITHUB_URL } from "constants/github";
@@ -13,6 +13,10 @@ export interface GithubLinkProps {
 
 export default function GithubLink({ as }: GithubLinkProps): ReactElement {
   const className = useActionClassName();
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: "main-github-link",
+  });
+
   if (as === "menuitem") {
     return (
       <MenuItemLink
@@ -25,8 +29,9 @@ export default function GithubLink({ as }: GithubLinkProps): ReactElement {
     );
   }
   return (
-    <Tooltipped id="main-github-link" tooltip="View GitHub">
-      <GithubLinkOriginal inherit className={className} />
-    </Tooltipped>
+    <>
+      <GithubLinkOriginal {...elementProps} inherit className={className} />
+      <Tooltip {...tooltipProps}>View GitHub</Tooltip>
+    </>
   );
 }

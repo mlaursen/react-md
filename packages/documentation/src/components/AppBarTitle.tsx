@@ -3,7 +3,7 @@ import {
   AppBarTitle as RMDAppBarTitle,
   AppBarTitleProps,
 } from "@react-md/app-bar";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 import { useResizeObserver } from "@react-md/utils";
 
 import { useId } from "./IdProvider";
@@ -41,16 +41,22 @@ export default function AppBarTitle({
   const [, refHandler] = useResizeObserver(updateTooltip, {
     disableHeight: true,
   });
+  const baseId = useId(id);
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId,
+  });
 
   return (
-    <Tooltipped id={useId(id)} tooltip={tooltip}>
+    <>
       <RMDAppBarTitle
         {...props}
+        {...(tooltip ? elementProps : { id: baseId })}
         ref={refHandler}
         tabIndex={tooltip ? 0 : undefined}
       >
         {children}
       </RMDAppBarTitle>
-    </Tooltipped>
+      <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
+    </>
   );
 }

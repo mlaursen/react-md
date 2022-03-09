@@ -5,7 +5,7 @@ import { Avatar, AvatarProps } from "@react-md/avatar";
 import { FolderSVGIcon, InfoOutlineSVGIcon } from "@react-md/material-icons";
 import { List, ListItem, ListSubheader } from "@react-md/list";
 import { SVGIconProps } from "@react-md/icon";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 import Container from "./Container";
 import styles from "./TwoLineExamples.module.scss";
@@ -36,16 +36,22 @@ function InfoIcon({
   date,
   ...props
 }: SVGIconProps & { id: string; date: Date }): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: `${id}-info`,
+    defaultPosition: "left",
+  });
+
   return (
-    <Tooltipped
-      id={`${id}-info`}
-      tooltip={date.toLocaleString()}
-      defaultPosition="left"
-    >
-      <span tabIndex={0} className={cn(styles.icon, className)}>
+    <>
+      <span
+        {...elementProps}
+        tabIndex={0}
+        className={cn(styles.icon, className)}
+      >
         <InfoOutlineSVGIcon {...props} />
       </span>
-    </Tooltipped>
+      <Tooltip {...tooltipProps}>{date.toLocaleString()}</Tooltip>
+    </>
   );
 }
 

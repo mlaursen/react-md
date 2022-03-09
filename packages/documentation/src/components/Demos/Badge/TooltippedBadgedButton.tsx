@@ -1,6 +1,6 @@
 import { CSSProperties, forwardRef, ReactNode } from "react";
 import { BadgedButton, BadgedButtonProps } from "@react-md/badge";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 export interface TooltippedBadgedButtonProps extends BadgedButtonProps {
   id: string;
@@ -11,20 +11,53 @@ export interface TooltippedBadgedButtonProps extends BadgedButtonProps {
 
 export default forwardRef<HTMLButtonElement, TooltippedBadgedButtonProps>(
   function TooltippedBadgedButton(
-    { id, tooltip, tooltipStyle, tooltipClassName, children, ...props },
+    {
+      id,
+      tooltip,
+      tooltipStyle,
+      tooltipClassName,
+      onClick,
+      onBlur,
+      onFocus,
+      onKeyDown,
+      onMouseEnter,
+      onMouseLeave,
+      onTouchStart,
+      onContextMenu,
+      children,
+      ...props
+    },
     ref
   ) {
+    const { elementProps, tooltipProps } = useTooltip({
+      baseId: id,
+      onClick,
+      onBlur,
+      onFocus,
+      onMouseEnter,
+      onMouseLeave,
+      onKeyDown,
+      onTouchStart,
+      onContextMenu,
+    });
+
     return (
-      <Tooltipped
-        id={id}
-        tooltip={tooltip}
-        style={tooltipStyle}
-        className={tooltipClassName}
-      >
-        <BadgedButton {...props} ref={ref}>
+      <>
+        <BadgedButton
+          {...props}
+          {...(tooltip ? elementProps : { id })}
+          ref={ref}
+        >
           {children}
         </BadgedButton>
-      </Tooltipped>
+        <Tooltip
+          {...tooltipProps}
+          style={tooltipStyle}
+          className={tooltipClassName}
+        >
+          {tooltip}
+        </Tooltip>
+      </>
     );
   }
 );

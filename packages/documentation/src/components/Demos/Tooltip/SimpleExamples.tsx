@@ -1,40 +1,39 @@
 import { ReactElement } from "react";
-import { Button } from "@react-md/button";
-import { Tooltipped } from "@react-md/tooltip";
 
 import Container from "./Container";
+import TooltippedButton from "./TooltippedButton";
 
 export default function SimpleExamples(): ReactElement {
   return (
     <Container stacked>
-      <Tooltipped
+      <TooltippedButton
         id="tooltipped-top"
         tooltip="This is a tooltip"
         position="above"
       >
-        <Button themeType="outline">top</Button>
-      </Tooltipped>
-      <Tooltipped
+        Above
+      </TooltippedButton>
+      <TooltippedButton
         id="tooltipped-right"
         tooltip="This is a tooltip"
         position="right"
       >
-        <Button themeType="outline">Right</Button>
-      </Tooltipped>
-      <Tooltipped
+        Right
+      </TooltippedButton>
+      <TooltippedButton
         id="tooltipped-bottom"
         tooltip="This is a tooltip"
         position="below"
       >
-        <Button themeType="outline">Bottom</Button>
-      </Tooltipped>
-      <Tooltipped
+        Below
+      </TooltippedButton>
+      <TooltippedButton
         id="tooltipped-left"
         tooltip="This is a tooltip"
         position="left"
       >
-        <Button themeType="outline">Left</Button>
-      </Tooltipped>
+        Left
+      </TooltippedButton>
     </Container>
   );
 }

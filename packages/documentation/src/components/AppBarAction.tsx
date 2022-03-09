@@ -3,7 +3,7 @@ import {
   AppBarAction as RMDAppBarAction,
   AppBarActionProps,
 } from "@react-md/app-bar";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 interface Props extends AppBarActionProps {
   id: string;
@@ -13,25 +13,35 @@ interface Props extends AppBarActionProps {
 export default function AppBarAction({
   id,
   tooltip,
+  onClick,
+  onBlur,
+  onFocus,
+  onKeyDown,
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
-  onFocus,
-  onKeyDown,
+  onContextMenu,
   children,
   ...props
 }: Props): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+    onClick,
+    onBlur,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
+    onKeyDown,
+    onTouchStart,
+    onContextMenu,
+  });
+
   return (
-    <Tooltipped
-      id={id}
-      tooltip={tooltip}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onTouchStart={onTouchStart}
-      onFocus={onFocus}
-      onKeyDown={onKeyDown}
-    >
-      <RMDAppBarAction {...props}>{children}</RMDAppBarAction>
-    </Tooltipped>
+    <>
+      <RMDAppBarAction {...props} {...(tooltip ? elementProps : { id })}>
+        {children}
+      </RMDAppBarAction>
+      <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
+    </>
   );
 }

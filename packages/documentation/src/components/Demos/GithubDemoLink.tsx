@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Tooltipped } from "@react-md/tooltip";
+import { Tooltip, useTooltip } from "@react-md/tooltip";
 
 import GithubLink from "components/GithubLink";
 
@@ -12,9 +12,13 @@ export default function GithubDemoLink({
   id,
   href,
 }: GithubDemoLinkProps): ReactElement {
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+  });
   return (
-    <Tooltipped id={id} tooltip="View source GitHub">
-      <GithubLink href={href} />
-    </Tooltipped>
+    <>
+      <GithubLink {...elementProps} href={href} />
+      <Tooltip {...tooltipProps}>View source GitHub</Tooltip>
+    </>
   );
 }
