@@ -11,6 +11,7 @@ interface Props extends AppBarActionProps {
 export default function AppBarAction({
   id,
   tooltip,
+  children,
   onClick,
   onBlur,
   onFocus,
@@ -19,24 +20,29 @@ export default function AppBarAction({
   onMouseLeave,
   onTouchStart,
   onContextMenu,
-  children,
   ...props
 }: Props): ReactElement {
-  const { elementProps, tooltipProps } = useTooltip({
-    baseId: id,
+  const handlers = {
     onClick,
     onBlur,
     onFocus,
+    onKeyDown,
     onMouseEnter,
     onMouseLeave,
-    onKeyDown,
     onTouchStart,
     onContextMenu,
+  };
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+    ...handlers,
   });
 
   return (
     <>
-      <RMDAppBarAction {...props} {...(tooltip ? elementProps : { id })}>
+      <RMDAppBarAction
+        {...props}
+        {...(tooltip ? elementProps : { id, ...handlers })}
+      >
         {children}
       </RMDAppBarAction>
       <Tooltip {...tooltipProps}>{tooltip}</Tooltip>

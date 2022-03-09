@@ -11,7 +11,7 @@ interface TooltippedButtonProps
       "defaultPosition" | "dense" | "position" | "focusTime" | "touchTime"
     > {
   id: string;
-  tooltip?: ReactNode;
+  tooltip: ReactNode;
 }
 
 export default function TooltippedButton({
@@ -24,6 +24,7 @@ export default function TooltippedButton({
   onMouseEnter,
   onMouseLeave,
   onTouchStart,
+  onContextMenu,
   children,
   dense,
   position,
@@ -42,6 +43,7 @@ export default function TooltippedButton({
     onMouseEnter,
     onMouseLeave,
     onTouchStart,
+    onContextMenu,
     position,
     focusTime,
     touchTime,

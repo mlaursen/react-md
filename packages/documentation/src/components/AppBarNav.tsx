@@ -11,6 +11,7 @@ interface Props extends AppBarNavProps {
 export default function AppBarNav({
   id,
   tooltip,
+  children,
   onClick,
   onBlur,
   onFocus,
@@ -19,24 +20,29 @@ export default function AppBarNav({
   onMouseLeave,
   onTouchStart,
   onContextMenu,
-  children,
   ...props
 }: Props): ReactElement {
-  const { elementProps, tooltipProps } = useTooltip({
-    baseId: id,
+  const handlers = {
     onClick,
     onBlur,
     onFocus,
+    onKeyDown,
     onMouseEnter,
     onMouseLeave,
-    onKeyDown,
     onTouchStart,
     onContextMenu,
+  };
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+    ...handlers,
   });
 
   return (
     <>
-      <RMDAppBarNav {...props} {...(tooltip ? elementProps : { id })}>
+      <RMDAppBarNav
+        {...props}
+        {...(tooltip ? elementProps : { id, ...handlers })}
+      >
         {children}
       </RMDAppBarNav>
       <Tooltip {...tooltipProps}>{tooltip}</Tooltip>

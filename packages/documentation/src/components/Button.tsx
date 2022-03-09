@@ -11,6 +11,7 @@ interface Props extends ButtonProps {
 export default function Button({
   id,
   tooltip,
+  children,
   onClick,
   onBlur,
   onFocus,
@@ -19,24 +20,26 @@ export default function Button({
   onMouseLeave,
   onTouchStart,
   onContextMenu,
-  children,
   ...props
 }: Props): ReactElement {
-  const { elementProps, tooltipProps } = useTooltip({
-    baseId: id,
+  const handlers = {
     onClick,
     onBlur,
     onFocus,
+    onKeyDown,
     onMouseEnter,
     onMouseLeave,
-    onKeyDown,
     onTouchStart,
     onContextMenu,
+  };
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+    ...handlers,
   });
 
   return (
     <>
-      <RMDButton {...props} {...(tooltip ? elementProps : { id })}>
+      <RMDButton {...props} {...(tooltip ? elementProps : { id, ...handlers })}>
         {children}
       </RMDButton>
       <Tooltip {...tooltipProps}>{tooltip}</Tooltip>

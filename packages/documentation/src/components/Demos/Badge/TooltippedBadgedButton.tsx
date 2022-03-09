@@ -31,8 +31,7 @@ export default forwardRef<HTMLButtonElement, TooltippedBadgedButtonProps>(
     },
     ref
   ) {
-    const { elementProps, tooltipProps } = useTooltip({
-      baseId: id,
+    const handlers = {
       onClick,
       onBlur,
       onFocus,
@@ -41,13 +40,17 @@ export default forwardRef<HTMLButtonElement, TooltippedBadgedButtonProps>(
       onKeyDown,
       onTouchStart,
       onContextMenu,
+    };
+    const { elementProps, tooltipProps } = useTooltip({
+      baseId: id,
+      ...handlers,
     });
 
     return (
       <>
         <BadgedButton
           {...props}
-          {...(tooltip ? elementProps : { id })}
+          {...(tooltip ? elementProps : { id, ...handlers })}
           ref={ref}
         >
           {children}
