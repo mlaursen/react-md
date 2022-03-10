@@ -22,7 +22,9 @@ export default function AppBarAction({
   onContextMenu,
   ...props
 }: Props): ReactElement {
-  const handlers = {
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+    disabled: !tooltip,
     onClick,
     onBlur,
     onFocus,
@@ -31,18 +33,11 @@ export default function AppBarAction({
     onMouseLeave,
     onTouchStart,
     onContextMenu,
-  };
-  const { elementProps, tooltipProps } = useTooltip({
-    baseId: id,
-    ...handlers,
   });
 
   return (
     <>
-      <RMDAppBarAction
-        {...props}
-        {...(tooltip ? elementProps : { id, ...handlers })}
-      >
+      <RMDAppBarAction {...props} {...elementProps}>
         {children}
       </RMDAppBarAction>
       <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
