@@ -29,7 +29,7 @@ export async function indexer(): Promise<void> {
   const meta = join(documentationRoot, src, "constants", "meta");
   const tocsPath = join(meta, "tocs.ts");
   const tocsContents =
-    format(`${COPY_BANNER}import { TOCRecord } from "./types";
+    format(`${COPY_BANNER}import type { TOCRecord } from "./types";
 
 const tocs: TOCRecord = ${JSON.stringify(tocs, null, 2)};
 
@@ -38,7 +38,7 @@ export default tocs`);
 
   const searchPath = join(meta, "search.ts");
   const searchContents =
-    format(`${COPY_BANNER}import { RouteMetadata } from "./types";
+    format(`${COPY_BANNER}import type { RouteMetadata } from "./types";
 
 const metadata: readonly RouteMetadata[] = ${JSON.stringify(metadata, null, 2)};
 
