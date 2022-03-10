@@ -22,7 +22,9 @@ export default function Button({
   onContextMenu,
   ...props
 }: Props): ReactElement {
-  const handlers = {
+  const { elementProps, tooltipProps } = useTooltip({
+    baseId: id,
+    disabled: !tooltip,
     onClick,
     onBlur,
     onFocus,
@@ -31,15 +33,11 @@ export default function Button({
     onMouseLeave,
     onTouchStart,
     onContextMenu,
-  };
-  const { elementProps, tooltipProps } = useTooltip({
-    baseId: id,
-    ...handlers,
   });
 
   return (
     <>
-      <RMDButton {...props} {...(tooltip ? elementProps : { id, ...handlers })}>
+      <RMDButton {...props} {...elementProps}>
         {children}
       </RMDButton>
       <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
