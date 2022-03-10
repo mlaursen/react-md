@@ -201,6 +201,66 @@ export interface BaseTooltipHookOptions<E extends HTMLElement>
    * {@link HoverModeProvider}.
    */
   disableHoverMode?: boolean;
+
+  /**
+   * Boolean if the event handlers should no longer attempt to show a tooltip. This
+   * should be set to `true` when your component might not have a tooltip associated
+   * with it.
+   *
+   * @example
+   * Real World Example
+   * ```tsx
+   * import type { ReactElement, ReactNode } from "react";
+   * import { Button, ButtonProps } from "@react-md/button";
+   * import { Tooltip, useTooltip } from "@react-md/tooltip":
+   *
+   * export interface TooltippedButtonProps extends ButtonProps {
+   *   id: string;
+   *   tooltip?: ReactNode;
+   * }
+   *
+   * export function TooltippedButton({
+   *   id,
+   *   tooltip,
+   *   children,
+   *   onClick,
+   *   onBlur,
+   *   onFocus,
+   *   onKeyDown,
+   *   onMouseEnter,
+   *   onMouseLeave,
+   *   onTouchStart,
+   *   onContextMenu,
+   *   ...props
+   * }: TooltippedButtonProps): ReactElement {
+   *   const { elementProps, tooltipProps } = useTooltip({
+   *     disabled: !tooltip,
+   *     baseId: id,
+   *     onClick,
+   *     onBlur,
+   *     onFocus,
+   *     onKeyDown,
+   *     onMouseEnter,
+   *     onMouseLeave,
+   *     onTouchStart,
+   *     onContextMenu,
+   *   });
+   *
+   *   return (
+   *     <>
+   *       <Button {...props} {...elementProps}>
+   *         {children}
+   *       </Button>
+   *       <Tooltip {...tooltipProps}>{tooltip}</Tooltip>
+   *     </>
+   *   );
+   * }
+   * ```
+   *
+   * @defaultValue `false`
+   * @remarks \@since 5.1.0
+   */
+  disabled?: boolean;
 }
 
 /** @remarks \@since 2.8.0 */
@@ -314,8 +374,9 @@ export function useTooltip<E extends HTMLElement>({
   onEntering,
   onEntered,
   onExited,
-  disableSwapping,
-  disableHoverMode: disabled,
+  disabled = false,
+  disableSwapping = false,
+  disableHoverMode: propDisableHoverMode,
   disableAutoSpacing = process.env.NODE_ENV === "test",
 }: TooltipHookOptions<E>): TooltipHookReturnValue<E> {
   const containerRef = useRef<E | null>(null);
@@ -337,7 +398,7 @@ export function useTooltip<E extends HTMLElement>({
     clearHoverTimeout,
     ...others
   } = useHoverMode({
-    disabled,
+    disabled: propDisableHoverMode || disabled,
     exitVisibilityDelay: 0,
   });
   const hide = useCallback(() => {
@@ -349,7 +410,7 @@ export function useTooltip<E extends HTMLElement>({
   const onBlur = (event: FocusEvent<E>): void => {
     propOnBlur?.(event);
 
-    if (initiatedBy !== "keyboard") {
+    if (disabled || initiatedBy !== "keyboard") {
       return;
     }
 
@@ -357,6 +418,9 @@ export function useTooltip<E extends HTMLElement>({
   };
   const onFocus = (event: FocusEvent<E>): void => {
     propOnFocus?.(event);
+    if (disabled) {
+      return;
+    }
 
     // if the element gained focus immediately after the browser window gains
     // focus, do not start timer and ignore this event instead
@@ -381,7 +445,7 @@ export function useTooltip<E extends HTMLElement>({
   const onKeyDown = (event: KeyboardEvent<E>): void => {
     propOnKeyDown?.(event);
 
-    if (initiatedBy !== "keyboard" || event.key !== "Escape") {
+    if (disabled || initiatedBy !== "keyboard" || event.key !== "Escape") {
       return;
     }
 
@@ -391,7 +455,7 @@ export function useTooltip<E extends HTMLElement>({
   const onTouchStart = (event: TouchEvent<E>): void => {
     propOnTouchStart?.(event);
 
-    if (event.isPropagationStopped() || mode !== "touch") {
+    if (event.isPropagationStopped() || disabled || mode !== "touch") {
       return;
     }
 
@@ -407,7 +471,7 @@ export function useTooltip<E extends HTMLElement>({
   const onContextMenu = (event: MouseEvent<E>): void => {
     propOnContextMenu?.(event);
 
-    if (event.isPropagationStopped() || mode !== "touch") {
+    if (event.isPropagationStopped() || disabled || mode !== "touch") {
       return;
     }
 
@@ -426,6 +490,10 @@ export function useTooltip<E extends HTMLElement>({
   };
 
   useEffect(() => {
+    if (disabled) {
+      return;
+    }
+
     if (mode !== "keyboard") {
       windowFocusEvent.current = false;
       return;
@@ -443,7 +511,7 @@ export function useTooltip<E extends HTMLElement>({
     return () => {
       window.removeEventListener("visibilitychange", handler);
     };
-  }, [hide, mode]);
+  }, [disabled, hide, mode]);
   useEffect(() => {
     if (initiatedBy !== "touch") {
       return;
@@ -507,7 +575,7 @@ export function useTooltip<E extends HTMLElement>({
     onContextMenu,
     onClick(event) {
       onClick?.(event);
-      if (event.isPropagationStopped()) {
+      if (event.isPropagationStopped() || disabled) {
         return;
       }
 
@@ -518,6 +586,10 @@ export function useTooltip<E extends HTMLElement>({
     },
     onMouseEnter(event) {
       onMouseEnter?.(event);
+      if (disabled) {
+        return;
+      }
+
       if (initiatedBy !== null) {
         event.stopPropagation();
         return;
@@ -530,6 +602,10 @@ export function useTooltip<E extends HTMLElement>({
     },
     onMouseLeave(event) {
       onMouseLeave?.(event);
+      if (disabled) {
+        return;
+      }
+
       if (initiatedBy !== "mouse") {
         event.stopPropagation();
         return;
