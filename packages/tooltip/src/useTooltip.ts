@@ -517,10 +517,10 @@ export function useTooltip<E extends HTMLElement>({
       return;
     }
 
-    window.addEventListener("touchmove", hide, true);
+    window.addEventListener("scroll", hide, true);
     window.addEventListener("touchend", hide, true);
     return () => {
-      window.removeEventListener("touchmove", hide, true);
+      window.removeEventListener("scroll", hide, true);
       window.removeEventListener("touchend", hide, true);
     };
   }, [hide, initiatedBy, setVisible]);
