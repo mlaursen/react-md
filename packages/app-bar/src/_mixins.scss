@@ -210,6 +210,7 @@
   @include rmd-utils-rtl-auto(margin-left, $rmd-app-bar-keyline);
   @include rmd-utils-hide-focus-outline;
 
+  flex: 1 1 auto;
   margin-bottom: 0;
   margin-top: 0;
 
