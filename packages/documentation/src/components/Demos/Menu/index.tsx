@@ -34,6 +34,9 @@ import menusWithFormComponents from "./MenusWithFormComponents.md";
 import HoverableMenus from "./HoverableMenus";
 import hoverableMenus from "./HoverableMenus.md";
 
+import DropdownMenuGrid from "./DropdownMenuGrid";
+import dropdownMenuGrid from "./DropdownMenuGrid.md";
+
 const demos: DemoConfig[] = [
   {
     name: "Simple Example",
@@ -79,6 +82,12 @@ const demos: DemoConfig[] = [
     fullPage: true,
     fullPageFAB: true,
     disableFullPageAppBar: true,
+  },
+  {
+    name: "Dropdown Menu Grid",
+    description: dropdownMenuGrid,
+    children: <DropdownMenuGrid />,
+    disableCard: true,
   },
 ];
 

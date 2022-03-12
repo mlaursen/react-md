@@ -1,0 +1,27 @@
+@use 'react-md' as *;
+
+.grid {
+  // since the icons are stacked, set the menu icon spacing back to the default
+  // icon spacing
+  @include rmd-menu-theme-update-var(icon-spacing, $rmd-icon-spacing-with-text);
+
+  display: grid;
+  gap: 0.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0.5rem;
+}
+
+.item {
+  flex-direction: column;
+  text-align: center;
+}
+
+.separator {
+  grid-column-end: span 3;
+  margin-top: 0.5rem;
+}
+
+.all {
+  grid-column-end: span 3;
+  text-align: center;
+}
