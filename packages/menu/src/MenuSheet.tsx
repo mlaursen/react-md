@@ -12,13 +12,14 @@ import { useOnUnmount } from "@react-md/utils";
 
 import { MenuKeyboardFocusProvider } from "./MenuKeyboardFocusProvider";
 import { MenuWidget } from "./MenuWidget";
-import type { MenuOrientationProps } from "./types";
+import type { MenuListProps, MenuOrientationProps } from "./types";
 
 /** @remarks \@since 5.0.0 */
 export interface MenuSheetProps
   extends BaseSheetProps,
     KeyboardFocusHookOptions<HTMLDivElement>,
-    MenuOrientationProps {
+    MenuOrientationProps,
+    MenuListProps {
   /** {@inheritDoc MenuConfiguration.sheetHeader} */
   header?: ReactNode;
   /** {@inheritDoc MenuConfiguration.sheetFooter} */
@@ -56,6 +57,9 @@ export function MenuSheet({
   horizontal,
   menuRef,
   menuProps,
+  listStyle,
+  listClassName,
+  listProps,
   position = "bottom",
   verticalSize = "touch",
   onClick,
@@ -141,9 +145,14 @@ export function MenuSheet({
           disableElevation
         >
           <List
+            {...listProps}
+            style={listStyle ?? listProps?.style}
+            className={listClassName ?? listProps?.className}
             ref={listRef}
             horizontal={horizontal}
             onClick={(event) => {
+              listProps?.onClick?.(event);
+
               // this makes it so you can click on the menu/list without
               // closing the menu
               if (event.target === event.currentTarget) {

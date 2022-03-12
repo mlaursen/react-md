@@ -19,6 +19,9 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
   function Menu(
     {
       className,
+      listStyle,
+      listClassName,
+      listProps,
       visible,
       temporary = true,
       horizontal = false,
@@ -75,8 +78,13 @@ export const Menu = forwardRef<HTMLDivElement, LabelRequiredForA11y<MenuProps>>(
               horizontal={horizontal}
             >
               <List
+                {...listProps}
+                style={listStyle ?? listProps?.style}
+                className={listClassName ?? listProps?.className}
                 horizontal={horizontal}
                 onClick={(event) => {
+                  listProps?.onClick?.(event);
+
                   // this makes it so you can click on the menu/list without
                   // closing the menu
                   if (event.target === event.currentTarget) {

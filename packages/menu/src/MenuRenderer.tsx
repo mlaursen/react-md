@@ -9,6 +9,7 @@ import {
 import { MenuSheet } from "./MenuSheet";
 import type {
   BaseMenuRendererProps,
+  MenuListProps,
   MenuTransitionProps,
   ProvidedMenuProps,
 } from "./types";
@@ -19,6 +20,7 @@ import type {
  */
 export type MenuRendererProps = ProvidedMenuProps &
   BaseMenuRendererProps &
+  MenuListProps &
   MenuTransitionProps & {
     menuRef: Ref<HTMLDivElement>;
     visible: boolean;

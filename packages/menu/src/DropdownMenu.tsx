@@ -100,6 +100,9 @@ export function DropdownMenu({
   renderAsSheet: propRenderAsSheet,
   sheetPosition: propSheetPosition,
   sheetVerticalSize: propSheetVerticalSize,
+  listStyle,
+  listClassName,
+  listProps,
   appear,
   enter,
   exit,
@@ -253,6 +256,9 @@ export function DropdownMenu({
         sheetFooter={sheetFooter}
         sheetPosition={sheetPosition}
         sheetVerticalSize={sheetVerticalSize}
+        listStyle={listStyle}
+        listClassName={listClassName}
+        listProps={listProps}
         onRequestClose={() => setVisible(false)}
         horizontal={horizontal}
         renderAsSheet={renderAsSheet}

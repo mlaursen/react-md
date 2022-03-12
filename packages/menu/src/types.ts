@@ -1,6 +1,6 @@
 import type { ButtonProps } from "@react-md/button";
 import type { IconRotatorProps, TextIconSpacingProps } from "@react-md/icon";
-import type { ListItemProps } from "@react-md/list";
+import type { ListElement, ListItemProps, ListProps } from "@react-md/list";
 import type { RenderConditionalPortalProps } from "@react-md/portal";
 import type {
   SheetPosition,
@@ -17,6 +17,7 @@ import type {
   KeyboardFocusHookOptions,
   LabelA11y,
   PositionAnchor,
+  PropsWithRef,
   RequireAtLeastOne,
 } from "@react-md/utils";
 import type {
@@ -122,7 +123,8 @@ export interface MenuWidgetProps
 export interface MenuProps
   extends RenderConditionalPortalProps,
     MenuTransitionProps,
-    MenuWidgetProps {
+    MenuWidgetProps,
+    MenuListProps {
   /**
    * Boolean if the menu is currently visible.
    */
@@ -405,6 +407,29 @@ export interface BaseMenuButtonProps
   >;
 }
 
+/** @remarks \@since 5.1.0 */
+export interface MenuListProps {
+  /**
+   * An optional style to provide to the `List` component that surrounds the
+   * `MenuItem` within a `Menu`.
+   */
+  listStyle?: CSSProperties;
+
+  /**
+   * An optional className to provide to the `List` component that surrounds the
+   * `MenuItem` within a `Menu`.
+   */
+  listClassName?: string;
+
+  /**
+   * Any additional props to pass to the `List` component that surrounds the
+   * `Menu`'s `MenuItem`s.
+   */
+  listProps?: Readonly<
+    PropsWithRef<Omit<ListProps, "horizontal">, ListElement>
+  >;
+}
+
 /** @remarks \@since 5.0.0 */
 export interface BaseMenuRendererProps
   extends RenderConditionalPortalProps,
@@ -415,9 +440,7 @@ export interface BaseMenuRendererProps
    * Note: use the {@link menuStyle} and {@link menuClassName} props instead of
    * including `style` or `className` here.
    */
-  menuProps?: Readonly<
-    Omit<MenuWidgetProps, "id" | "style" | "className" | "children">
-  >;
+  menuProps?: Readonly<Omit<MenuWidgetProps, "id" | "children">>;
 
   /**
    * An optional style object that should be merged with the menu's fixed
@@ -437,10 +460,7 @@ export interface BaseMenuRendererProps
    * of including `style` or `className` here.
    */
   sheetProps?: Readonly<
-    Omit<
-      SheetProps,
-      "style" | "className" | "onRequestClose" | "children" | "id" | "visible"
-    >
+    Omit<SheetProps, "id" | "visible" | "onRequestClose" | "children">
   >;
 
   /**
@@ -470,7 +490,8 @@ export interface BaseDropdownMenuProps
 export interface DropdownMenuButtonProps
   extends BaseMenuButtonProps,
     BaseDropdownMenuProps,
-    MenuButtonTextIconSpacingProps {
+    MenuButtonTextIconSpacingProps,
+    MenuListProps {
   /**
    * The children to display in the button. This should normally be text or an
    * icon.
@@ -533,7 +554,8 @@ export interface BaseMenuItemButtonProps extends MenuItemProps {
 /** @remarks \@since 5.0.0 */
 export interface DropdownMenuItemProps
   extends BaseDropdownMenuProps,
-    BaseMenuItemButtonProps {
+    BaseMenuItemButtonProps,
+    MenuListProps {
   /**
    * The children to display in the menuitem acting as a button.
    */
