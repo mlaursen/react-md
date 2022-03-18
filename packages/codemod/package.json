@@ -32,9 +32,9 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "commander": "^9.0.0",
+    "commander": "^9.1.0",
     "glob": "^7.2.0",
-    "inquirer": "^8.2.0",
+    "inquirer": "^8.2.1",
     "jscodeshift": "^0.13.0"
   },
   "devDependencies": {
