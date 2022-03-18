@@ -64,6 +64,7 @@ class MockedObserver implements ResizeObserver {
           contentRect,
           borderBoxSize: [],
           contentBoxSize: [],
+          devicePixelContentBoxSize: [],
         })),
         this
       );
@@ -81,7 +82,15 @@ class MockedObserver implements ResizeObserver {
       }
 
       this._callback(
-        [{ target, contentRect, borderBoxSize: [], contentBoxSize: [] }],
+        [
+          {
+            target,
+            contentRect,
+            borderBoxSize: [],
+            contentBoxSize: [],
+            devicePixelContentBoxSize: [],
+          },
+        ],
         this
       );
     });

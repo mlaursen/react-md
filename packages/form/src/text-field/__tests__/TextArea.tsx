@@ -62,6 +62,7 @@ class MockedObserver implements ResizeObserver {
           contentRect,
           borderBoxSize: [],
           contentBoxSize: [],
+          devicePixelContentBoxSize: [],
         })),
         this
       );

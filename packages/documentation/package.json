@@ -34,28 +34,28 @@
     "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.1",
-    "react-hook-form": "^7.25.3",
+    "react-hook-form": "^7.28.0",
     "react-marked-renderer": "^1.1.1",
     "react-md": "^5.0.0",
-    "react-router-dom": "^6.2.1",
+    "react-router-dom": "^6.2.2",
     "react-virtualized": "^9.22.3",
-    "sass": "^1.49.0"
+    "sass": "^1.49.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.12",
+    "@babel/core": "^7.17.8",
     "@react-md/dev-utils": "^5.0.0",
     "@types/formidable": "^2.0.4",
-    "@types/gtag.js": "^0.0.8",
+    "@types/gtag.js": "^0.0.10",
     "@types/js-cookie": "^3.0.1",
     "@types/prismjs": "^1.26.0",
     "@types/qs": "^6.9.7",
-    "@types/react-virtualized": "^9.21.16",
+    "@types/react-virtualized": "^9.21.20",
     "cross-env": "^7.0.3",
-    "eslint-config-next": "^12.0.9",
+    "eslint-config-next": "^12.1.0",
     "npm-run-all": "^4.1.5",
     "raw-loader": "^4.0.2",
-    "typescript": "^4.5.5",
-    "webpack": "^5.67.0"
+    "typescript": "^4.6.2",
+    "webpack": "^5.70.0"
   },
   "browerlist": [
     "not ie 11",
