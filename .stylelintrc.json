@@ -108,6 +108,7 @@
     "no-invalid-position-at-import-rule": null,
     "color-function-notation": null,
     "max-line-length": null,
+    "function-no-unknown": null,
     "value-no-vendor-prefix": true
   }
 }
