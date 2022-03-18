@@ -1,6 +1,6 @@
 {
   "name": "@react-md/app-bar",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "This small package implments the AppBar spec in material design.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -29,12 +29,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/button": "^5.0.0",
-    "@react-md/elevation": "^5.0.0",
-    "@react-md/icon": "^5.0.0",
-    "@react-md/theme": "^5.0.0",
-    "@react-md/typography": "^5.0.0",
-    "@react-md/utils": "^5.0.0",
+    "@react-md/button": "^5.1.0",
+    "@react-md/elevation": "^5.1.0",
+    "@react-md/icon": "^5.1.0",
+    "@react-md/theme": "^5.1.0",
+    "@react-md/typography": "^5.1.0",
+    "@react-md/utils": "^5.1.0",
     "classnames": "^2.3.1"
   },
   "devDependencies": {

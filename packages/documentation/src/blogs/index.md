@@ -1,3 +1,42 @@
+Title: react-md 5.1.0
+
+Date: 03/18/2022
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/app-bar:** `AppBarTitle` now applies `flex: 1 1 auto` (4a47c92)
+- **@react-md/tooltip:** Tooltips stay visible on mobile Firefox (7039fef)
+
+##### Features<!-- no-margin -->
+
+- **@react-md/menu:** Provide props for Menu's `List` (2b5fb23)
+- **@react-md/tooltip:** `useTooltip` supports new disabled option (a934ae9)
+
+##### Documentation<!-- no-margin -->
+
+- **@react-md/tooltip:** Remove documentation around `Tooltipped` component
+  (1a59190), closes #1367
+
+##### Other Internal Changes<!-- no-margin -->
+
+- removed old `eslint` rules (88eb2b2)
+- run lint-scripts --fix for consistent-type-imports (42d839d)
+- Updated the v5.0.0 release notes (6106751)
+- **@react-md/dev-utils:** Fix indexer for consistent-type-imports (2d2d1e9)
+- **@react-md/form:** bump nanoid from 3.2.0 to 3.3.1 (e625488)
+- **react-md.dev:** Add demo for rendering DropdownMenus as a `Grid` (3ac42ef)
+- **react-md.dev:** Do not lazy load icons through next/head (47ccc1d)
+- **react-md.dev:** Fix 404 page for sandboxes (4772c88)
+- **react-md.dev:** Fix tooltip dense demo (efc7f8c)
+- **react-md.dev:** Fix usage of `useTooltip` when it is conditionally applied
+  (cfca184)
+- **react-md.dev:** Update examples for `useTooltip` disabled option (f318ecf)
+- **stylelint:** bump `stylelint` plugins to latest (2bb6429)
+
+---
+
 Title: react-md 5.0.0
 
 Date: 01/30/2022

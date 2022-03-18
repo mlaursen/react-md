@@ -1,6 +1,6 @@
 {
   "name": "@react-md/card",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "Create interactable cards from the material design specifications.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -30,13 +30,13 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/divider": "^5.0.0",
-    "@react-md/elevation": "^5.0.0",
-    "@react-md/icon": "^5.0.0",
-    "@react-md/states": "^5.0.0",
-    "@react-md/theme": "^5.0.0",
-    "@react-md/typography": "^5.0.0",
-    "@react-md/utils": "^5.0.0",
+    "@react-md/divider": "^5.1.0",
+    "@react-md/elevation": "^5.1.0",
+    "@react-md/icon": "^5.1.0",
+    "@react-md/states": "^5.1.0",
+    "@react-md/theme": "^5.1.0",
+    "@react-md/typography": "^5.1.0",
+    "@react-md/utils": "^5.1.0",
     "classnames": "^2.3.1"
   },
   "devDependencies": {

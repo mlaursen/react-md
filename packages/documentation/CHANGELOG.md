@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/mlaursen/react-md/compare/v5.0.0...v5.1.0) (2022-03-18)
+
+
+### Documentation
+
+* **@react-md/tooltip:** Remove documentation around `Tooltipped` component ([1a59190](https://github.com/mlaursen/react-md/commit/1a59190e7b76494b5375809d563f03c4ee0b8b75)), closes [#1367](https://github.com/mlaursen/react-md/issues/1367)
+
+
+### Other Internal Changes
+
+* run lint-scripts --fix for consistent-type-imports ([42d839d](https://github.com/mlaursen/react-md/commit/42d839d359922e0a8ee3775a75162b9755a2c2b6))
+* Updated the v5.0.0 release notes ([6106751](https://github.com/mlaursen/react-md/commit/61067511d836a27671741954620087979ffe4698))
+* **react-md.dev:** Add demo for rendering DropdownMenus as a `Grid` ([3ac42ef](https://github.com/mlaursen/react-md/commit/3ac42ef7387a9afb5b77a7d3ad30004301d4178e))
+* **react-md.dev:** Do not lazy load icons through next/head ([47ccc1d](https://github.com/mlaursen/react-md/commit/47ccc1dc8df292e9da47a63f53918074fb701643))
+* **react-md.dev:** Fix 404 page for sandboxes ([4772c88](https://github.com/mlaursen/react-md/commit/4772c8888a0516c9b4c34e618f724a83a55a0509))
+* **react-md.dev:** Fix tooltip dense demo ([efc7f8c](https://github.com/mlaursen/react-md/commit/efc7f8c5e9741862c3f19b26a990c5daa1e9520e))
+* **react-md.dev:** Fix usage of `useTooltip` when it is conditionally applied ([cfca184](https://github.com/mlaursen/react-md/commit/cfca18448b13e13d95c207a73f6981c2952cbad7))
+* **react-md.dev:** Update examples for `useTooltip` disabled option ([f318ecf](https://github.com/mlaursen/react-md/commit/f318ecf2ef642f5d8ba87ea2319f5b65712561a6))
+
+
+
+
+
+
 # [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
 
 

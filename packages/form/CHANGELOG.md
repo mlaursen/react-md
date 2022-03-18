@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/mlaursen/react-md/compare/v5.0.0...v5.1.0) (2022-03-18)
+
+
+### Other Internal Changes
+
+* run lint-scripts --fix for consistent-type-imports ([42d839d](https://github.com/mlaursen/react-md/commit/42d839d359922e0a8ee3775a75162b9755a2c2b6))
+* **@react-md/form:** bump nanoid from 3.2.0 to 3.3.1 ([e625488](https://github.com/mlaursen/react-md/commit/e625488fb9683865ec4af8ade0a53a0101b2ee17))
+
+
+
+
+
+
 # [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
 
 

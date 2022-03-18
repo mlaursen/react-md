@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/mlaursen/react-md/compare/v5.0.0...v5.1.0) (2022-03-18)
+
+
+### Bug Fixes
+
+* **@react-md/tooltip:** Tooltips stay visible on mobile Firefox ([7039fef](https://github.com/mlaursen/react-md/commit/7039fef0b7003a5288ee855c7710b7a53d4a66d9))
+
+
+### Features
+
+* **@react-md/tooltip:** `useTooltip` supports new disabled option ([a934ae9](https://github.com/mlaursen/react-md/commit/a934ae931b6e08ab3a32cb688eda728cf98ce7c2))
+
+
+### Documentation
+
+* **@react-md/tooltip:** Remove documentation around `Tooltipped` component ([1a59190](https://github.com/mlaursen/react-md/commit/1a59190e7b76494b5375809d563f03c4ee0b8b75)), closes [#1367](https://github.com/mlaursen/react-md/issues/1367)
+
+
+### Other Internal Changes
+
+* run lint-scripts --fix for consistent-type-imports ([42d839d](https://github.com/mlaursen/react-md/commit/42d839d359922e0a8ee3775a75162b9755a2c2b6))
+
+
+
+
+
+
 # [5.0.0](https://github.com/mlaursen/react-md/compare/v4.0.3...v5.0.0) (2022-01-31)
 
 
