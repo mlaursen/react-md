@@ -48,7 +48,7 @@ export default function ToggleRTL({ as }: ToggleRTLProps): ReactElement {
       >
         {icon}
       </AppBarAction>
-      <Tooltip {...tooltipProps}>TOggle right to left</Tooltip>
+      <Tooltip {...tooltipProps}>Toggle right to left</Tooltip>
     </>
   );
 }
