@@ -1566,10 +1566,10 @@
   resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.13.2.tgz#3b0efb6d3903bd49edb073696f60e90df08efb26"
   integrity sha512-WrHvO8PDL8wd8T2+zBGKrMwVL5IyzR3ryWUsl0PXgEV0QHup4mTLi0QcATefGI6Gx9Anu7vthPyyyLpY0EpiQg==
 
-"@mlaursen/eslint-config@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@mlaursen/eslint-config/-/eslint-config-1.5.0.tgz#040badee8e8f1a0345cabfcd814826d7c45a033f"
-  integrity sha512-bI6fu6So55nKwXnHJsmt9PW2u4BcqmvYIaq+mpAcsI4c05X1iS8f46yd4kzOd9Y2EMYI9xjUqjysxkX3omup4w==
+"@mlaursen/eslint-config@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@mlaursen/eslint-config/-/eslint-config-1.6.0.tgz#810cb112d49718b9501fbcbacf52802faa9b38a9"
+  integrity sha512-pYnuWSE/TEHz6ruRxKPDJDFOP7He2RGaOH+wBjQXu8uc+1zJIKe4VDsO8Oma3WeWsRzhUa9DliEgoIuncxmffA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.14.0"
     "@typescript-eslint/parser" "^5.14.0"

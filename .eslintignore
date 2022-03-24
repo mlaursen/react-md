@@ -1,6 +1,8 @@
 packages/material-icons/src
-packages/documentation/src/constants/sandboxes
 packages/documentation/src/components/SassDocPage
+packages/documentation/src/constants/meta
+packages/documentation/src/constants/sandboxes
+packages/documentation/src/constants/sassdoc
 packages/codemod/transforms/**/__tests__
 packages/codemod/transforms/**/__testfixtures__
 
