@@ -7,7 +7,7 @@ export default function Blockquote({
   className,
   children,
   ...props
-}: HTMLAttributes<HTMLDivElement>): ReactElement {
+}: HTMLAttributes<HTMLQuoteElement>): ReactElement {
   return (
     <blockquote {...props} className={cn(styles.blockquote, className)}>
       {children}
