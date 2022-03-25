@@ -114,9 +114,8 @@ export default function Layout({
 
   return (
     <Configuration
-      defaultSize={defaultSize}
       icons={icons}
-      disableRipple
+      defaultSize={defaultSize}
       menuConfiguration={menuConfiguration}
     >
       <TOCVisibilityProvider pathname={pathname}>
