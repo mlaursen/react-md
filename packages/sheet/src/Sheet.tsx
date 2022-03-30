@@ -163,7 +163,7 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(function Sheet(
       temporary={temporary}
       onExited={() => {
         onExited?.();
-        setHidden(true);
+        setHidden(!temporary);
       }}
       portal={portal}
       overlayHidden={overlayHidden}
