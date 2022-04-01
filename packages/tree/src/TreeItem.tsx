@@ -56,6 +56,15 @@ export const TreeItem = forwardRef<
     disabled = false,
     readOnly,
     onFocus,
+    onKeyUp,
+    onKeyDown,
+    onClick,
+    onMouseUp,
+    onMouseDown,
+    onMouseLeave,
+    onTouchMove,
+    onTouchEnd,
+    onTouchStart,
     ...props
   },
   ref
@@ -70,7 +79,17 @@ export const TreeItem = forwardRef<
   const { ripples, className, handlers } = useInteractionStates({
     disabled,
     className: propClassName,
-    handlers: isLink ? props : undefined,
+    handlers: {
+      onKeyUp,
+      onKeyDown,
+      onClick,
+      onMouseUp,
+      onMouseDown,
+      onMouseLeave,
+      onTouchMove,
+      onTouchEnd,
+      onTouchStart,
+    },
     disableSpacebarClick: isLink,
   });
 
@@ -99,27 +118,25 @@ export const TreeItem = forwardRef<
       }
 
       event.preventDefault();
-      const tree = event.currentTarget.closest('[role="tree"]');
-      if (tree) {
-        (tree as ListElement).focus();
-      }
+      event.currentTarget.closest<ListElement>('[role="tree"]')?.focus();
     },
     [onFocus]
   );
 
   const a11y = {
     "aria-expanded": renderChildItems ? expanded : undefined,
+    "aria-selected": selected,
     "aria-level": depth + 1,
     "aria-setsize": listSize,
     "aria-posinset": itemIndex + 1,
-    "aria-disabled": disabled ? "true" : undefined,
+    "aria-disabled": disabled || undefined,
     id,
     role: "treeitem",
     tabIndex: -1,
     ...handlers,
     onFocus: handleFocus,
-  };
-  const noA11y = { role: "none" };
+  } as const;
+  const noA11y = { role: "none" } as const;
 
   return (
     <li

@@ -1,5 +1,1087 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Tree Real World Demos should work with the tree item hooks for multi selection 1`] = `
+<div>
+  <ul
+    aria-activedescendant=""
+    aria-label="Tree"
+    aria-multiselectable="true"
+    class="rmd-list rmd-tree"
+    id="multi-select-tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+    <li
+      aria-expanded="false"
+      aria-level="1"
+      aria-posinset="2"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-2"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 2
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-tree-item__rotator-icon rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="3"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-3"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Tree Real World Demos should work with the tree item hooks for multi selection 2`] = `
+<div>
+  <ul
+    aria-activedescendant="multi-select-tree-item-1"
+    aria-label="Tree"
+    aria-multiselectable="true"
+    class="rmd-list rmd-tree"
+    id="multi-select-tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-selected="true"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected rmd-tree-item__content--focused"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+    </li>
+    <li
+      aria-expanded="false"
+      aria-level="1"
+      aria-posinset="2"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-2"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 2
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-tree-item__rotator-icon rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="3"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-3"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Tree Real World Demos should work with the tree item hooks for multi selection 3`] = `
+<div>
+  <ul
+    aria-activedescendant="multi-select-tree-item-2"
+    aria-label="Tree"
+    aria-multiselectable="true"
+    class="rmd-list rmd-tree"
+    id="multi-select-tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-selected="true"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+    </li>
+    <li
+      aria-expanded="true"
+      aria-level="1"
+      aria-posinset="2"
+      aria-selected="true"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-2"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected rmd-tree-item__content--focused"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 2
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-tree-item__rotator-icon rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+      <ul
+        class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+        role="group"
+        style="max-height: 0; padding-top: 0px; padding-bottom: 0px; transition-duration: 250ms;"
+      >
+        <li
+          aria-level="2"
+          aria-posinset="1"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="multi-select-tree-item-2-1"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 1
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+        <li
+          aria-level="2"
+          aria-posinset="2"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="multi-select-tree-item-2-2"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 2
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+        <li
+          aria-level="2"
+          aria-posinset="3"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="multi-select-tree-item-2-3"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 3
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+      </ul>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="3"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-3"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Tree Real World Demos should work with the tree item hooks for multi selection 4`] = `
+<div>
+  <ul
+    aria-activedescendant="multi-select-tree-item-2"
+    aria-label="Tree"
+    aria-multiselectable="true"
+    class="rmd-list rmd-tree"
+    id="multi-select-tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-selected="true"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+    </li>
+    <li
+      aria-expanded="false"
+      aria-level="1"
+      aria-posinset="2"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-2"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--focused"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 2
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-tree-item__rotator-icon rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+      <ul
+        class="rmd-list rmd-collapse rmd-collapse--leave rmd-collapse--no-overflow rmd-tree-group"
+        role="group"
+        style="max-height: 0; padding-top: 0px; padding-bottom: 0px; transition-duration: 200ms;"
+      >
+        <li
+          aria-level="2"
+          aria-posinset="1"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="multi-select-tree-item-2-1"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 1
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+        <li
+          aria-level="2"
+          aria-posinset="2"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="multi-select-tree-item-2-2"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 2
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+        <li
+          aria-level="2"
+          aria-posinset="3"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="multi-select-tree-item-2-3"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 3
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+      </ul>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="3"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="multi-select-tree-item-3"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Tree Real World Demos should work with the tree item hooks for single selection 1`] = `
+<div>
+  <ul
+    aria-activedescendant=""
+    aria-label="Tree"
+    class="rmd-list rmd-tree"
+    id="single-select-tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+    <li
+      aria-expanded="false"
+      aria-level="1"
+      aria-posinset="2"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-2"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 2
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-tree-item__rotator-icon rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="3"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-3"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Tree Real World Demos should work with the tree item hooks for single selection 2`] = `
+<div>
+  <ul
+    aria-activedescendant="single-select-tree-item-1"
+    aria-label="Tree"
+    class="rmd-list rmd-tree"
+    id="single-select-tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-selected="true"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected rmd-tree-item__content--focused"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+    </li>
+    <li
+      aria-expanded="false"
+      aria-level="1"
+      aria-posinset="2"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-2"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 2
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-tree-item__rotator-icon rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="3"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-3"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Tree Real World Demos should work with the tree item hooks for single selection 3`] = `
+<div>
+  <ul
+    aria-activedescendant="single-select-tree-item-2"
+    aria-label="Tree"
+    class="rmd-list rmd-tree"
+    id="single-select-tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+    </li>
+    <li
+      aria-expanded="true"
+      aria-level="1"
+      aria-posinset="2"
+      aria-selected="true"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-2"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected rmd-tree-item__content--focused"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 2
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-icon-rotator--rotated rmd-tree-item__rotator-icon rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+      <ul
+        class="rmd-list rmd-collapse rmd-collapse--enter rmd-collapse--no-overflow rmd-tree-group"
+        role="group"
+        style="max-height: 0; padding-top: 0px; padding-bottom: 0px; transition-duration: 250ms;"
+      >
+        <li
+          aria-level="2"
+          aria-posinset="1"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="single-select-tree-item-2-1"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 1
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+        <li
+          aria-level="2"
+          aria-posinset="2"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="single-select-tree-item-2-2"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 2
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+        <li
+          aria-level="2"
+          aria-posinset="3"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="single-select-tree-item-2-3"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 3
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+      </ul>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="3"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-3"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Tree Real World Demos should work with the tree item hooks for single selection 4`] = `
+<div>
+  <ul
+    aria-activedescendant="single-select-tree-item-2"
+    aria-label="Tree"
+    class="rmd-list rmd-tree"
+    id="single-select-tree"
+    role="tree"
+    tabindex="0"
+  >
+    <li
+      aria-level="1"
+      aria-posinset="1"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-1"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 1
+        </span>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+    </li>
+    <li
+      aria-expanded="false"
+      aria-level="1"
+      aria-posinset="2"
+      aria-selected="true"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-2"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable rmd-tree-item__content--selected rmd-tree-item__content--focused"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 2
+        </span>
+        <i
+          aria-hidden="true"
+          class="rmd-icon rmd-icon--font material-icons rmd-icon-rotator rmd-icon-rotator--animate rmd-tree-item__rotator-icon rmd-icon--after rmd-list-item__addon"
+        >
+          arrow_drop_down
+        </i>
+        <span
+          class="rmd-ripple-container"
+        >
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+          <span
+            class="rmd-ripple rmd-ripple--animating rmd-ripple--scaling"
+            style="left: 0px; top: 0px; height: 0px; width: 0px;"
+          />
+        </span>
+      </span>
+      <ul
+        class="rmd-list rmd-collapse rmd-collapse--leave rmd-collapse--no-overflow rmd-tree-group"
+        role="group"
+        style="max-height: 0; padding-top: 0px; padding-bottom: 0px; transition-duration: 200ms;"
+      >
+        <li
+          aria-level="2"
+          aria-posinset="1"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="single-select-tree-item-2-1"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 1
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+        <li
+          aria-level="2"
+          aria-posinset="2"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="single-select-tree-item-2-2"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 2
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+        <li
+          aria-level="2"
+          aria-posinset="3"
+          aria-selected="false"
+          aria-setsize="3"
+          class="rmd-tree-item"
+          id="single-select-tree-item-2-3"
+          role="treeitem"
+          tabindex="-1"
+        >
+          <span
+            class="rmd-tree-item__content rmd-tree-item__content--clickable"
+          >
+            <span
+              class="rmd-list-item__text"
+            >
+              Folder 2 Child 3
+            </span>
+            <span
+              class="rmd-ripple-container"
+            />
+          </span>
+        </li>
+      </ul>
+    </li>
+    <li
+      aria-level="1"
+      aria-posinset="3"
+      aria-selected="false"
+      aria-setsize="3"
+      class="rmd-tree-item"
+      id="single-select-tree-item-3"
+      role="treeitem"
+      tabindex="-1"
+    >
+      <span
+        class="rmd-tree-item__content rmd-tree-item__content--clickable"
+      >
+        <span
+          class="rmd-list-item__text"
+        >
+          Folder 3
+        </span>
+        <span
+          class="rmd-ripple-container"
+        />
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
 exports[`Tree should be able to render a tree with muliple root level nodes 1`] = `
 <div>
   <ul
@@ -12,6 +1094,7 @@ exports[`Tree should be able to render a tree with muliple root level nodes 1`] 
     <li
       aria-level="1"
       aria-posinset="1"
+      aria-selected="false"
       aria-setsize="3"
       class="rmd-tree-item"
       id="tree-item-1"
@@ -34,6 +1117,7 @@ exports[`Tree should be able to render a tree with muliple root level nodes 1`] 
     <li
       aria-level="1"
       aria-posinset="2"
+      aria-selected="false"
       aria-setsize="3"
       class="rmd-tree-item"
       id="tree-item-2"
@@ -56,6 +1140,7 @@ exports[`Tree should be able to render a tree with muliple root level nodes 1`] 
     <li
       aria-level="1"
       aria-posinset="3"
+      aria-selected="false"
       aria-setsize="3"
       class="rmd-tree-item"
       id="tree-item-3"
@@ -103,6 +1188,7 @@ exports[`Tree should be able to use a rootId that is not null 1`] = `
     <li
       aria-level="1"
       aria-posinset="1"
+      aria-selected="false"
       aria-setsize="3"
       class="rmd-tree-item"
       id="tree-item-1"
@@ -125,6 +1211,7 @@ exports[`Tree should be able to use a rootId that is not null 1`] = `
     <li
       aria-level="1"
       aria-posinset="2"
+      aria-selected="false"
       aria-setsize="3"
       class="rmd-tree-item"
       id="tree-item-2"
@@ -147,6 +1234,7 @@ exports[`Tree should be able to use a rootId that is not null 1`] = `
     <li
       aria-level="1"
       aria-posinset="3"
+      aria-selected="false"
       aria-setsize="3"
       class="rmd-tree-item"
       id="tree-item-3"
@@ -182,6 +1270,7 @@ exports[`Tree should pass the tree item's className and liClassName attributes b
     <li
       aria-level="1"
       aria-posinset="1"
+      aria-selected="false"
       aria-setsize="1"
       class="rmd-tree-item item-1-li-class-name"
       id="tree-item-1"

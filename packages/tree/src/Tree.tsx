@@ -113,7 +113,9 @@ export const Tree = forwardRef<ListElement, TreeProps<any>>(function Tree( // es
           selected,
           expanded,
           focused,
-          onClick() {
+          onClick(event) {
+            event.stopPropagation();
+
             setActiveId(itemId);
             onItemSelect(itemId);
             if (childItems) {
