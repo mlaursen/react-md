@@ -1,6 +1,6 @@
 {
   "name": "documentation",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "The documentation site for react-md",
   "private": true,
   "scripts": {
@@ -29,21 +29,21 @@
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "mobile-detect": "^1.4.5",
-    "next": "12.1.0",
+    "next": "12.1.4",
     "prismjs": "^1.26.0",
     "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.1",
     "react-hook-form": "^7.28.1",
     "react-marked-renderer": "^1.1.1",
-    "react-md": "^5.1.0",
+    "react-md": "^5.1.1",
     "react-router-dom": "^6.2.2",
     "react-virtualized": "^9.22.3",
     "sass": "^1.49.9"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
-    "@react-md/dev-utils": "^5.1.0",
+    "@react-md/dev-utils": "^5.1.1",
     "@types/formidable": "^2.0.4",
     "@types/gtag.js": "^0.0.10",
     "@types/js-cookie": "^3.0.1",
