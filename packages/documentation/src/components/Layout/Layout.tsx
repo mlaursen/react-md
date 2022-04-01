@@ -1,5 +1,5 @@
 import type { ReactElement, ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import type { ConfiguredIcons } from "@react-md/icon";
 import type { LayoutConfiguration } from "@react-md/layout";
 import {
@@ -95,7 +95,7 @@ export default function Layout({
 
   const prevPathname = useRef(pathname);
   const { elementProps, transitionTo } = useCrossFadeTransition();
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (prevPathname.current === pathname) {
       return;
     }

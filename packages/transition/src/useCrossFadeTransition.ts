@@ -68,7 +68,7 @@ export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
  * @example
  * New Page Transition with `@react-md/layout`
  * ```tsx
- * import { ReactElement, ReactNode, useEffect } from "react";
+ * import { ReactElement, ReactNode, useLayoutEffect } from "react";
  * import { useLocation } from "react-router-dom":
  * import { Layout, useLayoutNavigation } from "@react-md/layout";
  * import { useCrossFadeTransition } from "@react-md/transition";
@@ -84,7 +84,7 @@ export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
  *   const { elementProps, transitionTo } = useCrossFadeTransition();
  *
  *   const prevPathname = useRef(pathname);
- *   useEffect(() => {
+ *   useLayoutEffect(() => {
  *     if (prevPathname.current === pathname) {
  *       return
  *     }

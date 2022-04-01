@@ -333,7 +333,7 @@ cross fade transition on route changes with the `useCrossFadeTransition` hook.
 
 ```diff
 -import { ReactElement } from "react";
-+import { ReactElement, useRef } from "react";
++import { ReactElement, useRef, useLayoutEffect } from "react";
  import { Layout, useLayoutNavigation } from "@react-md/layout";
 +import { useCrossFadeTransition } from "@react-md/transition";
  import { useLocation, Link } from "react-router-dom";
@@ -346,7 +346,7 @@ cross fade transition on route changes with the `useCrossFadeTransition` hook.
    const { pathname } = useLocation();
 +  const prevPathname = useRef(pathname);
 +  const { elementProps, transitionTo } = useCrossFadeTransition();
-+  useEffect(() => {
++  useLayoutEffect(() => {
 +    if (pathname === prevPathname.current) {
 +      return
 +    }
