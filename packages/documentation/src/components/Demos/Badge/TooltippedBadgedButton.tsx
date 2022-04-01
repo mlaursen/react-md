@@ -33,6 +33,8 @@ export default forwardRef<HTMLButtonElement, TooltippedBadgedButtonProps>(
   ) {
     const { elementProps, tooltipProps } = useTooltip({
       baseId: id,
+      disabled: !tooltip,
+      style: tooltipStyle,
       onClick,
       onBlur,
       onFocus,
@@ -48,11 +50,7 @@ export default forwardRef<HTMLButtonElement, TooltippedBadgedButtonProps>(
         <BadgedButton {...props} {...elementProps} ref={ref}>
           {children}
         </BadgedButton>
-        <Tooltip
-          {...tooltipProps}
-          style={tooltipStyle}
-          className={tooltipClassName}
-        >
+        <Tooltip {...tooltipProps} className={tooltipClassName}>
           {tooltip}
         </Tooltip>
       </>
