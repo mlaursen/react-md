@@ -10,7 +10,8 @@
 .transition {
   @include transition;
 
-  * {
+  // make it so the light/dark theme toggle still animates with the default transform
+  *:not(:global(.rmd-icon-rotator)) {
     @include transition;
   }
 }
