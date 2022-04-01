@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/mlaursen/react-md/compare/v5.1.0...v5.1.1) (2022-04-01)
+
+
+### Other Internal Changes
+
+* **react-md.dev:** Fix typo for RTL tooltip ([ee9f34c](https://github.com/mlaursen/react-md/commit/ee9f34c2932dd2a8a34d7cbfc04ffc48b264574c))
+* **react-md.dev:** re-enable ripples to match `defaults` ([736e3b4](https://github.com/mlaursen/react-md/commit/736e3b40b2d273f99da1e2ae12897aa9fc3df589))
+
+
+
+
+
+
 # [5.1.0](https://github.com/mlaursen/react-md/compare/v5.0.0...v5.1.0) (2022-03-18)
 
 

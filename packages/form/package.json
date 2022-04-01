@@ -1,6 +1,6 @@
 {
   "name": "@react-md/form",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "This package is for creating all the different form input types.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -38,7 +38,7 @@
     "@react-md/button": "^5.1.0",
     "@react-md/icon": "^5.1.0",
     "@react-md/list": "^5.1.0",
-    "@react-md/menu": "^5.1.0",
+    "@react-md/menu": "^5.1.1",
     "@react-md/portal": "^5.1.0",
     "@react-md/progress": "^5.1.0",
     "@react-md/states": "^5.1.0",

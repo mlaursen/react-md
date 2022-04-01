@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/mlaursen/react-md/compare/v5.1.0...v5.1.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **@react-md/tree:** Add missing aria-selected attribute ([e578ea0](https://github.com/mlaursen/react-md/commit/e578ea02f6e0a2a655bbb98366fe96e8de98b68a)), closes [#1388](https://github.com/mlaursen/react-md/issues/1388)
+
+
+
+
+
+
 # [5.1.0](https://github.com/mlaursen/react-md/compare/v5.0.0...v5.1.0) (2022-03-18)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@react-md/sheet",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "A package for making temporary sheets of material (normally for navigation or details).",
   "main": "./lib/index.js",
   "module": "./es/index.js",

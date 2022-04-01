@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/mlaursen/react-md/compare/v5.1.0...v5.1.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **@react-md/sheet:** Animate correctly in React 18 ([ca27b19](https://github.com/mlaursen/react-md/commit/ca27b195d1029e6a0eff41d952189eb023af6a65))
+* **@react-md/tree:** Add missing aria-selected attribute ([e578ea0](https://github.com/mlaursen/react-md/commit/e578ea02f6e0a2a655bbb98366fe96e8de98b68a)), closes [#1388](https://github.com/mlaursen/react-md/issues/1388)
+
+
+### Other Internal Changes
+
+* **eslint:** Try new precommit eslintrc file for type imports ([fb69a2f](https://github.com/mlaursen/react-md/commit/fb69a2f1b47eb7fe690c59a4a3688b7e50d1c9b7))
+* **react-md.dev:** Fix typo for RTL tooltip ([ee9f34c](https://github.com/mlaursen/react-md/commit/ee9f34c2932dd2a8a34d7cbfc04ffc48b264574c))
+* **react-md.dev:** re-enable ripples to match `defaults` ([736e3b4](https://github.com/mlaursen/react-md/commit/736e3b40b2d273f99da1e2ae12897aa9fc3df589))
+
+
+
+
+
+
 # [5.1.0](https://github.com/mlaursen/react-md/compare/v5.0.0...v5.1.0) (2022-03-18)
 
 

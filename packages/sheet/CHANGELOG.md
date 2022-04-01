@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/mlaursen/react-md/compare/v5.1.0...v5.1.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **@react-md/sheet:** Animate correctly in React 18 ([ca27b19](https://github.com/mlaursen/react-md/commit/ca27b195d1029e6a0eff41d952189eb023af6a65))
+
+
+
+
+
+
 # [5.1.0](https://github.com/mlaursen/react-md/compare/v5.0.0...v5.1.0) (2022-03-18)
 
 

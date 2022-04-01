@@ -1,3 +1,23 @@
+Title: react-md 5.1.1
+
+Date: 03/31/2022
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/sheet:** Animate correctly in React 18 (ca27b19)
+- **@react-md/tree:** Add missing aria-selected attribute (e578ea0), closes
+  #1388
+
+##### Other Internal Changes<!-- no-margin -->
+
+- **eslint:** Try new precommit eslintrc file for type imports (fb69a2f)
+- **react-md.dev:** Fix typo for RTL tooltip (ee9f34c)
+- **react-md.dev:** re-enable ripples to match `defaults` (736e3b4)
+
+---
+
 Title: react-md 5.1.0
 
 Date: 03/18/2022
