@@ -110,13 +110,13 @@ export interface KeyboardFocusHookOptions<E extends HTMLElement>
    * The default value is just to call `element.focus()`.
    *
    * @param element - The element that should gain custom focus
+   * @param nextFocusIndex - The next focus index which can be used for
+   * additional movement behavior.
    */
-  onFocusChange?(element: HTMLElement): void;
+  onFocusChange?(element: HTMLElement, nextFocusIndex: number): void;
 }
 
-/**
- * @remarks \@since 5.0.0
- */
+/** @remarks \@since 5.0.0 */
 export interface KeyboardFocusHookReturnValue<E extends HTMLElement> {
   onFocus: FocusEventHandler<E>;
   onKeyDown: KeyboardEventHandler<E>;
@@ -184,7 +184,7 @@ export function useKeyboardFocus<E extends HTMLElement>(
 
       focusIndex.current = defaultFocusIndex;
       const element = watching.current[focusIndex.current]?.element;
-      element && onFocusChange(element);
+      element && onFocusChange(element, focusIndex.current);
     },
     onKeyDown(event) {
       onKeyDown(event);
@@ -206,7 +206,7 @@ export function useKeyboardFocus<E extends HTMLElement>(
         focusIndex.current = index;
 
         const element = watching.current[index]?.element;
-        element && onFocusChange(element);
+        element && onFocusChange(element, focusIndex.current);
       };
 
       if (

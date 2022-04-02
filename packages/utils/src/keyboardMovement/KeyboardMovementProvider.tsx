@@ -1,8 +1,11 @@
 import type { ReactElement, ReactNode } from "react";
 import { useMemo, useRef } from "react";
 
+import { useDir } from "../Dir";
 import {
   DEFAULT_KEYBOARD_MOVEMENT,
+  DEFAULT_LTR_KEYBOARD_MOVEMENT,
+  DEFAULT_RTL_KEYBOARD_MOVEMENT,
   KeyboardMovementContextProvider,
 } from "./movementContext";
 import type {
@@ -36,9 +39,9 @@ export interface KeyboardMovementProviderProps
  * }
  *
  * function CustomKeyboardFocusWidget() {
- *   const { onKeyDown } = useKeyboardFocus();
+ *   const { focusIndex: _focusIndex, ...eventHandlers } = useKeyboardFocus();
  *   return (
- *     <div onKeyDown={onKeyDown}>
+ *     <div {...eventHandlers}>
  *       <FocusableChild />
  *       <FocusableChild />
  *       <FocusableChild />
@@ -60,12 +63,28 @@ export function KeyboardMovementProvider({
   children,
   loopable = false,
   searchable = false,
+  horizontal = false,
   includeDisabled = false,
-  incrementKeys = DEFAULT_KEYBOARD_MOVEMENT.incrementKeys,
-  decrementKeys = DEFAULT_KEYBOARD_MOVEMENT.decrementKeys,
-  jumpToFirstKeys = DEFAULT_KEYBOARD_MOVEMENT.jumpToFirstKeys,
-  jumpToLastKeys = DEFAULT_KEYBOARD_MOVEMENT.jumpToLastKeys,
+  incrementKeys: propIncrementKeys,
+  decrementKeys: propDecrementKeys,
+  jumpToFirstKeys: propJumpToFirstKeys,
+  jumpToLastKeys: propJumpToLastKeys,
 }: KeyboardMovementProviderProps): ReactElement {
+  const isRTL = useDir().dir === "rtl";
+  let defaults: Readonly<Required<KeyboardMovementConfiguration>>;
+  if (horizontal) {
+    defaults = isRTL
+      ? DEFAULT_RTL_KEYBOARD_MOVEMENT
+      : DEFAULT_LTR_KEYBOARD_MOVEMENT;
+  } else {
+    defaults = DEFAULT_KEYBOARD_MOVEMENT;
+  }
+
+  const incrementKeys = propIncrementKeys || defaults.incrementKeys;
+  const decrementKeys = propDecrementKeys || defaults.decrementKeys;
+  const jumpToFirstKeys = propJumpToFirstKeys || defaults.jumpToFirstKeys;
+  const jumpToLastKeys = propJumpToLastKeys || defaults.jumpToLastKeys;
+
   const watching = useRef<KeyboardFocusElementData[]>([]);
   const configuration: KeyboardMovementConfig = {
     incrementKeys,
@@ -93,9 +112,10 @@ export function KeyboardMovementProvider({
       config,
       loopable,
       searchable,
+      horizontal,
       includeDisabled: includeDisabled,
     }),
-    [includeDisabled, loopable, searchable]
+    [horizontal, includeDisabled, loopable, searchable]
   );
 
   return (

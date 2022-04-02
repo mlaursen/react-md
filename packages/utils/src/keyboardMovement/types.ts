@@ -72,6 +72,16 @@ export interface KeyboardMovementBehavior {
    * @defaultValue `false`
    */
   includeDisabled?: boolean;
+
+  /**
+   * Boolean if the keyboard movement is horizontal instead of vertical. This
+   * updates the default keyboard config to use `ArrowRight` and `ArrowLeft`
+   * isntead of `ArrowDown` and `ArrowUp`,
+   *
+   * @remarks \@since 5.1.2
+   * @defaultValue `false`
+   */
+  horizontal?: boolean;
 }
 
 /**

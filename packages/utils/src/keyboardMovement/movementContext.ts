@@ -26,6 +26,28 @@ export const DEFAULT_KEYBOARD_MOVEMENT: Readonly<KeyboardMovementConfig> = {
 };
 
 /**
+ * @remarks \@since 5.1.2
+ * @internal
+ */
+export const DEFAULT_LTR_KEYBOARD_MOVEMENT: Readonly<KeyboardMovementConfig> = {
+  incrementKeys: ["ArrowRight"],
+  decrementKeys: ["ArrowLeft"],
+  jumpToFirstKeys: ["Home"],
+  jumpToLastKeys: ["End"],
+};
+
+/**
+ * @remarks \@since 5.1.2
+ * @internal
+ */
+export const DEFAULT_RTL_KEYBOARD_MOVEMENT: Readonly<KeyboardMovementConfig> = {
+  incrementKeys: ["ArrowLeft"],
+  decrementKeys: ["ArrowRight"],
+  jumpToFirstKeys: ["Home"],
+  jumpToLastKeys: ["End"],
+};
+
+/**
  * @remarks \@since 5.0.0
  * @internal
  */
@@ -35,6 +57,7 @@ const context = createContext<KeyboardFocusContext>({
   watching: { current: [] },
   loopable: false,
   searchable: false,
+  horizontal: false,
   includeDisabled: false,
   config: { current: DEFAULT_KEYBOARD_MOVEMENT },
 });
