@@ -1,5 +1,5 @@
 import type { ReactElement, ReactNode } from "react";
-import { useEffect, useRef, useState, useLayoutEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ConfiguredIcons } from "@react-md/icon";
 import type { LayoutConfiguration } from "@react-md/layout";
 import {
@@ -25,6 +25,7 @@ import {
 import type { MenuConfiguration } from "@react-md/menu";
 import { useCrossFadeTransition } from "@react-md/transition";
 import type { AppSizeListenerProps } from "@react-md/utils";
+import { useIsomorphicLayoutEffect } from "@react-md/utils";
 
 import type { CodePreference } from "components/CodePreference";
 import { CodePreferenceProvider } from "components/CodePreference";
@@ -95,7 +96,7 @@ export default function Layout({
 
   const prevPathname = useRef(pathname);
   const { elementProps, transitionTo } = useCrossFadeTransition();
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (prevPathname.current === pathname) {
       return;
     }
