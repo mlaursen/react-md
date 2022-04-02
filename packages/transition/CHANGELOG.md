@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/mlaursen/react-md/compare/v5.1.1...v5.1.2) (2022-04-02)
+
+
+### Other Internal Changes
+
+* **react-md.dev:** useLayoutEffect for page transitions ([638c8ec](https://github.com/mlaursen/react-md/commit/638c8ecd7c0d3d540f44204aa37f5914078eea7d))
+
+
+
+
+
+
 # [5.1.0](https://github.com/mlaursen/react-md/compare/v5.0.0...v5.1.0) (2022-03-18)
 
 

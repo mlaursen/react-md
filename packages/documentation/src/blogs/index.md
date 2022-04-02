@@ -1,3 +1,24 @@
+Title: react-md 5.1.2
+
+Date: 04/02/2022
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/tabs:** Scroll tabs correctly in RTL mode (a23d708), closes #1356
+
+##### Other Internal Changes<!-- no-margin -->
+
+- **@react-md/layout:** Update snapshots after updating tree component (ec84800)
+- **@react-md/utils:** Update keyboard movement (71d1343)
+- **react-md.dev:** `useIsomorphicLayoutEffect` to hide SSR warning (aa0d3cd)
+- **react-md.dev:** Fix `BadgedButton` documentation (b147a88)
+- **react-md.dev:** Update Light/Dark Theme Toggle Icons (60a8825)
+- **react-md.dev:** useLayoutEffect for page transitions (638c8ec)
+
+---
+
 Title: react-md 5.1.1
 
 Date: 03/31/2022

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/mlaursen/react-md/compare/v5.1.1...v5.1.2) (2022-04-02)
+
+
+### Bug Fixes
+
+* **@react-md/tabs:** Scroll tabs correctly in RTL mode ([a23d708](https://github.com/mlaursen/react-md/commit/a23d7089e9ec58a3dc903b202b01628b9908e3d6)), closes [#1356](https://github.com/mlaursen/react-md/issues/1356)
+
+
+
+
+
+
 # [5.1.0](https://github.com/mlaursen/react-md/compare/v5.0.0...v5.1.0) (2022-03-18)
 
 

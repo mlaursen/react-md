@@ -1,6 +1,6 @@
 {
   "name": "@react-md/expansion-panel",
-  "version": "5.1.0",
+  "version": "5.1.2",
   "description": "Create accessible expansion components for accordions and disclosures.",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -30,12 +30,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@react-md/button": "^5.1.0",
-    "@react-md/card": "^5.1.0",
-    "@react-md/icon": "^5.1.0",
-    "@react-md/theme": "^5.1.0",
-    "@react-md/transition": "^5.1.0",
-    "@react-md/utils": "^5.1.0",
+    "@react-md/button": "^5.1.2",
+    "@react-md/card": "^5.1.2",
+    "@react-md/icon": "^5.1.2",
+    "@react-md/theme": "^5.1.2",
+    "@react-md/transition": "^5.1.2",
+    "@react-md/utils": "^5.1.2",
     "classnames": "^2.3.1"
   },
   "devDependencies": {

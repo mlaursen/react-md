@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/mlaursen/react-md/compare/v5.1.1...v5.1.2) (2022-04-02)
+
+
+### Bug Fixes
+
+* **@react-md/tabs:** Scroll tabs correctly in RTL mode ([a23d708](https://github.com/mlaursen/react-md/commit/a23d7089e9ec58a3dc903b202b01628b9908e3d6)), closes [#1356](https://github.com/mlaursen/react-md/issues/1356)
+
+
+### Other Internal Changes
+
+* **@react-md/layout:** Update snapshots after updating tree component ([ec84800](https://github.com/mlaursen/react-md/commit/ec8480078c37f56f65250dd46d77b3ffe41280ac))
+* **@react-md/utils:** Update keyboard movement ([71d1343](https://github.com/mlaursen/react-md/commit/71d1343e2cf1ed1703230ed8f0f544b1200b7f0d))
+* **react-md.dev:** `useIsomorphicLayoutEffect` to hide SSR warning ([aa0d3cd](https://github.com/mlaursen/react-md/commit/aa0d3cdc5cf2cd28f08d27e15c8b2496b09e7ccd))
+* **react-md.dev:** Fix `BadgedButton` documentation ([b147a88](https://github.com/mlaursen/react-md/commit/b147a88118f62466836ea01a296cb5239cc9840f))
+* **react-md.dev:** Update Light/Dark Theme Toggle Icons ([60a8825](https://github.com/mlaursen/react-md/commit/60a882553e245483e62e07e58bd41cd544fbafdb))
+* **react-md.dev:** useLayoutEffect for page transitions ([638c8ec](https://github.com/mlaursen/react-md/commit/638c8ecd7c0d3d540f44204aa37f5914078eea7d))
+
+
+
+
+
+
 ## [5.1.1](https://github.com/mlaursen/react-md/compare/v5.1.0...v5.1.1) (2022-04-01)
 
 

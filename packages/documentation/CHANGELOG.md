@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/mlaursen/react-md/compare/v5.1.1...v5.1.2) (2022-04-02)
+
+
+### Other Internal Changes
+
+* **react-md.dev:** `useIsomorphicLayoutEffect` to hide SSR warning ([aa0d3cd](https://github.com/mlaursen/react-md/commit/aa0d3cdc5cf2cd28f08d27e15c8b2496b09e7ccd))
+* **react-md.dev:** Fix `BadgedButton` documentation ([b147a88](https://github.com/mlaursen/react-md/commit/b147a88118f62466836ea01a296cb5239cc9840f))
+* **react-md.dev:** Update Light/Dark Theme Toggle Icons ([60a8825](https://github.com/mlaursen/react-md/commit/60a882553e245483e62e07e58bd41cd544fbafdb))
+* **react-md.dev:** useLayoutEffect for page transitions ([638c8ec](https://github.com/mlaursen/react-md/commit/638c8ecd7c0d3d540f44204aa37f5914078eea7d))
+
+
+
+
+
+
 ## [5.1.1](https://github.com/mlaursen/react-md/compare/v5.1.0...v5.1.1) (2022-04-01)
 
 

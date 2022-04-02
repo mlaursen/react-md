@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/mlaursen/react-md/compare/v5.1.1...v5.1.2) (2022-04-02)
+
+
+### Other Internal Changes
+
+* **@react-md/utils:** Update keyboard movement ([71d1343](https://github.com/mlaursen/react-md/commit/71d1343e2cf1ed1703230ed8f0f544b1200b7f0d))
+
+
+
+
+
+
 # [5.1.0](https://github.com/mlaursen/react-md/compare/v5.0.0...v5.1.0) (2022-03-18)
 
 

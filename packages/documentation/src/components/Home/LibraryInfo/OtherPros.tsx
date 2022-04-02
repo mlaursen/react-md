@@ -12,7 +12,7 @@ export default function OtherPros(): ReactElement {
           <li>
             Production UMD Bundle:
             <br />
-            <b>91.76 kB</b>
+            <b>91.36 kB</b>
           </li>
           <li>
             Default Production CSS Bundles:
