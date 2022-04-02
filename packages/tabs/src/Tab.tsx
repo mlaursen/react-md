@@ -4,10 +4,9 @@ import cn from "classnames";
 import { TextIconSpacing } from "@react-md/icon";
 import type { InteractionStatesOptions } from "@react-md/states";
 import { useInteractionStates } from "@react-md/states";
-import { bem, useResizeObserver } from "@react-md/utils";
+import { bem, useKeyboardFocusableElement } from "@react-md/utils";
 
 import type { TabConfig } from "./types";
-import { useUpdateIndicatorStyles } from "./useTabIndicatorStyle";
 
 export interface TabProps
   extends TabConfig,
@@ -65,7 +64,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
     enablePressedAndRipple,
     ...props
   },
-  propRef
+  ref
 ) {
   const { ripples, className, handlers } = useInteractionStates({
     handlers: props,
@@ -79,19 +78,13 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
     rippleContainerClassName,
     enablePressedAndRipple,
   });
-  // TODO: Look into removing this resize observer. This is only required if
-  // someone manually updates the width of the tab (dev utils) or if the width
-  // was not changed due to the tabs container element resizing (iffy)
-  const updateIndicatorStyles = useUpdateIndicatorStyles();
-  const [, refHandler] = useResizeObserver(updateIndicatorStyles, {
-    ref: propRef,
-  });
+  const refCallback = useKeyboardFocusableElement(ref);
 
   return (
     <button
       {...props}
       {...handlers}
-      ref={active ? refHandler : propRef}
+      ref={refCallback}
       aria-selected={active}
       aria-controls={panelId}
       type="button"

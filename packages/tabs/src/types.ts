@@ -8,6 +8,8 @@ export type TabsAlignment = "left" | "center" | "right";
 export interface TabsConfig {
   /**
    * The alignment to use for the tabs.
+   *
+   * @defaultValue `"left"`
    */
   align?: TabsAlignment;
 
@@ -16,6 +18,7 @@ export interface TabsConfig {
    * navigates to the tab with the arrow keys.
    *
    * @see https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus
+   * @defaultValue `false`
    */
   automatic?: boolean;
 
@@ -23,6 +26,8 @@ export interface TabsConfig {
    * The orientation for the tabs. When this is set to vertical, the keyboard
    * movement will be updated to use Up and Down arrow keys instead of Left and
    * Right.
+   *
+   * @defaultValue `"horizontal"`
    */
   orientation?: "horizontal" | "vertical";
 
@@ -30,6 +35,8 @@ export interface TabsConfig {
    * Boolean if you know that the tabs will be scrollable which will add some
    * additional padding before the first tab to help users know that there's
    * additional tabs.
+   *
+   * @defaultValue `false`
    */
   padded?: boolean;
 }

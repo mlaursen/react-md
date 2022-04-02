@@ -1,3 +1,4 @@
+import { KeyboardMovementProvider } from "@react-md/utils";
 import { render } from "@testing-library/react";
 
 import { Tab } from "../Tab";
@@ -5,7 +6,9 @@ import { Tab } from "../Tab";
 describe("Tab", () => {
   it("should render correctly", () => {
     const props = { id: "tab", active: false, children: "Tab" };
-    const { container, rerender } = render(<Tab {...props} />);
+    const { container, rerender } = render(<Tab {...props} />, {
+      wrapper: KeyboardMovementProvider,
+    });
 
     expect(container).toMatchSnapshot();
 

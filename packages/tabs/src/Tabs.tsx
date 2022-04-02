@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import { KeyboardMovementProvider } from "@react-md/utils";
 
 import { Tab } from "./Tab";
 import type { TabsListProps } from "./TabsList";
@@ -19,17 +20,29 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   ref
 ) {
   const { tabsId, tabs, activeIndex, onActiveIndexChange } = useTabs();
+  const horizontal = props.orientation !== "vertical";
+
   return (
-    <TabsList
-      {...props}
-      id={tabsId}
-      ref={ref}
-      activeIndex={activeIndex}
-      onActiveIndexChange={onActiveIndexChange}
-    >
-      {tabs.map(({ id, ...config }, index) => (
-        <Tab {...config} id={id} key={id} active={activeIndex === index} />
-      ))}
-    </TabsList>
+    <KeyboardMovementProvider loopable horizontal={horizontal}>
+      <TabsList
+        {...props}
+        id={tabsId}
+        ref={ref}
+        activeIndex={activeIndex}
+        onActiveIndexChange={onActiveIndexChange}
+      >
+        {tabs.map(({ id, ...config }, index) => (
+          <Tab
+            {...config}
+            id={id}
+            key={id}
+            active={activeIndex === index}
+            onClick={() => {
+              onActiveIndexChange(index);
+            }}
+          />
+        ))}
+      </TabsList>
+    </KeyboardMovementProvider>
   );
 });

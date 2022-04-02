@@ -1,22 +1,14 @@
-/* eslint-disable jsx-a11y/interactive-supports-focus */
-import type { HTMLAttributes, Ref } from "react";
+import type { HTMLAttributes } from "react";
+import { forwardRef } from "react";
 import {
-  Children,
-  cloneElement,
-  forwardRef,
-  isValidElement,
-  useEffect,
-  useRef,
-} from "react";
+  bem,
+  useIsUserInteractionMode,
+  useKeyboardFocus,
+} from "@react-md/utils";
 import cn from "classnames";
-import { applyRef, bem, useIsUserInteractionMode } from "@react-md/utils";
 
 import type { TabsConfig } from "./types";
-import {
-  UpdateIndicatorStylesProvider,
-  useTabIndicatorStyle,
-} from "./useTabIndicatorStyle";
-import { useTabsMovement } from "./useTabsMovement";
+import { useTabIndicatorStyles } from "./useTabIndicatorStyles";
 
 export interface TabsListProps
   extends HTMLAttributes<HTMLDivElement>,
@@ -36,11 +28,13 @@ export interface TabsListProps
   /**
    * Boolean if the indicator transition should be disabled while the active tab
    * index changes.
+   *
+   * @defaultValue `false`
    */
   disableTransition?: boolean;
 }
 
-const block = bem("rmd-tabs");
+const styles = bem("rmd-tabs");
 
 /**
  * The `TabsList` component is the container for all the individual `Tab`s that
@@ -57,7 +51,7 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
     {
       style,
       className,
-      onClick,
+      onFocus,
       onKeyDown,
       children,
       activeIndex,
@@ -69,91 +63,46 @@ export const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
       disableTransition = false,
       ...props
     },
-    forwardedRef
+    ref
   ) {
     const horizontal = orientation === "horizontal";
-    const { tabs, itemRefs, handleClick, handleKeyDown } = useTabsMovement({
-      onClick,
-      onKeyDown,
-      children,
-      horizontal,
-      activeIndex,
-      onActiveIndexChange,
-      automatic,
-    });
-    const [mergedStyle, tabsRefHandler, tabsRef, updateIndicatorStyles] =
-      useTabIndicatorStyle({
-        style,
-        ref: forwardedRef,
-        align,
-        itemRefs,
-        totalTabs: tabs.length,
-        activeIndex,
-      });
     const isKeyboard = useIsUserInteractionMode("keyboard");
+    const { focusIndex: _focusIndex, ...eventHandlers } = useKeyboardFocus({
+      onFocus,
+      onKeyDown,
+      onFocusChange(element, focusIndex) {
+        element.focus();
+        if (automatic) {
+          onActiveIndexChange(focusIndex);
+        }
+      },
+    });
 
-    const prevActiveIndex = useRef(activeIndex);
-    useEffect(() => {
-      const tabs = tabsRef.current;
-      const tabRef = itemRefs[activeIndex] && itemRefs[activeIndex].current;
-      const incrementing = prevActiveIndex.current < activeIndex;
-      prevActiveIndex.current = activeIndex;
-      if (!tabs || !tabRef) {
-        return;
-      }
-
-      const currentX = tabs.scrollLeft + tabs.offsetWidth;
-      const tabLeft = tabRef.offsetLeft;
-      const tabWidth = tabRef.offsetWidth;
-      if (incrementing && currentX < tabLeft + tabWidth) {
-        tabs.scrollLeft = tabLeft - tabWidth;
-      } else if (!incrementing && tabs.scrollLeft > tabLeft) {
-        tabs.scrollLeft = tabLeft;
-      }
-
-      // don't want this to trigger on itemRefs or tabsRef changes since those
-      // have a chance of updating each render.
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [activeIndex]);
+    const { refCallback, indicatorStyles } = useTabIndicatorStyles({
+      ref,
+      activeIndex,
+    });
 
     return (
-      <UpdateIndicatorStylesProvider value={updateIndicatorStyles}>
-        <div
-          {...props}
-          aria-orientation={orientation}
-          style={mergedStyle}
-          role="tablist"
-          className={cn(
-            block({
-              [align]: true,
-              padded,
-              vertical: !horizontal,
-              animate: !disableTransition && (!automatic || !isKeyboard),
-            }),
-            className
-          )}
-          ref={tabsRefHandler}
-          onClick={handleClick}
-          onKeyDown={handleKeyDown}
-        >
-          {Children.map(tabs, (child, i) => {
-            if (!isValidElement(child)) {
-              return child;
-            }
-
-            const tab = Children.only(child);
-            let ref: Ref<HTMLElement> = itemRefs[i];
-            if (tab.props.ref) {
-              ref = (instance: HTMLElement | null) => {
-                itemRefs[i].current = instance;
-                applyRef(instance, tab.props.ref);
-              };
-            }
-
-            return cloneElement(tab, { ref });
-          })}
-        </div>
-      </UpdateIndicatorStylesProvider>
+      <div
+        {...props}
+        aria-orientation={orientation}
+        style={{ ...style, ...indicatorStyles }}
+        role="tablist"
+        ref={refCallback}
+        className={cn(
+          styles({
+            [align]: true,
+            padded,
+            vertical: !horizontal,
+            animate: !disableTransition && (!automatic || !isKeyboard),
+          }),
+          className
+        )}
+        {...eventHandlers}
+      >
+        {children}
+      </div>
     );
   }
 );

@@ -39,7 +39,7 @@ export interface TabsManagerContext {
    * A function to call when the `activeIndex` should change due to keyboard
    * movement or clicking on a tab.
    */
-  onActiveIndexChange: (activeIndex: number) => void;
+  onActiveIndexChange(activeIndex: number): void;
 
   /**
    * The list of tabs that should be controlled by the tabs manager.
@@ -76,6 +76,8 @@ export interface TabsManagerProps
   /**
    * The index of the tab that should be active by default. This is ignored if
    * the `activeIndex` prop is defined.
+   *
+   * @defaultValue `0`
    */
   defaultActiveIndex?: number;
 
@@ -114,6 +116,8 @@ export interface TabsManagerProps
    * it for each tab in the `tabs` list and if a `tab` in the `tabs` list has
    * the `stacked` attribute enabled defined, it will be used instead of this
    * value.
+   *
+   * @defaultValue `false`
    */
   stacked?: boolean;
 
@@ -126,6 +130,8 @@ export interface TabsManagerProps
    * it for each tab in the `tabs` list and if a `tab` in the `tabs` list has
    * the `stacked` attribute enabled defined, it will be used instead of this
    * value.
+   *
+   * @defaultValue `false`
    */
   iconAfter?: boolean;
 }

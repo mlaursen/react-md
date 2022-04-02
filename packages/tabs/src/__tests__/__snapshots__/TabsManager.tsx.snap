@@ -1,0 +1,280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabsManager should work with a real world example 1`] = `
+<div>
+  <div
+    aria-orientation="horizontal"
+    class="rmd-tabs rmd-tabs--left rmd-tabs--animate"
+    id="basic-usage-tabs"
+    role="tablist"
+    style="--rmd-tab-width: 33.333333333333336%; --rmd-tab-offset: calc(0 * 33.333333333333336%);"
+  >
+    <button
+      aria-controls="basic-usage-tabs-panel-1"
+      aria-selected="true"
+      class="rmd-tab rmd-tab--active"
+      id="basic-usage-tabs-tab-1"
+      role="tab"
+      type="button"
+    >
+      <span
+        class="rmd-tab__content"
+      >
+        Tab 1
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      aria-selected="false"
+      class="rmd-tab"
+      id="basic-usage-tabs-tab-2"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="rmd-tab__content"
+      >
+        Tab 2
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      aria-selected="false"
+      class="rmd-tab"
+      id="basic-usage-tabs-tab-3"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="rmd-tab__content"
+      >
+        Tab 3
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </div>
+  <div
+    class="rmd-tab-panels rmd-tab-panels--slide-right"
+  >
+    <div
+      aria-labelledby="basic-usage-tabs-tab-1"
+      class="rmd-tab-panel"
+      id="basic-usage-tabs-panel-1"
+      role="tabpanel"
+    >
+      <h4
+        class="rmd-typography rmd-typography--headline-4"
+      >
+        Panel 1
+      </h4>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TabsManager should work with disabled tabs 1`] = `
+<div>
+  <div
+    aria-orientation="horizontal"
+    class="rmd-tabs rmd-tabs--left rmd-tabs--animate"
+    id="tabs-id"
+    role="tablist"
+    style="--rmd-tab-width: 33.333333333333336%; --rmd-tab-offset: calc(0 * 33.333333333333336%);"
+  >
+    <button
+      aria-controls="tabs-id-panel-1"
+      aria-selected="true"
+      class="rmd-tab rmd-tab--active rmd-tab--stacked"
+      id="tabs-id-tab-1"
+      role="tab"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--svg rmd-icon--above"
+        focusable="false"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"
+        />
+      </svg>
+      <span
+        class="rmd-tab__content"
+      >
+        Recent
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      aria-selected="false"
+      class="rmd-tab rmd-tab--stacked"
+      id="tabs-id-tab-2"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--svg rmd-icon--above"
+        focusable="false"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+        />
+      </svg>
+      <span
+        class="rmd-tab__content"
+      >
+        Favorites
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      aria-selected="false"
+      class="rmd-tab rmd-tab--stacked"
+      disabled=""
+      id="tabs-id-tab-3"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--svg rmd-icon--above"
+        focusable="false"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
+        />
+      </svg>
+      <span
+        class="rmd-tab__content"
+      >
+        Other
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </div>
+  <div
+    class="rmd-tab-panels rmd-tab-panels--slide-right"
+  >
+    <div
+      aria-labelledby="tabs-id-tab-1"
+      class="rmd-tab-panel"
+      id="tabs-id-panel-1"
+      role="tabpanel"
+    >
+      <h4
+        class="rmd-typography rmd-typography--headline-4"
+      >
+        Panel 1
+      </h4>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TabsManager should work with object tab configuration and automatic keyboard movement 1`] = `
+<div>
+  <div
+    aria-orientation="horizontal"
+    class="rmd-tabs rmd-tabs--left rmd-tabs--animate"
+    id="tabs-id"
+    role="tablist"
+    style="--rmd-tab-width: 50%; --rmd-tab-offset: calc(0 * 50%);"
+  >
+    <button
+      aria-controls="tabs-id-panel-1"
+      aria-selected="true"
+      class="rmd-tab rmd-tab--active rmd-tab--stacked"
+      id="tabs-id-tab-1"
+      role="tab"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--svg rmd-icon--above"
+        focusable="false"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"
+        />
+      </svg>
+      <span
+        class="rmd-tab__content"
+      >
+        Recent
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+    <button
+      aria-selected="false"
+      class="rmd-tab rmd-tab--stacked"
+      id="tabs-id-tab-2"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="rmd-icon rmd-icon--svg rmd-icon--above"
+        focusable="false"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+        />
+      </svg>
+      <span
+        class="rmd-tab__content"
+      >
+        Favorites
+      </span>
+      <span
+        class="rmd-ripple-container"
+      />
+    </button>
+  </div>
+  <div
+    class="rmd-tab-panels rmd-tab-panels--slide-right"
+  >
+    <div
+      aria-labelledby="tabs-id-tab-1"
+      class="rmd-tab-panel"
+      id="tabs-id-panel-1"
+      role="tabpanel"
+    >
+      <h4
+        class="rmd-typography rmd-typography--headline-4"
+      >
+        Panel 1
+      </h4>
+    </div>
+  </div>
+</div>
+`;
