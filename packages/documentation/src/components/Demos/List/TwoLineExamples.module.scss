@@ -1,9 +1,0 @@
-@use 'react-md' as *;
-
-$start-shadow: none;
-$end-shadow: 0 0 2px $rmd-blue-300;
-
-.icon {
-  @include rmd-icon-theme(height, size);
-  @include rmd-utils-hide-focus-outline;
-}
