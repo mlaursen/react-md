@@ -6,7 +6,7 @@ import {
 
 import { AutoComplete } from "../AutoComplete";
 import type { AutoCompleteProps } from "../types";
-import states from "../../../documentation/src/constants/states";
+import states from "../../../../constants/states";
 
 function getById<E extends HTMLElement>(id: string): E {
   const el = document.getElementById(id);

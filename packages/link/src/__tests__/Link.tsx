@@ -2,60 +2,71 @@ import { Link as ReachLink } from "@reach/router";
 import { render } from "@testing-library/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { StaticRouter } from "react-router-dom/server";
-import renderer from "react-test-renderer";
 
 import { Link } from "../Link";
 
 describe("Link", () => {
   it("should render correctly when there is no component prop", () => {
-    expect(
-      renderer.create(<Link href="#">Content</Link>).toJSON()
-    ).toMatchSnapshot();
-    expect(
-      renderer.create(<Link href="">Disabled Link</Link>).toJSON()
-    ).toMatchSnapshot();
-    expect(
-      renderer.create(<Link href="/direct-url">Direct url</Link>).toJSON()
-    ).toMatchSnapshot();
+    const { container, rerender } = render(<Link href="#">Content</Link>);
+    expect(container).toMatchSnapshot();
+
+    rerender(<Link href="">Disabled Link</Link>);
+    expect(container).toMatchSnapshot();
+
+    rerender(<Link href="/direct-url">Direct url</Link>);
+    expect(container).toMatchSnapshot();
   });
 
   it("should should render correctly when using react-router's Link component", () => {
-    const create = ({
-      children,
-      ...props
-    }: {
-      children: React.ReactNode;
-      [key: string]: any;
-    }) =>
-      renderer.create(
-        <StaticRouter location="/">
-          <Link {...props} component={ReactRouterLink}>
-            {children}
-          </Link>
-        </StaticRouter>
-      );
+    const { container, rerender } = render(
+      <Link component={ReactRouterLink} href="#">
+        Content
+      </Link>,
+      {
+        wrapper: function Wrapper({ children }) {
+          return <StaticRouter location="/">{children}</StaticRouter>;
+        },
+      }
+    );
 
-    expect(create({ children: "Content", to: "#" }).toJSON()).toMatchSnapshot();
-    expect(
-      create({ children: "Disabled Link", to: "" }).toJSON()
-    ).toMatchSnapshot();
-    expect(
-      create({ children: "Direct url", to: "/direct-url" }).toJSON()
-    ).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <Link component={ReactRouterLink} href="">
+        Disabled Link
+      </Link>
+    );
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <Link component={ReactRouterLink} href="/direct-url">
+        Direct url
+      </Link>
+    );
+    expect(container).toMatchSnapshot();
   });
 
   it("should should render correctly when using @reach/router's Link component", () => {
-    expect(
-      renderer.create(<ReachLink to="#">Content</ReachLink>).toJSON()
-    ).toMatchSnapshot();
-    expect(
-      renderer.create(<ReachLink to="">Disabled Link</ReachLink>).toJSON()
-    ).toMatchSnapshot();
-    expect(
-      renderer
-        .create(<ReachLink to="/direct-url">Direct url</ReachLink>)
-        .toJSON()
-    ).toMatchSnapshot();
+    const { container, rerender } = render(
+      <Link component={ReachLink} to="#">
+        Content
+      </Link>
+    );
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <Link component={ReachLink} href="">
+        Disabled Link
+      </Link>
+    );
+    expect(container).toMatchSnapshot();
+
+    rerender(
+      <Link component={ReachLink} href="/direct-url">
+        Direct url
+      </Link>
+    );
+    expect(container).toMatchSnapshot();
   });
 
   it("should automatically add noopener noreferrer when the target is blank and there is no rel prop", () => {
