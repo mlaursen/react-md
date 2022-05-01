@@ -2,13 +2,13 @@ import type { ReactElement, ReactNode } from "react";
 import cn from "classnames";
 import { fireEvent, render } from "@testing-library/react";
 
-import type { DropzoneHanders } from "../useDropzone";
+import type { DropzoneHandlers } from "../useDropzone";
 import { useDropzone } from "../useDropzone";
 
 function Test({
   children,
   ...options
-}: DropzoneHanders<HTMLElement> & { children?: ReactNode }): ReactElement {
+}: DropzoneHandlers<HTMLElement> & { children?: ReactNode }): ReactElement {
   const [isOver, handlers] = useDropzone(options);
 
   return (

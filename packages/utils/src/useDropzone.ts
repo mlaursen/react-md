@@ -1,8 +1,14 @@
 import type { DragEvent, HTMLAttributes } from "react";
 import { useCallback, useState } from "react";
 
-/** @remarks \@since 2.9.0 */
-export type DropzoneHanders<E extends HTMLElement> = Pick<
+/**
+ * @remarks \@since 2.9.0
+ * @deprecated \@since 5.1.3 Use `DropzoneHandlers` instead.
+ */
+export type DropzoneHanders<E extends HTMLElement> = DropzoneHandlers<E>;
+
+/** @remarks \@since 5.1.3 */
+export type DropzoneHandlers<E extends HTMLElement> = Pick<
   HTMLAttributes<E>,
   "onDragEnter" | "onDragOver" | "onDrop" | "onDragLeave"
 >;
@@ -10,7 +16,7 @@ export type DropzoneHanders<E extends HTMLElement> = Pick<
 /** @remarks \@since 2.9.0 */
 export type DropzoneHookReturnValue<E extends HTMLElement> = [
   boolean,
-  DropzoneHanders<E>
+  DropzoneHandlers<E>
 ];
 
 /**
@@ -44,13 +50,13 @@ export type DropzoneHookReturnValue<E extends HTMLElement> = [
  * ```
  *
  * @see {@link useFileUpload} for a more complex example
- * @param options - The {@link DropzoneHanders} that can be merged with the
+ * @param options - The {@link DropzoneHandlers} that can be merged with the
  * default functionality.
  * @returns the {@link DropzoneHookReturnValue}
  * @remarks \@since 2.9.0
  */
 export function useDropzone<E extends HTMLElement>(
-  options: DropzoneHanders<E>
+  options: DropzoneHandlers<E>
 ): DropzoneHookReturnValue<E> {
   const {
     onDragEnter: propOnDragEnter,
