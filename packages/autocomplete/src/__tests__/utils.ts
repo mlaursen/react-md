@@ -119,18 +119,18 @@ describe("getFilterFunction", () => {
   it("should throw an error for any other strings for non-typescript users", () => {
     // @ts-expect-error
     expect(() => getFilterFunction("")).toThrow(
-      'Invalid filter function: "". Supported values are: "fuzzy", "case-insenitive", "none", or a custom function'
+      'Invalid filter function: "". Supported values are: "fuzzy", "case-insensitive", "none", or a custom function'
     );
 
     // @ts-expect-error
     expect(() => getFilterFunction("custom")).toThrow(
-      'Invalid filter function: "custom". Supported values are: "fuzzy", "case-insenitive", "none", or a custom function'
+      'Invalid filter function: "custom". Supported values are: "fuzzy", "case-insensitive", "none", or a custom function'
     );
   });
 
-  it("should returnt he noFilter result for an invalid fulter function if the NODE_ENV is not production", () => {
+  it("should return the noFilter result for an invalid filter function if the NODE_ENV is not production", () => {
     const env = process.env.NODE_ENV;
-    // this is caused by next definigin process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
+    // this is caused by next defining process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
     // @ts-expect-error
     process.env.NODE_ENV = "production";
 
@@ -139,7 +139,7 @@ describe("getFilterFunction", () => {
     // @ts-expect-error
     expect(getFilterFunction("custom")).toBe(noFilter);
 
-    // this is caused by next definigin process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
+    // this is caused by next defining process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
     // @ts-expect-error
     process.env.NODE_ENV = env;
   });
