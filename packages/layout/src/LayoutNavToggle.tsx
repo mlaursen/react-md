@@ -12,7 +12,7 @@ import type {
 import { useCSSTransition } from "@react-md/transition";
 import type { PropsWithRef } from "@react-md/utils";
 
-import { DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";
+import { DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES } from "./constants";
 import { useLayoutConfig } from "./LayoutProvider";
 import { isTemporaryLayout, isToggleableLayout } from "./utils";
 
@@ -94,7 +94,7 @@ export const LayoutNavToggle = forwardRef<
     rendered,
     tabIndex: propTabIndex,
     timeout = DEFAULT_SHEET_TIMEOUT,
-    classNames = DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES,
+    classNames = DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES,
     ...props
   },
   nodeRef

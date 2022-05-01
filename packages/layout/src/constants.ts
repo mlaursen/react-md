@@ -19,10 +19,14 @@ export const DEFAULT_LAYOUT_MAIN_CLASSNAMES: Readonly<CSSTransitionClassNames> =
     exit: "rmd-layout-transition--exit",
   };
 
-export const DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES: Readonly<CSSTransitionClassNames> =
+export const DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES: Readonly<CSSTransitionClassNames> =
   {
     enter: "rmd-layout-transition--enter",
     enterActive: "rmd-layout-nav-toggle--offset",
     enterDone: "rmd-layout-nav-toggle--offset",
     exit: "rmd-layout-transition--exit",
   };
+
+/** @deprecated \@since 5.1.3 use `DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES` instead */
+export const DEFFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES =
+  DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES;
