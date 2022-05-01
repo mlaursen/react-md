@@ -65,7 +65,7 @@ export interface ResizeObserverElementData<E extends HTMLElement = HTMLElement>
 
 /**
  * The callback that is triggered each time an element's size change has been
- * observered.
+ * observed.
  * @remarks \@since 2.3.0
  */
 export type OnResizeObserverChange<E extends HTMLElement = HTMLElement> = (

@@ -71,7 +71,7 @@ export function MenuSheet({
   const listRef = useRef<ListElement>(null);
 
   // Since there is the possibility of other tab focusable elements within the
-  // sheet and the menu items are programatically focused, the menu's tabIndex
+  // sheet and the menu items are programmatically focused, the menu's tabIndex
   // needs to be set to `-1` while one of the child menu items are focused. This
   // allows Shift+Tab correctly focuses the previous focusable element within
   // the sheet. Since `onFocus` and `onBlur` will be bubbled up to the menu

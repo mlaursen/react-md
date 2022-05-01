@@ -76,7 +76,7 @@ export interface SliderAndRangeSliderControls {
 
 /**
  * This hook provides all the logic for updating the slider's when the user
- * intracts with the slider.
+ * interacts with the slider.
  *
  * @internal
  * @remarks \@since 2.5.0

@@ -30,7 +30,7 @@ export interface LayoutMainProps extends HTMLAttributes<HTMLDivElement> {
   navOffset?: boolean;
 
   /**
-   * Boolean if the main element should be ofset by the `AppBar`'s height
+   * Boolean if the main element should be offset by the `AppBar`'s height
    */
   headerOffset?: boolean;
 

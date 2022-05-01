@@ -54,7 +54,7 @@ export default function SimpleExample(): ReactElement {
             placeholder="XX"
             maxLength={2}
           />
-          <TextField id="person-city" name="city" label="City/Provice" />
+          <TextField id="person-city" name="city" label="City/Province" />
         </Grid>
       </ExpansionPanel>
       <ExpansionPanel

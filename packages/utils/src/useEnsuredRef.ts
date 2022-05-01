@@ -12,7 +12,7 @@ export type EnsuredRefs<E extends HTMLElement> = readonly [
 ];
 
 /**
- * This is mostly an enternal hook that allows for an optional ref (normally
+ * This is mostly an internal hook that allows for an optional ref (normally
  * from props or hook options) to be merged with a hook's required `ref`. This
  * will return a MutableRefObject used for DOM manipulation in a custom hook
  * followed by a ref callback function that should be passed to the DOM node

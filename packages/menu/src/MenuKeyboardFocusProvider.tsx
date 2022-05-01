@@ -19,7 +19,7 @@ export function MenuKeyboardFocusProvider({
       searchable
       incrementKeys={horizontal ? ["ArrowRight"] : ["ArrowDown"]}
       decrementKeys={horizontal ? ["ArrowLeft"] : ["ArrowUp"]}
-      // disabled menu items should be focusable, but not interactable for somer
+      // disabled menu items should be focusable, but not interactable for some
       // reason
       // https://www.w3.org/TR/wai-aria-practices/#menu
       includeDisabled

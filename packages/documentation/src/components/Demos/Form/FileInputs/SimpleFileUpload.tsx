@@ -44,7 +44,7 @@ export default function SimpleFileUpload(): ReactElement | null {
       <GridList maxCellSize={500}>
         {stats.map(({ key, ...uploadStat }, i) => (
           <PreviewFile
-            id={`simple-file-upload-preivew-${i + 1}`}
+            id={`simple-file-upload-preview-${i + 1}`}
             key={key}
             {...uploadStat}
             fileKey={key}

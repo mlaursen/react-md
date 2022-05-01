@@ -4,4 +4,4 @@ following scss variables for your app:
 
 - `$rmd-link-color`
 - `$rmd-link-hover-color`
-- `$rmd-link-visitied-color`
+- `$rmd-link-visited-color`

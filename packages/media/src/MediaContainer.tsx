@@ -37,7 +37,7 @@ const block = bem("rmd-media-container");
 
 /**
  * The `MediaContainer` component is used to make responsive images and videos
- * within your app. This component also allows for focing a specific aspect
+ * within your app. This component also allows for forcing a specific aspect
  * ratio for these elements with both the `height` and `width` props are
  * provided.
  */

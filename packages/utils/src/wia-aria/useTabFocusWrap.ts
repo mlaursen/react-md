@@ -28,7 +28,7 @@ interface Options<E extends HTMLElement> {
  * @typeParam E - The HTMLElement type that has the keydown event listener
  * attached.
  * @param options - All the options for handling tab focus wrapping.
- * @returns The kedown event handler to enforce focus wrapping or the onKeyDown
+ * @returns The keydown event handler to enforce focus wrapping or the onKeyDown
  * prop if this functionality is disabled.
  */
 export function useTabFocusWrap<E extends HTMLElement>({

@@ -13,7 +13,7 @@ import { useId } from "./IdProvider";
  * if the title becomes truncated.
  *
  * This is pretty hacky right so it isn't part of the main lib yet, but a better
- * sultion to "auto tooltip" things might be added one day.
+ * solution to "auto tooltip" things might be added one day.
  */
 export default function AppBarTitle({
   id,

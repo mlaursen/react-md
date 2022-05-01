@@ -10,14 +10,14 @@ import { useHoverModeContext } from "./useHoverModeContext";
 /** @remarks \@since 5.0.0 */
 export interface HoverModeHoverEventHandlers {
   /**
-   * An optional event handler to merge with the hover mode visibility hander.
+   * An optional event handler to merge with the hover mode visibility handler.
    * If this function calls `event.stopPropagation()`, the hover mode behavior
    * will be disabled.
    */
   onMouseEnter<E extends HTMLElement>(event: MouseEvent<E>): void;
 
   /**
-   * An optional event handler to merge with the hover mode visibility hander.
+   * An optional event handler to merge with the hover mode visibility handler.
    * If this function calls `event.stopPropagation()`, the hover mode behavior
    * will be disabled.
    */
@@ -35,7 +35,7 @@ export interface HoverModeHoverEventHandlers {
  */
 export interface HoverModeEventHandlers extends HoverModeHoverEventHandlers {
   /**
-   * An optional event handler to merge with the hover mode visibility hander.
+   * An optional event handler to merge with the hover mode visibility handler.
    * If this function calls `event.stopPropagation()`, the hover mode behavior
    * will be disabled.
    */

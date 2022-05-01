@@ -188,7 +188,7 @@ export default function ConfigurableDropdownMenu(): ReactElement {
               Menu Props
             </Typography>
             <Select
-              id="dropdonw-menu-anchor"
+              id="dropdown-menu-anchor"
               label="Menu Anchor"
               options={anchorOptions}
               value={`${anchorIndex}`}

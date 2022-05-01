@@ -504,7 +504,7 @@ export interface CSSTransitionHookReturnValue<E extends HTMLElement>
    * }
    *
    * function Example({ transitionIn, children }: ExampleProps): ReactElement | null {
-   *   const { elementPRops, rendered } = useCSSTransition({
+   *   const { elementProps, rendered } = useCSSTransition({
    *     timeout: 150,
    *     classNames: "example",
    *     transitionIn,

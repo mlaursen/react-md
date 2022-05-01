@@ -14,7 +14,7 @@
 /// A theme utility function to convert a material design color to the same
 /// color but with a different swatch. If your app is not using material design
 /// colors, this utility function is useless but you will need to define
-/// fallback colors so compliation does not fail.
+/// fallback colors so compilation does not fail.
 ///
 /// @example scss - Example Material Design Color Usage
 ///   .something {
@@ -46,7 +46,7 @@
 /// instead of a primary color.
 /// @param {Color} fallback-color [null] - The color to fallback to if the
 /// `$color` is not a valid material design color. Since this is null by
-/// default, the complilation will fail until a valid fallback is provided.
+/// default, the compilation will fail until a valid fallback is provided.
 /// @param {String} fallback-name [null] - The name of a variable or global
 /// variable that should be set to automatically fix the compilation error.
 /// @return {Color} the new color within the same color family with the provided

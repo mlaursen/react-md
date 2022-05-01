@@ -21,7 +21,7 @@ $rmd-tree-max-depth: 3 !default;
 /// @type Number
 $rmd-tree-item-padding-incrementor: $rmd-list-item-horizontal-padding * 1.5 !default;
 
-/// The base amout of padding to apply to a tree item that has a depth greater
+/// The base amount of padding to apply to a tree item that has a depth greater
 /// than 1. This is set to a value that assumes you have icons to the left of
 /// the items at the base level. If you do not, it would be better to set this
 /// value to something smaller or `$rmd-list-item-horizontal-padding * 2.5`.

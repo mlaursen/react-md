@@ -58,7 +58,7 @@ function UpdatingMessagePriority(): ReactElement {
       window.clearTimeout(timeout);
     };
 
-    // only want to run on running chagnes
+    // only want to run on running changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [running]);
 

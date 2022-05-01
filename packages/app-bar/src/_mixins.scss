@@ -277,7 +277,7 @@
 ///    }
 ///
 ///    .offset-by-dense-height {
-///      @include rmd-app-bar-ofset($height-type: dense-height);
+///      @include rmd-app-bar-offset($height-type: dense-height);
 ///    }
 ///
 /// @param {String} property [padding-top] - The property to apply the offset
@@ -287,11 +287,11 @@
 /// should be one of: `height`, `dense-height`, `prominent-height`,
 /// `prominent-dense-height`
 @mixin rmd-app-bar-offset($property: padding-top, $height-type: height) {
-  $valid-propertys: (
+  $valid-properties: (
     padding-top padding-bottom margin-top margin-bottom top bottom
   );
   $property: rmd-utils-validate(
-    $valid-propertys,
+    $valid-properties,
     $property,
     'app bar offset property'
   );
@@ -299,7 +299,7 @@
   @include rmd-app-bar-theme($property, $height-type);
 }
 
-/// Creates all the app  bar offset classnames to use. This ties in with the
+/// Creates all the app  bar offset class names to use. This ties in with the
 /// provided constants in javascript:
 ///
 /// - APP_BAR_OFFSET_CLASSNAME

@@ -36,7 +36,7 @@ export interface ResizeListenerOptions {
  *
  * This hook only works for entire app resize events. If you are looking for
  * specific element resize events, check out the `ResizeObserver` component or
- * `useReiszeObserver` hook instead.
+ * `useResizeObserver` hook instead.
  */
 export function useResizeListener({
   onResize,

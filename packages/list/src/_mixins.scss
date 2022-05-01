@@ -107,7 +107,7 @@
   }
 }
 
-/// The base styles required for a `ListItem`. This propbably won't be used
+/// The base styles required for a `ListItem`. This probably won't be used
 /// externally.
 @mixin rmd-list-item-base {
   @include rmd-list-theme(min-height, item-height);
@@ -156,14 +156,14 @@
 /// the `@react-md/icon` package and doing some calculations with the current
 /// `text-keyline` within the list.
 ///
-/// This propably shouldn't be used externally.
+/// This probably shouldn't be used externally.
 ///
 /// @example scss - Example Usage
 ///   .custom-updater {
 ///     @include rmd-list-item-addon-spacing(rmd-icon-theme-var(size));
 ///   }
 ///
-/// @param {String|Number} subtract - The amount that should be subracted
+/// @param {String|Number} subtract - The amount that should be subtracted
 @mixin rmd-list-item-addon-spacing($subtract) {
   $keyline: rmd-list-theme-var(text-keyline);
   $padding: rmd-list-theme-var(item-horizontal-padding);
@@ -314,7 +314,7 @@
   }
 }
 
-/// Creats all the styles for the list package.
+/// Creates all the styles for the list package.
 @mixin react-md-list {
   @include rmd-theme-create-root-theme($rmd-list-theme-values, list);
 

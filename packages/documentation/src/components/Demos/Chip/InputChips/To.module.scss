@@ -33,8 +33,9 @@ $padding: 1rem;
   transform: rotate(45deg);
 }
 
-// all the importans are really just required to override the useFixedPositioning styles
-// that aren't configurable right now that have to be changed for the hacky phone "emulation"
+// all the importants are really just required to override the
+// useFixedPositioning styles that aren't configurable right now that have to be
+// changed for the hacky phone "emulation"
 .listbox {
   @include rmd-utils-tablet-media {
     bottom: auto !important;

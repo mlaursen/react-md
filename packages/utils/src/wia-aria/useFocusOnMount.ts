@@ -24,7 +24,7 @@ import { getInstance } from "./getInstance";
  * default scroll-into-view behavior. This is generally recommended to be kept
  * as `false`, but can be useful to enable if the component mounts offscreen
  * during a transition.
- * @param programatic - Boolean if programatically focusable elements should be
+ * @param programmatic - Boolean if programmatically focusable elements should be
  * included instead of only tab focusable.
  * @param disabled - Boolean if the focus behavior should be disabled.
  */
@@ -32,7 +32,7 @@ export function useFocusOnMount(
   refOrInstance: RefOrInstance,
   defaultFocus: Focus,
   preventScroll = false,
-  programatic = false,
+  programmatic = false,
   disabled = false
 ): void {
   useEffect(() => {
@@ -47,11 +47,11 @@ export function useFocusOnMount(
       }
 
       instance.focus({ preventScroll });
-      focusElementWithin(instance, defaultFocus, programatic, preventScroll);
+      focusElementWithin(instance, defaultFocus, programmatic, preventScroll);
     });
 
     return () => {
       window.cancelAnimationFrame(frame);
     };
-  }, [defaultFocus, disabled, refOrInstance, programatic, preventScroll]);
+  }, [defaultFocus, disabled, refOrInstance, programmatic, preventScroll]);
 }

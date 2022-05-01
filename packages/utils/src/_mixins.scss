@@ -316,7 +316,7 @@
   }
 }
 
-/// This mixin should mostally be used internally within react-md so that
+/// This mixin should mostly be used internally within react-md so that
 /// react-md mixins that use a `rmd-` prefixed class work correctly if included
 /// from a css module file. This basically prefixes the react-md class with
 /// `:global` and suffixes with `:local &`.

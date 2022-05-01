@@ -17,7 +17,7 @@ export default function Logo({
       <title>react-md logo</title>
       <desc>
         The logo is similar to the React logo. It just contains the letters MD
-        in the center of the nuclii.
+        in the center of the nucleus.
       </desc>
       <defs>
         <path

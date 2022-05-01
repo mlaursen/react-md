@@ -11,7 +11,7 @@ const removeWhitespace = (s: string): string => s.replace(/\s/g, "");
  * @param fontIconQuerySelector - A string to use for finding font icons in the
  * HTML Element. When this is set to the empty string, the element will not be
  * checked for font icons which _might_ be a slight performance boost if you are
- * guarenteed to not use font icons
+ * guaranteed to not use font icons
  */
 export function extractTextContent(
   stringOrElement: HTMLElement | string,

@@ -77,11 +77,11 @@ export const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(
     // and unmounting in the Transition group component :/ they should only
     // be re-evaluated when the activeIndex changes.
     const transitionable = useRef(!persistent && !disableTransition);
-    const animimatable = useRef(persistent && !disableTransition);
+    const animatable = useRef(persistent && !disableTransition);
     if (prevIndex.current !== activeIndex) {
       prevIndex.current = activeIndex;
       transitionable.current = !persistent && !disableTransition;
-      animimatable.current = persistent && !disableTransition;
+      animatable.current = persistent && !disableTransition;
     }
 
     useEffect(() => {

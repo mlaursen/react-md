@@ -36,7 +36,7 @@ const titles = ["Mr", "Mrs", "Miss", "Dr", "Other"];
  * Since all of the `react-md` components forward the `ref` prop automatically,
  * all that's required for most form components is using the `Controller`
  * component from `react-hook-form` and initializing the
- * `defaulValue`/`defaultChecked`. The only components that do not follow this
+ * `defaultValue`/`defaultChecked`. The only components that do not follow this
  * pattern are the `Radio` and `Select` components where you'll want to use the
  * `render` prop from the `Controller` instead.
  *
@@ -44,7 +44,7 @@ const titles = ["Mr", "Mrs", "Miss", "Dr", "Other"];
  * seem to work correctly (might just be because I haven't used this library
  * outside of this demo).
  *
- * The `Select` compoent uses the `render` prop just because of a `Typescript`
+ * The `Select` component uses the `render` prop just because of a `Typescript`
  * error that the `value` and `onChange` props are required. Both of those props
  * are injected by the `Controller` component, but using the `render` fixes this
  * compiler error.

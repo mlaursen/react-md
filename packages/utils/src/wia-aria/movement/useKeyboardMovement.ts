@@ -122,7 +122,7 @@ export type KeyboardMovementProviders<
  * `items` array changes so it'll always be in-sync with the DOM nodes. This
  * means that if you have some items that **should not be rendered**, they
  * should not be included within the items list. The main reason these item refs
- * are required is so that the `aria-acativedescendant` movement can scroll the
+ * are required is so that the `aria-activedescendant` movement can scroll the
  * new "focused" element into view if needed while the "true" focus movement can
  * trigger a `ref.current.focus()` on the new item as needed.
  *

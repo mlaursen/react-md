@@ -62,7 +62,7 @@ export const DEFAULT_APP_SIZE: AppSize = {
 
 export interface AppSizeOptions {
   /**
-   * The max width to use for phones. This one is a max width unline the others
+   * The max width to use for phones. This one is a max width unlike the others
    * since everything from 0 to this value will be considered a phone.
    */
   phoneMaxWidth?: QuerySize;

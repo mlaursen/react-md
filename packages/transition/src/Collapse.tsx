@@ -51,7 +51,7 @@ export interface CollapseProps<E extends HTMLElement>
  *       </Button>
  *       <Collapse collapsed={collapsed}>
  *         <div>
- *           Some content that should only be bisible while not collapsed.
+ *           Some content that should only be visible while not collapsed.
  *         </div>
  *       </Collapse>
  *     </>

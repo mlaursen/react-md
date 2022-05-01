@@ -4,7 +4,7 @@ import cn from "classnames";
 
 export interface TextIconSpacingProps {
   /**
-   * An optional className to apply to the surroudning `<span>` when the
+   * An optional className to apply to the surrounding `<span>` when the
    * `forceIconWrap` prop is enabled or the icon is not a valid React Element.
    * If the `forceIconWrap` prop is not enabled, it will be cloned into the icon
    * instead.

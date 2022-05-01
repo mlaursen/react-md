@@ -105,15 +105,15 @@ export interface MenuHookReturnValue<ToggleEl extends HTMLElement>
  * - toggle the `Menu`'s visibility when the `MenuButton` or `MenuItemButton`
  *   has been clicked
  * - hide the `Menu` when an element outside of the `Menu` has been clicked
- * - hide the `Menu` when the `Esacpe` or `Tab` key has been pressed
+ * - hide the `Menu` when the `Escape` or `Tab` key has been pressed
  * - focus the `Menu` element when it gains visibility
  * - refocus the `MenuButton` or `MenuItemButton` when the menu loses visibility
  * - position the menu within the viewport with {@link useFixedPositioning}
- * - show the `Menu` when the `ArrowRight` key is pressed for a vertial
+ * - show the `Menu` when the `ArrowRight` key is pressed for a vertical
  *   `MenuItemButton`
  * - show the `Menu` when the `ArrowDown` key is pressed for a horizontal
  *   `MenuItemButton`
- * - hide the `Menu` when the `ArrowRight` key is pressed in a vertial submenu
+ * - hide the `Menu` when the `ArrowRight` key is pressed in a vertical submenu
  * - hide the `Menu` when the `ArrowDown` key is pressed in a horizontal
  *   submenu
  * - conditionally hide the `Menu` if the page is scrolled while the `Menu` is
@@ -148,7 +148,7 @@ export interface MenuHookReturnValue<ToggleEl extends HTMLElement>
  *
  *   return (
  *     <>
- *       <MenuButton ref={tggleRef} {...toggleProps}>
+ *       <MenuButton ref={toggleRef} {...toggleProps}>
  *         Button
  *       </MenuButton>
  *       <Menu ref={menuRef} {...menuProps}>

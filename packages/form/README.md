@@ -23,7 +23,7 @@ exports the following form components:
 - `Password` - A wrapper for the `TextField` to render as a `type="password"`
   that has built-in functionality to temporarily show the password to the user
   with an inline visibility toggle button
-- `TextArea` - A styled `<texxtarea>` that has a few themes and can animate the
+- `TextArea` - A styled `<textarea>` that has a few themes and can animate the
   height as the user types
 - `Checkbox` - A wrapper for an `<input type="checkbox" />`
 - `Radio` - A wrapper for an `<input type="radio" />`
@@ -62,7 +62,7 @@ This package also exports the following helper components and hooks:
   (built-in)
 - `InputToggle` - A component that is used to render either a `"checkbox"` or
   `"radio"` element
-- `ToggleCotainer` - A helper component that is used to wrap either a
+- `ToggleContainer` - A helper component that is used to wrap either a
   `"checkbox"` or `"radio"` for additional styles
 
 ## Installation

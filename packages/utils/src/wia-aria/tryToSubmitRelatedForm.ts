@@ -32,7 +32,7 @@ type KeyboardSubmitEventPartial = Pick<
  * will be called correctly.
  *
  * @param event - The keyboard event that should attempt to submit the form when
- * the enter key is presssed.
+ * the enter key is pressed.
  * @returns `true` if the `event.key` was the `"Enter"` key so that other
  * keydown logic can be ignored.
  * @remarks \@since 2.7.0

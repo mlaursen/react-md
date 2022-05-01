@@ -15,7 +15,7 @@
 .overlay {
   // you'll really want this to be the `background` value or whatever the current
   // background is instead. You'll probably also want to add additional styles for
-  // maintaining the "containted" styles since the contained button turns into
+  // maintaining the "contained" styles since the contained button turns into
   // an "unstyled" button when disabled
   @include rmd-theme(background-color, surface);
   @include rmd-utils-full-screen(absolute);

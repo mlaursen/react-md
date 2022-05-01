@@ -162,7 +162,7 @@ export interface DropdownMenuConfigurationProps {
   /**
    * Boolean if the menu should close if the page is scrolled. The default
    * behavior is to just update the position of the menu relative to the menu
-   * button until it can no longer be visibile within the viewport.
+   * button until it can no longer be visible within the viewport.
    *
    * @defaultValue `false`
    */
@@ -323,7 +323,7 @@ export interface BaseMenuHookOptions
 
   /**
    * Boolean if the menu is being rendered as a menuitem instead of a button.
-   * Setting this to `true` implementats the
+   * Setting this to `true` implements the
    * {@link ProvidedMenuToggleProps.onKeyDown} functionality.
    *
    * @defaultValue `false`

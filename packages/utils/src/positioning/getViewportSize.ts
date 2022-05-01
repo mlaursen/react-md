@@ -1,5 +1,5 @@
 /**
- * This is a simple wrapper to get the view width or view hieght.
+ * This is a simple wrapper to get the view width or view height.
  *
  * @param direction - Either the "height" or "width" string to get that
  * dimension

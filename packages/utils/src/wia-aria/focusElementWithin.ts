@@ -18,7 +18,7 @@ export type Focus = "first" | "last" | string;
  * @param preventScroll - Boolean if the focus event should not scroll the
  * element into view. This should normally remain `false`, but can be useful if
  * the element gets focused while offscreen during a transition.
- * @param elements - Optonal child elements to search
+ * @param elements - Optional child elements to search
  * @remarks \@since 2.8.0 Supports focusing the container element if it is
  * focusable
  */

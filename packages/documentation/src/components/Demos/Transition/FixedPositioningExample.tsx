@@ -69,7 +69,7 @@ const CLASSNAMES: CSSTransitionClassNames = {
 export default function FixedPositioningExample(): ReactElement {
   const [visible, show, hide] = useToggle(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const [disableSwapping, handleSwapCange] = useChecked(false);
+  const [disableSwapping, handleSwapChange] = useChecked(false);
   const [transformOrigin, handleOriginChange] = useChecked(false);
   const [hideOnScroll, handleScrollChange] = useChecked(true);
   const [hideOnResize, handleScrollResize] = useChecked(true);
@@ -124,7 +124,7 @@ export default function FixedPositioningExample(): ReactElement {
             name="options"
             label="Disable Swapping"
             checked={disableSwapping}
-            onChange={handleSwapCange}
+            onChange={handleSwapChange}
           />
           <Checkbox
             id="fixed-origin"

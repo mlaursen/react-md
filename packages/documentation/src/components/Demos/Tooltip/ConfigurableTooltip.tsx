@@ -39,7 +39,7 @@ export default function ConfigurableTooltip(): ReactElement {
   });
   const [deactivateTime, deactivateTimeProps, { reset: resetDeactivateTime }] =
     useNumberField({
-      id: "tooltip-deactive-time",
+      id: "tooltip-deactivate-time",
       min: 0,
       step: 100,
       defaultValue: DEFAULT_HOVER_MODE_DEACTIVATION_TIME,

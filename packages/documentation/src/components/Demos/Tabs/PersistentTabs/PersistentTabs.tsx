@@ -19,7 +19,7 @@ export default function PersistentTabs(): ReactElement {
             id="persistent-tab-enable"
             checked={persistent}
             onChange={handleChange}
-            label="Enable Persistant Tabs"
+            label="Enable Persistent Tabs"
           />
         </AppBar>
         <Tabs />

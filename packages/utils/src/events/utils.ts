@@ -99,7 +99,7 @@ function createDelegatedEventHandler(
     },
 
     /**
-     * Attempts to remove the provided callback from the lsit of callbacks for
+     * Attempts to remove the provided callback from the list of callbacks for
      * the throttled event. If this is the last callback that was removed, the
      * throttled event will also be stopped.
      */

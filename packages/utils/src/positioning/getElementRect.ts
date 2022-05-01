@@ -6,7 +6,7 @@ function applyCoords(coord: number | undefined): string {
 
 /**
  * This util is used to get the "true" `element.getBoundingClientRect()` that
- * ensures that transitions using tarnsforms don't mess up the sizing so that
+ * ensures that transitions using transforms don't mess up the sizing so that
  * position calculations are easier to do.
  *
  * @param element - The element to get a rect for.
@@ -32,7 +32,7 @@ export function getElementRect(
   cloned.style.position = "fixed";
   cloned.style.visibility = "hidden";
 
-  // reset positionion to get a "pure" calculation. otherwise this will mess up
+  // reset positioning to get a "pure" calculation. otherwise this will mess up
   // the height and width if the element is able to line wrap.
   cloned.style.left = applyCoords(coords.left);
   cloned.style.top = applyCoords(coords.top);

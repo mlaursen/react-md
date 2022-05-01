@@ -49,7 +49,7 @@
 
 /// @access private
 @mixin rmd-tabs {
-  // I can use the -webkit-scrolbar and scrollbar-width stuff due to my limited
+  // I can use the -webkit-scrollbar and scrollbar-width stuff due to my limited
   // browser support. Yay!  The scrollbars will be hidden, but still scrollable.
   // For non-MacOS users, you can still get the normal scroll behavior by
   // holding shift+scroll or use keyboard movement.

@@ -160,7 +160,7 @@ export class FileExtensionError extends GenericFileError {
   /**
    *
    * @param files - The file that caused the error
-   * @param extendsions - The allowed list of file extensions
+   * @param extensions - The allowed list of file extensions
    */
   constructor(files: readonly File[], public extensions: readonly string[]) {
     super(files, "extension");
@@ -266,7 +266,7 @@ export function isFileExtensionError<CustomError>(
 export type IsValidFileName = (
   file: File,
   extensionRegExp: RegExp | undefined,
-  extendsions: readonly string[]
+  extensions: readonly string[]
 ) => boolean;
 
 /**

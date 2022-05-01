@@ -4,7 +4,7 @@ import cn from "classnames";
 
 /**
  * The overlay positions relative to the `MediaContainer` component.  Most of
- * the sizes are self-explanitory, but the `middle` position will be centered
+ * the sizes are self-explanatory, but the `middle` position will be centered
  * vertically while `center` will be centered `horizontally`.
  */
 export type MediaOverlayPosition =

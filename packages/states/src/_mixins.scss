@@ -82,7 +82,7 @@
 /// Note: If you used the `rmd-states-surface` mixin, this functionality will be
 /// included by default. In addition this only works for non-inline elements due
 /// to how positioning works for them. You'll either need to update it to be
-/// `display: inline-block` or fallbac to the `outline-style`s.
+/// `display: inline-block` or fallback to the `outline-style`s.
 ///
 /// @example scss - Example Usage SCSS
 ///   .my-custom-component {
@@ -110,9 +110,9 @@
 /// @param {String} focus-selector ['&:focus'] - A selector to use for the focus
 /// effect. This should normally stay as the default value, but can be used if
 /// the focus state is only triggered by class name changes since the element
-/// isn't truely focusable.
+/// isn't truly focusable.
 /// @param {Boolean} create-pseudo [false] - Boolean if the pseudo element
-/// should also be created with only the `rmd-utils-psuedo-element` mixin. This
+/// should also be created with only the `rmd-utils-pseudo-element` mixin. This
 /// is useful if you don't want the full states styles that come with the
 /// `rmd-states-surface-base` mixin.
 /// @param {Boolean} after [false] - Boolean if the `::after` pseudo element
@@ -184,7 +184,7 @@
 /// @param {String} focus-selector ['&:focus'] - A selector to use for the focus
 /// effect. This should normally stay as the default value, but can be used if
 /// the focus state is only triggered by class name changes since the element
-/// isn't truely focusable.
+/// isn't truly focusable.
 /// @param {Boolean} clickable [true] - Boolean if the surface element should
 /// gain the pointer cursor when hovered.
 /// @param {Boolean} no-focus-state [false] - Boolean if the keyboard focus

@@ -78,7 +78,7 @@ export interface ProvidedPanelProps {
   disabled: boolean;
 
   /**
-   * Boolean if the panel is corrently expanded.
+   * Boolean if the panel is currently expanded.
    */
   expanded: boolean;
 

@@ -69,7 +69,7 @@ export function usePreviousFocus(
       menuButton = document.getElementById(menu.id.replace(/-menu$/, ""));
       if (!menuButton) {
         // if no menu button, try to see if the `aria-labelledby` points to the
-        // button... but since the `aria-labelledby` is a space-deliminated
+        // button... but since the `aria-labelledby` is a space-delimitated
         // string of ids, have to check each one
         const labelledBy = menu.getAttribute("aria-labelledby") || "";
         const query = labelledBy

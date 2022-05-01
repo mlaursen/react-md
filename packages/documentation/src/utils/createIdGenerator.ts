@@ -1,5 +1,5 @@
 /**
- * An extremely simplified uuid function that is scoped with a speciifc prefix.
+ * An extremely simplified uuid function that is scoped with a specific prefix.
  * This will just always increment the total count at the end of the prefix.
  *
  * ```ts

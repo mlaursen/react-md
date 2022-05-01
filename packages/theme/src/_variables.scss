@@ -286,7 +286,7 @@ $rmd-theme-dark-icon-color: color.adjust(
   $lightness: -30%
 ) !default;
 
-/// A Map of all the light theme text colors for quick loopups.
+/// A Map of all the light theme text colors for quick lookups.
 /// @type Map
 $rmd-theme-light-text-colors: (
   primary: $rmd-theme-light-primary-text-color,
@@ -296,7 +296,7 @@ $rmd-theme-light-text-colors: (
   icon: $rmd-theme-light-icon-color,
 );
 
-/// A Map of all the light theme text colors for quick loopups.
+/// A Map of all the light theme text colors for quick lookups.
 /// @type Map
 $rmd-theme-dark-text-colors: (
   primary: $rmd-theme-dark-primary-text-color,

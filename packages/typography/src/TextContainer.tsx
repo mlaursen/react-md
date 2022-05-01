@@ -16,7 +16,7 @@ export type TextContainerSize = "auto" | "mobile" | "desktop";
 
 /**
  * A type describing the text container's children render function. It provides
- * an object containing the correct (and merged) className and exects a
+ * an object containing the correct (and merged) className and expects a
  * renderable element to be returned.
  */
 export type TextContainerRenderFunction = (props: {

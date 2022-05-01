@@ -121,7 +121,7 @@ export interface TypographyProps extends HTMLAttributes<TypographyHTMLElement> {
   align?: TextAlign;
 
   /**
-   * An optional text color to apply. Unline normal theme colors, these will
+   * An optional text color to apply. Unlike normal theme colors, these will
    * reflect the `text-secondary-on-background` and `text-hint-on-background`
    * instead of the primary or secondary theme colors.
    */

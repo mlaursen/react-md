@@ -71,7 +71,7 @@ export interface GridProps extends HTMLAttributes<HTMLDivElement> {
 
   /**
    * An optional number of columns to apply for all media types. Providing one
-   * of the media-spcific column props will override this value for those
+   * of the media-specific column props will override this value for those
    * breakpoints still.
    */
   columns?: number;

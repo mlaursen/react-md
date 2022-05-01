@@ -24,7 +24,7 @@ export function getResultId(id: string, index: number): string {
  *
  * @param datum - The current result datum to get a label for
  * @param labelKey - The key to extract a label from if the datum is an object
- * @param query - The current search query. This is useful if you want to
+ * @param _query - The current search query. This is useful if you want to
  * implement text "highlighting" (bold) of all the letters that match in the
  * item.
  * @returns a renderable node to display
@@ -100,7 +100,7 @@ export function getFilterFunction<O extends {} = {}>(
     default:
       if (process.env.NODE_ENV !== "production") {
         throw new Error(
-          `Invalid filter function: "${filter}". Supported values are: "fuzzy", "case-insenitive", "none", or a custom function.`
+          `Invalid filter function: "${filter}". Supported values are: "fuzzy", "case-insensitive", "none", or a custom function.`
         );
       }
 

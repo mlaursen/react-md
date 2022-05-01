@@ -35,7 +35,7 @@ export type PasswordWithMessageProps =
  * );
  * ```
  *
- * Note: Unline the `TextFieldWithMessage` and `TextAreaWithMessage`, the error
+ * Note: Unlike the `TextFieldWithMessage` and `TextAreaWithMessage`, the error
  * icon will do nothing for this component unless the `disableVisibility` prop
  * is enabled.
  *

@@ -71,7 +71,7 @@ export default function CodePreview({
         [styles.offset]: offset,
       })}
       lineNumbers
-      // need to make this focusable so keyboard users can scoll
+      // need to make this focusable so keyboard users can scroll
       // the page
       tabIndex={0}
     >

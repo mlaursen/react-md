@@ -27,7 +27,7 @@ $rmd-tab-vertical-padding: 0.75rem !default;
 /// @type Number
 $rmd-tab-min-width: 5.625rem !default;
 
-/// The maxium width for a tab. The way tabs work is that they will grow as needed
+/// The maximum width for a tab. The way tabs work is that they will grow as needed
 /// to fill the entire space of the `Tabs` container width. This also means that
 /// they will shrink if the `Tabs` container is small.
 /// @type Number
@@ -61,14 +61,15 @@ $rmd-tab-disabled-color: rmd-theme(text-disabled-on-background) !default;
 /// @type Number
 $rmd-tab-active-indicator-height: 0.125rem !default;
 
-/// A list of alignments that should be supported by the Tabs component. These values
-/// should be valid values for the `justify-content` property.
+/// A list of alignments that should be supported by the Tabs component. These
+/// values should be valid values for the `justify-content` property.
 /// @type List
 $rmd-tabs-positions: (left center right) !default;
 
-/// The amount of padding to use when the `scollable` prop is enabled on the `Tabs` component that
-/// will be added to the left of the first tab (or right for RTL languages). This padding is useful
-/// to help users know that the content is scrollable.
+/// The amount of padding to use when the `scrollable` prop is enabled on the
+/// `Tabs` component that will be added to the left of the first tab (or right
+/// for RTL languages). This padding is useful to help users know that the
+/// content is scrollable.
 /// @type Number
 $rmd-tabs-scrollable-padding: 3.25rem !default;
 

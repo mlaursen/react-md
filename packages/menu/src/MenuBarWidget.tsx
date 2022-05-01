@@ -8,7 +8,7 @@ import { useKeyboardFocus } from "@react-md/utils";
 import { useMenuBarContext } from "./MenuBarProvider";
 
 /**
- * This contet is used to implement the "roving tab index" behavior
+ * This context is used to implement the "roving tab index" behavior
  *
  * @internal
  * @remarks \@since 5.0.0

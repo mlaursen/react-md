@@ -13,7 +13,7 @@ export default function TooltipHookExample(): ReactElement {
   return (
     <>
       <Button {...elementProps}>Button</Button>
-      <Tooltip {...tooltipProps}>Toolip Content</Tooltip>
+      <Tooltip {...tooltipProps}>Tooltip Content</Tooltip>
     </>
   );
 }

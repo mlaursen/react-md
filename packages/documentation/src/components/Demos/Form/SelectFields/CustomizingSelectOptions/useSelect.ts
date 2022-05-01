@@ -14,7 +14,7 @@ type ChangeHandler = (nextValue: string) => void;
  *
  * This just makes sure that we only use the nextValue for all the demos.
  *
- * @param defautlValue - The default value for the select in the demo
+ * @param defaultValue - The default value for the select in the demo
  * @returns an ordered list of value and change handler.
  */
 export default function useSelect(

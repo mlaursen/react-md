@@ -57,7 +57,7 @@ import type {
  *     "aria-label": "A custom label"
  *   }}
  *   navHeaderTitle="Current Page Title"
- *   closeNavProps={{ disaled: true }}
+ *   closeNavProps={{ disabled: true }}
  *   treeProps={useLayoutNavigation(navItems, window.location.pathname)}
  *   {...props}
  * />
@@ -184,7 +184,7 @@ export interface FlattenedLayoutComponentConfiguration<
 
   /**
    * Any additional props to provide to the default
-   * `LayoutCloseNavigationButton` compoent.
+   * `LayoutCloseNavigationButton` component.
    */
   closeNavProps?: PropsWithRef<
     Required<LayoutNavigationProps>["closeNavProps"],

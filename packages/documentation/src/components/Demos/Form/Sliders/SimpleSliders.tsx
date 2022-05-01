@@ -6,7 +6,7 @@ import { useId } from "components/IdProvider";
 
 import SlidersContainer from "./SlidersContainer";
 
-export default function SImpleSliders(): ReactElement | null {
+export default function SimpleSliders(): ReactElement | null {
   const [_value1, controls1] = useSlider();
   const [_value2, controls2] = useSlider(20);
   const [_value3, controls3] = useSlider(0, {

@@ -54,7 +54,7 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
    * Boolean if the link should automatically be updated to apply
    * `rel=noopener noreferrer` when the `target` prop is set to `"_blank"`. This
    * is recommended to have enabled by default, but can be disabled by setting
-   * this prop to `false` or specificying a `rel` prop yourself. You can read
+   * this prop to `false` or specifying a `rel` prop yourself. You can read
    * more about the reason for this
    * {@link https://mathiasbynens.github.io/rel-noopener/|here}.
    */

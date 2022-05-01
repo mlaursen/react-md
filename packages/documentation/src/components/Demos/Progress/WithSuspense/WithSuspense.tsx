@@ -19,7 +19,7 @@ import styles from "./WithSuspense.module.scss";
 enum State {
   READY,
   LOADING,
-  COMPELTED,
+  COMPLETED,
 }
 
 export default function WithSuspense(): ReactElement {
@@ -27,7 +27,7 @@ export default function WithSuspense(): ReactElement {
   const stateRef = useRef(state);
   const key = useRef(Date.now());
   useEffect(() => {
-    if (stateRef.current === State.COMPELTED && state === State.READY) {
+    if (stateRef.current === State.COMPLETED && state === State.READY) {
       key.current = Date.now();
     }
 
@@ -38,7 +38,7 @@ export default function WithSuspense(): ReactElement {
     setState(State.READY);
   }, []);
   const complete = useCallback(() => {
-    setState(State.COMPELTED);
+    setState(State.COMPLETED);
   }, []);
 
   const handleClick = useCallback(() => {
@@ -46,7 +46,7 @@ export default function WithSuspense(): ReactElement {
       case State.READY:
         setState(State.LOADING);
         break;
-      case State.COMPELTED:
+      case State.COMPLETED:
         reset();
       // no default
     }
@@ -54,7 +54,7 @@ export default function WithSuspense(): ReactElement {
   const { isPhone } = useAppSize();
 
   const loading = state === State.LOADING;
-  const completed = state === State.COMPELTED;
+  const completed = state === State.COMPLETED;
 
   const LazyComponent = useFakeLazyImport(WithSuspenseFiles, key.current);
   return (

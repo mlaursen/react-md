@@ -37,7 +37,7 @@ export default function MediaQueryComponents(): ReactElement {
           This section will gain different styles as the viewport increases. I
           highly recommend opening the dev tools and seeing how the different
           styles get applied and when some are completely removed to get a
-          better undertanding of the media queries.
+          better understanding of the media queries.
         </Typography>
       </div>
     </>

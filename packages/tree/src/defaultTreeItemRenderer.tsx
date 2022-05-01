@@ -37,7 +37,7 @@ function isElementType(
  * }
  * ```
  *
- * @param itemProps - The providied tree item props that should be passed down
+ * @param itemProps - The provided tree item props that should be passed down
  * for keyboard functionality, accessibility, and a `key` for the item.
  * @param item - The item itself. This is used to extract any of the common
  * ListItemChildren props.

@@ -34,7 +34,7 @@ export interface ContextMenuHookOptions
   /**
    * An optional custom contextmenu event handler that will be merged with the
    * menu visibility behavior. If this function calls `event.stopPropagation()`,
-   * the default contet menu behavior will not occur.
+   * the default context menu behavior will not occur.
    */
   onContextMenu?<E extends HTMLElement>(event: MouseEvent<E>): void;
 

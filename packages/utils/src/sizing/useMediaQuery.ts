@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
  * it will check the media query matches on mount and use that value.
  * @param disabled - Boolean if the media query checking should be disabled.
  * @param checkImmediately - Boolean if the media query should be checked
- * immediately on mount. When omittied, it will default to checking when the
+ * immediately on mount. When omitted, it will default to checking when the
  * window is defined.
  * @returns true if the media query is a match.
  */

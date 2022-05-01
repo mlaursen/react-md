@@ -28,7 +28,7 @@ export interface CircularProgressProps
   circleStyle?: CSSProperties;
 
   /**
-   * An optional className to apply to the circle within the cicular progress.
+   * An optional className to apply to the circle within the circular progress.
    */
   circleClassName?: string;
 
@@ -57,7 +57,7 @@ export interface CircularProgressProps
    * The `stroke-dashoffset` for the circle within the SVG. You probably won't
    * be changing this value that much as it should match the
    * `$rmd-progress-circle-dashoffset` Sass variable. This is really just used
-   * to help to create the determinite progress animation.
+   * to help to create the determinate progress animation.
    */
   dashoffset?: number;
 

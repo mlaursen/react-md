@@ -1,4 +1,5 @@
 packages/material-icons/src
+packages/documentation/public/tsdocs
 packages/documentation/src/components/SassDocPage
 packages/documentation/src/constants/meta
 packages/documentation/src/constants/sandboxes

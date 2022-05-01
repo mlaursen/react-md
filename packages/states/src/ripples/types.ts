@@ -57,7 +57,7 @@ export interface RipplesOptions<E extends HTMLElement = HTMLElement> {
   disabled?: boolean;
 
   /**
-   * Boolean if the ripple effeect should be disabled. This will make the `useRipples`
+   * Boolean if the ripple effect should be disabled. This will make the `useRipples`
    * hook not provide any additional logic for the provided handlers.
    */
   disableRipple?: boolean;
@@ -70,7 +70,7 @@ export interface RipplesOptions<E extends HTMLElement = HTMLElement> {
 
   /**
    * Boolean if the ripple effect should not occur after a programmatic trigger
-   * of a click event. This would normally happen if using `aria-activedescendat`
+   * of a click event. This would normally happen if using `aria-activedescendant`
    * movement and the user "presses" the current active element.
    */
   disableProgrammaticRipple?: boolean;

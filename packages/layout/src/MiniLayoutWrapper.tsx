@@ -47,7 +47,7 @@ export interface MiniLayoutWrapperProps<
   /**
    * An optional tree to use for the mini navigation pane since the default
    * behavior of rendering mini tree items might hide content in an
-   * undersireable way.
+   * undesirable way.
    *
    * @remarks \@since 2.7.0
    * @see {@link defaultMiniNavigationItemRenderer} for more information

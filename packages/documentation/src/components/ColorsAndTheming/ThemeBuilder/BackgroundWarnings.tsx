@@ -47,10 +47,10 @@ export default function BackgroundWarnings({
     return null;
   }
 
-  const isMultiplie = warnings.length > 1;
+  const isMultiple = warnings.length > 1;
   const names = `**${warnings.join("** and **")}** value${
-    isMultiplie ? "s" : ""
-  } do${isMultiplie ? "" : "es"}`;
+    isMultiple ? "s" : ""
+  } do${isMultiple ? "" : "es"}`;
 
   return (
     <Markdown disableSinglePMargin className={className}>

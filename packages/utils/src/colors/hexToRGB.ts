@@ -7,7 +7,7 @@ const SHORTHAND_REGEX = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 const VERBOSE_REGEX = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
 
 /**
- * Converts a hex string into an rgb value. This is useful for deteching color
+ * Converts a hex string into an rgb value. This is useful for detecting color
  * contrast ratios and other stuff.
  *
  * @param hex - The hex string to convert

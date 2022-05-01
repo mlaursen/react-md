@@ -92,7 +92,7 @@ export interface TextFieldHookOptions
 
   /**
    * A function used to determine if the `TextField` or `TextArea` is an in
-   * errored state. See {@link defaultIsErrored} for the defualt implementation
+   * errored state. See {@link defaultIsErrored} for the default implementation
    * details.
    */
   isErrored?: IsErrored;
