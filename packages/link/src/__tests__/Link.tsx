@@ -19,7 +19,7 @@ describe("Link", () => {
 
   it("should should render correctly when using react-router's Link component", () => {
     const { container, rerender } = render(
-      <Link component={ReactRouterLink} href="#">
+      <Link component={ReactRouterLink} to="#">
         Content
       </Link>,
       {
@@ -32,14 +32,14 @@ describe("Link", () => {
     expect(container).toMatchSnapshot();
 
     rerender(
-      <Link component={ReactRouterLink} href="">
+      <Link component={ReactRouterLink} to="">
         Disabled Link
       </Link>
     );
     expect(container).toMatchSnapshot();
 
     rerender(
-      <Link component={ReactRouterLink} href="/direct-url">
+      <Link component={ReactRouterLink} to="/direct-url">
         Direct url
       </Link>
     );
@@ -55,14 +55,14 @@ describe("Link", () => {
     expect(container).toMatchSnapshot();
 
     rerender(
-      <Link component={ReachLink} href="">
+      <Link component={ReachLink} to="">
         Disabled Link
       </Link>
     );
     expect(container).toMatchSnapshot();
 
     rerender(
-      <Link component={ReachLink} href="/direct-url">
+      <Link component={ReachLink} to="/direct-url">
         Direct url
       </Link>
     );

@@ -1,6 +1,6 @@
-const path = require('path');
+import path from 'node:path';
 
-module.exports = {
+export default {
   process(src, filename, config, options) {
     return 'module.exports = ' + JSON.stringify(path.basename(filename)) + ';';
   },

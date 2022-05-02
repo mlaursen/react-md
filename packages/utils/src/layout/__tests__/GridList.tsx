@@ -69,7 +69,6 @@ let observer: MockedObserver | undefined;
 let getBoundingClientRect: jest.SpyInstance<DOMRect, []>;
 beforeAll(() => {
   ResizeObserverMock.mockImplementation((callback) => {
-    // @ts-ignore
     observer = new MockedObserver(callback);
     return observer;
   });

@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import { useState } from "react";
 import { render, fireEvent } from "@testing-library/react";
 

@@ -1,20 +1,11 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig.json",
-  "compilerOptions": {
+  "$schema": "https://json.schemastore.org/swcrc.json",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true
+    },
     "baseUrl": ".",
-    "target": "esnext",
-    "module": "esnext",
-    "sourceMap": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "skipLibCheck": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "downlevelIteration": true,
-    "allowSyntheticDefaultImports": true,
-    "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
       "@react-md/alert": ["./packages/alert/src/index.ts"],
       "@react-md/app-bar": ["./packages/app-bar/src/index.ts"],

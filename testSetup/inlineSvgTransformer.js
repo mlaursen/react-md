@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   process(code, filename, config, options) {
     return 'module.exports = { Component: () => null }';
   },

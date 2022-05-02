@@ -1,10 +1,12 @@
 {
   "name": "react-md-root",
+  "type": "module",
   "private": true,
   "version": "2.4.0",
   "description": "The mono-repo for react-md",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "dev": "next dev",
     "start": "next start",
     "build-website": "next build",
@@ -30,6 +32,9 @@
     "@rollup/plugin-commonjs": "^21.1.0",
     "@rollup/plugin-node-resolve": "^13.2.1",
     "@rollup/plugin-replace": "^4.0.0",
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.170",
+    "@swc/jest": "^0.2.20",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
