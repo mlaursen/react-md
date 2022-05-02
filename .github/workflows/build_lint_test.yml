@@ -32,7 +32,7 @@ jobs:
       - run: yarn lint
       - run: yarn test
 
-  build_node_14:
+  build_node_16:
     # only want to use codecov for node 16
     name: Build Using Node 16
     runs-on: ubuntu-latest

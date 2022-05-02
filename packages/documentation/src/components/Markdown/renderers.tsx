@@ -1,6 +1,5 @@
 import type { MarkdownRenderers } from "react-marked-renderer";
 import {
-  EscapeRenderer,
   DEFAULT_MARKDOWN_RENDERERS,
   getTokensText,
   ImageRenderer,
@@ -98,15 +97,6 @@ export const renderers: MarkdownRenderers = {
 
   codeblock: function Codeblock({ lang, text }) {
     return <CodeBlock language={lang}>{text}</CodeBlock>;
-  },
-
-  escape: function Escape(props) {
-    // TODO: Remove after upgrading react-marked-renderer with this fix
-    if (props.text === "&lt;") {
-      return <>&lt;</>;
-    }
-
-    return <EscapeRenderer {...props} />;
   },
 
   listitem: function ListItem({ children }) {

@@ -41,7 +41,7 @@
     "@react-md/icon": "^5.1.2"
   },
   "devDependencies": {
-    "@types/adm-zip": "^0.4.34",
+    "@types/adm-zip": "^0.5.0",
     "@types/download": "^8.0.1",
     "adm-zip": "^0.5.9",
     "commander": "^9.2.0",
