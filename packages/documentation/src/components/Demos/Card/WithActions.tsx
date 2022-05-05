@@ -13,7 +13,7 @@ import Container from "./Container";
 export default function WithActions(): ReactElement {
   return (
     <Container>
-      <Card raiseable>
+      <Card raisable>
         <CardHeader>
           <CardTitle>This is a title</CardTitle>
         </CardHeader>

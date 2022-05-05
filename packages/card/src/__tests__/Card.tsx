@@ -11,14 +11,14 @@ describe("Card", () => {
     rerender(<Card bordered />);
     expect(container).toMatchSnapshot();
 
-    rerender(<Card bordered raiseable />);
+    rerender(<Card bordered raisable />);
     expect(container).toMatchSnapshot();
 
-    rerender(<Card bordered fullWidth raiseable />);
+    rerender(<Card bordered fullWidth raisable />);
     expect(container).toMatchSnapshot();
 
     rerender(
-      <Card bordered fullWidth raiseable>
+      <Card bordered fullWidth raisable>
         <div>Content</div>
       </Card>
     );

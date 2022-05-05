@@ -8,7 +8,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
    * Boolean if the card should gain additional box-shadow elevation once
    * hovered.
    */
-  raiseable?: boolean;
+  raisable?: boolean;
 
   /**
    * Boolean if the card should no longer be `display: inline-block`, but
@@ -18,9 +18,12 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 
   /**
    * Boolean if the card should use a border instead of box-shadow. Enabling
-   * this prop will always disable the `raiseable` prop.
+   * this prop will always disable the `raisable` prop.
    */
   bordered?: boolean;
+
+  /** @deprecated \@since 5.1.3 Use {@link raisable} instead. */
+  raiseable?: boolean;
 }
 
 const block = bem("rmd-card");
@@ -35,6 +38,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
     className,
     children,
     raiseable = false,
+    raisable = raiseable,
     fullWidth = false,
     bordered = false,
     ...props
@@ -49,7 +53,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
         block({
           bordered,
           shadowed: !bordered,
-          raiseable: !bordered && raiseable,
+          raisable: !bordered && raisable,
           "full-width": fullWidth,
         }),
         className

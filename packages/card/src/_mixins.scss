@@ -66,7 +66,9 @@
   @include rmd-card-theme(background-color);
   @include rmd-card-theme(color);
   @include rmd-utils-mouse-only {
-    &--raiseable {
+    // TODO: Remove misspelled version in next major release
+    &--raiseable,
+    &--raisable {
       // Note: Only worthwhile with the `--shadowed` class
       @include rmd-elevation-transition(
         $rmd-card-base-elevation,
