@@ -10,10 +10,10 @@ const Test = ({
   disabled = false,
   defaultFocus = "first",
   preventScroll = false,
-  programatic = false,
+  programmatic = false,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  useFocusOnMount(ref, defaultFocus, preventScroll, programatic, disabled);
+  useFocusOnMount(ref, defaultFocus, preventScroll, programmatic, disabled);
   return (
     <div ref={ref}>
       <button type="button" data-testid="button-1">

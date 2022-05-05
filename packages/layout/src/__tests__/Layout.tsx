@@ -408,7 +408,7 @@ describe("Layout", () => {
       expect(() => getByRole("dialog")).toThrow();
     });
 
-    it("should allow the visibility to be controled with the showNav and hideNav functions", async () => {
+    it("should allow the visibility to be controlled with the showNav and hideNav functions", async () => {
       const { getByRole } = render(
         <Test>
           <Actions />

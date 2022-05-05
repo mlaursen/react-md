@@ -109,7 +109,7 @@ function Test({
 
 const list = [
   "Frozen yogurt",
-  "Ice cream sandwhich",
+  "Ice cream sandwich",
   "Eclair",
   "Cupcake",
   "Gingerbread",

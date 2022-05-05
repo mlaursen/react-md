@@ -9,7 +9,7 @@ describe("Avatar", () => {
     expect(container.querySelector("span")).not.toBeNull();
   });
 
-  it("should apply the rmd-avarar class name", () => {
+  it("should apply the rmd-avatar class name", () => {
     const { container } = render(<Avatar />);
     const avatar = container.querySelector("span") as HTMLSpanElement;
     expect(avatar.className).toBe("rmd-avatar");

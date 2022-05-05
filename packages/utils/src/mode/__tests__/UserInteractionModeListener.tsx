@@ -10,7 +10,6 @@ import {
 describe("UserInteractionModeListener", () => {
   it("should throw an error if multiple instances are mounted", () => {
     const error = jest.spyOn(console, "error");
-    // noop
     error.mockImplementation(() => {});
     expect(() =>
       render(

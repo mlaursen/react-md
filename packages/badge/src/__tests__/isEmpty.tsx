@@ -1,7 +1,7 @@
 import { isEmpty } from "../isEmpty";
 
 describe("isEmpty", () => {
-  it('should return true whent he disableNullOnZero is false and the children is 0, "0", or null', () => {
+  it('should return true when the disableNullOnZero is false and the children is 0, "0", or null', () => {
     expect(isEmpty(0, false)).toBe(true);
     expect(isEmpty("0", false)).toBe(true);
     expect(isEmpty(null, false)).toBe(true);

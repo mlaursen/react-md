@@ -1082,7 +1082,7 @@ exports[`Tree Real World Demos should work with the tree item hooks for single s
 </div>
 `;
 
-exports[`Tree should be able to render a tree with muliple root level nodes 1`] = `
+exports[`Tree should be able to render a tree with multiple root level nodes 1`] = `
 <div>
   <ul
     aria-activedescendant=""

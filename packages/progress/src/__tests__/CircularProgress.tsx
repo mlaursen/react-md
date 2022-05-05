@@ -32,7 +32,7 @@ describe("CircularProgress", () => {
 
   it("should support a small variant", () => {
     const { getByRole, rerender } = render(
-      <CircularProgress id="small=pgoress" small />
+      <CircularProgress id="small-progress" small />
     );
     const progress = getByRole("progressbar");
 

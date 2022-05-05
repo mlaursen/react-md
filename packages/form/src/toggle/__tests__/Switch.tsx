@@ -51,7 +51,7 @@ describe("Switch", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should be able to render the children within the switch's ball hiden label", () => {
+  it("should be able to render the children within the switch's ball hidden label", () => {
     const { container } = render(
       <Switch id="switch" label="Label">
         <span>Content</span>

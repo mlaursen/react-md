@@ -133,7 +133,7 @@ describe("TextFieldWithMessage", () => {
     expect(message.className).toContain("--error");
   });
 
-  it("should not update the error state on change or update the value if the custon onChange event stopped propagation", () => {
+  it("should not update the error state on change or update the value if the custom onChange event stopped propagation", () => {
     const { getByRole } = render(
       <Test
         minLength={10}

@@ -85,7 +85,7 @@ describe("Table", () => {
         iron: 1,
       },
       {
-        name: "Ice cream sandwhich",
+        name: "Ice cream sandwich",
         type: "Ice cream",
         calories: 237,
         fat: 9.0,

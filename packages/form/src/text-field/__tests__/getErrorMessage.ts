@@ -85,7 +85,7 @@ describe("defaultGetErrorMessage", () => {
     ).toBe("");
   });
 
-  it("should only return the validity message when the validateOnChange is set to recommeded and one of the RECOMMENDED_STATE_KEYS are errored", () => {
+  it("should only return the validity message when the validateOnChange is set to recommended and one of the RECOMMENDED_STATE_KEYS are errored", () => {
     const validate = (key: keyof ValidityState, expected: string): void => {
       expect(
         defaultGetErrorMessage({
@@ -108,7 +108,7 @@ describe("defaultGetErrorMessage", () => {
     validate("valueMissing", validationMessage);
   });
 
-  it("should only return the validity message when the validateOnChange is set to recommeded and one of the RECOMMENDED_NUMBER_STATE_KEYS are errored", () => {
+  it("should only return the validity message when the validateOnChange is set to recommended and one of the RECOMMENDED_NUMBER_STATE_KEYS are errored", () => {
     const validate = (key: keyof ValidityState, expected: string): void => {
       expect(
         defaultGetErrorMessage({

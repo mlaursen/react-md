@@ -425,7 +425,7 @@ exports[`Table should allow for sorting 1`] = `
           <td
             class="rmd-table-cell rmd-table-cell--grow rmd-table-cell--no-wrap"
           >
-            Ice cream sandwhich
+            Ice cream sandwich
           </td>
           <td
             class="rmd-table-cell rmd-table-cell--no-wrap"
@@ -899,7 +899,7 @@ exports[`Table should allow for sorting 2`] = `
           <td
             class="rmd-table-cell rmd-table-cell--grow rmd-table-cell--no-wrap"
           >
-            Ice cream sandwhich
+            Ice cream sandwich
           </td>
           <td
             class="rmd-table-cell rmd-table-cell--no-wrap"
@@ -1814,7 +1814,7 @@ exports[`Table should allow for sorting 3`] = `
           <td
             class="rmd-table-cell rmd-table-cell--grow rmd-table-cell--no-wrap"
           >
-            Ice cream sandwhich
+            Ice cream sandwich
           </td>
           <td
             class="rmd-table-cell rmd-table-cell--no-wrap"
@@ -2288,7 +2288,7 @@ exports[`Table should allow for sorting 4`] = `
           <td
             class="rmd-table-cell rmd-table-cell--grow rmd-table-cell--no-wrap"
           >
-            Ice cream sandwhich
+            Ice cream sandwich
           </td>
           <td
             class="rmd-table-cell rmd-table-cell--no-wrap"

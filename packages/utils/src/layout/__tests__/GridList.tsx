@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import type { ReactElement } from "react";
 import { act, render } from "@testing-library/react";
 import { ResizeObserver } from "@juggle/resize-observer";

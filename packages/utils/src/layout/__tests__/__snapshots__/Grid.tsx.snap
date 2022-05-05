@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Grid should be able to clone the style and classname into the child element ignoring all other props 1`] = `
+exports[`Grid should be able to clone the style and className into the child element ignoring all other props 1`] = `
 <div>
   <span
     class="rmd-grid"

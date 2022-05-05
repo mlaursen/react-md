@@ -6,7 +6,7 @@ import type { TypographyType } from "../Typography";
 import { Typography } from "../Typography";
 
 describe("Typography", () => {
-  it("should render corrrrectly based on the type prop", () => {
+  it("should render correctly based on the type prop", () => {
     const tests: { type: TypographyType; expected: string }[] = [
       { type: "headline-1", expected: "h1" },
       { type: "headline-2", expected: "h2" },

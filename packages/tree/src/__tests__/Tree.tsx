@@ -22,7 +22,7 @@ describe("Tree", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should be able to render a tree with muliple root level nodes", () => {
+  it("should be able to render a tree with multiple root level nodes", () => {
     const data = {
       "item-1": {
         parentId: null,

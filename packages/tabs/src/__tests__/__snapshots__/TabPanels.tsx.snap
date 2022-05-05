@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabPanels should automatically inject a11y attributes when wrapped in the TabsMananger and only render the active tab 1`] = `
+exports[`TabPanels should automatically inject a11y attributes when wrapped in the TabsManager and only render the active tab 1`] = `
 <div>
   <div
     class="rmd-tab-panels rmd-tab-panels--slide-right"

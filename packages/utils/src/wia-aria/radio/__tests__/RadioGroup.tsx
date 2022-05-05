@@ -108,7 +108,7 @@ describe("RadioGroup, RadioGroupProps", () => {
     expect(item3).toHaveAttribute("aria-checked", "false");
   });
 
-  it("should't have custom keyboard behavior of other keys or a radio cannot be found", () => {
+  it("shouldn't have custom keyboard behavior of other keys or a radio cannot be found", () => {
     const { getByRole } = render(<Test />);
 
     const item1 = getByRole("radio", { name: "Item 1" });

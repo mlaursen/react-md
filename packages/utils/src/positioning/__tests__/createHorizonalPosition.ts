@@ -119,7 +119,7 @@ const rightBoundsConfig1: FixConfig = {
 const rightBoundsConfig2: FixConfig = { ...rightBoundsConfig1, vwMargin: 8 };
 
 describe("createAnchoredLeft", () => {
-  it("should return the calcualted left coord and an actualX value of left", () => {
+  it("should return the calculated left coord and an actualX value of left", () => {
     expect(createAnchoredLeft(config1)).toEqual({
       left: getLeftCoord(config1),
       actualX: "left",
@@ -482,7 +482,7 @@ describe("createAnchoredInnerRight", () => {
 });
 
 describe("createAnchoredRight", () => {
-  it("should return the calcualted left coord and an actualX value of left", () => {
+  it("should return the calculated left coord and an actualX value of left", () => {
     expect(createAnchoredRight(config1)).toEqual({
       left: getRightCoord(config1),
       actualX: "right",

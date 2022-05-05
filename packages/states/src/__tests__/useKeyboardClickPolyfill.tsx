@@ -51,7 +51,7 @@ describe("useKeyboardClickPolyfill", () => {
   });
 
   it("should trigger the provided onKeyDown handler when both enabled and disabled", () => {
-    // the user should decide if the element is truely disabled or not
+    // the user should decide if the element is truly disabled or not
 
     const onKeyDown = jest.fn();
     const { getByText, rerender } = render(<Test onKeyDown={onKeyDown} />);

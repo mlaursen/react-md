@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Slider discrete sliders should show the toolwip when the thumb gains focus while the user interaction mode is keyboard 1`] = `
+exports[`Slider discrete sliders should show the tooltip when the thumb gains focus while the user interaction mode is keyboard 1`] = `
 <div>
   <span
     class="rmd-label"
@@ -36,7 +36,7 @@ exports[`Slider discrete sliders should show the toolwip when the thumb gains fo
 </div>
 `;
 
-exports[`Slider discrete sliders should show the toolwip when the thumb gains focus while the user interaction mode is keyboard 2`] = `
+exports[`Slider discrete sliders should show the tooltip when the thumb gains focus while the user interaction mode is keyboard 2`] = `
 <div>
   <span
     class="rmd-label"
@@ -79,7 +79,7 @@ exports[`Slider discrete sliders should show the toolwip when the thumb gains fo
 </div>
 `;
 
-exports[`Slider discrete sliders should show the toolwip when the thumb gains focus while the user interaction mode is keyboard 3`] = `
+exports[`Slider discrete sliders should show the tooltip when the thumb gains focus while the user interaction mode is keyboard 3`] = `
 <div>
   <span
     class="rmd-label"

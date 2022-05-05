@@ -595,7 +595,7 @@ describe("getTransitionClassNames", () => {
 });
 
 describe("isWithinViewport", () => {
-  it("should return true if botht he fixedElement and fixedToElement are visible within the viewport", () => {
+  it("should return true if both the fixedElement and fixedToElement are visible within the viewport", () => {
     expect(window.innerHeight).toBe(768);
     expect(window.innerWidth).toBe(1024);
     const rect: DOMRect = {

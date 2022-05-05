@@ -376,7 +376,7 @@ describe("Slider", () => {
       );
     }
 
-    it("should show the toolwip when the thumb gains focus while the user interaction mode is keyboard", async () => {
+    it("should show the tooltip when the thumb gains focus while the user interaction mode is keyboard", async () => {
       const { getByRole, container } = render(<DiscreteTest />);
       expect(container).toMatchSnapshot();
       expect(() => getByRole("tooltip")).toThrow();

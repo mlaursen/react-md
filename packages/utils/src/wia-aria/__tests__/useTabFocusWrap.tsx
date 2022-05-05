@@ -56,7 +56,7 @@ describe("useTabFocusWrap", () => {
     const input2 = getByTestId("input-2");
     const input3 = getByTestId("input-3");
 
-    // set up intial focus...
+    // set up initial focus...
     input1.focus();
     expect(document.activeElement).toBe(input1);
 
@@ -94,7 +94,7 @@ describe("useTabFocusWrap", () => {
     const input1 = getByTestId("input-1");
     const input2 = getByTestId("input-2");
 
-    // set up intial focus...
+    // set up initial focus...
     input1.focus();
     expect(document.activeElement).toBe(input1);
 
@@ -117,7 +117,7 @@ describe("useTabFocusWrap", () => {
     const input1 = getByTestId("input-1");
     const input2 = getByTestId("input-2");
 
-    // set up intial focus...
+    // set up initial focus...
     input1.focus();
     expect(document.activeElement).toBe(input1);
 

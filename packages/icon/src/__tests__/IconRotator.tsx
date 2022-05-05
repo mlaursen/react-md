@@ -69,7 +69,7 @@ describe("IconRotator", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should wrapp the children with a span if the forceIconWrap prop is enabled", () => {
+  it("should wrap the children with a span if the forceIconWrap prop is enabled", () => {
     const { container, rerender } = render(
       <IconRotator rotated={false} forceIconWrap>
         <Icon />

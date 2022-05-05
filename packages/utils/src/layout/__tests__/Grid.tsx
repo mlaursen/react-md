@@ -71,7 +71,7 @@ describe("Grid", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should be able to clone the style and classname into the child element ignoring all other props", () => {
+  it("should be able to clone the style and className into the child element ignoring all other props", () => {
     const MyCustomComponent = ({
       style,
       className,

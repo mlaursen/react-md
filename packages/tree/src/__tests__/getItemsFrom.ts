@@ -44,7 +44,7 @@ describe("getItemsFrom", () => {
     expect(getItemsFrom(data, null)).toEqual([]);
   });
 
-  it("should return the corrected oredred list of items", () => {
+  it("should return the corrected ordered list of items", () => {
     expect(getItemsFrom(data, "item-id-1")).toEqual([item1]);
     expect(getItemsFrom(data, "item-id-3")).toEqual([item3]);
     expect(getItemsFrom(data, "item-id-4")).toEqual([item4, item3]);

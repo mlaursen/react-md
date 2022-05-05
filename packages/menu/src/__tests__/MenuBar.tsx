@@ -348,7 +348,7 @@ describe("MenuBar", () => {
       expect(document.body).toMatchSnapshot();
     });
 
-    it("should not enable the hover mode if the menubutton calls event.stopPropagaion() or is disabled", () => {
+    it("should not enable the hover mode if the menubutton calls event.stopPropagation() or is disabled", () => {
       const onMouseLeave = jest.fn();
       const { getByRole } = render(
         <Test

@@ -15,7 +15,7 @@ describe("TabPanels", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should automatically inject a11y attributes when wrapped in the TabsMananger and only render the active tab", () => {
+  it("should automatically inject a11y attributes when wrapped in the TabsManager and only render the active tab", () => {
     const tabs = ["Tab 1", "Tab 2", "Tab 3"];
     const { container } = render(
       <TabsManager tabs={tabs} tabsId="tabs">

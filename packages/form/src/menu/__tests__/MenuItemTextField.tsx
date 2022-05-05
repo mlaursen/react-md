@@ -95,7 +95,7 @@ describe("MenuItemTextField", () => {
     expect(menu).not.toBeInTheDocument();
   });
 
-  it("should not cause the menu to close when the text fiedl or li is clicked", () => {
+  it("should not cause the menu to close when the text field or li is clicked", () => {
     const { getByRole, getByTestId } = render(<Test />);
     fireEvent.click(getByRole("button", { name: "Dropdown" }));
 

@@ -257,7 +257,7 @@ describe("DropdownMenu", () => {
     expect(menu).toBeInTheDocument();
   });
 
-  it("should not close the menu if the menu's onClick eventhandler calls event.stopPropagation()", () => {
+  it("should not close the menu if the menu's onClick event handler calls event.stopPropagation()", () => {
     function Test(): ReactElement {
       return (
         <DropdownMenu
@@ -541,7 +541,7 @@ describe("DropdownMenu", () => {
       expect(document.activeElement).toBe(item2);
     });
 
-    it("should not open the submenu when the ArrowRight key is pressed if the menuitem is disabled or the onKeyDown event handler calls event.stopPropagaion()", () => {
+    it("should not open the submenu when the ArrowRight key is pressed if the menuitem is disabled or the onKeyDown event handler calls event.stopPropagation()", () => {
       function Test(): ReactElement {
         return (
           <DropdownMenu

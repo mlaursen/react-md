@@ -40,7 +40,7 @@ function flattenDeep(
 }
 
 describe("Button", () => {
-  // this is actually really bad practice and kind of worthess
+  // this is actually really bad practice and kind of worthless
   it("should render correctly based on the theme props", () => {
     flattenDeep(
       buttonTypes.map((buttonType) =>

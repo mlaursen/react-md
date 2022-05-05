@@ -3,7 +3,7 @@ import { act, renderHook } from "@testing-library/react-hooks";
 import { useToggle } from "../useToggle";
 
 describe("useToggle", () => {
-  it("should default the visibility to the provided defaulttoggled value", () => {
+  it("should default the visibility to the provided defaultToggled value", () => {
     let { result } = renderHook(() => useToggle(false));
 
     let [toggled] = result.current;

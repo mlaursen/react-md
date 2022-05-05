@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Switch should be able to render the children within the switch's ball hiden label 1`] = `
+exports[`Switch should be able to render the children within the switch's ball hidden label 1`] = `
 <div>
   <div
     class="rmd-toggle-container rmd-switch-container"

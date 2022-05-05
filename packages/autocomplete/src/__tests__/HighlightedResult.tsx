@@ -94,7 +94,7 @@ describe("HighlightedResult", () => {
     expect(container).toMatchSnapshot();
 
     // one for the TextNode of unmatched prefix, one <span> for the highlighted
-    // text, and the reamining TextNode for the unmatched suffix
+    // text, and the remaining TextNode for the unmatched suffix
     expect(container.childNodes.length).toBe(3);
   });
 

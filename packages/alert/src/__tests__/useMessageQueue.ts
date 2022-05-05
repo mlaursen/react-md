@@ -179,7 +179,7 @@ describe("handleAddMessage", () => {
 
     it("should add the new message to the end of the queue if there are no existing messages with the same id", () => {
       const replacement: Message = {
-        messageId: "mesage-3",
+        messageId: "message-3",
         messagePriority: "replace",
       };
 
@@ -315,7 +315,7 @@ describe("handleAddMessage", () => {
     });
   });
 
-  describe("immediate pirority", () => {
+  describe("immediate priority", () => {
     const message1: Message = { messageId: "message-1" };
     const message2: Message = { messageId: "message-2" };
     const message3: Message = { messageId: "message-3" };
@@ -355,7 +355,7 @@ describe("reducer", () => {
   const message2: Message = { messageId: "message-2" };
   const message3: ToastMessage = { children: "Hello, world!" };
 
-  it("should add a new messaage with the correct behavior for the ADD_MESSAGE action", () => {
+  it("should add a new message with the correct behavior for the ADD_MESSAGE action", () => {
     const action: AddMessageAction = {
       type: ADD_MESSAGE,
       message: message3,

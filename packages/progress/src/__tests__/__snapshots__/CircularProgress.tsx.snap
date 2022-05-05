@@ -103,7 +103,7 @@ exports[`CircularProgress should support a small variant 1`] = `
   aria-valuemax="100"
   aria-valuemin="0"
   class="rmd-circular-progress rmd-circular-progress--centered rmd-circular-progress--small"
-  id="small=pgoress"
+  id="small-progress"
   role="progressbar"
 >
   <svg

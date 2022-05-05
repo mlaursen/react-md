@@ -224,7 +224,7 @@ describe("Tooltipped", () => {
       window.dispatchEvent(event);
     });
 
-    // the browser will fire a focus event once it regains visibility and focu
+    // the browser will fire a focus event once it regains visibility and focus
     // son the last activeElement
     button.focus();
     fireEvent.focus(button);

@@ -85,7 +85,7 @@ describe("useNestedDialogFixes", () => {
 
   it("should warn in a non-prod environment if trying to add multiple dialogs with the same id", () => {
     const { NODE_ENV } = process.env;
-    // this is caused by next definigin process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
+    // this is caused by next defining process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
     // @ts-expect-error
     process.env.NODE_ENV = "production";
     const warn = jest.spyOn(console, "warn");
@@ -115,7 +115,7 @@ describe("useNestedDialogFixes", () => {
     unmount();
     expect(warn).not.toBeCalled();
 
-    // this is caused by next definigin process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
+    // this is caused by next defining process.env.NODE_ENV as readonly 'development' | 'production' | 'test'
     // @ts-expect-error
     process.env.NODE_ENV = NODE_ENV;
     render(<Test />);

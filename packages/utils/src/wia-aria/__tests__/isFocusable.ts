@@ -27,7 +27,7 @@ describe("isFocusable", () => {
     expect(isFocusable(area, "programmatic")).toBe(true);
   });
 
-  it("should work correctly for disablable elements", () => {
+  it("should work correctly for disable-able elements", () => {
     const button = document.createElement("button");
     const select = document.createElement("select");
     const textarea = document.createElement("textarea");

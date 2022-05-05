@@ -56,7 +56,7 @@ describe("useChecked", () => {
     expect(input.checked).toBe(true);
   });
 
-  it("should call the provied onChange handler", () => {
+  it("should call the provided onChange handler", () => {
     const onChange = jest.fn();
     const { getByTestId } = render(
       <Test defaultChecked={false} onChange={onChange} />
