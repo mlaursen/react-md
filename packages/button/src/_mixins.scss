@@ -85,6 +85,7 @@
   align-items: center;
   border-width: 0;
   display: inline-flex;
+  flex-shrink: 0; // buttons should not shrink in flex containers by default.
   justify-content: center;
   position: relative;
 }
