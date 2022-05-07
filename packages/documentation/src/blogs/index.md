@@ -1,3 +1,35 @@
+Title: react-md 5.1.3
+
+Date: 05/06/2022
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- **@react-md/button:** do not shrink in flex containers (66bf6e0)
+- **@react-md/card:** fix spelling of raisable and deprecate raiseable prop
+  (453023b)
+- **@react-md/form:** fix typo for transparent in disabled toggle hover color
+  (7346587)
+- **@react-md/layout:** fix spelling of `DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES`
+  (2d20a2e)
+- **@react-md/utils:** fix spelling of DropzoneHandlers (6ba510b)
+
+##### Documentation<!-- no-margin -->
+
+- fix typos throughout codebase (725d1a2)
+- **@react-md/form:** Add simple examples for Select/NativeSelect (05358f5),
+  closes #1396
+
+##### Other Internal Changes<!-- no-margin -->
+
+- **@react-md/autocomplete:** fix typos in utils tests (c0333cc)
+- **react-md.dev:** correctly render escaped html in markdown (8a523cb)
+- **react-md.dev:** fix text color for animating app bar (01ec1af)
+- **typos:** fix additional typos throughout repo (ef20132)
+
+---
+
 Title: react-md 5.1.2
 
 Date: 04/02/2022

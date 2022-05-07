@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/mlaursen/react-md/compare/v5.1.2...v5.1.3) (2022-05-07)
+
+
+### Bug Fixes
+
+* **@react-md/card:** fix spelling of raisable and deprecate raiseable prop ([453023b](https://github.com/mlaursen/react-md/commit/453023b2bcb635b0d0348f35d270fbb996297a5b))
+
+
+### Documentation
+
+* fix typos throughout codebase ([725d1a2](https://github.com/mlaursen/react-md/commit/725d1a252482dba56088dffa2f773b2ea13fb08a))
+* **@react-md/form:** Add simple examples for Select/NativeSelect ([05358f5](https://github.com/mlaursen/react-md/commit/05358f51d4bebca812f1c5290914224ebe123885)), closes [#1396](https://github.com/mlaursen/react-md/issues/1396)
+
+
+### Other Internal Changes
+
+* **react-md.dev:** correctly render escaped html in markdown ([8a523cb](https://github.com/mlaursen/react-md/commit/8a523cbf70df091e68203d0d6b90bd358d826582))
+* **react-md.dev:** fix text color for animating app bar ([01ec1af](https://github.com/mlaursen/react-md/commit/01ec1afff7f3d527c5c3846718fc305a1073bbd1))
+
+
+
+
+
+
 ## [5.1.2](https://github.com/mlaursen/react-md/compare/v5.1.1...v5.1.2) (2022-04-02)
 
 

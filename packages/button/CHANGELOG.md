@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/mlaursen/react-md/compare/v5.1.2...v5.1.3) (2022-05-07)
+
+
+### Bug Fixes
+
+* **@react-md/button:** do not shrink in flex containers ([66bf6e0](https://github.com/mlaursen/react-md/commit/66bf6e0f97a744d02c3813f63e841293c68de2ea))
+
+
+### Other Internal Changes
+
+* **typos:** fix additional typos throughout repo ([ef20132](https://github.com/mlaursen/react-md/commit/ef2013288ce8649b9fddba9bc23c71df72ea03a1))
+
+
+
+
+
+
 ## [5.1.2](https://github.com/mlaursen/react-md/compare/v5.1.1...v5.1.2) (2022-04-02)
 
 **Note:** Version bump only for package @react-md/button

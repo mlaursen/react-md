@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/mlaursen/react-md/compare/v5.1.2...v5.1.3) (2022-05-07)
+
+
+### Bug Fixes
+
+* **@react-md/layout:** fix spelling of `DEFAULT_LAYOUT_NAV_TOGGLE_CLASSNAMES` ([2d20a2e](https://github.com/mlaursen/react-md/commit/2d20a2ee503f511127704984b29899de42c5e055))
+
+
+### Documentation
+
+* fix typos throughout codebase ([725d1a2](https://github.com/mlaursen/react-md/commit/725d1a252482dba56088dffa2f773b2ea13fb08a))
+
+
+### Other Internal Changes
+
+* **typos:** fix additional typos throughout repo ([ef20132](https://github.com/mlaursen/react-md/commit/ef2013288ce8649b9fddba9bc23c71df72ea03a1))
+
+
+
+
+
+
 ## [5.1.2](https://github.com/mlaursen/react-md/compare/v5.1.1...v5.1.2) (2022-04-02)
 
 
