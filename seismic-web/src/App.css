@@ -27,7 +27,7 @@
 
 .App > section {
   justify-content: center;
-  min-height: 100vh;
+  min-height: 90vh;
   background-color: rgb(40, 37, 53);
   width: 100%;
   overflow: auto;
