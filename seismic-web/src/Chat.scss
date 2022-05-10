@@ -1,0 +1,143 @@
+main {
+  padding: 10px;
+  height: 80vh;
+  margin: 0;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+
+  ul,
+  li {
+    text-align: left;
+    list-style: none;
+  }
+
+  .message {
+    background-color: #fff;
+    border-radius: 20px;
+    width: 90%;
+    flex-direction: row;
+    margin: 5px 0;
+
+    .avatar {
+      margin-left: 10px;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .messageContainer {
+      .username {
+        font-family: 'PlutoTVSansV10-Bold', Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        color: #000;
+        padding-bottom: 5px;
+        text-transform: capitalize;
+      }
+
+      .message {
+        font-family: 'PlutoTVSansV10-Medium', Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        padding-bottom: 5px;
+        color: #7d7d7e;
+      }
+
+      .date {
+        font-family: 'PlutoTVSansV10-Medium', Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        color: #7d7d7e;
+        padding-bottom: 5px;
+      }
+    }
+  }
+}
+
+main::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+main::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}
+
+form {
+  /* height: 10vh;
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(24, 23, 23);
+    width: 100%;
+    max-width: 728px;
+    display: flex;
+    font-size: 1.5rem; */
+}
+
+form button {
+  /* width: 20%;
+    background-color: rgb(56, 56, 143); */
+}
+
+.chatInput {
+  height: 7vh;
+  width: 100%;
+  align-items: center;
+  display: inline-block;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 7vh;
+  background-color: #282535;
+}
+
+.inputContainer {
+  background-color: #fff;
+  flex: 1;
+  height: 45px;
+  border-radius: 25px;
+  flex-direction: row;
+  align-items: center;
+  display: inline-flex;
+  width: 95%;
+
+  input {
+    line-height: 1.5;
+    width: 100%;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    padding: 0 10px;
+    letter-spacing: 0;
+    flex: 8;
+    background-color: transparent;
+  }
+
+  button {
+    background-color: #282c34; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    display: none;
+  }
+}
+
+.sign-in {
+  color: #282c34;
+  background: white;
+  max-width: 400px;
+  margin: 0 auto;
+}
