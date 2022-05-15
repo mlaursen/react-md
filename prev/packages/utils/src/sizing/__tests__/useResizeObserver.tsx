@@ -97,7 +97,7 @@ class MockedObserver implements ResizeObserver {
   }
 }
 
-describe("useResizeObserver", () => {
+describe.skip("useResizeObserver", () => {
   let observer: MockedObserver | undefined;
   beforeAll(() => {
     ResizeObserverMock.mockImplementation((callback) => {

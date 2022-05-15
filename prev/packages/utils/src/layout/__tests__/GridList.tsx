@@ -109,7 +109,7 @@ function trigger(width: number = DEFAULT_DOM_RECT.width): void {
   });
 }
 
-describe("GridList", () => {
+describe.skip("GridList", () => {
   // NOTE: jsdom currently does not support rendering custom css properties (css variables)
   // so we can't actually test that part.
   it("should provide the number of columns and cellWidth to a children render function with the default of 8 padding and 150 maxCellSize", () => {

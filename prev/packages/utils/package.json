@@ -2,8 +2,9 @@
   "name": "@react-md/utils",
   "version": "5.1.3",
   "description": "General utils for react-md.",
-  "main": "./lib/index.js",
-  "module": "./es/index.js",
+  "type": "module",
+  "main": "./cjs/index.js",
+  "module": "./mjs/index.js",
   "types": "./types/index.d.ts",
   "sideEffects": [
     "dist/**/*"

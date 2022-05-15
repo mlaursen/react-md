@@ -6,6 +6,7 @@
   "description": "The monorepo for react-md",
   "scripts": {
     "prepare": "husky install",
+    "test": "jest",
     "build-ejs": "swc src -d ejs",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
     "typecheck": "tsc --noEmit",
@@ -27,22 +28,46 @@
   "homepage": "https://react-md.dev",
   "dependencies": {
     "next": "^12.1.6",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@jest/types": "^28.1.0",
     "@mlaursen/eslint-config": "^1.6.0",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.183",
+    "@swc/jest": "^0.2.21",
+    "@testing-library/dom": "^8.13.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/react-hooks": "^7.0.1",
+    "@testing-library/user-event": "13.5.0",
+    "@types/jest": "^27.5.1",
     "@types/node": "^17.0.33",
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
     "browserslist": "^4.20.3",
     "eslint": "^8.15.0",
     "eslint-plugin-next": "^0.0.0",
     "husky": "^8.0.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "jest-watch-typeahead": "^1.1.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
     "typescript": "^4.6.4"
-  }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint -c .precommit.eslintrc.cjs --fix",
+      "prettier --write"
+    ],
+    "**/*.{scss,js,jsx,md,yml,json}": [
+      "prettier --write"
+    ]
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
