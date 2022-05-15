@@ -1,0 +1,48 @@
+{
+  "name": "react-md-monorepo",
+  "type": "module",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The monorepo for react-md",
+  "scripts": {
+    "prepare": "husky install",
+    "build-ejs": "swc src -d ejs",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "build-static": "next build && next export"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "dependencies": {
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@mlaursen/eslint-config": "^1.6.0",
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.183",
+    "@types/node": "^17.0.33",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "browserslist": "^4.20.3",
+    "eslint": "^8.15.0",
+    "eslint-plugin-next": "^0.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
+    "typescript": "^4.6.4"
+  }
+}
