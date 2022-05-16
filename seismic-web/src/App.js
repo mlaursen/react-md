@@ -94,7 +94,8 @@ function ChatMessage(props) {
 
   const seconds = moment(createdAt.toDate());
 
-  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+  // const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+  const messageClass = '';
   const userName = displayName ? displayName : 'User';
 
   return (
