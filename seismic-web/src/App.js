@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 
-import logo from './logo.svg';
 import './App.css';
 import './Chat.scss';
 
@@ -22,10 +21,13 @@ const db = firebase.firestore(firebaseApp);
 const analytics = firebase.analytics(firebaseApp);
 
 function App() {
+  const [user] = useAuthState(auth);
+
   return (
     <div className="App">
       <header>
         <h1>Sandbox Env</h1>
+        {auth.currentUser ? <SignOut /> : <SignIn />}
       </header>
       <section className="body">
         <section className="main">
@@ -39,7 +41,31 @@ function App() {
   );
 }
 
+function SignIn() {
+  const signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
+  };
+
+  return (
+    <button className="sign-in" onClick={signInWithGoogle}>
+      Sign In
+    </button>
+  );
+}
+
+function SignOut() {
+  return (
+    auth.currentUser && (
+      <button className="sign-out" onClick={() => auth.signOut()}>
+        Sign Out
+      </button>
+    )
+  );
+}
+
 function ChatRoom() {
+  const dummy = useRef();
   const messagesRef = db.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(50);
   const [messages] = useCollectionData(query, { idField: 'id' });
@@ -59,7 +85,7 @@ function ChatRoom() {
     });
 
     setFormValue('');
-    //dummy.current.scrollIntoView({ behavior: 'smooth' });
+    dummy.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -71,18 +97,22 @@ function ChatRoom() {
           ))}
       </main>
 
-      <form onSubmit={sendMessage} className="chatInput">
-        <div className="inputContainer">
-          <input
-            value={formValue}
-            onChange={(e) => setFormValue(e.target.value)}
-            placeholder="Say something..."
-          />
-          <button type="submit" disabled={!formValue}>
-            Go
-          </button>
-        </div>
-      </form>
+      {auth.currentUser ? (
+        <form onSubmit={sendMessage} className="chatInput">
+          <div className="inputContainer">
+            <input
+              value={formValue}
+              onChange={(e) => setFormValue(e.target.value)}
+              placeholder="Say something..."
+            />
+            <button type="submit" disabled={!formValue}>
+              Go
+            </button>
+          </div>
+        </form>
+      ) : (
+        <></>
+      )}
     </>
   );
 }
@@ -91,9 +121,8 @@ function ChatMessage(props) {
   const { text, uid, photoURL, displayName, createdAt } = props.message;
 
   const seconds = createdAt ? moment(createdAt.toDate()) : '';
-
-  // const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
-  const messageClass = '';
+  const messageClass =
+    uid === auth.currentUser && auth.currentUser.uid ? 'sent' : 'received';
   const userName = displayName ? displayName : 'User';
 
   return (
