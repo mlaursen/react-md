@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-import './App.css';
+import './App.scss';
 import './Chat.scss';
 
 import { firebaseConfig } from './firebase';
