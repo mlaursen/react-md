@@ -50,8 +50,6 @@ function ChatRoom() {
 
     const { uid, photoURL, displayName } = auth.currentUser;
 
-    console.log(firebase.firestore.FieldValue.serverTimestamp());
-
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -92,7 +90,7 @@ function ChatRoom() {
 function ChatMessage(props) {
   const { text, uid, photoURL, displayName, createdAt } = props.message;
 
-  const seconds = moment(createdAt.toDate());
+  const seconds = createdAt ? moment(createdAt.toDate()) : '';
 
   // const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
   const messageClass = '';
