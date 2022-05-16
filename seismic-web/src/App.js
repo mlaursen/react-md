@@ -1,3 +1,5 @@
+import React, { useRef, useState } from 'react';
+
 import logo from './logo.svg';
 import './App.css';
 import './Chat.scss';
@@ -41,12 +43,14 @@ function ChatRoom() {
   const messagesRef = db.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(50);
   const [messages] = useCollectionData(query, { idField: 'id' });
-  const [formValue, setFormValue] = '';
+  const [formValue, setFormValue] = useState('');
 
   const sendMessage = async (e) => {
     e.preventDefault();
 
     const { uid, photoURL, displayName } = auth.currentUser;
+
+    console.log(firebase.firestore.FieldValue.serverTimestamp());
 
     await messagesRef.add({
       text: formValue,
@@ -88,8 +92,7 @@ function ChatRoom() {
 function ChatMessage(props) {
   const { text, uid, photoURL, displayName, createdAt } = props.message;
 
-  // console.log(props.message);
-  // console.log(createdAt.seconds);
+  const seconds = moment(createdAt.toDate());
 
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
   const userName = displayName ? displayName : 'User';
@@ -107,9 +110,7 @@ function ChatMessage(props) {
         <div className="messageContainer">
           <p className="username">{userName}</p>
           <p className="message">{text}</p>
-          <p className="date">
-            {moment(createdAt.seconds).add(3, 'days').calendar()}
-          </p>
+          <p className="date">{createdAt ? moment(seconds).fromNow() : ''}</p>
         </div>
       </div>
     </>
