@@ -1,4 +1,4 @@
-import type { NonNullRef } from "../types";
+import type { NonNullRef } from "../../types";
 
 /**
  * @remarks \@since 5.0.0

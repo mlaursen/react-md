@@ -8,7 +8,7 @@ import type {
   Ref,
 } from "react";
 
-import { UserInteractionModeListener } from "../../mode/UserInteractionModeListener";
+import { UserInteractionModeProvider } from "../../../UserInteractionModeProvider";
 import { KeyboardMovementProvider } from "../KeyboardMovementProvider";
 import type {
   KeyboardMovementBehavior,
@@ -87,7 +87,7 @@ function Test({
   ...props
 }: TestProps): ReactElement {
   return (
-    <UserInteractionModeListener>
+    <UserInteractionModeProvider>
       <KeyboardMovementProvider {...props}>
         <CustomFocusContainer
           disabledIndexes={disabledIndexes}
@@ -103,7 +103,7 @@ function Test({
           {children}
         </CustomFocusContainer>
       </KeyboardMovementProvider>
-    </UserInteractionModeListener>
+    </UserInteractionModeProvider>
   );
 }
 

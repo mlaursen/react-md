@@ -2,7 +2,7 @@ import { fireEvent, render } from "@testing-library/react";
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
 import { useEffect } from "react";
 
-import { UserInteractionModeListener } from "../../mode/UserInteractionModeListener";
+import { UserInteractionModeProvider } from "../../../UserInteractionModeProvider";
 import { useActiveDescendantContext } from "../activeDescendantContext";
 import { ActiveDescendantMovementProvider } from "../ActiveDescendantMovementProvider";
 import { KeyboardMovementProvider } from "../KeyboardMovementProvider";
@@ -90,7 +90,7 @@ function Test({
   ...props
 }: TestProps): ReactElement {
   return (
-    <UserInteractionModeListener>
+    <UserInteractionModeProvider>
       <KeyboardMovementProvider {...props}>
         <ActiveDescendantContainer
           onFocus={onFocus}
@@ -103,7 +103,7 @@ function Test({
           defaultActiveId={defaultActiveId}
         />
       </KeyboardMovementProvider>
-    </UserInteractionModeListener>
+    </UserInteractionModeProvider>
   );
 }
 

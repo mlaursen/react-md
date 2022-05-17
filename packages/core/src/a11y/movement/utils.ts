@@ -1,5 +1,5 @@
 import type { KeyboardFocusElementData } from "./types";
-import { loop } from "../loop";
+import { loop } from "../../loop";
 
 /**
  * @remarks \@since 5.0.0

@@ -5,9 +5,9 @@ import type {
   MutableRefObject,
 } from "react";
 import { useRef } from "react";
-import { useUserInteractionMode } from "../mode/UserInteractionModeListener";
 
-import { findMatchIndex } from "../search/findMatchIndex";
+import { findMatchIndex } from "../../search/findMatchIndex";
+import { useUserInteractionMode } from "../../UserInteractionModeProvider";
 import { useKeyboardFocusContext } from "./movementContext";
 import {
   focusElement,
@@ -59,32 +59,38 @@ export interface KeyboardFocusCallbacks<E extends HTMLElement> {
   onKeyDown?: KeyboardEventHandler<E>;
 
   /**
-   * This is called whenever a single letter has been pressed and
-   * {@link KeyboardMovementBehavior.searchable} is `true`.
+   * This is called whenever a single letter has been pressed and the search
+   * option is enabled.
+   *
+   * @see {@link KeyboardMovementBehavior.searchable}
    */
   onSearch?: KeyboardFocusHandler<E>;
 
   /**
-   * This is called whenever one of the
-   * {@link KeyboardMovementBehavior.incrementKeys} are pressed.
+   * This is called whenever one of the `incrementKeys` are pressed.
+   *
+   * @see {@link KeyboardMovementConfiguration.incrementKeys}
    */
   onIncrement?: KeyboardFocusHandler<E>;
 
   /**
-   * This is called whenever one of the
-   * {@link KeyboardMovementBehavior.decrementKeys} are pressed.
+   * This is called whenever one of the `incrementKeys` are pressed.
+   *
+   * @see {@link KeyboardMovementConfiguration.incrementKeys}
    */
   onDecrement?: KeyboardFocusHandler<E>;
 
   /**
-   * This is called whenever one of the
-   * {@link KeyboardMovementBehavior.jumpToFirstKeys} are pressed.
+   * This is called whenever one of the `jumpToFirstKeys` are pressed.
+   *
+   * @see {@link KeyboardMovementConfiguration.jumpToFirstKeys}
    */
   onJumpToFirst?: KeyboardFocusHandler<E>;
 
   /**
-   * This is called whenever one of the
-   * {@link KeyboardMovementBehavior.jumpToLastKeys} are pressed.
+   * This is called whenever one of the `jumpToLastKeys` are pressed.
+   *
+   * @see {@link KeyboardMovementConfiguration.jumpToLastKeys}
    */
   onJumpToLast?: KeyboardFocusHandler<E>;
 }
@@ -232,7 +238,13 @@ export function useKeyboardFocus<E extends HTMLElement>(
           return content;
         });
 
-        update(findMatchIndex(key, values, focusIndex.current));
+        update(
+          findMatchIndex({
+            value: key,
+            values,
+            startIndex: focusIndex.current,
+          })
+        );
       } else if (jumpToFirstKeys.includes(key)) {
         onJumpToFirst({ key, event });
         if (event.isPropagationStopped()) {

@@ -1,8 +1,9 @@
-import { render, fireEvent } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
+import type { FC } from "react";
 
-import { Dir, useDir } from "../Dir";
+import { useDir, WritingDirection } from "../WritingDirection";
 
-const Child = () => {
+const Child: FC = () => {
   const { dir, toggleDir } = useDir();
   return (
     <button type="button" onClick={toggleDir}>
@@ -11,23 +12,23 @@ const Child = () => {
   );
 };
 
-describe("Dir", () => {
-  it("should default to the root html dir prop if exists or fallback to ltr", () => {
+describe("WritingDirection", () => {
+  it('should default to the root html dir prop if it exists or fallback to "ltr"', () => {
     document.documentElement.setAttribute("dir", "rtl");
 
     let { unmount } = render(
-      <Dir>
+      <WritingDirection>
         <span />
-      </Dir>
+      </WritingDirection>
     );
     expect(document.documentElement).toHaveAttribute("dir", "rtl");
     unmount();
     expect(document.documentElement).not.toHaveAttribute("dir");
 
     ({ unmount } = render(
-      <Dir>
+      <WritingDirection>
         <span />
-      </Dir>
+      </WritingDirection>
     ));
     expect(document.documentElement).toHaveAttribute("dir", "ltr");
     unmount();
@@ -38,9 +39,9 @@ describe("Dir", () => {
     expect(document.documentElement).not.toHaveAttribute("dir");
 
     const { unmount } = render(
-      <Dir defaultDir="ltr">
+      <WritingDirection defaultDir="ltr">
         <span />
-      </Dir>
+      </WritingDirection>
     );
 
     expect(document.documentElement).toHaveAttribute("dir", "ltr");
@@ -50,11 +51,11 @@ describe("Dir", () => {
 
   it("should clone the dir into a child element", () => {
     const { getByTestId } = render(
-      <Dir defaultDir="ltr">
-        <Dir defaultDir="rtl">
+      <WritingDirection defaultDir="ltr">
+        <WritingDirection defaultDir="rtl">
           <span data-testid="span" />
-        </Dir>
-      </Dir>
+        </WritingDirection>
+      </WritingDirection>
     );
 
     const span = getByTestId("span");
@@ -63,9 +64,9 @@ describe("Dir", () => {
 
   it("should allow a child component to access and toggle the direction", () => {
     const { getByRole } = render(
-      <Dir>
+      <WritingDirection>
         <Child />
-      </Dir>
+      </WritingDirection>
     );
 
     const button = getByRole("button");
@@ -78,11 +79,11 @@ describe("Dir", () => {
 
   it("should toggle the correct parent with multiple Dir components", () => {
     const { getByRole } = render(
-      <Dir>
-        <Dir defaultDir="rtl">
+      <WritingDirection>
+        <WritingDirection defaultDir="rtl">
           <Child />
-        </Dir>
-      </Dir>
+        </WritingDirection>
+      </WritingDirection>
     );
 
     const button = getByRole("button");

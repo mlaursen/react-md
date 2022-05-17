@@ -1,6 +1,6 @@
-type Block = string;
-type Element = string;
-type Modifier = Record<string, unknown>;
+export type Block = string;
+export type Element = string;
+export type Modifier = Record<string, unknown>;
 
 function modify(base: string, modifier?: Modifier): string {
   if (!modifier) {
@@ -17,7 +17,7 @@ function modify(base: string, modifier?: Modifier): string {
   }, base);
 }
 
-type BEMResult = (
+export type BEMResult = (
   elementOrModifier?: Element | Modifier,
   modifier?: Modifier
 ) => string;

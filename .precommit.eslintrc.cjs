@@ -1,10 +1,10 @@
 module.exports = {
-  extends: ['./.eslintrc.js'],
+  extends: ["./.eslintrc.cjs"],
   overrides: [
     {
-      files: ['**/*.ts', '**/*.tsx'],
+      files: ["**/*.ts", "**/*.tsx"],
       rules: {
-        '@typescript-eslint/consistent-type-imports': ['error'],
+        "@typescript-eslint/consistent-type-imports": ["error"],
       },
     },
   ],

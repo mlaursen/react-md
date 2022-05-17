@@ -69,11 +69,10 @@ export interface ActiveDescendantMovementProviderProps
  * @internal
  * @remarks \@since 5.0.0
  */
-export function ActiveDescendantMovementProvider({
-  children,
-  activeId,
-  setActiveId,
-}: ActiveDescendantMovementProviderProps): ReactElement {
+export function ActiveDescendantMovementProvider(
+  props: ActiveDescendantMovementProviderProps
+): ReactElement {
+  const { children, activeId, setActiveId } = props;
   return (
     <ActiveDescendantContextProvider
       value={useMemo(

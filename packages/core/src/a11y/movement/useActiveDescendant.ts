@@ -40,10 +40,10 @@ export interface ActiveDescendantHookReturnValue<E extends HTMLElement> {
 /**
  * @remarks \@since 5.0.0
  */
-export function useActiveDescendant<E extends HTMLElement>({
-  id,
-  ref,
-}: ActiveDescendantHookOptions<E>): ActiveDescendantHookReturnValue<E> {
+export function useActiveDescendant<E extends HTMLElement>(
+  options: ActiveDescendantHookOptions<E>
+): ActiveDescendantHookReturnValue<E> {
+  const { id, ref } = options;
   const { activeId } = useActiveDescendantContext();
   const refCallback = useKeyboardFocusableElement(ref);
   return {

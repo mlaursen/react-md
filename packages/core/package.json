@@ -1,0 +1,35 @@
+{
+  "name": "@react-md/core",
+  "version": "6.0.0-alpha.0",
+  "description": "The core components and functionality for react-md.",
+  "type": "module",
+  "main": "./cjs/index.cjs",
+  "module": "./mjs/index.mjs",
+  "types": "./types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/react-md.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/mlaursen/react-md/issues"
+  },
+  "homepage": "https://react-md.dev",
+  "keywords": [],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">= 18",
+    "react-dom": ">= 18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

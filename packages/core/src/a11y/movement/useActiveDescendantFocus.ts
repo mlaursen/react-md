@@ -43,14 +43,14 @@ export interface ActiveDescendantFocusHookReturnValue<E extends HTMLElement>
  * @internal
  * @remarks \@since 5.0.0
  */
-export function useActiveDescendantFocus<E extends HTMLElement>({
-  defaultActiveId = "",
-  ...options
-}: ActiveDescendantFocusHookOptions<E> = {}): ActiveDescendantFocusHookReturnValue<E> {
+export function useActiveDescendantFocus<E extends HTMLElement>(
+  options: ActiveDescendantFocusHookOptions<E> = {}
+): ActiveDescendantFocusHookReturnValue<E> {
+  const { defaultActiveId = "", ...focusOptions } = options;
   const [activeId, setActiveId] = useState(defaultActiveId);
   return {
     ...useKeyboardFocus({
-      ...options,
+      ...focusOptions,
       onFocusChange(element) {
         setActiveId(element.id);
       },

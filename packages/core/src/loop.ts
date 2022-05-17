@@ -43,13 +43,8 @@ export interface LoopOptions {
  * @remarks \@since 2.7.0 The `min` option was added and the arguments changed to an
  * object
  */
-export function loop({
-  value,
-  min = 0,
-  max,
-  increment,
-  minmax = false,
-}: LoopOptions): number {
+export function loop(options: LoopOptions): number {
+  const { value, min = 0, max, increment, minmax = false } = options;
   let next = value + (increment ? 1 : -1);
   if (minmax) {
     next = Math.min(max, Math.max(min, next));

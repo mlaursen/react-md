@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode } from "react";
 import { useMemo, useRef } from "react";
 
-import { useDir } from "../Dir";
+import { useDir } from "../../WritingDirection";
 import {
   DEFAULT_KEYBOARD_MOVEMENT,
   DEFAULT_LTR_KEYBOARD_MOVEMENT,
@@ -59,17 +59,21 @@ export interface KeyboardMovementProviderProps
  *
  * @remarks \@since 5.0.0
  */
-export function KeyboardMovementProvider({
-  children,
-  loopable = false,
-  searchable = false,
-  horizontal = false,
-  includeDisabled = false,
-  incrementKeys: propIncrementKeys,
-  decrementKeys: propDecrementKeys,
-  jumpToFirstKeys: propJumpToFirstKeys,
-  jumpToLastKeys: propJumpToLastKeys,
-}: KeyboardMovementProviderProps): ReactElement {
+export function KeyboardMovementProvider(
+  props: KeyboardMovementProviderProps
+): ReactElement {
+  const {
+    children,
+    loopable = false,
+    searchable = false,
+    horizontal = false,
+    includeDisabled = false,
+    incrementKeys: propIncrementKeys,
+    decrementKeys: propDecrementKeys,
+    jumpToFirstKeys: propJumpToFirstKeys,
+    jumpToLastKeys: propJumpToLastKeys,
+  } = props;
+
   const isRTL = useDir().dir === "rtl";
   let defaults: Readonly<Required<KeyboardMovementConfiguration>>;
   if (horizontal) {
