@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import './App.scss';
-import './Chat.scss';
+import './styles/App.scss';
+import './styles/Chat.scss';
 
 import { firebaseConfig } from './firebase';
 
