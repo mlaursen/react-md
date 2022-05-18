@@ -101,5 +101,9 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "react-md": "^5.1.3",
+    "sass": "^1.51.0"
+  }
 }
