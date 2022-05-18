@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles/App.scss';
@@ -15,6 +15,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import moment from 'moment';
+import Filter from 'bad-words';
+
+import { MAX_CHAT_CAR_COUNT, DUMMY_USER } from './helpers/constants';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth(firebaseApp);
@@ -23,6 +26,100 @@ const analytics = firebase.analytics(firebaseApp);
 
 function App() {
   const [user] = useAuthState(auth);
+  const [isVisible, setIsVisible] = useState(false);
+  const [editProfileVisible, setEditProfileVisible] = useState(false);
+  const [inputVal, setInputVal] = useState('');
+  const [charCount, setCharCount] = useState(MAX_CHAT_CAR_COUNT);
+  const [error, setError] = useState('');
+  const [lastMessage, setLastMessage] = useState(null);
+  const [isValid, setIsValid] = useState(true);
+  const editProfileRef = useRef(false);
+  // const flatListRef = useRef<FlatList>();
+  const [currentUser, setCurrentUser] = useState(auth.currentUser);
+  const [currentMessage, setCurrentMessage] = useState(null);
+  const [messageToReply, setMessageToReply] = useState(null);
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    // TODO: Assign Self to Chat XP
+    // getSelf()
+    getOrCreateUser();
+    //getInitChatMessages()
+    //listenToNewMessages()
+  }, []);
+
+  const getOrCreateUser = async () => {
+    let user = localStorage.getItem('seismicChatUser');
+    user
+      ? setCurrentUser(JSON.parse(user))
+      : setCurrentUser(DUMMY_USER) &&
+        localStorage.setItem('seismicChatUser', JSON.stringify(user));
+  };
+
+  function validateMessage(message) {
+    const messageLength = message.length;
+    const trimedValueLength = message.trim().length;
+    const badWordFilter = new Filter();
+
+    let isValid = true;
+
+    // TODO: Give feedback to user
+    // https://plutotv.atlassian.net/browse/RN-123
+
+    if (messageLength == 0) {
+      setError('Sorry, no empty messages.');
+      isValid = false;
+    } else if (trimedValueLength < 2) {
+      setError('Please type a longer message.');
+      isValid = false;
+    } else if (messageLength > MAX_CHAT_CAR_COUNT) {
+      setError('Please type a shorter message.');
+      isValid = false;
+    } else if (message === lastMessage) {
+      setError('Sorry, no duplicate messages.');
+      isValid = false;
+    } else if (badWordFilter.isProfane(message)) {
+      setError('Please keep it PG!');
+      isValid = false;
+    }
+
+    if (!isValid) {
+      setTimeout(() => {
+        setError('');
+      }, 2000);
+    }
+
+    return isValid;
+  }
+
+  function clearInput() {
+    setLastMessage('');
+    setInputVal('');
+    setError('');
+    setIsValid(true);
+    setCharCount(MAX_CHAT_CAR_COUNT);
+  }
+
+  function onChangeText(inputVal) {
+    setInputVal(inputVal);
+  }
+
+  function onSubmitMessage() {
+    const newMessage = {
+      ...currentUser,
+      message: inputVal,
+      createdAt: Date.now(),
+    };
+
+    // validate message
+    if (validateMessage(inputVal)) {
+      // send message to firebase
+      // sendChatMessage(newMessage, messageToReply);
+      // clear input
+      setMessageToReply(null);
+      clearInput();
+    }
+  }
 
   return (
     <div className="App">
