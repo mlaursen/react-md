@@ -6,6 +6,6 @@ module.exports = {
   },
   extends: ['eslint:recommended', 'google'],
   rules: {
-    quotes: ['error', 'double'],
+    quotes: ['error', 'single'],
   },
 };
