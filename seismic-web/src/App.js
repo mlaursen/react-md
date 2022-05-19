@@ -103,6 +103,29 @@ function App() {
     }
   };
 
+  function SignIn() {
+    const signInWithGoogle = () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider);
+    };
+
+    return (
+      <button className="sign-in" onClick={signInWithGoogle}>
+        Sign In
+      </button>
+    );
+  }
+
+  function SignOut() {
+    return (
+      auth.currentUser && (
+        <button className="sign-out" onClick={() => auth.signOut()}>
+          Sign Out
+        </button>
+      )
+    );
+  }
+
   function validateMessage(message) {
     const messageLength = message.length;
     const trimedValueLength = message.trim().length;
@@ -168,6 +191,81 @@ function App() {
     }
   }
 
+  function ChatRoom() {
+    const dummy = useRef();
+    const messagesRef = db.collection('messages');
+    const query = messagesRef.orderBy('createdAt').limit(50);
+    const [messages] = useCollectionData(query, { idField: 'id' });
+    const [formValue, setFormValue] = useState('');
+
+    const sendMessage = async (e) => {
+      e.preventDefault();
+
+      const { uid, role, displayName, avatarUrl, chatName } = currentUser;
+
+      await messagesRef.add({
+        text: formValue,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        role,
+        displayName,
+        avatarUrl,
+        chatName,
+      });
+
+      setFormValue('');
+      dummy.current.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    return (
+      <>
+        <main className="chat">
+          {messages &&
+            messages.map((msg) => (
+              <ChatMessage key={msg.createdAt} message={msg} />
+            ))}
+        </main>
+
+        {auth.currentUser ? (
+          <form onSubmit={sendMessage} className="chatInput">
+            <div className="inputContainer">
+              <input
+                value={formValue}
+                onChange={(e) => setFormValue(e.target.value)}
+                placeholder="Say something..."
+              />
+              <button type="submit" disabled={!formValue}>
+                Go
+              </button>
+            </div>
+          </form>
+        ) : (
+          <></>
+        )}
+      </>
+    );
+  }
+
+  function ChatMessage(props) {
+    const { text, uid, avatarUrl, chatName, createdAt } = props.message;
+
+    const seconds = createdAt ? moment(createdAt.toDate()) : '';
+    const messageClass = uid === currentUser.uid ? 'sent' : 'received';
+
+    return (
+      <>
+        <div className={`message ${messageClass}`}>
+          <img alt="avatar" className="avatar" src={avatarUrl} />
+          <div className="messageContainer">
+            <p className="username">{chatName}</p>
+            <p className="message">{text}</p>
+            <p className="date">{createdAt ? moment(seconds).fromNow() : ''}</p>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <div className="App">
       <header>
@@ -183,110 +281,6 @@ function App() {
         </section>
       </section>
     </div>
-  );
-}
-
-function SignIn() {
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  };
-
-  return (
-    <button className="sign-in" onClick={signInWithGoogle}>
-      Sign In
-    </button>
-  );
-}
-
-function SignOut() {
-  return (
-    auth.currentUser && (
-      <button className="sign-out" onClick={() => auth.signOut()}>
-        Sign Out
-      </button>
-    )
-  );
-}
-
-function ChatRoom() {
-  const dummy = useRef();
-  const messagesRef = db.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limit(50);
-  const [messages] = useCollectionData(query, { idField: 'id' });
-  const [formValue, setFormValue] = useState('');
-
-  const sendMessage = async (e) => {
-    e.preventDefault();
-
-    const { uid, photoURL, displayName } = auth.currentUser;
-
-    await messagesRef.add({
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      displayName,
-      photoURL,
-    });
-
-    setFormValue('');
-    dummy.current.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <>
-      <main className="chat">
-        {messages &&
-          messages.map((msg) => (
-            <ChatMessage key={msg.createdAt} message={msg} />
-          ))}
-      </main>
-
-      {auth.currentUser ? (
-        <form onSubmit={sendMessage} className="chatInput">
-          <div className="inputContainer">
-            <input
-              value={formValue}
-              onChange={(e) => setFormValue(e.target.value)}
-              placeholder="Say something..."
-            />
-            <button type="submit" disabled={!formValue}>
-              Go
-            </button>
-          </div>
-        </form>
-      ) : (
-        <></>
-      )}
-    </>
-  );
-}
-
-function ChatMessage(props) {
-  const { text, uid, photoURL, displayName, createdAt } = props.message;
-
-  const seconds = createdAt ? moment(createdAt.toDate()) : '';
-  const messageClass =
-    uid === auth.currentUser && auth.currentUser.uid ? 'sent' : 'received';
-  const userName = displayName ? displayName : 'User';
-
-  return (
-    <>
-      <div className={`message ${messageClass}`}>
-        <img
-          alt="avatar"
-          className="avatar"
-          src={
-            photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'
-          }
-        />
-        <div className="messageContainer">
-          <p className="username">{userName}</p>
-          <p className="message">{text}</p>
-          <p className="date">{createdAt ? moment(seconds).fromNow() : ''}</p>
-        </div>
-      </div>
-    </>
   );
 }
 
