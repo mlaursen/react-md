@@ -22,10 +22,20 @@ const AVATARS = [
   'https://firebasestorage.googleapis.com/v0/b/seismic-labs.appspot.com/o/avatars%2F15.png?alt=media&token=f817a6af-9e9c-4750-8965-a183adacd754',
 ];
 
-const DUMMY_USER = {
+const ANONYMOUS_USER = {
+  accessToken: null,
+  auth: null,
+  displayName: null,
+  email: null,
+  emailVerified: false,
+  isAnonymous: true,
+  metadata: null,
+  phoneNumber: null,
+  photoUrl: null,
   avatarUrl: randomAvatarGenerator(AVATARS),
   chatName: nameGenerator(),
-  chatUserId: uuidv4(),
+  uid: uuidv4(),
+  providerId: null,
   devices: ['Web'],
   role: 'NORMAL',
   preferences: {
@@ -33,7 +43,7 @@ const DUMMY_USER = {
   },
 };
 
-export { MAX_CHAT_CAR_COUNT, DUMMY_USER, AVATARS };
+export { MAX_CHAT_CAR_COUNT, ANONYMOUS_USER, AVATARS };
 
 export const roles = {
   ADMIN: 'MODERATOR',
