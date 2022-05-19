@@ -39,7 +39,6 @@ main {
       width: 100%;
 
       .username {
-        font-family: 'PlutoTVSansV10-Bold', Arial, Helvetica, sans-serif;
         font-size: 18px;
         color: #000;
         padding-bottom: 5px;
@@ -48,31 +47,17 @@ main {
       }
 
       .message {
-        font-family: 'PlutoTVSansV10-Medium', Arial, Helvetica, sans-serif;
         font-size: 16px;
         color: #7d7d7e;
       }
 
       .date {
-        font-family: 'PlutoTVSansV10-Medium', Arial, Helvetica, sans-serif;
         font-size: 13px;
         color: #7d7d7e;
         margin-block-start: 0;
       }
     }
   }
-}
-
-main::-webkit-scrollbar {
-  width: 0.25rem;
-}
-
-main::-webkit-scrollbar-track {
-  background: #1e1e24;
-}
-
-main::-webkit-scrollbar-thumb {
-  background: #6649b8;
 }
 
 form {
@@ -99,11 +84,10 @@ form button {
   flex-direction: column;
   justify-content: center;
   min-height: 7vh;
-  background-color: #282535;
 }
 
 .inputContainer {
-  background-color: #fff;
+  background-color: #000;
   flex: 1;
   height: 45px;
   border-radius: 25px;

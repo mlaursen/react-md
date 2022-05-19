@@ -5,9 +5,10 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  font-family: 'Roboto', sans-serif;
 
   header {
-    background-color: #181717;
+    background-color: #fff;
     height: 10vh;
     min-height: 50px;
     color: white;
@@ -17,12 +18,17 @@
     justify-content: space-between;
     padding: 10px;
     box-sizing: border-box;
+
+    .logo {
+      height: 45px;
+      padding-left: 10px;
+    }
   }
 
   section {
     justify-content: center;
     min-height: 90vh;
-    background-color: rgb(40, 37, 53);
+    background-color: #e7ebf2;
     width: 100%;
     overflow: auto;
     display: flex;
@@ -31,6 +37,9 @@
     &.main {
       width: 70%;
       display: flex;
+      background: no-repeat center 100%
+        url('https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/living-room.jpg?alt=media&token=f85daff0-bc7a-4138-9ae8-52036e9329d8');
+      background-size: cover;
     }
 
     &.rail {
