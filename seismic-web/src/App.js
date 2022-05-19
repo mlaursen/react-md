@@ -21,6 +21,7 @@ import { connectFirestoreEmulator } from 'firebase/firestore';
 
 import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth(firebaseApp);
@@ -40,8 +41,6 @@ function App() {
   const [isValid, setIsValid] = useState(true);
   const editProfileRef = useRef(false);
   // const flatListRef = useRef<FlatList>();
-  const [currentMessage, setCurrentMessage] = useState(null);
-  const [messageToReply, setMessageToReply] = useState(null);
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
@@ -137,85 +136,78 @@ function App() {
     );
   }
 
-  function validateMessage(message) {
-    const messageLength = message.length;
-    const trimedValueLength = message.trim().length;
-    const badWordFilter = new Filter();
-
-    let isValid = true;
-
-    // TODO: Give feedback to user
-    // https://plutotv.atlassian.net/browse/RN-123
-
-    if (messageLength == 0) {
-      setError('Sorry, no empty messages.');
-      isValid = false;
-    } else if (trimedValueLength < 2) {
-      setError('Please type a longer message.');
-      isValid = false;
-    } else if (messageLength > MAX_CHAT_CAR_COUNT) {
-      setError('Please type a shorter message.');
-      isValid = false;
-    } else if (message === lastMessage) {
-      setError('Sorry, no duplicate messages.');
-      isValid = false;
-    } else if (badWordFilter.isProfane(message)) {
-      setError('Please keep it PG!');
-      isValid = false;
-    }
-
-    if (!isValid) {
-      setTimeout(() => {
-        setError('');
-      }, 2000);
-    }
-
-    return isValid;
-  }
-
-  function clearInput() {
-    setLastMessage('');
-    setInputVal('');
-    setError('');
-    setIsValid(true);
-    setCharCount(MAX_CHAT_CAR_COUNT);
-  }
-
-  function onChangeText(inputVal) {
-    setInputVal(inputVal);
-  }
-
-  function onSubmitMessage() {
-    const newMessage = {
-      ...currentUser,
-      message: inputVal,
-      createdAt: Date.now(),
-    };
-
-    // validate message
-    if (validateMessage(inputVal)) {
-      // send message to firebase
-      // sendChatMessage(newMessage, messageToReply);
-      // clear input
-      setMessageToReply(null);
-      clearInput();
-    }
-  }
-
   function ChatRoom() {
-    const dummy = useRef();
     const messagesRef = db.collection('messages');
     const query = messagesRef.orderBy('createdAt').limit(50);
     const [messages] = useCollectionData(query, { idField: 'id' });
-    const [formValue, setFormValue] = useState('');
+    const [message, setMessage] = useState('');
+    const [placeholder, setPlaceholder] = useState('Join the convo!');
+    const [currentMessage, setCurrentMessage] = useState(null);
+    const [messageToReply, setMessageToReply] = useState(null);
 
-    const sendMessage = async (e) => {
+    function validateMessage(message) {
+      const messageLength = message.length;
+      const trimedValueLength = message.trim().length;
+      const badWordFilter = new Filter();
+
+      let isValid = true;
+
+      // TODO: Give feedback to user
+
+      if (messageLength == 0) {
+        setError('Sorry, no empty messages.');
+        isValid = false;
+      } else if (trimedValueLength < 2) {
+        setError('Please type a longer message.');
+        isValid = false;
+      } else if (messageLength > MAX_CHAT_CAR_COUNT) {
+        setError('Please type a shorter message.');
+        isValid = false;
+      } else if (message === lastMessage) {
+        setError('Sorry, no duplicate messages.');
+        isValid = false;
+      } else if (badWordFilter.isProfane(message)) {
+        setError('Please keep it PG!');
+        isValid = false;
+      }
+
+      if (!isValid) {
+        setTimeout(() => {
+          setError('');
+        }, 2000);
+      }
+
+      return isValid;
+    }
+
+    function clearInput() {
+      //setLastMessage('');
+      setMessage('');
+      setError('');
+      setIsValid(true);
+      setMessageToReply(null);
+      setCharCount(MAX_CHAT_CAR_COUNT);
+    }
+
+    function onSubmitMessage(e) {
       e.preventDefault();
 
+      // validate message
+      if (validateMessage(message)) {
+        // send message to firebase
+        // sendChatMessage(newMessage, messageToReply);
+        // clear input
+
+        clearInput();
+        sendMessage();
+      }
+    }
+
+    const sendMessage = async () => {
       const { uid, role, displayName, avatarUrl, chatName } = currentUser;
 
       await messagesRef.add({
-        text: formValue,
+        text: message,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         uid,
         role,
@@ -224,9 +216,13 @@ function App() {
         chatName,
       });
 
-      setFormValue('');
       firebase.analytics().logEvent('chat_message_sent');
-      dummy.current.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    const charCounter = (e) => {
+      console.log(e);
+      setMessage(e);
+      // setCharCount - charCount -
     };
 
     return (
@@ -237,20 +233,19 @@ function App() {
               <ChatMessage key={msg.createdAt} message={msg} />
             ))}
         </main>
-
         {auth.currentUser ? (
-          <form onSubmit={sendMessage} className="chatInput">
+          <form onSubmit={onSubmitMessage} className="chatInput">
             <div className="inputContainer">
               <AccountCircleIcon
-                sx={{ color: 'white', fontSize: 40, paddingLeft: '4px' }}
+                sx={{ color: '#1976d2', fontSize: 40, paddingLeft: '4px' }}
               />
               <input
-                value={formValue}
-                onChange={(e) => setFormValue(e.target.value)}
-                placeholder="Say something..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder={placeholder}
               />
-              <button type="submit" disabled={!formValue}>
-                Go
+              <button type="submit" disabled={!isValid}>
+                <ArrowCircleUpIcon sx={{ color: '#1976d2', fontSize: 40 }} />
               </button>
             </div>
           </form>

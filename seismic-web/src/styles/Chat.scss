@@ -108,23 +108,21 @@ form button {
     letter-spacing: 0;
     flex: 8;
     background-color: transparent;
+    color: #fff;
   }
 
   button {
-    background-color: #282c34; /* Green */
+    background-color: transparent;
     border: none;
     color: white;
-    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    font-size: 1.25rem;
   }
 
   button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    display: none;
   }
 }
 
