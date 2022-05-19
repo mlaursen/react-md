@@ -4,6 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 const MAX_CHAT_CAR_COUNT = 100;
 
+const LIVING_ROOM_IMG =
+  'https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/living-room.jpg?alt=media&token=f85daff0-bc7a-4138-9ae8-52036e9329d8';
+
 const AVATARS = [
   'https://firebasestorage.googleapis.com/v0/b/seismic-labs.appspot.com/o/avatars%2F1.png?alt=media&token=832c587b-0a9f-4965-a3ba-eef112e7147f',
   'https://firebasestorage.googleapis.com/v0/b/seismic-labs.appspot.com/o/avatars%2F2.png?alt=media&token=af683875-4b87-4f6e-b5ba-98bedeb24ccf',

@@ -19,6 +19,8 @@ import Filter from 'bad-words';
 import { MAX_CHAT_CAR_COUNT, ANONYMOUS_USER } from './helpers/constants';
 import { connectFirestoreEmulator } from 'firebase/firestore';
 
+import Button from '@mui/material/Button';
+
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth(firebaseApp);
 const db = firebase.firestore(firebaseApp);
@@ -110,18 +112,26 @@ function App() {
     };
 
     return (
-      <button className="sign-in" onClick={signInWithGoogle}>
+      <Button
+        className="sign-in"
+        variant="contained"
+        onClick={signInWithGoogle}
+      >
         Sign In
-      </button>
+      </Button>
     );
   }
 
   function SignOut() {
     return (
       auth.currentUser && (
-        <button className="sign-out" onClick={() => auth.signOut()}>
+        <Button
+          className="sign-out"
+          variant="outlined"
+          onClick={() => auth.signOut()}
+        >
           Sign Out
-        </button>
+        </Button>
       )
     );
   }
@@ -214,6 +224,7 @@ function App() {
       });
 
       setFormValue('');
+      firebase.analytics().logEvent('chat_message_sent');
       dummy.current.scrollIntoView({ behavior: 'smooth' });
     };
 
@@ -269,7 +280,11 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Sandbox Env</h1>
+        <img
+          alt="Disney"
+          src="https://static-mh.content.disney.io/matterhorn/assets/goc/disney_logo_dark@2x-45d70f7dd57b.png"
+          className="logo"
+        />
         {auth.currentUser ? <SignOut /> : <SignIn />}
       </header>
       <section className="body">
