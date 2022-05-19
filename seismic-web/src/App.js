@@ -20,6 +20,7 @@ import { MAX_CHAT_CAR_COUNT, ANONYMOUS_USER } from './helpers/constants';
 import { connectFirestoreEmulator } from 'firebase/firestore';
 
 import Button from '@mui/material/Button';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth(firebaseApp);
@@ -240,6 +241,9 @@ function App() {
         {auth.currentUser ? (
           <form onSubmit={sendMessage} className="chatInput">
             <div className="inputContainer">
+              <AccountCircleIcon
+                sx={{ color: 'white', fontSize: 40, paddingLeft: '4px' }}
+              />
               <input
                 value={formValue}
                 onChange={(e) => setFormValue(e.target.value)}
@@ -258,7 +262,7 @@ function App() {
   }
 
   function ChatMessage(props) {
-    const { text, uid, avatarUrl, chatName, createdAt } = props.message;
+    const { text, uid, avatarUrl, chatName, createdAt, role } = props.message;
 
     const seconds = createdAt ? moment(createdAt.toDate()) : '';
     const messageClass = uid === currentUser.uid ? 'sent' : 'received';
@@ -289,7 +293,11 @@ function App() {
       </header>
       <section className="body">
         <section className="main">
-          <p>Main Body</p>
+          <img
+            className="qr-code"
+            src="https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/qr-test.png?alt=media&token=d4416410-3f02-4652-b3e4-8eaa65b7d00e"
+            alt="Flow Code QR"
+          />
         </section>
         <section className="rail">
           <ChatRoom />

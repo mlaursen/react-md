@@ -17,7 +17,7 @@ main {
   .message {
     background-color: #fff;
     border-radius: 20px;
-    width: 90%;
+    width: 95%;
     flex-direction: row;
     margin: 5px 0;
     display: flex;
@@ -35,26 +35,28 @@ main {
 
     .messageContainer {
       text-align: left;
-      padding: 0 0 0 15px;
+      padding: 0 15px 0 10px;
       width: 100%;
 
       .username {
-        font-size: 18px;
+        font-size: 16px;
+        font-weight: 800;
         color: #000;
-        padding-bottom: 5px;
         text-transform: capitalize;
         margin-block-end: 0;
       }
 
       .message {
-        font-size: 16px;
+        font-size: 14px;
         color: #7d7d7e;
       }
 
       .date {
-        font-size: 13px;
-        color: #7d7d7e;
+        font-size: 10px;
+        color: #9e9e9e;
         margin-block-start: 0;
+        text-transform: capitalize;
+        text-align: right;
       }
     }
   }
