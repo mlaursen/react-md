@@ -33,13 +33,11 @@ function Chat(props) {
   const [messages] = useCollectionData(query, { idField: 'id' });
   const [message, setMessage] = useState('');
   const [placeholder, setPlaceholder] = useState('Join the convo!');
-  const [currentMessage, setCurrentMessage] = useState(null);
-  const [messageToReply, setMessageToReply] = useState(null);
-  const [inputVal, setInputVal] = useState('');
   const [charCount, setCharCount] = useState(MAX_CHAT_CAR_COUNT);
   const [error, setError] = useState('');
   const [lastMessage, setLastMessage] = useState(null);
   const [isValid, setIsValid] = useState(true);
+  const [replyMessage, setReplyMessage] = useState(null);
 
   function validateMessage(message) {
     const messageLength = message.length;
@@ -81,7 +79,7 @@ function Chat(props) {
     setMessage('');
     setError('');
     setIsValid(true);
-    setMessageToReply(null);
+    setReplyMessage(null);
     setCharCount(MAX_CHAT_CAR_COUNT);
   }
 
@@ -121,12 +119,23 @@ function Chat(props) {
     // setCharCount - charCount -
   };
 
+  function reply(m) {
+    setReplyMessage(m);
+    console.log(replyMessage);
+  }
+
   return (
     <>
       <main className="chat">
         {messages &&
           messages.map((msg) => (
-            <ChatMessage key={msg.createdAt} message={msg} user={currentUser} />
+            <ChatMessage
+              key={msg.createdAt}
+              message={msg}
+              user={currentUser}
+              replyMessage={replyMessage}
+              reply={reply}
+            />
           ))}
       </main>
       <form onSubmit={onSubmitMessage} className="chatInput">
