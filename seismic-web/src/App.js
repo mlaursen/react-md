@@ -14,6 +14,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { ANONYMOUS_USER } from './helpers/constants';
 
 import Chat from './components/Chat';
+import VideoPlayer from './components/VideoPlayer';
 
 import Button from '@mui/material/Button';
 
@@ -142,6 +143,7 @@ function App() {
             src="https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/qr-test.png?alt=media&token=d4416410-3f02-4652-b3e4-8eaa65b7d00e"
             alt="Flow Code QR"
           />
+          <VideoPlayer />
         </section>
         <section className="rail">
           <Chat user={currentUser} authenticated={auth} />
