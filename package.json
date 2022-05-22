@@ -7,10 +7,13 @@
   "scripts": {
     "prepare": "husky install",
     "test": "jest",
+    "create-docs": "typedoc",
     "build-ejs": "swc src -d ejs",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
+    "fix-type-imports": "eslint -c .precommit.eslintrc.cjs \"packages/**/*.{ts,tsx}\" --fix",
+    "format-imports": "pnpm run fix-type-imports; pnpm run format",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -48,6 +51,7 @@
     "@types/react-dom": "^17.0.14",
     "@types/testing-library__jest-dom": "^5.14.3",
     "browserslist": "^4.20.3",
+    "cnbuilder": "^3.1.0",
     "eslint": "^8.15.0",
     "eslint-plugin-next": "^0.0.0",
     "husky": "^8.0.1",
@@ -57,6 +61,8 @@
     "jest-watch-typeahead": "^1.1.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
+    "sass": "^1.51.0",
+    "typedoc": "^0.22.15",
     "typescript": "^4.6.4"
   },
   "lint-staged": {

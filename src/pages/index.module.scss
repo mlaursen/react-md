@@ -1,0 +1,8 @@
+.heading {
+  font-size: 6rem;
+  font-family: var(--font-family);
+  // font-family: var(--font-family, Roboto), sans-serif;
+  line-height: 6rem;
+  font-weight: var(--font-light, 300);
+  letter-spacing: -0.015625em;
+}

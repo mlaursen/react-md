@@ -1,0 +1,5 @@
+@mixin map-to-styles($map) {
+  @each $property, $value in $map {
+    #{$property}: $value;
+  }
+}

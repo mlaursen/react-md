@@ -1,0 +1,37 @@
+$phone-max-width: 47.9375em !default;
+$tablet-min-width: 40em !default;
+$tablet-max-width: 64em !default;
+$desktop-min-width: 64.0625em !default;
+$large-desktop-min-width: 80em !default;
+
+@mixin phone-media {
+  @media screen and (max-width: #{$max-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-media {
+  @media screen and (min-width: #{$tablet-min-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-only-media {
+  @media screen and (min-width: #{$tablet-min-width}) and (max-width: #{$tablet-max-width}) {
+    @content;
+  }
+}
+
+@mixin desktop-media {
+  @media screen and (min-width: #{$desktop-min-width}) {
+    @content;
+  }
+}
+
+/// Creates a media query so that screen sizes matching at least the min width
+/// for a large desktop will gain these styles.
+@mixin large-desktop-media {
+  @media screen and (min-width: #{$large-desktop-min-width}) {
+    @content;
+  }
+}

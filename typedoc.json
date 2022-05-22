@@ -1,0 +1,10 @@
+{
+  "out": "public/docs",
+  "tsconfig": "./tsconfig.typedoc.json",
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": false
+  },
+  "entryPoints": ["packages/core/src/index.ts"]
+}

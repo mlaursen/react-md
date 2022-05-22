@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography should be able to apply additional styles 1`] = `
+<p
+  class="rmd-typography rmd-typography--body-1 rmd-typography--no-margin-top rmd-typography--center rmd-typography--theme-primary rmd-typography--overline-decoration rmd-typography--capitalize rmd-typography--semi-bold rmd-typography--italic"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should be able to render as a custom component using the \`as\` prop 1`] = `
+<div
+  class="rmd-typography rmd-typography--body-1"
+  data-testid="text"
+>
+  Custom!
+</div>
+`;
+
+exports[`Typography should default to rendering as a paragraph and body-1 styles 1`] = `
+<p
+  class="rmd-typography rmd-typography--body-1"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 1`] = `
+<h1
+  class="rmd-typography rmd-typography--headline-1"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 2`] = `
+<h2
+  class="rmd-typography rmd-typography--headline-2"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 3`] = `
+<h3
+  class="rmd-typography rmd-typography--headline-3"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 4`] = `
+<h4
+  class="rmd-typography rmd-typography--headline-4"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 5`] = `
+<h5
+  class="rmd-typography rmd-typography--headline-5"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 6`] = `
+<h6
+  class="rmd-typography rmd-typography--headline-6"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 7`] = `
+<h6
+  class="rmd-typography rmd-typography--subtitle-1"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 8`] = `
+<h6
+  class="rmd-typography rmd-typography--subtitle-2"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 9`] = `
+<p
+  class="rmd-typography rmd-typography--body-1"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 10`] = `
+<p
+  class="rmd-typography rmd-typography--body-2"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 11`] = `
+<span
+  class="rmd-typography rmd-typography--overline"
+  data-testid="text"
+/>
+`;
+
+exports[`Typography should render as the correct element based on the typography type 12`] = `
+<caption
+  class="rmd-typography rmd-typography--caption"
+  data-testid="text"
+/>
+`;

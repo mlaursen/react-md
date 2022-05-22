@@ -1,0 +1,53 @@
+@forward "media-queries";
+@forward "theme/colors";
+@forward "theme/theme";
+@forward "typography/typography";
+@forward "utils";
+
+@use "theme/theme";
+@use "typography/typography";
+
+@mixin css-reset {
+  // setting everything to border-box for easier positioning and calculations
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  // always force full height and remove any spacing the browser might add to
+  // ensure your app can use the full viewport
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background-color: var(theme.$background-color-var);
+    color: var(theme.$text-primary-color-var);
+    font-family: typography.$font-family;
+  }
+
+  body.touch-mode {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    // this allows for click events to be bubble-able on iOS to the root
+    // document. Without this, all the `onOutsideClick` behavior won't work.
+    cursor: pointer;
+  }
+
+  // this is required since this _should_ be the default behavior, but if you've
+  // manually set a `display` value on an element, it will override this
+  // behavior.
+  [hidden] {
+    display: none !important;
+  }
+}
+
+@mixin core {
+  @include css-reset;
+  @include theme.colors;
+  @include typography.typography;
+}

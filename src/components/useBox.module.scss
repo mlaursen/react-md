@@ -1,0 +1,6 @@
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--box-gap, 0.5rem);
+  place-items: center;
+}

@@ -2,7 +2,7 @@ import { fireEvent, render } from "@testing-library/react";
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
 import { useEffect } from "react";
 
-import { UserInteractionModeProvider } from "../../../UserInteractionModeProvider";
+import { UserInteractionModeProvider } from "../../../interaction/UserInteractionModeProvider";
 import { useActiveDescendantContext } from "../activeDescendantContext";
 import { ActiveDescendantMovementProvider } from "../ActiveDescendantMovementProvider";
 import { KeyboardMovementProvider } from "../KeyboardMovementProvider";

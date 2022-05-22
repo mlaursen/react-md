@@ -1,0 +1,89 @@
+@use "sass:color";
+
+.button {
+  --icon-color: currentcolor;
+
+  align-items: center;
+  background-color: var(--button-bg, transparent);
+  border-width: 0;
+  color: var(--button-color);
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+
+  &::before,
+  &::after {
+    border-radius: inherit;
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+  }
+
+  &::before {
+    background-color: var(--interaction-bg, transparent);
+    transition: background-color 0.15s;
+  }
+
+  &:hover {
+    --interaction-bg: #{rgba(#000, 0.08)};
+
+    cursor: pointer;
+  }
+
+  &:disabled {
+    &:hover {
+      --interaction-bg: transparent;
+      cursor: auto;
+    }
+  }
+
+  &:focus {
+    :global(.keyboard-mode) & {
+      outline: var(--focus-outline, #2196f3) inset 0.125rem;
+    }
+  }
+
+  :global(.touch-mode) & {
+    &:hover {
+      --interaction-bg: transparent;
+    }
+  }
+
+  > * {
+    z-index: 1;
+  }
+}
+
+.text {
+  --icon-size: var(--button-text-icon-size, 1.125rem);
+
+  border-radius: var(--button-text-radius, 0.5rem);
+  font-size: var(--button-font-size, 0.875rem);
+  font-family: var(--font-family);
+  // font-family: var(--font-family, Roboto), sans-serif;
+  font-weight: 500;
+  gap: var(--button-gap, 0.5rem);
+  letter-spacing: var(--button-letter-spacing, 0.0892857143em);
+  line-height: var(--button-line-height, 2.25rem);
+  min-height: var(--button-text-height, 2.25rem);
+  min-width: var(--button-text-width, 4rem);
+  padding: var(--button-v-padding, 0) var(--button-h-padding, 1rem);
+  text-transform: uppercase;
+}
+
+.icon {
+  border-radius: var(--button-icon-radius, 50%);
+  height: var(--button-icon-size, 3rem);
+  padding: 0;
+  width: var(--button-icon-size, 3rem);
+}
+
+.pressed {
+  --interaction-bg: #{rgba(#000, 0.32)};
+
+  &:hover {
+    --interaction-bg: #{rgba(#000, 0.32)};
+  }
+}

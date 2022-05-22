@@ -1,5 +1,6 @@
 /**
  * @remarks \@since 2.7.0
+ * @internal
  */
 export interface LoopOptions {
   /**

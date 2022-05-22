@@ -25,6 +25,40 @@ export type BEMResult = (
 /**
  * Applies the BEM styled class name to an element.
  *
+ * @example
+ * Simple Example
+ * ```jsx
+ * import { Bem } from "@react-md/core":
+ *
+ * const styles = bem("my-component"):
+ *
+ * export function MyComponent(props) {
+ *   const className = styles({
+ *     always: true,
+ *     never: false,
+ *     "some-condition": props.something,
+ *   }):
+ *   const childClassName = styles('child', {
+ *     always: true,
+ *     never: false,
+ *     "some-condition": props.something,
+ *   });
+ *
+ *   // With a false-like `props.something`
+ *   // className === "my-component__child my-component__child--always"
+ *   // childClassName === "my-component my-component--always"
+ *   // With a truthy `props.something`
+ *   // className === "my-component my-component--always my-component--some-condition"
+ *   // childClassName === "my-component__child my-component__child--always my-component__child--some-condition"
+ *
+ *   return (
+ *     <div className={className}>
+ *       <div className={childClassName} />
+ *     </div>
+ *   ):
+ * }
+ * ```
+ *
  * @see https://en.bem.info/methodology/css/
  * @param base - The base class to use
  * @returns a function to call that generates the full class name

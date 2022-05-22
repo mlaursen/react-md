@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextContainer should render correctly and apply the correct class names 1`] = `
+<div
+  class="rmd-text-container rmd-text-container--auto"
+  data-testid="container"
+>
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Content
+  </p>
+</div>
+`;
+
+exports[`TextContainer should render correctly and apply the correct class names 2`] = `
+<div
+  class="rmd-text-container rmd-text-container--mobile"
+  data-testid="container"
+>
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Content
+  </p>
+</div>
+`;
+
+exports[`TextContainer should render correctly and apply the correct class names 3`] = `
+<div
+  class="rmd-text-container rmd-text-container--desktop"
+  data-testid="container"
+>
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Content
+  </p>
+</div>
+`;
+
+exports[`TextContainer should render correctly and apply the correct class names 4`] = `
+<div
+  class="rmd-text-container rmd-text-container--auto custom-1 custom-2"
+  data-testid="container"
+>
+  <p
+    class="rmd-typography rmd-typography--body-1"
+  >
+    Content
+  </p>
+</div>
+`;

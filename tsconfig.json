@@ -17,9 +17,9 @@
     "downlevelIteration": true,
     "jsx": "preserve",
     "paths": {
-      "@react-md/utils": ["packages/utils/src/index.ts"]
+      "@react-md/core": ["packages/core/src/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "prev"]
 }

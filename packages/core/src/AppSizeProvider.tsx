@@ -5,12 +5,6 @@ import { useOrientation } from "./useOrientation";
 
 export type QuerySize = number | string;
 
-export const DEFAULT_DESKTOP_MIN_WIDTH: QuerySize = `${1025 / 16}em`;
-export const DEFAULT_TABLET_MIN_WIDTH: QuerySize = `${768 / 16}em`;
-export const DEFAULT_TABLET_MAX_WIDTH: QuerySize = `${1024 / 16}em`;
-export const DEFAULT_PHONE_MAX_WIDTH: QuerySize = `${767 / 16}em`;
-export const DEFAULT_DESKTOP_LARGE_MIN_WIDTH: QuerySize = `${1280 / 16}em`;
-
 /**
  * The current size for your application. This should work both server side and
  * client side, but you will have much better results client side.
@@ -97,6 +91,19 @@ export function useAppSize(): Readonly<AppSize> {
 
   return appSize;
 }
+
+export const DEFAULT_DESKTOP_MIN_WIDTH: QuerySize = `${1025 / 16}em`;
+export const DEFAULT_TABLET_MIN_WIDTH: QuerySize = `${768 / 16}em`;
+export const DEFAULT_TABLET_MAX_WIDTH: QuerySize = `${1024 / 16}em`;
+export const DEFAULT_PHONE_MAX_WIDTH: QuerySize = `${767 / 16}em`;
+export const DEFAULT_DESKTOP_LARGE_MIN_WIDTH: QuerySize = `${1280 / 16}em`;
+export const DEFAULT_APP_SIZE_QUERIES: Readonly<AppSizeQueries> = {
+  phoneMaxWidth: DEFAULT_PHONE_MAX_WIDTH,
+  tabletMinWidth: DEFAULT_TABLET_MIN_WIDTH,
+  tabletMaxWidth: DEFAULT_TABLET_MAX_WIDTH,
+  desktopMinWidth: DEFAULT_DESKTOP_MIN_WIDTH,
+  desktopLargeMinWidth: DEFAULT_DESKTOP_LARGE_MIN_WIDTH,
+};
 
 export interface AppSizeQueries {
   /**

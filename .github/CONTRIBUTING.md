@@ -315,21 +315,16 @@ yarn dev-utils --help
 [material design]: https://material.io/develop/web
 [react-md repo]: https://github.com/mlaursen/react-md
 [nextjs]: https://github.com/zeit/next.js
-[npx]:
-  https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b
+[npx]: https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b
 [base npm scripts]: #scripts
 [jest]: https://github.com/facebook/jest
-[react-testing-library]:
-  https://github.com/testing-library/react-testing-library
+[react-testing-library]: https://github.com/testing-library/react-testing-library
 [enzyme]: https://airbnb.io/enzyme/
 [eslint]: https://github.com/eslint/eslint
 [prettier]: https://github.com/prettier/prettier
 [sass-lint]: https://github.com/sasstools/sass-lint
 [commitizen]: https://github.com/commitizen/cz-cli
 [conventional commits]: https://www.conventionalcommits.org/en/
-[angular preset]:
-  https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines
-[demo source code]:
-  https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/Demos/Demo.tsx
-[example demo file]:
-  https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/Demos/AppBar/index.tsx
+[angular preset]: https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines
+[demo source code]: https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/Demos/Demo.tsx
+[example demo file]: https://github.com/mlaursen/react-md/tree/master/packages/documentation/src/components/Demos/AppBar/index.tsx

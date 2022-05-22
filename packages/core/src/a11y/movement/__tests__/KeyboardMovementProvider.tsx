@@ -8,7 +8,7 @@ import type {
   Ref,
 } from "react";
 
-import { UserInteractionModeProvider } from "../../../UserInteractionModeProvider";
+import { UserInteractionModeProvider } from "../../../interaction/UserInteractionModeProvider";
 import { KeyboardMovementProvider } from "../KeyboardMovementProvider";
 import type {
   KeyboardMovementBehavior,

@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useFixedPositioning should allow for configuring the fixed position 1`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+  <div
+    data-testid="element"
+    style="left: 16px; top: 0px; position: fixed; transform-origin: 0 0;"
+  >
+    Some content.
+  </div>
+</div>
+`;
+
+exports[`useFixedPositioning should default to fixing itself with the BELOW_CENTER_ANCHOR 1`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+</div>
+`;
+
+exports[`useFixedPositioning should default to fixing itself with the BELOW_CENTER_ANCHOR 2`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+  <div
+    class="rmd-transition--scale-enter rmd-transition--scale-enter-active"
+    data-testid="element"
+    style="left: 16px; top: 0px; position: fixed;"
+  >
+    Some content.
+  </div>
+</div>
+`;
+
+exports[`useFixedPositioning should default to fixing itself with the BELOW_CENTER_ANCHOR 3`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+  <div
+    data-testid="element"
+    style="left: 16px; top: 0px; position: fixed;"
+  >
+    Some content.
+  </div>
+</div>
+`;
+
+exports[`useFixedPositioning should default to fixing itself with the BELOW_CENTER_ANCHOR 4`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+  <div
+    class="rmd-transition--scale-exit rmd-transition--scale-exit-active"
+    data-testid="element"
+    style="left: 16px; top: 0px; position: fixed;"
+  >
+    Some content.
+  </div>
+</div>
+`;
+
+exports[`useFixedPositioning should default to fixing itself with the BELOW_CENTER_ANCHOR 5`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+</div>
+`;
+
+exports[`useFixedPositioning should update the style correctly based on the initialX and initialY so that it can be used for context menus 1`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+  <div
+    data-testid="element"
+    style="left: 16px; top: 0px; position: fixed;"
+  >
+    Some content.
+  </div>
+</div>
+`;
+
+exports[`useFixedPositioning should update the style correctly based on the initialX and initialY so that it can be used for context menus 2`] = `
+<div>
+  <button
+    type="button"
+  >
+    Toggle
+  </button>
+  <div
+    data-testid="element"
+    style="left: 30px; top: 40px; position: fixed;"
+  >
+    Some content.
+  </div>
+</div>
+`;

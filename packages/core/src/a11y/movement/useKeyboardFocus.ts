@@ -6,8 +6,8 @@ import type {
 } from "react";
 import { useRef } from "react";
 
+import { useUserInteractionMode } from "../../interaction/UserInteractionModeProvider";
 import { findMatchIndex } from "../../search/findMatchIndex";
-import { useUserInteractionMode } from "../../UserInteractionModeProvider";
 import { useKeyboardFocusContext } from "./movementContext";
 import {
   focusElement,

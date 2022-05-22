@@ -8,10 +8,13 @@ node_modules
 
 # testing
 /coverage
+/public/coverage
 
 # next.js
 /.next/
 /out/
+
+/public/docs
 
 # production
 /build

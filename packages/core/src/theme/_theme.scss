@@ -1,0 +1,109 @@
+@use "sass:color";
+@use "colors";
+@use "a11y";
+
+$theme-mode: light !default;
+$use-dark-elevation: true !default;
+
+$background-color-var: --rmd-background-color;
+$primary-color-var: --rmd-primary-color;
+$on-primary-color-var: --rmd-on-primary-color;
+$secondary-color-var: --rmd-secondary-color;
+$on-secondary-color-var: --rmd-on-secondary-color;
+$warning-color-var: --rmd-warning-color;
+$on-warning-color-var: --rmd-on-warning-color;
+$error-color-var: --rmd-error-color;
+$on-error-color-var: --rmd-on-error-color;
+$success-color-var: --rmd-success-color;
+$on-success-color-var: --rmd-on-success-color;
+$text-primary-color-var: --rmd-text-primary-color;
+$text-secondary-color-var: --rmd-text-secondary-color;
+$text-hint-color-var: --rmd-text-hint-color;
+$text-disabled-color-var: --rmd-text-disabled-color;
+
+$primary-color: colors.$blue-500 !default;
+$on-primary-color: a11y.contrast-color($primary-color) !default;
+$secondary-color: colors.$orange-a-400 !default;
+$on-secondary-color: a11y.contrast-color($secondary-color) !default;
+$warning-color: colors.$deep-orange-a-200 !default;
+$on-warning-color: a11y.contrast-color($warning-color) !default;
+$error-color: colors.$red-500 !default;
+$on-error-color: a11y.contrast-color($error-color) !default;
+$success-color: colors.$green-a-700 !default;
+$on-success-color: a11y.contrast-color($success-color) !default;
+
+$light-theme-background-color: #fafafa !default;
+$light-theme-surface-color: #fff !default;
+$light-theme-text-primary-color: color.adjust(#000, $lightness: 13%) !default;
+$light-theme-text-secondary-color: color.adjust(#000, $lightness: 46%) !default;
+$light-theme-text-hint-color: color.adjust(#000, $lightness: 66%) !default;
+$light-theme-text-disabled-color: color.adjust(#000, $lightness: 62%) !default;
+
+$dark-theme-background-color: #121212 !default;
+$dark-theme-surface-color: if($use-dark-elevation, null, #424242) !default;
+$dark-theme-text-primary-color: color.adjust(#fff, $lightness: -15%) !default;
+$dark-theme-text-secondary-color: color.adjust(#fff, $lightness: -30%) !default;
+$dark-theme-text-hint-color: color.adjust(#fff, $lightness: -50%) !default;
+$dark-theme-text-disabled-color: color.adjust(#fff, $lightness: -50%) !default;
+
+@mixin use-light-theme {
+  #{$background-color-var}: $light-theme-background-color;
+  #{$text-primary-color-var}: $light-theme-text-primary-color;
+  #{$text-secondary-color-var}: $light-theme-text-secondary-color;
+  #{$text-hint-color-var}: $light-theme-text-hint-color;
+  #{$text-disabled-color-var}: $light-theme-text-disabled-color;
+}
+
+@mixin use-dark-theme {
+  #{$background-color-var}: $dark-theme-background-color;
+  #{$text-primary-color-var}: $dark-theme-text-primary-color;
+  #{$text-secondary-color-var}: $dark-theme-text-secondary-color;
+  #{$text-hint-color-var}: $dark-theme-text-hint-color;
+  #{$text-disabled-color-var}: $dark-theme-text-disabled-color;
+}
+
+@mixin colors {
+  :root {
+    #{$background-color-var}: if(
+      $theme-mode == dark,
+      $dark-theme-background-color,
+      $light-theme-background-color
+    );
+    #{$primary-color-var}: $primary-color;
+    #{$on-primary-color-var}: $on-primary-color;
+    #{$secondary-color-var}: $secondary-color;
+    #{$on-secondary-color-var}: $on-secondary-color;
+    #{$warning-color-var}: $warning-color;
+    #{$on-warning-color-var}: $on-warning-color;
+    #{$error-color-var}: $error-color;
+    #{$on-error-color-var}: $on-error-color;
+    #{$success-color-var}: $success-color;
+    #{$on-success-color-var}: $on-success-color;
+    #{$text-primary-color-var}: if(
+      $theme-mode == dark,
+      $dark-theme-text-primary-color,
+      $light-theme-text-primary-color
+    );
+    #{$text-secondary-color-var}: if(
+      $theme-mode == dark,
+      $dark-theme-text-secondary-color,
+      $light-theme-text-secondary-color
+    );
+    #{$text-hint-color-var}: if(
+      $theme-mode == dark,
+      $dark-theme-text-hint-color,
+      $light-theme-text-hint-color
+    );
+    #{$text-disabled-color-var}: if(
+      $theme-mode == dark,
+      $dark-theme-text-disabled-color,
+      $light-theme-text-disabled-color
+    );
+
+    @if $theme-mode == system {
+      @media (prefers-color-scheme: dark) {
+        @include use-dark-theme;
+      }
+    }
+  }
+}

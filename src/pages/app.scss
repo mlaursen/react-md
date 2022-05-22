@@ -1,0 +1,39 @@
+// @use "../../packages/core/src/core";
+@use "../../packages/core/src/core" with (
+  $theme-mode: "system"
+);
+
+@include core.core;
+
+// *,
+// *::before,
+// *::after {
+//   // setting everything to border-box for easier positioning
+//   // and calculations
+//   box-sizing: border-box;
+// }
+
+// html,
+// body {
+//   height: 100%;
+//   margin: 0;
+//   padding: 0;
+// }
+
+// html {
+//   font-family: var(--font-family, Roboto), sans-serif;
+// }
+
+// body.touch-mode {
+//   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+//   cursor: pointer;
+// }
+
+// [hidden] {
+//   display: none !important;
+// }
+
+:root {
+  --button-bg: #009688;
+  --button-color: #fff;
+}

@@ -1,7 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
 import { useMemo, useRef } from "react";
-
-import { useDir } from "../../WritingDirection";
+import { useDir } from "../../typography/WritingDirection";
 import {
   DEFAULT_KEYBOARD_MOVEMENT,
   DEFAULT_LTR_KEYBOARD_MOVEMENT,

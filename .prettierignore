@@ -1,5 +1,11 @@
 node_modules
 /coverage
+.next
+public/docs
+public/coverage
+/prev
+
+pnpm*.yaml
 
 CHANGELOG.md
 **/CHANGELOG.md

@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 /**
  *
  * @param query - The media query to use
+ * @param disabled - When `true`, the `window.matchMedia` API will not be
+ * activated and the hook will always return `false`.
  * @returns `true` if the media query matches
  */
-export function useMediaQuery(query: string): boolean {
+export function useMediaQuery(query: string, disabled = false): boolean {
   const [matches, setMatches] = useState(() => {
-    if (typeof window === "undefined") {
+    if (typeof window === "undefined" || disabled) {
       return false;
     }
 
@@ -15,6 +17,10 @@ export function useMediaQuery(query: string): boolean {
   });
 
   useEffect(() => {
+    if (disabled) {
+      return;
+    }
+
     const result = window.matchMedia(query);
     setMatches(result.matches);
 
