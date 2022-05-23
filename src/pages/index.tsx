@@ -3,16 +3,20 @@
 import {
   ConfigurableThemeColorsName,
   DEFAULT_DARK_THEME,
+  Portal,
   TextContainer,
   ThemeOverride,
   Typography,
   useColorScheme,
   useCSSVariables,
+  useScaleTransition,
   useTheme,
 } from "@react-md/core";
-import type { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { Button } from "src/components/Button";
 import { SVGIcon } from "src/components/SVGIcon";
+
+import styles from "./index.module.scss";
 
 const overrides = Object.entries(DEFAULT_DARK_THEME).map<ThemeOverride>(
   ([name, value]) => ({
@@ -29,14 +33,60 @@ export default function Home(): ReactElement {
   // const style = useThemeOverride(overrides, true);
   // console.log("overrides:", overrides);
   // const style = useCSSVariables([{ name: "--test", value: "blue" }], true);
-  console.log("theme:", theme);
-  console.log("colorScheme:", colorScheme);
+  // console.log("theme:", theme);
+  // console.log("colorScheme:", colorScheme);
+  const [transitionIn, setTransitionIn] = useState(false);
+  const { elementProps, rendered } = useScaleTransition({
+    transitionIn,
+    vertical: true,
+    className: styles.temporary,
+  });
+  // console.log(elementProps.className);
+
   return (
     <TextContainer>
       {/* <TextContainer style={style}> */}
       <main>
+        <div style={{ position: "relative", marginBottom: "2rem" }}>
+          <Button onClick={() => setTransitionIn((prev) => !prev)}>
+            Button
+          </Button>
+          {rendered && <div {...elementProps}>This is some content.</div>}
+        </div>
         <Button>Button</Button>
-        <Button>Button</Button>
+        <label>
+          Light
+          <input
+            type="checkbox"
+            name="colorScheme"
+            id="color-scheme-light"
+            value="light"
+            checked={colorScheme.colorSchemeMode === "light"}
+            onChange={(event) => colorScheme.setColorSchemeMode("light")}
+          />
+        </label>
+        <label>
+          Dark
+          <input
+            type="checkbox"
+            name="colorScheme"
+            id="color-scheme-dark"
+            value="dark"
+            checked={colorScheme.colorSchemeMode === "dark"}
+            onChange={(event) => colorScheme.setColorSchemeMode("dark")}
+          />
+        </label>
+        <label>
+          System
+          <input
+            type="checkbox"
+            name="colorScheme"
+            id="color-scheme-light"
+            value="system"
+            checked={colorScheme.colorSchemeMode === "system"}
+            onChange={(event) => colorScheme.setColorSchemeMode("system")}
+          />
+        </label>
         <Typography type="headline-1">Headline 1</Typography>
         <Typography type="body-1">
           Body 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.

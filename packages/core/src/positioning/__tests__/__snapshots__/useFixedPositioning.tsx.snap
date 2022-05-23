@@ -34,7 +34,7 @@ exports[`useFixedPositioning should default to fixing itself with the BELOW_CENT
     Toggle
   </button>
   <div
-    class="rmd-transition--scale-enter rmd-transition--scale-enter-active"
+    class="rmd-scale-transition--enter rmd-scale-transition--enter-active"
     data-testid="element"
     style="left: 16px; top: 0px; position: fixed;"
   >
@@ -67,7 +67,7 @@ exports[`useFixedPositioning should default to fixing itself with the BELOW_CENT
     Toggle
   </button>
   <div
-    class="rmd-transition--scale-exit rmd-transition--scale-exit-active"
+    class="rmd-scale-transition--exit rmd-scale-transition--exit-active"
     data-testid="element"
     style="left: 16px; top: 0px; position: fixed;"
   >

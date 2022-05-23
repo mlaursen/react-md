@@ -15,9 +15,11 @@ module.exports = {
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname",
   ],
-  coveragePathIgnorePatterns: [
-    "/node_modules/",
+  collectCoverageFrom: [
+    // "<rootDir>/src/**/*.{ts,tsx}",
+    "<rootDir>/packages/*/src/**/*.{ts,tsx}",
     // index.ts files are always `export * from "./fileOrFolder"`
-    "/index\\.ts/",
+    "!<rootDir>/**/index.ts",
+    "!<rootDir>/prev/**/*",
   ],
 };

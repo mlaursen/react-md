@@ -18,7 +18,7 @@ exports[`ScaleTransition should default using the horizontal transition 2`] = `
     Toggle
   </button>
   <div
-    class="rmd-transition--scale-enter rmd-transition--scale-enter-active"
+    class="rmd-scale-transition--enter rmd-scale-transition--enter-active"
     data-testid="element"
   >
     This is some content.
@@ -49,7 +49,7 @@ exports[`ScaleTransition should default using the horizontal transition 4`] = `
     Toggle
   </button>
   <div
-    class="rmd-transition--scale-exit rmd-transition--scale-exit-active"
+    class="rmd-scale-transition--exit rmd-scale-transition--exit-active"
     data-testid="element"
   >
     This is some content.
@@ -91,7 +91,7 @@ exports[`ScaleTransition should merge the className and allow to be rendered by 
     Toggle
   </button>
   <div
-    class="custom-class rmd-transition--scale-exit rmd-transition--scale-exit-active"
+    class="custom-class rmd-scale-transition--exit rmd-scale-transition--exit-active"
     data-testid="element"
   >
     This is some content.
@@ -117,7 +117,7 @@ exports[`ScaleTransition should merge the className and allow to be rendered by 
     Toggle
   </button>
   <div
-    class="custom-class rmd-transition--scale-enter rmd-transition--scale-enter-active"
+    class="custom-class rmd-scale-transition--enter rmd-scale-transition--enter-active"
     data-testid="element"
   >
     This is some content.
@@ -159,7 +159,7 @@ exports[`ScaleTransition should render correctly for a vertical transition 2`] =
     Toggle
   </button>
   <div
-    class="rmd-transition--scale-y-enter rmd-transition--scale-y-enter-active"
+    class="rmd-scale-transition--enter rmd-scale-transition--y-enter rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active"
     data-testid="element"
   >
     This is some content.
@@ -190,7 +190,7 @@ exports[`ScaleTransition should render correctly for a vertical transition 4`] =
     Toggle
   </button>
   <div
-    class="rmd-transition--scale-y-exit rmd-transition--scale-y-exit-active"
+    class="rmd-scale-transition--exit rmd-scale-transition--y-exit rmd-scale-transition--exit-active rmd-scale-transition--y-exit-active"
     data-testid="element"
   >
     This is some content.

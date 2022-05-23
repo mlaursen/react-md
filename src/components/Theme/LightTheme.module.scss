@@ -1,0 +1,5 @@
+@use "../../../packages/core/src/core";
+
+.container {
+  @include core.use-light-theme;
+}

@@ -109,8 +109,15 @@ export interface CrossFadeTransitionHookOptions<E extends HTMLElement>
  * transition.
  * @remarks \@since 4.0.0
  */
-export function useCrossFadeTransition<E extends HTMLElement>(options: CrossFadeTransitionHookOptions<E> = {}): CSSTransitionHookReturnValue<E> {
-  const { transitionIn = true, timeout = CROSS_FADE_TIMEOUT, classNames = CROSS_FADE_CLASSNAMES, ...cssOptions } = options;
+export function useCrossFadeTransition<E extends HTMLElement>(
+  options: CrossFadeTransitionHookOptions<E> = {}
+): CSSTransitionHookReturnValue<E> {
+  const {
+    transitionIn = true,
+    timeout = CROSS_FADE_TIMEOUT,
+    classNames = CROSS_FADE_CLASSNAMES,
+    ...cssOptions
+  } = options;
 
   return useCSSTransition({
     ...cssOptions,

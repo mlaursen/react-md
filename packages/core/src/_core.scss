@@ -1,10 +1,13 @@
+@forward "box-shadows";
 @forward "media-queries";
 @forward "theme/colors";
 @forward "theme/theme";
+@forward "transition/transition";
 @forward "typography/typography";
 @forward "utils";
 
 @use "theme/theme";
+@use "transition/transition";
 @use "typography/typography";
 
 @mixin css-reset {
@@ -50,4 +53,5 @@
   @include css-reset;
   @include theme.colors;
   @include typography.typography;
+  @include transition.transition;
 }

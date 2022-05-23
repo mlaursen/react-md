@@ -28,6 +28,7 @@ import {
   warningColorVar,
 } from "./cssVars";
 
+/** @remarks \@since 6.0.0 */
 export interface ThemeColors {
   primaryColor: string;
   onPrimaryColor: string;
@@ -41,6 +42,7 @@ export interface ThemeColors {
   onSuccessColor: string;
 }
 
+/** @remarks \@since 6.0.0 */
 export interface ThemeTextColors {
   textPrimaryColor: string;
   textSecondaryColor: string;
@@ -48,11 +50,14 @@ export interface ThemeTextColors {
   textDisabledColor: string;
 }
 
+/** @remarks \@since 6.0.0 */
 export interface ConfigurableThemeColors extends ThemeColors, ThemeTextColors {
   backgroundColor: string;
 }
+/** @remarks \@since 6.0.0 */
 export type ConfigurableThemeColorsName = keyof ConfigurableThemeColors;
 
+/** @remarks \@since 6.0.0 */
 export const DEFAULT_THEME_COLORS: Readonly<ThemeColors> = {
   primaryColor: blue500,
   onPrimaryColor: black,
@@ -66,6 +71,7 @@ export const DEFAULT_THEME_COLORS: Readonly<ThemeColors> = {
   onSuccessColor: black,
 };
 
+/** @remarks \@since 6.0.0 */
 export const DEFAULT_LIGHT_THEME: Readonly<ConfigurableThemeColors> = {
   ...DEFAULT_THEME_COLORS,
   backgroundColor: "#fafafa",
@@ -75,6 +81,7 @@ export const DEFAULT_LIGHT_THEME: Readonly<ConfigurableThemeColors> = {
   textDisabledColor: "#9e9e9e",
 };
 
+/** @remarks \@since 6.0.0 */
 export const DEFAULT_DARK_THEME: Readonly<ConfigurableThemeColors> = {
   ...DEFAULT_THEME_COLORS,
   backgroundColor: "#121212",
@@ -90,6 +97,7 @@ const context = createContext<Readonly<ConfigurableThemeColors> | undefined>(
 context.displayName = "Theme";
 const { Provider } = context;
 
+/** @remarks \@since 6.0.0 */
 export function useTheme(): Readonly<ConfigurableThemeColors> {
   const theme = useContext(context);
   if (!theme) {
@@ -99,11 +107,15 @@ export function useTheme(): Readonly<ConfigurableThemeColors> {
   return theme;
 }
 
+/** @remarks \@since 6.0.0 */
 export interface ThemeProviderProps {
   theme?: Readonly<ConfigurableThemeColors>;
   children: ReactNode;
 }
 
+/**
+ * @remarks \@since 6.0.0
+ */
 export function ThemeProvider(props: ThemeProviderProps): ReactElement {
   const { children, theme } = props;
   const { colorScheme } = useColorScheme();

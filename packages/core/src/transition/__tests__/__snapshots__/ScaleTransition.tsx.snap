@@ -1,0 +1,239 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScaleTransition should default to using the horizontal transition 1`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should default to using the horizontal transition 2`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+    <div
+      class="rmd-scale-transition--enter rmd-scale-transition--enter-active"
+      data-testid="element"
+    >
+      This is some content.
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should default to using the horizontal transition 3`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+    <div
+      data-testid="element"
+    >
+      This is some content.
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should default to using the horizontal transition 4`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+    <div
+      class="rmd-scale-transition--exit rmd-scale-transition--exit-active"
+      data-testid="element"
+    >
+      This is some content.
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should default to using the horizontal transition 5`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should merge the className and allow to be rendered by default 1`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+    <div
+      class="custom-class"
+      data-testid="element"
+    >
+      This is some content.
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should merge the className and allow to be rendered by default 2`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+    <div
+      class="custom-class rmd-scale-transition--exit rmd-scale-transition--exit-active"
+      data-testid="element"
+    >
+      This is some content.
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should merge the className and allow to be rendered by default 3`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should merge the className and allow to be rendered by default 4`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+    <div
+      class="custom-class rmd-scale-transition--enter rmd-scale-transition--enter-active"
+      data-testid="element"
+    >
+      This is some content.
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should merge the className and allow to be rendered by default 5`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+    <div
+      class="custom-class"
+      data-testid="element"
+    >
+      This is some content.
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should render correctly for a vertical transition 1`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should render correctly for a vertical transition 2`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+    <div
+      class="rmd-scale-transition--enter rmd-scale-transition--y-enter rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active"
+      data-testid="element"
+    >
+      This is some content.
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should render correctly for a vertical transition 3`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+    <div
+      data-testid="element"
+    >
+      This is some content.
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should render correctly for a vertical transition 4`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+    <div
+      class="rmd-scale-transition--exit rmd-scale-transition--y-exit rmd-scale-transition--exit-active rmd-scale-transition--y-exit-active"
+      data-testid="element"
+    >
+      This is some content.
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ScaleTransition should render correctly for a vertical transition 5`] = `
+<body>
+  <div>
+    <button
+      type="button"
+    >
+      Toggle
+    </button>
+  </div>
+</body>
+`;

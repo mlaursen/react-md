@@ -1,3 +1,5 @@
+@use "../../packages/core/src/core";
+
 .heading {
   font-size: 6rem;
   font-family: var(--font-family);
@@ -5,4 +7,15 @@
   line-height: 6rem;
   font-weight: var(--font-light, 300);
   letter-spacing: -0.015625em;
+}
+
+.temporary {
+  @include core.box-shadow(8);
+
+  background-color: #282828;
+  left: 0;
+  padding: 1rem;
+  position: absolute;
+  top: 100%;
+  z-index: 20;
 }

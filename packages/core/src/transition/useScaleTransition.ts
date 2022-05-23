@@ -12,30 +12,37 @@ import { useCSSTransition } from "./useCSSTransition";
  * transition.
  *
  * @remarks \@since 2.0.0
+ * @remarks \@since 6.0.0 The class names were updated to be prefixed with
+ * `rmd-scale-transition`
  */
 export const SCALE_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
-  appear: "rmd-transition--scale-enter",
-  appearActive: "rmd-transition--scale-enter-active",
-  enter: "rmd-transition--scale-enter",
-  enterActive: "rmd-transition--scale-enter-active",
+  appear: "rmd-scale-transition--enter",
+  appearActive: "rmd-scale-transition--enter-active",
+  enter: "rmd-scale-transition--enter",
+  enterActive: "rmd-scale-transition--enter-active",
   enterDone: "",
-  exit: "rmd-transition--scale-exit",
-  exitActive: "rmd-transition--scale-exit-active",
+  exit: "rmd-scale-transition--exit",
+  exitActive: "rmd-scale-transition--exit-active",
 };
 
 /**
  * The default {@link CSSTransitionClassNames} for a vertical scale transition.
  *
  * @remarks \@since 2.0.0
+ * @remarks \@since 6.0.0 The class names were updated to be prefixed with
+ * `rmd-scale-y-transition` and merged with the {@link SCALE_CLASSNAMES}
  */
 export const SCALE_Y_CLASSNAMES: Readonly<CSSTransitionClassNamesObject> = {
-  appear: "rmd-transition--scale-y-enter",
-  appearActive: "rmd-transition--scale-y-enter-active",
-  enter: "rmd-transition--scale-y-enter",
-  enterActive: "rmd-transition--scale-y-enter-active",
+  appear: "rmd-scale-transition--enter rmd-scale-transition--y-enter",
+  appearActive:
+    "rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active",
+  enter: "rmd-scale-transition--enter rmd-scale-transition--y-enter",
+  enterActive:
+    "rmd-scale-transition--enter-active rmd-scale-transition--y-enter-active",
   enterDone: "",
-  exit: "rmd-transition--scale-y-exit",
-  exitActive: "rmd-transition--scale-y-exit-active",
+  exit: "rmd-scale-transition--exit rmd-scale-transition--y-exit",
+  exitActive:
+    "rmd-scale-transition--exit-active rmd-scale-transition--y-exit-active",
 };
 
 /**

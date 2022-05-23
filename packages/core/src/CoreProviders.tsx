@@ -6,10 +6,7 @@ import { ElementInteractionModeProvider } from "./interaction/ElementInteraction
 import { UserInteractionModeProvider } from "./interaction/UserInteractionModeProvider";
 import type { PortalContainer } from "./portal/PortalContainerProvider";
 import { PortalContainerProvider } from "./portal/PortalContainerProvider";
-import type {
-  ColorSchemeMode,
-  DefaultColorScheme,
-} from "./theme/ColorSchemeProvider";
+import type { ColorSchemeMode } from "./theme/ColorSchemeProvider";
 import { ColorSchemeProvider } from "./theme/ColorSchemeProvider";
 import type { DefaultDir } from "./typography/WritingDirection";
 import {
@@ -40,11 +37,6 @@ export interface CoreProvidersProps {
 
   colorSchemeMode?: ColorSchemeMode;
 
-  /**
-   * @defaultValue `"light"`
-   */
-  defaultColorScheme?: DefaultColorScheme;
-
   children: ReactNode;
 }
 
@@ -54,17 +46,11 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
     elementInteractionMode = "ripple",
     defaultDir = DEFAULT_WRITING_DIRECTION,
     colorSchemeMode = "light",
-    defaultColorScheme = colorSchemeMode === "system"
-      ? "light"
-      : colorSchemeMode,
     portalContainer,
     children,
   } = props;
   return (
-    <ColorSchemeProvider
-      mode={colorSchemeMode}
-      defaultScheme={defaultColorScheme}
-    >
+    <ColorSchemeProvider mode={colorSchemeMode}>
       <WritingDirection defaultDir={defaultDir}>
         <PortalContainerProvider container={portalContainer}>
           <UserInteractionModeProvider>

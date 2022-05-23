@@ -1,0 +1,126 @@
+$exclude-collapse-transition: false !default;
+$exclude-cross-fade-transition: false !default;
+$exclude-scale-transition: false !default;
+$exclude-scale-y-transition: $exclude-scale-transition !default;
+
+$linear-duration: 0.15s !default;
+$enter-duration: 0.2s !default;
+$leave-duration: 0.15s !default;
+
+$linear-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$acceleration-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
+$deceleration-timing-function: cubic-bezier(0, 0, 0.2, 1) !default;
+
+$cross-fade-translate-distance: -1rem !default;
+$cross-fade-transition-duration: 0.3s !default;
+
+$scale-transition-enter-duration: $enter-duration !default;
+$scale-transition-leave-duration: $leave-duration !default;
+$scale-y-transition-enter-duration: $enter-duration !default;
+$scale-y-transition-leave-duration: $leave-duration !default;
+
+@mixin collapse-transition {
+  .rmd-collapse {
+    transition-property: max-height, padding-bottom, padding-top;
+    will-change: max-height, padding-bottom, padding-top;
+
+    &--no-overflow {
+      overflow: hidden;
+    }
+
+    &--enter {
+      transition-timing-function: $deceleration-timing-function;
+    }
+
+    &--leave {
+      transition-timing-function: $acceleration-timing-function;
+    }
+  }
+}
+
+@mixin cross-fade-transition {
+  .rmd-cross-fade {
+    opacity: 0;
+    transform: translateY($cross-fade-translate-distance);
+
+    &--active {
+      opacity: 1;
+      transform: translateY(0);
+      transition-duration: $cross-fade-transition-duration;
+      transition-property: opacity, transform;
+      transition-timing-function: $deceleration-timing-function;
+    }
+  }
+}
+
+@mixin scale-transition {
+  .rmd-scale-transition--enter {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  .rmd-scale-transition--enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition-duration: $scale-transition-enter-duration;
+    transition-property: opacity, transform;
+    transition-timing-function: $deceleration-timing-function;
+  }
+
+  .rmd-scale-transition--exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .rmd-scale-transition--exit-active {
+    opacity: 0;
+    transform: scale(0);
+    transition-duration: $scale-transition-leave-duration;
+    transition-property: opacity, transform;
+    transition-timing-function: $acceleration-timing-function;
+  }
+}
+
+@mixin scale-y-transition {
+  .rmd-scale-transition--y-enter {
+    transform: scaleY(0);
+    transform-origin: 0 0;
+  }
+
+  .rmd-scale-transition--y-enter-active {
+    transform: scaleY(1);
+    @if $scale-y-transition-enter-duration != $scale-transition-enter-duration {
+      transition-duration: $scale-y-transition-enter-duration;
+    }
+  }
+
+  .rmd-scale-transition--y-exit {
+    transform: scaleY(1);
+    transform-origin: 0 0;
+  }
+
+  .rmd-scale-transition--y-exit-active {
+    transform: scaleY(0);
+    @if $scale-y-transition-leave-duration != $scale-transition-leave-duration {
+      transition-duration: $scale-y-transition-leave-duration;
+    }
+  }
+}
+
+@mixin transition {
+  @if not $exclude-collapse-transition {
+    @include collapse-transition;
+  }
+
+  @if not $exclude-cross-fade-transition {
+    @include cross-fade-transition;
+  }
+
+  @if not $exclude-scale-transition or not $exclude-scale-y-transition {
+    @include scale-transition;
+  }
+
+  @if not $exclude-scale-y-transition {
+    @include scale-y-transition;
+  }
+}

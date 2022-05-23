@@ -13,6 +13,7 @@ export * from "./theme";
 export * from "./transition";
 export * from "./types";
 export * from "./typography";
+export * from "./useHtmlClassName";
 export * from "./useIsomorphicLayoutEffect";
 export * from "./useMediaQuery";
 export * from "./useOrientation";

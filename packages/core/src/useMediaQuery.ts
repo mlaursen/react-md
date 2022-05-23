@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
  * @param disabled - When `true`, the `window.matchMedia` API will not be
  * activated and the hook will always return `false`.
  * @returns `true` if the media query matches
+ * @remarks \@since 6.0.0
  */
 export function useMediaQuery(query: string, disabled = false): boolean {
   const [matches, setMatches] = useState(() => {
@@ -31,7 +32,7 @@ export function useMediaQuery(query: string, disabled = false): boolean {
     return () => {
       result.removeEventListener("change", updater);
     };
-  }, [query]);
+  }, [disabled, query]);
 
   return matches;
 }
