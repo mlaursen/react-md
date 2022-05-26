@@ -1,5 +1,5 @@
-@use "../../../packages/core/src/core";
+@use "everything";
 
 .container {
-  @include core.use-dark-theme;
+  @include everything.use-dark-theme;
 }

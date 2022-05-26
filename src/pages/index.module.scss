@@ -1,18 +1,27 @@
-@use "../../packages/core/src/core";
+@use "everything";
 
 .heading {
-  font-size: 6rem;
-  font-family: var(--font-family);
-  // font-family: var(--font-family, Roboto), sans-serif;
-  line-height: 6rem;
-  font-weight: var(--font-light, 300);
-  letter-spacing: -0.015625em;
+  // font-size: 6rem;
+  // font-family: var(--font-family);
+  // // font-family: var(--font-family, Roboto), sans-serif;
+  // line-height: 6rem;
+  // font-weight: var(--font-light, 300);
+  // letter-spacing: -0.015625em;
+  @include everything.box-shadow-transition(
+    null,
+    everything.box-shadow(4),
+    "&:hover",
+    $duration: 1s
+  );
 }
 
 .temporary {
-  @include core.box-shadow(8);
+  @include everything.box-shadow(8);
 
-  background-color: #282828;
+  background-color: var(
+    everything.$dark-elevation-var,
+    everything.$surface-color
+  );
   left: 0;
   padding: 1rem;
   position: absolute;

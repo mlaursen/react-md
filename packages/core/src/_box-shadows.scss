@@ -1,4 +1,8 @@
 @use "sass:map";
+@use "sass:string";
+@use "theme/theme";
+@use "transition/transition";
+@use "utils";
 
 $box-shadow-color: #000 !default;
 
@@ -111,5 +115,49 @@ $box-shadow-3-layers: (
 }
 
 @mixin box-shadow($z-value, $color: $box-shadow-color, $opacity-boost: 0) {
+  @if theme.$use-dark-elevation {
+    $var-name: theme.$dark-elevation-var + "-" + $z-value;
+    #{theme.$dark-elevation-var}: var($var-name);
+  }
+
   box-shadow: box-shadow($z-value, $color, $opacity-boost);
+}
+
+@mixin box-shadow-transition(
+  $start-shadow,
+  $end-shadow,
+  $active-selectors,
+  $duration: transition.$linear-duration,
+  $pseudo-before: true,
+  $pseudo-z-index: 0
+) {
+  $pseudo-selector: if($pseudo-before, "&::before", "&::after");
+  $suffix: string.slice($pseudo-selector, 2);
+  $active-string: "";
+
+  box-shadow: $start-shadow;
+  position: relative;
+
+  #{$pseudo-selector} {
+    @include utils.pseudo-element($pseudo-z-index);
+
+    box-shadow: $end-shadow;
+    opacity: 0;
+    transition: opacity $duration transition.$linear-timing-function;
+  }
+
+  @if type-of($active-selectors) == string {
+    $active-string: $active-selectors + $suffix;
+  } @else if type-of($active-selectors) == list {
+    @for $i from 1 to length($active-selectors) + 1 {
+      $selector: list.nth($active-selectors, $i);
+
+      $prefix: $active-string + if($i > 1, ", ", "");
+      $active-string: $prefix + $selector + $suffix;
+    }
+  }
+
+  #{$active-string} {
+    opacity: 1;
+  }
 }

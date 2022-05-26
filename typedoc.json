@@ -1,6 +1,7 @@
 {
   "out": "public/docs",
   "tsconfig": "./tsconfig.typedoc.json",
+  "readme": "none",
   "validation": {
     "notExported": true,
     "invalidLink": true,

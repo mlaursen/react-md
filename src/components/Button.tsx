@@ -1,7 +1,7 @@
-import { useElementInteraction } from "@react-md/core";
+import { RippleContainer, useElementInteraction } from "@react-md/core";
 import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes, ReactElement, ReactNode } from "react";
-
+import { Children, isValidElement } from "react";
 import styles from "./Button.module.scss";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,13 +15,24 @@ export function Button(props: ButtonProps): ReactElement {
     disabled = false,
     className,
     buttonType = "text",
-    children,
+    children: propChildren,
     ...remaining
   } = props;
-  const { pressed, ...handlers } = useElementInteraction({
+  const { pressed, handlers, rippleContainerProps } = useElementInteraction({
     disabled,
     ...remaining,
   });
+
+  let children = propChildren;
+  if (true && typeof children === "string") {
+    children = Children.map(children, (child, i) => {
+      if (typeof child === "string" || typeof child === "number") {
+        return <span key={i}>{child}</span>;
+      }
+
+      return child;
+    });
+  }
 
   return (
     <button
@@ -38,6 +49,7 @@ export function Button(props: ButtonProps): ReactElement {
       disabled={disabled}
     >
       {children}
+      <RippleContainer {...rippleContainerProps} />
     </button>
   );
 }

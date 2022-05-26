@@ -1,9 +1,11 @@
 import type { ReactElement, ReactNode } from "react";
 import type { AppSizeQueries } from "./AppSizeProvider";
 import { AppSizeProvider, DEFAULT_APP_SIZE_QUERIES } from "./AppSizeProvider";
-import type { ElementInteractionMode } from "./interaction/ElementInteractionModeProvider";
-import { ElementInteractionModeProvider } from "./interaction/ElementInteractionModeProvider";
-import { UserInteractionModeProvider } from "./interaction/UserInteractionModeProvider";
+import type { ElementInteractionMode } from "./interaction";
+import {
+  ElementInteractionModeProvider,
+  UserInteractionModeProvider,
+} from "./interaction";
 import type { PortalContainer } from "./portal/PortalContainerProvider";
 import { PortalContainerProvider } from "./portal/PortalContainerProvider";
 import type { ColorSchemeMode } from "./theme/ColorSchemeProvider";

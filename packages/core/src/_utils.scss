@@ -3,3 +3,70 @@
     #{$property}: $value;
   }
 }
+
+@mixin pseudo-element($z-index: 0) {
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: $z-index;
+}
+
+@mixin _sr-only-focusable {
+  &:active,
+  &:focus {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    margin: auto;
+    overflow: visible;
+    white-space: normal;
+    width: auto;
+  }
+}
+
+@mixin sr-only($focusable: false, $focus-selector: "&--focusable") {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+
+  @if $focusable {
+    @if not $focus-selector {
+      @include _sr-only-focusable;
+    } @else {
+      #{$focus-selector} {
+        @include _sr-only-focusable;
+      }
+    }
+  }
+}
+
+@mixin hide-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+}
+
+@mixin optional-css-modules(
+  $class-name,
+  $css-modules: false,
+  $parent-selector: true
+) {
+  $selector: if($css-modules, ":global #{$class-name} :local", $class-name);
+  $selector: if($parent-selector, "#{$selector} &", $selector);
+
+  #{$selector} {
+    @content;
+  }
+}

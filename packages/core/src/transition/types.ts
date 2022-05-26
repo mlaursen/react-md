@@ -391,9 +391,9 @@ export interface TransitionState {
   rendered: boolean;
 
   /**
-   * Boolean if this is the first {@link TransitionAction.appear} transition.
+   * Boolean if this is the first {@link TransitionActions.appear} transition.
    * This will be `true` during the first transition if
-   * {@link TransitionAction.appear} was also `true`. Otherwise it will be
+   * {@link TransitionActions.appear} was also `true`. Otherwise it will be
    * `false`.
    */
   appearing: boolean;

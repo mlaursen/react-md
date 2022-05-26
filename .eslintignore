@@ -9,3 +9,5 @@ node_modules
 
 /prev
 /public
+
+*.cjs

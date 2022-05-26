@@ -23,7 +23,7 @@ export interface ColorSchemeContext {
 
   /**
    * The current color scheme mode that is being used by your app. This should
-   * match the `$theme-mode` SCSS variable.
+   * match the `$color-scheme` SCSS variable.
    */
   colorSchemeMode: ColorSchemeMode;
 
@@ -136,7 +136,7 @@ export function useColorScheme(): Readonly<ColorSchemeContext> {
 export interface ColorSchemeProviderProps {
   /**
    * The current color scheme mode that is being used by your app. This should
-   * match the `$theme-mode` SCSS variable.
+   * match the `$color-scheme` SCSS variable.
    *
    * @defaultValue `"light"`
    */

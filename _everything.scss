@@ -1,0 +1,5 @@
+@forward "./packages/core/src/core" with (
+  $color-scheme: system,
+  $interaction-mode: ripple,
+  $use-higher-contrast-interactions: false
+);

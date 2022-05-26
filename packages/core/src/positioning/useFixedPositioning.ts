@@ -101,8 +101,8 @@ export interface FixedPositioningOptions<
   getFixedPositionOptions?(): CalculateFixedPositionOptions;
 
   /**
-   * An optional function to call if the page resizes while the
-   * {@link FixedElement} is visible.
+   * An optional function to call if the page resizes while the `FixedElement`
+   * is visible.
    */
   onResize?: EventListener;
   /** {@inheritDoc TransitionScrollCallback} */

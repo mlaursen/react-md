@@ -1,0 +1,7 @@
+@use "everything";
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    @include everything.use-dark-theme;
+  }
+}

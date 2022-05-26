@@ -1,15 +1,22 @@
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 import { CoreProviders, ThemeProvider } from "@react-md/core";
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
+import {
+  defaultColorSchemeMode,
+  defaultElementInteractionMode,
+} from "src/constants";
+import { LoadThemeStyles } from "src/components/Theme/LoadThemeStyles";
 
 import "./app.scss";
-import { LoadThemeStyles } from "src/components/Theme/LoadThemeStyles";
 
 export default function App(props: AppProps): ReactElement {
   const { Component, pageProps } = props;
 
   return (
-    <CoreProviders elementInteractionMode="press" colorSchemeMode="dark">
+    <CoreProviders
+      colorSchemeMode={defaultColorSchemeMode}
+      elementInteractionMode={defaultElementInteractionMode}
+    >
       <ThemeProvider>
         <Component {...pageProps} />
         <LoadThemeStyles />

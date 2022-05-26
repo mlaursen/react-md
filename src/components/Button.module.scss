@@ -1,7 +1,11 @@
 @use "sass:color";
+@use "everything";
 
 .button {
+  @include everything.interaction-surface($css-modules: true);
   --icon-color: currentcolor;
+  --button-bg: #009688;
+  --button-color: #fff;
 
   align-items: center;
   background-color: var(--button-bg, transparent);
@@ -10,50 +14,6 @@
   display: inline-flex;
   justify-content: center;
   position: relative;
-
-  &::before,
-  &::after {
-    border-radius: inherit;
-    content: "";
-    inset: 0;
-    pointer-events: none;
-    position: absolute;
-    z-index: 0;
-  }
-
-  &::before {
-    background-color: var(--interaction-bg, transparent);
-    transition: background-color 0.15s;
-  }
-
-  &:hover {
-    --interaction-bg: #{rgba(#000, 0.08)};
-
-    cursor: pointer;
-  }
-
-  &:disabled {
-    &:hover {
-      --interaction-bg: transparent;
-      cursor: auto;
-    }
-  }
-
-  &:focus {
-    :global(.keyboard-mode) & {
-      outline: var(--focus-outline, #2196f3) inset 0.125rem;
-    }
-  }
-
-  :global(.touch-mode) & {
-    &:hover {
-      --interaction-bg: transparent;
-    }
-  }
-
-  > * {
-    z-index: 1;
-  }
 }
 
 .text {

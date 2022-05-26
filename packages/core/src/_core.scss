@@ -1,13 +1,15 @@
-@forward "box-shadows";
+@forward "utils";
 @forward "media-queries";
 @forward "theme/colors";
 @forward "theme/theme";
-@forward "transition/transition";
 @forward "typography/typography";
-@forward "utils";
+@forward "transition/transition";
+@forward "box-shadows";
+@forward "interaction/interaction";
 
 @use "theme/theme";
 @use "transition/transition";
+@use "interaction/interaction";
 @use "typography/typography";
 
 @mixin css-reset {
@@ -51,7 +53,11 @@
 
 @mixin core {
   @include css-reset;
-  @include theme.colors;
   @include typography.typography;
   @include transition.transition;
+  @include interaction.interaction;
+
+  :root {
+    @include theme.colors;
+  }
 }

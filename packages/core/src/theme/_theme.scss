@@ -2,7 +2,7 @@
 @use "colors";
 @use "a11y";
 
-$theme-mode: light !default;
+$color-scheme: light !default;
 $use-dark-elevation: true !default;
 
 $background-color-var: --rmd-background-color;
@@ -20,6 +20,7 @@ $text-primary-color-var: --rmd-text-primary-color;
 $text-secondary-color-var: --rmd-text-secondary-color;
 $text-hint-color-var: --rmd-text-hint-color;
 $text-disabled-color-var: --rmd-text-disabled-color;
+$dark-elevation-var: --rmd-dark-elevation-color;
 
 $primary-color: colors.$blue-500 !default;
 $on-primary-color: a11y.contrast-color($primary-color) !default;
@@ -46,12 +47,84 @@ $dark-theme-text-secondary-color: color.adjust(#fff, $lightness: -30%) !default;
 $dark-theme-text-hint-color: color.adjust(#fff, $lightness: -50%) !default;
 $dark-theme-text-disabled-color: color.adjust(#fff, $lightness: -50%) !default;
 
+$background-color: if(
+  $color-scheme == dark,
+  $dark-theme-background-color,
+  $light-theme-background-color
+) !default;
+$surface-color: if(
+  $color-scheme == dark,
+  $dark-theme-surface-color,
+  $light-theme-surface-color
+) !default;
+$text-primary-color: if(
+  $color-scheme == dark,
+  $dark-theme-text-primary-color,
+  $light-theme-text-primary-color
+) !default;
+$text-secondary-color: if(
+  $color-scheme == dark,
+  $dark-theme-text-secondary-color,
+  $light-theme-text-secondary-color
+) !default;
+$text-hint-color: if(
+  $color-scheme == dark,
+  $dark-theme-text-hint-color,
+  $light-theme-text-hint-color
+) !default;
+$text-disabled-color: if(
+  $color-scheme == dark,
+  $dark-theme-text-disabled-color,
+  $light-theme-text-disabled-color
+) !default;
+
+$dark-elevation-colors: (
+  0: $dark-theme-background-color,
+  1: #1f1f1f,
+  2: #242424,
+  3: #262626,
+  4: #282828,
+  5: #282828,
+  6: #2c2c2c,
+  7: #2c2c2c,
+  8: #2f2f2f,
+  9: #2f2f2f,
+  10: #2f2f2f,
+  11: #2f2f2f,
+  12: #333,
+  13: #333,
+  14: #333,
+  15: #333,
+  16: #353535,
+  17: #353535,
+  18: #353535,
+  19: #353535,
+  20: #353535,
+  21: #353535,
+  22: #353535,
+  23: #353535,
+  24: #383838,
+) !default;
+
+@if $color-scheme != light and $color-scheme != dark and $color-scheme != system
+{
+  @error "$color-scheme must be one of: light, dark, or system but was #{$color-scheme}";
+}
+
 @mixin use-light-theme {
   #{$background-color-var}: $light-theme-background-color;
   #{$text-primary-color-var}: $light-theme-text-primary-color;
   #{$text-secondary-color-var}: $light-theme-text-secondary-color;
   #{$text-hint-color-var}: $light-theme-text-hint-color;
   #{$text-disabled-color-var}: $light-theme-text-disabled-color;
+
+  @if $use-dark-elevation and $color-scheme != light {
+    @each $z-value, $background-color in $dark-elevation-colors {
+      $var-name: $dark-elevation-var + "-" + $z-value;
+
+      #{$var-name}: $light-theme-background-color;
+    }
+  }
 }
 
 @mixin use-dark-theme {
@@ -60,50 +133,42 @@ $dark-theme-text-disabled-color: color.adjust(#fff, $lightness: -50%) !default;
   #{$text-secondary-color-var}: $dark-theme-text-secondary-color;
   #{$text-hint-color-var}: $dark-theme-text-hint-color;
   #{$text-disabled-color-var}: $dark-theme-text-disabled-color;
+
+  @if $use-dark-elevation {
+    @each $z-value, $background-color in $dark-elevation-colors {
+      $var-name: $dark-elevation-var + "-" + $z-value;
+      #{$var-name}: $background-color;
+    }
+  }
 }
 
 @mixin colors {
-  :root {
-    #{$background-color-var}: if(
-      $theme-mode == dark,
-      $dark-theme-background-color,
-      $light-theme-background-color
-    );
-    #{$primary-color-var}: $primary-color;
-    #{$on-primary-color-var}: $on-primary-color;
-    #{$secondary-color-var}: $secondary-color;
-    #{$on-secondary-color-var}: $on-secondary-color;
-    #{$warning-color-var}: $warning-color;
-    #{$on-warning-color-var}: $on-warning-color;
-    #{$error-color-var}: $error-color;
-    #{$on-error-color-var}: $on-error-color;
-    #{$success-color-var}: $success-color;
-    #{$on-success-color-var}: $on-success-color;
-    #{$text-primary-color-var}: if(
-      $theme-mode == dark,
-      $dark-theme-text-primary-color,
-      $light-theme-text-primary-color
-    );
-    #{$text-secondary-color-var}: if(
-      $theme-mode == dark,
-      $dark-theme-text-secondary-color,
-      $light-theme-text-secondary-color
-    );
-    #{$text-hint-color-var}: if(
-      $theme-mode == dark,
-      $dark-theme-text-hint-color,
-      $light-theme-text-hint-color
-    );
-    #{$text-disabled-color-var}: if(
-      $theme-mode == dark,
-      $dark-theme-text-disabled-color,
-      $light-theme-text-disabled-color
-    );
+  #{$background-color-var}: $background-color;
+  #{$primary-color-var}: $primary-color;
+  #{$on-primary-color-var}: $on-primary-color;
+  #{$secondary-color-var}: $secondary-color;
+  #{$on-secondary-color-var}: $on-secondary-color;
+  #{$warning-color-var}: $warning-color;
+  #{$on-warning-color-var}: $on-warning-color;
+  #{$error-color-var}: $error-color;
+  #{$on-error-color-var}: $on-error-color;
+  #{$success-color-var}: $success-color;
+  #{$on-success-color-var}: $on-success-color;
+  #{$text-primary-color-var}: $text-primary-color;
+  #{$text-secondary-color-var}: $text-secondary-color;
+  #{$text-hint-color-var}: $text-hint-color;
+  #{$text-disabled-color-var}: $text-disabled-color;
 
-    @if $theme-mode == system {
-      @media (prefers-color-scheme: dark) {
-        @include use-dark-theme;
-      }
+  @if $use-dark-elevation and $color-scheme == dark {
+    @each $z-value, $background-color in $dark-elevation-colors {
+      $var-name: $dark-elevation-var + "-" + $z-value;
+      #{$var-name}: $background-color;
+    }
+  }
+
+  @if $color-scheme == system {
+    @media (prefers-color-scheme: dark) {
+      @include use-dark-theme;
     }
   }
 }

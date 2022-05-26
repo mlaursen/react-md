@@ -8,5 +8,6 @@
     "module": "esnext",
     "skipLibCheck": false
   },
-  "include": ["packages/*/src/**/*.ts", "packages/*/src/**/*.tsx"]
+  "include": ["packages/*/src/**/*.ts", "packages/*/src/**/*.tsx"],
+  "exclude": ["**/__tests__/*"]
 }

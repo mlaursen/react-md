@@ -1,0 +1,216 @@
+@use "../utils";
+@use "../theme/colors";
+@use "../theme/theme";
+@use "../transition/transition";
+
+/// ripple | press | both | null
+$interaction-mode: ripple !default;
+$use-focus-background: true !default;
+
+/// Setting this value to `true` will update the styles for all interactable
+/// elements so that the different interaction states no longer cover the other
+/// content within the element by applying:
+///
+/// ```scss
+/// > * {
+///   z-index: 1;
+/// }
+/// ```
+///
+/// This helps improve the legibility of the content since the normal
+/// interaction states apply an overlay with some opacity for the different
+/// states.
+$use-higher-contrast-interactions: true !default;
+$base-background-color: #000 !default;
+
+$ripple-background-color-var: --rmd-ripple-background-color;
+$interaction-background-color-var: --rmd-interaction-background-color;
+$outline-color-var: --rmd-outline-color;
+$outline-width-var: --rmd-outline-width;
+$outline-color: colors.$blue-500 !default;
+$outline-width: 0.125rem !default;
+
+$light-theme-ripple-background-color: rgba(
+  $base-background-color,
+  0.08
+) !default;
+$dark-theme-ripple-background-color: rgba(
+  $base-background-color,
+  0.08
+) !default;
+$ripple-background-color: if(
+  theme.$color-scheme == dark,
+  $dark-theme-ripple-background-color,
+  $light-theme-ripple-background-color
+) !default;
+$ripple-transform-duration: 0.45s !default;
+$ripple-opacity-duration: 0.3s !default;
+
+$light-theme-hover-background-color: rgba(
+  $base-background-color,
+  0.08
+) !default;
+$light-theme-focus-background-color: rgba(
+  $base-background-color,
+  0.24
+) !default;
+$light-theme-press-background-color: rgba(
+  $base-background-color,
+  0.32
+) !default;
+$light-theme-selected-background-color: rgba(
+  $base-background-color,
+  0.16
+) !default;
+$dark-theme-hover-background-color: rgba($base-background-color, 0.01) !default;
+$dark-theme-focus-background-color: rgba($base-background-color, 0.12) !default;
+$dark-theme-press-background-color: rgba($base-background-color, 0.16) !default;
+$dark-theme-selected-background-color: rgba(
+  $base-background-color,
+  0.12
+) !default;
+
+$hover-background-color: if(
+  theme.$color-scheme == dark,
+  $dark-theme-hover-background-color,
+  $light-theme-hover-background-color
+) !default;
+$focus-background-color: if(
+  theme.$color-scheme == dark,
+  $dark-theme-focus-background-color,
+  $light-theme-focus-background-color
+) !default;
+$press-background-color: if(
+  theme.$color-scheme == dark,
+  $dark-theme-press-background-color,
+  $light-theme-press-background-color
+) !default;
+$selected-background-color: if(
+  theme.$color-scheme == dark,
+  $dark-theme-selected-background-color,
+  $light-theme-selected-background-color
+) !default;
+
+@if $interaction-mode and
+  $interaction-mode !=
+  ripple and
+  $interaction-mode !=
+  press and
+  $interaction-mode !=
+  both
+{
+  @error "$interaction-mode must be one of: ripple, press, both, or null but was #{$interaction-mode}";
+}
+
+@mixin keyboard-only($css-modules: false, $parent-selector: true) {
+  @include utils.optional-css-modules(
+    ".keyboard-mode",
+    $css-modules,
+    $parent-selector
+  ) {
+    @content;
+  }
+}
+
+@mixin mouse-only($css-modules: false) {
+  @include utils.optional-css-modules(".mouse-mode", $css-modules) {
+    @content;
+  }
+}
+
+@mixin touch-only($css-modules: false) {
+  @include utils.optional-css-modules(".touch-mode", $css-modules) {
+    @content;
+  }
+}
+
+@mixin interaction-surface(
+  $focus-selector: "&:focus",
+  $disabled-selector: "&:disabled",
+  $clickable: true,
+  $css-modules: false
+) {
+  @if $clickable {
+    cursor: pointer;
+  }
+
+  @if $use-higher-contrast-interactions {
+    > * {
+      z-index: 1;
+    }
+  }
+
+  &::before {
+    @include utils.pseudo-element;
+
+    background-color: var($interaction-background-color-var);
+    outline: var($outline-color-var, transparent) inset
+      var($outline-width-var, $outline-width);
+    transition-property: background-color, outline-color;
+    transition-duration: transition.$linear-duration;
+    transition-timing-function: transition.$linear-timing-function;
+  }
+
+  @if $disabled-selector {
+    #{$disabled-selector} {
+      #{$interaction-background-color-var}: transparent;
+
+      @if $clickable {
+        cursor: auto;
+      }
+    }
+  }
+
+  @if $focus-selector {
+    @include keyboard-only($css-modules) {
+      #{$focus-selector} {
+        #{$interaction-background-color-var}: $focus-background-color;
+        #{$outline-color-var}: $outline-color;
+      }
+    }
+  }
+
+  &:hover {
+    #{$interaction-background-color-var}: $hover-background-color;
+  }
+}
+
+@mixin interaction {
+  @if $interaction-mode == ripple or $interaction-mode == both {
+    .rmd-ripple-container {
+      border-radius: inherit;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      position: absolute;
+      z-index: 0 !important;
+    }
+
+    .rmd-ripple {
+      background-color: var(
+        $ripple-background-color-var,
+        $ripple-background-color
+      );
+      border-radius: 50%;
+      position: absolute;
+      transform: scale(0);
+
+      &--animating {
+        transition: transform
+            $ripple-transform-duration
+            transition.$deceleration-timing-function,
+          opacity
+            $ripple-opacity-duration
+            transition.$acceleration-timing-function;
+      }
+
+      &--scaling {
+        transform: scale(1);
+      }
+
+      &--fading {
+        opacity: 0;
+      }
+    }
+  }
+}
