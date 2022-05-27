@@ -2,6 +2,8 @@ import React from 'react';
 import ReactHlsPlayer from 'react-hls-player';
 import '../styles/VideoPlayer.scss';
 
+import { MOVIES } from '../helpers/constants';
+
 function VideoPlayer() {
   const playerRef = React.useRef();
 
@@ -21,7 +23,8 @@ function VideoPlayer() {
     <ReactHlsPlayer
       playerRef={playerRef}
       className="videoPlayer"
-      src="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+      autoplay="true"
+      src={MOVIES[1]}
     />
   );
 }
