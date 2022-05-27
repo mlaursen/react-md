@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextIconSpacing should render the icon after the children if the iconAfter prop is enabled 1`] = `
+<div>
+  <span
+    data-testid="span"
+  />
+  <i
+    class="rmd-icon--after"
+    data-testid="icon"
+  />
+</div>
+`;
+
+exports[`TextIconSpacing should render the icon before the children by default 1`] = `
+<div>
+  <i
+    class="rmd-icon--before"
+    data-testid="icon"
+  />
+  <span
+    data-testid="span"
+  />
+</div>
+`;
+
+exports[`TextIconSpacing should return the children if no icon prop is provided 1`] = `
+<div>
+  <span />
+</div>
+`;
+
+exports[`TextIconSpacing should swap the classnames correctly when flexReverse is enabled 1`] = `
+<div>
+  <i
+    class="rmd-icon--after"
+    data-testid="icon"
+  />
+  <span>
+    children
+  </span>
+</div>
+`;
+
+exports[`TextIconSpacing should swap the classnames correctly when flexReverse is enabled 2`] = `
+<div>
+  <span>
+    children
+  </span>
+  <i
+    class="rmd-icon--before"
+    data-testid="icon"
+  />
+</div>
+`;
+
+exports[`TextIconSpacing should swap the classnames correctly when flexReverse is enabled 3`] = `
+<div>
+  <i
+    class="rmd-icon--below"
+    data-testid="icon"
+  />
+  <span>
+    children
+  </span>
+</div>
+`;
+
+exports[`TextIconSpacing should swap the classnames correctly when flexReverse is enabled 4`] = `
+<div>
+  <span>
+    children
+  </span>
+  <i
+    class="rmd-icon--above"
+    data-testid="icon"
+  />
+</div>
+`;
+
+exports[`TextIconSpacing should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled 1`] = `
+<div>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before"
+  >
+    Some text
+  </span>
+  <div />
+</div>
+`;
+
+exports[`TextIconSpacing should wrap the icon in a span with the required classNames if the icon is not a valid react element or the forceIconWrap prop is enabled 2`] = `
+<div>
+  <span
+    class="rmd-text-icon-spacing rmd-icon--before"
+  >
+    <i />
+  </span>
+  <div />
+</div>
+`;

@@ -1,16 +1,15 @@
 {
-  "name": "@react-md/core",
+  "name": "@react-md/icon",
   "version": "6.0.0-alpha.0",
-  "description": "The core components and functionality for react-md.",
+  "description": "Icon components and styles for react-md",
   "type": "module",
-  "sass": "./src/_core.scss",
   "main": "./cjs/index.cjs",
   "module": "./mjs/index.mjs",
   "types": "./types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git",
-    "directory": "packages/core"
+    "directory": "packages/icon"
   },
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
@@ -18,6 +17,9 @@
   "homepage": "https://react-md.dev",
   "keywords": [],
   "license": "MIT",
+  "dependencies": {
+    "@react-md/core": "^6.0.0-alpha.0"
+  },
   "peerDependencies": {
     "react": ">= 18",
     "react-dom": ">= 18"

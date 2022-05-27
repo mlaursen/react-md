@@ -1,4 +1,5 @@
 // @use "../../packages/core/src/core";
-@use "../../everything";
+@use "everything";
 
-@include everything.core;
+@include everything.core-styles;
+@include everything.icon-styles;

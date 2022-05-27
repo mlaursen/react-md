@@ -78,6 +78,12 @@ importers:
   packages/core:
     specifiers: {}
 
+  packages/icon:
+    specifiers:
+      '@react-md/core': ^6.0.0-alpha.0
+    dependencies:
+      '@react-md/core': link:../core
+
 packages:
 
   /@ampproject/remapping/2.2.0:

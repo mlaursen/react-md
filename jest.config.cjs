@@ -6,7 +6,8 @@ module.exports = {
   },
   moduleNameMapper: {
     "\\.scss$": "identity-obj-proxy",
-    "^@react-md/utils$": ["<rootDir>/packages/utils/src/index.ts"],
+    "^@react-md/core$": ["<rootDir>/packages/core/src/index.ts"],
+    "^@react-md/icon$": ["<rootDir>/packages/icon/src/index.ts"],
   },
   testPathIgnorePatterns: ["prev\\/"],
   watchPathIgnorePatterns: ["\\.next", "public\\/"],

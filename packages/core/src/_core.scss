@@ -51,7 +51,7 @@
   }
 }
 
-@mixin core {
+@mixin styles {
   @include css-reset;
   @include typography.typography;
   @include transition.transition;

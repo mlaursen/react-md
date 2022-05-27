@@ -7,11 +7,11 @@ import {
   useScaleTransition,
   useTheme,
 } from "@react-md/core";
+import { SVGIcon } from "@react-md/icon";
 import type { ReactElement } from "react";
 import { useState } from "react";
 import { Button } from "src/components/Button";
 import { MenuItem } from "src/components/MenuItem";
-import { SVGIcon } from "src/components/SVGIcon";
 import styles from "./index.module.scss";
 
 export default function Home(): ReactElement {

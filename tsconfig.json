@@ -17,7 +17,8 @@
     "downlevelIteration": true,
     "jsx": "preserve",
     "paths": {
-      "@react-md/core": ["packages/core/src/index.ts"]
+      "@react-md/core": ["packages/core/src/index.ts"],
+      "@react-md/icon": ["packages/icon/src/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

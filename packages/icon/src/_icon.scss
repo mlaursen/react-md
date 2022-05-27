@@ -1,0 +1,63 @@
+@use "sass:color";
+@use "@react-md/core";
+
+$color-var: --rmd-icon-color;
+$size-var: --rmd-icon-size;
+
+$use-font-icons: true !default;
+$use-svg-icons: true !default;
+
+$light-theme-color: color.adjust(#000, $lightness: 46%) !default;
+$dark-theme-color: color.adjust(#fff, $lightness: -30%) !default;
+
+$color: if(
+  core.$color-scheme == dark,
+  $dark-theme-color,
+  $light-theme-color
+) !default;
+
+$size: 1.5rem !default;
+$dense-size: 1.25rem !default;
+
+@mixin use-light-theme {
+  #{$color-var}: $light-theme-color;
+}
+
+@mixin use-dark-theme {
+  #{$color-var}: $dark-theme-color;
+}
+
+@mixin dense {
+  @if $dense-size {
+    #{$size-var}: $dense-size;
+  }
+}
+
+@mixin styles {
+  .rmd-icon {
+    // you normally don't want icons to shrink in flex containers.
+    // update the icon manually instead.
+    flex-shrink: 0;
+    user-select: none;
+
+    @if $use-font-icons {
+      color: var($color-var, $color);
+      font-size: var($size-var, $size);
+      text-align: center;
+    }
+
+    @if $use-svg-icons {
+      fill: var($color-var, $color);
+      height: var($size-var, $size);
+      width: var($size-var, $size);
+    }
+  }
+
+  @if core.$color-scheme == system {
+    @media (prefers-color-scheme: dark) {
+      :root {
+        @include use-dark-theme;
+      }
+    }
+  }
+}
