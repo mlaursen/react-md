@@ -14,6 +14,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { ANONYMOUS_USER } from './helpers/constants';
 
 import Chat from './components/Chat';
+import VideoPlayer from './components/VideoPlayer';
 
 import Button from '@mui/material/Button';
 
@@ -31,6 +32,9 @@ function App() {
   const editProfileRef = useRef(false);
   // const flatListRef = useRef<FlatList>();
   const [showSplash, setShowSplash] = useState(true);
+
+  const videoSource =
+    'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
 
   useEffect(() => {
     // TODO: Assign Self to Chat XP
@@ -137,11 +141,14 @@ function App() {
       </header>
       <section className="body">
         <section className="main">
-          <img
-            className="qr-code"
-            src="https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/qr-test.png?alt=media&token=d4416410-3f02-4652-b3e4-8eaa65b7d00e"
-            alt="Flow Code QR"
-          />
+          {/*
+            <img
+              className="qr-code"
+              src="https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/qr-test.png?alt=media&token=d4416410-3f02-4652-b3e4-8eaa65b7d00e"
+              alt="Flow Code QR"
+            />
+          */}
+          <VideoPlayer video={videoSource} />
         </section>
         <section className="rail">
           <Chat user={currentUser} authenticated={auth} />

@@ -40,12 +40,17 @@
       background: no-repeat center 100%
         url('https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/living-room.jpg?alt=media&token=f85daff0-bc7a-4138-9ae8-52036e9329d8');
       background-size: cover;
+      align-items: center;
 
       .qr-code {
         height: 150px;
         width: 150px;
         position: absolute;
         top: 31%;
+      }
+
+      video {
+        width: 95%;
       }
     }
 
