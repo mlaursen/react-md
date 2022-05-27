@@ -2,7 +2,9 @@ import React from 'react';
 import ReactHlsPlayer from 'react-hls-player';
 import '../styles/VideoPlayer.scss';
 
-function VideoPlayer() {
+function VideoPlayer(props) {
+  const video = props.video;
+
   const playerRef = React.useRef();
 
   function playVideo() {
@@ -21,7 +23,9 @@ function VideoPlayer() {
     <ReactHlsPlayer
       playerRef={playerRef}
       className="videoPlayer"
-      src="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+      autoPlay={true}
+      controls={true}
+      src={video}
     />
   );
 }
