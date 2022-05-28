@@ -2,12 +2,18 @@ import { nameGenerator } from './nameGenerator';
 import { randomAvatarGenerator } from './avatarGenerator';
 import { v4 as uuidv4 } from 'uuid';
 
-const MAX_CHAT_CAR_COUNT = 100;
+export const ADMIN_USERS = [
+  'yasir@seismic.app',
+  'yhossain@gmail.com',
+  'yasir.hossain@ext.disneystreaming.com',
+];
 
-const LIVING_ROOM_IMG =
+export const MAX_CHAT_CAR_COUNT = 100;
+
+export const LIVING_ROOM_IMG =
   'https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/living-room.jpg?alt=media&token=f85daff0-bc7a-4138-9ae8-52036e9329d8';
 
-const AVATARS = [
+export const AVATARS = [
   'https://firebasestorage.googleapis.com/v0/b/seismic-labs.appspot.com/o/avatars%2F1.png?alt=media&token=832c587b-0a9f-4965-a3ba-eef112e7147f',
   'https://firebasestorage.googleapis.com/v0/b/seismic-labs.appspot.com/o/avatars%2F2.png?alt=media&token=af683875-4b87-4f6e-b5ba-98bedeb24ccf',
   'https://firebasestorage.googleapis.com/v0/b/seismic-labs.appspot.com/o/avatars%2F3.png?alt=media&token=51fad0e1-d197-4288-841e-0389cf65b374',
@@ -25,12 +31,12 @@ const AVATARS = [
   'https://firebasestorage.googleapis.com/v0/b/seismic-labs.appspot.com/o/avatars%2F15.png?alt=media&token=f817a6af-9e9c-4750-8965-a183adacd754',
 ];
 
-const MOVIES = [
+export const MOVIES = [
   'https://firebasestorage.googleapis.com/v0/b/ad-experiences.appspot.com/o/palm-springs.mp4?alt=media&token=01000601-9b14-4f61-935d-d90b92459ccf',
   'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8',
 ];
 
-const ANONYMOUS_USER = {
+export const ANONYMOUS_USER = {
   accessToken: null,
   auth: null,
   displayName: null,
@@ -50,8 +56,6 @@ const ANONYMOUS_USER = {
     chatEnabled: true,
   },
 };
-
-export { MAX_CHAT_CAR_COUNT, ANONYMOUS_USER, AVATARS, MOVIES };
 
 export const roles = {
   ADMIN: 'MODERATOR',

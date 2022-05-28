@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import '../styles/Admin.scss';
 
 import { getSelf } from '../modules/locaUser';
+import { isAdmin } from '../helpers/helperFunctions';
 
 import { auth, analytics, db } from '../modules/firebase';
 import firebase from 'firebase/compat/app';
@@ -25,9 +26,6 @@ function Admin() {
   // const flatListRef = useRef<FlatList>();
   const [showSplash, setShowSplash] = useState(true);
 
-  const videoSource =
-    'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
-
   useEffect(() => {
     // TODO: Assign Self to Chat XP
     setCurrentUser(getSelf(user));
@@ -35,22 +33,23 @@ function Admin() {
     //listenToNewMessages()
   }, [user]);
 
-  /*
-  const createUser = () => {
-    const usersRef = db.collection('users');
-    console.log(usersRef);
-  }
-  */
-
   return (
-    <div className="App">
+    <div className="App Admin">
       <Header user={currentUser} />
-      <section className="body">
-        <section className="main"></section>
-        <section className="rail">
-          <Chat user={currentUser} authenticated={auth} />
-        </section>
-      </section>
+      {auth.currentUser && isAdmin(currentUser)
+        ? [
+            <section className="body" key="is admin">
+              <section className="main"></section>
+              <section className="rail">
+                <Chat user={currentUser} authenticated={auth} />
+              </section>
+            </section>,
+          ]
+        : [
+            <section className="body" key="not admin">
+              <h1>Please Login as Admin</h1>
+            </section>,
+          ]}
     </div>
   );
 }

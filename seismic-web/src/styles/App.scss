@@ -7,24 +7,6 @@
   height: 100vh;
   font-family: 'Roboto', sans-serif;
 
-  header {
-    background-color: #fff;
-    height: 10vh;
-    min-height: 50px;
-    color: white;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    box-sizing: border-box;
-
-    .logo {
-      height: 45px;
-      padding-left: 10px;
-    }
-  }
-
   section {
     justify-content: center;
     min-height: 90vh;
