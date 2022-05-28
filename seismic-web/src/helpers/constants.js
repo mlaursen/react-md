@@ -64,6 +64,6 @@ export const roles = {
 };
 
 export const LOGO =
-  'https://static-mh.content.disney.io/matterhorn/assets/goc/disney_logo_dark@2x-45d70f7dd57b.png';
+  'https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/logo.png?alt=media&token=06490322-79f1-4305-8fdc-b25d0889521c';
 export const LOGO_DISNEY =
   'https://static-mh.content.disney.io/matterhorn/assets/goc/disney_logo_dark@2x-45d70f7dd57b.png';
