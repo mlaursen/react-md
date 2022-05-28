@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/index.css';
 import App from './App';
+import Admin from './routes/Admin';
 import Metaverse from './routes/Metaverse';
 import reportWebVitals from './reportWebVitals';
 
@@ -12,6 +13,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="admin" element={<Admin />} />
         <Route path="metaverse" element={<Metaverse />} />
       </Routes>
     </BrowserRouter>

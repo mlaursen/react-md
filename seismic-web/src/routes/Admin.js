@@ -1,20 +1,20 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-import './styles/App.scss';
+import '../styles/Admin.scss';
 
-import { auth } from './modules/firebase';
+import { auth, analytics, db } from '../modules/firebase';
 import firebase from 'firebase/compat/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-import { ANONYMOUS_USER } from './helpers/constants';
+import { ANONYMOUS_USER } from '../helpers/constants';
 
-import Chat from './components/Chat';
-import VideoPlayer from './components/VideoPlayer';
+import Chat from '../components/Chat';
+import VideoPlayer from '../components/VideoPlayer';
 
 import Button from '@mui/material/Button';
 
-function App() {
+function Admin() {
   const [user] = useAuthState(auth);
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -149,4 +149,4 @@ function App() {
   );
 }
 
-export default App;
+export default Admin;

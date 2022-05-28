@@ -2,6 +2,11 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import '../styles/Chat.scss';
 
+import { db, analytics } from '../modules/firebase';
+import firebase from 'firebase/compat/app';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+
 import ChatMessage from './ChatMessage';
 
 import Filter from 'bad-words';
@@ -11,19 +16,6 @@ import { connectFirestoreEmulator } from 'firebase/firestore';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
-
-import { firebaseConfig } from '../firebase';
-
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import 'firebase/compat/analytics';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore(firebaseApp);
-const analytics = firebase.analytics(firebaseApp);
 
 function Chat(props) {
   const { user, authenticated } = props;

@@ -58,3 +58,8 @@ export const roles = {
   CREATOR: 'CREATOR',
   NORMAL: 'NORMAL',
 };
+
+export const LOGO =
+  'https://static-mh.content.disney.io/matterhorn/assets/goc/disney_logo_dark@2x-45d70f7dd57b.png';
+export const LOGO_DISNEY =
+  'https://static-mh.content.disney.io/matterhorn/assets/goc/disney_logo_dark@2x-45d70f7dd57b.png';
