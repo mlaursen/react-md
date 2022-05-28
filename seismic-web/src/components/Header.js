@@ -1,13 +1,47 @@
 import React from 'react';
-import ReactHlsPlayer from 'react-hls-player';
-import '../styles/VideoPlayer.scss';
 import { LOGO } from '../helpers/constants';
 
-function Header(props) {
-  console.log(props);
-  //const video = props.video;
+import firebase from 'firebase/compat/app';
 
-  const playerRef = React.useRef();
+import '../styles/Header.scss';
+import Button from '@mui/material/Button';
+
+import { auth } from '../modules/firebase';
+
+function Header(props) {
+  // console.log(props);
+  const currentUser = props.user;
+
+  function SignIn() {
+    const signInWithGoogle = () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider);
+    };
+
+    return (
+      <Button
+        className="sign-in"
+        variant="contained"
+        onClick={signInWithGoogle}
+      >
+        Sign In
+      </Button>
+    );
+  }
+
+  function SignOut() {
+    return (
+      auth.currentUser && (
+        <Button
+          className="sign-out"
+          variant="outlined"
+          onClick={() => auth.signOut()}
+        >
+          Sign Out
+        </Button>
+      )
+    );
+  }
 
   return (
     <header>

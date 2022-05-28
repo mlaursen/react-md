@@ -9,13 +9,12 @@ import firebase from 'firebase/compat/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
+import Header from './components/Header';
 import Chat from './components/Chat';
 import VideoPlayer from './components/VideoPlayer';
 
-import Button from '@mui/material/Button';
-
 function App() {
-  const [user, setUser] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [currentUser, setCurrentUser] = useState(null);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -36,47 +35,9 @@ function App() {
     //listenToNewMessages()
   }, [user]);
 
-  function SignIn() {
-    const signInWithGoogle = () => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider);
-    };
-
-    return (
-      <Button
-        className="sign-in"
-        variant="contained"
-        onClick={signInWithGoogle}
-      >
-        Sign In
-      </Button>
-    );
-  }
-
-  function SignOut() {
-    return (
-      auth.currentUser && (
-        <Button
-          className="sign-out"
-          variant="outlined"
-          onClick={() => auth.signOut()}
-        >
-          Sign Out
-        </Button>
-      )
-    );
-  }
-
   return (
     <div className="App">
-      <header>
-        <img
-          alt="Disney"
-          src="https://static-mh.content.disney.io/matterhorn/assets/goc/disney_logo_dark@2x-45d70f7dd57b.png"
-          className="logo"
-        />
-        {auth.currentUser ? <SignOut /> : <SignIn />}
-      </header>
+      <Header user={currentUser} />
       <section className="body">
         <section className="main">
           {/*
