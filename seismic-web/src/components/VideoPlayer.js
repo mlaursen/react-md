@@ -31,14 +31,16 @@ export const VideoPlayer = (props) => {
   }, []);
 
   return (
-    <div style={{ width: '98%' }} data-vjs-player>
+    <div style={{ width: '98%' }}>
       <video
         style={{ width: '100%' }}
         ref={videoPlayerRef}
         className="video-js vjs-16-9"
       />
-      <span>Current Time: {currentTime}</span>
-      {/* <GlobalStyle /> */}
+      {/* 
+        <GlobalStyle /> 
+        <span>Current Time: {currentTime}</span>
+      */}
     </div>
   );
 };
