@@ -13,6 +13,8 @@ import Header from './components/Header';
 import Chat from './components/Chat';
 import { VideoPlayer } from './components/VideoPlayer';
 
+import { MOVIES } from './helpers/constants';
+
 function App() {
   const [user] = useAuthState(auth);
   const [currentUser, setCurrentUser] = useState(null);
@@ -22,9 +24,6 @@ function App() {
   const editProfileRef = useRef(false);
   // const flatListRef = useRef<FlatList>();
   const [showSplash, setShowSplash] = useState(true);
-
-  const videoSource =
-    'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
 
   useEffect(() => {
     // TODO: Assign Self to Chat XP
@@ -48,7 +47,7 @@ function App() {
             />
             
           */}
-          <VideoPlayer video={videoSource} />
+          <VideoPlayer video={MOVIES[0]} />
         </section>
         <section className="rail">
           <Chat user={currentUser} authenticated={auth} />
