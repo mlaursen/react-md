@@ -1,0 +1,13 @@
+.label-switch {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.label-switch > div {
+  float: left;
+}
+
+.label-switch > p {
+  float: left;
+  line-height: 48px;
+}

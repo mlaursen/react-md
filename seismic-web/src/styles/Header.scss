@@ -2,7 +2,7 @@ header {
   background-color: #fff;
   height: 10vh;
   min-height: 50px;
-  color: white;
+  color: #000;
   width: 100%;
   display: flex;
   align-items: center;
@@ -14,9 +14,19 @@ header {
     height: 45px;
     padding-left: 10px;
   }
+
+  .MuiList-root {
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
 }
 
 @media screen and (max-width: 991px) {
   header {
+    .MuiList-root {
+      .MuiListItemText-root {
+        display: none;
+      }
+    }
   }
 }

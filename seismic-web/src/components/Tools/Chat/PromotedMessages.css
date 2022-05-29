@@ -1,0 +1,100 @@
+.promoted-messages {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  overflow: hidden;
+  width: 100%;
+}
+
+.promoted-chat-hide {
+  display: none;
+}
+
+.promoted-messages ul {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: inline;
+}
+
+.chat-avatar {
+  position: relative;
+  border-radius: 50%;
+  background-color: #1489d0;
+  overflow: hidden;
+  height: 50px;
+  width: 50px;
+  min-width: 50px;
+}
+
+.chat-avatar .image {
+  height: 100%;
+  width: 100%;
+  background-size: contain !important;
+}
+
+.chat-message {
+  list-style: none;
+  background: #039BE5;
+  padding: 8px 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #1489d0;
+}
+
+.chat-message .columns {
+  display: flex;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.chat-message .copy-container {
+  margin-left: 10px;
+}
+
+.chat-message .name {
+  width: 100%;
+  color: #fff;
+  font-weight: 900;
+}
+
+.chat-message .name span {
+  font-weight: 100;
+}
+
+.chat-message .body {
+  width: 100%;
+  color: #ececec;
+  word-break: break-word;
+}
+
+.chat-message .body .reply {
+  font-style: italic;
+  color: #717171;
+}
+
+.chat-message-enter {
+  -webkit-animation-name: animJelly;
+    animation-name: animJelly;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+.chat-message-leave {
+  -webkit-animation-name: animFade;
+    animation-name: animFade;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+}
+
+@media screen and (max-width: 991px) {
+  .promoted-messages {
+    position: absolute;
+    width: 100%;
+  }
+}

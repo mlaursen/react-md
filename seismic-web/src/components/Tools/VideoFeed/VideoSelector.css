@@ -1,0 +1,55 @@
+.video-selector select {
+  margin-bottom: 10px;
+}
+.video-selector > button {
+  margin-bottom: 5px;
+  background: rgb(204, 204, 204);
+}
+
+.video-selector button {
+  display: block;
+  border-radius: 50px;
+}
+
+.video-selector .dropdown {
+  background-color: rgba(0, 0, 0, 0.12);
+  border-radius: 50px;
+  margin: 0 auto;
+}
+
+.video-selector .dropdown span span {
+  margin-left: 10px;
+}
+
+.button-container {
+  display: flex;
+  padding: 2px 4px;
+  width: 100%;
+  padding-bottom: 5px;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.button-container > span {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.button-container button {
+  margin-right: 5px;
+}
+
+.button-container button:last-child {
+  margin-right: 0px;
+}
+
+button.secondary {
+  background: #f50057;
+  color: white;
+}
+
+button.primary {
+  background: rgb(0, 159, 255);
+  color: white;
+}

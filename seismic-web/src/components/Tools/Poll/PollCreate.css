@@ -1,0 +1,57 @@
+.poll { display: block; }
+.poll ol {
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 20px;
+  font-size: 12px;
+}
+.poll button {
+  margin-top: 10px;
+  margin-right: 5px;
+}
+.button-container {
+  padding: 0px;
+}
+.poll label {
+font-weight: 100;
+}
+.button-container {
+  display: flex;
+  padding: 2px 4px;
+  width: 100%;
+  padding-bottom: 5px;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.button-container > span {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.button-container button {
+  margin-top: 0px;
+  margin-right: 5px;
+  border-radius: 50px;
+}
+
+.button-container button:last-child {
+  margin-right: 0px;
+}
+
+button.default{
+  background-color: rgba(0, 0, 0, 0.12);
+  color: #000;
+}
+
+button.secondary {
+  background: #f50057;
+  color: white;
+}
+
+button.primary {
+  background: rgb(0, 159, 255);
+  color: white;
+}

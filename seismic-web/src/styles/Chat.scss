@@ -98,6 +98,10 @@ form button {
   display: inline-flex;
   width: 95%;
 
+  .MuiAvatar-root {
+    margin-left: 5px;
+  }
+
   input {
     line-height: 1.5;
     width: 100%;

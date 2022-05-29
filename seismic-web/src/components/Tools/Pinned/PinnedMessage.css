@@ -1,0 +1,103 @@
+.pinned-message {
+  overflow: hidden;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  max-width: 375px;
+  min-width: 300px;
+  bottom: 0px;
+  background: #039BE5;
+  border-radius: 60px;
+  padding: 0 10px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  padding: 0 15px;
+
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row;
+  flex-flow: row;
+
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 16px 12px rgba(0,0,0,0.22);
+}
+
+.pinned-message.hide {
+  display: none;
+}
+
+.pinned-message .avatar {
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column;
+  flex-flow: column;
+  justify-content: center;
+  padding: 5px 10px 5px 0;
+  margin-left: -10px;
+}
+
+.pinned-message .avatar img {
+  background: #1489d0;
+}
+
+.pinned-message .avatar img {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+}
+
+.pinned-message .body {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column;
+  flex-flow: column;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  justify-content: center;
+  padding: 10px 10px 10px 0;
+  position: relative;
+}
+
+.pinned-message .actions {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.pinned-message .actions > * {
+  cursor: pointer;
+  font-size: 21px;
+  color: #000;
+  opacity: 0.2;
+}
+
+.pinned-message .user-name {
+  font-weight: 900;
+  color: #fff;
+}
+
+.pinned-message .copy {
+  color: #ececec;
+}
+
+@media screen and (max-width: 991px) {
+  .pinned-message {
+    bottom: 0;
+  }
+  .pinned-message {
+    min-width: 275px;
+  }
+}

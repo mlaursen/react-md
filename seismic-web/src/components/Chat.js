@@ -16,6 +16,7 @@ import { connectFirestoreEmulator } from 'firebase/firestore';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import Avatar from '@mui/material/Avatar';
 
 function Chat(props) {
   const { user, authenticated } = props;
@@ -132,9 +133,7 @@ function Chat(props) {
       </main>
       <form onSubmit={onSubmitMessage} className="chatInput">
         <div className="inputContainer">
-          <AccountCircleIcon
-            sx={{ color: '#1976d2', fontSize: 40, paddingLeft: '4px' }}
-          />
+          <Avatar sx={{ width: 35, height: 35 }} src={currentUser.avatarUrl} />
           <input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
