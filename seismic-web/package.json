@@ -27,6 +27,8 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "uuid": "^8.3.2",
+    "video.js": "^7.19.2",
+    "videojs-plus": "^1.6.9",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

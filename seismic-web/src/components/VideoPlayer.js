@@ -1,33 +1,22 @@
-import React from 'react';
-import ReactHlsPlayer from 'react-hls-player';
+import React, { useRef, useEffect } from 'react';
+import VideoJS from '../modules/video.js';
+
 import '../styles/VideoPlayer.scss';
 
 function VideoPlayer(props) {
+  const playerRef = useRef(null);
+
   const video = props.video;
 
-  const playerRef = React.useRef();
+  const videoJsOptions = {
+    sources: [
+      {
+        src: '//vjs.zencdn.net/v/oceans.mp4',
+      },
+    ],
+  };
 
-  function playVideo() {
-    playerRef.current.play();
-  }
-
-  function pauseVideo() {
-    playerRef.current.pause();
-  }
-
-  function toggleControls() {
-    playerRef.current.controls = !playerRef.current.controls;
-  }
-
-  return (
-    <ReactHlsPlayer
-      playerRef={playerRef}
-      className="videoPlayer"
-      autoPlay={true}
-      controls={true}
-      src={video}
-    />
-  );
+  return <VideoJS playerOptions={videoJsOptions} />;
 }
 
 export default VideoPlayer;
