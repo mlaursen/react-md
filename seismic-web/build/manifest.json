@@ -1,10 +1,10 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Seismic",
+  "name": "Semismic Events",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "favicon-128x128.ico",
+      "sizes": "128x128 64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
