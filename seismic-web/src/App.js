@@ -11,7 +11,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import Header from './components/Header';
 import Chat from './components/Chat';
-import VideoPlayer from './components/VideoPlayer';
+import { VideoPlayer } from './components/VideoPlayer';
 
 function App() {
   const [user] = useAuthState(auth);

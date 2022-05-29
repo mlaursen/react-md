@@ -1,22 +1,44 @@
-import React, { useRef, useEffect } from 'react';
-import VideoJS from '../modules/video.js';
+import React, { useRef, useState, useEffect } from 'react';
+import videojs from 'video.js';
+import 'video.js/dist/video-js.css';
 
-import '../styles/VideoPlayer.scss';
-
-function VideoPlayer(props) {
-  const playerRef = useRef(null);
-
-  const video = props.video;
-
-  const videoJsOptions = {
-    sources: [
-      {
-        src: '//vjs.zencdn.net/v/oceans.mp4',
-      },
-    ],
+export const VideoPlayer = (props) => {
+  const videoPlayerRef = useRef(null); // Instead of ID
+  const [currentTime, setCurrentTime] = useState(null);
+  const videoSrc = props.video;
+  const videoJSOptions = {
+    autoplay: 'muted',
+    controls: true,
+    userActions: { hotkeys: true },
+    playbackRates: [0.5, 1, 1.5, 2],
   };
 
-  return <VideoJS playerOptions={videoJsOptions} />;
-}
+  useEffect(() => {
+    if (videoPlayerRef) {
+      const player = videojs(videoPlayerRef.current, videoJSOptions, () => {
+        player.src(videoSrc);
+        player.on('ended', () => {
+          console.log('ended');
+        });
+        player.on('timeupdate', () => {
+          setCurrentTime(player.currentTime());
+        });
+        console.log('Player Ready');
+      });
+    }
 
-export default VideoPlayer;
+    return () => {};
+  }, []);
+
+  return (
+    <div style={{ width: '98%' }} data-vjs-player>
+      <video
+        style={{ width: '100%' }}
+        ref={videoPlayerRef}
+        className="video-js vjs-16-9"
+      />
+      <span>Current Time: {currentTime}</span>
+      {/* <GlobalStyle /> */}
+    </div>
+  );
+};
