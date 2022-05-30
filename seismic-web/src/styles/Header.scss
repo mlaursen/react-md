@@ -9,6 +9,11 @@ header {
   justify-content: space-between;
   padding: 10px;
   box-sizing: border-box;
+  box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px,
+    rgb(0 0 0 / 30%) 0px 30px 60px -30px;
+  position: relative;
+  z-index: 999999999999;
+  border-bottom: 1px solid rgb(71 71 71 / 22%);
 
   .logo {
     height: 45px;

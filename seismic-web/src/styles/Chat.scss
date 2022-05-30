@@ -14,7 +14,7 @@ main {
     list-style: none;
   }
 
-  .message {
+  .chat-message {
     background-color: #fff;
     border-radius: 20px;
     width: 95%;
@@ -22,6 +22,7 @@ main {
     margin: 5px 0;
     display: flex;
     align-items: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
     .avatar {
       margin-left: 10px;
@@ -97,6 +98,8 @@ form button {
   align-items: center;
   display: inline-flex;
   width: 95%;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 
   .MuiAvatar-root {
     margin-left: 5px;

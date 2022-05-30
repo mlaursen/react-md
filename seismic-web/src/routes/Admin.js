@@ -12,13 +12,17 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import Header from '../components/Header';
 import Chat from '../components/Chat';
-// import VideoPlayer from '../components/VideoPlayer';
+
+// import ChatControls from '../components/Tools/Chat/ChatControls';
 
 import Button from '@mui/material/Button';
 
 function Admin() {
   const [user] = useAuthState(auth);
   const [currentUser, setCurrentUser] = useState(null);
+
+  const [isLive, setIsLive] = useState(false);
+  const [chatEnabled, setChatEnabled] = useState(true);
 
   const [isVisible, setIsVisible] = useState(false);
   const [editProfileVisible, setEditProfileVisible] = useState(false);
@@ -40,9 +44,15 @@ function Admin() {
         ? [
             <section className="body" key="is admin">
               <section className="main"></section>
-              <section className="rail">
-                <Chat user={currentUser} authenticated={auth} />
-              </section>
+              {chatEnabled ? (
+                [
+                  <section className="rail">
+                    <Chat user={currentUser} authenticated={auth} />
+                  </section>,
+                ]
+              ) : (
+                <></>
+              )}
             </section>,
           ]
         : [

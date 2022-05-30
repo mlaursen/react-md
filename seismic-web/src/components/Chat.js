@@ -133,7 +133,10 @@ function Chat(props) {
       </main>
       <form onSubmit={onSubmitMessage} className="chatInput">
         <div className="inputContainer">
-          <Avatar sx={{ width: 35, height: 35 }} src={currentUser.avatarUrl} />
+          <Avatar
+            sx={{ width: 35, height: 35 }}
+            src={currentUser && currentUser.avatarUrl}
+          />
           <input
             value={message}
             onChange={(e) => setMessage(e.target.value)}

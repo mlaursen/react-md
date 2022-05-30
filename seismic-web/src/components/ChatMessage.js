@@ -15,7 +15,7 @@ function ChatMessage(props) {
   return (
     <>
       <div
-        className={`message`}
+        className={`chat-message`}
         onDoubleClick={reply.bind(this, props.message)}
       >
         <img alt="avatar" className="avatar" src={avatarUrl} />
