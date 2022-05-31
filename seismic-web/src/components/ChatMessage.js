@@ -3,8 +3,11 @@ import '../styles/Chat.scss';
 
 import moment from 'moment';
 
+import Like from './Like';
+
 function ChatMessage(props) {
-  const { text, uid, avatarUrl, chatName, createdAt, role } = props.message;
+  const { text, uid, avatarUrl, chatName, createdAt, role, likes } =
+    props.message;
   const currentUser = props.user;
   const reply = props.reply;
   const replyMessage = props.replyMessage;
@@ -23,6 +26,9 @@ function ChatMessage(props) {
           <p className="username">{chatName}</p>
           <p className="message">{text}</p>
           <p className="date">{createdAt ? moment(seconds).fromNow() : ''}</p>
+        </div>
+        <div className="messageActions">
+          <Like user={props.message} />
         </div>
       </div>
     </>

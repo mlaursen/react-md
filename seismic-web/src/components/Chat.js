@@ -23,7 +23,7 @@ function Chat(props) {
   const currentUser = user;
   const messagesRef = db.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(50);
-  const [messages] = useCollectionData(query, { idField: 'id' });
+  const [messages, setMessages] = useCollectionData(query, { idField: 'id' });
   const [message, setMessage] = useState('');
   const [placeholder, setPlaceholder] = useState('Join the convo!');
   const [charCount, setCharCount] = useState(MAX_CHAT_CAR_COUNT);
@@ -32,9 +32,17 @@ function Chat(props) {
   const [isValid, setIsValid] = useState(true);
   const [replyMessage, setReplyMessage] = useState(null);
   const messagesEndRef = useRef();
+  const isInitialMount = useRef(true);
 
   useEffect(() => {
-    scrollToBottom();
+    setTimeout(function () {
+      if (isInitialMount.current) {
+        isInitialMount.current = false;
+        scrollToBottom();
+      }
+    }, 1000);
+
+    //console.log(messages);
   }, [messages]);
 
   function validateMessage(message) {
@@ -98,6 +106,7 @@ function Chat(props) {
 
   const sendMessage = async () => {
     const { uid, role, displayName, avatarUrl, chatName } = currentUser;
+    const likes = 0;
 
     await messagesRef.add({
       text: message,
@@ -107,6 +116,7 @@ function Chat(props) {
       displayName,
       avatarUrl,
       chatName,
+      likes,
     });
 
     firebase.analytics().logEvent('chat_message_sent');

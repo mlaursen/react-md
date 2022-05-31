@@ -62,6 +62,7 @@ function Header(props) {
           <ListItem
             button
             id="lock-button"
+            key="lock-button"
             aria-haspopup="listbox"
             aria-controls="lock-menu"
             aria-label="when device is locked"
@@ -70,7 +71,12 @@ function Header(props) {
           >
             {isAdmin ? (
               [
-                <Badge color="secondary" overlap="circular" variant="dot">
+                <Badge
+                  color="secondary"
+                  overlap="circular"
+                  variant="dot"
+                  key="avatar-user-admin"
+                >
                   <Avatar
                     sx={{ width: 32, height: 32 }}
                     src={currentUser.avatarUrl}
@@ -81,6 +87,7 @@ function Header(props) {
               <Avatar
                 sx={{ width: 32, height: 32 }}
                 src={currentUser.avatarUrl}
+                key="avatar-user"
               />
             )}
             <ListItemText primary={currentUser.displayName} />

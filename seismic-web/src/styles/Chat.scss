@@ -60,6 +60,16 @@ main {
         text-align: right;
       }
     }
+
+    .messageActions {
+      margin-right: 10px;
+
+      .BaseBadge-badge {
+        font-size: 0.7rem;
+        min-width: 16px;
+        height: 16px;
+      }
+    }
   }
 }
 

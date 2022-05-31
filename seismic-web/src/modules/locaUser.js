@@ -20,7 +20,7 @@ export const getSelf = (globalUser) => {
   else if (localUser !== null && firebaseUser !== null) {
     //console.log("This is a returning signed in user.");
 
-    let parsedLocalUser = JSON.parse(localUser);
+    let parsedLocalUser = localUser;
     let tempUser = null;
 
     if (parsedLocalUser.avatarUrl === undefined) {
