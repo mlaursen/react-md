@@ -6,7 +6,7 @@ const setSelf = (user) => {
 
 export const getSelf = (globalUser) => {
   const firebaseUser = globalUser;
-  const localUser = localStorage.getItem('seismicChatUser');
+  const localUser = JSON.parse(localStorage.getItem('seismicChatUser'));
 
   // Returning User Who Has Not Signed In
   // User info is pulled from local storage
