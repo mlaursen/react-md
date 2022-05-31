@@ -31,6 +31,11 @@ function Chat(props) {
   const [lastMessage, setLastMessage] = useState(null);
   const [isValid, setIsValid] = useState(true);
   const [replyMessage, setReplyMessage] = useState(null);
+  const messagesEndRef = useRef();
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   function validateMessage(message) {
     const messageLength = message.length;
@@ -87,6 +92,7 @@ function Chat(props) {
 
       clearInput();
       sendMessage();
+      scrollToBottom();
     }
   }
 
@@ -117,6 +123,13 @@ function Chat(props) {
     console.log(replyMessage);
   }
 
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'nearest',
+    });
+  };
+
   return (
     <>
       <main className="chat">
@@ -130,6 +143,7 @@ function Chat(props) {
               reply={reply}
             />
           ))}
+        <div style={{ float: 'left', clear: 'both' }} ref={messagesEndRef} />
       </main>
       <form onSubmit={onSubmitMessage} className="chatInput">
         <div className="inputContainer">

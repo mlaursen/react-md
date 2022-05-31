@@ -22,7 +22,6 @@ function App() {
   const [isVisible, setIsVisible] = useState(false);
   const [editProfileVisible, setEditProfileVisible] = useState(false);
   const editProfileRef = useRef(false);
-  // const flatListRef = useRef<FlatList>();
   const [showSplash, setShowSplash] = useState(true);
 
   const campaignsRef = db.collection('campaigns');
