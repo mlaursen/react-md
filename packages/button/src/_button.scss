@@ -1,0 +1,175 @@
+@use "sass:list";
+@use "@react-md/core";
+@use "@react-md/icon";
+
+$use-text: true !default;
+$use-icon: true !default;
+$use-floating: true !default;
+$use-floating-absolute-position: true !default;
+
+$background-color-var: --rmd-button-background-color;
+$color-var: --rmd-button-color;
+$border-radius-var: --rmd-button-text-border-radius;
+$outline-color-var: --rmd-button-outline-color;
+
+$themes: primary secondary warning error !default;
+
+$text-horizontal-padding-var: --rmd-button-text-horizontal-padding;
+$text-vertical-padding-var: --rmd-button-text-vertical-padding;
+$text-min-height-var: --rmd-button-text-min-height;
+$text-min-width-var: --rmd-button-text-min-width;
+$icon-size-var: --rmd-button-icon-size;
+
+$text-border-radius: 0.5rem !default;
+$text-horizontal-padding: 1rem !default;
+$text-vertical-padding: 0 !default;
+$text-min-height: 2.25rem !default;
+$text-min-width: 4rem !default;
+$text-icon-size: 1.125rem !default;
+
+$icon-border-radius: 50% !default;
+$icon-size: 3rem !default;
+
+$outline-width: 1px !default;
+
+$clear-color: var(core.$text-primary-color-var) !default;
+$clear-outline-color: #999 !default;
+
+$contained-elevation: 2 !default;
+$contained-pressed-elevation: 4 !default;
+
+$floating-margin: 1.5rem !default;
+$floating-z-index: core.$temporary-element-z-index !default;
+$floating-positions: (
+  tl: (
+    left: $floating-margin,
+    top: $floating-margin,
+  ),
+  tr: (
+    right: $floating-margin,
+    top: $floating-margin,
+  ),
+  bl: (
+    bottom: $floating-margin,
+    left: $floating-margin,
+  ),
+  br: (
+    bottom: $floating-margin,
+    right: $floating-margin,
+  ),
+) !default;
+
+@mixin styles {
+  .rmd-button {
+    @include core.interaction-surface;
+
+    align-items: center;
+    background-color: var($background-color-var, transparent);
+    border-radius: var($border-radius-var);
+    border-width: 0;
+    color: var($color-var);
+    display: inline-flex;
+    flex-shrink: 0;
+    gap: var(icon.$spacing-var, icon.$spacing);
+    justify-content: center;
+
+    @if $use-text {
+      &--text {
+        #{$border-radius-var}: $text-border-radius;
+        #{icon.$size-var}: $text-icon-size;
+
+        @include core.map-to-styles(core.$button-styles);
+
+        border: 0;
+        min-height: var($text-min-height-var, $text-min-height);
+        min-width: var($text-min-width-var, $text-min-width);
+        padding: var($text-vertical-padding-var, $text-vertical-padding)
+          var($text-horizontal-padding-var, $text-horizontal-padding);
+      }
+    }
+
+    @if $use-icon {
+      &--icon {
+        #{$border-radius-var}: $icon-border-radius;
+        #{icon.$color-var}: currentColor;
+
+        height: var($icon-size-var, $icon-size);
+        padding: 0;
+        width: var($icon-size-var, $icon-size);
+      }
+    }
+
+    @if list.index($themes, primary) {
+      &--primary {
+        #{$background-color-var}: var(core.$primary-color-var);
+        #{$color-var}: var(core.$on-primary-color-var);
+      }
+
+      &--text-primary {
+        #{$color-var}: var(core.$primary-color-var);
+        #{$outline-color-var}: var(core.$primary-color-var);
+      }
+    }
+
+    @if list.index($themes, secondary) {
+      &--secondary {
+        #{$background-color-var}: var(core.$secondary-color-var);
+        #{$color-var}: var(core.$on-secondary-color-var);
+      }
+
+      &--text-secondary {
+        #{$color-var}: var(core.$secondary-color-var);
+        #{$outline-color-var}: var(core.$secondary-color-var);
+      }
+    }
+
+    @if list.index($themes, warning) {
+      &--warning {
+        #{$background-color-var}: var(core.$warning-color-var);
+        #{$color-var}: var(core.$on-warning-color-var);
+      }
+
+      &--text-warning {
+        #{$color-var}: var(core.$warning-color-var);
+        #{$outline-color-var}: var(core.$warning-color-var);
+      }
+    }
+
+    @if list.index($themes, error) {
+      &--error {
+        #{$background-color-var}: var(core.$error-color-var);
+        #{$color-var}: var(core.$on-error-color-var);
+      }
+
+      &--text-error {
+        #{$color-var}: var(core.$error-color-var);
+        #{$outline-color-var}: var(core.$error-color-var);
+      }
+    }
+  }
+
+  @if $use-floating {
+    .rmd-fab {
+      position: fixed;
+      z-index: $floating-z-index;
+
+      @if $use-floating-absolute-position {
+        &--absolute {
+          position: absolute;
+        }
+      }
+
+      @each $suffix, $styles in $floating-positions {
+        &--#{$suffix} {
+          @each $property, $value in $styles {
+            @if $property == left or $property == right {
+              @include core.auto-rtl($property, $value);
+            } @else {
+              #{$property}: #{$value};
+            }
+          }
+        }
+      }
+    }
+  }
+}

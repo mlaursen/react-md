@@ -1,8 +1,12 @@
 @forward "./packages/core/src/core" as core-* with (
-  $color-scheme: system,
-  $interaction-mode: ripple,
-  $use-higher-contrast-interactions: false
+  // $color-scheme: system,
+  $color-scheme: light,
+  // $interaction-mode: ripple,
+  $interaction-mode: both,
+  $use-higher-contrast-interactions: true
+    // $use-higher-contrast-interactions: false
 );
 @forward "./packages/icon/src/icon" as icon-* with (
   $use-font-icons: false
 );
+@forward "./packages/button/src/button" as button-*;

@@ -1,6 +1,6 @@
 import type { KeyboardEvent, MouseEvent, TouchEvent } from "react";
 import { useCallback, useReducer, useRef } from "react";
-import { useElementInteractionMode } from "./ElementInteractionModeProvider";
+import { useElementInteractionContext } from "./ElementInteractionProvider";
 import type {
   ElementInteractionHandlers,
   ElementInteractionState,
@@ -10,6 +10,9 @@ import type {
 } from "./types";
 import { useUserInteractionMode } from "./UserInteractionModeProvider";
 import { getRippleStyle, releaseRipple, updateRipplesState } from "./utils";
+
+/** @remarks \@since 6.0.0 */
+export const PRESSED_CLASS_NAME = "rmd-pressed";
 
 /** @remarks \@since 6.0.0 */
 export interface ElementInteractionOptions<E extends HTMLElement>
@@ -35,6 +38,12 @@ export interface ElementInteractionHookReturnValue<E extends HTMLElement> {
    * the {@link ElementInteractionMode} is set to `"press"`
    */
   pressed: boolean;
+
+  /**
+   * This will be set to {@link PRESSED_CLASS_NAME} only when {@link pressed} is
+   * `true`. It will be `undefined` otherwise.
+   */
+  pressedClassName: string | undefined;
 
   /**
    * Props to pass to the {@link RippleContainer} when the
@@ -140,7 +149,7 @@ export function useElementInteraction<E extends HTMLElement>(
 
   const holding = useRef(false);
   const userMode = useUserInteractionMode();
-  const elementMode = useElementInteractionMode();
+  const elementMode = useElementInteractionContext().mode;
   const isInteractionDisabled = disabled || elementMode === "none";
   const [state, dispatch] = useReducer(
     function reducer(
@@ -209,6 +218,7 @@ export function useElementInteraction<E extends HTMLElement>(
 
   return {
     pressed,
+    pressedClassName: pressed ? PRESSED_CLASS_NAME : undefined,
     rippleContainerProps: {
       ripples,
       onEntered(ripple) {

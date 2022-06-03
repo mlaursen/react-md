@@ -1,3 +1,11 @@
+@use "sass:string";
+@use "sass:list";
+
+$enable-rtl: true !default;
+
+$_swappable-positions: top right bottom left;
+$_swappable-position-prefixes: border margin padding;
+
 @mixin map-to-styles($map) {
   @each $property, $value in $map {
     #{$property}: $value;
@@ -69,4 +77,59 @@
   #{$selector} {
     @content;
   }
+}
+
+@mixin rtl {
+  @if $enable-rtl {
+    [dir="rtl"] & {
+      @content;
+    }
+  }
+}
+
+@function _swap-position($style) {
+  $prefix: "";
+  $position: $style;
+  @each $valid-prefix in $_swappable-position-prefixes {
+    @if string.index($style, "#{$valid-prefix}-") {
+      $prefix: "#{$valid-prefix}-";
+      $position: str-replace($style, $prefix, "");
+    }
+  }
+
+  @if not list.index($_swappable-positions, $position) {
+    @error "Invalid swappable position: '#{$position}'. Choose one of #{$_swappable-positions}";
+  }
+
+  $next-position: bottom;
+  @if $position == left {
+    $next-position: right;
+  } @else if $position == right {
+    $next-position: left;
+  } @else if $position == bottom {
+    $next-position: top;
+  }
+
+  @return "#{$prefix}#{$next-position}";
+}
+
+@mixin auto-rtl($property, $value, $swapped-value: null) {
+  $inversed-property: _swap-position($property);
+  @include rtl {
+    @if $swapped-value == null {
+      $swapped-value: auto;
+
+      @each $prefix in $_swappable-position-prefixes {
+        @if string.index($property, "#{$prefix}-") {
+          $swapped-value: 0;
+        }
+      }
+    }
+
+    #{$property}: #{$swapped-value};
+    #{$inversed-property}: #{$value};
+    @content;
+  }
+
+  #{$property}: #{$value};
 }

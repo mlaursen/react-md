@@ -3,6 +3,9 @@
 
 $color-var: --rmd-icon-color;
 $size-var: --rmd-icon-size;
+$spacing-var: --rmd-icon-spacing;
+$rotate-from-var: --rmd-icon-rotate-from;
+$rotate-to-var: --rmd-icon-rotate-to;
 
 $use-font-icons: true !default;
 $use-svg-icons: true !default;
@@ -18,6 +21,8 @@ $color: if(
 
 $size: 1.5rem !default;
 $dense-size: 1.25rem !default;
+
+$spacing: 0.5rem !default;
 
 @mixin use-light-theme {
   #{$color-var}: $light-theme-color;

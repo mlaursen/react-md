@@ -1,13 +1,154 @@
+import type { FixConfig } from "../createVerticalPosition";
+import {
+  createAnchoredAbove,
+  createVerticalPosition,
+} from "../createVerticalPosition";
+import { getAboveCoord } from "../utils";
+
+const containerRect1: DOMRect = {
+  left: 100,
+  right: 50,
+  top: 400,
+  bottom: 75,
+  height: 200,
+  width: 100,
+  x: 100,
+  y: 25,
+  toJSON() {},
+};
+
+const containerRect2: DOMRect = {
+  left: 50,
+  right: 100,
+  top: 75,
+  bottom: 25,
+  height: 100,
+  width: 200,
+  x: 200,
+  y: 75,
+  toJSON() {},
+};
+const config1: FixConfig = {
+  yMargin: 0,
+  vhMargin: 0,
+  elHeight: 50,
+  screenBottom: 1000,
+  disableSwapping: false,
+  containerRect: containerRect1,
+  disableVHBounds: false,
+  preventOverlap: false,
+};
+
+const config2: FixConfig = { ...config1, yMargin: 8 };
+const config3: FixConfig = { ...config1, vhMargin: 8 };
+const config4: FixConfig = { ...config1, yMargin: 16, vhMargin: 8 };
+
+const config5: FixConfig = {
+  ...config1,
+  elHeight: 100,
+  containerRect: containerRect2,
+};
+const config6: FixConfig = {
+  ...config2,
+  elHeight: 100,
+  containerRect: containerRect2,
+};
+const config7: FixConfig = {
+  ...config3,
+  elHeight: 100,
+  containerRect: containerRect2,
+};
+const config8: FixConfig = {
+  ...config4,
+  elHeight: 100,
+  containerRect: containerRect2,
+};
+
+const vw = 500;
+const vh = 500;
+const leftBoundsConfig1: FixConfig = {
+  yMargin: 0,
+  vhMargin: 0,
+  elHeight: 475,
+  screenBottom: vw,
+  preventOverlap: false,
+  disableSwapping: false,
+  disableVHBounds: false,
+  // position this element as if it's near the left edge of the screen
+  containerRect: {
+    top: 0,
+    bottom: vh - 40,
+    left: 0,
+    right: vw - 40,
+    // pretending an icon button
+    height: 40,
+    width: 40,
+    x: 0,
+    y: 0,
+    toJSON() {},
+  },
+};
+const leftBoundsConfig2: FixConfig = { ...leftBoundsConfig1, vhMargin: 8 };
+const rightBoundsConfig1: FixConfig = {
+  yMargin: 0,
+  vhMargin: 0,
+  elHeight: 475,
+  screenBottom: vw,
+  preventOverlap: false,
+  disableSwapping: false,
+  disableVHBounds: false,
+  // position this element as if it's near the right edge of the screen
+  containerRect: {
+    top: 0,
+    bottom: 0,
+    left: vw - 40,
+    right: 0,
+    // pretending an icon button
+    height: 40,
+    width: 40,
+    x: vw - 40,
+    y: 0,
+    toJSON() {},
+  },
+};
+const rightBoundsConfig2: FixConfig = { ...rightBoundsConfig1, vhMargin: 8 };
 describe("createAnchoredAbove", () => {
-  it.todo(
-    "should return the calculated above coord and an actualY value of above when it fits within the viewport"
-  );
-  it.todo(
-    "should return the calculated above (greater than 0) coord and an actualY value of above if the vh bounds are disabled"
-  );
+  it("should return the calculated above coord and an actualY value of above when it fits within the viewport", () => {
+    expect(createAnchoredAbove(config1)).toEqual({
+      top: getAboveCoord(config1),
+      actualY: "above",
+    });
+    expect(createAnchoredAbove(config2)).toEqual({
+      top: getAboveCoord(config2),
+      actualY: "above",
+    });
+    expect(createAnchoredAbove(config3)).toEqual({
+      top: getAboveCoord(config3),
+      actualY: "above",
+    });
+  });
+
+  it("should return the calculated above (greater than 0) coord and an actualY value of above if the vh bounds are disabled", () => {
+    const containerRect: DOMRect = {
+      ...containerRect1,
+      top: 0,
+    };
+    const config: FixConfig = {
+      ...config1,
+      containerRect,
+      disableVHBounds: true,
+    };
+
+    expect(createAnchoredAbove(config)).toEqual({
+      top: 0,
+      actualY: "above",
+    });
+  });
+
   it.todo(
     "should return the vhMargin value as the top value if swapping is disabled"
   );
+
   it.todo(
     "should return the vhMargin value as the top value if swapping below will force it out of the viewport bottom"
   );

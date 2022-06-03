@@ -132,6 +132,7 @@ describe("ColorSchemeProvider", () => {
         `This prop might need to be changed to "dark" or "system".`
     );
   });
+
   it("should return dark when the mode is system and the prefers-color-scheme media query matches dark", () => {
     const onchange = jest.fn();
     const addListener = jest.fn();

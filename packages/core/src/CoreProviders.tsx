@@ -3,7 +3,7 @@ import type { AppSizeQueries } from "./AppSizeProvider";
 import { AppSizeProvider, DEFAULT_APP_SIZE_QUERIES } from "./AppSizeProvider";
 import type { ElementInteractionMode } from "./interaction";
 import {
-  ElementInteractionModeProvider,
+  ElementInteractionProvider,
   UserInteractionModeProvider,
 } from "./interaction";
 import type { PortalContainer } from "./portal/PortalContainerProvider";
@@ -27,6 +27,11 @@ export interface CoreProvidersProps {
    * @defaultValue `"ripple"`
    */
   elementInteractionMode?: ElementInteractionMode;
+  /**
+   * @defaultValue `false`
+   * {@inheritDoc ElementInteractionProviderProps.disableHigherContrast}
+   */
+  disableHigherContrast?: boolean;
 
   /** @see {@link PortalContainerProvider} */
   portalContainer?: PortalContainer;
@@ -46,6 +51,7 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
   const {
     appSizeQueries = DEFAULT_APP_SIZE_QUERIES,
     elementInteractionMode = "ripple",
+    disableHigherContrast = false,
     defaultDir = DEFAULT_WRITING_DIRECTION,
     colorSchemeMode = "light",
     portalContainer,
@@ -57,9 +63,12 @@ export function CoreProviders(props: CoreProvidersProps): ReactElement {
         <PortalContainerProvider container={portalContainer}>
           <UserInteractionModeProvider>
             <AppSizeProvider {...appSizeQueries}>
-              <ElementInteractionModeProvider mode={elementInteractionMode}>
+              <ElementInteractionProvider
+                mode={elementInteractionMode}
+                disableHigherContrast={disableHigherContrast}
+              >
                 {children}
-              </ElementInteractionModeProvider>
+              </ElementInteractionProvider>
             </AppSizeProvider>
           </UserInteractionModeProvider>
         </PortalContainerProvider>

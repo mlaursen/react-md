@@ -10,7 +10,7 @@ import {
 import { SVGIcon } from "@react-md/icon";
 import type { ReactElement } from "react";
 import { useState } from "react";
-import { Button } from "src/components/Button";
+import { Button } from "@react-md/button";
 import { MenuItem } from "src/components/MenuItem";
 import styles from "./index.module.scss";
 
@@ -29,15 +29,25 @@ export default function Home(): ReactElement {
       {/* <TextContainer style={style}> */}
       <main>
         <div style={{ position: "relative", marginBottom: "2rem" }}>
-          <Button onClick={() => setTransitionIn((prev) => !prev)}>
+          <Button
+            onClick={() => setTransitionIn((prev) => !prev)}
+            theme="primary"
+          >
             Button
           </Button>
           {rendered && <div {...elementProps}>This is some content.</div>}
         </div>
-        <Button>
+        <Button theme="secondary">
           Button{false && "Hello"}
           {true && "Something"}
         </Button>
+        <Button buttonType="icon">
+          <SVGIcon>
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </SVGIcon>
+        </Button>
+
+        <Button>ANother</Button>
         <div style={{ margin: "4rem 0" }}>
           <MenuItem />
         </div>

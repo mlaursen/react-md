@@ -14,6 +14,9 @@ const VERBOSE_REGEX = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
  * @returns an object containing the r, g, b values for the color.
  */
 export function hexToRGB(hex: HexString): [RedBit, GreenBit, BlueBit] {
+  // chrome 102.0.50005.63 apparently has whitespace when calling `window.getComputedStyle(element)`
+  hex = hex.trim();
+
   if (
     process.env.NODE_ENV !== "production" &&
     !SHORTHAND_REGEX.test(hex) &&

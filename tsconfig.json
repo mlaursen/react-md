@@ -17,8 +17,10 @@
     "downlevelIteration": true,
     "jsx": "preserve",
     "paths": {
+      "@react-md/button": ["packages/button/src/index.ts"],
       "@react-md/core": ["packages/core/src/index.ts"],
-      "@react-md/icon": ["packages/icon/src/index.ts"]
+      "@react-md/icon": ["packages/icon/src/index.ts"],
+      "@react-md/progress": ["packages/progress/src/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

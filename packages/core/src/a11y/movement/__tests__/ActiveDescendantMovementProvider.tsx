@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from "react";
 import { useEffect } from "react";
 
@@ -193,7 +193,9 @@ describe("ActiveDescendantMovementProvider", () => {
     expect(option1).toHaveClass("active");
     expect(option2).not.toHaveClass("active");
 
-    listbox.focus();
+    act(() => {
+      listbox.focus();
+    });
     expect(document.activeElement).toBe(listbox);
     expect(listbox).toHaveAttribute("aria-activedescendant", "option-1");
     expect(option1).toHaveClass("active");

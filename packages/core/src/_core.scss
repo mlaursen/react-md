@@ -12,6 +12,8 @@
 @use "interaction/interaction";
 @use "typography/typography";
 
+$temporary-element-z-index: 30 !default;
+
 @mixin css-reset {
   // setting everything to border-box for easier positioning and calculations
   *,

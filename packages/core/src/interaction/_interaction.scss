@@ -133,6 +133,8 @@ $selected-background-color: if(
   @if $clickable {
     cursor: pointer;
   }
+  position: relative;
+  outline: none;
 
   @if $use-higher-contrast-interactions {
     > * {
@@ -172,6 +174,12 @@ $selected-background-color: if(
 
   &:hover {
     #{$interaction-background-color-var}: $hover-background-color;
+  }
+
+  @if $interaction-mode == press or $interaction-mode == both {
+    &.rmd-pressed {
+      #{$interaction-background-color-var}: $press-background-color;
+    }
   }
 }
 

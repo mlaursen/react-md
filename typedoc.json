@@ -7,5 +7,10 @@
     "invalidLink": true,
     "notDocumented": false
   },
-  "entryPoints": ["packages/core/src/index.ts", "packages/icon/src/index.ts"]
+  "entryPoints": [
+    "packages/button/src/index.ts",
+    "packages/core/src/index.ts",
+    "packages/icon/src/index.ts",
+    "packages/progress/src/index.ts"
+  ]
 }
