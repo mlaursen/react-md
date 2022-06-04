@@ -6,6 +6,30 @@ $enable-rtl: true !default;
 $_swappable-positions: top right bottom left;
 $_swappable-position-prefixes: border margin padding;
 
+/// Replace `$search` with `$replace` in `$string`
+///
+/// @author Hugo Giraudel
+/// @access private
+/// @param {String} string - Initial string
+/// @param {String} search - Substring to replace
+/// @param {String} replace - New value
+/// @return {String} - Updated string
+/// @link https://css-tricks.com/snippets/sass/str-replace-function Source from CSS Tricks
+@function str-replace($string, $search, $replace) {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        string.slice($string, $index + string.length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
+}
+
 @mixin map-to-styles($map) {
   @each $property, $value in $map {
     #{$property}: $value;

@@ -1,0 +1,22 @@
+@use "everything";
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.shadow {
+  align-items: center;
+  display: flex;
+  height: 8rem;
+  justify-content: center;
+  width: 8rem;
+}
+
+@for $i from 0 to 24 {
+  $selector: ".shadow" + $i;
+  .shadow#{$i} {
+    @include everything.box-shadow($i);
+  }
+}

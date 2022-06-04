@@ -8,6 +8,7 @@
     "notDocumented": false
   },
   "entryPoints": [
+    "packages/app-bar/src/index.ts",
     "packages/button/src/index.ts",
     "packages/core/src/index.ts",
     "packages/icon/src/index.ts",

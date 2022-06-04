@@ -1,18 +1,26 @@
 @use "sass:list";
+@use "sass:map";
 @use "@react-md/core";
 @use "@react-md/icon";
+@use "@react-md/progress";
 
 $use-text: true !default;
 $use-icon: true !default;
+$use-outline: true !default;
+$use-contained: true !default;
+$use-contained-pressed-elevation: true !default;
 $use-floating: true !default;
 $use-floating-absolute-position: true !default;
+$use-circular-progress: progress.$use-circular !default;
 
 $background-color-var: --rmd-button-background-color;
 $color-var: --rmd-button-color;
 $border-radius-var: --rmd-button-text-border-radius;
 $outline-color-var: --rmd-button-outline-color;
+$contained-background-color-var: --rmd-button-contained-background-color;
+$contained-color-var: --rmd-button-contained-color;
 
-$themes: primary secondary warning error !default;
+$themes: primary secondary warning error disabled !default;
 
 $text-horizontal-padding-var: --rmd-button-text-horizontal-padding;
 $text-vertical-padding-var: --rmd-button-text-vertical-padding;
@@ -37,6 +45,12 @@ $clear-outline-color: #999 !default;
 
 $contained-elevation: 2 !default;
 $contained-pressed-elevation: 4 !default;
+$clear-contained-background-color: core.$light-theme-surface-color !default;
+$clear-contained-color: core.contrast-color(
+  $clear-contained-background-color
+) !default;
+
+$circular-progress-size: var(icon.$size-var) !default;
 
 $floating-margin: 1.5rem !default;
 $floating-z-index: core.$temporary-element-z-index !default;
@@ -59,9 +73,34 @@ $floating-positions: (
   ),
 ) !default;
 
+@mixin _theme($theme-name, $theme-color, $on-theme) {
+  @if list.index($themes, $theme-name) {
+    @if $use-contained {
+      &--#{$theme-name} {
+        #{$background-color-var}: var($theme-color);
+        #{$color-var}: var($on-theme);
+      }
+    }
+
+    &--text-#{$theme-name} {
+      #{$color-var}: var($theme-color);
+      @if $use-outline {
+        #{$outline-color-var}: var($theme-color);
+      }
+    }
+  }
+}
+
 @mixin styles {
   .rmd-button {
-    @include core.interaction-surface;
+    @if $use-circular-progress {
+      #{progress.$circular-size-var}: $circular-progress-size;
+    }
+
+    @include core.interaction-surface(
+      $disabled-selector: "&:disabled" +
+        if(list.index($themes, disabled), ",&[aria-disabled='true']", "")
+    );
 
     align-items: center;
     background-color: var($background-color-var, transparent);
@@ -99,51 +138,59 @@ $floating-positions: (
       }
     }
 
-    @if list.index($themes, primary) {
-      &--primary {
-        #{$background-color-var}: var(core.$primary-color-var);
-        #{$color-var}: var(core.$on-primary-color-var);
-      }
-
-      &--text-primary {
-        #{$color-var}: var(core.$primary-color-var);
-        #{$outline-color-var}: var(core.$primary-color-var);
-      }
-    }
-
-    @if list.index($themes, secondary) {
-      &--secondary {
-        #{$background-color-var}: var(core.$secondary-color-var);
-        #{$color-var}: var(core.$on-secondary-color-var);
-      }
-
-      &--text-secondary {
-        #{$color-var}: var(core.$secondary-color-var);
-        #{$outline-color-var}: var(core.$secondary-color-var);
+    @if $use-outline {
+      &--outline {
+        box-shadow: inset
+          0
+          0
+          0
+          $outline-width
+          var($outline-color-var, $clear-outline-color);
       }
     }
 
-    @if list.index($themes, warning) {
-      &--warning {
-        #{$background-color-var}: var(core.$warning-color-var);
-        #{$color-var}: var(core.$on-warning-color-var);
-      }
+    @if $use-contained {
+      &--contained {
+        @include core.elevation-transition(
+          $contained-elevation,
+          if(
+            $use-contained-pressed-elevation,
+            $contained-pressed-elevation,
+            null
+          ),
+          "&.rmd-button--pressed",
+          $pseudo-before: false
+        );
 
-      &--text-warning {
-        #{$color-var}: var(core.$warning-color-var);
-        #{$outline-color-var}: var(core.$warning-color-var);
+        #{$background-color-var}: var(
+          $contained-background-color-var,
+          $clear-contained-background-color
+        );
+        #{$color-var}: var($contained-color-var, $clear-contained-color);
       }
     }
 
-    @if list.index($themes, error) {
-      &--error {
-        #{$background-color-var}: var(core.$error-color-var);
-        #{$color-var}: var(core.$on-error-color-var);
-      }
+    @include _theme(
+      primary,
+      core.$primary-color-var,
+      core.$on-primary-color-var
+    );
+    @include _theme(
+      secondary,
+      core.$secondary-color-var,
+      core.$on-secondary-color-var
+    );
+    @include _theme(
+      warning,
+      core.$warning-color-var,
+      core.$on-warning-color-var
+    );
+    @include _theme(error, core.$error-color-var, core.$on-error-color-var);
 
-      &--text-error {
-        #{$color-var}: var(core.$error-color-var);
-        #{$outline-color-var}: var(core.$error-color-var);
+    @if list.index($themes, disabled) {
+      &--disabled {
+        #{$outline-color-var}: var(core.$text-disabled-color-var);
+        color: var(core.$text-disabled-color-var);
       }
     }
   }

@@ -1,0 +1,18 @@
+@use "everything";
+
+.container {
+  align-items: center;
+  display: flex;
+  background-color: var(everything.$primary-color-var);
+  color: var(everything.$on-primary-color-var);
+  height: var(--app-bar-height, 3.5rem);
+  // since app bars can appear a lot in full page dialogs, setting these flex
+  // values allows it be be a direct replacement of the `DialogHeader`
+  // component without all the offsets and additional styles needed for fixed
+  // app bars.
+  flex: 0 0 auto;
+  padding: 0 0.25rem;
+  width: 100%;
+
+  gap: 0.5rem;
+}

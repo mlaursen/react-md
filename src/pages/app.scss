@@ -1,6 +1,8 @@
 // @use "../../packages/core/src/core";
 @use "everything";
 
-@include everything.core-styles;
+@include everything.styles;
 @include everything.icon-styles;
 @include everything.button-styles;
+@include everything.progress-styles;
+@include everything.app-bar-styles;

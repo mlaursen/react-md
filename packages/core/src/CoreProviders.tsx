@@ -27,6 +27,7 @@ export interface CoreProvidersProps {
    * @defaultValue `"ripple"`
    */
   elementInteractionMode?: ElementInteractionMode;
+
   /**
    * @defaultValue `false`
    * {@inheritDoc ElementInteractionProviderProps.disableHigherContrast}

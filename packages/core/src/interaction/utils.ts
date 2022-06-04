@@ -99,7 +99,7 @@ export function releaseRipple(
     ...ripple,
     exiting: ripple.entered || Date.now() - ripple.startTime > ENTER_DELAY,
   };
-  return { ...state, ripples };
+  return { pressed: false, ripples };
 }
 
 /** @internal */

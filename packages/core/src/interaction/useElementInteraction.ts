@@ -34,22 +34,26 @@ export interface ElementInteractionHookReturnValue<E extends HTMLElement> {
   handlers: Readonly<ElementInteractionHandlers<E>>;
 
   /**
-   * Boolean if the element is currently pressed. This will only be `true` if
-   * the {@link ElementInteractionMode} is set to `"press"`
+   * Boolean if the element is currently pressed. This will always be `false` if
+   * the {@link ElementInteractionMode} is set to `"none"`
    */
   pressed: boolean;
 
   /**
    * This will be set to {@link PRESSED_CLASS_NAME} only when {@link pressed} is
-   * `true`. It will be `undefined` otherwise.
+   * `true` and the {@link ElementInteractionMode} is set to `"press"`. It will
+   * be `undefined` otherwise.
    */
   pressedClassName: string | undefined;
 
   /**
    * Props to pass to the {@link RippleContainer} when the
    * {@link ElementInteractionMode} is set to `"ripple"`
+   *
+   * Note: this will be `undefined` if the {@link ElementInteractionMode} is set
+   * to `"none"` or `"press"`
    */
-  rippleContainerProps: Readonly<ProvidedRippleContainerProps>;
+  rippleContainerProps?: Readonly<ProvidedRippleContainerProps>;
 }
 
 type ElementInteractionAction =
@@ -121,7 +125,7 @@ const noop = (): void => {
  *       tabIndex={disabled ? undefined : 0}
  *     >
  *       {children}
- *       <RippleContainer {...rippleContainerProps} />
+ *       {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
  *     </div>
  *   );
  * }
@@ -149,8 +153,8 @@ export function useElementInteraction<E extends HTMLElement>(
 
   const holding = useRef(false);
   const userMode = useUserInteractionMode();
-  const elementMode = useElementInteractionContext().mode;
-  const isInteractionDisabled = disabled || elementMode === "none";
+  const { mode } = useElementInteractionContext();
+  const isInteractionDisabled = disabled || mode === "none";
   const [state, dispatch] = useReducer(
     function reducer(
       state: ElementInteractionState,
@@ -173,7 +177,7 @@ export function useElementInteraction<E extends HTMLElement>(
           }
 
           return {
-            pressed: !style,
+            pressed: true,
             ripples,
           };
         }
@@ -187,7 +191,7 @@ export function useElementInteraction<E extends HTMLElement>(
             })),
           };
         case "release": {
-          if (elementMode === "press") {
+          if (mode === "press") {
             return { ...state, pressed: false };
           }
 
@@ -216,10 +220,9 @@ export function useElementInteraction<E extends HTMLElement>(
   );
   const { pressed, ripples } = state;
 
-  return {
-    pressed,
-    pressedClassName: pressed ? PRESSED_CLASS_NAME : undefined,
-    rippleContainerProps: {
+  let rippleContainerProps: ProvidedRippleContainerProps | undefined;
+  if (mode == "ripple") {
+    rippleContainerProps = {
       ripples,
       onEntered(ripple) {
         dispatch({ type: "entered", ripple });
@@ -227,14 +230,21 @@ export function useElementInteraction<E extends HTMLElement>(
       onExited(ripple) {
         dispatch({ type: "exited", ripple });
       },
-    },
+    };
+  }
+
+  return {
+    pressed,
+    pressedClassName:
+      pressed && mode === "press" ? PRESSED_CLASS_NAME : undefined,
+    rippleContainerProps,
     handlers: {
       onClick: useCallback(
         (event: MouseEvent<E>) => {
           onClick(event);
           if (
             event.isPropagationStopped() ||
-            elementMode !== "ripple" ||
+            mode !== "ripple" ||
             holding.current ||
             document.activeElement === event.currentTarget
           ) {
@@ -243,7 +253,7 @@ export function useElementInteraction<E extends HTMLElement>(
 
           dispatch({ type: "press", style: getRippleStyle(event, true) });
         },
-        [elementMode, onClick]
+        [mode, onClick]
       ),
       onMouseDown: useCallback(
         (event: MouseEvent<E>) => {
@@ -270,13 +280,13 @@ export function useElementInteraction<E extends HTMLElement>(
           holding.current = true;
           event.stopPropagation();
           let style: RippleStyle | undefined;
-          if (elementMode === "ripple") {
+          if (mode === "ripple") {
             style = getRippleStyle(event, false);
           }
 
           dispatch({ type: "press", style });
         },
-        [elementMode, isInteractionDisabled, onMouseDown, userMode]
+        [mode, isInteractionDisabled, onMouseDown, userMode]
       ),
       onMouseUp: useCallback(
         (event: MouseEvent<E>) => {
@@ -377,13 +387,13 @@ export function useElementInteraction<E extends HTMLElement>(
           holding.current = true;
           event.stopPropagation();
           let style: RippleStyle | undefined;
-          if (elementMode === "ripple") {
+          if (mode === "ripple") {
             style = getRippleStyle(event, false);
           }
 
           dispatch({ type: "press", style });
         },
-        [elementMode, isInteractionDisabled, onTouchStart]
+        [mode, isInteractionDisabled, onTouchStart]
       ),
       onTouchEnd: useCallback(
         (event: TouchEvent<E>) => {

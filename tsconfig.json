@@ -17,6 +17,7 @@
     "downlevelIteration": true,
     "jsx": "preserve",
     "paths": {
+      "@react-md/app-bar": ["packages/app-bar/src/index.ts"],
       "@react-md/button": ["packages/button/src/index.ts"],
       "@react-md/core": ["packages/core/src/index.ts"],
       "@react-md/icon": ["packages/icon/src/index.ts"],

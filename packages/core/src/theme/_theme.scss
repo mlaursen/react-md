@@ -2,10 +2,37 @@
 @use "colors";
 @use "a11y";
 
+/// This defines the total color scheme for your app and can be either:
+/// - `light`
+/// - `dark`
+/// - `system`
+///
+/// Setting this value to `system` will default to a light theme unless the user
+/// has set their preferred color scheme to dark on their OS.
+///
+/// If this value is changed from the default `light` value, the
+/// `colorSchemeMode` on the `CoreProviders` component should be updated to
+/// match the new value.
 $color-scheme: light !default;
+
+/// The dark elevation feature is generally recommended to keep enabled since it
+/// helps with visibility when your app is using the dark color scheme either
+/// through `$color-scheme: dark` or `using the `use-dark-theme mixin. When this
+/// feature is enabled, the `background-color` for surfaces will gradually
+/// become lighter the higher their `z-value` is with the material design box
+/// shadows.
+///
+/// If this is set to `false`, all surfaces will mimic the light theme and have
+/// a single surface color.
 $use-dark-elevation: true !default;
 
+/// This value should be set to `false` if you do not want the initial bundle to
+/// include the `@media (prefers-color-scheme: dark)` styles.
+$use-default-system-theme: true !default;
+
 $background-color-var: --rmd-background-color;
+$surface-color-var: --rmd-surface-color;
+$dark-elevation-var: --rmd-dark-elevation-color;
 $primary-color-var: --rmd-primary-color;
 $on-primary-color-var: --rmd-on-primary-color;
 $secondary-color-var: --rmd-secondary-color;
@@ -20,13 +47,12 @@ $text-primary-color-var: --rmd-text-primary-color;
 $text-secondary-color-var: --rmd-text-secondary-color;
 $text-hint-color-var: --rmd-text-hint-color;
 $text-disabled-color-var: --rmd-text-disabled-color;
-$dark-elevation-var: --rmd-dark-elevation-color;
 
 $primary-color: colors.$blue-500 !default;
 $on-primary-color: a11y.contrast-color($primary-color) !default;
 $secondary-color: colors.$orange-a-400 !default;
 $on-secondary-color: a11y.contrast-color($secondary-color) !default;
-$warning-color: colors.$deep-orange-a-200 !default;
+$warning-color: colors.$deep-orange-a-400 !default;
 $on-warning-color: a11y.contrast-color($warning-color) !default;
 $error-color: colors.$red-500 !default;
 $on-error-color: a11y.contrast-color($error-color) !default;
@@ -122,7 +148,7 @@ $dark-elevation-colors: (
     @each $z-value, $background-color in $dark-elevation-colors {
       $var-name: $dark-elevation-var + "-" + $z-value;
 
-      #{$var-name}: $light-theme-background-color;
+      #{$var-name}: $light-theme-surface-color;
     }
   }
 }
@@ -166,7 +192,7 @@ $dark-elevation-colors: (
     }
   }
 
-  @if $color-scheme == system {
+  @if $use-default-system-theme and $color-scheme == system {
     @media (prefers-color-scheme: dark) {
       @include use-dark-theme;
     }

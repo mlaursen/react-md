@@ -43,7 +43,7 @@ export type ButtonTheme =
 export type ButtonThemeType = "flat" | "outline" | "contained";
 
 /** @remarks \@since 6.0.0 */
-export interface ButtonClassNameOptions {
+export interface ButtonClassNameThemeOptions {
   className?: string;
 
   /** @defaultValue `false` */
@@ -66,6 +66,16 @@ export interface ButtonClassNameOptions {
 }
 
 /**
+ * @remarks \@since 6.0.0
+ * @internal
+ */
+export interface ButtonClassNameOptions extends ButtonClassNameThemeOptions {
+  /** @defaultValue `false` */
+  pressed?: boolean;
+  pressedClassName?: string;
+}
+
+/**
  * Creates a button theme based on the button theming props. This is really just
  * used so that other elements like clickable `<div>`s or `<input type="file">`
  * can look like buttons.
@@ -81,6 +91,8 @@ export function getButtonClassName(options: ButtonClassNameOptions): string {
     themeType = "flat",
     buttonType = "text",
     disabled: propDisabled = false,
+    pressed = false,
+    pressedClassName,
     className,
   } = options;
 
@@ -99,10 +111,12 @@ export function getButtonClassName(options: ButtonClassNameOptions): string {
       disabled,
       contained: !disabled && contained,
       outline,
+      pressed: contained && pressed,
       [theme]: !disabled && !clear && contained,
       [`text-${theme}`]: !disabled && !clear && !contained,
       [`outline-${theme}`]: !disabled && !clear && outline,
     }),
+    pressedClassName,
     className
   );
 }

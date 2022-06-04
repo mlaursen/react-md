@@ -114,10 +114,19 @@ $box-shadow-3-layers: (
     #{"#{$shadow-3-value} #{$shadow-3-color}"};
 }
 
-@mixin box-shadow($z-value, $color: $box-shadow-color, $opacity-boost: 0) {
+@mixin box-shadow(
+  $z-value,
+  $color: $box-shadow-color,
+  $opacity-boost: 0,
+  $include-colors: theme.$use-dark-elevation
+) {
   @if theme.$use-dark-elevation {
     $var-name: theme.$dark-elevation-var + "-" + $z-value;
-    #{theme.$dark-elevation-var}: var($var-name);
+    #{theme.$surface-color-var}: var($var-name);
+  }
+  @if $include-colors {
+    background-color: var(theme.$surface-color-var);
+    color: var(theme.$text-primary-color-var);
   }
 
   box-shadow: box-shadow($z-value, $color, $opacity-boost);
@@ -129,35 +138,70 @@ $box-shadow-3-layers: (
   $active-selectors,
   $duration: transition.$linear-duration,
   $pseudo-before: true,
-  $pseudo-z-index: 0
+  $pseudo-z-index: 0,
+  $create-pseudo: true
 ) {
   $pseudo-selector: if($pseudo-before, "&::before", "&::after");
   $suffix: string.slice($pseudo-selector, 2);
   $active-string: "";
 
   box-shadow: $start-shadow;
-  position: relative;
 
-  #{$pseudo-selector} {
-    @include utils.pseudo-element($pseudo-z-index);
+  @if $end-shadow {
+    position: relative;
 
-    box-shadow: $end-shadow;
-    opacity: 0;
-    transition: opacity $duration transition.$linear-timing-function;
-  }
+    #{$pseudo-selector} {
+      @if $create-pseudo {
+        @include utils.pseudo-element($pseudo-z-index);
+      }
 
-  @if type-of($active-selectors) == string {
-    $active-string: $active-selectors + $suffix;
-  } @else if type-of($active-selectors) == list {
-    @for $i from 1 to length($active-selectors) + 1 {
-      $selector: list.nth($active-selectors, $i);
+      box-shadow: $end-shadow;
+      opacity: 0;
+      transition: opacity $duration transition.$linear-timing-function;
+    }
 
-      $prefix: $active-string + if($i > 1, ", ", "");
-      $active-string: $prefix + $selector + $suffix;
+    @if type-of($active-selectors) == string {
+      $active-string: $active-selectors + $suffix;
+    } @else if type-of($active-selectors) == list {
+      @for $i from 1 to length($active-selectors) + 1 {
+        $selector: list.nth($active-selectors, $i);
+
+        $prefix: $active-string + if($i > 1, ", ", "");
+        $active-string: $prefix + $selector + $suffix;
+      }
+    }
+
+    #{$active-string} {
+      opacity: 1;
     }
   }
+}
 
-  #{$active-string} {
-    opacity: 1;
-  }
+@mixin elevation-transition(
+  $start-z-value,
+  $end-z-value,
+  $active-selectors,
+  $pseudo-before: true,
+  $duration: transition.$linear-duration,
+  $color: $box-shadow-color,
+  $opacity-boost: 0
+) {
+  $start-shadow: if(
+    $start-z-value == none or $start-z-value == 0,
+    none,
+    box-shadow($start-z-value, $color, $opacity-boost)
+  );
+  $end-shadow: if(
+    $end-z-value == none or $end-z-value == 0,
+    none,
+    if($end-z-value, box-shadow($end-z-value, $color, $opacity-boost), null)
+  );
+
+  @include box-shadow-transition(
+    $start-shadow,
+    $end-shadow,
+    $active-selectors,
+    $duration,
+    $pseudo-before
+  );
 }

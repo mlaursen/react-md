@@ -1,12 +1,19 @@
-@forward "./packages/core/src/core" as core-* with (
-  // $color-scheme: system,
-  $color-scheme: light,
-  // $interaction-mode: ripple,
-  $interaction-mode: both,
+@forward "./packages/core/src/core" with (
+  $color-scheme: system,
+  // $color-scheme: light,
+  // $color-scheme: dark,
+  $interaction-mode: ripple,
+  // $interaction-mode: press,
+  // $interaction-mode: both,
   $use-higher-contrast-interactions: true
     // $use-higher-contrast-interactions: false
 );
 @forward "./packages/icon/src/icon" as icon-* with (
   $use-font-icons: false
 );
-@forward "./packages/button/src/button" as button-*;
+@forward "./packages/progress/src/progress" as progress-*;
+@forward "./packages/button/src/button" as button-* with (
+  $use-outline: true,
+  $use-contained: true
+);
+@forward "./packages/app-bar/src/app-bar" as app-bar-*;

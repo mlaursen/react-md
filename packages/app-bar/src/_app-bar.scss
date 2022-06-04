@@ -1,0 +1,189 @@
+@use "sass:map";
+@use "@react-md/core";
+
+$use-fixed: true !default;
+$use-primary-theme: true !default;
+$use-secondary-theme: true !default;
+$use-surface-theme: true !default;
+$use-dense-theme: true !default;
+$use-prominent-theme: true !default;
+$use-prominent-dense-theme: true !default;
+
+$use-title: true !default;
+
+$height-var: --rmd-app-bar-height;
+$background-color-var: --rmd-app-bar-background-color;
+$color-var: --rmd-app-bar-color;
+$surface-background-color-var: --rmd-app-bar-surface-background-color;
+$surface-color-var: --rmd-app-bar-surface-color;
+
+$height: 3.5rem !default;
+$dense-height: 3rem !default;
+$prominent-height: $height * 2 !default;
+$prominent-dense-height: $dense-height * 2 !default;
+
+$fixed-z-index: 10 !default;
+$fixed-elevation: 2 !default;
+$fixed-positions: top bottom !default;
+
+$light-theme-surface-background-color: core.$light-theme-surface-color !default;
+$light-theme-surface-color: core.contrast-color(
+  $light-theme-surface-background-color
+) !default;
+$dark-theme-surface-background-color: if(
+  core.$use-dark-elevation,
+  map.get(core.$dark-elevation-colors, $fixed-elevation),
+  core.$dark-theme-surface-color
+) !default;
+$dark-theme-surface-color: #fff !default;
+
+$surface-background-color: if(
+  core.$color-scheme == dark,
+  $dark-theme-surface-background-color,
+  $light-theme-surface-background-color
+) !default;
+$surface-color: if(
+  core.$color-scheme == dark,
+  $dark-theme-surface-color,
+  $light-theme-surface-color
+) !default;
+
+$horizontal-padding: 0.25rem !default;
+$vertical-padding: 0 !default;
+
+$keyline: 1rem !default;
+$title-keyline: 4.5rem !default;
+
+@mixin use-light-theme {
+  #{$surface-background-color-var}: $light-theme-surface-background-color;
+  #{$surface-color-var}: $light-theme-surface-color;
+}
+
+@mixin use-dark-theme {
+  #{$surface-background-color-var}: $dark-theme-surface-background-color;
+  #{$surface-color-var}: $dark-theme-surface-color;
+}
+
+@mixin dense {
+  #{$height-var}: $dense-height;
+}
+
+@mixin styles {
+  .rmd-app-bar {
+    align-items: center;
+    background-color: var($background-color-var);
+    color: var($color-var, var(core.$text-primary-color-var));
+    display: flex;
+    // since app bars can appear a lot in full page dialogs, setting these flex
+    // values allows it be be a direct replacement of the `DialogHeader`
+    // component without all the offsets and additional styles needed for fixed
+    // app bars.
+    flex: 0 0 auto;
+    height: var($height-var, $height);
+    padding: $vertical-padding $horizontal-padding;
+    width: 100%;
+
+    @if $use-fixed {
+      &--fixed {
+        left: 0;
+        position: fixed;
+        right: 0;
+        z-index: $fixed-z-index;
+      }
+
+      @if $fixed-elevation and $fixed-elevation != 0 {
+        &--fixed-elevation {
+          @include core.box-shadow($fixed-elevation);
+        }
+      }
+
+      @each $position in $fixed-positions {
+        &--#{$position} {
+          #{$position}: 0;
+        }
+      }
+    }
+
+    &--auto {
+      #{$height-var}: auto;
+    }
+
+    @if $use-dense-theme {
+      &--dense {
+        #{$height-var}: $dense-height;
+      }
+    }
+
+    @if $use-prominent-theme {
+      &--prominent {
+        #{$height-var}: $prominent-height;
+      }
+    }
+
+    @if $use-prominent-dense-theme {
+      &--prominent-dense {
+        #{$height-var}: $prominent-dense-height;
+      }
+    }
+
+    @if $use-primary-theme {
+      &--primary {
+        #{$background-color-var}: var(core.$primary-color-var);
+        #{$color-var}: var(core.$on-primary-color-var);
+      }
+    }
+
+    @if $use-secondary-theme {
+      &--secondary {
+        #{$background-color-var}: var(core.$secondary-color-var);
+        #{$color-var}: var(core.$on-secondary-color-var);
+      }
+    }
+
+    @if $use-surface-theme {
+      &--surface {
+        #{$background-color-var}: var(
+          $surface-background-color-var,
+          $surface-background-color
+        );
+        #{$color-var}: var($surface-color-var, $surface-color);
+      }
+    }
+
+    @if $use-title {
+      &__title {
+        @include core.auto-rtl(margin-left, $keyline - $horizontal-padding);
+
+        flex: 1 1 auto;
+        margin-bottom: 0;
+        margin-top: 0;
+
+        &--keyline {
+          @include core.auto-rtl(
+            margin-left,
+            $title-keyline - $horizontal-padding
+          );
+        }
+
+        &--nav-keyline {
+          @include core.auto-rtl(
+            margin-left,
+            $title-keyline - $horizontal-padding - 3rem
+          );
+        }
+
+        &--no-wrap {
+          @include core.text-overflow;
+        }
+      }
+    }
+  }
+
+  @if core.$color-scheme == system {
+    @media (prefers-color-scheme: dark) {
+      :root {
+        @include use-dark-theme;
+      }
+    }
+  }
+}

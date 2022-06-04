@@ -1,6 +1,7 @@
 @use "everything";
 
 .container {
-  @include everything.core-use-dark-theme;
+  @include everything.use-dark-theme;
   @include everything.icon-use-dark-theme;
+  @include everything.app-bar-use-dark-theme;
 }

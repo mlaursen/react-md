@@ -153,16 +153,6 @@ $selected-background-color: if(
     transition-timing-function: transition.$linear-timing-function;
   }
 
-  @if $disabled-selector {
-    #{$disabled-selector} {
-      #{$interaction-background-color-var}: transparent;
-
-      @if $clickable {
-        cursor: auto;
-      }
-    }
-  }
-
   @if $focus-selector {
     @include keyboard-only($css-modules) {
       #{$focus-selector} {
@@ -179,6 +169,16 @@ $selected-background-color: if(
   @if $interaction-mode == press or $interaction-mode == both {
     &.rmd-pressed {
       #{$interaction-background-color-var}: $press-background-color;
+    }
+  }
+
+  @if $disabled-selector {
+    #{$disabled-selector} {
+      #{$interaction-background-color-var}: transparent;
+
+      @if $clickable {
+        cursor: auto;
+      }
     }
   }
 }

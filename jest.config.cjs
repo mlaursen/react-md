@@ -6,6 +6,7 @@ module.exports = {
   },
   moduleNameMapper: {
     "\\.scss$": "identity-obj-proxy",
+    "^@react-md/app-bar$": ["<rootDir>/packages/app-bar/src/index.ts"],
     "^@react-md/button$": ["<rootDir>/packages/button/src/index.ts"],
     "^@react-md/core$": ["<rootDir>/packages/core/src/index.ts"],
     "^@react-md/icon$": ["<rootDir>/packages/icon/src/index.ts"],

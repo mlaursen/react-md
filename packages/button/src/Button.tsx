@@ -3,7 +3,6 @@ import {
   useElementInteraction,
   useHigherContrastChildren,
 } from "@react-md/core";
-import { cnb } from "cnbuilder";
 import type { ButtonHTMLAttributes } from "react";
 import { forwardRef } from "react";
 import type { ButtonClassNameOptions } from "./getButtonClassName";
@@ -123,7 +122,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ...remaining
     } = props;
     const isThemeDisabled = theme === "disabled";
-    const { pressedClassName, rippleContainerProps, handlers } =
+    const { pressed, pressedClassName, rippleContainerProps, handlers } =
       useElementInteraction({
         onClick,
         onKeyDown,
@@ -156,11 +155,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           themeType,
           buttonType,
           disabled,
-          className: cnb(pressedClassName, className),
+          pressed,
+          pressedClassName,
+          className,
         })}
       >
         {children}
-        <RippleContainer {...rippleContainerProps} />
+        {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
       </button>
     );
   }

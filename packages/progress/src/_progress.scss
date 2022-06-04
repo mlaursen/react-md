@@ -1,0 +1,133 @@
+@use "sass:color";
+@use "@react-md/core";
+
+$use-linear: true !default;
+$use-circular: true !default;
+$use-circular-centered-styles: true !default;
+
+$color-var: --rmd-progress-color;
+$circular-size-var: --rmd-progress-circular-size;
+$circular-stroke-width-var: --rmd-progress-circular-width;
+
+$color: var(core.$primary-color-var) !default;
+$background-color: color.adjust(core.$primary-color, $lightness: 60%) !default;
+
+$circular-size: 3rem !default;
+$circular-small-size: 1.5rem !default;
+$circular-stroke-width: 6 !default;
+$circular-dasharray: 187 !default;
+$circular-transition-duration: 0.1s !default;
+$circular-indeterminate-transition-duration: 2.4s !default;
+$circular-start-offset: $circular-dasharray !default;
+$circular-end-offset: $circular-dasharray * 0.25 !default;
+$circular-rotate-styles: (
+  0%: (
+    transform: rotate(0deg),
+  ),
+  50%: (
+    transform: rotate(135deg),
+  ),
+  75%: (
+    transform: rotate(450deg),
+  ),
+  100%: (
+    transform: rotate(720deg),
+  ),
+) !default;
+$circular-dash-styles: (
+  0%: (
+    stroke-dashoffset: $circular-start-offset,
+  ),
+  50%: (
+    stroke-dashoffset: $circular-end-offset,
+  ),
+  100%: (
+    stroke-dashoffset: $circular-start-offset,
+  ),
+) !default;
+
+@mixin _animation($styles) {
+  @if $styles != null {
+    @each $percentage, $style in $styles {
+      #{$percentage} {
+        @include core.map-to-styles($style);
+      }
+    }
+  }
+}
+
+@mixin styles {
+  @if $use-circular {
+    .rmd-circular-progress {
+      // add border radius and overflow-hidden so that different stroke-widths
+      // are still circular. For some reason it isn't always the case.
+      align-items: center;
+      border-radius: 50%;
+      display: inline-flex;
+      height: var($circular-size-var, $circular-size);
+      justify-content: center;
+      overflow: hidden;
+      width: var($circular-size-var, $circular-size);
+
+      @if $use-circular-centered-styles {
+        &--centered {
+          display: flex;
+          margin: 0 auto;
+        }
+      }
+
+      @if $circular-small-size != null {
+        &--small {
+          #{$circular-size-var}: $circular-small-size;
+        }
+      }
+
+      &__svg {
+        height: inherit;
+        width: inherit;
+
+        &--animate {
+          transition: transform
+            $circular-transition-duration
+            core.$linear-timing-function;
+        }
+
+        &--indeterminate {
+          animation: rmd-progress-rotate
+            $circular-indeterminate-transition-duration
+            linear
+            infinite;
+        }
+      }
+
+      &__circle {
+        fill: none;
+        stroke: var($color-var, $color);
+        stroke-width: var($circular-stroke-width-var, $circular-stroke-width);
+        stroke-dasharray: $circular-dasharray;
+        stroke-linecap: round;
+
+        &--animate {
+          transition: stroke-dasharray
+            $circular-transition-duration
+            core.$linear-timing-function;
+        }
+
+        &--indeterminate {
+          animation: rmd-circular-progress-size
+            $circular-indeterminate-transition-duration
+            ease-in-out
+            infinite;
+        }
+      }
+    }
+
+    @keyframes rmd-progress-rotate {
+      @include _animation($circular-rotate-styles);
+    }
+
+    @keyframes rmd-circular-progress-size {
+      @include _animation($circular-dash-styles);
+    }
+  }
+}

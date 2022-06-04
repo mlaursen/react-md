@@ -22,8 +22,13 @@ export interface ColorSchemeContext {
   colorScheme: ColorScheme;
 
   /**
-   * The current color scheme mode that is being used by your app. This should
-   * match the `$color-scheme` SCSS variable.
+   * The current color scheme mode that is being used by your app that should
+   * default to the `$color-scheme` SCSS variable. If the {@link
+   * setColorSchemeMode} is called, this will update to that new value.
+   *
+   * TODO: Figure out how to document this
+   * `colorScheme` - only `light` or `dark` -- only useful when the `colorSchemeMode` is set to `system`
+   * `colorSchemeMode` - current **user** defined color scheme behavior? should default to `$color-scheme`, but will change based on `setColorSchemeMode`
    */
   colorSchemeMode: ColorSchemeMode;
 
