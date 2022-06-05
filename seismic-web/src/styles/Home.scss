@@ -1,0 +1,34 @@
+.home {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  background: no-repeat center 100%
+    url('https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/wallpaper.png?alt=media&token=8ca3cfe1-a518-4e0e-a0c7-fd99a5ae0532');
+  background-size: cover;
+
+  .main-copy {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin-block-end: 6rem;
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-block-start: 0;
+      margin-block-end: 0;
+    }
+    h2 {
+      margin-block-start: 0;
+      margin-block-end: 1em;
+      font-weight: 300;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

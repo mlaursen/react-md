@@ -63,6 +63,9 @@ export const roles = {
   NORMAL: 'NORMAL',
 };
 
+export const BG =
+  'https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/wallpaper.png?alt=media&token=8ca3cfe1-a518-4e0e-a0c7-fd99a5ae0532';
+
 export const LOGO =
   'https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/logo.png?alt=media&token=06490322-79f1-4305-8fdc-b25d0889521c';
 export const LOGO_DISNEY =

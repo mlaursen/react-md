@@ -15,6 +15,28 @@ header {
   z-index: 999999999999;
   border-bottom: 1px solid rgb(71 71 71 / 22%);
 
+  .header-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+      color: #000;
+      text-transform: uppercase;
+
+      &:last-child {
+        padding-left: 20px;
+        padding-bottom: 3px;
+      }
+
+      &:hover {
+        color: #9c27b0;
+        cursor: pointer;
+      }
+    }
+  }
+
   .logo {
     height: 45px;
     padding-left: 10px;

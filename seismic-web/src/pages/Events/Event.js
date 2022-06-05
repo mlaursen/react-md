@@ -9,7 +9,6 @@ import firebase from 'firebase/compat/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-import Header from '../Header';
 import Chat from '../../components/Chat';
 import { VideoPlayer } from '../../components/VideoPlayer';
 
@@ -64,7 +63,7 @@ function Event(props) {
           }}
         >
           <h1>{currentCampaign && currentCampaign.artist}</h1>
-          <h2>{currentCampaign && currentCampaign.name}</h2>
+          <h2>{currentCampaign && currentCampaign.title}</h2>
           <p>{currentCampaign && currentCampaign.description}</p>
         </div>
       </section>

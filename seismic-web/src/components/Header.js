@@ -163,7 +163,12 @@ function Header(props) {
 
   return (
     <header>
-      <img alt="Logo" src={LOGO} className="logo" />
+      <div className="header-left">
+        <Link to="/">
+          <img alt="Logo" src={LOGO} className="logo" />
+        </Link>
+        <Link to="events">Events</Link>
+      </div>
       {auth.currentUser ? <AccountMenu /> : <SignIn />}
     </header>
   );
