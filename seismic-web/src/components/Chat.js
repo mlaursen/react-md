@@ -100,7 +100,11 @@ function Chat(props) {
 
       clearInput();
       sendMessage();
-      scrollToBottom();
+
+      console.log(message);
+      setTimeout(() => {
+        scrollToBottom();
+      }, 500);
     }
   }
 
