@@ -5,12 +5,12 @@ import Event from './pages/Events/Event';
 import Admin from './pages/Admin';
 import Metaverse from './pages/Metaverse';
 
-export default function Routes() {
+export default function Routes(props) {
   return (
     <BaseRoutes>
       <Route path="/" element={<Home />} />
       <Route path="events">
-        <Route index element={<Events />} />
+        <Route index element={<Events campaigns={props.campaigns} />} />
         <Route path=":eventId" element={<Event />} />
       </Route>
       <Route path="admin" element={<Admin />} />

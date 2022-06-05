@@ -15,33 +15,28 @@ import { VideoPlayer } from '../../components/VideoPlayer';
 
 import { MOVIES } from '../../helpers/constants';
 
-function Event() {
-  const [user] = useAuthState(auth);
-  const [currentUser, setCurrentUser] = useState(null);
+function Event(props) {
+  const user = props.user;
+  console.log(campaigns);
+  const campaigns = props.campaigns;
+  console.log(campaigns);
 
-  const [isVisible, setIsVisible] = useState(false);
-  const [editProfileVisible, setEditProfileVisible] = useState(false);
-  const editProfileRef = useRef(false);
-  const [showSplash, setShowSplash] = useState(true);
-
-  const campaignsRef = db.collection('campaigns');
-  const [campaigns] = useCollectionData(campaignsRef);
   const [currentCampaign, setCurrentCampaign] = useState(null);
 
   useEffect(() => {
     // TODO: Assign Self to Chat XP
     // getSelf(user);
     // setCurrentUser = getSelf(user);
-    setCurrentUser(getSelf(user));
+    // setCurrentUser(getSelf(user));
     setCurrentCampaign(campaigns && campaigns[0]);
     //setCurrentCampaign(campaigns && campaigns[0]);
     //getInitChatMessages();
     //listenToNewMessages();
-  }, [user, campaigns]);
+  }, []);
 
   return (
     <div className="App">
-      <Header user={currentUser} />
+      <Header user={user} />
       <section className="body">
         <section
           className="main"
@@ -74,7 +69,7 @@ function Event() {
           </div>
         </section>
         <section className="rail">
-          <Chat user={currentUser} authenticated={auth} />
+          <Chat user={user} authenticated={auth} />
         </section>
       </section>
     </div>
