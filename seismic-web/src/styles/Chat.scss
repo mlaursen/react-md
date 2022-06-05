@@ -91,12 +91,12 @@ form button {
 
 .chatInput {
   height: 7vh;
-  width: 100%;
+  width: 96%;
   align-items: center;
-  display: inline-block;
-  flex-direction: column;
   justify-content: center;
   min-height: 7vh;
+  display: flex;
+  padding: 0 2%;
 }
 
 .inputContainer {

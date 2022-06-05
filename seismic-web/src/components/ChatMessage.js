@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import '../styles/Chat.scss';
 
 import moment from 'moment';
 
