@@ -22,7 +22,7 @@ function Chat(props) {
   const { user, authenticated } = props;
   const currentUser = user;
   const messagesRef = db.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limit(50);
+  const query = messagesRef.orderBy('createdAt').limitToLast(50);
   const [messages, setMessages] = useCollectionData(query, { idField: 'id' });
   const [message, setMessage] = useState('');
   const [placeholder, setPlaceholder] = useState('Join the convo!');
@@ -101,7 +101,6 @@ function Chat(props) {
       clearInput();
       sendMessage();
 
-      console.log(message);
       setTimeout(() => {
         scrollToBottom();
       }, 500);
