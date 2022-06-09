@@ -4,6 +4,7 @@
   align-content: center;
   justify-content: center;
   width: 100%;
+  height: 100%;
   background: no-repeat center 100%
     url('https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/wallpaper.png?alt=media&token=8ca3cfe1-a518-4e0e-a0c7-fd99a5ae0532');
   background-size: cover;
@@ -13,6 +14,7 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
+    text-align: center;
     margin-block-end: 6rem;
 
     h1 {
@@ -31,4 +33,7 @@
   a {
     text-decoration: none;
   }
+}
+
+@media screen and (max-width: 991px) {
 }

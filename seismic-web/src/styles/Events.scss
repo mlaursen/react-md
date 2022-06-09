@@ -7,3 +7,12 @@
     text-decoration: none;
   }
 }
+
+@media screen and (max-width: 991px) {
+  .events {
+    .MuiGrid-root.MuiGrid-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

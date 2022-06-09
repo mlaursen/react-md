@@ -92,12 +92,14 @@ form button {
 
 .chatInput {
   height: 7vh;
-  width: 96%;
   align-items: center;
   justify-content: center;
   min-height: 7vh;
   display: flex;
-  padding: 0 2%;
+  padding: 0 1%;
+  min-width: 28%;
+  position: fixed;
+  bottom: 0;
 }
 
 .inputContainer {
@@ -149,4 +151,10 @@ form button {
   background: white;
   max-width: 400px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 991px) {
+  .chatInput {
+    min-width: 98%;
+  }
 }
