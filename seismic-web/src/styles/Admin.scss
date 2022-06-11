@@ -1,11 +1,21 @@
-.App.Admin {
+.admin {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+
+  > section {
+    height: 100%;
+  }
+
   section.main {
     background-color: #fcfcfc;
     background-image: none;
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 991px) {
-  .Admin {
+  .admin {
   }
 }

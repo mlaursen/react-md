@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^13.2.1",
     "bad-words": "^3.0.4",
     "crypto-ts": "^1.0.2",
+    "cuid": "^2.1.8",
     "firebase": "^9.8.1",
     "firebase-admin": "^10.2.0",
     "firebase-functions": "^3.21.2",

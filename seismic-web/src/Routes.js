@@ -16,7 +16,10 @@ export default function Routes(props) {
           element={<Event user={props.user} campaigns={props.campaigns} />}
         />
       </Route>
-      <Route path="admin" element={<Admin />} />
+      <Route
+        path="admin"
+        element={<Admin user={props.user} campaigns={props.campaigns} />}
+      />
       <Route path="metaverse" element={<Metaverse />} />
     </BaseRoutes>
   );

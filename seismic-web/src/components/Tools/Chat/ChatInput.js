@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Countdown from 'react-countdown-now';
-import cuid from 'cuid';
 import firebaseTools from '../../../util/firebase-tools';
 
 import GoogleAnalytics from 'react-ga';
