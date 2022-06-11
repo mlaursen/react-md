@@ -2,6 +2,7 @@
 @use "sass:list";
 
 $disable-rtl: false !default;
+$scrollbar-size-var: --rmd-scrollbar-size;
 
 $_swappable-positions: top right bottom left;
 $_swappable-position-prefixes: border margin padding;

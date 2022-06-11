@@ -26,7 +26,7 @@ export function MenuItem(props: MenuItemProps): ReactElement {
       role="menuitem"
     >
       MenuItem
-      <RippleContainer {...rippleContainerProps} />
+      {rippleContainerProps && <RippleContainer {...rippleContainerProps} />}
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
 import { useColorScheme, useDir } from "@react-md/core";
 import type { ReactElement } from "react";
@@ -8,11 +9,13 @@ export function Header(): ReactElement {
   const { dir, toggleDir } = useDir();
   const { colorSchemeMode, setColorSchemeMode } = useColorScheme();
   return (
-    <nav className={styles.container}>
+    <AppBar className={styles.container}>
       <StyledLink href="/">Home</StyledLink>
       <StyledLink href="/app-bar">AppBar</StyledLink>
       <StyledLink href="/button">Button</StyledLink>
       <StyledLink href="/box-shadow">Box Shadow</StyledLink>
+      <StyledLink href="/dialog">Dialog</StyledLink>
+      <StyledLink href="/link">Link</StyledLink>
       <StyledLink href="/progress">Progress</StyledLink>
       <StyledLink href="/typography">Typography</StyledLink>
       <Button
@@ -46,6 +49,6 @@ export function Header(): ReactElement {
       <StyledLink href="/docs/index.html" target="_blank">
         Typedoc
       </StyledLink>
-    </nav>
+    </AppBar>
   );
 }

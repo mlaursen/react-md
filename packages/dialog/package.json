@@ -1,19 +1,16 @@
 {
-  "name": "@react-md/button",
+  "name": "@react-md/dialog",
   "version": "6.0.0-alpha.0",
-  "description": "Create material design styled buttons for react-md",
+  "description": "Create material design styled headers and footers for react-md",
   "type": "module",
-  "sass": "./src/_button.scss",
+  "sass": "./src/_index.scss",
   "main": "./cjs/index.cjs",
   "module": "./mjs/index.mjs",
   "types": "./types/index.d.ts",
-  "sideEffects": [
-    "dist/**/*"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git",
-    "directory": "packages/button"
+    "directory": "packages/dialog"
   },
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
@@ -23,8 +20,6 @@
   "license": "MIT",
   "dependencies": {
     "@react-md/core": "^6.0.0-alpha.0",
-    "@react-md/icon": "^6.0.0-alpha.0",
-    "@react-md/progress": "^6.0.0-alpha.0",
     "cnbuilder": "^3.1.0"
   },
   "peerDependencies": {

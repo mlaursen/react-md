@@ -1,30 +1,40 @@
 {
-  "name": "@react-md/button",
+  "name": "@react-md/link",
   "version": "6.0.0-alpha.0",
-  "description": "Create material design styled buttons for react-md",
+  "description": "Create material design styled links for react-md",
   "type": "module",
-  "sass": "./src/_button.scss",
+  "sass": "./src/_link.scss",
   "main": "./cjs/index.cjs",
   "module": "./mjs/index.mjs",
   "types": "./types/index.d.ts",
   "sideEffects": [
     "dist/**/*"
   ],
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mlaursen/react-md.git",
-    "directory": "packages/button"
+    "url": "https://github.com/mlaursen/react-md.git",
+    "directory": "packages/link"
   },
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"
   },
-  "homepage": "https://react-md.dev",
-  "keywords": [],
+  "homepage": "https://react-md.dev/packages/link/demos",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "react-md",
+    "material design",
+    "react",
+    "link",
+    "component",
+    "components"
+  ],
   "license": "MIT",
   "dependencies": {
+    "@react-md/button": "^6.0.0-alpha.0",
     "@react-md/core": "^6.0.0-alpha.0",
     "@react-md/icon": "^6.0.0-alpha.0",
-    "@react-md/progress": "^6.0.0-alpha.0",
     "cnbuilder": "^3.1.0"
   },
   "peerDependencies": {
@@ -33,10 +43,10 @@
   },
   "peerDependenciesMeta": {
     "react": {
-      "optional": true
+      "optional": false
     },
     "react-dom": {
-      "optional": true
+      "optional": false
     }
   },
   "publishConfig": {

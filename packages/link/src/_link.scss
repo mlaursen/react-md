@@ -1,0 +1,77 @@
+@use "sass:map";
+@use "@react-md/core";
+@use "@react-md/icon";
+
+$disable-skip-to-main: false !default;
+
+$color-var: --rmd-link-color;
+$visited-color-var: --rmd-link-visited-color;
+$hover-color-var: --rmd-link-hover-color;
+
+$transition-duration: core.$linear-duration !default;
+$color: core.$blue-500 !default;
+$visited-color: core.$blue-600 !default;
+$hover-color: core.$blue-400 !default;
+
+$skip-to-main-z-index: 10000 !default;
+$skip-to-main-styles: (
+  color: var(core.$on-primary-color-var),
+  left: 50%,
+  padding: 0.25rem 1rem,
+  top: 0.25rem,
+  transform: translateX(-50%),
+  z-index: $skip-to-main-z-index,
+) !default;
+$skip-to-main-active-styles: (
+  outline: 0.25rem dashed #000,
+) !default;
+
+@mixin styles {
+  .rmd-link {
+    // can't use the normal @include core.interaction-surface since links are
+    // rendered inline and the `::before`/`::after` pseudo selectors only work
+    // nicely with block-like elements
+    @include core.keyboard-only {
+      &:focus {
+        #{core.$outline-color-var}: core.$outline-color;
+      }
+    }
+
+    align-items: center;
+    color: var($color-var, $color);
+    display: inline-flex;
+    gap: var(icon.$spacing-var, icon.$spacing);
+    outline: var(core.$outline-color-var, transparent) solid
+      var(core.$outline-width-var, core.$outline-width);
+    transition: color $transition-duration;
+
+    &:visited {
+      #{$color-var}: var($visited-color-var, $visited-color);
+    }
+
+    &:hover {
+      #{$color-var}: var($hover-color-var, $hover-color);
+    }
+
+    @if not $disable-skip-to-main {
+      &--skip {
+        @include core.map-to-styles(
+          map.remove(
+            core.$headline-6-styles,
+            font-size,
+            font-weight,
+            letter-spacing
+          )
+        );
+        @include core.sr-only;
+      }
+
+      &--skip-styled {
+        @include core.map-to-styles($skip-to-main-styles);
+        @include core.keyboard-only {
+          @include core.map-to-styles($skip-to-main-active-styles);
+        }
+      }
+    }
+  }
+}

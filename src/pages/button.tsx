@@ -1,7 +1,7 @@
 import { Button, FloatingActionButton } from "@react-md/button";
 import { TextContainer, Typography } from "@react-md/core";
-import { SVGIcon } from "@react-md/icon";
 import type { ReactElement, ReactNode } from "react";
+import { FavoriteSVGIcon } from "src/components/FavoriteSVGIcon";
 
 function Heading({
   children,
@@ -69,35 +69,27 @@ export default function Buttons(): ReactElement {
           }}
         >
           <FloatingActionButton positionWithin="container" position="top-left">
-            <SVGIcon>
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </SVGIcon>
+            <FavoriteSVGIcon />
           </FloatingActionButton>
           <FloatingActionButton
             positionWithin="container"
             position="top-right"
             theme="primary"
           >
-            <SVGIcon>
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </SVGIcon>
+            <FavoriteSVGIcon />
           </FloatingActionButton>
           <FloatingActionButton
             positionWithin="container"
             position="bottom-left"
             theme="clear"
           >
-            <SVGIcon>
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </SVGIcon>
+            <FavoriteSVGIcon />
           </FloatingActionButton>
           <FloatingActionButton
             positionWithin="container"
             position="bottom-right"
           >
-            <SVGIcon>
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </SVGIcon>
+            <FavoriteSVGIcon />
           </FloatingActionButton>
         </div>
       </div>

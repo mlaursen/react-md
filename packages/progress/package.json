@@ -3,10 +3,10 @@
   "version": "6.0.0-alpha.0",
   "description": "Progress components and styles for react-md",
   "type": "module",
+  "sass": "./src/_progress.scss",
   "main": "./cjs/index.cjs",
   "module": "./mjs/index.mjs",
   "types": "./types/index.d.ts",
-  "sass": "./src/_progress.scss",
   "sideEffects": [
     "dist/**/*"
   ],

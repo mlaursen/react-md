@@ -1,0 +1,153 @@
+@use "@react-md/core";
+@use "dialog";
+
+$disable-position-left: false !default;
+$disable-position-right: false !default;
+$disable-position-bottom: false !default;
+$disable-position-top: false !default;
+
+$height-var: --rmd-sheet-height;
+$width-var: --rmd-sheet-width;
+$touch-width-var: --rmd-sheet-touch-width;
+$touch-max-height-var: --rmd-sheet-touch-max-height;
+$static-width-var: --rmd-sheet-static-width;
+$max-height-var: --rmd-sheet-max-height;
+$transform-offscreen-var: --rmd-sheet-transform-offscreen;
+$z-index-var: --rmd-sheet-z-index;
+
+$elevation: 2 !default;
+$raised-elevation: 16 !default;
+
+$enter-duration: core.$enter-duration !default;
+$enter-timing-function: core.$deceleration-timing-function !default;
+$leave-duration: core.$leave-duration !default;
+$leave-timing-function: core.$acceleration-timing-function !default;
+
+$z-index: 5 !default;
+$raised-z-index: core.$temporary-element-z-index !default;
+
+$static-width: 16rem !default;
+$touch-margin: 3.5rem !default;
+$touch-width: calc(100vw - #{$touch-margin}) !default;
+
+$max-height: 100% !default;
+$touch-max-height: calc(100% - #{$touch-margin}) !default;
+$recommended-min-height: 3.5rem !default;
+$recommended-max-height: 50% !default;
+
+@mixin styles {
+  .rmd-sheet {
+    #{dialog.$z-index-var}: $z-index;
+    @include core.box-shadow($elevation);
+
+    height: var($height-var);
+    max-height: var($max-height-var);
+    overflow: auto;
+    position: fixed;
+    width: var($width-var);
+    z-index: var($z-index-var, $z-index);
+
+    @if not $disable-position-left or not $disable-position-right {
+      &--horizontal {
+        bottom: 0;
+        top: 0;
+      }
+    }
+
+    @if not $disable-position-bottom or not $disable-position-top {
+      &--vertical {
+        left: 0;
+        right: 0;
+      }
+    }
+
+    &--raised {
+      #{$z-index-var}: $raised-z-index;
+
+      @include core.box-shadow($raised-elevation);
+    }
+
+    @if not $disable-position-left {
+      &--left {
+        @include core.auto-rtl(left, 0) {
+          #{$transform-offscreen-var}: translate3d(100%, 0 0);
+        }
+        #{$transform-offscreen-var}: translate3d(-100%, 0, 0);
+      }
+    }
+
+    @if not $disable-position-right {
+      &--right {
+        @include core.auto-rtl(left, 0) {
+          #{$transform-offscreen-var}: translate3d(-100%, 0 0);
+        }
+        #{$transform-offscreen-var}: translate3d(100%, 0 0);
+      }
+    }
+
+    @if not $disable-position-bottom {
+      &--bottom {
+        #{$transform-offscreen-var}: translate3d(0, 100%, 0);
+
+        bottom: 0;
+      }
+    }
+
+    @if not $disable-position-top {
+      &--top {
+        #{$transform-offscreen-var}: translate3d(0, -100%, 0);
+
+        bottom: 0;
+      }
+    }
+
+    &--touch-width {
+      #{$width-var}: var($touch-width-var, $touch-width);
+    }
+
+    &--static-width {
+      #{$width-var}: var($static-width-var, $static-width);
+    }
+
+    &--media-width {
+      @include core.tablet-media {
+        #{$width-var}: var($static-width-var, $static-width);
+      }
+
+      #{$width-var}: var($touch-width-var, $touch-width);
+    }
+
+    &--viewport-height {
+      #{$max-height-var}: $max-height;
+    }
+
+    &--touchable-height {
+      #{$max-height-var}: var($touch-max-height-var, $touch-max-height);
+    }
+
+    &--recommended-height {
+      max-height: $recommended-max-height;
+      min-height: $recommended-min-height;
+    }
+
+    &--offscreen {
+      transform: var($transform-offscreen-var);
+    }
+
+    &--hidden {
+      box-shadow: none;
+    }
+
+    &--visible {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &--enter {
+      transition: transform $enter-duration $enter-timing-function;
+    }
+
+    &--exit {
+      transition: transform $leave-duration $leave-timing-function;
+    }
+  }
+}

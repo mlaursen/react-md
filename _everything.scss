@@ -14,3 +14,5 @@
 @forward "./packages/progress/src/progress" as progress-*;
 @forward "./packages/button/src/button" as button-*;
 @forward "./packages/app-bar/src/app-bar" as app-bar-*;
+@forward "./packages/dialog/src/index";
+@forward "./packages/link/src/link" as link-*;

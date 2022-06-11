@@ -1,14 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
-import { Button } from "@react-md/button";
-import {
-  TextContainer,
-  Typography,
-  useColorScheme,
-  useTheme,
-} from "@react-md/core";
+import { TextContainer, useColorScheme, useTheme } from "@react-md/core";
 import type { ReactElement } from "react";
-import styles from "./index.module.scss";
 
 export default function Home(): ReactElement {
   const theme = useTheme();
@@ -27,7 +20,7 @@ export default function Home(): ReactElement {
               id="color-scheme-light"
               value="light"
               checked={colorScheme.colorSchemeMode === "light"}
-              onChange={(event) => colorScheme.setColorSchemeMode("light")}
+              onChange={(_event) => colorScheme.setColorSchemeMode("light")}
             />
           </label>
           <label>
@@ -38,7 +31,7 @@ export default function Home(): ReactElement {
               id="color-scheme-dark"
               value="dark"
               checked={colorScheme.colorSchemeMode === "dark"}
-              onChange={(event) => colorScheme.setColorSchemeMode("dark")}
+              onChange={(_event) => colorScheme.setColorSchemeMode("dark")}
             />
           </label>
           <label>
@@ -49,7 +42,7 @@ export default function Home(): ReactElement {
               id="color-scheme-light"
               value="system"
               checked={colorScheme.colorSchemeMode === "system"}
-              onChange={(event) => colorScheme.setColorSchemeMode("system")}
+              onChange={(_event) => colorScheme.setColorSchemeMode("system")}
             />
           </label>
         </form>

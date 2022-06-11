@@ -1,0 +1,171 @@
+@use "@react-md/core";
+@use "overlay";
+
+$disable-fixed: false !default;
+$disable-footer-flex-vertical: false !default;
+$disable-footer-flex-start: false !default;
+$disable-footer-space-between: false !default;
+$disable-footer-flex-end: false !default;
+
+$background-color-var: --rmd-dialog-background-color;
+$color-var: --rmd-dialog-color;
+$min-width-var: --rmd-dialog-min-width;
+$horizontal-margin-var: --rmd-dialog-h-margin;
+$vertical-margin-var: --rmd-dialog-v-margin;
+$z-index-var: --rmd-dialog-z-index;
+$header-padding-var: --rmd-dialog-header-padding;
+$header-padding-bottom-var: --rmd-dialog-header-padding-bottom;
+$content-padding-var: --rmd-dialog-content-padding;
+$footer-padding-var: --rmd-dialog-footer-padding;
+
+$elevation: 16 !default;
+$z-index: core.$temporary-element-z-index !default;
+
+$background-color: var(core.$surface-color-var) !default;
+$color: var(core.$text-primary-color-var) !default;
+
+$min-width: 17.5rem !default;
+$horizontal-margin: 2.5rem !default;
+$vertical-margin: 1.5rem !default;
+$transition-distance: 1.875rem !default;
+
+$enter-duration: core.$enter-duration !default;
+$enter-timing-function: core.$deceleration-timing-function !default;
+$leave-timing-function: core.$acceleration-timing-function !default;
+$leave-duration: core.$leave-duration !default;
+
+$header-padding: 1.5rem !default;
+$header-padding-bottom: 1.25rem !default;
+
+$content-padding: 1.5rem !default;
+
+$footer-padding: 0.5rem !default;
+
+@mixin styles {
+  .rmd-dialog-container {
+    align-items: center;
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    margin: var($vertical-margin-var, $vertical-margin)
+      var($horizontal-margin-var, $horizontal-margin);
+    position: fixed;
+    pointer-events: none;
+    z-index: var($z-index-var, $z-index);
+  }
+
+  .rmd-dialog {
+    @include core.box-shadow($elevation);
+
+    background-color: var($background-color-var, $background-color);
+    color: var($color-var, $color);
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    max-width: 100%;
+
+    &--centered {
+      min-width: var($min-width-var, $min-width);
+
+      pointer-events: auto;
+    }
+
+    &--full-page {
+      height: 100%;
+      inset: 0;
+      overflow: auto;
+      position: fixed;
+      width: 100%;
+      z-index: var($z-index-var, $z-index);
+    }
+
+    &--enter {
+      transform: translateY($transition-distance);
+    }
+
+    &--enter-active {
+      transform: translateY(0);
+      transition: transform $enter-duration;
+      transition-timing-function: $enter-timing-function;
+    }
+
+    &--exit {
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform $leave-duration, opacity $leave-duration;
+      transition-timing-function: $leave-timing-function;
+    }
+
+    &--exit-active {
+      opacity: 0;
+      transform: translateY($transition-distance);
+    }
+
+    @if not $disable-fixed {
+      &--fixed {
+        z-index: var(z-index-var, $z-index);
+      }
+    }
+
+    &__header {
+      align-items: center;
+      display: flex;
+      flex: 0 0 auto;
+      padding: var($header-padding-var, $header-padding);
+      padding-bottom: var($header-padding-bottom-var, $header-padding-bottom);
+    }
+
+    // &__title {
+    //   // no styles needed at this time
+    // }
+
+    &__content {
+      flex: 1 1 auto;
+      overflow: auto;
+
+      &--padded {
+        padding: var($content-padding-var, $content-padding);
+      }
+    }
+
+    &__footer {
+      flex: 0 0 auto;
+      padding: var($footer-padding-var, $footer-padding);
+
+      @if not
+        $disable-footer-flex-vertical or not
+        $disable-footer-flex-start or not
+        $disable-footer-space-between or not
+        $disable-footer-flex-end
+      {
+        &--flex {
+          display: flex;
+        }
+      }
+
+      @if not $disable-footer-flex-vertical {
+        &--flex-v {
+          flex-direction: column;
+        }
+      }
+
+      @if not $disable-footer-flex-start {
+        &--start {
+          justify-content: flex-start;
+        }
+      }
+
+      @if not $disable-footer-space-between {
+        &--between {
+          justify-content: space-between;
+        }
+      }
+
+      @if not $disable-footer-flex-end {
+        &--end {
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+}

@@ -5,6 +5,13 @@ import { usePortalContainer } from "./PortalContainerProvider";
 
 export interface PortalProps {
   children: ReactNode;
+  /**
+   * Setting this to `true` will disable the portal behavior and just render
+   * the `children` in the normal DOM tree.
+   *
+   * @defaultValue `false`
+   */
+  disabled?: boolean;
 }
 
 /**
@@ -26,10 +33,10 @@ export interface PortalProps {
  * @see {@link usePortalContainer}
  */
 export function Portal(props: PortalProps): ReactElement {
-  const { children } = props;
+  const { children, disabled = false } = props;
   const container = usePortalContainer();
   if (!container) {
-    return <></>;
+    return <>{disabled && children}</>;
   }
 
   return createPortal(children, container);
