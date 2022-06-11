@@ -27,7 +27,7 @@ export interface ElementInteractionProviderProps {
   /** {@inheritDoc ElementInteractionMode} */
   mode?: ElementInteractionMode;
   /**
-   * This should be set to `true` if the `$use-higher-contrast-interactions`
+   * This should be set to `true` if the `$disable-higher-contrast-interactions`
    * SCSS variable is set to `false`.
    *
    * @defaultValue `false`

@@ -5,15 +5,12 @@
   $interaction-mode: ripple,
   // $interaction-mode: press,
   // $interaction-mode: both,
-  $use-higher-contrast-interactions: true
-    // $use-higher-contrast-interactions: false
+  // $disable-higher-contrast-interactions: true
+  $disable-higher-contrast-interactions: false
 );
 @forward "./packages/icon/src/icon" as icon-* with (
-  $use-font-icons: false
+  $disable-font-icons: true
 );
 @forward "./packages/progress/src/progress" as progress-*;
-@forward "./packages/button/src/button" as button-* with (
-  $use-outline: true,
-  $use-contained: true
-);
+@forward "./packages/button/src/button" as button-*;
 @forward "./packages/app-bar/src/app-bar" as app-bar-*;

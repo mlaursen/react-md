@@ -1,7 +1,7 @@
 @use "sass:string";
 @use "sass:list";
 
-$enable-rtl: true !default;
+$disable-rtl: false !default;
 
 $_swappable-positions: top right bottom left;
 $_swappable-position-prefixes: border margin padding;
@@ -104,7 +104,7 @@ $_swappable-position-prefixes: border margin padding;
 }
 
 @mixin rtl {
-  @if $enable-rtl {
+  @if not $disable-rtl {
     [dir="rtl"] & {
       @content;
     }

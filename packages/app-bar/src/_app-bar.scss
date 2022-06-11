@@ -1,15 +1,15 @@
 @use "sass:map";
 @use "@react-md/core";
 
-$use-fixed: true !default;
-$use-primary-theme: true !default;
-$use-secondary-theme: true !default;
-$use-surface-theme: true !default;
-$use-dense-theme: true !default;
-$use-prominent-theme: true !default;
-$use-prominent-dense-theme: true !default;
+$disable-fixed: false !default;
+$disable-primary-theme: false !default;
+$disable-secondary-theme: false !default;
+$disable-surface-theme: false !default;
+$disable-dense-theme: false !default;
+$disable-prominent-theme: false !default;
+$disable-prominent-dense-theme: false !default;
 
-$use-title: true !default;
+$disable-title: false !default;
 
 $height-var: --rmd-app-bar-height;
 $background-color-var: --rmd-app-bar-background-color;
@@ -31,9 +31,9 @@ $light-theme-surface-color: core.contrast-color(
   $light-theme-surface-background-color
 ) !default;
 $dark-theme-surface-background-color: if(
-  core.$use-dark-elevation,
-  map.get(core.$dark-elevation-colors, $fixed-elevation),
-  core.$dark-theme-surface-color
+  core.$disable-dark-elevation,
+  core.$dark-theme-surface-color,
+  map.get(core.$dark-elevation-colors, $fixed-elevation)
 ) !default;
 $dark-theme-surface-color: #fff !default;
 
@@ -83,7 +83,7 @@ $title-keyline: 4.5rem !default;
     padding: $vertical-padding $horizontal-padding;
     width: 100%;
 
-    @if $use-fixed {
+    @if not $disable-fixed {
       &--fixed {
         left: 0;
         position: fixed;
@@ -108,39 +108,39 @@ $title-keyline: 4.5rem !default;
       #{$height-var}: auto;
     }
 
-    @if $use-dense-theme {
+    @if not $disable-dense-theme {
       &--dense {
         #{$height-var}: $dense-height;
       }
     }
 
-    @if $use-prominent-theme {
+    @if not $disable-prominent-theme {
       &--prominent {
         #{$height-var}: $prominent-height;
       }
     }
 
-    @if $use-prominent-dense-theme {
+    @if not $disable-prominent-dense-theme {
       &--prominent-dense {
         #{$height-var}: $prominent-dense-height;
       }
     }
 
-    @if $use-primary-theme {
+    @if not $disable-primary-theme {
       &--primary {
         #{$background-color-var}: var(core.$primary-color-var);
         #{$color-var}: var(core.$on-primary-color-var);
       }
     }
 
-    @if $use-secondary-theme {
+    @if not $disable-secondary-theme {
       &--secondary {
         #{$background-color-var}: var(core.$secondary-color-var);
         #{$color-var}: var(core.$on-secondary-color-var);
       }
     }
 
-    @if $use-surface-theme {
+    @if not $disable-surface-theme {
       &--surface {
         #{$background-color-var}: var(
           $surface-background-color-var,
@@ -150,7 +150,7 @@ $title-keyline: 4.5rem !default;
       }
     }
 
-    @if $use-title {
+    @if not $disable-title {
       &__title {
         @include core.auto-rtl(margin-left, $keyline - $horizontal-padding);
 

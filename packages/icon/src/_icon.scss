@@ -7,8 +7,8 @@ $spacing-var: --rmd-icon-spacing;
 $rotate-from-var: --rmd-icon-rotate-from;
 $rotate-to-var: --rmd-icon-rotate-to;
 
-$use-font-icons: true !default;
-$use-svg-icons: true !default;
+$disable-font-icons: false !default;
+$disable-svg-icons: false !default;
 
 $light-theme-color: color.adjust(#000, $lightness: 46%) !default;
 $dark-theme-color: color.adjust(#fff, $lightness: -30%) !default;
@@ -45,13 +45,13 @@ $spacing: 0.5rem !default;
     flex-shrink: 0;
     user-select: none;
 
-    @if $use-font-icons {
+    @if not $disable-font-icons {
       color: var($color-var, $color);
       font-size: var($size-var, $size);
       text-align: center;
     }
 
-    @if $use-svg-icons {
+    @if not $disable-svg-icons {
       fill: var($color-var, $color);
       height: var($size-var, $size);
       width: var($size-var, $size);

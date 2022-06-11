@@ -5,7 +5,7 @@
 
 /// ripple | press | both | null
 $interaction-mode: ripple !default;
-$use-focus-background: true !default;
+$disable-focus-background: false !default;
 
 /// Setting this value to `true` will update the styles for all interactable
 /// elements so that the different interaction states no longer cover the other
@@ -20,7 +20,7 @@ $use-focus-background: true !default;
 /// This helps improve the legibility of the content since the normal
 /// interaction states apply an overlay with some opacity for the different
 /// states.
-$use-higher-contrast-interactions: true !default;
+$disable-higher-contrast-interactions: false !default;
 $base-background-color: #000 !default;
 
 $ripple-background-color-var: --rmd-ripple-background-color;
@@ -136,7 +136,7 @@ $selected-background-color: if(
   position: relative;
   outline: none;
 
-  @if $use-higher-contrast-interactions {
+  @if not $disable-higher-contrast-interactions {
     > * {
       z-index: 1;
     }
@@ -146,7 +146,7 @@ $selected-background-color: if(
     @include utils.pseudo-element;
 
     background-color: var($interaction-background-color-var);
-    outline: var($outline-color-var, transparent) inset
+    outline: var($outline-color-var, transparent) solid
       var($outline-width-var, $outline-width);
     transition-property: background-color, outline-color;
     transition-duration: transition.$linear-duration;

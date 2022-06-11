@@ -4,14 +4,14 @@
 @use "@react-md/icon";
 @use "@react-md/progress";
 
-$use-text: true !default;
-$use-icon: true !default;
-$use-outline: true !default;
-$use-contained: true !default;
-$use-contained-pressed-elevation: true !default;
-$use-floating: true !default;
-$use-floating-absolute-position: true !default;
-$use-circular-progress: progress.$use-circular !default;
+$disable-text: false !default;
+$disable-icon: false !default;
+$disable-outline: false !default;
+$disable-contained: false !default;
+$disable-contained-pressed-elevation: false !default;
+$disable-floating: false !default;
+$disable-floating-absolute-position: false !default;
+$disable-circular-progress: progress.$disable-circular !default;
 
 $background-color-var: --rmd-button-background-color;
 $color-var: --rmd-button-color;
@@ -75,7 +75,7 @@ $floating-positions: (
 
 @mixin _theme($theme-name, $theme-color, $on-theme) {
   @if list.index($themes, $theme-name) {
-    @if $use-contained {
+    @if not $disable-contained {
       &--#{$theme-name} {
         #{$background-color-var}: var($theme-color);
         #{$color-var}: var($on-theme);
@@ -84,7 +84,7 @@ $floating-positions: (
 
     &--text-#{$theme-name} {
       #{$color-var}: var($theme-color);
-      @if $use-outline {
+      @if not $disable-outline {
         #{$outline-color-var}: var($theme-color);
       }
     }
@@ -93,7 +93,7 @@ $floating-positions: (
 
 @mixin styles {
   .rmd-button {
-    @if $use-circular-progress {
+    @if not $disable-circular-progress {
       #{progress.$circular-size-var}: $circular-progress-size;
     }
 
@@ -112,7 +112,7 @@ $floating-positions: (
     gap: var(icon.$spacing-var, icon.$spacing);
     justify-content: center;
 
-    @if $use-text {
+    @if not $disable-text {
       &--text {
         #{$border-radius-var}: $text-border-radius;
         #{icon.$size-var}: $text-icon-size;
@@ -127,7 +127,7 @@ $floating-positions: (
       }
     }
 
-    @if $use-icon {
+    @if not $disable-icon {
       &--icon {
         #{$border-radius-var}: $icon-border-radius;
         #{icon.$color-var}: currentColor;
@@ -138,7 +138,7 @@ $floating-positions: (
       }
     }
 
-    @if $use-outline {
+    @if not $disable-outline {
       &--outline {
         box-shadow: inset
           0
@@ -149,14 +149,14 @@ $floating-positions: (
       }
     }
 
-    @if $use-contained {
+    @if not $disable-contained {
       &--contained {
         @include core.elevation-transition(
           $contained-elevation,
           if(
-            $use-contained-pressed-elevation,
-            $contained-pressed-elevation,
-            null
+            $disable-contained-pressed-elevation,
+            null,
+            $contained-pressed-elevation
           ),
           "&.rmd-button--pressed",
           $pseudo-before: false
@@ -195,12 +195,12 @@ $floating-positions: (
     }
   }
 
-  @if $use-floating {
+  @if not $disable-floating {
     .rmd-fab {
       position: fixed;
       z-index: $floating-z-index;
 
-      @if $use-floating-absolute-position {
+      @if not $disable-floating-absolute-position {
         &--absolute {
           position: absolute;
         }

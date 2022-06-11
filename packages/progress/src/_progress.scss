@@ -1,9 +1,9 @@
 @use "sass:color";
 @use "@react-md/core";
 
-$use-linear: true !default;
-$use-circular: true !default;
-$use-circular-centered-styles: true !default;
+$disable-linear: false !default;
+$disable-circular: false !default;
+$disable-circular-centered-styles: false !default;
 
 $color-var: --rmd-progress-color;
 $circular-size-var: --rmd-progress-circular-size;
@@ -57,7 +57,7 @@ $circular-dash-styles: (
 }
 
 @mixin styles {
-  @if $use-circular {
+  @if not $disable-circular {
     .rmd-circular-progress {
       // add border radius and overflow-hidden so that different stroke-widths
       // are still circular. For some reason it isn't always the case.
@@ -69,7 +69,7 @@ $circular-dash-styles: (
       overflow: hidden;
       width: var($circular-size-var, $circular-size);
 
-      @if $use-circular-centered-styles {
+      @if not $disable-circular-centered-styles {
         &--centered {
           display: flex;
           margin: 0 auto;

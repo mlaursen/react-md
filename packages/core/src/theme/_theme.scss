@@ -24,11 +24,11 @@ $color-scheme: light !default;
 ///
 /// If this is set to `false`, all surfaces will mimic the light theme and have
 /// a single surface color.
-$use-dark-elevation: true !default;
+$disable-dark-elevation: false !default;
 
 /// This value should be set to `false` if you do not want the initial bundle to
 /// include the `@media (prefers-color-scheme: dark)` styles.
-$use-default-system-theme: true !default;
+$disable-default-system-theme: false !default;
 
 $background-color-var: --rmd-background-color;
 $surface-color-var: --rmd-surface-color;
@@ -67,7 +67,7 @@ $light-theme-text-hint-color: color.adjust(#000, $lightness: 66%) !default;
 $light-theme-text-disabled-color: color.adjust(#000, $lightness: 62%) !default;
 
 $dark-theme-background-color: #121212 !default;
-$dark-theme-surface-color: if($use-dark-elevation, null, #424242) !default;
+$dark-theme-surface-color: if($disable-dark-elevation, #424242, null) !default;
 $dark-theme-text-primary-color: color.adjust(#fff, $lightness: -15%) !default;
 $dark-theme-text-secondary-color: color.adjust(#fff, $lightness: -30%) !default;
 $dark-theme-text-hint-color: color.adjust(#fff, $lightness: -50%) !default;
@@ -144,7 +144,7 @@ $dark-elevation-colors: (
   #{$text-hint-color-var}: $light-theme-text-hint-color;
   #{$text-disabled-color-var}: $light-theme-text-disabled-color;
 
-  @if $use-dark-elevation and $color-scheme != light {
+  @if not $disable-dark-elevation and $color-scheme != light {
     @each $z-value, $background-color in $dark-elevation-colors {
       $var-name: $dark-elevation-var + "-" + $z-value;
 
@@ -160,7 +160,7 @@ $dark-elevation-colors: (
   #{$text-hint-color-var}: $dark-theme-text-hint-color;
   #{$text-disabled-color-var}: $dark-theme-text-disabled-color;
 
-  @if $use-dark-elevation {
+  @if not $disable-dark-elevation {
     @each $z-value, $background-color in $dark-elevation-colors {
       $var-name: $dark-elevation-var + "-" + $z-value;
       #{$var-name}: $background-color;
@@ -185,14 +185,14 @@ $dark-elevation-colors: (
   #{$text-hint-color-var}: $text-hint-color;
   #{$text-disabled-color-var}: $text-disabled-color;
 
-  @if $use-dark-elevation and $color-scheme == dark {
+  @if not $disable-dark-elevation and $color-scheme == dark {
     @each $z-value, $background-color in $dark-elevation-colors {
       $var-name: $dark-elevation-var + "-" + $z-value;
       #{$var-name}: $background-color;
     }
   }
 
-  @if $use-default-system-theme and $color-scheme == system {
+  @if not $disable-default-system-theme and $color-scheme == system {
     @media (prefers-color-scheme: dark) {
       @include use-dark-theme;
     }
