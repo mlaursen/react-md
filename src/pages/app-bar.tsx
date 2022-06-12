@@ -1,12 +1,12 @@
 import { AppBar, AppBarTitle } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
-import { TextContainer } from "@react-md/core";
+import { box, TextContainer } from "@react-md/core";
 import type { ReactElement } from "react";
 import { MenuSVGIcon } from "src/components/MenuSVGIcon";
 
 export default function AppBarPage(): ReactElement {
   return (
-    <TextContainer>
+    <TextContainer className={box()}>
       <AppBar>
         <AppBarTitle>Title</AppBarTitle>
       </AppBar>

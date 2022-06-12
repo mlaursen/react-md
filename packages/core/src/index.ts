@@ -3,6 +3,7 @@ export * from "./a11y";
 export * from "./applyRef";
 export * from "./AppSizeProvider";
 export * from "./bem";
+export * from "./box";
 export * from "./CoreProviders";
 export * from "./getPercentage";
 export * from "./interaction";

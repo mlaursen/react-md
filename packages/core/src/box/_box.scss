@@ -1,0 +1,107 @@
+@use "sass:map";
+
+$default-box-align-items: center !default;
+
+$disable-box: false !default;
+$disable-grid-box: false !default;
+
+$box-align-items: (start end stretch) !default;
+$box-justify-content: (
+  start center end stretch space-around space-between space-evenly
+) !default;
+
+$box-gap-var: --rmd-box-gap;
+$box-padding-var: --rmd-box-padding;
+$box-item-var: --rmd-box-item-min-size;
+
+$box-gap: 1rem !default;
+$box-padding: $box-gap !default;
+$box-item-min-size: 8rem !default;
+
+/// This should look like:
+/// ```scss
+/// $grids: (
+///   small: (
+///     min: 5rem
+///   ),
+///   medium: (
+///     min: 7rem,
+///     padding: 2rem,
+///     gap: 0.5rem
+///   )
+/// );
+/// ```
+$grids: () !default;
+
+@mixin custom-grid($min: null, $padding: null, $gap: null) {
+  @if $min {
+    #{$box-item-var}: #{$min};
+  }
+
+  @if $padding {
+    #{$box-padding-var}: #{$padding};
+  }
+
+  @if $gap {
+    #{$box-gap-var}: #{$gap};
+  }
+}
+
+@mixin custom-grid-class($selector, $min: null, $padding: null, $gap: null) {
+  #{$selector} {
+    @include custom-grid($min, $padding, $gap);
+  }
+}
+
+@mixin styles {
+  @if not $disable-box {
+    .rmd-box {
+      align-items: $default-box-align-items;
+      display: flex;
+      gap: var($box-gap-var, $box-gap);
+
+      &--padded {
+        padding: var($box-padding-var, $box-padding);
+      }
+
+      &--wrap {
+        flex-wrap: wrap;
+      }
+
+      &--column {
+        flex-direction: column;
+      }
+
+      @each $value in $box-align-items {
+        &--align-#{$value} {
+          align-items: $value;
+        }
+      }
+
+      @each $value in $box-justify-content {
+        &--justify-#{$value} {
+          justify-content: $value;
+        }
+      }
+
+      @if not $disable-grid-box {
+        &--grid {
+          display: grid;
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(var($box-item-var, $box-item-min-size), 1fr)
+          );
+        }
+
+        @each $name, $values in $grids {
+          @include custom-grid-class(
+            "&--#{$name}",
+            $min: map.get($values, min),
+            $gap: map.get($values, gap),
+            $padding: map.get($values, padding)
+          );
+        }
+      }
+    }
+  }
+}

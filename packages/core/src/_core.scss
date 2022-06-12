@@ -1,5 +1,6 @@
 @forward "utils";
 @forward "media-queries";
+@forward "box/box";
 @forward "theme/a11y";
 @forward "theme/colors";
 @forward "theme/theme";
@@ -8,6 +9,7 @@
 @forward "box-shadows";
 @forward "interaction/interaction";
 
+@use "box/box";
 @use "theme/theme";
 @use "transition/transition";
 @use "interaction/interaction";
@@ -57,6 +59,7 @@ $temporary-element-z-index: 30 !default;
 @mixin styles {
   @include css-reset;
   @include typography.typography;
+  @include box.styles;
   @include transition.transition;
   @include interaction.interaction;
 

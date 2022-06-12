@@ -1,17 +1,12 @@
 @use "everything";
 
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4rem;
+  @include everything.box-columns-with($gap: 3rem, $min: 8rem);
   margin-bottom: 4rem;
 }
 
 .shadow {
-  align-items: center;
-  display: flex;
   height: 8rem;
-  justify-content: center;
   width: 8rem;
 }
 

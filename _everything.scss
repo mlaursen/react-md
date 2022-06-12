@@ -4,5 +4,14 @@
   $color-scheme: system,
   $primary-color: colors.$teal-500,
   $secondary-color: colors.$pink-a-200,
-  $icon-disable-font: true
+  $icon-disable-font: true,
+  $grids: (
+    small: (
+      min: 2rem,
+    ),
+    extra-padding: (
+      padding: 2rem,
+      gap: 0.5rem,
+    ),
+  )
 );

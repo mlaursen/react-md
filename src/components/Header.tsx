@@ -1,6 +1,6 @@
 import { AppBar } from "@react-md/app-bar";
 import { Button } from "@react-md/button";
-import { useColorScheme, useDir } from "@react-md/core";
+import { Box, useColorScheme, useDir } from "@react-md/core";
 import { VerticalDivider } from "@react-md/divider";
 import type { ReactElement } from "react";
 import styles from "./Header.module.scss";
@@ -11,10 +11,11 @@ export function Header(): ReactElement {
   const { colorSchemeMode, setColorSchemeMode } = useColorScheme();
   return (
     <AppBar className={styles.container}>
-      <div className={styles.links}>
+      <Box className={styles.links} disableWrap disablePadding>
         <StyledLink href="/">Home</StyledLink>
         <StyledLink href="/app-bar">AppBar</StyledLink>
         <StyledLink href="/avatar">Avatar</StyledLink>
+        <StyledLink href="/box">Box</StyledLink>
         <StyledLink href="/button">Button</StyledLink>
         <StyledLink href="/box-shadow">Box Shadow</StyledLink>
         <StyledLink href="/dialog">Dialog</StyledLink>
@@ -29,7 +30,7 @@ export function Header(): ReactElement {
         <StyledLink href="/docs/index.html" target="_blank">
           Typedoc
         </StyledLink>
-      </div>
+      </Box>
       <Button
         onClick={toggleDir}
         style={{

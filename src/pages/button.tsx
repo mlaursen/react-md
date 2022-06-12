@@ -1,5 +1,5 @@
 import { Button, FloatingActionButton } from "@react-md/button";
-import { TextContainer, Typography } from "@react-md/core";
+import { box, TextContainer, Typography } from "@react-md/core";
 import type { ReactElement, ReactNode } from "react";
 import { FavoriteSVGIcon } from "src/components/FavoriteSVGIcon";
 
@@ -23,7 +23,7 @@ function Heading({
 
 export default function Buttons(): ReactElement {
   return (
-    <TextContainer style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+    <TextContainer className={box()}>
       <Heading first>Flat</Heading>
       <Button>Button</Button>
       <Button theme="primary">Button</Button>
