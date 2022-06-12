@@ -27,12 +27,17 @@
     display: flex;
     flex-direction: row;
 
+    &.body {
+      overflow: hidden;
+    }
+
     &.main {
       width: 70%;
       display: flex;
       background-size: cover;
       align-items: center;
-      height: calc(100vh - 50px);
+      height: calc(100vh - 70px);
+      // height: 100vh;
       background-image: linear-gradient(
         -90deg,
         rgba(241, 224, 229, 1) 60%,
@@ -89,7 +94,9 @@
       width: 30%;
       display: flex;
       flex-direction: column;
-      height: 100%;
+      justify-content: flex-start;
+      // height: 100%;
+      height: calc(100vh - 70px);
       //background-image: linear-gradient(-20deg, #b6efe5 0%, #8ddad5 100%);
       background-image: linear-gradient(
         90deg,
