@@ -2,15 +2,27 @@
 @use "@react-md/core";
 
 $disable-linear: false !default;
+$disable-linear-vertical: false !default;
+$disable-linear-horizontal: false !default;
+$disable-linear-reverse: false !default;
 $disable-circular: false !default;
 $disable-circular-centered-styles: false !default;
+$disable-determinate: false !default;
+$disable-indeterminate: false !default;
 
 $color-var: --rmd-progress-color;
+$background-color-var: --rmd-progress-background-color;
 $circular-size-var: --rmd-progress-circular-size;
 $circular-stroke-width-var: --rmd-progress-circular-width;
+$linear-size-var: --rmd-progress-linear-size;
 
 $color: var(core.$primary-color-var) !default;
-$background-color: color.adjust(core.$primary-color, $lightness: 60%) !default;
+$background-color: core.get-swatch(
+  core.$primary-color,
+  300,
+  false,
+  rgba(core.$primary-color, 0.4)
+) !default;
 
 $circular-size: 3rem !default;
 $circular-small-size: 1.5rem !default;
@@ -46,6 +58,152 @@ $circular-dash-styles: (
   ),
 ) !default;
 
+$linear-size: 0.25rem !default;
+$linear-transition-duration: 2.4s !default;
+$linear-short-animation-delay: 0.75s !default;
+$linear-styles: (
+  0%: (
+    left: -35%,
+    right: 100%,
+  ),
+  60%: (
+    left: 100%,
+    right: -90%,
+  ),
+  100%: (
+    left: 100%,
+    right: -90%,
+  ),
+) !default;
+$linear-short-styles: (
+  0%: (
+    left: -200%,
+    right: 100%,
+  ),
+  40%: (
+    left: 107%,
+    right: -8%,
+  ),
+  100%: (
+    left: 107%,
+    right: -8%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the transition. Each key in this
+/// map will be set immediately at the root of the `keyframes` and then each
+/// child map will be considered a map of property: value.
+/// @type Map
+$linear-reverse-styles: (
+  0%: (
+    left: 100%,
+    right: -35%,
+  ),
+  60%: (
+    left: -90%,
+    right: 100%,
+  ),
+  100%: (
+    left: -90%,
+    right: 100%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the shorter transition. Each key
+/// in this map will be set immediately at the root of the `keyframes` and then
+/// each child map will be considered a map of property: value.
+/// @type Map
+$linear-reverse-short-styles: (
+  0%: (
+    left: 100%,
+    right: -200%,
+  ),
+  40%: (
+    left: -8%,
+    right: 107%,
+  ),
+  100%: (
+    left: -8%,
+    right: 107%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the vertical transition. Each
+/// key in this map will be set immediately at the root of the `keyframes` and
+/// then each child map will be considered a map of property: value.
+/// @type Map
+$linear-vertical-styles: (
+  0%: (
+    bottom: -35%,
+    top: 100%,
+  ),
+  60%: (
+    bottom: 100%,
+    top: -90%,
+  ),
+  100%: (
+    bottom: 100%,
+    top: -90%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the shorter vertical transition.
+/// Each key in this map will be set immediately at the root of the `keyframes`
+/// and then each child map will be considered a map of property: value.
+/// @type Map
+$linear-vertical-short-styles: (
+  0%: (
+    bottom: -200%,
+    top: 100%,
+  ),
+  40%: (
+    bottom: 107%,
+    top: -8%,
+  ),
+  100%: (
+    bottom: 107%,
+    top: -8%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the vertical transition. Each
+/// key in this map will be set immediately at the root of the `keyframes` and
+/// then each child map will be considered a map of property: value.
+/// @type Map
+$linear-vertical-reverse-styles: (
+  0%: (
+    bottom: 100%,
+    top: -35%,
+  ),
+  60%: (
+    bottom: -90%,
+    top: 100%,
+  ),
+  100%: (
+    bottom: -90%,
+    top: 100%,
+  ),
+) !default;
+
+/// The linear progress bar styles to apply for the shorter vertical transition.
+/// Each key in this map will be set immediately at the root of the `keyframes`
+/// and then each child map will be considered a map of property: value.
+/// @type Map
+$linear-vertical-reverse-short-styles: (
+  0%: (
+    bottom: 100%,
+    top: -200%,
+  ),
+  40%: (
+    bottom: -8%,
+    top: 107%,
+  ),
+  100%: (
+    bottom: -8%,
+    top: 107%,
+  ),
+) !default;
+
 @mixin _animation($styles) {
   @if $styles != null {
     @each $percentage, $style in $styles {
@@ -56,42 +214,44 @@ $circular-dash-styles: (
   }
 }
 
-@mixin styles {
-  @if not $disable-circular {
-    .rmd-circular-progress {
-      // add border radius and overflow-hidden so that different stroke-widths
-      // are still circular. For some reason it isn't always the case.
-      align-items: center;
-      border-radius: 50%;
-      display: inline-flex;
-      height: var($circular-size-var, $circular-size);
-      justify-content: center;
-      overflow: hidden;
-      width: var($circular-size-var, $circular-size);
+@mixin _circular-progress {
+  .rmd-circular-progress {
+    // add border radius and overflow-hidden so that different stroke-widths
+    // are still circular. For some reason it isn't always the case.
+    align-items: center;
+    border-radius: 50%;
+    display: inline-flex;
+    height: var($circular-size-var, $circular-size);
+    justify-content: center;
+    overflow: hidden;
+    width: var($circular-size-var, $circular-size);
 
-      @if not $disable-circular-centered-styles {
-        &--centered {
-          display: flex;
-          margin: 0 auto;
-        }
+    @if not $disable-circular-centered-styles {
+      &--centered {
+        display: flex;
+        margin: 0 auto;
       }
+    }
 
-      @if $circular-small-size != null {
-        &--small {
-          #{$circular-size-var}: $circular-small-size;
-        }
+    @if $circular-small-size != null {
+      &--small {
+        #{$circular-size-var}: $circular-small-size;
       }
+    }
 
-      &__svg {
-        height: inherit;
-        width: inherit;
+    &__svg {
+      height: inherit;
+      width: inherit;
 
+      @if not $disable-determinate {
         &--animate {
           transition: transform
             $circular-transition-duration
             core.$linear-timing-function;
         }
+      }
 
+      @if not $disable-indeterminate {
         &--indeterminate {
           animation: rmd-progress-rotate
             $circular-indeterminate-transition-duration
@@ -99,20 +259,24 @@ $circular-dash-styles: (
             infinite;
         }
       }
+    }
 
-      &__circle {
-        fill: none;
-        stroke: var($color-var, $color);
-        stroke-width: var($circular-stroke-width-var, $circular-stroke-width);
-        stroke-dasharray: $circular-dasharray;
-        stroke-linecap: round;
+    &__circle {
+      fill: none;
+      stroke: var($color-var, $color);
+      stroke-width: var($circular-stroke-width-var, $circular-stroke-width);
+      stroke-dasharray: $circular-dasharray;
+      stroke-linecap: round;
 
+      @if not $disable-determinate {
         &--animate {
           transition: stroke-dasharray
             $circular-transition-duration
             core.$linear-timing-function;
         }
+      }
 
+      @if not $disable-indeterminate {
         &--indeterminate {
           animation: rmd-circular-progress-size
             $circular-indeterminate-transition-duration
@@ -121,13 +285,219 @@ $circular-dash-styles: (
         }
       }
     }
+  }
 
-    @keyframes rmd-progress-rotate {
-      @include _animation($circular-rotate-styles);
+  @keyframes rmd-progress-rotate {
+    @include _animation($circular-rotate-styles);
+  }
+
+  @keyframes rmd-circular-progress-size {
+    @include _animation($circular-dash-styles);
+  }
+}
+
+@mixin _linear-progress-bar {
+  @if not $disable-linear-horizontal {
+    &--horizontal {
+      @include core.auto-rtl(left, 0);
     }
 
-    @keyframes rmd-circular-progress-size {
-      @include _animation($circular-dash-styles);
+    @if not $disable-linear-reverse {
+      &--horizontal-reverse {
+        @include core.auto-rtl-group(
+          (
+            left: auto,
+            right: 0,
+          )
+        );
+      }
     }
+  }
+
+  @if not $disable-linear-vertical {
+    &--vertical {
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    @if not $disable-linear-reverse {
+      &--vertical-reverse {
+        bottom: auto;
+        top: 0;
+      }
+    }
+  }
+
+  &--animate {
+    transition-duration: core.$linear-duration;
+    transition-property: height, width;
+    transition-timing-function: core.$sharp-timing-function;
+  }
+
+  @if not $disable-determinate {
+    &--determinate {
+      background-color: var($color-var, $color);
+      height: var($linear-size-var, $linear-size);
+      position: absolute;
+      z-index: 0;
+    }
+  }
+
+  @if not $disable-indeterminate {
+    &--indeterminate {
+      &::before,
+      &::after {
+        @include core.auto-rtl-group(
+          (
+            left: 0,
+            right: 100%,
+          )
+        );
+
+        animation-duration: $linear-transition-duration;
+        animation-iteration-count: infinite;
+        animation-timing-function: core.$linear-timing-function;
+        background-color: var($color-var, $color);
+        content: "";
+        height: var($linear-size-var, $linear-size);
+        position: absolute;
+        will-change: left, right;
+        z-index: 0;
+      }
+
+      @if not $disable-linear-horizontal {
+        &::before {
+          animation-name: rmd-progress-bar;
+        }
+
+        &::after {
+          animation-delay: $linear-short-animation-delay;
+          animation-name: rmd-progress-bar-short;
+        }
+      }
+    }
+
+    @if not $disable-linear-reverse {
+      &--indeterminate-reverse {
+        &::before {
+          animation-name: rmd-progress-bar-reverse;
+        }
+
+        &::after {
+          animation-name: rmd-progress-bar-reverse-short;
+        }
+      }
+    }
+
+    @if not $disable-linear-vertical {
+      &--indeterminate-vertical {
+        &::before,
+        &::after {
+          height: auto;
+          left: 0;
+          right: 0;
+          width: var($linear-size-var, $linear-size);
+        }
+
+        &::before {
+          animation-name: rmd-progress-bar-vertical;
+        }
+
+        &::after {
+          animation-name: rmd-progress-bar-vertical-short;
+        }
+      }
+
+      @if not $disable-linear-reverse {
+        &--indeterminate-vertical-reverse {
+          &::before {
+            animation-name: rmd-progress-bar-vertical-reverse;
+          }
+
+          &::after {
+            animation-name: rmd-progress-bar-vertical-reverse-short;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin _linear-progress {
+  .rmd-linear-progress {
+    background-color: var($background-color-var, $background-color);
+    display: block;
+    overflow: hidden;
+    position: relative;
+
+    @if not $disable-linear-horizontal {
+      &--horizontal {
+        height: var($linear-size-var, $linear-size);
+        width: 100%;
+      }
+    }
+
+    @if not $disable-linear-vertical {
+      &--vertical {
+        display: inline-block;
+        height: auto;
+        width: var($linear-size-var, $linear-size);
+      }
+    }
+
+    &__bar {
+      @include _linear-progress-bar;
+    }
+  }
+
+  @if not $disable-linear-horizontal {
+    @keyframes rmd-progress-bar {
+      @include _animation($linear-styles);
+    }
+
+    @keyframes rmd-progress-bar-short {
+      @include _animation($linear-short-styles);
+    }
+
+    @if not $disable-linear-reverse {
+      @keyframes rmd-progress-bar-reverse {
+        @include _animation($linear-reverse-styles);
+      }
+
+      @keyframes rmd-progress-bar-reverse-short {
+        @include _animation($linear-reverse-short-styles);
+      }
+    }
+  }
+
+  @if not $disable-linear-vertical {
+    @keyframes rmd-progress-bar-vertical {
+      @include _animation($linear-vertical-styles);
+    }
+
+    @keyframes rmd-progress-bar-vertical-short {
+      @include _animation($linear-vertical-short-styles);
+    }
+
+    @if not $disable-linear-reverse {
+      @keyframes rmd-progress-bar-vertical-reverse {
+        @include _animation($linear-vertical-reverse-styles);
+      }
+
+      @keyframes rmd-progress-bar-vertical-reverse-short {
+        @include _animation($linear-vertical-reverse-short-styles);
+      }
+    }
+  }
+}
+
+@mixin styles {
+  @if not $disable-circular {
+    @include _circular-progress;
+  }
+
+  @if not $disable-linear {
+    @include _linear-progress;
   }
 }

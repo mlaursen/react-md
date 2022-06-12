@@ -1,7 +1,7 @@
 import type { ElementType, HTMLAttributes, Ref } from "react";
 import { forwardRef } from "react";
-import type { AppBarClassNameOptions } from "./getAppBarClassName";
-import { getAppBarClassName } from "./getAppBarClassName";
+import type { AppBarClassNameOptions } from "./styles";
+import { getAppBarClassName } from "./styles";
 
 export type CustomAppBarComponent = ElementType<
   HTMLAttributes<HTMLDivElement> & {

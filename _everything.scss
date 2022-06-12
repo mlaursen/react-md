@@ -1,18 +1,8 @@
-@forward "./packages/core/src/core" with (
+@use "colors";
+
+@forward "react-md" with (
   $color-scheme: system,
-  // $color-scheme: light,
-  // $color-scheme: dark,
-  $interaction-mode: ripple,
-  // $interaction-mode: press,
-  // $interaction-mode: both,
-  // $disable-higher-contrast-interactions: true
-  $disable-higher-contrast-interactions: false
+  $primary-color: colors.$teal-500,
+  $secondary-color: colors.$pink-a-200,
+  $icon-disable-font: true
 );
-@forward "./packages/icon/src/icon" as icon-* with (
-  $disable-font-icons: true
-);
-@forward "./packages/progress/src/progress" as progress-*;
-@forward "./packages/button/src/button" as button-*;
-@forward "./packages/app-bar/src/app-bar" as app-bar-*;
-@forward "./packages/dialog/src/index";
-@forward "./packages/link/src/link" as link-*;

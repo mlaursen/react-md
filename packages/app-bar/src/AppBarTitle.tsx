@@ -1,8 +1,8 @@
 import { Typography } from "@react-md/core";
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { AppBarTitleClassNameOptions } from "./getAppBarClassName";
-import { getAppBarTitleClassName } from "./getAppBarClassName";
+import type { AppBarTitleClassNameOptions } from "./styles";
+import { getAppBarTitleClassName } from "./styles";
 
 export interface AppBarTitleProps
   extends HTMLAttributes<HTMLHeadingElement>,
@@ -11,8 +11,8 @@ export interface AppBarTitleProps
 export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
   function AppBarTitle(props, ref) {
     const {
-      keyline = false,
       noWrap = false,
+      keyline = "small",
       children,
       className,
       ...remaining
@@ -23,9 +23,9 @@ export const AppBarTitle = forwardRef<HTMLHeadingElement, AppBarTitleProps>(
         {...remaining}
         type="headline-6"
         className={getAppBarTitleClassName({
-          className,
-          keyline,
           noWrap,
+          keyline,
+          className,
         })}
       >
         {children}

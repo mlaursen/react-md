@@ -1,10 +1,10 @@
 import { useIsomorphicLayoutEffect } from "@react-md/core";
 import type { ReactNode } from "react";
 import { forwardRef, useRef } from "react";
-import type { SKipToMainLinkClassNameOptions } from "./getLinkClassName";
-import { getSkipToMainLinkClassName } from "./getLinkClassName";
 import type { LinkProps } from "./Link";
 import { Link } from "./Link";
+import type { SKipToMainLinkClassNameOptions } from "./styles";
+import { getSkipToMainLinkClassName } from "./styles";
 
 const noop = (): void => {
   // do nothing

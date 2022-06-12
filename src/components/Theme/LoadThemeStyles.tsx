@@ -15,7 +15,7 @@ export function LoadThemeStyles(): ReactElement | null {
         colorSchemeMode === "light" && <LightTheme />}
       {colorSchemeMode !== defaultColorSchemeMode &&
         colorSchemeMode === "dark" && <DarkTheme />}
-      {colorSchemeMode !== defaultColorSchemeMode &&
+      {colorSchemeMode === defaultColorSchemeMode &&
         colorSchemeMode === "system" && <SystemTheme />}
     </>
   );

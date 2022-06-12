@@ -1,0 +1,82 @@
+@use "@react-md/core";
+
+$disable-vertical: false !default;
+$disable-inset: false !default;
+
+$size-var: --rmd-divider-size;
+$color-var: --rmd-divider-color;
+$spacing-var: --rmd-divider-spacing;
+$inset-var: --rmd-divider-inset;
+$width-var: --rmd-divider-width;
+$max-size-var: --rmd-divider-max-size;
+
+$size: 0.0625rem !default;
+$max-size: 100% !default;
+$inset: 4rem !default;
+$spacing: 0.25rem auto !default;
+$vertical-spacing: auto 0.25rem !default;
+
+$light-theme-color: rgba(#000, 0.12) !default;
+$dark-theme-color: rgba(#fff, 0.12) !default;
+
+$color: if(
+  core.$color-scheme == dark,
+  $dark-theme-color,
+  $light-theme-color
+) !default;
+
+@mixin use-light-theme {
+  #{$color-var}: $light-theme-color;
+}
+
+@mixin use-dark-theme {
+  #{$color-var}: $dark-theme-color;
+}
+
+@mixin style($position) {
+  $property: "border-#{$position}";
+
+  #{$property}: var($size-var, $size) inset var($color-var, $color);
+}
+
+@mixin styles {
+  .rmd-divider {
+    @include style(bottom);
+
+    display: block;
+    flex-shrink: 0;
+    margin: var($spacing-var, $spacing);
+    width: var($width-var, $max-size);
+
+    @if not $disable-inset {
+      &--inset {
+        @include core.rtl {
+          margin-left: auto;
+          margin-right: var($inset-var, $inset);
+        }
+
+        margin-left: var($inset-var, $inset);
+        width: calc(var($max-size-var, $max-size) - var($inset-var, $inset));
+      }
+    }
+
+    @if not $disable-vertical {
+      &--vertical {
+        @include style(left);
+
+        border-bottom: 0;
+        display: inline-block;
+        height: var($max-size-var, $max-size);
+        width: var($size-var, $size);
+      }
+    }
+  }
+
+  @if not core.$disable-default-system-theme and core.$color-scheme == system {
+    @media (prefers-color-scheme: dark) {
+      :root {
+        @include use-dark-theme;
+      }
+    }
+  }
+}

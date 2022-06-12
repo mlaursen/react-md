@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { LinkClassNameOptions } from "./getLinkClassName";
-import { getLinkClassName } from "./getLinkClassName";
+import type { LinkClassNameOptions } from "./styles";
+import { getLinkClassName } from "./styles";
 
 /**
  * @remarks \@since 6.0.0 Removed the `preventMaliciousTarget` prop since

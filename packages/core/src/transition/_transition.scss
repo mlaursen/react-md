@@ -1,12 +1,13 @@
-$exclude-collapse-transition: false !default;
-$exclude-cross-fade-transition: false !default;
-$exclude-scale-transition: false !default;
-$exclude-scale-y-transition: $exclude-scale-transition !default;
+$disable-collapse-transition: false !default;
+$disable-cross-fade-transition: false !default;
+$disable-scale-transition: false !default;
+$disable-scale-y-transition: $disable-scale-transition !default;
 
 $linear-duration: 0.15s !default;
 $enter-duration: 0.2s !default;
 $leave-duration: 0.15s !default;
 
+$sharp-timing-function: cubic-bezier(0.4, 0, 0.6, 1) !default;
 $linear-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
 $acceleration-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
 $deceleration-timing-function: cubic-bezier(0, 0, 0.2, 1) !default;
@@ -108,19 +109,19 @@ $scale-y-transition-leave-duration: $leave-duration !default;
 }
 
 @mixin transition {
-  @if not $exclude-collapse-transition {
+  @if not $disable-collapse-transition {
     @include collapse-transition;
   }
 
-  @if not $exclude-cross-fade-transition {
+  @if not $disable-cross-fade-transition {
     @include cross-fade-transition;
   }
 
-  @if not $exclude-scale-transition or not $exclude-scale-y-transition {
+  @if not $disable-scale-transition or not $disable-scale-y-transition {
     @include scale-transition;
   }
 
-  @if not $exclude-scale-y-transition {
+  @if not $disable-scale-y-transition {
     @include scale-y-transition;
   }
 }

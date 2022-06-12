@@ -5,8 +5,8 @@ import {
 } from "@react-md/core";
 import type { ButtonHTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { ButtonClassNameThemeOptions } from "./getButtonClassName";
-import { getButtonClassName } from "./getButtonClassName";
+import type { ButtonClassNameThemeOptions } from "./styles";
+import { getButtonClassName } from "./styles";
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,

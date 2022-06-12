@@ -110,8 +110,8 @@ const styles = bem("rmd-circular-progress");
 export const CircularProgress = forwardRef<
   HTMLSpanElement,
   CircularProgressProps
->(function CircularProgress(
-  {
+>(function CircularProgress(props, ref) {
+  const {
     id: propId,
     className,
     svgStyle: propSvgStyle,
@@ -129,10 +129,9 @@ export const CircularProgress = forwardRef<
     disableCentered = false,
     determinateRotateDegrees = 630,
     small = false,
-    ...props
-  },
-  ref
-) {
+    ...remaining
+  } = props;
+
   const id = useEnsuredId(propId, "circular-progress");
   let progress: number | undefined;
   if (typeof value === "number") {
@@ -172,7 +171,7 @@ export const CircularProgress = forwardRef<
   const indeterminate = !determinate;
   return (
     <span
-      {...props}
+      {...remaining}
       id={id}
       ref={ref}
       role="progressbar"

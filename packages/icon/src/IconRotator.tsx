@@ -2,8 +2,8 @@ import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
 import { Children, cloneElement, forwardRef, isValidElement } from "react";
 import { cnb } from "cnbuilder";
 import type { ClassNameCloneableChild } from "@react-md/core";
-import type { IconRotatorClassNameOptions } from "./getIconRotatorClassName";
-import { getIconRotatorClassName } from "./getIconRotatorClassName";
+import type { IconRotatorClassNameOptions } from "./styles";
+import { getIconRotatorClassName } from "./styles";
 
 /**
  * @remarks \@since 6.0.0 Removed `animate` prop and added `disableTransition`
@@ -41,18 +41,17 @@ export interface IconRotatorProps extends IconRotatorBaseProps {
  * one degrees to another.
  */
 export const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
-  function IconRotator(
-    {
+  function IconRotator(props, ref) {
+    const {
       style,
       className: propClassName,
       rotated,
       children,
       forceIconWrap = false,
       disableTransition = false,
-      ...props
-    },
-    ref
-  ) {
+      ...remaining
+    } = props;
+
     const className = getIconRotatorClassName({
       rotated,
       className: propClassName,
@@ -66,7 +65,7 @@ export const IconRotator = forwardRef<HTMLSpanElement, IconRotatorProps>(
     }
 
     return (
-      <span {...props} style={style} className={className} ref={ref}>
+      <span {...remaining} style={style} className={className} ref={ref}>
         {children}
       </span>
     );

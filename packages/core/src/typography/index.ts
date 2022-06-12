@@ -1,5 +1,4 @@
-export * from "./getTextContainerClassName";
-export * from "./getTypographyClassName";
+export * from "./styles";
 export * from "./TextContainer";
 export * from "./Typography";
 export * from "./WritingDirection";

@@ -1,7 +1,10 @@
 @use "sass:string";
+@use "sass:map";
+@use "sass:meta";
 @use "sass:list";
 
 $disable-rtl: false !default;
+$disable-validation: false !default;
 $scrollbar-size-var: --rmd-scrollbar-size;
 
 $_swappable-positions: top right bottom left;
@@ -29,6 +32,27 @@ $_swappable-position-prefixes: border margin padding;
   }
 
   @return $string;
+}
+
+@function validate($list-or-map, $key-or-value, $error-message) {
+  $type: meta.type-of($list-or-map);
+  $is-map: $type == map;
+  $is-list: $type == list;
+
+  @if $disable-validation {
+    @return if($is-list, $key-or-value, map-get($list-or-map, $key-or-value));
+  }
+
+  @if not $is-map and not $is-list {
+    @error 'Unable to validate anything except for lists and maps at this time. Received: #{$list-or-map}.';
+  }
+
+  $choices: if($is-map, map.keys($list-or-map), $list-or-map);
+  @if not index($choices, $key-or-value) {
+    @error "Invalid #{$error-message}: '#{$key-or-value}'. Choose one of: #{$choices}";
+  }
+
+  @return if($is-list, $key-or-value, map-get($list-or-map, $key-or-value));
 }
 
 @mixin map-to-styles($map) {
@@ -136,6 +160,26 @@ $_swappable-position-prefixes: border margin padding;
   }
 
   @return "#{$prefix}#{$next-position}";
+}
+
+@mixin auto-rtl-group($styles, $swapped-styles: ()) {
+  @include map-to-styles($styles);
+  @include rtl {
+    @each $property, $value in $styles {
+      $inversed-property: _swap-position($property);
+      $inversed-value: auto;
+      @if map.has-key($swapped-styles, $property) {
+        $inversed-value: map.get($swapped-styles, $property);
+      } @else if map.has-key($styles, $inversed-property) {
+        $inversed-value: map.get($swapped-styles, $inversed-property);
+      }
+
+      #{$property}: #{$inversed-value};
+      #{$inversed-property}: #{$value};
+
+      @content;
+    }
+  }
 }
 
 @mixin auto-rtl($property, $value, $swapped-value: null) {

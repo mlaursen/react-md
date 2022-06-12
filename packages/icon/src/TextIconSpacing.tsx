@@ -134,19 +134,21 @@ export interface TextIconSpacingProps {
  *
  * @example
  */
-export function TextIconSpacing({
-  className,
-  icon: propIcon,
-  children = null,
-  stacked = false,
-  iconAfter = false,
-  flexReverse = false,
-  forceIconWrap = false,
-  beforeClassName = "rmd-icon--before",
-  afterClassName = "rmd-icon--after",
-  aboveClassName = "rmd-icon--above",
-  belowClassName = "rmd-icon--below",
-}: TextIconSpacingProps): ReactElement {
+export function TextIconSpacing(props: TextIconSpacingProps): ReactElement {
+  const {
+    className,
+    icon: propIcon,
+    children = null,
+    stacked = false,
+    iconAfter = false,
+    flexReverse = false,
+    forceIconWrap = false,
+    beforeClassName = "rmd-icon--before",
+    afterClassName = "rmd-icon--after",
+    aboveClassName = "rmd-icon--above",
+    belowClassName = "rmd-icon--below",
+  } = props;
+
   if (!propIcon) {
     return <>{children}</>;
   }

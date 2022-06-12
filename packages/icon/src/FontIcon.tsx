@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import type { FontIconClassNameOptions } from "./getIconClassName";
-import { getIconClassName } from "./getIconClassName";
+import type { FontIconClassNameOptions } from "./styles";
+import { getIconClassName } from "./styles";
 
 export interface FontIconProps
   extends HTMLAttributes<HTMLElement>,
@@ -23,8 +23,8 @@ export interface FontIconProps
  * `forceSize` and `forceFontSize` props to fix the sizing issues.
  */
 export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
-  function FontIcon(
-    {
+  function FontIcon(props, ref) {
+    const {
       className,
       children,
       "aria-hidden": ariaHidden = true,
@@ -32,13 +32,12 @@ export const FontIcon = forwardRef<HTMLElement, FontIconProps>(
       iconClassName = "material-icons",
       forceSize = false,
       forceFontSize = false,
-      ...props
-    },
-    ref
-  ) {
+      ...remaining
+    } = props;
+
     return (
       <i
-        {...props}
+        {...remaining}
         aria-hidden={ariaHidden}
         ref={ref}
         className={getIconClassName({

@@ -1,19 +1,21 @@
 @use "everything";
 
-@if everything.$color-scheme == light {
-  @media (prefers-color-scheme: dark) {
-    .container {
-      @include everything.use-dark-theme;
-      @include everything.icon-use-dark-theme;
-      @include everything.app-bar-use-dark-theme;
-    }
-  }
-} @else {
+@if everything.$color-scheme == dark {
   @media (prefers-color-scheme: light) {
     .container {
       @include everything.use-light-theme;
       @include everything.icon-use-light-theme;
       @include everything.app-bar-use-light-theme;
+      @include everything.divider-use-light-theme;
+    }
+  }
+} @else {
+  @media (prefers-color-scheme: dark) {
+    .container {
+      @include everything.use-dark-theme;
+      @include everything.icon-use-dark-theme;
+      @include everything.app-bar-use-dark-theme;
+      @include everything.divider-use-dark-theme;
     }
   }
 }

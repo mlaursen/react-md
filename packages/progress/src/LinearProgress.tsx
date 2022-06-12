@@ -53,8 +53,8 @@ export interface LinearProgressProps
 const styles = bem("rmd-linear-progress");
 
 export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
-  function LinearProgress(
-    {
+  function LinearProgress(props, ref) {
+    const {
       id: propId,
       style: propStyle,
       className,
@@ -67,10 +67,9 @@ export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
       disableTransition = false,
       vertical = false,
       verticalHeight = 240,
-      ...props
-    },
-    ref
-  ) {
+      ...remaining
+    } = props;
+
     const id = useEnsuredId(propId, "linear-progress");
     const style = useMemo(() => {
       if (!vertical || verticalHeight === null) {
@@ -103,7 +102,7 @@ export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
     const indeterminate = !determinate;
     return (
       <span
-        {...props}
+        {...remaining}
         id={id}
         ref={ref}
         style={style}
@@ -114,6 +113,7 @@ export const LinearProgress = forwardRef<HTMLSpanElement, LinearProgressProps>(
         className={cnb(
           styles({
             vertical,
+            horizontal: !vertical,
             determinate,
             indeterminate,
           }),

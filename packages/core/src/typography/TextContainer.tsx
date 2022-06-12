@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { forwardRef } from "react";
-import type { TextContainerClassNameOptions } from "./getTextContainerClassName";
-import { getTextContainerClassName } from "./getTextContainerClassName";
+import type { TextContainerClassNameOptions } from "./styles";
+import { getTextContainerClassName } from "./styles";
 
 export interface TextContainerProps
   extends HTMLAttributes<HTMLDivElement>,

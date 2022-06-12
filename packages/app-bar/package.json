@@ -7,6 +7,9 @@
   "main": "./cjs/index.cjs",
   "module": "./mjs/index.mjs",
   "types": "./types/index.d.ts",
+  "sideEffects": [
+    "dist/**/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git",

@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { forwardRef } from "react";
-import type { SVGIconClassNameOptions } from "./getIconClassName";
-import { getIconClassName } from "./getIconClassName";
+import type { SVGIconClassNameOptions } from "./styles";
+import { getIconClassName } from "./styles";
 
 export interface SVGIconProps
   extends HTMLAttributes<SVGSVGElement>,
@@ -77,7 +77,10 @@ export interface SVGIconProps
  * sprite map as an icon.
  */
 export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
-  {
+  props,
+  ref
+) {
+  const {
     "aria-hidden": ariaHidden = true,
     focusable = "false",
     use,
@@ -86,10 +89,9 @@ export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
     dense = false,
     className,
     children: propChildren,
-    ...props
-  },
-  ref
-) {
+    ...remaining
+  } = props;
+
   let children = propChildren;
   if (!children && use) {
     children = <use xlinkHref={use} />;
@@ -97,7 +99,7 @@ export const SVGIcon = forwardRef<SVGSVGElement, SVGIconProps>(function SVGIcon(
 
   return (
     <svg
-      {...props}
+      {...remaining}
       aria-hidden={ariaHidden}
       ref={ref}
       className={getIconClassName({

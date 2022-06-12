@@ -85,7 +85,9 @@ export interface ButtonClassNameOptions extends ButtonClassNameThemeOptions {
  * @returns a string of class names to create an element with a button theme.
  * @remarks \@since 6.0.0 This used to be called `buttonThemeClassNames`.
  */
-export function getButtonClassName(options: ButtonClassNameOptions): string {
+export function getButtonClassName(
+  options: ButtonClassNameOptions = {}
+): string {
   const {
     theme: propTheme = "clear",
     themeType = "flat",

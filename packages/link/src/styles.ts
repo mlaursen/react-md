@@ -33,7 +33,7 @@ export interface SKipToMainLinkClassNameOptions {
  * @remarks \@since 6.0.0
  */
 export function getSkipToMainLinkClassName(
-  options: SKipToMainLinkClassNameOptions
+  options: SKipToMainLinkClassNameOptions = {}
 ): string {
   const { unstyled = false, className } = options;
 

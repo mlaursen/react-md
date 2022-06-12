@@ -34,3 +34,16 @@
   );
   width: calc(100% + var(everything.$scrollbar-size-var, 0px));
 }
+
+.links {
+  @include everything.auto-rtl(padding-right, 0.5rem);
+  #{everything.$divider-color-var}: var(everything.$on-primary-color-var);
+  #{everything.$divider-size-var}: 0.125rem;
+  #{everything.$divider-max-size-var}: 1.5em;
+
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  overflow: auto;
+  white-space: nowrap;
+}

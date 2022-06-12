@@ -46,7 +46,9 @@ export interface AppBarClassNameOptions {
   height?: AppBarHeight;
 }
 
-export function getAppBarClassName(options: AppBarClassNameOptions): string {
+export function getAppBarClassName(
+  options: AppBarClassNameOptions = {}
+): string {
   const {
     className,
     height = "normal",
@@ -69,12 +71,15 @@ export function getAppBarClassName(options: AppBarClassNameOptions): string {
 
 export interface AppBarTitleClassNameOptions {
   className?: string;
+  /**
+   * @defaultValue `"small"`
+   */
   keyline?: "small" | "nav" | "title";
   noWrap?: boolean;
 }
 
 export function getAppBarTitleClassName(
-  options: AppBarTitleClassNameOptions
+  options: AppBarTitleClassNameOptions = {}
 ): string {
   const { className, keyline = "small", noWrap = false } = options;
   return cnb(

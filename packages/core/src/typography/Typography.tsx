@@ -1,10 +1,7 @@
 import type { ElementType, HTMLAttributes, ReactElement } from "react";
 import { forwardRef } from "react";
-import type {
-  TypographyClassNameOptions,
-  TypographyType,
-} from "./getTypographyClassName";
-import { getTypographyClassName } from "./getTypographyClassName";
+import type { TypographyClassNameOptions, TypographyType } from "./styles";
+import { getTypographyClassName } from "./styles";
 
 /**
  * A union of the default supported elements that the `Typography` component can

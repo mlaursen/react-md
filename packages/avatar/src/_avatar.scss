@@ -1,0 +1,94 @@
+@use "sass:map";
+@use "@react-md/core";
+@use "@react-md/icon";
+
+$disable-icon: false !default;
+$disable-image: false !default;
+
+$color-var: --rmd-avatar-color;
+$background-color-var: --rmd-avatar-background-color;
+$border-color-var: --rmd-avatar-border-color;
+$border-radius-var: --rmd-avatar-border-radius;
+$size-var: --rmd-avatar-size;
+$font-size-var: --rmd-avatar-font-size;
+
+$color: core.$grey-100 !default;
+$background-color: core.$grey-700 !default;
+$line-height: map.get(core.$subtitle-1-styles, line-height) !default;
+$border-radius: 50% !default;
+$size: 2.5rem !default;
+$font-size: 1.5rem !default;
+
+$colors: (
+  red: core.$red-a-700 core.$red-50,
+  pink: core.$pink-600 core.$white-base,
+  purple: core.$purple-700 core.$purple-100,
+  deep-purple: core.$deep-purple-900 core.$deep-purple-100,
+  indigo: core.$indigo-600 core.$indigo-100,
+  blue: core.$blue-a-700 core.$white-base,
+  light-blue: core.$light-blue-300 core.$deep-purple-900,
+  cyan: core.$cyan-400 core.$teal-900,
+  teal: core.$teal-a-400 core.$teal-900,
+  green: core.$green-800 core.$green-50,
+  light-green: core.$light-green-300 core.$green-900,
+  lime: core.$lime-400 core.$teal-800,
+  yellow: core.$yellow-a-200 core.$brown-500,
+  amber: core.$amber-400 core.$brown-800,
+  orange: core.$orange-600 core.$grey-900,
+  deep-orange: core.$deep-orange-a-400 core.$grey-900,
+  brown: core.$brown-500 core.$brown-50,
+  grey: core.$grey-700 core.$grey-100,
+  blue-grey: core.$blue-grey-700 core.$blue-grey-50,
+) !default;
+
+@mixin custom-color($name, $color, $background-color, $disable-prefix: false) {
+  $class-name: if($disable-prefix, $name, ".rmd-avatar--#{$name}");
+
+  #{$class-name} {
+    #{$background-color-var}: $background-color;
+    #{$color-var}: $color;
+  }
+}
+
+@mixin styles {
+  .rmd-avatar {
+    @if not $disable-icon {
+      #{icon.$color-var}: currentColor;
+    }
+    @include core.map-to-styles(core.$base-font-styles);
+
+    align-items: center;
+    background-color: var($background-color-var, $background-color);
+    border: 1px solid var($border-color-var, transparent);
+    border-radius: var($border-radius-var, $border-radius);
+    color: var($color-var, $color);
+    display: inline-flex;
+    flex-shrink: 0;
+    font-size: var($font-size-var, $font-size);
+    height: var($size-var, $size);
+    justify-content: center;
+    line-height: $line-height;
+    overflow: hidden;
+    width: var($size-var, $size);
+
+    @if not $disable-image {
+      &__image {
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    @each $name, $values in $colors {
+      @if length($values) != 2 {
+        @error 'Unable to create an avatar color because the list of values is not of length 2. The first value should be the background-color and the second should be the text color. "#{$values}"';
+      }
+
+      @include custom-color(
+        "&--#{$name}",
+        nth($values, 2),
+        nth($values, 1),
+        true
+      );
+    }
+  }
+}
