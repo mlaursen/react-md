@@ -1,4 +1,4 @@
-.admin {
+.App .admin {
   display: flex;
   align-items: center;
   align-content: center;
@@ -9,9 +9,11 @@
   }
 
   section.main {
-    background-color: #fcfcfc;
-    background-image: none;
-    width: 100%;
+    width: calc(70% - 40px);
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: calc(100vh - 100px);
+    padding: 20px;
   }
 }
 

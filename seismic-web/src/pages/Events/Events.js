@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import EventCard from '../../components/EventCard';
 
 import { experimentalStyled as styled } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
@@ -24,18 +25,20 @@ function Events(props) {
 
   return (
     <div className="events">
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 1, sm: 2, md: 12 }}
-      >
-        {campaigns &&
-          campaigns.map((campaign) => (
-            <Grid item xs={1} sm={2} md={4} key={campaign.id}>
-              <EventCard campaign={campaign} />
-            </Grid>
-          ))}
-      </Grid>
+      <Container maxWidth="lg">
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 1, sm: 2, md: 12 }}
+        >
+          {campaigns &&
+            campaigns.map((campaign) => (
+              <Grid item xs={1} sm={2} md={4} key={campaign.id}>
+                <EventCard campaign={campaign} />
+              </Grid>
+            ))}
+        </Grid>
+      </Container>
     </div>
   );
 }

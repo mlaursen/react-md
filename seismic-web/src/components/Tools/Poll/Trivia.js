@@ -18,7 +18,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-function PollCreate(props) {
+function Trivia(props) {
   const { user } = props;
 
   const pollsRef = db.collection('polls');
@@ -122,9 +122,9 @@ function PollCreate(props) {
                   color="text.secondary"
                   key="poll-card"
                 >
-                  Poll your audience all in real-time! Give your community a way
-                  to score high on the leaderboard all while you gain valuable
-                  insights.
+                  Play trivia with your audience in real-time! The audience can
+                  score points for each right answer and score high on the
+                  leaderboard.
                 </Typography>,
               ]
             : [
@@ -256,4 +256,4 @@ function PollCreate(props) {
   );
 }
 
-export default PollCreate;
+export default Trivia;

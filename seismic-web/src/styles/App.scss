@@ -17,7 +17,11 @@
   section {
     justify-content: center;
     min-height: 90vh;
-    background-color: #e7ebf2;
+    //background-color: #e7ebf2;
+    //background-image: linear-gradient(-20deg, #a8edea 0%, #fed6e3 100%);
+    // background-image: linear-gradient(-20deg, #b6efe5 0%, #8ddad5 100%);
+    // background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+    // background: no-repeat center 100% url('https://firebasestorage.googleapis.com/v0/b/showintel-8dcf8.appspot.com/o/main-bg.jpg?alt=media&token=0709c4a8-4e69-4ae6-8fdf-9361682ece7a');
     width: 100%;
     overflow: auto;
     display: flex;
@@ -26,10 +30,14 @@
     &.main {
       width: 70%;
       display: flex;
-      background: no-repeat center 100% url('');
       background-size: cover;
       align-items: center;
       height: calc(100vh - 50px);
+      background-image: linear-gradient(
+        -90deg,
+        rgba(241, 224, 229, 1) 60%,
+        rgba(157, 193, 213, 0.5) 90%
+      );
 
       .qr-code {
         height: 150px;
@@ -82,6 +90,12 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+      //background-image: linear-gradient(-20deg, #b6efe5 0%, #8ddad5 100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(241, 224, 229, 1) 60%,
+        rgba(157, 193, 213, 0.5) 90%
+      );
     }
   }
 }

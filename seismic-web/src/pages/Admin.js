@@ -12,9 +12,11 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import Chat from '../components/Chat';
 
 // import ChatControls from '../components/Tools/Chat/ChatControls';
-import PollCreate from '../components/Tools/Poll/PollCreate';
+import Poll from '../components/Tools/Poll/Poll';
+import Trivia from '../components/Tools/Poll/Trivia';
 
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
 function Admin(props) {
   const user = props.user;
@@ -31,7 +33,18 @@ function Admin(props) {
         ? [
             <section key="isadmin">
               <section className="main">
-                <PollCreate user={user} key="poll-create" />
+                <Grid
+                  container
+                  spacing={{ xs: 2, md: 3 }}
+                  columns={{ xs: 1, sm: 2, md: 12 }}
+                >
+                  <Grid item xs={1} sm={2} md={4} key="poll">
+                    <Poll user={user} />
+                  </Grid>
+                  <Grid item xs={1} sm={2} md={4} key="trivia">
+                    <Trivia user={user} key="trivia" />
+                  </Grid>
+                </Grid>
               </section>
               {chatEnabled ? (
                 [
