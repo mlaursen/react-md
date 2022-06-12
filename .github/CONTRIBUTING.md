@@ -119,7 +119,7 @@ Next, you'll need to build the `dev-utils` package to be able to build each
 project and have some helpful utils available while developing `react-md`:
 
 ```sh
-yarn dev-utils
+yarn build-dev-utils
 yarn --force
 ```
 

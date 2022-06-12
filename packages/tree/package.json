@@ -31,6 +31,7 @@
     "@react-md/icon": "^5.1.3",
     "@react-md/list": "^5.1.3",
     "@react-md/theme": "^5.1.3",
+    "@react-md/states": "^5.1.3",
     "@react-md/transition": "^5.1.3",
     "@react-md/utils": "^5.1.3",
     "classnames": "^2.3.1"
