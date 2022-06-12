@@ -1,67 +1,66 @@
-import React, { useState, useEffect } from 'react';
+import React, { setState, useState, useEffect } from 'react';
 
 import Button from '@mui/material/Button';
 
 import cuid from 'cuid';
-// import firebaseTools from '../../../util/firebase-tools';
+
+import { db, analytics } from '../../../modules/firebase';
+import firebase from 'firebase/compat/app';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import styles from './PollCreate.css';
+
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 function PollCreate(props) {
   const user = props.useer;
 
-  const [title, setTitle] = useState('');
-  const [options, setOptions] = useState(null);
+  const pollsRef = db.collection('polls');
+  const query = pollsRef.orderBy('createdAt').limitToLast(1);
+
+  const [polls] = useCollectionData(query, { idField: 'id' });
+
+  const [currentPoll, setCurrentPoll] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [currentPollOption, setCurrentPollOption] = useState(null);
+  const [options, setOptions] = useState([]);
   const [total, setTotal] = useState(0);
-  const [showPollQuestion, setShowPollQuestion] = useState(false);
+
   const [showPollOption, setShowPollOption] = useState(false);
   const [viewable, setViewable] = useState(false);
 
   useEffect(() => {
-    loadPoll();
-  }, []);
+    loadPolls();
+  }, [polls, currentPoll]);
 
-  function loadPoll() {
-    /*
-    firebaseTools.database.ref('poll').on('value', (snapshot) => {
-      if (snapshot.val() !== null) {
-        this.setState({ viewable: snapshot.val().poll.viewable });
-      }
-    });
-    */
-    console.log('loading poll');
-  }
-
-  function pollQuestionSubmit(val) {
-    const pollTitle = val;
-
-    console.log(val);
-
-    setTitle(pollTitle);
-    setShowPollQuestion(false);
-    setShowPollOption(true);
+  function loadPolls() {
+    if (polls && polls.length > 0) {
+      setCurrentPoll(polls[0]);
+    }
   }
 
   function pollOptionSubmit(e) {
     e.preventDefault();
-    const pollOption = pollOption.value;
-    const pollOptions = options;
 
-    pollOptions.push({
-      label: pollOption,
+    let currentOptions = options;
+    currentOptions.push({
+      label: currentPollOption,
       value: 0,
     });
 
-    setOptions({ options: pollOptions });
+    setOptions(currentOptions);
+    setCurrentPollOption(null);
 
-    setTitle('');
+    console.log(options);
   }
 
   function pollSubmit(e) {
     e.preventDefault();
     let pollData = {};
 
-    setViewable(true);
+    console.log(e.target.value);
 
     const options = {
       type: 'POLL',
@@ -80,85 +79,116 @@ function PollCreate(props) {
     pollReset();
   }
 
-  function pollReset(e) {
-    e.preventDefault();
-
+  function pollReset() {
     setTitle('');
-    setOptions(null);
+    setOptions([]);
     setTotal(0);
-    setShowPollQuestion(true);
     setShowPollOption(false);
     setViewable(false);
   }
 
-  function pollStop(e) {
-    pollReset(e);
+  function pollStop() {
+    pollReset();
     setViewable(false);
     pollSubmit();
   }
 
+  function submitPollTitle(e) {
+    e.preventDefault();
+    setShowPollOption(true);
+  }
+
   return (
-    <div className={styles['poll']}>
-      <h3>{title}</h3>
-      <ol>
-        {options &&
-          options.map((vote) => {
-            return (
-              <li key={vote.label}>
-                <label className="title">{vote.label}</label>
-              </li>
-            );
-          })}
-      </ol>
+    <div className="poll">
+      {currentPoll
+        ? [
+            <div className="current-poll">
+              <h3>{currentPoll.title}</h3>
+              <ol className="listed-options" key="current-listed-options">
+                {currentPoll.options.map((option) => {
+                  return (
+                    <li key={option.label}>
+                      <label className="title">{option.label}</label>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>,
+          ]
+        : [
+            <div className="submit-poll" key="submit-poll">
+              <h3>Submit a Poll</h3>
+              <Box
+                autoComplete="off"
+                component="form"
+                onSubmit={submitPollTitle}
+                className="poll-title"
+                key="poll-title"
+              >
+                {!showPollOption
+                  ? [
+                      <TextField
+                        id="poll-title"
+                        key="poll-title-input"
+                        label="Poll Question"
+                        variant="standard"
+                        onChange={(e) => setTitle(e.target.value)}
+                      />,
+                    ]
+                  : [<h4>{title}</h4>]}
+              </Box>
 
-      {showPollQuestion && !viewable ? (
-        <form
-          id="frmPollQuestion"
-          role="form"
-          value={title}
-          onSubmit={(e) => pollQuestionSubmit(e.target.value)}
-        >
-          <input
-            type="pollQuestion"
-            className="form-control"
-            id="txtPollQuestion"
-            placeholder="Ask a Question..."
-            name="pollQuestion"
-          />
-        </form>
-      ) : null}
+              <ol className="listed-options" key="listed-options">
+                {options.map((option) => {
+                  return (
+                    <li key={option.label}>
+                      <label className="title">{option.label}</label>
+                    </li>
+                  );
+                })}
+              </ol>
 
-      {!showPollQuestion ? (
-        <form id="formPollOption" role="form" onSubmit={pollOptionSubmit}>
-          <input
-            type="pollOption"
-            className="form-control"
-            id="txtPollOption"
-            placeholder="Enter an Option"
-            name="pollOption"
-          />
-        </form>
-      ) : null}
+              {showPollOption
+                ? [
+                    <Box
+                      autoComplete="off"
+                      component="form"
+                      id="formPollOption"
+                      key="form-option"
+                      onSubmit={pollOptionSubmit}
+                    >
+                      <TextField
+                        id="txtPollOption"
+                        key="poll-option-input"
+                        label="Enter an Option"
+                        variant="standard"
+                        onChange={(e) => setCurrentPollOption(e.target.value)}
+                      />
+                    </Box>,
+                  ]
+                : null}
 
-      {!showPollQuestion || options || viewable ? (
-        <div className="button-container">
-          {showPollQuestion ? null : (
-            <Button onClick={pollReset} className="default">
-              Cancel
-            </Button>
-          )}
-          {viewable ? (
-            <Button onClick={pollStop} className="secondary">
-              Stop Poll
-            </Button>
-          ) : null}
-          {options ? (
-            <Button onClick={() => pollSubmit()} className="primary">
-              Broadcast New Poll
-            </Button>
-          ) : null}
-        </div>
-      ) : null}
+              <div className="button-container" key="button-container">
+                {title ? (
+                  <Button onClick={pollReset} className="default">
+                    Cancel
+                  </Button>
+                ) : null}
+                {options.length > 1 ? (
+                  <div>
+                    {viewable ? (
+                      <Button onClick={pollStop} className="secondary">
+                        Stop Poll
+                      </Button>
+                    ) : null}
+                    <Button onClick={(e) => pollSubmit()} className="primary">
+                      Post Poll
+                    </Button>
+                  </div>
+                ) : null}
+              </div>
+            </div>,
+          ]}
     </div>
   );
 }

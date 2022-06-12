@@ -31,11 +31,11 @@ function Admin(props) {
         ? [
             <section key="isadmin">
               <section className="main">
-                <PollCreate user={user} />
+                <PollCreate user={user} key="poll-create" />
               </section>
               {chatEnabled ? (
                 [
-                  <section className="rail">
+                  <section className="rail" key="chat-panel">
                     <Chat user={user} authenticated={auth} />
                   </section>,
                 ]
