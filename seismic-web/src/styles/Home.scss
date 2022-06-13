@@ -48,6 +48,18 @@
   }
 }
 
+@media screen and (max-width: 991px) {
+  .home {
+    .main-copy {
+      h1 {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
 // Variables
 $gravitation-constant: 6.673;
 $animation: orbit;

@@ -49,7 +49,9 @@ function Home() {
   return (
     <div className="home">
       <div className="main-copy" data-atropos-offset="0">
-        <h1>Welcome to Seismic</h1>
+        <h1>
+          <span>Welcome to </span>Seismic
+        </h1>
         <h2>We're in Beta</h2>
         <Button variant="contained" disableElevation onClick={onEmailClick}>
           Contact Us
