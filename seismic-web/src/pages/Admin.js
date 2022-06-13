@@ -16,6 +16,7 @@ import Poll from '../components/Tools/Poll/Poll';
 import Trivia from '../components/Tools/Poll/Trivia';
 
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 
 function Admin(props) {
@@ -33,18 +34,20 @@ function Admin(props) {
         ? [
             <section key="isadmin">
               <section className="main">
-                <Grid
-                  container
-                  spacing={{ xs: 2, md: 3 }}
-                  columns={{ xs: 1, sm: 2, md: 12 }}
-                >
-                  <Grid item xs={1} sm={2} md={4} key="poll">
-                    <Poll user={user} />
+                <Container maxWidth="lg">
+                  <Grid
+                    container
+                    spacing={{ xs: 2, md: 3 }}
+                    columns={{ xs: 1, sm: 2, md: 12 }}
+                  >
+                    <Grid item xs={1} sm={2} md={4} key="poll">
+                      <Poll user={user} />
+                    </Grid>
+                    <Grid item xs={1} sm={2} md={4} key="trivia">
+                      <Trivia user={user} key="trivia" />
+                    </Grid>
                   </Grid>
-                  <Grid item xs={1} sm={2} md={4} key="trivia">
-                    <Trivia user={user} key="trivia" />
-                  </Grid>
-                </Grid>
+                </Container>
               </section>
               {chatEnabled ? (
                 [
