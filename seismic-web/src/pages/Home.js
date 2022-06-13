@@ -60,7 +60,7 @@ function Home() {
           <div className="atropos-rotate">
             <div className="atropos-inner">
               <div className="container">
-                <div className="planet">
+                <div className="planet" data-atropos-offset="-5">
                   <div className="orbit">
                     <div className="moon"></div>
                   </div>
