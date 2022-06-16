@@ -1,3 +1,15 @@
+Title: react-md 5.1.4
+
+Date: 06/15/2022
+
+Summary:
+
+##### Bug Fixes<!-- no-margin -->
+
+- add missing dependencies (5329812)
+
+---
+
 Title: react-md 5.1.3
 
 Date: 05/06/2022
