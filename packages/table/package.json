@@ -30,8 +30,10 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@react-md/button": "^5.1.3",
     "@react-md/divider": "^5.1.3",
     "@react-md/form": "^5.1.3",
+    "@react-md/icon": "^5.1.3",
     "@react-md/theme": "^5.1.3",
     "@react-md/transition": "^5.1.3",
     "@react-md/typography": "^5.1.3",
